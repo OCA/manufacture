@@ -20,15 +20,15 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
-class mrp_bom(osv.osv):
+class mrp_bom(orm.Model):
     _inherit = 'mrp.bom'
 
     _columns ={
-        'product_standard_price': fields.related('product_id', 'standard_price', type='float', string='Cost Price', readonly=True),
-        'product_qty_available': fields.related('product_id', 'qty_available', type='float', string='Quantity On Hand', readonly=True),
+        'product_standard_price': fields.related('product_id', 'standard_price',
+            type='float', string='Cost Price', readonly=True),
+        'product_qty_available': fields.related('product_id', 'qty_available',
+            type='float', string='Quantity On Hand', readonly=True),
     }
-    
-mrp_bom()
