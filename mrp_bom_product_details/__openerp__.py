@@ -25,7 +25,7 @@
     'author': 'Solutions Libergia inc.',
     'category': 'Manufacturing',
     'description': """
-    This module adds product price and stock to bom view
+    This module adds product price and stock to bom views
     """,
     'depends': ["base","mrp"],
     'demo': [],
