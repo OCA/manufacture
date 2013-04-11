@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <openerp>
     <data>
-	<delete model="ir.actions.report.xml" search="[('name', '=', 'bom.structure')]" />
+    <delete model="ir.actions.report.xml" search="[('name', '=', 'bom.structure')]" />
         <report auto="True" 
-		header="False"
-		id="report_custom_bom_structure"
-		model="mrp.bom"
-		name="custom.bom.structure"
+        header="False"
+        id="report_custom_bom_structure"
+        model="mrp.bom"
+        name="custom.bom.structure"
         rml="mrp_industrial_design_bom/report/bom_structure_custom.rml"
-		string="BOM Structure"/>
+        string="BOM Structure"/>
 
         <record model="ir.ui.view" id="mrp_bom_form_view_inherit">
             <field name="name">mrp.bom.form.inherit</field>
