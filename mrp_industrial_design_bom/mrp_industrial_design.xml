@@ -4,10 +4,10 @@
     <delete model="ir.actions.report.xml" search="[('name', '=', 'bom.structure')]" />
         <report auto="True" 
         header="False"
-        id="report_custom_bom_structure"
+        id="report_industrial_design_bom_structure"
         model="mrp.bom"
-        name="custom.bom.structure"
-        rml="mrp_industrial_design_bom/report/bom_structure_custom.rml"
+        name="industrialdesign.bom.structure"
+        rml="mrp_industrial_design_bom/report/bom_structure_industrial_design.rml"
         string="BOM Structure"/>
 
         <record model="ir.ui.view" id="mrp_bom_form_view_inherit">

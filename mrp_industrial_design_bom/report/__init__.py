@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-import bom_structure_custom
+import bom_structure_industrial_design
