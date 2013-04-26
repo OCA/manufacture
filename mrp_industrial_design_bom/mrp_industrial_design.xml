@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+    <delete model="ir.actions.report.xml" search="[('name', '=', 'bom.structure')]" />
+        <report auto="True" 
+        header="False"
+        id="report_industrial_design_bom_structure"
+        model="mrp.bom"
+        name="industrialdesign.bom.structure"
+        rml="mrp_industrial_design_bom/report/bom_structure_industrial_design.rml"
+        string="BOM Structure"/>
+
+        <record model="ir.ui.view" id="mrp_bom_form_view_inherit">
+            <field name="name">mrp.bom.form.inherit</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page/field/tree/field[@name='product_id']" position="before">
+                    <field name="bubble_number" />
+                </xpath>
+                <xpath expr="/form/notebook/page/field/tree/field[@name='date_stop']" position="after">
+                    <field name="refdes" />
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+
