@@ -31,5 +31,5 @@
     'demo': [],
     'data': ['mrp_bom_product_details.xml'],
     'auto_install': False,
-    'installable': True,
+    'installable': False,
 }
