@@ -23,7 +23,7 @@
  'version': '0.1',
  'category': 'Generic Modules/Others',
  'license': 'AGPL-3',
- 'description': """MRP Split one unit in a prodution order.
+ 'description': """MRP Split one unit in a production order.
 
 This module adds a button in each line of the Products to Finish and Finished
 Products to directly split one unit of the product in a separate line.
