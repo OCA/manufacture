@@ -49,7 +49,16 @@ class stock_move(osv.osv):
             #create the new move
             self.copy(cr, uid, move.id, default_val, context=context)
 
-        return True
+        # poor man's refresh
+        return {
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mrp.production',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'context': context,
+            'res_id': move.production_id.id,
+        }
 
     def split_one_finished(self, cr, uid, ids, context=None):
         return self.split_one(cr, uid, ids, context=context)
