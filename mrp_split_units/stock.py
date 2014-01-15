@@ -20,12 +20,12 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv
+from osv import orm
 from tools.translate import _
 import decimal_precision as dp
 
 
-class stock_move(osv.osv):
+class stock_move(orm.Model):
 
     """Stock move. Add methods to split moves in manufacturing orders."""
 
@@ -47,13 +47,13 @@ class stock_move(osv.osv):
             int_qty = int(move.product_qty)
 
             if not almost_integer(cr, move.product_qty, int_qty):
-                raise osv.except_osv(
+                raise orm.except_osv(
                     _('Error'),
                     _('Quantity needs to be integer.')
                 )
 
             if int_qty <= 1:
-                raise osv.except_osv(
+                raise orm.except_osv(
                     _('Error'),
                     _('Quantity needs to be more than 1.')
                 )
@@ -61,7 +61,7 @@ class stock_move(osv.osv):
             self.write(cr, uid, move.id, {
                 'product_qty': 1.0,
                 'product_uos_qty': 1.0,
-            })
+            }, context=context)
 
             default_val = {
                 'product_qty': 1.0,
