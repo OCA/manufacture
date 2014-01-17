@@ -18,20 +18,30 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.     #
 #                                                                             #
 ###############################################################################
-
-from osv import osv
+"""MRP Split one unit in a production order."""
+from osv import orm
 from tools.translate import _
 
 
-class stock_move(osv.osv):
+class stock_move(orm.Model):
+
+    """We add to the stock.move methods for the split one button."""
+
     _inherit = 'stock.move'
 
     def split_one(self, cr, uid, ids, context=None):
-        """Split the current move creating one with quantity one."""
+        """Split the current move creating one with quantity one.
+
+        Return action.
+
+        """
+
+        if context is None:
+            context = {}
 
         for move in self.browse(cr, uid, ids, context=context):
             if move.product_qty <= 1.0:
-                raise osv.except_osv(
+                raise orm.except_orm(
                     _('Error'),
                     _('Quantity needs to be more that 1.')
                 )
@@ -39,7 +49,7 @@ class stock_move(osv.osv):
             self.write(cr, uid, move.id, {
                 'product_qty': move.product_qty - 1.0,
                 'product_uos_qty': move.product_uos_qty - 1.0,
-            })
+            }, context=context)
             default_val = {
                 'product_qty': 1.0,
                 'product_uos_qty': 1.0,
@@ -61,7 +71,9 @@ class stock_move(osv.osv):
         }
 
     def split_one_finished(self, cr, uid, ids, context=None):
+        """Split one unit from the finished products. Return action."""
         return self.split_one(cr, uid, ids, context=context)
 
     def split_one_to_finish(self, cr, uid, ids, context=None):
+        """Split one unit from the products to finish. Return action."""
         return self.split_one(cr, uid, ids, context=context)
