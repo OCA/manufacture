@@ -19,7 +19,7 @@
 #                                                                             #
 ###############################################################################
 """MRP Split one unit in a production order."""
-from osv import orm
+from openerp.osv import orm
 from tools.translate import _
 
 
