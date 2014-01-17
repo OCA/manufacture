@@ -24,12 +24,12 @@ msgstr "Mouvement de stock"
 #: code:addons/mrp_split_one/stock.py:36
 #, python-format
 msgid "Quantity needs to be more that 1."
-msgstr "Quantity needs to be more that 1."
+msgstr "La quantité doit être plus grande que 1."
 
 #. module: mrp_split_one
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr "You can not move products from or to a location of the type view."
+msgstr "Vous ne pouvez pas déplacer un produit vers ou depuis un emplacement de type vue."
 
 #. module: mrp_split_one
 #: constraint:stock.move:0
@@ -50,5 +50,5 @@ msgstr "Split One"
 #: code:addons/mrp_split_one/stock.py:35
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr "Erreur"
 
