@@ -99,7 +99,7 @@
         proc_ids = self.search(cr, uid, [('origin','=',so.name) and ('state','=','running')])
         assert proc_ids, 'Procurement is not in the running state!'
 -
-    I verify that a manufacturing order has been generated, and its properties are matching
+    I verify that a manufacturing order has been generated, and its properties are matching with those on the sale order line
 -
     !python {model: sale.order}: |
         mnf_obj = self.pool.get('mrp.production')
