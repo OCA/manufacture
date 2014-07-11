@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_merge_production_wizard_target" model="ir.ui.view">
+      <field name="name">Merge Productions</field>
+      <field name="model">mrp.production.merge.wizard</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Merge Productions" version="7.0">
+          <header>
+            <field name="state" class="oe_right" widget="statusbar" />
+          </header>
+          <group string="Merge Target">
+            <field name="target_production_id"
+              attrs="{'readonly': [('state', '!=', 'target')]}"
+              domain="[('state', 'not in', ('done', 'cancel'))]" />
+          </group>
+          <group string="Productions to Merge">
+            <field name="possible_merge_ids"
+              nolabel="1"
+              widget="one2many_list"
+              attrs="{'invisible': [('state', '!=', 'merge')]}"
+              domain="[('wizard_id', '=', active_id)]">
+              <tree string="Productions" editable="bottom" create="0" delete="0">
+                <field name="wizard_id" invisible="1" />
+                <field name="merge" />
+                <field name="production_id" />
+              </tree>
+            </field>
+            <field name="selected_merge_ids"
+              nolabel="1"
+              widget="one2many_list"
+              readonly="1"
+              attrs="{'invisible': [('state', '!=', 'confirm')]}"
+              domain="[('wizard_id', '=', active_id), ('merge', '=', True)]"
+              >
+              <tree string="Productions">
+                <field name="name" />
+                <field name="state" />
+                <field name="product_qty" />
+              </tree>
+            </field>
+          </group>
+          <footer>
+            <button name="do_set_target" type="object" string="Next" class="oe_highlight" states="target" />
+            <button name="do_set_merges" type="object" string="Next" class="oe_highlight" states="merge" />
+            <button name="do_merge" type="object" string="Confirm" class="oe_highlight" states="confirm" />
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_merge_productions" model="ir.actions.act_window">
+      <field name="name">Merge Productions</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">mrp.production.merge.wizard</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+    <record id="action_open_merge_production_wizard" model="ir.actions.server">
+      <field name="name">Merge Productions</field>
+      <field name="model_id" ref="model_mrp_production" />
+      <field name="state">code</field>
+      <field name="code">action = obj.action_open_merge_wizard(context=context)</field>
+    </record>
+
+    <record id="ir_open_merge_production_wizard" model="ir.values">
+      <field name="key2">client_action_multi</field>
+      <field name="model">mrp.production</field>
+      <field name="name">Merge Productions</field>
+      <field name="value" eval="'ir.actions.server,%d' % action_open_merge_production_wizard" />
+    </record>
+  </data>
+</openerp>
+
