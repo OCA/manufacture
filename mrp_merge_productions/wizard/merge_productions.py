@@ -72,15 +72,15 @@ class mrp_production_merge_wizard(orm.TransientModel):
     }
 
     def _get_merge_choices(self, cr, uid, target_id):
-        mrp = self.pool.get("mrp.production")
-        target = mrp.browse(cr, uid, target_id)
+        mrp_obj = self.pool["mrp.production"]
+        target = mrp_obj.browse(cr, uid, target_id)
         if not target:
             raise orm.except_orm(
                 _("Undefined target"),
                 _("No production found with id %d") % (target_id, ),
             )
 
-        production_ids = mrp.search(cr, uid, [
+        production_ids = mrp_obj.search(cr, uid, [
             ('id', '!=', target_id),
             ('state', 'not in', ('cancel', 'done')),
             ('product_id', '=', target.product_id.id),
@@ -94,7 +94,7 @@ class mrp_production_merge_wizard(orm.TransientModel):
         return production_ids
 
     def _get_single_target(self, cr, uid, target_id):
-        target = self.pool.get("mrp.production").browse(cr, uid, target_id)
+        target = self.pool["mrp.production"].browse(cr, uid, target_id)
         if target.state in ('done', 'cancel'):
             raise orm.except_orm(
                 _("Not allowed"),
@@ -167,8 +167,8 @@ class mrp_production_merge_wizard(orm.TransientModel):
         return self._refresh(ids[0], context)
 
     def do_merge(self, cr, uid, ids, context=None):
-        m_proc_order = self.pool.get("procurement.order")
-        m_move = self.pool.get("stock.move")
+        prod_order_obj = self.pool["procurement.order"]
+        move_obj = self.pool["stock.move"]
 
         form = self.browse(cr, uid, ids[0])
         target = form.target_production_id
@@ -236,7 +236,7 @@ class mrp_production_merge_wizard(orm.TransientModel):
                                 if not moves_mergeable(to_merge, mergeable):
                                     break
                                 # Find a procurement order on the moves
-                                if m_proc_order.search(cr, uid, [('move_id', 'in', (to_merge.id, mergeable.id))]):
+                                if prod_order_obj.search(cr, uid, [('move_id', 'in', (to_merge.id, mergeable.id))]):
                                     break
                                 # Don't allow a change of product or unit
                                 if to_merge.product_id.id != orig_product:
@@ -254,9 +254,9 @@ class mrp_production_merge_wizard(orm.TransientModel):
 
             # Update any moves that require updates
             for move_id, write in move_updates.iteritems():
-                m_move.write(cr, uid, [move_id], write, context=context)
+                move_obj.write(cr, uid, [move_id], write, context=context)
 
-            m_move.write(cr, uid, moves_to_cancel, {"state": "cancel"})
+            move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
 
             # Move all the moves to the new production, cancel the to_produce
             prod.write({
@@ -286,7 +286,7 @@ class mrp_production(orm.Model):
         if context.get('active_model') != self._name:
             context.update(active_ids=ids, active_model=self._name)
 
-        wizard_id = self.pool.get("mrp.production.merge.wizard").create(
+        wizard_id = self.pool["mrp.production.merge.wizard"].create(
             cr, uid, {}, context=context)
 
         return {
