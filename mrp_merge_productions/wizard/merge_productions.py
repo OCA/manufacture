@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, osv, fields
+from openerp.osv import orm, fields
 from tools.translate import _
 
 import logging
@@ -35,8 +35,6 @@ class mrp_merge_possibility(orm.TransientModel):
         "merge": fields.boolean("Select"),
         "wizard_id": fields.many2one("mrp.production.merge.wizard", "Wizard", readonly=True)
     }
-
-mrp_merge_possibility()
 
 
 def id_of(obj):
@@ -77,7 +75,7 @@ class mrp_production_merge_wizard(orm.TransientModel):
         mrp = self.pool.get("mrp.production")
         target = mrp.browse(cr, uid, target_id)
         if not target:
-            raise osv.except_osv(
+            raise orm.except_orm(
                 _("Undefined target"),
                 _("No production found with id %d") % (target_id, ),
             )
@@ -98,7 +96,7 @@ class mrp_production_merge_wizard(orm.TransientModel):
     def _get_single_target(self, cr, uid, target_id):
         target = self.pool.get("mrp.production").browse(cr, uid, target_id)
         if target.state in ('done', 'cancel'):
-            raise osv.except_osv(
+            raise orm.except_orm(
                 _("Not allowed"),
                 _("You are not allowed to merge productions in the 'done'"
                   " or 'cancel' states."),
@@ -249,7 +247,7 @@ class mrp_production_merge_wizard(orm.TransientModel):
                         # Found a target, stop searching
                         break
                 else:
-                    raise osv.except_osv(
+                    raise orm.except_orm(
                         _("Unable to merge 'To Produce' move"),
                         _("No candidate to merge move %s") % (to_merge.id, ),
                     )
@@ -271,15 +269,12 @@ class mrp_production_merge_wizard(orm.TransientModel):
         target.write({"move_lines": [(4, mid) for mid in moves_to_link],
                       "move_lines2": [(4, mid) for mid in moves_to_link2],
                       })
-        m_prod = self.pool.get("mrp.production")
-        m_picking = self.pool.get("stock.picking")
+        prod_obj = self.pool["mrp.production"]
+        picking_obj = self.pool["stock.picking"]
         # force unlinking of MOs through super calls
-        orm.Model.unlink(m_prod, cr, uid, rm_prod_ids)
-        orm.Model.unlink(m_picking, cr, uid, rm_picking_ids)
+        orm.Model.unlink(prod_obj, cr, uid, rm_prod_ids, context=context)
+        orm.Model.unlink(picking_obj, cr, uid, rm_picking_ids, context=context)
         return None
-
-
-mrp_production_merge_wizard()
 
 
 class mrp_production(orm.Model):
