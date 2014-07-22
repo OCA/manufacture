@@ -53,7 +53,7 @@ Contributors
         'python': [],
     },
     'data': [
-        'wizard/merge_productions_view.xml',
+        'merge_productions_view.xml',
     ],
     'demo': [],
     'test': [
