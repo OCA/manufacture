@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import merge_productions
+from . import mrp_production
