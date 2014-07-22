@@ -20,21 +20,11 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
 from tools.translate import _
 
 import logging
 _logger = logging.getLogger(__name__)
-
-
-class mrp_merge_possibility(orm.TransientModel):
-    _name = "mrp.production.merge.choice"
-    _description = "Merge Possibility"
-    _columns = {
-        "production_id": fields.many2one("mrp.production", "Production", readonly=True),
-        "merge": fields.boolean("Select"),
-        "wizard_id": fields.many2one("mrp.production.merge.wizard", "Wizard", readonly=True)
-    }
 
 
 def id_of(obj):
@@ -43,6 +33,24 @@ def id_of(obj):
         return obj.id
     else:
         return None
+
+
+def get_target(productions):
+    def sort_key(prod):
+        return (
+            # Prioritize in production and ready
+            {"in_production": 1,
+             "ready": 2}.get(prod.state, 9),
+            # Then the oldest id
+            prod.id,
+        )
+
+    productions = sorted(productions, key=sort_key)
+    return productions[0], productions[1:]
+
+
+def name_of(obj):
+    return getattr(obj, "name", repr(obj))
 
 
 def moves_mergeable(source, target):
@@ -56,131 +64,103 @@ def moves_mergeable(source, target):
     ))
 
 
-class mrp_production_merge_wizard(orm.TransientModel):
-    _name = "mrp.production.merge.wizard"
-    _description = "Merge Productions"
-    _columns = {
-        "state": fields.selection([
-            ("target", "Select Target"),
-            ("merge", "Select Merges"),
-            ("confirm", "Confirm Merges"),
-        ]),
-        "target_production_id": fields.many2one("mrp.production", "Target Production"),
-        "selected_merge_ids": fields.many2many("mrp.production", "m2m_prod_merge_wizard_sel_ids",
-                                               "wizard_id", "production_id", "Selected Productions"),
-        "possible_merge_ids": fields.one2many("mrp.production.merge.choice", "wizard_id", "Merge Choices"),
-    }
+def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
+    proc_order_obj = obj.pool.get("procurement.order")
+    for to_merge in source_moves:
+        for mergeable in target_moves:
+            if moves_mergeable(to_merge, mergeable):
+                orig_product = to_merge.product_id.id
+                orig_uom = id_of(to_merge.product_uom)
+                # We found a suitable merge target, do the merge
+                while to_merge and mergeable:
+                    # Begin updating the move chain until we have a
+                    # procurement order on the move
+                    to_write = updates.setdefault(
+                        mergeable.id,
+                        {"product_qty": mergeable.product_qty}
+                    )
 
-    def _get_merge_choices(self, cr, uid, target_id):
-        mrp_obj = self.pool["mrp.production"]
-        target = mrp_obj.browse(cr, uid, target_id)
-        if not target:
-            raise orm.except_orm(
-                _("Undefined target"),
-                _("No production found with id %d") % (target_id, ),
-            )
+                    _logger.debug("Merging move %s into move %s (%d %s)",
+                                  to_merge.id, mergeable.id,
+                                  to_merge.product_qty, to_merge.product_id.name)
+                    to_write["product_qty"] += to_merge.product_qty
+                    to_cancel.append(to_merge.id)
 
-        production_ids = mrp_obj.search(cr, uid, [
-            ('id', '!=', target_id),
-            ('state', 'not in', ('cancel', 'done')),
-            ('product_id', '=', target.product_id.id),
-            ('bom_id', '=', target.bom_id.id),
-            ('product_uom', '=', target.product_uom.id),
-            ('location_src_id', '=', target.location_src_id.id),
-            ('location_dest_id', '=', target.location_dest_id.id),
-            ('company_id', '=', target.company_id.id),
-        ])
+                    # Get the next in the chain
+                    to_merge = to_merge.move_dest_id
+                    mergeable = mergeable.move_dest_id
+                    if to_merge and mergeable:
+                        if not moves_mergeable(to_merge, mergeable):
+                            break
+                        # Find a procurement order on the moves
+                        if proc_order_obj.search(cr, uid, [('move_id', 'in', (to_merge.id, mergeable.id))]):
+                            break
+                        # Don't allow a change of product or unit
+                        if to_merge.product_id.id != orig_product:
+                            break
+                        if id_of(to_merge.product_uom) != orig_uom:
+                            break
 
-        return production_ids
-
-    def _get_single_target(self, cr, uid, target_id):
-        target = self.pool["mrp.production"].browse(cr, uid, target_id)
-        if target.state in ('done', 'cancel'):
-            raise orm.except_orm(
-                _("Not allowed"),
-                _("You are not allowed to merge productions in the 'done'"
-                  " or 'cancel' states."),
-            )
-        return {
-            "state": "merge",
-            "target_production_id": target_id,
-            "possible_merge_ids": [
-                (0, 0, {"production_id": prod_id,
-                        "merge": False})
-                for prod_id in self._get_merge_choices(cr, uid, target_id)
-            ],
-        }
-
-    def default_get(self, cr, uid, fields_list, context=None):
-        if context and context.get("active_ids"):
-            active_ids = context["active_ids"]
-            if len(active_ids) == 1:
-                return self._get_single_target(cr, uid, active_ids[0])
-            else:
-                return {
-                    "state": "target",
-                    "possible_merge_ids": [
-                        (0, 0, {"production_id": prod_id,
-                                "merge": False})
-                        for prod_id in active_ids
-                    ]
-                }
-        elif context and context.get("active_id"):
-            return self._get_single_target(cr, uid, context["active_id"])
+                # Found a target, stop searching
+                break
         else:
-            return {"state": "target"}
+            raise orm.except_orm(
+                _("Unable to merge 'To Produce' move"),
+                _("No candidate to merge move %s") % (to_merge.id, ),
+            )
 
-    def _refresh(self, id, context):
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': self._name,
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': id,
-            'views': [(False, 'form')],
-            'target': 'new',
-            'context': context,
-        }
 
-    def do_set_target(self, cr, uid, ids, context=None):
-        form = self.browse(cr, uid, ids[0], context=context)
-        self.write(cr, uid, ids, {
-            "state": "merge",
-            "possible_merge_ids": [
-                (0, 0, {"production_id": prod_id,
-                        "merge": False})
-                for prod_id in self._get_merge_choices(
-                    cr, uid, form.target_production_id.id)
-            ]
-        })
-        return self._refresh(ids[0], context)
+class mrp_production(orm.Model):
+    _inherit = 'mrp.production'
 
-    def do_set_merges(self, cr, uid, ids, context=None):
-        form = self.browse(cr, uid, ids[0], context=context)
-        self.write(cr, uid, ids, {
-            "state": "confirm",
-            "selected_merge_ids": [
-                (4, merge.production_id.id)
-                for merge in form.possible_merge_ids
-                if merge.merge
-            ]})
-        return self._refresh(ids[0], context)
+    def _check_productions_mergeable(self, productions):
+        if any(production.state in ('done', 'cancel')
+               for production in productions):
+            raise orm.except_orm(
+                _("Invalid Selecetion"),
+                _("You cannot merge manufacturing orders that are done"
+                  " or cancelled."),
+            )
 
-    def do_merge(self, cr, uid, ids, context=None):
-        prod_order_obj = self.pool["procurement.order"]
-        move_obj = self.pool["stock.move"]
+        unique_attrs = (
+            ("product_id", _("Product")),
+            ("bom_id", _("Bill of Materials")),
+            ("product_uom", _("Product UOM")),
+            ("location_src_id", _("Source Location")),
+            ("location_dest_id", _("Destination Location")),
+        )
+        for attr, name in unique_attrs:
+            values = set(
+                id_of(getattr(prod, attr))
+                for prod in productions
+            )
 
-        form = self.browse(cr, uid, ids[0])
-        target = form.target_production_id
+            if len(values) > 1:
+                value_names = ",\n".join([
+                    name_of(value)
+                    for value in set(getattr(prod, attr) for prod in productions)
+                ])
+                raise orm.except_orm(
+                    _("Incompatible Productions"),
+                    _("Unable to merge productions with different %s\n"
+                      "Received values:\n%s") % (name, value_names),
+                )
+
+    def _do_merge_productions(self, cr, uid, target, productions, context):
+        move_obj = self.pool.get("stock.move")
+        prod_line_obj = self.pool.get("mrp.production.product.line")
+
+        # Update quantities to produce
         target_write = {
             "product_qty": target.product_qty + sum(
-                prod.product_qty for prod in form.selected_merge_ids
+                prod.product_qty for prod in productions,
             ),
         }
         if target.product_uos_qty:
             target_write["product_uos_qty"] = target.product_uos_qty + sum(
-                prod.product_uos_qty for prod in form.selected_merge_ids
+                prod.product_uos_qty for prod in productions,
             )
+
         _logger.debug("Writing to production %d: %r", target.id, target_write)
         target.write(target_write)
 
@@ -190,12 +170,14 @@ class mrp_production_merge_wizard(orm.TransientModel):
         rm_prod_ids = []
 
         moves_to_produce = [move for move in target.move_created_ids]
+        moves_to_consume = [move for move in target.move_lines]
         moves_to_link = []
         moves_to_link2 = []
+        prodlines_to_link = []
         moves_to_cancel = []
         move_updates = {}
         # XXX Should we merge notes or add notes of any kind?
-        for prod in form.selected_merge_ids:
+        for prod in productions:
             # Merge the pickings
             if prod.picking_id:
                 prod.picking_id.write({
@@ -205,58 +187,22 @@ class mrp_production_merge_wizard(orm.TransientModel):
 
                 rm_picking_ids.append(prod.picking_id.id)
 
+            # Merge the scheduled products
+            prodlines_to_link.extend(line.id for line in prod.product_lines)
+
             # Keep m2m moves to link
             moves_to_link.extend(mid.id for mid in prod.move_lines)
             moves_to_link2.extend(mid.id for mid in prod.move_lines2)
 
             # Moves "to produce" must be merged with the ones from the target
             # production.
-            for to_merge in prod.move_created_ids:
-                for mergeable in moves_to_produce:
-                    if moves_mergeable(to_merge, mergeable):
-                        orig_product = to_merge.product_id.id
-                        orig_uom = id_of(to_merge.product_uom)
-                        # We found a suitable merge target, do the merge
-                        while to_merge and mergeable:
-                            # Begin updating the move chain until we have a
-                            # procurement order on the move
-                            to_write = move_updates.setdefault(
-                                mergeable.id,
-                                {"product_qty": mergeable.product_qty}
-                            )
-
-                            _logger.debug("Merging move %s into move %s", to_merge.id, mergeable.id)
-                            to_write["product_qty"] += to_merge.product_qty
-                            moves_to_cancel.append(to_merge.id)
-
-                            # Get the next in the chain
-                            to_merge = to_merge.move_dest_id
-                            mergeable = mergeable.move_dest_id
-                            if to_merge and mergeable:
-                                if not moves_mergeable(to_merge, mergeable):
-                                    break
-                                # Find a procurement order on the moves
-                                if prod_order_obj.search(cr, uid, [('move_id', 'in', (to_merge.id, mergeable.id))]):
-                                    break
-                                # Don't allow a change of product or unit
-                                if to_merge.product_id.id != orig_product:
-                                    break
-                                if id_of(to_merge.product_uom) != orig_uom:
-                                    break
-
-                        # Found a target, stop searching
-                        break
-                else:
-                    raise orm.except_orm(
-                        _("Unable to merge 'To Produce' move"),
-                        _("No candidate to merge move %s") % (to_merge.id, ),
-                    )
-
-            # Update any moves that require updates
-            for move_id, write in move_updates.iteritems():
-                move_obj.write(cr, uid, [move_id], write, context=context)
-
-            move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
+            merge_moves(self, cr, uid,
+                        prod.move_created_ids, moves_to_produce,
+                        move_updates, moves_to_cancel)
+            # Moves "ton consume" should be merged as well
+            merge_moves(self, cr, uid,
+                        prod.move_lines, moves_to_consume,
+                        move_updates, moves_to_cancel)
 
             # Move all the moves to the new production, cancel the to_produce
             prod.write({
@@ -265,40 +211,51 @@ class mrp_production_merge_wizard(orm.TransientModel):
             })
 
             rm_prod_ids.append(prod.id)
+            # Done handling one production
+
+        # Update any moves that require updates
+        for move_id, write in move_updates.iteritems():
+            move_obj.write(cr, uid, [move_id], write, context=context)
+
+        # Update scheduled_products
+        prod_line_obj.write(cr, uid, prodlines_to_link, {
+            "production_id": target.id,
+        })
+
+        # Cancel moves that were merged.
+        move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
 
         target.write({"move_lines": [(4, mid) for mid in moves_to_link],
                       "move_lines2": [(4, mid) for mid in moves_to_link2],
                       })
-        prod_obj = self.pool["mrp.production"]
-        picking_obj = self.pool["stock.picking"]
+        prod_obj = self.pool.get("mrp.production")
+        picking_obj = self.pool.get("stock.picking")
         # force unlinking of MOs through super calls
-        orm.Model.unlink(prod_obj, cr, uid, rm_prod_ids, context=context)
-        orm.Model.unlink(picking_obj, cr, uid, rm_picking_ids, context=context)
+        orm.Model.unlink(prod_obj, cr, uid, rm_prod_ids)
+        orm.Model.unlink(picking_obj, cr, uid, rm_picking_ids)
         return None
 
+    def action_merge_productions(self, cr, uid, ids, context=None):
+        ids = context.pop("active_ids", None)
+        if not ids or len(ids) < 2:
+            raise orm.except_orm(
+                _("Invalid Selection"),
+                _("You need to select at least two productions"),
+            )
 
-class mrp_production(orm.Model):
-    _inherit = 'mrp.production'
-
-    def action_open_merge_wizard(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        if context.get('active_model') != self._name:
-            context.update(active_ids=ids, active_model=self._name)
-
-        wizard_id = self.pool["mrp.production.merge.wizard"].create(
-            cr, uid, {}, context=context)
+        productions = self.browse(cr, uid, ids)
+        self._check_productions_mergeable(productions)
+        target, productions = get_target(productions)
+        self._do_merge_productions(cr, uid, target, productions, context=context)
 
         return {
-            "name": _("Merge Productions"),
+            "name": _("Merged Productions"),
             "view_mode": "form",
             "view_id": False,
             "view_type": "form",
-            "res_model": "mrp.production.merge.wizard",
-            "res_id": wizard_id,
+            "res_model": "mrp.production",
+            "res_id": target.id,
             "type": 'ir.actions.act_window',
-            "nodestroy": True,
-            "target": "new",
             "domain": '[]',
             "context": context,
         }
