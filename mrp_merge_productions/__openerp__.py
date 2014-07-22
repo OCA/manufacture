@@ -47,6 +47,7 @@ Contributors
 """,
     'depends': [
         'mrp',
+        'product',
     ],
     'external_dependencies': {
         'python': [],
@@ -55,7 +56,9 @@ Contributors
         'wizard/merge_productions_view.xml',
     ],
     'demo': [],
-    'test': [],
+    'test': [
+        'test/merge_productions.yml',
+    ],
     'installable': True,
     'auto_install': False,
 }
