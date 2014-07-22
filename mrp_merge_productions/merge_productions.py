@@ -91,8 +91,9 @@ def merge_prodlines(obj, cr, uid, source_lines, target_lines, updates, to_delete
                 _("No candidate to merge line %d") % (to_merge.id, ),
             )
 
+
 def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
-    proc_order_obj = obj.pool.get("procurement.order")
+    proc_order_obj = obj.pool["procurement.order"]
     for to_merge in source_moves:
         for mergeable in target_moves:
             if moves_mergeable(to_merge, mergeable):
@@ -177,8 +178,8 @@ class mrp_production(orm.Model):
                 )
 
     def _do_merge_productions(self, cr, uid, target, productions, context):
-        move_obj = self.pool.get("stock.move")
-        prod_line_obj = self.pool.get("mrp.production.product.line")
+        move_obj = self.pool["stock.move"]
+        prod_line_obj = self.pool["mrp.production.product.line"]
 
         # Update quantities to produce
         target_write = {
@@ -256,8 +257,8 @@ class mrp_production(orm.Model):
             prod_line_obj.write(cr, uid, [line_id], write, context=context)
         prod_line_obj.unlink(cr, uid, prodlines_to_delete, context=context)
 
-        prod_obj = self.pool.get("mrp.production")
-        picking_obj = self.pool.get("stock.picking")
+        prod_obj = self.pool["mrp.production"]
+        picking_obj = self.pool["stock.picking"]
         # force unlinking of MOs through super calls
         orm.Model.unlink(prod_obj, cr, uid, rm_prod_ids)
         orm.Model.unlink(picking_obj, cr, uid, rm_picking_ids)
