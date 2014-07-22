@@ -56,7 +56,7 @@ class stock_move(orm.Model):
                 'state': move.state,
                 'prodlot_id': False,
             }
-            #create the new move
+            # create the new move
             self.copy(cr, uid, move.id, default_val, context=context)
 
         # poor man's refresh

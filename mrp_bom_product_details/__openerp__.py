@@ -27,7 +27,7 @@
     'description': """
     This module adds product price and stock to bom view
     """,
-    'depends': ["base","mrp"],
+    'depends': ["base", "mrp"],
     'demo': [],
     'data': ['mrp_bom_product_details.xml'],
     'auto_install': False,

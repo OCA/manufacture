@@ -70,7 +70,7 @@ class stock_move(orm.Model):
                 'prodlot_id': False,
             }
 
-            #create the new moves
+            # create the new moves
             for i in xrange(int_qty - 1):
                 self.copy(cr, uid, move.id, default_val, context=context)
 
