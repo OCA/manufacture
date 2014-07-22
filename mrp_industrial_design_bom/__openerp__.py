@@ -21,14 +21,14 @@
 ##############################################################################
 
 {
-    'name' : 'Industrial design specification in BoM',
-    'version' : '1.0',
-    "author" : "Savoir-faire Linux",
-    "website" : "http://www.savoirfairelinux.com",
+    'name': 'Industrial design specification in BoM',
+    'version': '1.0',
+    "author": "Savoir-faire Linux",
+    "website": "http://www.savoirfairelinux.com",
     'license': 'AGPL-3',
-    'category' : 'Specific Industry Applications',
-    'depends' : ['mrp'],
-    "data" : ['mrp_industrial_design.xml'],
+    'category': 'Specific Industry Applications',
+    'depends': ['mrp'],
+    "data": ['mrp_industrial_design.xml'],
     'description': """
 This module adds the fields 'Bubble Number' and 'RefDes' (reference description) to a component in BoM view.
 
@@ -37,5 +37,3 @@ It also point the BOM Structure report to a new version that uses the new fields
     'auto_install': False,
     'installable': True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
