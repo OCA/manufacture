@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -21,15 +21,14 @@
 
 import time
 from openerp.report import report_sxw
-from openerp.osv import osv
-from openerp import pooler
+
 
 class bom_structure(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(bom_structure, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_children':self.get_children,
+            'get_children': self.get_children,
         })
 
     def get_children(self, object, level=0):
@@ -37,25 +36,26 @@ class bom_structure(report_sxw.rml_parse):
 
         def _get_rec(object, level):
             for l in object:
-                res = {}
-                res['name'] = l.name
-                res['pname'] = l.product_id.name
-                res['pcode'] = l.product_id.default_code
-                res['pqty'] = l.product_qty
-                res['uname'] = l.product_uom.name
-                res['code'] = l.code
-                res['level'] = level
-                res['bnumber'] = l.bubble_number
+                res = {
+                    'name': l.name,
+                    'pname': l.product_id.name,
+                    'pcode': l.product_id.default_code,
+                    'pqty': l.product_qty,
+                    'uname': l.product_uom.name,
+                    'code': l.code,
+                    'level': level,
+                    'bnumber': l.bubble_number,
+                }
                 result.append(res)
                 if l.child_complete_ids:
-                    if level<6:
+                    if level < 6:
                         level += 1
-                    _get_rec(l.child_complete_ids,level)
-                    if level>0 and level<6:
+                    _get_rec(l.child_complete_ids, level)
+                    if 0 < level < 6:
                         level -= 1
             return result
 
-        children = _get_rec(object,level)
+        children = _get_rec(object, level)
 
         return children
 
@@ -64,6 +64,3 @@ report_sxw.report_sxw('report.industrialdesign.bom.structure',
                       'mrp_industrial_design_bom/report/bom_structure_industrial_design.rml',
                       parser=bom_structure,
                       header='internal')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Solutions Libergia inc. (<http://www.libergia.com>).
+#    Copyright (C) 2013 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as
@@ -20,17 +19,15 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
-from openerp.tools.translate import _
+from openerp.osv import fields, orm
 
-class mrp_bom(osv.osv):
+
+class mrp_bom(orm.Model):
     _inherit = 'mrp.bom'
-
-    _columns ={
-        'product_standard_price': fields.related('product_id', 'standard_price', type='float', string='Cost Price', readonly=True),
-        'product_qty_available': fields.related('product_id', 'qty_available', type='float', string='Quantity On Hand', readonly=True),
-    }
-    _defaults = {
+    _columns = {
+        'bubble_number': fields.integer('No'),
+        'refdes': fields.text('Notes'),
     }
 
-mrp_bom()
+    _order = "bubble_number"
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
