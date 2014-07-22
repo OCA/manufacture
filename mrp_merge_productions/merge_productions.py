@@ -64,6 +64,33 @@ def moves_mergeable(source, target):
     ))
 
 
+def lines_mergeable(source, target):
+    return source.product_id.id == target.product_id.id
+
+
+def merge_prodlines(obj, cr, uid, source_lines, target_lines, updates, to_delete):
+    for to_merge in source_lines:
+        for mergeable in target_lines:
+            if lines_mergeable(to_merge, mergeable):
+                to_write = updates.setdefault(
+                    mergeable.id,
+                    {"product_qty": mergeable.product_qty,
+                     "product_uos_qty": mergeable.product_uos_qty}
+                )
+                _logger.debug("Merging prodline %d into %d (%d %s)",
+                              to_merge.id, mergeable.id,
+                              to_merge.product_qty, to_merge.product_id.name)
+                to_write["product_qty"] += to_merge.product_qty
+                if to_merge.product_uos_qty:
+                    to_write["product_uos_qty"] += to_merge.product_uos_qty
+                to_delete.append(to_merge.id)
+                break
+        else:
+            raise orm.except_orm(
+                _("Unable to merge 'Scheduled Product' line"),
+                _("No candidate to merge line %d") % (to_merge.id, ),
+            )
+
 def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
     proc_order_obj = obj.pool.get("procurement.order")
     for to_merge in source_moves:
@@ -77,13 +104,16 @@ def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
                     # procurement order on the move
                     to_write = updates.setdefault(
                         mergeable.id,
-                        {"product_qty": mergeable.product_qty}
+                        {"product_qty": mergeable.product_qty,
+                         "product_uos_qty": mergeable.product_uos_qty}
                     )
 
                     _logger.debug("Merging move %s into move %s (%d %s)",
                                   to_merge.id, mergeable.id,
                                   to_merge.product_qty, to_merge.product_id.name)
                     to_write["product_qty"] += to_merge.product_qty
+                    if to_merge.product_uos_qty:
+                        to_write["product_uos_qty"] += to_merge.product_uos_qty
                     to_cancel.append(to_merge.id)
 
                     # Get the next in the chain
@@ -171,11 +201,12 @@ class mrp_production(orm.Model):
 
         moves_to_produce = [move for move in target.move_created_ids]
         moves_to_consume = [move for move in target.move_lines]
-        moves_to_link = []
+        scheduled_lines = [line for line in target.product_lines]
         moves_to_link2 = []
-        prodlines_to_link = []
         moves_to_cancel = []
         move_updates = {}
+        prodlines_to_delete = []
+        prodline_updates = {}
         # XXX Should we merge notes or add notes of any kind?
         for prod in productions:
             # Merge the pickings
@@ -188,10 +219,11 @@ class mrp_production(orm.Model):
                 rm_picking_ids.append(prod.picking_id.id)
 
             # Merge the scheduled products
-            prodlines_to_link.extend(line.id for line in prod.product_lines)
+            merge_prodlines(self, cr, uid,
+                            prod.product_lines, scheduled_lines,
+                            prodline_updates, prodlines_to_delete)
 
             # Keep m2m moves to link
-            moves_to_link.extend(mid.id for mid in prod.move_lines)
             moves_to_link2.extend(mid.id for mid in prod.move_lines2)
 
             # Moves "to produce" must be merged with the ones from the target
@@ -216,18 +248,14 @@ class mrp_production(orm.Model):
         # Update any moves that require updates
         for move_id, write in move_updates.iteritems():
             move_obj.write(cr, uid, [move_id], write, context=context)
+        move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
+        target.write({"move_lines2": [(4, mid) for mid in moves_to_link2]})
 
         # Update scheduled_products
-        prod_line_obj.write(cr, uid, prodlines_to_link, {
-            "production_id": target.id,
-        })
+        for line_id, write in prodline_updates.iteritems():
+            prod_line_obj.write(cr, uid, [line_id], write, context=context)
+        prod_line_obj.unlink(cr, uid, prodlines_to_delete, context=context)
 
-        # Cancel moves that were merged.
-        move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
-
-        target.write({"move_lines": [(4, mid) for mid in moves_to_link],
-                      "move_lines2": [(4, mid) for mid in moves_to_link2],
-                      })
         prod_obj = self.pool.get("mrp.production")
         picking_obj = self.pool.get("stock.picking")
         # force unlinking of MOs through super calls
