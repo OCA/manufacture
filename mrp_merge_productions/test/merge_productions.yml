@@ -17,15 +17,11 @@
    location_dest_id: stock.stock_location_output
    bom_id: mrp.mrp_bom_24
 -
- I confirm the MOs and start the first one
+ I confirm the MOs
 -
  !workflow {model: mrp.production, action: button_confirm, ref: test_mo_merge}
 -
  !workflow {model: mrp.production, action: button_confirm, ref: test_mo_merge_2}
--
- I start one production
--
- !workflow {model: mrp.production, action: button_produce, ref: test_mo_merge}
 -
  I merge the two productions and expect the second one to disappear
 -

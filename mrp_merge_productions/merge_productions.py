@@ -39,8 +39,7 @@ def get_target(productions):
     def sort_key(prod):
         return (
             # Prioritize in production and ready
-            {"in_production": 1,
-             "ready": 2}.get(prod.state, 9),
+            {"ready": 1}.get(prod.state, 9),
             # Then the oldest id
             prod.id,
         )
@@ -55,7 +54,7 @@ def name_of(obj):
 
 def moves_mergeable(source, target):
     return all((
-        target.state not in ('cancel', 'done'),
+        target.state not in ('cancel', 'done', 'in_production'),
         source.product_id.id == target.product_id.id,
         id_of(source.prodlot_id) == id_of(target.prodlot_id),
         id_of(source.product_uom) == id_of(target.product_uom),
@@ -145,12 +144,12 @@ class mrp_production(orm.Model):
     _inherit = 'mrp.production'
 
     def _check_productions_mergeable(self, productions):
-        if any(production.state in ('done', 'cancel')
+        if any(production.state in ('done', 'cancel', 'in_production')
                for production in productions):
             raise orm.except_orm(
                 _("Invalid Selecetion"),
-                _("You cannot merge manufacturing orders that are done"
-                  " or cancelled."),
+                _("You cannot merge manufacturing orders that are done, "
+                  "in production or cancelled."),
             )
 
         unique_attrs = (
@@ -180,6 +179,7 @@ class mrp_production(orm.Model):
     def _do_merge_productions(self, cr, uid, target, productions, context):
         move_obj = self.pool["stock.move"]
         prod_line_obj = self.pool["mrp.production.product.line"]
+        workcenter_obj = self.pool["mrp.production.workcenter.line"]
 
         # Update quantities to produce
         target_write = {
@@ -205,6 +205,7 @@ class mrp_production(orm.Model):
         scheduled_lines = [line for line in target.product_lines]
         moves_to_link2 = []
         moves_to_cancel = []
+        workcenter_lines = []
         move_updates = {}
         prodlines_to_delete = []
         prodline_updates = {}
@@ -226,6 +227,9 @@ class mrp_production(orm.Model):
 
             # Keep m2m moves to link
             moves_to_link2.extend(mid.id for mid in prod.move_lines2)
+
+            # Keep the workcenter lines if any
+            workcenter_lines.extend(line.id for line in prod.workcenter_lines)
 
             # Moves "to produce" must be merged with the ones from the target
             # production.
@@ -256,6 +260,9 @@ class mrp_production(orm.Model):
         for line_id, write in prodline_updates.iteritems():
             prod_line_obj.write(cr, uid, [line_id], write, context=context)
         prod_line_obj.unlink(cr, uid, prodlines_to_delete, context=context)
+
+        # Update workcenter lines
+        workcenter_obj.write(cr, uid, workcenter_lines, {"production_id": target.id})
 
         prod_obj = self.pool["mrp.production"]
         picking_obj = self.pool["stock.picking"]

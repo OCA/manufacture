@@ -34,8 +34,11 @@ MRP - Merge Productions
 =======================
 
 This module allows merging productions based on the following criteria:
-* All productions must be similar (bom, product, etc..)
-* The productions must not be in the 'done' or 'cancel' states.
+* All productions must be similar:
+  * Same BOM
+  * Same Product and UOM
+  * Same Source and Destination Locations for the products
+* The productions must not be in the 'done', 'cancel' or 'in_production' states
 
 This is intented to provide easier handling of large amounts of similar
 manufacturing orders created by procurement orders, as it allows collapsing
