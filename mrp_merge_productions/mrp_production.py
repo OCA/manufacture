@@ -236,7 +236,7 @@ class mrp_production(orm.Model):
             merge_moves(self, cr, uid,
                         prod.move_created_ids, moves_to_produce,
                         move_updates, moves_to_cancel)
-            # Moves "ton consume" should be merged as well
+            # Moves "to consume" should be merged as well
             merge_moves(self, cr, uid,
                         prod.move_lines, moves_to_consume,
                         move_updates, moves_to_cancel)
