@@ -119,11 +119,20 @@ def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
                     # Get the next in the chain
                     to_merge = to_merge.move_dest_id
                     mergeable = mergeable.move_dest_id
+                    _logger.debug(
+                        "Next moves [%d]:%d %s, [%d]:%d %s",
+                        to_merge.id, to_merge.product_qty, to_merge.product_id.name,
+                        mergeable.id, mergeable.product_qty, mergeable.product_id.name,
+                    )
                     if to_merge and mergeable:
                         if not moves_mergeable(to_merge, mergeable):
                             break
-                        # Find a procurement order on the moves
-                        if proc_order_obj.search(cr, uid, [('move_id', 'in', (to_merge.id, mergeable.id))]):
+                        # Find a closing procurement order on the moves
+                        proc_order = proc_order_obj.search(cr, uid, [
+                            ('move_id', 'in', (to_merge.id, mergeable.id)),
+                            ('close_move', '=', True),
+                        ])
+                        if proc_order:
                             break
                         # Don't allow a change of product or unit
                         if to_merge.product_id.id != orig_product:
@@ -236,6 +245,7 @@ class mrp_production(orm.Model):
             merge_moves(self, cr, uid,
                         prod.move_created_ids, moves_to_produce,
                         move_updates, moves_to_cancel)
+
             # Moves "to consume" should be merged as well
             merge_moves(self, cr, uid,
                         prod.move_lines, moves_to_consume,
@@ -253,7 +263,8 @@ class mrp_production(orm.Model):
         # Update any moves that require updates
         for move_id, write in move_updates.iteritems():
             move_obj.write(cr, uid, [move_id], write, context=context)
-        move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel"})
+        move_obj.write(cr, uid, moves_to_cancel, {"state": "cancel",
+                                                  "move_dest_id": False})
         target.write({"move_lines2": [(4, mid) for mid in moves_to_link2]})
 
         # Update scheduled_products
