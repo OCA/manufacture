@@ -119,12 +119,12 @@ def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
                     # Get the next in the chain
                     to_merge = to_merge.move_dest_id
                     mergeable = mergeable.move_dest_id
-                    _logger.debug(
-                        "Next moves [%d]:%d %s, [%d]:%d %s",
-                        to_merge.id, to_merge.product_qty, to_merge.product_id.name,
-                        mergeable.id, mergeable.product_qty, mergeable.product_id.name,
-                    )
                     if to_merge and mergeable:
+                        _logger.debug(
+                            "Next moves [%d]:%d %s, [%d]:%d %s",
+                            to_merge.id, to_merge.product_qty, to_merge.product_id.name,
+                            mergeable.id, mergeable.product_qty, mergeable.product_id.name,
+                        )
                         if not moves_mergeable(to_merge, mergeable):
                             break
                         # Find a closing procurement order on the moves
