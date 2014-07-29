@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_production_analysis_report,access_production_analysis_report,model_production_analysis_report,mrp.group_mrp_manager,1,1,1,1

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_production_tree" model="ir.ui.view">
+      <field name="name">productions.tree</field>
+      <field name="model">production_analysis.report</field>
+      <field name="arch" type="xml">
+        <tree string="Productions Statistics" create="false">
+          <field name="production_id"/>
+          <field name="routing_name"/>
+          <field name="product_id"/>
+          <field name="date"/>
+          <field name="serial_number"/>
+          <field name="product_qty"/>
+          <field name="creation_day" invisible="1"/>
+          <field name="creation_year" invisible="1"/>
+          <field name="creation_month" invisible="1"/>
+          <field name="creation_week" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_production_tree_search" model="ir.ui.view">
+      <field name="name">productions.order.search</field>
+      <field name="model">production_analysis.report</field>
+      <field name="arch" type="xml">
+        <search string="Productions">
+          <filter string="Previous day" name="last_day"
+                  domain="[('date', '&gt;', (context_today() + relativedelta(days=-2)).strftime('%%Y-%%m-%%d')), ('date', '&lt;', (context_today() + relativedelta(days=0)).strftime('%%Y-%%m-%%d'))]"
+              />
+          <filter string="Previous week" name="last_week"
+                  domain="[('date', '&gt;=', (context_today() + relativedelta(weeks=-1, weekday=0)).strftime('%%Y-%%m-%%d')), ('date', '&lt;=', (context_today() + relativedelta(weeks=-1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+              />
+          <filter string="Previous month" name="last_month"
+                  domain="[('date', '&gt;=', (context_today() + relativedelta(day=1, months=-1)).strftime('%%Y-%%m-%%d')), ('date', '&lt;=', (context_today() + relativedelta(day=31, months=-1)).strftime('%%Y-%%m-%%d'))]"
+              />
+          <newline/>
+          <group expand="1" string="Group By...">
+            <filter string="Production" icon="terp-accessories-archiver"
+                    context="{'group_by':'production_id'}"/>
+            <filter string="Machine" icon="terp-go-machine"
+                    context="{'group_by':'routing_name'}"/>
+            <filter string="Product" icon="terp-go-product"
+                    context="{'group_by':'product_id'}"/>
+            <filter string="Category of product" icon="terp-go-category"
+                    context="{'group_by':'product_category_id'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Day" icon="terp-go-today"
+                    context="{'group_by':'creation_day'}" help="Order of Day"/>
+            <filter string="Month" icon="terp-go-month"
+                    context="{'group_by':'creation_month'}"
+                    help="Order of Month"/>
+            <filter string="Week" icon="terp-go-week"
+                    context="{'group_by':'creation_week'}"
+                    help="Order of Week"/>
+            <filter string="Year" icon="terp-go-year"
+                    context="{'group_by':'creation_year'}"
+                    help="Order of Year"/>
+            <separator orientation="vertical"/>
+            <filter string="Responsible" icon="terp-personal"
+                    context="{'group_by':'user_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_menu_production_report" model="ir.actions.act_window">
+      <field name="name">Production analysis</field>
+      <field name="res_model">production_analysis.report</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="view_production_tree"/>
+      <!--<field name="context">{'group_by_no_leaf':1, 'group_by':["partner_id"]}</field>-->
+    </record>
+
+    <menuitem action="action_menu_production_report"
+              name="Productions Analysis"
+              id="menu_action_productions_report_all"
+              parent="mrp.next_id_77" sequence="3"/>
+
+  </data>
+</openerp>
