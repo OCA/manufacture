@@ -29,7 +29,7 @@
                   domain="[('date', '&gt;', (context_today() + relativedelta(days=-2)).strftime('%%Y-%%m-%%d')), ('date', '&lt;', (context_today() + relativedelta(days=0)).strftime('%%Y-%%m-%%d'))]"
               />
           <filter string="Previous week" name="last_week"
-                  domain="[('date', '&gt;=', (context_today() + relativedelta(weeks=-1, weekday=0)).strftime('%%Y-%%m-%%d')), ('date', '&lt;=', (context_today() + relativedelta(weeks=-1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                  domain="[('date', '&gt;', (context_today() + relativedelta(weeks=-2, weekday=6)).strftime('%%Y-%%m-%%d')), ('date', '&lt;=', (context_today() + relativedelta(weeks=-1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
               />
           <filter string="Previous month" name="last_month"
                   domain="[('date', '&gt;=', (context_today() + relativedelta(day=1, months=-1)).strftime('%%Y-%%m-%%d')), ('date', '&lt;=', (context_today() + relativedelta(day=31, months=-1)).strftime('%%Y-%%m-%%d'))]"
