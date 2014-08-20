@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_product_tree_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.product.tree.view.inh
+            </field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="work_order" />
+                </field>
+            </field>
+        </record>
+        <record id="mrp_production_product_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.product.form.view.inh
+            </field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_form_view" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="work_order" />
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inh</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//page//group[@string='Products to Consume']//field[@name='product_id']"
+                    position="after">
+                    <field name="work_order" />
+                </xpath>
+                <xpath
+                    expr="//page//group[@string='Consumed Products']//field[@name='product_id']"
+                    position="after">
+                    <field name="work_order" />
+                </xpath>
+                <xpath
+                    expr="//page//group[@string='Products to Produce']//field[@name='product_id']"
+                    position="after">
+                    <field name="work_order" />
+                </xpath>
+                <xpath
+                    expr="//page//group[@string='Produced Products']//field[@name='product_id']"
+                    position="after">
+                    <field name="work_order" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//field[@name='hour']"
+                    position="after">
+                         <field name="routing_wc_line" colspan="4"/>
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//group"
+                    position="after">
+                    <notebook>
+                        <page string="Product Lines">
+                            <field name="product_line" nolabel="1" colspan="4"/>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

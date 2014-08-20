@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp_workcenter_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.workcenter.tree.inh</field>
+            <field name="model">mrp.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+            <field name="arch" type="xml">
+                <field name="time_start" position="after">
+                   <field name="pre_op_product"/>
+                </field>
+                <field name="time_stop" position="after">
+                    <field name="post_op_product"/>
+                </field>
+                <xpath expr="//page[@string='General Information']" position="after">
+                    <page string="Routing Operations">
+                        <field name="rt_operations" nolabel="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
