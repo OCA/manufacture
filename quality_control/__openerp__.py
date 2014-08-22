@@ -1,7 +1,8 @@
-# -*- encoding: latin-1 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2010 NaN Projectes de Programari Lliure, S.L. All Rights Reserved.
+# Copyright (c) 2010 NaN Projectes de Programari Lliure, S.L.
+#                    All Rights Reserved.
 #                    http://www.NaN-tic.com
 #
 # WARNING: This program as such is intended to be used by professional
@@ -31,21 +32,27 @@
     "name": "Quality Control",
     "version": "0.1",
     "author": "NaN·tic",
+    "contributors": [
+        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+    ],
     "category": "Generic Modules/Others",
-    "description": """This module provides a generic infrastructure for quality tests. The idea is that it can be later be reused for doing quality tests in production lots but also in any other areas a company may desire.
-    
+    "summary": "Quality control",
+    "description": """
+This module provides a generic infrastructure for quality tests. The idea is
+that it can be later be reused for doing quality tests in production lots but
+also in any other areas a company may desire.
+
 Developed for Trod y Avia, S.L.""",
     "depends": [
         'product'
     ],
-    "demo_xml": [],
-    "update_xml": [
-        'test_workflow.xml',
-        'quality_control_data.xml',
-        'quality_control_view.xml',
+    "data": [
+        'data/quality_control_data.xml',
+        'security/quality_control_security.xml',
+        'security/ir.model.access.csv',
+        'workflow/test_workflow.xml',
+        'wizard/qc_test_wizard_view.xml',
+        'views/quality_control_view.xml',
     ],
-    "active": False,
     "installable": True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

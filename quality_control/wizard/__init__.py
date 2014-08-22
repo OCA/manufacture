@@ -28,5 +28,4 @@
 #
 ##############################################################################
 
-from . import models
-from . import wizard
+from . import qc_test_wizard
