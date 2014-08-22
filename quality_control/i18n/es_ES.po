@@ -1,0 +1,558 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* nan_quality_control
+#
+# Jordi Pasquina <jordi@nan-tic.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.12\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-08-31 07:57:32+0000\n"
+"PO-Revision-Date: 2010-08-31 10:29+0200\n"
+"Last-Translator: Jordi Pasquina <jordi@nan-tic.com>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"X-Generator: Lokalize 1.0\n"
+
+#. module: nan_quality_control
+#: view:qc.test.line:0
+msgid "Check Values"
+msgstr "Comprobar los valores"
+
+#. module: nan_quality_control
+#: field:qc.test.template,trig_on:0
+msgid "Trigger"
+msgstr "Disparador"
+
+#. module: nan_quality_control
+#: view:qc.posible.value:0
+msgid "Posible Value"
+msgstr "Valor posible"
+
+#. module: nan_quality_control
+#: field:qc.test.set.template.wizard,test_template_id:0
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_new_test
+#: view:qc.test:0
+#: field:qc.test,test_template_id:0
+#: field:qc.test.line,test_id:0
+msgid "Test"
+msgstr "Test"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_test_set_template_wizard_form
+#: model:ir.model,name:nan_quality_control.model_qc_test_set_template_wizard
+msgid "qc.test.set.template.wizard"
+msgstr "qc.test.conjunto.plantilla.assistente"
+
+#. module: nan_quality_control
+#: field:qc.test.line,uom_id:0
+#: field:qc.test.template.line,uom_id:0
+msgid "Uom"
+msgstr "Uom"
+
+#. module: nan_quality_control
+#: model:ir.module.module,description:nan_quality_control.module_meta_information
+msgid "This module provides a generic infrastructure for quality tests. The idea is that it can be later be reused for doing quality tests in production lots but also in any other areas a company may desire."
+msgstr ""
+"Este módulo proporciona una infraestructura para las pruebas de calidad. La idea es que se pueda volver a utilizarse más adelante para hacer pruebas de calidad en los lotes de producción, pero también en "
+"otras áreas que una empresa pueda desear."
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_test_template_line
+msgid "qc.test.template.line"
+msgstr "qc.test.plantilla.linea"
+
+#. module: nan_quality_control
+#: field:qc.test.template,fill_correct_values:0
+msgid "Fill With Correct Values"
+msgstr "REllenar con los valores correctos"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_proof_synonym
+msgid "qc.proof.synonym"
+msgstr "qc.prueba.sinonimo"
+
+#. module: nan_quality_control
+#: field:qc.test.template,object_id:0
+msgid "Reference Object"
+msgstr "Objeto referencia"
+
+#. module: nan_quality_control
+#: model:ir.ui.menu,name:nan_quality_control.qc_test_template_line_menu
+msgid "Test Template Lines"
+msgstr "Líneas de la plantilla del test"
+
+#. module: nan_quality_control
+#: field:qc.test.line,success:0
+msgid "Success?"
+msgstr "Éxito?"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_test_template
+#: model:ir.model,name:nan_quality_control.model_qc_test_template
+#: model:ir.ui.menu,name:nan_quality_control.qc_test_template_menu
+#: view:qc.test.template:0
+#: field:qc.test.template.line,test_template_id:0
+msgid "Test Template"
+msgstr "Plantilla del test"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_test_template_trigger
+#: model:ir.ui.menu,name:nan_quality_control.qc_test_template_trigger_menu
+#: view:qc.test.template.trigger:0
+msgid "Template Trigger"
+msgstr "Plantilla Disparador"
+
+#. module: nan_quality_control
+#: selection:qc.proof,type:0
+#: selection:qc.test.line,proof_type:0
+#: selection:qc.test.template.line,type:0
+msgid "Qualitative"
+msgstr "Cualitativo"
+
+#. module: nan_quality_control
+#: view:qc.test.template.line:0
+msgid "proof Line"
+msgstr "Línea de la prueba"
+
+#. module: nan_quality_control
+#: field:qc.test.line,proof_type:0
+msgid "Proof Type"
+msgstr "Tipo de Prueba"
+
+#. module: nan_quality_control
+#: model:ir.ui.menu,name:nan_quality_control.qc_proof_menu
+#: view:qc.proof:0
+#: field:qc.proof.synonym,proof_id:0
+#: field:qc.test.line,proof_id:0
+#: field:qc.test.template.line,proof_id:0
+msgid "Proof"
+msgstr "Prueba"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_proof
+msgid "qc.proof"
+msgstr "qc.prueba"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_proof_method
+msgid "Methods"
+msgstr "Métodos"
+
+#. module: nan_quality_control
+#: field:qc.test,object_id:0
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: nan_quality_control
+#: view:qc.test:0
+msgid "Select Template"
+msgstr "Seleccionar plantilla"
+
+#. module: nan_quality_control
+#: constraint:qc.test.template.category:0
+msgid "Error ! You can not create recursive categories."
+msgstr "Error! No se pueden crear categorías recursivas."
+
+#. module: nan_quality_control
+#: selection:qc.test.template,type:0
+msgid "Related"
+msgstr "Relacionado"
+
+#. module: nan_quality_control
+#: view:qc.test:0
+#: field:qc.test,test_external_note:0
+msgid "External Note"
+msgstr "Nota externa"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_test
+msgid "qc.test"
+msgstr "qc.test"
+
+#. module: nan_quality_control
+#: view:qc.proof.synonym:0
+msgid "Proof Synonym"
+msgstr "Prueba sinónima"
+
+#. module: nan_quality_control
+#: help:qc.test.line,max_value:0
+msgid "Maximum valid value if it is a quantitative proof."
+msgstr "Máximo valor válido si se trata de una prueba cuantitativa."
+
+#. module: nan_quality_control
+#: field:qc.posible.value,active:0
+#: field:qc.proof,active:0
+#: field:qc.proof.method,active:0
+#: field:qc.test.template,active:0
+#: field:qc.test.template.category,active:0
+#: field:qc.test.template.trigger,active:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: nan_quality_control
+#: view:qc.proof.method:0
+msgid "Proof Method"
+msgstr "Método de la prueba"
+
+#. module: nan_quality_control
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nombre del modelo inválido en la definición de la acción."
+
+#. module: nan_quality_control
+#: view:qc.test:0
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: nan_quality_control
+#: selection:qc.test.template,type:0
+#: model:qc.test.template.category,name:nan_quality_control.qc_test_template_category_generic
+msgid "Generic"
+msgstr "Genérico"
+
+#. module: nan_quality_control
+#: field:qc.test.template.category,child_ids:0
+msgid "Child Categories"
+msgstr "Categorías inferiores"
+
+#. module: nan_quality_control
+#: help:qc.test.line,actual_value_ql:0
+msgid "Value of the result if it is a qualitative proof."
+msgstr "Valor del resultado si se trata de una prueba cualitativa."
+
+#. module: nan_quality_control
+#: field:qc.test,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: nan_quality_control
+#: selection:qc.test,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: nan_quality_control
+#: view:qc.posible.value:0
+msgid "Proof Posible Value"
+msgstr "Posible valor de la prueba"
+
+#. module: nan_quality_control
+#: view:qc.test.line:0
+msgid "Test Result"
+msgstr "Resultado del test"
+
+#. module: nan_quality_control
+#: model:ir.ui.menu,name:nan_quality_control.qc_menu_config
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: nan_quality_control
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "XML inválido para la arquitectura de vistas!"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_proof_synonym
+msgid "Synonym"
+msgstr "Sinónimo"
+
+#. module: nan_quality_control
+#: field:qc.test.template.category,parent_id:0
+msgid "Parent Category"
+msgstr "Categoría padre"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_test_line
+msgid "qc.test.line"
+msgstr "qc.test.linea"
+
+#. module: nan_quality_control
+#: field:qc.test.template.category,complete_name:0
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: nan_quality_control
+#: field:qc.test.line,actual_value_ql:0
+msgid "Ql.Value"
+msgstr "Ql.valor"
+
+#. module: nan_quality_control
+#: field:qc.proof,type:0
+#: field:qc.test.template,type:0
+#: field:qc.test.template.line,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_posible_value
+#: model:ir.ui.menu,name:nan_quality_control.qc_proof_posible_value_menu
+#: field:qc.proof,value_ids:0
+msgid "Posible Values"
+msgstr "Valores posibles"
+
+#. module: nan_quality_control
+#: field:qc.test.template,category_id:0
+msgid "Category"
+msgstr "Categoria"
+
+#. module: nan_quality_control
+#: model:qc.test.template.category,name:nan_quality_control.qc_test_template_category_referenced
+msgid "referenced"
+msgstr "referencia"
+
+#. module: nan_quality_control
+#: model:ir.module.module,shortdesc:nan_quality_control.module_meta_information
+#: model:ir.ui.menu,name:nan_quality_control.qc_menu
+msgid "Quality Control"
+msgstr "Control de calidad"
+
+#. module: nan_quality_control
+#: field:qc.test.template.category,name:0
+msgid "Category Name"
+msgstr "Nombre de la Categoría"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_proof_method
+#: model:ir.ui.menu,name:nan_quality_control.qc_proof_method_menu
+#: field:qc.test.line,method_id:0
+#: field:qc.test.template.line,method_id:0
+msgid "Method"
+msgstr "Método"
+
+#. module: nan_quality_control
+#: model:ir.ui.menu,name:nan_quality_control.qc_test_menu
+msgid "Tests"
+msgstr "Tests"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_test_template_category
+msgid "qc.test.template.category"
+msgstr "qc.test.plantilla.categoria"
+
+#. module: nan_quality_control
+#: help:qc.test.line,actual_value_qt:0
+msgid "Value of the result if it is a quantitative proof."
+msgstr "Valor del resultado si se trata de una prueba cuantitativa."
+
+#. module: nan_quality_control
+#: help:qc.test.line,min_value:0
+msgid "Minimum valid value if it is a quantitative proof."
+msgstr "Mínimo valor válido si se trata de una prueba cuantitativa."
+
+#. module: nan_quality_control
+#: field:qc.test,name:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: nan_quality_control
+#: view:qc.proof.method:0
+msgid "Test Method"
+msgstr "Método del test"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_test_template_trigger
+msgid "qc.test.template.trigger"
+msgstr "qc.test.plantilla.disparador"
+
+#. module: nan_quality_control
+#: field:qc.test,success:0
+msgid "Success"
+msgstr "Éxito"
+
+#. module: nan_quality_control
+#: help:qc.test.line,test_uom_id:0
+msgid "UoM of the value of the result if it is a quantitative proof."
+msgstr "UoM del valor del resultado, si se trata de una prueba cuantitativa."
+
+#. module: nan_quality_control
+#: field:qc.test,enabled:0
+msgid "Enabled"
+msgstr "Activado"
+
+#. module: nan_quality_control
+#: field:qc.test.line,test_uom_id:0
+msgid "Uom Test"
+msgstr "Uom test"
+
+#. module: nan_quality_control
+#: selection:qc.test,state:0
+msgid "Waiting Supervisor Approval"
+msgstr "Esperando la aprobación del supervisor"
+
+#. module: nan_quality_control
+#: help:qc.test,enabled:0
+msgid "If a quality control test is not enabled it means it can not be moved from \"Quality Success\" or \"Quality Failed\" state."
+msgstr "Si una prueba de control de calidad no está habilitada, significa que no se pueden mover del estado \"Calidad Correcta\" o \"Calidad Errónea\"."
+
+#. module: nan_quality_control
+#: selection:qc.proof,type:0
+#: selection:qc.test.line,proof_type:0
+#: selection:qc.test.template.line,type:0
+msgid "Quantitative"
+msgstr "Cuantitativa"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_test_template_line
+#: field:qc.test.line,test_template_line_id:0
+#: view:qc.test.template.line:0
+msgid "Test Template Line"
+msgstr "Línea de la plantilla del test"
+
+#. module: nan_quality_control
+#: field:qc.proof,ref:0
+msgid "Code"
+msgstr "Código"
+
+#. module: nan_quality_control
+#: selection:qc.test,state:0
+msgid "Quality Failed"
+msgstr "Calidad errónea"
+
+#. module: nan_quality_control
+#: view:qc.test:0
+#: field:qc.test,test_internal_note:0
+msgid "Internal Note"
+msgstr "Nota interna"
+
+#. module: nan_quality_control
+#: field:qc.proof,synonym_ids:0
+#: field:qc.proof,synonyms:0
+msgid "Synonyms"
+msgstr "Sinónimos"
+
+#. module: nan_quality_control
+#: help:qc.test.line,uom_id:0
+msgid "UoM for minimum and maximum values if it is a quantitative proof."
+msgstr "UoM para el valor Máximo y Mínimo válido, si se trata de una prueba cuantitativa."
+
+#. module: nan_quality_control
+#: view:qc.test:0
+#: view:qc.test.set.template.wizard:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_proof
+msgid "proof"
+msgstr "Prueba"
+
+#. module: nan_quality_control
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "El nombre del objeto debe empezar con x_ y no debe contener ningún carácter especial!"
+
+#. module: nan_quality_control
+#: field:qc.test.line,min_value:0
+#: field:qc.test.template.line,min_value:0
+msgid "Min"
+msgstr "Mínimo"
+
+#. module: nan_quality_control
+#: view:qc.test.line:0
+msgid "Test Values"
+msgstr "Valores del Test"
+
+#. module: nan_quality_control
+#: model:ir.model,name:nan_quality_control.model_qc_posible_value
+msgid "qc.posible.value"
+msgstr "qc.posible.valor"
+
+#. module: nan_quality_control
+#: view:qc.proof.synonym:0
+msgid "Test Synonym"
+msgstr "Test Sinónimo"
+
+#. module: nan_quality_control
+#: model:ir.ui.menu,name:nan_quality_control.qc_test_lines_menu
+#: field:qc.test,test_line_ids:0
+msgid "Test Lines"
+msgstr "Líneas del test"
+
+#. module: nan_quality_control
+#: field:qc.test.line,max_value:0
+#: field:qc.test.template.line,max_value:0
+msgid "Max"
+msgstr "Máx"
+
+#. module: nan_quality_control
+#: help:qc.test,success:0
+msgid "This field will be active if all tests have succeeded."
+msgstr "Este campo se activa si todas las pruebas han tenido éxito."
+
+#. module: nan_quality_control
+#: field:qc.test.line,notes:0
+#: field:qc.test.template.line,notes:0
+msgid "Notes"
+msgstr "Notas"
+
+#. module: nan_quality_control
+#: view:qc.test.set.template.wizard:0
+msgid "Select Test Template"
+msgstr "Seleccionar plantilla del test"
+
+#. module: nan_quality_control
+#: model:ir.actions.act_window,name:nan_quality_control.action_qc_test_line
+#: view:qc.test.line:0
+msgid "Test Line"
+msgstr "Línea del test"
+
+#. module: nan_quality_control
+#: field:qc.posible.value,name:0
+#: field:qc.proof,name:0
+#: field:qc.proof.method,name:0
+#: field:qc.proof.synonym,name:0
+#: field:qc.test.template,name:0
+#: field:qc.test.template.trigger,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: nan_quality_control
+#: field:qc.test.template,test_template_line_ids:0
+msgid "Lines"
+msgstr "Líneas"
+
+#. module: nan_quality_control
+#: view:qc.test:0
+#: field:qc.test.line,valid_value_ids:0
+#: field:qc.test.template.line,valid_value_ids:0
+msgid "Values"
+msgstr "Valores"
+
+#. module: nan_quality_control
+#: view:qc.test:0
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: nan_quality_control
+#: field:qc.test.line,actual_value_qt:0
+msgid "Qt.Value"
+msgstr "Qt.valor"
+
+#. module: nan_quality_control
+#: selection:qc.test,state:0
+msgid "Quality Success"
+msgstr "Calidad correcta"
+
+#. module: nan_quality_control
+#: field:qc.test.template.line,sequence:0
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: nan_quality_control
+#: view:qc.test.set.template.wizard:0
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: nan_quality_control
+#: help:qc.test.template.category,active:0
+msgid "The active field allows you to hide the category without removing it."
+msgstr "El campo activo le permite ocultar la categoría sin eliminarlo."
+
+
