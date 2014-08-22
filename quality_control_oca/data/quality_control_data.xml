@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="True">
+        <!-- res.partner.title -->
+        <record id="qc_test_template_category_generic" model="qc.test.template.category">
+            <field name="name">Generic</field>
+        </record>
+        <record id="qc_test_template_category_referenced" model="qc.test.template.category">
+            <field name="name">Referenced</field>
+        </record>
+    </data>
+    
+    <data>
+        <record model="ir.module.category" id="module_category_quality_control">
+            <field name="name">Quality Control</field>
+<!--             <field name="description">Helps you handle your quotations, sale orders and invoicing.</field> -->
+<!--             <field name="sequence">2</field> -->
+        </record>
+    </data>
+</openerp>
