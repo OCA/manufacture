@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record model="workflow" id="wkf_qc_test">
+            <field name="name">quality.control.basic</field>
+            <field name="osv">qc.test</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- states -->
+        <record id="qc-draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_qc_test" />
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'draft'})</field>
+            <field name="signal_send">subflow.draft</field>
+        </record>
+        <record id="qc-waiting" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_qc_test" />
+            <field name="name">waiting</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'waiting'})</field>
+            <field name="signal_send">subflow.waiting</field>
+        </record>
+        <record id="qc-success" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_qc_test" />
+            <field name="name">success</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'success'})</field>
+            <field name="signal_send">subflow.success</field>
+        </record>
+        <record id="qc-failed" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_qc_test" />
+            <field name="name">failed</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'failed'})</field>
+            <field name="signal_send">subflow.failed</field>
+        </record>
+
+        <!-- transitions -->
+        <record id="trans_draft_waiting" model="workflow.transition">
+            <field name="act_from" ref="qc-draft" />
+            <field name="act_to" ref="qc-waiting" />
+            <field name="signal">confirm</field>
+        </record>
+        <record id="trans_waiting_failed" model="workflow.transition">
+            <field name="act_from" ref="qc-waiting" />
+            <field name="act_to" ref="qc-failed" />
+            <field name="condition">not success</field>
+            <field name="signal">approve</field>
+        </record>
+        <record id="trans_waiting_success" model="workflow.transition">
+            <field name="act_from" ref="qc-waiting" />
+            <field name="act_to" ref="qc-success" />
+            <field name="condition">success</field>
+            <field name="signal">approve</field>
+        </record>
+        <record id="trans_waiting_draft" model="workflow.transition">
+            <field name="act_from" ref="qc-waiting" />
+            <field name="act_to" ref="qc-draft" />
+            <field name="signal">cancel</field>
+        </record>
+        <record id="trans_failed_draft" model="workflow.transition">
+            <field name="act_from" ref="qc-failed" />
+            <field name="act_to" ref="qc-draft" />
+            <field name="condition">enabled</field>
+            <field name="signal">cancel</field>
+        </record>
+        <record id="trans_success_draft" model="workflow.transition">
+            <field name="act_from" ref="qc-success" />
+            <field name="act_to" ref="qc-draft" />
+            <field name="condition">enabled</field>
+            <field name="signal">cancel</field>
+        </record>
+    </data>
+</openerp>
