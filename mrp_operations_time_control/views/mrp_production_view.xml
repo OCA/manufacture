@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view"
+            id="mrp_production_operation_buttons_form_view">
+            <field name="name">mrp.production.operation.buttons.form
+            </field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id"
+                ref="mrp_operations.mrp_production_form_inherit_view" />
+            <field name="arch" type="xml">
+                    <button name="button_start_working" position="attributes">
+                        <attribute name="icon"></attribute>
+                    </button>
+                    <button name="button_resume" position="attributes">
+                        <attribute name="icon" ></attribute>
+                    </button>
+                    <button name="button_done" position="attributes">
+                        <attribute name="icon" ></attribute>
+                    </button>
+                    <button name="button_pause" position="attributes">
+                        <attribute name="icon" ></attribute>
+                    </button>
+                    <button name="button_draft" position="attributes">
+                        <attribute name="icon" ></attribute>
+                    </button>
+                    <button name="button_cancel" position="attributes">
+                        <attribute name="icon" ></attribute>
+                    </button>
+            </field>
+        </record>
+        
+         <record model="ir.ui.view"
+            id="mrp_production_operation_time_form_view">
+            <field name="name">mrp.production.operation.time.form
+            </field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id"
+                ref="mrp_operations_extension.mrp_production_form_view_inh" />
+            <field name="arch" type="xml">
+                    <field name="product_line" position="after">
+                            <field name="operation_time_lines" nolabel="1" colspan="4" col="4"/>
+                    </field>
+            </field>
+        </record>
+    </data>
+</openerp>
