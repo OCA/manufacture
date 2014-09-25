@@ -30,15 +30,9 @@
                         <field name="operation_time_lines" />
                     </page>
                 </page>
-                 <group string="Product to Produce" position="after">
-                 <group string="Product Lines" colspan="4" col="4">
-                    <field name="routing_wc_line" colspan="4" col="4"/>
-                    <field name="product_line" nolabel="1" colspan="4" col="4"/>
-                </group>
-                </group>
             </field>
         </record>
-        
+
         <record model="ir.ui.view" id="operation_time_tree_view">
             <field name="name">Operation Time Form View</field>
             <field name="model">mrp.production.workcenter.line</field>
@@ -46,15 +40,20 @@
                 ref="mrp_operations.mrp_production_workcenter_tree_view_inherit" />
             <field name="arch" type="xml">
                 <field name="state" position="after">
-                     <button name="button_draft" string="Set Draft" states="cancel" icon="gtk-convert"/>
-                     <button name="button_start_working" string="Start" states="draft" icon="gtk-media-play"/>
-                     <button name="button_resume" string="Resume" states="pause" icon="gtk-media-pause"/>
-                     <button name="button_pause" string="Pending" states="startworking" icon="gtk-media-pause"/>
-                     <button name="button_done" string="Finished" states="startworking" icon="terp-check"/>
+                    <button name="button_draft" string="Set Draft"
+                        states="cancel" icon="gtk-convert" />
+                    <button name="button_start_working" string="Start"
+                        states="draft" icon="gtk-media-play" />
+                    <button name="button_resume" string="Resume"
+                        states="pause" icon="gtk-media-pause" />
+                    <button name="button_pause" string="Pending"
+                        states="startworking" icon="gtk-media-pause" />
+                    <button name="button_done" string="Finished"
+                        states="startworking" icon="terp-check" />
                 </field>
             </field>
         </record>
-
+        
         <record model="ir.ui.view" id="operation_time_lines_form_view">
             <field name="name">operation.time.line.form</field>
             <field name="model">operation.time.line</field>

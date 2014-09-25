@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_operations_time_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-17 10:16+0000\n"
+"PO-Revision-Date: 2014-09-17 10:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_operations_time_control
+#: view:mrp.work.order.produce:mrp_operations_time_control.view_mrp_product_produce_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.work.order.produce:mrp_operations_time_control.view_mrp_product_produce_wizard
+msgid "Confirm"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.work.order.produce:mrp_operations_time_control.view_mrp_product_produce_wizard
+msgid "Consume Lines"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: selection:mrp.work.order.produce,mode:0
+msgid "Consume Only"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Finished"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Group By..."
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,id:0
+msgid "ID"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "Information"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,lot_id:0
+msgid "Lot"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,mode:0
+msgid "Mode"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: model:ir.actions.act_window,name:mrp_operations_time_control.operation_time_lines_action
+#: model:ir.ui.menu,name:mrp_operations_time_control.menu_operation_time_lines_action
+msgid "Operation Time Lines"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
+msgid "Operation time lines"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Pending"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: model:ir.actions.act_window,name:mrp_operations_time_control.act_mrp_work_order_produce
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+#: view:mrp.work.order.produce:mrp_operations_time_control.view_mrp_product_produce_wizard
+msgid "Produce"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "Product Lines"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: model:ir.model,name:mrp_operations_time_control.model_mrp_work_order_produce
+msgid "Product Produce"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "Product to Produce"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,consume_lines:0
+msgid "Products Consumed"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Resume"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Search Operation Time Lines"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,product_qty:0
+msgid "Select Quantity"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Set Draft"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Start"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.work.order.produce:mrp_operations_time_control.view_mrp_product_produce_wizard
+msgid "To Consume"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:mrp.work.order.produce,track_production:0
+msgid "Track production"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
+msgid "Uptime"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "User"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
+msgid "hours"
+msgstr ""
+
