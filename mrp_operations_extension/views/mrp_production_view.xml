@@ -50,21 +50,81 @@
                     <field name="work_order" />
                 </xpath>
                 <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='hour']"
-                    position="after">
-                         <field name="routing_wc_line" colspan="4"/>
+                    expr="//field[@name='workcenter_lines']/form//field[@name='name']"
+                    position="attributes">
+                    <attribute name="colspan">2</attribute>
                 </xpath>
                 <xpath
-                    expr="//field[@name='workcenter_lines']/form//group"
+                    expr="//field[@name='workcenter_lines']/form//field[@name='workcenter_id']"
                     position="after">
-                    <notebook>
-                        <page string="Product Lines">
-                            <field name="product_line" nolabel="1" colspan="4"/>
+                    <field name="production_id" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
+                    position="before">
+                    <field name="production_state" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//field[@name='cycle']"
+                    position="replace">
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//field[@name='hour']"
+                    position="replace">
+                </xpath>
+                <xpath
+                    expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
+                    position="after">
+                    <notebook colspan="4">
+                        <page string="Information">
+                            <group>
+                                <group string="Planned Date">
+                                    <field name="date_planned" />
+                                    <field name="date_planned_end" />
+                                </group>
+                                <group string="Duration">
+                                    <field name="cycle" />
+                                    <field name="hour" />
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Actual Production Date">
+                                    <field name="date_start" />
+                                    <field name="date_finished" />
+                                    <field name="delay" />
+                                </group>
+                                <group string="Product to Produce">
+                                    <field name="product" />
+                                    <field name="qty" />
+                                    <field name="uom" />
+                                </group>
+                            </group>
+                            <group string="Product Lines">
+                                <field name="routing_wc_line"
+                                    colspan="4" />
+                                <field name="product_line"
+                                    nolabel="1" colspan="4" />
+                            </group>
                         </page>
                     </notebook>
                 </xpath>
             </field>
         </record>
-
+        <record model="ir.ui.view" id="workcenter_line_inh_form_view">
+            <field name="name">Work centre line inh</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id"
+                ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
+            <field name="arch" type="xml">
+                <group string="Product to Produce" position="after">
+                    <group string="Product Lines" colspan="4" col="4">
+                        <field name="routing_wc_line" colspan="4"
+                            col="4" />
+                        <field name="product_line" nolabel="1"
+                            colspan="4" col="4" />
+                    </group>
+                </group>
+            </field>
+        </record>
     </data>
 </openerp>
