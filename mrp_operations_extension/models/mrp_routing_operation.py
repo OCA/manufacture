@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, exceptions
+from openerp import models, fields, api
 
 
 class MrpOperationWorkcenter(models.Model):
