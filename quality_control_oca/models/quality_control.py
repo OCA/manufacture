@@ -120,18 +120,12 @@ class QcProof(orm.Model):
                                       'qc_proof_posible_value_rel', 'proof_id',
                                       'posible_value_id', 'Posible Values'),
         'synonyms': fields.function(_synonyms, method=True, type='char',
-                                    size='1000', string='Synonyms',
-                                    store=False),
+                                    string='Synonyms', store=False),
     }
 
     _defaults = {
         'active': lambda *a: True,
     }
-
-    _sql_constraints = [
-        ('proof_method_unique', 'UNIQUE (id, method_id)',
-         _('Proof-Method relation alredy exists!')),
-    ]
 
     def name_search(self, cr, uid, name='', args=None, operator='ilike',
                     context=None, limit=None):
@@ -147,7 +141,7 @@ class QcProof(orm.Model):
                                            limit=limit)
             syns = [x[0] for x in syns]
             for syn in synonym_obj.browse(cr, uid, syns, context=context):
-                if not syn.proof_id.id in ids:
+                if syn.proof_id.id not in ids:
                     new_ids.append(syn.proof_id.id)
             result += self.name_get(cr, uid, new_ids, context=context)
         return result
@@ -258,7 +252,7 @@ class QcTestTemplate(orm.Model):
     _description = 'Test Template'
 
     def _links_get(self, cr, uid, context=None):
-        #TODO: Select models
+        # TODO: Select models
         link_obj = self.pool['res.request.link']
         ids = link_obj.search(cr, uid, [], context=context)
         res = link_obj.read(cr, uid, ids, ['object', 'name'], context=context)
