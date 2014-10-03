@@ -11,21 +11,9 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
+#    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
 
-from openerp import models, fields
-
-
-class MrpWorkcenter(models.Model):
-    _inherit = 'mrp.workcenter'
-
-    pre_op_product = fields.Many2one('product.product',
-                                     string='Pre Operation Cost')
-    post_op_product = fields.Many2one('product.product',
-                                      string='Post Operation Cost')
-    rt_operations = fields.Many2many(
-        'mrp.routing.operation', 'mrp_operation_workcenter_rel', 'workcenter',
-        'operation', 'Routing Operations')
+from . import mrp_product_produce

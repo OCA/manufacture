@@ -1,10 +1,5 @@
-
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2008-2014 AvanzOSC (Daniel). All Rights Reserved
-#    Date: 10/07/2014
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -16,7 +11,7 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
+#    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
@@ -31,6 +26,8 @@ class MrpRoutingWorkcenter(models.Model):
     op_wc_lines = fields.One2many('mrp.operation.workcenter',
                                   'routing_workcenter',
                                   'Workcenter Info Lines')
+    do_production = fields.Boolean(
+        string='Move produced quantity to stock')
 
     @api.one
     @api.onchange('operation')

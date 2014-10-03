@@ -9,6 +9,7 @@
                     <field name="name" />
                     <field name="code" />
                     <field name="description" />
+                    <field name="do_production" />
                 </tree>
             </field>
         </record>
@@ -22,7 +23,9 @@
                     <field name="code" colspan="2"/>
                     <field name="description" colspan="2"/>
                     <field name="steps"  colspan="2"/>
-                    <field name="op_number"  colspan="4" />
+                    <field name="op_number"  colspan="2" />
+                    <field name="do_production"  colspan="2" />
+                    <field name="picking_type_id" colspan="2" />
                 </group>
                 <notebook>
                     <page string="Workcenters">

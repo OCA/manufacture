@@ -1,8 +1,5 @@
-
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    Daniel Campos (danielcampos@avanzosc.es) Date: 12/09/2014
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -64,3 +61,7 @@ class MrpRoutingOperation(models.Model):
         'mrp.workcenter', 'mrp_operation_workcenter_rel', 'operation',
         'workcenter', 'Work centers')
     op_number = fields.Integer('Número de Persona', default='0')
+    do_production = fields.Boolean(
+        string='Move Final Product to Stock')
+    picking_type_id = fields.Many2one(
+        'stock.picking.type', string='Picking Type')

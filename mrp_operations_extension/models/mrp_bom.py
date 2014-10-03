@@ -1,10 +1,5 @@
-
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2008-2014 AvanzOSC (Daniel). All Rights Reserved
-#    Date: 10/07/2014
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,39 +16,42 @@
 #
 ##############################################################################
 
-from openerp import models, fields, tools
+from openerp import models, fields, tools, api
 
 
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    def _bom_explode(self, cr, uid, bom, product, factor, properties=None,
-                     level=0, routing_id=False, previous_products=None,
-                     master_bom=None, context=None):
-        routing_line_obj = self.pool['mrp.routing.workcenter']
-        res = super(MrpBom, self)._bom_explode(cr, uid, bom, product, factor,
-                                               properties=None, level=0,
-                                               routing_id=False,
-                                               previous_products=None,
-                                               master_bom=None,
-                                               context=context)
-        result, result2 = res
+    @api.model
+    def _bom_explode(self, bom, product, factor, properties=None, level=0,
+                     routing_id=False, previous_products=None,
+                     master_bom=None):
+        routing_id = bom.routing_id.id or routing_id
+        result, result2 = super(MrpBom, self)._bom_explode(
+            bom, product, factor, properties=properties, level=level,
+            routing_id=routing_id, previous_products=previous_products,
+            master_bom=master_bom)
+        result2 = self._get_workorder_operations(result2, level=level,
+                                                 routing_id=routing_id)
+        return result, result2
+
+    def _get_workorder_operations(self, result2, level=0, routing_id=False):
+        routing_line_obj = self.env['mrp.routing.workcenter']
         for work_order in result2:
             seq = work_order['sequence'] - level
-            routing_lines = routing_line_obj.search(cr, uid, [
+            routing_lines = routing_line_obj.search([
                 ('routing_id', '=', routing_id), ('sequence', '=', seq)])
             routing_line_id = False
             if len(routing_lines) == 1:
-                routing_line_id = routing_lines[0]
+                routing_line_id = routing_lines[0].id
             elif len(routing_lines) > 1:
-                for routing_line in routing_line_obj.browse(cr, uid,
-                                                            routing_lines):
+                for routing_line in routing_line_obj.browse(routing_lines):
                     name_val = tools.ustr(routing_line.name) + ' - '
                     if name_val in work_order['name']:
                         routing_line_id = routing_line.id
                         break
             work_order['routing_wc_line'] = routing_line_id
-        return result, result2
+        return result2
 
 
 class MrpBomLine(models.Model):
