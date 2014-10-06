@@ -59,8 +59,10 @@ class bom_structure(report_sxw.rml_parse):
 
         return children
 
-report_sxw.report_sxw('report.industrialdesign.bom.structure',
-                      'mrp.bom',
-                      'mrp_industrial_design_bom/report/bom_structure_industrial_design.rml',
-                      parser=bom_structure,
-                      header='internal')
+report_sxw.report_sxw(
+    'report.industrialdesign.bom.structure',
+    'mrp.bom',
+    'mrp_industrial_design_bom/report/bom_structure_industrial_design.rml',
+    parser=bom_structure,
+    header='internal',
+)
