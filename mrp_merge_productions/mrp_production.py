@@ -67,7 +67,8 @@ def lines_mergeable(source, target):
     return source.product_id.id == target.product_id.id
 
 
-def merge_prodlines(obj, cr, uid, source_lines, target_lines, updates, to_delete):
+def merge_prodlines(obj, cr, uid, source_lines, target_lines, updates,
+                    to_delete):
     for to_merge in source_lines:
         for mergeable in target_lines:
             if lines_mergeable(to_merge, mergeable):
@@ -110,7 +111,8 @@ def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
 
                     _logger.debug("Merging move %s into move %s (%d %s)",
                                   to_merge.id, mergeable.id,
-                                  to_merge.product_qty, to_merge.product_id.name)
+                                  to_merge.product_qty,
+                                  to_merge.product_id.name)
                     to_write["product_qty"] += to_merge.product_qty
                     if to_merge.product_uos_qty:
                         to_write["product_uos_qty"] += to_merge.product_uos_qty
@@ -122,8 +124,10 @@ def merge_moves(obj, cr, uid, source_moves, target_moves, updates, to_cancel):
                     if to_merge and mergeable:
                         _logger.debug(
                             "Next moves [%d]:%d %s, [%d]:%d %s",
-                            to_merge.id, to_merge.product_qty, to_merge.product_id.name,
-                            mergeable.id, mergeable.product_qty, mergeable.product_id.name,
+                            to_merge.id, to_merge.product_qty,
+                            to_merge.product_id.name,
+                            mergeable.id, mergeable.product_qty,
+                            mergeable.product_id.name,
                         )
                         if not moves_mergeable(to_merge, mergeable):
                             break
@@ -177,7 +181,8 @@ class mrp_production(orm.Model):
             if len(values) > 1:
                 value_names = ",\n".join([
                     name_of(value)
-                    for value in set(getattr(prod, attr) for prod in productions)
+                    for value in set(getattr(prod, attr)
+                                     for prod in productions)
                 ])
                 raise orm.except_orm(
                     _("Incompatible Productions"),
@@ -204,7 +209,9 @@ class mrp_production(orm.Model):
         _logger.debug("Writing to production %d: %r", target.id, target_write)
         target.write(target_write)
 
-        new_picking = {"picking_id": target.picking_id and target.picking_id.id}
+        new_picking = {
+            "picking_id": target.picking_id and target.picking_id.id,
+        }
 
         rm_picking_ids = []
         rm_prod_ids = []
@@ -273,7 +280,10 @@ class mrp_production(orm.Model):
         prod_line_obj.unlink(cr, uid, prodlines_to_delete, context=context)
 
         # Update workcenter lines
-        workcenter_obj.write(cr, uid, workcenter_lines, {"production_id": target.id})
+        workcenter_obj.write(
+            cr, uid, workcenter_lines, {"production_id": target.id},
+            context=context
+        )
 
         prod_obj = self.pool["mrp.production"]
         picking_obj = self.pool["stock.picking"]
@@ -293,7 +303,9 @@ class mrp_production(orm.Model):
         productions = self.browse(cr, uid, ids)
         self._check_productions_mergeable(productions)
         target, productions = get_target(productions)
-        self._do_merge_productions(cr, uid, target, productions, context=context)
+        self._do_merge_productions(
+            cr, uid, target, productions, context=context
+        )
 
         return {
             "name": _("Merged Productions"),
