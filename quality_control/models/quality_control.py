@@ -62,6 +62,10 @@ class QcPosibleValue(orm.Model):
         'name': fields.char('Name', size=200, required=True, select="1",
                             translate=True),
         'active': fields.boolean('Active', select="1"),
+        'ok': fields.boolean('Correct answer',
+                             help="When this field is True, the answer\n"
+                                  " is correct, When is False the answer\n"
+                                  " is not correct."),
     }
 
     _defaults = {
@@ -126,6 +130,11 @@ class QcProof(orm.Model):
     _defaults = {
         'active': lambda *a: True,
     }
+
+    _sql_constraints = [
+        ('proof_method_unique', 'UNIQUE (proof_id, method_id)',
+         _('Proof-Method relation alredy exists!')),
+    ]
 
     def name_search(self, cr, uid, name='', args=None, operator='ilike',
                     context=None, limit=None):
@@ -327,12 +336,12 @@ class QcTestTemplateLine(orm.Model):
         'sequence': fields.integer('Sequence', required=True),
         'test_template_id': fields.many2one('qc.test.template',
                                             'Test Template', select="1"),
-        'proof_id': fields.many2one('qc.proof', 'Proof', required=True,
+        'proof_id': fields.many2one('qc.proof', 'Question', required=True,
                                     select="1"),
         'valid_value_ids': fields.many2many('qc.posible.value',
                                             'qc_template_value_rel',
                                             'template_line_id', 'value_id',
-                                            'Values'),
+                                            'Answers'),
         'method_id': fields.many2one('qc.proof.method', 'Method', select="1"),
         'notes': fields.text('Notes'),
         'min_value': fields.float('Min', digits=(16, 5)),  # Quantitative only
@@ -421,6 +430,7 @@ class QcTest(orm.Model):
             ('waiting', 'Waiting Supervisor Approval'),
             ('success', 'Quality Success'),
             ('failed', 'Quality Failed'),
+            ('canceled', 'Canceled'),
         ], 'State', readonly=True, select="1"),
         'success': fields.function(_success, method=True, type='boolean',
                                    string='Success',
@@ -491,43 +501,47 @@ class QcTest(orm.Model):
                 test_line_obj.unlink(cr, uid,
                                      [x.id for x in test.test_line_ids],
                                      context=context)
+            test_lines = self._prepare_test_lines(
+                cr, uid, test, force_fill=force_fill, context=context)
+            test_obj.write(cr, uid, id, {'test_line_ids': test_lines}, context)
 
-            fill = False
-            if test.test_template_id.fill_correct_values:
-                fill = True
-            for line in test.test_template_id.test_template_line_ids:
-                data = {
-                    'test_id': id,
-                    'method_id': line.method_id.id,
-                    'proof_id': line.proof_id.id,
-                    'test_template_line_id': line.id,
-                    'notes': line.notes,
-                    'min_value': line.min_value,
-                    'max_value': line.max_value,
-                    'uom_id': line.uom_id.id,
-                    'test_uom_id': line.uom_id.id,
-                    'proof_type': line.type,
+    def _prepare_test_lines(self, cr, uid, test, force_fill=False,
+                            context=None):
+        new_data = []
+        fill = test.test_template_id.fill_correct_values
+        for line in test.test_template_id.test_template_line_ids:
+            data = self._prepare_test_line(
+                cr, uid, test, line, fill=fill or force_fill,  context=context)
+            new_data.append((0, 0, data))
+        return new_data
+
+    def _prepare_test_line(self, cr, uid, test, line, fill=None, context=None):
+        data = {}
+        data = {'test_id': test.id,
+                'method_id': line.method_id.id,
+                'proof_id': line.proof_id.id,
+                'test_template_line_id': line.id,
+                'notes': line.notes,
+                'min_value': line.min_value,
+                'max_value': line.max_value,
+                'uom_id': line.uom_id.id,
+                'test_uom_id': line.uom_id.id,
+                'proof_type': line.type,
                 }
-                if fill or force_fill:
-                    if line.type == 'qualitative':
-                        # Fill with the first correct value finded.
-                        data['actual_value_ql'] = (
-                            len(line.valid_value_ids) and
-                            line.valid_value_ids[0] and
-                            line.valid_value_ids[0].id or False)
-
-                    else:
-                        # Fill with value inside range.
-                        data['actual_value_qt'] = line.min_value
-                        data['test_uom_id'] = line.uom_id.id
-
-                test_line_id = test_line_obj.create(cr, uid, data,
-                                                    context=context)
-                test_line_obj.write(
-                    cr, uid, [test_line_id],
-                    {'valid_value_ids':
-                     [(6, 0, [x.id for x in line.valid_value_ids])]},
-                    context=context)
+        if fill:
+            if line.type == 'qualitative':
+                # Fill with the first correct value found.
+                data['actual_value_ql'] = (
+                    len(line.valid_value_ids) and
+                    line.valid_value_ids[0] and
+                    line.valid_value_ids[0].id or False)
+            else:
+                # Fill with value inside range.
+                data['actual_value_qt'] = line.min_value
+                data['test_uom_id'] = line.uom_id.id
+        data['valid_value_ids'] = [(6, 0, [x.id for x in
+                                           line.valid_value_ids])]
+        return data
 
 
 class QcTestLine(orm.Model):
@@ -552,7 +566,7 @@ class QcTestLine(orm.Model):
 
     def quality_test_qualitative_check(self, cr, uid, test_line, context=None):
         if test_line.actual_value_ql in test_line.valid_value_ids:
-            return True
+            return test_line.actual_value_ql.ok
         else:
             return False
 
@@ -571,13 +585,13 @@ class QcTestLine(orm.Model):
         'test_template_line_id': fields.many2one('qc.test.template.line',
                                                  'Test Template Line',
                                                  readonly=True),
-        'proof_id': fields.many2one('qc.proof', 'Proof', readonly=True),
+        'proof_id': fields.many2one('qc.proof', 'Question', readonly=True),
         'method_id': fields.many2one('qc.proof.method', 'Method',
                                      readonly=True),
         'valid_value_ids': fields.many2many('qc.posible.value',
                                             'qc_test_value_rel',
                                             'test_line_id', 'value_id',
-                                            'Values'),
+                                            'Answers'),
         'actual_value_qt': fields.float('Qt.Value', digits=(16, 5),
                                         help="Value of the result if it is a"
                                         " quantitative proof."),
@@ -613,18 +627,20 @@ class QcTestLine(orm.Model):
                                                            actual_value_qt,
                                                            test_uom_id)
             if amount >= min_value and amount <= max_value:
-                res.update({'success': True})
+                res['success'] = True
             else:
-                res.update({'success': False})
+                res['success'] = False
         return {'value': res}
 
     def onchange_actual_value_ql(self, cr, uid, ids, actual_value_ql,
                                  valid_value_ids, context=None):
         res = {}
+        value_obj = self.pool['qc.posible.value']
         if actual_value_ql:
             valid = valid_value_ids[0][2]
             if actual_value_ql in valid:
-                res.update({'success': True})
+                value = value_obj.browse(cr, uid, actual_value_ql, context)
+                res['success'] = value.ok
             else:
-                res.update({'success': False})
+                res['success'] = False
         return {'value': res}
