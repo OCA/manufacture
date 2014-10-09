@@ -355,6 +355,8 @@
             <field name="arch" type="xml">
                 <form string="Test">
                     <header>
+                        <button name="draft" states="canceled"
+                            string="Draft" icon="gtk-ok" />
                         <button name="confirm" states="draft"
                             string="Confirm" icon="gtk-ok" />
                         <button name="approve" states="waiting"
@@ -382,9 +384,7 @@
                                 readonly="True" select="1" />
                         </group>
                         <notebook>
-                            <page string="Values">
-                                <separator string="Values"
-                                    colspan="4" />
+                            <page string="questions">
                                 <field name="test_line_ids"
                                     nolabel="1" colspan="4" />
                             </page>
