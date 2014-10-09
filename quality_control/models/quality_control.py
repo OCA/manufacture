@@ -504,9 +504,7 @@ class QcTest(orm.Model):
     def _prepare_test_lines(self, cr, uid, test, force_fill=False,
                             context=None):
         new_data = []
-        fill = False
-        if test.test_template_id.fill_correct_values:
-            fill = True
+        fill = test.test_template_id.fill_correct_values
         for line in test.test_template_id.test_template_line_ids:
             data = self.self._prepare_test_line(
                 cr, uid, test, line, fill=fill or force_fill,  context=context)
