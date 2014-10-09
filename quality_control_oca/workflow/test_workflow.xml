@@ -16,6 +16,13 @@
             <field name="action">write({'state': 'draft'})</field>
             <field name="signal_send">subflow.draft</field>
         </record>
+        <record id="qc-cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_qc_test" />
+            <field name="name">canceled</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'canceled'})</field>
+            <field name="signal_send">subflow.waiting</field>
+        </record>
         <record id="qc-waiting" model="workflow.activity">
             <field name="wkf_id" ref="wkf_qc_test" />
             <field name="name">waiting</field>
@@ -58,20 +65,26 @@
         </record>
         <record id="trans_waiting_draft" model="workflow.transition">
             <field name="act_from" ref="qc-waiting" />
-            <field name="act_to" ref="qc-draft" />
+            <field name="act_to" ref="qc-cancel" />
             <field name="signal">cancel</field>
         </record>
         <record id="trans_failed_draft" model="workflow.transition">
             <field name="act_from" ref="qc-failed" />
-            <field name="act_to" ref="qc-draft" />
+            <field name="act_to" ref="qc-cancel" />
             <field name="condition">enabled</field>
             <field name="signal">cancel</field>
         </record>
         <record id="trans_success_draft" model="workflow.transition">
             <field name="act_from" ref="qc-success" />
-            <field name="act_to" ref="qc-draft" />
+            <field name="act_to" ref="qc-cancel" />
             <field name="condition">enabled</field>
             <field name="signal">cancel</field>
+        </record>
+        <record id="trans_cancel_draft" model="workflow.transition">
+            <field name="act_from" ref="qc-cancel" />
+            <field name="act_to" ref="qc-draft" />
+            <field name="condition">enabled</field>
+            <field name="signal">draft</field>
         </record>
     </data>
 </openerp>
