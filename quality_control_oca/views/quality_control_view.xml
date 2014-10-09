@@ -45,10 +45,11 @@
             <field name="model">qc.posible.value</field>
             <field name="arch" type="xml">
                 <form string="Proof Posible Value">
-                <group>
-                    <field name="name" />
-                    <field name="active" />
-                </group>
+                    <group colspan="4" col="10">
+                        <field name="name" colspan="6"/>
+                        <field name="active" colspan="2" />
+                        <field name="ok" colspan="2" />
+                    </group>
                 </form>
             </field>
         </record>
@@ -58,6 +59,7 @@
             <field name="arch" type="xml">
                 <tree string="Posible Value">
                     <field name="name" />
+                        <field name="ok" />
                 </tree>
             </field>
         </record>
@@ -355,6 +357,8 @@
             <field name="arch" type="xml">
                 <form string="Test">
                     <header>
+                        <button name="draft" states="canceled"
+                            string="Draft" icon="gtk-ok" />
                         <button name="confirm" states="draft"
                             string="Confirm" icon="gtk-ok" />
                         <button name="approve" states="waiting"
@@ -382,9 +386,7 @@
                                 readonly="True" select="1" />
                         </group>
                         <notebook>
-                            <page string="Values">
-                                <separator string="Values"
-                                    colspan="4" />
+                            <page string="questions">
                                 <field name="test_line_ids"
                                     nolabel="1" colspan="4" />
                             </page>
@@ -404,6 +406,10 @@
                             </group>
                         </footer>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -418,6 +424,35 @@
                     <field name="state" />
                     <field name="success" />
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="qc_test_search_view">
+            <field name="name">qc.test.extended.search.vieww</field>
+            <field name="model">qc.test</field>
+            <field name="arch" type="xml">
+                <search string="Search Test">
+                    <group>
+                        <field name="name" />
+                        <field name="object_id" />
+                        <field name="test_template_id" />
+                        <field name="state" />
+                        <field name="success" />
+                        <field name="enabled" />
+                    </group>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Reference" domain="[]"
+                            context="{'group_by':'object_id'}" />
+                        <filter string="Template" domain="[]"
+                            context="{'group_by':'test_template_id'}" />
+                        <filter string="State" domain="[]"
+                            context="{'group_by':'state'}" />
+                        <filter string="Success" domain="[]"
+                            context="{'group_by':'success'}" />
+                        <filter string="Enabled" domain="[]"
+                            context="{'group_by':'enabled'}" />
+                    </group>
+                </search>
             </field>
         </record>
         <record model="ir.actions.act_window" id="action_qc_new_test">
@@ -488,10 +523,12 @@
                     <field name="method_id" />
                     <field name="proof_type" />
                     <field name="actual_value_ql"
-                        attrs="{'readonly':[('proof_type','=','quantitative')]}" />
+                        attrs="{'readonly':[('proof_type','=','quantitative')]}"
+                        on_change="onchange_actual_value_ql(actual_value_ql, valid_value_ids)" />
                     <field name="valid_value_ids" readonly="1" />
                     <field name="actual_value_qt"
-                        attrs="{'readonly':[('proof_type','=','qualitative')]}" />
+                        attrs="{'readonly':[('proof_type','=','qualitative')]}"
+                        on_change="onchange_actual_value_qt(uom_id, test_uom_id, actual_value_qt, min_value, max_value)" />
                     <field name="test_uom_id" />
                     <field name="min_value" />
                     <field name="max_value" />
