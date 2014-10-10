@@ -62,6 +62,10 @@ class QcPosibleValue(orm.Model):
         'name': fields.char('Name', size=200, required=True, select="1",
                             translate=True),
         'active': fields.boolean('Active', select="1"),
+        'ok': fields.boolean('Correct answer',
+                             help="When this field is True, the answer\n"
+                                  " is correct, When is False the answer\n"
+                                  " is not correct."),
     }
 
     _defaults = {
@@ -506,7 +510,7 @@ class QcTest(orm.Model):
         new_data = []
         fill = test.test_template_id.fill_correct_values
         for line in test.test_template_id.test_template_line_ids:
-            data = self.self._prepare_test_line(
+            data = self._prepare_test_line(
                 cr, uid, test, line, fill=fill or force_fill,  context=context)
             new_data.append((0, 0, data))
         return new_data
@@ -562,7 +566,7 @@ class QcTestLine(orm.Model):
 
     def quality_test_qualitative_check(self, cr, uid, test_line, context=None):
         if test_line.actual_value_ql in test_line.valid_value_ids:
-            return True
+            return test_line.actual_value_ql.ok
         else:
             return False
 
@@ -623,18 +627,20 @@ class QcTestLine(orm.Model):
                                                            actual_value_qt,
                                                            test_uom_id)
             if amount >= min_value and amount <= max_value:
-                res.update({'success': True})
+                res['success'] = True
             else:
-                res.update({'success': False})
+                res['success'] = False
         return {'value': res}
 
     def onchange_actual_value_ql(self, cr, uid, ids, actual_value_ql,
                                  valid_value_ids, context=None):
         res = {}
+        value_obj = self.pool['qc.posible.value']
         if actual_value_ql:
             valid = valid_value_ids[0][2]
             if actual_value_ql in valid:
-                res.update({'success': True})
+                value = value_obj.browse(cr, uid, actual_value_ql, context)
+                res['success'] = value.ok
             else:
-                res.update({'success': False})
+                res['success'] = False
         return {'value': res}
