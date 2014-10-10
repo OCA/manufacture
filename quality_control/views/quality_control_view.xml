@@ -45,10 +45,11 @@
             <field name="model">qc.posible.value</field>
             <field name="arch" type="xml">
                 <form string="Proof Posible Value">
-                <group>
-                    <field name="name" />
-                    <field name="active" />
-                </group>
+                    <group colspan="4" col="10">
+                        <field name="name" colspan="6"/>
+                        <field name="active" colspan="2" />
+                        <field name="ok" colspan="2" />
+                    </group>
                 </form>
             </field>
         </record>
@@ -58,6 +59,7 @@
             <field name="arch" type="xml">
                 <tree string="Posible Value">
                     <field name="name" />
+                        <field name="ok" />
                 </tree>
             </field>
         </record>
@@ -488,10 +490,12 @@
                     <field name="method_id" />
                     <field name="proof_type" />
                     <field name="actual_value_ql"
-                        attrs="{'readonly':[('proof_type','=','quantitative')]}" />
+                        attrs="{'readonly':[('proof_type','=','quantitative')]}"
+                        on_change="onchange_actual_value_ql(actual_value_ql, valid_value_ids)" />
                     <field name="valid_value_ids" readonly="1" />
                     <field name="actual_value_qt"
-                        attrs="{'readonly':[('proof_type','=','qualitative')]}" />
+                        attrs="{'readonly':[('proof_type','=','qualitative')]}"
+                        on_change="onchange_actual_value_qt(uom_id, test_uom_id, actual_value_qt, min_value, max_value)" />
                     <field name="test_uom_id" />
                     <field name="min_value" />
                     <field name="max_value" />
