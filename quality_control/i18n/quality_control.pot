@@ -623,9 +623,7 @@ msgstr ""
 
 #. module: quality_control
 #: help:qc.posible.value,ok:0
-msgid "When this field is True, the answer\n"
-" is correct, When is False the answer\n"
-" is not correct."
+msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
