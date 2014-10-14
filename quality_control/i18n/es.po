@@ -91,7 +91,7 @@ msgstr "Confirmar"
 #. module: quality_control
 #: field:qc.posible.value,ok:0
 msgid "Correct answer"
-msgstr "Correct answer"
+msgstr "Respuesta correcta"
 
 #. module: quality_control
 #: field:qc.posible.value,create_uid:0
@@ -623,14 +623,8 @@ msgstr "Esperando aprobación del supervisor"
 
 #. module: quality_control
 #: help:qc.posible.value,ok:0
-msgid ""
-"When this field is True, the answer\n"
-" is correct, When is False the answer\n"
-" is not correct."
-msgstr ""
-"Cuando este campo es verdadera, la respuesta\n"
-" es correcta, cuando es falso la respuesta\n"
-" es incorrecta."
+msgid "When this field is marked, the answer is considered correct."
+msgstr "Cuando este campo está marcado, la respuesta se considera correcta."
 
 #. module: quality_control
 #: view:qc.test.template.line:quality_control.qc_test_template_line_form_view
