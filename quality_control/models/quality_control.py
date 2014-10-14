@@ -44,7 +44,7 @@ class QcProofMethod(orm.Model):
     _columns = {
         'name': fields.char('Name', size=100, required=True, select="1",
                             translate=True),
-        'active': fields.boolean('Active', select="1"),
+        'active': fields.boolean('Active'),
     }
 
     _defaults = {
@@ -61,11 +61,10 @@ class QcPosibleValue(orm.Model):
     _columns = {
         'name': fields.char('Name', size=200, required=True, select="1",
                             translate=True),
-        'active': fields.boolean('Active', select="1"),
+        'active': fields.boolean('Active'),
         'ok': fields.boolean('Correct answer',
-                             help="When this field is True, the answer\n"
-                                  " is correct, When is False the answer\n"
-                                  " is not correct."),
+                             help="When this field is marked, the answer "
+                                  "is considered correct."),
     }
 
     _defaults = {
@@ -114,7 +113,7 @@ class QcProof(orm.Model):
         'name': fields.char('Name', size=200, required=True, select="1",
                             translate=True),
         'ref': fields.char('Code', size=30, select="1"),
-        'active': fields.boolean('Active', select="1"),
+        'active': fields.boolean('Active'),
         'synonym_ids': fields.one2many('qc.proof.synonym', 'proof_id',
                                        'Synonyms'),
         'type': fields.selection([('qualitative', 'Qualitative'),
@@ -128,7 +127,7 @@ class QcProof(orm.Model):
     }
 
     _defaults = {
-        'active': lambda *a: True,
+        'active': True,
     }
 
     _sql_constraints = [
@@ -511,7 +510,7 @@ class QcTest(orm.Model):
         fill = test.test_template_id.fill_correct_values
         for line in test.test_template_id.test_template_line_ids:
             data = self._prepare_test_line(
-                cr, uid, test, line, fill=fill or force_fill,  context=context)
+                cr, uid, test, line, fill=fill or force_fill, context=context)
             new_data.append((0, 0, data))
         return new_data
 
