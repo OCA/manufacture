@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-16 10:26+0000\n"
-"PO-Revision-Date: 2014-10-16 10:26+0000\n"
+"POT-Creation-Date: 2014-10-16 11:37+0000\n"
+"PO-Revision-Date: 2014-10-16 11:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,17 @@ msgstr ""
 
 #. module: mrp_manufacturing_order_sale_line
 #: view:mrp.production:mrp_manufacturing_order_sale_line.view_mrp_production_filter_inh_withsaleinfo
-#: field:mrp.production,customer:0
 msgid "Customer"
 msgstr ""
 
 #. module: mrp_manufacturing_order_sale_line
 #: model:ir.model,name:mrp_manufacturing_order_sale_line.model_mrp_production
 msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_manufacturing_order_sale_line
+#: model:ir.model,name:mrp_manufacturing_order_sale_line.model_procurement_order
+msgid "Procurement"
 msgstr ""
 
 #. module: mrp_manufacturing_order_sale_line

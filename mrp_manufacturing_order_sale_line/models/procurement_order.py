@@ -31,7 +31,6 @@ class ProcurementOrder(models.Model):
             production = production_obj.browse(production_id)
             if production.move_prod_id:
                 saleline = production.move_prod_id.procurement_id.sale_line_id
-                vals = {'sale_line': saleline.id,
-                        'customer': saleline.order_id.partner_id.id}
+                vals = {'sale_line': saleline.id}
                 production.write(vals)
         return res
