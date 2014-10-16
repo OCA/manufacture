@@ -23,7 +23,7 @@
     "website": "http://www.odoomrp.com",
     "description": """
     This module performs the following:
-    
+
     In the production order two new fields are created: customer, sale line.
 
     when the production order is create, these two new fields are loaded with

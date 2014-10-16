@@ -15,11 +15,23 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp import models, api
 
 
-class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+class ProcurementOrder(models.Model):
+    _inherit = 'procurement.order'
 
-    customer = fields.Many2one('res.partner', string='Customer')
-    sale_line = fields.Many2one('sale.order.line', string='Sale Line')
+    @api.multi
+    @api.model
+    def make_mo(self):
+        production_obj = self.env['mrp.production']
+        res = super(ProcurementOrder, self).make_mo()
+        for key in res.keys():
+            production_id = res[key]
+            production = production_obj.browse(production_id)
+            if production.move_prod_id:
+                saleline = production.move_prod_id.procurement_id.sale_line_id
+                vals = {'sale_line': saleline.id,
+                        'customer': saleline.order_id.partner_id.id}
+                production.write(vals)
+        return res
