@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_manufacturing_order_sale_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-16 10:28+0000\n"
+"PO-Revision-Date: 2014-10-16 12:29+0100\n"
+"Last-Translator: Alfredo <alfredodelafuente@avanzosc.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: mrp_manufacturing_order_sale_line
+#: view:mrp.production:mrp_manufacturing_order_sale_line.view_mrp_production_filter_inh_withsaleinfo
+#: field:mrp.production,customer:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: mrp_manufacturing_order_sale_line
+#: model:ir.model,name:mrp_manufacturing_order_sale_line.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Órden de producción"
+
+#. module: mrp_manufacturing_order_sale_line
+#: view:mrp.production:mrp_manufacturing_order_sale_line.view_mrp_production_filter_inh_withsaleinfo
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_manufacturing_order_sale_line
+#: field:mrp.production,sale_line:0
+msgid "Sale Line"
+msgstr "Línea venta"
+

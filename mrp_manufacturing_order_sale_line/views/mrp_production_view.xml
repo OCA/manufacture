@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_tree_view_inh_withsaleinfo" model="ir.ui.view">
+            <field name="name">mrp.production.tree.view.inh.withsaleinfo</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="customer" />
+                </field>
+            </field>
+        </record>
+        <record id="mrp_production_form_view_inh_withsaleinfo" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inh.withsaleinfo</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1/field[@name='name']" position="after">
+                    <field name="customer" domain="[('active','=',True),('customer','=',True)]" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_mrp_production_filter_inh_withsaleinfo" model="ir.ui.view">
+            <field name="name">view.mrp.production.filter.inh.withsaleinfo</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="customer" />
+                </field>
+                <filter string="Product" position="before">
+                    <filter string="Customer" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'customer'}"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>
