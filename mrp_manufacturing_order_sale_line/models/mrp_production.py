@@ -23,4 +23,5 @@ class MrpProduction(models.Model):
 
     partner = fields.Many2one('res.partner', string='Customer',
                               related='sale_line.order_id.partner_id')
-    sale_line = fields.Many2one('sale.order.line', string='Sale Line')
+    sale_line = fields.Many2one('sale.order.line', string='Sale Line',
+                                readonly=True)

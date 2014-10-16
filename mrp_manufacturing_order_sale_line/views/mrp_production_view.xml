@@ -16,11 +16,16 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//h1/field[@name='name']" position="after">
-                    <field name="partner" domain="[('active','=',True),('customer','=',True)]" />
+                <xpath expr="//form/sheet/group/group/field[@name='product_id']" position="before">
+                    <field name="partner" domain="[('customer','=',True)]" attrs="{'invisible':[('partner','=',False)]}"/>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='bom_id']" position="before">
+                    <field name="sale_line" attrs="{'invisible':[('partner','=',False)]}"/>
                 </xpath>
             </field>
         </record>
+        
+        
         <record id="view_mrp_production_filter_inh_withsaleinfo" model="ir.ui.view">
             <field name="name">view.mrp.production.filter.inh.withsaleinfo</field>
             <field name="model">mrp.production</field>
