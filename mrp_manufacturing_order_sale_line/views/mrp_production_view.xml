@@ -20,7 +20,7 @@
                     <field name="partner" domain="[('customer','=',True)]" attrs="{'invisible':[('partner','=',False)]}"/>
                 </xpath>
                 <xpath expr="//form/sheet/group/group/field[@name='bom_id']" position="before">
-                    <field name="sale_line" attrs="{'invisible':[('partner','=',False)]}"/>
+                    <field name="sale_line" readonly="1" attrs="{'invisible': [('sale_line', '=', False)]}"/>
                 </xpath>
             </field>
         </record>
