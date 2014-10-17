@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="action_qc_test_per_production" model="ir.actions.act_window">
+            <field name="name">Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_production_id': [active_id],
+                'default_production_id': active_id,
+                'active_test': False,
+                }
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_production_done" model="ir.actions.act_window">
+            <field name="name">Done Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('production_id','=',active_id),('state','not in',['draft','waiting'])]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_production_passed" model="ir.actions.act_window">
+            <field name="name">Passed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('production_id','=',active_id),('state','=','success')]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_production_failed" model="ir.actions.act_window">
+            <field name="name">Failed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('production_id','=',active_id),('state','=','failed')]
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_samples_form_view">
+            <field name="name">mrp.production.samples.form</field>
+            <field name="model">mrp.production</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <div class="oe_title" position="after">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button class="oe_inline oe_stat_button"
+                            type="action" name="%(action_qc_test_per_production)d"
+                            icon="fa-list">
+                            <field name="created_tests" widget="statinfo" />
+                        </button>
+                        <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(action_qc_test_per_production_done)d"
+                            icon="fa-pencil">
+                            <field name="done_tests" widget="statinfo" />
+                        </button>
+                        <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(action_qc_test_per_production_passed)d"
+                            icon="fa-thumbs-o-up">
+                            <field name="passed_tests" widget="statinfo" />
+                        </button>
+                        <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(action_qc_test_per_production_failed)d"
+                            icon="fa-thumbs-o-down">
+                            <field name="failed_tests" widget="statinfo" />
+                        </button>
+                    </div>
+                </div>
+                <xpath expr="//page[@string='Extra Information']"
+                    position="after">
+                    <page string="Quality Tests">
+                        <field colspan="4" name="qc_test_ids"
+                            nolabel="1" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,217 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* quality_control_samples
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-17 08:33+0000\n"
+"PO-Revision-Date: 2014-10-17 08:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_samples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Active"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Category"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_samples_form_view
+msgid "Create Lines"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_done
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_done
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_done
+msgid "Done Quality Tests"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Enabled"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_failed
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_failed
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_failed
+msgid "Failed Quality Tests"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Group By..."
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Lot"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Name"
+msgstr ""
+
+#. module: quality_control_samples
+#: code:addons/quality_control_samples/models/stock.py:72
+#, python-format
+msgid "No test template found for product: %s, category: %s"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_passed
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_passed
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_passed
+msgid "Passed Quality Tests"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Picking"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Product"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Product Category"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Production"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production
+#: view:mrp.production:quality_control_samples.mrp_production_samples_form_view
+#: view:stock.picking:quality_control_samples.stock_picking_quality_control_view
+#: view:stock.production.lot:quality_control_samples.stock_production_lot_quality_control_view
+msgid "Quality Tests"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Reference"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_sample_rank
+#: view:sample.rank:quality_control_samples.sample_rank_form_view
+msgid "Sample Rank"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.ui.menu,name:quality_control_samples.sample_rank_group_view
+msgid "Sample Rank Group"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_sample_rank_line
+#: view:sample.rank.line:quality_control_samples.sample_rank_line_form_view
+msgid "Sample Rank Line"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_sample_rank
+#: model:ir.ui.menu,name:quality_control_samples.sample_rank_menu_view
+#: view:sample.rank:quality_control_samples.sample_rank_tree_view
+msgid "Sample Ranks"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:sample.rank.line:quality_control_samples.sample_rank_line_tree_view
+msgid "Sample Ranks Lines"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:sample.rank:quality_control_samples.sample_rank_search_view
+msgid "Search Sample Rank"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Search Test"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Search Test Template"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "State"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Success"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
+msgid "Template"
+msgstr ""
+
+#. module: quality_control_samples
+#: code:addons/quality_control_samples/models/stock.py:71
+#, python-format
+msgid "Test Creation Error !"
+msgstr ""
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_qc_test_template
+msgid "Test Template"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
+msgid "Type"
+msgstr ""
+
+#. module: quality_control_samples
+#: view:qc.test.set.template.wizard:quality_control_samples.view_qc_test_set_template_wizard_form_inh_qualitycontrolext
+msgid "['|','|',('product_id','=',product_id),('product_category_id','=',product_category_id),'&',('product_id','=',False),('product_category_id','=',False)]"
+msgstr ""
+

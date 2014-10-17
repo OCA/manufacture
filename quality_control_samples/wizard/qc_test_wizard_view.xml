@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view"
+            id="view_qc_test_set_template_wizard_form_inh_qualitycontrolext">
+            <field name="name">view.qc.test.set.template.wizard.form.inh.qualitycontrolext
+            </field>
+            <field name="model">qc.test.set.template.wizard</field>
+            <field name="type">form</field>
+            <field name="inherit_id"
+                ref="quality_control.view_qc_test_set_template_wizard_form" />
+            <field name="arch" type="xml">
+                <field name="test_template_id" position="before">
+                    <field name="product_id" />
+                    <field name="product_category_id" />
+                </field>
+                <field name="test_template_id" position="attributes">
+                    <attribute name="domain">['|','|',('product_id','=',product_id),('product_category_id','=',product_category_id),'&amp;',('product_id','=',False),('product_category_id','=',False)]</attribute>
+                </field>
+            
+<!--                 <xpath expr="//form[@string='Select Test Template']"
+                    position="replace">
+                    <form string="Select Test Template">
+                        <group colspan="4">
+                            <field name="product_id" colspan="2" />
+                            <field name="product_category_id"
+                                colspan="2" />
+                            <field name="test_template_id"
+                                colspan="4"
+                                domain="['|','|',('product_id','=',product_id),('product_category_id','=',product_category_id),'&amp;',('product_id','=',False),('product_category_id','=',False)]" />
+                            <button icon="gtk-cancel" special="cancel"
+                                string="Cancel" name="action_cancel"
+                                type="object" colspan="2" />
+                            <button icon="gtk-ok" name="action_create_test"
+                                string="Accept" type="object" colspan="2" />
+                        </group>
+                    </form>
+                </xpath> -->
+            </field>
+        </record>
+
+    </data>
+</openerp>

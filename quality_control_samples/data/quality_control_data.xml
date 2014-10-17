@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="stock.req_link_stock_move" model="res.request.link">
+            <field name="name">Stock Move</field>
+            <field name="object">stock.move</field>
+        </record>
+        <record id="stock.req_link_stock_picking" model="res.request.link">
+            <field name="name">Picking List</field>
+            <field name="object">stock.picking</field>
+        </record>
+        <record id="mrp.req_link_mrp_production" model="res.request.link">
+            <field name="name">Manufacturing Order</field>
+            <field name="object">mrp.production</field>
+        </record>
+
+    </data>
+</openerp>

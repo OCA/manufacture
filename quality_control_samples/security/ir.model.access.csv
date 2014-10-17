@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_sample_rank","sample_rank","quality_control_samples.model_sample_rank","quality_control.group_quality_control_user",1,1,1,1
+"access_sample_rank_linr","sample_rank_line","quality_control_samples.model_sample_rank_line","quality_control.group_quality_control_user",1,1,1,1

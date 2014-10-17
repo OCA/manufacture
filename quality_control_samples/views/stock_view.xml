@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="action_qc_test_per_picking" model="ir.actions.act_window">
+            <field name="name">Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_picking_id': [active_id],
+                'default_picking_id': active_id,
+                'active_test': False,
+                }
+            </field>
+        </record>
+        
+        <record id="action_qc_test_per_picking_done" model="ir.actions.act_window">
+            <field name="name">Done Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('picking_id','=',active_id),('state','not in',['draft','waiting'])]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_picking_passed" model="ir.actions.act_window">
+            <field name="name">Passed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('picking_id','=',active_id),('state','=','success')]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_picking_failed" model="ir.actions.act_window">
+            <field name="name">Failed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('picking_id','=',active_id),('state','=','failed')]
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_picking_quality_control_view">
+            <field name="name">stock.picking.quality.control.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <div class="oe_right oe_button_box" position="inside">
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_picking)d"
+                        icon="fa-list">
+                        <field name="created_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_picking_done)d"
+                        icon="fa-pencil">
+                        <field name="done_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_picking_passed)d"
+                        icon="fa-thumbs-o-up">
+                        <field name="passed_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_picking_failed)d"
+                        icon="fa-thumbs-o-down">
+                        <field name="failed_tests" widget="statinfo" />
+                    </button>
+                </div>
+                <xpath expr="//page[@string='Additional Info']"
+                    position="after">
+                    <page string="Quality Tests">
+                        <group colspan="4" col="8">
+                            <field name="qc_test_ids" nolabel="1"
+                                colspan="8" height="300" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_lot" model="ir.actions.act_window">
+            <field name="name">Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_lot_id': [active_id],
+                'default_lot_id': active_id,
+                'active_test': False,
+                }
+            </field>
+        </record>
+        
+        <record id="action_qc_test_per_lot_done" model="ir.actions.act_window">
+            <field name="name">Done Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lot_id','=',active_id),('state','not in',['draft','waiting'])]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_lot_passed" model="ir.actions.act_window">
+            <field name="name">Passed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lot_id','=',active_id),('state','=','success')]
+            </field>
+        </record>
+
+        <record id="action_qc_test_per_lot_failed" model="ir.actions.act_window">
+            <field name="name">Failed Quality Tests</field>
+            <field name="res_model">qc.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lot_id','=',active_id),('state','=','failed')]
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_production_lot_quality_control_view">
+            <field name="name">stock.production.lot.quality.control.view</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form" />
+            <field name="arch" type="xml">
+                <div class="oe_title" position="after">
+                <div class="oe_right oe_button_box" name="buttons">
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_lot)d"
+                        icon="fa-list">
+                        <field name="created_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_lot_done)d"
+                        icon="fa-pencil">
+                        <field name="done_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_lot_passed)d"
+                        icon="fa-thumbs-o-up">
+                        <field name="passed_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_lot_failed)d"
+                        icon="fa-thumbs-o-down">
+                        <field name="failed_tests" widget="statinfo" />
+                    </button>
+                </div>
+                </div>
+                <notebook position="inside">
+                    <page string="Quality Tests">
+                        <group colspan="4" col="8">
+                            <field name="qc_test_ids" nolabel="1"
+                                colspan="8" height="300" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
