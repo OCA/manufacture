@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-17 08:33+0000\n"
-"PO-Revision-Date: 2014-10-17 10:34+0100\n"
+"PO-Revision-Date: 2014-10-17 11:53+0100\n"
 "Last-Translator: Alfredo <alfredodelafuente@avanzosc.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,14 @@ msgstr "Categoría"
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_samples_form_view
 msgid "Create Lines"
-msgstr "Create Lines"
+msgstr "Crear líneas"
 
 #. module: quality_control_samples
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_done
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_done
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_done
 msgid "Done Quality Tests"
-msgstr "Done Quality Tests"
+msgstr "Test de calidad realizados"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -48,7 +48,7 @@ msgstr "Habilitado"
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_failed
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_failed
 msgid "Failed Quality Tests"
-msgstr "Failed Quality Tests"
+msgstr "Test de calidad erróneos"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -59,7 +59,7 @@ msgstr "Agrupar Por..."
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
 msgid "Lot"
-msgstr "Lot"
+msgstr "Lote"
 
 #. module: quality_control_samples
 #: model:ir.model,name:quality_control_samples.model_stock_production_lot
@@ -80,14 +80,14 @@ msgstr "Descripción"
 #: code:addons/quality_control_samples/models/stock.py:72
 #, python-format
 msgid "No test template found for product: %s, category: %s"
-msgstr "No test template found for product: %s, category: %s"
+msgstr "Plantilla de test no encontrada para el producto: %s, categoría: %s"
 
 #. module: quality_control_samples
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_passed
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_passed
 #: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_passed
 msgid "Passed Quality Tests"
-msgstr "Passed Quality Tests"
+msgstr "Test de calidad pasados"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -108,7 +108,7 @@ msgstr "Producto"
 #. module: quality_control_samples
 #: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
 msgid "Product Category"
-msgstr "Categoría Producto"
+msgstr "Categoría producto"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -123,7 +123,7 @@ msgstr "Producción"
 #: view:stock.picking:quality_control_samples.stock_picking_quality_control_view
 #: view:stock.production.lot:quality_control_samples.stock_production_lot_quality_control_view
 msgid "Quality Tests"
-msgstr "Tests Calidad"
+msgstr "Tests calidad"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -139,13 +139,13 @@ msgstr "Muestra"
 #. module: quality_control_samples
 #: model:ir.ui.menu,name:quality_control_samples.sample_rank_group_view
 msgid "Sample Rank Group"
-msgstr "Grupo Muestras"
+msgstr "Grupo muestras"
 
 #. module: quality_control_samples
 #: model:ir.model,name:quality_control_samples.model_sample_rank_line
 #: view:sample.rank.line:quality_control_samples.sample_rank_line_form_view
 msgid "Sample Rank Line"
-msgstr "Rango Muestra"
+msgstr "Rango muestra"
 
 #. module: quality_control_samples
 #: model:ir.actions.act_window,name:quality_control_samples.action_sample_rank
@@ -157,22 +157,22 @@ msgstr "Muestras"
 #. module: quality_control_samples
 #: view:sample.rank.line:quality_control_samples.sample_rank_line_tree_view
 msgid "Sample Ranks Lines"
-msgstr "Rango Muestras"
+msgstr "Rango muestras"
 
 #. module: quality_control_samples
 #: view:sample.rank:quality_control_samples.sample_rank_search_view
 msgid "Search Sample Rank"
-msgstr "Buscar Muestras"
+msgstr "Buscar muestras"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
 msgid "Search Test"
-msgstr "Buscar Test"
+msgstr "Buscar test"
 
 #. module: quality_control_samples
 #: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
 msgid "Search Test Template"
-msgstr "Buscar Plantillas de Test"
+msgstr "Buscar plantillas de test"
 
 #. module: quality_control_samples
 #: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
@@ -198,7 +198,7 @@ msgstr "Plantilla"
 #: code:addons/quality_control_samples/models/stock.py:71
 #, python-format
 msgid "Test Creation Error !"
-msgstr "Test Creation Error !"
+msgstr "Error creación test !"
 
 #. module: quality_control_samples
 #: model:ir.model,name:quality_control_samples.model_qc_test_template
