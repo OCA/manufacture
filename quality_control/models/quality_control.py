@@ -510,7 +510,7 @@ class QcTest(orm.Model):
         fill = test.test_template_id.fill_correct_values
         for line in test.test_template_id.test_template_line_ids:
             data = self._prepare_test_line(
-                cr, uid, test, line, fill=fill or force_fill,  context=context)
+                cr, uid, test, line, fill=fill or force_fill, context=context)
             new_data.append((0, 0, data))
         return new_data
 
