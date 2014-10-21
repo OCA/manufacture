@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_analytic_line_form_inh_estimatedcost" model="ir.ui.view">
+            <field name="name">view.account.analytic.line.form.inh.estimatedcost</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="account.view_account_analytic_line_form"/>
+            <field name="arch" type="xml">
+                <group string="General Accounting" position="after">
+                    <group string="Production Information" colspan="4" col="8">
+                        <field name="estim_std_cost" colspan="2"/>
+                        <field name="estim_avg_cost" colspan="2"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+        <record id="view_account_analytic_line_tree_inh_estimatedcost" model="ir.ui.view">
+            <field name="name">view.account.analytic.line.tree.inh.estimatedcost</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="account.view_account_analytic_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="after">
+                    <field name="estim_std_cost" />
+                    <field name="estim_avg_cost" />
+                </field>
+            </field>
+        </record>
+
+        <record id="estimated_cost_list_view" model="ir.ui.view">
+            <field name="name">estimated.cost.list.view</field>
+            <field name="model">account.analytic.line</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Estimated Costs">
+                    <field name="date"/>
+                    <field name="ref"/>
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="estim_avg_cost"/>
+                    <field name="estim_std_cost"/>
+                    <field name="amount"/>
+                    <field name="unit_amount"/>
+                    <field name="account_id"/>
+                    <field name="mrp_production_id"/>
+                    <field name="workorder"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="fictitious_mrp_production_code" model="ir.sequence.type">
+            <field name="name">Fictitious MRP Production</field>
+            <field name="code">fictitious.mrp.production</field>
+        </record>
+        <record id="fictitious_mrp_production" model="ir.sequence">
+            <field name="name">Fictitious MRP Production</field>
+            <field name="code">fictitious.mrp.production</field>
+            <field eval="6" name="padding"/>
+            <field name="prefix">FMO</field>
+        </record>
+    </data>
+</openerp>
