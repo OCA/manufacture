@@ -422,6 +422,35 @@
                 </tree>
             </field>
         </record>
+        <record model="ir.ui.view" id="qc_test_search_view">
+            <field name="name">qc.test.extended.search.vieww</field>
+            <field name="model">qc.test</field>
+            <field name="arch" type="xml">
+                <search string="Search Test">
+                    <group>
+                        <field name="name" />
+                        <field name="object_id" />
+                        <field name="test_template_id" />
+                        <field name="state" />
+                        <field name="success" />
+                        <field name="enabled" />
+                    </group>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Reference" domain="[]"
+                            context="{'group_by':'object_id'}" />
+                        <filter string="Template" domain="[]"
+                            context="{'group_by':'test_template_id'}" />
+                        <filter string="State" domain="[]"
+                            context="{'group_by':'state'}" />
+                        <filter string="Success" domain="[]"
+                            context="{'group_by':'success'}" />
+                        <filter string="Enabled" domain="[]"
+                            context="{'group_by':'enabled'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
         <record model="ir.actions.act_window" id="action_qc_new_test">
             <field name="name">Test</field>
             <field name="res_model">qc.test</field>
