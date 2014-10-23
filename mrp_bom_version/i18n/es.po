@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_version
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-23 14:36+0000\n"
+"PO-Revision-Date: 2014-10-23 16:40+0100\n"
+"Last-Translator: Alfredo <alfredodelafuente@avanzosc.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+#: selection:mrp.bom,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de material"
+
+#. module: mrp_bom_version
+#: selection:mrp.bom,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+#: selection:mrp.bom,state:0
+msgid "Historical"
+msgstr "Histórica"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,historical_date:0
+msgid "Historical Date"
+msgstr "Fecha historificación"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "In active"
+msgstr "En activo"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_tree_view
+msgid "MRP BoMs"
+msgstr "MRP LdMs"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Órden de producción"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,review:0
+msgid "Review"
+msgstr "Revisión"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+msgid "State"
+msgstr "Estado"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,state:0
+msgid "Status"
+msgstr "Estatus"
+
+#. module: mrp_bom_version
+#: code:addons/mrp_bom_version/models/mrp.py:49
+#, python-format
+msgid "The version number must be unique"
+msgstr "El número de versión debe ser única"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "{'readonly':[('state', '!=', 'draft')]}"
+msgstr "{'readonly':[('state', '!=', 'draft')]}"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "{'readonly':[('state', '=', 'historical')]}"
+msgstr "{'readonly':[('state', '=', 'historical')]}"
+
