@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_version
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-23 14:35+0000\n"
+"PO-Revision-Date: 2014-10-23 14:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+#: selection:mrp.bom,state:0
+msgid "Active"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_version
+#: selection:mrp.bom,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+#: selection:mrp.bom,state:0
+msgid "Historical"
+msgstr ""
+
+#. module: mrp_bom_version
+#: field:mrp.bom,historical_date:0
+msgid "Historical Date"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "In active"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_tree_view
+msgid "MRP BoMs"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+msgid "Product"
+msgstr ""
+
+#. module: mrp_bom_version
+#: field:mrp.bom,review:0
+msgid "Review"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
+msgid "State"
+msgstr ""
+
+#. module: mrp_bom_version
+#: field:mrp.bom,state:0
+msgid "Status"
+msgstr ""
+
+#. module: mrp_bom_version
+#: code:addons/mrp_bom_version/models/mrp.py:49
+#, python-format
+msgid "The version number must be unique"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "{'readonly':[('state', '!=', 'draft')]}"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_form_view_inh_version
+msgid "{'readonly':[('state', '=', 'historical')]}"
+msgstr ""
+

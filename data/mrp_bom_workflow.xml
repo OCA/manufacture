@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="wkf_mrp_bom" model="workflow">
+            <field name="name">mrp.bom.basic</field> 
+            <field name="osv">mrp.bom</field>
+            <field name="on_create">True</field>
+        </record>
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_mrp_bom"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record id="act_active" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_mrp_bom"/>
+            <field name="name">active</field>
+            <field name="kind">function</field>
+            <field name="action">action_active()</field>
+        </record>
+        <record id="act_historical" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_mrp_bom"/>
+            <field name="flow_end">True</field>
+            <field name="name">historical</field>
+            <field name="kind">function</field>
+            <field name="action">action_historical()</field>
+        </record>
+        <record id="trans_draft_active" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_active"/>
+            <field name="signal">button_active</field>
+        </record>
+        <record id="trans_active_historical" model="workflow.transition">
+            <field name="act_from" ref="act_active"/>
+            <field name="act_to" ref="act_historical"/>
+            <field name="signal">button_historical</field>
+        </record>
+    </data>
+</openerp>
