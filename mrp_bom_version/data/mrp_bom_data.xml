@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="mt_active" model="mail.message.subtype">
+            <field name="name">MRP BoM Active</field>
+            <field name="res_model">mrp.bom</field>
+            <field name="default" eval="False"/>
+            <field name="description">MRP BoM Active</field>
+        </record>
+    </data>
+</openerp>
