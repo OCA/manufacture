@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_bom_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="arch" type="xml">
+                <tree string="MRP BoMs">
+                    <field name="name"/>
+                    <field name="active" />
+                    <field name="review" />
+                    <field name="state" />
+                    <field name="historical_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="mrp_bom_form_view_inh_version" model="ir.ui.view">
+            <field name="name">mrp.bom.form.view.inh.version</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="before">
+                    <header>
+                        <button name="button_active" states="draft" string="In active" class="oe_highlight" />
+                        <button name="button_historical" states="active" string="Historical" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,paid" />
+                    </header>
+                </xpath>
+                <field name="company_id" position="after">
+                    <group colspan="2" col="4">
+                        <field name="review" attrs="{'readonly':[('state', '=', 'historical')]}" />
+                        <field name="historical_date" />
+                    </group>
+                </field>
+                <field name="product_tmpl_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="product_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="product_qty" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="product_uom" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="routing_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="code" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="type" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="company_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="bom_line_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '!=', 'draft')]}</attribute>
+                </field>
+                <field name="position" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="sequence" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="active" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="date_start" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="date_stop" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="product_rounding" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="product_efficiency" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="property_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="message_follower_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+                <field name="message_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state', '=', 'historical')]}</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="view_mrp_bom_filter_inh_version" model="ir.ui.view">
+            <field name="name">view.mrp.bom.filter.inh.version</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </field>
+                <filter string="Product" position="before">
+                    <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>
