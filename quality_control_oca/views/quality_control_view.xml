@@ -323,7 +323,7 @@
             <field name="model">qc.test.template.line</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Test Template Line">
+                <tree string="Test Template Line" editable="bottom">
                     <field name="test_template_id" select="1" />
                     <field name="proof_id" select="1" />
                     <field name="method_id" select="1" />
@@ -525,7 +525,7 @@
                     <field name="actual_value_ql"
                         attrs="{'readonly':[('proof_type','=','quantitative')]}"
                         on_change="onchange_actual_value_ql(actual_value_ql, valid_value_ids)" />
-                    <field name="valid_value_ids" readonly="1" />
+                    <field name="valid_value_ids" readonly="1" invisible="1" />
                     <field name="actual_value_qt"
                         attrs="{'readonly':[('proof_type','=','qualitative')]}"
                         on_change="onchange_actual_value_qt(uom_id, test_uom_id, actual_value_qt, min_value, max_value)" />
