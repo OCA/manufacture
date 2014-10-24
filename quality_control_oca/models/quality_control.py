@@ -130,11 +130,6 @@ class QcProof(orm.Model):
         'active': True,
     }
 
-    _sql_constraints = [
-        ('proof_method_unique', 'UNIQUE (proof_id, method_id)',
-         _('Proof-Method relation alredy exists!')),
-    ]
-
     def name_search(self, cr, uid, name='', args=None, operator='ilike',
                     context=None, limit=None):
         result = super(QcProof, self).name_search(cr, uid, name=name,
