@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-23 14:35+0000\n"
-"PO-Revision-Date: 2014-10-23 14:35+0000\n"
+"POT-Creation-Date: 2014-11-10 09:13+0000\n"
+"PO-Revision-Date: 2014-11-10 09:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,12 @@ msgid "In active"
 msgstr ""
 
 #. module: mrp_bom_version
+#: model:mail.message.subtype,description:mrp_bom_version.mt_active
+#: model:mail.message.subtype,name:mrp_bom_version.mt_active
+msgid "MRP BoM Active"
+msgstr ""
+
+#. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_tree_view
 msgid "MRP BoMs"
 msgstr ""
@@ -63,11 +69,6 @@ msgid "Product"
 msgstr ""
 
 #. module: mrp_bom_version
-#: field:mrp.bom,review:0
-msgid "Review"
-msgstr ""
-
-#. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.view_mrp_bom_filter_inh_version
 msgid "State"
 msgstr ""
@@ -78,9 +79,9 @@ msgid "Status"
 msgstr ""
 
 #. module: mrp_bom_version
-#: code:addons/mrp_bom_version/models/mrp.py:49
+#: code:addons/mrp_bom_version/models/mrp.py:53
 #, python-format
-msgid "The version number must be unique"
+msgid "The sequence must be unique"
 msgstr ""
 
 #. module: mrp_bom_version
