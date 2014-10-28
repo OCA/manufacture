@@ -2,6 +2,18 @@
 <openerp>
     <data>
 
+        <record model="ir.ui.view" id="mrp.mrp_production_buttons">
+            <field name="name">mrp.production.buttons</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <div class="oe_title" position="after">
+                    <div class="oe_right oe_button_box" name="buttons">
+                    </div>
+                </div>
+            </field>
+        </record>
+
         <record id="action_qc_test_per_production" model="ir.actions.act_window">
             <field name="name">Quality Tests</field>
             <field name="res_model">qc.test</field>
@@ -44,32 +56,30 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view" />
             <field name="arch" type="xml">
-                <div class="oe_title" position="after">
-                    <div class="oe_right oe_button_box" name="buttons">
-                        <button class="oe_inline oe_stat_button"
-                            type="action" name="%(action_qc_test_per_production)d"
-                            icon="fa-list">
-                            <field name="created_tests" widget="statinfo" />
-                        </button>
-                        <button class="oe_inline oe_stat_button"
-                            type="action"
-                            name="%(action_qc_test_per_production_done)d"
-                            icon="fa-pencil">
-                            <field name="done_tests" widget="statinfo" />
-                        </button>
-                        <button class="oe_inline oe_stat_button"
-                            type="action"
-                            name="%(action_qc_test_per_production_passed)d"
-                            icon="fa-thumbs-o-up">
-                            <field name="passed_tests" widget="statinfo" />
-                        </button>
-                        <button class="oe_inline oe_stat_button"
-                            type="action"
-                            name="%(action_qc_test_per_production_failed)d"
-                            icon="fa-thumbs-o-down">
-                            <field name="failed_tests" widget="statinfo" />
-                        </button>
-                    </div>
+                <div name="buttons" position="inside">
+                    <button class="oe_inline oe_stat_button"
+                        type="action" name="%(action_qc_test_per_production)d"
+                        icon="fa-list">
+                        <field name="created_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action"
+                        name="%(action_qc_test_per_production_done)d"
+                        icon="fa-pencil">
+                        <field name="done_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action"
+                        name="%(action_qc_test_per_production_passed)d"
+                        icon="fa-thumbs-o-up">
+                        <field name="passed_tests" widget="statinfo" />
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                        type="action"
+                        name="%(action_qc_test_per_production_failed)d"
+                        icon="fa-thumbs-o-down">
+                        <field name="failed_tests" widget="statinfo" />
+                    </button>
                 </div>
                 <xpath expr="//page[@string='Extra Information']"
                     position="after">
