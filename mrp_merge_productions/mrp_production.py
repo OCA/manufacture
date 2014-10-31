@@ -38,7 +38,7 @@ def id_of(obj):
 def get_target(productions):
     def sort_key(prod):
         return (
-            # Prioritize in production and ready
+            # Prioritize ready productions
             {"ready": 1}.get(prod.state, 9),
             # Then the oldest id
             prod.id,
@@ -160,7 +160,7 @@ class mrp_production(orm.Model):
         if any(production.state in ('done', 'cancel', 'in_production')
                for production in productions):
             raise orm.except_orm(
-                _("Invalid Selecetion"),
+                _("Invalid Selection"),
                 _("You cannot merge manufacturing orders that are done, "
                   "in production or cancelled."),
             )

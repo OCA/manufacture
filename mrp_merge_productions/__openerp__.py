@@ -40,7 +40,7 @@ This module allows merging productions based on the following criteria:
   * Same Source and Destination Locations for the products
 * The productions must not be in the 'done', 'cancel' or 'in_production' states
 
-This is intented to provide easier handling of large amounts of similar
+This is intended to provide easier handling of large amounts of similar
 manufacturing orders created by procurement orders, as it allows collapsing
 many similar productions into the same MO.
 
