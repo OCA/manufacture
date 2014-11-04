@@ -2,6 +2,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
+#    Date: 04/11/2014
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -16,20 +18,15 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
+from openerp import models, fields
 
-{
-    'name': 'MRP Production Traceability',
-    'version': "1.0",
-    'category': "Generic Modules",
-    'description': """
-    This modules adds component traceability in production orders.
-    """,
-    'author': 'OdooMRP team',
-    'contributors': ["Daniel Campos <danielcampos@avanzosc.es>"],
-    'website': "http://www.odoomrp.com",
-    'depends': ["mrp"],
-    'data': ["views/mrp_stock_move_view.xml",
-             "views/track_lot_view.xml",
-             "views/stock_move_view.xml"],
-    'installable': True,
-}
+
+class MrpTrackLot(models.Model):
+    _name = "mrp.track.lot"
+
+    component = fields.Many2one('product.product', 'Component')
+    component_lot = fields.Many2one('stock.production.lot', 'Component Lot')
+    product = fields.Many2one('product.product', 'Final Product')
+    product_lot = fields.Many2one('stock.production.lot', 'Final Product Lot')
+    production = fields.Many2one('mrp.production', 'Production')
+    st_move = fields.Many2one('stock.move', 'Stock Move')

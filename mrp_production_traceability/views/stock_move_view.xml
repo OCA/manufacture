@@ -2,15 +2,16 @@
 <openerp>
 <data>
 
-    <!-- mrp.stock.move.view -->
-    <record id="mrp_production_form_view_inh" model="ir.ui.view">
-        <field name="name">mrp.production.form.view.inh</field>
-        <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+    <!-- stock.move.view -->
+    <record id="view_production_lot_form_inh" model="ir.ui.view">
+        <field name="name">stock.production.lot.form.inh</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='restrict_lot_id']" position="after">
-                <field name="prod_parent_lot" />
-            </xpath>
+           <button name="action_traceability" position="after">
+            <button name="total_traceability" icon="fa-arrows-v" class="oe_stat_button" type="object" string="Total Traceability"
+            attrs="{'invisible': [('quant_ids','=',[])]}"/>
+           </button>
         </field>
     </record>
 

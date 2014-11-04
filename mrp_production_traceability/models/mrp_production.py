@@ -2,8 +2,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Daniel Campos (danielcampos@avanzosc.es) Date: 25/08/2014
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -19,33 +17,33 @@
 #
 ##############################################################################
 
-from openerp import models
+from openerp import models, api
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    def action_produce(self, cr, uid, production_id, production_qty,
-                       production_mode, wiz=False, context=None):
-        st_move_obj = self.pool['stock.move']
+    @api.model
+    def action_produce(self, production_id, production_qty, production_mode,
+                       wiz=False):
+        st_move_obj = self.env['stock.move']
+        track_lot_obj = self.env['mrp.track.lot']
         pre_move_ids_assign = st_move_obj.search(
-            cr, uid,
             [('raw_material_production_id', '=', production_id),
-             ('state', 'not in', ('done', 'cancel'))], context=context)
-        pre_move_ids = st_move_obj.search(
-            cr, uid, [('raw_material_production_id', '=', production_id)],
-            context=context)
+             ('state', 'not in', ('done', 'cancel'))])
         res = super(MrpProduction, self).action_produce(
-            cr, uid, production_id, production_qty, production_mode,
-            wiz=wiz, context=context)
+            production_id, production_qty, production_mode, wiz=wiz)
         if wiz.lot_id:
-            post_move_ids = st_move_obj.search(
-                cr, uid, [('raw_material_production_id', '=', production_id),
-                          ('id', 'not in', pre_move_ids)], context=context)
-            if post_move_ids:
-                st_move_obj.write(cr, uid, post_move_ids,
-                                  {'prod_parent_lot': wiz.lot_id.id})
-            else:
-                st_move_obj.write(cr, uid, pre_move_ids_assign,
-                                  {'prod_parent_lot': wiz.lot_id.id})
+            for move in pre_move_ids_assign:
+                move.prod_parent_lot = wiz.lot_id.id
+                if (move.restrict_lot_id and
+                        move.raw_material_production_id):
+                    production = move.raw_material_production_id
+                    track_lot_obj.create(
+                        {'component': move.product_id.id,
+                         'component_lot': move.restrict_lot_id.id,
+                         'product': production.product_id.id,
+                         'product_lot': wiz.lot_id.id,
+                         'production': production.id,
+                         'st_move': move.id})
         return res

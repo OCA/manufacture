@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_track_production_lot_tree" model="ir.ui.view">
+            <field name="name">view.track.production.lot.tree</field>
+            <field name="model">mrp.track.lot</field>
+            <field name="arch" type="xml">
+                <tree string="Production Lots">
+                    <field name="component" />
+                    <field name="component_lot" />
+                    <field name="product" />
+                    <field name="product_lot" />
+                    <field name="production" />
+                </tree>
+            </field>
+        </record>
+        <record id="track_production_lots_act" model="ir.actions.act_window">
+            <field name="name">Track Production Lots</field>
+            <field name="res_model">mrp.track.lot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="track_production_lots" name="Track Production Lots"
+            parent="stock.menu_traceability" action="track_production_lots_act"
+            sequence="3" />
+    </data>
+</openerp>
