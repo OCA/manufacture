@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Parent Menu on Right Panes -->
+        <menuitem id="menu_machinery_manager" name="Machinery Manager"/>
+
+        <menuitem id="menu_machinery_config" name="Configuration"
+            parent="menu_machinery_manager" sequence="2" />
+
+        <!-- ========================== Machines ========================== -->
+
+        <record id="machines_form" model="ir.ui.view">
+            <field name="name">machines.form</field>
+            <field name="model">machinery</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Machines">
+                    <group colspan="4" col="6">
+                        <separator string="Machine Details"
+                            colspan="6" />
+                        <newline />
+                        <field name="name" />
+                        <field name="company" invisible="1"/>
+                        <field name="location" />
+                        <field name="product" domain="[('machine_ok','=',True)]" />
+                        <field name="serial_char" attrs="{'invisible':[('product','!=', False)]}"/>
+                        <field name="serial" attrs="{'invisible':[('product','=', False)]}"/>
+                    </group>
+                    <separator string="Analysis Information"
+                        colspan="4" />
+                    <notebook colspan="4">
+                        <page string="Additional Details">
+                           <group>
+                                <group>
+                                    <separator string="Manufacture Details"
+                                    colspan="4" />
+                                    <field name="year" />
+                                    <field name="model" />
+                                    <field name="model_type" />
+                                </group>
+                                <group>
+                                    <separator string="Current Details"
+                                        colspan="4" />
+                                    <field name="status" />
+                                    <field name="ownership" />
+                                    <field name="mac" />
+                                    <field name="phone" />
+                                    <field name="ambit" />
+                                </group>
+                                <group>
+                                    <separator string="Extra Information"
+                                        colspan="4" />
+                                    <field name="card" />
+                                    <field name="cardexp" />
+                                </group>
+                                <group>
+                                    <separator string="Insurance"
+                                        colspan="4" />
+                                    <field name="insurance" />
+                                    <field name="policy" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Financial Details">
+                        <group>
+                            <group>
+                                <separator string="Purchase Info" colspan="4"  />
+                                <field name="purch_date" />
+                                <field name="purch_partner" />
+                                <field name="purch_inv" />
+                                <field name="purch_cost" />
+                                <field name="purch_cycles" />
+                                <field name="enrolldate" />
+                            </group>
+                            <group>
+                                <separator string="Financial Details" colspan="4" />
+                                <field name="deprecperc" />
+                                <field name="deprecperiod" />
+                                <field name="assetacc" />
+                                <field name="depracc" />
+                            </group>
+                        </group>
+                        <group>
+                            <separator string="Warranty Expiry"/>
+                            <newline/>
+                            <field name="warrexp" />
+                            <field name="warrexpcy" />
+                        </group>
+                        </page>
+                        <page string="Machine Users">
+                            <field name="users"/>
+                        </page>
+                        <page string="Maintenance">
+                            <group>
+                            <separator string="Preventive Maintenance"
+                                colspan="4" />
+                            <field name="actcycles" />
+                            <field name="primarymeter" />
+                            <field name="bcyl" />
+                            <field name="bdate" />
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="machine_tree" model="ir.ui.view">
+            <field name="name">machine.tree</field>
+            <field name="model">machinery</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Machines">
+                    <field name="name" />
+                    <field name="company"  />
+                    <field name="year" />
+                    <field name="model" />
+                    <field name="serial" />
+                    <field name="model_type" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="machine_form_act" model="ir.actions.act_window">
+            <field name="name">Machines</field>
+            <field name="res_model">machinery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_machines" name="Machines"
+            parent="menu_machinery_config" action="machine_form_act"
+            sequence="1" />
+
+    </data>
+</openerp>

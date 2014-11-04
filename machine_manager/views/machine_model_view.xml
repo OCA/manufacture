@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="machinemodel_tree_view">
+            <field name="name">machinemodel.tree.view</field>
+            <field name="model">machine.model</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="tree_string" editable="bottom">
+                    <field name="name" />
+                    <field name="model_type" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_machinemodel_view">
+            <field name="name">Machine Model</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">machine.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="machinemodel_tree_view" />
+        </record>
+
+        <menuitem id="machinemodel_menu" name="Machine Model"
+            parent="menu_machinery_config" action="action_machinemodel_view" />
+
+    </data>
+</openerp>
