@@ -96,12 +96,12 @@
                     position="after">
                     <group>
                         <field name="origin" />
-                        <field name="stock_move_id" readonly="1" />
-                        <field name="product_id" readonly="1" />
-                        <field name="categ_id" readonly="1" />
-                        <field name="picking_id" readonly="1" />
-                        <field name="lot_id" readonly="1" />
-                        <field name="production_id" readonly="1" />
+                        <field name="stock_move_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
+                        <field name="product_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
+                        <field name="categ_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
+                        <field name="picking_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
+                        <field name="lot_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
+                        <field name="production_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
                     </group>
                 </xpath>
             </field>
