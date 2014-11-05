@@ -14,6 +14,29 @@
                 </tree>
             </field>
         </record>
+
+        <!-- track lot Search view -->
+        <record id="view_track_production_lot_tree_filter" model="ir.ui.view">
+            <field name="name">production.track.lot.search</field>
+            <field name="model">mrp.track.lot</field>
+            <field name="arch" type="xml">
+                <search string="Search Production Lots">
+                    <field name="production"/>
+                    <field name="component" />
+                    <field name="component_lot" />
+                    <field name="product" />
+                    <field name="product_lot" />
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="Production" domain="[]" context="{'group_by':'production'}"/>
+                        <filter string="Component" domain="[]" context="{'group_by':'component'}"/>
+                        <filter string="Component Lot" domain="[]" context="{'group_by':'component_lot'}"/>
+                        <filter string="Final Product" domain="[]" context="{'group_by':'product'}"/>
+                        <filter string="Final Product Lot" domain="[]" context="{'group_by':'product_lot'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
         <record id="track_production_lots_act" model="ir.actions.act_window">
             <field name="name">Track Production Lots</field>
             <field name="res_model">mrp.track.lot</field>
