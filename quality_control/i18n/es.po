@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-13 13:00+0000\n"
-"PO-Revision-Date: 2014-10-17 14:06+0100\n"
+"POT-Creation-Date: 2014-11-06 08:16+0000\n"
+"PO-Revision-Date: 2014-11-06 09:17+0100\n"
 "Last-Translator: Alfredo <alfredodelafuente@avanzosc.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -129,18 +129,24 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: quality_control
+#: help:qc.test,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Fecha del último mensaje publicado en el registro."
+
+#. module: quality_control
 #: view:qc.test:quality_control.qc_test_form_view
 #: selection:qc.test,state:0
 msgid "Draft"
 msgstr "Borrador"
 
 #. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
 #: field:qc.test,enabled:0
 msgid "Enabled"
-msgstr "Activado"
+msgstr "Habilitado"
 
 #. module: quality_control
-#: code:addons/quality_control/models/quality_control.py:233
+#: code:addons/quality_control/models/quality_control.py:227
 #: constraint:qc.test.template.category:0
 #, python-format
 msgid "Error ! You can not create recursive categories."
@@ -158,6 +164,11 @@ msgid "Fill With Correct Values"
 msgstr "Pre-rellenar con valores correctos"
 
 #. module: quality_control
+#: field:qc.test,message_follower_ids:0
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: quality_control
 #: field:qc.test.template.category,complete_name:0
 msgid "Full Name"
 msgstr "Descripción completa"
@@ -167,6 +178,16 @@ msgstr "Descripción completa"
 #: model:qc.test.template.category,name:quality_control.qc_test_template_category_generic
 msgid "Generic"
 msgstr "Genérico"
+
+#. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: quality_control
+#: help:qc.test,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Contiene el resumen del chater (número de mensajes, ...). Este resumen viene directamente en formato HTML para poder ser insertado en vistas kanban."
 
 #. module: quality_control
 #: field:qc.posible.value,id:0
@@ -189,10 +210,25 @@ msgid "If a quality control test is not enabled it means it can not be moved fro
 msgstr "Si una prueba de control de calidad no está activa significa que no se puede mover desde el estado \"Calidad Correcta\" or \"Calidad Errónea\"."
 
 #. module: quality_control
+#: help:qc.test,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Si se marca nuevos mensajes requieren su atención."
+
+#. module: quality_control
 #: view:qc.test:quality_control.qc_test_form_view
 #: field:qc.test,test_internal_note:0
 msgid "Internal Note"
 msgstr "Nota interna"
+
+#. module: quality_control
+#: field:qc.test,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Es un seguidor"
+
+#. module: quality_control
+#: field:qc.test,message_last_post:0
+msgid "Last Message Date"
+msgstr "Última fecha mensaje"
 
 #. module: quality_control
 #: field:qc.posible.value,write_uid:0
@@ -244,6 +280,16 @@ msgstr "Max"
 #: help:qc.test.line,max_value:0
 msgid "Maximum valid value if it is a quantitative proof."
 msgstr "El valor máximo válido si se trata de una prueba cuantitativa."
+
+#. module: quality_control
+#: field:qc.test,message_ids:0
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: quality_control
+#: help:qc.test,message_ids:0
+msgid "Messages and communication history"
+msgstr "Mensajes e historial de la comunicación"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_proof_method
@@ -334,13 +380,6 @@ msgid "Proof Type"
 msgstr "Tipo pregunta"
 
 #. module: quality_control
-#: code:addons/quality_control/models/quality_control.py:136
-#: sql_constraint:qc.proof:0
-#, python-format
-msgid "Proof-Method relation alredy exists!"
-msgstr "La relación pregunta-método ya existe!"
-
-#. module: quality_control
 #: field:qc.test.line,actual_value_ql:0
 msgid "Ql.Value"
 msgstr "Ql.Valor"
@@ -387,6 +426,7 @@ msgid "Question"
 msgstr "Pregunta"
 
 #. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
 #: field:qc.test,object_id:0
 msgid "Reference"
 msgstr "Referencia"
@@ -407,6 +447,11 @@ msgid "Related"
 msgstr "Relacionado"
 
 #. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
+msgid "Search Test"
+msgstr "Buscar test"
+
+#. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_test_set_template_wizard_form
 #: view:qc.test.set.template.wizard:quality_control.view_qc_test_set_template_wizard_form
 msgid "Select Test Template"
@@ -418,19 +463,26 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
 #: field:qc.test,state:0
 msgid "State"
 msgstr "Estado"
 
 #. module: quality_control
+#: view:qc.test:quality_control.qc_test_search_view
 #: field:qc.test,success:0
 msgid "Success"
-msgstr "Correcto"
+msgstr "Éxito"
 
 #. module: quality_control
 #: field:qc.test.line,success:0
 msgid "Success?"
 msgstr "¿Correcto?"
+
+#. module: quality_control
+#: field:qc.test,message_summary:0
+msgid "Summary"
+msgstr "Resumen"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_proof_synonym
@@ -447,6 +499,7 @@ msgstr "Sinónimos"
 
 #. module: quality_control
 #: view:qc.test:quality_control.qc_test_form_view
+#: view:qc.test:quality_control.qc_test_search_view
 #: field:qc.test.set.template.wizard,test_template_id:0
 msgid "Template"
 msgstr "Plantilla"
@@ -579,6 +632,11 @@ msgstr "Disparador"
 #: field:qc.test.template.line,type:0
 msgid "Type"
 msgstr "Tipo"
+
+#. module: quality_control
+#: field:qc.test,message_unread:0
+msgid "Unread Messages"
+msgstr "Mensajes no leidos."
 
 #. module: quality_control
 #: help:qc.test.line,uom_id:0
