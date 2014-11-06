@@ -356,6 +356,7 @@ class QcTest(orm.Model):
     This model contains an instance of a test template.
     """
     _name = 'qc.test'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
 
     def _success(self, cr, uid, ids, field_name, arg, context=None):
         result = {}
