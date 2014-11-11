@@ -45,7 +45,7 @@ class MrpBom(models.Model):
             if len(routing_lines) == 1:
                 routing_line_id = routing_lines[0].id
             elif len(routing_lines) > 1:
-                for routing_line in routing_line_obj.browse(routing_lines):
+                for routing_line in routing_lines:
                     name_val = tools.ustr(routing_line.name) + ' - '
                     if name_val in work_order['name']:
                         routing_line_id = routing_line.id
