@@ -4,292 +4,292 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 13:55+0000\n"
-"PO-Revision-Date: 2014-11-11 11:07+0100\n"
-"Last-Translator: Daniel <danielcampos@avanzosc.es>\n"
+"POT-Creation-Date: 2014-11-11 09:51+0000\n"
+"PO-Revision-Date: 2014-11-11 09:51+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: machine_manager
 #: field:machinery,warrexpcy:0
 msgid "(or) cycles"
-msgstr "(o) ciclos"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,status:0
 msgid "Active"
-msgstr "Activo"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,actcycles:0
 msgid "Actual Cycles"
-msgstr "Ciclos actuales"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Additional Details"
-msgstr "Detalles adicionales"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,ambit:0
 msgid "Ambit"
-msgstr "Ámbito"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Analysis Information"
-msgstr "Analisis de información "
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,assetacc:0
 msgid "Asset Account"
-msgstr "Cuenta activos"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,product:0
 msgid "Associated product"
-msgstr "Producto asociado"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,bcyl:0
 msgid "Base Cycles"
-msgstr "Ciclos base"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,primarymeter:0
 msgid "Calendar"
-msgstr "Calendario"
+msgstr ""
 
 #. module: machine_manager
 #: field:product.template,machine_ok:0
 msgid "Can be a Machine"
-msgstr "Puede ser una máquina"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,card:0
 msgid "Card"
-msgstr "Licencia"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,cardexp:0
 msgid "Card Expiration"
-msgstr "Licencia expira"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,company:0
 msgid "Company"
-msgstr "Compañia"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.ui.menu,name:machine_manager.menu_machinery_config
 msgid "Configuration"
-msgstr "Configuración"
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,create_uid:0
 #: field:machinery,create_uid:0
 #: field:machinery.users,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,create_date:0
 #: field:machinery,create_date:0
 #: field:machinery.users,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Current Details"
-msgstr "Detalles actuales"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,primarymeter:0
 msgid "Cycles"
-msgstr "Ciclos"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,purch_cycles:0
 msgid "Cycles at Purchase"
-msgstr "Ciclos en compra"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,warrexp:0
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,purch_date:0
 msgid "Date of machine pruchase"
-msgstr "Fecha de compra"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,bdate:0
 msgid "Date on which the cycles is recorded"
-msgstr "Fecha de grabación del registro"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,deprecperiod:0
 msgid "Depr. period"
-msgstr "Periodo de depreciación"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,depracc:0
 msgid "Depreciation Account"
-msgstr "Cuenta de depreciación"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,deprecperc:0
 msgid "Depreciation in %"
-msgstr "Depreciación %"
+msgstr ""
 
 #. module: machine_manager
 #: help:product.template,machine_ok:0
 msgid "Determines if the product is related with a machine."
-msgstr "Determina si el producto está relacionado con una máquina."
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,enrolldate:0
 msgid "Enrollment date"
-msgstr "Fecha entrada en servicio"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,warrexpcy:0
 msgid "Expiry cycles for warranty of product"
-msgstr "Ciclos en los que expira la garantía"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,warrexp:0
 msgid "Expiry date for warranty of product"
-msgstr "Fecha en la que expira la garantía"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Extra Information"
-msgstr "Información extra"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Financial Details"
-msgstr "Detalles financieros"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,frame:0
 msgid "Frame Number"
-msgstr "Número Bastidor"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Half Yearly"
-msgstr "Semestral"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.model,name:machine_manager.model_machinery
 msgid "Holds records of Machines"
-msgstr "Registros de las máquinas"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery.users,end_date:0
 msgid "Homologation End Date"
-msgstr "Fecha fin homologación"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery.users,start_date:0
 msgid "Homologation Start Date"
-msgstr "Fecha inicio homologación"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,primarymeter:0
 msgid "Hour Meter"
-msgstr "Por hora"
+msgstr ""
 
-#. module: mrp_machine_manager
+#. module: machine_manager
 #: field:machine.model,id:0
 #: field:machinery,id:0
 #: field:machinery.users,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,status:0
 msgid "InActive"
-msgstr "Inactivo"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Insurance"
-msgstr "Seguro"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,insurance:0
 msgid "Insurance Name"
-msgstr "Aseguradora"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ambit:0
 msgid "International"
-msgstr "Internacional"
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,write_uid:0
 #: field:machinery,write_uid:0
 #: field:machinery.users,write_uid:0
 msgid "Last Updated by"
-msgstr "Último en actualizar"
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,write_date:0
 #: field:machinery,write_date:0
 #: field:machinery.users,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,bcyl:0
 msgid "Last recorded cycles"
-msgstr "Último registro de ciclos"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ownership:0
 msgid "Lease"
-msgstr "Arrendamiento"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ambit:0
 msgid "Local"
-msgstr "Local"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,mac:0
 msgid "MAC Address"
-msgstr "Dirección MAC"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery.users,machine:0
 msgid "Machine"
-msgstr "Máquina"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Machine Details"
-msgstr "Datos máquina"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.actions.act_window,name:machine_manager.action_machinemodel_view
 #: model:ir.ui.menu,name:machine_manager.machinemodel_menu
 msgid "Machine Model"
-msgstr "Modelo máquina"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,name:0
 msgid "Machine Name"
-msgstr "Nombre máquina"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
@@ -297,27 +297,27 @@ msgstr "Nombre máquina"
 #: view:machinery.users:machine_manager.machine_user_form_view
 #: view:machinery.users:machine_manager.machine_user_tree_view
 msgid "Machine Users"
-msgstr "Usuarios máquina"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.model,name:machine_manager.model_machine_model
 msgid "Machine model"
-msgstr "Modelo máquina"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,policy:0
 msgid "Machine policy"
-msgstr "Póliza máquina"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.module.category,name:machine_manager.module_machinery_category
 msgid "Machinery"
-msgstr "Maquinaria"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.ui.menu,name:machine_manager.menu_machinery_manager
 msgid "Machinery Manager"
-msgstr "Gestor de máquinas"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.actions.act_window,name:machine_manager.machine_form_act
@@ -327,180 +327,180 @@ msgstr "Gestor de máquinas"
 #: view:machinery:machine_manager.machines_form
 #: field:res.users,machines:0
 msgid "Machines"
-msgstr "Máquinas"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Maintenance"
-msgstr "Mantenimiento"
+msgstr ""
 
 #. module: machine_manager
 #: model:res.groups,name:machine_manager.group_machine_manager
 msgid "Manager"
-msgstr "Responsable"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Manufacture Details"
-msgstr "Detalles fabricante"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,model:0
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Monthly"
-msgstr "Mensual"
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ambit:0
 msgid "National"
-msgstr "Nacional"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,status:0
 msgid "Out of Service"
-msgstr "Fuera de servicio"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ownership:0
 msgid "Own"
-msgstr "Propietario"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,ownership:0
 msgid "Ownership"
-msgstr "Propiedad"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,phone:0
 msgid "Phone number"
-msgstr "Número de tel."
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Preventive Maintenance"
-msgstr "Mantenimiento preventivo"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,primarymeter:0
 msgid "Primary Meter"
-msgstr "Medidor primario"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,serial:0
 #: field:machinery,serial_char:0
 msgid "Product Serial #"
-msgstr "Número serie producto"
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.model,name:machine_manager.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,purch_date:0
 msgid "Purchase Date"
-msgstr "Fecha compra"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Purchase Info"
-msgstr "Info compra"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,purch_inv:0
 msgid "Purchase Invoice"
-msgstr "Factura compra"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,purch_cost:0
 msgid "Purchase Value"
-msgstr "Valor compra"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,purch_partner:0
 msgid "Purchased From"
-msgstr "Comprado en"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Quarterly"
-msgstr "Quatrimestral"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,bdate:0
 msgid "Record Date"
-msgstr "Fecha de registro"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,ownership:0
 msgid "Rental"
-msgstr "Renting"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,status:0
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,location:0
 msgid "Stk Location"
-msgstr "Localización de Stock"
+msgstr ""
 
 #. module: machine_manager
 #: help:machinery,location:0
 msgid "This association is necessary if you want to make repair orders with the machine"
-msgstr "Asociación necesaría si se desean realizar ordenes de reparación de máquinas."
+msgstr ""
 
 #. module: machine_manager
 #: field:machine.model,model_type:0
 #: field:machinery,model_type:0
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery.users,m_user:0
 #: model:res.groups,name:machine_manager.group_machine_user
 msgid "User"
-msgstr "Usuario"
+msgstr ""
 
 #. module: machine_manager
 #: code:addons/machine_manager/models/machinery.py:102
 #: sql_constraint:machinery.users:0
 #, python-format
 msgid "User already defined for the machine"
-msgstr "Usuario ya definido para la máquina."
+msgstr ""
 
 #. module: machine_manager
 #: model:ir.model,name:machine_manager.model_res_users
 msgid "Users"
-msgstr "Usuarios"
+msgstr ""
 
 #. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Warranty Expiry"
-msgstr "Vencimiento de la garantía"
+msgstr ""
 
 #. module: machine_manager
 #: field:machinery,year:0
 msgid "Year"
-msgstr "Año"
+msgstr ""
 
 #. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Yearly"
-msgstr "Anual"
+msgstr ""
 
 #. module: machine_manager
 #: view:machine.model:machine_manager.machinemodel_tree_view
 msgid "tree_string"
-msgstr "tree_string"
+msgstr ""
 
