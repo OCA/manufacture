@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+<record model="ir.cron" id="mo_auto_confirm">
+    <field name="name">Manuf. Order Auto Complete</field>
+    <field name="interval_number">5</field>
+    <field name="interval_type">minutes</field>
+    <field name="numbercall">-1</field>
+    <field name="active" eval="False"/>
+    <field name="doall" eval="False"/>
+    <field name="model" eval="'mrp.production'"/>
+    <field name="function" eval="'complete_manufacturing_order_cron'"/>
+    <field name="args" eval="'()'" />
+</record>
+
+    </data>
+</openerp>
