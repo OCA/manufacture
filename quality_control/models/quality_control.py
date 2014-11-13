@@ -263,10 +263,10 @@ class QcTestTemplate(orm.Model):
 
     def _default_name(self, cr, uid, context=None):
         if context and context.get('reference_model', False):
-            id = context.get('reference_id')
-            if not id:
-                id = context.get('active_id')
-            if id:
+            templ_id = context.get('reference_id')
+            if not templ_id:
+                templ_id = context.get('active_id')
+            if templ_id:
                 source = self.pool[context['reference_model']].browse(
                     cr, uid, id, context=context)
                 if hasattr(source, 'name'):
@@ -445,14 +445,12 @@ class QcTest(orm.Model):
         'enabled': True,
     }
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        if context is None:
-            context = {}
-
+    def copy(self, cr, uid, copy_id, default=None, context=None):
         if default is None:
             default = {}
         default['name'] = time.strftime('%Y-%m-%d %H:%M:%S')
-        return super(QcTest, self).copy(cr, uid, id, default, context=context)
+        return super(QcTest, self).copy(
+            cr, uid, copy_id, default, context=context)
 
     def create(self, cr, uid, datas, context=None):
         if context and context.get('reference_model', False):
@@ -486,11 +484,11 @@ class QcTest(orm.Model):
             context = {}
         test_obj = self.pool['qc.test']
         test_line_obj = self.pool['qc.test.line']
-        for id in ids:
-            test_obj.write(cr, uid, id, {
+        for test_id in ids:
+            test_obj.write(cr, uid, test_id, {
                 'test_template_id': template_id
             }, context)
-            test = test_obj.browse(cr, uid, id, context=context)
+            test = test_obj.browse(cr, uid, test_id, context=context)
 
             if len(test.test_line_ids) > 0:
                 test_line_obj.unlink(cr, uid,
@@ -498,7 +496,8 @@ class QcTest(orm.Model):
                                      context=context)
             test_lines = self._prepare_test_lines(
                 cr, uid, test, force_fill=force_fill, context=context)
-            test_obj.write(cr, uid, id, {'test_line_ids': test_lines}, context)
+            test_obj.write(cr, uid, test_id, {'test_line_ids': test_lines},
+                           context=context)
 
     def _prepare_test_lines(self, cr, uid, test, force_fill=False,
                             context=None):
