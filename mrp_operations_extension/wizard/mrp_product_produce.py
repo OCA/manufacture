@@ -22,9 +22,9 @@ from openerp import fields, models
 class MrpWorkOrderProduce(models.TransientModel):
     _name = "mrp.work.order.produce"
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, var_fields, context=None):
         a = super(MrpWorkOrderProduce, self).default_get(
-            cr, uid, fields, context=context)
+            cr, uid, var_fields, context=context)
         work = self.pool['mrp.production.workcenter.line'].browse(
             cr, uid, context.get('active_ids'), context=context)[0]
         a.update({'final_product': work.do_production})
