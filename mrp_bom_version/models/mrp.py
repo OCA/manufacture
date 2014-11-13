@@ -52,16 +52,12 @@ class MrpBom(models.Model):
             raise exceptions.Warning(
                 _('The sequence must be unique'))
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        bom_ids = self.search(cr, uid, [], order='sequence desc',
-                              context=context)
-        bom = self.browse(cr, uid, bom_ids[0], context=context)
+    @api.one
+    def copy(self, default=None):
+        bom = self.search([], order='sequence desc', limit=1)
         maxseq = bom.sequence + 1
         default.update({'sequence': maxseq})
-        return super(MrpBom, self).copy(cr, uid, id, default=default,
-                                        context=context)
+        return super(MrpBom, self).copy(default=default)
 
     @api.multi
     def button_active(self):
