@@ -26,20 +26,20 @@ class QcTestSetTemplateWizard(orm.TransientModel):
     _inherit = 'qc.test.set.template.wizard'
 
     def _default_product_id(self, cr, uid, context=None):
-        id = context.get('active_id', False)
-        if not id:
+        active_id = context.get('active_id', False)
+        if not active_id:
             return False
-        test = self.pool['qc.test'].browse(cr, uid, id, context=context)
+        test = self.pool['qc.test'].browse(cr, uid, active_id, context=context)
         if test.product_id:
             return test.product_id.id
         else:
             return False
 
     def _default_product_category_id(self, cr, uid, context=None):
-        id = context.get('active_id', False)
-        if not id:
+        active_id = context.get('active_id', False)
+        if not active_id:
             return False
-        test = self.pool['qc.test'].browse(cr, uid, id, context=context)
+        test = self.pool['qc.test'].browse(cr, uid, active_id, context=context)
         if test.product_id:
             if test.product_id.categ_id:
                 return test.product_id.categ_id.id
