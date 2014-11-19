@@ -32,11 +32,11 @@ class bom_structure(report_sxw.rml_parse):
             'get_children': self.get_children,
         })
 
-    def get_children(self, object, level=0):
+    def get_children(self, obj, level=0):
         result = []
 
-        def _get_rec(object, level):
-            for l in object:
+        def _get_rec(obj, level):
+            for l in obj:
                 res = {
                     'name': l.name,
                     'pname': l.product_id.name,
@@ -56,7 +56,7 @@ class bom_structure(report_sxw.rml_parse):
                         level -= 1
             return result
 
-        children = _get_rec(object, level)
+        children = _get_rec(obj, level)
 
         return children
 
