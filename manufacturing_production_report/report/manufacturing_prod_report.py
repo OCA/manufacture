@@ -73,7 +73,8 @@ class production_analysis_report(orm.Model):
                     prt.categ_id as product_category_id,
                     spl.name AS serial_number,
                     r.name AS routing_name,
-                    to_date(to_char(s.date, 'YYYY-MM-DD'),'YYYY-MM-DD') AS date,
+                    to_date(to_char(s.date, 'YYYY-MM-DD'),
+                            'YYYY-MM-DD') AS date,
                     to_char(s.date, 'YYYY-MM-DD') as creation_day,
                     to_char(s.date, 'MM') as creation_month,
                     to_char(s.date, 'YYYY') as creation_year,
@@ -82,11 +83,11 @@ class production_analysis_report(orm.Model):
                     p.user_id AS user_id
 
                 FROM stock_move s
-                    RIGHT JOIN mrp_production p ON (s.production_id = p.id)
-                    LEFT JOIN product_product pr ON (s.product_id = pr.id)
-                    LEFT JOIN product_template prt ON (s.product_id = prt.id)
-                    LEFT JOIN mrp_routing r ON (p.routing_id = r.id)
-                    LEFT JOIN stock_production_lot spl ON (s.prodlot_id = spl.id)
+                RIGHT JOIN mrp_production p ON (s.production_id = p.id)
+                LEFT JOIN product_product pr ON (s.product_id = pr.id)
+                LEFT JOIN product_template prt ON (s.product_id = prt.id)
+                LEFT JOIN mrp_routing r ON (p.routing_id = r.id)
+                LEFT JOIN stock_production_lot spl ON (s.prodlot_id = spl.id)
 
                 WHERE
                     s.state = 'done'
