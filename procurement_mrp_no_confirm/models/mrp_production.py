@@ -19,7 +19,7 @@
 from openerp import models, fields
 
 
-class MrpProduction(model.Model):
+class MrpProduction(models.Model):
 
     _inherit = 'mrp.production'
 
