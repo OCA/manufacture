@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="mrp.prod_trans_draft_picking" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_draft"/>
+            <field name="act_to" ref="mrp.prod_act_confirmed"/>
+            <field name="signal">button_confirm</field>
+            <field name="condition">not no_confirm</field>
+        </record>
+    </data>
+</openerp>
