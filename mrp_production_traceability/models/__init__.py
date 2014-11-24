@@ -18,6 +18,5 @@
 ##############################################################################
 
 from . import stock_move
-from . import mrp_production
 from . import mrp_track_lot
 from . import stock_production
