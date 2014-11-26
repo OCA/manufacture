@@ -48,10 +48,13 @@ class MrpProduction(models.Model):
     @api.multi
     def action_confirm(self):
         produce = False
-        for workcenter_line in self.workcenter_lines:
-            if workcenter_line.do_production:
-                produce = True
-                break
+        if not self.routing_id:
+            produce = True
+        else:
+            for workcenter_line in self.workcenter_lines:
+                if workcenter_line.do_production:
+                    produce = True
+                    break
         if not produce:
             raise exceptions.Warning(
                 _('Produce Operation'), _('At least one operation '
