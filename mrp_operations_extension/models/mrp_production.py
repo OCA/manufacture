@@ -27,10 +27,12 @@ class MrpProduction(models.Model):
         res = super(MrpProduction,
                     self)._action_compute_lines(properties=properties)
         self._get_workorder_in_product_lines(self.workcenter_lines,
-                                             self.product_lines)
+                                             self.product_lines,
+                                             properties=properties)
         return res
 
-    def _get_workorder_in_product_lines(self, workcenter_lines, product_lines):
+    def _get_workorder_in_product_lines(self, workcenter_lines, product_lines,
+                                        properties=None):
         for p_line in product_lines:
             for bom_line in self.bom_id.bom_line_ids:
                 if bom_line.product_id.id == p_line.product_id.id:
@@ -38,6 +40,18 @@ class MrpProduction(models.Model):
                         if wc_line.routing_wc_line.id == bom_line.operation.id:
                             p_line.work_order = wc_line.id
                             break
+                elif bom_line.type == 'phantom':
+                    bom_obj = self.env['mrp.bom']
+                    bom_id = bom_obj._bom_find(
+                        product_id=bom_line.product_id.id,
+                        properties=properties)
+                    for bom_line2 in bom_obj.browse(bom_id).bom_line_ids:
+                        if bom_line2.product_id.id == p_line.product_id.id:
+                            for wc_line in workcenter_lines:
+                                if (wc_line.routing_wc_line.id ==
+                                        bom_line2.operation.id):
+                                    p_line.work_order = wc_line.id
+                                    break
 
     def _get_workorder_in_move_lines(self, product_lines, move_lines):
         for move_line in move_lines:

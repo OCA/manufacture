@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, tools, api
+from openerp import models, fields, api
 
 
 class MrpBom(models.Model):
@@ -46,11 +46,12 @@ class MrpBom(models.Model):
                 routing_line_id = routing_lines[0].id
             elif len(routing_lines) > 1:
                 for routing_line in routing_lines:
-                    name_val = tools.ustr(routing_line.name) + ' - '
+                    name_val = '%s - ' % (routing_line.name)
                     if name_val in work_order['name']:
                         routing_line_id = routing_line.id
                         break
-            work_order['routing_wc_line'] = routing_line_id
+            if 'routing_wc_line' not in work_order:
+                work_order['routing_wc_line'] = routing_line_id
         return result2
 
 
