@@ -78,7 +78,7 @@ class Machinery(models.Model):
                              self: fields.Date.context_today(self))
     ambit = fields.Selection([('local', 'Local'), ('national', 'National'),
                               ('international', 'International')],
-                             'Ambit', default='local', required=True)
+                             'Ambit', default='local')
     card = fields.Char('Card')
     cardexp = fields.Date('Card Expiration')
     frame = fields.Char('Frame Number')
@@ -87,6 +87,7 @@ class Machinery(models.Model):
     insurance = fields.Char('Insurance Name')
     policy = fields.Char('Machine policy')
     users = fields.One2many('machinery.users', 'machine', 'Machine Users')
+    power = fields.Char('Power (Kw)')
 
 
 class MachineryUsers(models.Model):

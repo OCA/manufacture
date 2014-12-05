@@ -504,3 +504,7 @@ msgstr ""
 msgid "tree_string"
 msgstr ""
 
+#. module: machine_manager
+#: view:machinery:machine_manager.machines_form
+msgid "Power (Kw)"
+msgstr ""

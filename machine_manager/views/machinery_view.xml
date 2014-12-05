@@ -31,21 +31,22 @@
                     <notebook colspan="4">
                         <page string="Additional Details">
                            <group>
+                                 <group>
+                                    <separator string="Current Details"
+                                        colspan="4" />
+                                    <field name="status" />
+                                    <field name="ownership" />
+                                    <field name="power" />
+                                    <field name="mac" />
+                                    <field name="phone" />
+                                    <field name="ambit" />
+                                </group>
                                 <group>
                                     <separator string="Manufacture Details"
                                     colspan="4" />
                                     <field name="year" />
                                     <field name="model" />
                                     <field name="model_type" />
-                                </group>
-                                <group>
-                                    <separator string="Current Details"
-                                        colspan="4" />
-                                    <field name="status" />
-                                    <field name="ownership" />
-                                    <field name="mac" />
-                                    <field name="phone" />
-                                    <field name="ambit" />
                                 </group>
                                 <group>
                                     <separator string="Extra Information"
