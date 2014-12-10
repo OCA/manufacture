@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_inspection_form_view_picking">
+            <field name="name">qc.inspection.form.view.picking</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="picking" />
+                    <field name="lot" groups="stock.group_production_lot" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_tree_view_picking">
+            <field name="name">qc.inspection.tree.view.picking</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="picking" />
+                    <field name="lot" groups="stock.group_production_lot" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_search_view_picking">
+            <field name="name">qc.inspection.search.view.picking</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_search_view" />
+            <field name="arch" type="xml">
+                <filter string="Product" position="after">
+                    <filter string="Picking"
+                            domain="[]"
+                            context="{'group_by': 'picking'}" />
+                    <filter string="Lot"
+                            domain="[]"
+                            groups="stock.group_production_lot"
+                            context="{'group_by': 'lot'}" />
+                </filter>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_tree_stock_view">
+            <field name="name">qc.inspection.line.tree.stock</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="picking" />
+                    <field name="lot" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_search_stock_view">
+            <field name="name">qc.inspection.line.search.stock</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_search_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="picking" />
+                    <field name="lot" />
+                </field>
+                <filter string="Product" position="after">
+                    <filter string="Picking"
+                            domain="[]"
+                            context="{'group_by': 'picking'}" />
+                    <filter string="Lot"
+                            domain="[]"
+                            context="{'group_by': 'lot'}" />
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>
