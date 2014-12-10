@@ -6,212 +6,110 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-17 08:33+0000\n"
-"PO-Revision-Date: 2014-10-17 11:53+0100\n"
-"Last-Translator: Alfredo <alfredodelafuente@avanzosc.com>\n"
+"POT-Creation-Date: 2014-12-10 17:36+0000\n"
+"PO-Revision-Date: 2014-12-10 17:36+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: quality_control_samples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Active"
-msgstr "Activo"
+#: field:qc.inspection.line,sample_number:0
+msgid "# sample"
+msgstr "Nº muestra"
 
 #. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Category"
-msgstr "Categoría"
+#: field:qc.sample,create_uid:0
+#: field:qc.sample.line,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
 
 #. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_samples_form_view
-msgid "Create Lines"
-msgstr "Crear líneas"
+#: field:qc.sample,create_date:0
+#: field:qc.sample.line,create_date:0
+msgid "Created on"
+msgstr "Creado en"
 
 #. module: quality_control_samples
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_done
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_done
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_done
-msgid "Done Quality Tests"
-msgstr "Test de calidad realizados"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Enabled"
-msgstr "Habilitado"
-
-#. module: quality_control_samples
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_failed
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_failed
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_failed
-msgid "Failed Quality Tests"
-msgstr "Test de calidad erróneos"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Group By..."
-msgstr "Agrupar Por..."
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Lot"
-msgstr "Lote"
-
-#. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_stock_production_lot
-msgid "Lot/Serial"
-msgstr "Lote/Nº de serie"
-
-#. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Órden de producción"
-
-#. module: quality_control_samples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Name"
+#: field:qc.sample,name:0
+msgid "Description"
 msgstr "Descripción"
 
 #. module: quality_control_samples
-#: code:addons/quality_control_samples/models/stock.py:72
+#: field:qc.sample.line,min_qty:0
+msgid "From"
+msgstr "De"
+
+#. module: quality_control_samples
+#: field:qc.sample,write_uid:0
+#: field:qc.sample.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: quality_control_samples
+#: field:qc.sample,write_date:0
+#: field:qc.sample.line,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: quality_control_samples
+#: code:addons/quality_control_samples/models/qc_sample.py:47
 #, python-format
-msgid "No test template found for product: %s, category: %s"
-msgstr "Plantilla de test no encontrada para el producto: %s, categoría: %s"
+msgid "Min value cannot be bigger than max value."
+msgstr "El valor mínimo no puede ser mayor que el valor máximo"
 
 #. module: quality_control_samples
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot_passed
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking_passed
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production_passed
-msgid "Passed Quality Tests"
-msgstr "Test de calidad pasados"
+#: model:ir.model,name:quality_control_samples.model_qc_sample_line
+msgid "Quality control inspection sample line"
+msgstr "Línea de muestras de la inspección de control de calidad"
 
 #. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Picking"
-msgstr "Albarán"
+#: model:ir.model,name:quality_control_samples.model_qc_sample
+msgid "Quality control inspection samples definition"
+msgstr "Definición de muestras de la inspección de control de calidad"
 
 #. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_stock_picking
-msgid "Picking List"
-msgstr "Albarán"
+#: field:qc.inspection,qty:0
+msgid "Quantity"
+msgstr "Cantidad"
 
 #. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Product"
-msgstr "Producto"
-
-#. module: quality_control_samples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Product Category"
-msgstr "Categoría producto"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Production"
-msgstr "Producción"
-
-#. module: quality_control_samples
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_lot
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_picking
-#: model:ir.actions.act_window,name:quality_control_samples.action_qc_test_per_production
-#: view:mrp.production:quality_control_samples.mrp_production_samples_form_view
-#: view:stock.picking:quality_control_samples.stock_picking_quality_control_view
-#: view:stock.production.lot:quality_control_samples.stock_production_lot_quality_control_view
-msgid "Quality Tests"
-msgstr "Tests calidad"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Reference"
-msgstr "Referencia"
-
-#. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_sample_rank
-#: view:sample.rank:quality_control_samples.sample_rank_form_view
-msgid "Sample Rank"
+#: field:qc.sample.line,sample:0
+msgid "Sample"
 msgstr "Muestra"
 
 #. module: quality_control_samples
-#: model:ir.ui.menu,name:quality_control_samples.sample_rank_group_view
-msgid "Sample Rank Group"
-msgstr "Grupo muestras"
+#: field:qc.test,sample:0
+msgid "Sample definition"
+msgstr "Definición de muestras"
 
 #. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_sample_rank_line
-#: view:sample.rank.line:quality_control_samples.sample_rank_line_form_view
-msgid "Sample Rank Line"
-msgstr "Rango muestra"
+#: view:qc.sample:quality_control_samples.qc_sample_form_view
+#: field:qc.sample,sample_lines:0
+msgid "Sample lines"
+msgstr "Líneas de muestras"
 
 #. module: quality_control_samples
-#: model:ir.actions.act_window,name:quality_control_samples.action_sample_rank
-#: model:ir.ui.menu,name:quality_control_samples.sample_rank_menu_view
-#: view:sample.rank:quality_control_samples.sample_rank_tree_view
-msgid "Sample Ranks"
-msgstr "Muestras"
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_sample
+#: model:ir.ui.menu,name:quality_control_samples.qc_sample_menu
+#: view:qc.sample:quality_control_samples.qc_sample_tree_view
+msgid "Sample ranges"
+msgstr "Rangos de muestras"
 
 #. module: quality_control_samples
-#: view:sample.rank.line:quality_control_samples.sample_rank_line_tree_view
-msgid "Sample Ranks Lines"
-msgstr "Rango muestras"
+#: field:qc.sample.line,samples_taken:0
+msgid "Samples taken"
+msgstr "Muestras tomadas"
 
 #. module: quality_control_samples
-#: view:sample.rank:quality_control_samples.sample_rank_search_view
-msgid "Search Sample Rank"
-msgstr "Buscar muestras"
+#: view:qc.sample:quality_control_samples.qc_sample_search_view
+msgid "Search QC sample definition"
+msgstr "Buscar definición de muestras de calidad"
 
 #. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Search Test"
-msgstr "Buscar test"
-
-#. module: quality_control_samples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Search Test Template"
-msgstr "Buscar plantillas de test"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "State"
-msgstr "Estado"
-
-#. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_stock_move
-msgid "Stock Move"
-msgstr "Movimiento de existencias"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Success"
-msgstr "Éxito"
-
-#. module: quality_control_samples
-#: view:qc.test:quality_control_samples.qc_test_search_view_qualitycontrolsamples
-msgid "Template"
-msgstr "Plantilla"
-
-#. module: quality_control_samples
-#: code:addons/quality_control_samples/models/stock.py:71
-#, python-format
-msgid "Test Creation Error !"
-msgstr "Error creación test !"
-
-#. module: quality_control_samples
-#: model:ir.model,name:quality_control_samples.model_qc_test_template
-msgid "Test Template"
-msgstr "Plantilla de test"
-
-#. module: quality_control_samples
-#: view:qc.test.template:quality_control_samples.qc_test_template_samples_search_view
-msgid "Type"
-msgstr "Tipo"
-
-#. module: quality_control_samples
-#: view:qc.test.set.template.wizard:quality_control_samples.view_qc_test_set_template_wizard_form_inh_qualitycontrolext
-msgid "['|','|',('product_id','=',product_id),('product_category_id','=',product_category_id),'&',('product_id','=',False),('product_category_id','=',False)]"
-msgstr "['|','|',('product_id','=',product_id),('product_category_id','=',product_category_id),'&',('product_id','=',False),('product_category_id','=',False)]"
+#: field:qc.sample.line,max_qty:0
+msgid "To"
+msgstr "A"
 

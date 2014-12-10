@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_sample_tree_view">
+            <field name="name">qc.sample.tree</field>
+            <field name="model">qc.sample</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Quality control samples">
+                    <field name="name" />
+                    <field name="sample_lines" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_sample_search_view">
+            <field name="name">qc.sample.search</field>
+            <field name="model">qc.sample</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search QC sample definition">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_sample_form_view">
+            <field name="name">qc.sample.form</field>
+            <field name="model">qc.sample</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Quality control sample ranges">
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" colspan="4" />
+                    </h1>
+                    <field name="sample_lines" >
+                        <tree string="Sample lines" editable="bottom">
+                            <field name="min_qty" />
+                            <field name="max_qty" />
+                            <field name="samples_taken" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_qc_sample">
+            <field name="name">Sample ranges</field>
+            <field name="res_model">qc.sample</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="qc_sample_menu"
+                  name="Sample ranges"
+                  action="action_qc_sample"
+                  sequence="30"
+                  parent="quality_control.qc_menu_test_parent" />
+
+    </data>
+</openerp>

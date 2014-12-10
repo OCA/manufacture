@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_inspection_form_view_sample">
+            <field name="name">qc.inspection.form.sample</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='inspection_lines']//field[@name='name']" position="before">
+                    <field name="sample_number" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_tree_view_sample">
+            <field name="name">qc.inspection.line.tree.sample</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view" />
+            <field name="arch" type="xml">
+                <field name="inspection_id" position="before">
+                    <field name="sample_number" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

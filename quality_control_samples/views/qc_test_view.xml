@@ -1,177 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="qc_test_line_samples_tree_view">
-            <field name="name">qc.test.line.samples.tree</field>
-            <field name="model">qc.test.line</field>
-            <field name="inherit_id" ref="quality_control.qc_test_line_tree_view" />
-            <field name="arch" type="xml">
-                <field name="proof_id" position="before">
-                    <field name="sequence" />
-                </field>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="qc_test_line_samples_form_view">
-            <field name="name">qc.test.line.samples.form</field>
-            <field name="model">qc.test.line</field>
-            <field name="inherit_id" ref="quality_control.qc_test_line_form_view" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='actual_value_qt']/.."
-                    position="attributes">
-                    <attribute name="col">6</attribute>
-                </xpath>
-                <xpath expr="//separator[@string='Test Result']"
-                    position="attributes">
-                    <attribute name="colspan">6</attribute>
-                </xpath>
-                <xpath expr="//field[@name='actual_value_qt']"
-                    position="before">
-                    <field name="sequence" />
-                </xpath>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="qc_test_samples_tree_view">
-            <field name="name">qc.test.samples.tree</field>
+        <record model="ir.ui.view" id="qc_test_form_view_sample">
+            <field name="name">qc.test.form.sample</field>
             <field name="model">qc.test</field>
-            <field name="inherit_id" ref="quality_control.qc_test_tree_view" />
+            <field name="inherit_id" ref="quality_control.qc_test_form_view"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="origin" />
-                </field>
-                <field name="test_template_id" position="after">
-                    <field name="product_id" />
-                    <field name="categ_id" />
-                    <field name="picking_id" />
-                    <field name="stock_move_id" />
-                    <field name="lot_id" />
-                    <field name="production_id" />
+                <field name="type" position="before">
+                    <field name="sample" />
                 </field>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="qc_test_search_view_inh_controlsamples">
-            <field name="name">qc.test.search.view.inh.controlsamples</field>
+        <record model="ir.ui.view" id="qc_test_tree_view_sample">
+            <field name="name">qc.test.tree.sample</field>
             <field name="model">qc.test</field>
-            <field name="inherit_id" ref="quality_control.qc_test_search_view" />
+            <field name="inherit_id" ref="quality_control.qc_test_tree_view"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="origin" />
+                <field name="object_id" position="after">
+                    <field name="sample" />
                 </field>
-                <field name="enabled" position="after">
-                    <newline />
-                    <field name="categ_id" />
-                    <field name="product_id" />
-                    <field name="picking_id" />
-                    <field name="lot_id" />
-                    <field name="production_id" />
-                </field>
-                <filter string="Enabled" position="after">
-                    <filter string="Category" domain="[]"
-                        context="{'group_by':'categ_id'}" />
-                    <filter string="Product" domain="[]"
-                        context="{'group_by':'product_id'}" />
-                    <filter string="Picking" domain="[]"
-                        context="{'group_by':'picking_id'}" />
-                    <filter string="Lot" domain="[]"
-                        context="{'group_by':'lot_id'}" />
-                    <filter string="Production" domain="[]"
-                        context="{'group_by':'production_id'}" />
-                </filter>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="qc_test_samples_form_view">
-            <field name="name">qc.test.samples.form</field>
-            <field name="model">qc.test</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="quality_control.qc_test_form_view" />
-            <field name="arch" type="xml">
-                <button name="draft" position="before">
-                    <button name="button_create_test_lines" type="object"
-                        states="draft" string="Create Lines" />
-                </button>
-                <xpath expr="//field[@name='test_template_id']/.."
-                    position="after">
-                    <group>
-                        <field name="origin" />
-                        <field name="stock_move_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                        <field name="product_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                        <field name="categ_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                        <field name="picking_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                        <field name="lot_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                        <field name="production_id" attrs="{'readonly':['|',('production_id', '!=', False),('picking_id', '!=', False)]}"/>
-                    </group>
-                </xpath>
-            </field>
-        </record>
-
-        <record model="ir.ui.view"
-            id="qc_test_template_samples_search_view">
-            <field name="name">qc.test.template.samples.search</field>
-            <field name="model">qc.test.template</field>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <search string="Search Test Template">
-                    <group>
-                        <field name="active" />
-                        <field name="type" />
-                        <field name="product_id" />
-                        <field name="product_category_id" />
-                        <field name="category_id" />
-                        <field name="name" />
-                    </group>
-                    <newline />
-                    <group expand="0" string="Group By...">
-                        <filter string="Active" domain="[]"
-                            context="{'group_by':'active'}" />
-                        <filter string="Type" domain="[]"
-                            context="{'group_by':'type'}" />
-                        <filter string="Product" domain="[]"
-                            context="{'group_by':'product_id'}" />
-                        <filter string="Product Category" domain="[]"
-                            context="{'group_by':'product_category_id'}" />
-                        <filter string="Category" domain="[]"
-                            context="{'group_by':'category_id'}" />
-                        <filter string="Name" domain="[]"
-                            context="{'group_by':'name'}" />
-                    </group>
-                </search>
-            </field>
-        </record>
-
-        <record model="ir.ui.view"
-            id="qc_test_template_tree_view_inh_qualitycontrolsamples">
-            <field name="name">qc.test.template.tree.view.inh.qualitycontrolsamples
-            </field>
-            <field name="model">qc.test.template</field>
-            <field name="inherit_id"
-                ref="quality_control.qc_test_template_tree_view" />
-            <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="product_id" />
-                    <field name="product_category_id" />
-                </field>
-            </field>
-        </record>
-
-        <record model="ir.ui.view"
-            id="qc_test_template_samples_form_view">
-            <field name="name">qc.test.template.samples.form</field>
-            <field name="model">qc.test.template</field>
-            <field name="type">form</field>
-            <field name="inherit_id"
-                ref="quality_control.qc_test_template_form_view" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='active']/.." position="after">
-                    <group>
-                        <field name="product_id" />
-                        <field name="product_category_id" />
-                    </group>
-                </xpath>
             </field>
         </record>
 
     </data>
 </openerp>
+
