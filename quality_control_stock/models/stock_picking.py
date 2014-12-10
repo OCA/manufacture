@@ -47,4 +47,3 @@ class StockPicking(models.Model):
             for test in tests:
                 inspection_model._make_inspection(operation, test)
         return res
-
