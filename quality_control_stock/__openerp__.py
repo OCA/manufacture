@@ -34,6 +34,7 @@
         'stock',
     ],
     "data": [
+        'data/quality_control_stock_data.xml',
         'views/qc_inspection_view.xml',
         'views/stock_picking_view.xml',
         'views/stock_production_lot_view.xml',
