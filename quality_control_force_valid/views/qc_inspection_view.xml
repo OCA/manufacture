@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_inspection_form_view_putvalid">
+            <field name="name">qc.inspection.form.view.putvalid</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view" />
+            <field name="arch" type="xml">
+                <field name="success" position="after">
+                    <field name="force_valid"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'waiting'))]}" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_tree_view_putvalid">
+            <field name="name">qc.inspection.tree.view.putvalid</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view" />
+            <field name="arch" type="xml">
+                <field name="success" position="after">
+                    <field name="force_valid" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_search_view_putvalid">
+            <field name="name">qc.inspection.search.view.putvalid</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_search_view" />
+            <field name="arch" type="xml">
+                <filter string="Success" position="after">
+                    <filter string="Force valid"
+                            domain="[]"
+                            context="{'group_by': 'force_valid'}" />
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>
