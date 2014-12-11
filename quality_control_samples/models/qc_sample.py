@@ -20,7 +20,7 @@ class QcSample(models.Model):
         self.ensure_one()
         for line in self.sample_lines:
             if line.min_qty <= qty <= line.max_qty:
-                return line.samples_taken
+                return line.samples_taken if qty < line.samples_taken else qty
         return 0
 
 
@@ -40,14 +40,6 @@ class QcSample(models.Model):
         if self.min_qty > self.max_qty:
             raise exceptions.Warning(
                 _('Min value cannot be bigger than max value.'))
-
-    @api.one
-    @api.constrains('samples_taken')
-    def _check_samples_taken(self):
-        if self.samples_taken > self.min_qty:
-            raise exceptions.Warning(
-                _("The number of samples taken can't be higher than the "
-                  "minimum value of the range."))
 
     @api.one
     @api.constrains('from', 'to', 'sample')

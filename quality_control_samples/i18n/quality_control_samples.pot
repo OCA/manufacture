@@ -114,12 +114,6 @@ msgid "To"
 msgstr ""
 
 #. module: quality_control_samples
-#: code:addons/quality_control_samples/models/qc_sample.py:54
-#, python-format
-msgid "The number of samples taken can't be higher than the minimum value of the range."
-msgstr ""
-
-#. module: quality_control_samples
 #: code:addons/quality_control_samples/models/qc_sample.py:62
 #, python-format
 msgid "You cannot have 2 lines that overlap ranges!"
