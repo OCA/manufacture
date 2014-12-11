@@ -39,7 +39,7 @@ class StockPicking(models.Model):
             qc_trigger = self.env['qc.trigger'].search(
                 [('picking_type', '=', self.picking_type_id.id)])
             tests = set()
-            for model in ['qc.trigger.product_line',
+            for model in ['qc.trigger.product_category_line',
                           'qc.trigger.product_template_line',
                           'qc.trigger.product_line']:
                 tests = tests.union(self.env[model].get_test_for_product(
