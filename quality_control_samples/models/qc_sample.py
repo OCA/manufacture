@@ -15,11 +15,6 @@ class QcSample(models.Model):
         comodel_name='qc.sample.line', inverse_name='sample',
         string='Sample lines')
 
-    @api.one
-    @api.constrains('sample_lines')
-    def _check_ranges(self):
-        pass
-
     @api.multi
     def get_samples_number(self, qty):
         self.ensure_one()
@@ -45,3 +40,23 @@ class QcSample(models.Model):
         if self.min_qty > self.max_qty:
             raise exceptions.Warning(
                 _('Min value cannot be bigger than max value.'))
+
+    @api.one
+    @api.constrains('samples_taken')
+    def _check_samples_taken(self):
+        if self.samples_taken > self.min_qty:
+            raise exceptions.Warning(
+                _("The number of samples taken can't be higher than the "
+                  "minimum value of the range."))
+
+    @api.one
+    @api.constrains('from', 'to', 'sample')
+    def _check_ranges(self):
+        domain = [('id', '!=', self.id),
+                  ('sample', '=', self.sample.id),
+                  ('max_qty', '>=', self.min_qty),
+                  ('min_qty', '<=', self.max_qty)]
+        other_lines = self.search(domain)
+        if other_lines:
+            raise exceptions.Warning(
+                _('You cannot have 2 lines that overlap ranges!'))
