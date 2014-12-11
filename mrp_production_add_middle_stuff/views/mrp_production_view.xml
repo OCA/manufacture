@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_addition_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.addition.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Consumed Products']" position="inside">
+                <group col="2" colspan="2">
+                    <button name="%(action_addition)d"
+                            type="action"
+                            states="confirmed,ready,in_production"
+                            string="Add extra raw material"
+                            class="oe_highlight"/>
+                </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
