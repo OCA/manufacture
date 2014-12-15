@@ -30,3 +30,12 @@ class ProcurementOrder(models.Model):
             production = production_obj.browse(vals['production_id'])
             production.no_confirm = True
         return super(ProcurementOrder, self).write(vals)
+
+    @api.multi
+    def make_mo(self):
+        res = super(ProcurementOrder, self).make_mo()
+        for procurement in self:
+            if (procurement.production_id and
+                    procurement.production_id.no_confirm):
+                procurement.production_id.no_confirm = False
+        return res
