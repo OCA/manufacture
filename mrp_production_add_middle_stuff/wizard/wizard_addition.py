@@ -40,7 +40,8 @@ class WizProductionProductLine(models.TransientModel):
                   'product_uom': self.product_id.product_tmpl_id.uom_id.id,
                   'product_qty': self.product_qty,
                   'production_id': self.production_id.id,
-                  'name': self.product_id.name}
+                  'name': self.product_id.name,
+                  'addition': True}
         line = mppl_obj.create(values)
         if self.product_qty > 0:
             production_obj._make_production_consume_line(line)

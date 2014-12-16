@@ -17,5 +17,26 @@
                 </xpath>
             </field>
         </record>
+        <record id="mrp_production_product_stuff_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.product.stuff.tree.view</field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product_qty" position="after">
+                    <field name="addition" />
+                </field>
+            </field>
+        </record>
+        <record id="mrp_production_product_stuff_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.product.stuff.form.view.inh
+            </field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_form_view" />
+            <field name="arch" type="xml">
+                <field name="product_qty" position="after">
+                    <field name="addition" />
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

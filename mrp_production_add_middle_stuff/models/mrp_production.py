@@ -16,17 +16,11 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-{
-    'name': 'MRP Production add middle stuff',
-    'version': "1.0",
-    "category": "Manufacturing",
-    'author': 'OdooMRP team',
-    'contributors': ["Daniel Campos <danielcampos@avanzosc.es>",
-                     "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-                     "Ana Juaristi <ajuaristio@gmail.com>"],
-    'website': "http://www.odoomrp.com",
-    'depends': ["mrp"],
-    'data': ["wizard/addition_wizard_view.xml",
-             "views/mrp_production_view.xml"],
-    'installable': True,
-}
+
+from openerp import models, fields
+
+
+class MrpProductionProductLine(models.Model):
+    _inherit = 'mrp.production.product.line'
+
+    addition = fields.Boolean('Added Post-startup')
