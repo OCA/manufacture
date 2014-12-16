@@ -53,14 +53,18 @@ class MrpProduction(models.Model):
                                     p_line.work_order = wc_line.id
                                     break
 
-    def _get_workorder_in_move_lines(self, product_lines, move_lines):
-        for move_line in move_lines:
-            for product_line in product_lines:
-                if product_line.product_id.id == move_line.product_id.id:
-                    move_line.work_order = product_line.work_order.id
+    @api.model
+    def _make_production_consume_line(self, line):
+        res = super(MrpProduction, self)._make_production_consume_line(line)
+        if line.work_order and res:
+            st_move_obj = self.env['stock.move']
+            move = st_move_obj.browse(res)
+            move.work_order = line.work_order.id
+        return res
 
     @api.multi
-    def action_confirm(self):
+    def action_compute(self, properties=None):
+        res = super(MrpProduction, self).action_compute(properties=properties)
         produce = False
         if not self.routing_id:
             produce = True
@@ -75,14 +79,6 @@ class MrpProduction(models.Model):
                                           'must have checked '
                                           '"Move produced quantity to stock"'
                                           'field'))
-        res = super(MrpProduction, self).action_confirm()
-        self._get_workorder_in_move_lines(self.product_lines, self.move_lines)
-        return res
-
-    @api.multi
-    def action_compute(self, properties=None):
-        res = super(MrpProduction, self).action_compute(properties=properties)
-        self._get_workorder_in_move_lines(self.product_lines, self.move_lines)
         return res
 
 
