@@ -42,7 +42,7 @@ class QcSample(models.Model):
                 _('Min value cannot be bigger than max value.'))
 
     @api.one
-    @api.constrains('from', 'to', 'sample')
+    @api.constrains('min_qty', 'max_qty', 'sample')
     def _check_ranges(self):
         domain = [('id', '!=', self.id),
                   ('sample', '=', self.sample.id),
