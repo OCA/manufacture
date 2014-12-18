@@ -42,15 +42,14 @@ class WizProductionProductLine(models.TransientModel):
 
     @api.multi
     def add_product(self):
+        if self.product_qty <= 0:
+            raise exceptions.Warning(
+                _('Warning'), _('Please provide a positive quantity to add'))
         mppl_obj = self.env['mrp.production.product.line']
         production_obj = self.env['mrp.production']
         values = self._prepare_product_addition(self.product_id,
                                                 self.product_qty,
                                                 self.production_id)
         line = mppl_obj.create(values)
-        if self.product_qty > 0:
-            production_obj._make_production_consume_line(line)
-        else:
-            raise exceptions.Warning(
-                _('Warning'), _('Please provide a positive quantity to add'))
+        production_obj._make_production_consume_line(line)
         return True
