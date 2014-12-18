@@ -32,16 +32,21 @@ class WizProductionProductLine(models.TransientModel):
         'mrp.production', 'Production Order', select=True,
         default=lambda self: self.env.context.get('active_id', False))
 
+    def _prepare_product_addition(self, product, product_qty, production):
+        addition_vals = {'product_id': product.id,
+                         'product_uom': product.product_tmpl_id.uom_id.id,
+                         'product_qty': product_qty,
+                         'production_id': production.id, 'name': product.name,
+                         'addition': True}
+        return addition_vals
+
     @api.multi
     def add_product(self):
-        production_obj = self.env['mrp.production']
         mppl_obj = self.env['mrp.production.product.line']
-        values = {'product_id': self.product_id.id,
-                  'product_uom': self.product_id.product_tmpl_id.uom_id.id,
-                  'product_qty': self.product_qty,
-                  'production_id': self.production_id.id,
-                  'name': self.product_id.name,
-                  'addition': True}
+        production_obj = self.env['mrp.production']
+        values = self._prepare_product_addition(self.product_id,
+                                                self.product_qty,
+                                                self.production_id)
         line = mppl_obj.create(values)
         if self.product_qty > 0:
             production_obj._make_production_consume_line(line)
