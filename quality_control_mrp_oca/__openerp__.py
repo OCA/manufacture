@@ -31,6 +31,7 @@
     "category": "Quality control",
     "depends": [
         'quality_control',
+        'quality_control_stock',
         'mrp',
     ],
     "data": [
