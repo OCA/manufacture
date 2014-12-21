@@ -21,6 +21,6 @@ from openerp import models, fields
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    partner = fields.Many2one('res.partner', string='Customer',
+    partner = fields.Many2one('res.partner', string='Customer', store=True,
                               related='sale_line.order_id.partner_id')
     sale_line = fields.Many2one('sale.order.line', string='Sale Line')
