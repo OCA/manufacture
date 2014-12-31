@@ -11,15 +11,17 @@
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
+#    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
 
-from . import mrp_routing_workcenter
-from . import mrp_production
-from . import mrp_bom
-from . import mrp_workcenter
-from . import mrp_routing_operation
-from . import stock_move
-from . import res_config
+from openerp import models, fields
+
+
+class MrpConfigSettings(models.TransientModel):
+    _inherit = 'mrp.config.settings'
+
+    group_mrp_workers = fields.Boolean(
+        string='Manage operators ', implied_group='mrp_operations_extension.group_mrp_workers',
+        help='')

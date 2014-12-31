@@ -22,6 +22,8 @@
                     <field name="time_cycle" widget="float_time"/>
                     <field name="time_start" widget="float_time" />
                     <field name="time_stop" widget="float_time"/>
+                    <field name="op_number" />
+                    <field name="op_avg_cost" />
                 </group>
                 </form>
             </field>
