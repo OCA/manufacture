@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_routing_operation_quality_tree_view" model="ir.ui.view">
+            <field name="name">mrp.routing.operation.quality.tree</field>
+            <field name="model">mrp.routing.operation</field>
+            <field name="inherit_id" ref="mrp_operations_extension.rountig_operation_tree"/>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <field name="required_test" />
+                    <field name="qtemplate_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_routing_operation_quality_form_view" model="ir.ui.view">
+            <field name="name">mrp.routing.operation.quality.form</field>
+            <field name="model">mrp.routing.operation</field>
+            <field name="inherit_id" ref="mrp_operations_extension.rountig_operation_form"/>
+            <field name="arch" type="xml">
+                <notebook position="before">
+                    <group colspan="4" col="10" >
+                        <field name="required_test" colspan="2"/>
+                        <field name="qtemplate_id" colspan="4" attrs="{'invisible': [('required_test','=',False)]}"/>
+                    </group>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>
