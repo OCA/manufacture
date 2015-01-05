@@ -33,9 +33,9 @@ class MrpWorkcenter(models.Model):
         self.op_avg_cost = op_avg_cost / (self.op_number or 1)
 
     pre_op_product = fields.Many2one('product.product',
-                                     string='Pre Operation Cost')
+                                     string='Pre-operation costing product')
     post_op_product = fields.Many2one('product.product',
-                                      string='Post Operation Cost')
+                                      string='Post-operation costing product')
     rt_operations = fields.Many2many(
         'mrp.routing.operation', 'mrp_operation_workcenter_rel', 'workcenter',
         'operation', 'Routing Operations')
