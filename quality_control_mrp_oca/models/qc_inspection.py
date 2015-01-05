@@ -13,25 +13,8 @@ class QcInspection(models.Model):
     def get_production(self):
         self.production = False
         if self.object_id:
-            if self.object_id._name == 'mrp.production':
-                self.production = self.object_id
-
-    @api.one
-    @api.depends('object_id')
-    def _get_product(self):
-        """Overriden for getting the product from a mrp.production."""
-        super(QcInspection, self)._get_product()
-        if self.object_id:
-            if self.object_id._name == 'mrp.production':
-                self.product = self.object_id.product_id
-
-    @api.one
-    @api.depends('object_id')
-    def _get_qty(self):
-        super(QcInspection, self)._get_qty()
-        if self.object_id:
-            if self.object_id._name == 'mrp.production':
-                self.qty = self.object_id.product_qty
+            if self.object_id._name == 'stock.move':
+                self.production = self.object_id.production_id
 
     production = fields.Many2one(
         comodel_name="mrp.production", compute="get_production", store=True)
