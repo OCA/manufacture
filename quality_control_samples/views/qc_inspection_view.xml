@@ -24,5 +24,16 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="qc_inspection_line_form_sample_view">
+            <field name="name">qc.inspection.line.form.sample</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_form_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="before">
+                    <field name="sample_number" />
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
