@@ -10,6 +10,9 @@
                 <field name="name" position="before">
                     <field name="operation" />
                 </field>
+                <field name="hour_nbr" position="attributes">
+                    <attribute name="widget">float_time</attribute>
+                </field>
             </field>
         </record>
 

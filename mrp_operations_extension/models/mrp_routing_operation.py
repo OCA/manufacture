@@ -54,6 +54,29 @@ class MrpOperationWorkcenter(models.Model):
             self.op_avg_cost = self.workcenter.op_avg_cost
             self.default = False
 
+    @api.model
+    def create(self, vals):
+        res = super(MrpOperationWorkcenter, self).create(vals)
+        if vals.get('default', False):
+            routing_obj = self.env['mrp.routing.workcenter']
+            routing = routing_obj.browse(vals.get('routing_workcenter', False))
+            routing.workcenter_id = vals.get('workcenter', False)
+            for line in routing.op_wc_lines:
+                if line != res:
+                    line.default = False
+        return res
+
+    @api.multi
+    def write(self, vals):
+        res = super(MrpOperationWorkcenter, self).write(vals)
+        for record in self:
+            if vals.get('default', False):
+                record.routing_workcenter.workcenter_id = record.workcenter
+                for line in record.routing_workcenter.op_wc_lines:
+                    if line != record:
+                        line.default = False
+        return res
+
 
 class MrpRoutingOperation(models.Model):
     _name = 'mrp.routing.operation'

@@ -75,12 +75,6 @@
                     expr="//field[@name='workcenter_lines']/form//field[@name='hour']"
                     position="replace">
                 </xpath>
-                <xpath expr="//field[@name='workcenter_lines']/form//header" 
-                    position="inside"> <button name='%(act_mrp_work_order_produce)d' type='action' 
-                    string='Produce' attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" 
-                    /> <button name='%(act_mrp_work_order_consume)d' type='action' 
-                    string='Consume' attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}" 
-                    /> </xpath>
                 <xpath
                     expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
                     position="after">
@@ -121,32 +115,6 @@
             </field>
         </record>
 
-<!--         <record id="mrp_production_form_view_inh_consume_produce_buttons"
-            model="ir.ui.view">
-            <field name="name">mrp.production.form.view.inh</field>
-            <field name="model">mrp.production</field>
-            <field name="inherit_id"
-                ref="mrp_operations.mrp_production_form_inherit_view" />
-            <field name="arch" type="xml">
-
-                <xpath expr="//field[@name='workcenter_lines']/form//header" position="inside">
-                    <button name='%(act_mrp_work_order_produce)d'
-                        type='action' string='Produce'
-                        attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}"
-                        states="startworking" />
-                    <button name='%(act_mrp_work_order_produce)d'
-                        type='action' string='Consume'
-                        attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}"
-                        states="startworking" />
-                </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
-                    position="after">
-                    <field name="do_production" colspan="2" />
-                </xpath>
-            </field>
-        </record> -->
-
         <record model="ir.ui.view"
             id="mrp_production_operation_buttons_form_view">
             <field name="name">mrp.production.operation.buttons.form
@@ -155,6 +123,9 @@
             <field name="inherit_id"
                 ref="mrp_operations.mrp_production_form_inherit_view" />
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,startworking</attribute>
+                </xpath>
                 <button name="button_start_working" position="attributes">
                     <attribute name="icon"></attribute>
                     <attribute name="class">oe_highlight</attribute>
@@ -176,7 +147,14 @@
                 <button string="Cancel Order" position="attributes">
                     <attribute name="icon"></attribute>
                 </button>
-
+                <button string="Cancel Order" position="after">
+                    <button name='%(act_mrp_work_order_produce)d'
+                        type='action' string='Produce'
+                        attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" />
+                    <button name='%(act_mrp_work_order_consume)d'
+                        type='action' string='Consume'
+                        attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}" />
+                </button>
             </field>
         </record>
 
