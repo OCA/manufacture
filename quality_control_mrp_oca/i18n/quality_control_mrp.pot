@@ -37,3 +37,8 @@ msgstr ""
 msgid "Production order"
 msgstr ""
 
+#. module: quality_control_mrp
+#: view:mrp.production:quality_control_mrp.mrp_production_qc_view
+msgid "inspections"
+msgstr ""
+
