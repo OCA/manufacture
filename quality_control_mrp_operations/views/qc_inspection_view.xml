@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_inspection_form_view_operation">
+            <field name="name">qc.inspection.form.view.operation</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="workcenter_line_id" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_tree_view_operation">
+            <field name="name">qc.inspection.tree.view.operation</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="workcenter_line_id" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_search_view_operation">
+            <field name="name">qc.inspection.search.view.operation</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_search_view" />
+            <field name="arch" type="xml">
+                <filter string="Product" position="after">
+                    <filter string="Operation"
+                            domain="[]"
+                            context="{'group_by': 'workcenter_line_id'}" />
+                </filter>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_tree_operation_view">
+            <field name="name">qc.inspection.line.tree.operation</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="workcenter_line_id" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_search_operation_view">
+            <field name="name">qc.inspection.line.search.operation</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_search_view" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="workcenter_line_id" />
+                </field>
+                <filter string="Product" position="after">
+                    <filter string="Operation"
+                            domain="[]"
+                            context="{'group_by': 'workcenter_line_id'}" />
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

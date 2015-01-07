@@ -24,3 +24,12 @@ class QcInspection(models.Model):
 
     workcenter_line_id = fields.Many2one(
         'mrp.production.workcenter.line', string='Operation', index=True)
+
+
+class QcInspectionLine(models.Model):
+    _inherit = 'qc.inspection.line'
+
+    workcenter_line_id = fields.Many2one(
+        comodel_name="mrp.production.workcenter.line",
+        related="inspection_id.workcenter_line_id",
+        store=True, string="Operation")
