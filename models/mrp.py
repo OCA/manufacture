@@ -39,7 +39,7 @@ class MrpBom(models.Model):
                               ('historical', 'Historical'),
                               ], string='Status', index=True, readonly=True,
                              default='draft', copy=False)
-    sequence = fields.Integer(default=_get_max_sequence)
+    sequence = fields.Integer(default=_get_max_sequence, copy=False)
 
     @api.one
     @api.constrains('sequence')
@@ -50,11 +50,6 @@ class MrpBom(models.Model):
         if self.search(domain):
             raise exceptions.Warning(
                 _('The sequence must be unique'))
-
-    @api.one
-    def copy(self, default=None):
-        default.update({'sequence': self._get_max_sequence()})
-        return super(MrpBom, self).copy(default=default)
 
     @api.multi
     def button_active(self):
