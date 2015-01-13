@@ -28,35 +28,32 @@ class MrpBom(models.Model):
         },
     }
 
+    def _get_max_sequence(self):
+        bom = self.search([], order='sequence desc', limit=1)
+        maxseq = bom.sequence + 1
+        return maxseq
+
     historical_date = fields.Date(string='Historical Date', readonly=True)
     state = fields.Selection([('draft', 'Draft'),
                               ('active', 'Active'),
                               ('historical', 'Historical'),
                               ], string='Status', index=True, readonly=True,
                              default='draft', copy=False)
+    sequence = fields.Integer(default=_get_max_sequence)
 
     @api.one
     @api.constrains('sequence')
     def check_mrp_bom_sequence(self):
-        domain = [('id', '!=', self.id), ('sequence', '=', self.sequence)]
-        if self.product_tmpl_id:
-            domain.append(('product_tmpl_id', '=', self.product_tmpl_id.id))
-        else:
-            domain.append(('product_tmpl_id', '=', False))
-        if self.product_id:
-            domain.append(('product_id', '=', self.product_id.id))
-        else:
-            domain.append(('product_id', '=', False))
-        found = self.search(domain)
-        if found:
+        domain = [('id', '!=', self.id), ('sequence', '=', self.sequence),
+                  ('product_tmpl_id', '=', self.product_tmpl_id.id),
+                  ('product_id', '=', self.product_id.id)]
+        if self.search(domain):
             raise exceptions.Warning(
                 _('The sequence must be unique'))
 
     @api.one
     def copy(self, default=None):
-        bom = self.search([], order='sequence desc', limit=1)
-        maxseq = bom.sequence + 1
-        default.update({'sequence': maxseq})
+        default.update({'sequence': self._get_max_sequence()})
         return super(MrpBom, self).copy(default=default)
 
     @api.multi
