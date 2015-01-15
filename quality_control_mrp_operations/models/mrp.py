@@ -67,7 +67,7 @@ class MrpProductionWorkcenterLine(models.Model):
     @api.one
     @api.onchange('test_ids')
     def _count_tests(self):
-        self.ope_test = len(self.test_ids)
+        self.ope_tests = len(self.test_ids)
 
     required_test = fields.Boolean(string='Required Test')
     qtemplate_id = fields.Many2one('qc.test', string='Test')
@@ -137,7 +137,7 @@ class MrpProductionWorkcenterLine(models.Model):
         if self.qtemplate_id.object_id:
             vals.update({'object_id': self.qtemplate_id.object_id.id})
         test = test_obj.create(vals)
-        test.set_test_template(self.qtemplate_id.id)
+        test.set_test(self.qtemplate_id)
         return True
 
     @api.one
