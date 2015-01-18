@@ -23,16 +23,23 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     @api.multi
+    def action_confirm(self):
+        if (self.routing_id and
+                not any([x.do_production for x in self.workcenter_lines])):
+            raise exceptions.Warning(
+                _("At least one work order must have checked 'Produce here'"))
+        return super(MrpProduction, self).action_confirm()
+
+    @api.multi
     def _action_compute_lines(self, properties=None):
-        res = super(MrpProduction,
-                    self)._action_compute_lines(properties=properties)
-        self._get_workorder_in_product_lines(self.workcenter_lines,
-                                             self.product_lines,
-                                             properties=properties)
+        res = super(MrpProduction, self)._action_compute_lines(
+            properties=properties)
+        self._get_workorder_in_product_lines(
+            self.workcenter_lines, self.product_lines, properties=properties)
         return res
 
-    def _get_workorder_in_product_lines(self, workcenter_lines, product_lines,
-                                        properties=None):
+    def _get_workorder_in_product_lines(
+            self, workcenter_lines, product_lines, properties=None):
         for p_line in product_lines:
             for bom_line in self.bom_id.bom_line_ids:
                 if bom_line.product_id.id == p_line.product_id.id:
@@ -62,25 +69,6 @@ class MrpProduction(models.Model):
             move.work_order = line.work_order.id
         return res
 
-    @api.multi
-    def action_compute(self, properties=None):
-        res = super(MrpProduction, self).action_compute(properties=properties)
-        produce = False
-        if not self.routing_id:
-            produce = True
-        else:
-            for workcenter_line in self.workcenter_lines:
-                if workcenter_line.do_production:
-                    produce = True
-                    break
-        if not produce:
-            raise exceptions.Warning(
-                _('Produce Operation'), _('At least one operation '
-                                          'must have checked '
-                                          '"Move produced quantity to stock"'
-                                          'field'))
-        return res
-
 
 class MrpProductionProductLine(models.Model):
     _inherit = 'mrp.production.product.line'
@@ -96,15 +84,4 @@ class MrpProductionWorkcenterLine(models.Model):
                                    'work_order', string='Product Lines')
     routing_wc_line = fields.Many2one('mrp.routing.workcenter',
                                       string='Routing WC Line')
-    do_production = fields.Boolean(
-        string='Move Final Product to Stock')
-
-    @api.model
-    def create(self, data):
-        workcenter_obj = self.env['mrp.routing.workcenter']
-        if 'routing_wc_line' in data:
-            routing_wc_line_id = data.get('routing_wc_line')
-            work = workcenter_obj.browse(routing_wc_line_id)
-            data.update({'do_production':
-                         work.operation.do_production})
-        return super(MrpProductionWorkcenterLine, self).create(data)
+    do_production = fields.Boolean(string='Produce here')

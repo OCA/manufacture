@@ -32,60 +32,45 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view" />
             <field name="arch" type="xml">
-                <xpath
-                    expr="//page//group[@string='Products to Consume']//field[@name='product_id']"
-                    position="after">
+                <xpath expr="//page//group[@string='Products to Consume']//field[@name='product_id']" position="after">
                     <field name="work_order" groups="mrp.group_mrp_routings" />
                 </xpath>
-                <xpath
-                    expr="//page//group[@string='Consumed Products']//field[@name='product_id']"
-                    position="after">
+                <xpath expr="//page//group[@string='Consumed Products']//field[@name='product_id']" position="after">
                     <field name="work_order" groups="mrp.group_mrp_routings" />
                 </xpath>
-                <xpath
-                    expr="//page//group[@string='Products to Produce']//field[@name='product_id']"
-                    position="after">
+                <xpath expr="//page//group[@string='Products to Produce']//field[@name='product_id']" position="after">
                     <field name="work_order" groups="mrp.group_mrp_routings" />
                 </xpath>
-                <xpath
-                    expr="//page//group[@string='Produced Products']//field[@name='product_id']"
-                    position="after">
+                <xpath expr="//page//group[@string='Produced Products']//field[@name='product_id']" position="after">
                     <field name="work_order" groups="mrp.group_mrp_routings" />
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='name']"
-                    position="attributes">
+                <xpath expr="//field[@name='workcenter_lines']/tree//field[@name='sequence']" position="after">
+                    <field name="do_production" colspan="2" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='name']" position="attributes">
                     <attribute name="colspan">2</attribute>
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='workcenter_id']"
-                    position="after">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='workcenter_id']" position="after">
                     <field name="production_id" />
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
-                    position="before">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="before">
                     <field name="production_state" />
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='cycle']"
-                    position="replace">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='cycle']" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='hour']"
-                    position="replace">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='hour']" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath
-                    expr="//field[@name='workcenter_lines']/form//field[@name='sequence']"
-                    position="after">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="after">
                     <field name="do_production" colspan="2" />
                     <notebook colspan="4">
                         <page string="Materials">
+                            <group>
+                                <field name="routing_wc_line"/>
+                            </group>
                             <group string="Product Lines">
-                                <field name="routing_wc_line"
-                                    colspan="4" />
-                                <field name="product_line"
-                                    nolabel="1" colspan="4"/>
+                                <field name="product_line" nolabel="1" colspan="4"/>
                             </group>
                         </page>
                         <page string="Information">
@@ -159,7 +144,7 @@
         </record>
 
         <record model="ir.ui.view" id="workcenter_line_inh_form_view">
-            <field name="name">Work centre line inh</field>
+            <field name="name">Workcenter line inh</field>
             <field name="model">mrp.production.workcenter.line</field>
             <field name="inherit_id"
                 ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />

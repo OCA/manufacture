@@ -10,8 +10,17 @@
                 <field name="name" position="before">
                     <field name="operation" />
                 </field>
+                <field name="workcenter_id" position="attributes">
+                    <attribute name="string">Default workcenter</attribute>
+                </field>
                 <field name="hour_nbr" position="attributes">
-                    <attribute name="widget">float_time</attribute>
+                    <attribute name="sum">Total</attribute>
+                </field>
+                <field name="cycle_nbr" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </field>
+                <field name="company_id" position="before">
+                    <field name="do_production" />
                 </field>
             </field>
         </record>
@@ -22,38 +31,37 @@
             <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
             <field name="arch" type="xml">
                 <field name="name" position="before">
-                    <field name="operation" />
-                    <newline />
+                    <field name="operation" colspan="4"/>
                 </field>
-                <field name="workcenter_id" position="after">
-                    <label for="op_wc_lines" colspan="4" />
-                    <field name="op_wc_lines" colspan="4" nolabel="1">
-                        <tree editable="bottom">
-                            <field name="workcenter" />
-                            <field name="time_efficiency" />
-                            <field name="capacity_per_cycle" />
-                            <field name="time_start" widget="float_time" />
-                            <field name="time_stop" widget="float_time" />
-                            <field name="time_cycle" widget="float_time" />
-                            <field name="op_number" />
-                            <field name="op_avg_cost" />
-                            <field name="default" />
-                        </tree>
-                        <form string="Workcenter Info Lines">
-                            <group>
+                <field name="workcenter_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="cycle_nbr" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hour_nbr" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="company_id" position="before">
+                    <field name="do_production" />
+                </field>
+                <label for="note" position="before">
+                    <group string="Possible workcenters">
+                        <field name="op_wc_lines" nolabel="1">
+                            <tree editable="bottom">
                                 <field name="workcenter" />
                                 <field name="time_efficiency" />
                                 <field name="capacity_per_cycle" />
-                                <field name="time_cycle" widget="float_time" />
                                 <field name="time_start" widget="float_time" />
                                 <field name="time_stop" widget="float_time" />
+                                <field name="time_cycle" widget="float_time" />
                                 <field name="op_number" />
                                 <field name="op_avg_cost" />
                                 <field name="default" />
-                            </group>
-                        </form>
-                    </field>
-                </field>
+                            </tree>
+                        </field>
+                    </group>
+                </label>
             </field>
         </record>
     </data>

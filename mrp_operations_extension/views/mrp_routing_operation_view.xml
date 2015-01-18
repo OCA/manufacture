@@ -2,36 +2,34 @@
 <openerp>
     <data>
         <record id="rountig_operation_tree" model="ir.ui.view">
-            <field name="name">rountig.operation.tree</field>
+            <field name="name">routing.operation.tree</field>
             <field name="model">mrp.routing.operation</field>
             <field name="arch" type="xml">
                 <tree string="Routing Operation">
                     <field name="name" />
                     <field name="code" />
                     <field name="description" />
-                    <field name="do_production" />
                 </tree>
             </field>
         </record>
         <record id="rountig_operation_form" model="ir.ui.view">
-            <field name="name">rountig.operation.form</field>
+            <field name="name">routing.operation.form</field>
             <field name="model">mrp.routing.operation</field>
             <field name="arch" type="xml">
                 <form string="Routing Operation">
-                <group col="4">
-                    <field name="name" colspan="2"/>
-                    <field name="code" colspan="2"/>
-                    <field name="description" colspan="2"/>
-                    <field name="steps"  colspan="2"/>
-                    <field name="op_number"  colspan="2" />
-                    <field name="do_production"  colspan="2" />
-                    <field name="picking_type_id" colspan="2" />
-                </group>
-                <notebook>
-                    <page string="Workcenters">
-                        <field name="workcenters" colspan="4" nolabel="1"/>
-                    </page>
-                </notebook>
+                    <group col="4">
+                        <field name="name" colspan="2"/>
+                        <field name="code" colspan="2"/>
+                        <field name="description" colspan="2"/>
+                        <field name="steps"  colspan="2"/>
+                        <field name="op_number"  colspan="2" />
+                        <field name="picking_type_id" colspan="2" />
+                    </group>
+                    <notebook>
+                        <page string="Workcenters">
+                            <field name="workcenters" colspan="4" nolabel="1"/>
+                        </page>
+                    </notebook>
                 </form>
             </field>
         </record>
@@ -44,7 +42,9 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="mrp_routing_operation_action" name="Operations"
-            id="mrp_routing_menu" parent="mrp.menu_mrp_configuration" />
+        <menuitem action="mrp_routing_operation_action"
+                  name="Operations"
+                  id="mrp_routing_menu"
+                  parent="mrp.menu_mrp_configuration" />
     </data>
 </openerp>

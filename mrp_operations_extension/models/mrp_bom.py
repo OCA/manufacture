@@ -52,6 +52,8 @@ class MrpBom(models.Model):
                         break
             if 'routing_wc_line' not in work_order:
                 work_order['routing_wc_line'] = routing_line_id
+                wc = self.env['mrp.routing.workcenter'].browse(routing_line_id)
+                work_order['do_production'] = wc.do_production
         return result2
 
     @api.multi
