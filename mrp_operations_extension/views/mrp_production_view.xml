@@ -47,6 +47,10 @@
                 <xpath expr="//field[@name='workcenter_lines']/tree//field[@name='sequence']" position="after">
                     <field name="do_production" colspan="2" />
                 </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/tree//field[@name='hour']" position="after">
+                    <field name="time_start" widget="float_time" />
+                    <field name="time_stop" widget="float_time" />
+                </xpath>
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='name']" position="attributes">
                     <attribute name="colspan">2</attribute>
                 </xpath>

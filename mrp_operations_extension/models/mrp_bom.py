@@ -31,11 +31,13 @@ class MrpBom(models.Model):
             bom, product, factor, properties=properties, level=level,
             routing_id=routing_id, previous_products=previous_products,
             master_bom=master_bom)
-        result2 = self._get_workorder_operations(result2, level=level,
+        result2 = self._get_workorder_operations(result2, factor=factor,
+                                                 level=level,
                                                  routing_id=routing_id)
         return result, result2
 
-    def _get_workorder_operations(self, result2, level=0, routing_id=False):
+    def _get_workorder_operations(self, result2, factor, level=0,
+                                  routing_id=False):
         routing_line_obj = self.env['mrp.routing.workcenter']
         for work_order in result2:
             seq = work_order['sequence'] - level
@@ -50,9 +52,18 @@ class MrpBom(models.Model):
                     if name_val in work_order['name']:
                         routing_line_id = routing_line.id
                         break
+            wc = routing_line_obj.browse(routing_line_id)
+            cycle = factor / wc.cycle_nbr
+            if wc.limited_production_capacity and not cycle.is_integer():
+                cycle = int(cycle) + 1
+            hour = wc.hour_nbr * cycle
+            default_wc_line = wc.op_wc_lines.filtered(lambda r: r.default)
+            work_order['cycle'] = cycle
+            work_order['hour'] = hour
+            work_order['time_start'] = default_wc_line.time_start or 0.0
+            work_order['time_stop'] = default_wc_line.time_stop or 0.0
             if 'routing_wc_line' not in work_order:
                 work_order['routing_wc_line'] = routing_line_id
-                wc = self.env['mrp.routing.workcenter'].browse(routing_line_id)
                 work_order['do_production'] = wc.do_production
         return result2
 

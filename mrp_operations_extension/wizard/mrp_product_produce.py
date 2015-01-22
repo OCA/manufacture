@@ -52,7 +52,8 @@ class MrpWorkOrderProduce(models.TransientModel):
         assert production_id
         data = self.browse(cr, uid, ids[0], context=context)
         self.pool['mrp.production'].action_produce(
-            cr, uid, production_id, False, data.mode, data, context=context)
+            cr, uid, production_id, data.product_qty,
+            data.mode, data, context=context)
         return {}
 
     def do_consume(self, cr, uid, ids, context=None):
@@ -72,7 +73,7 @@ class MrpWorkOrderProduce(models.TransientModel):
         assert production_id
         data = self.browse(cr, uid, ids[0], context=context)
         self.pool['mrp.production'].action_produce(
-            cr, uid, production_id, False, 'consume_produce', data,
+            cr, uid, production_id, data.product_qty, 'consume_produce', data,
             context=context)
         return {}
 

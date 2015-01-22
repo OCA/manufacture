@@ -85,3 +85,5 @@ class MrpProductionWorkcenterLine(models.Model):
     routing_wc_line = fields.Many2one('mrp.routing.workcenter',
                                       string='Routing WC Line')
     do_production = fields.Boolean(string='Produce here')
+    time_start = fields.Float(string="Time Start")
+    time_stop = fields.Float(string="Time Stop")

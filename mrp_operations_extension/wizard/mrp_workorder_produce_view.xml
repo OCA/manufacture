@@ -45,7 +45,7 @@
         <!--  Consume -->
         
         <record id="view_mrp_product_consume_wizard" model="ir.ui.view">
-            <field name="name">MRP Work Order Produce</field>
+            <field name="name">MRP Work Order Consume</field>
             <field name="model">mrp.work.order.produce</field>
             <field name="arch" type="xml">
                 <form string="Produce">
@@ -89,6 +89,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
+            <field name="view_id" ref="view_mrp_product_produce_wizard"/>
         </record>
         
         <record id="act_mrp_work_order_consume" model="ir.actions.act_window">
