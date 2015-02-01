@@ -17,6 +17,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
+import math
 
 
 class MrpBom(models.Model):
@@ -53,9 +54,7 @@ class MrpBom(models.Model):
                         routing_line_id = routing_line.id
                         break
             wc = routing_line_obj.browse(routing_line_id)
-            cycle = factor / wc.cycle_nbr
-            if wc.limited_production_capacity and not cycle.is_integer():
-                cycle = int(cycle) + 1
+            cycle = int(math.ceil(factor / wc.cycle_nbr))
             hour = wc.hour_nbr * cycle
             default_wc_line = wc.op_wc_lines.filtered(lambda r: r.default)
             work_order['cycle'] = cycle
