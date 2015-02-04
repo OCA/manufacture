@@ -35,6 +35,8 @@ class Machinery(models.Model):
     depracc = fields.Many2one('account.account', string='Depreciation Account')
     year = fields.Char('Year')
     model = fields.Char('Model')
+    manufacturer = fields.Many2one(
+        comodel_name='res.partner', domain="[('supplier', '=', True)]")
     product = fields.Many2one('product.product', 'Associated product')
     serial_char = fields.Char('Product Serial #')
     serial = fields.Many2one('stock.production.lot', string='Product Serial #',

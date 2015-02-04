@@ -44,6 +44,7 @@
                                 <group>
                                     <separator string="Manufacture Details"
                                     colspan="4" />
+                                    <field name="manufacturer" />
                                     <field name="year" />
                                     <field name="model" />
                                     <field name="model_type" />

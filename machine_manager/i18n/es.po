@@ -495,6 +495,11 @@ msgid "Year"
 msgstr "Año"
 
 #. module: machine_manager
+#: field:machinery,manufacturer:0
+msgid "Manufacturer"
+msgstr "Fabricante"
+
+#. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Yearly"
 msgstr "Anual"
