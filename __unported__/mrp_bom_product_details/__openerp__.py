@@ -23,6 +23,7 @@
     'name': 'Bom product details',
     'version': '0.1',
     'author': 'Solutions Libergia inc.',
+    'license': 'GPL-3 or any later version',
     'category': 'Manufacturing',
     'description': """
     This module adds product price and stock to bom view
