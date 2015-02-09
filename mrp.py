@@ -18,7 +18,7 @@ class ProductProduct(orm.Model):
         'manuf_order_auto_complete': fields.boolean(
             'Complete Manuf. Order',
             help="Check if Manufacturing Order of this product "
-                 "can be comleted automatically "
+                 "can be completed automatically "
                  "by a scheduled action (cron)")
     }
 

@@ -32,8 +32,10 @@
     ],
     'description': """
 Production Auto Confirm
-======================
+==========================
 
+* Check if Manufacturing Order can be completed automatically.
+* Triggered by a scheduled action
 
 
 Contributors
