@@ -16,4 +16,4 @@
 #
 ##############################################################################
 
-from . import mrp_product_produce
+from . import mrp_work_order_produce
