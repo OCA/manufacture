@@ -24,11 +24,12 @@ class MrpProduction(models.Model):
 
     @api.multi
     def action_confirm(self):
+        res = super(MrpProduction, self).action_confirm()
         if (self.routing_id and
                 not any([x.do_production for x in self.workcenter_lines])):
             raise exceptions.Warning(
                 _("At least one work order must have checked 'Produce here'"))
-        return super(MrpProduction, self).action_confirm()
+        return res
 
     @api.multi
     def _action_compute_lines(self, properties=None):
