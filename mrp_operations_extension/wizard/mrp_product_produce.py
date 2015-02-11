@@ -43,7 +43,7 @@ class MrpWorkOrderProduce(models.TransientModel):
 
     def _get_track(self):
         prod = self._get_product_id()
-        return prod and prod.track_production or False
+        return prod and (prod.track_all or prod.track_production) or False
 
     def do_produce(self, cr, uid, ids, context=None):
         work_line = self.pool['mrp.production.workcenter.line'].browse(
