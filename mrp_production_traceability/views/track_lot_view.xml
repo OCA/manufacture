@@ -14,7 +14,22 @@
                 </tree>
             </field>
         </record>
-
+        <record model="ir.ui.view" id="view_track_production_lot_form">
+            <field name="name">view.track.production.lot.form</field>
+            <field name="model">mrp.track.lot</field>
+            <field name="arch" type="xml">
+                <form string="Track Production Lots">
+                    <group>
+                        <field name="production" />
+                        <field name="st_move" />
+                        <field name="component"/>
+                        <field name="component_lot" />
+                        <field name="product" />
+                        <field name="product_lot" />
+                    </group>
+                </form>
+            </field>
+        </record>
         <!-- track lot Search view -->
         <record id="view_track_production_lot_tree_filter" model="ir.ui.view">
             <field name="name">production.track.lot.search</field>
@@ -43,7 +58,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
         </record>
-
         <menuitem id="track_production_lots" name="Track Production Lots"
             parent="stock.menu_traceability" action="track_production_lots_act"
             sequence="3" />

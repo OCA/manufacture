@@ -1,6 +1,9 @@
-
 # -*- encoding: utf-8 -*-
 ##############################################################################
+#
+# Copyright (c)
+#    2015 Serv. Tec. Avanzados - Pedro M. Baeza (http://www.serviciosbaeza.com)
+#    2015 AvanzOsc (http://www.avanzosc.es)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -10,26 +13,24 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': 'MRP Production Traceability',
     'version': "1.0",
-    'category': "Generic Modules",
-    'description': """
-    This modules adds component traceability in production orders.
-    """,
     'author': 'OdooMRP team',
-    'contributors': ["Daniel Campos <danielcampos@avanzosc.es>"],
     'website': "http://www.odoomrp.com",
-    'depends': ["mrp"],
-    'data': ["views/mrp_stock_move_view.xml",
+    'category': 'Manufacturing',
+    'depends': ["mrp",
+                "stock",
+                ],
+    'data': ["views/mrp_production_view.xml",
              "views/track_lot_view.xml",
-             "views/stock_move_view.xml"],
+             "views/stock_move_view.xml",
+             ],
     'installable': True,
 }
