@@ -32,9 +32,8 @@ class MrpBom(models.Model):
             bom, product, factor, properties=properties, level=level,
             routing_id=routing_id, previous_products=previous_products,
             master_bom=master_bom)
-        result2 = self._get_workorder_operations(result2, factor=factor,
-                                                 level=level,
-                                                 routing_id=routing_id)
+        result2 = self._get_workorder_operations(
+            result2, factor=factor, level=level, routing_id=routing_id)
         return result, result2
 
     def _get_workorder_operations(self, result2, factor, level=0,
@@ -44,15 +43,11 @@ class MrpBom(models.Model):
             seq = work_order['sequence'] - level
             routing_lines = routing_line_obj.search([
                 ('routing_id', '=', routing_id), ('sequence', '=', seq)])
-            routing_line_id = False
-            if len(routing_lines) == 1:
-                routing_line_id = routing_lines[0].id
-            elif len(routing_lines) > 1:
-                for routing_line in routing_lines:
-                    name_val = '%s - ' % (routing_line.name)
-                    if name_val in work_order['name']:
-                        routing_line_id = routing_line.id
-                        break
+            routing_line_id = routing_lines.id
+            for routing_line in routing_lines:
+                if routing_line.name in work_order['name']:
+                    routing_line_id = routing_line.id
+                    break
             wc = routing_line_obj.browse(routing_line_id)
             cycle = int(math.ceil(factor / wc.cycle_nbr))
             hour = wc.hour_nbr * cycle

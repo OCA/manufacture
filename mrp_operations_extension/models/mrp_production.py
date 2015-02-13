@@ -63,12 +63,12 @@ class MrpProduction(models.Model):
 
     @api.model
     def _make_production_consume_line(self, line):
-        res = super(MrpProduction, self)._make_production_consume_line(line)
-        if line.work_order and res:
-            st_move_obj = self.env['stock.move']
-            move = st_move_obj.browse(res)
+        move_id = super(MrpProduction,
+                        self)._make_production_consume_line(line)
+        if line.work_order and move_id:
+            move = self.env['stock.move'].browse(move_id)
             move.work_order = line.work_order.id
-        return res
+        return move_id
 
 
 class MrpProductionProductLine(models.Model):
