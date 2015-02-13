@@ -13,6 +13,7 @@
                             <tree string="Quality control triggers" editable="bottom">
                                 <field name="trigger" widget="selection"/>
                                 <field name="test"/>
+                                <field name="user" />
                             </tree>
                         </field>
                     </group>
