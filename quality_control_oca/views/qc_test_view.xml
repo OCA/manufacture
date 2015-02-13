@@ -120,6 +120,7 @@
                   parent="qc_menu_test_parent"
                   id="qc_test_menu"
                   action="action_qc_test"
+                  groups="group_quality_control_manager"
                   sequence="20" />
 
     </data>
