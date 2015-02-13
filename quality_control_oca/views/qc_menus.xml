@@ -15,6 +15,7 @@
         <menuitem parent="qc_menu"
                   name="Tests"
                   id="qc_menu_test_parent"
+                  groups="group_quality_control_manager"
                   sequence="20" />
     </data>
 </openerp>
