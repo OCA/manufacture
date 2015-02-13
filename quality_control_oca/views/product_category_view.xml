@@ -11,8 +11,9 @@
                     <group name="qc" string="Quality control">
                         <field name="qc_triggers" nolabel="1">
                             <tree string="Quality control triggers" editable="bottom">
-                                <field name="trigger" widget="selection"/>
-                                <field name="test"/>
+                                <field name="trigger" widget="selection" />
+                                <field name="test" />
+                                <field name="user" />
                             </tree>
                         </field>
                     </group>

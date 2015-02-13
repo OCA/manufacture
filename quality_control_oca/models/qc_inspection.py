@@ -7,6 +7,7 @@ from openerp import models, fields, api, exceptions, _
 
 class QcInspection(models.Model):
     _name = 'qc.inspection'
+    _description = 'Quality control inspection'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
 
     @api.one
@@ -78,6 +79,9 @@ class QcInspection(models.Model):
         states={'draft': [('readonly', False)]},
         default=lambda self: self.env['res.company']._company_default_get(
             'qc.inspection'))
+    user = fields.Many2one(
+        comodel_name='res.users', string='Responsible',
+        track_visibility='always', default=lambda self: self.env.user)
 
     @api.model
     def create(self, vals):
@@ -141,41 +145,43 @@ class QcInspection(models.Model):
         self.write({'state': 'canceled'})
 
     @api.multi
-    def set_test(self, test, force_fill=False):
+    def set_test(self, trigger_line, force_fill=False):
         for inspection in self:
             header = self._prepare_inspection_header(
-                inspection.object_id, test)
+                inspection.object_id, trigger_line)
             del header['state']  # don't change current status
             del header['auto_generated']  # don't change auto_generated flag
+            del header['user']  # don't change current user
             inspection.write(header)
             self.inspection_lines.unlink()
             inspection.inspection_lines = inspection._prepare_inspection_lines(
-                test, force_fill=force_fill)
+                trigger_line.test, force_fill=force_fill)
 
     @api.multi
-    def _make_inspection(self, object_ref, test):
+    def _make_inspection(self, object_ref, trigger_line):
         """Overridable hook method for creating inspection from test.
         :param object_ref: Object instance
-        :param test: Test instance
+        :param trigger_line: Trigger line instance
         :return: Inspection object
         """
         inspection = self.create(self._prepare_inspection_header(
-            object_ref, test))
-        inspection.set_test(test)
+            object_ref, trigger_line))
+        inspection.set_test(trigger_line)
         return inspection
 
     @api.multi
-    def _prepare_inspection_header(self, object_ref, test):
+    def _prepare_inspection_header(self, object_ref, trigger_line):
         """Overridable hook method for preparing inspection header.
         :param object_ref: Object instance
-        :param test: Test instance
+        :param trigger_line: Trigger line instance
         :return: List of values for creating the inspection
         """
         return {
             'object_id': object_ref and '%s,%s' % (object_ref._name,
                                                    object_ref.id) or False,
             'state': 'ready',
-            'test': test.id,
+            'test': trigger_line.test.id,
+            'user': trigger_line.user.id,
             'auto_generated': True,
         }
 
