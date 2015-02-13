@@ -39,21 +39,22 @@
                                statusbar_colors='{"success": "blue", "failed": "red"}' />
                     </header>
                     <sheet>
-                        <h1>
-                            <label string="Inspection "/>
-                            <field name="name" class="oe_inline"/>
-                        </h1>
                         <div class="oe_right oe_button_box" name="buttons">
                             <button class="oe_inline oe_stat_button"
                                     type="action"
                                     name="%(action_qc_inspection_set_test)d"
                                     icon="fa-bookmark-o"
                                     states="draft"
-                                    string="Set test"/>
+                                    string="Set test" />
                         </div>
+                        <h1>
+                            <label string="Inspection "/>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
                         <group>
                             <group>
-                                <field name="test"/>
+                                <field name="test" />
+                                <field name="user" />
                                 <field name="object_id" />
                                 <field name="product" />
                             </group>
@@ -109,6 +110,7 @@
             <field name="arch" type="xml">
                 <tree string="Inspections">
                     <field name="name" />
+                    <field name="user" />
                     <field name="test" />
                     <field name="product" />
                     <field name="success" />
@@ -124,6 +126,7 @@
                 <search string="Search inspection">
                     <group>
                         <field name="name" />
+                        <field name="user" />
                         <field name="object_id" />
                         <field name="product" />
                         <field name="test" />
@@ -141,6 +144,9 @@
                         <filter string="Test"
                                 domain="[]"
                                 context="{'group_by': 'test'}" />
+                        <filter string="Responsible"
+                                domain="[]"
+                                context="{'group_by': 'user'}" />
                         <filter string="Product"
                                 domain="[]"
                                 context="{'group_by': 'product'}" />
