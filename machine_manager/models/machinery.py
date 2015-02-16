@@ -35,7 +35,10 @@ class Machinery(models.Model):
     depracc = fields.Many2one('account.account', string='Depreciation Account')
     year = fields.Char('Year')
     model = fields.Char('Model')
-    product = fields.Many2one('product.product', 'Associated product')
+    product = fields.Many2one(
+        comodel_name='product.product', string='Associated product',
+        help="This product will contain information about the machine such as"
+        " the manufacturer.")
     manufacturer = fields.Many2one(
         comodel_name='res.partner', related='product.manufacturer',
         readonly=True, help="Manufacturer is related to the associated product"
