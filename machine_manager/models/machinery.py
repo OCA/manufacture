@@ -35,9 +35,11 @@ class Machinery(models.Model):
     depracc = fields.Many2one('account.account', string='Depreciation Account')
     year = fields.Char('Year')
     model = fields.Char('Model')
-    manufacturer = fields.Many2one(
-        comodel_name='res.partner', domain="[('supplier', '=', True)]")
     product = fields.Many2one('product.product', 'Associated product')
+    manufacturer = fields.Many2one(
+        comodel_name='res.partner', related='product.manufacturer',
+        readonly=True, help="Manufacturer is related to the associated product"
+        " defined for the machine.")
     serial_char = fields.Char('Product Serial #')
     serial = fields.Many2one('stock.production.lot', string='Product Serial #',
                              domain="[('product_id', '=', product)]")
@@ -52,7 +54,8 @@ class Machinery(models.Model):
                         help="Last recorded cycles")
     bdate = fields.Date('Record Date',
                         help="Date on which the cycles is recorded")
-    purch_date = fields.Date('Purchase Date', help="Date of machine pruchase")
+    purch_date = fields.Date('Purchase Date',
+                             help="Machine's date of purchase")
     purch_cost = fields.Float('Purchase Value', digits=(16, 2))
     purch_partner = fields.Many2one('res.partner', 'Purchased From')
     purch_inv = fields.Many2one('account.invoice', string='Purchase Invoice')
