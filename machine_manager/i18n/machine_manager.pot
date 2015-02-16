@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 09:51+0000\n"
-"PO-Revision-Date: 2014-11-11 09:51+0000\n"
+"POT-Creation-Date: 2015-02-16 14:36+0000\n"
+"PO-Revision-Date: 2015-02-16 14:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -122,11 +122,6 @@ msgstr ""
 #. module: machine_manager
 #: field:machinery,warrexp:0
 msgid "Date"
-msgstr ""
-
-#. module: machine_manager
-#: help:machinery,purch_date:0
-msgid "Date of machine pruchase"
 msgstr ""
 
 #. module: machine_manager
@@ -310,6 +305,11 @@ msgid "Machine policy"
 msgstr ""
 
 #. module: machine_manager
+#: help:machinery,purch_date:0
+msgid "Machine's date of purchase"
+msgstr ""
+
+#. module: machine_manager
 #: model:ir.module.category,name:machine_manager.module_machinery_category
 msgid "Machinery"
 msgstr ""
@@ -382,6 +382,11 @@ msgstr ""
 #. module: machine_manager
 #: field:machinery,phone:0
 msgid "Phone number"
+msgstr ""
+
+#. module: machine_manager
+#: field:machinery,power:0
+msgid "Power (Kw)"
 msgstr ""
 
 #. module: machine_manager
@@ -461,6 +466,16 @@ msgid "This association is necessary if you want to make repair orders with the 
 msgstr ""
 
 #. module: machine_manager
+#: help:machinery,product:0
+msgid "This product will contain information about the machine such as the manufacturer."
+msgstr ""
+
+#. module: machine_manager
+#: help:machinery,manufacturer:0
+msgid "Manufacturer is related to the associated product defined for the machine."
+msgstr ""
+
+#. module: machine_manager
 #: field:machine.model,model_type:0
 #: field:machinery,model_type:0
 msgid "Type"
@@ -473,7 +488,8 @@ msgid "User"
 msgstr ""
 
 #. module: machine_manager
-#: code:addons/machine_manager/models/machinery.py:102
+#: code:addons/machine_manager/models/machinery.py:105
+#: code:addons/machine_manager/models/machinery.py:111
 #: sql_constraint:machinery.users:0
 #, python-format
 msgid "User already defined for the machine"
@@ -495,11 +511,6 @@ msgid "Year"
 msgstr ""
 
 #. module: machine_manager
-#: field:machinery,manufacturer:0
-msgid "Manufacturer"
-msgstr ""
-
-#. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Yearly"
 msgstr ""
@@ -509,7 +520,3 @@ msgstr ""
 msgid "tree_string"
 msgstr ""
 
-#. module: machine_manager
-#: view:machinery:machine_manager.machines_form
-msgid "Power (Kw)"
-msgstr ""

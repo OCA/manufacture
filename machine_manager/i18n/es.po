@@ -4,15 +4,15 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 13:55+0000\n"
-"PO-Revision-Date: 2014-11-11 11:07+0100\n"
-"Last-Translator: Daniel <danielcampos@avanzosc.es>\n"
+"POT-Creation-Date: 2015-02-16 14:41+0000\n"
+"PO-Revision-Date: 2015-02-16 14:41+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: machine_manager
@@ -125,11 +125,6 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: machine_manager
-#: help:machinery,purch_date:0
-msgid "Date of machine pruchase"
-msgstr "Fecha de compra"
-
-#. module: machine_manager
 #: help:machinery,bdate:0
 msgid "Date on which the cycles is recorded"
 msgstr "Fecha de grabación del registro"
@@ -209,7 +204,7 @@ msgstr "Fecha inicio homologación"
 msgid "Hour Meter"
 msgstr "Por hora"
 
-#. module: mrp_machine_manager
+#. module: machine_manager
 #: field:machine.model,id:0
 #: field:machinery,id:0
 #: field:machinery.users,id:0
@@ -310,6 +305,11 @@ msgid "Machine policy"
 msgstr "Póliza máquina"
 
 #. module: machine_manager
+#: help:machinery,purch_date:0
+msgid "Machine's date of purchase"
+msgstr "Fecha de compra de la máquina"
+
+#. module: machine_manager
 #: model:ir.module.category,name:machine_manager.module_machinery_category
 msgid "Machinery"
 msgstr "Maquinaria"
@@ -385,6 +385,11 @@ msgid "Phone number"
 msgstr "Número de tel."
 
 #. module: machine_manager
+#: field:machinery,power:0
+msgid "Power (Kw)"
+msgstr "Potencia (Kw)"
+
+#. module: machine_manager
 #: view:machinery:machine_manager.machines_form
 msgid "Preventive Maintenance"
 msgstr "Mantenimiento preventivo"
@@ -448,7 +453,7 @@ msgstr "Renting"
 #. module: machine_manager
 #: field:machinery,status:0
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #. module: machine_manager
 #: field:machinery,location:0
@@ -459,6 +464,16 @@ msgstr "Localización de Stock"
 #: help:machinery,location:0
 msgid "This association is necessary if you want to make repair orders with the machine"
 msgstr "Asociación necesaría si se desean realizar ordenes de reparación de máquinas."
+
+#. module: machine_manager
+#: help:machinery,product:0
+msgid "This product will contain information about the machine such as the manufacturer."
+msgstr "Este producto contendrá la información relativa a la maquina, p.e. el fabricante."
+
+#. module: machine_manager
+#: help:machinery,manufacturer:0
+msgid "Manufacturer is related to the associated product defined for the machine."
+msgstr "Fabricante relacionado con el producto asociado a la máquina."
 
 #. module: machine_manager
 #: field:machine.model,model_type:0
@@ -473,7 +488,8 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: machine_manager
-#: code:addons/machine_manager/models/machinery.py:102
+#: code:addons/machine_manager/models/machinery.py:105
+#: code:addons/machine_manager/models/machinery.py:111
 #: sql_constraint:machinery.users:0
 #, python-format
 msgid "User already defined for the machine"
@@ -495,11 +511,6 @@ msgid "Year"
 msgstr "Año"
 
 #. module: machine_manager
-#: field:machinery,manufacturer:0
-msgid "Manufacturer"
-msgstr "Fabricante"
-
-#. module: machine_manager
 #: selection:machinery,deprecperiod:0
 msgid "Yearly"
 msgstr "Anual"
@@ -509,7 +520,3 @@ msgstr "Anual"
 msgid "tree_string"
 msgstr "tree_string"
 
-#. module: machine_manager
-#: view:machinery:machine_manager.machines_form
-msgid "Power (Kw)"
-msgstr "Potencia (Kw)"
