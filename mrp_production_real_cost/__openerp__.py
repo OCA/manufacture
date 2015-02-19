@@ -25,7 +25,9 @@
                 "mrp_operations_time_control",
                 "stock_account",
                 "mrp_production_project_estimated_cost"],
-    "author": "OdooMRP team",
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "category": "MRP",
     "description": """
         - This module allows to control the real cost of a production order,

@@ -6,7 +6,7 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost"/>
             <field name="arch" type="xml">
-                <field name="unit_avg_cost" position="after">
+                <field name="product_manual_cost" position="after">
                     <field name="real_cost" attrs="{'invisible': [('state', '!=', 'done')]}"/>
                     <field name="unit_real_cost" attrs="{'invisible': [('state', '!=', 'done')]}"/>
                 </field>
