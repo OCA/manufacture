@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data>
-    <record id="mrp_production_form_view_inh_productiontrace" model="ir.ui.view">
-        <field name="name">mrp.production.form.view.inh.productiontrace</field>
-        <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
-        <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='restrict_lot_id']" position="after">
-                <field name="prod_parent_lot" />
-            </xpath>
-            <xpath expr="//div[contains(@class, 'oe_title')]" position="before">
-                <div class="oe_right oe_button_box" name="track_lot_button">
+    <data>
+        <record model="ir.ui.view" id="mrp.mrp_production_buttons">
+            <field name="name">mrp.production.buttons</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <div class="oe_title" position="after">
+                    <div class="oe_right oe_button_box" name="buttons">
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_inh_productiontrace" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inh.productiontrace</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_buttons" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='restrict_lot_id']" position="after">
+                    <field name="prod_parent_lot" />
+                </xpath>
+                <div name="buttons" position="inside">
                     <button type="object"
                         name="action_view_track_lot_from_production"
                         class="oe_stat_button"
@@ -18,8 +29,7 @@
                         <field name="created_mrp_track_lot" widget="statinfo" string="Track Production Lots" />
                     </button>
                 </div>
-            </xpath>
-        </field>
-    </record>
-</data>
+            </field>
+        </record>
+    </data>
 </openerp>

@@ -137,5 +137,5 @@ msgstr "Movimiento de existencias"
 #: view:mrp.production:mrp_production_traceability.mrp_production_form_view_inh_productiontrace
 #: view:mrp.track.lot:mrp_production_traceability.view_track_production_lot_form
 msgid "Track Production Lots"
-msgstr "Seguimiento de lotes de producción"
+msgstr "Seguim. de lotes"
 
