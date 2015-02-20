@@ -24,7 +24,7 @@ class QcSample(models.Model):
         return 0
 
 
-class QcSample(models.Model):
+class QcSampleLine(models.Model):
     _name = 'qc.sample.line'
     _description = 'Quality control inspection sample line'
 
