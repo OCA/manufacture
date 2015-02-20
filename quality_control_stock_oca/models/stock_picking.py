@@ -38,12 +38,13 @@ class StockPicking(models.Model):
         for operation in self.pack_operation_ids:
             qc_trigger = self.env['qc.trigger'].search(
                 [('picking_type', '=', self.picking_type_id.id)])
-            tests = set()
+            trigger_lines = set()
             for model in ['qc.trigger.product_category_line',
                           'qc.trigger.product_template_line',
                           'qc.trigger.product_line']:
-                tests = tests.union(self.env[model].get_test_for_product(
-                    qc_trigger, operation.product_id))
-            for test in tests:
-                inspection_model._make_inspection(operation, test)
+                trigger_lines = trigger_lines.union(
+                    self.env[model].get_trigger_line_for_product(
+                        qc_trigger, operation.product_id))
+            for trigger_line in trigger_lines:
+                inspection_model._make_inspection(operation, trigger_line)
         return res
