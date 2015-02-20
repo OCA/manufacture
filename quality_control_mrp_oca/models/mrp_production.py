@@ -35,12 +35,13 @@ class MrpProduction(models.Model):
             inspection_model = self.env['qc.inspection']
             for move in self.move_created_ids2:
                 qc_trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
-                tests = set()
+                trigger_lines = set()
                 for model in ['qc.trigger.product_category_line',
                               'qc.trigger.product_template_line',
                               'qc.trigger.product_line']:
-                    tests = tests.union(self.env[model].get_test_for_product(
-                        qc_trigger, move.product_id))
-                for test in tests:
-                    inspection_model._make_inspection(move, test)
+                    trigger_lines = trigger_lines.union(
+                        self.env[model].get_trigger_line_for_product(
+                            qc_trigger, move.product_id))
+                for trigger_line in trigger_lines:
+                    inspection_model._make_inspection(move, trigger_line)
         return res
