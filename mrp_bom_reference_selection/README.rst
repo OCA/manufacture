@@ -1,18 +1,12 @@
 MRP Bill of Material Reference Selection
 ========================================
 
-This module was written to extend mrp features.
-It delivers new feature to select the component in a bom when you have several bom for one product.
+This module delivers new feature to select the component in a bom when you have several bom for one product.
 
 Installation
 ============
 
 To install this module, you just need to select the module and insure yourself dependancies are available.
-
-Configuration
-=============
-
-No particular configuration to use this module.
 
 
 Usage
