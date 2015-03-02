@@ -22,7 +22,7 @@
 {
     'name': 'Bom product details',
     'version': '0.1',
-    'author': 'Solutions Libergia inc.',
+    'author': "Solutions Libergia inc.,Odoo Community Association (OCA)",
     'license': 'GPL-3 or any later version',
     'category': 'Manufacturing',
     'description': """
