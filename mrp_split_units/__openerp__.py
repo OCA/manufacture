@@ -35,7 +35,7 @@ each with quantity 1. After the split, the module performs a
 bug lp:1083253.
 """,
     'complexity': 'easy',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com/',
     'depends': ['mrp'],
     'init_xml': [],

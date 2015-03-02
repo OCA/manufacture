@@ -22,7 +22,7 @@
 {
     'name': 'Bom product details',
     'version': '0.1',
-    'author': 'Solutions Libergia inc.',
+    'author': "Solutions Libergia inc.,Odoo Community Association (OCA)",
     'category': 'Manufacturing',
     'description': """
     This module adds product price and stock to bom view

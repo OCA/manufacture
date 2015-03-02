@@ -23,7 +23,7 @@
 {
     'name': 'Industrial design specification in BoM',
     'version': '1.0',
-    "author": "Savoir-faire Linux",
+    "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
     "website": "http://www.savoirfairelinux.com",
     'license': 'AGPL-3',
     'category': 'Specific Industry Applications',

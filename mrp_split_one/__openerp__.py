@@ -30,7 +30,7 @@ Products to directly split one unit of the product in a separate line.
 After the split the page needs to be reloaded because of the bug lp:1083253.
 """,
  'complexity': 'easy',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'website': 'http://www.camptocamp.com/',
  'depends': ['mrp'],
  'init_xml': [],
