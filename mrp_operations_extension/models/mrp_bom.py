@@ -43,7 +43,7 @@ class MrpBom(models.Model):
             seq = work_order['sequence'] - level
             routing_lines = routing_line_obj.search([
                 ('routing_id', '=', routing_id), ('sequence', '=', seq)])
-            routing_line_id = routing_lines.id
+            routing_line_id = routing_lines and routing_lines[0].id or False
             for routing_line in routing_lines:
                 if routing_line.name in work_order['name']:
                     routing_line_id = routing_line.id

@@ -84,8 +84,9 @@ class MrpRoutingWorkcenter(models.Model):
                     'op_number': self.operation.op_number,
                 }
                 op_wc_lst.append(data)
-            op_wc_lst[0]['default'] = True
-            self.op_wc_lines = op_wc_lst
+            if op_wc_lst:
+                op_wc_lst[0]['default'] = True
+                self.op_wc_lines = op_wc_lst
 
     @api.one
     @api.onchange('op_wc_lines')
