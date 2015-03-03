@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
+        <record model="ir.ui.view"  id="mrp_routing_form_view_inh_opeextension">
+            <field name="name">mrp.routing.form</field>
+            <field name="model">mrp.routing</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_form_view" />
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="previous_operations_finished" />
+                </field>
+            </field>
+        </record>
         <record id="mrp_routing_workcenter_tree_view_inh" model="ir.ui.view">
             <field name="name">mrp.routing.workcenter.tree.inh</field>
             <field name="model">mrp.routing.workcenter</field>
@@ -24,7 +33,6 @@
                 </field>
             </field>
         </record>
-
         <record id="mrp_routing_workcenter_form_view_inh" model="ir.ui.view">
             <field name="name">mrp.routing.workcenter.form.inh</field>
             <field name="model">mrp.routing.workcenter</field>
@@ -35,6 +43,9 @@
                 </field>
                 <field name="workcenter_id" position="attributes">
                     <attribute name="attrs">{'invisible': [('op_wc_lines', '!=', [])]}</attribute>
+                </field>
+                <field name="cycle_nbr" position="after">
+                    <field name="previous_operations_finished" />
                 </field>
                 <field name="cycle_nbr" position="attributes">
                     <attribute name="invisible">1</attribute>

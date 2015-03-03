@@ -137,6 +137,10 @@
                     <attribute name="icon"></attribute>
                 </button>
                 <button string="Cancel Order" position="after">
+                    <button name="action_assign" states="startworking"
+                        string="Check Availability" type="object" class="oe_highlight" />
+                    <button name="force_assign" states="startworking"
+                        string="Force Reservation" type="object" />
                     <button name='%(act_mrp_work_order_produce)d'
                         type='action' string='Produce'
                         attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" />
@@ -154,6 +158,10 @@
                 ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
             <field name="arch" type="xml">
                 <button name="button_cancel" position="after">
+                    <button name="action_assign" states="startworking"
+                        string="Check Availability" type="object" class="oe_highlight" />
+                    <button name="force_assign" states="startworking"
+                        string="Force Reservation" type="object" />
                     <button name='%(act_mrp_work_order_produce)d'
                         type='action' string='Produce'
                         attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}"/>
@@ -167,6 +175,7 @@
                             col="4" />
                         <field name="product_line" nolabel="1"
                             colspan="4" col="4" readonly="1"/>
+                        <field name="move_lines" />
                     </group>
                 </page>
                 <group string="Product to Produce" position="replace" />

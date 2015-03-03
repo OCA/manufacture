@@ -33,9 +33,16 @@ class MrpRouting(models.Model):
             raise Warning(_("There must be one and only one operation with "
                             "'Produce here' check marked."))
 
+    previous_operations_finished = fields.Boolean(
+        string='Previous operations finished')
+
 
 class MrpRoutingWorkcenter(models.Model):
     _inherit = 'mrp.routing.workcenter'
+
+    def get_routing_previous_operations(self):
+        self.previous_operations_finished = \
+            self.routing_id.previous_operations_finished
 
     operation = fields.Many2one('mrp.routing.operation', string='Operation')
     op_wc_lines = fields.One2many(
@@ -46,6 +53,9 @@ class MrpRoutingWorkcenter(models.Model):
         help="If enabled, the production and movement to stock of the final "
              "products will be done in this operation. There can be only one "
              "operation per route with this check marked.")
+    previous_operations_finished = fields.Boolean(
+        string='Previous operations finished',
+        default="get_routing_previous_operations")
 
     @api.constrains('op_wc_lines')
     def _check_default_op_wc_lines(self):

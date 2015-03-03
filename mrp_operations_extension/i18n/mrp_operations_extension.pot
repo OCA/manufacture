@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-18 12:06+0000\n"
-"PO-Revision-Date: 2015-01-18 12:06+0000\n"
+"POT-Creation-Date: 2015-03-03 13:44+0000\n"
+"PO-Revision-Date: 2015-03-03 13:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Actual Production Date"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:29
+#: code:addons/mrp_operations_extension/models/mrp_production.py:51
 #, python-format
 msgid "At least one work order must have checked 'Produce here'"
 msgstr ""
@@ -55,15 +55,21 @@ msgid "Capacity per cycle"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:67
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:72
 #, python-format
 msgid "Changing Routing"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:68
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:73
 #, python-format
 msgid "Changing routing will cause to change the operation in which each component will be consumed, by default it is set the first one of the routing"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Check Availability"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -152,6 +158,12 @@ msgid "Final Product to Stock"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Force Reservation"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,id:0
 #: field:mrp.routing.operation,id:0
 #: field:mrp.work.order.produce,id:0
@@ -209,8 +221,25 @@ msgid "Manufacturing Operators"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
 msgid "Materials"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:142
+#, python-format
+msgid "Missing materials"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:143
+#, python-format
+msgid "Missing materials to start the production"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -219,8 +248,19 @@ msgid "Mode"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,move_lines:0
+msgid "Moves"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: field:mrp.routing.operation,name:0
 msgid "Name"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:138
+#, python-format
+msgid "Not finished operations"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -278,6 +318,18 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,pre_op_product:0
 msgid "Pre-operation costing product"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing,previous_operations_finished:0
+#: field:mrp.routing.workcenter,previous_operations_finished:0
+msgid "Previous operations finished"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:139
+#, python-format
+msgid "Previous operations not finished"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -372,7 +424,7 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_routing.py:57
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:67
 #, python-format
 msgid "There must be one and only one line set as default."
 msgstr ""
@@ -381,6 +433,16 @@ msgstr ""
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:33
 #, python-format
 msgid "There must be one and only one operation with 'Produce here' check marked."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_start:0
+msgid "Time Start"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_stop:0
+msgid "Time Stop"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -417,6 +479,11 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "To Consume"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
+msgid "Total"
 msgstr ""
 
 #. module: mrp_operations_extension
