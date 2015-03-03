@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="procurement_tree_view_supplymethod">
+            <field name="name">procurement_tree_view_supplymethod</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_tree_view"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="procure_method" position="after">
+                    <field name="supply_method" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="procurement_form_view_supplymethod">
+            <field name="name">procurement_form_view.supplymethod</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name='procure_method' position="after">
+                     <field name="supply_method"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
