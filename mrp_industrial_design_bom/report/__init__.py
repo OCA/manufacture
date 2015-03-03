@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-import bom_structure_industrial_design
+from . import bom_structure_industrial_design
