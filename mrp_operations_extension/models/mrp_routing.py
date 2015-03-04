@@ -73,8 +73,10 @@ class MrpRoutingWorkcenter(models.Model):
             self.name = self.operation.name
             self.note = self.operation.description
             op_wc_lst = []
+            is_default = True
             for operation_wc in self.operation.workcenters:
                 data = {
+                    'default': is_default,
                     'workcenter': operation_wc.id,
                     'capacity_per_cycle': operation_wc.capacity_per_cycle,
                     'time_efficiency': operation_wc.time_efficiency,
@@ -84,9 +86,8 @@ class MrpRoutingWorkcenter(models.Model):
                     'op_number': self.operation.op_number,
                 }
                 op_wc_lst.append(data)
-            if op_wc_lst:
-                op_wc_lst[0]['default'] = True
-                self.op_wc_lines = op_wc_lst
+                is_default = False
+            self.op_wc_lines = op_wc_lst
 
     @api.one
     @api.onchange('op_wc_lines')
