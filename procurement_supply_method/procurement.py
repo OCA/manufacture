@@ -99,40 +99,4 @@ class ProcurementOrder(osv.osv):
                 return super(ProcurementOrder, self).check_buy(
                     cr, uid, ids, context=context)
 
-
-class SaleOrder(osv.osv):
-    _inherit = 'sale.order'
-
-    def action_ship_create(self, cr, uid, ids, context=None):
-        '''after creating procurement order for the sale order,
-        we assign the supply method'''
-        if super(SaleOrder, self).action_ship_create(cr, uid, ids, context=context):
-            proc_obj = self.pool.get('procurement.order')
-            for order in self.browse(cr, uid, ids, context={}):
-                for line in order.order_line:
-                    if line.procurement_id and line.product_id:
-                        proc_obj.write(
-                            cr, uid,
-                            [line.procurement_id.id],
-                            {'supply_method': line.product_id.supply_method})
-        return True
-
-
-class MrpProduction(osv.osv):
-    _inherit = 'mrp.production'
-
-    def _hook_create_post_procurement(
-            self, cr, uid, production, procurement_id, context=None):
-        '''write back the supply_method to the procurement order'''
-        if procurement_id:
-            procurement_obj = self.pool.get('procurement.order')
-            procurement_order = procurement_obj.browse(
-                cr, uid, procurement_id, context=context)
-            product_id = procurement_order.product_id
-            if not procurement_order.supply_method:
-                supply_method = product_id.supply_method
-                procurement_order.write({'supply_method': supply_method}, context=context)
-        return super(self._name, self)._hook_create_post_procurement(
-            cr, uid, production, procurement_id, context=context)
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

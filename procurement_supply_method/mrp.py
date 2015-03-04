@@ -19,6 +19,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import procurement
-from . import mrp
-from . import sale
+from openerp.osv import orm
+
+
+class MrpProduction(orm.Model):
+    _inherit = 'mrp.production'
+
+    def _hook_create_post_procurement(
+            self, cr, uid, production, procurement_id, context=None):
+        '''write back the supply_method to the procurement order'''
+        if procurement_id:
+            procurement_obj = self.pool.get('procurement.order')
+            procurement_order = procurement_obj.browse(
+                cr, uid, procurement_id, context=context)
+            product_id = procurement_order.product_id
+            if not procurement_order.supply_method:
+                supply_method = product_id.supply_method
+                procurement_order.write({'supply_method': supply_method}, context=context)
+        return super(MrpProduction, self)._hook_create_post_procurement(
+            cr, uid, production, procurement_id, context=context)

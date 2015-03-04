@@ -19,6 +19,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import procurement
-from . import mrp
-from . import sale
+from openerp.osv import orm
+
+
+class SaleOrder(orm.Model):
+    _inherit = 'sale.order'
+
+    def action_ship_create(self, cr, uid, ids, context=None):
+        '''after creating procurement order for the sale order,
+        we assign the supply method'''
+        if super(SaleOrder, self).action_ship_create(cr, uid, ids, context=context):
+            proc_obj = self.pool.get('procurement.order')
+            for order in self.browse(cr, uid, ids, context={}):
+                for line in order.order_line:
+                    if line.procurement_id and line.product_id:
+                        proc_obj.write(
+                            cr, uid,
+                            [line.procurement_id.id],
+                            {'supply_method': line.product_id.supply_method})
+        return True
