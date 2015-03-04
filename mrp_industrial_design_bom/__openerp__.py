@@ -29,11 +29,11 @@
     'category': 'Specific Industry Applications',
     'depends': ['mrp'],
     "data": ['mrp_industrial_design.xml'],
-    'description': """
-This module adds the fields 'Bubble Number' and 'RefDes' (reference description) to a component in BoM view.
+    'description': """ This module adds the fields 'Bubble Number' and 'RefDes' (reference
+description) to a component in BoM view.
 
-It also point the BOM Structure report to a new version that uses the new fields.
-""",
+It also point the BOM Structure report to a new version that uses the new
+fields.  """,
     'auto_install': False,
     'installable': False
 }
