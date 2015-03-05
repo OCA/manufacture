@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="res_partner_production_notes_form_view">
+            <field name="name">res.partner.production_notes.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <page name="internal_notes" position="inside">
+                    <label for="mrp_notes" />
+                    <field name="mrp_notes" />
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>
