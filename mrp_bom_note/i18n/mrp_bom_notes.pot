@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-05 11:53+0000\n"
+"PO-Revision-Date: 2014-11-05 11:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_note
+#: model:ir.model,name:mrp_bom_note.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_note
+#: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_note
+msgid "Components"
+msgstr ""
+
+#. module: mrp_bom_note
+#: view:mrp.production:mrp_bom_note.mrp_production_form_view_inh_note
+msgid "Extra Information"
+msgstr ""
+
+#. module: mrp_bom_note
+#: model:ir.model,name:mrp_bom_note.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_note
+#: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_note
+#: field:mrp.bom,notes:0
+#: view:mrp.production:mrp_bom_note.mrp_production_form_view_inh_note
+msgid "Notes"
+msgstr ""
+
