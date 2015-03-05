@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp_bom_form_view_inh_notes" model="ir.ui.view">
+            <field name="name">mrp.bom.form.view.inh.notes</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Properties" position="after">
+                    <page string="Notes">
+                        <group>
+                            <field name="notes" nolabel="1" />
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>
