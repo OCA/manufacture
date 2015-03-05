@@ -28,7 +28,8 @@ class SaleOrder(orm.Model):
     def action_ship_create(self, cr, uid, ids, context=None):
         '''after creating procurement order for the sale order,
         we assign the supply method'''
-        if super(SaleOrder, self).action_ship_create(cr, uid, ids, context=context):
+        if super(SaleOrder, self).action_ship_create(
+                cr, uid, ids, context=context):
             proc_obj = self.pool.get('procurement.order')
             for order in self.browse(cr, uid, ids, context={}):
                 for line in order.order_line:

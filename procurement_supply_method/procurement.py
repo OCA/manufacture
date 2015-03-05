@@ -22,8 +22,6 @@
 
 from osv import osv, fields
 
-from tools.translate import _
-
 
 class ProcurementOrder(osv.osv):
     """
@@ -32,33 +30,40 @@ class ProcurementOrder(osv.osv):
     _inherit = "procurement.order"
     _columns = {
         'supply_method': fields.selection(
-            [('produce', _('Produce')), ('buy', _('Buy'))],
+            [('produce', 'Produce'), ('buy', 'Buy')],
             'Supply method',
             states={'draft': [('readonly', False)],
-                    'confirmed': [('readonly', False)], 'exception': [('readonly', False)]},
+                    'confirmed': [('readonly', False)],
+                    'exception': [('readonly', False)]},
             readonly=True),
 
-        # make this field editable when in state draft, confirmed and exception.
+        # make this field editable when in state draft,confirmed and exception.
         'procure_method': fields.selection(
-            [('make_to_stock', _('Make to Stock')), ('make_to_order', _('Make to Order'))],
-            _('Procurement Method'),
+            [('make_to_stock', 'Make to Stock'),
+             ('make_to_order', 'Make to Order')],
+            'Procurement Method',
             states={'draft': [('readonly', False)],
-                    'confirmed': [('readonly', False)], 'exception': [('readonly', False)]},
+                    'confirmed': [('readonly', False)],
+                    'exception': [('readonly', False)]},
             readonly=True, required=True,
-            help="If you encode manually a Procurement, you probably want to use"
-            " a make to order method."),
+            help="If you encode manually a Procurement,"
+            " you probably want to use a make to order method."),
 
     }
 
     def init(self, cr):
-        '''initializes the supply_method field for existing data when this module is first installed.
+        '''initializes the supply_method field for existing data
+        when this module is first installed.
 
-        NOTE: this method will be executed when this module is installed or upgraded.'''
+        NOTE: this method will be executed
+            when this module is installed or upgraded.'''
 
-        cr.execute('update procurement_order set supply_method = pt.supply_method '
+        cr.execute('update procurement_order '
+                   'set supply_method = pt.supply_method '
                    'from product_product pp, product_template pt '
                    'where procurement_order.supply_method is null '
-                   'and procurement_order.product_id = pp.id and pp.product_tmpl_id = pt.id')
+                   'and procurement_order.product_id = pp.id '
+                   'and pp.product_tmpl_id = pt.id')
 
     def check_produce(self, cr, uid, ids, context=None):
         """ Checks product supply method.
@@ -72,9 +77,11 @@ class ProcurementOrder(osv.osv):
                 if supply_method != 'produce':
                     return False
                 elif supply_method == 'service':
-                    res = self.check_produce_service(cr, uid, procurement, context)
+                    res = self.check_produce_service(
+                        cr, uid, procurement, context)
                 else:
-                    res = self.check_produce_product(cr, uid, procurement, context)
+                    res = self.check_produce_product(
+                        cr, uid, procurement, context)
                 if not res:
                     return False
                 return True

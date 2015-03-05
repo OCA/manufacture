@@ -28,6 +28,7 @@ class MrpProduction(orm.Model):
     def _hook_create_post_procurement(
             self, cr, uid, production, procurement_id, context=None):
         '''write back the supply_method to the procurement order'''
+
         if procurement_id:
             procurement_obj = self.pool.get('procurement.order')
             procurement_order = procurement_obj.browse(
@@ -35,6 +36,7 @@ class MrpProduction(orm.Model):
             product_id = procurement_order.product_id
             if not procurement_order.supply_method:
                 supply_method = product_id.supply_method
-                procurement_order.write({'supply_method': supply_method}, context=context)
+                procurement_order.write(
+                    {'supply_method': supply_method}, context=context)
         return super(MrpProduction, self)._hook_create_post_procurement(
             cr, uid, production, procurement_id, context=context)
