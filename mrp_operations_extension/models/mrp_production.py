@@ -23,14 +23,7 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     def _get_minor_sequence_operation(self, operations):
-        if operations and len(operations) > 1:
-            minor_operation = operations[0]
-            for operation in operations[1:]:
-                if minor_operation.sequence > operation:
-                    minor_operation = operation
-            return minor_operation
-        else:
-            return operations and operations[0]
+        return min(operations, key=lambda x: x.sequence)
 
     @api.model
     def _moves_assigned(self):
@@ -135,10 +128,8 @@ class MrpProductionWorkcenterLine(models.Model):
     def action_start_working(self):
         if self.routing_wc_line.previous_operations_finished and \
                 not self.check_minor_sequence_operations():
-            raise exceptions.Warning(_("Not finished operations"),
-                                     _("Previous operations not finished"))
+            raise exceptions.Warning(_("Previous operations not finished"))
         if not self.check_operation_moves_state('assigned'):
             raise exceptions.Warning(
-                _("Missing materials"),
                 _("Missing materials to start the production"))
         return super(MrpProductionWorkcenterLine, self).action_start_working()
