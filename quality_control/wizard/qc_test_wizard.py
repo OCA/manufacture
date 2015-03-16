@@ -17,7 +17,10 @@ class QcInspectionSetTest(models.TransientModel):
 
     @api.multi
     def action_create_test(self):
-        inspection_obj = self.env['qc.inspection']
-        inspection_obj.browse(self.env.context['active_id']).set_test(
+        inspection = self.env['qc.inspection'].browse(
+            self.env.context['active_id'])
+        inspection.test = self.test
+        inspection.inspection_lines.unlink()
+        inspection.inspection_lines = inspection._prepare_inspection_lines(
             self.test)
         return True

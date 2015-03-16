@@ -153,7 +153,7 @@ class QcInspection(models.Model):
             del header['auto_generated']  # don't change auto_generated flag
             del header['user']  # don't change current user
             inspection.write(header)
-            self.inspection_lines.unlink()
+            inspection.inspection_lines.unlink()
             inspection.inspection_lines = inspection._prepare_inspection_lines(
                 trigger_line.test, force_fill=force_fill)
 
