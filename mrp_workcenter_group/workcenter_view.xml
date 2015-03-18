@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--Workcenter Groups-->
+
+<record model="ir.actions.act_window" id="act_open_workcenter_group_view">
+    <field name="name">Workcenter Groups</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">workcenter.group</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[]</field>
+    <field name="context">{}</field>
+</record>
+
+<record id="view_workcenter_group_tree" model="ir.ui.view">
+    <field name="model">workcenter.group</field>
+    <field name="type">tree</field>
+    <field name="priority" eval="8"/>
+    <field name="arch" type="xml">
+        <tree string="Group">
+            <field name="sequence"/>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<menuitem
+    id="menu_mrp_workcenter_group"
+    action="act_open_workcenter_group_view"
+    name="Workcenter Groups"
+    parent="mrp.menu_mrp_configuration"
+    sequence="40"
+    groups="mrp.group_mrp_manager"/>
+
+
+<!--Workcenters-->
+
+<record id="view_mrp_workcenter_search" model="ir.ui.view">
+    <field name="model">mrp.workcenter</field>
+    <field name="inherit_id" ref="mrp.view_mrp_workcenter_search"/>
+    <field name="arch" type="xml">
+      <xpath expr="//filter[@string='Type']" position="before">
+        <filter string="Group" domain="[]" name="group_by_workcenter"
+                context="{'group_by':'workcenter_group_id'}"/>
+      </xpath>
+    </field>
+</record>
+
+
+    </data>
+</openerp>
