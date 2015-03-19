@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+  <data>
+
+<!-- FORM-->
+
+<record id="view_wiz_switch_workcenter" model="ir.ui.view">
+    <field name="model">switch.workcenter</field>
+    <field name="arch" type="xml">
+        <form string="Switch Workcenter" version="7.0">
+            <group col="4">
+                <p colspan="4">
+Replace selected workcenters by another one. 
+                </p>
+                <field name="workcenter_id"/>
+            </group>
+            <footer>
+                <button name="switch_workcenter" string="Apply"
+                    type="object" class="oe_highlight"/>
+                or
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+<!--Action-->
+
+<act_window
+    id="action_switch_workcenter"
+    name="Switch WorkCenter"
+    view_mode="form"
+    target="new"
+    key2="client_action_multi"
+    src_model="mrp.production.workcenter.line"
+    res_model="switch.workcenter"/>
+
+<record id="ir_action_switch_workcenter" model="ir.values">
+    <field name="model">mrp.production.workcenter.line</field>
+    <field name="name">Switch WorkCenter in Work Orders</field>
+    <field eval="'ir.actions.act_window,%d'%action_switch_workcenter"
+           name="value"/>
+    <field eval="True" name="object"/>
+</record>
+
+
+
+  </data>
+</openerp>
