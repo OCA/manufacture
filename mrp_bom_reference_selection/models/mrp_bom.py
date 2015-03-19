@@ -23,12 +23,12 @@
 from openerp import models, fields, api
 
 
-class BillOfMaterial(models.Model):
+class MrpBillOfMaterial(models.Model):
     _inherit = 'mrp.bom'
 
     @api.model
     def create(self, vals):
-        res = super(BillOfMaterial, self).create(vals)
+        res = super(MrpBillOfMaterial, self).create(vals)
         if not res.reference_id:
             self.env['mrp.bom.reference'].create({'bom_id': res.id})
         return res

@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from . import (
-    mrp_bom,
-    mrp_bom_line,
-    mrp_bom_reference,
-    mrp_production,
-    stock_production_lot,
-)
+from openerp import models, fields
+
+
+class StockProductionLot(models.Model):
+    _inherit = 'stock.production.lot'
+
+    bom_id = fields.Many2one('mrp.bom', 'Bill of Material')

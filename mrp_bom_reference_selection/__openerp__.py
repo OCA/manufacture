@@ -34,8 +34,10 @@
         'python': [],
     },
     'data': [
-        'views/mrp_bom_view.xml',
         'security/ir.model.access.csv',
+        'views/mrp_bom_view.xml',
+        'views/mrp_product_produce_view.xml',
+        'views/stock_production_lot_view.xml',
     ],
     'post_init_hook': 'set_bill_of_material_references',
     'installable': True,

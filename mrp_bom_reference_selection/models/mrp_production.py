@@ -20,10 +20,26 @@
 #
 ##############################################################################
 
-from . import (
-    mrp_bom,
-    mrp_bom_line,
-    mrp_bom_reference,
-    mrp_production,
-    stock_production_lot,
-)
+from openerp import models, api
+
+
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
+
+    @api.model
+    def action_produce(
+        self, production_id, production_qty, production_mode, wiz=False
+    ):
+        """
+        Affect the Bill of Material to each serial number related to
+        the produced stocks
+        """
+        res = super(MrpProduction, self).action_produce(
+            production_id, production_qty, production_mode, wiz)
+
+        production = self.browse(production_id)
+
+        prod_lots = production.move_created_ids2.lot_ids
+        prod_lots.write({'bom_id': production.bom_id.id})
+
+        return res

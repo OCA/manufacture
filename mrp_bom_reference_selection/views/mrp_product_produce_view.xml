@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_mrp_product_produce_wizard" model="ir.ui.view">
+            <field name="name">mrp.product.produce.form</field>
+            <field name="model">mrp.product.produce</field>
+            <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+            <field name="arch" type="xml">
+                <field name="lot_id" position="before">
+                    <field name="bom_id"/>
+                </field>
+
+                <field name="lot_id" position="attributes">
+                    <attribute name="domain">[
+                        ('bom_id', 'in', [False, bom_id]),
+                        ('product_id', '=', product_id),
+                    ]</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

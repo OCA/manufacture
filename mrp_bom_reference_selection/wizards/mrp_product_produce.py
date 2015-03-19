@@ -20,10 +20,22 @@
 #
 ##############################################################################
 
-from . import (
-    mrp_bom,
-    mrp_bom_line,
-    mrp_bom_reference,
-    mrp_production,
-    stock_production_lot,
-)
+from openerp import models, fields, api
+
+
+class MrpProductProduce(models.TransientModel):
+    _inherit = 'mrp.product.produce'
+
+    @api.model
+    def _get_default_bom_id(self):
+        active_id = self.env.context.get("active_id")
+        if active_id:
+            prod = self.env['mrp.production'].browse(active_id)
+            if prod.bom_id:
+                return prod.bom_id.id
+        return False
+
+    bom_id = fields.Many2one(
+        'mrp.bom', 'Bill of Material', default=_get_default_bom_id,
+        readonly=True,
+    )

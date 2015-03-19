@@ -20,10 +20,8 @@
 #
 ##############################################################################
 
-from . import (
-    mrp_bom,
-    mrp_bom_line,
-    mrp_bom_reference,
-    mrp_production,
-    stock_production_lot,
-)
+from . import test_mrp_bom
+
+checks = [
+    test_mrp_bom,
+]

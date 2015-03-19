@@ -21,6 +21,7 @@
 ##############################################################################
 
 from . import models
+from . import wizards
 from openerp import SUPERUSER_ID
 
 

@@ -23,7 +23,7 @@
 from openerp import models, fields, api
 
 
-class BillOfMaterialLine(models.Model):
+class MrpBillOfMaterialLine(models.Model):
     _inherit = 'mrp.bom.line'
 
     reference_id = fields.Many2one('mrp.bom.reference', 'Ref')

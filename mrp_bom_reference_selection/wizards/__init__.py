@@ -20,10 +20,4 @@
 #
 ##############################################################################
 
-from . import (
-    mrp_bom,
-    mrp_bom_line,
-    mrp_bom_reference,
-    mrp_production,
-    stock_production_lot,
-)
+from . import mrp_product_produce

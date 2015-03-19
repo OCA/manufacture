@@ -23,7 +23,7 @@
 from openerp import models, fields
 
 
-class BillOfMaterialReference(models.Model):
+class MrpBillOfMaterialReference(models.Model):
 
     _name = 'mrp.bom.reference'
     _description = 'MRP Bill of Material Reference'
