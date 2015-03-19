@@ -79,6 +79,11 @@ Contributors
 * David BEAL <david.beal@akretion.com>
 * Sébastien BEAU <sebastien.beau@akretion.com>
 
+Icon
+----
+Patricia Clausnitzer: Creative Commons
+
+
 Maintainer
 ----------
 
