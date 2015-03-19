@@ -37,8 +37,8 @@
 MRP Load
 ========
 
-* Load field
-* wizrad to switch wkc
+* Compute work load on workcenter
+* Allow to switch to other workcenters to adjust activity in the plant
 
 
 
@@ -72,6 +72,10 @@ Contributors
 
 * David BEAL <david.beal@akretion.com>
 * Sébastien BEAU <sebastien.beau@akretion.com>
+
+Icon
+----
+Patricia Clausnitzer: Creative Commons
 
 Maintainer
 ----------

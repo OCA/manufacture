@@ -27,7 +27,7 @@ class MrpProductionWorkcenterLine(orm.Model):
     _order = 'sequence ASC, name ASC'
 
     _columns = {
-        'date_planned_': fields.related(
+        'planned_mo': fields.related(
             'production_id', 'date_planned',
             type='datetime',
             string='Planned MO',
