@@ -21,7 +21,7 @@
 
 from openerp.osv import orm, fields
 
-
+# States than we don't want to take account
 STATIC_STATES = ['cancel', 'done']
 
 WORKCENTER_ACTION = {
