@@ -31,6 +31,16 @@ class WorkcenterGroup(orm.Model):
         'name': fields.char('Name'),
         'sequence': fields.integer('Sequence'),
         'active': fields.boolean('Active'),
+        'workcenter_ids': fields.one2many(
+            'mrp.workcenter',
+            'workcenter_group_id',
+            readonly=True,
+            string="Linked Workcenters"
+            ),
+    }
+
+    _defaults = {
+        'active': True,
     }
 
 
