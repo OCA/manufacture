@@ -36,9 +36,8 @@
 MRP Workcenter Group
 ====================
 
-* Add a new model: Workcenter Groups
-* Add a many2one field 'Group' in workcenter view form based on this model
-* Define a new 'Group by' entry named 'Group' in search view
+* Add Workcenter Groups to apply some behavior to several Workcenters at once
+* Define a new 'Group by' entry named 'Group' in Workcenter search view
 
 Configuration
 =============
@@ -55,11 +54,6 @@ Usage
 To use this module, you need to go to:
 
  * Manufacturing > Configuration > Workcenter Groups
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
 
 
 Credits
@@ -85,17 +79,11 @@ whose mission is to support the collaborative development of Odoo features
 and promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
-
 """,
     'website': 'http://www.akretion.com/',
     'data': [
         'workcenter_view.xml',
     ],
-    'demo': [
-    ],
-    'external_dependencies': {
-        'python': [],
-    },
     'license': 'AGPL-3',
     'tests': [],
     'installable': True,
