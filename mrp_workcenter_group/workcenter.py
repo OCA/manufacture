@@ -35,7 +35,7 @@ class WorkcenterGroup(orm.Model):
             'mrp.workcenter',
             'workcenter_group_id',
             readonly=True,
-            string="Linked Workcenters"
+            string="Workcenters"
             ),
     }
 

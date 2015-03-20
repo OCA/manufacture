@@ -84,6 +84,10 @@ To contribute to this module, please visit http://odoo-community.org.
     'data': [
         'workcenter_view.xml',
     ],
+    'demo': [
+        'demo/workcenter.group.csv',
+        'demo/mrp.workcenter.csv',
+    ],
     'license': 'AGPL-3',
     'tests': [],
     'installable': True,

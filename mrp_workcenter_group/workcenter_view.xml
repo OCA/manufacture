@@ -36,8 +36,7 @@
                     <field name="active"/>
                     <field name="sequence"/>
                 </group>
-                <group name="link" string="Linked Workcenters" cols="4">
-                    <!--<label for="workcenter_ids"/>-->
+                <group name="link" string="Workcenters" cols="4">
                     <field name="workcenter_ids" nolabel="1"/>
                 </group>
             </group>
