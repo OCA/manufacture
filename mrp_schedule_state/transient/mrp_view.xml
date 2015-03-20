@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+  <data>
+
+<!-- Switch Schedule State Wizard -->
+
+<record id="view_wiz_switch_schedule_state" model="ir.ui.view">
+    <field name="model">switch.schedule_state</field>
+    <field name="arch" type="xml">
+        <form string="Switch Schedule State" version="7.0">
+            <group col="4">
+                <p colspan="4">
+Replace Schedule State by another one.
+'Unable' state can't be changed.
+                </p>
+                <field name="schedule_state"/>
+            </group>
+            <footer>
+                <button name="switch_schedule_state" string="Apply"
+                    type="object" class="oe_highlight"/>
+                or
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+
+<act_window
+    id="action_switch_schedule"
+    name="Switch Schedule State"
+    view_mode="form"
+    target="new"
+    key2="client_action_multi"
+    src_model="mrp.production"
+    res_model="switch.schedule_state"/>
+
+<record id="ir_action_switch_schedule" model="ir.values">
+    <field name="model">mrp.production</field>
+    <field name="name">Switch Schedule State</field>
+    <field eval="'ir.actions.act_window,%d'%action_switch_schedule"
+           name="value"/>
+    <field eval="True" name="object"/>
+</record>
+
+
+  </data>
+</openerp>
