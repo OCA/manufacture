@@ -22,7 +22,7 @@
 
 {
     'name': 'Mrp Load By Schedule State',
-    'version': '0.1',
+    'version': '0.5',
     'author': 'Akretion',
     'maintener': 'Akretion',
     'category': 'Manufacturing',
@@ -35,9 +35,11 @@
     :alt: License
 
 MRP Load by Schedule State
-============================
+==========================
 
-* WIP
+* Allow to compute Workcenters load according to Schedule State
+* Allow to set criteria for define priorities of the work orders
+  (from workcenters form view)
 
 
 Configuration
@@ -54,7 +56,7 @@ Usage
 
 To use this module, you need to go to:
 
- * Manufacturing > ...
+ * Manufacturing > Planning > Load > Criteria tab
 
 
 

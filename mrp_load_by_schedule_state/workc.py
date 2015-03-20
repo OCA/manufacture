@@ -20,20 +20,19 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-
+from openerp.addons.mrp_workcenter_workorder_link.mrp import STATIC_STATES
 
 COMPLEX_WORK_ORDER_FIELDS = [
     'message_follower_ids',
     'message_is_follower',
     'message_unread',
-    'criterious_output',
 ]
 
 
 class MrpWorkcenterOrdering(orm.Model):
     _name = 'mrp.workcenter.ordering'
     _description = "Workcenter Ordering"
-    _order = 'sequence'
+    _order = 'sequence ASC'
 
     _columns = {
         'sequence': fields.integer(
@@ -65,9 +64,9 @@ class MrpWorkcenter(orm.Model):
     _inherit = 'mrp.workcenter'
 
     _columns = {
-        'unable_load': fields.float('Unable'),
-        'todo_load': fields.float('Todo'),
-        'scheduled_load': fields.float('Scheduled'),
+        'waiting_load': fields.float('Waiting (h)'),
+        'todo_load': fields.float('Todo (h)'),
+        'scheduled_load': fields.float('Scheduled (h)'),
         'ordering_field_ids': fields.one2many(
             'mrp.workcenter.ordering',
             'workcenter_id',
@@ -111,4 +110,21 @@ class MrpWorkcenter(orm.Model):
             if len(col) > 3 and col[-4:] == 'load':
                 vals.update({col: 0})
         MrpWorkCter_m.write(cr, uid, workcenter_ids, vals, context=context)
+        return True
+
+    def button_order_workorders_in_workcenter(
+            self, cr, uid, ids, context=None):
+        for elm in self.browse(cr, uid, ids, context=context):
+            ProdLine_m = self.pool['mrp.production.workcenter.line']
+            order_by = ['%s %s' % (row.field_id.name, row.order)
+                        for row in elm.ordering_field_ids]
+            prod_line_ids = ProdLine_m.search(cr, uid, [
+                ('state', 'not in', STATIC_STATES),
+                ('workcenter_id', '=', elm.id), ],
+                order=', '.join(order_by), context=context)
+            count = 1
+            for prod_line_id in prod_line_ids:
+                vals = {'sequence': count}
+                count += 1
+                ProdLine_m.write(cr, uid, prod_line_id, vals, context=context)
         return True

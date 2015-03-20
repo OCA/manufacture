@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="mrp_load.mrp_workcenter_tree_view"/>
     <field name="arch" type="xml">
         <field name="load" position="before">
-            <field name="unable_load" widget="float_time" sum="Unable"/>
+            <field name="waiting_load" widget="float_time" sum="Waiting"/>
             <field name="todo_load" widget="float_time" sum="Todo"/>
             <field name="scheduled_load" widget="float_time" sum="Scheduled"/>
         </field>
@@ -19,12 +19,11 @@
     <field name="inherit_id"
            ref="mrp_workcenter_workorder_link.mrp_workcenter_view"/>
     <field name="arch" type="xml">
-        <!--<xpath expr="//notebook/page[@name='workorder']//field[@name='production_line_ids']"-->
-        <!--       position="domain">-->
-        <!--    <domain>[('state', 'not in', ['done', 'cancel]), ('schedule_state', 'in', ['scheduled'])]</domain>-->
-        <!--</xpath>-->
         <xpath expr="//notebook/page[@name='workorder']//field[@name='production_line_ids']"
-               position="before">
+               position="attributes">
+            <attribute name="domain">[('state', 'not in', ['done', 'cancel]), ('schedule_state', 'in', ['scheduled'])]</attribute>
+        </xpath>
+        <xpath expr="//notebook/page[@name='workorder']/group[1]" position="inside">
           <div name="filter_display">List filtered on Schedule: 'scheduled'</div>
           <button name="button_order_workorders_in_workcenter"
                   string="Scheduling"
@@ -34,19 +33,19 @@
                   type="object"/>
         </xpath>
         <xpath expr="//notebook/page[last()]" position="before">
-            <page string="Criterious" name="field">
+            <page string="Criteria" name="field">
                 <group col="6">
-                <div col="4">
-                    <label for="ordering_field_ids"/>
-                    <field name="ordering_field_ids">
-                        <tree editable="bottom">
-                            <field name="sequence"/>
-                            <field name="field_id"/>
-                            <field name="order"/>
-                            <field name="ttype"/>
-                        </tree>
-                    </field>
-                </div>
+                    <div col="4">
+                        <label for="ordering_field_ids"/>
+                        <field name="ordering_field_ids">
+                            <tree editable="bottom">
+                                <field name="sequence"/>
+                                <field name="field_id"/>
+                                <field name="order"/>
+                                <field name="ttype"/>
+                            </tree>
+                        </field>
+                    </div>
                 </group>
             </page>
         </xpath>
