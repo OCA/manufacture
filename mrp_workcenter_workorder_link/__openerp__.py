@@ -38,7 +38,7 @@ MRP Workcenter Workorder Link
 =============================
 
 
-* Add a button on work order tree view to quickly jump into work center
+* Add a button on work order list view to quickly jump into work center
 * Add a button on work center tree view to quickly jump into work orders
   using this work center
 * Display linked work orders in work center form tab
@@ -61,14 +61,6 @@ To use this module, you need to go to:
  * Manufacturing > Manufacturing > Work Orders
  * Manufacturing > Configuration > Work Centers
 
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
- * ...
 
 Credits
 =======
