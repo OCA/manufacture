@@ -39,7 +39,7 @@ class AbstractSelectionRotate(orm.Model):
 
     def _iter_selection(self, cr, uid, ids, direction, context=None):
         " Allows to update the field selection value "
-        if not 'selection_field' in context:
+        if 'selection_field' not in context:
             return True
         field = context['selection_field']
         # extract first value in each tuple as content of the selection field
