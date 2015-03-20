@@ -1,0 +1,147 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* mrp_schedule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-20 10:04+0000\n"
+"PO-Revision-Date: 2015-03-20 11:08+0100\n"
+"Last-Translator: David BEAL <david.beal@akretion.com>\n"
+"Language-Team: Akretion <david.beal@akretion.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr_FR\n"
+
+#. module: mrp_schedule
+#: help:mrp.production.workcenter.line,schedule_state:0
+msgid ""
+"'sub state' of MO state 'Ready To Produce' dedicated to planification, "
+"scheduling and ordering"
+msgstr ""
+"'Sous état' de l'état de l'OF 'Prêt à produire' dédié à la planification, "
+"programmation et ordonnancement"
+
+#. module: mrp_schedule
+#: view:switch.schedule_state:0
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: mrp_schedule
+#: view:switch.schedule_state:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_schedule
+#: field:mrp.production.workcenter.line,schedule_state:0
+msgid "MO Schedule"
+msgstr "Planification OF"
+
+#. module: mrp_schedule
+#: code:_description:0 model:ir.model,name:mrp_schedule.model_mrp_production
+#, python-format
+msgid "Manufacturing Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_schedule
+#: constraint:mrp.production:0
+msgid "Order quantity cannot be negative or zero!"
+msgstr "La quantité commandée ne peut pas être nulle ou négative !"
+
+#. module: mrp_schedule
+#: help:mrp.production,schedule_state:0
+msgid "Planification State"
+msgstr "Statut de Planification"
+
+#. module: mrp_schedule
+#: sql_constraint:mrp.production:0
+msgid "Reference must be unique per Company!"
+msgstr "La Référence doit être unique par Société"
+
+#. module: mrp_schedule
+#: view:switch.schedule_state:0
+msgid ""
+"Replace Schedule State by another one.\n"
+"'Unable' state can't be changed."
+msgstr ""
+"Remplacer le statut de planification par un autre.\n"
+"L'état 'Non capable' ne peut pas être changé."
+
+#. module: mrp_schedule
+#: field:mrp.production,schedule_state:0
+#: field:switch.schedule_state,schedule_state:0
+msgid "Schedule State"
+msgstr "Statut de Planification"
+
+#. module: mrp_schedule
+#: code:addons/mrp_schedule/mrp.py:34
+#, python-format
+msgid "Scheduled"
+msgstr "Planifié"
+
+#. module: mrp_schedule
+#: model:ir.actions.act_window,name:mrp_schedule.action_switch_schedule
+#: view:switch.schedule_state:0
+msgid "Switch Schedule State"
+msgstr "Echanger le Statut de Planification"
+
+#. module: mrp_schedule
+#: code:addons/mrp_schedule/mrp.py:33
+#, python-format
+msgid "Todo"
+msgstr "À faire"
+
+#. module: mrp_schedule
+#: code:addons/mrp_schedule/mrp.py:32
+#, python-format
+msgid "Unable"
+msgstr "Non Capable"
+
+#. module: mrp_schedule
+#: code:_description:0
+#: model:ir.model,name:mrp_schedule.model_mrp_production_workcenter_line
+#, python-format
+msgid "Work Order"
+msgstr "Ordre de travail"
+
+#. module: mrp_schedule
+#: code:_description:0
+#: model:ir.model,name:mrp_schedule.model_abstract_selection_rotate
+#, python-format
+msgid "abstract.selection.rotate"
+msgstr "abstract.selection.rotate"
+
+#. module: mrp_schedule
+#: view:mrp.production:0 view:mrp.production.workcenter.line:0
+msgid "next schedule state"
+msgstr "prochain statut de planification"
+
+#. module: mrp_schedule
+#: view:switch.schedule_state:0
+msgid "or"
+msgstr "ou"
+
+#. module: mrp_schedule
+#: code:_description:0
+#: model:ir.model,name:mrp_schedule.model_switch_schedule_state
+#, python-format
+msgid "switch.schedule_state"
+msgstr "switch.schedule_state"
+
+#~ msgid "Replace selected workcenters by another one."
+#~ msgstr "Remplace les postes de travail sélectionné par un autre."
+
+#~ msgid "Switch"
+#~ msgstr "Changer"
+
+#~ msgid "Switch WorkCenter"
+#~ msgstr "Echanger de postes de travail"
+
+#~ msgid "Switch Workcenter"
+#~ msgstr "Changer de postes de travail"
+
+#~ msgid "Workcenter"
+#~ msgstr "Poste de travail"
