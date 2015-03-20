@@ -24,10 +24,11 @@
     <field name="arch" type="xml">
         <xpath expr="//notebook/page[last()]" position="before">
             <page string="Work Orders" name="workorder">
-                <group col="6">
+                <group col="6" name="head">
                     <button name="button_workcenter_line"
                             help="Work Orders filtered with this workcenter"
                             class="oe_link"
+                            string="Work Orders"
                             icon="gtk-execute"
                             type="object"/>
                 </group>
@@ -58,7 +59,7 @@
     <field name="inherit_id"
            ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
     <field name="arch" type="xml">
-        <field name="workcenter_id" position="before">
+        <field name="workcenter_id" position="after">
             <button name="button_workcenter"
                     string="See Workcenter details"
                     icon="gtk-execute"
