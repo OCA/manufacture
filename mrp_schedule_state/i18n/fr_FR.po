@@ -138,10 +138,10 @@ msgstr "switch.schedule_state"
 #~ msgstr "Changer"
 
 #~ msgid "Switch WorkCenter"
-#~ msgstr "Echanger les postes de travail"
+#~ msgstr "Echanger de postes de travail"
 
 #~ msgid "Switch Workcenter"
-#~ msgstr "Echanger les postes de travail"
+#~ msgstr "Changer de postes de travail"
 
 #~ msgid "Workcenter"
 #~ msgstr "Poste de travail"

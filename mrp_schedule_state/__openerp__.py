@@ -21,7 +21,7 @@
 
 
 {
-    'name': 'MRP Schedule',
+    'name': 'MRP Schedule State',
     'version': '0.1',
     'author': 'Akretion',
     'maintener': 'Akretion',
@@ -33,18 +33,19 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-MRP Load
-========
+MRP Schedule State
+==================
 
 This module add a field 'schedule state' in Manufacturing Order as sub state.
 
 It's a kind of 'sub state' of MO state 'Ready To Produce' dedicated to
 planification, scheduling and ordering
 
-This module offers useful features to:
+It allows to automate production ordering when used in combination
+with 'MRP Load by Schedule State' module.
 
-- MRP Whole Procurable Sale
-- MRP Load by Schedule State
+It allows to the module 'MRP Whole Procurable Sale' state to prevent
+the execution of some Manufacturing Orders
 
 
 Configuration
@@ -98,11 +99,6 @@ To contribute to this module, please visit http://odoo-community.org.
         'mrp_view.xml',
         'transient/mrp_view.xml',
     ],
-    'demo': [
-    ],
-    'external_dependencies': {
-        'python': [],
-    },
     'license': 'AGPL-3',
     'tests': [],
     'installable': True,

@@ -29,8 +29,8 @@ class MrpProduction(orm.Model):
 
     def _set_schedule_states(self, cr, uid, context=None):
         return [
-            ('unable', _('Unable')),
-            ('todo', _('Todo')),
+            ('waiting', _('Waiting')),
+            ('todo', _('To-do')),
             ('scheduled', _('Scheduled')),
         ]
 
@@ -42,11 +42,11 @@ class MrpProduction(orm.Model):
             __set_schedule_states,
             'Schedule State',
             readonly=True,
-            help="Planification State"),
+            help="Schedule State used for ordering production"),
     }
 
     _defaults = {
-        'schedule_state': 'unable',
+        'schedule_state': 'waiting',
     }
 
     def _get_values_from_selection(self, cr, uid, ids, field, context=None):
@@ -54,8 +54,7 @@ class MrpProduction(orm.Model):
             cr, uid, ids, field, context=context)
         if field == 'schedule_state':
             # also check model name ?
-            # get states and drop 'unable' state
-            res = self._set_schedule_states(cr, uid, context=context)[1:]
+            res = self._set_schedule_states(cr, uid, context=context)
         return res
 
 
