@@ -21,22 +21,27 @@
 
 
 {
-    'name': 'Production Auto Confirm',
+    'name': 'Production AutoComplete',
     'version': '0.1',
     'author': 'Akretion',
     'maintener': 'Akretion',
     'category': 'Manufaturing',
-    'summary': "Confirm Manuf. Orders with cron",
+    'summary': "Set as Done Manufacturing Orders with cron",
     'depends': [
         'mrp',
     ],
     'description': """
-Production Auto Confirm
+Production AutoComplete
 ==========================
+This module will set in done all manufacturing Order for the product
+which have the option "Complete Manuf. Order" tic.
+The validation is done by a scheduled action.
 
-* Check if Manufacturing Order can be completed automatically.
-* Triggered by a scheduled action
-
+A case of use is when for example you have an external system to manage the
+production, and this system can not trigger when the manufacturing order have
+been done. In this case you can automatically set the production order in done
+and then you can still use odoo for computing the consomation of goods and for
+processing the move for the picking.
 
 Contributors
 ------------
