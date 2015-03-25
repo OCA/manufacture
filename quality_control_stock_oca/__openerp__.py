@@ -23,7 +23,9 @@
 {
     "name": "Quality control - Stock",
     "version": "1.0",
-    "author": "OdooMRP team",
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com",
