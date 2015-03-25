@@ -22,7 +22,9 @@
 {
     'name': 'MRP Production Traceability',
     'version': "1.0",
-    'author': 'OdooMRP team',
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     'website': "http://www.odoomrp.com",
     'category': 'Manufacturing',
     'depends': ["mrp",
