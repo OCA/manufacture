@@ -20,7 +20,9 @@
     'name': 'MRP Production add middle stuff',
     'version': "1.0",
     "category": "Manufacturing",
-    'author': 'OdooMRP team',
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     'contributors': ["Daniel Campos <danielcampos@avanzosc.es>",
                      "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
                      "Ana Juaristi <ajuaristio@gmail.com>"],
