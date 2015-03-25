@@ -20,7 +20,9 @@
     "name": "Procurement MRP no Confirm",
     "version": "1.0",
     "depends": ["mrp"],
-    "author": "OdooMRP team",
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "category": "MRP",
     "description": """
         This module avoids the automatic confirmation of manufacturing order
