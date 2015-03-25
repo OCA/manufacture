@@ -24,7 +24,9 @@
     "depends": [
         "quality_control",
     ],
-    "author": "OdooMRP team",
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "category": "Quality control",
     'data': [
         'security/ir.model.access.csv',
