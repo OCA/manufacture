@@ -3,7 +3,7 @@ MRP Bill of Material Reference Selection
 
 This module allows to select the component in a bom when you have several bom for one product.
 This is used to manage versions of a product.
-Produced lot contain a reference to the bill of material used to compute the lot.
+Produced lot contains a reference to the bill of material used to compute the lot.
 
 Installation
 ============

@@ -26,6 +26,11 @@ from openerp import SUPERUSER_ID
 
 
 def set_bill_of_material_references(cr, registry):
+    """
+    This function adds a reference record to each existing boms when the
+    module is installed. This ensures that each bom has a reference
+    so that the module works properly.
+    """
     bom_obj = registry['mrp.bom']
     ref_obj = registry['mrp.bom.reference']
     bom_ids = bom_obj.search(cr, SUPERUSER_ID, [])
