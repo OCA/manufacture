@@ -20,18 +20,19 @@
 #
 ##############################################################################
 
+import logging
 from openerp import models, api
+
+_logger = logging.getLogger(__name__)
 
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     @api.model
-    def action_produce(
-        self, production_id, production_qty, production_mode, wiz=False
-    ):
-        """
-        Affect the Bill of Material to each serial number related to
+    def action_produce(self, production_id, production_qty,
+                       production_mode, wiz=False):
+        """Affect the Bill of Material to each serial number related to
         the produced stocks
         """
         res = super(MrpProduction, self).action_produce(
@@ -39,7 +40,8 @@ class MrpProduction(models.Model):
 
         production = self.browse(production_id)
 
-        prod_lots = production.move_created_ids2.lot_ids
-        prod_lots.write({'bom_id': production.bom_id.id})
+        for move in production.move_created_ids2:
+            prod_lots = move.lot_ids
+            prod_lots.write({'bom_id': production.bom_id.id})
 
         return res
