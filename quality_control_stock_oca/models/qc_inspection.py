@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
 from openerp import models, fields, api
 
 
@@ -28,8 +28,7 @@ class QcInspection(models.Model):
             if self.object_id._name == 'stock.pack.operation':
                 self.lot = self.object_id.lot_id
             elif self.object_id._name == 'stock.move':
-                if self.object_id.lot_ids:
-                    self.lot = self.object_id.lot_ids[0]
+                self.lot = self.object_id.lot_ids[:1]
 
     @api.one
     @api.depends('object_id')
