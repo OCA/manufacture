@@ -119,9 +119,9 @@ class MrpProductionWorkcenterLine(models.Model):
                 return False
         return True
 
-    def check_operation_moves_state(self, state):
+    def check_operation_moves_state(self, states):
         for move_line in self.move_lines:
-            if move_line.state != state:
+            if move_line.state not in states:
                 return False
         return True
 
@@ -129,7 +129,8 @@ class MrpProductionWorkcenterLine(models.Model):
         if self.routing_wc_line.previous_operations_finished and \
                 not self.check_minor_sequence_operations():
             raise exceptions.Warning(_("Previous operations not finished"))
-        if not self.check_operation_moves_state('assigned'):
+        if not self.check_operation_moves_state(['assigned', 'cancel',
+                                                 'done']):
             raise exceptions.Warning(
                 _("Missing materials to start the production"))
         return super(MrpProductionWorkcenterLine, self).action_start_working()
