@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_workcenter_group_user","access_workcenter_group","model_workcenter_group","base.group_user",1,0,0,0
+"access_workcenter_group_mrp_user","access_workcenter_group_mrp_user","model_workcenter_group","stock.group_mrp_user",1,1,0,0
+"access_workcenter_group_mrp_user_mng","access_workcenter_group_mrp_user_mng","model_workcenter_group","stock.group_mrp_manager",1,1,1,1

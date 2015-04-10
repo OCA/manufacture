@@ -1,0 +1,4 @@
+id,workcenter_group_id/id
+mrp.mrp_workcenter_0,assemble
+mrp.mrp_workcenter_2,assemble
+mrp.mrp_workcenter_1,other
