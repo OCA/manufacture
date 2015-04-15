@@ -71,7 +71,7 @@ class MrpProduction(models.Model):
     @api.model
     def create(self, values):
         sequence_obj = self.env['ir.sequence']
-        if 'active' not in values or values['active']:
+        if values.get('active', True):
             values['active'] = True
             if values.get('name', '/') == '/':
                 values['name'] = sequence_obj.get('mrp.production')
