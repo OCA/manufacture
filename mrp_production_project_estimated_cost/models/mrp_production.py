@@ -48,9 +48,7 @@ class MrpProduction(models.Model):
     active = fields.Boolean(
         'Active', default=lambda self: self.env.context.get('default_active',
                                                             True))
-    name = fields.Char(
-        string='Referencen', required=True, readonly=True, copy="False",
-        states={'draft': [('readonly', False)]}, default="/")
+    name = fields.Char(default="/")
     created_estimated_cost = fields.Integer(
         compute="_count_created_estimated_cost", string="Estimated Costs")
     std_cost = fields.Float(string="Estimated Standard Cost",
@@ -64,22 +62,21 @@ class MrpProduction(models.Model):
     product_manual_cost = fields.Float(
         string="Product Manual Cost",
         related="product_id.manual_standard_cost")
-    product_cost = fields.Float(string="Product Cost",
-                                related="product_id.standard_price")
-    analytic_line_ids = fields.One2many("account.analytic.line",
-                                        "mrp_production_id",
-                                        string="Cost Lines")
+    product_cost = fields.Float(
+        string="Product Cost", related="product_id.standard_price")
+    analytic_line_ids = fields.One2many(
+        comodel_name="account.analytic.line", inverse_name="mrp_production_id",
+        string="Cost Lines")
 
     @api.model
     def create(self, values):
-        sequence_obj = self.pool['ir.sequence']
+        sequence_obj = self.env['ir.sequence']
         if 'active' not in values or values['active']:
             values['active'] = True
-            values['name'] = sequence_obj.get(self._cr, self._uid,
-                                              'mrp.production')
+            if values.get('name', '/') == '/':
+                values['name'] = sequence_obj.get('mrp.production')
         else:
-            values['name'] = sequence_obj.get(self._cr, self._uid,
-                                              'fictitious.mrp.production')
+            values['name'] = sequence_obj.get('fictitious.mrp.production')
         return super(MrpProduction, self).create(values)
 
     @api.multi
@@ -111,12 +108,13 @@ class MrpProduction(models.Model):
                 project = project_obj.search([('name', '=', record.name)],
                                              limit=1)
                 if not project:
-                    project_vals = {'name': record.name,
-                                    'use_tasks': True,
-                                    'use_timesheets': True,
-                                    'use_issues': True,
-                                    'automatic_creation': True,
-                                    }
+                    project_vals = {
+                        'name': record.name,
+                        'use_tasks': True,
+                        'use_timesheets': True,
+                        'use_issues': True,
+                        'automatic_creation': True,
+                    }
                     project = project_obj.create(project_vals)
                 record.project_id = project.id
                 record.analytic_account_id = project.analytic_account_id.id
