@@ -92,7 +92,7 @@ class mrp_bom(osv.osv):
 
                 b = b.bom_id
             data = ' / '.join(data)
-            data = '[%s] ' % data
+            data = '[' + data + '] '
 
             res.append((bom.id, data))
         return dict(res)
@@ -126,27 +126,44 @@ class mrp_bom(osv.osv):
                 res[bom.id] = False
         return res
 
+    def _product_has_own_bom(self, cr, uid, ids, prop, unknow_none,
+                             unknow_dict):
+        res = {}
+        for bom in self.browse(cr, uid, ids, context=None):
+            bom_ids = self.pool.get('mrp.bom').search(
+                cr, uid, [('product_id', '=', bom.product_id.id),
+                          ('bom_id', '=', False)], context=None)
+            if bom_ids:
+                res[bom.id] = True
+            else:
+                res[bom.id] = False
+        return res
+
     _columns = {
         'is_parent': fields.function(_is_parent, string="Is parent BOM",
                                      type='boolean', readonly=True,
                                      store=True),
         'has_child': fields.function(_is_bom, string="Has components",
                                      type='boolean', readonly=True),
+        'product_has_own_bom': fields.function(_product_has_own_bom,
+                                               string="Has own BOM",
+                                               type='boolean', readonly=True),
         'bom_hierarchy_indent': fields.function(_bom_hierarchy_indent_calc,
                                                 method=True,
                                                 type='char', string='Level',
                                                 size=32, readonly=True),
         'complete_bom_hierarchy_code': fields.function(
             _complete_bom_hierarchy_code_calc, method=True, type='char',
-            string='Full BOM Hierarchy Code', size=250,
-            help='The full BOM code describes the full path of this component '
-                 'within the BOM hierarchy',
+            string='Complete Reference', size=250,
+            help='Describes the full path of this '
+                 'component within the BOM hierarchy using the BOM reference.',
             store={'mrp.bom': (get_child_boms, ['name', 'code',
                                                 'bom_id'], 20)}),
         'complete_bom_hierarchy_name': fields.function(
             _complete_bom_hierarchy_name_calc, method=True, type='char',
-            string='Full BOM Hierarchy Name', size=250,
-            help='Full path in the BOM hierarchy',
+            string='Complete Name', size=250,
+            help='Describes the full path of this '
+                 'component within the BOM hierarchy using the BOM name.',
             store={'mrp.bom': (get_child_boms, ['name', 'code',
                                                 'bom_id'], 20)}),
     }
@@ -204,5 +221,23 @@ class mrp_bom(osv.osv):
                     cr, uid, [('id', '=',
                                bom.bom_id.id)]):
                 res['domain'] = "[('id','=',"+str(parent_bom_id)+")]"
+        res['nodestroy'] = False
+        return res
+
+    def action_openProductBOMTreeView(self, cr, uid, ids, context=None):
+        """
+        :return dict: dictionary value for created view
+        """
+        if context is None:
+            context = {}
+        bom = self.browse(cr, uid, ids[0], context)
+        bom_ids = self.pool.get('mrp.bom').search(
+            cr, uid, [('product_id', '=', bom.product_id.id),
+                      ('bom_id', '=', False)], context=context)
+        res = self.pool.get('ir.actions.act_window').for_xml_id(
+            cr, uid, 'mrp_bom_hierarchy', 'action_mrp_bom_hierarchy_tree2',
+            context)
+        res['domain'] = "[('id', 'in', ["+','.join(
+            map(str, bom_ids))+"])]"
         res['nodestroy'] = False
         return res

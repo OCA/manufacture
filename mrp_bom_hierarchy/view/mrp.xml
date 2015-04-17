@@ -11,6 +11,7 @@
                 <xpath
                         expr="//notebook/page/field[@name='bom_lines']/tree//field[@name='product_id']" position="before">
                     <field name="has_child"/>
+                    <field name="product_has_own_bom"/>
                 </xpath>
             </field>
         </record>
@@ -36,6 +37,9 @@
                 <xpath expr="//field[@name='product_id']" position="before">
                     <field name="is_parent"/>
                     <field name="has_child"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="product_has_own_bom"/>
                 </xpath>
             </field>
         </record>
@@ -74,13 +78,18 @@
                         icon="STOCK_GO_DOWN"/>
                     <field name="complete_bom_hierarchy_code"/>
                     <field name="bom_hierarchy_indent"/>
-                    <field name="name"/>
-                    <field name="bom_id"/>
-                    <field name="sequence"/>
                     <field name="code"/>
+                    <field name="name"/>
+                    <field name="sequence"/>
                     <field name="position"/>
-                    <field name="has_child"/>
+                    <field name="bom_id"/>
                     <field name="product_id"/>
+                    <field name="product_has_own_bom" invisible="1"/>
+                    <button string="View product's BOMs"
+                        name="action_openProductBOMTreeView"
+                        type="object"
+                        icon="terp-folder-orange"
+                        attrs="{'invisible': [('product_has_own_bom', '=', False)]}"/>
                     <field name="product_qty"/>
                     <field name="product_uom" groups="product.group_uom"/>
                     <field name="type"/>
