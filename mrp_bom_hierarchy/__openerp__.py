@@ -39,12 +39,9 @@ This module adds a new menu entry 'Bill of Materials Hierarchy' in
 'Manufacturing | Products', from which the user can create a complete BOM
 hierarchy from the tree view.
 
-The user can now search using the field 'Full BOM Hierarchy Reference' to find
-all the BOM hierarchy associated to a particular BOM Reference at once.
-
-The user can now search using the field 'Full BOM Hierarchy Name' to find
-all the BOM hierarchy associated to a particular BOM Name at once.
-
+The user can now search using the field 'Full BOM Hierarchy Reference'
+(or Name) to find all the BOM hierarchy associated to a particular BOM
+Reference (or Name) at once.
 
 Installation
 ============

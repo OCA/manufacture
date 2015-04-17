@@ -92,7 +92,7 @@ class mrp_bom(osv.osv):
 
                 b = b.bom_id
             data = ' / '.join(data)
-            data = '[' + data + '] '
+            data = '[%s] ' % data
 
             res.append((bom.id, data))
         return dict(res)
