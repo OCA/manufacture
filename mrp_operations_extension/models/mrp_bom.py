@@ -40,25 +40,30 @@ class MrpBom(models.Model):
                                   routing_id=False):
         routing_line_obj = self.env['mrp.routing.workcenter']
         for work_order in result2:
+            if (work_order['sequence'] < level or
+                    work_order.get('routing_wc_line')):
+                continue
             seq = work_order['sequence'] - level
-            routing_lines = routing_line_obj.search([
-                ('routing_id', '=', routing_id), ('sequence', '=', seq)])
-            routing_line_id = routing_lines and routing_lines[0].id or False
-            for routing_line in routing_lines:
-                if routing_line.name in work_order['name']:
-                    routing_line_id = routing_line.id
+            domain = [('routing_id', '=', routing_id),
+                      ('sequence', '=', seq),
+                      ('workcenter_id', '=', work_order['workcenter_id'])]
+            routing_lines = routing_line_obj.search(domain)
+            routing_line = (routing_lines and routing_lines[0] or
+                            routing_line_obj)
+            for rl in routing_lines:
+                if rl.name in work_order['name']:
+                    routing_line = rl
                     break
-            wc = routing_line_obj.browse(routing_line_id)
-            cycle = int(math.ceil(factor / wc.cycle_nbr))
+            wc = routing_line
+            cycle = wc.cycle_nbr and int(math.ceil(factor / wc.cycle_nbr)) or 0
             hour = wc.hour_nbr * cycle
             default_wc_line = wc.op_wc_lines.filtered(lambda r: r.default)
             work_order['cycle'] = cycle
             work_order['hour'] = hour
             work_order['time_start'] = default_wc_line.time_start or 0.0
             work_order['time_stop'] = default_wc_line.time_stop or 0.0
-            if 'routing_wc_line' not in work_order:
-                work_order['routing_wc_line'] = routing_line_id
-                work_order['do_production'] = wc.do_production
+            work_order['routing_wc_line'] = routing_line.id
+            work_order['do_production'] = wc.do_production
         return result2
 
     @api.multi
