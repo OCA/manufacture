@@ -27,6 +27,8 @@ class mrp_bom(osv.osv):
 
     def get_child_boms(self, cr, uid, ids, context=None):
         result = {}
+        if not ids:
+            return result
         for curr_id in ids:
             result[curr_id] = True
         # Now add the children
