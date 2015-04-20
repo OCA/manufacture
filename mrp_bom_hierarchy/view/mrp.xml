@@ -2,44 +2,19 @@
 <openerp>
     <data>
 
-
         <record id="mrp_bom_form_view" model="ir.ui.view">
             <field name="name">mrp.bom.form</field>
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
-                <xpath
-                        expr="//notebook/page/field[@name='bom_lines']/tree//field[@name='product_id']" position="before">
-                    <field name="has_child"/>
-                    <field name="product_has_own_bom"/>
-                </xpath>
-            </field>
-        </record>
-
-       <record id="mrp_bom_tree_view" model="ir.ui.view">
-            <field name="name">mrp.bom.tree</field>
-            <field name="model">mrp.bom</field>
-            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
-            <field name="field_parent">child_complete_ids</field>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="has_child"/>
-                </xpath>
-            </field>
-        </record>
-
-       <record id="mrp_bom_component_tree_view" model="ir.ui.view">
-            <field name="name">mrp.bom.component.tree</field>
-            <field name="model">mrp.bom</field>
-           <field name="inherit_id" ref="mrp.mrp_bom_component_tree_view"/>
-            <field name="field_parent">child_complete_ids</field>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="is_parent"/>
-                    <field name="has_child"/>
-                </xpath>
-                <xpath expr="//field[@name='product_id']" position="after">
-                    <field name="product_has_own_bom"/>
+                <xpath expr="//notebook/page/field[@name='bom_lines']/tree//field[@name='product_id']" position="after">
+                    <field name="is_parent" invisible="1"/>
+                    <field name="product_has_own_bom" invisible="1"/>
+                    <button string="View product's BOM components"
+                        name="action_openProductBOMTreeView"
+                        type="object"
+                        icon="terp-folder-orange"
+                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('is_parent', '=', True)]}"/>
                 </xpath>
             </field>
         </record>
@@ -78,20 +53,21 @@
                         icon="STOCK_GO_DOWN"/>
                     <field name="complete_bom_hierarchy_code"/>
                     <field name="bom_hierarchy_indent"/>
-                    <field name="code"/>
-                    <field name="name"/>
                     <field name="sequence"/>
+                    <field name="code"/>
                     <field name="position"/>
+                    <field name="name"/>
                     <field name="bom_id"/>
-                    <field name="product_id"/>
+                    <field name="is_parent" invisible="1"/>
+                    <field name="product_id" context="{'default_supply_method':'produce'}" on_change="onchange_product_id(product_id, name)"/>
                     <field name="product_has_own_bom" invisible="1"/>
-                    <button string="View product's BOMs"
+                    <button string="View product's BOM components"
                         name="action_openProductBOMTreeView"
                         type="object"
                         icon="terp-folder-orange"
-                        attrs="{'invisible': [('product_has_own_bom', '=', False)]}"/>
+                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('is_parent', '=', True)]}"/>
                     <field name="product_qty"/>
-                    <field name="product_uom" groups="product.group_uom"/>
+                    <field name="product_uom" on_change="onchange_uom(product_id, product_uom)" groups="product.group_uom"/>
                     <field name="type"/>
                     <field name="method"/>
                     <field name="routing_id" groups="mrp.group_mrp_routings"/>
@@ -101,16 +77,10 @@
             </field>
         </record>
 
-        <record id="action_mrp_bom_hierarchy_tree" model="ir.actions.act_window">
-            <field name="name">Bill of Material Hierarchy</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">mrp.bom</field>
-            <field name="view_type">form</field>
+        <record id="mrp.mrp_bom_form_action2" model="ir.actions.act_window">
             <field name="view_id" ref="mrp_bom_hierarchy_tree_view"/>
-            <field name="domain">[]</field>
-            <field name="context">{'search_default_is_parent':True}</field>
         </record>
-
+        
         <record id="action_mrp_bom_hierarchy_tree2"
                 model="ir.actions.act_window">
             <field name="name">Bill of Material Hierarchy</field>
@@ -120,12 +90,6 @@
             <field name="view_id" ref="mrp_bom_hierarchy_tree_view"/>
             <field name="domain">[]</field>
         </record>
-
-        <menuitem
-            action="action_mrp_bom_hierarchy_tree"
-            id="menu_mrp_bom_hierarchy_form_action"
-            parent="mrp.menu_mrp_bom"
-            sequence="11"/>
 
     </data>
 </openerp>
