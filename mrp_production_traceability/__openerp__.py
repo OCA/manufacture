@@ -20,19 +20,28 @@
 #
 ##############################################################################
 {
-    'name': 'MRP Production Traceability',
-    'version': "1.0",
+    "name": "MRP Production Traceability",
+    "version": "1.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    'website': "http://www.odoomrp.com",
-    'category': 'Manufacturing',
-    'depends': ["mrp",
-                "stock",
-                ],
-    'data': ["views/mrp_production_view.xml",
-             "views/track_lot_view.xml",
-             "views/stock_move_view.xml",
-             ],
-    'installable': True,
+    "website": "http://www.odoomrp.com",
+    "category": "Manufacturing",
+    "contributors": [
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
+        "Daniel Campos <danielcampos@avanzosc.es>",
+        "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
+    ],
+    "depends": [
+        "mrp",
+        "stock",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/mrp_production_view.xml",
+        "views/track_lot_view.xml",
+        "views/stock_move_view.xml",
+    ],
+    "installable": True,
 }
