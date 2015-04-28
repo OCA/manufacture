@@ -31,7 +31,7 @@
     "contributors": [
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Ana Juaristi <ajuaristo@gmail.com>",
+        "Ana Juaristi <ajuaristio@gmail.com>",
     ],
     "category": "Quality control",
     "depends": [
