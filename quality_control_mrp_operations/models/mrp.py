@@ -128,16 +128,18 @@ class MrpProductionWorkcenterLine(models.Model):
     @api.one
     @api.model
     def create_quality_test(self):
-        test_obj = self.env['qc.inspection']
         vals = {
             'workcenter_line_id': self.id,
             'production_id': self.production_id.id,
             'test': self.qtemplate_id.id,
         }
         if self.qtemplate_id.object_id:
-            vals.update({'object_id': self.qtemplate_id.object_id.id})
-        test = test_obj.create(vals)
-        test.set_test(self.qtemplate_id)
+            vals['object_id'] = "%s,%s" % (
+                self.qtemplate_id.object_id._name,
+                self.qtemplate_id.object_id.id)
+        inspection = self.env['qc.inspection'].create(vals)
+        inspection.inspection_lines = inspection._prepare_inspection_lines(
+            self.qtemplate_id)
         return True
 
     @api.one
