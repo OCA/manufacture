@@ -88,12 +88,12 @@ To contribute to this module, please visit http://odoo-community.org.
     'website': 'http://www.eficent.com',
     'license': 'AGPL-3',
     "depends": ['mrp'],
-    "data": ['mrp_demo.xml'],
+    "data": [],
     'test': [
         'test/mrp_users.yml',
         'test/order_demo.yml',
     ],
-    "demo": [],
+    "demo": ['mrp_demo.xml'],
     "active": False,
     "installable": True
 }
