@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Resource: mrp.bom -->
+        <record id="bom_1" model="mrp.bom">
+            <field name="name">Server customized with 2 RAIDs</field>
+            <field name="product_id" ref="product.product_product_4"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">1</field>
+            <field name="routing_id" ref="mrp.mrp_routing_1"/>
+            <field name="type">normal</field>
+        </record>
+
+        <record id="bom_2" model="mrp.bom">
+            <field name="name">Windows 7 Professional</field>
+            <field name="product_id" ref="product.product_product_40"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">2</field>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="bom_1"/>
+        </record>
+
+        <record id="bom_3" model="mrp.bom">
+            <field name="name">RAID 1</field>
+            <field name="product_id" ref="product.product_product_19"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">10</field>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="bom_1"/>
+        </record>
+
+        <record id="bom_3_1" model="mrp.bom">
+            <field name="name">500GB HDD</field>
+            <field name="product_id" ref="product.product_product_17"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">5</field>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="bom_3"/>
+        </record>
+
+        <record id="bom_4" model="mrp.bom">
+            <field name="name">RAID 2</field>
+            <field name="product_id" ref="product.product_product_18"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">10</field>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="bom_1"/>
+        </record>
+
+        <record id="bom_4_1" model="mrp.bom">
+            <field name="name">1TB HDD</field>
+            <field name="product_id" ref="product.product_product_17"/>
+            <field name="product_qty">2</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="sequence">5</field>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="bom_4"/>
+        </record>
+
+    </data>
+</openerp>
