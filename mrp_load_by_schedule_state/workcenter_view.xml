@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="mrp_load.mrp_workcenter_tree_view"/>
     <field name="arch" type="xml">
         <field name="load" position="before">
-            <field name="unable_load" widget="float_time" sum="Unable"/>
+            <field name="waiting_load" widget="float_time" sum="Waiting"/>
             <field name="todo_load" widget="float_time" sum="Todo"/>
             <field name="scheduled_load" widget="float_time" sum="Scheduled"/>
         </field>
@@ -19,12 +19,11 @@
     <field name="inherit_id"
            ref="mrp_workcenter_workorder_link.mrp_workcenter_view"/>
     <field name="arch" type="xml">
-        <!--<xpath expr="//notebook/page[@name='workorder']//field[@name='production_line_ids']"-->
-        <!--       position="domain">-->
-        <!--    <domain>[('state', 'not in', ['done', 'cancel]), ('schedule_state', 'in', ['scheduled'])]</domain>-->
-        <!--</xpath>-->
         <xpath expr="//notebook/page[@name='workorder']//field[@name='production_line_ids']"
-               position="before">
+               position="attributes">
+            <attribute name="domain">[('state', 'not in', ['done', 'cancel]), ('schedule_state', 'in', ['scheduled'])]</attribute>
+        </xpath>
+        <xpath expr="//notebook/page[@name='workorder']/group[1]" position="inside">
           <div name="filter_display">List filtered on Schedule: 'scheduled'</div>
           <button name="button_order_workorders_in_workcenter"
                   string="Scheduling"
@@ -33,26 +32,91 @@
                   icon="STOCK_REFRESH"
                   type="object"/>
         </xpath>
-        <xpath expr="//notebook/page[last()]" position="before">
-            <page string="Criterious" name="field">
-                <group col="6">
-                <div col="4">
-                    <label for="ordering_field_ids"/>
-                    <field name="ordering_field_ids">
-                        <tree editable="bottom">
-                            <field name="sequence"/>
-                            <field name="field_id"/>
-                            <field name="order"/>
-                            <field name="ttype"/>
+
+        <xpath expr="//notebook" position="inside">
+            <page string="Ordering">
+                <group>
+                    <field name="ordering_key_id"/>
+                    <field name="workcenter_line_ids" colspan="4" nolabel="True">
+                        <tree>
+                            <field name="routing_id"/>
+                            <field name="name"/>
+                            <field name="priority"/>
                         </tree>
                     </field>
-                </div>
                 </group>
             </page>
         </xpath>
     </field>
 </record>
 
+<record id="view_mrp_workcenter_ordering_key_tree" model="ir.ui.view">
+    <field name="model">mrp.workcenter.ordering.key</field>
+    <field name="arch" type="xml">
+        <tree string="Ordering Key">
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_mrp_workcenter_ordering_key_form" model="ir.ui.view">
+    <field name="model">mrp.workcenter.ordering.key</field>
+    <field name="arch" type="xml">
+        <form string="Ordering Key" version="7.0">
+            <h1>
+                <label for="name" class="oe_edit_only"/>
+                <field name="name" select="1"/>
+            </h1>
+            <field name="field_ids">
+                <tree editable="top">
+                    <field name="sequence"/>
+                    <field name="field_id"/>
+                    <field name="order"/>
+                    <field name="ttype"/>
+                </tree>
+            </field>
+        </form>
+    </field>
+</record>
+
+<record id="view_mrp_workcenter_ordering_key_search" model="ir.ui.view">
+    <field name="model">mrp.workcenter.ordering.key</field>
+    <field name="arch" type="xml">
+        <search string="Ordering Key">
+            <field name="name" select="True"/>
+        </search>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="act_open_mrp_workcenter_ordering_key_view">
+    <field name="name">Ordering Key</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">mrp.workcenter.ordering.key</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="view_mrp_workcenter_ordering_key_search"/>
+    <field name="domain">[]</field>
+    <field name="context">{}</field>
+</record>
+
+<record model="ir.actions.act_window.view" id="act_open_mrp_workcenter_ordering_key_view_form">
+    <field name="act_window_id" ref="act_open_mrp_workcenter_ordering_key_view"/>
+    <field name="sequence" eval="20"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_mrp_workcenter_ordering_key_form"/>
+</record>
+
+<record model="ir.actions.act_window.view" id="act_open_mrp_workcenter_ordering_key_view_tree">
+    <field name="act_window_id" ref="act_open_mrp_workcenter_ordering_key_view"/>
+    <field name="sequence" eval="10"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="view_mrp_workcenter_ordering_key_tree"/>
+</record>
+
+<menuitem id="menu_mrp_workcenter_ordering_key"
+    parent="mrp.menu_mrp_planning"
+    sequence="40"
+    action="act_open_mrp_workcenter_ordering_key_view"/>
 
   </data>
 </openerp>
