@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import STATIC_STATES
+from collections import defaultdict
 
 COMPLEX_WORK_ORDER_FIELDS = [
     'message_follower_ids',
@@ -125,24 +126,17 @@ class MrpWorkcenter(orm.Model):
                                "GROUP BY wl.workcenter_id, mp.schedule_state"))
         return query
 
+    def _set_load_in_vals(self, vals, elm):
+        vals[elm['workcenter']]['%s_load' % elm['schedule_state']] \
+            += elm['hour']
+        vals[elm['workcenter']]['load'] += elm['hour']
+
     def _prepare_load_vals(self, cr, uid, result, context=None):
         super(MrpWorkcenter, self)._prepare_load_vals(
             cr, uid, result, context=context)
-        vals = {}
+        vals = defaultdict(lambda: defaultdict(float))
         for elm in result:
-            sched = elm['schedule_state']
-            workcenter = elm['workcenter']
-            if workcenter not in vals:
-                vals[workcenter] = {
-                    'load': elm['hour'],
-                    '%s_load' % sched: elm['hour'],
-                }
-            else:
-                vals[workcenter]['load'] += elm['hour']
-                if '%s_load' % sched in vals[workcenter]:
-                    vals[workcenter]['%s_load' % sched] += elm['hour']
-                else:
-                    vals[workcenter]['%s_load' % sched] = elm['hour']
+            self._set_load_in_vals(vals, elm)
         return vals
 
     def _erase_cached_data(self, cr, uid, workcenter_ids, context=None):
