@@ -118,7 +118,6 @@ class MrpWorkcenter(orm.Model):
                     cr, uid, calendar, now,
                     1, resource=workc.id,
                     context=context).strftime(ISO_FORMAT)
-                print vals
             else:
                 vals[workc.id] = {'availability': erp_now}
         return vals
