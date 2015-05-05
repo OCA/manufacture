@@ -49,6 +49,27 @@ class MrpProduction(orm.Model):
         'schedule_state': 'waiting',
     }
 
+    def _check_planned_state(self, cr, uid, ids, context=None):
+        production_ids = self.search(cr, uid, [
+            ['id', 'in', ids],
+            ['state', '=', 'confirmed'],
+            ['schedule_state', '!=', 'waiting'],
+            ], context=context)
+        if production_ids:
+            production_name = []
+            for production in self.browse(cr, uid, production_ids,
+                                          context=context):
+                production_name.append(production.name)
+            raise orm.except_orm(
+                _('Error'),
+                _('The following production order are not ready and can not '
+                  'be scheduled yet : %s') % ', '.join(production_name))
+        return True
+
+    _constraints = [
+        (_check_planned_state, 'useless', ['schedule_state', 'state']),
+    ]
+
     def _get_values_from_selection(self, cr, uid, ids, field, context=None):
         res = super(MrpProduction, self)._get_values_from_selection(
             cr, uid, ids, field, context=context)
