@@ -25,7 +25,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as ISO_FORMAT
 from datetime import datetime
 
 
-ACTIVE_PRODUCTION_STATES = ['ready', 'confirmed', 'in_production']
+ACTIVE_PRODUCTION_STATES = ['ready', 'in_production']
 
 
 class MrpWorkcenter(orm.Model):
@@ -91,11 +91,9 @@ class MrpWorkcenter(orm.Model):
             cr.execute(self._get_sql_query(
                 cr, uid, workcenter_ids, context=context))
             result = cr.dictfetchall()
-            print 'result', result
             if result:
                 vals = self._prepare_load_vals(
                     cr, uid, result, context=context)
-                print 'vals', vals
                 vals = self._compute_resource_availability(
                     cr, uid, workcenter_ids, vals, context=context)
                 for workcenter, values in vals.items():
