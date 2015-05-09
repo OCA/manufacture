@@ -46,19 +46,19 @@ class MrpWorkcenter(orm.Model):
         return []
 
     def button_workcenter_line(self, cr, uid, ids, context=None):
-        for elm in self.browse(cr, uid, ids, context=context):
-            domain = self._get_workc_domain(cr, uid, context=context)
-            workcenter_ids = self.search(
-                cr, uid, domain, context=context)
-            return {
-                'view_mode': 'tree,form',
-                'name': "'%s' Operations" % elm.name,
-                'res_model': 'mrp.production.workcenter.line',
-                'type': 'ir.actions.act_window',
-                'domain': [('workcenter_id', 'in', workcenter_ids),
-                           ('state', 'not in', STATIC_STATES)],
-                'target': 'current',
-            }
+        assert len(ids) == 1, 'You can open only an record'
+        elm = self.browse(cr, uid, ids[0], context=context)
+        domain = self._get_workc_domain(cr, uid, context=context)
+        workcenter_ids = self.search(cr, uid, domain, context=context)
+        return {
+            'view_mode': 'tree,form',
+            'name': "'%s' Operations" % elm.name,
+            'res_model': 'mrp.production.workcenter.line',
+            'type': 'ir.actions.act_window',
+            'domain': [('workcenter_id', 'in', workcenter_ids),
+                       ('state', 'not in', STATIC_STATES)],
+            'target': 'current',
+        }
 
 
 class MrpProductionWorkcenterLine(orm.Model):
@@ -66,14 +66,15 @@ class MrpProductionWorkcenterLine(orm.Model):
     _order = 'sequence ASC, name ASC'
 
     def button_workcenter(self, cr, uid, ids, context=None):
-        for elm in self.browse(cr, uid, ids, context=context):
-            _, view_id = self.pool['ir.model.data'].get_object_reference(
-                cr, uid, 'mrp', 'mrp_workcenter_view')
-            action = {
-                'view_id': view_id,
-                'res_id': elm.workcenter_id.id,
-                'name': "'%s' Workcenter" % elm.name,
-                'view_mode': 'form',
-            }
-            action.update(WORKCENTER_ACTION)
-            return action
+        assert len(ids) == 1, 'You can open only an record'
+        elm = self.browse(cr, uid, ids[0], context=context)
+        _, view_id = self.pool['ir.model.data'].get_object_reference(
+            cr, uid, 'mrp', 'mrp_workcenter_view')
+        action = {
+            'view_id': view_id,
+            'res_id': elm.workcenter_id.id,
+            'name': "'%s' Workcenter" % elm.name,
+            'view_mode': 'form',
+        }
+        action.update(WORKCENTER_ACTION)
+        return action
