@@ -79,11 +79,11 @@ class MrpWorkcenter(orm.Model):
         MrpWorkCter_m.write(cr, uid, workcenter_ids, vals, context=context)
         return True
 
-    def _get_workc_domain(self, cr, uid, context=None):
-        return [('online', '=', True)]
+    def _get_workcenter_domain(self, cr, uid, context=None):
+        return []
 
     def _compute_load(self, cr, uid, context=None):
-        domain = self._get_workc_domain(cr, uid, context=context)
+        domain = self._get_workcenter_domain(cr, uid, context=context)
         workcenter_ids = self.search(cr, uid, domain, context=context)
         if workcenter_ids:
             self._erase_cached_data(cr, uid, workcenter_ids, context=context)
