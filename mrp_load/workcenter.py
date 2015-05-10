@@ -22,7 +22,8 @@
 from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import WORKCENTER_ACTION
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as ISO_FORMAT
-from datetime import datetime
+from datetime import datetime, timedelta
+import pytz
 
 
 ACTIVE_PRODUCTION_STATES = ['ready', 'in_production']
@@ -39,6 +40,9 @@ class MrpWorkcenter(orm.Model):
         'load': fields.float(
             'Load (h)',
             help="Load for this particular workcenter"),
+        'capacity': fields.float(
+            'Capacity (h)',
+            help="Capacity for this particular workcenter"),
         'availability': fields.datetime(
             string='Available',
             readonly=True,
@@ -100,6 +104,41 @@ class MrpWorkcenter(orm.Model):
                     self.write(cr, uid, workcenter, values, context=context)
         return True
 
+    def _get_calendar(self, cr, uid, workcenter, context=None):
+        if workcenter.calendar_id:
+            return workcenter.calendar_id
+        elif workcenter.company_id.calendar_id:
+            return workcenter.company_id.calendar_id
+        else:
+            raise orm.except_orm(
+                _('Error !'),
+                _('You need to define a calendar for the company !'))
+
+    def _get_capacity_date_to(self, cr, uid, workcenter, date_from,
+                              context=None):
+        #By default the capacity is computed until the end of the day
+        #You can inherit this method to compute it until the end of the week
+        #month... or what you want.
+        #TODO in a long term make this parametrable
+        date_to = datetime(
+            date_from.year,
+            date_from.month,
+            date_from.day) + timedelta(days=1)
+        if context and context.get('tz'):
+            local_tz = pytz.timezone(context['tz'])
+            tz_date_to = local_tz.localize(date_to)
+            date_to = tz_date_to.astimezone(pytz.utc).replace(tzinfo=None)
+        return date_to
+
+    def _get_capacity(self, cr, uid, workcenter, context=None):
+        calendar = self._get_calendar(cr, uid, workcenter, context=context)
+        date_from = datetime.now()
+        date_to = self._get_capacity_date_to(
+            cr, uid, workcenter, date_from, context=context)
+        return self.pool['resource.calendar']._interval_hours_get(
+            cr, uid, calendar.id, date_from, date_to,
+            timezone_from_uid=uid, context=context)
+
     def _compute_resource_availability(self, cr, uid, ids, vals,
                                        context=None):
         ResCal_m = self.pool['resource.calendar']
@@ -108,23 +147,31 @@ class MrpWorkcenter(orm.Model):
         # horizon = 1  # day
         # vals[workc.id]['load']
         for workc in self.browse(cr, uid, ids, context=context):
+            capacity = self._get_capacity(cr, uid, workc, context=context)
             calendar = False
             # user company calendar is used, if not calendar
             if workc.calendar_id:
                 calendar = workc.calendar_id.id
             if workc.id in vals:
                 # _get_date exclude not working days
-                vals[workc.id]['availability'] = ResCal_m._get_date(
+                date_end = ResCal_m._get_date(
                     cr, uid, calendar, now,
                     1, resource=workc.id,
                     context=context).strftime(ISO_FORMAT)
             else:
                 vals[workc.id] = {'availability': erp_now}
+            vals[workc.id].update({
+                'availability': date_end,
+                'capacity': capacity,
+                })
         return vals
 
     def _to_recompute(self, cr, uid, context=None):
         """ Override in case of performance issue
         """
+        #Skip computing when testing the view at the install/update
+        if context.get('check_view_ids'):
+            return False
         return True
 
     def toogle_online(self, cr, uid, ids, context=None):
