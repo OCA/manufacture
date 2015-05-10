@@ -13,12 +13,12 @@
             <field name="load" widget="float_time" sum="Load"/>
             <field name="capacity" widget="float_time" sum="Capacity"/>
             <field name="date_end"/>
-            <button name="toogle_online"
+            <button name="set_online"
                     string="Click to set online => will be used in capacity computation"
                     icon="gtk-disconnect"
                     attrs="{'invisible': [('online', '=', True)]}"
                     type="object"/>
-            <button name="toogle_online"
+            <button name="set_offline"
                     string="Click to set offline => workcenters children will also set offline"
                     icon="gtk-connect"
                     attrs="{'invisible': [('online', '=', False)]}"
