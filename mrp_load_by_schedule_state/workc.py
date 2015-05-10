@@ -168,7 +168,6 @@ class MrpWorkcenter(orm.Model):
                 ('state', 'not in', STATIC_STATES),
                 ('workcenter_id', '=', workcenter.id),
                 ], order=', '.join(order_by), context=context)
-            import pdb; pdb.set_trace()
             count = 1
             for prod_line_id in prod_line_ids:
                 vals = {'sequence': count}
