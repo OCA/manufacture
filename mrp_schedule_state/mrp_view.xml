@@ -61,13 +61,17 @@
            ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
     <field name="arch" type="xml">
         <field name="workcenter_id" position="before">
+            <field name="planned_mo"/>
             <field name="schedule_state"/>
             <button name="iter_selection_next"
                     string="next schedule state"
                     context="{'selection_field': 'schedule_state'}"
                     icon="gtk-go-forward"
                     type="object"/>
-        </field>
+            </field>
+        <xpath expr="//tree/field[@name='date_planned']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
     </field>
 </record>
 
