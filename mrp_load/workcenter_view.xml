@@ -11,6 +11,7 @@
     <field name="arch" type="xml">
         <field name="resource_type" position="before">
             <field name="load" widget="float_time" sum="Load"/>
+            <field name="capacity" widget="float_time" sum="Load"/>
             <field name="availability"/>
             <button name="toogle_online"
                     string="Click to set online => will be used in capacity computation"
