@@ -21,6 +21,8 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from datetime import datetime
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class MrpProduction(orm.Model):
@@ -78,10 +80,24 @@ class MrpProduction(orm.Model):
             res = self._set_schedule_states(cr, uid, context=context)
         return res
 
+    def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
+        if vals.get('schedule_state') == 'scheduled':
+            vals['date_planned'] =\
+                datetime.now().strftime(DEFAULT_SERVER_DATE_FORMAT)
+        return super(MrpProduction, self)\
+            .write(cr, uid, ids, vals, context=context)
+
 
 class MrpProductionWorkcenterLine(orm.Model):
     _inherit = ['mrp.production.workcenter.line', 'abstract.selection.rotate']
     _name = 'mrp.production.workcenter.line'
+
+    def _get_operation_from_production(self, cr, uid, ids, context=None):
+        return self.pool['mrp.production.workcenter.line'].search(cr, uid, [
+            ['production_id', '=', ids],
+            ], context=context)
 
     _columns = {
         'schedule_state': fields.related(
@@ -90,6 +106,19 @@ class MrpProductionWorkcenterLine(orm.Model):
             string='MO Schedule',
             help="'sub state' of MO state 'Ready To Produce' dedicated to "
                  "planification, scheduling and ordering"),
+        'planned_mo': fields.related(
+            'production_id',
+            'date_planned',
+            type='date',
+            string='Planned MO',
+            readonly=True,
+            store={
+                'mrp.production': [
+                    _get_operation_from_production,
+                    ['date_planned'],
+                    10,
+                ],
+            })
     }
 
     def _iter_selection(self, cr, uid, ids, direction, context=None):
