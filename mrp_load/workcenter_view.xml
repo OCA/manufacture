@@ -31,20 +31,6 @@
     </field>
 </record>
 
-
-<record id="mrp_workcenter_view" model="ir.ui.view">
-    <field name="model">mrp.workcenter</field>
-    <field name="inherit_id"
-           ref="mrp_workcenter_workorder_link.mrp_workcenter_view"/>
-    <field name="arch" type="xml">
-        <xpath expr="//notebook/page[@name='workorder']//field[@name='production_line_ids']/tree/field[@name='date_planned']"
-               position="before">
-            <field name="planned_mo"/>
-        </xpath>
-    </field>
-</record>
-
-
 <menuitem
     id="menu_mrp_load"
     name="Load"
