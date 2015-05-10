@@ -24,4 +24,5 @@ from . import (
     workcenter,
     production_line,
     transient,
+    controllers,
 )
