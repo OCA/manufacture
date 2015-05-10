@@ -53,21 +53,43 @@ class MrpWorkcenter(orm.Model):
         'online': True,
     }
 
-    def _add_sql_clauses(self, cr, uid, workcenter_ids, context=None):
-        states_clause = "'%s'" % "', '".join(ACTIVE_PRODUCTION_STATES)
-        workcenters_clause = ", ".join([str(x) for x in workcenter_ids])
-        return (states_clause, workcenters_clause)
+    def _get_sql_load_params(self, cr, uid, ids, context=None):
+        return {
+            'state': tuple(ACTIVE_PRODUCTION_STATES),
+            'workcenter_ids': tuple(ids),
+            }
 
-    def _get_sql_query(self, cr, uid, workcenter_ids, context=None):
-        query = """
-            SELECT wl.workcenter_id AS workcenter, sum(wl.hour) AS hour
-            FROM mrp_production_workcenter_line wl
-                LEFT JOIN mrp_production mp ON wl.production_id = mp.id
-            WHERE mp.state IN (%s) and wl.workcenter_id IN (%s)
-            GROUP BY wl.workcenter_id
-        """ % (self._add_sql_clauses(cr, uid, workcenter_ids,
-                                     context=context))
-        return query
+    def _get_sql_load_select(self, cr, uid, ids, context=None):
+        return [
+            'wl.workcenter_id AS workcenter',
+            'sum(wl.hour) AS hour',
+            ]
+    def _get_sql_load_from(self, cr, uid, ids, context=None):
+        return\
+        """mrp_production_workcenter_line wl
+            LEFT JOIN mrp_production mp ON wl.production_id = mp.id"""
+
+    def _get_sql_load_where(self, cr, uid, ids, context=None):
+        return [
+            'mp.state IN %(state)s',
+            'wl.workcenter_id IN %(workcenter_ids)s',
+            ]
+
+    def _get_sql_load_group(self, cr, uid, ids, context=None):
+        return [
+            'wl.workcenter_id',
+            ]
+
+    def _get_sql_load_query(self, cr, uid, ids, context=None):
+        select = self._get_sql_load_select(cr, uid, ids, context=context)
+        from_cl = self._get_sql_load_from(cr, uid, ids, context=context)
+        where = self._get_sql_load_where(cr, uid, ids, context=context)
+        group = self._get_sql_load_group(cr, uid, ids, context=context)
+        return\
+            "SELECT " + ", ".join(select)\
+            + " FROM " + from_cl\
+            + " WHERE " + "AND ".join(where)\
+            + " GROUP BY " + ", ".join(group)
 
     def _prepare_load_vals(self, cr, uid, result, context=None):
         vals = {}
@@ -82,7 +104,9 @@ class MrpWorkcenter(orm.Model):
         return self.recompute_load(cr, uid, ids, context=context)
 
     def recompute_load(self, cr, uid, ids, context=None):
-        cr.execute(self._get_sql_query(cr, uid, ids, context=context))
+        query = self._get_sql_load_query(cr, uid, ids, context=context)
+        params = self._get_sql_load_params(cr, uid, ids, context=context)
+        cr.execute(query, params)
         result = cr.dictfetchall()
         if result:
             vals = self._prepare_load_vals(
