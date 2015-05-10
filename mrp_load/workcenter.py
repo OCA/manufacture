@@ -196,7 +196,5 @@ class MrpWorkcenter(orm.Model):
     def _set_online_to(self, cr, uid, ids, online, context=None):
         self.write(cr, uid, ids, {'online': online}, context=context)
         self.auto_recompute_load(
-            cr, uid,
-            domain=[('id', 'in', ids)],
-            context=context)
+            cr, uid, domain=[('id', 'in', ids)], context=context)
         return True
