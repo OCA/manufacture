@@ -130,6 +130,7 @@ class MrpWorkcenter(orm.Model):
         return group
 
     def _set_load_in_vals(self, data, elm):
+        super(MrpWorkcenter, self)._set_load_in_vals(data, elm)
         field = '%s_load' % elm['schedule_state']
         data[elm['workcenter']][field] += elm['hour']
 
