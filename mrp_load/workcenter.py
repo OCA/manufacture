@@ -21,7 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import WORKCENTER_ACTION
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as ISO_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime, timedelta
 import pytz
 
@@ -43,11 +43,10 @@ class MrpWorkcenter(orm.Model):
         'capacity': fields.float(
             'Capacity (h)',
             help="Capacity for this particular workcenter"),
-        'availability': fields.datetime(
-            string='Available',
+        'date_end': fields.datetime(
+            string='Ending Date',
             readonly=True,
-            help="Better availability date if all work orders of "
-                 "this workcenter are ready to produce as required"),
+            help="Theorical date when all work orders will be done"),
     }
 
     _defaults = {
@@ -85,6 +84,9 @@ class MrpWorkcenter(orm.Model):
 
     def _get_workcenter_domain(self, cr, uid, context=None):
         return []
+
+    def auto_recompute_load(self, cr, uid, context=None):
+        return self._compute_load(cr, uid, context=context)
 
     def _compute_load(self, cr, uid, context=None):
         domain = self._get_workcenter_domain(cr, uid, context=context)
@@ -141,38 +143,30 @@ class MrpWorkcenter(orm.Model):
 
     def _compute_resource_availability(self, cr, uid, ids, vals,
                                        context=None):
-        ResCal_m = self.pool['resource.calendar']
+        calendar_obj = self.pool['resource.calendar']
         now = datetime.now()
-        erp_now = now.strftime(ISO_FORMAT)
-        # horizon = 1  # day
-        # vals[workc.id]['load']
+        if context and context.get('tz'):
+            # be carefull, resource module will not take in account the time
+            # zone. So we have to create a naive localized datetime
+            # to send the right information
+            local_tz = pytz.timezone(context['tz'])
+            tz_now = pytz.utc.localize(now)
+            now = tz_now.astimezone(local_tz).replace(tzinfo=None)
+        erp_now = now.strftime(DEFAULT_SERVER_DATE_FORMAT)
         for workc in self.browse(cr, uid, ids, context=context):
             capacity = self._get_capacity(cr, uid, workc, context=context)
-            calendar = False
-            # user company calendar is used, if not calendar
-            if workc.calendar_id:
-                calendar = workc.calendar_id.id
-            if workc.id in vals:
-                # _get_date exclude not working days
-                date_end = ResCal_m._get_date(
-                    cr, uid, calendar, now,
-                    1, resource=workc.id,
-                    context=context).strftime(ISO_FORMAT)
-            else:
-                vals[workc.id] = {'availability': erp_now}
+            calendar = self._get_calendar(cr, uid, workc, context=context)
+            date_end = None
+            if vals[workc.id].get('load'):
+                res = calendar_obj.interval_get(
+                    cr, uid, calendar.id, now, vals[workc.id]['load'])
+                if res:
+                    date_end = res[-1][-1]
             vals[workc.id].update({
-                'availability': date_end,
+                'date_end': date_end,
                 'capacity': capacity,
                 })
         return vals
-
-    def _to_recompute(self, cr, uid, context=None):
-        """ Override in case of performance issue
-        """
-        #Skip computing when testing the view at the install/update
-        if context.get('check_view_ids'):
-            return False
-        return True
 
     def toogle_online(self, cr, uid, ids, context=None):
         " Called by button in tree view "
@@ -192,12 +186,3 @@ class MrpWorkcenter(orm.Model):
         }
         action.update(WORKCENTER_ACTION)
         return action
-
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
-        if self._to_recompute(cr, uid, context=context):
-            context.update({'method_from': 'fields_view_get'})
-            self._compute_load(cr, uid, context=context)
-        return super(MrpWorkcenter, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type, context=context,
-            toolbar=toolbar, submenu=submenu)
