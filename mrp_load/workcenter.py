@@ -39,7 +39,7 @@ class MrpWorkcenter(orm.Model):
             help="Online workcenters are taken account "
                  "in capacity computing"),
         'load': fields.float(
-            'Load (h)',
+            'Total Load (h)',
             help="Load for this particular workcenter"),
         'capacity': fields.float(
             'Capacity (h)',
@@ -151,8 +151,6 @@ class MrpWorkcenter(orm.Model):
         return date_to
 
     def _get_capacity(self, cr, uid, workcenter, context=None):
-        if not workcenter.online:
-            return 0
         calendar = self._get_calendar(cr, uid, workcenter, context=context)
         date_from = datetime.now()
         date_to = self._get_capacity_date_to(
@@ -174,14 +172,16 @@ class MrpWorkcenter(orm.Model):
 
         erp_now = now.strftime(DEFAULT_SERVER_DATE_FORMAT)
         for workc in self.browse(cr, uid, ids, context=context):
-            capacity = self._get_capacity(cr, uid, workc, context=context)
-            calendar = self._get_calendar(cr, uid, workc, context=context)
             date_end = None
-            if data[workc.id].get('load'):
-                res = calendar_obj.interval_get(
-                    cr, uid, calendar.id, now, vals[workc.id]['load'])
-                if res:
-                    date_end = res[-1][-1]
+            capacity = 0
+            if workc.online:
+                capacity = self._get_capacity(cr, uid, workc, context=context)
+                calendar = self._get_calendar(cr, uid, workc, context=context)
+                if data[workc.id].get('load'):
+                    res = calendar_obj.interval_get(
+                        cr, uid, calendar.id, now, data[workc.id]['load'])
+                    if res:
+                        date_end = res[-1][-1]
             data[workc.id].update({
                 'date_end': date_end,
                 'capacity': capacity,
