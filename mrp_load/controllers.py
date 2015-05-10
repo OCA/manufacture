@@ -33,10 +33,10 @@ class Action(main.Action):
                 .get_object_reference('mrp', 'mrp_workcenter_action')
             if action_id == mrp_action_id:
                 req.session.model('mrp.workcenter')\
-                    .auto_recompute_load(req.context)
+                    .auto_recompute_load(context=req.context)
         except ValueError:
             if action_id == 'mrp.mrp_workcenter_action':
                 req.session.model('mrp.workcenter')\
-                    .auto_recompute_load(req.context)
+                    .auto_recompute_load(context=req.context)
         return super(Action, self).load(
             req, action_id, do_not_eval=do_not_eval)

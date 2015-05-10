@@ -75,35 +75,22 @@ class MrpWorkcenter(orm.Model):
             vals[elm['workcenter']] = {'load': elm['hour']}
         return vals
 
-    def _erase_cached_data(self, cr, uid, workcenter_ids, context=None):
-        " Update to 0 'load' column"
-        MrpWorkCter_m = self.pool['mrp.workcenter']
-        vals = {'load': 0}
-        MrpWorkCter_m.write(cr, uid, workcenter_ids, vals, context=context)
-        return True
+    def auto_recompute_load(self, cr, uid, domain=None, context=None):
+        if not domain:
+            domain = []
+        ids = self.search(cr, uid, domain, context=context)
+        return self.recompute_load(cr, uid, ids, context=context)
 
-    def _get_workcenter_domain(self, cr, uid, context=None):
-        return []
-
-    def auto_recompute_load(self, cr, uid, context=None):
-        return self._compute_load(cr, uid, context=context)
-
-    def _compute_load(self, cr, uid, context=None):
-        domain = self._get_workcenter_domain(cr, uid, context=context)
-        workcenter_ids = self.search(cr, uid, domain, context=context)
-        if workcenter_ids:
-            self._erase_cached_data(cr, uid, workcenter_ids, context=context)
-            # Compute time for workcenters in mrp_production_workcenter_line
-            cr.execute(self._get_sql_query(
-                cr, uid, workcenter_ids, context=context))
-            result = cr.dictfetchall()
-            if result:
-                vals = self._prepare_load_vals(
-                    cr, uid, result, context=context)
-                vals = self._compute_resource_availability(
-                    cr, uid, workcenter_ids, vals, context=context)
-                for workcenter, values in vals.items():
-                    self.write(cr, uid, workcenter, values, context=context)
+    def recompute_load(self, cr, uid, ids, context=None):
+        cr.execute(self._get_sql_query(cr, uid, ids, context=context))
+        result = cr.dictfetchall()
+        if result:
+            vals = self._prepare_load_vals(
+                cr, uid, result, context=context)
+            vals = self._compute_resource_availability(
+                cr, uid, ids, vals, context=context)
+            for workcenter_id, values in vals.items():
+                self.write(cr, uid, workcenter_id, values, context=context)
         return True
 
     def _get_calendar(self, cr, uid, workcenter, context=None):
