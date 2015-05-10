@@ -23,6 +23,7 @@ from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import WORKCENTER_ACTION
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime, timedelta
+from collections import defaultdict
 import pytz
 
 
@@ -64,6 +65,7 @@ class MrpWorkcenter(orm.Model):
             'wl.workcenter_id AS workcenter',
             'sum(wl.hour) AS hour',
             ]
+
     def _get_sql_load_from(self, cr, uid, ids, context=None):
         return\
         """mrp_production_workcenter_line wl
@@ -91,11 +93,14 @@ class MrpWorkcenter(orm.Model):
             + " WHERE " + "AND ".join(where)\
             + " GROUP BY " + ", ".join(group)
 
-    def _prepare_load_vals(self, cr, uid, result, context=None):
-        vals = {}
-        for elm in result:
-            vals[elm['workcenter']] = {'load': elm['hour']}
-        return vals
+    def _get_default_workcenter_vals(self, cr, uid, context=None):
+        return {
+            'load': 0,
+            'date_end': None,
+            }
+
+    def _set_load_in_vals(self, data, elm):
+        data[elm['workcenter']]['load'] += elm['hour']
 
     def auto_recompute_load(self, cr, uid, domain=None, context=None):
         if not domain:
@@ -108,13 +113,15 @@ class MrpWorkcenter(orm.Model):
         params = self._get_sql_load_params(cr, uid, ids, context=context)
         cr.execute(query, params)
         result = cr.dictfetchall()
-        if result:
-            vals = self._prepare_load_vals(
-                cr, uid, result, context=context)
-            vals = self._compute_resource_availability(
-                cr, uid, ids, vals, context=context)
-            for workcenter_id, values in vals.items():
-                self.write(cr, uid, workcenter_id, values, context=context)
+        data = defaultdict(lambda: defaultdict(float))
+        for elm in result:
+            self._set_load_in_vals(data, elm)
+        self._add_capacity_data(cr, uid, ids, data, context=context)
+        defaults = self._get_default_workcenter_vals(cr, uid, context=context)
+        for workcenter_id in ids:
+            vals = defaults.copy()
+            vals.update(data[workcenter_id])
+            self.write(cr, uid, workcenter_id, vals, context=context)
         return True
 
     def _get_calendar(self, cr, uid, workcenter, context=None):
@@ -144,6 +151,8 @@ class MrpWorkcenter(orm.Model):
         return date_to
 
     def _get_capacity(self, cr, uid, workcenter, context=None):
+        if not workcenter.online:
+            return 0
         calendar = self._get_calendar(cr, uid, workcenter, context=context)
         date_from = datetime.now()
         date_to = self._get_capacity_date_to(
@@ -152,8 +161,7 @@ class MrpWorkcenter(orm.Model):
             cr, uid, calendar.id, date_from, date_to,
             timezone_from_uid=uid, context=context)
 
-    def _compute_resource_availability(self, cr, uid, ids, vals,
-                                       context=None):
+    def _add_capacity_data(self, cr, uid, ids, data, context=None):
         calendar_obj = self.pool['resource.calendar']
         now = datetime.now()
         if context and context.get('tz'):
@@ -163,37 +171,32 @@ class MrpWorkcenter(orm.Model):
             local_tz = pytz.timezone(context['tz'])
             tz_now = pytz.utc.localize(now)
             now = tz_now.astimezone(local_tz).replace(tzinfo=None)
+
         erp_now = now.strftime(DEFAULT_SERVER_DATE_FORMAT)
         for workc in self.browse(cr, uid, ids, context=context):
             capacity = self._get_capacity(cr, uid, workc, context=context)
             calendar = self._get_calendar(cr, uid, workc, context=context)
             date_end = None
-            if vals[workc.id].get('load'):
+            if data[workc.id].get('load'):
                 res = calendar_obj.interval_get(
                     cr, uid, calendar.id, now, vals[workc.id]['load'])
                 if res:
                     date_end = res[-1][-1]
-            vals[workc.id].update({
+            data[workc.id].update({
                 'date_end': date_end,
                 'capacity': capacity,
                 })
-        return vals
 
-    def toogle_online(self, cr, uid, ids, context=None):
-        " Called by button in tree view "
-        for elm in self.browse(cr, uid, ids, context=context):
-            online = True
-            online_ids = ids
-            if elm.online:
-                online = False
-            vals = {'online': online}
-            self.write(cr, uid, online_ids, vals, context=context)
-        if self._to_recompute(cr, uid, context=context):
-            context.update({'method_from': 'toogle_online'})
-            self._compute_load(cr, uid, context=context)
-        action = {
-            'view_mode': 'tree,form',
-            'context': {'search_default_group_by_workcenter': 1},
-        }
-        action.update(WORKCENTER_ACTION)
-        return action
+    def set_online(self, cr, uid, ids, context=None):
+        return self._set_online_to(cr, uid, ids, True, context=context)
+
+    def set_offline(self, cr, uid, ids, context=None):
+        return self._set_online_to(cr, uid, ids, False, context=context)
+
+    def _set_online_to(self, cr, uid, ids, online, context=None):
+        self.write(cr, uid, ids, {'online': online}, context=context)
+        self.auto_recompute_load(
+            cr, uid,
+            domain=[('id', 'in', ids)],
+            context=context)
+        return True
