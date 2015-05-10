@@ -93,10 +93,27 @@ class MrpBom(orm.Model):
 
 class MrpProductionWorkcenterLine(orm.Model):
     _inherit = 'mrp.production.workcenter.line'
-    _order = 'date_planned, sequence'
+    _order = 'sequence'
+
+    def _get_operation_from_routing(self, cr, uid, ids, context=None):
+        return self.pool['mrp.production.workcenter.line'].search(cr, uid, [
+            ['routing_line_id', '=', ids],
+            ], context=context)
 
     _columns = {
-        'priority': fields.integer('Priority'),
+        'priority': fields.related(
+            'routing_line_id',
+            'priority',
+            type='integer',
+            string='Priority',
+            store={
+                'mrp.routing.workcenter': [
+                    _get_operation_from_routing,
+                    ['priority'],
+                    10,
+                ],
+            },
+        ),
     }
 
 
@@ -142,19 +159,20 @@ class MrpWorkcenter(orm.Model):
                 default.update({col: 0})
         return default
 
-    def button_order_workorders_in_workcenter(
-            self, cr, uid, ids, context=None):
-        for elm in self.browse(cr, uid, ids, context=context):
-            ProdLine_m = self.pool['mrp.production.workcenter.line']
+    def button_order_workorder(self, cr, uid, ids, context=None):
+        workorder_obj = self.pool['mrp.production.workcenter.line']
+        for workcenter in self.browse(cr, uid, ids, context=context):
             order_by = ['%s %s' % (row.field_id.name, row.order)
-                        for row in elm.ordering_field_ids]
-            prod_line_ids = ProdLine_m.search(cr, uid, [
+                        for row in workcenter.ordering_key_id.field_ids]
+            prod_line_ids = workorder_obj.search(cr, uid, [
                 ('state', 'not in', STATIC_STATES),
-                ('workcenter_id', '=', elm.id), ],
-                order=', '.join(order_by), context=context)
+                ('workcenter_id', '=', workcenter.id),
+                ], order=', '.join(order_by), context=context)
+            import pdb; pdb.set_trace()
             count = 1
             for prod_line_id in prod_line_ids:
                 vals = {'sequence': count}
                 count += 1
-                ProdLine_m.write(cr, uid, prod_line_id, vals, context=context)
+                workorder_obj.write(
+                    cr, uid, prod_line_id, vals, context=context)
         return True

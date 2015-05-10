@@ -25,7 +25,7 @@
         </xpath>
         <xpath expr="//notebook/page[@name='workorder']/group[1]" position="inside">
           <div name="filter_display">List filtered on Schedule: 'scheduled'</div>
-          <button name="button_order_workorders_in_workcenter"
+          <button name="button_order_workorder"
                   string="Scheduling"
                   class="oe_link"
                   help="Allows to set a sequence number according to priority defined by Proposed Order field"
@@ -38,7 +38,7 @@
                 <group>
                     <field name="ordering_key_id"/>
                     <field name="workcenter_line_ids" colspan="4" nolabel="True">
-                        <tree>
+                        <tree editable="top" create="0">
                             <field name="routing_id"/>
                             <field name="name"/>
                             <field name="priority"/>
@@ -46,6 +46,13 @@
                     </field>
                 </group>
             </page>
+        </xpath>
+
+        <xpath expr="//tree/field[@name='date_planned']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//tree/field[@name='date_planned']" position="after">
+            <field name="planned_mo"/>
         </xpath>
     </field>
 </record>
