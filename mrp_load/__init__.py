@@ -22,7 +22,6 @@
 from . import (
     resource,
     workcenter,
-    production_line,
     transient,
     controllers,
 )
