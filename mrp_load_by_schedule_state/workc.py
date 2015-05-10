@@ -21,7 +21,6 @@
 
 from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import STATIC_STATES
-from collections import defaultdict
 
 COMPLEX_WORK_ORDER_FIELDS = [
     'message_follower_ids',
@@ -118,36 +117,29 @@ class MrpWorkcenter(orm.Model):
             help="Allow to define Work Orders ordering priority"),
     }
 
-    def _get_sql_query(self, cr, uid, ids, context=None):
-        query = super(MrpWorkcenter, self)._get_sql_query(
+    def _get_sql_load_select(self, cr, uid, ids, context=None):
+        select = super(MrpWorkcenter, self)._get_sql_load_select(
             cr, uid, ids, context=context)
-        query = (query.replace("FROM", ", mp.schedule_state\nFROM")
-                      .replace("GROUP BY wl.workcenter_id",
-                               "GROUP BY wl.workcenter_id, mp.schedule_state"))
-        return query
+        select.append('mp.schedule_state')
+        return select
 
-    def _set_load_in_vals(self, vals, elm):
-        vals[elm['workcenter']]['%s_load' % elm['schedule_state']] \
-            += elm['hour']
-        vals[elm['workcenter']]['load'] += elm['hour']
+    def _get_sql_load_group(self, cr, uid, ids, context=None):
+        group = super(MrpWorkcenter, self)._get_sql_load_group(
+            cr, uid, ids, context=context)
+        group.append('mp.schedule_state')
+        return group
 
-    def _prepare_load_vals(self, cr, uid, result, context=None):
-        super(MrpWorkcenter, self)._prepare_load_vals(
-            cr, uid, result, context=context)
-        vals = defaultdict(lambda: defaultdict(float))
-        for elm in result:
-            self._set_load_in_vals(vals, elm)
-        return vals
+    def _set_load_in_vals(self, data, elm):
+        field = '%s_load' % elm['schedule_state']
+        data[elm['workcenter']][field] += elm['hour']
 
-    def _erase_cached_data(self, cr, uid, workcenter_ids, context=None):
-        " Update to 0 '*load' columns "
-        MrpWorkCter_m = self.pool['mrp.workcenter']
-        vals = {}
-        for col in MrpWorkCter_m._columns:
+    def _get_default_workcenter_vals(self, cr, uid, context=None):
+        default = super(MrpWorkcenter, self)._get_default_workcenter_vals(
+            cr, uid, context=context)
+        for col in self._columns:
             if len(col) > 3 and col[-4:] == 'load':
-                vals.update({col: 0})
-        MrpWorkCter_m.write(cr, uid, workcenter_ids, vals, context=context)
-        return True
+                default.update({col: 0})
+        return default
 
     def button_order_workorders_in_workcenter(
             self, cr, uid, ids, context=None):
