@@ -135,19 +135,21 @@ class StockMove(models.Model):
                 product_avail = product.qty_available
                 amount_unit = product.standard_price
                 new_std_price = ((amount_unit * product_avail +
-                                  prod_total_cost) / (product_avail >= 0.0 or
-                                                      0.0 + move.product_qty))
+                                  prod_total_cost) /
+                                 ((product_avail >= 0.0 and product_avail or
+                                   0.0) + move.product_qty))
                 # Write the standard price, as SUPERUSER_ID because a warehouse
                 # manager may not have the right to write on products
                 product.sudo().write({'standard_price': new_std_price})
 
     @api.multi
-    def get_unit_price(self):
+    def get_price_unit(self):
         self.ensure_one()
         if self.production_id:
             analytic_line_obj = self.env['account.analytic.line']
             analytic_lines = analytic_line_obj.search(
                 [('mrp_production_id', '=', self.production_id.id)])
-            return sum([-line.amount for line in analytic_lines])
+            return (sum([-line.amount for line in analytic_lines]) /
+                    self.product_qty)
         else:
-            return super(StockMove, self).get_unit_price()
+            return super(StockMove, self).get_price_unit()
