@@ -23,7 +23,7 @@ from openerp.osv import fields, osv, orm
 from datetime import datetime
 
 
-class mrp_production(osv.osv):
+class MrpProduction(orm.Model):
 
     _inherit = "mrp.production"
 
@@ -36,8 +36,8 @@ class mrp_production(osv.osv):
         if context is None:
             context = {}
         for po in self.browse(cr, uid, ids, context=context):
-            dt = dt_end = datetime.strptime(po.date_planned,
-                                         '%Y-%m-%d %H:%M:%S')
+            dt = dt_end = datetime.strptime(
+                po.date_planned, '%Y-%m-%d %H:%M:%S')
             if not po.date_start:
                 self.write(cr, uid, [po.id], {
                     'date_start': po.date_planned
@@ -57,7 +57,7 @@ class mrp_production(osv.osv):
                 date_end = wc.date_finished or wc.date_planned_end
                 dt_end = datetime.strptime(date_end, '%Y-%m-%d %H:%M:%S')
                 old = wc.sequence or 0
-            super(mrp_production, self).write(cr, uid, [po.id], {
+            super(MrpProduction, self).write(cr, uid, [po.id], {
                 'date_finished': dt_end
             })
         return dt_end
@@ -86,12 +86,12 @@ class mrp_production(osv.osv):
             for workorder in production.workcenter_lines:
                 # Add the actual start date if found. Otherwise the planned
                 # start date.
-                date_start = workorder.date_start or workorder.date_planned \
-                    or False
+                date_start = (workorder.date_start or workorder.date_planned
+                              or False)
                 if date_start:
                     start_dates.append(date_start)
-                date_end = workorder.date_finished or workorder.date_planned_end \
-                    or False
+                date_end = (workorder.date_finished or workorder.date_planned_end
+                            or False)
                 if date_end:
                     end_dates.append(date_end)
             # Calculate the earliest and latest dates from workorders
@@ -121,15 +121,18 @@ class mrp_production(osv.osv):
     }
 
     def action_compute(self, cr, uid, ids, properties=None, context=None):
-        """ Computes bills of material of a product and planned date of work order.
+        """ Computes bills of material of a product and planned date of
+        work order.
         @param properties: List containing dictionaries of properties.
         @return: No. of products.
         """
-        result = super(mrp_production, self).action_compute(cr, uid, ids, properties=properties, context=context)
+        result = super(MrpProduction, self).action_compute(
+            cr, uid, ids, properties=properties, context=context)
         self._reschedule_workorders(cr, uid, ids, context=context)
         return result
 
-class mrp_production_workcenter_line(osv.osv):
+
+class MrpProductionWorkcenterLine(orm.Model):
 
     _inherit = "mrp.production.workcenter.line"
 
@@ -144,7 +147,7 @@ class mrp_production_workcenter_line(osv.osv):
             if date_start:
                 date_and_hours_by_cal.extend(
                     [(date_start, op.hour, op.workcenter_id.calendar_id.id)])
-        intervals = self.pool.get('resource.calendar').interval_get_multi(
+        intervals = self.pool['resource.calendar'].interval_get_multi(
             cr, uid, date_and_hours_by_cal)
 
         res = {}
@@ -196,7 +199,7 @@ class mrp_production_workcenter_line(osv.osv):
     }
 
     def write(self, cr, uid, ids, vals, context=None, update=True):
-        result = super(mrp_production_workcenter_line, self).write(
+        result = super(MrpProductionWorkcenterLine, self).write(
             cr, uid, ids, vals, context=context)
         prod_obj = self.pool.get('mrp.production')
         if vals.get('date_start', False) or vals.get('date_finished', False) \
