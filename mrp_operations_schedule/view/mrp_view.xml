@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp.view_production_gantt" model="ir.ui.view">
+            <field name="name">mrp.production.gantt</field>
+            <field name="model">mrp.production</field>
+            <field name="arch" type="xml">
+                <gantt date_stop="date_end_gantt" date_start="date_start_gantt" progress="progress" string="Productions" default_group_by="routing_id">
+                </gantt>
+            </field>
+        </record>
+
+        <record id="mrp_operations.workcenter_line_gantt" model="ir.ui.view">
+            <field name="name">mrp.production.workcenter.line.gantt</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="arch" type="xml">
+                <gantt date_stop="date_end_gantt" date_start="date_start_gantt" string="Operations" default_group_by="production_id">
+                </gantt>
+            </field>
+        </record>
+    </data>
+</openerp>
