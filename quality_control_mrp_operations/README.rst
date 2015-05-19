@@ -1,4 +1,4 @@
-MRP Operations with quality test
-================================
+MRP Operations with quality control
+===================================
 
-This module enables quality tests for MRP operations
+This module enables quality control for MRP operations.
