@@ -1,11 +1,12 @@
 MRP extension for quality control
 =================================
 
-This module defines a trigger that creates inspections when a production order
-is made.
+This module defines a trigger that creates quality control inspections when a
+production order is finished.
 
-It also adds some shortcuts on production orders to these inspections.
+It also adds the shortcuts related to these inspections on production orders.
 
 Contributors
 ------------
+
 * Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
