@@ -1,24 +1,29 @@
 Estimated costs in manufacturing orders
 =======================================
-With this module when a production order is confirmed, some analytic lines
-are automatically generated, in order to estimate the costs of the production
+
+Thanks to this module, when a Manufacturing Order is confirmed, analytic lines
+are automatically generated in order to estimate the costs of the production
 order.
 
-At the same time, the estimated allocation of materials, machinery operators
-and costs will be made.
+At the same time, the estimated allocation of raw materials, machine operators
+time and costs will be made as followed:
 
-In materials case, an analytic line will be generated for each material to
-consume in the order. For operators imputation in each operation, it will
-be generated one line, so that the number of lines will be equal to the number
-of operators in the operation. In machines case, there will be created two
-analytic lines for each operation in the associated routing, one per hour cost
-and the other per cycle cost.
+* Raw Material cost: an analytic line will be generated for each material to
+  be consumed in the order.
+* Operators time: One line will be generated for the time recorded by the
+  operators in each operation, so that the number of lines will be equal to
+  the number of operators in the operation.
+* Cost associated to machines: two analytic lines for each operation will be
+  created in the associated routing, one for hourly cost and the other for per
+  cycle cost.
 
-It has also created the new menu option "Fictitious Manufacturing Orders to
-estimate costs". When a new MO is created and the new field "active" is equal
-to false, the MO will be considered as a fictional MO, what with can not be
-confirmed, and only is valid to estimate costs. To estimate costs will have to
-press the "Compute data" button in tab "Work Orders". These fictitious MO will
-have a different sequence.
-From the product form may create a fictitious MO.
+A new menu is available "Virtual Manufacturing Orders for cost estimation"
+where the user can managed virtual MO:
 
+* When a new MO is created and the new field "active" is false, the MO will be
+  considered virtual. It is only used for cost estimation and can not be
+  confirmed.
+* To estimate the cost of the MO, the user has to press the button "Compute
+  data" in the tab "Work Orders".
+* These virtual MO have a separate sequence number.
+* The user can create a virtual MO directly from the product form.
