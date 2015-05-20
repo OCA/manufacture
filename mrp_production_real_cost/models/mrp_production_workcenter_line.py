@@ -17,7 +17,6 @@
 ##############################################################################
 
 from openerp import models, api
-from datetime import datetime
 
 
 class MrpProductionWorkcenterLine(models.Model):
@@ -28,7 +27,6 @@ class MrpProductionWorkcenterLine(models.Model):
     def _create_analytic_line(self):
         self.ensure_one()
         analytic_line_obj = self.env['account.analytic.line']
-        property_obj = self.env['ir.property']
         task_obj = self.env['project.task']
         if self.workcenter_id.costs_hour > 0.0:
             hour_uom = self.env.ref('product.product_uom_hour', False)
@@ -36,46 +34,22 @@ class MrpProductionWorkcenterLine(models.Model):
             production = self.production_id
             workcenter = self.workcenter_id
             product = workcenter.product_id
-            journal_id = workcenter.costs_journal_id or False
-            if not journal_id:
-                journal_id = self.env.ref(
-                    'mrp_production_project_estimated_cost.analytic_journal_'
-                    'machines', False)
-            analytic_account_id = production.analytic_account_id.id or False
-            task_id = False
-            if production:
-                task = task_obj.search([('mrp_production_id', '=',
-                                         production.id),
-                                        ('wk_order', '=', False)])
-                if task:
-                    task_id = task[0].id
+            journal_id = workcenter.costs_journal_id or self.env.ref(
+                'mrp_production_project_estimated_cost.analytic_journal_'
+                'machines', False)
             name = ((production.name or '') + '-' +
                     (self.routing_wc_line.operation.code or '') + '-' +
                     (product.default_code or ''))
-            general_acc = (
-                workcenter.costs_general_account_id.id or
-                product.property_account_expense.id or
-                product.categ_id.property_account_expense_categ.id or
-                property_obj.get('property_account_expense_categ',
-                                 'product.category'))
-            price = workcenter.costs_hour
-            analytic_vals = {'name': name,
-                             'ref': name,
-                             'date': datetime.now().strftime('%Y-%m-%d'),
-                             'user_id': self.env.uid,
-                             'product_id': product.id,
-                             'product_uom_id': hour_uom.id,
-                             'amount': -(price * operation_line.uptime),
-                             'unit_amount': operation_line.uptime,
-                             'journal_id': journal_id.id,
-                             'account_id': analytic_account_id,
-                             'general_account_id': general_acc,
-                             'task_id': task_id,
-                             'mrp_production_id': production.id or False,
-                             'workorder': self.id,
-                             'estim_avg_cost': 0.0,
-                             'estim_std_cost': 0.0
-                             }
+            general_acc = workcenter.costs_general_account_id or False
+            price = -(workcenter.costs_hour * operation_line.uptime)
+            analytic_vals = production._prepare_cost_analytic_line(
+                journal_id, name, production, product,
+                general_account=general_acc, workorder=self,
+                qty=operation_line.uptime, amount=price)
+            task = task_obj.search([('mrp_production_id', '=', production.id),
+                                    ('wk_order', '=', False)])
+            analytic_vals['task_id'] = task and task[0].id or False
+            analytic_vals['product_uom_id'] = hour_uom.id
             analytic_line = analytic_line_obj.create(analytic_vals)
             return analytic_line
 

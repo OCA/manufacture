@@ -23,12 +23,17 @@ class MrpProduction(models.Model):
 
     _inherit = 'mrp.production'
 
+    @api.multi
+    def calc_mrp_real_cost(self):
+        self.ensure_one()
+        return sum([-line.amount for line in
+                    self.analytic_line_ids.filtered(lambda l: l.amount < 0)])
+
     @api.one
     @api.depends('analytic_line_ids', 'analytic_line_ids.amount',
                  'product_qty')
     def get_real_cost(self):
-        self.real_cost = sum([-line.amount for line in
-                             self.analytic_line_ids])
+        self.real_cost = self.calc_mrp_real_cost()
         self.unit_real_cost = self.real_cost / self.product_qty
 
     real_cost = fields.Float("Total Real Cost", compute="get_real_cost",
@@ -39,9 +44,11 @@ class MrpProduction(models.Model):
     @api.multi
     def action_production_end(self):
         res = super(MrpProduction, self).action_production_end()
-        analytic_line_obj = self.env['account.analytic.line']
         for record in self:
-            cost_lines = analytic_line_obj.search([('mrp_production_id', '=',
-                                                    record.id)])
-            record.real_cost = sum([-line.amount for line in cost_lines])
+            mrp_cost = record.calc_mrp_real_cost()
+            done_lines = record.move_created_ids2.filtered(lambda l:
+                                                           l.state == 'done')
+            done_lines.create_produce_cost_line(mrp_cost)
+            record.real_cost = mrp_cost
+            done_lines.product_price_update_production_done()
         return res
