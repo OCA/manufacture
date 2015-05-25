@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree.parent.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="arch" type="xml">
+                <tree string="MRP BoMs">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp_bom_state_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.state.tree.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_parent_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="version" />
+                    <field name="state" />
+                    <field name="historical_date"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_bom_form_view_inh_state" model="ir.ui.view">
+            <field name="name">mrp.bom.form.view.inh.state</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="before">
+                    <header>
+                        <button name="button_draft"
+                                type="object"
+                                string="Draft"
+                                groups="mrp_bom_state.group_mrp_bom_state"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight" />
+                        <button name="button_activate"
+                                type="object" string="Activate"
+                                attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                                class="oe_highlight"
+                                confirm="You will activate the BoM. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                        <button name="button_new_version"
+                                type="object"
+                                string="New version"
+                                attrs="{'invisible':[('state','==','historical')]}"
+                                class="oe_highlight"
+                                confirm="You are going to create a new version of this BoM. Are you sure?"/>
+                        <button name="button_historical"
+                                type="object"
+                                string="Historical"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight"
+                                confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,historical" />
+                    </header>
+                </xpath>
+                <field name="company_id" position="after">
+                    <field name="version" />
+                    <field name="historical_date" attrs="{'invisible': [('state','!=','historical')]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mrp_bom_filter_inh_state" model="ir.ui.view">
+            <field name="name">view.mrp.bom.filter.inh.state</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </field>
+                <filter string="Product" position="before">
+                    <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>
