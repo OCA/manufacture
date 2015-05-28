@@ -1,3 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"qc_sample","qc_sample","quality_control_samples.model_qc_sample","quality_control.group_quality_control_user",1,1,1,1
-"qc_sample_line","qc_sample_line","quality_control_samples.model_qc_sample_line","quality_control.group_quality_control_user",1,0,0,0
+"qc_sample_user","qc_sample_user","quality_control_samples.model_qc_sample","quality_control.group_quality_control_user",1,0,0,0
+"qc_sample_line_user","qc_sample_line_user","quality_control_samples.model_qc_sample_line","quality_control.group_quality_control_user",1,0,0,0
+"qc_sample_manager","qc_sample_manager","quality_control_samples.model_qc_sample","quality_control.group_quality_control_manager",1,1,1,1
+"qc_sample_line_manager","qc_sample_line_manager","quality_control_samples.model_qc_sample_line","quality_control.group_quality_control_manager",1,1,1,1
