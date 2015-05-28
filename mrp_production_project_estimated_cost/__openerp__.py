@@ -36,6 +36,7 @@
         "mrp",
         "mrp_operations_extension",
         "mrp_project_link",
+        "product_variant_cost"
     ],
     "data": [
         "data/analytic_journal_data.xml",

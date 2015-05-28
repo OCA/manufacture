@@ -83,9 +83,15 @@
                 <div name="buttons" position="inside">
                     <button class="oe_inline oe_stat_button"
                             type="object"
-                            string="Estim. Costs"
+                            string="Costs analysis"
                             name="action_show_estimated_costs"
                             icon="fa-bar-chart">
+                    </button>
+                    <button class="oe_inline oe_stat_button"
+                            type="action"
+                            string="Production Costs"
+                            name="%(action_show_production_anaytic_lines)d"
+                            icon="fa-list">
                     </button>
                 </div>
             </field>

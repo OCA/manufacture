@@ -63,7 +63,7 @@ class MrpProduction(models.Model):
         string="Product Manual Cost",
         related="product_id.manual_standard_cost")
     product_cost = fields.Float(
-        string="Product Cost", related="product_id.standard_price")
+        string="Product Cost", related="product_id.cost_price")
     analytic_line_ids = fields.One2many(
         comodel_name="account.analytic.line", inverse_name="mrp_production_id",
         string="Cost Lines")
@@ -148,6 +148,39 @@ class MrpProduction(models.Model):
             'context': self.env.context
             }
 
+    def _prepare_cost_analytic_line(self, journal, name, production, product,
+                                    general_account=None, workorder=None,
+                                    qty=1, amount=0, estim_std=0, estim_avg=0):
+        analytic_line_obj = self.env['account.analytic.line']
+        property_obj = self.env['ir.property']
+        if not general_account:
+            general_account = (
+                product.property_account_income or
+                product.categ_id.property_account_income_categ or
+                property_obj.get('property_account_expense_categ',
+                                 'product.category'))
+        if not self.analytic_account_id:
+            raise exceptions.Warning(
+                _('You must define one Analytic Account for this MO: %s') %
+                (production.name))
+        vals = {
+            'name': name,
+            'mrp_production_id': production.id,
+            'workorder': workorder and workorder.id or False,
+            'account_id': self.analytic_account_id.id,
+            'journal_id': journal.id,
+            'user_id': self.env.uid,
+            'date': analytic_line_obj._get_default_date(),
+            'product_id': product and product.id or False,
+            'unit_amount': qty,
+            'amount': amount,
+            'product_uom_id': product and product.uom_id.id or False,
+            'general_account_id': general_account.id,
+            'estim_std_cost': estim_std,
+            'estim_avg_cost': estim_avg,
+        }
+        return vals
+
     @api.multi
     def calculate_production_estimated_cost(self):
         analytic_line_obj = self.env['account.analytic.line']
@@ -161,9 +194,12 @@ class MrpProduction(models.Model):
                     raise exceptions.Warning(
                         _("One consume line has no product assigned."))
                 name = _('%s-%s' % (record.name, line.work_order.name or ''))
-                vals = record._prepare_estim_cost_analytic_line(
-                    journal, name, record, line.work_order, line.product_id,
-                    line.product_qty)
+                product = line.product_id
+                qty = line.product_qty
+                vals = record._prepare_cost_analytic_line(
+                    journal, name, record, product, workorder=line.work_order,
+                    qty=qty, estim_std=-(qty * product.manual_standard_cost),
+                    estim_avg=-(qty * product.cost_price))
                 analytic_line_obj.create(vals)
             journal = record.env.ref('mrp_production_project_estimated_cost.'
                                      'analytic_journal_machines', False)
@@ -175,20 +211,26 @@ class MrpProduction(models.Model):
                 if (wc.time_start and line.workcenter_id.pre_op_product):
                     name = (_('%s-%s Pre-operation') %
                             (record.name, line.workcenter_id.name))
-                    vals = record._prepare_estim_cost_analytic_line(
-                        journal, name, record, line,
-                        line.workcenter_id.pre_op_product, wc.time_start)
-                    amount = line.workcenter_id.pre_op_product.standard_price
-                    vals['amount'] = amount
+                    product = line.workcenter_id.pre_op_product
+                    amount = product.cost_price * wc.time_start
+                    qty = wc.time_start
+                    vals = record._prepare_cost_analytic_line(
+                        journal, name, record, product, workorder=line,
+                        qty=qty, amount=-amount,
+                        estim_std=-(qty * product.manual_standard_cost),
+                        estim_avg=-(amount))
                     analytic_line_obj.create(vals)
                 if (wc.time_stop and line.workcenter_id.post_op_product):
                     name = (_('%s-%s Post-operation') %
                             (record.name, line.workcenter_id.name))
-                    vals = record._prepare_estim_cost_analytic_line(
-                        journal, name, record, line,
-                        line.workcenter_id.post_op_product, wc.time_stop)
-                    amount = line.workcenter_id.post_op_product.standard_price
-                    vals['amount'] = amount
+                    product = line.workcenter_id.post_op_product
+                    amount = product.cost_price * wc.time_stop
+                    qty = wc.time_stop
+                    vals = record._prepare_cost_analytic_line(
+                        journal, name, record, product, workorder=line,
+                        qty=qty, amount=-amount,
+                        estim_std=-(qty * product.manual_standard_cost),
+                        estim_avg=-(amount))
                     analytic_line_obj.create(vals)
                 if line.cycle and line.workcenter_id.costs_cycle:
                     if not line.workcenter_id.product_id:
@@ -198,12 +240,12 @@ class MrpProduction(models.Model):
                     name = (_('%s-%s-C-%s') %
                             (record.name, line.routing_wc_line.operation.code,
                              line.workcenter_id.name))
-                    vals = record._prepare_estim_cost_analytic_line(
-                        journal, name, record, line,
-                        line.workcenter_id.product_id, line.cycle)
-                    cost = line.workcenter_id.costs_cycle
-                    vals['estim_avg_cost'] = line.cycle * cost
-                    vals['estim_std_cost'] = vals['estim_avg_cost']
+                    product = line.workcenter_id.product_id
+                    estim_cost = -(line.workcenter_id.costs_cycle * line.cycle)
+                    vals = record._prepare_cost_analytic_line(
+                        journal, name, record, product, workorder=line,
+                        qty=line.cycle, estim_std=estim_cost,
+                        estim_avg=estim_cost)
                     analytic_line_obj.create(vals)
                 if line.hour and line.workcenter_id.costs_hour:
                     if not line.workcenter_id.product_id:
@@ -218,63 +260,30 @@ class MrpProduction(models.Model):
                         hour += wc.time_stop
                     if wc.time_start and not line.workcenter_id.pre_op_product:
                         hour += wc.time_start
-                    vals = record._prepare_estim_cost_analytic_line(
-                        journal, name, record, line,
-                        line.workcenter_id.product_id, hour)
-                    cost = line.workcenter_id.costs_hour
-                    vals['estim_avg_cost'] = hour * cost
-                    vals['estim_std_cost'] = vals['estim_avg_cost']
+                    estim_cost = -(hour * line.workcenter_id.costs_hour)
+                    vals = record._prepare_cost_analytic_line(
+                        journal, name, record, line.workcenter_id.product_id,
+                        workorder=line, qty=hour,
+                        estim_std=estim_cost, estim_avg=estim_cost)
                     analytic_line_obj.create(vals)
                 if wc.op_number > 0 and line.hour:
                     if not line.workcenter_id.product_id:
                         raise exceptions.Warning(
                             _("There is at least this workcenter without "
                               "product: %s") % line.workcenter_id.name)
-                    journal_wk = record.env.ref(
+                    journal = record.env.ref(
                         'mrp_production_project_estimated_cost.analytic_'
                         'journal_operators', False)
                     name = (_('%s-%s-%s') %
                             (record.name, line.routing_wc_line.operation.code,
                              line.workcenter_id.product_id.name))
-                    vals = record._prepare_estim_cost_analytic_line(
-                        journal_wk, name, record, line,
-                        line.workcenter_id.product_id,
-                        line.hour * wc.op_number)
-                    vals['estim_avg_cost'] = (wc.op_number * wc.op_avg_cost *
-                                              line.hour)
-                    vals['estim_std_cost'] = vals['estim_avg_cost']
+                    estim_cost = -(wc.op_number * wc.op_avg_cost * line.hour)
+                    qty = line.hour * wc.op_number
+                    vals = record._prepare_cost_analytic_line(
+                        journal, name, record, line.workcenter_id.product_id,
+                        workorder=line, qty=qty, estim_std=estim_cost,
+                        estim_avg=estim_cost)
                     analytic_line_obj.create(vals)
-
-    def _prepare_estim_cost_analytic_line(self, journal, name, production,
-                                          workorder, product, qty):
-        analytic_line_obj = self.env['account.analytic.line']
-        general_account = (product.property_account_income or
-                           product.categ_id.property_account_income_categ or
-                           False)
-        if not general_account:
-            raise exceptions.Warning(
-                _('You must define Income account in the product "%s", or in'
-                  ' the product category') % (product.name))
-        if not self.analytic_account_id:
-            raise exceptions.Warning(
-                _('You must define one Analytic Account for this MO: %s') %
-                (production.name))
-        vals = {
-            'name': name,
-            'mrp_production_id': production.id,
-            'workorder': workorder.id,
-            'account_id': self.analytic_account_id.id,
-            'journal_id': journal.id,
-            'user_id': self._uid,
-            'date': analytic_line_obj._get_default_date(),
-            'product_id': product.id,
-            'unit_amount': qty,
-            'product_uom_id': product.uom_id.id,
-            'general_account_id': general_account.id,
-            'estim_std_cost': qty * product.manual_standard_cost,
-            'estim_avg_cost': qty * product.standard_price,
-        }
-        return vals
 
     @api.multi
     def load_product_std_price(self):
@@ -282,3 +291,7 @@ class MrpProduction(models.Model):
             product = record.product_id
             if record.unit_std_cost:
                 product.manual_standard_cost = record.unit_std_cost
+
+    @api.multi
+    def _get_min_qty_for_production(self, routing=False):
+        return 1

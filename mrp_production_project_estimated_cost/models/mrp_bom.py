@@ -24,7 +24,7 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     product_standard_price = fields.Float(string="Product Standard Price",
-                                          related="product_id.standard_price")
+                                          related="product_id.cost_price")
     product_manual_standard_price = fields.Float(
         string="Product Manual Standard Price",
         related="product_id.manual_standard_cost")
