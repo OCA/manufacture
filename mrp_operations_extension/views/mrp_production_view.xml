@@ -68,6 +68,7 @@
                 </xpath>
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="after">
                     <field name="do_production" colspan="2" />
+                    <field name="is_material_ready" colspan="2"/>
                     <notebook colspan="4">
                         <page string="Materials">
                             <group>
@@ -210,9 +211,19 @@
 
                 <field name="sequence" position="after">
                     <field name="do_production" />
+                    <field name="is_material_ready" />
                 </field>
             </field>
-
+        </record>
+        <record model="ir.ui.view" id="mrp_production_workcenter_tree_view_inh_op_ext">
+            <field name="name">Workcenter line op ext</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_tree_view_inherit" />
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="production_state"/>
+                </field>
+            </field>
         </record>
     </data>
 </openerp>
