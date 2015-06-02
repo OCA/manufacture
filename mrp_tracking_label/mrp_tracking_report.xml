@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record id="paperformat_mrp_tracking_label" model="report.paperformat">
+        <field name="name">MRP Tracking Label</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">41</field>
+        <field name="page_width">89</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_spacing">0</field>
+        <field name="dpi">80</field>
+    </record>
+
+        <report 
+            string="Tracking Label" 
+            id="action_report_tracking_label" 
+            model="mrp.production" 
+            name="mrp_tracking_label.report_tracking_label" 
+            file="mrp_tracking_label.report_tracking_label" 
+            report_type="qweb-pdf"
+        />
+
+        <record id="action_report_tracking_label" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_mrp_tracking_label"/>
+        </record>
+
+    </data>
+</openerp>

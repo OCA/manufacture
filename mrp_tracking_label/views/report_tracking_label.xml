@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_tracking_label">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <div class="page">
+                <div class="text-center">
+                    <span t-field="o.name"/>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
