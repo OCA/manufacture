@@ -2,5 +2,6 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from . import mrp
+
+from . import mrp_bom
 from . import res_config
