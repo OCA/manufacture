@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
+            <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+        </record>
+
         <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
             <field name="name">mrp.bom.tree.parent.view</field>
             <field name="model">mrp.bom</field>
@@ -63,6 +67,11 @@
                     <field name="version" />
                     <field name="historical_date" attrs="{'invisible': [('state','!=','historical')]}"/>
                 </field>
+                <notebook position="inside">
+                    <page string="Versions">
+                        <field name="old_versions" />
+                    </page>
+                </notebook>
             </field>
         </record>
 
@@ -75,10 +84,14 @@
                     <field name="active" />
                     <field name="state" />
                 </field>
-                <filter string="Product" position="before">
+                <group string="Group By..." position="before">
+                    <filter string="Active" domain="[('active','=',True)]" name="is_active_filter"/>
+                    <filter string="Inactive" domain="[('active','=',False)]" name="is_inactive_filter"/>
+                </group>
+                <group string="Group By..." position="inside">
                     <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
                     <filter string="State" domain="[]" context="{'group_by':'state'}"/>
-                </filter>
+                </group>
             </field>
         </record>
 
