@@ -15,15 +15,23 @@ class MrpBom(models.Model):
         },
     }
 
+    @api.one
+    def _get_old_versions(self):
+        parent = self.parent_bom
+        old_version = self.env['mrp.bom']
+        while parent:
+            old_version += parent
+            parent = parent.parent_bom
+        self.old_versions = old_version
+
     active = fields.Boolean(
         string='Active', default=False, readonly=True,
         states={'draft': [('readonly', False)]})
     historical_date = fields.Date(string='Historical Date', readonly=True)
-    state = fields.Selection([('draft', 'Draft'),
-                              ('active', 'Active'),
-                              ('historical', 'Historical'),
-                              ], string='Status', index=True, readonly=True,
-                             default='draft', copy=False)
+    state = fields.Selection(
+        selection=[('draft', 'Draft'), ('active', 'Active'),
+                   ('historical', 'Historical')], string='State',
+        index=True, readonly=True, default='draft', copy=False)
     product_tmpl_id = fields.Many2one(
         readonly=True, states={'draft': [('readonly', False)]})
     product_id = fields.Many2one(
@@ -62,6 +70,11 @@ class MrpBom(models.Model):
         states={'historical': [('readonly', True)]})
     version = fields.Integer(states={'historical': [('readonly', True)]},
                              copy=False, default=1)
+    parent_bom = fields.Many2one(
+        comodel_name='mrp.bom', string='Parent BoM')
+    old_versions = fields.Many2many(
+        comodel_name='mrp.bom', string='Old Versions',
+        compute='_get_old_versions')
 
     @api.multi
     def button_draft(self):
@@ -70,27 +83,39 @@ class MrpBom(models.Model):
     @api.multi
     def button_new_version(self):
         self.ensure_one()
-        self.write({'active': False, 'state': 'historical',
-                    'historical_date': fields.Date.today()})
-        version = self.version + 1
-        new_bom = self.copy({'version': version})
-        new_bom.active = True
-        return {'type': 'ir.actions.act_window',
-                'view_type': 'form, tree',
-                'view_mode': 'form',
-                'res_model': 'mrp.bom',
-                'res_id': new_bom.id,
-                'target': 'new',
-                }
+        new_bom = self.copy({
+            'version': self.version + 1,
+            'active': True,
+            'parent_bom': self.id,
+        })
+        self.write({
+            'active': False,
+            'state': 'historical',
+            'historical_date': fields.Date.today(),
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form, tree',
+            'view_mode': 'form',
+            'res_model': 'mrp.bom',
+            'res_id': new_bom.id,
+            'target': 'new',
+        }
 
     @api.one
     def button_activate(self):
-        return self.write({'active': True, 'state': 'active'})
+        self.write({
+            'active': True,
+            'state': 'active'
+        })
 
     @api.one
     def button_historical(self):
-        return self.write({'active': False, 'state': 'historical',
-                           'historical_date': fields.Date.today()})
+        self.write({
+            'active': False,
+            'state': 'historical',
+            'historical_date': fields.Date.today()
+        })
 
 
 class MrpProduction(models.Model):
