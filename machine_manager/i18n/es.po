@@ -186,7 +186,7 @@ msgstr "Semestral"
 
 #. module: machine_manager
 #: model:ir.model,name:machine_manager.model_machinery
-msgid "Holds records of Machines"
+msgid "Manage your machines"
 msgstr "Registros de las máquinas"
 
 #. module: machine_manager
@@ -213,7 +213,7 @@ msgstr "ID"
 
 #. module: machine_manager
 #: selection:machinery,status:0
-msgid "InActive"
+msgid "Inactive"
 msgstr "Inactivo"
 
 #. module: machine_manager
@@ -457,7 +457,7 @@ msgstr "Estado"
 
 #. module: machine_manager
 #: field:machinery,location:0
-msgid "Stk Location"
+msgid "Stock Location"
 msgstr "Localización de Stock"
 
 #. module: machine_manager

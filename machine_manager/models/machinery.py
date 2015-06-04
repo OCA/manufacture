@@ -17,13 +17,12 @@
 #
 ##############################################################################
 
-
 from openerp import models, fields, _
 
 
 class Machinery(models.Model):
     _name = "machinery"
-    _description = "Holds records of Machines"
+    _description = "Manage your machines"
 
     def _def_company(self):
         return self.env.user.company_id.id
@@ -47,7 +46,7 @@ class Machinery(models.Model):
     serial = fields.Many2one('stock.production.lot', string='Product Serial #',
                              domain="[('product_id', '=', product)]")
     model_type = fields.Many2one('machine.model', 'Type')
-    status = fields.Selection([('active', 'Active'), ('inactive', 'InActive'),
+    status = fields.Selection([('active', 'Active'), ('inactive', 'Inactive'),
                                ('outofservice', 'Out of Service')],
                               'Status', required=True, default='active')
     ownership = fields.Selection([('own', 'Own'), ('lease', 'Lease'),
@@ -78,7 +77,7 @@ class Machinery(models.Model):
     warrexp = fields.Date('Date', help="Expiry date for warranty of product")
     warrexpcy = fields.Integer('(or) cycles',
                                help="Expiry cycles for warranty of product")
-    location = fields.Many2one('stock.location', 'Stk Location',
+    location = fields.Many2one('stock.location', 'Stock Location',
                                help="This association is necessary if you want"
                                " to make repair orders with the machine")
     enrolldate = fields.Date('Enrollment date', required=True,
