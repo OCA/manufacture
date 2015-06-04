@@ -7,102 +7,96 @@
         <menuitem id="menu_machinery_config" name="Configuration"
             parent="menu_machinery_manager" sequence="2" />
 
-        <!-- ========================== Machines ========================== -->
-
+        <!-- Machine Form -->
         <record id="machines_form" model="ir.ui.view">
             <field name="name">machines.form</field>
             <field name="model">machinery</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Machines">
-                    <group colspan="4" col="6">
-                        <separator string="Machine Details"
-                            colspan="6" />
-                        <newline />
-                        <field name="name" />
-                        <field name="company" invisible="1"/>
-                        <field name="location" />
-                        <field name="product" domain="[('machine_ok','=',True)]" />
-                        <field name="serial_char" attrs="{'invisible':[('product','!=', False)]}"/>
-                        <field name="serial" attrs="{'invisible':[('product','=', False)]}"/>
-                    </group>
-                    <separator string="Analysis Information"
-                        colspan="4" />
-                    <notebook colspan="4">
-                        <page string="Additional Details">
-                           <group>
-                                 <group>
-                                    <separator string="Current Details"
-                                        colspan="4" />
-                                    <field name="status" />
-                                    <field name="ownership" />
-                                    <field name="power" />
-                                    <field name="mac" />
-                                    <field name="phone" />
-                                    <field name="ambit" />
-                                </group>
-                                <group>
-                                    <separator string="Manufacture Details"
-                                    colspan="4" />
-                                    <field name="manufacturer" />
-                                    <field name="year" />
-                                    <field name="model" />
-                                    <field name="model_type" />
-                                </group>
-                                <group>
-                                    <separator string="Extra Information"
-                                        colspan="4" />
-                                    <field name="card" />
-                                    <field name="cardexp" />
-                                </group>
-                                <group>
-                                    <separator string="Insurance"
-                                        colspan="4" />
-                                    <field name="insurance" />
-                                    <field name="policy" />
-                                </group>
-                            </group>
-                        </page>
-                        <page string="Financial Details">
+                    <sheet>
+                        <h2>
+                            <field name="name" nolabel="1"/>
+                        </h2>
                         <group>
                             <group>
-                                <separator string="Purchase Info" colspan="4"  />
-                                <field name="purch_date" />
-                                <field name="purch_partner" />
-                                <field name="purch_inv" />
-                                <field name="purch_cost" />
-                                <field name="purch_cycles" />
-                                <field name="enrolldate" />
+                                <field name="status" />
+                                <field name="ownership" />
+                                <field name="company" invisible="1"/>
+                                <field name="location"/>
                             </group>
                             <group>
-                                <separator string="Financial Details" colspan="4" />
-                                <field name="deprecperc" />
-                                <field name="deprecperiod" />
-                                <field name="assetacc" />
-                                <field name="depracc" />
+                                <field name="product" domain="[('machine_ok','=',True)]" />
+                                <field name="serial_char" attrs="{'invisible':[('product','!=', False)]}"/>
+                                <field name="serial" attrs="{'invisible':[('product','=', False)]}"/>
                             </group>
                         </group>
-                        <group>
-                            <separator string="Warranty Expiry"/>
-                            <newline/>
-                            <field name="warrexp" />
-                            <field name="warrexpcy" />
-                        </group>
-                        </page>
-                        <page string="Machine Users">
-                            <field name="users"/>
-                        </page>
-                        <page string="Maintenance">
-                            <group>
-                            <separator string="Preventive Maintenance"
-                                colspan="4" />
-                            <field name="actcycles" />
-                            <field name="primarymeter" />
-                            <field name="bcyl" />
-                            <field name="bdate" />
-                            </group>
-                        </page>
-                    </notebook>
+                        <notebook>
+                            <page string="Details">
+                               <group>
+                                     <group string="Miscellaneous">
+                                        <field name="power" />
+                                        <field name="mac" />
+                                        <field name="phone" />
+                                        <field name="ambit" />
+                                    </group>
+                                    <group string="Manufacturer">
+                                        <field name="manufacturer" />
+                                        <field name="year" />
+                                        <field name="model" />
+                                        <field name="model_type" />
+                                    </group>
+                                    <group string="Card info">
+                                        <field name="card" />
+                                        <field name="cardexp" />
+                                    </group>
+                                    <group string="Insurance">
+                                        <field name="insurance" />
+                                        <field name="policy" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Financial Details">
+                                <group>
+                                    <group string="Purchase Info">
+                                        <field name="purch_date" />
+                                        <field name="purch_partner" />
+                                        <field name="purch_inv" />
+                                        <field name="purch_cost" />
+                                        <field name="purch_cycles" />
+                                        <field name="enrolldate" />
+                                    </group>
+                                    <group string="Financial Details">
+                                        <field name="deprecperc" />
+                                        <field name="deprecperiod" />
+                                        <field name="assetacc" />
+                                        <field name="depracc" />
+                                    </group>
+                                    <group string="Warranty Expiry">
+                                        <field name="warrexp" />
+                                        <field name="warrexpcy" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Machine Users">
+                                <group>
+                                    <field name="users" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="(Preventive) Maintenance">
+                                <group>
+                                    <group>
+                                        <field name="actcycles"/>
+                                        <field name="primarymeter"/>
+                                    </group>
+                                    <group>
+                                        <field name="bcyl"/>
+                                        <field name="bdate"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>
