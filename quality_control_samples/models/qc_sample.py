@@ -20,7 +20,7 @@ class QcSample(models.Model):
         self.ensure_one()
         for line in self.sample_lines:
             if line.min_qty <= qty <= line.max_qty:
-                return line.samples_taken if qty < line.samples_taken else qty
+                return line.samples_taken if qty > line.samples_taken else qty
         return 0
 
 
