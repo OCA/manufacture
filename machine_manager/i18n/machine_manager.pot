@@ -316,7 +316,7 @@ msgstr ""
 
 #. module: machine_manager
 #: model:ir.ui.menu,name:machine_manager.menu_machinery_manager
-msgid "Machinery Manager"
+msgid "Machinery"
 msgstr ""
 
 #. module: machine_manager

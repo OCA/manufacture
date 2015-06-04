@@ -316,8 +316,8 @@ msgstr "Maquinaria"
 
 #. module: machine_manager
 #: model:ir.ui.menu,name:machine_manager.menu_machinery_manager
-msgid "Machinery Manager"
-msgstr "Gestor de máquinas"
+msgid "Machinery"
+msgstr "Máquinas"
 
 #. module: machine_manager
 #: model:ir.actions.act_window,name:machine_manager.machine_form_act

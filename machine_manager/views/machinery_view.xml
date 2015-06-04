@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <!-- Parent Menu on Right Panes -->
-        <menuitem id="menu_machinery_manager" name="Machinery Manager"/>
+        <menuitem id="menu_machinery_manager" name="Machinery"/>
 
         <menuitem id="menu_machinery_config" name="Configuration"
             parent="menu_machinery_manager" sequence="2" />
