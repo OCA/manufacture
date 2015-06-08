@@ -72,8 +72,8 @@ class Machinery(models.Model):
     ambit = fields.Selection([('local', 'Local'), ('national', 'National'),
                               ('international', 'International')],
                              'Ambit', default='local')
-    card = fields.Char('Card')
-    cardexp = fields.Date('Card Expiration')
+    license_document = fields.Char('License Document')
+    license_document_expiration = fields.Date('License Document Expiration')
     frame = fields.Char('Frame Number')
     phone = fields.Char('Phone number')
     mac = fields.Char('MAC Address')

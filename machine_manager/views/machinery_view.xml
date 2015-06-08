@@ -46,9 +46,9 @@
                                         <field name="model" />
                                         <field name="model_type" />
                                     </group>
-                                    <group string="Card info">
-                                        <field name="card" />
-                                        <field name="cardexp" />
+                                    <group string="License Document">
+                                        <field name="license_document" string="Document reference" />
+                                        <field name="license_document_expiration" string="Expiration" />
                                     </group>
                                     <group string="Insurance">
                                         <field name="insurance" />
