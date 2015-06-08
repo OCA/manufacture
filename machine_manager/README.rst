@@ -3,11 +3,6 @@ Machine Manager
 
 This module is a vertical for Machinery management.
 
-Screenshots
-===========
-.. image:: /static/description/screenshot-machines-tree.png
-   :alt: Screen 1
-
 Credits
 =======
 
