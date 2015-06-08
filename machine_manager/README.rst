@@ -3,6 +3,10 @@ Machine Manager
 
 This module is a vertical for Machinery management.
 
+Screenshots
+===========
+![alt tag](/static/description/screenshot-machines-tree.png)
+
 Contributors
 ------------
 * Daniel Campos <danielcampos@avanzosc.es>
