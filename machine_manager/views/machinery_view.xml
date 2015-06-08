@@ -111,6 +111,25 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="machine_search">
+            <field name="name">Machine - Search</field>
+            <field name="model">machinery</field>
+            <field name="arch" type="xml">
+                <search string="Machinery Search">
+                    <field name="name"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                         <filter string="Status" domain="[]" context="{'group_by':'status'}"/>
+                         <filter string="Ownership" domain="[]" context="{'group_by':'ownership'}"/>
+                         <filter string="Stock location" domain="[]" context="{'group_by':'location'}"/>
+                         <filter string="Year" domain="[]" context="{'group_by':'year'}"/>
+                         <filter string="Model" domain="[]" context="{'group_by':'model'}"/>
+                         <filter string="Type" domain="[]" context="{'group_by':'model_type'}"/>
+                     </group>
+                </search>
+            </field>
+        </record>
+
         <record id="action_machine" model="ir.actions.act_window">
             <field name="name">Machines</field>
             <field name="res_model">machinery</field>
