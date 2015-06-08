@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="machine_user_form_view" model="ir.ui.view">
+        <record model="ir.ui.view" id="machine_user_form">
             <field name="name">machine.user.form.view</field>
             <field name="model">machinery.users</field>
             <field name="type">form</field>
@@ -15,7 +15,8 @@
                 </form>
             </field>
         </record>
-        <record id="machine_user_tree_view" model="ir.ui.view">
+
+        <record model="ir.ui.view" id="machine_user_tree">
             <field name="name">machine.user.tree.view</field>
             <field name="model">machinery.users</field>
             <field name="type">tree</field>
@@ -27,7 +28,8 @@
                 </tree>
             </field>
         </record>
-        <record id="machine_user_action" model="ir.actions.act_window">
+
+        <record model="ir.actions.act_window" id="action_machine_user">
             <field name="name">Machines</field>
             <field name="res_model">machinery.users</field>
             <field name="view_type">form</field>

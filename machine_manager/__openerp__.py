@@ -40,6 +40,7 @@
         "views/machine_model_view.xml",
         "views/machinery_users_view.xml",
         "views/product_view.xml",
+        "views/menus.xml",
         "security/machinery_security.xml",
         "security/ir.model.access.csv",
     ],

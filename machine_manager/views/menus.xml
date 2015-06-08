@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_machine_manager" name="Machinery"/>
+
+        <menuitem id="menu_machinery_config" name="Configuration"
+            parent="menu_machine_manager"/>
+
+        <menuitem id="menu_machines" name="Machines"
+            parent="menu_machinery_config" action="action_machine"
+            sequence="10" />
+
+        <menuitem id="menu_machine_models" name="Machine Models"
+            parent="menu_machinery_config" action="action_machine_model"
+            sequence="20"/>
+    </data>
+</openerp>
