@@ -22,6 +22,7 @@
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Odoo Community Association (OCA)"
     "contributors": [
         "Daniel Campos <danielcampos@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
