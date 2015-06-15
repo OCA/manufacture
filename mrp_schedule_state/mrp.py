@@ -80,14 +80,14 @@ class MrpProduction(orm.Model):
             res = self._set_schedule_states(cr, uid, context=context)
         return res
 
-    def write(self, cr, uid, ids, vals, context=None):
+    def write(self, cr, uid, ids, vals, context=None, update=True):
         if context is None:
             context = {}
         if vals.get('schedule_state') == 'scheduled':
             vals['date_planned'] =\
                 datetime.now().strftime(DEFAULT_SERVER_DATE_FORMAT)
         return super(MrpProduction, self)\
-            .write(cr, uid, ids, vals, context=context)
+            .write(cr, uid, ids, vals, context=context, update=update)
 
 
 class MrpProductionWorkcenterLine(orm.Model):
