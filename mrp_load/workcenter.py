@@ -74,6 +74,7 @@ class MrpWorkcenter(orm.Model):
     def _get_sql_load_where(self, cr, uid, ids, context=None):
         return [
             'mp.state IN %(state)s',
+            "wl.state != 'done'",
             'wl.workcenter_id IN %(workcenter_ids)s',
             ]
 
