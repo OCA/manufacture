@@ -42,21 +42,22 @@ class MrpWorkcenter(orm.Model):
             string='Work Orders'),
     }
 
-    def _get_workc_domain(self, cr, uid, context=None):
-        return []
+    def _get_workcenter_line_domain(self, cr, uid, ids, context=None):
+        return [
+            ('state', 'not in', STATIC_STATES),
+            ('workcenter_id', 'in', ids),
+            ]
 
     def button_workcenter_line(self, cr, uid, ids, context=None):
         assert len(ids) == 1, 'You can open only an record'
         elm = self.browse(cr, uid, ids[0], context=context)
-        domain = self._get_workc_domain(cr, uid, context=context)
-        workcenter_ids = self.search(cr, uid, domain, context=context)
+        domain = elm._get_workcenter_line_domain()
         return {
             'view_mode': 'tree,form',
             'name': "'%s' Operations" % elm.name,
             'res_model': 'mrp.production.workcenter.line',
             'type': 'ir.actions.act_window',
-            'domain': [('workcenter_id', 'in', workcenter_ids),
-                       ('state', 'not in', STATIC_STATES)],
+            'domain': domain,
             'target': 'current',
         }
 
