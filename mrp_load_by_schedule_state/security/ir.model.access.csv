@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_mrp_workcenter_ordering_key_user","access_mrp_workcenter_ordering_key_user","model_mrp_workcenter_ordering_key","mrp.group_mrp_user",1,0,0,0
+"access_mrp_workcenter_ordering_key_mng","access_mrp_workcenter_ordering_key_mng","model_mrp_workcenter_ordering_key","mrp.group_mrp_manager",1,1,1,1
+"access_mrp_workcenter_ordering_field_user","access_mrp_workcenter_ordering_field_user","model_mrp_workcenter_ordering_field","mrp.group_mrp_user",1,0,0,0
+"access_mrp_workcenter_ordering_field_mng","access_mrp_workcenter_ordering_field_mng","model_mrp_workcenter_ordering_field","mrp.group_mrp_manager",1,1,1,1
