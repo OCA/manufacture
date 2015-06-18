@@ -9,6 +9,8 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ProductProduct(orm.Model):
@@ -30,12 +32,20 @@ class ProductProduct(orm.Model):
 class MrpProduction(orm.Model):
     _inherit = 'mrp.production'
 
+    def _get_autocomplete_domain(self, cr, uid, context=None):
+        return [
+            ('state', 'in', ['confirmed', 'ready']),
+            ('product_id.manuf_order_auto_complete', '=', True),
+            ]
+
     def complete_manufacturing_order_cron(self, cr, uid, context=None):
-        mo_ids = self.search(
-            cr, uid, [('state', 'in', ['confirmed', 'ready'])], context=context)
+        _logger.debug('Search for auto-validating manufacturing order')
+        domain = self._get_autocomplete_domain(cr, uid, context=context)
+        mo_ids = self.search(cr, uid, domain, context=context)
+        _logger.debug('Auto Validate %s manufacturing order', len(mo_ids))
         for production in self.browse(cr, uid, mo_ids, context=context):
-            if production.product_id.manuf_order_auto_complete:
-                self.pool.get('mrp.production').action_produce(
-                    cr, uid, production.id, production.product_qty,
-                    'consume_produce', context=context)
+            _logger.debug('Auto Validate %s', production.name)
+            self.pool.get('mrp.production').action_produce(
+                cr, uid, production.id, production.product_qty,
+                'consume_produce', context=context)
         return True
