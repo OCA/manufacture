@@ -4,11 +4,8 @@
 MRP - BoM notes
 ===============
 
-This module performs the following:
+This module creates in BoM a new field to add notes
 
-1.- Creates the new field NOTES in MRP BoM list.
-
-2.- Creates the new field NOTES in MRP production, of type related with MRP BoM List.
 
 Bug Tracker
 ===========
