@@ -17,16 +17,17 @@
 ##############################################################################
 
 {
-    "name": "MRP BoM Notes",
+    "name": "MRP - BoM Notes",
     "version": "1.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>"
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
     "category": "Tools",
     "depends": [
