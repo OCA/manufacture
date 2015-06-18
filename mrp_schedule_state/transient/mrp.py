@@ -30,9 +30,7 @@ class SwitchScheduleState(orm.TransientModel):
     def switch_schedule_state(self, cr, uid, ids, context=None):
         MrpProduction = self.pool['mrp.production']
         active_ids = context.get('active_ids', [])
-        prod_ids = MrpProduction.search(
-            cr, uid, [('id', 'in', active_ids)], context=context)
         switch_schedule = self.browse(cr, uid, ids, context=context)[0]
         vals = {'schedule_state': switch_schedule.schedule_state}
-        MrpProduction.write(cr, uid, prod_ids, vals, context=context)
+        MrpProduction.write(cr, uid, active_ids, vals, context=context)
         return True
