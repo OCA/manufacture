@@ -19,25 +19,18 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.addons.web import http
-from openerp.addons.web.controllers import main
+
+from openerp.osv import fields, orm
+from openerp.addons.base.module.module import module
+
+def mrp_load_is_installed(self, cr, uid, context=None):
+    return False
+
+module.mrp_load_is_installed = mrp_load_is_installed
 
 
-class Action(main.Action):
+class IrModuleModule(orm.Model):
+    _inherit = "ir.module.module"
 
-    @http.jsonrequest
-    def load(self, req, action_id, do_not_eval=False):
-        module_obj = req.session.model('ir.module.module')
-        if module_obj.mrp_load_is_installed():
-            workcenter_obj = req.session.model('mrp.workcenter')
-            try:
-                action_id = int(action_id)
-                model, mrp_action_id = req.session.model('ir.model.data')\
-                    .get_object_reference('mrp', 'mrp_workcenter_action')
-                if action_id == mrp_action_id:
-                    workcenter_obj.auto_recompute_load(context=req.context)
-            except ValueError:
-                if action_id == 'mrp.mrp_workcenter_action':
-                    workcenter_obj.auto_recompute_load(context=req.context)
-        return super(Action, self).load(
-            req, action_id, do_not_eval=do_not_eval)
+    def mrp_load_is_installed(self, cr, uid, context=None):
+        return True
