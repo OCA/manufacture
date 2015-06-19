@@ -24,4 +24,5 @@ from . import (
     workcenter,
     transient,
     controllers,
+    module,
 )
