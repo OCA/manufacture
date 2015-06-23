@@ -4,7 +4,7 @@
 Notes in production orders
 ==========================
 
-This module creates in production orders a new field to add notes
+This module creates in production orders a new field to add notes in rich text format
 
 
 Bug Tracker
