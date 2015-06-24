@@ -8,7 +8,7 @@ from openerp import models, fields
 class MrpConfigSettings(models.TransientModel):
     _inherit = 'mrp.config.settings'
 
-    group_mrp_bom_state = fields.Boolean(
+    group_mrp_bom_version = fields.Boolean(
         string='Allow to re-edit BoMs',
         implied_group='mrp_bom_version.group_mrp_bom_version',
         help='The active state may be passed back to state draft')
