@@ -40,7 +40,7 @@
                         <button name="button_draft"
                                 type="object"
                                 string="Draft"
-                                groups="mrp_bom_state.group_mrp_bom_state"
+                                groups="mrp_bom_version.group_mrp_bom_version"
                                 attrs="{'invisible':[('state','!=','active')]}"
                                 class="oe_highlight" />
                         <button name="button_activate"
