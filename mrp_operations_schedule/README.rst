@@ -7,28 +7,6 @@ and the associated work orders. It also shows a gantt chart view that
 adjusts automatically during the execution of the manufacturing order and
 work orders.
 
-
-Installation
-============
-
-No additional installation instructions are required.
-
-
-Configuration
-=============
-
-This module does not require any additional configuration.
-
-Usage
-=====
-
-No specific usage instructions are required.
-
-Known issues / Roadmap
-======================
-
-No issues have been identified.
-
 Credits
 =======
 
