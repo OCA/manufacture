@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_reference_selection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-25 13:19+0000\n"
+"PO-Revision-Date: 2015-02-25 08:24-0500\n"
+"Last-Translator: David Dufresne <david.dufresne@savoirfairelinux.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom
+#: field:mrp.bom.reference,bom_id:0
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom,reference_id:0
+msgid "BoM Reference"
+msgstr "Référence de nomenclature"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise-à-jour par"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise-à-jour le"
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom_reference
+msgid "MRP Bill of Material Reference"
+msgstr "Référence de nomenclature"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.line,product_tmpl_id:0
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,name:0
+msgid "Reference"
+msgstr "Référence"
