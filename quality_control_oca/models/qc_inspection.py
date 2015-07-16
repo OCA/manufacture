@@ -38,7 +38,7 @@ class QcInspection(models.Model):
         readonly=True, states={'draft': [('readonly', False)]}, copy=False)
     date = fields.Datetime(
         string='Date', required=True, readonly=True, copy=False,
-        default=fields.Datetime.now(),
+        default=fields.Datetime.now,
         states={'draft': [('readonly', False)]}, select=True)
     object_id = fields.Reference(
         string='Reference', selection=_links_get, readonly=True,
