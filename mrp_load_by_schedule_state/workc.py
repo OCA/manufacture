@@ -21,6 +21,8 @@
 
 from openerp.osv import orm, fields
 from openerp.addons.mrp_workcenter_workorder_link.mrp import STATIC_STATES
+from openerp.tools.translate import _
+
 
 COMPLEX_WORK_ORDER_FIELDS = [
     'message_follower_ids',
@@ -162,6 +164,12 @@ class MrpWorkcenter(orm.Model):
     def button_order_workorder(self, cr, uid, ids, context=None):
         workorder_obj = self.pool['mrp.production.workcenter.line']
         for workcenter in self.browse(cr, uid, ids, context=context):
+            if not workcenter.ordering_key_id:
+                raise orm.except_orm(
+                    _('User Error'),
+                    _('The automatic ordering can not be processed as the '
+                      'ordering key is empty. Please go in the tab "Ordering" '
+                      'and fill the field "ordering key"'))
             order_by = ['%s %s' % (row.field_id.name, row.order)
                         for row in workcenter.ordering_key_id.field_ids]
             prod_line_ids = workorder_obj.search(cr, uid, [
