@@ -36,34 +36,42 @@ class MrpBom(models.Model):
             result2, factor=factor, level=level, routing_id=routing_id)
         return result, result2
 
+    def _get_routing_line_from_workorder(self, routing_id, seq, workcenter_id,
+                                         wo_name):
+        """ Returns first routing line from a given data if found
+        @param routing_id: Routing id
+        @param seq: workorder sequence
+        @param workcenter_id: Workcenter id
+        @return: wo_name = Workorder name
+        """
+        routing_line_obj = self.env['mrp.routing.workcenter']
+        domain = [('routing_id', '=', routing_id), ('sequence', '=', seq),
+                  ('workcenter_id', '=', workcenter_id)]
+        routing_lines = routing_line_obj.search(domain)
+        for rl in routing_lines:
+            if rl.name in wo_name:
+                return rl
+        return routing_line_obj
+
     def _get_workorder_operations(self, result2, factor, level=0,
                                   routing_id=False):
-        routing_line_obj = self.env['mrp.routing.workcenter']
         for work_order in result2:
             if (work_order['sequence'] < level or
                     work_order.get('routing_wc_line')):
                 continue
             seq = work_order['sequence'] - level
-            domain = [('routing_id', '=', routing_id),
-                      ('sequence', '=', seq),
-                      ('workcenter_id', '=', work_order['workcenter_id'])]
-            routing_lines = routing_line_obj.search(domain)
-            routing_line = (routing_lines and routing_lines[0] or
-                            routing_line_obj)
-            for rl in routing_lines:
-                if rl.name in work_order['name']:
-                    routing_line = rl
-                    break
-            wc = routing_line
-            cycle = wc.cycle_nbr and int(math.ceil(factor / wc.cycle_nbr)) or 0
-            hour = wc.hour_nbr * cycle
-            default_wc_line = wc.op_wc_lines.filtered(lambda r: r.default)
+            rl = self._get_routing_line_from_workorder(
+                routing_id, seq, work_order['workcenter_id'],
+                work_order['name'])
+            cycle = rl.cycle_nbr and int(math.ceil(factor / rl.cycle_nbr)) or 0
+            hour = rl.hour_nbr * cycle
+            default_wc_line = rl.op_wc_lines.filtered(lambda r: r.default)
             work_order['cycle'] = cycle
             work_order['hour'] = hour
             work_order['time_start'] = default_wc_line.time_start or 0.0
             work_order['time_stop'] = default_wc_line.time_stop or 0.0
-            work_order['routing_wc_line'] = routing_line.id
-            work_order['do_production'] = wc.do_production
+            work_order['routing_wc_line'] = rl.id
+            work_order['do_production'] = rl.do_production
         return result2
 
     @api.multi

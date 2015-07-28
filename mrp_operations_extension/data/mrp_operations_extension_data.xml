@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="req_link_mrp_workcenter" model="res.request.link">
+            <field name="name">Work Center</field>
+            <field name="object">mrp.workcenter</field>
+        </record>
+        <record id="req_link_mrp_workcenter" model="res.request.link">
+            <field name="name">Work Order</field>
+            <field name="object">mrp.production.workcenter.line</field>
+        </record>
+    </data>
+</openerp>
