@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_form_view_SWM" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.swm</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations_extension.mrp_production_form_view_inh" />
+            <field name="arch" type="xml">
+                <field name="do_production" position="after">
+                    <field name="init_without_material"/>
+                </field>
+           </field>
+        </record>
+        <record model="ir.ui.view" id="workcenter_line_form_view_SWM">
+            <field name="name">Workcenter line SWM</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id" ref="mrp_operations_extension.workcenter_line_inh_form_view" />
+            <field name="arch" type="xml">
+                <field name="do_production" position="after">
+                    <field name="init_without_material"/>
+                </field>
+           </field>
+        </record>
+    </data>
+</openerp>
