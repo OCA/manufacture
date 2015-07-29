@@ -26,6 +26,29 @@
                     <field name="version" />
                     <field name="state" />
                     <field name="historical_date"/>
+                    <button name="button_draft"
+                            type="object"
+                            string="Draft"
+                            groups="mrp_bom_version.group_mrp_bom_version"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="terp-document-new" />
+                    <button name="button_activate"
+                            type="object" string="Activate"
+                            attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                            icon="terp-camera_test"
+                            confirm="You will activate the BoM. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                    <button name="button_new_version"
+                            type="object"
+                            string="New version"
+                            attrs="{'invisible':[('state','==','historical')]}"
+                            icon="gtk-execute"
+                            confirm="You are going to create a new version of this BoM. Are you sure?"/>
+                    <button name="button_historical"
+                            type="object"
+                            string="Historical"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="gtk-convert"     
+                            confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
                 </field>
             </field>
         </record>
