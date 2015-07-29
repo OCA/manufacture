@@ -83,16 +83,8 @@ class MrpBom(models.Model):
     @api.multi
     def button_new_version(self):
         self.ensure_one()
-        new_bom = self.copy({
-            'version': self.version + 1,
-            'active': True,
-            'parent_bom': self.id,
-        })
-        self.write({
-            'active': False,
-            'state': 'historical',
-            'historical_date': fields.Date.today(),
-        })
+        new_bom = self._copy_bom()
+        self._update_bom_state_after_copy()
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form, tree',
@@ -101,6 +93,21 @@ class MrpBom(models.Model):
             'res_id': new_bom.id,
             'target': 'new',
         }
+
+    def _copy_bom(self):
+        new_bom = self.copy({
+            'version': self.version + 1,
+            'active': True,
+            'parent_bom': self.id,
+        })
+        return new_bom
+
+    def _update_bom_state_after_copy(self):
+        self.write({
+            'active': False,
+            'state': 'historical',
+            'historical_date': fields.Date.today(),
+        })
 
     @api.one
     def button_activate(self):
