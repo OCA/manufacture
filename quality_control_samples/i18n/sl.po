@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_samples
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-01 20:45+0200\n"
+"PO-Revision-Date: 2015-08-01 20:49+0200\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"X-Generator: Poedit 1.8.2\n"
+"Language: sl\n"
+
+#. module: quality_control_samples
+#: field:qc.inspection.line,sample_number:0
+msgid "# sample"
+msgstr "# vzorca"
+
+#. module: quality_control_samples
+#: field:qc.sample,create_uid:0 field:qc.sample.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: quality_control_samples
+#: field:qc.sample,create_date:0 field:qc.sample.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: quality_control_samples
+#: field:qc.sample,name:0
+msgid "Description"
+msgstr "Opis"
+
+#. module: quality_control_samples
+#: field:qc.sample.line,min_qty:0
+msgid "From"
+msgstr "Od"
+
+#. module: quality_control_samples
+#: field:qc.sample,write_uid:0 field:qc.sample.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: quality_control_samples
+#: field:qc.sample,write_date:0 field:qc.sample.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: quality_control_samples
+#: code:addons/quality_control_samples/models/qc_sample.py:47
+#, python-format
+msgid "Min value cannot be bigger than max value."
+msgstr "Minimalna vrednost ne more presegati maksimalne."
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_qc_sample_line
+msgid "Quality control inspection sample line"
+msgstr "Postavka kontrole kakovosti inšpekcijskega vzorca"
+
+#. module: quality_control_samples
+#: model:ir.model,name:quality_control_samples.model_qc_sample
+msgid "Quality control inspection samples definition"
+msgstr "Definicija kontrole kakovosti inšpekcijskega vzorca"
+
+#. module: quality_control_samples
+#: field:qc.inspection,qty:0
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: quality_control_samples
+#: field:qc.sample.line,sample:0
+msgid "Sample"
+msgstr "Vzorec"
+
+#. module: quality_control_samples
+#: field:qc.test,sample:0
+msgid "Sample definition"
+msgstr "Definicija vzorca"
+
+#. module: quality_control_samples
+#: view:qc.sample:quality_control_samples.qc_sample_form_view
+#: field:qc.sample,sample_lines:0
+msgid "Sample lines"
+msgstr "Postavke vzorca"
+
+#. module: quality_control_samples
+#: model:ir.actions.act_window,name:quality_control_samples.action_qc_sample
+#: model:ir.ui.menu,name:quality_control_samples.qc_sample_menu
+#: view:qc.sample:quality_control_samples.qc_sample_tree_view
+msgid "Sample ranges"
+msgstr "Dometi vzorca"
+
+#. module: quality_control_samples
+#: field:qc.sample.line,samples_taken:0
+msgid "Samples taken"
+msgstr "Vzeti vzorci"
+
+#. module: quality_control_samples
+#: view:qc.sample:quality_control_samples.qc_sample_search_view
+msgid "Search QC sample definition"
+msgstr "Iskanje definicije vzorca"
+
+#. module: quality_control_samples
+#: field:qc.sample.line,max_qty:0
+msgid "To"
+msgstr "Za"
+
+#. module: quality_control_samples
+#: code:addons/quality_control_samples/models/qc_sample.py:62
+#, python-format
+msgid "You cannot have 2 lines that overlap ranges!"
+msgstr "Ne morete imeti dveh vrstic, kjer se prekriva domet!"
