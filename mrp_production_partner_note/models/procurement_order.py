@@ -16,6 +16,7 @@ class ProcurementOrder(models.Model):
         mrp_notes = sale_proc.sale_line_id.order_id.partner_id.mrp_notes
         if mrp_notes:
             res['notes'] = (
-                (res.get('notes', '') + "\n") if res.get('notes') else '')
-            res['notes'] += mrp_notes
+                res.get('notes') and
+                ('{other}\n'.format(other=res.get('notes', ''))) or '')
+            res['notes'] += '{mine}'.format(mine=mrp_notes)
         return res
