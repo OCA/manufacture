@@ -12,9 +12,8 @@ class ProcurementOrder(models.Model):
     @api.model
     def _prepare_mo_vals(self, procurement):
         res = super(ProcurementOrder, self)._prepare_mo_vals(procurement)
-        notes = res.get('notes', '')
         sale_proc = procurement.move_dest_id.procurement_id
-        notes += ('|n%s' %
-                  (sale_proc.sale_line_id.order_id.partner_id.mrp_notes or ''))
-        res['notes'] = notes
+        mrp_notes = sale_proc.sale_line_id.order_id.partner_id.mrp_notes
+        if mrp_notes:
+            res['notes'] = mrp_notes
         return res
