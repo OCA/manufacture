@@ -45,7 +45,7 @@ class MrpProduction(orm.Model):
         _logger.debug('Auto Validate %s manufacturing order', len(mo_ids))
         for production in self.browse(cr, uid, mo_ids, context=context):
             if production.state == 'confirmed':
-                self.force_production()
+                production.force_production()
             _logger.debug('Auto Validate %s', production.name)
             self.pool.get('mrp.production').action_produce(
                 cr, uid, production.id, production.product_qty,
