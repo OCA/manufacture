@@ -32,7 +32,6 @@
     "category": "Tools",
     "depends": [
         "sale",
-        "mrp",
         "mrp_production_note",
     ],
     "data": [
