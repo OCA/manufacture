@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record model="mrp.routing.workcenter" id="mrp.mrp_routing_workcenter_0">
+            <field name="do_production" eval="True" />
+        </record>
+
+        <record model="mrp.routing.workcenter" id="mrp.mrp_routing_workcenter_1">
+            <field name="do_production" eval="True" />
+        </record>
+
+        <record model="mrp.routing.workcenter" id="mrp.mrp_routing_workcenter_2">
+            <field name="do_production" eval="True" />
+        </record>
+
+    </data>
+</openerp>

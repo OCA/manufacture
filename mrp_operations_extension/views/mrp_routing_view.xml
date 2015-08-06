@@ -44,17 +44,17 @@
                 <field name="workcenter_id" position="attributes">
                     <attribute name="attrs">{'invisible': [('op_wc_lines', '!=', [])]}</attribute>
                 </field>
-                <field name="cycle_nbr" position="after">
+                <field name="cycle_nbr" position="before">
                     <field name="previous_operations_finished" />
+                </field>
+                <field name="hour_nbr" position="before">
+                    <field name="do_production" />
                 </field>
                 <field name="cycle_nbr" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
                 <field name="hour_nbr" position="attributes">
                     <attribute name="invisible">1</attribute>
-                </field>
-                <field name="company_id" position="before">
-                    <field name="do_production" />
                 </field>
                 <label for="note" position="before">
                     <group string="Possible workcenters">
