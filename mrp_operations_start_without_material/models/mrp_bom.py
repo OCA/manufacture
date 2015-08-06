@@ -14,9 +14,6 @@ class MrpBom(models.Model):
         res = super(MrpBom, self)._get_workorder_operations(
             result2, factor, level, routing_id)
         for work_order in res:
-            if (work_order['sequence'] < level or
-                    work_order.get('routing_wc_line')):
-                continue
             seq = work_order['sequence'] - level
             rl = self._get_routing_line_from_workorder(
                 routing_id, seq, work_order['workcenter_id'],
