@@ -3,20 +3,19 @@
 # * quality_control
 # 
 # Translators:
-# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 10:50+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-10-09 03:42+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -24,40 +23,40 @@ msgstr ""
 #: model:ir.model,name:quality_control.model_qc_trigger_product_line
 #: model:ir.model,name:quality_control.model_qc_trigger_product_template_line
 msgid "Abstract line for defining triggers"
-msgstr "Línea abstracta para definir disparadores"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Accept"
-msgstr "Aceptar"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,active:0 field:qc.test.category,active:0
 #: field:qc.trigger,active:0
 msgid "Active"
-msgstr "Activo"
+msgstr "Ativo"
 
 #. module: quality_control
 #: field:qc.inspection.line,possible_ql_values:0
 #: view:qc.test.question:quality_control.qc_test_question_form_view
 msgid "Answers"
-msgstr "Respuestas"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 msgid "Approve"
-msgstr "Aprobar"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,auto_generated:0
 msgid "Auto-generated"
-msgstr "Auto-generada"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test.question.value,name:quality_control.qc_test_question_value_2
 msgid "Bad"
-msgstr "Mal"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -68,23 +67,23 @@ msgstr "Cancelar"
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Cancelled"
-msgstr "Cancelado"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr "Categoría"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
 msgid "Child categories"
-msgstr "Categorías hijas"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -96,18 +95,18 @@ msgstr "Confirmar"
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
-msgstr "La conversión entre las unidades de medidas sólo pueden ocurrir si pertenecen a la misma categoría. La conversión se basará en los ratios establecidos."
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Correct"
-msgstr "Correcta"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.question.value,ok:0
 msgid "Correct answer?"
-msgstr "¿Respuesta correcta?"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,create_uid:0 field:qc.inspection.line,create_uid:0
@@ -118,7 +117,7 @@ msgstr "¿Respuesta correcta?"
 #: field:qc.trigger.product_line,create_uid:0
 #: field:qc.trigger.product_template_line,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Criado por"
 
 #. module: quality_control
 #: field:qc.inspection,create_date:0 field:qc.inspection.line,create_date:0
@@ -129,69 +128,69 @@ msgstr "Creado por"
 #: field:qc.trigger.product_line,create_date:0
 #: field:qc.trigger.product_template_line,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Criado em"
 
 #. module: quality_control
 #: field:qc.inspection,date:0
 msgid "Date"
-msgstr "Fecha"
+msgstr "Data"
 
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Fecha del último mensaje publicado en el registro"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: selection:qc.inspection,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr "Provisório"
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test_category.py:35
 #, python-format
 msgid "Error ! You can not create recursive categories."
-msgstr "Error. No puede crear categorías recursivas."
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection,external_notes:0
 msgid "External notes"
-msgstr "Notas externas"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
-msgstr "Seguidores"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.test,type:0
 #: model:qc.test.category,name:quality_control.qc_test_template_category_generic
 msgid "Generic"
-msgstr "Genérico"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test,name:quality_control.qc_test_1
 msgid "Generic Test (demo)"
-msgstr "Test genérico (demo)"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test.question.value,name:quality_control.qc_test_question_value_1
 msgid "Good"
-msgstr "Bien"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Group by..."
-msgstr "Agrupar por..."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Contiene el resumen del chatter (nº de mensajes, ...). Este resumen está directamente en formato html para ser insertado en vistas kanban."
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,id:0 field:qc.inspection.line,id:0
@@ -207,12 +206,12 @@ msgstr "ID"
 #. module: quality_control
 #: help:qc.inspection,auto_generated:0
 msgid "If an inspection is auto-generated, it can be cancelled nor removed"
-msgstr "Si una inspección es auto-generada, no se podrá cancelar ni eliminar"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.trigger.line,partners:0
@@ -228,14 +227,14 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Incorrect"
-msgstr "Incorrecta"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,inspection_id:0
 msgid "Inspection"
-msgstr "Inspección"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_line
@@ -244,12 +243,12 @@ msgstr "Inspección"
 #: field:qc.inspection,inspection_lines:0
 #: view:qc.inspection.line:quality_control.qc_inspection_line_tree_view
 msgid "Inspection lines"
-msgstr "Líneas de inspección"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,name:0
 msgid "Inspection number"
-msgstr "Nº de inspección"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection
@@ -257,28 +256,28 @@ msgstr "Nº de inspección"
 #: model:ir.ui.menu,name:quality_control.qc_inspection_menu_parent
 #: view:qc.inspection:quality_control.qc_inspection_tree_view
 msgid "Inspections"
-msgstr "Inspecciones"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection,internal_notes:0
 msgid "Internal notes"
-msgstr "Notas internas"
+msgstr ""
 
 #. module: quality_control
 #: view:product.template:quality_control.product_template_qc_form_view
 msgid "Inventory"
-msgstr "Inventario"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Es un seguidor"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_last_post:0
 msgid "Last Message Date"
-msgstr "Fecha del último mensaje"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0
@@ -289,7 +288,7 @@ msgstr "Fecha del último mensaje"
 #: field:qc.trigger.product_line,write_uid:0
 #: field:qc.trigger.product_template_line,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última atualização por"
 
 #. module: quality_control
 #: field:qc.inspection,write_date:0 field:qc.inspection.line,write_date:0
@@ -300,76 +299,76 @@ msgstr "Última actualización por"
 #: field:qc.trigger.product_line,write_date:0
 #: field:qc.trigger.product_template_line,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última atualização em"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
 msgid "Manager"
-msgstr "Responsable"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 msgid "Mark todo"
-msgstr "Marcar para hacer"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,max_value:0 field:qc.test.question,max_value:0
 msgid "Max"
-msgstr "Máximo"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,max_value:0
 msgid "Maximum valid value if it's a quantitative question."
-msgstr "Máximo valor válido si es una pregunta cuantitativa."
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_ids:0
 msgid "Messages"
-msgstr "Mensajes"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,message_ids:0
 msgid "Messages and communication history"
-msgstr "Mensajes e historial de comunicación"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,min_value:0 field:qc.test.question,min_value:0
 msgid "Min"
-msgstr "Mínimo"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,min_value:0
 msgid "Minimum valid value if it's a quantitative question."
-msgstr "Mínimo valor válido si es una pregunta cuantitativa."
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test.py:66
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
-msgstr "El valor mínimo no puede ser más alto que el valor máximo."
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,name:0 field:qc.test.category,name:0
 #: field:qc.test.question,name:0 field:qc.test.question.value,name:0
 #: field:qc.trigger,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nome"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr "Notas"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1
 msgid "Overall quality"
-msgstr "Calidad en general"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.category,parent_id:0
 msgid "Parent category"
-msgstr "Categoría padre"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.trigger.line,partners:0
@@ -377,17 +376,17 @@ msgstr "Categoría padre"
 #: field:qc.trigger.product_line,partners:0
 #: field:qc.trigger.product_template_line,partners:0
 msgid "Partners"
-msgstr "Empresas"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
 msgid "Possible values of qualitative questions."
-msgstr "Posibles valores de preguntas cualitativas."
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,fill_correct_values:0
 msgid "Pre-fill with correct values"
-msgstr "Pre-rellenar con valores correctos"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_product
@@ -396,48 +395,48 @@ msgstr "Pre-rellenar con valores correctos"
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
-msgstr "Producto"
+msgstr "Produto"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
 msgid "Product Category"
-msgstr "Categoría de producto"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,product:0 help:qc.inspection.line,product:0
 msgid "Product associated with the inspection"
-msgstr "Producto asociado con la inspección"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.trigger.product_category_line,product_category:0
 msgid "Product category"
-msgstr "Categoría de producto"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.trigger.product_template_line,product_template:0
 msgid "Product template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection.line,question_type:0
 #: selection:qc.test.question,type:0
 msgid "Qualitative"
-msgstr "Cualitativa"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,qualitative_value:0
 msgid "Qualitative value"
-msgstr "Valor cualitativo"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.question,ql_values:0
 msgid "Qualitative values"
-msgstr "Valores cualitativos"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.module.category,name:quality_control.module_category_quality_control
@@ -445,33 +444,33 @@ msgstr "Valores cualitativos"
 #: view:product.category:quality_control.product_category_qc_form_view
 #: view:product.template:quality_control.product_template_qc_form_view
 msgid "Quality control"
-msgstr "Control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection
 msgid "Quality control inspection"
-msgstr "Inspección del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr "Línea de inspección del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question
 msgid "Quality control question"
-msgstr "Pregunta del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test
 msgid "Quality control test"
-msgstr "Test del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger
 #: view:qc.trigger:quality_control.qc_trigger_form_view
 msgid "Quality control trigger"
-msgstr "Disparador del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: view:product.category:quality_control.product_category_qc_form_view
@@ -480,81 +479,81 @@ msgstr "Disparador del control de calidad"
 #: field:product.template,qc_triggers:0
 #: view:qc.trigger:quality_control.qc_trigger_tree_view
 msgid "Quality control triggers"
-msgstr "Disparadores del control de calidad"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Quality failed"
-msgstr "Calidad fallida"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Quality success"
-msgstr "Calidad satisfactoria"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection.line,question_type:0
 #: selection:qc.test.question,type:0
 msgid "Quantitative"
-msgstr "Cuantitativa"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,quantitative_value:0
 msgid "Quantitative value"
-msgstr "Valor cuantitativo"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,qty:0
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,name:0
 msgid "Question"
-msgstr "Pregunta"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,question_type:0
 msgid "Question type"
-msgstr "Tipo de pregunta"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.test.question:quality_control.qc_test_question_form_view
 msgid "Question value"
-msgstr "Valor de la pregunta"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.test:quality_control.qc_test_form_view field:qc.test,test_lines:0
 msgid "Questions"
-msgstr "Preguntas"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Ready"
-msgstr "Lista"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr "Referencia"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,object_id:0
 msgid "Reference object"
-msgstr "Objeto referencia"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test.category,name:quality_control.qc_test_template_category_referenced
 msgid "Referenced"
-msgstr "Referenciado"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.test,type:0
 msgid "Related"
-msgstr "Relativo"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -563,48 +562,48 @@ msgstr "Relativo"
 #: field:qc.trigger.product_line,user:0
 #: field:qc.trigger.product_template_line,user:0
 msgid "Responsible"
-msgstr "Responsable"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 msgid "Search inspection"
-msgstr "Buscar inspección"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Search inspection line"
-msgstr "Buscar línea de inspección"
+msgstr ""
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_user
 msgid "See Own Inspections"
-msgstr "Mostrar las inspecciones propias"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_set_test
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Select test"
-msgstr "Seleccionar test"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.trigger,partner_selectable:0
 msgid "Selectable by partner"
-msgstr "Seleccionable por empresa"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Sequência"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 msgid "Set test"
-msgstr "Establecer test"
+msgstr ""
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_2
 msgid "Size"
-msgstr "Tamaño"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -617,17 +616,17 @@ msgstr "Estado"
 #: field:qc.inspection,success:0
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Success"
-msgstr "Correcta"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,success:0
 msgid "Success?"
-msgstr "Correcta?"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_summary:0
 msgid "Summary"
-msgstr "Resumen"
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -638,31 +637,31 @@ msgstr "Resumen"
 #: field:qc.trigger.product_line,test:0
 #: field:qc.trigger.product_template_line,test:0
 msgid "Test"
-msgstr "Test"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_id:0
 msgid "Test UoM"
-msgstr "UdM test"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_test_category
 #: model:ir.ui.menu,name:quality_control.qc_test_category_menu
 #: view:qc.test.category:quality_control.qc_test_category_tree_view
 msgid "Test categories"
-msgstr "Categorías de test"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_category
 msgid "Test category"
-msgstr "Categoría de test"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,test_line:0
 #: view:qc.test.question:quality_control.qc_test_question_form_view
 #: field:qc.test.question.value,test_line:0
 msgid "Test question"
-msgstr "Pregunta del test"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_test
@@ -670,23 +669,23 @@ msgstr "Pregunta del test"
 #: model:ir.ui.menu,name:quality_control.qc_test_menu
 #: view:qc.test:quality_control.qc_test_tree_view
 msgid "Tests"
-msgstr "Tests"
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test.py:56
 #, python-format
 msgid "There isn't any value with OK marked. You have to mark at least one."
-msgstr "No hay ningún valor con OK marcado. Debe marcar al menos uno."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.test.category,active:0
 msgid "This field allows you to hide the category without removing it."
-msgstr "Este campo le permite ocultar la categoría sin eliminarla."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,success:0
 msgid "This field will be marked if all tests have been succeeded."
-msgstr "Este campo se marcará si todos los tests han sido correctos."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.trigger,partner_selectable:0
@@ -699,99 +698,99 @@ msgstr ""
 #: field:qc.trigger.product_line,trigger:0
 #: field:qc.trigger.product_template_line,trigger:0
 msgid "Trigger"
-msgstr "Disparador"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test,type:0 field:qc.test.question,type:0
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_category:0
 msgid "Unit of Measure Category"
-msgstr "Categoría de unidad de medida"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection,message_unread:0
 msgid "Unread Messages"
-msgstr "Mensajes sin leer"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,uom_id:0
 msgid "UoM"
-msgstr "UdM"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,test_uom_id:0
 msgid "UoM for minimum and maximum values if it's a quantitative question."
-msgstr "UdM de los valores mínimos y máximos si es una pregunta cuantitativa."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,uom_id:0
 msgid "UoM of the inspection value if it's a quantitative question."
-msgstr "UdM del valor de inspección si es una pregunta cuantitativa."
+msgstr ""
 
 #. module: quality_control
 #: field:qc.test.question,uom_id:0
 msgid "Uom"
-msgstr "UdM"
+msgstr ""
 
 #. module: quality_control
 #: field:qc.inspection.line,valid_values:0
 msgid "Valid values"
-msgstr "Valores válidos"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,qualitative_value:0
 msgid "Value of the result if it's a qualitative question."
-msgstr "Valor del resultado si es una pregunta cualitativa."
+msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,quantitative_value:0
 msgid "Value of the result if it's a quantitative question."
-msgstr "Valor del resultado si es una pregunta cuantitativa."
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Waiting supervisor approval"
-msgstr "Esperando la aprobación del supervisor"
+msgstr ""
 
 #. module: quality_control
 #: help:qc.test.question.value,ok:0
 msgid "When this field is marked, the answer is considered correct."
-msgstr "Cuando este campo está marcado, la respuesta se considera correcta."
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:97
 #, python-format
 msgid "You cannot remove an auto-generated inspection"
-msgstr "No puede eliminar una inspección auto-generada."
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:100
 #, python-format
 msgid "You cannot remove an inspection that it's not in draft state"
-msgstr "No puede eliminar una inspección que no esté en estado borrador"
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:113
 #, python-format
 msgid "You must set the test to perform first."
-msgstr "Debe establecer primero el test a realizar."
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:128
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
-msgstr "Debe proveer una unidad de medida para las preguntas cuantitativas."
+msgstr ""
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
-msgstr "Debe proveer una respuesta para todas las preguntas cualitativas."
+msgstr ""
 
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "or"
-msgstr "o"
+msgstr "ou"
