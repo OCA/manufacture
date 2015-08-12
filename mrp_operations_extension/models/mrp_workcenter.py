@@ -29,7 +29,7 @@ class MrpWorkcenter(models.Model):
         self.op_number = len(self.operators)
         op_avg_cost = 0.0
         for operator in self.operators:
-            op_avg_cost += operator.employee_ids[0].product_id.standard_price
+            op_avg_cost += operator.employee_ids[:1].product_id.standard_price
         self.op_avg_cost = op_avg_cost / (self.op_number or 1)
 
     pre_op_product = fields.Many2one('product.product',
