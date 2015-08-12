@@ -6,7 +6,7 @@ from openerp import models, fields, api
 
 
 class QcInspectionSetTest(models.TransientModel):
-    """This wizard is responsible for setting the test for a given
+    """This wizard is used to preset the test for a given
     inspection. This will not only fill in the 'test' field, but will
     also fill in all lines of the inspection with the corresponding lines of
     the template.
