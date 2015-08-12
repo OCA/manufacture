@@ -24,8 +24,8 @@
 {
     "name": "Quality control",
     "version": "1.0",
-    "author": "OdooMRP team,"
-              "AvanzOSC,"
+    "author": "OdooMRP team, "
+              "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "website": "http://www.odoomrp.com",
     "contributors": [
@@ -49,6 +49,9 @@
         'views/qc_trigger_view.xml',
         'views/product_template_view.xml',
         'views/product_category_view.xml',
+    ],
+    "demo": [
+        'demo/quality_control_demo.xml',
     ],
     "installable": True,
 }
