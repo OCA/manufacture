@@ -29,5 +29,7 @@ class SaleOrder(models.Model):
 
     def _validate_service_product_for_procurement(self, product):
         routes = product.route_ids.filtered(
-            lambda r: r.name in ('Make To Order', 'Buy'))
+            lambda r: r.id in (self.env.ref('stock.route_warehouse0_mto').id,
+                               self.env.ref('purchase.route_warehouse0_buy').id
+                               ))
         return product.type == 'service' and len(routes) == 2
