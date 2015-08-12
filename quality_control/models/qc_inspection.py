@@ -64,16 +64,16 @@ class QcInspection(models.Model):
          ('waiting', 'Waiting supervisor approval'),
          ('success', 'Quality success'),
          ('failed', 'Quality failed'),
-         ('canceled', 'Cancelled')],
+         ('canceled', 'Canceled')],
         string='State', readonly=True, default='draft')
     success = fields.Boolean(
         compute="_success", string='Success',
-        help='This field will be marked if all tests have been succeeded.',
+        help='This field will be marked if all tests have succeeded.',
         store=True)
     auto_generated = fields.Boolean(
         string='Auto-generated', readonly=True, copy=False,
-        help='If an inspection is auto-generated, it can be cancelled nor '
-             'removed')
+        help='If an inspection is auto-generated, it can be canceled nor '
+             'removed.')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', readonly=True,
         states={'draft': [('readonly', False)]},
@@ -94,11 +94,11 @@ class QcInspection(models.Model):
         for inspection in self:
             if inspection.auto_generated:
                 raise exceptions.Warning(
-                    _("You cannot remove an auto-generated inspection"))
+                    _("You cannot remove an auto-generated inspection."))
             if inspection.state != 'draft':
                 raise exceptions.Warning(
-                    _("You cannot remove an inspection that it's not in draft "
-                      "state"))
+                    _("You cannot remove an inspection that is not in draft "
+                      "state."))
         return super(QcInspection, self).unlink()
 
     @api.multi
@@ -110,7 +110,7 @@ class QcInspection(models.Model):
         for inspection in self:
             if not inspection.test:
                 raise exceptions.Warning(
-                    _("You must set the test to perform first."))
+                    _("You must first set the test to perform."))
         self.write({'state': 'ready'})
 
     @api.multi
@@ -121,12 +121,12 @@ class QcInspection(models.Model):
                     if not line.qualitative_value:
                         raise exceptions.Warning(
                             _("You should provide an answer for all "
-                              "quantitative questions."))
+                              "qualitative questions."))
                 else:
                     if not line.uom_id:
                         raise exceptions.Warning(
                             _("You should provide a unit of measure for "
-                              "qualitative questions."))
+                              "quantitative questions."))
             if inspection.success:
                 inspection.state = 'success'
             else:
@@ -266,21 +266,21 @@ class QcInspectionLine(models.Model):
         comodel_name='qc.test.question.value', string='Answers')
     quantitative_value = fields.Float(
         'Quantitative value', digits=(16, 5),
-        help="Value of the result if it's a quantitative question.")
+        help="Value of the result for a quantitative question.")
     qualitative_value = fields.Many2one(
         comodel_name='qc.test.question.value', string='Qualitative value',
-        help="Value of the result if it's a qualitative question.",
+        help="Value of the result for a qualitative question.",
         domain="[('id', 'in', possible_ql_values[0][2])]")
     notes = fields.Text(string='Notes')
     min_value = fields.Float(
         string='Min', digits=(16, 5), readonly=True,
-        help="Minimum valid value if it's a quantitative question.")
+        help="Minimum valid value for a quantitative question.")
     max_value = fields.Float(
         string='Max', digits=(16, 5), readonly=True,
-        help="Maximum valid value if it's a quantitative question.")
+        help="Maximum valid value for a quantitative question.")
     test_uom_id = fields.Many2one(
         comodel_name='product.uom', string='Test UoM', readonly=True,
-        help="UoM for minimum and maximum values if it's a quantitative "
+        help="UoM for minimum and maximum values for a quantitative "
              "question.")
     test_uom_category = fields.Many2one(
         comodel_name="product.uom.categ", related="test_uom_id.category_id",
@@ -288,7 +288,7 @@ class QcInspectionLine(models.Model):
     uom_id = fields.Many2one(
         comodel_name='product.uom', string='UoM',
         domain="[('category_id', '=', test_uom_category)]",
-        help="UoM of the inspection value if it's a quantitative question.")
+        help="UoM of the inspection value for a quantitative question.")
     question_type = fields.Selection(
         [('qualitative', 'Qualitative'),
          ('quantitative', 'Quantitative')],
