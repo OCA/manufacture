@@ -67,9 +67,9 @@
             <field name="model">qc.test.question</field>
             <field name="arch" type="xml">
                 <form string="Test question">
-                    <label for="name"/>
+                    <label for="name" class="oe_edit_only" />
                     <h1>
-                        <field name="name" class="oe_edit_only"/>
+                        <field name="name" class="oe_inline" />
                     </h1>
                     <group>
                         <field name="sequence" />
