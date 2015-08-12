@@ -14,6 +14,7 @@
                                 <field name="trigger" widget="selection" />
                                 <field name="test" />
                                 <field name="user" />
+                                <field name="partners" widget="many2many_tags" />
                             </tree>
                         </field>
                     </group>
@@ -23,4 +24,3 @@
 
     </data>
 </openerp>
-
