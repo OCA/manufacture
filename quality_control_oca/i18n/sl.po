@@ -1,22 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* quality_control
-#
+# * quality_control
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-01 20:11+0200\n"
-"PO-Revision-Date: 2015-08-01 20:28+0200\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-09-20 19:03+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 "
-"|| n%100==4 ? 2 : 3);\n"
-"X-Generator: Poedit 1.8.2\n"
+"Content-Transfer-Encoding: \n"
 "Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -55,6 +55,11 @@ msgid "Auto-generated"
 msgstr "Samodejno ustvarjeno"
 
 #. module: quality_control
+#: model:qc.test.question.value,name:quality_control.qc_test_question_value_2
+msgid "Bad"
+msgstr "Slabo"
+
+#. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Cancel"
@@ -91,9 +96,7 @@ msgstr "Potrditev"
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
-msgstr ""
-"Pretvorba med enotami mere je možna le, če pripadajo isti kategoriji. "
-"Pretvorba se izvede na osnovi razmerij."
+msgstr "Pretvorba med enotami mere je možna le, če pripadajo isti kategoriji. Pretvorba se izvede na osnovi razmerij."
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -145,11 +148,6 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: quality_control
-#: model:ir.model,name:quality_control.model_qc_inspection
-msgid "Email Thread"
-msgstr "E-poštna nit"
-
-#. module: quality_control
 #: code:addons/quality_control/models/qc_test_category.py:35
 #, python-format
 msgid "Error ! You can not create recursive categories."
@@ -173,6 +171,16 @@ msgid "Generic"
 msgstr "Splošno"
 
 #. module: quality_control
+#: model:qc.test,name:quality_control.qc_test_1
+msgid "Generic Test (demo)"
+msgstr "Generičen test (demonstracija)"
+
+#. module: quality_control
+#: model:qc.test.question.value,name:quality_control.qc_test_question_value_1
+msgid "Good"
+msgstr "Dobro"
+
+#. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 msgid "Group by..."
@@ -183,9 +191,7 @@ msgstr "Združi po"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
-"Povzetek (število sporočil,..) v html formatu, da se lahko neposredno "
-"vstavi v poglede tipa kanban."
+msgstr "Povzetek (število sporočil,..) v html formatu, da se lahko neposredno vstavi v poglede tipa kanban."
 
 #. module: quality_control
 #: field:qc.inspection,id:0 field:qc.inspection.line,id:0
@@ -207,6 +213,16 @@ msgstr "Če se inšpekcija samodejno ustvari, se lahko prekliče ali izbriše"
 #: help:qc.inspection,message_unread:0
 msgid "If checked new messages require your attention."
 msgstr "Če označeno, zahtevajo nova sporočila vašo pozornost."
+
+#. module: quality_control
+#: help:qc.trigger.line,partners:0
+#: help:qc.trigger.product_category_line,partners:0
+#: help:qc.trigger.product_line,partners:0
+#: help:qc.trigger.product_template_line,partners:0
+msgid ""
+"If filled, the test will only be created when the action is done for one of "
+"the specified partners. If empty, the test will be always created."
+msgstr "Če izpolnjeno, se test ustvari le, ko je ukrep opravljen za enega izmed izbranih partnerjev. Če prazno, se test ustvari vedno."
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -346,9 +362,22 @@ msgid "Notes"
 msgstr "Opombe"
 
 #. module: quality_control
+#: model:qc.test.question,name:quality_control.qc_test_question_1
+msgid "Overall quality"
+msgstr "Splošna kvaliteta"
+
+#. module: quality_control
 #: field:qc.test.category,parent_id:0
 msgid "Parent category"
 msgstr "Nadrejena kategorija"
+
+#. module: quality_control
+#: field:qc.trigger.line,partners:0
+#: field:qc.trigger.product_category_line,partners:0
+#: field:qc.trigger.product_line,partners:0
+#: field:qc.trigger.product_template_line,partners:0
+msgid "Partners"
+msgstr "Partnerji"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
@@ -365,8 +394,7 @@ msgstr "Pred-izpolni s pravilnimi vrednostmi"
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,product:0
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
-#: field:qc.inspection.line,product:0
-#: field:qc.trigger.product_line,product:0
+#: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
 msgstr "Proizvod"
 
@@ -418,6 +446,11 @@ msgstr "Kvalitativne vrednosti"
 #: view:product.template:quality_control.product_template_qc_form_view
 msgid "Quality control"
 msgstr "Kontrola kakovosti"
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inšpekcija nadzora kvalitete"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_line
@@ -554,6 +587,11 @@ msgid "Select test"
 msgstr "Izbira testiranja"
 
 #. module: quality_control
+#: field:qc.trigger,partner_selectable:0
+msgid "Selectable by partner"
+msgstr "Izbira po partnerju"
+
+#. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
 msgstr "Zaporedje"
@@ -562,6 +600,11 @@ msgstr "Zaporedje"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 msgid "Set test"
 msgstr "Nastavitev testiranja"
+
+#. module: quality_control
+#: model:qc.test.question,name:quality_control.qc_test_question_2
+msgid "Size"
+msgstr "Velikost"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -646,6 +689,11 @@ msgid "This field will be marked if all tests have been succeeded."
 msgstr "To polje bo označeno, če bodo vsa testiranja uspešna."
 
 #. module: quality_control
+#: help:qc.trigger,partner_selectable:0
+msgid "This technical field is to allow to filter by partner in triggers"
+msgstr "Tehnično polje za omogočanje filtriranja po partnerju v sprožilcih"
+
+#. module: quality_control
 #: field:qc.trigger.line,trigger:0
 #: field:qc.trigger.product_category_line,trigger:0
 #: field:qc.trigger.product_line,trigger:0
@@ -714,38 +762,33 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr "Ko je to polje označeno, se odgovor smatra za pravilen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:93
 #: code:addons/quality_control/models/qc_inspection.py:97
 #, python-format
 msgid "You cannot remove an auto-generated inspection"
 msgstr "Ne morete odstraniti samodejno ustvarjene inšpekcije"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:96
 #: code:addons/quality_control/models/qc_inspection.py:100
 #, python-format
 msgid "You cannot remove an inspection that it's not in draft state"
 msgstr "Ne morete odstraniti inšpekcije, ki ni v stanju 'osnutek'"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:109
 #: code:addons/quality_control/models/qc_inspection.py:113
 #, python-format
 msgid "You must set the test to perform first."
 msgstr "Najprej določite testiranje, ki se bo izvedlo."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:124
 #: code:addons/quality_control/models/qc_inspection.py:128
 #, python-format
-msgid "You should provide a unit of measure for qualitative questions."
+msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Določite EM za kvalitativna vprašanja."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:119
 #: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
-msgid "You should provide an answer for all quantitative questions."
+msgid "You should provide an answer for all qualitative questions."
 msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."
 
 #. module: quality_control
