@@ -239,7 +239,7 @@
             <field name="name">Inspection lines</field>
             <field name="res_model">qc.inspection.line</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree</field>
         </record>
 
         <menuitem name="Inspection lines"
