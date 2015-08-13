@@ -15,6 +15,7 @@ class StockPickingType(models.Model):
             'name': self.complete_name,
             'company_id': self.warehouse_id.company_id.id,
             'picking_type': self.id,
+            'partner_selectable': True,
         }
         return self.env['qc.trigger'].sudo().create(qc_trigger)
 
