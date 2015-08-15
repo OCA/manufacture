@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_add_middle_stuff
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-16 14:05+0000\n"
+"PO-Revision-Date: 2015-08-15 12:48+0200\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: sl\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#. module: mrp_production_add_middle_stuff
+#: view:wiz.production.product.line:mrp_production_add_middle_stuff.view_create_product_production
+msgid "Add"
+msgstr "Dodaj"
+
+#. module: mrp_production_add_middle_stuff
+#: view:wiz.production.product.line:mrp_production_add_middle_stuff.view_create_product_production
+msgid "Add Product"
+msgstr "Dodaj proizvod"
+
+#. module: mrp_production_add_middle_stuff
+#: view:mrp.production:mrp_production_add_middle_stuff.mrp_production_addition_form_view
+msgid "Add extra raw material"
+msgstr "Dodaj dodatne surovine"
+
+#. module: mrp_production_add_middle_stuff
+#: field:mrp.production.product.line,addition:0
+msgid "Added Post-startup"
+msgstr "Dodano po zagonu"
+
+#. module: mrp_production_add_middle_stuff
+#: model:ir.actions.act_window,name:mrp_production_add_middle_stuff.action_addition
+msgid "Addition View"
+msgstr "Prikaz dodatka"
+
+#. module: mrp_production_add_middle_stuff
+#: view:wiz.production.product.line:mrp_production_add_middle_stuff.view_create_product_production
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: mrp_production_add_middle_stuff
+#: code:addons/mrp_production_add_middle_stuff/wizard/wizard_addition.py:50
+#, python-format
+msgid "Please provide a positive quantity to add"
+msgstr "Zagotovite pozitivno količino za dodajanje"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,product_qty:0
+msgid "Product Quantity"
+msgstr "Količina proizvodov"
+
+#. module: mrp_production_add_middle_stuff
+#: field:wiz.production.product.line,production_id:0
+msgid "Production Order"
+msgstr "Nalog za izdelavo"
+
+#. module: mrp_production_add_middle_stuff
+#: model:ir.model,name:mrp_production_add_middle_stuff.model_mrp_production_product_line
+msgid "Production Scheduled Product"
+msgstr "Načrtovani izdelek za proizvodnjo"
+
+#. module: mrp_production_add_middle_stuff
+#: code:addons/mrp_production_add_middle_stuff/wizard/wizard_addition.py:50
+#, python-format
+msgid "Warning"
+msgstr "Opozorilo"
+
+#. module: mrp_production_add_middle_stuff
+#: view:wiz.production.product.line:mrp_production_add_middle_stuff.view_create_product_production
+msgid "or"
+msgstr "ali"
