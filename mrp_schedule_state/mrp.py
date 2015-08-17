@@ -96,7 +96,7 @@ class MrpProductionWorkcenterLine(orm.Model):
 
     def _get_operation_from_production(self, cr, uid, ids, context=None):
         return self.pool['mrp.production.workcenter.line'].search(cr, uid, [
-            ['production_id', '=', ids],
+            ['production_id', 'in', ids],
             ], context=context)
 
     _columns = {
@@ -105,7 +105,14 @@ class MrpProductionWorkcenterLine(orm.Model):
             type='char',
             string='MO Schedule',
             help="'sub state' of MO state 'Ready To Produce' dedicated to "
-                 "planification, scheduling and ordering"),
+                 "planification, scheduling and ordering",
+            store={
+                'mrp.production': [
+                    _get_operation_from_production,
+                    ['schedule_state'],
+                    10,
+                ],
+            }),
         'planned_mo': fields.related(
             'production_id',
             'date_planned',
