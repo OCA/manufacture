@@ -120,7 +120,7 @@ class MrpOperationWorkcenter(models.Model):
                              help="Time in hours for the cleaning.")
     op_number = fields.Integer('# operators', default='0')
     op_avg_cost = fields.Float(
-        string='Operator avg. cost',
+        string='Operator avg. hour cost',
         digits=dp.get_precision('Product Price'))
     default = fields.Boolean('Default')
 

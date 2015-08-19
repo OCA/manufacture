@@ -275,12 +275,12 @@ msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,op_avg_cost:0
-msgid "Operator average cost"
+msgid "Operator average hour cost"
 msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,op_avg_cost:0
-msgid "Operator avg. cost"
+msgid "Operator avg. hour cost"
 msgstr ""
 
 #. module: mrp_operations_extension
