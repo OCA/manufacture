@@ -16,11 +16,20 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from openerp import models, fields, api
 
 
 class MrpProductProduce(models.TransientModel):
     _inherit = 'mrp.product.produce'
+
+    def default_lot_id(self):
+        if 'active_id' in self.env.context and (
+                self.env.context.get('active_model') == 'mrp.production'):
+            production_obj = self.env['mrp.production']
+            production = production_obj.browse(self.env.context['active_id'])
+            return production.mapped('move_lines2.prod_parent_lot')[:1]
+
+    lot_id = fields.Many2one(default=default_lot_id)
 
     @api.multi
     def do_produce(self):
