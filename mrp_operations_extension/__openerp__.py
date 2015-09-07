@@ -33,10 +33,12 @@
         "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
     "depends": [
+        "base",
         "mrp_operations",
         "mrp",
         "stock",
         "hr",
+        "hr_timesheet",
     ],
     "data": [
         "data/mrp_operations_extension_data.xml",
@@ -51,8 +53,12 @@
         "security/mrp_operations_extension_security.xml",
     ],
     "demo": [
+        "demo/res_partner_demo.xml",
+        "demo/hr_employee_demo.xml",
+        "demo/mrp_workcenter_demo.xml",
         "demo/mrp_bom_demo.xml",
         "demo/mrp_routing_demo.xml",
+        "demo/mrp_production_demo.xml",
     ],
     "installable": True
 }

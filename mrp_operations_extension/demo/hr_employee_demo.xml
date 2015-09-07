@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="hr.employee_al" model="hr.employee">
+            <field name="user_id" ref="mrp_operations_extension.user_opeext_1"/>
+        </record>
+        <record id="hr.employee_jgo" model="hr.employee">
+            <field name="user_id" ref="mrp_operations_extension.user_opeext_2"/>
+        </record>
+
+    </data>
+</openerp>

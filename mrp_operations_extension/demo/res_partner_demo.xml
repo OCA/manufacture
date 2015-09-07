@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="partner_opeext_1" model="res.partner">
+            <field name="name">User 1 operation extension</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">User_1_operation_extension@yourcompany.example.com</field>
+            <field name="street">C/Santa Clara 13</field>
+            <field name="city">Azkoitia (Gipuzkoa)</field>
+            <field name="zip">20720</field>
+            <field name="country_id" ref="base.es"/>
+        </record>
+        <record id="partner_opeext_2" model="res.partner">
+            <field name="name">User 2 operation extension</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="email">User_2_operation_extension@yourcompany.example.com</field>
+            <field name="street">C/Santa Elena 23</field>
+            <field name="city">Irun (Gipuzkoa)</field>
+            <field name="zip">20300</field>
+            <field name="country_id" ref="base.es"/>
+        </record>
+
+        <record id="user_opeext_1" model="res.users">
+            <field name="partner_id" ref="mrp_operations_extension.partner_opeext_1"/>
+            <field name="login">user_opeext_1</field>
+            <field name="password">user_opeext_1</field>
+            <field name="signature">--Mr User Opeext 1</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('base.group_partner_manager')])]"/>
+        </record>
+        <record id="user_opeext_2" model="res.users">
+            <field name="partner_id" ref="mrp_operations_extension.partner_opeext_2"/>
+            <field name="login">user_opeext_2</field>
+            <field name="password">user_opeext_2</field>
+            <field name="signature">--Mr User Opeext 2</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('base.group_partner_manager')])]"/>
+        </record>
+
+    </data>
+</openerp>

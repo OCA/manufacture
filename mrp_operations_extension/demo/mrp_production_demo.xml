@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+    <record id="mrp_production_opeext" model="mrp.production">
+        <field name="product_id" ref="product.product_product_4"/>
+        <field name="product_uom" ref="product.product_uom_unit"/>
+        <field name="location_src_id" ref="stock.stock_location_stock"/>
+        <field name="location_dest_id" ref="stock.stock_location_output"/>
+        <field name="bom_id" ref="mrp.mrp_bom_11"/>
+        <field name="routing_id" ref="mrp.mrp_routing_1"/>
+        <field name="origin">Created from mrp_operations_extension demo</field>
+    </record>
+
+    </data>
+</openerp>
