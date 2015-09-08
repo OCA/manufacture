@@ -18,16 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Bom product details',
-    'version': '8.0.0.0.1',
-    'author': "Solutions Libergia inc.,"
-              "credativ ltd.,"
-              "Odoo Community Association (OCA)",
-    'license': 'GPL-3 or any later version',
-    'category': 'Manufacturing',
-    'depends': ["mrp"],
-    'data': ['views/mrp_bom_product_details.xml'],
-    'auto_install': False,
-    'installable': True,
-}
+
+from openerp import fields, models
+
+
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom.line'
+
+    product_standard_price = fields.Float(related='product_id.standard_price')
+    product_qty_available = fields.Float(related='product_id.qty_available')
