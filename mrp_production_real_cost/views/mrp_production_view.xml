@@ -12,5 +12,16 @@
                 </field>
             </field>
         </record>
+        <record id="mrp_production_tree_view_inh_realcost" model="ir.ui.view">
+            <field name="name">mrp.production.tree.view.inh.realcost</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_production_project_estimated_cost.mrp_production_tree_view_inh_estimatedcost"/>
+            <field name="arch" type="xml">
+                <field name="avg_cost" position="after">
+                    <field name="real_cost" />
+                    <field name="percentage_difference" />
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

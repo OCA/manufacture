@@ -36,10 +36,19 @@ class MrpProduction(models.Model):
         self.real_cost = self.calc_mrp_real_cost()
         self.unit_real_cost = self.real_cost / self.product_qty
 
+    @api.one
+    @api.depends('avg_cost', 'real_cost')
+    def get_percentage_difference(self):
+        self.percentage_difference = 0
+        if self.avg_cost and self.real_cost:
+            self.percentage_difference = (self.real_cost * 100 / self.avg_cost)
+
     real_cost = fields.Float("Total Real Cost", compute="get_real_cost",
                              store=True)
     unit_real_cost = fields.Float("Unit Real Cost", compute="get_real_cost",
                                   store=True)
+    percentage_difference = fields.Float(
+        "% difference", compute="get_percentage_difference", store=True)
 
     @api.multi
     def action_production_end(self):
