@@ -51,7 +51,7 @@ class SwitchWorkcenter(orm.TransientModel):
             context = {}
         if context.get('active_ids') and view_type == 'form':
             line_obj = self.pool['mrp.production.workcenter.line']
-            group_id = False
+            parent_id = False
             for line in line_obj.browse(cr, uid, context['active_ids'],
                                         context=context):
                 if line.state == 'done':
@@ -59,18 +59,19 @@ class SwitchWorkcenter(orm.TransientModel):
                         _('User Error'),
                         _('You can not change the workcenter of a done '
                           'operation'))
-                elif not group_id:
-                    group_id = line.workcenter_id.workcenter_group_id.id
-                elif group_id != line.workcenter_id.workcenter_group_id.id:
+                elif not parent_id:
+                    parent_id = line.workcenter_id.parent_level_1_id.id
+                elif parent_id != line.workcenter_id.parent_level_1_id.id:
                     raise orm.except_orm(
                         _('User Error'),
-                        _('You can only swith workcenter of the same group'))
+                        _('You can only swith workcenter that share the same '
+                          'parent level 1'))
             root = etree.fromstring(res['arch'])
             field = root.find(".//field[@name='workcenter_id']")
             field.set(
                 'domain',
-                "[('workcenter_group_id', '=', %s)]"\
-                % group_id
+                "[('parent_level_1_id', '=', %s)]"\
+                % parent_id
                 )
             orm.setup_modifiers(field, root)
             res['arch'] = etree.tostring(root, pretty_print=True)
