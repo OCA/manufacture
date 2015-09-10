@@ -27,7 +27,7 @@
     'summary': "Workcenters load computing",
     'category': 'Manufacturing',
     'depends': [
-        'mrp_workcenter_group',
+        'mrp_workcenter_hierarchical',
         'mrp_workcenter_workorder_link',
     ],
     'description': """
