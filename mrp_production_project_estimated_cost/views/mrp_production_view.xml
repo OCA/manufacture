@@ -52,6 +52,7 @@
                 <field name="product_uom" position="after">
                     <field name="product_cost"/>
                     <field name="product_manual_cost"/>
+                    <field name="avg_cost" />
                 </field>
             </field>
         </record>

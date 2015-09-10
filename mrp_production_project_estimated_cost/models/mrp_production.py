@@ -151,7 +151,7 @@ class MrpProduction(models.Model):
     @api.model
     def _prepare_cost_analytic_line(
             self, journal, name, production, product, general_account=None,
-            workorder=None, qty=1, std_cost=0, avg_cost=0):
+            workorder=None, qty=1, std_cost=0, avg_cost=0, amount=0):
         """
         Prepare the vals for creating an analytic entry for stimated cost
         :param journal: Journal of the entry
@@ -190,7 +190,7 @@ class MrpProduction(models.Model):
             'date': analytic_line_obj._get_default_date(),
             'product_id': product and product.id or False,
             'unit_amount': qty,
-            'amount': 0,
+            'amount': amount,
             'product_uom_id': product.uom_id.id,
             'general_account_id': general_account.id,
             'estim_std_cost': -qty * (std_cost or
