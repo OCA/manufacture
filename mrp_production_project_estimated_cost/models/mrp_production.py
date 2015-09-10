@@ -314,7 +314,7 @@ class MrpProduction(models.Model):
             analytic_line_obj.search(cond).unlink()
             for product_line in record.product_lines:
                 self._create_material_estimated_cost(
-                    self, record, product_line)
+                    record, product_line)
             for line in record.workcenter_lines:
                 op_wc_lines = line.routing_wc_line.op_wc_lines
                 wc = op_wc_lines.filtered(lambda r: r.workcenter ==
