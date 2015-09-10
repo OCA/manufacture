@@ -29,5 +29,9 @@
     </field>
 </record>
 
+<record id="mrp.mrp_workcenter_action" model="ir.actions.act_window">
+    <field name="context">{'search_default_group_by_level_1': 1}</field>
+</record>
+
     </data>
 </openerp>
