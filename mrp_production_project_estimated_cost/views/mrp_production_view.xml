@@ -12,10 +12,21 @@
             </field>
         </record>
 
+        <record id="mrp.mrp_production_form_view_costs" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.costs</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Extra Information" position="inside">
+                    <group string="Manufacturing costs">
+                    </group>
+                </page>
+            </field>
+        </record>
         <record id="mrp_production_form_view_inh_estimatedcost" model="ir.ui.view">
             <field name="name">mrp.production.form.view.inh.estimatedcost</field>
             <field name="model">mrp.production</field>
-            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view_costs"/>
             <field name="arch" type="xml">
                 <button name="button_confirm" position="attributes">
                     <attribute name="states"></attribute>
@@ -25,20 +36,18 @@
                     <button name="calculate_production_estimated_cost" states="draft,ready,in_production" string="Create Estimated Costs" type="object"/>
                     <button name="load_product_std_price" string="Load Cost on Product" type="object" attrs="{'invisible':[('std_cost', '=', 0)]}"/>
                 </button>
-                <page string="Extra Information" position="inside">
-                    <group string="Manufacturing costs">
-                        <group>
-                            <field name="std_cost" />
-                            <field name="unit_std_cost" />
-                            <field name="avg_cost" />
-                            <field name="unit_avg_cost" />
-                        </group>
-                        <group>
-                            <field name="product_cost"/>
-                            <field name="product_manual_cost"/>
-                        </group>
+                <group string="Manufacturing costs" position="inside">
+                    <group>
+                        <field name="std_cost" />
+                        <field name="unit_std_cost" />
+                        <field name="avg_cost" />
+                        <field name="unit_avg_cost" />
                     </group>
-                </page>
+                    <group>
+                        <field name="product_cost"/>
+                        <field name="product_manual_cost"/>
+                    </group>
+                </group>
                 <xpath expr="//field[@name='product_uom']/.." position="after">
                 </xpath>
             </field>
