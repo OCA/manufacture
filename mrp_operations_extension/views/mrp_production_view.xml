@@ -225,5 +225,19 @@
                 </field>
             </field>
         </record>
+
+    <record id="workcenter_line_future_calendar" model="ir.ui.view">
+        <field name="name">mrp.production.workcenter.line.future.calendar</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <calendar color="production_id" date_stop="date_planned_end" date_start="date_planned" string="Operations">
+                <field name="workcenter_id"/>
+                <field name="production_id"/>
+                <field name="product"/>
+            </calendar>
+        </field>
+    </record>
+
     </data>
 </openerp>

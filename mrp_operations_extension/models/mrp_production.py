@@ -10,6 +10,9 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     workcenter_lines = fields.One2many(readonly=False)
+    date_planned = fields.Datetime(states={'draft': [('readonly', False)],
+                                           'confirmed': [('readonly', False)],
+                                           'ready': [('readonly', False)]})
 
     def _get_minor_sequence_operation(self, operations):
         return min(operations, key=lambda x: x.sequence)
@@ -118,6 +121,31 @@ class MrpProductionWorkcenterLine(models.Model):
     @api.one
     def force_assign(self):
         self.move_lines.force_assign()
+
+    @api.multi
+    def _load_mo_date_planned(self, production, date_planned):
+        if date_planned < production.date_planned:
+            production.write({'date_planned': date_planned})
+
+    @api.model
+    def create(self, vals):
+        production_obj = self.env['mrp.production']
+        dp = vals.get('date_planned', False)
+        production_id = vals.get('production_id', False)
+        if dp and production_id:
+            production = production_obj.browse(production_id)
+            self._load_mo_date_planned(production, dp)
+        return super(MrpProductionWorkcenterLine, self).create(vals)
+
+    @api.multi
+    def write(self, vals, update=False):
+        if vals.get('date_planned', False):
+            dp = vals.get('date_planned')
+            self._load_mo_date_planned(self.production_id, dp)
+            update = True
+        res = super(MrpProductionWorkcenterLine, self).write(vals,
+                                                             update=update)
+        return res
 
     def check_minor_sequence_operations(self):
         seq = self.sequence
