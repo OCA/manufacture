@@ -39,5 +39,5 @@ from the related procurement order.
     'test': [
         'test/mrp_production_properties.yml',
     ],
-    'installable': True
+    'installable': False
 }
