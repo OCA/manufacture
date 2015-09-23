@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2015 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
 from openerp import models, fields, api
 
 
@@ -78,85 +78,75 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_draft(self):
+        self.ensure_one()
+        self.active = (self.company_id.active_draft if self.company_id else
+                       self.env.user.company_id.active_draft)
         self.state = 'draft'
 
     @api.multi
     def button_new_version(self):
         self.ensure_one()
         new_bom = self._copy_bom()
-        self._update_bom_state_after_copy()
+        self.button_historical()
         return {
             'type': 'ir.actions.act_window',
             'view_type': 'form, tree',
             'view_mode': 'form',
             'res_model': 'mrp.bom',
             'res_id': new_bom.id,
-            'target': 'new',
+            'target': 'current',
         }
 
     def _copy_bom(self):
         new_bom = self.copy({
             'version': self.version + 1,
-            'active': True,
+            'active': (self.company_id.active_draft if self.company_id else
+                       self.env.user.company_id.active_draft),
             'parent_bom': self.id,
         })
         return new_bom
 
-    def _update_bom_state_after_copy(self):
-        self.write({
-            'active': False,
-            'state': 'historical',
-            'historical_date': fields.Date.today(),
-        })
-
-    @api.one
+    @api.multi
     def button_activate(self):
+        self.ensure_one()
         self.write({
             'active': True,
             'state': 'active'
         })
 
-    @api.one
+    @api.multi
     def button_historical(self):
+        self.ensure_one()
         self.write({
             'active': False,
             'state': 'historical',
             'historical_date': fields.Date.today()
         })
 
+    def search(self, cr, uid, args, offset=0, limit=None, order=None,
+               context=None, count=False):
+        """Add search argument for field type if the context says so. This
+        should be in old API because context argument is not the last one.
+        """
+        if context is None:
+            context = {}
+        search_state = context.get('state', False)
+        if search_state:
+            args += [('state', '=', search_state)]
+        return super(MrpBom, self).search(
+            cr, uid, args, offset=offset, limit=limit, order=order,
+            context=context, count=count)
 
-class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
-
-    def product_id_change(self, cr, uid, ids, product_id, product_qty=0,
-                          context=None):
-        bom_obj = self.pool['mrp.bom']
-        product_obj = self.pool['product.product']
-        res = super(MrpProduction, self).product_id_change(
-            cr, uid, ids, product_id=product_id, product_qty=product_qty,
-            context=context)
-        if product_id:
-            res['value'].update({'bom_id': False})
-            product_tmpl_id = product_obj.browse(
-                cr, uid, product_id, context=context).product_tmpl_id.id
-            domain = [('state', '=', 'active'),
-                      '|',
-                      ('product_id', '=', product_id),
-                      '&',
-                      ('product_id', '=', False),
-                      ('product_tmpl_id', '=', product_tmpl_id)
-                      ]
-            domain = domain + ['|', ('date_start', '=', False),
-                               ('date_start', '<=', fields.Datetime.now()),
-                               '|', ('date_stop', '=', False),
-                               ('date_stop', '>=', fields.Datetime.now())]
-            bom_ids = bom_obj.search(cr, uid, domain, context=context)
-            bom_id = 0
-            min_seq = 0
-            for bom in bom_obj.browse(cr, uid, bom_ids, context=context):
-                if min_seq == 0 or bom.sequence < min_seq:
-                    min_seq = bom.sequence
-                    bom_id = bom.id
-            if bom_id > 0:
-                res['value'].update({'bom_id': bom_id})
-        return res
+    @api.model
+    def _bom_find(
+            self, product_tmpl_id=None, product_id=None, properties=None):
+        """ Finds BoM for particular product and product uom.
+        @param product_tmpl_id: Selected product.
+        @param product_uom: Unit of measure of a product.
+        @param properties: List of related properties.
+        @return: False or BoM id.
+        """
+        bom_id = super(MrpBom, self.with_context(state='active'))._bom_find(
+            product_tmpl_id=product_tmpl_id, product_id=product_id,
+            properties=properties)
+        return bom_id
