@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2015 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from . import models
-from openerp import SUPERUSER_ID
 
 
-def set_bom_inactive(cr, registry):
-    """Set all draft or historical state BoMs inactive."""
-    mrp_bom_obj = registry['mrp.bom']
-    mrp_bom_ids = mrp_bom_obj.search(cr, SUPERUSER_ID,
-                                     [('active', '=', True)])
-    for mrp_bom in mrp_bom_obj.browse(cr, SUPERUSER_ID, mrp_bom_ids):
-        mrp_bom_obj.write(cr, SUPERUSER_ID, mrp_bom.id, {'state': 'active'})
+def set_active_bom_active_state(cr, registry):
+    """Set those active BoMs to state 'active'"""
+    cr.execute("""UPDATE mrp_bom
+                     SET state = 'active'
+                   WHERE active = True""")
