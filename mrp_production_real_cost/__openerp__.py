@@ -24,12 +24,16 @@
                 "mrp_project_link",
                 "mrp_operations_time_control",
                 "stock_account",
+                "product_variant_cost",
                 "mrp_production_project_estimated_cost"],
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "category": "MRP",
-    'data': ["views/mrp_production_view.xml"],
+    'data': [
+        "data/analytic_journal_data.xml",
+        "views/mrp_production_view.xml"
+        ],
     'installable': True,
     'auto_install': False,
 }

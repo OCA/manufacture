@@ -33,11 +33,10 @@ class StockMove(models.Model):
                     product = record.product_id
                     production = record.production_id
                     journal_id = self.env.ref(
-                        'mrp_production_project_estimated_cost.analytic_'
-                        'journal_materials', False)
+                        'mrp.analytic_journal_materials', False)
                     name = ('Final product - ' + (production.name or '') +
                             '-' + (product.default_code or ''))
-                    vals = production._prepare_cost_analytic_line(
+                    vals = production._prepare_real_cost_analytic_line(
                         journal_id, name, production, product,
                         qty=record.product_qty, amount=amount)
                     task = task_obj.search(
@@ -62,17 +61,18 @@ class StockMove(models.Model):
                 if record.raw_material_production_id:
                     product = record.product_id
                     journal_id = self.env.ref(
-                        'mrp_production_project_estimated_cost.analytic_'
-                        'journal_materials', False)
+                        'mrp.analytic_journal_materials', False)
                     production = record.raw_material_production_id
                     name = (
                         (production.name or '') + '-' +
                         (record.work_order.routing_wc_line.operation.code or
                          '') + '-' + (product.default_code or ''))
-                    analytic_vals = production._prepare_cost_analytic_line(
-                        journal_id, name, production, product,
-                        workorder=record.work_order, qty=record.product_qty,
-                        amount=(-price * record.product_qty))
+                    analytic_vals = (
+                        production._prepare_real_cost_analytic_line(
+                            journal_id, name, production, product,
+                            workorder=record.work_order,
+                            qty=record.product_qty,
+                            amount=(-price * record.product_qty)))
                     task = task_obj.search(
                         [('mrp_production_id', '=', production.id),
                          ('wk_order', '=', False)])
@@ -91,6 +91,9 @@ class StockMove(models.Model):
                 amount_unit = product.cost_price
                 template_avail = product.product_tmpl_id.qty_available
                 template_price = product.standard_price
+                if move.state == 'done':
+                    product_avail -= move.product_qty
+                    template_avail -= move.product_qty
                 new_cost_price = ((amount_unit * product_avail +
                                   prod_total_cost) /
                                   ((product_avail >= 0.0 and product_avail or

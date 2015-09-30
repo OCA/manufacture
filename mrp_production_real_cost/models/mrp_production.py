@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions, _
 
 
 class MrpProduction(models.Model):
@@ -61,3 +61,47 @@ class MrpProduction(models.Model):
             record.real_cost = mrp_cost
             done_lines.product_price_update_production_done()
         return res
+
+    @api.model
+    def _prepare_real_cost_analytic_line(
+            self, journal, name, production, product, general_account=None,
+            workorder=None, qty=1, amount=0):
+        """
+        Prepare the vals for creating an analytic entry for real cost
+        :param journal: Journal of the entry
+        :param name: Name of the entry
+        :param production: Origin product
+        :param product: Product for the entry
+        :param general_account: General account for the entry
+        :param workorder: Origin workorder
+        :param qty: Quantity for the entry. This quantity will multiply both
+        standard and average costs for the entry costs.
+        :param amount: Cost for calculating real cost.
+        :return: Dictionary with the analytic entry vals.
+        """
+        analytic_line_obj = self.env['account.analytic.line']
+        property_obj = self.env['ir.property']
+        if not general_account:
+            general_account = (
+                product.property_account_income or
+                product.categ_id.property_account_income_categ or
+                property_obj.get('property_account_expense_categ',
+                                 'product.category'))
+        if not production.analytic_account_id:
+            raise exceptions.Warning(
+                _('You must define one Analytic Account for this MO: %s') %
+                (production.name))
+        return {
+            'name': name,
+            'mrp_production_id': production.id,
+            'workorder': workorder and workorder.id or False,
+            'account_id': self.analytic_account_id.id,
+            'journal_id': journal.id,
+            'user_id': self.env.uid,
+            'date': analytic_line_obj._get_default_date(),
+            'product_id': product and product.id or False,
+            'unit_amount': qty,
+            'amount': amount,
+            'product_uom_id': product.uom_id.id,
+            'general_account_id': general_account.id,
+        }
