@@ -10,7 +10,8 @@
     "license": "AGPL-3",
     "author": "OdooMRP team,"
               "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
