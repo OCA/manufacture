@@ -26,3 +26,8 @@ addon | version | summary
 [mrp_production_properties](__unported__/mrp_production_properties/) | 0.1 (unported) | Mrp Production Properties
 
 [//]: # (end addons)
+
+Translation status
+------------------
+
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-manufacture-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-manufacture-8-0)
