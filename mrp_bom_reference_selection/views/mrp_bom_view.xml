@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
             <field name="name">mrp.bom.tree</field>
             <field name="model">mrp.bom</field>
             <field name="arch" type="xml">
