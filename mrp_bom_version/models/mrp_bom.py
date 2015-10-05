@@ -78,10 +78,11 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_draft(self):
-        self.ensure_one()
-        self.active = (self.company_id.active_draft if self.company_id else
-                       self.env.user.company_id.active_draft)
-        self.state = 'draft'
+        self.write({
+            'active': (self.company_id.active_draft if self.company_id else
+                       self.env.user.company_id.active_draft),
+            'state': 'draft',
+        })
 
     @api.multi
     def button_new_version(self):
@@ -108,7 +109,6 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_activate(self):
-        self.ensure_one()
         self.write({
             'active': True,
             'state': 'active'
@@ -116,7 +116,6 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_historical(self):
-        self.ensure_one()
         self.write({
             'active': False,
             'state': 'historical',
