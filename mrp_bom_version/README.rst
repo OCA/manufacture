@@ -6,7 +6,13 @@ MRP - BoM Version
 =================
 
 This module provides a state in the BoM whether to allow their use in
-manufacturing, to do the following states are defined:
+manufacturing.
+
+
+Usage
+=====
+
+The following states are defined:
 
 * **Draft**:
   The form will be available for data entry, and may move to "active" state.
@@ -30,9 +36,6 @@ to be unique.
   and a new BOM is creating based on this but with version number +1 and
   changing state to draft
 
-
-Usage
-=====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
