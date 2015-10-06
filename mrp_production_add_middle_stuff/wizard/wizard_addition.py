@@ -42,6 +42,7 @@ class WizProductionProductLine(models.TransientModel):
 
     @api.multi
     def add_product(self):
+        move_obj = self.env['stock.move']
         if self.product_qty <= 0:
             raise exceptions.Warning(
                 _('Warning'), _('Please provide a positive quantity to add'))
@@ -51,5 +52,9 @@ class WizProductionProductLine(models.TransientModel):
                                                 self.product_qty,
                                                 self.production_id)
         line = mppl_obj.create(values)
-        production_obj._make_production_consume_line(line)
+        move_id = production_obj._make_production_consume_line(line)
+        move = move_obj.browse(move_id)
+        move.action_confirm()
+        if self.production_id.state not in 'confirmed':
+            move.action_assign()
         return True
