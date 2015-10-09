@@ -1,19 +1,52 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_real_costs
-#
+# * mrp_production_real_costs
+# 
+# Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 15:06+0000\n"
-"PO-Revision-Date: 2014-11-11 16:12+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-10-09 10:55+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production,percentage_difference:0
+msgid "% difference"
+msgstr "% diferencia"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de material"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Órden de producción"
+
+#. module: mrp_production_real_costs
+#: view:mrp.production:mrp_production_real_costs.mrp_production_form_view_real_costs
+msgid "Manufacturing costs"
+msgstr "Costes de fabricación"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production.workcenter.line,post_cost:0
+msgid "Post-Operation Cost"
+msgstr ""
+
+#. module: mrp_production_real_costs
+#: field:mrp.production.workcenter.line,pre_cost:0
+msgid "Pre-Operation Cost"
+msgstr ""
 
 #. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_project_task_work
@@ -26,13 +59,22 @@ msgid "Stock Move"
 msgstr "Movimiento de existencias"
 
 #. module: mrp_production_real_costs
+#: field:mrp.production,real_cost:0
+msgid "Total Real Cost"
+msgstr ""
+
+#. module: mrp_production_real_costs
+#: field:mrp.production,unit_real_cost:0
+msgid "Unit Real Cost"
+msgstr ""
+
+#. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_mrp_production_workcenter_line
 msgid "Work Order"
 msgstr "Orden de trabajo"
 
 #. module: mrp_production_real_costs
-#: code:addons/mrp_production_real_costs/models/mrp_production_workcenter_line.py:59
+#: code:addons/mrp_production_real_costs/models/mrp_production.py:92
 #, python-format
-msgid "You must define a general account for this Workcenter: [%s] %s"
-msgstr "Es necesario que defina una cuenta contable para este centro de producción: [%s] %s"
-
+msgid "You must define one Analytic Account for this MO: %s"
+msgstr "Debe definir una cuenta analítica para esta MO: %s"
