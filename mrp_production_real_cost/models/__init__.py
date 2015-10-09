@@ -21,3 +21,4 @@ from . import mrp_production_workcenter_line
 from . import project_task_work
 from . import mrp_production
 from . import mrp_bom
+from . import mrp_config

@@ -32,7 +32,8 @@
     "category": "MRP",
     'data': [
         "data/analytic_journal_data.xml",
-        "views/mrp_production_view.xml"
+        "views/mrp_production_view.xml",
+        "views/res_config_view.xml"
         ],
     'installable': True,
     'auto_install': False,

@@ -52,15 +52,44 @@ class MrpProduction(models.Model):
 
     @api.multi
     def action_production_end(self):
+        task_obj = self.env['project.task']
+        analytic_line_obj = self.env['account.analytic.line']
         res = super(MrpProduction, self).action_production_end()
         for record in self:
             mrp_cost = record.calc_mrp_real_cost()
             done_lines = record.move_created_ids2.filtered(lambda l:
                                                            l.state == 'done')
-            done_lines.create_produce_cost_line(mrp_cost)
+            create_cost = self.env['mrp.config.settings']._get_parameter(
+                'final.product.cost')
+            if create_cost and create_cost.value and mrp_cost > 0.0:
+                journal_id = self.env.ref('mrp.analytic_journal_materials',
+                                          False)
+                qty = sum([l.product_qty for l in done_lines])
+                name = ('Final product - ' + (record.name or '') +
+                        '-' + (record.product_id.default_code or ''))
+                vals = record._prepare_real_cost_analytic_line(
+                    journal_id, name, record, record.product_id, qty=qty,
+                    amount=mrp_cost)
+                task = task_obj.search([('mrp_production_id', '=', record.id),
+                                        ('wk_order', '=', False)])
+                vals['task_id'] = task and task[0].id or False
+                analytic_line_obj.create(vals)
             record.real_cost = mrp_cost
             done_lines.product_price_update_production_done()
+        # Reload produced quants cost to consider all production costs.
+        # Material, machine and manual costs.
+        self.load_final_quant_cost()
         return res
+
+    @api.multi
+    def load_final_quant_cost(self):
+        for production in self:
+            mrp_cost = production.calc_mrp_real_cost()
+            done_lines = production.move_created_ids2.filtered(
+                lambda l: l.state == 'done')
+            total_qty = sum([l.product_qty for l in done_lines])
+            quants = done_lines.mapped('quant_ids')
+            quants.write({'cost': mrp_cost / total_qty})
 
     @api.model
     def _prepare_real_cost_analytic_line(
