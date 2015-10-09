@@ -126,6 +126,8 @@ class MrpProductionWorkcenterLine(models.Model):
     def _load_mo_date_planned(self, production, date_planned):
         if date_planned < production.date_planned:
             production.write({'date_planned': date_planned})
+            return True
+        return False
 
     @api.model
     def create(self, vals):
@@ -141,8 +143,7 @@ class MrpProductionWorkcenterLine(models.Model):
     def write(self, vals, update=False):
         if vals.get('date_planned', False):
             dp = vals.get('date_planned')
-            self._load_mo_date_planned(self.production_id, dp)
-            update = True
+            update = self._load_mo_date_planned(self.production_id, dp)
         res = super(MrpProductionWorkcenterLine, self).write(vals,
                                                              update=update)
         return res
