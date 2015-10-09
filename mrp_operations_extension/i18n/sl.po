@@ -1,22 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_operations_extension
-#
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015.
+# * mrp_operations_extension
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-03 13:44+0000\n"
-"PO-Revision-Date: 2015-04-14 07:50+0200\n"
+"POT-Creation-Date: 2015-10-07 10:43+0000\n"
+"PO-Revision-Date: 2015-09-20 18:56+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian <translate@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
 "Language: sl\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,op_number:0
+msgid "# Operators"
+msgstr "# operaterjev"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,op_number:0
@@ -31,7 +36,7 @@ msgid "Actual Production Date"
 msgstr "Dejanski datum proizvodnje"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:51
+#: code:addons/mrp_operations_extension/models/mrp_production.py:36
 #, python-format
 msgid "At least one work order must have checked 'Produce here'"
 msgstr "Vsaj en delovni nalog mora imeti označbo 'Proizvedi tukaj'"
@@ -58,20 +63,18 @@ msgid "Capacity per cycle"
 msgstr "Kapaciteta na cikel"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:72
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:71
 #, python-format
 msgid "Changing Routing"
 msgstr "Sprememba usmerjanja"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:73
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:72
 #, python-format
 msgid ""
 "Changing routing will cause to change the operation in which each component "
 "will be consumed, by default it is set the first one of the routing"
-msgstr ""
-"Sprememba usmerjanja povzroči spremembo operacije, v kateri se porabi vsaka "
-"komponenta. Privzeta je prva v delokrogu."
+msgstr "Sprememba usmerjanja povzroči spremembo operacije, v kateri se porabi vsaka komponenta. Privzeta je prva v delokrogu."
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -171,8 +174,7 @@ msgid "Force Reservation"
 msgstr "Vsili rezervacijo"
 
 #. module: mrp_operations_extension
-#: field:mrp.operation.workcenter,id:0
-#: field:mrp.routing.operation,id:0
+#: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
 #: field:mrp.work.order.produce,id:0
 msgid "ID"
 msgstr "ID"
@@ -183,10 +185,7 @@ msgid ""
 "If enabled, the production and movement to stock of the final products will "
 "be done in this operation. There can be only one operation per route with "
 "this check marked."
-msgstr ""
-"Če je omogočeno, se v sklopu te operacije izvede proizvodnja in premik v "
-"zalogo končnih proizvodov. To oznako ima lahko le po ena operacija v vsakem "
-"usmerjanju."
+msgstr "Če je omogočeno, se v sklopu te operacije izvede proizvodnja in premik v zalogo končnih proizvodov. To oznako ima lahko le po ena operacija v vsakem usmerjanju."
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
@@ -244,13 +243,7 @@ msgid "Materials"
 msgstr "Materiali"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:142
-#, python-format
-msgid "Missing materials"
-msgstr "Manjkajoči materiali"
-
-#. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:143
+#: code:addons/mrp_operations_extension/models/mrp_production.py:170
 #, python-format
 msgid "Missing materials to start the production"
 msgstr "Manjkajoči materiali za zagon proizvodnje"
@@ -271,18 +264,13 @@ msgid "Name"
 msgstr "Naziv"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:138
-#, python-format
-msgid "Not finished operations"
-msgstr "Nedokončane operacije"
-
-#. module: mrp_operations_extension
 #: field:mrp.routing.workcenter,operation:0
 msgid "Operation"
 msgstr "Operacija"
 
 #. module: mrp_operations_extension
 #: model:ir.ui.menu,name:mrp_operations_extension.mrp_routing_menu
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_future_calendar
 msgid "Operations"
 msgstr "Operacije"
 
@@ -304,6 +292,7 @@ msgstr "Operaterji"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,picking_type_id:0
+#: field:mrp.routing.workcenter,picking_type_id:0
 msgid "Picking Type"
 msgstr "Tip prevzema"
 
@@ -340,7 +329,7 @@ msgid "Previous operations finished"
 msgstr "Predhodne operacije dokončane"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:139
+#: code:addons/mrp_operations_extension/models/mrp_production.py:166
 #, python-format
 msgid "Previous operations not finished"
 msgstr "Predhodne operacije nedokončane"
@@ -437,13 +426,13 @@ msgid "Stock Move"
 msgstr "Premik zaloge"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_routing.py:67
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:55
 #, python-format
 msgid "There must be one and only one line set as default."
 msgstr "Samo ena postavka je lahko privzeta."
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_routing.py:33
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:19
 #, python-format
 msgid ""
 "There must be one and only one operation with 'Produce here' check marked."
@@ -518,6 +507,7 @@ msgstr "Uporaba delovnega centra"
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production_workcenter_line
 #: field:mrp.production.product.line,work_order:0
+#: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
 #: field:stock.move,work_order:0
 msgid "Work Order"
 msgstr "Delovni nalog"
@@ -543,9 +533,22 @@ msgid "Workcenters"
 msgstr "Delovni centri"
 
 #. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "draft,startworking"
+msgstr "osnutek,zagon"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "oe_highlight"
+msgstr "oe_highlight"
+
+#. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "or"
 msgstr "ali"
 
-
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
+msgid "{'invisible': [('op_wc_lines', '!=', [])]}"
+msgstr "{'invisible': [('op_wc_lines', '!=', [])]}"
