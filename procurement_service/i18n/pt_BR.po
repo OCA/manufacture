@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 10:50+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-10-09 03:36+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: procurement_service
 #: model:ir.model,name:procurement_service.model_procurement_order
 msgid "Procurement"
-msgstr "Abastecimiento"
+msgstr "Aprovisionamento"
 
 #. module: procurement_service
 #: model:ir.model,name:procurement_service.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de venta"
+msgstr "Pedido de venda"
 
 #. module: procurement_service
 #: view:product.template:procurement_service.view_template_property_form_inh_procservice
