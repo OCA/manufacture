@@ -24,8 +24,8 @@
                     <field name="product_id"/>
                 </field>
                 <field name="journal_id" position="after">
-                    <field name="estim_std_cost" />
-                    <field name="estim_avg_cost" />
+                    <field name="estim_std_cost" sum="Estim. AVG"/>
+                    <field name="estim_avg_cost" sum="Estim. STD"/>
                 </field>
             </field>
         </record>
@@ -41,8 +41,8 @@
                     <field name="name"/>
                     <field name="product_id"/>
                     <field name="journal_id"/>
-                    <field name="estim_avg_cost"/>
-                    <field name="estim_std_cost"/>
+                    <field name="estim_avg_cost" sum="Estim. AVG"/>
+                    <field name="estim_std_cost" sum="Estim. STD"/>
                     <field name="amount"/>
                     <field name="unit_amount"/>
                     <field name="account_id"/>

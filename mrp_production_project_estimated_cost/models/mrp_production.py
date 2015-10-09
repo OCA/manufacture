@@ -25,16 +25,16 @@ class MrpProduction(models.Model):
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_std_cost',
                  'product_qty')
     def get_unit_std_cost(self):
-        self.std_cost = sum([line.estim_std_cost for line in
-                             self.analytic_line_ids])
+        self.std_cost = -(sum([line.estim_std_cost for line in
+                               self.analytic_line_ids]))
         self.unit_std_cost = self.std_cost / self.product_qty
 
     @api.one
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_avg_cost',
                  'product_qty')
     def get_unit_avg_cost(self):
-        self.avg_cost = sum([line.estim_avg_cost for line in
-                             self.analytic_line_ids])
+        self.avg_cost = -(sum([line.estim_avg_cost for line in
+                               self.analytic_line_ids]))
         self.unit_avg_cost = self.avg_cost / self.product_qty
 
     @api.one

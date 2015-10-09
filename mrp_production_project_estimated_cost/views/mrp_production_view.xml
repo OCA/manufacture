@@ -34,7 +34,7 @@
                 </button>
                 <button name="action_cancel" position="after">
                     <button name="calculate_production_estimated_cost" states="draft,ready,in_production" string="Create Estimated Costs" type="object"/>
-                    <button name="load_product_std_price" string="Load Cost on Product" type="object" attrs="{'invisible':[('std_cost', '=', 0)]}"/>
+                    <button name="load_product_std_price" string="Load Estimated Cost on Product" type="object" attrs="{'invisible':[('std_cost', '=', 0)]}"/>
                 </button>
                 <group string="Manufacturing costs" position="inside">
                     <group>
