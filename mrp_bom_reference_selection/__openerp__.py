@@ -22,7 +22,7 @@
 
 {
     'name': 'Bill of Material Selection Reference',
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'author': 'Savoir-faire Linux',
     'license': 'AGPL-3',
     'category': 'Others',
