@@ -18,7 +18,7 @@
 
 {
     "name": "MRP - BoM Notes",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
