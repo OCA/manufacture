@@ -24,9 +24,9 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[mrp_bom_product_details](__unported__/mrp_bom_product_details/) | 0.1 (unported) | Bom product details
-[mrp_industrial_design_bom](__unported__/mrp_industrial_design_bom/) | 1.0 (unported) | Industrial design specification in BoM
-[mrp_production_properties](__unported__/mrp_production_properties/) | 0.1 (unported) | Mrp Production Properties
+[mrp_bom_product_details](mrp_bom_product_details/) | 0.1 (unported) | Bom product details
+[mrp_industrial_design_bom](mrp_industrial_design_bom/) | 1.0 (unported) | Industrial design specification in BoM
+[mrp_production_properties](mrp_production_properties/) | 0.1 (unported) | Mrp Production Properties
 
 [//]: # (end addons)
 
