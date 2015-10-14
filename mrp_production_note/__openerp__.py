@@ -37,5 +37,5 @@
     "data": [
         "views/mrp_production_view.xml",
     ],
-    "installable": True,
+    'installable': False,
 }
