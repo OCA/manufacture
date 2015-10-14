@@ -29,5 +29,5 @@
     'license': 'AGPL-3',
     'depends': ['mrp_repair'],
     'data': ['view/mrp_repair_view.xml'],
-    'installable': True,
+    'installable': False,
 }

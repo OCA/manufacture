@@ -40,6 +40,6 @@
         'views/stock_production_lot_view.xml',
     ],
     'post_init_hook': 'set_bill_of_material_references',
-    'installable': True,
+    'installable': False,
     'application': True,
 }
