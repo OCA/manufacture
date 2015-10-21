@@ -107,6 +107,11 @@ class MrpProductionWorkcenterLine(orm.Model):
             help="'sub state' of MO state 'Ready To Produce' dedicated to "
                  "planification, scheduling and ordering",
             store={
+                'mrp.production.workcenter.line': [
+                    lambda self, cr, uid, ids, ctx=None: ids,
+                    ['production_id'],
+                    10,
+                ],
                 'mrp.production': [
                     _get_operation_from_production,
                     ['schedule_state'],
@@ -120,6 +125,11 @@ class MrpProductionWorkcenterLine(orm.Model):
             string='Planned MO',
             readonly=True,
             store={
+                'mrp.production.workcenter.line': [
+                    lambda self, cr, uid, ids, ctx=None: ids,
+                    ['production_id'],
+                    10,
+                ],
                 'mrp.production': [
                     _get_operation_from_production,
                     ['date_planned'],
