@@ -9,6 +9,7 @@ class TestMrpBomVersion(common.TransactionCase):
 
     def setUp(self):
         super(TestMrpBomVersion, self).setUp()
+        self.mrp_config = self.env['mrp.config.settings']
         self.bom_model = self.env['mrp.bom']
         self.company = self.env.ref('base.main_company')
         vals = {
@@ -50,7 +51,7 @@ class TestMrpBomVersion(common.TransactionCase):
             self.mrp_bom.active, 'Check must be False, default in company')
 
     def test_mrp_bom_back2draft_active(self):
-        self.company.active_draft = True
+        self.mrp_config.active_draft = True
         self.mrp_bom.button_activate()
         self.mrp_bom.button_draft()
         self.assertTrue(

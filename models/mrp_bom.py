@@ -78,9 +78,10 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_draft(self):
+        active_draft = self.env['mrp.config.settings']._get_parameter(
+            'active.draft')
         self.write({
-            'active': (self.company_id.active_draft if self.company_id else
-                       self.env.user.company_id.active_draft),
+            'active': active_draft and active_draft.value or False,
             'state': 'draft',
         })
 
@@ -99,10 +100,11 @@ class MrpBom(models.Model):
         }
 
     def _copy_bom(self):
+        active_draft = self.env['mrp.config.settings']._get_parameter(
+            'active.draft')
         new_bom = self.copy({
             'version': self.version + 1,
-            'active': (self.company_id.active_draft if self.company_id else
-                       self.env.user.company_id.active_draft),
+            'active': active_draft and active_draft.value or False,
             'parent_bom': self.id,
         })
         return new_bom
