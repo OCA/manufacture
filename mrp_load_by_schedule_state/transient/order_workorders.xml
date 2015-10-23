@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+  <data>
+
+<record id="view_wiz_order_workorder" model="ir.ui.view">
+    <field name="model">order.workorder</field>
+    <field name="arch" type="xml">
+        <form string="Order Work Orders" version="7.0">
+            <footer>
+                <button name="order_workorders" string="Apply"
+                    type="object" class="oe_highlight"/>
+                or
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<act_window
+    id="action_order_workorder"
+    name="Order Work Orders"
+    view_mode="form"
+    target="new"
+    key2="client_action_multi"
+    src_model="mrp.workcenter"
+    res_model="order.workorder"/>
+
+  </data>
+</openerp>

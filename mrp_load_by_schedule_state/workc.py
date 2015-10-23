@@ -43,6 +43,7 @@ class MrpWorkcenterOrderingKey(orm.Model):
             'Fields')
     }
 
+
 class MrpWorkcenterOrderingField(orm.Model):
     _name = 'mrp.workcenter.ordering.field'
     _description = "Workcenter Ordering Field"

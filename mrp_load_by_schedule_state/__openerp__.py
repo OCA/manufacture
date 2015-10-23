@@ -92,6 +92,7 @@ To contribute to this module, please visit http://odoo-community.org.
     'data': [
         'workcenter_view.xml',
         'security/ir.model.access.csv',
+        'transient/order_workorders.xml'
     ],
     'demo': [
     ],
