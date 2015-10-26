@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
+            <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+        </record>
+
+        <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_bom_version_tree_view">
+            <field name="name">mrp.bom.version.tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_parent_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="version" />
+                    <field name="state" />
+                    <field name="historical_date"/>
+                    <button name="button_draft" type="object" string="Draft"
+                            groups="mrp_bom_version.group_mrp_bom_version"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="terp-document-new" />
+                    <button name="button_activate" type="object" string="Activate"
+                            attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                            icon="terp-camera_test"
+                            confirm="You will activate the BoM. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                    <button name="button_new_version" type="object" string="New version"
+                            attrs="{'invisible':[('state','==','historical')]}"
+                            icon="gtk-execute"
+                            confirm="You are going to create a new version of this BoM. Are you sure?"/>
+                    <button name="button_historical" type="object" string="Historical"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="gtk-convert"
+                            confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_bom_version_form_view">
+            <field name="name">mrp.bom.version.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="before">
+                    <header>
+                        <button name="button_draft" type="object" string="Draft"
+                                groups="mrp_bom_version.group_mrp_bom_version"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight" />
+                        <button name="button_activate" type="object" string="Activate"
+                                attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                                class="oe_highlight"
+                                confirm="You will activate the BoM. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                        <button name="button_new_version" type="object" string="New version"
+                                attrs="{'invisible':[('state','==','historical')]}"
+                                class="oe_highlight"
+                                confirm="You are going to create a new version of this BoM. Are you sure?"/>
+                        <button name="button_historical" type="object" string="Historical"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight"
+                                confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,historical" />
+                    </header>
+                </xpath>
+                <field name="company_id" position="after">
+                    <field name="version" />
+                    <field name="historical_date" attrs="{'invisible': [('state','!=','historical')]}"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Versions">
+                        <field name="old_versions" />
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_bom_version_search_view">
+            <field name="name">mrp.bom.version.search</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </field>
+                <group string="Group By..." position="before">
+                    <filter string="Active" domain="[('active','=',True)]" name="is_active_filter"/>
+                    <filter string="Inactive" domain="[('active','=',False)]" name="is_inactive_filter"/>
+                </group>
+                <group string="Group By..." position="inside">
+                    <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

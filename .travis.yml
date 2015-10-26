@@ -9,7 +9,7 @@ addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - python-lxml # because pip installation is slow
+      - python-lxml  # because pip installation is slow
 
 env:
   global:
@@ -17,7 +17,7 @@ env:
   - TRANSIFEX_USER='transbot@odoo-community.org'
   - secure: cnskjzYSLkdeEoUDIhwkwqWsNKIj36JyoA/H7ByNLBphAm9Xrs/ZE8Y5AHxsXp8zQjIGnzw4fpEEO8oakmaueFTaAKlzWS2KH8NWxTjNHkIv/+TFwYsayWNG6O39021wSMQnTRDVERNlBdTwjCTBne81a50NqCeUIrtgcwycwzU=
 
-matrix:
+  matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="odoo/odoo"
