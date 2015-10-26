@@ -24,6 +24,8 @@
             <field name="name">mrp.production.form.qc</field>
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_buttons" />
+            <field name="groups_id"
+                   eval="[(4, ref('quality_control.group_quality_control_user'))]" />
             <field name="arch" type="xml">
                 <div name="buttons" position="inside">
                     <button class="oe_inline oe_stat_button"
