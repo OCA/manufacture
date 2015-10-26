@@ -6,7 +6,8 @@ from openerp import models, fields, api, exceptions, _
 
 
 class QcTest(models.Model):
-    """A test is a group of questions to with the values that make them valid.
+    """
+    A test is a group of questions along with the values that make them valid.
     """
     _name = 'qc.test'
     _description = 'Quality control test'
@@ -53,7 +54,7 @@ class QcTestQuestion(models.Model):
             if value.ok:
                 return
         raise exceptions.Warning(
-            _("There isn't any value with OK marked. You have to mark at "
+            _("There isn't no value marked as OK. You have to mark at "
               "least one."))
 
     @api.one
@@ -84,7 +85,7 @@ class QcTestQuestion(models.Model):
 
 class QcTestQuestionValue(models.Model):
     _name = 'qc.test.question.value'
-    _description = 'Possible values of qualitative questions.'
+    _description = 'Possible values for qualitative questions.'
 
     test_line = fields.Many2one(
         comodel_name="qc.test.question", string="Test question")
