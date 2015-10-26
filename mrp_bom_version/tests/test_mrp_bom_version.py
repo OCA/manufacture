@@ -9,7 +9,7 @@ class TestMrpBomVersion(common.TransactionCase):
 
     def setUp(self):
         super(TestMrpBomVersion, self).setUp()
-        self.mrp_config = self.env['mrp.config.settings']
+        self.parameter_model = self.env['ir.config_parameter']
         self.bom_model = self.env['mrp.bom']
         self.company = self.env.ref('base.main_company')
         vals = {
@@ -48,14 +48,14 @@ class TestMrpBomVersion(common.TransactionCase):
         self.mrp_bom.button_activate()
         self.mrp_bom.button_draft()
         self.assertFalse(
-            self.mrp_bom.active, 'Check must be False, default in company')
+            self.mrp_bom.active, 'Check must be False')
 
     def test_mrp_bom_back2draft_active(self):
-        self.mrp_config.active_draft = True
+        self.parameter_model.create({'key': 'active.draft', 'value': True})
         self.mrp_bom.button_activate()
         self.mrp_bom.button_draft()
         self.assertTrue(
-            self.mrp_bom.active, 'Check must be True, as set in company')
+            self.mrp_bom.active, 'Check must be True, as set in parameters')
 
     def test_mrp_bom_versioning(self):
         self.mrp_bom.button_activate()
@@ -73,7 +73,9 @@ class TestMrpBomVersion(common.TransactionCase):
                 new_bom.version, self.mrp_bom.version + 1,
                 'New BoM version must be +1 from origin BoM version')
             self.assertEqual(
-                new_bom.active, self.company.active_draft,
+                new_bom.active,
+                self.parameter_model.search(
+                    [('key', '=', 'active.draft')]).value,
                 'It does not match active draft check state set in company')
             self.assertEqual(
                 new_bom.state, 'draft',
