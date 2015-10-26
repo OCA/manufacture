@@ -27,7 +27,7 @@ class QcTriggerLine(models.AbstractModel):
     partners = fields.Many2many(
         comodel_name='res.partner', string='Partners',
         help='If filled, the test will only be created when the action is done'
-        ' for one of the specified partners. If empty, the test will be always'
+        ' for one of the specified partners. If empty, the test will always be'
         ' created.', domain="[('parent_id', '=', False)]")
 
     def get_trigger_line_for_product(self, trigger, product, partner=False):
