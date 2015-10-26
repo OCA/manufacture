@@ -3,6 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api
+from openerp.addons.quality_control.models.qc_trigger_line import\
+    _filter_trigger_lines
 
 
 class MrpProduction(models.Model):
@@ -42,6 +44,6 @@ class MrpProduction(models.Model):
                     trigger_lines = trigger_lines.union(
                         self.env[model].get_trigger_line_for_product(
                             qc_trigger, move.product_id))
-                for trigger_line in trigger_lines:
+                for trigger_line in _filter_trigger_lines(trigger_lines):
                     inspection_model._make_inspection(move, trigger_line)
         return res
