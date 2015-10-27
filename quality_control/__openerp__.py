@@ -7,6 +7,8 @@
 {
     "name": "Quality control",
     "version": "8.0.1.0.0",
+    "category": "Quality control",
+    "license": "AGPL-3",
     "author": "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -17,25 +19,24 @@
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
-    "category": "Quality control",
     "depends": [
-        'product',
+        "product",
     ],
     "data": [
-        'data/quality_control_data.xml',
-        'security/quality_control_security.xml',
-        'security/ir.model.access.csv',
-        'wizard/qc_test_wizard_view.xml',
-        'views/qc_menus.xml',
-        'views/qc_inspection_view.xml',
-        'views/qc_test_category_view.xml',
-        'views/qc_test_view.xml',
-        'views/qc_trigger_view.xml',
-        'views/product_template_view.xml',
-        'views/product_category_view.xml',
+        "data/quality_control_data.xml",
+        "security/quality_control_security.xml",
+        "security/ir.model.access.csv",
+        "wizard/qc_test_wizard_view.xml",
+        "views/qc_menus.xml",
+        "views/qc_inspection_view.xml",
+        "views/qc_test_category_view.xml",
+        "views/qc_test_view.xml",
+        "views/qc_trigger_view.xml",
+        "views/product_template_view.xml",
+        "views/product_category_view.xml",
     ],
     "demo": [
-        'demo/quality_control_demo.xml',
+        "demo/quality_control_demo.xml",
     ],
     "installable": True,
 }
