@@ -15,4 +15,4 @@ class MrpRepairLayoutCategory(models.Model):
     sequence = fields.Integer('Sequence', required=True, default=10)
     subtotal = fields.Boolean('Add subtotal', default=True)
     separator = fields.Boolean('Add separator', default=True)
-    pagebreak = fields.Boolean('Add pagebreak')  # TODO in template
+    pagebreak = fields.Boolean('Add pagebreak')

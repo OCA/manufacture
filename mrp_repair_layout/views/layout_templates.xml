@@ -5,7 +5,7 @@
     <!-- Category name -->
     <t t-if="p['category']">
         <tr>
-            <td colspan="100" class="active" style="font-weight: bold; border-bottom: 1px solid black; padding-left:15px">&amp;bull; 
+            <td colspan="100" class="active" style="border-bottom: 1px solid black; padding-left:15px">&amp;bull; 
                 <t t-if="p['category'].name">
                     <t t-esc="p['category'].name"></t>
                 </t>

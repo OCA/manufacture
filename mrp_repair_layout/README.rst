@@ -12,6 +12,13 @@ separators, page-breaks or subtotals.
 Usage
 =====
 
+Under
+manufacturing -> configuration -> report layout categories
+configure your reports sections, setting their options (subtotal, separator,
+pagebreak and sequence)
+
+In repair order lines, use the configured sections
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/8.0

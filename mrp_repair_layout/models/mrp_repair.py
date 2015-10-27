@@ -10,13 +10,15 @@ from openerp import models, fields, api
 from itertools import groupby
 
 
+def sortkey(x):
+    return x.layout_cat_id if x.layout_cat_id else ''
+
+
 class MrpRepair(models.Model):
     _inherit = 'mrp.repair'
 
     @api.model
     def grouplines(self, ordered_lines, sortkey):
-        """Return lines from a specified invoice or sale order grouped by
-        category"""
         grouped_lines = []
         for key, valuesiter in groupby(ordered_lines, sortkey):
             group = {}
@@ -33,15 +35,28 @@ class MrpRepair(models.Model):
     @api.model
     def repair_layout_operation_lines(self, order):
         ordered_lines = order.operations
+        lines_to_print = [l for l in ordered_lines if l.to_invoice]
+        return self.grouplines(lines_to_print, sortkey)
 
-        def sortkey(x):
-            return x.layout_cat_id if x.layout_cat_id else ''
-
-        return self.grouplines(ordered_lines, sortkey)
+    @api.model
+    def repair_layout_fee_lines(self, order):
+        ordered_lines = order.fees_lines
+        lines_to_print = [l for l in ordered_lines if l.to_invoice]
+        return self.grouplines(lines_to_print, sortkey)
 
 
 class MrpRepairLine(models.Model):
     _inherit = 'mrp.repair.line'
+    _order = 'repair_id, categ_sequence, layout_cat_id, id'
+    layout_cat_id = fields.Many2one(
+        'mrp_repair.layout.category', 'Section')
+    categ_sequence = fields.Integer(
+        related='layout_cat_id.sequence', string='Layout sequence',
+        store=True, default=0)
+
+
+class MrpRepairFee(models.Model):
+    _inherit = 'mrp.repair.fee'
     _order = 'repair_id, categ_sequence, layout_cat_id, id'
     layout_cat_id = fields.Many2one(
         'mrp_repair.layout.category', 'Section')
