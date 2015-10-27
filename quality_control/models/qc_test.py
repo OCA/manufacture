@@ -48,21 +48,16 @@ class QcTestQuestion(models.Model):
     @api.one
     @api.constrains('ql_values')
     def _check_valid_answers(self):
-        if self.type == 'quantitative':
-            return
-        for value in self.ql_values:
-            if value.ok:
-                return
-        raise exceptions.Warning(
-            _("There isn't no value marked as OK. You have to mark at "
-              "least one."))
+        if (self.type == 'qualitative' and self.ql_values and
+                not self.ql_values.filtered('ok')):
+            raise exceptions.Warning(
+                _("There isn't no value marked as OK. You have to mark at "
+                  "least one."))
 
     @api.one
     @api.constrains('min_value', 'max_value')
     def _check_valid_range(self):
-        if self.type == 'qualitative':
-            return
-        if self.min_value > self.max_value:
+        if self.type == 'quantitative' and self.min_value > self.max_value:
             raise exceptions.Warning(
                 _("Minimum value can't be higher than maximum value."))
 

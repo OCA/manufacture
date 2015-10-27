@@ -121,12 +121,12 @@ class QcInspection(models.Model):
                     if not line.qualitative_value:
                         raise exceptions.Warning(
                             _("You should provide an answer for all "
-                              "quantitative questions."))
+                              "qualitative questions."))
                 else:
                     if not line.uom_id:
                         raise exceptions.Warning(
                             _("You should provide a unit of measure for "
-                              "qualitative questions."))
+                              "quantitative questions."))
             if inspection.success:
                 inspection.state = 'success'
             else:

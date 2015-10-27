@@ -782,13 +782,13 @@ msgstr "Najprej določite testiranje, ki se bo izvedlo."
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:128
 #, python-format
-msgid "You should provide a unit of measure for qualitative questions."
+msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Določite EM za kvalitativna vprašanja."
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
-msgid "You should provide an answer for all quantitative questions."
+msgid "You should provide an answer for all qualitative questions."
 msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."
 
 #. module: quality_control

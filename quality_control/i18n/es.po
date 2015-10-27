@@ -782,14 +782,14 @@ msgstr "Debe establecer primero el test a realizar."
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:128
 #, python-format
-msgid "You should provide a unit of measure for qualitative questions."
-msgstr "Debe proveer una unidad de medida para las preguntas cualitativas."
+msgid "You should provide a unit of measure for quantitative questions."
+msgstr "Debe proveer una unidad de medida para las preguntas cuantitativas."
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
-msgid "You should provide an answer for all quantitative questions."
-msgstr "Debe proveer una respuesta para todas las preguntas cuantitativas."
+msgid "You should provide an answer for all qualitative questions."
+msgstr "Debe proveer una respuesta para todas las preguntas cualitativas."
 
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
