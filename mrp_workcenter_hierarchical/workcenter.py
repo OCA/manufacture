@@ -28,8 +28,10 @@ class MrpWorkcenter(orm.Model):
     def _get_workcenter_ids_to_recompute_level(self, cr, uid, ids, context=None):
         return self.search(cr, uid, [
             '|',
+            '|',
             ('parent_id', 'child_of', ids),
             ('id', 'in', ids),
+            ('child_ids', 'in', ids),
             ])
 
     def _get_parent_ids(self, workcenter):
