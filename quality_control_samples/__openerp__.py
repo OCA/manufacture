@@ -34,5 +34,5 @@
         'views/qc_test_view.xml',
         'views/qc_inspection_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
