@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="product_template_qc_form_view">
+            <field name="name">product.template.qc</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Inventory" position="inside">
+                    <group name="qc" string="Quality control">
+                        <field name="qc_triggers" nolabel="1">
+                            <tree string="Quality control triggers" editable="bottom">
+                                <field name="trigger" widget="selection"/>
+                                <field name="test"/>
+                                <field name="user" />
+                                <field name="partners" widget="many2many_tags" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

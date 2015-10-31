@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="qc_test_template_category_generic" model="qc.test.category">
+            <field name="name">Generic</field>
+        </record>
+
+        <record id="qc_test_template_category_referenced" model="qc.test.category">
+            <field name="name">Referenced</field>
+        </record>
+    </data>
+
+    <data>
+        <record id="seq_type_qc_inspection" model="ir.sequence.type">
+            <field name="name">Quality inspection</field>
+            <field name="code">qc.inspection</field>
+        </record>
+
+        <record id="seq_qc_inspection" model="ir.sequence">
+            <field name="name">Quality inspection</field>
+            <field name="code">qc.inspection</field>
+            <field name="prefix">QC-</field>
+            <field name="padding">6</field>
+        </record>
+    </data>
+</openerp>

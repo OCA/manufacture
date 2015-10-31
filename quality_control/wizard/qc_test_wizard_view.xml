@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_qc_test_set_test_form" model="ir.ui.view">
+            <field name="name">qc.inspection.set.test.form</field>
+            <field name="model">qc.inspection.set.test</field>
+            <field name="arch" type="xml">
+                <form string="Select test" version="7.0">
+                    <group>
+                        <field name="test" />
+                    </group>
+                    <footer>
+                        <button name="action_create_test"
+                                string="Accept"
+                                type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button special="cancel"
+                                class="oe_link"
+                                string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_qc_inspection_set_test" model="ir.actions.act_window">
+            <field name="name">Select test</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">qc.inspection.set.test</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

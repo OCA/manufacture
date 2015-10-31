@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_trigger_form_view">
+            <field name="name">qc.trigger.form</field>
+            <field name="model">qc.trigger</field>
+            <field name="arch" type="xml">
+                <form string="Quality control trigger">
+                <group>
+                    <field name="name" />
+                    <field name="active" />
+                    <field name="partner_selectable" />
+                </group>
+                <group>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_trigger_tree_view">
+            <field name="name">qc.trigger.tree</field>
+            <field name="model">qc.trigger</field>
+            <field name="arch" type="xml">
+                <tree string="Quality control triggers" editable="bottom">
+                    <field name="name" />
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
