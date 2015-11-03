@@ -51,6 +51,12 @@ Usage
    :target: https://runbot.odoo-community.org/runbot/129/8.0
 
 
+Known issues / Roadmap
+======================
+
+* Make translatable the trigger name.
+
+
 Bug Tracker
 ===========
 
