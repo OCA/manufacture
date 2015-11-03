@@ -19,6 +19,12 @@ Usage
    :target: https://runbot.odoo-community.org/runbot/129/8.0
 
 
+Known issues / Roadmap
+======================
+
+* Put trigger in all languages.
+
+
 Bug Tracker
 ===========
 

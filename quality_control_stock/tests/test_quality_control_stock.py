@@ -10,8 +10,6 @@ class TestQualityControl(TransactionCase):
     def setUp(self):
         super(TestQualityControl, self).setUp()
         self.picking_model = self.env['stock.picking']
-#         self.operation_model = self.env['stock.pack.operation']
-#         self.transfer_details_model = self.env['stock.transfer_details']
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
         self.picking_type_model = self.env['stock.picking.type']
@@ -62,6 +60,8 @@ class TestQualityControl(TransactionCase):
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_template(self):
         self.product.product_tmpl_id.qc_triggers = [(
@@ -73,6 +73,8 @@ class TestQualityControl(TransactionCase):
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_category(self):
         self.product.categ_id.qc_triggers = [(
@@ -84,49 +86,57 @@ class TestQualityControl(TransactionCase):
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_product_partner(self):
         self.product.qc_triggers = [(
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner1.id])],
+                'partners': [(6, 0, self.partner1.ids)],
             }
         )]
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_template_partner(self):
         self.product.product_tmpl_id.qc_triggers = [(
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner1.id])],
+                'partners': [(6, 0, self.partner1.ids)],
             }
         )]
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_category_partner(self):
         self.product.categ_id.qc_triggers = [(
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner1.id])],
+                'partners': [(6, 0, self.partner1.ids)],
             }
         )]
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_inspection_create_for_product_wrong_partner(self):
         self.product.qc_triggers = [(
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner2.id])],
+                'partners': [(6, 0, self.partner2.ids)],
             }
         )]
         self.picking1.do_transfer()
@@ -138,7 +148,7 @@ class TestQualityControl(TransactionCase):
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner2.id])],
+                'partners': [(6, 0, self.partner2.ids)],
             }
         )]
         self.picking1.do_transfer()
@@ -150,7 +160,7 @@ class TestQualityControl(TransactionCase):
             0, 0, {
                 'trigger': self.trigger.id,
                 'test': self.test.id,
-                'partners': [(6, 0, [self.partner2.id])],
+                'partners': [(6, 0, self.partner2.ids)],
             }
         )]
         self.picking1.do_transfer()
@@ -173,8 +183,12 @@ class TestQualityControl(TransactionCase):
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
         self.assertEqual(self.lot.created_inspections, 1,
                          'Only one inspection must be created')
+        self.assertEqual(self.lot.qc_inspections[:1].test, self.test,
+                         'Wrong test picked when creating inspection.')
 
     def test_picking_type(self):
         picking_type = self.picking_type_model.create({
@@ -193,11 +207,6 @@ class TestQualityControl(TransactionCase):
         })
         self.assertEqual(trigger.name, picking_type.complete_name,
                          'Trigger name must match picking type name.')
-        picking_type.unlink()
-        trigger = self.qc_trigger_model.search(
-            [('picking_type', '=', picking_type.id)])
-        self.assertEqual(len(trigger), 0,
-                         'Trigger must have been deleted.')
 
     def test_qc_inspection_picking(self):
         self.inspection1.write({
