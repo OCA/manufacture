@@ -11,7 +11,6 @@ class StockPickingType(models.Model):
     @api.multi
     def _create_qc_trigger(self):
         qc_trigger = {
-            # Synchronize all translations
             'name': self.complete_name,
             'company_id': self.warehouse_id.company_id.id,
             'picking_type': self.id,
@@ -34,9 +33,3 @@ class StockPickingType(models.Model):
                 [('picking_type', '=', self.id)])
             qc_trigger.name = self.complete_name
         return res
-
-    @api.multi
-    def unlink(self):
-        self.env['qc.trigger'].sudo().search(
-            [('picking_type', '=', self.id)]).unlink()
-        return super(StockPickingType, self).unlink()

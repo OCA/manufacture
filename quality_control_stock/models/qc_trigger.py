@@ -9,4 +9,4 @@ class QcTrigger(models.Model):
     _inherit = 'qc.trigger'
 
     picking_type = fields.Many2one(
-        comodel_name="stock.picking.type", readonly=True)
+        comodel_name="stock.picking.type", readonly=True, ondelete="cascade")
