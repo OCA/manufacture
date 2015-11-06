@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="mrp_production_hierarchy_view" model="ir.ui.view">
+        <field name="name">mrp.production.hierarchy.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="priority">999</field>
+        <field name="field_parent">child_ids</field>
+        <field name="arch" type="xml">
+            <tree toolbar="True" string="Production Hierarchy">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="parent_id" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mrp_production_hierarchy_action" model="ir.actions.act_window">
+        <field name="name">Production Hierarchy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production</field>
+        <field name="domain">[('parent_id','=',False)]</field>
+        <field name="view_type">tree</field>
+        <field name="view_id" ref="mrp_production_hierarchy_view"/>
+    </record>
+
+    <menuitem
+        action="mrp_production_hierarchy_action"
+        id="menu_mrp_production_hierarchy"
+        parent="mrp.menu_mrp_manufacturing"/>
+
+    <record id="production_orders_tree" model="ir.actions.act_window">
+        <field name="name">Production Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id', '=', active_id)]</field>
+    </record>
+
+    <record id="ir_hierarchy_production_open" model="ir.values">
+        <field eval="'tree_but_open'" name="key2"/>
+        <field eval="'mrp.production'" name="model"/>
+        <field name="name">Production Orders</field>
+        <field eval="'ir.actions.act_window,%d'%production_orders_tree" name="value"/>
+    </record>
+
+
+</data>
+</openerp>
