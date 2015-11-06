@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="wizard_production_hierarchy_form" model="ir.ui.view">
+        <field name="name">wizard.production.hierarchy.form</field>
+        <field name="model">wizard.hierarchy</field>
+        <field name="arch" type="xml">
+            <form string="Production Hierarchy">
+                <footer>
+                    <button string="Show Production Hierarchy"
+                            name="show_production_hierarchy"
+                            type="object" class="oe_highlight" colspan="2"/>
+                    o
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_production_hierarchy" model="ir.actions.act_window">
+        <field name="name">Production Hierarchy</field>
+        <field name="res_model">wizard.hierarchy</field>
+        <field name="src_model">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_production_hierarchy_form"/>
+    </record>
+
+    <act_window id="act_show_production_hierarchy"
+        key2="client_action_multi"
+        name="Production Hierarchy"
+        res_model="wizard.hierarchy"
+        src_model="mrp.production"
+        view_id="wizard_production_hierarchy_form"
+        view_mode="form" target="new" view_type="form" />
+
+</data>
+</openerp>
