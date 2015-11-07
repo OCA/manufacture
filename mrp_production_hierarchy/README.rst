@@ -3,36 +3,23 @@
    :alt: License: AGPL-3
 
 ========================
-Mrp Production Hierarchy
+MRP Production Hierarchy
 ========================
 
-This module was written to extend the functionality of Manufacturing Order
-to show a navigable hierarchy
+This module extends the functionality of Manufacturing Order
+to show a navigable hierarchy.
 
-Installation
-============
-
-To install this module, you need to:
-
-* This module depends only on the mrp module.
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-* No special setup
 
 Usage
 =====
 
 To use this module, you need to:
 
-* go to menù Manufacturing - Manufacturing - Production Hierarchy
+* go to menu Manufacturing - Manufacturing - Production Hierarchy
 
 or
 
-* Select from a selected Manufactoring Order Wizard Production Hierarchy
+* Run Production Hierarchy wizard from the production order form
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -43,12 +30,12 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/
-{project_repo}/issues>`_.
+129/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback `here <https://github.com/OCA/
-{project_repo}/issues/new?body=module:%20
-{module_name}%0Aversion:%20
-{branch}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+manufacture/issues/new?body=module:%20
+mrp_production_hierarchy%0Aversion:%20
+8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 
 Credits
