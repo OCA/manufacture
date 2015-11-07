@@ -13,7 +13,7 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     @api.one
-    @api.depends('name', 'state')
+    @api.depends('name', 'state', 'origin')
     def _get_parent(self):
         for mrp in self:
             parent = self.search([('name', '=', mrp.origin)], limit=1)
