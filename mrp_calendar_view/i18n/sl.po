@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_calendar_view
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-03 11:38+0000\n"
+"PO-Revision-Date: 2015-10-29 06:04+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_calendar_view
+#: help:mrp.repair,date_repair:0
+msgid "Date of the repair, this fieldand user_id defines the calendar"
+msgstr "Datum popravila; to polje in polje user_id določita koledar"
+
+#. module: mrp_calendar_view
+#: help:mrp.repair,user_id:0
+msgid "Person in charge for the repair"
+msgstr "Oseba odgovorna za popravilo"
+
+#. module: mrp_calendar_view
+#: field:mrp.repair,date_repair:0
+msgid "Repair Date"
+msgstr "Datum popravila"
+
+#. module: mrp_calendar_view
+#: model:ir.model,name:mrp_calendar_view.model_mrp_repair
+msgid "Repair Order"
+msgstr "Nalog za popravilo"
+
+#. module: mrp_calendar_view
+#: view:mrp.repair:mrp_calendar_view.view_repair_order_calendar
+msgid "Repair Orders Calendar"
+msgstr "Koledar nalogov za popravila"
+
+#. module: mrp_calendar_view
+#: field:mrp.repair,user_id:0
+msgid "User"
+msgstr "Uporabnik"

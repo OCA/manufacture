@@ -3,31 +3,32 @@
 # * mrp_production_partner_note
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-26 16:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-11-03 17:16+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>\n"
+"Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: mrp_production_partner_note
 #: model:ir.model,name:mrp_production_partner_note.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Partener"
 
 #. module: mrp_production_partner_note
 #: model:ir.model,name:mrp_production_partner_note.model_procurement_order
 msgid "Procurement"
-msgstr "Abastecimiento"
+msgstr "Aprovizionare"
 
 #. module: mrp_production_partner_note
 #: field:res.partner,mrp_notes:0
 msgid "Production Notes"
-msgstr "Notas de producción"
+msgstr "Note producție"

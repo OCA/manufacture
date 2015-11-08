@@ -3,19 +3,20 @@
 # * mrp_bom_reference_selection
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-03 11:38+0000\n"
 "PO-Revision-Date: 2015-10-31 10:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom
@@ -23,27 +24,27 @@ msgstr ""
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 #: field:stock.production.lot,bom_id:0
 msgid "Bill of Material"
-msgstr "Nomenclature"
+msgstr "Kosovnica"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom,reference_id:0
 msgid "BoM Reference"
-msgstr "Référence de nomenclature"
+msgstr "Sklic kosovnice"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Ustvaril"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Ustvarjeno"
 
 #. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,id:0
@@ -53,47 +54,47 @@ msgstr "ID"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière mise-à-jour par"
+msgstr "Zadnji posodobil"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_date:0
 msgid "Last Updated on"
-msgstr "Dernière mise-à-jour le"
+msgstr "Zadnjič posodobljeno"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Lot/serijska št."
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom_reference
 msgid "MRP Bill of Material Reference"
-msgstr "Référence de nomenclature"
+msgstr "MRP sklic kosovnice"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Proizvodni nalog"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_product_produce
 msgid "Product Produce"
-msgstr ""
+msgstr "Proizvedi proizvod"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,product_tmpl_id:0
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr "Predloga proizvoda"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,reference_id:0
 msgid "Ref"
-msgstr ""
+msgstr "Sklic"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,name:0
 msgid "Reference"
-msgstr "Référence"
+msgstr "Sklic"
 
 #. module: mrp_bom_reference_selection
 #: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard
@@ -102,4 +103,4 @@ msgid ""
 "                        ('bom_id', 'in', [False, bom_id]),\n"
 "                        ('product_id', '=', product_id),\n"
 "                    ]"
-msgstr ""
+msgstr "[\n                        ('bom_id', 'in', [False, bom_id]),\n                        ('product_id', '=', product_id),\n                    ]"
