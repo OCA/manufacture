@@ -3,44 +3,12 @@
    :alt: License: AGPL-3
 
 ===================================
-Quality control management for Odoo
+Stock extension for quality control
 ===================================
 
-This module provides a generic infrastructure for quality tests. The idea is
-that it can be later reused for doing quality inspections on production lots
-or any other area of the company.
+This module defines triggers that creates inspections when stock moves are done.
 
-Definitions
------------
-
-* Question: The thing to be checked. We have two types of questions:
-
- * Qualitative: The result is a description, color, yes, no...
-
- * Quantitative: The result must be within a range.
-
-* Possible values: The values chosen in qualitative questions.
-
-* Test: The set of questions to be used in inspections.
-
-* Once these values are set, we define the inspection.
-
-We have a *generic* test that can be applied to any model: shipments,
-invoices or product, or a *test related*, making it specific to a particular
-product and that eg apply whenever food is sold or when creating a batch.
-
-Once these parameters are set, we can just pass the test. We create a
-new inspection, selecting a relationship with the model (sale, stock move...),
-and pressing "Select test" button to choose the test to pass. Then, you must
-fill the lines depending on the chosen test.
-
-The complete inspection workflow is:
-
-    Draft -> Confirmed -> Success
-                |
-                | -> Failure (Pending approval) -> Approved
-
-Based on the nan_quality_control_* modules from NaN·tic.
+It also adds some shortcuts on picking and lots to these inspections.
 
 
 Usage
@@ -54,7 +22,7 @@ Usage
 Known issues / Roadmap
 ======================
 
-* Make translatable the trigger name.
+* Put trigger in all languages.
 
 
 Bug Tracker
@@ -72,7 +40,6 @@ Contributors
 ------------
 * Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-* Ana Juaristi <anajuaristi@avanzosc.es>
 
 Maintainer
 ----------
