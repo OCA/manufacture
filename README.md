@@ -21,6 +21,7 @@ addon | version | summary
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
 [quality_control](quality_control/) | 8.0.1.0.0 | Quality control
+[quality_control_stock](quality_control_stock/) | 8.0.1.0.0 | Quality control - Stock
 
 Unported addons
 ---------------
