@@ -9,56 +9,24 @@ import math
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    @api.model
-    def _bom_explode(self, bom, product, factor, properties=None, level=0,
-                     routing_id=False, previous_products=None,
-                     master_bom=None):
-        routing_id = bom.routing_id.id or routing_id
-        result, result2 = super(MrpBom, self)._bom_explode(
-            bom, product, factor, properties=properties, level=level,
-            routing_id=routing_id, previous_products=previous_products,
-            master_bom=master_bom)
-        result2 = self._get_workorder_operations(
-            result2, factor=factor, level=level, routing_id=routing_id)
-        return result, result2
-
-    def _get_routing_line_from_workorder(self, routing_id, seq, workcenter_id,
-                                         wo_name):
-        """ Returns first routing line from a given data if found
-        @param routing_id: Routing id
-        @param seq: workorder sequence
-        @param workcenter_id: Workcenter id
-        @return: wo_name = Workorder name
-        """
-        routing_line_obj = self.env['mrp.routing.workcenter']
-        domain = [('routing_id', '=', routing_id), ('sequence', '=', seq),
-                  ('workcenter_id', '=', workcenter_id)]
-        routing_lines = routing_line_obj.search(domain)
-        for rl in routing_lines:
-            if rl.name in wo_name:
-                return rl
-        return routing_line_obj
-
-    def _get_workorder_operations(self, result2, factor, level=0,
-                                  routing_id=False):
-        for work_order in result2:
-            if (work_order['sequence'] < level or
-                    work_order.get('routing_wc_line')):
-                continue
-            seq = work_order['sequence'] - level
-            rl = self._get_routing_line_from_workorder(
-                routing_id, seq, work_order['workcenter_id'],
-                work_order['name'])
-            cycle = rl.cycle_nbr and int(math.ceil(factor / rl.cycle_nbr)) or 0
-            hour = rl.hour_nbr * cycle
-            default_wc_line = rl.op_wc_lines.filtered(lambda r: r.default)
-            work_order['cycle'] = cycle
-            work_order['hour'] = hour
-            work_order['time_start'] = default_wc_line.time_start or 0.0
-            work_order['time_stop'] = default_wc_line.time_stop or 0.0
-            work_order['routing_wc_line'] = rl.id
-            work_order['do_production'] = rl.do_production
-        return result2
+    @api.multi
+    def _prepare_wc_line(self, wc_use, level=0, factor=1):
+        res = super(MrpBom, self)._prepare_wc_line(
+            wc_use, level=level, factor=factor)
+        cycle = (
+            wc_use.cycle_nbr and int(math.ceil(factor / wc_use.cycle_nbr)) or
+            0)
+        hour = wc_use.hour_nbr * cycle
+        default_wc_line = wc_use.op_wc_lines.filtered(lambda r: r.default)
+        res.update({
+            'cycle': cycle,
+            'hour': hour,
+            'time_start': default_wc_line.time_start or 0.0,
+            'time_stop': default_wc_line.time_stop or 0.0,
+            'routing_wc_line': wc_use.id,
+            'do_production': wc_use.do_production,
+        })
+        return res
 
     @api.multi
     @api.onchange('routing_id')
