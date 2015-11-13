@@ -71,7 +71,7 @@ class MrpProduction(models.Model):
                     journal_id, name, record, record.product_id, qty=qty,
                     amount=mrp_cost)
                 task = task_obj.search([('mrp_production_id', '=', record.id),
-                                        ('wk_order', '=', False)])
+                                        ('workorder', '=', False)])
                 vals['task_id'] = task and task[0].id or False
                 analytic_line_obj.create(vals)
             record.real_cost = mrp_cost
@@ -112,8 +112,8 @@ class MrpProduction(models.Model):
         property_obj = self.env['ir.property']
         if not general_account:
             general_account = (
-                product.property_account_income or
-                product.categ_id.property_account_income_categ or
+                product.property_account_expense or
+                product.categ_id.property_account_expense_categ or
                 property_obj.get('property_account_expense_categ',
                                  'product.category'))
         if not production.analytic_account_id:

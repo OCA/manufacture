@@ -56,7 +56,7 @@ class MrpProductionWorkcenterLine(models.Model):
                 general_account=general_acc, workorder=self,
                 qty=operation_line.uptime, amount=price)
             task = task_obj.search([('mrp_production_id', '=', production.id),
-                                    ('wk_order', '=', False)])
+                                    ('workorder', '=', False)])
             analytic_vals['task_id'] = task and task[0].id or False
             analytic_vals['product_uom_id'] = hour_uom.id
             analytic_line = analytic_line_obj.create(analytic_vals)
@@ -97,7 +97,7 @@ class MrpProductionWorkcenterLine(models.Model):
                 general_account=general_acc, workorder=self,
                 qty=qty, amount=price)
             task = task_obj.search([('mrp_production_id', '=', production.id),
-                                    ('wk_order', '=', False)])
+                                    ('workorder', '=', False)])
             analytic_vals['task_id'] = task and task[0].id or False
             analytic_vals['product_uom_id'] = hour_uom.id
             analytic_line_obj.create(analytic_vals)

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-05 04:55+0000\n"
+"POT-Creation-Date: 2015-11-20 18:10+0000\n"
+"PO-Revision-Date: 2015-10-31 05:16+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr "% razlike"
 #: model:ir.model,name:mrp_production_real_costs.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Kosovnica"
+
+#. module: mrp_production_real_costs
+#: field:mrp.config.settings,final_product_analytic_cost:0
+msgid "Load final product analytic cost"
+msgstr "Naloži zadnji analitični strošek proizvoda"
 
 #. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_mrp_production
@@ -49,6 +54,11 @@ msgid "Pre-Operation Cost"
 msgstr "Pred operativni stroški"
 
 #. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Izdelava proizvoda"
+
+#. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_project_task_work
 msgid "Project Task Work"
 msgstr "Delo na projektnem opravilu"
@@ -57,6 +67,13 @@ msgstr "Delo na projektnem opravilu"
 #: model:ir.model,name:mrp_production_real_costs.model_stock_move
 msgid "Stock Move"
 msgstr "Premik zaloge"
+
+#. module: mrp_production_real_costs
+#: help:mrp.config.settings,final_product_analytic_cost:0
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr "Omogoča določanje, če naj kosovnice, ki se vračajo v stanje osnutka, ostanejo aktivirane ali ne"
 
 #. module: mrp_production_real_costs
 #: field:mrp.production,real_cost:0
@@ -74,7 +91,7 @@ msgid "Work Order"
 msgstr "Delovni nalog"
 
 #. module: mrp_production_real_costs
-#: code:addons/mrp_production_real_costs/models/mrp_production.py:92
+#: code:addons/mrp_production_real_costs/models/mrp_production.py:121
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr "Potrebno je določiti analitični konto za proizvodni nalog: %s"

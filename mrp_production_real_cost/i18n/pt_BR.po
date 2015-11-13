@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 03:39+0000\n"
-"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"POT-Creation-Date: 2015-11-20 18:10+0000\n"
+"PO-Revision-Date: 2015-10-30 13:07+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +26,11 @@ msgstr ""
 #: model:ir.model,name:mrp_production_real_costs.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Lista de materiais"
+
+#. module: mrp_production_real_costs
+#: field:mrp.config.settings,final_product_analytic_cost:0
+msgid "Load final product analytic cost"
+msgstr ""
 
 #. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_mrp_production
@@ -48,6 +53,11 @@ msgid "Pre-Operation Cost"
 msgstr ""
 
 #. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Produzir produto"
+
+#. module: mrp_production_real_costs
 #: model:ir.model,name:mrp_production_real_costs.model_project_task_work
 msgid "Project Task Work"
 msgstr ""
@@ -56,6 +66,13 @@ msgstr ""
 #: model:ir.model,name:mrp_production_real_costs.model_stock_move
 msgid "Stock Move"
 msgstr "Movimentação de estoque"
+
+#. module: mrp_production_real_costs
+#: help:mrp.config.settings,final_product_analytic_cost:0
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr "Isto permite você definir se as BOM's passadas para provisório são ativadas ou não."
 
 #. module: mrp_production_real_costs
 #: field:mrp.production,real_cost:0
@@ -73,7 +90,7 @@ msgid "Work Order"
 msgstr "Ordem de serviço"
 
 #. module: mrp_production_real_costs
-#: code:addons/mrp_production_real_costs/models/mrp_production.py:92
+#: code:addons/mrp_production_real_costs/models/mrp_production.py:121
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr ""

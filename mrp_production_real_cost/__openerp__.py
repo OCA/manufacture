@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 {
     "name": "MRP real costs",
-    "version": "1.0",
+    "version": "8.0.1.0.1",
     "depends": ["analytic",
                 "project_timesheet",
                 "mrp_project_link",
