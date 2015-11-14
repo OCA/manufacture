@@ -28,11 +28,6 @@ class QcInspection(models.Model):
         else:
             self.product = False
 
-    @api.one
-    @api.depends('object_id')
-    def _get_qty(self):
-        self.qty = 1.0
-
     name = fields.Char(
         string='Inspection number', required=True, default='/', select=True,
         readonly=True, states={'draft': [('readonly', False)]}, copy=False)
@@ -46,7 +41,7 @@ class QcInspection(models.Model):
     product = fields.Many2one(
         comodel_name="product.product", compute="_get_product", store=True,
         help="Product associated with the inspection")
-    qty = fields.Float(string="Quantity", compute="_get_qty", store=True)
+    qty = fields.Float(string="Quantity", default=1.0)
     test = fields.Many2one(
         comodel_name='qc.test', string='Test', readonly=True, select=True)
     inspection_lines = fields.One2many(
