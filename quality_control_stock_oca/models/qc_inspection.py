@@ -41,15 +41,22 @@ class QcInspection(models.Model):
             elif self.object_id._name == 'stock.pack.operation':
                 self.product = self.object_id.product_id
 
-    @api.one
-    @api.depends('object_id')
-    def _get_qty(self):
-        super(QcInspection, self)._get_qty()
+    @api.onchange('object_id')
+    def onchange_object_id(self):
         if self.object_id:
             if self.object_id._name == 'stock.move':
                 self.qty = self.object_id.product_qty
             elif self.object_id._name == 'stock.pack.operation':
                 self.qty = self.object_id.product_qty
+
+    @api.multi
+    def _prepare_inspection_header(self, object_ref, trigger_line):
+        res = super(QcInspection, self)._prepare_inspection_header(
+            object_ref, trigger_line)
+        # Fill qty when coming from pack operations
+        if object_ref and object_ref._name == 'stock.pack.operation':
+            res['qty'] = object_ref.product_qty
+        return res
 
     picking = fields.Many2one(
         comodel_name="stock.picking", compute="get_picking", store=True)
