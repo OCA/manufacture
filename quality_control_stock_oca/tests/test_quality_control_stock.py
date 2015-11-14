@@ -35,6 +35,7 @@ class TestQualityControl(TransactionCase):
             'name': self.product.name,
             'product_id': self.product.id,
             'product_uom': self.product.uom_id.id,
+            'product_uom_qty': 2.0,
             'location_id': self.picking_type.default_location_src_id.id,
             'location_dest_id': self.picking_type.default_location_dest_id.id,
         }
@@ -60,8 +61,14 @@ class TestQualityControl(TransactionCase):
         self.picking1.do_transfer()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
-        self.assertEqual(self.picking1.qc_inspections[:1].test, self.test,
+        inspection = self.picking1.qc_inspections[:1]
+        self.assertEqual(inspection.qty, 2.0)
+        self.assertEqual(inspection.test, self.test,
                          'Wrong test picked when creating inspection.')
+        # Try in this context if onchange with an stock.pack.operation works
+        inspection.qty = 5
+        inspection.onchange_object_id()
+        self.assertEqual(inspection.qty, 2.0)
 
     def test_inspection_create_for_template(self):
         self.product.product_tmpl_id.qc_triggers = [(
@@ -221,6 +228,7 @@ class TestQualityControl(TransactionCase):
             'object_id': '%s,%d' % (self.picking1.move_lines[:1]._model,
                                     self.picking1.move_lines[:1].id),
         })
+        self.inspection1.onchange_object_id()
         self.assertEquals(self.inspection1.picking,
                           self.picking1)
         self.assertEquals(self.inspection1.lot,
