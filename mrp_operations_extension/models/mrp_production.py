@@ -3,7 +3,6 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, exceptions, _
-import math
 
 
 class MrpProduction(models.Model):
@@ -40,37 +39,12 @@ class MrpProduction(models.Model):
     def _action_compute_lines(self, properties=None):
         res = super(MrpProduction, self)._action_compute_lines(
             properties=properties)
-        self._get_workorder_in_product_lines(
-            self.workcenter_lines, self.product_lines, properties=properties)
+        # Assign work orders to each consume line
+        for product_line in self.product_lines:
+            product_line.work_order = self.workcenter_lines.filtered(
+                lambda x: (x.routing_wc_line ==
+                           product_line.bom_line.operation))
         return res
-
-    def _get_workorder_in_product_lines(
-            self, workcenter_lines, product_lines, properties=None):
-        for workorder in workcenter_lines:
-            wc = workorder.routing_wc_line
-            cycle = wc.cycle_nbr and int(math.ceil(self.product_qty /
-                                                   wc.cycle_nbr)) or 0
-            workorder.cycle = cycle
-            workorder.hour = wc.hour_nbr * cycle
-        for p_line in product_lines:
-            for bom_line in self.bom_id.bom_line_ids:
-                if bom_line.product_id.id == p_line.product_id.id:
-                    for wc_line in workcenter_lines:
-                        if wc_line.routing_wc_line.id == bom_line.operation.id:
-                            p_line.work_order = wc_line.id
-                            break
-                elif bom_line.type == 'phantom':
-                    bom_obj = self.env['mrp.bom']
-                    bom_id = bom_obj._bom_find(
-                        product_id=bom_line.product_id.id,
-                        properties=properties)
-                    for bom_line2 in bom_obj.browse(bom_id).bom_line_ids:
-                        if bom_line2.product_id.id == p_line.product_id.id:
-                            for wc_line in workcenter_lines:
-                                if (wc_line.routing_wc_line.id ==
-                                        bom_line2.operation.id):
-                                    p_line.work_order = wc_line.id
-                                    break
 
     @api.model
     def _make_production_consume_line(self, line):
@@ -85,8 +59,9 @@ class MrpProduction(models.Model):
 class MrpProductionProductLine(models.Model):
     _inherit = 'mrp.production.product.line'
 
-    work_order = fields.Many2one('mrp.production.workcenter.line',
-                                 'Work Order')
+    bom_line = fields.Many2one(comodel_name="mrp.bom.line")
+    work_order = fields.Many2one(
+        comodel_name='mrp.production.workcenter.line', string='Work Order')
 
 
 class MrpProductionWorkcenterLine(models.Model):
@@ -102,17 +77,29 @@ class MrpProductionWorkcenterLine(models.Model):
                 x not in ('assigned', 'cancel', 'done') for x in
                 moves.mapped('state'))
 
-    product_line = fields.One2many('mrp.production.product.line',
-                                   'work_order', string='Product Lines')
-    routing_wc_line = fields.Many2one('mrp.routing.workcenter',
-                                      string='Routing WC Line')
+    @api.multi
+    @api.depends('routing_wc_line')
+    def _compute_possible_workcenters(self):
+        for line in self:
+            line.possible_workcenters = line.mapped(
+                'routing_wc_line.op_wc_lines.workcenter')
+
+    product_line = fields.One2many(
+        comodel_name='mrp.production.product.line', inverse_name='work_order',
+        string='Product Lines')
+    routing_wc_line = fields.Many2one(
+        comodel_name='mrp.routing.workcenter', string='Routing WC Line')
     do_production = fields.Boolean(string='Produce here')
     time_start = fields.Float(string="Time Start")
     time_stop = fields.Float(string="Time Stop")
-    move_lines = fields.One2many('stock.move', 'work_order',
-                                 string='Moves')
-    is_material_ready = fields.Boolean('Materials Ready',
-                                       compute="_ready_materials")
+    move_lines = fields.One2many(
+        comodel_name='stock.move', inverse_name='work_order', string='Moves')
+    is_material_ready = fields.Boolean(
+        string='Materials Ready', compute="_ready_materials")
+    possible_workcenters = fields.Many2many(
+        comodel_name="mrp.workcenter", compute="_compute_possible_workcenters")
+    workcenter_id = fields.Many2one(
+        domain="[('id', 'in', possible_workcenters[0][2])]")
 
     @api.one
     def action_assign(self):

@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 import openerp.tests.common as common
-from openerp import workflow, exceptions
+from openerp import workflow
 
 
 class TestMrpOperationsExtension(common.TransactionCase):
@@ -16,7 +16,6 @@ class TestMrpOperationsExtension(common.TransactionCase):
         self.production = self.production_model.browse(
             self.env.ref('mrp_operations_extension.mrp_production_opeext').id)
         self.production_case1 = self.production.copy()
-        self.production_case2 = self.production.copy()
 
     def test_confirm_production_operation_extension_case1(self):
         workflow.trg_validate(
@@ -51,14 +50,3 @@ class TestMrpOperationsExtension(common.TransactionCase):
             self.assertEqual(
                 line.state, 'done',
                 'Error work center line not in done state')
-
-    def test_confirm_production_operation_extension_case2(self):
-        workflow.trg_validate(
-            self.uid, 'mrp.production', self.production_case2.id,
-            'button_confirm', self.cr)
-        self.production_case2.force_production()
-        with self.assertRaises(exceptions.Warning):
-            workflow.trg_validate(
-                self.uid, 'mrp.production.workcenter.line',
-                self.production_case2.workcenter_lines[1].id,
-                'button_start_working', self.cr)

@@ -55,25 +55,19 @@
                     <attribute name="colspan">2</attribute>
                 </xpath>
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='workcenter_id']" position="after">
+                    <field name="possible_workcenters" invisible="1"/>
                     <field name="production_id" />
                 </xpath>
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="before">
                     <field name="production_state" />
                 </xpath>
-                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='cycle']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='hour']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='cycle']" position="replace"/>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='hour']" position="replace"/>
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="after">
                     <field name="do_production" colspan="2" />
                     <field name="is_material_ready" colspan="2"/>
                     <notebook colspan="4">
                         <page string="Materials">
-                            <group>
-                                <field name="routing_wc_line"/>
-                            </group>
                             <group string="Product Lines">
                                 <field name="product_line" nolabel="1" colspan="4"/>
                             </group>
@@ -105,49 +99,51 @@
             </field>
         </record>
 
-        <record model="ir.ui.view"
-            id="mrp_production_operation_buttons_form_view">
-            <field name="name">mrp.production.operation.buttons.form
-            </field>
+        <record model="ir.ui.view" id="mrp_production_operation_buttons_form_view">
+            <field name="name">mrp.production.operation.buttons.form</field>
             <field name="model">mrp.production</field>
-            <field name="inherit_id"
-                ref="mrp_operations.mrp_production_form_inherit_view" />
+            <field name="inherit_id" ref="mrp_operations.mrp_production_form_inherit_view" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='workcenter_lines']/form//field[@name='state']" position="attributes">
                     <attribute name="statusbar_visible">draft,startworking</attribute>
                 </xpath>
                 <button name="button_start_working" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                     <attribute name="class">oe_highlight</attribute>
                 </button>
                 <button name="button_resume" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                     <attribute name="class">oe_highlight</attribute>
                 </button>
                 <button name="button_done" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                     <attribute name="class">oe_highlight</attribute>
                 </button>
                 <button name="button_pause" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                 </button>
                 <button name="button_draft" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                 </button>
                 <button string="Cancel Order" position="attributes">
-                    <attribute name="icon"></attribute>
+                    <attribute name="icon"/>
                 </button>
                 <button string="Cancel Order" position="after">
-                    <button name="action_assign" states="startworking"
-                        string="Check Availability" type="object" class="oe_highlight" />
-                    <button name="force_assign" states="startworking"
-                        string="Force Reservation" type="object" />
+                    <button name="action_assign"
+                            states="startworking"
+                            string="Check Availability"
+                            type="object"
+                            class="oe_highlight" />
+                    <button name="force_assign"
+                            states="startworking"
+                            string="Force Reservation"
+                            type="object" />
                     <button name='%(act_mrp_work_order_produce)d'
-                        type='action' string='Produce'
-                        attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" />
+                            type='action' string='Produce'
+                            attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" />
                     <button name='%(act_mrp_work_order_consume)d'
-                        type='action' string='Consume'
-                        attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}" />
+                            type='action' string='Consume'
+                            attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}" />
                 </button>
             </field>
         </record>
@@ -158,6 +154,9 @@
             <field name="inherit_id"
                 ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
             <field name="arch" type="xml">
+                <field name="workcenter_id" position="before">
+                    <field name="possible_workcenters" invisible="1"/>
+                </field>
                 <button name="button_cancel" position="after">
                     <button name="action_assign" states="startworking"
                         string="Check Availability" type="object" class="oe_highlight" />
@@ -172,11 +171,11 @@
                 </button>
                 <page string="Information" position="inside">
                     <group string="Product Lines" colspan="4" col="4">
-                        <field name="routing_wc_line" colspan="4"
-                            col="4" />
                         <field name="product_line" nolabel="1"
                             colspan="4" col="4" readonly="1"/>
-                        <field name="move_lines" />
+                    </group>
+                    <group string="Stock Moves" colspan="4" col="4">
+                        <field name="move_lines" nolabel="1"/>
                     </group>
                 </page>
                 <group string="Product to Produce" position="replace" />

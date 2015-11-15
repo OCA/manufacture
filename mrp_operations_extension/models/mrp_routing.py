@@ -26,9 +26,10 @@ class MrpRouting(models.Model):
 class MrpRoutingWorkcenter(models.Model):
     _inherit = 'mrp.routing.workcenter'
 
-    def get_routing_previous_operations(self):
-        self.previous_operations_finished = \
-            self.routing_id.previous_operations_finished
+    def default_previous_operations_finished(self):
+        if self.routing_id:
+            self.previous_operations_finished = \
+                self.routing_id.previous_operations_finished
 
     operation = fields.Many2one('mrp.routing.operation', string='Operation')
     op_wc_lines = fields.One2many(
@@ -41,7 +42,7 @@ class MrpRoutingWorkcenter(models.Model):
              "operation per route with this check marked.")
     previous_operations_finished = fields.Boolean(
         string='Previous operations finished',
-        default="get_routing_previous_operations")
+        default=default_previous_operations_finished)
     picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type',
                                       domain=[('code', '=', 'outgoing')])
 
@@ -60,6 +61,8 @@ class MrpRoutingWorkcenter(models.Model):
         if self.operation:
             self.name = self.operation.name
             self.note = self.operation.description
+            self.picking_type_id = self.operation.picking_type_id
+            self.op_wc_lines = False
             op_wc_lst = []
             is_default = True
             for operation_wc in self.operation.workcenters:
@@ -76,6 +79,7 @@ class MrpRoutingWorkcenter(models.Model):
                 op_wc_lst.append(data)
                 is_default = False
             self.op_wc_lines = op_wc_lst
+        self.operation = False
 
     @api.one
     @api.onchange('op_wc_lines')
@@ -83,8 +87,12 @@ class MrpRoutingWorkcenter(models.Model):
         for line in self.op_wc_lines:
             if line.default:
                 self.workcenter_id = line.workcenter
-                self.cycle_nbr = line.capacity_per_cycle
-                self.hour_nbr = line.time_cycle
+                if line.custom_data:
+                    self.cycle_nbr = line.capacity_per_cycle
+                    self.hour_nbr = line.time_cycle
+                else:
+                    self.cycle_nbr = line.workcenter.capacity_per_cycle
+                    self.hour_nbr = line.workcenter.time_cycle
                 break
 
 
@@ -92,6 +100,11 @@ class MrpOperationWorkcenter(models.Model):
     _name = 'mrp.operation.workcenter'
     _description = 'MRP Operation Workcenter'
 
+    custom_data = fields.Boolean(
+        string="Custom", default=False,
+        help="If you mark this check, this means that the work center in this "
+             "routing has different capacity data than the defined on the "
+             "work center itself")
     workcenter = fields.Many2one(
         'mrp.workcenter', string='Workcenter', required=True)
     routing_workcenter = fields.Many2one(
@@ -111,7 +124,7 @@ class MrpOperationWorkcenter(models.Model):
     default = fields.Boolean('Default')
 
     @api.one
-    @api.onchange('workcenter')
+    @api.onchange('workcenter', 'custom_data')
     def onchange_workcenter(self):
         if self.workcenter:
             self.capacity_per_cycle = self.workcenter.capacity_per_cycle
