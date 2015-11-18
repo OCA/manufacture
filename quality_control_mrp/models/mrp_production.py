@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
 from openerp import models, fields, api
 from openerp.addons.quality_control.models.qc_trigger_line import\
     _filter_trigger_lines
@@ -21,14 +21,7 @@ class MrpProduction(models.Model):
     created_inspections = fields.Integer(
         compute="_count_inspections", string="Created inspections")
 
-    @api.v7
-    def action_produce(self, cr, uid, production_id, production_qty,
-                       production_mode, wiz=False, context=None):
-        production = self.browse(cr, uid, production_id, context=context)
-        production.action_produce(
-            production_id, production_qty, production_mode, wiz=wiz)
-
-    @api.v8
+    @api.model
     def action_produce(self, production_id, production_qty, production_mode,
                        wiz=False):
         res = super(MrpProduction, self).action_produce(
