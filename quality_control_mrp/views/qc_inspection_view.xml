@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="qc_inspection_form_view_production">
+            <field name="name">qc.inspection.form.view.production</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_form_view" />
+            <field name="groups_id"
+                   eval="[(4, ref('mrp.group_mrp_user'))]" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="production" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_tree_view_production">
+            <field name="name">qc.inspection.tree.view.production</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_tree_view" />
+            <field name="groups_id"
+                   eval="[(4, ref('mrp.group_mrp_user'))]" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="production" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_search_view_production">
+            <field name="name">qc.inspection.search.view.production</field>
+            <field name="model">qc.inspection</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_search_view" />
+            <field name="groups_id"
+                   eval="[(4, ref('mrp.group_mrp_user'))]" />
+            <field name="arch" type="xml">
+                <filter string="Product" position="after">
+                    <filter string="Production" domain="[]"
+                            context="{'group_by': 'production'}" />
+                </filter>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_tree_production_view">
+            <field name="name">qc.inspection.line.tree.production</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view"/>
+            <field name="groups_id"
+                   eval="[(4, ref('mrp.group_mrp_user'))]" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="production" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qc_inspection_line_search_production_view">
+            <field name="name">qc.inspection.line.search.production</field>
+            <field name="model">qc.inspection.line</field>
+            <field name="inherit_id" ref="quality_control.qc_inspection_line_search_view" />
+            <field name="groups_id"
+                   eval="[(4, ref('mrp.group_mrp_user'))]" />
+            <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="production" />
+                </field>
+                <filter string="Product" position="after">
+                    <filter string="Production order" domain="[]"
+                            context="{'group_by': 'production'}" />
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>
