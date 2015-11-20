@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 03:39+0000\n"
-"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"POT-Creation-Date: 2015-11-20 18:10+0000\n"
+"PO-Revision-Date: 2015-11-19 16:26+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,18 @@ msgid "Created on"
 msgstr "Criado em"
 
 #. module: mrp_production_project_estimated_cost
+#: view:account.analytic.line:mrp_production_project_estimated_cost.estimated_cost_list_view
+#: view:account.analytic.line:mrp_production_project_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
+msgid "Estim. AVG"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: view:account.analytic.line:mrp_production_project_estimated_cost.estimated_cost_list_view
+#: view:account.analytic.line:mrp_production_project_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
+msgid "Estim. STD"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
 #: field:account.analytic.line,estim_avg_cost:0
 #: field:mrp.production,avg_cost:0
 msgid "Estimated Average Cost"
@@ -182,7 +194,7 @@ msgstr "Última atualização em"
 
 #. module: mrp_production_project_estimated_cost
 #: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost
-msgid "Load Cost on Product"
+msgid "Load Estimated Cost on Product"
 msgstr ""
 
 #. module: mrp_production_project_estimated_cost
@@ -214,7 +226,7 @@ msgstr ""
 #. module: mrp_production_project_estimated_cost
 #: model:ir.model,name:mrp_production_project_estimated_cost.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Produto Modelo"
 
 #. module: mrp_production_project_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.action_show_production_anaytic_lines
