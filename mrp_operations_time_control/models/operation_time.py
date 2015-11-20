@@ -68,7 +68,7 @@ class OperationTimeLine(models.Model):
     start_date = fields.Datetime(string='Start Date')
     end_date = fields.Datetime(string='End Date')
     operation_time = fields.Many2one('mrp.production.workcenter.line')
-    uptime = fields.Float(string='Uptime', compute='operation_uptime',
+    uptime = fields.Float(string='Machine up time', compute='operation_uptime',
                           store=True, digits=(12, 6))
     production = fields.Many2one('mrp.production',
                                  related='operation_time.production_id',

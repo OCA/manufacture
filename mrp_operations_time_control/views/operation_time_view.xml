@@ -26,7 +26,7 @@
                 ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
             <field name="arch" type="xml">
                 <page string="Information" position="after">
-                    <page string="Uptime">
+                    <page string="Machine up time">
                         <field name="operation_time_lines" />
                     </page>
                 </page>
@@ -80,7 +80,7 @@
                     <field name="start_date" />
                     <field name="end_date" />
                     <field name="operation_time" />
-                    <field name="uptime" sum="Uptime" />
+                    <field name="uptime" sum="Machine up time" />
                     <field name="production"/>
                 </tree>
             </field>
