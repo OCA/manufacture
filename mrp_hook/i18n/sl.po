@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_hook
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-20 17:16+0000\n"
+"PO-Revision-Date: 2015-11-14 04:47+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_hook
+#: model:ir.model,name:mrp_hook.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Kosovnica"
+
+#. module: mrp_hook
+#: code:addons/mrp_hook/models/mrp_bom.py:119
+#, python-format
+msgid "BoM \"%s\" contains a BoM line with a product recursion: \"%s\"."
+msgstr "Kosovnica \"%s\" vsebuje postavko z rekurzivnim proizvodom: \"%s\"."
+
+#. module: mrp_hook
+#: code:addons/mrp_hook/models/mrp_bom.py:147
+#, python-format
+msgid ""
+"BoM \"%s\" contains a phantom BoM line but the product \"%s\" does not have "
+"any BoM defined."
+msgstr "Kosovnica \"%s\" vsebuje postavko navidezne kosovnice, a proizvod \"%s\" nima določene nobene kosovnice."
