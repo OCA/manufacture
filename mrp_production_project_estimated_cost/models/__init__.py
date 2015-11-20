@@ -18,5 +18,4 @@
 from . import account_analytic_line
 from . import mrp_production
 from . import product
-from . import project_project
 from . import mrp_bom
