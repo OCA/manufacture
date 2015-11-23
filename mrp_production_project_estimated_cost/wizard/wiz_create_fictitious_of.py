@@ -45,11 +45,13 @@ class WizCreateFictitiousOf(models.TransientModel):
             if 'routing_id' in vals:
                 routing = routing_obj.browse(vals['routing_id'])
                 product_qty = production_obj._get_min_qty_for_production(
-                    routing)
+                    routing) or 1
                 vals['product_qty'] = product_qty
                 prod_vals = production_obj.product_id_change(
                     product.id, product_qty)['value']
                 vals.update(prod_vals)
+            vals['product_attributes'] = [tuple([0, 0, line]) for line in
+                                          vals.get('product_attributes', [])]
             new_production = production_obj.create(vals)
             new_production.action_compute()
             new_production.calculate_production_estimated_cost()
