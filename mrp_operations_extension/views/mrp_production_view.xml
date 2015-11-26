@@ -80,7 +80,7 @@
                                 </group>
                                 <group string="Duration">
                                     <field name="cycle" />
-                                    <field name="hour" />
+                                    <field name="hour" widget="float_time"/>
                                 </group>
                                 <group string="Actual Production Date">
                                     <field name="date_start" />

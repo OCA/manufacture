@@ -227,7 +227,7 @@ msgstr "Operación de la ruta"
 
 #. module: mrp_operations_extension
 #: field:mrp.config.settings,group_mrp_workers:0
-msgid "Manage operators in work centers "
+msgid "Manage operators in work centers"
 msgstr "Gestionar operadores en los centros de trabajo"
 
 #. module: mrp_operations_extension
@@ -280,12 +280,12 @@ msgstr "Operaciones"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,op_avg_cost:0
-msgid "Operator average hour cost"
+msgid "Operator average hourly cost"
 msgstr "Coste hora medio del operador"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,op_avg_cost:0
-msgid "Operator avg. hour cost"
+msgid "Operator average hourly cost"
 msgstr "Coste hora medio operador"
 
 #. module: mrp_operations_extension

@@ -12,24 +12,14 @@ class MrpRouting(models.Model):
     @api.one
     @api.constrains('workcenter_lines')
     def _check_produce_operation(self):
-        if not self.workcenter_lines:
-            return
-        num_produce = sum([x.do_production for x in self.workcenter_lines])
-        if num_produce != 1:
+        num_produce = len(self.workcenter_lines.filtered('do_production'))
+        if num_produce != 1 and self.workcenter_lines:
             raise Warning(_("There must be one and only one operation with "
                             "'Produce here' check marked."))
-
-    previous_operations_finished = fields.Boolean(
-        string='Previous operations finished')
 
 
 class MrpRoutingWorkcenter(models.Model):
     _inherit = 'mrp.routing.workcenter'
-
-    def default_previous_operations_finished(self):
-        if self.routing_id:
-            self.previous_operations_finished = \
-                self.routing_id.previous_operations_finished
 
     operation = fields.Many2one('mrp.routing.operation', string='Operation')
     op_wc_lines = fields.One2many(
@@ -41,17 +31,14 @@ class MrpRoutingWorkcenter(models.Model):
              "products will be done in this operation. There can be only one "
              "operation per route with this check marked.")
     previous_operations_finished = fields.Boolean(
-        string='Previous operations finished',
-        default=default_previous_operations_finished)
+        string='Previous operations finished')
     picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type',
                                       domain=[('code', '=', 'outgoing')])
 
     @api.constrains('op_wc_lines')
     def _check_default_op_wc_lines(self):
-        if not self.op_wc_lines:
-            return
-        num_default = len([x for x in self.op_wc_lines if x.default])
-        if num_default != 1:
+        num_default = len(self.op_wc_lines.filtered('default'))
+        if num_default != 1 and self.op_wc_lines:
             raise Warning(
                 _('There must be one and only one line set as default.'))
 
@@ -84,16 +71,11 @@ class MrpRoutingWorkcenter(models.Model):
     @api.one
     @api.onchange('op_wc_lines')
     def onchange_lines_default(self):
-        for line in self.op_wc_lines:
-            if line.default:
-                self.workcenter_id = line.workcenter
-                if line.custom_data:
-                    self.cycle_nbr = line.capacity_per_cycle
-                    self.hour_nbr = line.time_cycle
-                else:
-                    self.cycle_nbr = line.workcenter.capacity_per_cycle
-                    self.hour_nbr = line.workcenter.time_cycle
-                break
+        line = self.op_wc_lines.filtered('default')[:1]
+        self.workcenter_id = line.workcenter
+        data_source = line if line.custom_data else line.workcenter
+        self.cycle_nbr = data_source.capacity_per_cycle
+        self.hour_nbr = data_source.time_cycle
 
 
 class MrpOperationWorkcenter(models.Model):
@@ -111,15 +93,15 @@ class MrpOperationWorkcenter(models.Model):
         'mrp.routing.workcenter', 'Routing workcenter', required=True)
     time_efficiency = fields.Float('Efficiency factor')
     capacity_per_cycle = fields.Float('Capacity per cycle')
-    time_cycle = fields.Float('Time for 1 cycle (hours)',
-                              help="Time in hours for doing one cycle.")
-    time_start = fields.Float('Time before prod.',
-                              help="Time in hours for the setup.")
-    time_stop = fields.Float('Time after prod.',
-                             help="Time in hours for the cleaning.")
+    time_cycle = fields.Float(
+        string='Time for 1 cycle (hours)', help="Duration for one cycle.")
+    time_start = fields.Float(
+        string='Time before prod.', help="Duration for the setup.")
+    time_stop = fields.Float(
+        string='Time after prod.', help="Duartion for the cleaning.")
     op_number = fields.Integer('# operators', default='0')
     op_avg_cost = fields.Float(
-        string='Operator avg. hour cost',
+        string='Operator average hourly cost',
         digits=dp.get_precision('Product Price'))
     default = fields.Boolean('Default')
 

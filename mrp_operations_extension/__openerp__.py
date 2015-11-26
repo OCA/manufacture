@@ -1,29 +1,19 @@
-
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# (c) 2014-2015 Avanzosc
+# (c) 2014-2015 Pedro M. Baeza
+# (c) 2015 Antiun Ingeniería
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "MRP Operations Extension",
+    "name": "Manufacturing Operations Extension",
     "version": "8.0.2.0.0",
     "category": "Manufacturing",
+    "license": "AGPL-3",
     "author": "OdooMRP team, "
               "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Antiun Ingeniería S.L., "
+              "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Daniel Campos <danielcampos@avanzosc.es>",
@@ -35,7 +25,6 @@
     "depends": [
         "mrp_operations",
         "mrp_hook",
-        "stock",
         "hr_timesheet",
     ],
     "data": [
@@ -49,6 +38,15 @@
         "views/res_config_view.xml",
         "security/ir.model.access.csv",
         "security/mrp_operations_extension_security.xml",
+    ],
+    "images": [
+        'images/operation.png',
+        'images/routing.png',
+        'images/routing_line.png',
+        'images/bom.png',
+        'images/manufacturing_order.png',
+        'images/work_order.png',
+        'images/work_order2.png',
     ],
     "demo": [
         "demo/res_partner_demo.xml",

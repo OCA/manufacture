@@ -26,7 +26,7 @@ msgstr "Lista de material"
 #: code:addons/mrp_hook/models/mrp_bom.py:119
 #, python-format
 msgid "BoM \"%s\" contains a BoM line with a product recursion: \"%s\"."
-msgstr ""
+msgstr "La LdM \"%s\" contiene una línea con un producto recursivo: \"%s\"."
 
 #. module: mrp_hook
 #: code:addons/mrp_hook/models/mrp_bom.py:147
@@ -34,4 +34,6 @@ msgstr ""
 msgid ""
 "BoM \"%s\" contains a phantom BoM line but the product \"%s\" does not have "
 "any BoM defined."
+"La LdM \"%s\" contiene una línea fantasma pero el producto \"%s\" no tiene "
+"ninguna LdM definida."
 msgstr ""

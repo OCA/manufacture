@@ -16,12 +16,10 @@ class MrpBom(models.Model):
         cycle = int(math.ceil(factor / (wc_use.cycle_nbr or 1)))
         hour = wc_use.hour_nbr * cycle
         default_wc_line = wc_use.op_wc_lines.filtered(lambda r: r.default)
-        if default_wc_line.custom_data:
-            time_start = default_wc_line.time_start
-            time_stop = default_wc_line.time_stop
-        else:
-            time_start = default_wc_line.workcenter.time_start
-            time_stop = default_wc_line.workcenter.time_stop
+        data_source = (default_wc_line if default_wc_line.custom_data else
+                       default_wc_line.workcenter)
+        time_start = data_source.time_start
+        time_stop = data_source.time_stop
         res.update({
             'cycle': cycle,
             'hour': hour,
@@ -44,15 +42,16 @@ class MrpBom(models.Model):
     def onchange_routing_id(self):
         for line in self.bom_line_ids:
             line.operation = self.routing_id.workcenter_lines[:1]
+        res = {}
         if self.routing_id:
-            return {'warning': {
-                    'title': _('Changing Routing'),
-                    'message': _("Changing routing will cause to change the"
-                                 " operation in which each component will be"
-                                 " consumed, by default it is set the first"
-                                 " one of the routing")
-                    }}
-        return {}
+            res['warning'] = {
+                'title': _('Changing Routing'),
+                'message': _(
+                    "Changing routing will cause to change the operation in "
+                    "which each component will be consumed, by default it is "
+                    "set the first one of the routing")
+            }
+        return res
 
 
 class MrpBomLine(models.Model):

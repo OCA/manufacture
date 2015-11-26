@@ -31,17 +31,6 @@ class MrpWorkOrderProduce(models.TransientModel):
         prod = self._get_product_id()
         return prod and (prod.track_all or prod.track_production) or False
 
-    def do_produce(self, cr, uid, ids, context=None):
-        work_line = self.pool['mrp.production.workcenter.line'].browse(
-            cr, uid, context.get("active_id"), context=context)
-        production_id = work_line.production_id.id
-        assert production_id
-        data = self.browse(cr, uid, ids[0], context=context)
-        self.pool['mrp.production'].action_produce(
-            cr, uid, production_id, data.product_qty,
-            data.mode, data, context=context)
-        return {}
-
     def do_consume(self, cr, uid, ids, context=None):
         work_line = self.pool['mrp.production.workcenter.line'].browse(
             cr, uid, context.get("active_id"), context=context)
@@ -87,7 +76,7 @@ class MrpWorkOrderProduce(models.TransientModel):
                 new_consume_lines.append([0, False, consume])
         return {'value': {'consume_lines': new_consume_lines}}
 
-    def _get_product_qty(self):
+    def _default_product_qty(self):
         """ To obtain product quantity
         @param self: The object pointer.
         @param cr: A database cursor
@@ -98,18 +87,16 @@ class MrpWorkOrderProduce(models.TransientModel):
         work_line = self.env['mrp.production.workcenter.line'].browse(
             self.env.context.get("active_id"))
         prod = work_line.production_id
-        done = 0.0
-        for move in prod.move_created_ids2:
-            if move.product_id == prod.product_id:
-                if not move.scrapped:
-                    done += move.product_qty
+        moves = prod.move_created_ids2.filtered(
+            lambda x: x.product_id == prod.product_id and not x.scrapped)
+        done = sum(moves.mapped('product_qty'))
         return (prod.product_qty - done) or prod.product_qty
 
-    product_id = fields.Many2one('product.product',
-                                 string='Product', default=_get_product_id)
-    product_qty = fields.Float('Select Quantity',
-                               digits=(12, 6), required=True,
-                               default=_get_product_qty)
+    product_id = fields.Many2one(
+        'product.product', string='Product', default=_get_product_id)
+    product_qty = fields.Float(
+        string='Select Quantity', digits=(12, 6), required=True,
+        default=_default_product_qty)
     mode = fields.Selection([('consume_produce', 'Consume & Produce'),
                              ('consume', 'Consume Only')],
                             string='Mode', required=True,

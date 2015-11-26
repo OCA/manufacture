@@ -2,7 +2,7 @@
 # (c) 2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api, tools, _
+from openerp import api, models, tools, _
 from openerp.exceptions import Warning as UserError
 from openerp.addons.product import _common
 
@@ -66,17 +66,12 @@ class MrpBom(models.Model):
     def _bom_explode(self, cr, uid, bom, product, factor, properties=None,
                      level=0, routing_id=False, previous_products=None,
                      master_bom=None, context=None):
-        return bom._bom_explode(
-            product, factor, properties=properties, level=level,
-            routing_id=routing_id, previous_products=previous_products,
-            master_bom=master_bom)
-
-    @api.v8
-    def _bom_explode(self, product, factor, properties=None, level=0,
-                     routing_id=False, previous_products=None,
-                     master_bom=None):
         """ Finds Products and Work Centers for related BoM for manufacturing
         order.
+
+        Verbatim copy of core method extracting the hooks already merged on
+        v9 branch.
+
         @param bom: BoM of particular product template.
         @param product: Select a particular variant of the BoM. If False use
         BoM without variants.
@@ -91,6 +86,15 @@ class MrpBom(models.Model):
         @return: result: List of dictionaries containing product details.
                  result2: List of dictionaries containing Work Center details.
         """
+        return bom._bom_explode(
+            product, factor, properties=properties, level=level,
+            routing_id=routing_id, previous_products=previous_products,
+            master_bom=master_bom)
+
+    @api.v8
+    def _bom_explode(self, product, factor, properties=None, level=0,
+                     routing_id=False, previous_products=None,
+                     master_bom=None):
         self.ensure_one()
         bom = self
         uom_obj = self.env["product.uom"]
