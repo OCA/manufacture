@@ -25,6 +25,11 @@ or
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/8.0
 
+Known issues / Roadmap
+======================
+
+* With many Production Order the browse could put a lot of time to load
+Production Hierarchy list
 
 Bug Tracker
 ===========
