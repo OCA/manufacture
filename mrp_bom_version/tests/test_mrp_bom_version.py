@@ -10,7 +10,8 @@ class TestMrpBomVersion(common.TransactionCase):
     def setUp(self):
         super(TestMrpBomVersion, self).setUp()
         self.parameter_model = self.env['ir.config_parameter']
-        self.bom_model = self.env['mrp.bom']
+        self.bom_model = self.env['mrp.bom'].with_context(
+            test_mrp_bom_version=True)
         self.company = self.env.ref('base.main_company')
         vals = {
             'company_id': self.company.id,
