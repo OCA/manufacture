@@ -1,0 +1,32 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="mrp_production_project_form_view">
+            <field name="name">mrp.production.project.inh.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <field name="analytic_account_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="analytic_account_id" position="after">
+                    <field name="project_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="act_project_2_production_all" model="ir.actions.act_window">
+            <field name="name">Manufacturing Orders</field>
+            <field name="res_model">mrp.production</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_project_id': [active_id],
+                'default_project_id': active_id,
+                'active_test': False,
+                }
+            </field>
+            <field name="domain">[('project_id', '=', active_id)]</field>
+        </record>
+
+    </data>
+</openerp>

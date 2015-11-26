@@ -1,0 +1,62 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="project_task_mrp_inh_search_view">
+            <field name="name">project.task.mrp.inh.search</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="mrp_production_id"/>
+                    <field name="workorder"/>
+                </field>
+                <filter string="Stage" position="after">
+                    <filter string="Manufacturing" name="Manufacturing" context="{'group_by':'mrp_production_id'}"/>
+                    <filter string="Workorder" name="Workorder" context="{'group_by': 'workorder'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="project_task_mrp_inh_tree_view">
+            <field name="name">project.task.mrp.inh.tree</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="after">
+                    <field name="mrp_production_id"/>
+                    <field name="workorder"/>
+                    <field name="final_product" string="Product to Produce"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="project_task_mrp_form_view">
+            <field name="name">project.task.mrp.inh.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="MRP Data">
+                        <group name="group_mrp_data">
+                            <field name="mrp_production_id"/>
+                            <field name="workorder"/>
+                            <field name="final_product" string="Product to Produce"/>
+                            <separator colspan="4" string="Scheduled Products"/>
+                            <field name="production_scheduled_products"
+                                   colspan="4"
+                                   nolabel="1"
+                                   attrs="{'invisible':['|', ('workorder', '!=', False), ('mrp_production_id', '=', False)]}"
+                            />
+                            <label string="Please go to the manufacturing order to see the products to consume."
+                                   colspan="4"
+                                   for="production_scheduled_products"
+                                   attrs="{'invisible': [('workorder', '=', False)]}"
+                            />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>
