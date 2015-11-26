@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="project_mrp_procurement_shortcut_form_view">
+            <field name="name">project.shortcuts.mrp.procurement.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <div name="buttons" position="inside">
+                    <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(mrp_project.act_project_2_production_all)d"
+                            icon="fa-list">
+                        <field string="Manufacturing" name="production_count"
+                               widget="statinfo"
+                        />
+                    </button>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</openerp>
