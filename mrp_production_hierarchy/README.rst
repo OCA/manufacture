@@ -28,7 +28,7 @@ or
 Known issues / Roadmap
 ======================
 
-* With many Production Order the browse could put a lot of time to load
+* With many Production Order the browser could put a lot of time to load
 Production Hierarchy list
 
 Bug Tracker
