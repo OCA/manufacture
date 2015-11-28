@@ -5,7 +5,7 @@
 =============================
 MRP Production Order Analytic
 =============================
-This model extends the Production Order with the Analytic Account. Separate
+This module extends the Production Order with the Analytic Account. Separate
 modules will define how this analytic account will be used in the Production
  Order.
 
