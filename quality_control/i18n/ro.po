@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-11-03 17:19+0000\n"
+"POT-Creation-Date: 2016-02-26 01:43+0000\n"
+"PO-Revision-Date: 2016-02-25 18:29+0000\n"
 "Last-Translator: Dorin Hongu <dhongu@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "Rău"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
@@ -118,7 +118,7 @@ msgstr "Răspuns corect?"
 #: field:qc.trigger.product_line,create_uid:0
 #: field:qc.trigger.product_template_line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat de"
 
 #. module: quality_control
 #: field:qc.inspection,create_date:0 field:qc.inspection.line,create_date:0
@@ -129,7 +129,7 @@ msgstr ""
 #: field:qc.trigger.product_line,create_date:0
 #: field:qc.trigger.product_template_line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat în"
 
 #. module: quality_control
 #: field:qc.inspection,date:0
@@ -289,7 +289,7 @@ msgstr ""
 #: field:qc.trigger.product_line,write_uid:0
 #: field:qc.trigger.product_template_line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualizare de"
 
 #. module: quality_control
 #: field:qc.inspection,write_date:0 field:qc.inspection.line,write_date:0
@@ -300,7 +300,7 @@ msgstr ""
 #: field:qc.trigger.product_line,write_date:0
 #: field:qc.trigger.product_template_line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualizare în"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
@@ -396,7 +396,7 @@ msgstr ""
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
-msgstr ""
+msgstr "Produs"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
@@ -406,7 +406,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Produs șablon"
 
 #. module: quality_control
 #: help:qc.inspection,product:0 help:qc.inspection.line,product:0
@@ -762,31 +762,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:92
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:95
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:108
 #, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:118
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
@@ -794,4 +794,4 @@ msgstr ""
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "or"
-msgstr ""
+msgstr "sau"
