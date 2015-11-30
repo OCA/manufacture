@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_mrp
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-10 15:32+0000\n"
+"PO-Revision-Date: 2015-11-19 08:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control_mrp
+#: field:mrp.production,qc_inspections:0
+msgid "Inspections"
+msgstr ""
+
+#. module: quality_control_mrp
+#: help:mrp.production,qc_inspections:0
+msgid "Inspections related to this production."
+msgstr ""
+
+#. module: quality_control_mrp
+#: model:ir.model,name:quality_control_mrp.model_mrp_production
+#: model:res.request.link,name:quality_control_mrp.req_link_mrp_production
+msgid "Manufacturing Order"
+msgstr "Ordine di produzione"
+
+#. module: quality_control_mrp
+#: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
+#: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
+msgid "Product"
+msgstr "Prodotto "
+
+#. module: quality_control_mrp
+#: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
+#: field:qc.inspection,production:0
+msgid "Production"
+msgstr ""
+
+#. module: quality_control_mrp
+#: model:qc.trigger,name:quality_control_mrp.qc_trigger_mrp
+msgid "Production done"
+msgstr ""
+
+#. module: quality_control_mrp
+#: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
+#: field:qc.inspection.line,production:0
+msgid "Production order"
+msgstr ""
+
+#. module: quality_control_mrp
+#: model:ir.model,name:quality_control_mrp.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control_mrp
+#: model:ir.model,name:quality_control_mrp.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control_mrp
+#: model:ir.actions.act_window,name:quality_control_mrp.action_qc_inspection_per_production
+msgid "Quality inspections from production order"
+msgstr ""
+
+#. module: quality_control_mrp
+#: view:mrp.production:quality_control_mrp.mrp_production_qc_view
+msgid "inspections"
+msgstr ""
