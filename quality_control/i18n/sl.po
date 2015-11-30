@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-31 17:23+0000\n"
+"POT-Creation-Date: 2015-11-21 01:55+0000\n"
+"PO-Revision-Date: 2015-11-19 08:08+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -762,31 +762,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr "Ko je to polje označeno, se odgovor smatra za pravilen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:92
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr "Samodejno ustvarjenih inšpekcij ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:95
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr "Inšpekcije, ki ni osnutek ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:108
 #, python-format
 msgid "You must first set the test to perform."
 msgstr "Najprej morate nastaviti test, ki se bo opravljal."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Določite EM za kvalitativna vprašanja."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:118
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."

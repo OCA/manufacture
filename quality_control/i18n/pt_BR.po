@@ -3,14 +3,19 @@
 # * quality_control
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016
+# Paolo Valier, 2016
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 03:42+0000\n"
-"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
+"POT-Creation-Date: 2016-03-29 10:13+0000\n"
+"PO-Revision-Date: 2016-03-28 13:40+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -28,7 +33,7 @@ msgstr ""
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Accept"
-msgstr ""
+msgstr "Aceitar"
 
 #. module: quality_control
 #: field:qc.test,active:0 field:qc.test.category,active:0
@@ -66,18 +71,18 @@ msgstr "Cancelar"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
-msgid "Cancelled"
-msgstr ""
+msgid "Canceled"
+msgstr "Cancelada"
 
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
 msgid "Child categories"
-msgstr ""
+msgstr "Sub Categorias"
 
 #. module: quality_control
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
@@ -147,7 +152,7 @@ msgid "Draft"
 msgstr "Provisório"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test_category.py:35
+#: code:addons/quality_control/models/qc_test_category.py:32
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr ""
@@ -156,7 +161,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection,external_notes:0
 msgid "External notes"
-msgstr ""
+msgstr "Notas Externas"
 
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
@@ -205,7 +210,7 @@ msgstr "ID"
 
 #. module: quality_control
 #: help:qc.inspection,auto_generated:0
-msgid "If an inspection is auto-generated, it can be cancelled nor removed"
+msgid "If an inspection is auto-generated, it can be canceled nor removed."
 msgstr ""
 
 #. module: quality_control
@@ -220,7 +225,7 @@ msgstr ""
 #: help:qc.trigger.product_template_line,partners:0
 msgid ""
 "If filled, the test will only be created when the action is done for one of "
-"the specified partners. If empty, the test will be always created."
+"the specified partners. If empty, the test will always be created."
 msgstr ""
 
 #. module: quality_control
@@ -256,7 +261,7 @@ msgstr ""
 #: model:ir.ui.menu,name:quality_control.qc_inspection_menu_parent
 #: view:qc.inspection:quality_control.qc_inspection_tree_view
 msgid "Inspections"
-msgstr ""
+msgstr "Inspeções"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -318,7 +323,7 @@ msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,max_value:0
-msgid "Maximum valid value if it's a quantitative question."
+msgid "Maximum valid value for a quantitative question."
 msgstr ""
 
 #. module: quality_control
@@ -338,11 +343,11 @@ msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,min_value:0
-msgid "Minimum valid value if it's a quantitative question."
+msgid "Minimum valid value for a quantitative question."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:66
+#: code:addons/quality_control/models/qc_test.py:62
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
 msgstr ""
@@ -358,7 +363,7 @@ msgstr "Nome"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1
@@ -380,7 +385,7 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
-msgid "Possible values of qualitative questions."
+msgid "Possible values for qualitative questions."
 msgstr ""
 
 #. module: quality_control
@@ -405,7 +410,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Produto Modelo"
 
 #. module: quality_control
 #: help:qc.inspection,product:0 help:qc.inspection.line,product:0
@@ -449,7 +454,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Inspeção Controle de Qualidade"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_line
@@ -575,11 +580,6 @@ msgid "Search inspection line"
 msgstr ""
 
 #. module: quality_control
-#: model:res.groups,name:quality_control.group_quality_control_user
-msgid "See Own Inspections"
-msgstr ""
-
-#. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_set_test
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Select test"
@@ -672,9 +672,9 @@ msgid "Tests"
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:56
+#: code:addons/quality_control/models/qc_test.py:54
 #, python-format
-msgid "There isn't any value with OK marked. You have to mark at least one."
+msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr ""
 
 #. module: quality_control
@@ -684,7 +684,7 @@ msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection,success:0
-msgid "This field will be marked if all tests have been succeeded."
+msgid "This field will be marked if all tests have succeeded."
 msgstr ""
 
 #. module: quality_control
@@ -722,12 +722,12 @@ msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,test_uom_id:0
-msgid "UoM for minimum and maximum values if it's a quantitative question."
+msgid "UoM for minimum and maximum values for a quantitative question."
 msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,uom_id:0
-msgid "UoM of the inspection value if it's a quantitative question."
+msgid "UoM of the inspection value for a quantitative question."
 msgstr ""
 
 #. module: quality_control
@@ -736,18 +736,23 @@ msgid "Uom"
 msgstr ""
 
 #. module: quality_control
+#: model:res.groups,name:quality_control.group_quality_control_user
+msgid "User"
+msgstr "Usuário"
+
+#. module: quality_control
 #: field:qc.inspection.line,valid_values:0
 msgid "Valid values"
 msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,qualitative_value:0
-msgid "Value of the result if it's a qualitative question."
+msgid "Value of the result for a qualitative question."
 msgstr ""
 
 #. module: quality_control
 #: help:qc.inspection.line,quantitative_value:0
-msgid "Value of the result if it's a quantitative question."
+msgid "Value of the result for a quantitative question."
 msgstr ""
 
 #. module: quality_control
@@ -761,31 +766,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:92
 #, python-format
-msgid "You cannot remove an auto-generated inspection"
+msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:95
 #, python-format
-msgid "You cannot remove an inspection that it's not in draft state"
+msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:108
 #, python-format
-msgid "You must set the test to perform first."
+msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:118
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
