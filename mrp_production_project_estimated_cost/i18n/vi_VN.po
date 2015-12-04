@@ -1,0 +1,278 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_production_project_estimated_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-28 09:13+0000\n"
+"PO-Revision-Date: 2015-11-28 09:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:207
+#, python-format
+msgid "%s-%s"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:240
+#, python-format
+msgid "%s-%s Post-operation"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:224
+#, python-format
+msgid "%s-%s Pre-operation"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:292
+#, python-format
+msgid "%s-%s-%s"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:256
+#, python-format
+msgid "%s-%s-C-%s"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:274
+#, python-format
+msgid "%s-%s-H-%s"
+msgstr ""
+
+#. module: mrp_production_project_estimated_cost
+#: field:mrp.production,active:0
+msgid "Active"
+msgstr "Có hiệu lực"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.model,name:mrp_production_project_estimated_cost.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Analytic Line"
+
+#. module: mrp_production_project_estimated_cost
+#: field:project.project,automatic_creation:0
+msgid "Automatic Creation"
+msgstr "Tạo dự động"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.model,name:mrp_production_project_estimated_cost.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Định mức Nguyên liệu"
+
+#. module: mrp_production_project_estimated_cost
+#: view:wiz.create.fictitious.of:mrp_production_project_estimated_cost.wiz_create_fictitious_of_view
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: mrp_production_project_estimated_cost
+#: field:mrp.production,analytic_line_ids:0
+msgid "Cost Lines"
+msgstr "Chi tiết chi phí"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_buttons_inh_estimatedcost
+msgid "Costs analysis"
+msgstr "Phân tích chi phí"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost
+msgid "Create Estimated Costs"
+msgstr "Tạo chi phí dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: view:product.product:mrp_production_project_estimated_cost.product_product_form_view_bom_button_inh_estimatedcost
+#: view:product.template:mrp_production_project_estimated_cost.product_template_form_view_bom_button_inh_estimatedcost
+msgid "Create Fictitious MO"
+msgstr "Tạo Lệnh sản xuất giả lập"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.act_product_create_fictitious_of
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.action_run_create_fictitious_of
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.action_run_template_create_fictitious_of
+#: view:wiz.create.fictitious.of:mrp_production_project_estimated_cost.wiz_create_fictitious_of_view
+msgid "Create fictitious MO"
+msgstr "Tạo Lệnh sản xuất giả lập"
+
+#. module: mrp_production_project_estimated_cost
+#: view:wiz.create.fictitious.of:mrp_production_project_estimated_cost.wiz_create_fictitious_of_view
+msgid "Create fictitius MO"
+msgstr "Tạo Lệnh sản xuất giả lập"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,create_uid:0
+msgid "Created by"
+msgstr "Tạo bởi"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,create_date:0
+msgid "Created on"
+msgstr "Tạo vào"
+
+#. module: mrp_production_project_estimated_cost
+#: field:account.analytic.line,estim_avg_cost:0
+#: field:mrp.production,avg_cost:0
+msgid "Estimated Average Cost"
+msgstr "Chi phí trung bình dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: field:mrp.production,unit_avg_cost:0
+msgid "Estimated Average Unit Cost"
+msgstr "Chi phí đơn vị trung bình dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: view:account.analytic.line:mrp_production_project_estimated_cost.estimated_cost_list_view
+msgid "Estimated Costs"
+msgstr "Chi phí dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: field:account.analytic.line,estim_std_cost:0
+#: field:mrp.production,std_cost:0
+msgid "Estimated Standard Cost"
+msgstr "Chi phí tiêu chuẩn dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: field:mrp.production,unit_std_cost:0
+msgid "Estimated Standard Unit Cost"
+msgstr "Chi phí đơn vị tiêu chuẩn dự kiến"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.action_estimated_costs_per_production
+msgid "Estimated costs from production order"
+msgstr "Chi phí dự kiến từ các lệnh sản xuất"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.mrp_fictitious_production_action
+#: model:ir.ui.menu,name:mrp_production_project_estimated_cost.menu_mrp_fictitious_production_action
+msgid "Fictitious Manufacturing Orders to estimate costs"
+msgstr "Lệnh sản xuất giả lập để dự toán chi phí"
+
+#. module: mrp_production_project_estimated_cost
+#: view:account.analytic.line:mrp_production_project_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
+msgid "General Accounting"
+msgstr "Kế toán Tổng hợp"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,write_uid:0
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,write_date:0
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost
+msgid "Load Estimated Cost on Product"
+msgstr "Load Estimated Cost on Product"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,load_on_product:0
+msgid "Load cost on product"
+msgstr "Lấy giá vốn từ sản phẩm"
+
+#. module: mrp_production_project_estimated_cost
+#: field:product.template,manual_standard_cost:0
+msgid "Manual Standard Cost"
+msgstr "Giá tiêu chuẩn (tính thủ công)"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.model,name:mrp_production_project_estimated_cost.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Lệnh sản xuất"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost
+msgid "Manufacturing costs"
+msgstr "Chi phí sản xuất"
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:205
+#, python-format
+msgid "One consume line has no product assigned."
+msgstr "Một dòng tiêu thụ không có sản phẩm nào được gán."
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.model,name:mrp_production_project_estimated_cost.model_product_template
+msgid "Product Template"
+msgstr "Mẫu sản phẩm"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.actions.act_window,name:mrp_production_project_estimated_cost.action_show_production_anaytic_lines
+msgid "Production Analytic Lines"
+msgstr "Production Analytic Lines"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_buttons_inh_estimatedcost
+msgid "Production Costs"
+msgstr "Chi phí sản xuất"
+
+#. module: mrp_production_project_estimated_cost
+#: view:account.analytic.line:mrp_production_project_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
+msgid "Production Information"
+msgstr "Thông tin sản xuất"
+
+#. module: mrp_production_project_estimated_cost
+#: model:ir.model,name:mrp_production_project_estimated_cost.model_project_project
+#: field:wiz.create.fictitious.of,project_id:0
+msgid "Project"
+msgstr "Dự án"
+
+#. module: mrp_production_project_estimated_cost
+#: field:wiz.create.fictitious.of,date_planned:0
+msgid "Scheduled Date"
+msgstr "Ngày theo kế hoạch"
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:254
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:271
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:289
+#, python-format
+msgid "There is at least this workcenter without product: %s"
+msgstr "There is at least this workcenter without product: %s"
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:237
+#, python-format
+msgid "Workcenter '%s' doesn't have post-operation costing product."
+msgstr "Workcenter '%s' doesn't have post-operation costing product."
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:221
+#, python-format
+msgid "Workcenter '%s' doesn't have pre-operation costing product."
+msgstr "Workcenter '%s' doesn't have pre-operation costing product."
+
+#. module: mrp_production_project_estimated_cost
+#: code:addons/mrp_production_project_estimated_cost/models/mrp_production.py:181
+#, python-format
+msgid "You must define one Analytic Account for this MO: %s"
+msgstr "Bạn phải định nghĩa một Tài khoản quản trị cho MO này: %s"
+
+#. module: mrp_production_project_estimated_cost
+#: view:wiz.create.fictitious.of:mrp_production_project_estimated_cost.wiz_create_fictitious_of_view
+msgid "or"
+msgstr "hoặc"
+
+#. module: mrp_production_project_estimated_cost
+#: view:mrp.production:mrp_production_project_estimated_cost.mrp_production_form_view_inh_estimatedcost
+msgid "{'invisible':['|',('active','=',False),('state','!=','draft')]}"
+msgstr "{'invisible':['|',('active','=',False),('state','!=','draft')]}"
+
