@@ -1,0 +1,56 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="project_task_work_mrp">
+            <field name="name">Project task work view for MRP</field>
+            <field name="model">project.task.work</field>
+            <field name="priority" eval="999"/>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="task_id"
+                           context="{'name_show_user': True}"
+                           domain="[('id', 'in', parent.task_m2m[0][2])]"
+                           on_change="onchange_task_id(task_id)"
+                    />
+                    <field name="user_id"/>
+                    <field name="date"/>
+                    <field name="hours" widget="float_time"/>
+                    <button name="button_end_work"
+                            string="Stop"
+                            type="object"
+                            icon="STOCK_STOP"
+                            attrs="{'invisible': [('hours', '>', 0)]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_workcenter_form_view_inherit">
+            <field name="name">Workorder form view (task works)</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="groups_id" eval="[(6, 0, [ref('project.group_tasks_work_on_tasks')])]"/>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
+            <field name="arch" type="xml">
+                <page string="Information" position="after">
+                    <page string="Operators time">
+                        <field name="task_m2m" invisible="1"/>
+                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_project.project_task_work_mrp'}"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_project_form_view">
+            <field name="name">mrp.production.project.inh.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_lines']/form//page[@string='Information']" position="after">
+                    <page string="Operators time">
+                        <field name="task_m2m" invisible="1"/>
+                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_project.project_task_work_mrp'}"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

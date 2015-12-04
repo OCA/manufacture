@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="project_task_mrp_form_view">
+            <field name="name">project.task.mrp.inh.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="mrp_project.project_task_mrp_form_view"/>
+            <field name="arch" type="xml">
+                <field name="production_scheduled_products" position="after">
+                    <field name="workorder_scheduled_products"
+                           colspan="4"
+                           nolabel="1"
+                           attrs="{'invisible': [('workorder', '=', False)]}"
+                    />
+                </field>
+                <label for="production_scheduled_products" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </label>
+            </field>
+        </record>
+
+    </data>
+</openerp>
