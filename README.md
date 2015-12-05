@@ -20,6 +20,7 @@ addon | version | summary
 [mrp_calendar_view](mrp_calendar_view/) | 8.0.1.0.0 | MRP Calendar View
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
+[mrp_project](mrp_project/) | 8.0.1.1.0 | Link production with projects
 [quality_control](quality_control/) | 8.0.1.1.0 | Quality control
 [quality_control_mrp](quality_control_mrp/) | 8.0.1.0.0 | Quality control - MRP
 [quality_control_stock](quality_control_stock/) | 8.0.1.0.1 | Quality control - Stock
