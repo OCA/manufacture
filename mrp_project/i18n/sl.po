@@ -6,12 +6,12 @@
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-09-20 19:00+0000\n"
+"POT-Creation-Date: 2015-12-05 01:43+0000\n"
+"PO-Revision-Date: 2015-12-04 19:28+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,40 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:51
+#: code:addons/mrp_project/models/mrp_production.py:33
 #, python-format
 msgid ""
 "\n"
-"                Manufacturing Order: %s\n"
-"                Product to Produce: [%s]%s\n"
-"                Quantity to Produce: %s\n"
-"                Bill of Material: %s\n"
-"                Planned Date: %s\n"
-"                "
-msgstr "\n                Proizvodni nalog: %s\n                Proizvodi za proizvodnjo: [%s]%s\n                Količina za proizvodnjo: %s\n                Kosovnica: %s\n                Načrtovani datum: %s\n                "
-
-#. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:103
-#, python-format
-msgid ""
-"\n"
-"            Manufacturing Order: %s\n"
-"            Work Order: %s\n"
-"            Workcenter: %s\n"
-"            Cycle: %s\n"
-"            Hour: %s\n"
-"            "
-msgstr "\n            Proizvodni nalog: %s\n            Delovni nalog: %s\n            Delovni center: %s\n            Cikel: %s\n            Ur: %s\n            "
-
-#. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:129
-#, python-format
-msgid "%s:: WO%s-%s:: %s"
-msgstr "%s:: WO%s-%s:: %s"
+"        Manufacturing Order: %s\n"
+"        Product to Produce: [%s]%s\n"
+"        Quantity to Produce: %s\n"
+"        Bill of Material: %s\n"
+"        Planned Date: %s\n"
+"        "
+msgstr "\n        Proizvodni nalog: %s\n        Izdelek za proizvodnjo: [%s]%s\n        Količina za proizvodnjo: %s\n        Kosovnica: %s\n        Načrtovani datum: %s\n        "
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
-#: field:mrp.production,analytic_account_id:0
 msgid "Analytic Account"
 msgstr "Analitični konto"
 
@@ -60,6 +40,11 @@ msgstr "Analitični konto"
 #: model:ir.model,name:mrp_project.model_account_analytic_line
 msgid "Analytic Line"
 msgstr "Analitična postavka"
+
+#. module: mrp_project
+#: field:project.project,automatic_creation:0
+msgid "Automatic Creation"
+msgstr "Samodejno ustvarjanje"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
@@ -71,12 +56,6 @@ msgstr "Glavna knjiga"
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "MRP Data"
 msgstr "Podatki upravljanja proizvodnje"
-
-#. module: mrp_project
-#: field:procurement.order,main_project_id:0
-#: field:stock.move,main_project_id:0
-msgid "Main Project"
-msgstr "Glavni projekt"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
@@ -98,26 +77,15 @@ msgid "Manufacturing Orders"
 msgstr "Proizvodni nalogi"
 
 #. module: mrp_project
-#: model:ir.model,name:mrp_project.model_procurement_order
-msgid "Procurement"
-msgstr "Oskrba"
-
-#. module: mrp_project
-#: model:ir.actions.act_window,name:mrp_project.act_project_2_procurement_all
-#: view:project.project:mrp_project.project_mrp_procurement_shortcut_form_view
-msgid "Procurements"
-msgstr "Oskrbe"
+#: view:project.task:mrp_project.project_task_mrp_form_view
+msgid "Please go to the manufacturing order to see the products to consume."
+msgstr "Za pregled proizvodov, ki se bodo potrošili, pojdite na proizvodni nalog."
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 #: view:project.task:mrp_project.project_task_mrp_inh_tree_view
 msgid "Product to Produce"
 msgstr "Proiz. za proizvodnjo"
-
-#. module: mrp_project
-#: model:ir.model,name:mrp_project.model_mrp_production_product_line
-msgid "Production Scheduled Product"
-msgstr "Proizvod načrtovan za proizvodnjo"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
@@ -131,6 +99,11 @@ msgid "Project Task"
 msgstr "Projektno opravilo"
 
 #. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_task_work
+msgid "Project Task Work"
+msgstr "Delo na projektnem opravilu"
+
+#. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "Scheduled Products"
 msgstr "Načrtovani proizvodi"
@@ -141,20 +114,30 @@ msgid "Stage"
 msgstr "Stopnja"
 
 #. module: mrp_project
-#: model:ir.model,name:mrp_project.model_stock_move
-msgid "Stock Move"
-msgstr "Premik zaloge"
-
-#. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
-#: field:mrp.production.product.line,task_id:0
 msgid "Task"
 msgstr "Opravilo"
 
 #. module: mrp_project
+#: field:mrp.production.workcenter.line,work_ids:0
+msgid "Task works"
+msgstr "Delo na opravilu"
+
+#. module: mrp_project
+#: field:mrp.production.workcenter.line,task_ids:0
+msgid "Tasks"
+msgstr "Opravila"
+
+#. module: mrp_project
 #: field:account.analytic.line,workorder:0
 #: model:ir.model,name:mrp_project.model_mrp_production_workcenter_line
+#: field:project.task,workorder:0
 msgid "Work Order"
+msgstr "Delovni nalog"
+
+#. module: mrp_project
+#: field:project.task.work,workorder:0
+msgid "Work order"
 msgstr "Delovni nalog"
 
 #. module: mrp_project
