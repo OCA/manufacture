@@ -8,12 +8,18 @@
             <field name="arch" type="xml">
                 <search string="Search Operation Time Lines">
                     <group expand="1" string="Group By...">
-                        <filter name="uptimegroup" string="Work Order"
-                            context="{'group_by' : 'operation_time'}" />
-                        <filter name="productiongroup" string="Production Order"
-                            context="{'group_by' : 'production'}" />
-                        <filter name="usergroup" string="User"
-                            context="{'group_by' : 'user'}" />
+                        <filter name="uptimegroup"
+                                string="Work Order"
+                                context="{'group_by' : 'operation_time'}"
+                        />
+                        <filter name="productiongroup"
+                                string="Production Order"
+                                context="{'group_by' : 'production'}"
+                        />
+                        <filter name="usergroup"
+                                string="User"
+                                context="{'group_by' : 'user'}"
+                        />
                     </group>
                 </search>
             </field>
@@ -40,16 +46,31 @@
                 ref="mrp_operations.mrp_production_workcenter_tree_view_inherit" />
             <field name="arch" type="xml">
                 <field name="state" position="after">
-                    <button name="button_draft" string="Set Draft"
-                        states="cancel" icon="gtk-convert" />
-                    <button name="button_start_working" string="Start"
-                        states="draft" icon="gtk-media-play" />
-                    <button name="button_resume" string="Resume"
-                        states="pause" icon="gtk-media-pause" />
-                    <button name="button_pause" string="Pending"
-                        states="startworking" icon="gtk-media-pause" />
-                    <button name="button_done" string="Finished"
-                        states="startworking" icon="terp-check" />
+                    <button name="button_draft"
+                            string="Set Draft"
+                            states="cancel"
+                            icon="gtk-convert"
+                    />
+                    <button name="button_start_working"
+                            string="Start"
+                            states="draft"
+                            icon="gtk-media-play"
+                    />
+                    <button name="button_resume"
+                            string="Resume"
+                            states="pause"
+                            icon="gtk-media-pause"
+                    />
+                    <button name="button_pause"
+                            string="Pending"
+                            states="startworking"
+                            icon="gtk-media-pause"
+                    />
+                    <button name="button_done"
+                            string="Finished"
+                            states="startworking"
+                            icon="terp-check"
+                    />
                 </field>
             </field>
         </record>
@@ -92,12 +113,12 @@
             <field name="res_model">operation.time.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="context">{'search_default_uptimegroup': 1,
-                'search_default_internal_loc': 1}</field>
+            <field name="context">{'search_default_uptimegroup': 1, 'search_default_internal_loc': 1}</field>
         </record>
 
-        <menuitem action="operation_time_lines_action" id="menu_operation_time_lines_action"
-            parent="mrp.menu_mrp_manufacturing" sequence="10" />
+        <menuitem action="operation_time_lines_action"
+                  id="menu_operation_time_lines_action"
+                  parent="mrp.menu_mrp_manufacturing" sequence="10" />
 
     </data>
 </openerp>
