@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="mrp_production_project_form_view_inh_estimatedcost" model="ir.ui.view">
-            <field name="name">mrp.production.project.form.view.inh.estimatedcost</field>
+
+        <record id="mrp_production_form_view" model="ir.ui.view">
+            <field name="name">Manufacturing order form (active field)</field>
             <field name="model">mrp.production</field>
-            <field name="inherit_id" ref="mrp_project_link.mrp_production_project_form_view"/>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-                <field name="project_id" position="after">
+                <field name="product_id" position="before">
                     <field name="active" />
                 </field>
             </field>
@@ -18,23 +19,30 @@
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
                 <page string="Extra Information" position="inside">
-                    <group string="Manufacturing costs">
-                    </group>
+                    <group string="Manufacturing costs" name="group_manufacturing_cost"/>
                 </page>
             </field>
         </record>
+
         <record id="mrp_production_form_view_inh_estimatedcost" model="ir.ui.view">
             <field name="name">mrp.production.form.view.inh.estimatedcost</field>
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view_costs"/>
             <field name="arch" type="xml">
                 <button name="button_confirm" position="attributes">
-                    <attribute name="states"></attribute>
-                    <attribute name="attrs">{'invisible':['|',('active','=',False),('state','!=','draft')]}</attribute>
+                    <attribute name="states"/>
+                    <attribute name="attrs">{'invisible': ['|', ('active','=',False), ('state','!=','draft')]}</attribute>
                 </button>
                 <button name="action_cancel" position="after">
-                    <button name="calculate_production_estimated_cost" states="draft,ready,in_production" string="Create Estimated Costs" type="object"/>
-                    <button name="load_product_std_price" string="Load Estimated Cost on Product" type="object" attrs="{'invisible':[('std_cost', '=', 0)]}"/>
+                    <button name="calculate_production_estimated_cost"
+                            states="draft,ready,in_production"
+                            string="Create Estimated Costs" type="object"
+                    />
+                    <button name="load_product_std_price"
+                            string="Load Estimated Cost on Product"
+                            type="object"
+                            attrs="{'invisible':[('std_cost', '=', 0)]}"
+                    />
                 </button>
                 <group string="Manufacturing costs" position="inside">
                     <group>
@@ -48,8 +56,6 @@
                         <field name="product_manual_cost"/>
                     </group>
                 </group>
-                <xpath expr="//field[@name='product_uom']/.." position="after">
-                </xpath>
             </field>
         </record>
 
@@ -67,7 +73,7 @@
         </record>
 
         <record id="action_estimated_costs_per_production" model="ir.actions.act_window">
-            <field name="name">Estimated costs from production order</field>
+            <field name="name">Estimated costs from manufacturing order</field>
             <field name="res_model">account.analytic.line</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('mrp_production_id','=',active_id),('task_id','=',False)]</field>
@@ -79,8 +85,7 @@
             <field name="inherit_id" ref="mrp.mrp_production_form_view" />
             <field name="arch" type="xml">
                 <div class="oe_title" position="after">
-                    <div class="oe_right oe_button_box" name="buttons">
-                    </div>
+                    <div class="oe_right oe_button_box" name="buttons"/>
                 </div>
             </field>
         </record>
@@ -95,20 +100,18 @@
                             type="object"
                             string="Costs analysis"
                             name="action_show_estimated_costs"
-                            icon="fa-bar-chart">
-                    </button>
+                            icon="fa-bar-chart"/>
                     <button class="oe_inline oe_stat_button"
                             type="action"
                             string="Production Costs"
                             name="%(action_show_production_anaytic_lines)d"
-                            icon="fa-list">
-                    </button>
+                            icon="fa-list"/>
                 </div>
             </field>
         </record>
 
-        <record id="mrp_fictitious_production_action" model="ir.actions.act_window">
-            <field name="name">Fictitious Manufacturing Orders to estimate costs</field>
+        <record id="mrp_virtual_production_action" model="ir.actions.act_window">
+            <field name="name">Virtual Manufacturing Orders to estimate costs</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">mrp.production</field>
             <field name="view_type">form</field>
@@ -119,8 +122,10 @@
             <field name="domain">[('active','=',False)]</field>
         </record>
 
-        <menuitem action="mrp_fictitious_production_action" id="menu_mrp_fictitious_production_action"
-            parent="mrp.menu_mrp_manufacturing" sequence="10"/>
+        <menuitem action="mrp_virtual_production_action"
+                  id="menu_mrp_virtual_production_action"
+                  parent="mrp.menu_mrp_manufacturing" sequence="10"
+        />
 
     </data>
 </openerp>

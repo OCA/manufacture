@@ -1,21 +1,9 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
-from openerp import models, fields, api, exceptions, _
+# -*- coding: utf-8 -*-
+# (c) 2014-2015 Avanzosc
+# (c) 2014-2015 Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+
+from openerp import api, exceptions, fields, models, _
 
 
 class MrpProduction(models.Model):
@@ -24,17 +12,15 @@ class MrpProduction(models.Model):
     @api.one
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_std_cost',
                  'product_qty')
-    def get_unit_std_cost(self):
-        self.std_cost = -(sum([line.estim_std_cost for line in
-                               self.analytic_line_ids]))
+    def _compute_unit_std_cost(self):
+        self.std_cost = -sum(self.analytic_line_ids.mapped('estim_std_cost'))
         self.unit_std_cost = self.std_cost / self.product_qty
 
     @api.one
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_avg_cost',
                  'product_qty')
-    def get_unit_avg_cost(self):
-        self.avg_cost = -(sum([line.estim_avg_cost for line in
-                               self.analytic_line_ids]))
+    def _compute_unit_avg_cost(self):
+        self.avg_cost = -sum(self.analytic_line_ids.mapped('estim_avg_cost'))
         self.unit_avg_cost = self.avg_cost / self.product_qty
 
     @api.one
@@ -42,28 +28,28 @@ class MrpProduction(models.Model):
         analytic_line_obj = self.env['account.analytic.line']
         cond = [('mrp_production_id', '=', self.id),
                 ('task_id', '=', False)]
-        analytic_lines = analytic_line_obj.search(cond)
-        self.created_estimated_cost = len(analytic_lines)
+        self.created_estimated_cost = len(analytic_line_obj.search(cond))
 
-    active = fields.Boolean(
-        'Active', default=lambda self: self.env.context.get('default_active',
-                                                            True))
+    active = fields.Boolean(string='Active', default=True)
     name = fields.Char(default="/")
     created_estimated_cost = fields.Integer(
         compute="_count_created_estimated_cost", string="Estimated Costs")
-    std_cost = fields.Float(string="Estimated Standard Cost",
-                            compute="get_unit_std_cost", store=True)
-    avg_cost = fields.Float(string="Estimated Average Cost",
-                            compute="get_unit_avg_cost", store=True)
-    unit_std_cost = fields.Float(string="Estimated Standard Unit Cost",
-                                 compute="get_unit_std_cost", store=True)
+    std_cost = fields.Float(
+        string="Estimated Standard Cost", compute="_compute_unit_std_cost",
+        store=True)
+    avg_cost = fields.Float(
+        string="Estimated Average Cost", compute="_compute_unit_avg_cost",
+        store=True)
+    unit_std_cost = fields.Float(
+        string="Estimated Standard Unit Cost",
+        compute="_compute_unit_std_cost", store=True)
     unit_avg_cost = fields.Float(string="Estimated Average Unit Cost",
-                                 compute="get_unit_avg_cost", store=True)
+                                 compute="_compute_unit_avg_cost", store=True)
     product_manual_cost = fields.Float(
         string="Product Manual Cost",
         related="product_id.manual_standard_cost")
     product_cost = fields.Float(
-        string="Product Cost", related="product_id.cost_price")
+        string="Product Cost", related="product_id.standard_price")
     analytic_line_ids = fields.One2many(
         comodel_name="account.analytic.line", inverse_name="mrp_production_id",
         string="Cost Lines")
@@ -76,21 +62,8 @@ class MrpProduction(models.Model):
             if values.get('name', '/') == '/':
                 values['name'] = sequence_obj.get('mrp.production')
         else:
-            values['name'] = sequence_obj.get('fictitious.mrp.production')
+            values['name'] = sequence_obj.get('virtual.mrp.production')
         return super(MrpProduction, self).create(values)
-
-    @api.multi
-    def unlink(self):
-        analytic_line_obj = self.env['account.analytic.line']
-        for production in self:
-            cond = [('mrp_production_id', '=', production.id)]
-            analytic_line_obj.search(cond).unlink()
-            if production.project_id.automatic_creation:
-                analytic_lines = analytic_line_obj.search(
-                    [('account_id', '=', production.analytic_account_id.id)])
-                if not analytic_lines:
-                    production.analytic_account_id.unlink()
-        return super(MrpProduction, self).unlink()
 
     @api.multi
     def action_confirm(self):
@@ -103,9 +76,9 @@ class MrpProduction(models.Model):
         self.ensure_one()
         analytic_line_obj = self.env['account.analytic.line']
         id2 = self.env.ref(
-            'mrp_production_project_estimated_cost.estimated_cost_list_view')
-        search_view = self.env.ref('mrp_project_link.account_analytic_line'
-                                   '_mrp_search_view')
+            'mrp_production_estimated_cost.estimated_cost_list_view')
+        search_view = self.env.ref(
+            'mrp_project.account_analytic_line_mrp_search_view')
         analytic_line_list = analytic_line_obj.search(
             [('mrp_production_id', '=', self.id),
              ('task_id', '=', False)])
@@ -121,10 +94,9 @@ class MrpProduction(models.Model):
             'view_id': False,
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'domain': "[('id','in',[" +
-            ','.join(map(str, analytic_line_list.ids)) + "])]",
+            'domain': [('id', 'in', analytic_line_list.ids)],
             'context': self.env.context
-            }
+        }
 
     @api.model
     def _prepare_estimated_cost_analytic_line(
@@ -173,7 +145,7 @@ class MrpProduction(models.Model):
             'general_account_id': general_account.id,
             'estim_std_cost': -qty * (std_cost or
                                       product.manual_standard_cost),
-            'estim_avg_cost': -qty * (avg_cost or product.cost_price),
+            'estim_avg_cost': -qty * (avg_cost or product.standard_price),
         }
 
     @api.model
@@ -182,7 +154,7 @@ class MrpProduction(models.Model):
             raise exceptions.Warning(
                 _("One consume line has no product assigned."))
         journal = self.env.ref('mrp.analytic_journal_materials', False)
-        name = _('%s-%s' % (prod.name, product_line.work_order.name or ''))
+        name = '%s-%s' % (prod.name, product_line.work_order.name or '')
         product = product_line.product_id
         qty = product_line.product_qty
         vals = self._prepare_estimated_cost_analytic_line(
@@ -192,34 +164,26 @@ class MrpProduction(models.Model):
 
     @api.model
     def _create_pre_operation_estimated_cost(self, prod, wc, workorder):
-        if (wc.time_start and workorder.workcenter_id.pre_op_product):
+        if workorder.time_start:
             product = workorder.workcenter_id.pre_op_product
-            if not product:
-                raise exceptions.Warning(
-                    _("Workcenter '%s' doesn't have pre-operation costing "
-                      "product.") % workorder.workcenter_id.name)
             journal = self.env.ref('mrp.analytic_journal_machines', False)
             name = (_('%s-%s Pre-operation') %
                     (prod.name, workorder.workcenter_id.name))
             vals = self._prepare_estimated_cost_analytic_line(
                 journal, name, prod, product, workorder=workorder,
-                qty=wc.time_start)
+                qty=workorder.time_start)
             return self.env['account.analytic.line'].create(vals)
 
     @api.model
     def _create_post_operation_estimated_cost(self, prod, wc, workorder):
-        if (wc.time_stop and workorder.workcenter_id.post_op_product):
+        if workorder.time_stop:
             product = workorder.workcenter_id.post_op_product
-            if not product:
-                raise exceptions.Warning(
-                    _("Workcenter '%s' doesn't have post-operation costing "
-                      "product.") % workorder.workcenter_id.name)
             journal = self.env.ref('mrp.analytic_journal_machines', False)
             name = (_('%s-%s Post-operation') %
                     (prod.name, workorder.workcenter_id.name))
             vals = self._prepare_estimated_cost_analytic_line(
                 journal, name, prod, product, workorder=workorder,
-                qty=wc.time_stop)
+                qty=workorder.time_stop)
             return self.env['account.analytic.line'].create(vals)
 
     @api.model
@@ -260,18 +224,15 @@ class MrpProduction(models.Model):
 
     @api.model
     def _create_operators_estimated_cost(self, prod, wc, workorder):
-        if wc.op_number > 0 and workorder.hour:
+        data_source = wc if wc.custom_data else wc.workcenter
+        if data_source.op_number > 0 and workorder.hour:
             product = workorder.workcenter_id.product_id
-            if not product:
-                raise exceptions.Warning(
-                    _("There is at least this workcenter without "
-                      "product: %s") % workorder.workcenter_id.name)
             journal = self.env.ref('mrp.analytic_journal_operators', False)
-            name = (_('%s-%s-%s') %
+            name = ('%s-%s-%s' %
                     (prod.name, workorder.routing_wc_line.operation.code,
                      product.name))
-            cost = wc.op_avg_cost
-            qty = workorder.hour * wc.op_number
+            cost = data_source.op_avg_cost
+            qty = workorder.hour * data_source.op_number
             vals = self._prepare_estimated_cost_analytic_line(
                 journal, name, prod, product, workorder=workorder, qty=qty,
                 std_cost=cost, avg_cost=cost)
@@ -284,13 +245,11 @@ class MrpProduction(models.Model):
             cond = [('mrp_production_id', '=', record.id)]
             analytic_line_obj.search(cond).unlink()
             for product_line in record.product_lines:
-                self._create_material_estimated_cost(
-                    record, product_line)
+                self._create_material_estimated_cost(record, product_line)
             for line in record.workcenter_lines:
                 op_wc_lines = line.routing_wc_line.op_wc_lines
-                wc = op_wc_lines.filtered(lambda r: r.workcenter ==
-                                          line.workcenter_id) or \
-                    line.workcenter_id
+                wc = op_wc_lines.filtered(
+                    lambda r: r.workcenter == line.workcenter_id)
                 self._create_pre_operation_estimated_cost(record, wc, line)
                 self._create_post_operation_estimated_cost(record, wc, line)
                 done = self._create_worcenter_cycles_estimated_cost(
@@ -302,10 +261,10 @@ class MrpProduction(models.Model):
 
     @api.multi
     def load_product_std_price(self):
-        for record in self:
-            product = record.product_id
-            if record.unit_std_cost:
-                product.manual_standard_cost = record.unit_std_cost
+        for production in self:
+            if production.unit_std_cost:
+                production.product_id.manual_standard_cost = (
+                    production.unit_std_cost)
 
     @api.multi
     def _get_min_qty_for_production(self, routing=False):
