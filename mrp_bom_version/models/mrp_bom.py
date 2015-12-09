@@ -34,10 +34,10 @@ class MrpBom(models.Model):
 
     def _default_state(self):
         """Needed for preserving normal flow when testing other modules."""
-        res = 'active'
+        res = 'draft'
         if (config['test_enable'] and
-                self.env.context.get('test_mrp_bom_version')):
-            res = 'draft'
+                not self.env.context.get('test_mrp_bom_version')):
+            res = 'active'
         return res
 
     active = fields.Boolean(
