@@ -23,7 +23,8 @@
 {
     'name': 'Bill of Material Selection Reference',
     'version': '8.0.1.1.0',
-    'author': 'Savoir-faire Linux',
+    'author': 'Savoir-faire Linux, '
+              'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Bill of Material Selection Reference',
