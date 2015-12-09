@@ -1,0 +1,559 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_operations_extension
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-20 17:16+0000\n"
+"PO-Revision-Date: 2015-10-20 14:47+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,op_number:0
+msgid "# Operators"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,op_number:0
+#: field:mrp.routing.operation,op_number:0
+msgid "# operators"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Actual Production Date"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:35
+#: code:addons/mrp_operations_extension/models/mrp_production.py:36
+#, python-format
+msgid "At least one work order must have checked 'Produce here'"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de materiais"
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "Cancel Order"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,capacity_per_cycle:0
+msgid "Capacity per cycle"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:39
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:49
+#, python-format
+msgid "Changing Routing"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:40
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:50
+#, python-format
+msgid ""
+"Changing routing will cause to change the operation in which each component "
+"will be consumed, by default it is set the first one of the routing"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Check Availability"
+msgstr "Checar disponibilidade"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,code:0
+msgid "Code"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_consume
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+msgid "Consume"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+#: selection:mrp.work.order.produce,mode:0
+msgid "Consume & Produce"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Consume Lines"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: selection:mrp.work.order.produce,mode:0
+msgid "Consume Only"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.bom.line,operation:0
+msgid "Consumed in"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,create_uid:0
+#: field:mrp.routing.operation,create_uid:0
+#: field:mrp.work.order.produce,create_uid:0
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,create_date:0
+#: field:mrp.routing.operation,create_date:0
+#: field:mrp.work.order.produce,create_date:0
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,default:0
+msgid "Default"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
+msgid "Default workcenter"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,description:0
+msgid "Description"
+msgstr "Descrição"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Duration"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_efficiency:0
+msgid "Efficiency factor"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Extra Information"
+msgstr "Informação extra"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,final_product:0
+msgid "Final Product to Stock"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Force Reservation"
+msgstr "Forçar reserva"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
+#: field:mrp.work.order.produce,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_operations_extension
+#: help:mrp.routing.workcenter,do_production:0
+msgid ""
+"If enabled, the production and movement to stock of the final products will "
+"be done in this operation. There can be only one operation per route with "
+"this check marked."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Information"
+msgstr "Informação"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,write_uid:0
+#: field:mrp.routing.operation,write_uid:0
+#: field:mrp.work.order.produce,write_uid:0
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,write_date:0
+#: field:mrp.routing.operation,write_date:0
+#: field:mrp.work.order.produce,write_date:0
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,lot_id:0
+msgid "Lot"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_operation_workcenter
+msgid "MRP Operation Workcenter"
+msgstr "Centro de trabalho de Operação do MRP"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing_operation
+msgid "MRP Routing Operation"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.config.settings,group_mrp_workers:0
+msgid "Manage operators in work centers "
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:res.groups,name:mrp_operations_extension.group_mrp_workers
+msgid "Manufacturing Operators"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Ordem de Produção"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+msgid "Materials"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:158
+#: code:addons/mrp_operations_extension/models/mrp_production.py:171
+#, python-format
+msgid "Missing materials to start the production"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,mode:0
+msgid "Mode"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,move_lines:0
+msgid "Moves"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.workcenter,operation:0
+msgid "Operation"
+msgstr "Operação"
+
+#. module: mrp_operations_extension
+#: model:ir.ui.menu,name:mrp_operations_extension.mrp_routing_menu
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_future_calendar
+msgid "Operations"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,op_avg_cost:0
+msgid "Operator average hour cost"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,op_avg_cost:0
+msgid "Operator avg. hour cost"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.workcenter:mrp_operations_extension.mrp_workcenter_form_view_inh
+#: field:mrp.workcenter,operators:0
+msgid "Operators"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,picking_type_id:0
+#: field:mrp.routing.workcenter,picking_type_id:0
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Planned Date"
+msgstr "Data Planejada"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.workcenter,op_wc_lines:0
+msgid "Possible work centers for this operation"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
+msgid "Possible workcenters"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,post_op_product:0
+msgid "Post-operation costing product"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,pre_op_product:0
+msgid "Pre-operation costing product"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing,previous_operations_finished:0
+#: field:mrp.routing.workcenter,previous_operations_finished:0
+msgid "Previous operations finished"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:154
+#: code:addons/mrp_operations_extension/models/mrp_production.py:167
+#, python-format
+msgid "Previous operations not finished"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_produce
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Produce"
+msgstr "Produzir"
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,do_production:0
+#: field:mrp.routing.workcenter,do_production:0
+msgid "Produce here"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,product_id:0
+msgid "Product"
+msgstr "Produto"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: field:mrp.production.workcenter.line,product_line:0
+msgid "Product Lines"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_product_produce_line
+msgid "Product Produce Consume lines"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Product to Produce"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production_product_line
+msgid "Production Scheduled Product"
+msgstr "Produção de produto agendada"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,consume_lines:0
+msgid "Products Consumed"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,steps:0
+msgid "Relevant Steps"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing
+msgid "Routing"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.mrp_routing_operation_action
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_tree
+msgid "Routing Operation"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.workcenter:mrp_operations_extension.mrp_workcenter_form_view_inh
+#: field:mrp.workcenter,rt_operations:0
+msgid "Routing Operations"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,routing_wc_line:0
+msgid "Routing WC Line"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,routing_workcenter:0
+msgid "Routing workcenter"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,product_qty:0
+msgid "Select Quantity"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_stock_move
+msgid "Stock Move"
+msgstr "Movimentação de estoque"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:55
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:56
+#, python-format
+msgid "There must be one and only one line set as default."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:19
+#, python-format
+msgid ""
+"There must be one and only one operation with 'Produce here' check marked."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_start:0
+msgid "Time Start"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_stop:0
+msgid "Time Stop"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_stop:0
+msgid "Time after prod."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_start:0
+msgid "Time before prod."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_cycle:0
+msgid "Time for 1 cycle (hours)"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_cycle:0
+msgid "Time in hours for doing one cycle."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_stop:0
+msgid "Time in hours for the cleaning."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_start:0
+msgid "Time in hours for the setup."
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "To Consume"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
+msgid "Total"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,track_production:0
+msgid "Track production"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Centro de trabalho"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr "Uso do centro de trabalho"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production_workcenter_line
+#: field:mrp.production.product.line,work_order:0
+#: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
+#: field:stock.move,work_order:0
+msgid "Work Order"
+msgstr "Ordem de serviço"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,workcenters:0
+msgid "Work centers"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.product.produce.line,work_produce_id:0
+msgid "Work produce id"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,workcenter:0
+msgid "Workcenter"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
+msgid "Workcenters"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "draft,startworking"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "oe_highlight"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "or"
+msgstr "ou"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
+msgid "{'invisible': [('op_wc_lines', '!=', [])]}"
+msgstr ""

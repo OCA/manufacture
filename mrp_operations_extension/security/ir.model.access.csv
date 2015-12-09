@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_operation_workcenter,access_mrp_operation_workcenter,model_mrp_operation_workcenter,mrp.group_mrp_user,1,1,1,1
+access_mrp_routing_operation,access_mrp_routing_operation,model_mrp_routing_operation,mrp.group_mrp_user,1,1,1,1

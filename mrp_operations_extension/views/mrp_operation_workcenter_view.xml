@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+            <record id="operation_workcenter_tree" model="ir.ui.view">
+            <field name="name">rountig.operation.tree</field>
+            <field name="model">mrp.operation.workcenter</field>
+            <field name="arch" type="xml">
+                <tree string="Operation Workcenter">
+                    <field name="workcenter" />
+                </tree>
+            </field>
+        </record>
+        <record id="operation_workcenter_form" model="ir.ui.view">
+            <field name="name">rountig.operation.tree</field>
+            <field name="model">mrp.operation.workcenter</field>
+            <field name="arch" type="xml">
+                <form string="Operation Workcenter">
+                <group>
+                    <field name="workcenter"/>
+                    <field name="time_efficiency" />
+                    <field name="capacity_per_cycle" />
+                    <field name="time_cycle" widget="float_time"/>
+                    <field name="time_start" widget="float_time" />
+                    <field name="time_stop" widget="float_time"/>
+                    <field name="op_number" />
+                    <field name="op_avg_cost" />
+                </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="operation_workcenter_action" model="ir.actions.act_window">
+            <field name="name">Workcenter Operation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.operation.workcenter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

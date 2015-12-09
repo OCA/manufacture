@@ -1,0 +1,560 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_operations_extension
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-20 17:16+0000\n"
+"PO-Revision-Date: 2015-09-20 18:56+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,op_number:0
+msgid "# Operators"
+msgstr "# operaterjev"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,op_number:0
+#: field:mrp.routing.operation,op_number:0
+msgid "# operators"
+msgstr "# operaterjev"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Actual Production Date"
+msgstr "Dejanski datum proizvodnje"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:35
+#: code:addons/mrp_operations_extension/models/mrp_production.py:36
+#, python-format
+msgid "At least one work order must have checked 'Produce here'"
+msgstr "Vsaj en delovni nalog mora imeti označbo 'Proizvedi tukaj'"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Kosovnica"
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "Cancel Order"
+msgstr "Preklic naloga"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,capacity_per_cycle:0
+msgid "Capacity per cycle"
+msgstr "Kapaciteta na cikel"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:39
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:49
+#, python-format
+msgid "Changing Routing"
+msgstr "Sprememba usmerjanja"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:40
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:50
+#, python-format
+msgid ""
+"Changing routing will cause to change the operation in which each component "
+"will be consumed, by default it is set the first one of the routing"
+msgstr "Sprememba usmerjanja povzroči spremembo operacije, v kateri se porabi vsaka komponenta. Privzeta je prva v delokrogu."
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Check Availability"
+msgstr "Preveri razpoložljivost"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,code:0
+msgid "Code"
+msgstr "Koda"
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_consume
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+msgid "Consume"
+msgstr "Porabi"
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+#: selection:mrp.work.order.produce,mode:0
+msgid "Consume & Produce"
+msgstr "Porabi in proizvedi"
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Consume Lines"
+msgstr "Postavke porabe"
+
+#. module: mrp_operations_extension
+#: selection:mrp.work.order.produce,mode:0
+msgid "Consume Only"
+msgstr "Samo porabi"
+
+#. module: mrp_operations_extension
+#: field:mrp.bom.line,operation:0
+msgid "Consumed in"
+msgstr "Porabljeno"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,create_uid:0
+#: field:mrp.routing.operation,create_uid:0
+#: field:mrp.work.order.produce,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,create_date:0
+#: field:mrp.routing.operation,create_date:0
+#: field:mrp.work.order.produce,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,default:0
+msgid "Default"
+msgstr "Privzeto"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
+msgid "Default workcenter"
+msgstr "Privzeti delovni center"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,description:0
+msgid "Description"
+msgstr "Opis"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Duration"
+msgstr "Trajanje"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_efficiency:0
+msgid "Efficiency factor"
+msgstr "Faktor učinkovitosti"
+
+#. module: mrp_operations_extension
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Extra Information"
+msgstr "Dodatne informacije"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,final_product:0
+msgid "Final Product to Stock"
+msgstr "Končni proizvod za zalogo"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Force Reservation"
+msgstr "Vsili rezervacijo"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
+#: field:mrp.work.order.produce,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_operations_extension
+#: help:mrp.routing.workcenter,do_production:0
+msgid ""
+"If enabled, the production and movement to stock of the final products will "
+"be done in this operation. There can be only one operation per route with "
+"this check marked."
+msgstr "Če je omogočeno, se v sklopu te operacije izvede proizvodnja in premik v zalogo končnih proizvodov. To oznako ima lahko le po ena operacija v vsakem usmerjanju."
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Information"
+msgstr "Podrobnosti"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,write_uid:0
+#: field:mrp.routing.operation,write_uid:0
+#: field:mrp.work.order.produce,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,write_date:0
+#: field:mrp.routing.operation,write_date:0
+#: field:mrp.work.order.produce,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,lot_id:0
+msgid "Lot"
+msgstr "Lot"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_operation_workcenter
+msgid "MRP Operation Workcenter"
+msgstr "Delovni center proizvodnih operacij"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing_operation
+msgid "MRP Routing Operation"
+msgstr "Proizvodne operacije usmerjanja delokroga"
+
+#. module: mrp_operations_extension
+#: field:mrp.config.settings,group_mrp_workers:0
+msgid "Manage operators in work centers "
+msgstr "Upravljanje operacij v delovnih centrih"
+
+#. module: mrp_operations_extension
+#: model:res.groups,name:mrp_operations_extension.group_mrp_workers
+msgid "Manufacturing Operators"
+msgstr "Operaterji proizvodnje"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Proizvodni nalog"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+msgid "Materials"
+msgstr "Materiali"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:158
+#: code:addons/mrp_operations_extension/models/mrp_production.py:171
+#, python-format
+msgid "Missing materials to start the production"
+msgstr "Manjkajoči materiali za zagon proizvodnje"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,mode:0
+msgid "Mode"
+msgstr "Način"
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,move_lines:0
+msgid "Moves"
+msgstr "Premiki"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.workcenter,operation:0
+msgid "Operation"
+msgstr "Operacija"
+
+#. module: mrp_operations_extension
+#: model:ir.ui.menu,name:mrp_operations_extension.mrp_routing_menu
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_future_calendar
+msgid "Operations"
+msgstr "Operacije"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,op_avg_cost:0
+msgid "Operator average hour cost"
+msgstr "Povprečni strošek operaterja"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,op_avg_cost:0
+msgid "Operator avg. hour cost"
+msgstr "Povprečni strošek operaterja"
+
+#. module: mrp_operations_extension
+#: view:mrp.workcenter:mrp_operations_extension.mrp_workcenter_form_view_inh
+#: field:mrp.workcenter,operators:0
+msgid "Operators"
+msgstr "Operaterji"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,picking_type_id:0
+#: field:mrp.routing.workcenter,picking_type_id:0
+msgid "Picking Type"
+msgstr "Tip prevzema"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Planned Date"
+msgstr "Načrtovani datum"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.workcenter,op_wc_lines:0
+msgid "Possible work centers for this operation"
+msgstr "Možni delovni centri za to operacijo"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
+msgid "Possible workcenters"
+msgstr "Možni delovni centri"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,post_op_product:0
+msgid "Post-operation costing product"
+msgstr "Strošek proizvoda po operaciji"
+
+#. module: mrp_operations_extension
+#: field:mrp.workcenter,pre_op_product:0
+msgid "Pre-operation costing product"
+msgstr "Strošek proizvoda pred operacijo"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing,previous_operations_finished:0
+#: field:mrp.routing.workcenter,previous_operations_finished:0
+msgid "Previous operations finished"
+msgstr "Predhodne operacije dokončane"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:154
+#: code:addons/mrp_operations_extension/models/mrp_production.py:167
+#, python-format
+msgid "Previous operations not finished"
+msgstr "Predhodne operacije nedokončane"
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_produce
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "Produce"
+msgstr "Proizvedi"
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,do_production:0
+#: field:mrp.routing.workcenter,do_production:0
+msgid "Produce here"
+msgstr "Proizvedi tukaj"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+#: field:mrp.production.workcenter.line,product_line:0
+msgid "Product Lines"
+msgstr "Postavke proizvoda"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_product_produce_line
+msgid "Product Produce Consume lines"
+msgstr "Postavke porabe ob proizvodnji proizvoda"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "Product to Produce"
+msgstr "Proizvod za proizvodnjo"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production_product_line
+msgid "Production Scheduled Product"
+msgstr "Proizvod načrtovan za proizvodnjo"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,consume_lines:0
+msgid "Products Consumed"
+msgstr "Porabljeni proizvodi"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,steps:0
+msgid "Relevant Steps"
+msgstr "Relevantni koraki"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing
+msgid "Routing"
+msgstr "Usmerjanje"
+
+#. module: mrp_operations_extension
+#: model:ir.actions.act_window,name:mrp_operations_extension.mrp_routing_operation_action
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_tree
+msgid "Routing Operation"
+msgstr "Usmerjevalna operacije"
+
+#. module: mrp_operations_extension
+#: view:mrp.workcenter:mrp_operations_extension.mrp_workcenter_form_view_inh
+#: field:mrp.workcenter,rt_operations:0
+msgid "Routing Operations"
+msgstr "Usmerjevalne operacije"
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,routing_wc_line:0
+msgid "Routing WC Line"
+msgstr "Postavka usmerjevalnega delovnega centra"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,routing_workcenter:0
+msgid "Routing workcenter"
+msgstr "Usmerjevalni delovni center"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,product_qty:0
+msgid "Select Quantity"
+msgstr "Izbira količine"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_stock_move
+msgid "Stock Move"
+msgstr "Premik zaloge"
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:55
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:56
+#, python-format
+msgid "There must be one and only one line set as default."
+msgstr "Samo ena postavka je lahko privzeta."
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_routing.py:19
+#, python-format
+msgid ""
+"There must be one and only one operation with 'Produce here' check marked."
+msgstr "Samo ena operacija ima lahko označbo 'Proizvedi tukaj'."
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_start:0
+msgid "Time Start"
+msgstr "Čas zagona"
+
+#. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,time_stop:0
+msgid "Time Stop"
+msgstr "Čas zaustavitve"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_stop:0
+msgid "Time after prod."
+msgstr "Čas po proizvodnji"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_start:0
+msgid "Time before prod."
+msgstr "Čas pred proizvodnjo"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,time_cycle:0
+msgid "Time for 1 cycle (hours)"
+msgstr "Čas enega cikla (ur)"
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_cycle:0
+msgid "Time in hours for doing one cycle."
+msgstr "Čas v urah za izvedbo enega cikla."
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_stop:0
+msgid "Time in hours for the cleaning."
+msgstr "Čas v urah za čiščenje."
+
+#. module: mrp_operations_extension
+#: help:mrp.operation.workcenter,time_start:0
+msgid "Time in hours for the setup."
+msgstr "Čas v urah za pripravo."
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "To Consume"
+msgstr "Za porabo"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
+msgid "Total"
+msgstr "Skupaj"
+
+#. module: mrp_operations_extension
+#: field:mrp.work.order.produce,track_production:0
+msgid "Track production"
+msgstr "Sledenje proizvodnje"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Delovni center"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_routing_workcenter
+msgid "Work Center Usage"
+msgstr "Uporaba delovnega centra"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_mrp_production_workcenter_line
+#: field:mrp.production.product.line,work_order:0
+#: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
+#: field:stock.move,work_order:0
+msgid "Work Order"
+msgstr "Delovni nalog"
+
+#. module: mrp_operations_extension
+#: field:mrp.routing.operation,workcenters:0
+msgid "Work centers"
+msgstr "Delovni centri"
+
+#. module: mrp_operations_extension
+#: field:mrp.product.produce.line,work_produce_id:0
+msgid "Work produce id"
+msgstr "ID proizvodnega dela"
+
+#. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,workcenter:0
+msgid "Workcenter"
+msgstr "Delovni center"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
+msgid "Workcenters"
+msgstr "Delovni centri"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "draft,startworking"
+msgstr "osnutek,zagon"
+
+#. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+msgid "oe_highlight"
+msgstr "oe_highlight"
+
+#. module: mrp_operations_extension
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
+#: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+msgid "or"
+msgstr "ali"
+
+#. module: mrp_operations_extension
+#: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
+msgid "{'invisible': [('op_wc_lines', '!=', [])]}"
+msgstr "{'invisible': [('op_wc_lines', '!=', [])]}"

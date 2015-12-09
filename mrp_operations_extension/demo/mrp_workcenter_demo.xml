@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="mrp.mrp_workcenter_0" model="mrp.workcenter">
+            <field name="op_number">1</field>
+            <field name="op_avg_cost">30.0</field>
+            <field name="operators" eval="[(6,0,[ref('mrp_operations_extension.user_opeext_1')])]"/>
+        </record>
+        <record id="mrp.mrp_workcenter_1" model="mrp.workcenter">
+            <field name="op_number">1</field>
+            <field name="op_avg_cost">30.0</field>
+            <field name="operators" eval="[(6,0,[ref('mrp_operations_extension.user_opeext_2')])]"/>
+        </record>
+    </data>
+</openerp>

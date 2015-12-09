@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_product_tree_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.product.tree.view.inh
+            </field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="work_order" groups="mrp.group_mrp_routings"
+                        domain="[('production_id', '=', production_id)]" />
+                </field>
+            </field>
+        </record>
+        <record id="mrp_production_product_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.product.form.view.inh
+            </field>
+            <field name="model">mrp.production.product.line</field>
+            <field name="inherit_id" ref="mrp.mrp_production_product_form_view" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="production_id" invisible="1" />
+                    <field name="work_order" groups="mrp.group_mrp_routings" 
+                        domain="[('production_id', '=', production_id)]" />
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inh</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page//group[@string='Products to Consume']//field[@name='product_id']" position="after">
+                    <field name="work_order" groups="mrp.group_mrp_routings" />
+                </xpath>
+                <xpath expr="//page//group[@string='Consumed Products']//field[@name='product_id']" position="after">
+                    <field name="work_order" groups="mrp.group_mrp_routings" />
+                </xpath>
+                <xpath expr="//page//group[@string='Products to Produce']//field[@name='product_id']" position="after">
+                    <field name="work_order" groups="mrp.group_mrp_routings" />
+                </xpath>
+                <xpath expr="//page//group[@string='Produced Products']//field[@name='product_id']" position="after">
+                    <field name="work_order" groups="mrp.group_mrp_routings" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/tree//field[@name='sequence']" position="after">
+                    <field name="do_production" colspan="2" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/tree//field[@name='hour']" position="after">
+                    <field name="time_start" widget="float_time" />
+                    <field name="time_stop" widget="float_time" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='name']" position="attributes">
+                    <attribute name="colspan">2</attribute>
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='workcenter_id']" position="after">
+                    <field name="possible_workcenters" invisible="1"/>
+                    <field name="production_id" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="before">
+                    <field name="production_state" />
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='cycle']" position="replace"/>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='hour']" position="replace"/>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='sequence']" position="after">
+                    <field name="do_production" colspan="2" />
+                    <field name="is_material_ready" colspan="2"/>
+                    <notebook colspan="4">
+                        <page string="Materials">
+                            <group string="Product Lines">
+                                <field name="product_line" nolabel="1" colspan="4"/>
+                            </group>
+                        </page>
+                        <page string="Information">
+                            <group>
+                                <group string="Planned Date">
+                                    <field name="date_planned" />
+                                    <field name="date_planned_end" />
+                                </group>
+                                <group string="Duration">
+                                    <field name="cycle" />
+                                    <field name="hour" widget="float_time"/>
+                                </group>
+                                <group string="Actual Production Date">
+                                    <field name="date_start" />
+                                    <field name="date_finished" />
+                                    <field name="delay" />
+                                </group>
+                                <group string="Product to Produce">
+                                    <field name="product" />
+                                    <field name="qty" />
+                                    <field name="uom" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_operation_buttons_form_view">
+            <field name="name">mrp.production.operation.buttons.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_form_inherit_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,startworking</attribute>
+                </xpath>
+                <button name="button_start_working" position="attributes">
+                    <attribute name="icon"/>
+                    <attribute name="class">oe_highlight</attribute>
+                </button>
+                <button name="button_resume" position="attributes">
+                    <attribute name="icon"/>
+                    <attribute name="class">oe_highlight</attribute>
+                </button>
+                <button name="button_done" position="attributes">
+                    <attribute name="icon"/>
+                    <attribute name="class">oe_highlight</attribute>
+                </button>
+                <button name="button_pause" position="attributes">
+                    <attribute name="icon"/>
+                </button>
+                <button name="button_draft" position="attributes">
+                    <attribute name="icon"/>
+                </button>
+                <button string="Cancel Order" position="attributes">
+                    <attribute name="icon"/>
+                </button>
+                <button string="Cancel Order" position="after">
+                    <button name="action_assign"
+                            states="startworking"
+                            string="Check Availability"
+                            type="object"
+                            class="oe_highlight" />
+                    <button name="force_assign"
+                            states="startworking"
+                            string="Force Reservation"
+                            type="object" />
+                    <button name='%(act_mrp_work_order_produce)d'
+                            type='action' string='Produce'
+                            attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}" />
+                    <button name='%(act_mrp_work_order_consume)d'
+                            type='action' string='Consume'
+                            attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}" />
+                </button>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="workcenter_line_inh_form_view">
+            <field name="name">Workcenter line inh</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id"
+                ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
+            <field name="arch" type="xml">
+                <field name="workcenter_id" position="before">
+                    <field name="possible_workcenters" invisible="1"/>
+                </field>
+                <button name="button_cancel" position="after">
+                    <button name="action_assign" states="startworking"
+                        string="Check Availability" type="object" class="oe_highlight" />
+                    <button name="force_assign" states="startworking"
+                        string="Force Reservation" type="object" />
+                    <button name='%(act_mrp_work_order_produce)d'
+                        type='action' string='Produce'
+                        attrs="{'invisible':['|',('do_production','=',False),('state','in',['draft','cancel','pause','done'])]}"/>
+                    <button name='%(act_mrp_work_order_consume)d'
+                        type='action' string='Consume'
+                        attrs="{'invisible':[('state','in',['draft','cancel','pause','done'])]}"/>
+                </button>
+                <page string="Information" position="inside">
+                    <group string="Product Lines" colspan="4" col="4">
+                        <field name="product_line" nolabel="1"
+                            colspan="4" col="4" readonly="1"/>
+                    </group>
+                    <group string="Stock Moves" colspan="4" col="4">
+                        <field name="move_lines" nolabel="1"/>
+                    </group>
+                </page>
+                <group string="Product to Produce" position="replace" />
+                <group string="Duration" position="replace" />
+                <group string="Planned Date" position="replace" />
+                <group string="Actual Production Date" position="replace" />
+                <page string="Information" position="after">
+                    <page string="Extra Information">
+                        <group>
+                            <group string="Planned Date">
+                                <field name="date_planned" />
+                                <field name="date_planned_end" />
+                            </group>
+                            <group string="Duration">
+                                <field name="cycle" />
+                                <field name="hour" widget="float_time" />
+                            </group>
+                            <group string="Actual Production Date">
+                                <field name="date_start" readonly="1" />
+                                <field name="date_finished"
+                                    readonly="1" />
+                                <field name="delay" widget="float_time" />
+                            </group>
+                            <group string="Product to Produce">
+                                <field name="product" />
+                                <field name="qty" />
+                                <field name="uom" />
+                            </group>
+                        </group>
+                    </page>
+                </page>
+
+                <field name="sequence" position="after">
+                    <field name="do_production" />
+                    <field name="is_material_ready" />
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="mrp_production_workcenter_tree_view_inh_op_ext">
+            <field name="name">Workcenter line op ext</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_tree_view_inherit" />
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="production_state"/>
+                </field>
+            </field>
+        </record>
+
+    <record id="workcenter_line_future_calendar" model="ir.ui.view">
+        <field name="name">mrp.production.workcenter.line.future.calendar</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <calendar color="production_id" date_stop="date_planned_end" date_start="date_planned" string="Operations">
+                <field name="workcenter_id"/>
+                <field name="production_id"/>
+                <field name="product"/>
+            </calendar>
+        </field>
+    </record>
+
+    </data>
+</openerp>

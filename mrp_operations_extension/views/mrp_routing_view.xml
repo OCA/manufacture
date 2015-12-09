@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp.mrp_routing_action" model="ir.actions.act_window">
+            <field name="context">{'readonly_by_pass': True}</field>
+        </record>
+
+        <record id="mrp_routing_workcenter_tree_view_inh" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.tree.inh</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view" />
+            <field name="arch" type="xml">
+                <field name="workcenter_id" position="attributes">
+                    <attribute name="string">Default workcenter</attribute>
+                </field>
+                <field name="hour_nbr" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </field>
+                <field name="cycle_nbr" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </field>
+                <field name="company_id" position="before">
+                    <field name="do_production" />
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_form_view_inh" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.form.inh</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <p colspan="4">Select the operation to copy its current data to this routing line. <strong>WARNING:</strong> Once copied, if you change operation data, it won't be reflected here, unless you select it again.</p>
+                    <field name="operation" colspan="4"/>
+                </field>
+                <field name="workcenter_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="cycle_nbr" position="after">
+                    <field name="previous_operations_finished" />
+                </field>
+                <field name="hour_nbr" position="after">
+                    <field name="do_production" />
+                </field>
+                <field name="cycle_nbr" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="hour_nbr" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="workcenter_id" position="after">
+                    <field name="picking_type_id" />
+                </field>
+                <label for="note" position="before">
+                    <group string="Work centers">
+                        <field name="op_wc_lines" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="default" />
+                                <field name="workcenter" />
+                                <field name="custom_data" />
+                                <field name="time_efficiency"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="capacity_per_cycle"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_start" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_stop" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_cycle" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="op_number"
+                                       groups="mrp_operations_extension.group_mrp_workers"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="op_avg_cost"
+                                       groups="mrp_operations_extension.group_mrp_workers"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </label>
+            </field>
+        </record>
+    </data>
+</openerp>

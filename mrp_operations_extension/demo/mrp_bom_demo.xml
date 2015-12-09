@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="mrp.bom" id="mrp.mrp_bom_11">
+            <field name="routing_id" ref="mrp.mrp_routing_1" />
+        </record>
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_32">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_4" />
+        </record>
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_33">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_3" />
+        </record>
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_34">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_1" />
+        </record>
+
+        <record model="mrp.bom" id="mrp.mrp_bom_8">
+            <field name="routing_id" ref="mrp.mrp_routing_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_1">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_0" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_2">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_1" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_4">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_4" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_5">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_4" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_6">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_4" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_17">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_18">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_19">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_20">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_21">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_22">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_23">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_24">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_25">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_26">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_27">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_28">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_29">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_30">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+        <record model="mrp.bom.line" id="mrp.mrp_bom_line_31">
+            <field name="operation" ref="mrp.mrp_routing_workcenter_2" />
+        </record>
+
+    </data>
+</openerp>
