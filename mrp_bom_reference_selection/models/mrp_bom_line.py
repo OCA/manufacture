@@ -35,10 +35,11 @@ class MrpBillOfMaterialLine(models.Model):
         'product.product', required=True, string='Product')
 
     @api.multi
-    def onchange_product_id(self, product_id):
+    def onchange_product_id(self, product_id, product_qty=0):
         product = self.env['product.product'].browse(product_id)
 
-        res = {'value': {}}
+        res = super(MrpBillOfMaterialLine, self).onchange_product_id(
+            product_id, product_qty=product_qty)
 
         if not product:
             res['value']['reference_id'] = False
@@ -49,23 +50,22 @@ class MrpBillOfMaterialLine(models.Model):
 
         return res
 
-    @api.one
     @api.depends('product_id')
-    def _get_child_bom_lines(self):
-        if self.reference_id:
-            self.child_line_ids = self.reference_id.bom_id.bom_line_ids.ids
-        else:
-            bom_obj = self.env['mrp.bom']
-            bom_id = bom_obj._bom_find(
-                product_tmpl_id=self.product_id.product_tmpl_id.id,
-                product_id=self.product_id.id)
-            self.child_line_ids = bom_id and [
-                (6, 0, child_id) for child_id in
-                bom_obj.browse(bom_id).bom_line_ids.ids
-            ] or False
+    def _compute_child_bom_lines(self):
+        for record in self:
+            if record.reference_id:
+                record.child_line_ids = record.reference_id.bom_id.bom_line_ids
+            else:
+                bom_obj = self.env['mrp.bom']
+                bom_id = bom_obj._bom_find(
+                    product_tmpl_id=record.product_id.product_tmpl_id.id,
+                    product_id=record.product_id.id)
+                record.child_line_ids = bom_id and [
+                    (6, 0, child_id) for child_id in
+                    bom_obj.browse(bom_id).bom_line_ids.ids
+                ] or False
 
     child_line_ids = fields.One2many(
-        relation='mrp.bom.line',
-        compute='_get_child_bom_lines',
-        string="BOM lines of the referred bom",
+        relation='mrp.bom.line', compute='_compute_child_bom_lines',
+        string="BoM lines of the referred BoM",
     )
