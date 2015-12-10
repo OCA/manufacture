@@ -1,40 +1,32 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# © 2014-2015 Avanzosc
+# © 2014-2015 Antiun Ingeniería
+# © 2014-2015 Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "MRP real costs",
-    "version": "8.0.1.0.1",
-    "depends": ["analytic",
-                "project_timesheet",
-                "mrp_project_link",
-                "mrp_operations_time_control",
-                "stock_account",
-                "product_variant_cost",
-                "mrp_production_project_estimated_cost"],
-    "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    "category": "MRP",
+    "name": "Real costs in manufacturing orders",
+    "version": "8.0.1.0.0",
+    "depends": [
+        "project_timesheet",
+        "mrp_project",
+        "mrp_operations_extension",
+        "mrp_operations_time_control",
+        "stock_account",
+        "product_variant_cost_price",
+    ],
+    "author": "OdooMRP team, "
+              "AvanzOSC, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Antiun Ingeniería S.L., "
+              "Odoo Community Association (OCA)",
+    "category": "Manufacturing",
     'data': [
         "data/analytic_journal_data.xml",
         "views/mrp_production_view.xml",
-        "views/res_config_view.xml"
-        ],
+    ],
+    'demo': [
+        'demo/mrp_production_demo.xml',
+    ],
     'installable': True,
-    'auto_install': False,
 }

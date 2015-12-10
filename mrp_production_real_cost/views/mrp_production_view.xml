@@ -42,7 +42,6 @@
             <field name="arch" type="xml">
                 <field name="product_uom" position="after">
                     <field name="real_cost" />
-                    <field name="percentage_difference" />
                 </field>
             </field>
         </record>

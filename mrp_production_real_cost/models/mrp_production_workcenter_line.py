@@ -1,37 +1,17 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2014-2015 Avanzosc
+# © 2014-2015 Pedro M. Baeza
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api, fields
+from openerp import api, fields, models
 
 
 class MrpProductionWorkcenterLine(models.Model):
 
     _inherit = 'mrp.production.workcenter.line'
 
-    @api.one
-    def _get_prepost_cost(self):
-        wc = self.workcenter_id
-        self.pre_cost = self.time_start * wc.pre_op_product.cost_price
-        self.post_cost = self.time_stop * wc.post_op_product.cost_price
-
-    pre_cost = fields.Float('Pre-Operation Cost', default=_get_prepost_cost)
-    post_cost = fields.Float('Post-Operation Cost',
-                             default=_get_prepost_cost)
+    pre_cost = fields.Float('Pre-Operation Cost')
+    post_cost = fields.Float('Post-Operation Cost')
 
     @api.multi
     def _create_analytic_line(self):
@@ -82,14 +62,14 @@ class MrpProductionWorkcenterLine(models.Model):
             name = ((production.name or '') + '-' +
                     (self.routing_wc_line.operation.code or '') + '-PRE-' +
                     (product.default_code or ''))
-            price = -(self.pre_cost)
+            price = -self.pre_cost
             qty = self.time_start
         elif cost_type == 'post':
             product = workcenter.post_op_product
             name = ((production.name or '') + '-' +
                     (self.routing_wc_line.operation.code or '') + '-POST-' +
                     (product.default_code or ''))
-            price = -(self.post_cost)
+            price = -self.post_cost
             qty = self.time_stop
         if price:
             analytic_vals = production._prepare_real_cost_analytic_line(
@@ -98,9 +78,16 @@ class MrpProductionWorkcenterLine(models.Model):
                 qty=qty, amount=price)
             task = task_obj.search([('mrp_production_id', '=', production.id),
                                     ('workorder', '=', False)])
-            analytic_vals['task_id'] = task and task[0].id or False
+            analytic_vals['task_id'] = task[:1].id
             analytic_vals['product_uom_id'] = hour_uom.id
             analytic_line_obj.create(analytic_vals)
+
+    @api.multi
+    def action_start_working(self):
+        result = super(MrpProductionWorkcenterLine,
+                       self).action_start_working()
+        self._create_pre_post_cost_lines(cost_type='pre')
+        return result
 
     @api.multi
     def action_pause(self):
@@ -112,6 +99,5 @@ class MrpProductionWorkcenterLine(models.Model):
     def action_done(self):
         result = super(MrpProductionWorkcenterLine, self).action_done()
         self._create_analytic_line()
-        self._create_pre_post_cost_lines(cost_type='pre')
         self._create_pre_post_cost_lines(cost_type='post')
         return result
