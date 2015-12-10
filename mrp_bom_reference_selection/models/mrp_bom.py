@@ -1,26 +1,8 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2015 Savoir-faire Linux
-#    (<http://www.savoirfairelinux.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# (c) 2015 Savoir-faire Linux - <http://www.savoirfairelinux.com>
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class MrpBillOfMaterial(models.Model):
@@ -34,4 +16,5 @@ class MrpBillOfMaterial(models.Model):
         return res
 
     reference_id = fields.One2many(
-        'mrp.bom.reference', 'bom_id', string="BoM Reference")
+        comodel_name='mrp.bom.reference', inverse_name='bom_id',
+        string="BoM Reference")
