@@ -18,6 +18,10 @@ addon | version | summary
 [mrp_bom_reference_selection](mrp_bom_reference_selection/) | 8.0.1.1.0 | Bill of Material Selection Reference
 [mrp_bom_version](mrp_bom_version/) | 8.0.1.0.0 | BoM versioning
 [mrp_calendar_view](mrp_calendar_view/) | 8.0.1.0.0 | MRP Calendar View
+[mrp_hook](mrp_hook/) | 8.0.1.0.0 | MRP Hooks
+[mrp_operations_extension](mrp_operations_extension/) | 8.0.2.0.0 | Manufacturing Operations Extension
+[mrp_operations_project](mrp_operations_project/) | 8.0.1.0.0 | Create task for work orders with operators
+[mrp_operations_time_control](mrp_operations_time_control/) | 8.0.1.1.0 | MRP Operations Time Control
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
 [mrp_project](mrp_project/) | 8.0.1.1.0 | Link production with projects
