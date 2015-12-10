@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_operations_time_control
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:43+0000\n"
+"PO-Revision-Date: 2015-09-20 18:57+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,end_date:0
+msgid "End Date"
+msgstr "Zaključni datum"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Finished"
+msgstr "Dokončano"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Group By..."
+msgstr "Združi po..."
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "Information"
+msgstr "Podrobnosti"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: mrp_operations_time_control
+#: model:ir.actions.act_window,name:mrp_operations_time_control.operation_time_lines_action
+#: model:ir.ui.menu,name:mrp_operations_time_control.menu_operation_time_lines_action
+#: field:mrp.production.workcenter.line,operation_time_lines:0
+msgid "Operation Time Lines"
+msgstr "Časovne postavke operacije"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,operation_time:0
+msgid "Operation time"
+msgstr "Čas operacije"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
+msgid "Operation time lines"
+msgstr "Časovne postavke operacije"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Pending"
+msgstr "Na čakanju"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,production:0
+msgid "Production"
+msgstr "Proizvodnja"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Production Order"
+msgstr "Proizvodni nalog"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Resume"
+msgstr "Nadaljuj"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Search Operation Time Lines"
+msgstr "Iskalnik časovnih postavk operacije"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Set Draft"
+msgstr "Nastavi kot osnutek"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
+msgid "Start"
+msgstr "Zagon"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,start_date:0
+msgid "Start Date"
+msgstr "Začetni datum"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
+#: field:operation.time.line,uptime:0
+msgid "Uptime"
+msgstr "Pogonski čas"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+#: field:operation.time.line,user:0
+msgid "User"
+msgstr "Uporabnik"
+
+#. module: mrp_operations_time_control
+#: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line
+#: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
+msgid "Work Order"
+msgstr "Delovni nalog"
+
+#. module: mrp_operations_time_control
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
+msgid "hours"
+msgstr "ur"

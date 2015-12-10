@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="mrp_production_operation_time_form_view">
+            <field name="name">mrp.production.operation.time.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations_extension.mrp_production_form_view_inh" />
+            <field name="arch" type="xml">
+                <page string="Information" position="after">
+                    <page string="Machine up time">
+                        <field name="operation_time_lines" nolabel="1"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_operation_time_line_user,access_operation_time_line_user,model_operation_time_line,mrp.group_mrp_user,1,1,1,1
+access_operation_time_line_manager,access_operation_time_line_manager,model_operation_time_line,mrp.group_mrp_manager,1,1,1,1
+access_operation_time_line_sale,access_operation_time_line_sale,model_operation_time_line,base.group_sale_salesman,1,0,0,0
