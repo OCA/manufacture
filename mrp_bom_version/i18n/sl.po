@@ -3,13 +3,13 @@
 # * mrp_bom_version
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-29 05:45+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:11+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,11 @@ msgstr "Verzija proizvodne kosovnice"
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
 msgstr "Nova verzija"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,old_versions:0
+msgid "Old Versions"
+msgstr "Stare verzije"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0

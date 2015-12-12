@@ -3,31 +3,32 @@
 # * mrp_bom_version
 # 
 # Translators:
+# Jaroslav Helemik Nemec <nemec@helemik.cz>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-10-26 16:08+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
+"POT-Creation-Date: 2016-07-31 06:30+0000\n"
+"PO-Revision-Date: 2016-08-01 15:40+0000\n"
+"Last-Translator: Jaroslav Helemik Nemec <nemec@helemik.cz>\n"
+"Language-Team: Czech (http://www.transifex.com/oca/OCA-manufacture-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "Activate"
-msgstr ""
+msgstr "Aktivovat"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr "Ativo"
+msgstr "Aktivní"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0
@@ -37,36 +38,36 @@ msgstr ""
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Lista de materiais"
+msgstr "Kusovník"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr "Provisório"
+msgstr "Návrh"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr "Seskupit..."
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Historical"
-msgstr ""
+msgstr "Historický"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,historical_date:0
 msgid "Historical Date"
-msgstr ""
+msgstr "Historické datum"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Inactive"
-msgstr ""
+msgstr "Neaktivní"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,active_draft:0
@@ -77,57 +78,62 @@ msgstr ""
 #: model:mail.message.subtype,description:mrp_bom_version.mt_active
 #: model:mail.message.subtype,name:mrp_bom_version.mt_active
 msgid "MRP BoM Active"
-msgstr ""
+msgstr "Aktivní kusovník výroby"
 
 #. module: mrp_bom_version
 #: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
 msgid "MRP BoM version"
-msgstr ""
+msgstr "Verze kusovníku výroby"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
-msgstr ""
+msgstr "Nová verze"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,old_versions:0
+msgid "Old Versions"
+msgstr "Stará verze"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
 msgid "Parent BoM"
-msgstr ""
+msgstr "Nadřazený kusovník"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr "Estado"
+msgstr "Stav"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
 msgid "The active state may be passed back to state draft"
-msgstr ""
+msgstr "Aktivní stav může být předán zpět do stavu návrhu"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,active_draft:0
 msgid ""
 "This will allow you to define if those BoM passed back to draft are still "
 "activated or not"
-msgstr ""
+msgstr "Toto vám umožní určit, zda kusovníky předané zpět do návrhu jsou stále aktivní nebo ne"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 msgid "Versions"
-msgstr ""
+msgstr "Verze"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "You are going to create a new version of this BoM. Are you sure?"
-msgstr ""
+msgstr "Chystáte se vytvořit novou verzi tohoto kusovníku. Jste si jisti?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -135,7 +141,7 @@ msgstr ""
 msgid ""
 "You are going to historize an BoM. Doing, not be able to unlock it unless "
 "you make a copy. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Chystáte se \"historizovat\" kusovník. Přitom není možné jej odemknout, pokud jste vytvořili kopii. Jste si jisti, že chcete pokračovat?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -143,4 +149,4 @@ msgstr ""
 msgid ""
 "You will activate the BoM. If you haven't set a route yet, then you won't be"
 " able to do it after this. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Budete aktivovat kusovník. Pokud jste ještě nenastavili trasu (routu), pak to již nebude po tomto kroku možné. Jste si jisti, že chcete pokračovat?"
