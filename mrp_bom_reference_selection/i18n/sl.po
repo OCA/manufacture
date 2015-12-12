@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-31 10:40+0000\n"
+"POT-Creation-Date: 2015-12-10 15:32+0000\n"
+"PO-Revision-Date: 2015-12-11 05:38+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,13 @@ msgstr "MRP sklic kosovnice"
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_production
 msgid "Manufacturing Order"
 msgstr "Proizvodni nalog"
+
+#. module: mrp_bom_reference_selection
+#: code:addons/mrp_bom_reference_selection/models/mrp_bom_line.py:28
+#, python-format
+msgid ""
+"Product %s from %s reference BoM must be equal to product %s in BoM line."
+msgstr "Proizvod %s iz kosovnice s sklicem %s mora biti enak proizvodu %s iz postavke kosovnice."
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_product_produce

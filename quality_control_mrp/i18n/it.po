@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 01:43+0000\n"
+"POT-Creation-Date: 2015-12-10 15:32+0000\n"
 "PO-Revision-Date: 2015-11-19 08:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
@@ -37,7 +37,7 @@ msgstr "Ordine di produzione"
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
 #: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Product"
-msgstr ""
+msgstr "Prodotto "
 
 #. module: quality_control_mrp
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production

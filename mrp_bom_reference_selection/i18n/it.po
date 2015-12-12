@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 01:43+0000\n"
-"PO-Revision-Date: 2015-10-26 16:08+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2015-12-10 15:32+0000\n"
+"PO-Revision-Date: 2015-12-10 15:32+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 #: field:stock.production.lot,bom_id:0
 msgid "Bill of Material"
-msgstr ""
+msgstr "Distinta base"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom,reference_id:0
@@ -74,6 +74,13 @@ msgstr ""
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_production
 msgid "Manufacturing Order"
 msgstr "Ordine di produzione"
+
+#. module: mrp_bom_reference_selection
+#: code:addons/mrp_bom_reference_selection/models/mrp_bom_line.py:28
+#, python-format
+msgid ""
+"Product %s from %s reference BoM must be equal to product %s in BoM line."
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_product_produce

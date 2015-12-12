@@ -3,45 +3,44 @@
 # * mrp_operations_time_control
 # 
 # Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 00:29+0000\n"
+"PO-Revision-Date: 2015-12-10 00:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_uid:0
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Created by"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_date:0
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Created on"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
 msgid "End Date"
-msgstr "Data final"
+msgstr "End Date"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Finished"
-msgstr "Finalizado"
+msgstr "Finished"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr "Group By..."
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
@@ -52,17 +51,17 @@ msgstr "ID"
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
 msgid "Information"
-msgstr "Informação"
+msgstr "Information"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Last Updated by"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_date:0
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Last Updated on"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
@@ -70,79 +69,79 @@ msgstr "Última atualização em"
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
 #: field:operation.time.line,uptime:0
 msgid "Machine up time"
-msgstr ""
+msgstr "Machine up time"
 
 #. module: mrp_operations_time_control
 #: model:ir.actions.act_window,name:mrp_operations_time_control.operation_time_lines_action
 #: model:ir.ui.menu,name:mrp_operations_time_control.menu_operation_time_lines_action
 #: field:mrp.production.workcenter.line,operation_time_lines:0
 msgid "Operation Time Lines"
-msgstr "Linhas do tempo de operação"
+msgstr "Operation Time Lines"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,operation_time:0
 msgid "Operation time"
-msgstr "Tempo de operação"
+msgstr "Operation time"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
 msgid "Operation time lines"
-msgstr "Linhas do tempo de operação"
+msgstr "Operation time lines"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Pending"
-msgstr "Pendente"
+msgstr "Pending"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,production:0
 msgid "Production"
-msgstr "Produção"
+msgstr "Production"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Production Order"
-msgstr "Ordem de produção"
+msgstr "Production Order"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Resume"
-msgstr "Continuar"
+msgstr "Resume"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Search Operation Time Lines"
-msgstr "Pesquisar linhas do tempo de operação"
+msgstr "Search Operation Time Lines"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Set Draft"
-msgstr "Setar provisório"
+msgstr "Set Draft"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Start"
-msgstr "Iniciar"
+msgstr "Start"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,start_date:0
 msgid "Start Date"
-msgstr "Data de inicio"
+msgstr "Start Date"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 #: field:operation.time.line,user:0
 msgid "User"
-msgstr "Usuário"
+msgstr "User"
 
 #. module: mrp_operations_time_control
 #: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Work Order"
-msgstr "Ordem de serviço"
+msgstr "Work Order"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 msgid "hours"
-msgstr "horas"
+msgstr "hours"
