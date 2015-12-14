@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="prod_trans_wc_pause_done" model="workflow.transition">
+            <field name="act_from" ref="mrp_operations.prod_act_wc_pause" />
+            <field name="act_to" ref="mrp_operations.prod_act_wc_done" />
+            <field name="signal">button_done</field>
+        </record>
+    </data>
+</openerp>

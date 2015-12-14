@@ -20,6 +20,7 @@
     "contributors": [
         "Mikel Arregi <mikelarregi@avanzosc.es>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Ainara Galdona <ainaragaldona@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <ajuaristio@gmail.com>"
     ],
@@ -28,6 +29,7 @@
         "views/operation_time_view.xml",
         "views/mrp_production_view.xml",
         "security/ir.model.access.csv",
+        "data/mrp_production_workcenter_line_workflow.xml"
     ],
     "installable": True,
 }

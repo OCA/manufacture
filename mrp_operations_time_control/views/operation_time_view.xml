@@ -36,6 +36,9 @@
                         <field name="operation_time_lines" />
                     </page>
                 </page>
+                <button name="button_done" position="attributes">
+                    <attribute name="states">startworking,pause</attribute>
+                </button>
             </field>
         </record>
 
