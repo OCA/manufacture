@@ -28,7 +28,8 @@ class MrpProduction(models.Model):
             production_id, production_qty, production_mode, wiz=wiz)
         if production_mode == 'consume_produce':
             inspection_model = self.env['qc.inspection']
-            for move in self.move_created_ids2:
+            production = self.browse(production_id)
+            for move in production.move_created_ids2:
                 qc_trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
                 trigger_lines = set()
                 for model in ['qc.trigger.product_category_line',
