@@ -58,10 +58,9 @@ class MrpBillOfMaterialLine(models.Model):
                 bom_id = bom_obj._bom_find(
                     product_tmpl_id=record.product_id.product_tmpl_id.id,
                     product_id=record.product_id.id)
-                record.child_line_ids = bom_id and [
-                    (6, 0, child_id) for child_id in
-                    bom_obj.browse(bom_id).bom_line_ids.ids
-                ] or False
+                record.child_line_ids = [
+                    (6, 0, bom_obj.browse(bom_id).bom_line_ids.ids)
+                ]
 
     child_line_ids = fields.One2many(
         relation='mrp.bom.line', compute='_compute_child_bom_lines',
