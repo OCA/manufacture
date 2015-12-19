@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 10:26+0000\n"
+"POT-Creation-Date: 2015-12-15 18:43+0000\n"
+"PO-Revision-Date: 2015-12-15 05:49+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -146,3 +146,8 @@ msgstr "Delovni nalog"
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 msgid "hours"
 msgstr "ur"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "startworking,pause"
+msgstr "zagon,pavza"
