@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="mrp.mrp_production_1" model="mrp.production">
+            <field name="project_id" ref="project.project_project_1"/>
+            <field name="analytic_account_id" search="[('name', 'ilike', '%jackson%')]"/>
+        </record>
+
+        <record id="mrp_operations.mrp_production_op1" model="mrp.production">
+            <field name="project_id" ref="project.project_project_1"/>
+            <field name="analytic_account_id" search="[('name', 'ilike', '%jackson%')]"/>
+        </record>
+
+        <record id="mrp_operations.mrp_production_mo1" model="mrp.production">
+            <field name="project_id" ref="project.project_project_1"/>
+            <field name="analytic_account_id" search="[('name', 'ilike', '%jackson%')]"/>
+        </record>
+
+    </data>
+</openerp>

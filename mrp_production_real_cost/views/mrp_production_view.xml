@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp.mrp_production_form_view_costs" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.costs</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Extra Information" position="inside">
+                    <group string="Manufacturing costs">
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_real_costs" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.real.costs</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view_costs"/>
+            <field name="arch" type="xml">
+                <group string="Manufacturing costs" position="inside">
+                    <group>
+                        <field name="real_cost" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                        <field name="unit_real_cost" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                    </group>
+                </group>
+                <xpath expr="//field[@name='workcenter_lines']//tree//field[@name='hour']" position="after">
+                    <field name="pre_cost"/>
+                    <field name="post_cost"/>
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']//form//field[@name='hour']" position="after">
+                    <field name="pre_cost"/>
+                    <field name="post_cost"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_production_tree_view_real_costs" model="ir.ui.view">
+            <field name="name">mrp.production.tree.real.costs</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product_uom" position="after">
+                    <field name="real_cost" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

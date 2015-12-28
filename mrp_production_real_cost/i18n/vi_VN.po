@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_production_real_costs
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-28 09:04+0000\n"
+"PO-Revision-Date: 2015-11-28 09:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production,percentage_difference:0
+msgid "% difference"
+msgstr "% khác biệt"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Định mức Nguyên liệu"
+
+#. module: mrp_production_real_costs
+#: field:mrp.config.settings,final_product_analytic_cost:0
+msgid "Load final product analytic cost"
+msgstr "Load final product analytic cost"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Lệnh sản xuất"
+
+#. module: mrp_production_real_costs
+#: view:mrp.production:mrp_production_real_costs.mrp_production_form_view_real_costs
+msgid "Manufacturing costs"
+msgstr "Chi phí Sản xuất"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production.workcenter.line,post_cost:0
+msgid "Post-Operation Cost"
+msgstr "Chi phí Sau sản xuất"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production.workcenter.line,pre_cost:0
+msgid "Pre-Operation Cost"
+msgstr "Chi phí Trước sản xuất"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Sản xuất sản phẩm"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_project_task_work
+msgid "Project Task Work"
+msgstr "Project Task Work"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_stock_move
+msgid "Stock Move"
+msgstr "Dịch chuyển kho"
+
+#. module: mrp_production_real_costs
+#: help:mrp.config.settings,final_product_analytic_cost:0
+msgid "This will allow you to define if those BoM passed back to draft are still activated or not"
+msgstr "This will allow you to define if those BoM passed back to draft are still activated or not"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production,real_cost:0
+msgid "Total Real Cost"
+msgstr "Tổng chi thực tế"
+
+#. module: mrp_production_real_costs
+#: field:mrp.production,unit_real_cost:0
+msgid "Unit Real Cost"
+msgstr "Unit Real Cost"
+
+#. module: mrp_production_real_costs
+#: model:ir.model,name:mrp_production_real_costs.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr "Hoạt động sản xuất"
+
+#. module: mrp_production_real_costs
+#: code:addons/mrp_production_real_costs/models/mrp_production.py:121
+#, python-format
+msgid "You must define one Analytic Account for this MO: %s"
+msgstr "Bạn phải định nghĩa một Tài khoản Quản trị cho MO này: %s"
+

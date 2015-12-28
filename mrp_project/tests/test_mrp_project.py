@@ -71,6 +71,9 @@ class TestMrpProject(common.TransactionCase):
     def test_button_end_work(self):
         work = self.env['project.task.work'].create(
             {'task_id': self.task.id,
+             'name': 'Test',
+             'user_id': self.env.uid,
+             'hours': 0,
              'date': fields.Datetime.now()})
         time.sleep(1)
         work.button_end_work()
