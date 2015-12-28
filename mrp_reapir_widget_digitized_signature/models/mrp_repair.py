@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Copyright 2015 Alessio Gerace- Agile Business Group
+#
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#
+##############################################################################
+
+from openerp import models, fields
+
+
+class MrpRepair(models.Model):
+    _inherit = 'mrp.repair'
+
+    signature_image = fields.Binary(string='Signature')
