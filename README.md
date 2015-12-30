@@ -24,6 +24,7 @@ addon | version | summary
 [mrp_operations_time_control](mrp_operations_time_control/) | 8.0.1.1.0 | MRP Operations Time Control
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
+[mrp_production_real_cost](mrp_production_real_cost/) | 8.0.1.0.0 | Real costs in manufacturing orders
 [mrp_project](mrp_project/) | 8.0.1.1.0 | Link production with projects
 [quality_control](quality_control/) | 8.0.1.1.0 | Quality control
 [quality_control_mrp](quality_control_mrp/) | 8.0.1.0.0 | Quality control - MRP
