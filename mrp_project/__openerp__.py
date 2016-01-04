@@ -15,7 +15,7 @@
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Antiun Ingeniería,"
+              "Antiun Ingeniería S.L.,"
               "Odoo Community Association (OCA)",
     "category": "Manufacturing",
     'data': [
