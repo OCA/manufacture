@@ -3,67 +3,66 @@
 # * mrp_production_real_cost
 # 
 # Translators:
-# Massimiliano Casa <mcasa@cantiericasa.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-05 06:41+0000\n"
-"PO-Revision-Date: 2015-12-28 09:57+0000\n"
+"PO-Revision-Date: 2015-12-28 09:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Distinta base"
+msgstr "Bill of Material"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production,analytic_line_ids:0
 msgid "Cost Lines"
-msgstr ""
+msgstr "Cost Lines"
 
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Ordine di produzione"
+msgstr "Manufacturing Order"
 
 #. module: mrp_production_real_cost
 #: view:mrp.production:mrp_production_real_cost.mrp_production_form_view_real_costs
 msgid "Manufacturing costs"
-msgstr "Costi di produzione"
+msgstr "Manufacturing costs"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production.workcenter.line,post_cost:0
 msgid "Post-Operation Cost"
-msgstr "Costo Post-lavorazione"
+msgstr "Post-Operation Cost"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production.workcenter.line,pre_cost:0
 msgid "Pre-Operation Cost"
-msgstr "Costo Pre-lavorazione"
+msgstr "Pre-Operation Cost"
 
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Stock Move"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production,real_cost:0
 msgid "Total Real Cost"
-msgstr "Costo Reale Totale "
+msgstr "Total Real Cost"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production,unit_real_cost:0
 msgid "Unit Real Cost"
-msgstr "Costo unitario reale"
+msgstr "Unit Real Cost"
 
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_mrp_production_workcenter_line
 msgid "Work Order"
-msgstr "Ordine di lavorazione"
+msgstr "Work Order"
