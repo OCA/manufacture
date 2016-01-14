@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2015 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields
+from openerp import fields, models
 
 
 class MrpProduction(models.Model):
