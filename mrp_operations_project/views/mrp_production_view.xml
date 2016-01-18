@@ -12,6 +12,7 @@
                            on_change="onchange_task_id(task_id)"
                     />
                     <field name="user_id"/>
+                    <field name="name"/>
                     <field name="date"/>
                     <field name="hours" widget="float_time"/>
                     <button name="button_end_work"
@@ -32,7 +33,7 @@
                 <page string="Information" position="after">
                     <page string="Operators time">
                         <field name="task_m2m" invisible="1"/>
-                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_project.project_task_work_mrp'}"/>
+                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_operations_project.project_task_work_mrp'}"/>
                     </page>
                 </page>
             </field>
@@ -46,7 +47,7 @@
                 <xpath expr="//field[@name='workcenter_lines']/form//page[@string='Information']" position="after">
                     <page string="Operators time">
                         <field name="task_m2m" invisible="1"/>
-                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_project.project_task_work_mrp'}"/>
+                        <field name="work_ids" context="{'name_show_user': True, 'tree_view_ref': 'mrp_operations_project.project_task_work_mrp'}"/>
                     </page>
                 </xpath>
             </field>
