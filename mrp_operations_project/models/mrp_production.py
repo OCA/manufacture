@@ -65,7 +65,7 @@ class MrpProductionWorkcenterLine(models.Model):
                           str(workorder.sequence).zfill(3),
                           str(i).zfill(3), workorder.name))
             task_vals['name'] = task_name
-            tasks_vals.append(task_vals)
+            tasks_vals.append(task_vals.copy())
         return tasks_vals
 
     @api.multi
