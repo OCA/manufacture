@@ -97,7 +97,7 @@ class MrpProductionWorkcenterLine(models.Model):
 
     @api.multi
     def action_done(self):
-        result = super(MrpProductionWorkcenterLine, self).action_done()
         self._create_analytic_line()
         self._create_pre_post_cost_lines(cost_type='post')
+        result = super(MrpProductionWorkcenterLine, self).action_done()
         return result
