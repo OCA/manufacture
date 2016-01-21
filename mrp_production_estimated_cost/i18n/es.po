@@ -74,7 +74,7 @@ msgstr "Líneas de costes"
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
 msgid "Costs analysis"
-msgstr ""
+msgstr "Análisis de costes"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
@@ -93,12 +93,7 @@ msgstr "Crea OF ficticia"
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_run_template_create_fictitious_of
 #: view:wiz.create.fictitious.of:mrp_production_estimated_cost.wiz_create_fictitious_of_view
 msgid "Create fictitious MO"
-msgstr "CrearOF ficticia"
-
-#. module: mrp_production_estimated_cost
-#: view:wiz.create.fictitious.of:mrp_production_estimated_cost.wiz_create_fictitious_of_view
-msgid "Create fictitius MO"
-msgstr ""
+msgstr "Crear OF ficticia"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.fictitious.of,create_uid:0
@@ -183,7 +178,7 @@ msgstr "Última actualización el"
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
 msgid "Load Estimated Cost on Product"
-msgstr ""
+msgstr "Cargar coste estimado en el producto"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.fictitious.of,load_on_product:0

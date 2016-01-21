@@ -81,7 +81,7 @@ class MrpProduction(models.Model):
             'mrp_project.account_analytic_line_mrp_search_view')
         analytic_line_list = analytic_line_obj.search(
             [('mrp_production_id', '=', self.id),
-             ('task_id', '=', False)])
+             ('task_id', '=', False), ('amount', '=', 0)])
         self = self.with_context(search_default_group_production=1,
                                  search_default_group_workorder=1,
                                  search_default_group_journal=1)
@@ -187,7 +187,7 @@ class MrpProduction(models.Model):
             return self.env['account.analytic.line'].create(vals)
 
     @api.model
-    def _create_worcenter_cycles_estimated_cost(self, prod, wc, workorder):
+    def _create_workcenter_cycles_estimated_cost(self, prod, wc, workorder):
         if workorder.cycle and workorder.workcenter_id.costs_cycle:
             journal = prod.env.ref('mrp.analytic_journal_machines', False)
             product = workorder.workcenter_id.product_id
@@ -205,7 +205,7 @@ class MrpProduction(models.Model):
             return self.env['account.analytic.line'].create(vals)
 
     @api.model
-    def _create_worcenter_hours_estimated_cost(self, prod, wc, workorder):
+    def _create_workcenter_hours_estimated_cost(self, prod, wc, workorder):
         if workorder.hour and workorder.workcenter_id.costs_hour:
             product = workorder.workcenter_id.product_id
             if not product:
@@ -252,10 +252,10 @@ class MrpProduction(models.Model):
                     lambda r: r.workcenter == line.workcenter_id)
                 self._create_pre_operation_estimated_cost(record, wc, line)
                 self._create_post_operation_estimated_cost(record, wc, line)
-                done = self._create_worcenter_cycles_estimated_cost(
+                done = self._create_workcenter_cycles_estimated_cost(
                     record, wc, line)
                 if not done:
-                    self._create_worcenter_hours_estimated_cost(
+                    self._create_workcenter_hours_estimated_cost(
                         record, wc, line)
                 self._create_operators_estimated_cost(record, wc, line)
 
