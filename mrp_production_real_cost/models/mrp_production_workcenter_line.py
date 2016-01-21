@@ -31,16 +31,17 @@ class MrpProductionWorkcenterLine(models.Model):
                     (product.default_code or ''))
             general_acc = workcenter.costs_general_account_id or False
             price = -(workcenter.costs_hour * operation_line.uptime)
-            analytic_vals = production._prepare_real_cost_analytic_line(
-                journal_id, name, production, product,
-                general_account=general_acc, workorder=self,
-                qty=operation_line.uptime, amount=price)
-            task = task_obj.search([('mrp_production_id', '=', production.id),
-                                    ('workorder', '=', False)])
-            analytic_vals['task_id'] = task and task[0].id or False
-            analytic_vals['product_uom_id'] = hour_uom.id
-            analytic_line = analytic_line_obj.create(analytic_vals)
-            return analytic_line
+            if price:
+                analytic_vals = production._prepare_real_cost_analytic_line(
+                    journal_id, name, production, product,
+                    general_account=general_acc, workorder=self,
+                    qty=operation_line.uptime, amount=price)
+                task = task_obj.search(
+                    [('mrp_production_id', '=', production.id),
+                     ('workorder', '=', False)])
+                analytic_vals['task_id'] = task and task[0].id or False
+                analytic_vals['product_uom_id'] = hour_uom.id
+                analytic_line_obj.create(analytic_vals)
 
     @api.multi
     def _create_pre_post_cost_lines(self, cost_type='pre'):
@@ -97,6 +98,8 @@ class MrpProductionWorkcenterLine(models.Model):
 
     @api.multi
     def action_done(self):
+        not_paused_records = self.filtered(lambda x: x.state != 'pause')
+        not_paused_records._write_end_date_operation_line()
         self._create_analytic_line()
         self._create_pre_post_cost_lines(cost_type='post')
         result = super(MrpProductionWorkcenterLine, self).action_done()
