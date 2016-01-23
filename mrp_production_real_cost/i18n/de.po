@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_production_real_cost
+# 
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-18 00:23+0000\n"
+"PO-Revision-Date: 2016-01-14 15:39+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Stückliste"
+
+#. module: mrp_production_real_cost
+#: field:mrp.production,analytic_line_ids:0
+msgid "Cost Lines"
+msgstr "Kostenpositionen"
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Fertigungsauftrag"
+
+#. module: mrp_production_real_cost
+#: view:mrp.production:mrp_production_real_cost.mrp_production_form_view_real_costs
+msgid "Manufacturing costs"
+msgstr "Fertigungskosten"
+
+#. module: mrp_production_real_cost
+#: field:mrp.production.workcenter.line,post_cost:0
+msgid "Post-Operation Cost"
+msgstr "Vorbereitungskosten"
+
+#. module: mrp_production_real_cost
+#: field:mrp.production.workcenter.line,pre_cost:0
+msgid "Pre-Operation Cost"
+msgstr "Nachbereitungskosten"
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbuchung"
+
+#. module: mrp_production_real_cost
+#: field:mrp.production,real_cost:0
+msgid "Total Real Cost"
+msgstr "Gesamt-Istkosten"
+
+#. module: mrp_production_real_cost
+#: field:mrp.production,unit_real_cost:0
+msgid "Unit Real Cost"
+msgstr "Istkosten-Einheit"
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr "Arbeitsauftrag"
