@@ -12,6 +12,5 @@ class AccountAnalyticLine(models.Model):
     mrp_production_id = fields.Many2one(
         comodel_name='mrp.production', string='Manufacturing Order')
     workorder = fields.Many2one(
-        comodel_name='mrp.production.workcenter.line', string='Work Order',
-        related="task_id.workorder", store=True)
+        comodel_name='mrp.production.workcenter.line', string='Work Order')
     task_id = fields.Many2one('project.task', 'Project Task')
