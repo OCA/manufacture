@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, fields, models
+from openerp.tools.translate import _
 
 
 class MrpProductionWorkcenterLine(models.Model):
@@ -26,9 +27,11 @@ class MrpProductionWorkcenterLine(models.Model):
             product = workcenter.product_id
             journal_id = workcenter.costs_journal_id or self.env.ref(
                 'mrp.analytic_journal_machines', False)
-            name = ((production.name or '') + '-' +
-                    (self.routing_wc_line.operation.code or '') + '-' +
-                    (product.default_code or ''))
+            name = "-".join([production.name or '',
+                             workcenter.code or '',
+                             self.routing_wc_line.routing_id.code or '',
+                             product.default_code or '',
+                             _('HOUR')])
             general_acc = workcenter.costs_general_account_id or False
             price = -(workcenter.costs_hour * operation_line.uptime)
             if price:
@@ -41,6 +44,7 @@ class MrpProductionWorkcenterLine(models.Model):
                      ('workorder', '=', False)])
                 analytic_vals['task_id'] = task and task[0].id or False
                 analytic_vals['product_uom_id'] = hour_uom.id
+                analytic_vals['ref'] = workcenter.costs_hour_account_id.name
                 analytic_line_obj.create(analytic_vals)
 
     @api.multi
@@ -60,16 +64,20 @@ class MrpProductionWorkcenterLine(models.Model):
         name = ''
         if cost_type == 'pre':
             product = workcenter.pre_op_product
-            name = ((production.name or '') + '-' +
-                    (self.routing_wc_line.operation.code or '') + '-PRE-' +
-                    (product.default_code or ''))
+            name = "-".join([production.name or '',
+                             workcenter.code or '',
+                             self.routing_wc_line.routing_id.code or '',
+                             product.default_code or '',
+                             _('PRE')])
             price = -self.pre_cost
             qty = self.time_start
         elif cost_type == 'post':
             product = workcenter.post_op_product
-            name = ((production.name or '') + '-' +
-                    (self.routing_wc_line.operation.code or '') + '-POST-' +
-                    (product.default_code or ''))
+            name = "-".join([production.name or '',
+                             workcenter.code or '',
+                             self.routing_wc_line.routing_id.code or '',
+                             product.default_code or '',
+                             _('POST')])
             price = -self.post_cost
             qty = self.time_stop
         if price:

@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, models
+from openerp.tools.translate import _
 
 
 class StockMove(models.Model):
@@ -19,9 +20,12 @@ class StockMove(models.Model):
         for record in records:
             journal_id = self.env.ref('mrp.analytic_journal_materials', False)
             production = record.raw_material_production_id
-            name = ((production.name or '') + '-' +
-                    (record.work_order.routing_wc_line.operation.code or '') +
-                    '-' + (record.product_id.default_code or ''))
+            name = "-".join([
+                production.name or '',
+                record.work_order.workcenter_id.code or '',
+                record.work_order.routing_wc_line.routing_id.code or '',
+                record.product_id.default_code or '',
+                _('MAT')])
             analytic_vals = (production._prepare_real_cost_analytic_line(
                 journal_id, name, production, record.product_id,
                 workorder=record.work_order, qty=record.product_qty,
