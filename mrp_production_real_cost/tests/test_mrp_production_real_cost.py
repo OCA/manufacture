@@ -40,8 +40,9 @@ class TestMrpProductionRealCost(common.TransactionCase):
             self.start_date - timedelta(hours=2))
         line.signal_workflow('button_done')
         analytic_lines = self.production.analytic_line_ids.filtered('amount')
-        # This should have the pre- cost, uptime line and post- cost
-        self.assertEqual(len(analytic_lines), 3)
+        # This should have the pre- cost, cycle cost, uptime line and
+        # post- cost
+        self.assertEqual(len(analytic_lines), 4)
         self.assertNotEqual(analytic_lines[-1].amount, prev_amount)
         prev_amount = analytic_lines[-1].amount
         # Change manually an uptime to see if costs change
@@ -63,8 +64,10 @@ class TestMrpProductionRealCost(common.TransactionCase):
             line.operation_time_lines[-1].start_date = self.start_date
         self.production.action_produce(
             self.production.id, self.production.product_qty, 'consume_produce')
+        # This should have 2 materials and 2 workorders each with cycle and
+        # uptime cost
         self.assertEqual(
-            len(self.production.analytic_line_ids.filtered('amount')), 4)
+            len(self.production.analytic_line_ids.filtered('amount')), 6)
         self.assertNotEqual(
             initial_price, self.production.product_id.standard_price)
 
