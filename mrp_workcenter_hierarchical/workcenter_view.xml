@@ -8,7 +8,7 @@
     <field name="model">mrp.workcenter</field>
     <field name="inherit_id" ref="mrp.view_mrp_workcenter_search"/>
     <field name="arch" type="xml">
-      <xpath expr="//filter[@string='Type']" position="before">
+      <xpath expr="//group/filter" position="before">
         <filter string="Parent Level 1" domain="[]" name="group_by_level_1"
                 context="{'group_by':'parent_level_1_id'}"/>
         <filter string="Parent Level 2" domain="[]" name="group_by_level_2"
