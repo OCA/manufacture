@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+<record id="mrp_production_3" model="mrp.production">
+    <field name="product_id" ref="product.product_product_27"/>
+    <field name="product_uom" ref="product.product_uom_unit"/>
+    <field name="location_src_id" ref="stock.stock_location_stock"/>
+    <field name="location_dest_id" ref="stock.stock_location_output"/>
+    <field name="bom_id" ref="mrp.mrp_bom_4"/>
+    <field name="routing_id" ref="mrp.mrp_routing_1"/>
+</record>
+<record id="mrp_production_4" model="mrp.production">
+    <field name="product_id" ref="product.product_product_27"/>
+    <field name="product_qty">3</field>
+    <field name="product_uom" ref="product.product_uom_unit"/>
+    <field name="location_src_id" ref="stock.stock_location_stock"/>
+    <field name="location_dest_id" ref="stock.stock_location_output"/>
+    <field name="bom_id" ref="mrp.mrp_bom_4"/>
+    <field name="routing_id" ref="mrp.mrp_routing_1"/>
+</record>
+
+</data>
+</openerp>

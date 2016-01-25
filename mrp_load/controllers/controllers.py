@@ -29,7 +29,7 @@ class Action(main.Action):
     @http.route('/web/action/load', type='json', auth='user')
     def load(self, action_id, do_not_eval=False, additional_context=None):
         module_obj = request.session.model('ir.module.module')
-        if 'mrp-load' in request.env.registry._init_modules:
+        if 'mrp_load' in request.env.registry._init_modules:
             workcenter_obj = request.session.model('mrp.workcenter')
             try:
                 action_id = int(action_id)
@@ -38,6 +38,7 @@ class Action(main.Action):
                 if action_id == mrp_action_id:
                     workcenter_obj.auto_recompute_load(context=request.context)
             except ValueError:
+                raise
                 if action_id == 'mrp.mrp_workcenter_action':
                     workcenter_obj.auto_recompute_load(context=request.context)
         return super(Action, self).load(
