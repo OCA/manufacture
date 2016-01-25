@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+        <field name="name">MRP Production Work Order Tree with Sale Order</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field name="sale_id"/>
+                <field name="partner_id"/>
+                <field name="commitment_date"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_workcenter_form_view_inherit" model="ir.ui.view">
+        <field name="name">MRP Production Work Order Form with Sale Order</field>
+        <field name="model">mrp.production.workcenter.line</field>
+        <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <group string="Product to Produce" position="after">
+                <group string="Sale Information">
+                    <field name="sale_id"/>
+                    <field name="partner_id"/>
+                    <field name="commitment_date"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</data>
+</openerp>
