@@ -19,92 +19,59 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
 
-class MrpWorkcenter(orm.Model):
+from openerp import api, fields, models
+
+class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
     _order = 'parent_left'
-
-    def _get_workcenter_ids_to_recompute_level(self, cr, uid, ids, context=None):
-        return self.search(cr, uid, [
-            '|',
-            '|',
-            ('parent_id', 'child_of', ids),
-            ('id', 'in', ids),
-            ('child_ids', 'in', ids),
-            ])
-
-    def _get_parent_ids(self, workcenter):
-        if workcenter.parent_id:
-            ids = self._get_parent_ids(workcenter.parent_id)
-            ids.append(workcenter.parent_id.id)
+    _parent_store = True
+    
+    parent_id = fields.Many2one('mrp.workcenter', string='Parent')            
+    child_ids = fields.One2many(
+        'mrp.workcenter',
+        'parent_id',
+        string='Children')
+    parent_level_1_id = fields.Many2one(
+        'mrp.workcenter',
+        compute='_compute_parent_level',
+        string='Parent Level 1',
+        store=True)
+    parent_level_2_id = fields.Many2one(
+        'mrp.workcenter',
+        compute='_compute_parent_level',
+        string='Parent Level 2',
+        store=True)
+    parent_level_3_id = fields.Many2one(
+        'mrp.workcenter',
+        compute='_compute_parent_level',
+        string='Parent Level 3',
+        store=True)
+    parent_left=fields.Integer(select=1)
+    parent_right=fields.Integer(select=1)
+    
+    @api.multi
+    def _get_parent_ids(self):
+        self.ensure_one()
+        if self.parent_id:
+            ids = self.parent_id._get_parent_ids()
+            ids.append(self.parent_id.id)
         else:
             ids = []
         return ids
-
-    def _get_parent_level(self, cr, uid, ids, field_name, args, context=None):
-        result = {}
+       
+    @api.multi
+    @api.depends('parent_id.parent_id.parent_id', 'child_ids')
+    def _compute_parent_level(self):
         def get_next_level(parent_ids, workcenter):
             return parent_ids and parent_ids.pop(0) or (
                 workcenter.child_ids and workcenter.id
                 or workcenter.parent_id.id)
 
-        for workcenter in self.browse(cr, uid, ids, context=context):
-            parent_ids = self._get_parent_ids(workcenter)
-            parent_level_1_id = get_next_level(parent_ids, workcenter)
-            parent_level_2_id = get_next_level(parent_ids, workcenter)
-            parent_level_3_id = get_next_level(parent_ids, workcenter)
-            result[workcenter.id] = {
-                'parent_level_1_id': parent_level_1_id,
-                'parent_level_2_id': parent_level_2_id,
-                'parent_level_3_id': parent_level_3_id,
-            }
-        return result
+        for workcenter in self:
+            parent_ids = workcenter._get_parent_ids()
+            workcenter.parent_level_1_id = get_next_level(parent_ids, workcenter)
+            workcenter.parent_level_2_id = get_next_level(parent_ids, workcenter)
+            workcenter.parent_level_3_id = get_next_level(parent_ids, workcenter)
 
-    _columns = {
-        'parent_id': fields.many2one(
-            'mrp.workcenter',
-            string='Parent'),
-        'child_ids': fields.one2many(
-            'mrp.workcenter',
-            'parent_id',
-            string='Children'),
-        'parent_level_1_id': fields.function(
-            _get_parent_level,
-            relation='mrp.workcenter',
-            type='many2one',
-            string='Parent Level 1',
-            multi='parent_level',
-            store={
-                'mrp.workcenter': (
-                    _get_workcenter_ids_to_recompute_level,
-                    ['parent_id'],
-                    10),
-                },),
-        'parent_level_2_id': fields.function(
-            _get_parent_level,
-            relation='mrp.workcenter',
-            type='many2one',
-            string='Parent Level 2',
-            multi='parent_level',
-            store={
-                'mrp.workcenter': (
-                    _get_workcenter_ids_to_recompute_level,
-                    ['parent_id'],
-                    10),
-                },),
-        'parent_level_3_id': fields.function(
-            _get_parent_level,
-            relation='mrp.workcenter',
-            type='many2one',
-            string='Parent Level 3',
-            multi='parent_level',
-            store={
-                'mrp.workcenter': (
-                    _get_workcenter_ids_to_recompute_level,
-                    ['parent_id'],
-                    10),
-                },),
-        'parent_left': fields.integer('Left Parent', select=1),
-        'parent_right': fields.integer('Right Parent', select=1),
-    }
+    
