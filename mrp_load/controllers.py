@@ -19,25 +19,28 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.addons.web import http
+from openerp import http
+from openerp.http import request
 from openerp.addons.web.controllers import main
 
 
 class Action(main.Action):
 
-    @http.jsonrequest
-    def load(self, req, action_id, do_not_eval=False):
-        module_obj = req.session.model('ir.module.module')
+    @http.route('/web/action/load', type='json', auth='user')
+    def load(self, action_id, do_not_eval=False, additional_context=None):
+        module_obj = request.session.model('ir.module.module')
         if module_obj.mrp_load_is_installed():
-            workcenter_obj = req.session.model('mrp.workcenter')
+            workcenter_obj = request.session.model('mrp.workcenter')
             try:
                 action_id = int(action_id)
-                model, mrp_action_id = req.session.model('ir.model.data')\
+                model, mrp_action_id = request.session.model('ir.model.data')\
                     .get_object_reference('mrp', 'mrp_workcenter_action')
                 if action_id == mrp_action_id:
-                    workcenter_obj.auto_recompute_load(context=req.context)
+                    workcenter_obj.auto_recompute_load(context=request.context)
             except ValueError:
                 if action_id == 'mrp.mrp_workcenter_action':
-                    workcenter_obj.auto_recompute_load(context=req.context)
+                    workcenter_obj.auto_recompute_load(context=request.context)
         return super(Action, self).load(
-            req, action_id, do_not_eval=do_not_eval)
+            action_id,
+            do_not_eval=do_not_eval,
+            additional_context=additional_context)
