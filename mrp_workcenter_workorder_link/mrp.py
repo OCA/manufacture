@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
 
 # States than we don't want to take account
 STATIC_STATES = ['cancel', 'done']
@@ -31,50 +31,47 @@ WORKCENTER_ACTION = {
 }
 
 
-class MrpWorkcenter(orm.Model):
+class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
 
-    _columns = {
-        'production_line_ids': fields.one2many(
-            'mrp.production.workcenter.line',
-            'workcenter_id',
-            domain=[('state', 'not in', STATIC_STATES)],
-            string='Work Orders'),
-    }
-
-    def _get_workcenter_line_domain(self, cr, uid, ids, context=None):
+    production_line_ids = fields.One2many(
+        'mrp.production.workcenter.line',
+        'workcenter_id',
+        domain=[('state', 'not in', STATIC_STATES)],
+        string='Work Orders')
+    
+    @api.multi
+    def _get_workcenter_line_domain(self):
         return [
             ('state', 'not in', STATIC_STATES),
-            ('workcenter_id', 'in', ids),
+            ('workcenter_id', 'in', self.ids),
             ]
 
-    def button_workcenter_line(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'You can open only an record'
-        elm = self.browse(cr, uid, ids[0], context=context)
-        domain = elm._get_workcenter_line_domain()
+    @api.multi
+    def button_workcenter_line(self):
+        self.ensure_one()
+        domain = self._get_workcenter_line_domain()
         return {
             'view_mode': 'tree,form',
-            'name': "'%s' Operations" % elm.name,
+            'name': "'%s' Operations" % self.name,
             'res_model': 'mrp.production.workcenter.line',
             'type': 'ir.actions.act_window',
             'domain': domain,
             'target': 'current',
         }
 
-
-class MrpProductionWorkcenterLine(orm.Model):
+class MrpProductionWorkcenterLine(models.Model):
     _inherit = 'mrp.production.workcenter.line'
     _order = 'sequence ASC, name ASC'
 
-    def button_workcenter(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'You can open only an record'
-        elm = self.browse(cr, uid, ids[0], context=context)
-        _, view_id = self.pool['ir.model.data'].get_object_reference(
-            cr, uid, 'mrp', 'mrp_workcenter_view')
+    @api.multi
+    def button_workcenter(self):
+        self.ensure_one()
+        view = self.env.ref('mrp.mrp_workcenter_view')
         action = {
-            'view_id': view_id,
-            'res_id': elm.workcenter_id.id,
-            'name': "'%s' Workcenter" % elm.name,
+            'view_id': view.id,
+            'res_id': self.workcenter_id.id,
+            'name': "'%s' Workcenter" % self.name,
             'view_mode': 'form',
         }
         action.update(WORKCENTER_ACTION)
