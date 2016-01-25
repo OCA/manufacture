@@ -91,3 +91,8 @@ class MrpProductionWorkcenterLine(models.Model):
     work_ids = fields.One2many(
         comodel_name="project.task.work", inverse_name="workorder",
         string="Task works")
+
+    @api.multi
+    def write(self, vals, update=True):
+        return super(MrpProductionWorkcenterLine, self.with_context(
+            production=self.production_id)).write(vals)

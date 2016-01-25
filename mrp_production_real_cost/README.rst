@@ -26,14 +26,15 @@ https://github.com/OCA/product-variant
 Usage
 =====
 
-Operating with a manufacture order, analytic entries adding costs will be
+Processing a manufacture order, analytic entries adding costs will be
 created when:
 
 * Some raw material is consumed.
 * A work order is finished or paused.
+* Also, together with *project_timesheet* module, users time is also translated
+  to costs in the linked analytic account.
 
-Also, thanks to *project_timesheet* modules, users time is also translated to
-costs in the linked analytic account.
+The sum of all these analytic entries is the real cost.
 
 
 
