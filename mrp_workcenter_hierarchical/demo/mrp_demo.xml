@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="mrp_workcenter_top" model="mrp.workcenter">
+            <field name="name">Assembly 1</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+        </record>
+        <record id="mrp_workcenter_2" model="mrp.workcenter">
+            <field name="name">Assembly workshop 2</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+            <field name="parent_id" ref="mrp_workcenter_top"/>
+        </record>
+        <record id="mrp_workcenter_A" model="mrp.workcenter">
+            <field name="name">Assembly A</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+            <field name="parent_id" ref="mrp_workcenter_2"/>
+        </record>
+        <record id="mrp_workcenter_B" model="mrp.workcenter">
+            <field name="name">Assembly B</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+            <field name="parent_id" ref="mrp_workcenter_2"/>
+        </record>
+        <record id="mrp_workcenter_C" model="mrp.workcenter">
+            <field name="name">Assembly C</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+            <field name="parent_id" ref="mrp.mrp_workcenter_0"/>
+        </record>
+        <record id="mrp_workcenter_E" model="mrp.workcenter">
+            <field name="name">Assembly E</field>
+            <field name="calendar_id" ref="resource.timesheet_group1"/>
+            <field name="capacity_per_cycle">5</field>
+            <field name="time_cycle">1</field>
+            <field name="time_start">0.1</field>
+            <field name="time_stop">0.1</field>
+            <field name="time_efficiency">0.87</field>
+            <field name="product_id" ref="product.product_assembly"/>
+            <field name="costs_hour">0.1</field>
+            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours"/>
+            <field name="costs_cycle">0.05</field>
+            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle"/>
+        </record>
+        <record id="mrp.mrp_workcenter_0" model="mrp.workcenter">
+            <field name="parent_id" ref="mrp_workcenter_top"/>
+        </record>
+    </data>
+</openerp>
