@@ -25,7 +25,7 @@ from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as ISO_FORMAT
 from openerp import SUPERUSER_ID
 
-
+#Todo Keep-it ?
 class ResourceCalendar(orm.Model):
     _inherit = "resource.calendar"
 

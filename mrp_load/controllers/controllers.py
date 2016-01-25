@@ -29,7 +29,7 @@ class Action(main.Action):
     @http.route('/web/action/load', type='json', auth='user')
     def load(self, action_id, do_not_eval=False, additional_context=None):
         module_obj = request.session.model('ir.module.module')
-        if module_obj.mrp_load_is_installed():
+        if 'mrp-load' in request.env.registry._init_modules:
             workcenter_obj = request.session.model('mrp.workcenter')
             try:
                 action_id = int(action_id)
