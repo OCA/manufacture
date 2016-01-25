@@ -29,3 +29,8 @@ class ProjectTask(models.Model):
                     (task.id, "[%s] %s" % (task.user_id.name, task.name)))
             return res
         return super(ProjectTask, self).name_get()
+
+    @api.multi
+    def write(self, vals):
+        return super(ProjectTask, self.with_context(
+            production=self.mrp_production_id)).write(vals)
