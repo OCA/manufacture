@@ -57,4 +57,4 @@ class WizProductionProductLine(models.TransientModel):
         move.action_confirm()
         if self.production_id.state not in 'confirmed':
             move.action_assign()
-        return True
+        return move
