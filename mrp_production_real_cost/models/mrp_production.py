@@ -73,3 +73,13 @@ class MrpProduction(models.Model):
             'product_uom_id': product.uom_id.id,
             'general_account_id': general_account.id,
         }
+
+    @api.multi
+    def _costs_generate(self):
+        """
+        As we are generating the account_analytic_lines for MO in the
+        current module, we override this method in order to avoid
+        duplicates created in the parent class. Any other module
+        inheriting this method should take this into account!
+        """
+        return
