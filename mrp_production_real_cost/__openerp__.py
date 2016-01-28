@@ -15,6 +15,7 @@
         "stock_account",
         "product_variant_cost_price",
     ],
+    'license': 'AGPL-3',
     "author": "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
