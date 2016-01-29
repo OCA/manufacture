@@ -30,4 +30,5 @@ class MrpProductProduce(models.TransientModel):
             self.env.context['active_id'])
         p_qty = mrp_production.product_qty
         p_uos_qty = mrp_production.product_uos_qty
-        self.product_qty = p_qty * (self.product_uos_qty / p_uos_qty)
+        if p_uos_qty != 0:
+            self.product_qty = p_qty * (self.product_uos_qty / p_uos_qty)
