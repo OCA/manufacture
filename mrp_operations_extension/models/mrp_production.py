@@ -56,22 +56,6 @@ class MrpProductionProductLine(models.Model):
 class MrpProductionWorkcenterLine(models.Model):
     _inherit = 'mrp.production.workcenter.line'
 
-    @api.multi
-    @api.depends('move_lines', 'move_lines.state')
-    def _compute_is_material_ready(self):
-        for line in self:
-            line.is_material_ready = (not any(
-                x not in ('assigned', 'cancel', 'done') for x in
-                line.mapped('move_lines.state'))
-                if line.product_line else True)
-
-    @api.multi
-    @api.depends('routing_wc_line')
-    def _compute_possible_workcenters(self):
-        for line in self:
-            line.possible_workcenters = line.mapped(
-                'routing_wc_line.op_wc_lines.workcenter')
-
     product_line = fields.One2many(
         comodel_name='mrp.production.product.line', inverse_name='work_order',
         string='Product Lines')
@@ -80,14 +64,38 @@ class MrpProductionWorkcenterLine(models.Model):
     do_production = fields.Boolean(string='Produce here')
     time_start = fields.Float(string="Time Start")
     time_stop = fields.Float(string="Time Stop")
-    move_lines = fields.One2many(
-        comodel_name='stock.move', inverse_name='work_order', string='Moves')
+    move_lines = fields.Many2many(
+        'stock.move', compute="_compute_move_lines", string='Moves', store=False)
     is_material_ready = fields.Boolean(
         string='Materials Ready', compute="_compute_is_material_ready")
     possible_workcenters = fields.Many2many(
         comodel_name="mrp.workcenter", compute="_compute_possible_workcenters")
     workcenter_id = fields.Many2one(
         domain="[('id', 'in', possible_workcenters[0][2])]")
+
+    @api.multi
+    def _compute_move_lines(self):
+        StockMove = self.env['stock.move']
+        for line in self:
+            move_lines = StockMove.search([
+                ('raw_material_production_id', '=', line.production_id.id),
+                ('work_order', '=', line.id),
+            ])
+            line.move_lines = [(6, False, move_lines.ids)]
+
+    @api.multi
+    def _compute_is_material_ready(self):
+        for line in self:
+            line.is_material_ready = (not line.move_lines.filtered(
+                lambda r: r.state not in ('assigned', 'cancel', 'done'))
+                if line.product_line else True)
+
+    @api.multi
+    @api.depends('routing_wc_line')
+    def _compute_possible_workcenters(self):
+        for line in self:
+            line.possible_workcenters = line.mapped(
+                'routing_wc_line.op_wc_lines.workcenter')
 
     @api.one
     def action_assign(self):
