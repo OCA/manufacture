@@ -6,7 +6,7 @@
 
 {
     "name": "Manufacturing Operations Extension",
-    "version": "8.0.3.0.0",
+    "version": "8.0.2.1.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
