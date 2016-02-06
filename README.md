@@ -16,6 +16,7 @@ addon | version | summary
 --- | --- | ---
 [mrp_bom_note](mrp_bom_note/) | 9.0.1.0.0 | Notes in Bill of Materials
 [mrp_production_note](mrp_production_note/) | 9.0.1.0.0 | Notes in production orders
+[mrp_production_partner_note](mrp_production_partner_note/) | 9.0.1.0.0 | MRP - Partner production notes
 
 Unported addons
 ---------------
@@ -25,7 +26,6 @@ addon | version | summary
 [mrp_bom_reference_selection](mrp_bom_reference_selection/) | 8.0.1.1.0 (unported) | Bill of Material Selection Reference
 [mrp_calendar_view](mrp_calendar_view/) | 8.0.1.0.0 (unported) | MRP Calendar View
 [mrp_industrial_design_bom](mrp_industrial_design_bom/) | 1.0 (unported) | Industrial design specification in BoM
-[mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 (unported) | MRP - Partner production notes
 [mrp_production_properties](mrp_production_properties/) | 0.1 (unported) | Mrp Production Properties
 
 [//]: # (end addons)
