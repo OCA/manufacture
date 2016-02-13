@@ -13,7 +13,6 @@
         "mrp_operations_extension",
         "mrp_operations_time_control",
         "stock_account",
-        "product_variant_cost_price",
     ],
     'license': 'AGPL-3',
     "author": "OdooMRP team, "
