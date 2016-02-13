@@ -6,7 +6,6 @@
 from openerp.tests import common
 from openerp import fields
 from datetime import timedelta
-import time
 
 
 class TestMrpProductionRealCost(common.TransactionCase):
@@ -26,18 +25,31 @@ class TestMrpProductionRealCost(common.TransactionCase):
         line.pre_cost = 10
         line.post_cost = 20
         line.signal_workflow('button_start_working')
-        line.operation_time_lines[-1].start_date = self.start_date
-        self.assertEqual(
-            len(self.production.analytic_line_ids.filtered('amount')), 1)
-        time.sleep(1)
+        line.operation_time_lines[-1].start_date = (
+            self.start_date - timedelta(hours=1))
+        analytic_line = self.production.analytic_line_ids.filtered('amount')
+        # This should have the pre-operation cost
+        self.assertEqual(len(analytic_line), 1)
         line.signal_workflow('button_pause')
-        self.assertEqual(
-            len(self.production.analytic_line_ids.filtered('amount')), 2)
+        analytic_lines = self.production.analytic_line_ids.filtered('amount')
+        # This should have the pre-operation cost and uptime line
+        self.assertEqual(len(analytic_lines), 2)
+        prev_amount = analytic_lines[-1].amount
         line.signal_workflow('button_resume')
-        time.sleep(1)
+        line.operation_time_lines[-1].start_date = (
+            self.start_date - timedelta(hours=2))
         line.signal_workflow('button_done')
-        self.assertEqual(
-            len(self.production.analytic_line_ids.filtered('amount')), 3)
+        analytic_lines = self.production.analytic_line_ids.filtered('amount')
+        # This should have the pre- cost, uptime line and post- cost
+        self.assertEqual(len(analytic_lines), 3)
+        self.assertNotEqual(analytic_lines[-1].amount, prev_amount)
+        prev_amount = analytic_lines[-1].amount
+        # Change manually an uptime to see if costs change
+        line.operation_time_lines[-1].end_date = (
+            self.start_date + (timedelta(hours=3)))
+        analytic_lines = self.production.analytic_line_ids.filtered('amount')
+        self.assertNotEqual(analytic_lines[-1].amount, prev_amount)
+        # Change analytic entries to see if production real_cost field changes
         self.production.analytic_line_ids[:1].amount = -10
         self.assertTrue(self.production.real_cost)
 
