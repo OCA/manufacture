@@ -20,13 +20,15 @@
         <field name="model">mrp.production.workcenter.line</field>
         <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_form_view_inherit"/>
         <field name="arch" type="xml">
-            <group string="Product to Produce" position="after">
+
+            <xpath expr="//page/group[1]" position="after">
                 <group string="Sale Information">
                     <field name="sale_id"/>
                     <field name="partner_id"/>
                     <field name="commitment_date"/>
                 </group>
-            </group>
+            </xpath>
+
         </field>
     </record>
 
