@@ -6,9 +6,8 @@
 MRP Sale Info
 =============
 
-This module extends the functionality of *sale_mrp*.
+This module extends the functionality of sale_mrp and adds related fields to Manufacturing Orders and Work Orders:
 
-* Add fields to Manufacturing Orders and Work Orders:
     * Sale order
     * Customer
     * Commitment Date
@@ -16,11 +15,11 @@ This module extends the functionality of *sale_mrp*.
 Usage
 =====
 
-New fields are in Tree views and in Extra information tab at form views.
+New fields are displayed in tree and in form views (Extra information tab).
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/129/8.0
+   :target: https://runbot.odoo-community.org/runbot/129/9.0
 
 Bug Tracker
 ===========
@@ -32,7 +31,7 @@ help us smashing it by providing a detailed and welcomed `feedback
 <https://github.com/OCA/
 manufacture/issues/new?body=module:%20
 mrp_sale_info%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -51,6 +50,7 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
 * Ana Juaristi <ajuaristio@gmail.com>"
+* Victor M. Martin <victor.martin@elico-corp.com>
 
 Maintainer
 ----------

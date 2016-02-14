@@ -5,7 +5,7 @@
     <record id="mrp_production_form_view" model="ir.ui.view">
         <field name="name">MRP Production Form with Sale Order</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="sale_mrp.view_mrp_production_form" />
+        <field name="inherit_id" ref="sale_mrp.mrp_production_form_view_inherit_sale_mrp" />
         <field name="arch" type="xml">
             <field name="sale_name" position="after">
                 <field name="sale_id"/>
