@@ -6,7 +6,7 @@
 MRP Sale Info
 =============
 
-This module extends the functionality of *sale_mrp*.
+This module extends the functionality of sale_mrp and adds related fields to Manufacturing Orders and Work Orders:
 
 * Add fields to Manufacturing Orders and Work Orders:
     * Sale order
@@ -16,7 +16,7 @@ This module extends the functionality of *sale_mrp*.
 Usage
 =====
 
-New fields are in Tree views and in Extra information tab at form views.
+New fields are displayed in tree and in form views (Extra information tab).
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
