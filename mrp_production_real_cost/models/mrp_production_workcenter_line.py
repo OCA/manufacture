@@ -21,24 +21,32 @@ class MrpProductionWorkcenterLine(models.Model):
         task_obj = self.env['project.task']
         if self.workcenter_id.costs_hour > 0.0:
             hour_uom = self.env.ref('product.product_uom_hour', False)
-            operation_line = self.operation_time_lines[-1]
             production = self.production_id
             workcenter = self.workcenter_id
             product = workcenter.product_id
-            journal_id = workcenter.costs_journal_id or self.env.ref(
+            journal = workcenter.costs_journal_id or self.env.ref(
                 'mrp.analytic_journal_machines', False)
+            # Delete previous uptime analytic entries
+            analytic_line_obj.search(
+                [('mrp_production_id', '=', production.id),
+                 ('workorder', '=', self.id),
+                 ('journal_id', '=', journal.id),
+                 ('name', '=like', '%%%s' % _('HOUR'))]
+            ).unlink()
+            # Recreate a new entry with the total uptime
             name = "-".join([production.name or '',
                              workcenter.code or '',
                              self.routing_wc_line.routing_id.code or '',
                              product.default_code or '',
                              _('HOUR')])
+            uptime = sum(self.mapped('operation_time_lines.uptime'))
             general_acc = workcenter.costs_general_account_id or False
-            price = -(workcenter.costs_hour * operation_line.uptime)
+            price = -workcenter.costs_hour * uptime
             if price:
                 analytic_vals = production._prepare_real_cost_analytic_line(
-                    journal_id, name, production, product,
+                    journal, name, production, product,
                     general_account=general_acc, workorder=self,
-                    qty=operation_line.uptime, amount=price)
+                    qty=uptime, amount=price)
                 task = task_obj.search(
                     [('mrp_production_id', '=', production.id),
                      ('workorder', '=', False)])
@@ -93,22 +101,24 @@ class MrpProductionWorkcenterLine(models.Model):
 
     @api.multi
     def action_start_working(self):
-        result = super(MrpProductionWorkcenterLine,
-                       self).action_start_working()
+        result = super(
+            MrpProductionWorkcenterLine, self).action_start_working()
         self._create_pre_post_cost_lines(cost_type='pre')
         return result
 
     @api.multi
-    def action_pause(self):
-        result = super(MrpProductionWorkcenterLine, self).action_pause()
-        self._create_analytic_line()
-        return result
+    def action_done(self):
+        self._create_pre_post_cost_lines(cost_type='post')
+        return super(MrpProductionWorkcenterLine, self).action_done()
+
+
+class OperationTimeLine(models.Model):
+    _inherit = 'operation.time.line'
 
     @api.multi
-    def action_done(self):
-        not_paused_records = self.filtered(lambda x: x.state != 'pause')
-        not_paused_records._write_end_date_operation_line()
-        self._create_analytic_line()
-        self._create_pre_post_cost_lines(cost_type='post')
-        result = super(MrpProductionWorkcenterLine, self).action_done()
-        return result
+    def write(self, vals):
+        """Recreate costs when updating manually the uptime."""
+        res = super(OperationTimeLine, self).write(vals)
+        if 'start_date' in vals or 'end_date' in vals:
+            self.operation_time._create_analytic_line()
+        return res

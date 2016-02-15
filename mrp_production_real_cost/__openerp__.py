@@ -6,14 +6,13 @@
 
 {
     "name": "Real costs in manufacturing orders",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "depends": [
         "project_timesheet",
         "mrp_project",
         "mrp_operations_extension",
         "mrp_operations_time_control",
         "stock_account",
-        "product_variant_cost_price",
     ],
     'license': 'AGPL-3',
     "author": "OdooMRP team, "
