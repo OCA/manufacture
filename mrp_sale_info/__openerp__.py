@@ -4,7 +4,7 @@
 {
     "name": "MRP Sale Info",
     "summary": "Adds sale information to Manufacturing models",
-    "version": "9.0.1.0.0",
+    "version": "9.0.1.0.1",
     "category": "Manufacturing",
     "website": "http://www.antiun.com",
     "author": "Antiun Ingeniería S.L., "
