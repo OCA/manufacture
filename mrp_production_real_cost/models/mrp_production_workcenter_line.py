@@ -56,6 +56,38 @@ class MrpProductionWorkcenterLine(models.Model):
                 analytic_line_obj.create(analytic_vals)
 
     @api.multi
+    def _create_analytic_line_cycle(self):
+        self.ensure_one()
+        analytic_line_obj = self.env['account.analytic.line']
+        task_obj = self.env['project.task']
+        if self.workcenter_id.costs_cycle > 0.0:
+            operation_line = self.operation_time_lines[-1]
+            production = self.production_id
+            workcenter = self.workcenter_id
+            product = workcenter.product_id
+            journal_id = workcenter.costs_journal_id or self.env.ref(
+                'mrp.analytic_journal_machines', False)
+            general_acc = workcenter.costs_general_account_id or False
+            name = "-".join([production.name or '',
+                             workcenter.code or '',
+                             self.routing_wc_line.routing_id.code or '',
+                             product.default_code or '',
+                             _('CYCLE')])
+            price = -(workcenter.costs_cycle * self.cycle)
+            if price:
+                analytic_vals = production._prepare_real_cost_analytic_line(
+                    journal_id, name, production, product,
+                    general_account=general_acc, workorder=self,
+                    qty=operation_line.uptime, amount=price)
+                task = task_obj.search(
+                    [('mrp_production_id', '=', production.id),
+                     ('workorder', '=', self.id)])
+                analytic_vals['task_id'] = task and task[0].id or False
+                analytic_vals['product_uom_id'] = production.product_uom.id
+                analytic_vals['ref'] = workcenter.costs_cycle_account_id.name
+                analytic_line_obj.create(analytic_vals)
+
+    @api.multi
     def _create_pre_post_cost_lines(self, cost_type='pre'):
         self.ensure_one()
         analytic_line_obj = self.env['account.analytic.line']
@@ -108,6 +140,7 @@ class MrpProductionWorkcenterLine(models.Model):
 
     @api.multi
     def action_done(self):
+        self._create_analytic_line_cycle()
         self._create_pre_post_cost_lines(cost_type='post')
         return super(MrpProductionWorkcenterLine, self).action_done()
 

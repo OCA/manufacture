@@ -15,6 +15,7 @@
         "stock_account",
     ],
     'license': 'AGPL-3',
+    "images": [],
     "author": "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
