@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2016 Antiun Ingenieria S.L. - Javier Iniesta
+# © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP Sale Info",
@@ -11,7 +12,6 @@
               "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Elico-Corp, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
