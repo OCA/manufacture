@@ -65,8 +65,8 @@ class MrpProductionWorkcenterLine(models.Model):
     time_start = fields.Float(string="Time Start")
     time_stop = fields.Float(string="Time Stop")
     move_lines = fields.Many2many(
-        'stock.move', compute="_compute_move_lines", string='Moves',
-        store=False)
+        comodel_name='stock.move', compute="_compute_move_lines",
+        string='Moves', store=False)
     is_material_ready = fields.Boolean(
         string='Materials Ready', compute="_compute_is_material_ready")
     possible_workcenters = fields.Many2many(
