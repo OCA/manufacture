@@ -54,6 +54,7 @@ Contributors
 
 * Daniel Campos <danielcampos@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Antonio Espinosa <antonioea@antiun.com>
 
 Maintainer
 ----------
