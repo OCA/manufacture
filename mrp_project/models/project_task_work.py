@@ -28,3 +28,9 @@ class ProjectTaskWork(models.Model):
             task = self.env['project.task'].browse(task_id)
             res['value'] = {'user_id': task.user_id.id}
         return res
+
+    @api.model
+    def _create_analytic_entries(self, vals):
+        task = self.env['project.task'].browse(vals.get('task_id', False))
+        return super(ProjectTaskWork, self.with_context(
+            workorder=task.workorder))._create_analytic_entries(vals)
