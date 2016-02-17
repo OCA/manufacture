@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wiz_create_virtual_mo_view" model="ir.ui.view">
+            <field name="name">wiz.create.virtual.mo.view</field>
+            <field name="model">wiz.create.virtual.mo</field>
+            <field name="arch" type="xml">
+                <form string="Create virtual MO">
+                    <group string="Create virtual MO">
+                        <field name="date_planned" />
+                        <field name="load_on_product" />
+                        <field name="analytic_account_id" />
+                    </group>
+                    <footer>
+                        <button name="do_create_virtual_mo"
+                                type="object"
+                                string="Create virtual MO"
+                                class="oe_highlight"
+                        />
+                        or
+                        <button string="Cancel"
+                                class="oe_link"
+                                special="cancel"
+                        />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="act_product_create_virtual_mo" model="ir.actions.act_window">
+            <field name="name">Create virtual MO</field>
+            <field name="res_model">wiz.create.virtual.mo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wiz_create_virtual_mo_view" />
+            <field name="target">new</field>
+        </record>
+        <act_window name="Create virtual MO"
+                    res_model="wiz.create.virtual.mo"
+                    src_model="product.product"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+                    id="action_run_create_virtual_mo"/>
+        <act_window name="Create virtual MO"
+                    res_model="wiz.create.virtual.mo"
+                    src_model="product.template"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+                    id="action_run_template_create_virtual_mo"/>
+    </data>
+</openerp>

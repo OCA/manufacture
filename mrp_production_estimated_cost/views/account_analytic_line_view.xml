@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_analytic_line_form_inh_estimatedcost" model="ir.ui.view">
+            <field name="name">view.account.analytic.line.form.inh.estimatedcost</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="account.view_account_analytic_line_form"/>
+            <field name="arch" type="xml">
+                <group string="General Accounting" position="after">
+                    <group string="Production Information" colspan="4" col="8">
+                        <field name="estim_std_cost" colspan="2"/>
+                        <field name="estim_avg_cost" colspan="2"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+        <record id="view_account_analytic_line_tree_inh_estimatedcost" model="ir.ui.view">
+            <field name="name">view.account.analytic.line.tree.inh.estimatedcost</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="account.view_account_analytic_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="before">
+                    <field name="product_id"/>
+                </field>
+                <field name="journal_id" position="after">
+                    <field name="estim_std_cost" sum="Estim. AVG"/>
+                    <field name="estim_avg_cost" sum="Estim. STD"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="estimated_cost_list_view" model="ir.ui.view">
+            <field name="name">estimated.cost.list.view</field>
+            <field name="model">account.analytic.line</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Estimated Costs">
+                    <field name="date"/>
+                    <field name="ref"/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="journal_id"/>
+                    <field name="estim_avg_cost" sum="Estim. AVG"/>
+                    <field name="estim_std_cost" sum="Estim. STD"/>
+                    <field name="amount"/>
+                    <field name="unit_amount"/>
+                    <field name="account_id"/>
+                    <field name="mrp_production_id"/>
+                    <field name="workorder"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="action_show_production_anaytic_lines" model="ir.actions.act_window">
+            <field name="name">Production Analytic Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="estimated_cost_list_view"/>
+            <field name="context">{'default_mrp_production_id': active_id,
+                                   'search_default_group_production': 1,
+                                   'search_default_group_workorder': 1,
+                                   'search_default_group_journal': 1}</field>
+            <field name="domain">[('mrp_production_id','=',active_id)]</field>
+        </record>
+
+    </data>
+</openerp>

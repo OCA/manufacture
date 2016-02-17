@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="virtual_mrp_production_code" model="ir.sequence.type">
+            <field name="name">Virtual MRP Production</field>
+            <field name="code">virtual.mrp.production</field>
+        </record>
+        <record id="virtual_mrp_production" model="ir.sequence">
+            <field name="name">Virtual MRP Production</field>
+            <field name="code">virtual.mrp.production</field>
+            <field eval="6" name="padding"/>
+            <field name="prefix">VMO</field>
+        </record>
+    </data>
+</openerp>

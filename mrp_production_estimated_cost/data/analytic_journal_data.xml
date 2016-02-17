@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+        <!--Estimated materials analytic journal -->
+        <record id="mrp.analytic_journal_materials" model="account.analytic.journal">
+            <field name="name">Materials</field>
+            <field name="code">MAT</field>
+            <field name="type">general</field>
+            <field name="active">True</field>
+        </record>
+        <!--Estimated operators analytic journal -->
+        <record id="mrp.analytic_journal_operators" model="account.analytic.journal">
+            <field name="name">Operators</field>
+            <field name="code">OPE</field>
+            <field name="type">general</field>
+            <field name="active">True</field>
+        </record>
+        <!--Estimated machines analytic journal -->
+        <record id="mrp.analytic_journal_machines" model="account.analytic.journal">
+            <field name="name">Machines</field>
+            <field name="code">MACH</field>
+            <field name="type">general</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</openerp>
