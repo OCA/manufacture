@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # (c) 2015 Pedro M. Baeza - Serv. Tecnol. Avanzados
+# (c) 2016 Antiun Ingenieria S.L. - Antonio Espinosa
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api
@@ -28,3 +29,9 @@ class ProjectTaskWork(models.Model):
             task = self.env['project.task'].browse(task_id)
             res['value'] = {'user_id': task.user_id.id}
         return res
+
+    @api.model
+    def _create_analytic_entries(self, vals):
+        task = self.env['project.task'].browse(vals.get('task_id', False))
+        return super(ProjectTaskWork, self.with_context(
+            workorder=task.workorder))._create_analytic_entries(vals)
