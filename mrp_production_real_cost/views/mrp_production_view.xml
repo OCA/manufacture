@@ -41,7 +41,7 @@
             <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
             <field name="arch" type="xml">
                 <field name="product_uom" position="after">
-                    <field name="real_cost" />
+                    <field name="real_cost" sum="Total Real Cost"/>
                 </field>
             </field>
         </record>
