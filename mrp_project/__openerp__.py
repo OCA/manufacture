@@ -6,7 +6,7 @@
 {
     "name": "MRP Project Link",
     "summary": "Link production with projects",
-    "version": "8.0.1.1.1",
+    "version": "8.0.1.2.0",
     "depends": [
         "mrp_analytic",
         "project",
