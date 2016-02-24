@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Quality control"
+                  id="qc_menu"
+                  groups="group_quality_control_user"
+                  sequence="40" />
+
+        <menuitem name="Inspections"
+                  parent="qc_menu"
+                  id="qc_inspection_menu_parent"
+                  sequence="10" />
+
+        <menuitem parent="qc_menu"
+                  name="Tests"
+                  id="qc_menu_test_parent"
+                  groups="group_quality_control_manager"
+                  sequence="20" />
+    </data>
+</openerp>
