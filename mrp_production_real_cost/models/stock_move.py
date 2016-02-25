@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2014-2015 Avanzosc
 # © 2014-2015 Pedro M. Baeza
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, models
@@ -37,30 +38,43 @@ class StockMove(models.Model):
             analytic_line_obj.create(analytic_vals)
         return result
 
+    def _new_average_price(self, data):
+        current_price = data.get('price', 0.0)
+        current_available = data.get('available', 0.0)
+        moved = data.get('moved', 0.0)
+        cost = data.get('cost', 0.0)
+        if current_available < 0:
+            current_available = 0.0
+        current_value = current_available * current_price
+        if (current_available + moved) <= 0:
+            return 0.0
+        return (
+            (current_value + cost) /
+            (current_available + moved)
+        )
+
     @api.multi
     def product_price_update_production_done(self):
         records = self.filtered(
             lambda x: (x.production_id and
                        x.product_id.cost_method == 'average'))
+        products = {}
         for move in records:
-            prod_total_cost = move.production_id.real_cost
             product = move.product_id
-            product_avail = product.qty_available
-            amount_unit = product.standard_price
-            tmpl_available = product.product_tmpl_id.qty_available
-            tmpl_price = product.product_tmpl_id.standard_price
+            product_data = products.get(product.id, False) or {}
+            if not product_data:
+                product_data['product'] = product
+                product_data['available'] = product.qty_available
+                product_data['price'] = product.standard_price
+                product_data['moved'] = 0.0
+                product_data['cost'] = move.production_id.real_cost
             if move.state == 'done':
-                product_avail -= move.product_qty
-                tmpl_available -= move.product_qty
-            new_product_price = (
-                (amount_unit * product_avail + prod_total_cost) /
-                ((product_avail >= 0.0 and product_avail or 0.0) +
-                 move.product_qty))
-            new_tmpl_price = ((tmpl_price * tmpl_available + prod_total_cost) /
-                              ((tmpl_available > 0.0 and tmpl_available or
-                                0.0) + move.product_qty))
-            product.sudo().standard_price = new_product_price
-            product.sudo().product_tmpl_id.standard_price = new_tmpl_price
+                product_data['available'] -= move.product_qty
+                product_data['moved'] += move.product_qty
+            products[product.id] = product_data
+        for product_id, product_data in products.iteritems():
+            new_price = self._new_average_price(product_data)
+            product_data['product'].sudo().standard_price = new_price
 
     @api.model
     def get_price_unit(self, move):

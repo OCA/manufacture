@@ -82,6 +82,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <ajuaristio@gmail.com>
 * Ainara Galdona <agaldona@avanzosc.es>
+* Antonio Espinosa <antonioea@antiun.com>
 
 Images
 ------
