@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 06:41+0000\n"
+"POT-Creation-Date: 2016-02-26 01:43+0000\n"
 "PO-Revision-Date: 2015-12-09 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/vi_VN/)\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Hủy"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -126,14 +126,14 @@ msgstr ""
 #: field:mrp.routing.operation,create_uid:0
 #: field:mrp.work.order.produce,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Tạo bởi"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,create_date:0
 #: field:mrp.routing.operation,create_date:0
 #: field:mrp.work.order.produce,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Tạo vào"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,custom_data:0
@@ -201,7 +201,7 @@ msgstr ""
 #: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
 #: field:mrp.work.order.produce,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_operations_extension
 #: help:mrp.routing.workcenter,do_production:0
@@ -229,14 +229,14 @@ msgstr ""
 #: field:mrp.routing.operation,write_uid:0
 #: field:mrp.work.order.produce,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Cập nhật lần cuối bởi"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_date:0
 #: field:mrp.routing.operation,write_date:0
 #: field:mrp.work.order.produce,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Cập nhật lần cuối vào"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,lot_id:0
@@ -576,4 +576,4 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "or"
-msgstr ""
+msgstr "hoặc"

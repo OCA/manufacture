@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 06:41+0000\n"
-"PO-Revision-Date: 2015-12-28 09:57+0000\n"
+"POT-Creation-Date: 2016-02-26 01:43+0000\n"
+"PO-Revision-Date: 2016-02-25 18:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Tạo bởi"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Tạo vào"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -45,7 +45,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
@@ -56,12 +56,12 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Cập nhật lần cuối bởi"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Cập nhật lần cuối vào"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view

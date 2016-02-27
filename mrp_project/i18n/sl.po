@@ -3,13 +3,13 @@
 # * mrp_project
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 01:43+0000\n"
-"PO-Revision-Date: 2015-12-04 19:28+0000\n"
+"POT-Creation-Date: 2016-02-26 01:43+0000\n"
+"PO-Revision-Date: 2016-02-27 16:56+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,11 @@ msgstr "Delo na opravilu"
 #: field:mrp.production.workcenter.line,task_ids:0
 msgid "Tasks"
 msgstr "Opravila"
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Postavka časovnice"
 
 #. module: mrp_project
 #: field:account.analytic.line,workorder:0

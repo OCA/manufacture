@@ -9,12 +9,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 01:43+0000\n"
 "PO-Revision-Date: 2016-02-25 18:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"Last-Translator: <>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_estimated_cost
@@ -44,12 +44,12 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Kostenposition"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,analytic_account_id:0
@@ -59,7 +59,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
 msgid "Cancel"
-msgstr ""
+msgstr "Stornieren"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
@@ -88,12 +88,12 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Angelegt durch"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Angelegt am"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
@@ -142,22 +142,22 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
 msgid "General Accounting"
-msgstr ""
+msgstr "Allgemeine Buchhaltung"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert durch"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
@@ -177,12 +177,12 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Ordine di produzione"
+msgstr "Fertigungsauftrag"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
 msgid "Manufacturing costs"
-msgstr "Costi di produzione"
+msgstr "Fertigungskosten"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:155
@@ -193,7 +193,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template
 msgid "Product Template"
-msgstr "Template prodotto"
+msgstr "Produktvorlage"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_show_production_anaytic_lines
@@ -237,7 +237,7 @@ msgstr ""
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:131
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
-msgstr "Bisogna definire un conto analitico per questo MO: %s"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
