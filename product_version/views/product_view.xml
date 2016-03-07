@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--<record model="ir.actions.act_window" id ="product_normal_action_tree_inh">-->
+            <!--<field name="inherit_id" ref="product.product_normal_action_tree"/>-->
+            <!--<field name="domain">['|',('sellable','=',True),('sellable','=',False)]</field>-->
+        <!--</record>-->
+
+        <!--<record id="product.product_template_parent_tree_view_version" model="ir.ui.view">-->
+            <!--<field name="name">product.template.version.tree</field>-->
+            <!--<field name="model">product.template</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree>-->
+                    <!--<field name="code"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <record model="ir.ui.view" id="product_template_version_tree_view">
+            <field name="name">product.template.version.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="active" />
+                    <field name="version" />
+                    <field name="historical_date"/>
+                    <button name="button_draft" type="object" string="Draft"
+                            groups="product_version.group_product_version"
+                            attrs="{'invisible':[('state','!=','sellable')]}"
+                            icon="terp-document-new" />
+                    <button name="button_activate" type="object" string="Activate"
+                            attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                            icon="terp-camera_test"
+                            confirm="You will activate the Product. Are you sure you want to proceed?"/>
+                    <button name="button_new_version" type="object" string="New version"
+                            attrs="{'invisible':[('state','==','obsolete')]}"
+                            icon="gtk-execute"
+                            confirm="You are going to create a new version of this Product. Are you sure?"/>
+                    <button name="button_historical" type="object" string="Historical"
+                            attrs="{'invisible':[('state','!=','sellable')]}"
+                            icon="gtk-convert"
+                            confirm="You are going to historize a Product. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_template_form_view_version" model="ir.ui.view">
+            <field name="name">product.template.form.version</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="state" position="replace">
+                </field>
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <button name="button_draft" type="object" string="Draft"
+                                groups="product_version.group_product_version"
+                                attrs="{'invisible':[('state','!=','sellable')]}"
+                                class="oe_highlight" />
+                        <button name="button_activate" type="object" string="Activate"
+                                attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                                class="oe_highlight"
+                                confirm="You will activate the Product. Are you sure you want to proceed?"/>
+                        <button name="button_new_version" type="object" string="New version"
+                                attrs="{'invisible':[('state','==','obsolete')]}"
+                                class="oe_highlight"
+                                confirm="You are going to create a new version of this Product. Are you sure?"/>
+                        <button name="button_historical" type="object" string="Historical"
+                                attrs="{'invisible':[('state','!=','sellable')]}"
+                                class="oe_highlight"
+                                confirm="You are going to historize a Product. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sellable,end,obsolete"/>
+                    </header>
+                </xpath>
+                <field name="company_id" position="after">
+                    <field name="version" />
+                    <field name="historical_date" attrs="{'invisible': [('state','!=','obsolete')]}"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Versions">
+                        <field name="old_versions" />
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_template_search_view_version">
+            <field name="name">product.template.version.search</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </field>
+                <group string="Group by..." position="before">
+                    <filter string="Active" domain="[('sellable','=',True)]" name="is_active_filter"/>
+                    <filter string="Inactive" domain="[('sellable','=',False)]" name="is_inactive_filter"/>
+                </group>
+                <group string="Group by..." position="inside">
+                    <filter string="Active" domain="[]" context="{'group_by':'sellable'}"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>
