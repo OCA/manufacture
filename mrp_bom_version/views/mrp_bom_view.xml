@@ -52,7 +52,7 @@
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//form/group" position="before">
+                <xpath expr="//form/sheet/group" position="before">
                     <header>
                         <button name="button_draft" type="object" string="Draft"
                                 groups="mrp_bom_version.group_mrp_bom_version"
@@ -90,18 +90,18 @@
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
+                <xpath expr="//field[@name='code']" position="after">
                     <field name="active" />
                     <field name="state" />
-                </field>
-                <group string="Group By..." position="before">
+                </xpath>
+                <xpath expr="//group" position="before">
                     <filter string="Active" domain="[('active','=',True)]" name="is_active_filter"/>
                     <filter string="Inactive" domain="[('active','=',False)]" name="is_inactive_filter"/>
-                </group>
-                <group string="Group By..." position="inside">
+                </xpath>
+                <xpath expr="//group" position="inside">
                     <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
                     <filter string="State" domain="[]" context="{'group_by':'state'}"/>
-                </group>
+                </xpath>
             </field>
         </record>
 

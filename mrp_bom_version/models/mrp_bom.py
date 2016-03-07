@@ -80,7 +80,7 @@ class MrpBom(models.Model):
         states={'historical': [('readonly', True)]})
     product_efficiency = fields.Float(
         states={'historical': [('readonly', True)]})
-    message_follower_ids = fields.Many2many(
+    message_follower_ids = fields.One2many(
         states={'historical': [('readonly', True)]})
     message_ids = fields.One2many(
         states={'historical': [('readonly', True)]})
