@@ -1,0 +1,147 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_version
+# 
+# Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-03 11:38+0000\n"
+"PO-Revision-Date: 2015-11-03 17:20+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>\n"
+"Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Activate"
+msgstr "Activare"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+#: selection:mrp.bom,state:0
+msgid "Active"
+msgstr "Activ"
+
+#. module: mrp_bom_version
+#: field:mrp.config.settings,group_mrp_bom_version:0
+msgid "Allow to re-edit BoMs"
+msgstr "Permite reditarea LdM"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Listă de materiale"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+#: selection:mrp.bom,state:0
+msgid "Draft"
+msgstr "Ciornă"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+msgid "Group By..."
+msgstr "Grupează după..."
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+#: selection:mrp.bom,state:0
+msgid "Historical"
+msgstr "Istoric"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,historical_date:0
+msgid "Historical Date"
+msgstr "Dată istoric"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+msgid "Inactive"
+msgstr "Inactiv"
+
+#. module: mrp_bom_version
+#: field:mrp.config.settings,active_draft:0
+msgid "Keep re-editing BoM active"
+msgstr "Păstrează activ editarea LdM"
+
+#. module: mrp_bom_version
+#: model:mail.message.subtype,description:mrp_bom_version.mt_active
+#: model:mail.message.subtype,name:mrp_bom_version.mt_active
+msgid "MRP BoM Active"
+msgstr "MRP LdM Activ"
+
+#. module: mrp_bom_version
+#: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
+msgid "MRP BoM version"
+msgstr "MRP LdM versiune"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "New version"
+msgstr "Versiune nouă"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,parent_bom:0
+msgid "Parent BoM"
+msgstr "Părinte LdM"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+#: field:mrp.bom,state:0
+msgid "State"
+msgstr "Status"
+
+#. module: mrp_bom_version
+#: help:mrp.config.settings,group_mrp_bom_version:0
+msgid "The active state may be passed back to state draft"
+msgstr ""
+
+#. module: mrp_bom_version
+#: help:mrp.config.settings,active_draft:0
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr ""
+
+#. module: mrp_bom_version
+#: field:mrp.bom,version:0
+msgid "Version"
+msgstr "Versiune"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+msgid "Versions"
+msgstr "Versiuni"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "You are going to create a new version of this BoM. Are you sure?"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You are going to historize an BoM. Doing, not be able to unlock it unless "
+"you make a copy. Are you sure you want to proceed?"
+msgstr ""
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You will activate the BoM. If you haven't set a route yet, then you won't be"
+" able to do it after this. Are you sure you want to proceed?"
+msgstr ""

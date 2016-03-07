@@ -1,0 +1,147 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_version
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-03 11:38+0000\n"
+"PO-Revision-Date: 2015-10-29 05:45+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Activate"
+msgstr "Aktiviraj"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+#: selection:mrp.bom,state:0
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: mrp_bom_version
+#: field:mrp.config.settings,group_mrp_bom_version:0
+msgid "Allow to re-edit BoMs"
+msgstr "Dovoli preurejanje kosovnic"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Kosovnica"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+#: selection:mrp.bom,state:0
+msgid "Draft"
+msgstr "Osnutek"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+msgid "Group By..."
+msgstr "Združi po..."
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+#: selection:mrp.bom,state:0
+msgid "Historical"
+msgstr "Zastarelo"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,historical_date:0
+msgid "Historical Date"
+msgstr "Datum zastaranja"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+msgid "Inactive"
+msgstr "Neaktivno"
+
+#. module: mrp_bom_version
+#: field:mrp.config.settings,active_draft:0
+msgid "Keep re-editing BoM active"
+msgstr "Obdrži predelano kosovnico aktivno"
+
+#. module: mrp_bom_version
+#: model:mail.message.subtype,description:mrp_bom_version.mt_active
+#: model:mail.message.subtype,name:mrp_bom_version.mt_active
+msgid "MRP BoM Active"
+msgstr "Proizvodna kosovnica aktivna"
+
+#. module: mrp_bom_version
+#: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
+msgid "MRP BoM version"
+msgstr "Verzija proizvodne kosovnice"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "New version"
+msgstr "Nova verzija"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,parent_bom:0
+msgid "Parent BoM"
+msgstr "Nadrejena kosovnica"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
+#: field:mrp.bom,state:0
+msgid "State"
+msgstr "Stanje"
+
+#. module: mrp_bom_version
+#: help:mrp.config.settings,group_mrp_bom_version:0
+msgid "The active state may be passed back to state draft"
+msgstr "Aktivno stanje se lahko povrne v stanje osnutek"
+
+#. module: mrp_bom_version
+#: help:mrp.config.settings,active_draft:0
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr "Omogoči določitev, če naj kosovnice vrnjene v osnutek ostanejo aktivne ali ne"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,version:0
+msgid "Version"
+msgstr "Verzija"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+msgid "Versions"
+msgstr "Verzije"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid "You are going to create a new version of this BoM. Are you sure?"
+msgstr "Ste prepričani, da želite ustvariti novo verzijo te kosovnice?"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You are going to historize an BoM. Doing, not be able to unlock it unless "
+"you make a copy. Are you sure you want to proceed?"
+msgstr "Kosovnico postavljate v zastaranje. Ne boste je mogli odkleniti, razen, če naredite kopijo. Želite nadaljevati?"
+
+#. module: mrp_bom_version
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
+#: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You will activate the BoM. If you haven't set a route yet, then you won't be"
+" able to do it after this. Are you sure you want to proceed?"
+msgstr "Aktivirali boste kosovnico. Če še niste nastavili proge, tega ne boste mogli narediti po tem. Želite nadaljevati?"
