@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 01:43+0000\n"
-"PO-Revision-Date: 2015-12-04 17:50+0000\n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
+"PO-Revision-Date: 2016-03-11 10:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr ""
 #: view:project.task:mrp_project.project_task_mrp_form_view
 #: view:project.task:mrp_project.project_task_mrp_inh_tree_view
 msgid "Product to Produce"
-msgstr ""
+msgstr "Prodotti da produrre"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
@@ -125,6 +125,11 @@ msgstr ""
 #. module: mrp_project
 #: field:mrp.production.workcenter.line,task_ids:0
 msgid "Tasks"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
+msgid "Timesheet Line"
 msgstr ""
 
 #. module: mrp_project
