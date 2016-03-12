@@ -1,21 +1,6 @@
-
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# (c) 2015 Pedro M. Baeza - Serv. Tecnol. Avanzados
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, exceptions, _
 import openerp.addons.decimal_precision as dp
@@ -29,7 +14,7 @@ class WizProductionProductLine(models.TransientModel):
         'Product Quantity', digits=dp.get_precision('Product Unit of Measure'),
         required=True)
     production_id = fields.Many2one(
-        'mrp.production', 'Production Order', select=True,
+        'mrp.production', 'Manufacturing Order', select=True,
         default=lambda self: self.env.context.get('active_id', False))
 
     def _prepare_product_addition(self, product, product_qty, production):
@@ -45,7 +30,7 @@ class WizProductionProductLine(models.TransientModel):
         move_obj = self.env['stock.move']
         if self.product_qty <= 0:
             raise exceptions.Warning(
-                _('Warning'), _('Please provide a positive quantity to add'))
+                _('Warning'), _('Quantity must be positive'))
         mppl_obj = self.env['mrp.production.product.line']
         production_obj = self.env['mrp.production']
         values = self._prepare_product_addition(self.product_id,
