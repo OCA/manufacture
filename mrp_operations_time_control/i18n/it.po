@@ -5,12 +5,12 @@
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-20 17:16+0000\n"
-"PO-Revision-Date: 2015-09-10 16:42+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/it/)\n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
+"PO-Revision-Date: 2016-03-11 10:46+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -45,7 +45,7 @@ msgstr "Raggruppa per ......"
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
@@ -56,11 +56,19 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_date:0
 msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
+#: field:operation.time.line,uptime:0
+msgid "Machine up time"
 msgstr ""
 
 #. module: mrp_operations_time_control
@@ -89,7 +97,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,production:0
 msgid "Production"
-msgstr ""
+msgstr "Produzione"
 
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
@@ -122,18 +130,10 @@ msgid "Start Date"
 msgstr ""
 
 #. module: mrp_operations_time_control
-#: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
-#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
-#: view:operation.time.line:mrp_operations_time_control.operation_time_lines_tree_view
-#: field:operation.time.line,uptime:0
-msgid "Uptime"
-msgstr ""
-
-#. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 #: field:operation.time.line,user:0
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #. module: mrp_operations_time_control
 #: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line
@@ -144,4 +144,9 @@ msgstr "Ordine di lavorazione"
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 msgid "hours"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "startworking,pause"
 msgstr ""

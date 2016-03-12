@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_bom_note
+# * mrp_production_partner_note
 # 
 # Translators:
 # Paolo Valier, 2016
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-05 22:02+0000\n"
-"PO-Revision-Date: 2016-03-11 10:37+0000\n"
+"PO-Revision-Date: 2016-03-11 10:43+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: mrp_bom_note
-#: model:ir.model,name:mrp_bom_note.model_mrp_bom
-msgid "Bill of Material"
-msgstr "Distinta base"
+#. module: mrp_production_partner_note
+#: model:ir.model,name:mrp_production_partner_note.model_res_partner
+msgid "Partner"
+msgstr "Partner"
 
-#. module: mrp_bom_note
-#: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_notes field:mrp.bom,notes:0
-msgid "Notes"
-msgstr "Note"
+#. module: mrp_production_partner_note
+#: model:ir.model,name:mrp_production_partner_note.model_procurement_order
+msgid "Procurement"
+msgstr "Approvvigionamento"
 
-#. module: mrp_bom_note
-#: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_notes
-msgid "Properties"
-msgstr "Proprietà"
+#. module: mrp_production_partner_note
+#: field:res.partner,mrp_notes:0
+msgid "Production Notes"
+msgstr "Note di produzione"

@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_calendar_view
+# 
+# Translators:
+# Paolo Valier, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
+"PO-Revision-Date: 2016-03-11 10:46+0000\n"
+"Last-Translator: Paolo Valier\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_calendar_view
+#: help:mrp.repair,date_repair:0
+msgid "Date of the repair, this fieldand user_id defines the calendar"
+msgstr "Data di riparazione, questo campo e user_id definiscono il calendario"
+
+#. module: mrp_calendar_view
+#: help:mrp.repair,user_id:0
+msgid "Person in charge for the repair"
+msgstr "Persona incaricata della riparazione"
+
+#. module: mrp_calendar_view
+#: field:mrp.repair,date_repair:0
+msgid "Repair Date"
+msgstr "Data di riparazione"
+
+#. module: mrp_calendar_view
+#: model:ir.model,name:mrp_calendar_view.model_mrp_repair
+msgid "Repair Order"
+msgstr "Ordine di riparazione"
+
+#. module: mrp_calendar_view
+#: view:mrp.repair:mrp_calendar_view.view_repair_order_calendar
+msgid "Repair Orders Calendar"
+msgstr "Calendario Ordini di riparazione"
+
+#. module: mrp_calendar_view
+#: field:mrp.repair,user_id:0
+msgid "User"
+msgstr "Utente"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
 "PO-Revision-Date: 2015-11-12 18:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: field:stock.picking,qc_inspections:0
 #: field:stock.production.lot,qc_inspections:0
 msgid "Inspections"
-msgstr ""
+msgstr "Ispezioni"
 
 #. module: quality_control_stock
 #: help:stock.production.lot,qc_inspections:0
@@ -75,12 +75,12 @@ msgstr "Prodotto "
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Ispezione controllo di qualità"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr ""
+msgstr "Riga ispezione controllo qualità"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_trigger
@@ -141,4 +141,4 @@ msgstr ""
 #: view:stock.picking:quality_control_stock.stock_picking_qc_view
 #: view:stock.production.lot:quality_control_stock.stock_lot_qc_view
 msgid "inspections"
-msgstr ""
+msgstr "ispezioni"

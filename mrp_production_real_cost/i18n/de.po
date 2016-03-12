@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
+"PO-Revision-Date: 2016-03-11 15:22+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,7 @@ msgstr "Stückliste"
 #: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:75
 #, python-format
 msgid "CYCLE"
-msgstr ""
+msgstr "ZYKLUS"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production,analytic_line_ids:0
@@ -39,13 +39,13 @@ msgstr "Kostenpositionen"
 #: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:41
 #, python-format
 msgid "HOUR"
-msgstr ""
+msgstr "STD"
 
 #. module: mrp_production_real_cost
 #: code:addons/mrp_production_real_cost/models/stock_move.py:29
 #, python-format
 msgid "MAT"
-msgstr ""
+msgstr "MAT"
 
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_mrp_production
@@ -61,13 +61,13 @@ msgstr "Fertigungskosten"
 #: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:120
 #, python-format
 msgid "POST"
-msgstr ""
+msgstr "NACH"
 
 #. module: mrp_production_real_cost
 #: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:111
 #, python-format
 msgid "PRE"
-msgstr ""
+msgstr "VOR"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production.workcenter.line,post_cost:0

@@ -3,13 +3,14 @@
 # * mrp_sale_info
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-03-05 22:02+0000\n"
+"PO-Revision-Date: 2016-03-11 10:38+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr ""
 #: field:mrp.production,partner_id:0
 #: field:mrp.production.workcenter.line,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: mrp_sale_info
 #: help:mrp.production,commitment_date:0
@@ -45,18 +46,18 @@ msgstr "Ordine di produzione"
 #. module: mrp_sale_info
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
 msgid "Product to Produce"
-msgstr ""
+msgstr "Prodotti da produrre"
 
 #. module: mrp_sale_info
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
 msgid "Sale Information"
-msgstr ""
+msgstr "Informazioni di vendita"
 
 #. module: mrp_sale_info
 #: field:mrp.production,sale_id:0
 #: field:mrp.production.workcenter.line,sale_id:0
 msgid "Sale order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production_workcenter_line
