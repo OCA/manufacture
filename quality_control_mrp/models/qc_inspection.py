@@ -15,6 +15,8 @@ class QcInspection(models.Model):
         if self.object_id:
             if self.object_id._name == 'stock.move':
                 self.production = self.object_id.production_id
+            elif self.object_id._name == 'mrp.production':
+                self.production = self.object_id
 
     production = fields.Many2one(
         comodel_name="mrp.production", compute="get_production", store=True)
