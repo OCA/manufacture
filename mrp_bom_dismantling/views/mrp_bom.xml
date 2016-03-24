@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Menu and action-->
+        <record id="mrp_bom_dismantling_form_action" model="ir.actions.act_window">
+            <field name="name">Dismantling</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.bom</field>
+            <field name="domain">[('dismantling', '=', True)]</field>
+            <field name="context">{'default_dismantling': True}</field>
+            <field name="view_type">form</field>
+        </record>
+        <menuitem id="menu_mrp_bom_dismantling"
+                  action="mrp_bom_dismantling_form_action"
+                  parent="mrp.menu_mrp_bom"
+                  sequence="100"/>
+
+        <record id="mrp.mrp_bom_form_action" model="ir.actions.act_window">
+            <field name="domain">[('dismantling', '=', False)]</field>
+        </record>
+
+        <!-- Form view -->
+        <record id="mrp_bom_form_view" model="ir.ui.view">
+            <field name="name">mrp_bom_form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet" position="before">
+                    <header>
+                        <!-- Create Manufacturing Order -->
+                        <button name="create_mrp_production" type="object" string="Create Manufacturing Order" />
+
+                        <!-- Create Dismantling BoM -->
+                        <button name="create_dismantling_bom" type="object" string="Create dismantling BoM"
+                                attrs="{'invisible': [('dismantling', '=', True)]}"/>
+                    </header>
+                </xpath>
+                <field name="product_tmpl_id" position="before">
+                    <field name="dismantling" invisible="True"/>
+                    <field name="dismantled_product_id"
+                           attrs="{'invisible': [('dismantling', '=', False)], 'required': [('dismantling', '=', True)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="mrp_bom_tree_view" model="ir.ui.view">
+            <field name="name">mrp_bom_tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product_tmpl_id" position="before">
+                    <field name="dismantled_product_id" invisible="not context.get('default_dismantling')"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Searches -->
+        <record id="view_mrp_bom_filter" model="ir.ui.view">
+            <field name="name">mrp.bom.select</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="dismantled_product_id" invisible="not context.get('default_dismantling')"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
