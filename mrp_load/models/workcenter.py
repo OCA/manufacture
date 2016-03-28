@@ -1,27 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: David BEAL
-#    Copyright 2015 Akretion
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2016 Akretion (http://www.akretion.com)
+# David BEAL <david.beal@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
-from openerp.addons.mrp_workcenter_workorder_link.mrp import WORKCENTER_ACTION
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime, timedelta
 from collections import defaultdict
 from openerp.tools.translate import _
@@ -34,7 +16,7 @@ ACTIVE_PRODUCTION_STATES = ['ready', 'in_production']
 
 class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
-    
+
     online = fields.Boolean(
         string='Online',
         help="Online workcenters are taken account "
@@ -67,8 +49,7 @@ class MrpWorkcenter(models.Model):
 
     @api.multi
     def _get_sql_load_from(self):
-        return\
-        """mrp_production_workcenter_line wl
+        return """mrp_production_workcenter_line wl
             LEFT JOIN mrp_production mp ON wl.production_id = mp.id"""
 
     @api.multi
@@ -145,10 +126,10 @@ class MrpWorkcenter(models.Model):
 
     @api.multi
     def _get_capacity_date_to(self, date_from):
-        #By default the capacity is computed until the end of the day
-        #You can inherit this method to compute it until the end of the week
-        #month... or what you want.
-        #TODO in a long term make this parametrable
+        # By default the capacity is computed until the end of the day
+        # You can inherit this method to compute it until the end of the week
+        # month... or what you want.
+        # TODO in a long term make this parametrable
         self.ensure_one()
         date_to = datetime(
             date_from.year,
@@ -182,7 +163,6 @@ class MrpWorkcenter(models.Model):
             tz_now = pytz.utc.localize(now)
             now = tz_now.astimezone(local_tz).replace(tzinfo=None)
 
-        erp_now = now.strftime(DEFAULT_SERVER_DATE_FORMAT)
         for workcenter in self:
             date_end = None
             capacity = 0
