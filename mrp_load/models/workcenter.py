@@ -35,18 +35,18 @@ ACTIVE_PRODUCTION_STATES = ['ready', 'in_production']
 class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
     
-    online: fields.Boolean(
+    online = fields.Boolean(
         string='Online',
         help="Online workcenters are taken account "
              "in capacity computing",
         default=True)
-    load: fields.Float(
+    load = fields.Float(
         string='Total Load (h)',
         help="Load for this particular workcenter")
-    capacity: fields.Float(
+    capacity = fields.Float(
         string='Capacity (h)',
         help="Capacity for this particular workcenter")
-    date_end: fields.Datetime(
+    date_end = fields.Datetime(
         string='Ending Date',
         readonly=True,
         help="Theorical date when all work orders will be done")
@@ -128,7 +128,7 @@ class MrpWorkcenter(models.Model):
         defaults = self._get_default_workcenter_vals()
         for workcenter in self:
             vals = defaults.copy()
-            vals.update(data[workcenter_id])
+            vals.update(data[workcenter.id])
             workcenter.write(vals)
         return True
 
@@ -155,7 +155,7 @@ class MrpWorkcenter(models.Model):
             date_from.month,
             date_from.day) + timedelta(days=1)
         if self._context.get('tz'):
-            local_tz = pytz.timezone(context['tz'])
+            local_tz = pytz.timezone(self._context['tz'])
             tz_date_to = local_tz.localize(date_to)
             date_to = tz_date_to.astimezone(pytz.utc).replace(tzinfo=None)
         return date_to
@@ -168,17 +168,17 @@ class MrpWorkcenter(models.Model):
         date_to = self._get_capacity_date_to(date_from)
         return self.env['resource.calendar']._interval_hours_get(
             calendar.id, date_from, date_to,
-            timezone_from_uid=uid)
+            timezone_from_uid=self._uid)
 
     @api.multi
-    def _add_capacity_data(self):
+    def _add_capacity_data(self, data):
         calendar_obj = self.env['resource.calendar']
         now = datetime.now()
         if self._context.get('tz'):
             # be carefull, resource module will not take in account the time
             # zone. So we have to create a naive localized datetime
             # to send the right information
-            local_tz = pytz.timezone(context['tz'])
+            local_tz = pytz.timezone(self._context['tz'])
             tz_now = pytz.utc.localize(now)
             now = tz_now.astimezone(local_tz).replace(tzinfo=None)
 

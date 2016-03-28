@@ -19,4 +19,4 @@
 #
 ###############################################################################
 
-from . import resource, workcenter, module
+from . import workcenter

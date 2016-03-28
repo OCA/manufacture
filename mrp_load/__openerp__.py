@@ -33,7 +33,7 @@
     'website': 'http://www.akretion.com/',
     'data': [
         'workcenter_view.xml',
-        'transient/mrp_view.xml',
+        'wizards/mrp_view.xml',
     ],
     'demo': [
         'demo/mrp_demo.xml'

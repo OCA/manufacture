@@ -19,10 +19,6 @@
 #
 ###############################################################################
 
-from . import (
-    resource,
-    workcenter,
-    transient,
-    controllers,
-    module,
-)
+from . import controllers
+from . import models
+from . import wizards
