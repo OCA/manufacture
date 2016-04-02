@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-21 01:55+0000\n"
-"PO-Revision-Date: 2015-11-19 08:08+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-28 14:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control_mrp
+#: field:mrp.production,created_inspections:0
+msgid "Created inspections"
+msgstr "Created inspections"
 
 #. module: quality_control_mrp
 #: field:mrp.production,qc_inspections:0
