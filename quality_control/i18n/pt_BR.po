@@ -3,13 +3,18 @@
 # * quality_control
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016
+# Paolo Valier, 2016
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-03-29 10:13+0000\n"
+"PO-Revision-Date: 2016-03-28 13:40+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +33,7 @@ msgstr ""
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Accept"
-msgstr ""
+msgstr "Aceitar"
 
 #. module: quality_control
 #: field:qc.test,active:0 field:qc.test.category,active:0
@@ -67,17 +72,17 @@ msgstr "Cancelar"
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Canceled"
-msgstr ""
+msgstr "Cancelada"
 
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
 msgid "Child categories"
-msgstr ""
+msgstr "Sub Categorias"
 
 #. module: quality_control
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
@@ -156,7 +161,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection,external_notes:0
 msgid "External notes"
-msgstr ""
+msgstr "Notas Externas"
 
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
@@ -256,7 +261,7 @@ msgstr ""
 #: model:ir.ui.menu,name:quality_control.qc_inspection_menu_parent
 #: view:qc.inspection:quality_control.qc_inspection_tree_view
 msgid "Inspections"
-msgstr ""
+msgstr "Inspeções"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -358,7 +363,7 @@ msgstr "Nome"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1
@@ -449,7 +454,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Inspeção Controle de Qualidade"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_line

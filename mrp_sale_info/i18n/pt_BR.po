@@ -3,13 +3,16 @@
 # * mrp_sale_info
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-03-29 10:13+0000\n"
+"PO-Revision-Date: 2016-03-28 12:56+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,13 +24,13 @@ msgstr ""
 #: field:mrp.production,commitment_date:0
 #: field:mrp.production.workcenter.line,commitment_date:0
 msgid "Commitment Date"
-msgstr ""
+msgstr "Data do compromisso"
 
 #. module: mrp_sale_info
 #: field:mrp.production,partner_id:0
 #: field:mrp.production.workcenter.line,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: mrp_sale_info
 #: help:mrp.production,commitment_date:0
@@ -56,7 +59,7 @@ msgstr ""
 #: field:mrp.production,sale_id:0
 #: field:mrp.production.workcenter.line,sale_id:0
 msgid "Sale order"
-msgstr ""
+msgstr "Pedido Venda"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production_workcenter_line
