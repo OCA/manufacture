@@ -5,4 +5,5 @@
 
 from . import test_bom
 from . import test_product
+from . import test_product_produce
 from . import test_template
