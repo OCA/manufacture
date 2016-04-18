@@ -31,7 +31,7 @@
                         <button name="create_mrp_production" type="object" string="Create Manufacturing Order" />
 
                         <!-- Create Dismantling BoM -->
-                        <button name="create_dismantling_bom" type="object" string="Create dismantling BoM"
+                        <button name="action_create_dismantling_bom" type="object" string="Create dismantling BoM"
                                 attrs="{'invisible': [('dismantling', '=', True)]}"/>
                     </header>
                 </xpath>

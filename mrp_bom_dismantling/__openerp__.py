@@ -18,6 +18,8 @@
     "data": [
         "views/mrp_bom.xml",
         "views/product_template.xml",
+        "views/res_config.xml",
+        "wizards/dismantling_product_choice.xml",
         "wizards/mrp_product_produce.xml",
     ],
 }
