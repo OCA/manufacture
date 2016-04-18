@@ -133,5 +133,7 @@ class MrpProductionWorkcenterLine(models.Model):
                 raise exceptions.Warning(
                     _("Missing materials to start the production"))
             if workorder.production_id.state in ('confirmed', 'ready'):
+                workorder.production_id.signal_workflow('moves_ready')
+                # bypass force_production method in production order
                 workorder.production_id.state = 'in_production'
         return super(MrpProductionWorkcenterLine, self).action_start_working()
