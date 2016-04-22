@@ -17,10 +17,17 @@ class MrpProduction(models.Model):
 
     @api.model
     def _prepare_project_vals(self, production):
+        # If this production come from a sale order and that order
+        # has an analytic account assigned, then project is child of
+        # that analytic account
+        parent_id = False
+        if 'sale_id' in production._fields:
+            parent_id = production.sale_id.project_id.id
         return {
             'name': production.name,
             'use_tasks': True,
             'automatic_creation': True,
+            'parent_id': parent_id,
         }
 
     @api.model
