@@ -26,8 +26,8 @@ class MrpProduction(models.Model):
 
     @api.multi
     def _action_compute_lines(self, properties=None):
-        res = super(MrpProduction, self)._action_compute_lines(
-            properties=properties)
+        res = super(MrpProduction, self.with_context(production=self)
+                    )._action_compute_lines(properties=properties)
         # Assign work orders to each consume line
         for product_line in self.product_lines:
             product_line.work_order = self.workcenter_lines.filtered(

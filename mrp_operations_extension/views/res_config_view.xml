@@ -11,9 +11,13 @@
                         <field name="group_mrp_workers" class="oe_inline"/>
                         <label for="group_mrp_workers"/>
                     </div>
+                    <div>
+                        <field name="cycle_by_bom" class="oe_inline"/>
+                        <label for="cycle_by_bom"/>
+                    </div>
                 </xpath>
             </field>
         </record>
-    
+
     </data>
 </openerp>

@@ -31,6 +31,8 @@ Configuration
 
 Go to *Settings > Manufacturing* and activate "Manage routings and work orders"
 for handling the features of this module.
+Go to *Settings > Manufacturing* and deactivate "Compute Cycles by BoM Quantity"
+in order to compute cycles without BoM product quantity.
 
 Usage
 =====

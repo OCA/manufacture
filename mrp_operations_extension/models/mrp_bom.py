@@ -13,6 +13,12 @@ class MrpBom(models.Model):
     def _prepare_wc_line(self, wc_use, level=0, factor=1):
         res = super(MrpBom, self)._prepare_wc_line(
             wc_use, level=level, factor=factor)
+        if not self.env['mrp.config.settings']._get_parameter('cycle.by.bom',
+                                                              False):
+            production = self.env.context.get('production')
+            factor = self._factor(production and production.product_qty or 1,
+                                  self.product_efficiency,
+                                  self.product_rounding)
         cycle = int(math.ceil(factor / (wc_use.cycle_nbr or 1)))
         hour = wc_use.hour_nbr * cycle
         default_wc_line = wc_use.op_wc_lines.filtered(lambda r: r.default)

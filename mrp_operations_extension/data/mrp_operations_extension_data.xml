@@ -10,4 +10,10 @@
             <field name="object">mrp.production.workcenter.line</field>
         </record>
     </data>
+    <data noupdate="1">
+        <record forcecreate="True" id="config_parameter_cycle_by_bom" model="ir.config_parameter">
+            <field name="key">cycle.by.bom</field>
+            <field name="value" eval="True"/>
+        </record>
+    </data>
 </openerp>
