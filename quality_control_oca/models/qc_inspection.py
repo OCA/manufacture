@@ -249,7 +249,7 @@ class QcInspectionLine(models.Model):
                 self.valid_values += " %s" % self.test_uom_id.name
 
     inspection_id = fields.Many2one(
-        comodel_name='qc.inspection', string='Inspection')
+        comodel_name='qc.inspection', string='Inspection', ondelete='cascade')
     name = fields.Char(string="Question", readonly=True)
     product = fields.Many2one(
         comodel_name="product.product", related="inspection_id.product",
