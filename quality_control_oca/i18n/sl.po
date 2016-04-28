@@ -3,15 +3,19 @@
 # * quality_control
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Accounts-Payable - Alkemics, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# François Breysse <fb@alkemics.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
-"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-09-20 19:03+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:10+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -67,7 +71,7 @@ msgstr "Preklic"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
-msgid "Cancelled"
+msgid "Canceled"
 msgstr "Preklicano"
 
 #. module: quality_control
@@ -142,13 +146,25 @@ msgid "Date of the last message posted on the record."
 msgstr "Datum zadnjega sporočila vpisanega na to vknjižbo."
 
 #. module: quality_control
+#: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
+#: field:qc.inspection.set.test,display_name:0 field:qc.test,display_name:0
+#: field:qc.test.category,display_name:0 field:qc.test.question,display_name:0
+#: field:qc.test.question.value,display_name:0 field:qc.trigger,display_name:0
+#: field:qc.trigger.line,display_name:0
+#: field:qc.trigger.product_category_line,display_name:0
+#: field:qc.trigger.product_line,display_name:0
+#: field:qc.trigger.product_template_line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: selection:qc.inspection,state:0
 msgid "Draft"
 msgstr "Osnutek"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test_category.py:35
+#: code:addons/quality_control/models/qc_test_category.py:32
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr "Napaka! Rekurzivnih kategorij ne morete ustvariti."
@@ -163,6 +179,11 @@ msgstr "Zunanje opombe"
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
 msgstr "Sledilci"
+
+#. module: quality_control
+#: field:qc.test.category,complete_name:0
+msgid "Full name"
+msgstr "Polni naziv"
 
 #. module: quality_control
 #: selection:qc.test,type:0
@@ -206,8 +227,8 @@ msgstr "ID"
 
 #. module: quality_control
 #: help:qc.inspection,auto_generated:0
-msgid "If an inspection is auto-generated, it can be cancelled nor removed"
-msgstr "Če se inšpekcija samodejno ustvari, se lahko prekliče ali izbriše"
+msgid "If an inspection is auto-generated, it can be canceled nor removed."
+msgstr "Samodejno ustvarjena inšpekcija ne more biti preklicana ali odstranjena."
 
 #. module: quality_control
 #: help:qc.inspection,message_unread:0
@@ -221,8 +242,8 @@ msgstr "Če označeno, zahtevajo nova sporočila vašo pozornost."
 #: help:qc.trigger.product_template_line,partners:0
 msgid ""
 "If filled, the test will only be created when the action is done for one of "
-"the specified partners. If empty, the test will be always created."
-msgstr "Če izpolnjeno, se test ustvari le, ko je ukrep opravljen za enega izmed izbranih partnerjev. Če prazno, se test ustvari vedno."
+"the specified partners. If empty, the test will always be created."
+msgstr "Če označeno, se test ustvari le, ko je ukrep za enega izmed določenih partnerjev opravljen. Če prazno, se test vedno ustvari."
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -281,6 +302,20 @@ msgid "Last Message Date"
 msgstr "Datum zadnjega sporočila"
 
 #. module: quality_control
+#: field:qc.inspection,__last_update:0
+#: field:qc.inspection.line,__last_update:0
+#: field:qc.inspection.set.test,__last_update:0 field:qc.test,__last_update:0
+#: field:qc.test.category,__last_update:0
+#: field:qc.test.question,__last_update:0
+#: field:qc.test.question.value,__last_update:0
+#: field:qc.trigger,__last_update:0 field:qc.trigger.line,__last_update:0
+#: field:qc.trigger.product_category_line,__last_update:0
+#: field:qc.trigger.product_line,__last_update:0
+#: field:qc.trigger.product_template_line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0
 #: field:qc.inspection.set.test,write_uid:0 field:qc.test,write_uid:0
 #: field:qc.test.category,write_uid:0 field:qc.test.question,write_uid:0
@@ -319,8 +354,8 @@ msgstr "Maks"
 
 #. module: quality_control
 #: help:qc.inspection.line,max_value:0
-msgid "Maximum valid value if it's a quantitative question."
-msgstr "Maksimalna veljavna vrednost za kvantitativna vprašanja."
+msgid "Maximum valid value for a quantitative question."
+msgstr "Maksimalna veljavna vrednost za kvantitativno vprašanje."
 
 #. module: quality_control
 #: field:qc.inspection,message_ids:0
@@ -339,11 +374,11 @@ msgstr "Min"
 
 #. module: quality_control
 #: help:qc.inspection.line,min_value:0
-msgid "Minimum valid value if it's a quantitative question."
-msgstr "Minimalna veljavna vrednost za kvantitativna vprašanja."
+msgid "Minimum valid value for a quantitative question."
+msgstr "Minimalna veljavna vrednost za kvantitativno vprašanje."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:66
+#: code:addons/quality_control/models/qc_test.py:62
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
 msgstr "Minimalna vrednost ne more biti višja od maksimalne vrednosti."
@@ -381,8 +416,8 @@ msgstr "Partnerji"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
-msgid "Possible values of qualitative questions."
-msgstr "Možne vrednosti kvalitativnih vprašanj"
+msgid "Possible values for qualitative questions."
+msgstr "Mogoče vrednosti za kvalitativna vprašanja."
 
 #. module: quality_control
 #: field:qc.test,fill_correct_values:0
@@ -576,11 +611,6 @@ msgid "Search inspection line"
 msgstr "Iskalnik inšpekcijskih postavk"
 
 #. module: quality_control
-#: model:res.groups,name:quality_control.group_quality_control_user
-msgid "See Own Inspections"
-msgstr "Prikaz častnih inšpekcij"
-
-#. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_set_test
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Select test"
@@ -673,10 +703,10 @@ msgid "Tests"
 msgstr "Testiranja"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:56
+#: code:addons/quality_control/models/qc_test.py:54
 #, python-format
-msgid "There isn't any value with OK marked. You have to mark at least one."
-msgstr "Nobena vrednost ni označena za OK. Označiti morate vsaj eno."
+msgid "There isn't no value marked as OK. You have to mark at least one."
+msgstr "Nobena vrednost ni označena kot V REDU. Označiti morate vsaj eno."
 
 #. module: quality_control
 #: help:qc.test.category,active:0
@@ -685,8 +715,8 @@ msgstr "To polje omogoča skrivanje kategorije brez brisanja."
 
 #. module: quality_control
 #: help:qc.inspection,success:0
-msgid "This field will be marked if all tests have been succeeded."
-msgstr "To polje bo označeno, če bodo vsa testiranja uspešna."
+msgid "This field will be marked if all tests have succeeded."
+msgstr "To polje bo označeno, če so bili vsi testi uspešni."
 
 #. module: quality_control
 #: help:qc.trigger,partner_selectable:0
@@ -723,18 +753,23 @@ msgstr "EM"
 
 #. module: quality_control
 #: help:qc.inspection.line,test_uom_id:0
-msgid "UoM for minimum and maximum values if it's a quantitative question."
-msgstr "EM za minimalne in maksimalne vrednosti kvantitativnih vprašanj."
+msgid "UoM for minimum and maximum values for a quantitative question."
+msgstr "EM za minimalne in maksimalne vrednosti za kvantitativno vprašanje."
 
 #. module: quality_control
 #: help:qc.inspection.line,uom_id:0
-msgid "UoM of the inspection value if it's a quantitative question."
-msgstr "EM za vrednosti inšpekcij pri kvantitativnih vprašanjih."
+msgid "UoM of the inspection value for a quantitative question."
+msgstr "EM za inšpekcijsko vrednost pri kvantitativnem vprašanju."
 
 #. module: quality_control
 #: field:qc.test.question,uom_id:0
 msgid "Uom"
 msgstr "EM"
+
+#. module: quality_control
+#: model:res.groups,name:quality_control.group_quality_control_user
+msgid "User"
+msgstr "Uporabnik"
 
 #. module: quality_control
 #: field:qc.inspection.line,valid_values:0
@@ -743,13 +778,13 @@ msgstr "Veljavne vrednosti"
 
 #. module: quality_control
 #: help:qc.inspection.line,qualitative_value:0
-msgid "Value of the result if it's a qualitative question."
-msgstr "Vrednost rezultata kvalitativnega vprašanja."
+msgid "Value of the result for a qualitative question."
+msgstr "Vrednost rezultata pri kvalitativnem vprašanju."
 
 #. module: quality_control
 #: help:qc.inspection.line,quantitative_value:0
-msgid "Value of the result if it's a quantitative question."
-msgstr "Vrednost rezultata kvantitativnega vprašanja."
+msgid "Value of the result for a quantitative question."
+msgstr "Vrednost rezultata pri kvantitativnem vprašanju."
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
@@ -762,31 +797,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr "Ko je to polje označeno, se odgovor smatra za pravilen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:92
 #, python-format
-msgid "You cannot remove an auto-generated inspection"
-msgstr "Ne morete odstraniti samodejno ustvarjene inšpekcije"
+msgid "You cannot remove an auto-generated inspection."
+msgstr "Samodejno ustvarjenih inšpekcij ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:95
 #, python-format
-msgid "You cannot remove an inspection that it's not in draft state"
-msgstr "Ne morete odstraniti inšpekcije, ki ni v stanju 'osnutek'"
+msgid "You cannot remove an inspection that is not in draft state."
+msgstr "Inšpekcije, ki ni osnutek ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:108
 #, python-format
-msgid "You must set the test to perform first."
-msgstr "Najprej določite testiranje, ki se bo izvedlo."
+msgid "You must first set the test to perform."
+msgstr "Najprej morate nastaviti test, ki se bo opravljal."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Določite EM za kvalitativna vprašanja."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:118
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."
