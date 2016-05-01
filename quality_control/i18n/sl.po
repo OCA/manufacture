@@ -3,13 +3,17 @@
 # * quality_control
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Accounts-Payable - Alkemics, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# François Breysse <fb@alkemics.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-21 01:55+0000\n"
-"PO-Revision-Date: 2015-11-19 08:08+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:10+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -142,6 +146,18 @@ msgid "Date of the last message posted on the record."
 msgstr "Datum zadnjega sporočila vpisanega na to vknjižbo."
 
 #. module: quality_control
+#: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
+#: field:qc.inspection.set.test,display_name:0 field:qc.test,display_name:0
+#: field:qc.test.category,display_name:0 field:qc.test.question,display_name:0
+#: field:qc.test.question.value,display_name:0 field:qc.trigger,display_name:0
+#: field:qc.trigger.line,display_name:0
+#: field:qc.trigger.product_category_line,display_name:0
+#: field:qc.trigger.product_line,display_name:0
+#: field:qc.trigger.product_template_line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: selection:qc.inspection,state:0
 msgid "Draft"
@@ -163,6 +179,11 @@ msgstr "Zunanje opombe"
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
 msgstr "Sledilci"
+
+#. module: quality_control
+#: field:qc.test.category,complete_name:0
+msgid "Full name"
+msgstr "Polni naziv"
 
 #. module: quality_control
 #: selection:qc.test,type:0
@@ -279,6 +300,20 @@ msgstr "Je sledilec"
 #: field:qc.inspection,message_last_post:0
 msgid "Last Message Date"
 msgstr "Datum zadnjega sporočila"
+
+#. module: quality_control
+#: field:qc.inspection,__last_update:0
+#: field:qc.inspection.line,__last_update:0
+#: field:qc.inspection.set.test,__last_update:0 field:qc.test,__last_update:0
+#: field:qc.test.category,__last_update:0
+#: field:qc.test.question,__last_update:0
+#: field:qc.test.question.value,__last_update:0
+#: field:qc.trigger,__last_update:0 field:qc.trigger.line,__last_update:0
+#: field:qc.trigger.product_category_line,__last_update:0
+#: field:qc.trigger.product_line,__last_update:0
+#: field:qc.trigger.product_template_line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0
