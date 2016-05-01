@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-15 18:43+0000\n"
-"PO-Revision-Date: 2015-12-15 05:49+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:12+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr "Ustvaril"
 #: field:operation.time.line,create_date:0
 msgid "Created on"
 msgstr "Ustvarjeno"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -53,6 +58,11 @@ msgstr "ID"
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
 msgid "Information"
 msgstr "Podrobnosti"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0

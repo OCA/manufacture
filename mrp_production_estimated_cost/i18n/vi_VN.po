@@ -3,12 +3,13 @@
 # * mrp_production_estimated_cost
 # 
 # Translators:
+# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-28 14:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -62,6 +63,14 @@ msgid "Cancel"
 msgstr "Hủy"
 
 #. module: mrp_production_estimated_cost
+#: help:mrp.production,product_cost:0
+msgid ""
+"Cost price of the product template used for standard stock valuation in "
+"accounting and used as a base price on purchase orders. Expressed in the "
+"default unit of measure of the product."
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
 msgid "Costs analysis"
 msgstr "Phân tích chi phí"
@@ -96,6 +105,11 @@ msgid "Created on"
 msgstr "Tạo vào"
 
 #. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
 msgid "Estim. AVG"
@@ -120,6 +134,7 @@ msgstr "Chi phí đơn vị trung bình dự kiến"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
+#: field:mrp.production,created_estimated_cost:0
 msgid "Estimated Costs"
 msgstr "Chi phí dự kiến"
 
@@ -148,6 +163,11 @@ msgstr "Kế toán Tổng hợp"
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
@@ -189,6 +209,16 @@ msgstr "Chi phí sản xuất"
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Một dòng tiêu thụ không có sản phẩm nào được gán."
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_cost:0
+msgid "Product Cost"
+msgstr ""
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_manual_cost:0
+msgid "Product Manual Cost"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template

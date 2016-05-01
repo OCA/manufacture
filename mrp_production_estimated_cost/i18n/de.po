@@ -3,14 +3,16 @@
 # * mrp_production_estimated_cost
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 22:02+0000\n"
-"PO-Revision-Date: 2016-03-11 15:29+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-28 14:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,6 +65,14 @@ msgid "Cancel"
 msgstr "Stornieren"
 
 #. module: mrp_production_estimated_cost
+#: help:mrp.production,product_cost:0
+msgid ""
+"Cost price of the product template used for standard stock valuation in "
+"accounting and used as a base price on purchase orders. Expressed in the "
+"default unit of measure of the product."
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
 msgid "Costs analysis"
 msgstr "Kostenrechnung"
@@ -97,6 +107,11 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
 msgid "Estim. AVG"
@@ -121,6 +136,7 @@ msgstr "Geplante durchschn. Einzelkosten"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
+#: field:mrp.production,created_estimated_cost:0
 msgid "Estimated Costs"
 msgstr "Geplante Kosten"
 
@@ -149,6 +165,11 @@ msgstr "Allgemeine Buchhaltung"
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
@@ -190,6 +211,16 @@ msgstr "Fertigungskosten"
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Eine Verbrauchsposition hat kein zugeordnetes Produkt."
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_cost:0
+msgid "Product Cost"
+msgstr ""
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_manual_cost:0
+msgid "Product Manual Cost"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template

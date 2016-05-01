@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 00:25+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-28 14:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,11 @@ msgid "Operators time"
 msgstr "Operators time"
 
 #. module: mrp_operations_project
+#: field:project.task,workorder_scheduled_products:0
+msgid "Scheduled Products"
+msgstr "Scheduled Products"
+
+#. module: mrp_operations_project
 #: view:project.task.work:mrp_operations_project.project_task_work_mrp
 msgid "Stop"
 msgstr "Stop"
@@ -56,6 +61,11 @@ msgstr "Stop"
 #: model:ir.model,name:mrp_operations_project.model_project_task
 msgid "Task"
 msgstr "Task"
+
+#. module: mrp_operations_project
+#: field:mrp.production.workcenter.line,task_m2m:0
+msgid "Task m2m"
+msgstr "Task m2m"
 
 #. module: mrp_operations_project
 #: model:ir.model,name:mrp_operations_project.model_mrp_production_workcenter_line

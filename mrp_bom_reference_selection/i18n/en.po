@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 15:32+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-28 14:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,11 @@ msgid "Created on"
 msgstr "Created on"
 
 #. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
 msgstr "Group By"
@@ -49,6 +54,11 @@ msgstr "Group By"
 #: field:mrp.bom.reference,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0

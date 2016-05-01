@@ -3,13 +3,20 @@
 # * mrp_operations_project
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Automatically generated, 2014
+# Carlos Edo <carlos.edo@ticketea.com>, 2016
+# Elisa Helguero <elisa.helguero@ticketea.com>, 2016
+# Federico Mon <federico.mon@ticketea.com>, 2016
+# Francesco Dell'Agata <francesco.agata@ticketea.com>, 2016
+# Javier Martinez <javier.martinez@ticketea.com>, 2016
+# Jose Ignacio, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 10:32+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:12+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +56,11 @@ msgid "Operators time"
 msgstr "Čas operaterjev"
 
 #. module: mrp_operations_project
+#: field:project.task,workorder_scheduled_products:0
+msgid "Scheduled Products"
+msgstr "Načrtovani proizvodi"
+
+#. module: mrp_operations_project
 #: view:project.task.work:mrp_operations_project.project_task_work_mrp
 msgid "Stop"
 msgstr "Stoj"
@@ -57,6 +69,11 @@ msgstr "Stoj"
 #: model:ir.model,name:mrp_operations_project.model_project_task
 msgid "Task"
 msgstr "Opravilo"
+
+#. module: mrp_operations_project
+#: field:mrp.production.workcenter.line,task_m2m:0
+msgid "Task m2m"
+msgstr "Opravilo m2m"
 
 #. module: mrp_operations_project
 #: model:ir.model,name:mrp_operations_project.model_mrp_production_workcenter_line

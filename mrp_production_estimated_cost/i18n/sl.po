@@ -3,13 +3,17 @@
 # * mrp_production_estimated_cost
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-27 07:50+0000\n"
+"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"PO-Revision-Date: 2016-04-30 05:13+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +67,14 @@ msgid "Cancel"
 msgstr "Preklic"
 
 #. module: mrp_production_estimated_cost
+#: help:mrp.production,product_cost:0
+msgid ""
+"Cost price of the product template used for standard stock valuation in "
+"accounting and used as a base price on purchase orders. Expressed in the "
+"default unit of measure of the product."
+msgstr "Lastna cena predloge proizvoda, ki se uporabi za standardno knjigovodsko vrednotenje zalog in kot osnovna cena na nabavnih nalogih. Izražena je v privzeti enoti mere proizvoda."
+
+#. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
 msgid "Costs analysis"
 msgstr "Analiza stroškov"
@@ -97,6 +109,11 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
 msgid "Estim. AVG"
@@ -121,6 +138,7 @@ msgstr "Ocena povprečnega stroška enote"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
+#: field:mrp.production,created_estimated_cost:0
 msgid "Estimated Costs"
 msgstr "Ocena stroškov"
 
@@ -149,6 +167,11 @@ msgstr "Glavna knjiga"
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_production_estimated_cost
+#: field:wiz.create.virtual.mo,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
@@ -190,6 +213,16 @@ msgstr "Proizvodni stroški"
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Ena postavka porabe nima dodeljenega proizvoda."
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_cost:0
+msgid "Product Cost"
+msgstr "Lastna cena proizvoda"
+
+#. module: mrp_production_estimated_cost
+#: field:mrp.production,product_manual_cost:0
+msgid "Product Manual Cost"
+msgstr "Cena proizvoda ročno"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template
