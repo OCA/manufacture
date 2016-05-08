@@ -3,13 +3,14 @@
 # * mrp_operations_project
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 00:25+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-05-01 02:44+0000\n"
+"PO-Revision-Date: 2016-05-01 08:51+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,12 +40,17 @@ msgstr ""
 #. module: mrp_operations_project
 #: view:mrp.production.workcenter.line:mrp_operations_project.mrp_production_workcenter_form_view_inherit
 msgid "Information"
-msgstr ""
+msgstr "Informazione"
 
 #. module: mrp_operations_project
 #: view:mrp.production:mrp_operations_project.mrp_production_project_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_project.mrp_production_workcenter_form_view_inherit
 msgid "Operators time"
+msgstr ""
+
+#. module: mrp_operations_project
+#: field:project.task,workorder_scheduled_products:0
+msgid "Scheduled Products"
 msgstr ""
 
 #. module: mrp_operations_project
@@ -55,6 +61,11 @@ msgstr ""
 #. module: mrp_operations_project
 #: model:ir.model,name:mrp_operations_project.model_project_task
 msgid "Task"
+msgstr ""
+
+#. module: mrp_operations_project
+#: field:mrp.production.workcenter.line,task_m2m:0
+msgid "Task m2m"
 msgstr ""
 
 #. module: mrp_operations_project
