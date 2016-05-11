@@ -10,6 +10,7 @@ class TestQualityControlMrp(TransactionCase):
     def setUp(self):
         super(TestQualityControlMrp, self).setUp()
         self.production_model = self.env['mrp.production']
+        self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
         self.product = self.env.ref('product.product_product_4')
         self.test = self.env.ref('quality_control.qc_test_1')
@@ -20,6 +21,12 @@ class TestQualityControlMrp(TransactionCase):
         })
         self.production1.action_confirm()
         self.production1.action_assign()
+        inspection_lines = (
+            self.inspection_model._prepare_inspection_lines(self.test))
+        self.inspection1 = self.inspection_model.create({
+            'name': 'Test Inspection',
+            'inspection_lines': inspection_lines,
+        })
 
     def test_inspection_create_for_product(self):
         self.product.qc_triggers = [(
@@ -78,3 +85,11 @@ class TestQualityControlMrp(TransactionCase):
             'consume_produce')
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
+
+    def test_qc_inspection_mo(self):
+        self.inspection1.write({
+            'object_id': '%s,%d' % (self.production1._model,
+                                    self.production1.id),
+        })
+        self.assertEquals(self.inspection1.production,
+                          self.production1)
