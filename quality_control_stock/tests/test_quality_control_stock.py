@@ -237,3 +237,14 @@ class TestQualityControl(TransactionCase):
                           self.picking1.move_lines[:1].product_id)
         self.assertEquals(self.inspection1.qty,
                           self.picking1.move_lines[:1].product_qty)
+
+    def test_qc_inspection_lot(self):
+        self.inspection1.write({
+            'object_id': '%s,%d' % (self.lot._model,
+                                    self.lot.id),
+        })
+        self.inspection1.onchange_object_id()
+        self.assertEquals(self.inspection1.lot,
+                          self.lot)
+        self.assertEquals(self.inspection1.product,
+                          self.lot.product_id)
