@@ -24,13 +24,15 @@ class MrpProduction(models.Model):
     @api.model
     def action_produce(self, production_id, production_qty, production_mode,
                        wiz=False):
+        production = self.browse(production_id)
+        done_moves = production.move_created_ids2.filtered(
+            lambda r: r.state == 'done')
         res = super(MrpProduction, self).action_produce(
             production_id, production_qty, production_mode, wiz=wiz)
         if production_mode == 'consume_produce':
             inspection_model = self.env['qc.inspection']
-            production = self.browse(production_id)
             for move in production.move_created_ids2.filtered(
-                    lambda r: r.state == 'done'):
+                    lambda r: r.state == 'done') - done_moves:
                 qc_trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
                 trigger_lines = set()
                 for model in ['qc.trigger.product_category_line',
