@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-29 10:13+0000\n"
-"PO-Revision-Date: 2016-03-28 13:41+0000\n"
-"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
+"POT-Creation-Date: 2016-06-23 15:52+0000\n"
+"PO-Revision-Date: 2016-07-13 16:04+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,10 +27,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: quality_control_stock
+#: field:stock.picking,created_inspections:0
+#: field:stock.production.lot,created_inspections:0
+msgid "Created inspections"
+msgstr "Inspeções criadas"
+
+#. module: quality_control_stock
+#: field:stock.picking,done_inspections:0
+#: field:stock.production.lot,done_inspections:0
+msgid "Done inspections"
+msgstr ""
+
+#. module: quality_control_stock
 #: field:stock.picking,qc_inspections:0
 #: field:stock.production.lot,qc_inspections:0
 msgid "Inspections"
 msgstr "Inspeções"
+
+#. module: quality_control_stock
+#: field:stock.picking,passed_inspections:0
+#: field:stock.production.lot,passed_inspections:0
+msgid "Inspections OK"
+msgstr ""
+
+#. module: quality_control_stock
+#: field:stock.picking,failed_inspections:0
+#: field:stock.production.lot,failed_inspections:0
+msgid "Inspections failed"
+msgstr ""
 
 #. module: quality_control_stock
 #: help:stock.production.lot,qc_inspections:0
@@ -89,7 +113,7 @@ msgstr "Inspeção Controle de Qualidade"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr ""
+msgstr "Controle de qualidade em linha de inspeção"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_trigger

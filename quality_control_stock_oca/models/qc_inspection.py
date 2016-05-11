@@ -29,6 +29,8 @@ class QcInspection(models.Model):
                 self.lot = self.object_id.lot_id
             elif self.object_id._name == 'stock.move':
                 self.lot = self.object_id.lot_ids[:1]
+            elif self.object_id._name == 'stock.production.lot':
+                self.lot = self.object_id
 
     @api.one
     @api.depends('object_id')
@@ -39,6 +41,8 @@ class QcInspection(models.Model):
             if self.object_id._name == 'stock.move':
                 self.product = self.object_id.product_id
             elif self.object_id._name == 'stock.pack.operation':
+                self.product = self.object_id.product_id
+            elif self.object_id._name == 'stock.production.lot':
                 self.product = self.object_id.product_id
 
     @api.onchange('object_id')
