@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-01 02:44+0000\n"
-"PO-Revision-Date: 2016-05-01 08:52+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-10 16:34+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Lotto"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Lotto/Numero di serie"
 
 #. module: quality_control_stock
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
@@ -82,18 +82,18 @@ msgstr ""
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 #: field:qc.inspection.line,picking:0
 msgid "Picking"
-msgstr ""
+msgstr "Ordine di consegna"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Lista Picking"
 
 #. module: quality_control_stock
 #: field:qc.trigger,picking_type:0
 msgid "Picking type"
-msgstr ""
+msgstr "Tipo Picking"
 
 #. module: quality_control_stock
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
@@ -159,7 +159,7 @@ msgstr ""
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
