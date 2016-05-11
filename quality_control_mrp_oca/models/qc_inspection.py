@@ -8,15 +8,23 @@ from openerp import models, fields, api
 class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
-    @api.one
     @api.depends('object_id')
     def get_production(self):
-        self.production = False
-        if self.object_id:
-            if self.object_id._name == 'stock.move':
-                self.production = self.object_id.production_id
-            elif self.object_id._name == 'mrp.production':
-                self.production = self.object_id
+        for inspection in self:
+            if inspection.object_id:
+                if inspection.object_id._name == 'stock.move':
+                    inspection.production = inspection.object_id.production_id
+                elif inspection.object_id._name == 'mrp.production':
+                    inspection.production = inspection.object_id
+
+    @api.depends('object_id')
+    def _get_product(self):
+        """Overriden for getting the product from a manufacturing order."""
+        for inspection in self:
+            super(QcInspection, inspection)._get_product()
+            if inspection.object_id and\
+                    inspection.object_id._name == 'mrp.production':
+                inspection.product = inspection.object_id.product_id
 
     production = fields.Many2one(
         comodel_name="mrp.production", compute="get_production", store=True)
