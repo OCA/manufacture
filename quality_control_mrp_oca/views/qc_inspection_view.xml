@@ -35,6 +35,9 @@
             <field name="groups_id"
                    eval="[(4, ref('mrp.group_mrp_user'))]" />
             <field name="arch" type="xml">
+                <field name="product" position="after">
+                    <field name="production" />
+                </field>
                 <filter string="Product" position="after">
                     <filter string="Production" domain="[]"
                             context="{'group_by': 'production'}" />
