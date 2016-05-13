@@ -5,24 +5,12 @@
             <field name="domain">['|',('active','=',True),('active','=',False)]</field>
         </record>
 
-        <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
-            <field name="name">mrp.bom.tree</field>
-            <field name="model">mrp.bom</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="code"/>
-                    <field name="sequence"/>
-                </tree>
-            </field>
-        </record>
-
         <record model="ir.ui.view" id="mrp_bom_version_tree_view">
             <field name="name">mrp.bom.version.tree</field>
             <field name="model">mrp.bom</field>
-            <field name="inherit_id" ref="mrp.mrp_bom_tree_parent_view"/>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
                     <field name="active" />
                     <field name="version" />
                     <field name="state" />
@@ -43,7 +31,7 @@
                             attrs="{'invisible':[('state','!=','active')]}"
                             icon="gtk-convert"
                             confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
-                </field>
+                </xpath>
             </field>
         </record>
 

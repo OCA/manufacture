@@ -54,8 +54,6 @@ class MrpBom(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     product_qty = fields.Float(
         readonly=True, states={'draft': [('readonly', False)]})
-    name = fields.Char(
-        states={'historical': [('readonly', True)]})
     code = fields.Char(
         states={'historical': [('readonly', True)]})
     type = fields.Selection(
