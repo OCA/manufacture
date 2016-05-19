@@ -11,7 +11,6 @@ class QcInspection(models.Model):
     @api.depends('object_id')
     def get_production(self):
         for inspection in self:
-            inspection.production = False
             if inspection.object_id:
                 if inspection.object_id._name == 'stock.move':
                     inspection.production = inspection.object_id.production_id
