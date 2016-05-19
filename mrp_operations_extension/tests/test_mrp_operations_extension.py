@@ -156,6 +156,7 @@ class TestMrpOperationsExtension(common.TransactionCase):
             self.production.action_confirm()
 
     def test_confirm_production_operation_extension_case1(self):
+        self.assertEqual(self.production.state, 'draft')
         self.production.signal_workflow('button_confirm')
         self.assertFalse(self.production.workcenter_lines[0].is_material_ready)
         self.production.force_production()
