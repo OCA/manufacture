@@ -14,7 +14,7 @@ class QcInspection(models.Model):
             if inspection.object_id:
                 if inspection.object_id._name == 'stock.move':
                     inspection.production = inspection.object_id.production_id
-                elif self.object_id._name == 'mrp.production':
+                elif inspection.object_id._name == 'mrp.production':
                     inspection.production = inspection.object_id
 
     @api.depends('object_id')
