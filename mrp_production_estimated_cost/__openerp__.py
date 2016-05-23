@@ -6,7 +6,7 @@
 
 {
     "name": "Estimated costs in manufacturing orders",
-    "version": "8.0.1.1.0",
+    "version": "8.0.1.2.0",
     "category": "Manufacturing",
     "author": "OdooMRP team, "
               "AvanzOSC, "

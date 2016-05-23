@@ -9,26 +9,30 @@ from openerp import api, exceptions, fields, models, _
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    @api.one
+    @api.multi
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_std_cost',
                  'product_qty')
     def _compute_unit_std_cost(self):
-        self.std_cost = -sum(self.analytic_line_ids.mapped('estim_std_cost'))
-        self.unit_std_cost = self.std_cost / self.product_qty
+        for record in self:
+            record.std_cost = -sum(record.analytic_line_ids.mapped(
+                'estim_std_cost'))
+            record.unit_std_cost = record.std_cost / record.product_qty
 
-    @api.one
+    @api.multi
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_avg_cost',
                  'product_qty')
     def _compute_unit_avg_cost(self):
-        self.avg_cost = -sum(self.analytic_line_ids.mapped('estim_avg_cost'))
-        self.unit_avg_cost = self.avg_cost / self.product_qty
+        for record in self:
+            record.avg_cost = -sum(record.analytic_line_ids.mapped(
+                'estim_avg_cost'))
+            record.unit_avg_cost = record.avg_cost / record.product_qty
 
-    @api.one
+    @api.multi
+    @api.depends('analytic_line_ids', 'analytic_line_ids.task_id')
     def _count_created_estimated_cost(self):
-        analytic_line_obj = self.env['account.analytic.line']
-        cond = [('mrp_production_id', '=', self.id),
-                ('task_id', '=', False)]
-        self.created_estimated_cost = len(analytic_line_obj.search(cond))
+        for record in self:
+            record.created_estimated_cost = len(
+                record.analytic_line_ids.filtered(lambda x: not x.task_id))
 
     active = fields.Boolean(string='Active', default=True)
     name = fields.Char(default="/")
