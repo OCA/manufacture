@@ -17,6 +17,7 @@ class TestQualityControlMrp(TransactionCase):
         self.trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
         self.production1 = self.production_model.create({
             'product_id': self.product.id,
+            'product_qty': 2.0,
             'product_uom': self.product.uom_id.id,
         })
         self.production1.action_confirm()
@@ -85,6 +86,22 @@ class TestQualityControlMrp(TransactionCase):
             'consume_produce')
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
+
+    def test_inspection_with_partial_fabrication(self):
+        self.product.qc_triggers = [(
+            0, 0, {
+                'trigger': self.trigger.id,
+                'test': self.test.id,
+            }
+        )]
+        self.production1.action_produce(
+            self.production1.id, 1.0, 'consume_produce')
+        self.assertEqual(self.production1.created_inspections, 1,
+                         'Only one inspection must be created.')
+        self.production1.action_produce(
+            self.production1.id, 1.0, 'consume_produce')
+        self.assertEqual(self.production1.created_inspections, 2,
+                         'There must be only 2 inspections.')
 
     def test_qc_inspection_mo(self):
         self.inspection1.write({
