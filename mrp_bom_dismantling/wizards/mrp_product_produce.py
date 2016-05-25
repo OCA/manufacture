@@ -15,12 +15,21 @@ class MrpByProductLine(models.TransientModel):
                                  related='move_id.product_id')
     lot_id = fields.Many2one('stock.production.lot', string='Lot')
 
+    lot_required = fields.Boolean(compute='_compute_lot_required')
+
+    @api.depends('produce_id.mode', 'product_id.tracking')
+    def _compute_lot_required(self):
+        for record in self:
+            record.lot_required = record.product_id.tracking != 'none' \
+                and record.produce_id.mode == 'consume_produce'
+
 
 class MrpProductProduce(models.TransientModel):
     _inherit = "mrp.product.produce"
     move_lot_ids = fields.One2many(
         'mrp.product.produced.line',
         inverse_name='produce_id',
+        string='Products to produce lots'
     )
 
     @api.onchange("product_id")
