@@ -56,15 +56,14 @@ class MrpProductionProductLine(models.Model):
 class MrpProductionWorkcenterLine(models.Model):
     _inherit = 'mrp.production.workcenter.line'
 
-    @api.one
+    @api.multi
+    @api.depends('move_lines', 'move_lines.state')
     def _compute_is_material_ready(self):
-        self.is_material_ready = True
-        if self.product_line:
-            moves = self.env['stock.move'].search(
-                [('work_order', '=', self.id)])
-            self.is_material_ready = not any(
+        for line in self:
+            line.is_material_ready = (not any(
                 x not in ('assigned', 'cancel', 'done') for x in
-                moves.mapped('state'))
+                line.mapped('move_lines.state'))
+                if line.product_line else True)
 
     @api.multi
     @api.depends('routing_wc_line')
