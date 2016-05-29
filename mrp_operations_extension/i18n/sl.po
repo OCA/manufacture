@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-28 14:19+0000\n"
+"POT-Creation-Date: 2016-05-26 16:03+0000\n"
 "PO-Revision-Date: 2016-04-30 05:11+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
@@ -300,7 +300,7 @@ msgid "Materials Ready"
 msgstr "Pripravljen material"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:135
+#: code:addons/mrp_operations_extension/models/mrp_production.py:134
 #, python-format
 msgid "Missing materials to start the production"
 msgstr "Manjkajoči materiali za zagon proizvodnje"
@@ -388,7 +388,7 @@ msgid "Previous operations finished"
 msgstr "Predhodne operacije dokončane"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:131
+#: code:addons/mrp_operations_extension/models/mrp_production.py:130
 #, python-format
 msgid "Previous operations not finished"
 msgstr "Predhodne operacije nedokončane"
