@@ -3,33 +3,32 @@
 # * mrp_bom_version
 # 
 # Translators:
-# Paolo Valier, 2016
-# Paolo Valier, 2016
+# Jaroslav Helemik Nemec <nemec@helemik.cz>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 03:58+0000\n"
-"PO-Revision-Date: 2016-06-06 07:38+0000\n"
-"Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"PO-Revision-Date: 2016-06-07 15:15+0000\n"
+"Last-Translator: Jaroslav Helemik Nemec <nemec@helemik.cz>\n"
+"Language-Team: Czech (http://www.transifex.com/oca/OCA-manufacture-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "Activate"
-msgstr "Attivare"
+msgstr "Aktivovat"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr "Attivo"
+msgstr "Aktivní"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0
@@ -39,19 +38,19 @@ msgstr ""
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Distinta base"
+msgstr "Kusovník"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr "Bozza"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Group By..."
-msgstr "Raggruppa per ......"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -68,7 +67,7 @@ msgstr ""
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Inactive"
-msgstr ""
+msgstr "Neaktivní"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,active_draft:0
@@ -90,23 +89,23 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
-msgstr "Nuova versione"
+msgstr "Nová verze"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,old_versions:0
 msgid "Old Versions"
-msgstr ""
+msgstr "Stará verze"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
 msgid "Parent BoM"
-msgstr ""
+msgstr "Nadřazený kusovník"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr "Stato"
+msgstr "Stav"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
@@ -123,12 +122,12 @@ msgstr ""
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
 msgid "Version"
-msgstr "Versione"
+msgstr "Verze"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 msgid "Versions"
-msgstr "Versioni"
+msgstr "Verze"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
