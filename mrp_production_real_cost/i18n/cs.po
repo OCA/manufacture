@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_production_real_cost
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-29 03:58+0000\n"
+"PO-Revision-Date: 2016-06-07 15:15+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Czech (http://www.transifex.com/oca/OCA-manufacture-8-0/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Kusovník"
+
+#. module: mrp_production_real_cost
+#: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:75
+#, python-format
+msgid "CYCLE"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: field:mrp.production,analytic_line_ids:0
+msgid "Cost Lines"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:34
+#: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:41
+#, python-format
+msgid "HOUR"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: code:addons/mrp_production_real_cost/models/stock_move.py:29
+#, python-format
+msgid "MAT"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: view:mrp.production:mrp_production_real_cost.mrp_production_form_view_real_costs
+msgid "Manufacturing costs"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:120
+#, python-format
+msgid "POST"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:111
+#, python-format
+msgid "PRE"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: field:mrp.production.workcenter.line,post_cost:0
+msgid "Post-Operation Cost"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: field:mrp.production.workcenter.line,pre_cost:0
+msgid "Pre-Operation Cost"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: view:mrp.production:mrp_production_real_cost.mrp_production_tree_view_real_costs
+#: field:mrp.production,real_cost:0
+msgid "Total Real Cost"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: field:mrp.production,unit_real_cost:0
+msgid "Unit Real Cost"
+msgstr ""
+
+#. module: mrp_production_real_cost
+#: model:ir.model,name:mrp_production_real_cost.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr ""
