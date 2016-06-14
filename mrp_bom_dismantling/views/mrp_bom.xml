@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
         <!-- Menu and action-->
         <record id="mrp_bom_dismantling_form_action" model="ir.actions.act_window">
             <field name="name">Dismantling</field>
@@ -66,5 +65,4 @@
                 </field>
             </field>
         </record>
-    </data>
-</openerp>
+</odoo>

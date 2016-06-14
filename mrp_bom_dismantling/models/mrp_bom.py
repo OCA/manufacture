@@ -13,6 +13,9 @@ class MrpBom(models.Model):
         comodel_name='product.product',
         string='Dismantled product'
     )
+    dismantled_product_tmpl_id = fields.Many2one(
+        related='dismantled_product_id.product_tmpl_id',
+    )
 
     _sql_constraints = [
         ('bom_dismantled_product_id',

@@ -4,8 +4,7 @@
 {
     "name": "BOM Dismantling",
     "summary": "Ability to create a dismantling BOM by reversing a BOM.",
-    "version": "9.0.1.0.1",
-    "category": "Manufacturing",
+    "version": "9.0.1.1.0",
     "website": "http://www.camptocamp.com/",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -16,6 +15,7 @@
     ],
     "data": [
         "views/mrp_bom.xml",
+        "views/product_product.xml",
         "views/product_template.xml",
         "views/res_config.xml",
         "wizards/dismantling_product_choice.xml",

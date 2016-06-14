@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
         <!-- Bill of Materials action override -->
         <record id="mrp.template_open_bom" model="ir.actions.act_window">
             <field name="domain">[('dismantling', '=', False)]</field>
         </record>
-    </data>
-</openerp>
+
+        <!-- Add a second button for Dismantling BoM -->
+        <record id="template_form_dismantling_button" model="ir.ui.view">
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="mrp.product_template_form_view_bom_button"/>
+            <field name="arch" type="xml">
+                <button name="%(mrp.template_open_bom)d" position="after">
+                    <button class="oe_stat_button" name="action_view_dismantling_bom" type="object"
+                        attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" icon="fa-gavel">
+                        <field string="Dismantling" name="dismantling_bom_count" widget="statinfo" />
+                    </button>
+                </button>
+            </field>
+        </record>
+</odoo>
