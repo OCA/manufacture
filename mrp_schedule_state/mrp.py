@@ -104,6 +104,7 @@ class MrpProductionWorkcenterLine(orm.Model):
             'production_id', 'schedule_state',
             type='char',
             string='MO Schedule',
+            select=True,
             help="'sub state' of MO state 'Ready To Produce' dedicated to "
                  "planification, scheduling and ordering",
             store={
