@@ -101,5 +101,7 @@ class MrpProductionWorkcenterLine(models.Model):
 
     @api.multi
     def write(self, vals, update=True):
-        return super(MrpProductionWorkcenterLine, self.with_context(
-            production=self.production_id)).write(vals)
+        for rec in self:
+            super(MrpProductionWorkcenterLine, rec.with_context(
+                production=rec.production_id)).write(vals)
+        return True

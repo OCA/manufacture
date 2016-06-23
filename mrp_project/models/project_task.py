@@ -32,5 +32,7 @@ class ProjectTask(models.Model):
 
     @api.multi
     def write(self, vals):
-        return super(ProjectTask, self.with_context(
-            production=self.mrp_production_id)).write(vals)
+        for rec in self:
+            super(ProjectTask, rec.with_context(
+                production=rec.mrp_production_id)).write(vals)
+        return True
