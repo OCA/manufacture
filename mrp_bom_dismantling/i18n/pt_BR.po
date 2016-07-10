@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_dismantling
+# 
+# Translators:
+# Claudio Araujo Santos <claudioaraujosantos@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-03 06:08+0000\n"
+"PO-Revision-Date: 2016-07-07 20:21+0000\n"
+"Last-Translator: Claudio Araujo Santos <claudioaraujosantos@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-9-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de materiais"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.mrp_bom_form_view
+msgid "Create Manufacturing Order"
+msgstr "Criar ordem de produção"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.mrp_bom_form_view
+msgid "Create dismantling BoM"
+msgstr "Criar desmantelamento BoM"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantled_product_id
+msgid "Dismantled product"
+msgstr "Produto desmontado"
+
+#. module: mrp_bom_dismantling
+#: model:ir.actions.act_window,name:mrp_bom_dismantling.mrp_bom_dismantling_form_action
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling
+#: model:ir.ui.menu,name:mrp_bom_dismantling.menu_mrp_bom_dismantling
+msgid "Dismantling"
+msgstr "Desmontagem"
+
+#. module: mrp_bom_dismantling
+#: sql_constraint:mrp.bom:0
+msgid "Dismantling BoM should have a dismantled product."
+msgstr "Desmantelamento \"BoM\" deve ter um produto desmontado."
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
+msgid "Display Name"
+msgstr "Mostrar nome"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
+msgid "Last Modified on"
+msgstr "Modificada pela última vez"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_date
+msgid "Last Updated on"
+msgstr "Atualizado em"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_id
+msgid "Lot"
+msgstr "Lote"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_required
+msgid "Lot required"
+msgstr "Lote requerido"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_move_id
+msgid "Move id"
+msgstr "ID de movimento"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_produce_id
+msgid "Produce"
+msgstr "Produzir"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_product_product
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Produto produzido"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_product_template
+msgid "Product Template"
+msgstr "Modelo Produto"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produce_move_lot_ids
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_product_produce_wizard
+msgid "Products to produce lots"
+msgstr "Produtos para produzir lotes"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_stock_move
+msgid "Stock Move"
+msgstr "Mover estoque"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produced_line
+msgid "mrp.product.produced.line"
+msgstr "mrp.product.produced.line"
