@@ -39,7 +39,7 @@ class MrpWorkcenter(models.Model):
         'workcenter_id',
         domain=[('state', 'not in', STATIC_STATES)],
         string='Work Orders')
-    
+
     @api.multi
     def _get_workcenter_line_domain(self):
         return [
@@ -59,6 +59,7 @@ class MrpWorkcenter(models.Model):
             'domain': domain,
             'target': 'current',
         }
+
 
 class MrpProductionWorkcenterLine(models.Model):
     _inherit = 'mrp.production.workcenter.line'
