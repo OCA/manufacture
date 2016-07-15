@@ -66,7 +66,7 @@ class ComputeParentLevel(TransactionCase):
         self.assertEqual(
             workcenter_child.parent_level_1_id, workcenter_parent1)
 
-    def test_compute_parent_level3(self):
+    def test_compute_parent_level3_bis(self):
         workcenter_child = self.env.ref(
             'mrp_workcenter_hierarchical.mrp_workcenter_C')
         workcenter_parent3 = self.env.ref(

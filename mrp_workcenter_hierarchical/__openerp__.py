@@ -14,7 +14,7 @@
     ],
     'website': 'http://www.akretion.com/',
     'data': [
-        'workcenter_view.xml',
+        'views/workcenter_view.xml',
     ],
     'demo': [
         'demo/mrp_demo.xml',
