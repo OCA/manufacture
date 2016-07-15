@@ -31,8 +31,8 @@ class MrpWorkcenter(models.Model):
         compute='_compute_parent_level',
         string='Parent Level 3',
         store=True)
-    parent_left = fields.Integer(select=1)
-    parent_right = fields.Integer(select=1)
+    parent_left = fields.Integer(select=True)
+    parent_right = fields.Integer(select=True)
 
     @api.multi
     def _get_parent_ids(self):
