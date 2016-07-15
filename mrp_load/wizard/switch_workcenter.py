@@ -3,51 +3,49 @@
 # David BEAL <david.beal@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
+from openerp.osv import orm
+from openerp.exceptions import UserError
 from lxml import etree
 from openerp.tools.translate import _
 
 
-class SwitchWorkcenter(orm.TransientModel):
+class SwitchWorkcenter(models.TransientModel):
     _name = 'switch.workcenter'
 
-    _columns = {
-        'workcenter_id': fields.many2one(
+    workcenter_id = fields.Many2one(
             'mrp.workcenter',
             'Workcenter',
             required=True)
-    }
 
-    def switch_workcenter(self, cr, uid, ids, context=None):
-        MrpProdWorkcLine_m = self.pool['mrp.production.workcenter.line']
-        active_ids = context.get('active_ids', [])
-        switch_workc = self.browse(cr, uid, ids, context=context)[0]
-        vals = {'workcenter_id': switch_workc.workcenter_id.id}
-        MrpProdWorkcLine_m.write(cr, uid, active_ids, vals, context=context)
+    @api.multi
+    def switch_workcenter(self):
+        self.ensure_one()
+        MrpProdWorkcLine_m = self.env['mrp.production.workcenter.line']
+        active_ids = self.env.context.get('active_ids', [])
+        vals = {'workcenter_id': self.workcenter_id.id}
+        lines = MrpProdWorkcLine_m.browse(active_ids)
+        lines.write(vals)
         return True
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form',
+                        toolbar=False, submenu=False):
         res = super(SwitchWorkcenter, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type, context=context,
+            view_id=view_id, view_type=view_type,
             toolbar=toolbar, submenu=submenu)
-        if context is None:
-            context = {}
-        if context.get('active_ids') and view_type == 'form':
-            line_obj = self.pool['mrp.production.workcenter.line']
+        if self.env.context.get('active_ids') and view_type == 'form':
+            line_obj = self.env['mrp.production.workcenter.line']
             parent_id = False
-            for line in line_obj.browse(cr, uid, context['active_ids'],
-                                        context=context):
+            for line in line_obj.browse(self.env.context['active_ids']):
                 if line.state == 'done':
-                    raise orm.except_orm(
-                        _('User Error'),
+                    raise UserError(
                         _('You can not change the workcenter of a done '
                           'operation'))
                 elif not parent_id:
                     parent_id = line.workcenter_id.parent_level_1_id.id
                 elif parent_id != line.workcenter_id.parent_level_1_id.id:
-                    raise orm.except_orm(
-                        _('User Error'),
+                    raise UserError(
                         _('You can only swith workcenter that share the same '
                           'parent level 1'))
             root = etree.fromstring(res['arch'])

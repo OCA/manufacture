@@ -8,7 +8,7 @@
 <record id="view_wiz_switch_workcenter" model="ir.ui.view">
     <field name="model">switch.workcenter</field>
     <field name="arch" type="xml">
-        <form string="Switch Workcenter" version="7.0">
+        <form string="Switch Workcenter">
             <group col="4">
                 <p colspan="4">
 Replace selected workcenters by another one. 
