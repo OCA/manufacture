@@ -19,51 +19,47 @@
 #
 ###############################################################################
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, api, fields, _
+from openerp.exceptions import UserError
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
-class MrpProduction(orm.Model):
+class MrpProduction(models.Model):
     _inherit = ['mrp.production', 'abstract.selection.rotate']
     _name = 'mrp.production'
 
-    def _set_schedule_states(self, cr, uid, context=None):
+    @api.model
+    def _set_schedule_states(self):
         return [
             ('waiting', _('Waiting')),
             ('todo', _('To-do')),
             ('scheduled', _('Scheduled')),
         ]
 
-    def __set_schedule_states(self, cr, uid, context=None):
-        return self._set_schedule_states(cr, uid, context=context)
+    @api.model
+    def _get_schedule_states(self):
+        return self._set_schedule_states()
 
-    _columns = {
-        'schedule_state': fields.selection(
-            __set_schedule_states,
-            'Schedule State',
-            readonly=True,
-            help="Schedule State used for ordering production"),
-    }
+    schedule_state = fields.Selection(
+        '_get_schedule_states',
+        'Schedule State',
+        readonly=True,
+        default='waiting',
+        help="Schedule State used for ordering production")
 
-    _defaults = {
-        'schedule_state': 'waiting',
-    }
-
-    def _check_planned_state(self, cr, uid, ids, context=None):
-        production_ids = self.search(cr, uid, [
-            ['id', 'in', ids],
+    @api.multi
+    def _check_planned_state(self):
+        productions = self.search([
+            ['id', 'in', self.ids],
             ['state', '=', 'confirmed'],
             ['schedule_state', '!=', 'waiting'],
-            ], context=context)
-        if production_ids:
+            ])
+        if productions:
             production_name = []
-            for production in self.browse(cr, uid, production_ids,
-                                          context=context):
+            for production in productions:
                 production_name.append(production.name)
-            raise orm.except_orm(
-                _('Error'),
+            raise UserError(
                 _('The following production order are not ready and can not '
                   'be scheduled yet : %s') % ', '.join(production_name))
         return True
@@ -72,79 +68,51 @@ class MrpProduction(orm.Model):
         (_check_planned_state, 'useless', ['schedule_state', 'state']),
     ]
 
-    def _get_values_from_selection(self, cr, uid, ids, field, context=None):
-        res = super(MrpProduction, self)._get_values_from_selection(
-            cr, uid, ids, field, context=context)
+    @api.multi
+    def _get_values_from_selection(self, field):
+        res = super(MrpProduction, self)._get_values_from_selection(field)
         if field == 'schedule_state':
             # also check model name ?
-            res = self._set_schedule_states(cr, uid, context=context)
+            res = self._set_schedule_states()
         return res
 
-    def write(self, cr, uid, ids, vals, context=None, update=True):
-        if context is None:
-            context = {}
+    @api.multi
+    def write(self, vals, update=True):
         if vals.get('schedule_state') == 'scheduled':
             vals['date_planned'] =\
                 datetime.now().strftime(DEFAULT_SERVER_DATE_FORMAT)
-        return super(MrpProduction, self)\
-            .write(cr, uid, ids, vals, context=context, update=update)
+        return super(MrpProduction, self).write(vals, update=update)
 
 
-class MrpProductionWorkcenterLine(orm.Model):
+class MrpProductionWorkcenterLine(models.Model):
     _inherit = ['mrp.production.workcenter.line', 'abstract.selection.rotate']
     _name = 'mrp.production.workcenter.line'
 
-    def _get_operation_from_production(self, cr, uid, ids, context=None):
-        return self.pool['mrp.production.workcenter.line'].search(cr, uid, [
-            ['production_id', 'in', ids],
-            ], context=context)
+    @api.model
+    def __set_schedule_states(self):
+        return self.env['mrp.production']._set_schedule_states()
 
-    _columns = {
-        'schedule_state': fields.related(
-            'production_id', 'schedule_state',
-            type='char',
-            string='MO Schedule',
-            select=True,
-            help="'sub state' of MO state 'Ready To Produce' dedicated to "
-                 "planification, scheduling and ordering",
-            store={
-                'mrp.production.workcenter.line': [
-                    lambda self, cr, uid, ids, ctx=None: ids,
-                    ['production_id'],
-                    10,
-                ],
-                'mrp.production': [
-                    _get_operation_from_production,
-                    ['schedule_state'],
-                    10,
-                ],
-            }),
-        'planned_mo': fields.related(
-            'production_id',
-            'date_planned',
-            type='date',
-            string='Planned MO',
-            readonly=True,
-            store={
-                'mrp.production.workcenter.line': [
-                    lambda self, cr, uid, ids, ctx=None: ids,
-                    ['production_id'],
-                    10,
-                ],
-                'mrp.production': [
-                    _get_operation_from_production,
-                    ['date_planned'],
-                    10,
-                ],
-            })
-    }
+    schedule_state = fields.Selection(
+        '__set_schedule_states',
+        related='production_id.schedule_state',
+        string='MO Schedule',
+        select=True,
+        help="'sub state' of MO state 'Ready To Produce' dedicated to "
+             "planification, scheduling and ordering",
+        store=True,
+        readonly=True)
+    planned_mo = fields.Datetime(
+        related='production_id.date_planned',
+        string='Planned MO',
+        readonly=True,
+        store=True)
 
-    def _iter_selection(self, cr, uid, ids, direction, context=None):
+    @api.multi
+    def _iter_selection(self,direction):
         """ Allows to update the field selection to its next value
             here, we pass through the related field
             to go towards 'schedule_state' in mrp.production
         """
-        for elm in self.browse(cr, uid, ids, context=context):
-            self.pool['mrp.production']._iter_selection(
-                cr, uid, [elm.production_id.id], direction, context=context)
+        for elm in self:
+            elm.production_id._iter_selection(direction)
         return True

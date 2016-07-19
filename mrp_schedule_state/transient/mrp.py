@@ -8,29 +8,31 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, api, fields
 
 
-class SwitchScheduleState(orm.TransientModel):
+class SwitchScheduleState(models.TransientModel):
     _name = 'switch.schedule_state'
 
-    def _get_state(self, cr, uid, context=None):
-        active_ids = context.get('active_ids', [])
-        result = self.pool['mrp.production']._get_values_from_selection(
-            cr, uid, active_ids, 'schedule_state', context=context)
+    @api.model
+    def _get_state(self):
+        active_ids = self.env.context.get('active_ids', [])
+        manufacturing_orders = self.env['mrp.production'].browse(active_ids)
+        result = manufacturing_orders._get_values_from_selection(
+            'schedule_state')
         return result
 
-    _columns = {
-        'schedule_state': fields.selection(
-            _get_state,
-            string='Schedule State',
-            required=True)
-    }
+    schedule_state = fields.Selection(
+        _get_state,
+        string='Schedule State',
+        required=True)
 
-    def switch_schedule_state(self, cr, uid, ids, context=None):
-        MrpProduction = self.pool['mrp.production']
-        active_ids = context.get('active_ids', [])
-        switch_schedule = self.browse(cr, uid, ids, context=context)[0]
-        vals = {'schedule_state': switch_schedule.schedule_state}
-        MrpProduction.write(cr, uid, active_ids, vals, context=context)
+    @api.multi
+    def switch_schedule_state(self):
+        self.ensure_one()
+        MrpProduction = self.env['mrp.production']
+        active_ids = self.env.context.get('active_ids', [])
+        vals = {'schedule_state': self.schedule_state}
+        manufacturing_orders = self.env['mrp.production'].browse(active_ids)
+        manufacturing_orders.write(vals)
         return True
