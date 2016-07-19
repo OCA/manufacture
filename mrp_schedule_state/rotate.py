@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp.osv import orm
+from openerp import models, api
 
 
 def get_neighbor_element(my_itr, initial=None):
@@ -34,32 +34,32 @@ def get_neighbor_element(my_itr, initial=None):
         return None
 
 
-class AbstractSelectionRotate(orm.Model):
+class AbstractSelectionRotate(models.Model):
     _name = 'abstract.selection.rotate'
 
-    def _iter_selection(self, cr, uid, ids, direction, context=None):
+    @api.multi
+    def _iter_selection(self, direction):
         " Allows to update the field selection value "
-        if 'selection_field' not in context:
+        if 'selection_field' not in self.env.context:
             return True
-        field = context['selection_field']
+        field = self.env.context['selection_field']
         # extract first value in each tuple as content of the selection field
         values = [elm[0]
-                  for elm in self._get_values_from_selection(
-                      cr, uid, ids, field, context=context)]
+                  for elm in self._get_values_from_selection(field)]
         if direction == 'prev':
             values = reversed(values)
         my_itr = iter(values)
-        for item in self.browse(cr, uid, ids, context=context):
+        for item in self:
             initial = item[field]
             value = get_neighbor_element(my_itr, initial)
             if value is None:
                 my_itr = iter(values)
                 value = get_neighbor_element(my_itr)
-            self.write(cr, uid, item.id, {field: value},
-                       context=context)
+            item.write({field: value})
         return True
 
-    def iter_selection_next(self, cr, uid, ids, context=None):
+    @api.multi
+    def iter_selection_next(self):
         """ You can trigger this method by this xml declaration
             in your own view to iterate field selection
 
@@ -68,15 +68,17 @@ class AbstractSelectionRotate(orm.Model):
                     icon="gtk-go-forward"
                     type="object"/>
         """
-        self._iter_selection(cr, uid, ids, 'next', context=context)
+        self._iter_selection('next')
         return True
 
-    def iter_selection_prev(self, cr, uid, ids, context=None):
+    @api.multi
+    def iter_selection_prev(self):
         " see previous method "
-        self._iter_selection(cr, uid, ids, 'prev', context=context)
+        self._iter_selection('prev')
         return True
 
-    def _get_values_from_selection(self, cr, uid, ids, field, context=None):
+    @api.multi
+    def _get_values_from_selection(self, field):
         """ Override this method
             to return your own list of tuples
             which match with field selection values or a sub part
