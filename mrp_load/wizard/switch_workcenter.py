@@ -14,9 +14,9 @@ class SwitchWorkcenter(models.TransientModel):
     _name = 'switch.workcenter'
 
     workcenter_id = fields.Many2one(
-            'mrp.workcenter',
-            'Workcenter',
-            required=True)
+        'mrp.workcenter',
+        'Workcenter',
+        required=True)
 
     @api.multi
     def switch_workcenter(self):

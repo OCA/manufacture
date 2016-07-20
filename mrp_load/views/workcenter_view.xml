@@ -36,7 +36,7 @@
     name="Load"
     action="mrp.mrp_workcenter_action"
     parent="mrp.menu_mrp_planning"
-    sequence="30" groups="base.group_no_one"/>
+    sequence="30" groups="mrp.group_mrp_manager"/>
 
 <!-- After installation of the module, open the related menu -->
 <record id="action_workcenter_load_module_install" model="ir.actions.client">
