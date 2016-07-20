@@ -95,7 +95,7 @@ To contribute to this module, please visit http://odoo-community.org.
 """,
     'website': 'http://www.akretion.com/',
     'data': [
-        'mrp_view.xml',
+        'views/mrp_view.xml',
     ],
     'demo': [
     ],
