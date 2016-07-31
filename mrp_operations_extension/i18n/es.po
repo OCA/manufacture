@@ -3,13 +3,14 @@
 # * mrp_operations_extension
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Oihane Crucelaegui <oihanecruce@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 21:29+0000\n"
-"PO-Revision-Date: 2016-02-29 08:53+0000\n"
+"POT-Creation-Date: 2016-06-23 15:52+0000\n"
+"PO-Revision-Date: 2016-07-26 13:23+0000\n"
 "Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +53,11 @@ msgid "Bom line"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: field:mrp.config.settings,cycle_by_bom:0
+msgid "Calc Cycles by BoM Quantity"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "Cancel"
@@ -68,13 +74,13 @@ msgid "Capacity per cycle"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:48
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:54
 #, python-format
 msgid "Changing Routing"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:49
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:55
 #, python-format
 msgid ""
 "Changing routing will cause to change the operation in which each component "
@@ -157,6 +163,13 @@ msgid "Description"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,display_name:0
+#: field:mrp.routing.operation,display_name:0
+#: field:mrp.work.order.produce,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_stop:0
 msgid "Duartion for the cleaning."
 msgstr ""
@@ -226,6 +239,13 @@ msgid "Information"
 msgstr "Información"
 
 #. module: mrp_operations_extension
+#: field:mrp.operation.workcenter,__last_update:0
+#: field:mrp.routing.operation,__last_update:0
+#: field:mrp.work.order.produce,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_uid:0
 #: field:mrp.routing.operation,write_uid:0
 #: field:mrp.work.order.produce,write_uid:0
@@ -275,7 +295,12 @@ msgid "Materials"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:135
+#: field:mrp.production.workcenter.line,is_material_ready:0
+msgid "Materials Ready"
+msgstr ""
+
+#. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:134
 #, python-format
 msgid "Missing materials to start the production"
 msgstr ""
@@ -343,6 +368,11 @@ msgid "Possible work centers for this operation"
 msgstr ""
 
 #. module: mrp_operations_extension
+#: field:mrp.production.workcenter.line,possible_workcenters:0
+msgid "Possible workcenters"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: field:mrp.workcenter,post_op_product:0
 msgid "Post-operation costing product"
 msgstr ""
@@ -358,7 +388,7 @@ msgid "Previous operations finished"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:131
+#: code:addons/mrp_operations_extension/models/mrp_production.py:130
 #, python-format
 msgid "Previous operations not finished"
 msgstr ""
@@ -511,7 +541,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,track_production:0
@@ -527,7 +557,7 @@ msgstr "ATENCIÓN:"
 #: model:ir.model,name:mrp_operations_extension.model_mrp_workcenter
 #: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
 msgid "Work Center"
-msgstr ""
+msgstr "Centro de producción"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_routing_workcenter
@@ -546,7 +576,7 @@ msgstr "Orden de trabajo"
 #: field:mrp.routing.operation,workcenters:0
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
 msgid "Work centers"
-msgstr ""
+msgstr "Centros de producción"
 
 #. module: mrp_operations_extension
 #: field:mrp.product.produce.line,work_produce_id:0
@@ -556,12 +586,12 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,workcenter:0
 msgid "Workcenter"
-msgstr ""
+msgstr "Centro de producción"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
 msgid "Workcenters"
-msgstr ""
+msgstr "Centros de producción"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view

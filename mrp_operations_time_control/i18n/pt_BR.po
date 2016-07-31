@@ -4,12 +4,13 @@
 # 
 # Translators:
 # danimaribeiro <danimaribeiro@gmail.com>, 2015
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 00:29+0000\n"
+"POT-Creation-Date: 2016-06-23 15:52+0000\n"
+"PO-Revision-Date: 2016-07-13 16:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +28,11 @@ msgstr "Criado por"
 #: field:operation.time.line,create_date:0
 msgid "Created on"
 msgstr "Criado em"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -53,6 +59,11 @@ msgstr "ID"
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
 msgid "Information"
 msgstr "Informação"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificação em"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
@@ -146,3 +157,8 @@ msgstr "Ordem de serviço"
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 msgid "hours"
 msgstr "horas"
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "startworking,pause"
+msgstr ""

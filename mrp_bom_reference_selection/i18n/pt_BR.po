@@ -3,12 +3,18 @@
 # * mrp_bom_reference_selection
 # 
 # Translators:
+# Automatically generated, 2013
+# Carlos Edo <carlos.edo@ticketea.com>, 2016
+# Elisa Helguero <elisa.helguero@ticketea.com>, 2015
+# Esteban Sánchez <esteban@ticketea.com>, 2015
+# Federico Mon <federico.mon@ticketea.com>, 2016
+# Jose Ignacio, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:43+0000\n"
-"PO-Revision-Date: 2016-02-25 18:29+0000\n"
+"POT-Creation-Date: 2016-06-23 15:52+0000\n"
+"PO-Revision-Date: 2016-07-13 16:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +47,11 @@ msgid "Created on"
 msgstr "Criado em"
 
 #. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
 msgstr ""
@@ -49,6 +60,11 @@ msgstr ""
 #: field:mrp.bom.reference,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificação em"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
@@ -100,7 +116,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,name:0
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #. module: mrp_bom_reference_selection
 #: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard
