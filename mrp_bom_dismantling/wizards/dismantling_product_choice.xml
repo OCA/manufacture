@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_bom_dismantling_product_choice_wizard" model="ir.ui.view">
+        <field name="name">BOM Dismantling product choice</field>
+        <field name="model">mrp.bom.dismantling_product_choice</field>
+        <field name="arch" type="xml">
+            <form string="Dismantling product choice">
+                <field name="bom_id" invisible="True"/>
+                <field name="component_id" options="{'no_create': True}"/>
+                <footer>
+                    <button name="create_bom" type="object" string="Confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

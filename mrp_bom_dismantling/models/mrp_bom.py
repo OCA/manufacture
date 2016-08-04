@@ -38,24 +38,56 @@ class MrpBom(models.Model):
         return self._get_form_view('mrp.production', production)
 
     @api.multi
-    def create_dismantling_bom(self):
+    def action_create_dismantling_bom(self):
+        """ Check dismantling_product_choice config and open choice wizard
+        if needed or directly call create_dismantling_bom.
+        """
+        config_name = 'mrp.bom.dismantling.product_choice'
+        if self.env['ir.config_parameter'].get_param(config_name):
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Choose main compoment'),
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'mrp.bom.dismantling_product_choice',
+                'target': 'new',
+                'context': self.env.context
+            }
+
+        else:
+            return self.create_dismantling_bom()
+
+    @api.multi
+    def create_dismantling_bom(self, main_component=None):
         """ Create a dismantling BoM based on this BoM
+
+        If *main_component* is not None, this component will be set as main
+        product in dismantling bom.
+
+        Else first component will be taken (sorted by Id).
+
+        :type main_component: product_product
+        :rtype: dict
         """
         self.ensure_one()
 
         self._check_bom_validity(check_dismantling=True)
 
         product = self._get_bom_product()
-        components = self._get_components_tuples()
+        components = self._get_components_needs()
 
-        # Create the BoM on first component (sorted by Id)
-        first_component, first_component_needs = components.pop(0)
+        # If no main component, take first sorted by Id
+        if not main_component:
+            main_component = sorted(components.keys(), key=lambda c: c.id)[0]
+
+        # Create the BoM on main component
+        main_component_needs = components.pop(main_component)
         dismantling_bom = self.create({
-            'product_tmpl_id': first_component.product_tmpl_id.id,
-            'product_id': first_component.id,
+            'product_tmpl_id': main_component.product_tmpl_id.id,
+            'product_id': main_component.id,
             'dismantling': True,
             'dismantled_product_id': product.id,
-            'product_qty': first_component_needs,
+            'product_qty': main_component_needs,
         })
 
         # Create BoM line for self.product_tmpl_id
@@ -68,7 +100,7 @@ class MrpBom(models.Model):
 
         # Add others component as By-products
         subproduct_model = self.env['mrp.subproduct']
-        for component, needs in components:
+        for component, needs in components.items():
             subproduct_model.create({
                 'bom_id': dismantling_bom.id,
                 'product_id': component.id,
@@ -111,19 +143,17 @@ class MrpBom(models.Model):
         if warning:
             raise exceptions.UserError(_(warning))
 
-    def _get_components_tuples(self):
-        """ Return this BoM components and their needed qties
-        sorted by component id.
+    def _get_components_needs(self):
+        """ Return this BoM components and their needed qties.
 
-        The result is like [(component_1, 1), (component_2, 5), ...]
+        The result is like {component_1: 1, component_2: 5, ...}
 
-        :rtype: list of tuple
+        :rtype: dict(product_product, float)
         """
         components = self.product_id._get_components_needs(
             product=self.product_id, bom=self
         )
-        components = sorted(components.items(), key=lambda t: t[0].id)
-        return components
+        return dict(components)
 
     def _get_bom_product(self):
         """ Get the product of this BoM.
