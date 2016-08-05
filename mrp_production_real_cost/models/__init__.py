@@ -7,3 +7,4 @@ from . import mrp_bom
 from . import mrp_production
 from . import mrp_production_workcenter_line
 from . import stock_move
+from . import procurement_order
