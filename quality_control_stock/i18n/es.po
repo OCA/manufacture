@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Oihane Crucelaegui <oihanecruce@gmail.com>, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 21:29+0000\n"
-"PO-Revision-Date: 2016-02-29 08:52+0000\n"
+"POT-Creation-Date: 2016-07-31 06:30+0000\n"
+"PO-Revision-Date: 2016-08-05 11:33+0000\n"
 "Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +20,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: quality_control_stock
+#: field:stock.picking,created_inspections:0
+#: field:stock.production.lot,created_inspections:0
+msgid "Created inspections"
+msgstr ""
+
+#. module: quality_control_stock
+#: field:stock.picking,done_inspections:0
+#: field:stock.production.lot,done_inspections:0
+msgid "Done inspections"
+msgstr "Inspecciones realizadas"
+
+#. module: quality_control_stock
 #: field:stock.picking,qc_inspections:0
 #: field:stock.production.lot,qc_inspections:0
 msgid "Inspections"
 msgstr "Inspecciones"
+
+#. module: quality_control_stock
+#: field:stock.picking,passed_inspections:0
+#: field:stock.production.lot,passed_inspections:0
+msgid "Inspections OK"
+msgstr ""
+
+#. module: quality_control_stock
+#: field:stock.picking,failed_inspections:0
+#: field:stock.production.lot,failed_inspections:0
+msgid "Inspections failed"
+msgstr ""
 
 #. module: quality_control_stock
 #: help:stock.production.lot,qc_inspections:0

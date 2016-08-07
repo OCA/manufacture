@@ -3,13 +3,14 @@
 # * mrp_production_estimated_cost
 # 
 # Translators:
+# Oihane Crucelaegui <oihanecruce@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 16:03+0000\n"
-"PO-Revision-Date: 2016-05-23 17:17+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-07-31 06:30+0000\n"
+"PO-Revision-Date: 2016-08-02 10:26+0000\n"
+"Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +55,7 @@ msgstr "Línea analítica"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,analytic_account_id:0
 msgid "Analytic account"
-msgstr ""
+msgstr "Cuenta analítica"
 
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
@@ -83,7 +84,7 @@ msgstr "Crear costes estimados"
 #: view:product.product:mrp_production_estimated_cost.product_product_form_view_bom_button_inh_estimatedcost
 #: view:product.template:mrp_production_estimated_cost.product_template_form_view_bom_button_inh_estimatedcost
 msgid "Create Virtual MO"
-msgstr ""
+msgstr "Crear OF virtual"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.act_product_create_virtual_mo
@@ -91,7 +92,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_run_template_create_virtual_mo
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
 msgid "Create virtual MO"
-msgstr ""
+msgstr "Crear OF virtual"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_uid:0
@@ -106,7 +107,7 @@ msgstr "Creado el"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
@@ -218,12 +219,12 @@ msgstr "Product"
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,product_cost:0
 msgid "Product Cost"
-msgstr ""
+msgstr "Coste de producto"
 
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,product_manual_cost:0
 msgid "Product Manual Cost"
-msgstr ""
+msgstr "Coste manual de producto"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template
@@ -233,12 +234,12 @@ msgstr "Plantilla de producto"
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_show_production_anaytic_lines
 msgid "Production Analytic Lines"
-msgstr ""
+msgstr "Líneas analíticas de producción"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
 msgid "Production Costs"
-msgstr ""
+msgstr "Costes de producción"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
@@ -260,13 +261,13 @@ msgstr "Esta máquina no tiene un producto asignado: %s"
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_tree_view_inh_estimatedcost
 msgid "Total Estimated Cost"
-msgstr ""
+msgstr "Coste total estimado"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.mrp_virtual_production_action
 #: model:ir.ui.menu,name:mrp_production_estimated_cost.menu_mrp_virtual_production_action
 msgid "Virtual Manufacturing Orders to estimate costs"
-msgstr ""
+msgstr "Órdenes de fabricación virtuales para estimar costes"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:135
