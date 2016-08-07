@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 09:59+0000\n"
-"PO-Revision-Date: 2016-06-13 09:59+0000\n"
+"POT-Creation-Date: 2016-08-04 12:01+0000\n"
+"PO-Revision-Date: 2016-08-04 12:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-manufacture-9-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,37 @@ msgid "Bill of Material"
 msgstr "Bill of Material"
 
 #. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_config
+msgid "Bill of Materials"
+msgstr "Bill of Materials"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_bom_id
+msgid "Bom id"
+msgstr "Bom id"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: mrp_bom_dismantling
+#: code:addons/mrp_bom_dismantling/models/mrp_bom.py:49
+#, python-format
+msgid "Choose main compoment"
+msgstr "Choose main compoment"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_component_id
+msgid "Component id"
+msgstr "Component id"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Confirm"
+msgstr "Confirm"
+
+#. module: mrp_bom_dismantling
 #: model:ir.ui.view,arch_db:mrp_bom_dismantling.mrp_bom_form_view
 msgid "Create Manufacturing Order"
 msgstr "Create Manufacturing Order"
@@ -33,11 +64,13 @@ msgid "Create dismantling BoM"
 msgstr "Create dismantling BoM"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_uid
 msgid "Created by"
 msgstr "Created by"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_date
 msgid "Created on"
 msgstr "Created on"
@@ -55,31 +88,46 @@ msgid "Dismantling"
 msgstr "Dismantling"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_config_settings_dismantling_product_choice
+msgid "Dismantling BOM"
+msgstr "Dismantling BOM"
+
+#. module: mrp_bom_dismantling
 #: sql_constraint:mrp.bom:0
 msgid "Dismantling BoM should have a dismantled product."
 msgstr "Dismantling BoM should have a dismantled product."
 
 #. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Dismantling product choice"
+msgstr "Dismantling product choice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_uid
 msgid "Last Updated by"
 msgstr "Last Updated by"
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_date
 msgid "Last Updated on"
 msgstr "Last Updated on"
@@ -93,6 +141,11 @@ msgstr "Lot"
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_required
 msgid "Lot required"
 msgstr "Lot required"
+
+#. module: mrp_bom_dismantling
+#: selection:mrp.config.settings,dismantling_product_choice:0
+msgid "Main BOM product will be set randomly"
+msgstr "Main BOM product will be set randomly"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_move_id
@@ -130,6 +183,27 @@ msgstr "Products to produce lots"
 #: model:ir.model,name:mrp_bom_dismantling.model_stock_move
 msgid "Stock Move"
 msgstr "Stock Move"
+
+#. module: mrp_bom_dismantling
+#: code:addons/mrp_bom_dismantling/wizards/dismantling_product_choice.py:34
+#, python-format
+msgid "This BoM does not have components."
+msgstr "This BoM does not have components."
+
+#. module: mrp_bom_dismantling
+#: selection:mrp.config.settings,dismantling_product_choice:0
+msgid "User have to choose which component to set as main BOM product"
+msgstr "User have to choose which component to set as main BOM product"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom_dismantling_product_choice
+msgid "mrp.bom.dismantling_product_choice"
+msgstr "mrp.bom.dismantling_product_choice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_config_settings
+msgid "mrp.config.settings"
+msgstr "mrp.config.settings"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produced_line
