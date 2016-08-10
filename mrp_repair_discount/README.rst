@@ -7,7 +7,7 @@ MRP Repair Discount
 ===================
 
 This module extends the functionality of mrp repair adding
-new field discount on operation's lines
+new field discount on operations lines
 
 Usage
 =====
@@ -27,16 +27,12 @@ help us smash it by providing detailed and welcomed feedback.
 Credits
 =======
 
-Images
-------
-
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
-
 Contributors
 ------------
 
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Maintainer
 ----------
