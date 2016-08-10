@@ -42,3 +42,62 @@ class MrpRepair(models.Model):
             if operations:
                 repair.invoice_id.button_reset_taxes()
         return res
+
+    def _calc_line_base_price(self, line):
+        return line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+
+    def _get_lines(self, cr, uid, ids, context=None):
+        return self.pool['mrp.repair'].search(
+            cr, uid, [('operations', 'in', ids)], context=context)
+
+    def _get_fee_lines(self, cr, uid, ids, context=None):
+        return self.pool['mrp.repair'].search(
+            cr, uid, [('fees_lines', 'in', ids)], context=context)
+
+    def _amount_tax(self, cr, uid, ids, field_name, arg, context=None):
+        # Can't call super because we have to call compute_all with different
+        # parameter for each line and compute the total amount
+        res = {}
+        cur_obj = self.pool.get('res.currency')
+        tax_obj = self.pool.get('account.tax')
+        for repair in self.browse(cr, uid, ids, context=context):
+            val = 0.0
+            cur = repair.pricelist_id.currency_id
+            for line in repair.operations:
+                if line.to_invoice:
+                    tax_calculate = tax_obj.compute_all(
+                        cr, uid, line.tax_id, self._calc_line_base_price(line),
+                        line.product_uom_qty, line.product_id,
+                        repair.partner_id)
+                    for c in tax_calculate['taxes']:
+                        val += c['amount']
+            for line in repair.fees_lines:
+                if line.to_invoice:
+                    tax_calculate = tax_obj.compute_all(
+                        cr, uid, line.tax_id, line.price_unit,
+                        line.product_uom_qty, line.product_id,
+                        repair.partner_id)
+                    for c in tax_calculate['taxes']:
+                        val += c['amount']
+            res[repair.id] = cur_obj.round(cr, uid, cur, val)
+        return res
+
+    _columns = {
+        'amount_tax': old_fields.function(
+            _amount_tax, string='Taxes',
+            store={
+                'mrp.repair': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['operations', 'fees_lines'], 10),
+                'mrp.repair.line': (
+                    _get_lines, [
+                        'price_unit', 'price_subtotal', 'product_id', 'tax_id',
+                        'product_uom_qty', 'product_uom', 'discount',
+                    ], 10),
+                'mrp.repair.fee': (
+                    _get_fee_lines, [
+                        'price_unit', 'price_subtotal', 'product_id', 'tax_id',
+                        'product_uom_qty', 'product_uom'
+                    ], 10),
+            }),
+    }
