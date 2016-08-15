@@ -3,13 +3,16 @@
 # * mrp_bom_version
 # 
 # Translators:
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
+# Elvis M. Lukšić <meluksic@yahoo.com>, 2013
+# Elvis M. Lukšić <meluksic@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-26 16:08+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-31 05:27+0000\n"
+"PO-Revision-Date: 2017-01-06 06:12+0000\n"
+"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,18 +24,18 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "Activate"
-msgstr ""
+msgstr "Activer"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0
 msgid "Allow to re-edit BoMs"
-msgstr ""
+msgstr "Autorise la rectification des nomenclatures"
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_mrp_bom
@@ -44,90 +47,95 @@ msgstr "Nomenclature"
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Grouper par"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Historical"
-msgstr ""
+msgstr "Historique"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,historical_date:0
 msgid "Historical Date"
-msgstr ""
+msgstr "Date de l'historique"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Inactive"
-msgstr ""
+msgstr "Inactif"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,active_draft:0
 msgid "Keep re-editing BoM active"
-msgstr ""
+msgstr "Laisser la rectification des nomenclatures active"
 
 #. module: mrp_bom_version
 #: model:mail.message.subtype,description:mrp_bom_version.mt_active
 #: model:mail.message.subtype,name:mrp_bom_version.mt_active
 msgid "MRP BoM Active"
-msgstr ""
+msgstr "Nomenclature active"
 
 #. module: mrp_bom_version
 #: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
 msgid "MRP BoM version"
-msgstr ""
+msgstr "Version de la nomenclature"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
-msgstr ""
+msgstr "Nouvelle version"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,old_versions:0
+msgid "Old Versions"
+msgstr "Anciennes versions"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
 msgid "Parent BoM"
-msgstr ""
+msgstr "Nomenclature parente"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr ""
+msgstr "État"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
 msgid "The active state may be passed back to state draft"
-msgstr ""
+msgstr "L'état actif peut être renvoyé à l'état brouillon"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,active_draft:0
 msgid ""
 "This will allow you to define if those BoM passed back to draft are still "
 "activated or not"
-msgstr ""
+msgstr "Cela vous permettra de définir si les nomenclatures remises en brouillon sont toujours activés ou non"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 msgid "Versions"
-msgstr ""
+msgstr "Versions"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "You are going to create a new version of this BoM. Are you sure?"
-msgstr ""
+msgstr "Vous allez créer une nouvelle version de cette nomenclature. Êtes-vous sûr?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -135,7 +143,7 @@ msgstr ""
 msgid ""
 "You are going to historize an BoM. Doing, not be able to unlock it unless "
 "you make a copy. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Vous allez historiser une nomenclature. Faire en sorte de ne pas être en mesure de la déverrouiller, sauf si vous en faites une copie. Etes-vous sûr de vouloir continuer?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -143,4 +151,4 @@ msgstr ""
 msgid ""
 "You will activate the BoM. If you haven't set a route yet, then you won't be"
 " able to do it after this. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Vous activez la nomenclature. Si vous n'avez pas encore défini de gamme, vous ne pourrez plus le faire après cela. Etes-vous sûr de vouloir continuer?"
