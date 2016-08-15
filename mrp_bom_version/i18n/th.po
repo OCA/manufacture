@@ -3,139 +3,136 @@
 # * mrp_bom_version
 # 
 # Translators:
-# Massimiliano Casa <mcasa@cantiericasa.com>, 2016
-# Paolo Valier, 2016
-# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-09-27 18:02+0000\n"
-"Last-Translator: Massimiliano Casa <mcasa@cantiericasa.com>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
+"POT-Creation-Date: 2017-04-24 13:59+0000\n"
+"PO-Revision-Date: 2015-10-26 16:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Thai (http://www.transifex.com/oca/OCA-manufacture-8-0/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "Activate"
-msgstr "Attivare"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr "Attivo"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0
 msgid "Allow to re-edit BoMs"
-msgstr "Permettere di ri-editare BoMs"
+msgstr ""
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Distinta base"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr "Bozza"
+msgstr "ฉบับร่าง"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Group By..."
-msgstr "Raggruppa per ......"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Historical"
-msgstr "Storico"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.bom,historical_date:0
 msgid "Historical Date"
-msgstr "DOta storica"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Inactive"
-msgstr "Inattivo"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,active_draft:0
 msgid "Keep re-editing BoM active"
-msgstr "Mantenere ri-editing BoM attivo"
+msgstr ""
 
 #. module: mrp_bom_version
 #: model:mail.message.subtype,description:mrp_bom_version.mt_active
 #: model:mail.message.subtype,name:mrp_bom_version.mt_active
 msgid "MRP BoM Active"
-msgstr "MRP BoM Activa"
+msgstr ""
 
 #. module: mrp_bom_version
 #: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
 msgid "MRP BoM version"
-msgstr "Versione MRP BoM"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
-msgstr "Nuova versione"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.bom,old_versions:0
 msgid "Old Versions"
-msgstr "Vecchie versioni"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
 msgid "Parent BoM"
-msgstr "BoM genitore"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr "Stato"
+msgstr ""
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
 msgid "The active state may be passed back to state draft"
-msgstr "Lo stato attivo può essere passato di nuovo allo stato bozza"
+msgstr ""
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,active_draft:0
 msgid ""
 "This will allow you to define if those BoM passed back to draft are still "
 "activated or not"
-msgstr "Questo vi permetterà di definire se quelle BoM che sono passate in bozza sono ancora attive o no"
+msgstr ""
 
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
 msgid "Version"
-msgstr "Versione"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 msgid "Versions"
-msgstr "Versioni"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "You are going to create a new version of this BoM. Are you sure?"
-msgstr "Stai creando una nuova versione di questa BoM. Sei sicuro?"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -143,7 +140,7 @@ msgstr "Stai creando una nuova versione di questa BoM. Sei sicuro?"
 msgid ""
 "You are going to historize an BoM. Doing, not be able to unlock it unless "
 "you make a copy. Are you sure you want to proceed?"
-msgstr "Si sta per storicizzare una BoM. Facendo ciò, non sarai in grado di sbloccarela a meno che non crei una copia. Sei sicuro di voler procedere?"
+msgstr ""
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -151,4 +148,4 @@ msgstr "Si sta per storicizzare una BoM. Facendo ciò, non sarai in grado di sbl
 msgid ""
 "You will activate the BoM. If you haven't set a route yet, then you won't be"
 " able to do it after this. Are you sure you want to proceed?"
-msgstr "Attiverai la BoM. Se non hai ancora impostato una route, non sarai in grado di farlo dopo. Sei sicuro di voler procedere?"
+msgstr ""
