@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_mrp_production_form_close" model="ir.ui.view">
+        <field name="name">mrp.production.form.close</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <data>
+                <button name="button_produce" position="after">
+                     <button name="button_produce_close" string="Close Production" type="object" class="oe_highlight" states="in_production"/>
+                </button>
+            </data>
+        </field>
+        </record>
+    </data>
+</openerp>

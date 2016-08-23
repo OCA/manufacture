@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp.prod_trans_in_production_done" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_in_production"/>
+            <field name="act_to" ref="mrp.prod_act_done"/>
+            <field name="signal">button_produce_done</field>
+            <field name="condition">False</field>
+        </record>
+        <record id="prod_trans_preclose_done" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_in_production"/>
+            <field name="act_to" ref="mrp.prod_act_done"/>
+            <field name="signal">button_produce_close</field>
+        </record>
+    </data>
+</openerp>
