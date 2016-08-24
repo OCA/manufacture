@@ -49,7 +49,7 @@ class StockMove(models.Model):
         if (current_available + moved) <= 0:
             return 0.0
         return (
-            (current_value + cost) /
+            (current_value + (cost * moved)) /
             (current_available + moved)
         )
 
@@ -67,7 +67,7 @@ class StockMove(models.Model):
                 product_data['available'] = product.qty_available
                 product_data['price'] = product.standard_price
                 product_data['moved'] = 0.0
-                product_data['cost'] = move.production_id.real_cost
+                product_data['cost'] = move.production_id.unit_real_cost
             if move.state == 'done':
                 product_data['available'] -= move.product_qty
                 product_data['moved'] += move.product_qty
