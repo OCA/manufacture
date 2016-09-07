@@ -118,6 +118,7 @@
                 <button name="button_done" position="attributes">
                     <attribute name="icon"/>
                     <attribute name="class">oe_highlight</attribute>
+                    <attribute name="type">object</attribute>
                 </button>
                 <button name="button_pause" position="attributes">
                     <attribute name="icon"/>
@@ -148,12 +149,26 @@
             </field>
         </record>
 
+       <record model="ir.ui.view" id="mrp_production_form_inherit_view2">
+            <field name="name">mrp.production.form.inherit2</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_form_inherit_view2" />
+            <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_lines']/tree/button[@name='button_done']" position="attributes">
+                <attribute name="type">object</attribute>
+            </xpath>
+            </field>
+       </record>
+
         <record model="ir.ui.view" id="workcenter_line_inh_form_view">
             <field name="name">Workcenter line inh</field>
             <field name="model">mrp.production.workcenter.line</field>
             <field name="inherit_id"
                 ref="mrp_operations.mrp_production_workcenter_form_view_inherit" />
             <field name="arch" type="xml">
+                <button name="button_done" position="attributes">
+                    <attribute name="type">object</attribute>
+                </button>
                 <field name="workcenter_id" position="before">
                     <field name="possible_workcenters" invisible="1"/>
                 </field>

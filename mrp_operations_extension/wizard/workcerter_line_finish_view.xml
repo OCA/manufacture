@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="finish_wo_form_view" model="ir.ui.view">
+            <field name="name">finish.wo.form.view</field>
+            <field name="model">workcenter.line.finish</field>
+            <field name="arch" type="xml">
+                <form string="Finish Work Order">
+                    <separator
+                        string="There are still some pending moves on WO"
+                        colspan="4" />
+                    <footer>
+                        <button class="oe_highlight" name="make_them_done"
+                            string="Do all movements" type="object" />
+                        or
+                        <button class="oe_highlight" name="cancel_all"
+                            string="Cancel all movements" type="object" />
+                        or
+                        <button class="oe_link" special="cancel"
+                            string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
