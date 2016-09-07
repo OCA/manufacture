@@ -81,8 +81,8 @@ class MrpProduction(models.Model):
             'general_account_id': general_account.id,
         }
 
-    @api.multi
-    def _costs_generate(self):
+    @api.model
+    def _costs_generate(self, production):
         """
         As we are generating the account_analytic_lines for MO in the
         current module, we override this method in order to avoid
