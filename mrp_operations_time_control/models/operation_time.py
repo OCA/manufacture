@@ -19,7 +19,8 @@ class MrpProductionWorkcenterLine(models.Model):
             'user': self.env.uid})
 
     def _write_end_date_operation_line(self):
-        if not self.operation_time_lines[-1].end_date:
+        if (self.operation_time_lines and not
+                self.operation_time_lines[-1].end_date):
             self.operation_time_lines[-1].end_date = fields.Datetime.now()
 
     @api.multi
