@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_operations_project
+# 
+# Translators:
+# César Castro Cruz <ulmroan@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-14 13:02+0000\n"
+"PO-Revision-Date: 2016-09-05 11:47+0000\n"
+"Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-manufacture-8-0/language/gl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_operations_project
+#: code:addons/mrp_operations_project/models/mrp_production.py:27
+#, python-format
+msgid ""
+"\n"
+"        Manufacturing Order: %s\n"
+"        Work Order: %s\n"
+"        Workcenter: %s\n"
+"        Cycle: %s\n"
+"        Hour: %s\n"
+"        "
+msgstr ""
+
+#. module: mrp_operations_project
+#: code:addons/mrp_operations_project/models/mrp_production.py:63
+#, python-format
+msgid "%s:: WO%s-%s:: %s"
+msgstr ""
+
+#. module: mrp_operations_project
+#: view:mrp.production.workcenter.line:mrp_operations_project.mrp_production_workcenter_form_view_inherit
+msgid "Information"
+msgstr "Información"
+
+#. module: mrp_operations_project
+#: view:mrp.production:mrp_operations_project.mrp_production_project_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_project.mrp_production_workcenter_form_view_inherit
+msgid "Operators time"
+msgstr ""
+
+#. module: mrp_operations_project
+#: field:project.task,workorder_scheduled_products:0
+msgid "Scheduled Products"
+msgstr "Produtos planificados"
+
+#. module: mrp_operations_project
+#: view:project.task.work:mrp_operations_project.project_task_work_mrp
+msgid "Stop"
+msgstr "Parar"
+
+#. module: mrp_operations_project
+#: model:ir.model,name:mrp_operations_project.model_project_task
+msgid "Task"
+msgstr "Tarefa"
+
+#. module: mrp_operations_project
+#: field:mrp.production.workcenter.line,task_m2m:0
+msgid "Task m2m"
+msgstr ""
+
+#. module: mrp_operations_project
+#: model:ir.model,name:mrp_operations_project.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr "Orde de traballo"

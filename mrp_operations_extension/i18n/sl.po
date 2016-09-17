@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 16:03+0000\n"
-"PO-Revision-Date: 2016-04-30 05:11+0000\n"
+"POT-Creation-Date: 2016-09-14 13:02+0000\n"
+"PO-Revision-Date: 2016-09-16 21:45+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,7 @@ msgstr "Izračun ciklov po količini iz kosovnice"
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel"
 msgstr "Preklic"
 
@@ -67,6 +68,11 @@ msgstr "Preklic"
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "Cancel Order"
 msgstr "Preklic naloga"
+
+#. module: mrp_operations_extension
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
+msgid "Cancel all movements"
+msgstr "Preklic vseh premikov"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,capacity_per_cycle:0
@@ -132,6 +138,7 @@ msgstr "Porabljeno"
 #: field:mrp.operation.workcenter,create_uid:0
 #: field:mrp.routing.operation,create_uid:0
 #: field:mrp.work.order.produce,create_uid:0
+#: field:workcenter.line.finish,create_uid:0
 msgid "Created by"
 msgstr "Ustvaril"
 
@@ -139,6 +146,7 @@ msgstr "Ustvaril"
 #: field:mrp.operation.workcenter,create_date:0
 #: field:mrp.routing.operation,create_date:0
 #: field:mrp.work.order.produce,create_date:0
+#: field:workcenter.line.finish,create_date:0
 msgid "Created on"
 msgstr "Ustvarjeno"
 
@@ -166,8 +174,14 @@ msgstr "Opis"
 #: field:mrp.operation.workcenter,display_name:0
 #: field:mrp.routing.operation,display_name:0
 #: field:mrp.work.order.produce,display_name:0
+#: field:workcenter.line.finish,display_name:0
 msgid "Display Name"
 msgstr "Prikazni naziv"
+
+#. module: mrp_operations_extension
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
+msgid "Do all movements"
+msgstr "Izvedi vse premike"
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_stop:0
@@ -206,6 +220,17 @@ msgid "Final Product to Stock"
 msgstr "Končni proizvod za zalogo"
 
 #. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/models/mrp_production.py:151
+#, python-format
+msgid "Finish WO"
+msgstr "Dokončaj DN"
+
+#. module: mrp_operations_extension
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
+msgid "Finish Work Order"
+msgstr "Dokončaj delovni nalog"
+
+#. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Force Reservation"
@@ -213,7 +238,7 @@ msgstr "Vsili rezervacijo"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
-#: field:mrp.work.order.produce,id:0
+#: field:mrp.work.order.produce,id:0 field:workcenter.line.finish,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -242,6 +267,7 @@ msgstr "Podrobnosti"
 #: field:mrp.operation.workcenter,__last_update:0
 #: field:mrp.routing.operation,__last_update:0
 #: field:mrp.work.order.produce,__last_update:0
+#: field:workcenter.line.finish,__last_update:0
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
@@ -249,6 +275,7 @@ msgstr "Zadnjič spremenjeno"
 #: field:mrp.operation.workcenter,write_uid:0
 #: field:mrp.routing.operation,write_uid:0
 #: field:mrp.work.order.produce,write_uid:0
+#: field:workcenter.line.finish,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnjič posodobil"
 
@@ -256,6 +283,7 @@ msgstr "Zadnjič posodobil"
 #: field:mrp.operation.workcenter,write_date:0
 #: field:mrp.routing.operation,write_date:0
 #: field:mrp.work.order.produce,write_date:0
+#: field:workcenter.line.finish,write_date:0
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
@@ -495,6 +523,11 @@ msgid "Stock Moves"
 msgstr "Premiki zalog"
 
 #. module: mrp_operations_extension
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
+msgid "There are still some pending moves on WO"
+msgstr "DN vsebuje še nekaj ustavljenih premikov"
+
+#. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:43
 #, python-format
 msgid "There must be one and only one line set as default."
@@ -599,6 +632,13 @@ msgid "draft,startworking"
 msgstr "osnutek,zagon"
 
 #. module: mrp_operations_extension
+#: view:mrp.production:mrp_operations_extension.mrp_production_form_inherit_view2
+#: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
+#: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
+msgid "object"
+msgstr "object"
+
+#. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "oe_highlight"
 msgstr "oe_highlight"
@@ -606,5 +646,6 @@ msgstr "oe_highlight"
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
+#: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "or"
 msgstr "ali"

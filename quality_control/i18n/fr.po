@@ -3,12 +3,15 @@
 # * quality_control
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# oihane <oihanecruce@gmail.com>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:38+0000\n"
-"PO-Revision-Date: 2015-10-31 10:40+0000\n"
+"POT-Creation-Date: 2016-09-14 13:02+0000\n"
+"PO-Revision-Date: 2016-09-17 19:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +86,7 @@ msgstr ""
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -133,12 +136,24 @@ msgstr "Créé le"
 #. module: quality_control
 #: field:qc.inspection,date:0
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
 msgid "Date of the last message posted on the record."
 msgstr ""
+
+#. module: quality_control
+#: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
+#: field:qc.inspection.set.test,display_name:0 field:qc.test,display_name:0
+#: field:qc.test.category,display_name:0 field:qc.test.question,display_name:0
+#: field:qc.test.question.value,display_name:0 field:qc.trigger,display_name:0
+#: field:qc.trigger.line,display_name:0
+#: field:qc.trigger.product_category_line,display_name:0
+#: field:qc.trigger.product_line,display_name:0
+#: field:qc.trigger.product_template_line,display_name:0
+msgid "Display Name"
+msgstr "Nom à afficher"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -161,6 +176,11 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
+msgstr ""
+
+#. module: quality_control
+#: field:qc.test.category,complete_name:0
+msgid "Full name"
 msgstr ""
 
 #. module: quality_control
@@ -278,6 +298,20 @@ msgstr ""
 #: field:qc.inspection,message_last_post:0
 msgid "Last Message Date"
 msgstr ""
+
+#. module: quality_control
+#: field:qc.inspection,__last_update:0
+#: field:qc.inspection.line,__last_update:0
+#: field:qc.inspection.set.test,__last_update:0 field:qc.test,__last_update:0
+#: field:qc.test.category,__last_update:0
+#: field:qc.test.question,__last_update:0
+#: field:qc.test.question.value,__last_update:0
+#: field:qc.trigger,__last_update:0 field:qc.trigger.line,__last_update:0
+#: field:qc.trigger.product_category_line,__last_update:0
+#: field:qc.trigger.product_line,__last_update:0
+#: field:qc.trigger.product_template_line,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0
@@ -604,7 +638,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,state:0
 msgid "State"
-msgstr ""
+msgstr "État"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -698,7 +732,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,type:0 field:qc.test.question,type:0
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_category:0
@@ -761,31 +795,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:92
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:95
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:108
 #, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:123
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:118
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
