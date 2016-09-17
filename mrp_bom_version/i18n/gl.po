@@ -3,61 +3,61 @@
 # * mrp_bom_version
 # 
 # Translators:
-# Elvis M. Lukšić <meluksic@yahoo.com>, 2013
+# César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
+"PO-Revision-Date: 2016-09-05 11:32+0000\n"
+"Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-manufacture-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "Activate"
-msgstr ""
+msgstr "Activar"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0
 msgid "Allow to re-edit BoMs"
-msgstr ""
+msgstr "Permitir editar LdMs"
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Nomenclature"
+msgstr "Lista de materiais"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupar por..."
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Historical"
-msgstr ""
+msgstr "Histórico"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,historical_date:0
@@ -67,7 +67,7 @@ msgstr ""
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 msgid "Inactive"
-msgstr ""
+msgstr "Inactivo"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,active_draft:0
@@ -89,51 +89,51 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
-msgstr ""
+msgstr "Nova versión"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,old_versions:0
 msgid "Old Versions"
-msgstr ""
+msgstr "Versións antigas"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
 msgid "Parent BoM"
-msgstr ""
+msgstr "LdM pai"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr "État"
+msgstr "Estado"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
 msgid "The active state may be passed back to state draft"
-msgstr ""
+msgstr "Pódese volver do estado activo ao estado borrador"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,active_draft:0
 msgid ""
 "This will allow you to define if those BoM passed back to draft are still "
 "activated or not"
-msgstr ""
+msgstr "Permite definir se as LdM devoltas ao estado borrador permanecen activas ou non"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 msgid "Versions"
-msgstr ""
+msgstr "Versións"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "You are going to create a new version of this BoM. Are you sure?"
-msgstr ""
+msgstr "Vai crear unha nova versión desta LdM. Está seguro?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -141,7 +141,7 @@ msgstr ""
 msgid ""
 "You are going to historize an BoM. Doing, not be able to unlock it unless "
 "you make a copy. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Vai mover ao historial unha LdM. Unha vez feito non poderá desbloqueala agás que faga unha copia. Quere continuar coa operación?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -149,4 +149,4 @@ msgstr ""
 msgid ""
 "You will activate the BoM. If you haven't set a route yet, then you won't be"
 " able to do it after this. Are you sure you want to proceed?"
-msgstr ""
+msgstr "Vai activar a LdM. Se non estableceu unha ruta, non poderá facelo máis adiante. Quere continuar coa operación?"
