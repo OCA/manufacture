@@ -3,19 +3,27 @@
 # * quality_control_mrp
 # 
 # Translators:
+# Hotellook, 2014
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 10:44+0000\n"
-"PO-Revision-Date: 2015-10-09 10:50+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-11 18:07+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control_mrp
+#: field:mrp.production,created_inspections:0
+msgid "Created inspections"
+msgstr "Inspecciones creadas"
 
 #. module: quality_control_mrp
 #: field:mrp.production,qc_inspections:0
@@ -37,7 +45,7 @@ msgstr "Órden de producción"
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
 #: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Product"
-msgstr "Product"
+msgstr "Producto"
 
 #. module: quality_control_mrp
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
@@ -69,7 +77,7 @@ msgstr "Línea de inspección de control de calidad"
 #. module: quality_control_mrp
 #: model:ir.actions.act_window,name:quality_control_mrp.action_qc_inspection_per_production
 msgid "Quality inspections from production order"
-msgstr ""
+msgstr "Inspecciones de calidad desde la orden de fabricación"
 
 #. module: quality_control_mrp
 #: view:mrp.production:quality_control_mrp.mrp_production_qc_view
