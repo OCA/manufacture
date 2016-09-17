@@ -3,13 +3,13 @@
 # * mrp_bom_version
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-18 00:23+0000\n"
-"PO-Revision-Date: 2016-01-14 14:39+0000\n"
+"POT-Creation-Date: 2017-04-24 13:59+0000\n"
+"PO-Revision-Date: 2017-04-19 14:31+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,11 @@ msgstr "MRP StL-Version"
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid "New version"
 msgstr "Neue Version"
+
+#. module: mrp_bom_version
+#: field:mrp.bom,old_versions:0
+msgid "Old Versions"
+msgstr "Alte Versionen"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,parent_bom:0
