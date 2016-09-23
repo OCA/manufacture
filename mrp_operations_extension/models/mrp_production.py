@@ -44,6 +44,17 @@ class MrpProduction(models.Model):
             move.work_order = line.work_order.id
         return move_id
 
+    @api.model
+    def _make_consume_line_from_data(self, production, product, uom_id, qty,
+                                     uos_id, uos_qty):
+        move_id = super(MrpProduction, self)._make_consume_line_from_data(
+            production, product, uom_id, qty, uos_id, uos_qty)
+        work_order = self.env.context.get('default_work_order', False)
+        if work_order:
+            move = self.env['stock.move'].browse(move_id)
+            move.work_order = work_order
+        return move_id
+
 
 class MrpProductionProductLine(models.Model):
     _inherit = 'mrp.production.product.line'
