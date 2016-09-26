@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_repair_order_form_handle" model="ir.ui.view">
+            <field name="name">mrp.repair.form.inherit</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='operations']/tree/field[@name='name']" position="before">
+                    <field name="sequence" widget="handle"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
