@@ -27,5 +27,5 @@
     "images": [
         "images/partner_note.png",
     ],
-    "installable": True,
+    'installable': False,
 }
