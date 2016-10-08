@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-07 07:44+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
+"POT-Creation-Date: 2016-09-17 23:00+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-9-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_produce_id
 msgid "Produce"
-msgstr ""
+msgstr "Produci"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_product_product
@@ -182,7 +182,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/wizards/dismantling_product_choice.py:34

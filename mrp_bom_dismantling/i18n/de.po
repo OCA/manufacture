@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-07 07:44+0000\n"
-"PO-Revision-Date: 2016-09-09 11:32+0000\n"
+"POT-Creation-Date: 2016-09-17 23:00+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/models/mrp_bom.py:49
@@ -107,7 +107,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
@@ -119,7 +119,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
