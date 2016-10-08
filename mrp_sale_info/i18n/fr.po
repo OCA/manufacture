@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
 "PO-Revision-Date: 2016-02-25 18:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: field:mrp.production,commitment_date:0
 #: field:mrp.production.workcenter.line,commitment_date:0
 msgid "Commitment Date"
-msgstr ""
+msgstr "Date de l'engagement"
 
 #. module: mrp_sale_info
 #: field:mrp.production,partner_id:0
@@ -35,12 +35,12 @@ msgstr "Client"
 msgid ""
 "Date by which the products are sure to be delivered. This is a date that you"
 " can promise to the customer, based on the Product Lead Times."
-msgstr ""
+msgstr "Date à laquelle vous êtes sûr de pouvoir livrer le produit. C'est la date sur laquelle vous pouvez vous engager auprès de votre client, basée sur le temps de fabrication du produit."
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Ordre de fabrication"
 
 #. module: mrp_sale_info
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
@@ -50,15 +50,15 @@ msgstr ""
 #. module: mrp_sale_info
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
 msgid "Sale Information"
-msgstr ""
+msgstr "Informations sur la vente"
 
 #. module: mrp_sale_info
 #: field:mrp.production,sale_id:0
 #: field:mrp.production.workcenter.line,sale_id:0
 msgid "Sale order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production_workcenter_line
 msgid "Work Order"
-msgstr ""
+msgstr "Ordre de travail"

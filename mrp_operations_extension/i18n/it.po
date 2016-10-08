@@ -3,16 +3,18 @@
 # * mrp_operations_extension
 # 
 # Translators:
+# Andrea Cometa <a.cometa@apuliasoftware.it>, 2016
 # Dorin Hongu <dhongu@gmail.com>, 2015
+# Massimiliano Casa <mcasa@cantiericasa.com>, 2016
 # Paolo Valier, 2016
 # Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,19 +31,19 @@ msgstr "# Operatori"
 #: field:mrp.operation.workcenter,op_number:0
 #: field:mrp.routing.operation,op_number:0
 msgid "# operators"
-msgstr ""
+msgstr "operatori"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Actual Production Date"
-msgstr ""
+msgstr "Data di produzione attuale"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_production.py:23
 #, python-format
 msgid "At least one work order must have checked 'Produce here'"
-msgstr ""
+msgstr "Almeno un ordine di produzione deve avere selezionato 'Produci qui'"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_bom
@@ -56,7 +58,7 @@ msgstr "Riga Distinta Base"
 #. module: mrp_operations_extension
 #: field:mrp.config.settings,cycle_by_bom:0
 msgid "Calc Cycles by BoM Quantity"
-msgstr ""
+msgstr "Calc Cicli per Quantità BoM"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
@@ -73,18 +75,18 @@ msgstr "Annulla Ordine"
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel all movements"
-msgstr ""
+msgstr "Annulla tutti i movimenti"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,capacity_per_cycle:0
 msgid "Capacity per cycle"
-msgstr ""
+msgstr "Capacità per ciclo"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_bom.py:54
 #, python-format
 msgid "Changing Routing"
-msgstr ""
+msgstr "Cambiare Routing"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_bom.py:55
@@ -92,7 +94,7 @@ msgstr ""
 msgid ""
 "Changing routing will cause to change the operation in which each component "
 "will be consumed, by default it is set the first one of the routing"
-msgstr ""
+msgstr "La modifica del routing porterà a modificare l'operazione in cui sarà consumato ogni componente, per default è impostato il primo del routing"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -111,29 +113,29 @@ msgstr "Codice"
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 msgid "Consume"
-msgstr ""
+msgstr "Consumato"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: selection:mrp.work.order.produce,mode:0
 msgid "Consume & Produce"
-msgstr ""
+msgstr "Consumato e Prodotto"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "Consume Lines"
-msgstr ""
+msgstr "Linee consumate"
 
 #. module: mrp_operations_extension
 #: selection:mrp.work.order.produce,mode:0
 msgid "Consume Only"
-msgstr ""
+msgstr "Consuma solo"
 
 #. module: mrp_operations_extension
 #: field:mrp.bom.line,operation:0
 msgid "Consumed in"
-msgstr ""
+msgstr "Consumato in"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,create_uid:0
@@ -154,17 +156,17 @@ msgstr "Creato il"
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,custom_data:0
 msgid "Custom"
-msgstr ""
+msgstr "Cliente"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,default:0
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
 msgid "Default workcenter"
-msgstr ""
+msgstr "Default workcenter"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,description:0
@@ -182,60 +184,60 @@ msgstr "Nome da visualizzare"
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Do all movements"
-msgstr ""
+msgstr "Fare tutti i movimenti"
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_stop:0
 msgid "Duartion for the cleaning."
-msgstr ""
+msgstr "Durata della pulizia."
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Duration"
-msgstr ""
+msgstr "Durata"
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_cycle:0
 msgid "Duration for one cycle."
-msgstr ""
+msgstr "Durata per un ciclo"
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_start:0
 msgid "Duration for the setup."
-msgstr ""
+msgstr "Durata per il setup."
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,time_efficiency:0
 msgid "Efficiency factor"
-msgstr ""
+msgstr "Fattore di efficienza"
 
 #. module: mrp_operations_extension
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Extra Information"
-msgstr ""
+msgstr "Informazioni Extra"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,final_product:0
 msgid "Final Product to Stock"
-msgstr ""
+msgstr "Prodotto finale per Magazzino"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_production.py:151
 #, python-format
 msgid "Finish WO"
-msgstr ""
+msgstr "WO Finito"
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Finish Work Order"
-msgstr ""
+msgstr "Fine Work Order"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Force Reservation"
-msgstr ""
+msgstr "Forza Prenotazione"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
@@ -249,14 +251,14 @@ msgid ""
 "If enabled, the production and movement to stock of the final products will "
 "be done in this operation. There can be only one operation per route with "
 "this check marked."
-msgstr ""
+msgstr "Se permesso, la produzione ed il movimento di magazzino dei prodotti finali saranno fatte in questa operazione. Non ci può essere una sola operazione per route con questo controllo selezionato."
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,custom_data:0
 msgid ""
 "If you mark this check, this means that the work center in this routing has "
 "different capacity data than the defined on the work center itself"
-msgstr ""
+msgstr "Se si seleziona questo controllo, significa che il work center in questo routing ha diverse capacità rispetto a quelle definite nel Workcenter stesso"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
@@ -296,22 +298,22 @@ msgstr "Lotto"
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_operation_workcenter
 msgid "MRP Operation Workcenter"
-msgstr ""
+msgstr "MRP Operation Workcenter"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_routing_operation
 msgid "MRP Routing Operation"
-msgstr ""
+msgstr "MRP Routing Operation"
 
 #. module: mrp_operations_extension
 #: field:mrp.config.settings,group_mrp_workers:0
 msgid "Manage operators in work centers"
-msgstr ""
+msgstr "Gestire gli operatori nei work centers"
 
 #. module: mrp_operations_extension
 #: model:res.groups,name:mrp_operations_extension.group_mrp_workers
 msgid "Manufacturing Operators"
-msgstr ""
+msgstr "Operatori Manufacturing"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production
@@ -326,23 +328,23 @@ msgstr "Materiali"
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,is_material_ready:0
 msgid "Materials Ready"
-msgstr ""
+msgstr "Materiali Pronti"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_production.py:134
 #, python-format
 msgid "Missing materials to start the production"
-msgstr ""
+msgstr "Mancano dei materiali per iniziare la produzione"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,mode:0
 msgid "Mode"
-msgstr ""
+msgstr "Modalità"
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,move_lines:0
 msgid "Moves"
-msgstr ""
+msgstr "Spostamenti"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,name:0
@@ -354,73 +356,73 @@ msgstr "Nome"
 msgid ""
 "Once copied, if you change operation data, it won't be reflected here, "
 "unless you select it again."
-msgstr ""
+msgstr "Una volta copiato, se si modificano i dati di funzionamento, non si rifletterà qui, a meno che non si sceglie di nuovo."
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.workcenter,operation:0
 msgid "Operation"
-msgstr ""
+msgstr "Operazione"
 
 #. module: mrp_operations_extension
 #: model:ir.ui.menu,name:mrp_operations_extension.mrp_routing_menu
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_future_calendar
 msgid "Operations"
-msgstr ""
+msgstr "Operazioni"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,op_avg_cost:0
 #: field:mrp.workcenter,op_avg_cost:0
 msgid "Operator average hourly cost"
-msgstr ""
+msgstr "Costo orario medio per Operatore"
 
 #. module: mrp_operations_extension
 #: view:mrp.workcenter:mrp_operations_extension.mrp_workcenter_form_view_inh
 #: field:mrp.workcenter,operators:0
 msgid "Operators"
-msgstr ""
+msgstr "Operatori"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,picking_type_id:0
 #: field:mrp.routing.workcenter,picking_type_id:0
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo Picking"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Planned Date"
-msgstr ""
+msgstr "Data pianificata"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.workcenter,op_wc_lines:0
 msgid "Possible work centers for this operation"
-msgstr ""
+msgstr "Possibile work center per questa operazione"
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,possible_workcenters:0
 msgid "Possible workcenters"
-msgstr ""
+msgstr "Possibile workcenters"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,post_op_product:0
 msgid "Post-operation costing product"
-msgstr ""
+msgstr "Costo Post-lavorazione"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,pre_op_product:0
 msgid "Pre-operation costing product"
-msgstr ""
+msgstr "Costo Pre-lavorazione"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.workcenter,previous_operations_finished:0
 msgid "Previous operations finished"
-msgstr ""
+msgstr "Lavorazioni precedenti finite"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_production.py:130
 #, python-format
 msgid "Previous operations not finished"
-msgstr ""
+msgstr "Lavorazioni precedenti non finite"
 
 #. module: mrp_operations_extension
 #: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_produce
@@ -429,13 +431,13 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "Produce"
-msgstr ""
+msgstr "Produci"
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,do_production:0
 #: field:mrp.routing.workcenter,do_production:0
 msgid "Produce here"
-msgstr ""
+msgstr "Produci qui"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,product_id:0
@@ -452,7 +454,7 @@ msgstr "Righe Prodotto"
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_product_produce_line
 msgid "Product Produce Consume lines"
-msgstr ""
+msgstr "Prodotti da produrre"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
@@ -463,22 +465,22 @@ msgstr "Prodotti da produrre"
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production_product_line
 msgid "Production Scheduled Product"
-msgstr ""
+msgstr "Produzione del prodotto programmata"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,consume_lines:0
 msgid "Products Consumed"
-msgstr ""
+msgstr "Prodotti da Consumare"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,steps:0
 msgid "Relevant Steps"
-msgstr ""
+msgstr "Steps rilevanti"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_routing
 msgid "Routing"
-msgstr ""
+msgstr "Routing"
 
 #. module: mrp_operations_extension
 #: model:ir.actions.act_window,name:mrp_operations_extension.mrp_routing_operation_action
@@ -501,7 +503,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,routing_workcenter:0
 msgid "Routing workcenter"
-msgstr ""
+msgstr "Routing workcenter"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,product_qty:0
@@ -511,66 +513,66 @@ msgstr "Seleziona Quantità"
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
 msgid "Select the operation to copy its current data to this routing line."
-msgstr ""
+msgstr "Selezionare l'operazione per copiare i suoi dati attuali a questa linea di routing."
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_operations_extension
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Stock Moves"
-msgstr ""
+msgstr "Movimenti di Magazzino"
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "There are still some pending moves on WO"
-msgstr ""
+msgstr "Ci sono ancora alcuni movimenti in attesa su WO"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:43
 #, python-format
 msgid "There must be one and only one line set as default."
-msgstr ""
+msgstr "Ci deve essere una e una sola riga impostato come predefinito."
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:17
 #, python-format
 msgid ""
 "There must be one and only one operation with 'Produce here' check marked."
-msgstr ""
+msgstr "Ci deve essere una ed una sola operazione con il campo selezionato 'Produci qui'."
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,time_start:0
 msgid "Time Start"
-msgstr ""
+msgstr "Tempo di inizio"
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,time_stop:0
 msgid "Time Stop"
-msgstr ""
+msgstr "Tempo di fermo"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,time_stop:0
 msgid "Time after prod."
-msgstr ""
+msgstr "Tempo dopo la prod."
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,time_start:0
 msgid "Time before prod."
-msgstr ""
+msgstr "Tempo prima della prod."
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,time_cycle:0
 msgid "Time for 1 cycle (hours)"
-msgstr ""
+msgstr "Tempo per 1 ciclo (ore)"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 msgid "To Consume"
-msgstr ""
+msgstr "dA cONSUMARE"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
@@ -580,23 +582,23 @@ msgstr "Totale"
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,track_production:0
 msgid "Track production"
-msgstr ""
+msgstr "Traccia produzione"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
 msgid "WARNING:"
-msgstr ""
+msgstr "ATTENZIONE:"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_workcenter
 #: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
 msgid "Work Center"
-msgstr ""
+msgstr "Work Center"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_routing_workcenter
 msgid "Work Center Usage"
-msgstr ""
+msgstr "Uso Work Center"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production_workcenter_line
@@ -610,7 +612,7 @@ msgstr "Ordine di lavorazione"
 #: field:mrp.routing.operation,workcenters:0
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
 msgid "Work centers"
-msgstr ""
+msgstr "Work centers"
 
 #. module: mrp_operations_extension
 #: field:mrp.product.produce.line,work_produce_id:0
@@ -620,17 +622,17 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,workcenter:0
 msgid "Workcenter"
-msgstr ""
+msgstr "Workcenter"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
 msgid "Workcenters"
-msgstr ""
+msgstr "Workcenters"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "draft,startworking"
-msgstr ""
+msgstr "Bozza,inizio lavorazioni"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_inherit_view2

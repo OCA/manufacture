@@ -5,13 +5,14 @@
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # oihane <oihanecruce@gmail.com>, 2016
+# oihane <oihanecruce@gmail.com>, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-17 19:03+0000\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2016-10-04 11:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -392,7 +393,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Commentaires"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1

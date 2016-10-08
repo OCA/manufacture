@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-23 15:52+0000\n"
-"PO-Revision-Date: 2016-07-13 16:09+0000\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Criado em"
 #. module: mrp_operations_time_control
 #: field:operation.time.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0

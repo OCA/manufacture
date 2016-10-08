@@ -3,14 +3,15 @@
 # * mrp_bom_reference_selection
 # 
 # Translators:
+# Hotellook, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-18 00:23+0000\n"
-"PO-Revision-Date: 2016-01-14 14:29+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +43,11 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
 msgstr "Gruppiere"
@@ -50,6 +56,11 @@ msgstr "Gruppiere"
 #: field:mrp.bom.reference,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0

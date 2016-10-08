@@ -5,13 +5,14 @@
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # oihane <oihanecruce@gmail.com>, 2016
+# oihane <oihanecruce@gmail.com>, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-09 11:31+0000\n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +178,7 @@ msgstr "Descrição"
 #: field:mrp.work.order.produce,display_name:0
 #: field:workcenter.line.finish,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
