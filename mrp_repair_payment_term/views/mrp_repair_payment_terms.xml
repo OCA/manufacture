@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Nicola Malcontenti
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="mrp_repair_payment_term_form" model="ir.ui.view">
+    <field name="name">mrp.repair.form</field>
+    <field name="model">mrp.repair</field>
+    <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
+    <field name="arch" type="xml">
+    	<xpath expr="//field[@name='operations']" position="after">
+    		<group col="4">
+            	<field name="payment_term"/>
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>
