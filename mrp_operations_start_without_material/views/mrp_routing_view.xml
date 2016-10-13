@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_routing_workcenter_form_view_SWM" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.form.swm</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp_operations_extension.mrp_routing_workcenter_form_view_inh" />
+            <field name="arch" type="xml">
+                <field name="previous_operations_finished" position="after">
+                    <field name="init_without_material"/>
+                </field>
+           </field>
+        </record>
+    </data>
+</openerp>
