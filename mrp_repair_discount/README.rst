@@ -38,6 +38,7 @@ Contributors
 ------------
 
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
 ----------
