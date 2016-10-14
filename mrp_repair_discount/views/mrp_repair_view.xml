@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_repair_order_discount_form" model="ir.ui.view">
+        <field name="name">mrp.repair.discount.form</field>
+        <field name="model">mrp.repair</field>
+        <field name="inherit_id" ref="mrp_repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='operations']/tree/field[@name='price_unit']" position='after'>
+                <field name="discount"/>
+            </xpath>
+        </field>
+        </record>
+    </data>
+</openerp>
