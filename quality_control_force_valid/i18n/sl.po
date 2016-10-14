@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_force_valid
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-09-20 19:04+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: quality_control_force_valid
+#: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid
+#: field:qc.inspection,force_valid:0
+msgid "Force valid"
+msgstr "Vsili veljavnost"
+
+#. module: quality_control_force_valid
+#: help:qc.inspection,force_valid:0
+msgid "Mark this field if you want to override the result of the inspection"
+msgstr "Označite to polje, če želite vsiliti rezultat inšpekcije"
+
+#. module: quality_control_force_valid
+#: model:ir.model,name:quality_control_force_valid.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inšpekcija nadzora kvalitete"
+
+#. module: quality_control_force_valid
+#: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid
+msgid "Success"
+msgstr "Uspeh"
