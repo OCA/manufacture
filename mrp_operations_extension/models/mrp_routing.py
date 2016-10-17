@@ -74,7 +74,6 @@ class MrpRoutingWorkcenter(models.Model):
         line = self.op_wc_lines.filtered('default')[:1]
         self.workcenter_id = line.workcenter
         data_source = line if line.custom_data else line.workcenter
-        self.cycle_nbr = data_source.capacity_per_cycle
         self.hour_nbr = data_source.time_cycle
 
 
