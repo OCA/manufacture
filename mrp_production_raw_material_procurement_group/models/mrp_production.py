@@ -11,7 +11,7 @@ class MrpProduction(models.Model):
     raw_material_procurement_group_id = fields.Many2one(
         string="Raw Material Procurement Group",
         comodel_name="procurement.group",
-        )
+    )
 
     @api.model
     def _make_consume_line_from_data(

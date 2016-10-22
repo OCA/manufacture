@@ -6,6 +6,7 @@ from openerp.tests.common import TransactionCase
 
 
 class MrpProductionCase(TransactionCase):
+
     def setUp(self, *args, **kwargs):
         super(MrpProductionCase, self).setUp(*args, **kwargs)
 
@@ -20,7 +21,7 @@ class MrpProductionCase(TransactionCase):
             "delivery_steps": "ship_only",
             "resupply_from_wh": False,
             "default_resupply_wh_id": False,
-            })
+        })
         self.loc_stock_2 = self.warehouse2.lot_stock_id
         self.loc_production = self.env.ref(
             "stock.location_production")
@@ -28,7 +29,7 @@ class MrpProductionCase(TransactionCase):
             "name": "X Route",
             "sequence": 1,
             "product_selectable": True,
-            })
+        })
         self.rule = self.env["procurement.rule"].create({
             "name": "X Production",
             "location_id": self.loc_production.id,
@@ -38,12 +39,12 @@ class MrpProductionCase(TransactionCase):
             "action": "move",
             "sequence": 1,
             "route_id": self.route.id,
-            })
+        })
         self.product1 = self.env.ref("product.product_product_18")
         self.product_raw1 = self.env.ref("product.product_product_17")
         self.product_raw1.write({
             "route_ids": [(4, self.route.id)],
-            })
+        })
         self.bom1 = self.env.ref("mrp.mrp_bom_3")
         self.bom1.write({
             "routing_id": False})
@@ -53,13 +54,12 @@ class MrpProductionCase(TransactionCase):
         res = {
             "name": name,
             "move_type": "direct"
-            }
+        }
         return self.obj_group.create(res)
 
-
     def _create_mo(
-            self, 
-            product=False, 
+            self,
+            product=False,
             bom=False,
             src_loc=False,
             dest_loc=False,
@@ -82,9 +82,8 @@ class MrpProductionCase(TransactionCase):
             "raw_material_procurement_group_id": group,
             "product_qty": qty,
             "product_uom": uom.id,
-            }
+        }
         return self.obj_mo.create(res)
-
 
     def test_1(self):
         # Create MO
