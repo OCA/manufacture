@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<record id="view_mrp_production_filter" model="ir.ui.view">
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+    <field name="arch" type="xml">
+        <filter name="inprogress" position="after">
+            <separator/>
+            <filter string="SCH waiting" name="sch_waiting"
+                    domain="[('schedule_state','=','waiting')]"/>
+            <filter string="SCH todo" name="sch_todo"
+                    domain="[('schedule_state','=','todo')]"/>
+            <filter string="SCH scheduled" name="sch_scheduled"
+                domain="[('schedule_state','=','scheduled')]"/>
+        </filter>
+    </field>
+</record>
+
+<record id="mrp.mrp_production_action" model="ir.actions.act_window">
+    <field name="context">{'search_default_sch_todo': True, 'search_default_ready': True}</field>
+</record>
+
+<record id="mrp_production_form_view" model="ir.ui.view">
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+    <field name="arch" type="xml">
+        <field name="date_planned" position="after">
+            <field name="schedule_state"/>
+        </field>
+    </field>
+</record>
+
+<record id="mrp_production_tree_view" model="ir.ui.view">
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+    <field name="arch" type="xml">
+        <field name="date_planned" position="after">
+            <field name="schedule_state"/>
+            <button name="iter_selection_next"
+                    string="next schedule state"
+                    context="{'selection_field': 'schedule_state'}"
+                    icon="gtk-go-forward"
+                    type="object"/>
+            <!--You also may display this button to rotate in reverse way-->
+            <!--
+            <button name="iter_selection_prev"
+                    string="previous schedule state"
+                    context="{'selection_field': 'schedule_state'}"
+                    icon="gtk-go-back"
+                    type="object"/>
+            -->
+        </field>
+    </field>
+</record>
+
+<record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+    <field name="model">mrp.production.workcenter.line</field>
+    <field name="inherit_id"
+           ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
+    <field name="arch" type="xml">
+        <field name="workcenter_id" position="before">
+            <field name="planned_mo"/>
+            <field name="schedule_state"/>
+            <button name="iter_selection_next"
+                    string="next schedule state"
+                    context="{'selection_field': 'schedule_state'}"
+                    icon="gtk-go-forward"
+                    type="object"/>
+            </field>
+        <xpath expr="//tree/field[@name='date_planned']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+    </field>
+</record>
+
+    </data>
+</openerp>
