@@ -22,10 +22,8 @@ class MrpBom(models.Model):
         cycle = int(math.ceil(factor / (wc_use.cycle_nbr or 1)))
         hour = wc_use.hour_nbr * cycle
         default_wc_line = wc_use.op_wc_lines.filtered(lambda r: r.default)
-        data_source = (default_wc_line if default_wc_line.custom_data else
-                       default_wc_line.workcenter)
-        time_start = data_source.time_start
-        time_stop = data_source.time_stop
+        time_start = default_wc_line.time_start
+        time_stop = default_wc_line.time_stop
         res.update({
             'cycle': cycle,
             'hour': hour,

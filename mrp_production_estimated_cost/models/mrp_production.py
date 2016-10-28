@@ -230,15 +230,14 @@ class MrpProduction(models.Model):
 
     @api.model
     def _create_operators_estimated_cost(self, prod, wc, workorder):
-        data_source = wc if wc.custom_data else wc.workcenter
-        if data_source.op_number > 0 and workorder.hour:
+        if wc.op_number > 0 and workorder.hour:
             product = workorder.workcenter_id.product_id
             journal = self.env.ref('mrp.analytic_journal_operators', False)
             name = ('%s-%s-%s' %
                     (prod.name, workorder.routing_wc_line.operation.code,
                      product.name))
-            cost = data_source.op_avg_cost
-            qty = workorder.hour * data_source.op_number
+            cost = wc.op_avg_cost
+            qty = workorder.hour * wc.op_number
             vals = self._prepare_estimated_cost_analytic_line(
                 journal, name, prod, product, workorder=workorder, qty=qty,
                 std_cost=cost, avg_cost=cost)

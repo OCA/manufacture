@@ -72,20 +72,14 @@ class MrpRoutingWorkcenter(models.Model):
     def onchange_lines_default(self):
         line = self.op_wc_lines.filtered('default')[:1]
         self.workcenter_id = line.workcenter
-        data_source = line if line.custom_data else line.workcenter
-        self.cycle_nbr = data_source.capacity_per_cycle
-        self.hour_nbr = data_source.time_cycle
+        self.cycle_nbr = line.capacity_per_cycle
+        self.hour_nbr = line.time_cycle
 
 
 class MrpOperationWorkcenter(models.Model):
     _name = 'mrp.operation.workcenter'
     _description = 'MRP Operation Workcenter'
 
-    custom_data = fields.Boolean(
-        string="Custom", default=False,
-        help="If you mark this check, this means that the work center in this "
-             "routing has different capacity data than the defined on the "
-             "work center itself")
     workcenter = fields.Many2one(
         'mrp.workcenter', string='Workcenter', required=True)
     routing_workcenter = fields.Many2one(
@@ -106,7 +100,7 @@ class MrpOperationWorkcenter(models.Model):
     default = fields.Boolean('Default')
 
     @api.one
-    @api.onchange('workcenter', 'custom_data')
+    @api.onchange('workcenter')
     def onchange_workcenter(self):
         if self.workcenter:
             self.capacity_per_cycle = self.workcenter.capacity_per_cycle
