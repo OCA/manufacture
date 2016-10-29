@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="action_merge_mrp_productions" model="ir.actions.server">
+      <field name="name">Merge Productions</field>
+      <field name="model_id" ref="model_mrp_production" />
+      <field name="state">code</field>
+      <field name="code">action = obj.action_merge_productions(context=context)</field>
+    </record>
+
+    <record id="ir_open_merge_production_wizard" model="ir.values">
+      <field name="key2">client_action_multi</field>
+      <field name="model">mrp.production</field>
+      <field name="name">Merge Productions</field>
+      <field name="value" eval="'ir.actions.server,%d' % action_merge_mrp_productions" />
+    </record>
+  </data>
+</openerp>
+

@@ -1,0 +1,68 @@
+-
+ I create two MOs for 5 and 10 PCSC349
+-
+ !record {model: mrp.production, id: test_mo_merge}:
+   product_id: product.product_product_4
+   product_qty: 5
+   product_uom: product.product_uom_unit
+   location_src_id: stock.stock_location_stock
+   location_dest_id: stock.stock_location_output
+   bom_id: mrp.mrp_bom_24
+-
+ !record {model: mrp.production, id: test_mo_merge_2}:
+   product_id: product.product_product_4
+   product_qty: 10
+   product_uom: product.product_uom_unit
+   location_src_id: stock.stock_location_stock
+   location_dest_id: stock.stock_location_output
+   bom_id: mrp.mrp_bom_24
+-
+ I confirm the MOs
+-
+ !workflow {model: mrp.production, action: button_confirm, ref: test_mo_merge}
+-
+ !workflow {model: mrp.production, action: button_confirm, ref: test_mo_merge_2}
+-
+ I merge the two productions and expect the second one to disappear
+-
+ !python {model: mrp.production}: |
+   ctxt = context.copy()
+   ctxt["active_ids"] = mo_ids = [ref('test_mo_merge'), ref('test_mo_merge_2')]
+   orig_mo = self.browse(cr, uid, mo_ids[0], context=ctxt)
+   expected_consume = [(m.product_id.id, m.product_qty * 3) for m in orig_mo.move_lines]
+   expected_produce = [(m.product_id.id, m.product_qty * 3) for m in orig_mo.move_created_ids]
+   self.action_merge_productions(cr, uid, [], context=ctxt)
+
+   merged = self.browse(cr, uid, mo_ids[0], context=ctxt)
+   merged.refresh()  # Make sure we don't have a cached copy
+   assert merged.product_qty == 15, 'should have had 15 PCS to produce in the first MO'
+   assert self.search(cr, uid, [('id', '=', mo_ids[1])], context=ctxt) == [], 'second MO should be gone'
+
+   new_consume = [(m.product_id.id, m.product_qty) for m in merged.move_lines]
+   new_produce = [(m.product_id.id, m.product_qty) for m in merged.move_created_ids]
+   expected_consume.sort()
+   expected_produce.sort()
+   new_consume.sort()
+   new_produce.sort()
+   assert new_consume == expected_consume, "Expected new consumables to be %r, not %r" % (expected_consume, new_consume)
+   assert new_produce == expected_produce, "Expected new producables to be %r, not %r" % (expected_produce, new_produce)
+-
+  I click on the "Produce" button of the Manufacturing Order and in the wizard select "Consume and Produce" mode.
+  I produce 5 units, which should consume 10 RAM-SR3
+-
+ !python {model: mrp.product.produce}: |
+   ctxt = context.copy()
+   for i in range(3):
+       order = self.pool.get('mrp.production').browse(cr, uid, ref('test_mo_merge'), context=context)
+       ctxt['active_id'] = order.id
+       ctxt['active_model'] = 'mrp.production'
+       wizard_id = self.create(cr, uid,
+                               {'product_qty': 5,
+                                'mode': 'consume_produce'}, ctxt)
+       self.do_produce(cr, uid, [wizard_id], ctxt)
+-
+ I check that the production is now Done
+-
+ !python {model: mrp.production}: |
+   prod = self.browse(cr, uid, ref('test_mo_merge'), context=context)
+   assert prod.state == "done", "Production should be in Done state not %s" % (prod.state,)
