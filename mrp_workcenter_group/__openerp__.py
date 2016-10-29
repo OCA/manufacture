@@ -83,6 +83,8 @@ To contribute to this module, please visit http://odoo-community.org.
     'website': 'http://www.akretion.com/',
     'data': [
         'workcenter_view.xml',
+        'security/ir.model.access.csv',
+        'security/model_security.xml',
     ],
     'demo': [
         'demo/workcenter.group.csv',

@@ -28,6 +28,7 @@ class WorkcenterGroup(orm.Model):
     _order = 'sequence ASC, name ASC'
 
     _columns = {
+        'company_id': fields.many2one('res.company', 'Company', required=True),
         'name': fields.char('Name'),
         'sequence': fields.integer('Sequence'),
         'active': fields.boolean('Active'),
@@ -41,6 +42,8 @@ class WorkcenterGroup(orm.Model):
 
     _defaults = {
         'active': True,
+        'company_id': lambda s, cr, uid, c: s.pool.get('res.company').\
+            _company_default_get(cr, uid, 'workcenter.group', context=c),
     }
 
 
