@@ -34,22 +34,27 @@ class MrpWorkOrderProduce(models.TransientModel):
     def do_consume(self, cr, uid, ids, context=None):
         work_line = self.pool['mrp.production.workcenter.line'].browse(
             cr, uid, context.get("active_id"), context=context)
+        new_context = context.copy()
+        new_context.update({'default_work_order': work_line.id})
         production_id = work_line.production_id.id
         assert production_id
-        data = self.browse(cr, uid, ids[0], context=context)
+        data = self.browse(cr, uid, ids[0], context=new_context)
         self.pool['mrp.production'].action_produce(
-            cr, uid, production_id, False, 'consume', data, context=context)
+            cr, uid, production_id, False, 'consume', data,
+            context=new_context)
         return {}
 
     def do_consume_produce(self, cr, uid, ids, context=None):
         work_line = self.pool['mrp.production.workcenter.line'].browse(
             cr, uid, context.get("active_id"), context=context)
+        new_context = context.copy()
+        new_context.update({'default_work_order': work_line.id})
         production_id = work_line.production_id.id
         assert production_id
-        data = self.browse(cr, uid, ids[0], context=context)
+        data = self.browse(cr, uid, ids[0], context=new_context)
         self.pool['mrp.production'].action_produce(
             cr, uid, production_id, data.product_qty, 'consume_produce', data,
-            context=context)
+            context=new_context)
         return {}
 
     def on_change_qty(self, cr, uid, ids, product_qty, consume_lines,
