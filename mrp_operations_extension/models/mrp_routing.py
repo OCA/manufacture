@@ -35,12 +35,15 @@ class MrpRoutingWorkcenter(models.Model):
     picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type',
                                       domain=[('code', '=', 'outgoing')])
 
-    total_hours = fields.Float('Total hours per operation in route',
-                               compute='_compute_total_hours')
-    cost_related = fields.Float(_('Cost per hour'),
-                                related='workcenter_id.costs_hour')
-    total_costs = fields.Float(_('Total cost per operation'),
-                               compute='_compute_total_cost')
+    total_hours = fields.Float(string=_('Total hours per operation in route'),
+                               compute='_compute_total_hours',
+                               )
+    cost_related = fields.Float(string=_('Cost per hour'),
+                                related='workcenter_id.costs_hour',
+                                )
+    total_costs = fields.Float(string=_('Total cost per operation'),
+                               compute='_compute_total_cost',
+                               )
 
     @api.constrains('op_wc_lines')
     def _check_default_op_wc_lines(self):
