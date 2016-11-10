@@ -103,5 +103,5 @@ class MrpProductionWorkcenterLine(models.Model):
     def write(self, vals, update=True):
         for rec in self:
             super(MrpProductionWorkcenterLine, rec.with_context(
-                production=rec.production_id)).write(vals)
+                production=rec.production_id)).write(vals, update=update)
         return True
