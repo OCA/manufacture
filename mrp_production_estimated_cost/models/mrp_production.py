@@ -16,7 +16,8 @@ class MrpProduction(models.Model):
         for record in self:
             record.std_cost = -sum(record.analytic_line_ids.mapped(
                 'estim_std_cost'))
-            record.unit_std_cost = record.std_cost / record.product_qty
+            if record.product_qty:
+                record.unit_std_cost = record.std_cost / record.product_qty
 
     @api.multi
     @api.depends('analytic_line_ids', 'analytic_line_ids.estim_avg_cost',
@@ -25,7 +26,8 @@ class MrpProduction(models.Model):
         for record in self:
             record.avg_cost = -sum(record.analytic_line_ids.mapped(
                 'estim_avg_cost'))
-            record.unit_avg_cost = record.avg_cost / record.product_qty
+            if record.product_qty:
+                record.unit_avg_cost = record.avg_cost / record.product_qty
 
     @api.multi
     @api.depends('analytic_line_ids', 'analytic_line_ids.task_id')
