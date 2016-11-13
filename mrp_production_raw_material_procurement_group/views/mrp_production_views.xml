@@ -12,6 +12,7 @@
     <field name="arch" type="xml">
         <data>
             <xpath expr="//field[@name='location_src_id']" position="after">
+                <field name="auto_create_procurement_group"/>
                 <field name="raw_material_procurement_group_id"/>
             </xpath>
         </data>

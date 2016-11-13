@@ -11,7 +11,35 @@ class MrpProduction(models.Model):
     raw_material_procurement_group_id = fields.Many2one(
         string="Raw Material Procurement Group",
         comodel_name="procurement.group",
+        readonly=True,
+        states={
+            "draft": [("readonly", False)],
+            },
     )
+    auto_create_procurement_group = fields.Boolean(
+        string="Auto Create Procurement Group",
+        readonly=True,
+        states={
+            "draft": [("readonly", False)],
+            },
+        )
+
+    @api.multi
+    def action_confirm(self):
+        for mo in self:
+            mo._create_procurement_group()
+        return super(MrpProduction, self).action_confirm()
+
+    @api.multi
+    def _create_procurement_group(self):
+        self.ensure_one()
+        obj_group = self.env[
+            "procurement.group"]
+        if self.auto_create_procurement_group and \
+                not self.raw_material_procurement_group_id:
+            obj_group.create({
+                "name": self.name,
+                })
 
     @api.model
     def _make_consume_line_from_data(
