@@ -64,7 +64,8 @@ class MrpProductionCase(TransactionCase):
             src_loc=False,
             dest_loc=False,
             group=False,
-            qty=10.0):
+            qty=10.0,
+            auto=False):
         if not product:
             product = self.product1
             uom = product.uom_id
@@ -82,10 +83,11 @@ class MrpProductionCase(TransactionCase):
             "raw_material_procurement_group_id": group,
             "product_qty": qty,
             "product_uom": uom.id,
+            "auto_create_procurement_group": auto,
         }
         return self.obj_mo.create(res)
 
-    def test_1(self):
+    def test_no_create_group(self):
         # Create MO
         mo = self._create_mo()
         # Click confirm button
@@ -104,7 +106,7 @@ class MrpProductionCase(TransactionCase):
                 len(raw.group_id),
                 0)
 
-    def test_2(self):
+    def test_create_group_manual(self):
         group1 = self._create_procurement_group(
             "X 001")
         # Create MO
@@ -125,3 +127,23 @@ class MrpProductionCase(TransactionCase):
             self.assertEqual(
                 raw.group_id,
                 group1)
+
+    def test_create_group_auto(self):
+        mo = self._create_mo(
+            group=False,
+            auto=True)
+        # Click confirm button
+        mo.signal_workflow("button_confirm")
+        for raw in mo.move_lines:
+            self.assertEqual(
+                raw.location_id,
+                self.loc_stock_2)
+            self.assertEqual(
+                raw.location_dest_id,
+                self.loc_production)
+            self.assertEqual(
+                raw.procure_method,
+                "make_to_order")
+            self.assertEqual(
+                raw.group_id,
+                mo.raw_material_procurement_group_id)
