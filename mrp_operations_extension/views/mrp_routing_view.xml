@@ -58,13 +58,30 @@
                             <tree editable="bottom">
                                 <field name="default" />
                                 <field name="workcenter" />
-                                <field name="time_efficiency" />
-                                <field name="capacity_per_cycle" />
-                                <field name="time_start" widget="float_time" />
-                                <field name="time_stop" widget="float_time" />
-                                <field name="time_cycle" widget="float_time" />
-                                <field name="op_number" groups="mrp_operations_extension.group_mrp_workers" />
-                                <field name="op_avg_cost" groups="mrp_operations_extension.group_mrp_workers" />
+                                <field name="custom_data" />
+                                <field name="time_efficiency"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="capacity_per_cycle"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_start" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_stop" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="time_cycle" widget="float_time"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="op_number"
+                                       groups="mrp_operations_extension.group_mrp_workers"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
+                                <field name="op_avg_cost"
+                                       groups="mrp_operations_extension.group_mrp_workers"
+                                       attrs="{'readonly': [('custom_data', '=', False)]}"
+                                />
                             </tree>
                         </field>
                     </group>

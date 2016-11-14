@@ -78,7 +78,6 @@ class TestMrpProductionRealCost(common.TransactionCase):
             'op_wc_lines': [(0, 0, {
                 'default': True, 'workcenter': workcenter0.id})],
         })
-        routing.op_wc_lines.onchange_workcenter()
         routing.onchange_lines_default()
         self.assertEqual(routing.workcenter_id, workcenter0)
         self.assertEqual(routing.cycle_nbr, workcenter0.capacity_per_cycle)

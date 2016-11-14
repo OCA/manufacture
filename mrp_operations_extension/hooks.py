@@ -14,7 +14,7 @@ def create_default_routing_workcenter_line(cr):
             routing_wc.op_wc_lines = [
                 (0, 0, {'workcenter': routing_wc.workcenter_id,
                         'default': True,
-                        })]
+                        'custom_data': True})]
 
 
 def post_init_hook(cr, pool):
