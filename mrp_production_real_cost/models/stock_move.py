@@ -75,6 +75,11 @@ class StockMove(models.Model):
         for product_id, product_data in products.iteritems():
             new_price = self._new_average_price(product_data)
             product_data['product'].sudo().standard_price = new_price
+        real_moves = self.filtered(
+            lambda x: (x.production_id and x.product_id.cost_method == 'real'))
+        for move in real_moves:
+            move.mapped('quant_ids').write({'cost':
+                                            move.production_id.unit_real_cost})
 
     @api.model
     def get_price_unit(self, move):

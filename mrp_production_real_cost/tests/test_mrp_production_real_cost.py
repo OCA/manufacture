@@ -71,6 +71,19 @@ class TestMrpProductionRealCost(common.TransactionCase):
         self.assertNotEqual(
             initial_price, self.production.product_id.standard_price)
 
+    def test_produce_real(self):
+        self.production.product_id.cost_method = 'real'
+        for line in self.production.workcenter_lines:
+            line.signal_workflow('button_start_working')
+            line.operation_time_lines[-1].start_date = self.start_date
+            line.operation_time_lines[-1].end_date = (
+                self.start_date + (timedelta(hours=3)))
+        self.production.action_produce(
+            self.production.id, self.production.product_qty, 'consume_produce')
+        self.assertTrue(self.production.unit_real_cost)
+        for quant in self.production.mapped('move_created_ids2.quant_ids'):
+            self.assertEqual(quant.cost, self.production.unit_real_cost)
+
     def test_onchange_lines_default(self):
         workcenter0 = self.browse_ref('mrp.mrp_workcenter_0')
         routing = self.env['mrp.routing.workcenter'].new({
