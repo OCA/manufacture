@@ -59,6 +59,7 @@ Contributors
 ------------
 
 * Andhitia Rama <andhitia.r@gmail.com>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------

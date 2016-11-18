@@ -147,3 +147,56 @@ class MrpProductionCase(TransactionCase):
             self.assertEqual(
                 raw.group_id,
                 mo.raw_material_procurement_group_id)
+
+    def test_copy_mo_1(self):
+        # Create MO
+        group1 = self._create_procurement_group(
+            "X 001")
+        mo = self._create_mo(
+            group=group1.id)
+        mo2 = mo.copy()
+
+        self.assertNotEqual(
+            mo.raw_material_procurement_group_id,
+            mo2.raw_material_procurement_group_id)
+
+        self.assertEqual(
+            mo2.raw_material_procurement_group_id.id, False)
+
+    def test_copy_mo_2(self):
+        # Create MO
+        mo = self._create_mo(auto=True)
+        # Click confirm button
+        mo.signal_workflow("button_confirm")
+
+        self.assertNotEqual(
+            mo.raw_material_procurement_group_id.id, False)
+
+        self.assertEqual(
+            mo.raw_material_procurement_group_id.name, mo.name)
+
+    def test_routing(self):
+        location = self.env['stock.location'].create({
+            'name': 'Shop floor',
+        })
+        routing = self.env['mrp.routing'].create({
+            'name': 'test',
+            'location_id': location.id,
+        })
+        self.bom1.write({
+            "routing_id": routing.id})
+        # Create MO
+        mo = self._create_mo(auto=True)
+        mo2 = self._create_mo(auto=True)
+        # Click confirm button
+        mo.signal_workflow("button_confirm")
+        mo2.signal_workflow("button_confirm")
+
+        # Check that the pickings are split by procurement group
+        pick = self.env['stock.picking'].search(
+            [('group_id', '=', mo.raw_material_procurement_group_id.id)])
+        self.assertNotEqual(pick, False)
+
+        pick2 = self.env['stock.picking'].search(
+            [('group_id', '=', mo2.raw_material_procurement_group_id.id)])
+        self.assertNotEqual(pick2, False)

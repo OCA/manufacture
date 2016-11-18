@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
+# Copyright 2016 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
@@ -12,6 +13,7 @@ class MrpProduction(models.Model):
         string="Raw Material Procurement Group",
         comodel_name="procurement.group",
         readonly=True,
+        copy=False,
         states={
             "draft": [("readonly", False)],
             },
@@ -37,9 +39,8 @@ class MrpProduction(models.Model):
             "procurement.group"]
         if self.auto_create_procurement_group and \
                 not self.raw_material_procurement_group_id:
-            obj_group.create({
-                "name": self.name,
-                })
+            self.raw_material_procurement_group_id = obj_group.create({
+                "name": self.name})
 
     @api.model
     def _make_consume_line_from_data(
@@ -59,3 +60,16 @@ class MrpProduction(models.Model):
         move.write(
             {"group_id": production.raw_material_procurement_group_id.id})
         return move_id
+
+    @api.model
+    def _create_previous_move(self, move_id, product, source_location_id,
+                              dest_location_id):
+        move_id2 = super(MrpProduction, self)._create_previous_move(
+            move_id, product, source_location_id, dest_location_id)
+        move1 = self.env['stock.move'].browse(move_id)
+        move2 = self.env['stock.move'].browse(move_id2)
+        if move1.raw_material_production_id.raw_material_procurement_group_id:
+            move2.group_id = \
+                move1.raw_material_production_id.\
+                raw_material_procurement_group_id
+        return move2.id
