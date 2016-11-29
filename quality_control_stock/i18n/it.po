@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-09-27 09:09+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-10 16:34+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Lotto/Numero di serie"
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 #: field:qc.inspection.line,picking:0
 msgid "Picking"
-msgstr ""
+msgstr "Ordine di consegna"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
