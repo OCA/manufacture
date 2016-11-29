@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-09 12:26+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
@@ -128,7 +128,7 @@ msgstr ""
 #: field:qc.trigger.product_line,create_date:0
 #: field:qc.trigger.product_template_line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: quality_control
 #: field:qc.inspection,date:0
@@ -218,7 +218,7 @@ msgstr ""
 #: field:qc.trigger.product_line,id:0
 #: field:qc.trigger.product_template_line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: quality_control
 #: help:qc.inspection,auto_generated:0
@@ -355,7 +355,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: quality_control
 #: help:qc.inspection,message_ids:0
@@ -383,7 +383,7 @@ msgstr ""
 #: field:qc.test.question,name:0 field:qc.test.question.value,name:0
 #: field:qc.trigger,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -619,7 +619,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -729,7 +729,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,type:0 field:qc.test.question,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_category:0

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 11:08+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Nom à afficher"
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
 msgid "End Date"
-msgstr ""
+msgstr "Date de fin"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
@@ -46,7 +46,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Group By..."
-msgstr ""
+msgstr "Grouper par"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
@@ -144,7 +144,7 @@ msgstr ""
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 #: field:operation.time.line,user:0
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
 
 #. module: mrp_operations_time_control
 #: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line

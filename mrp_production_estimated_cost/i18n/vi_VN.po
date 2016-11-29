@@ -3,12 +3,12 @@
 # * mrp_production_estimated_cost
 # 
 # Translators:
-# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
+# oihane <oihanecruce@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 16:03+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
 "PO-Revision-Date: 2016-05-23 17:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/vi_VN/)\n"
@@ -19,25 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:186
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
 #, python-format
 msgid "%s-%s Post-operation"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:174
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:176
 #, python-format
 msgid "%s-%s Pre-operation"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:204
 #, python-format
 msgid "%s-%s-C-%s"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:220
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:222
 #, python-format
 msgid "%s-%s-H-%s"
 msgstr ""
@@ -206,7 +206,7 @@ msgid "Manufacturing costs"
 msgstr "Chi phí sản xuất"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:159
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:161
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Một dòng tiêu thụ không có sản phẩm nào được gán."
@@ -252,8 +252,8 @@ msgid "Scheduled Date"
 msgstr "Ngày theo kế hoạch"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:200
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:217
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:219
 #, python-format
 msgid "There is at least this workcenter without product: %s"
 msgstr "There is at least this workcenter without product: %s"
@@ -270,7 +270,7 @@ msgid "Virtual Manufacturing Orders to estimate costs"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:135
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:137
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr "Bạn phải định nghĩa một Tài khoản quản trị cho MO này: %s"

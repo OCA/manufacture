@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Data"
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Date of the last message posted on the record."
 
 #. module: quality_control
 #: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
@@ -176,7 +176,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Followers"
 
 #. module: quality_control
 #: field:qc.test.category,complete_name:0
@@ -231,7 +231,7 @@ msgstr ""
 #. module: quality_control
 #: help:qc.inspection,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "If checked new messages require your attention."
 
 #. module: quality_control
 #: help:qc.trigger.line,partners:0
@@ -287,7 +287,7 @@ msgstr "Note interne"
 #. module: quality_control
 #: view:product.template:quality_control.product_template_qc_form_view
 msgid "Inventory"
-msgstr ""
+msgstr "Inventario"
 
 #. module: quality_control
 #: field:qc.inspection,message_is_follower:0
@@ -434,7 +434,7 @@ msgstr "Prodotto "
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoria Prodotto"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
@@ -572,7 +572,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr ""
+msgstr "Riferimento"
 
 #. module: quality_control
 #: field:qc.test,object_id:0

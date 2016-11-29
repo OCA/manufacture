@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_force_valid
+# 
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-16 09:04+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2016\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control_force_valid
+#: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid
+#: field:qc.inspection,force_valid:0
+msgid "Force valid"
+msgstr "Erzwinge Gültigkeit"
+
+#. module: quality_control_force_valid
+#: help:qc.inspection,force_valid:0
+msgid "Mark this field if you want to override the result of the inspection"
+msgstr ""
+"Setzen Sie dieses Feld, wenn Sie das Ergebnis der Prüfung übersteuern "
+"wollen."
+
+#. module: quality_control_force_valid
+#: model:ir.model,name:quality_control_force_valid.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Qualitätkontrollprüfung"
+
+#. module: quality_control_force_valid
+#: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid
+msgid "Success"
+msgstr "Erfolg"

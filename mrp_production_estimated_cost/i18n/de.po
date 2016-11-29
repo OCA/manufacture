@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -21,25 +21,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:186
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
 #, python-format
 msgid "%s-%s Post-operation"
 msgstr "%s-%s Nachbereitung"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:174
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:176
 #, python-format
 msgid "%s-%s Pre-operation"
 msgstr "%s-%s Vorbereitung"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:204
 #, python-format
 msgid "%s-%s-C-%s"
 msgstr "%s-%s-C-%s"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:220
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:222
 #, python-format
 msgid "%s-%s-H-%s"
 msgstr "%s-%s-H-%s"
@@ -208,7 +208,7 @@ msgid "Manufacturing costs"
 msgstr "Fertigungskosten"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:159
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:161
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Eine Verbrauchsposition hat kein zugeordnetes Produkt."
@@ -254,8 +254,8 @@ msgid "Scheduled Date"
 msgstr "Geplantes Datum"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:200
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:217
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:219
 #, python-format
 msgid "There is at least this workcenter without product: %s"
 msgstr "Mindestens dieser Arbeitsplatz ist ohne Produkt: %s"
@@ -272,7 +272,7 @@ msgid "Virtual Manufacturing Orders to estimate costs"
 msgstr "Virtuelle Fertigungsaufträge zur Kostenplanung"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:135
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:137
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr "Sie müssen eine Kostenstelle für diesen FA anlegen: %s"

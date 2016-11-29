@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-29 03:58+0000\n"
-"PO-Revision-Date: 2016-06-07 15:15+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-10-11 09:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Czech (http://www.transifex.com/oca/OCA-manufacture-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -33,42 +33,42 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Vytvořil(a)"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Vytvořeno"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Zobrazovaný název"
 
 #. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
-msgstr ""
+msgstr "Seskupit podle"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot

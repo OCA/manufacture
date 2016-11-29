@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-09-25 14:00+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
@@ -138,7 +138,7 @@ msgstr ""
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Дата на последното съобщение, публикувано на записа."
 
 #. module: quality_control
 #: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
@@ -150,7 +150,7 @@ msgstr ""
 #: field:qc.trigger.product_line,display_name:0
 #: field:qc.trigger.product_template_line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -173,7 +173,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Последователи"
 
 #. module: quality_control
 #: field:qc.test.category,complete_name:0
@@ -228,7 +228,7 @@ msgstr ""
 #. module: quality_control
 #: help:qc.inspection,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Ако е отбелязано, новите съобщения ще изискват внимание."
 
 #. module: quality_control
 #: help:qc.trigger.line,partners:0
@@ -294,7 +294,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Дата на последното съобщение"
 
 #. module: quality_control
 #: field:qc.inspection,__last_update:0
@@ -355,12 +355,12 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Съобщения"
 
 #. module: quality_control
 #: help:qc.inspection,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "История на събщенията и комуникациите"
 
 #. module: quality_control
 #: field:qc.inspection.line,min_value:0 field:qc.test.question,min_value:0
@@ -619,7 +619,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Последователност"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -729,7 +729,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,type:0 field:qc.test.question,type:0
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_category:0
@@ -739,7 +739,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Непрочетени съобщения"
 
 #. module: quality_control
 #: field:qc.inspection.line,uom_id:0

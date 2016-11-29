@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 msgid "Group By..."
-msgstr ""
+msgstr "Grupla..."
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
@@ -143,7 +143,7 @@ msgstr ""
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 #: field:operation.time.line,user:0
 msgid "User"
-msgstr ""
+msgstr "Kullanıcı"
 
 #. module: mrp_operations_time_control
 #: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line

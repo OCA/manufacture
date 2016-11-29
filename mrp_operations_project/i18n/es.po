@@ -3,13 +3,14 @@
 # * mrp_operations_project
 # 
 # Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-28 14:19+0000\n"
-"PO-Revision-Date: 2016-04-28 14:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-10-14 00:54+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgid ""
 "        Cycle: %s\n"
 "        Hour: %s\n"
 "        "
-msgstr ""
+msgstr "\nOrden de producción: %s\nOrden de trabajo: %s\nCentro de trabajo: %s\nCiclo: %s\nHora: %s\n        "
 
 #. module: mrp_operations_project
 #: code:addons/mrp_operations_project/models/mrp_production.py:63
@@ -45,7 +46,7 @@ msgstr "Información"
 #: view:mrp.production:mrp_operations_project.mrp_production_project_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_project.mrp_production_workcenter_form_view_inherit
 msgid "Operators time"
-msgstr ""
+msgstr "Tiempo de los operadores"
 
 #. module: mrp_operations_project
 #: field:project.task,workorder_scheduled_products:0
@@ -55,7 +56,7 @@ msgstr "Productos planificados"
 #. module: mrp_operations_project
 #: view:project.task.work:mrp_operations_project.project_task_work_mrp
 msgid "Stop"
-msgstr ""
+msgstr "Parar"
 
 #. module: mrp_operations_project
 #: model:ir.model,name:mrp_operations_project.model_project_task
@@ -65,7 +66,7 @@ msgstr "Tarea"
 #. module: mrp_operations_project
 #: field:mrp.production.workcenter.line,task_m2m:0
 msgid "Task m2m"
-msgstr ""
+msgstr "M2N tarea"
 
 #. module: mrp_operations_project
 #: model:ir.model,name:mrp_operations_project.model_mrp_production_workcenter_line

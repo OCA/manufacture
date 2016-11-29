@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
@@ -72,7 +72,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,category:0
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 #. module: quality_control
 #: field:qc.test.category,child_ids:0
@@ -138,7 +138,7 @@ msgstr ""
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "发布到记录上的最后消息的日期"
 
 #. module: quality_control
 #: field:qc.inspection,display_name:0 field:qc.inspection.line,display_name:0
@@ -150,7 +150,7 @@ msgstr ""
 #: field:qc.trigger.product_line,display_name:0
 #: field:qc.trigger.product_template_line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -173,7 +173,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: quality_control
 #: field:qc.test.category,complete_name:0
@@ -228,7 +228,7 @@ msgstr ""
 #. module: quality_control
 #: help:qc.inspection,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "查看是否有需要留意的新信息。"
 
 #. module: quality_control
 #: help:qc.trigger.line,partners:0
@@ -294,7 +294,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "最后消息日期"
 
 #. module: quality_control
 #: field:qc.inspection,__last_update:0
@@ -308,7 +308,7 @@ msgstr ""
 #: field:qc.trigger.product_line,__last_update:0
 #: field:qc.trigger.product_template_line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0
@@ -355,12 +355,12 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: quality_control
 #: help:qc.inspection,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "消息和通信历史"
 
 #. module: quality_control
 #: field:qc.inspection.line,min_value:0 field:qc.test.question,min_value:0
@@ -383,7 +383,7 @@ msgstr ""
 #: field:qc.test.question,name:0 field:qc.test.question.value,name:0
 #: field:qc.trigger,name:0
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -584,7 +584,7 @@ msgstr ""
 #. module: quality_control
 #: selection:qc.test,type:0
 msgid "Related"
-msgstr ""
+msgstr "建立联系"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -619,7 +619,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "序号"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -729,7 +729,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test,type:0 field:qc.test.question,type:0
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_category:0
@@ -739,7 +739,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "未读消息"
 
 #. module: quality_control
 #: field:qc.inspection.line,uom_id:0
@@ -824,4 +824,4 @@ msgstr ""
 #. module: quality_control
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "or"
-msgstr ""
+msgstr "或"

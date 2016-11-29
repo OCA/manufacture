@@ -4,13 +4,15 @@
 # 
 # Translators:
 # oihane <oihanecruce@gmail.com>, 2016
+# oihane <oihanecruce@gmail.com>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-16 21:45+0000\n"
-"Last-Translator: oihane <oihanecruce@gmail.com>\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,25 +21,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:186
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
 #, python-format
 msgid "%s-%s Post-operation"
 msgstr "%s-%s Post-operación"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:174
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:176
 #, python-format
 msgid "%s-%s Pre-operation"
 msgstr "%s-%s Pre-operación"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:204
 #, python-format
 msgid "%s-%s-C-%s"
 msgstr "%s-%s-C-%s"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:220
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:222
 #, python-format
 msgid "%s-%s-H-%s"
 msgstr "%s-%s-H-%s"
@@ -68,7 +70,7 @@ msgid ""
 "Cost price of the product template used for standard stock valuation in "
 "accounting and used as a base price on purchase orders. Expressed in the "
 "default unit of measure of the product."
-msgstr ""
+msgstr "Precio de coste de la plantilla de producto usado para la valoración de existencias estándar en contabilidad y usada como precio base en los pedidos de compra. Expresada en la unidad de medida por defecto del producto."
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
@@ -113,13 +115,13 @@ msgstr "Nombre mostrado"
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
 msgid "Estim. AVG"
-msgstr ""
+msgstr "Estim. MED"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_tree_inh_estimatedcost
 msgid "Estim. STD"
-msgstr ""
+msgstr "Estim. STD"
 
 #. module: mrp_production_estimated_cost
 #: field:account.analytic.line,estim_avg_cost:0
@@ -152,7 +154,7 @@ msgstr "Coste estándar estimado por unidad"
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_estimated_costs_per_production
 msgid "Estimated costs from manufacturing order"
-msgstr ""
+msgstr "Costes estimador de la orden de fabricación"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
@@ -206,7 +208,7 @@ msgid "Manufacturing costs"
 msgstr "Costes de fabricación"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:159
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:161
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr "Una de las líneas de consumo no tiene producto asignado."
@@ -252,8 +254,8 @@ msgid "Scheduled Date"
 msgstr "Fecha programada"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:200
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:217
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:219
 #, python-format
 msgid "There is at least this workcenter without product: %s"
 msgstr "Esta máquina no tiene un producto asignado: %s"
@@ -270,7 +272,7 @@ msgid "Virtual Manufacturing Orders to estimate costs"
 msgstr "Órdenes de fabricación virtuales para estimar costes"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:135
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:137
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr "Debe definir una cuenta analítica para esta MO: %s"
@@ -283,4 +285,4 @@ msgstr "o"
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
 msgid "{'invisible': ['|', ('active','=',False), ('state','!=','draft')]}"
-msgstr ""
+msgstr "{'invisible': ['|', ('active','=',False), ('state','!=','draft')]}"

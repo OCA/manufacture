@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: Andrea Cometa <a.cometa@apuliasoftware.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,7 @@ msgid "Final Product to Stock"
 msgstr "Prodotto finale per Magazzino"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:151
+#: code:addons/mrp_operations_extension/models/mrp_production.py:162
 #, python-format
 msgid "Finish WO"
 msgstr "WO Finito"
@@ -331,7 +331,7 @@ msgid "Materials Ready"
 msgstr "Materiali Pronti"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:134
+#: code:addons/mrp_operations_extension/models/mrp_production.py:145
 #, python-format
 msgid "Missing materials to start the production"
 msgstr "Mancano dei materiali per iniziare la produzione"
@@ -419,7 +419,7 @@ msgid "Previous operations finished"
 msgstr "Lavorazioni precedenti finite"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:130
+#: code:addons/mrp_operations_extension/models/mrp_production.py:141
 #, python-format
 msgid "Previous operations not finished"
 msgstr "Lavorazioni precedenti non finite"

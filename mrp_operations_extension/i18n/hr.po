@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-05 06:36+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,code:0
 msgid "Code"
-msgstr ""
+msgstr "Šifra"
 
 #. module: mrp_operations_extension
 #: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_consume
@@ -166,7 +166,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,description:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,display_name:0
@@ -218,7 +218,7 @@ msgid "Final Product to Stock"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:151
+#: code:addons/mrp_operations_extension/models/mrp_production.py:162
 #, python-format
 msgid "Finish WO"
 msgstr ""
@@ -326,7 +326,7 @@ msgid "Materials Ready"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:134
+#: code:addons/mrp_operations_extension/models/mrp_production.py:145
 #, python-format
 msgid "Missing materials to start the production"
 msgstr ""
@@ -344,7 +344,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
@@ -414,7 +414,7 @@ msgid "Previous operations finished"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_production.py:130
+#: code:addons/mrp_operations_extension/models/mrp_production.py:141
 #, python-format
 msgid "Previous operations not finished"
 msgstr ""
@@ -572,7 +572,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,track_production:0

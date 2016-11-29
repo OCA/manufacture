@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-31 06:30+0000\n"
-"PO-Revision-Date: 2016-08-01 15:12+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-10-11 09:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Czech (http://www.transifex.com/oca/OCA-manufacture-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -20,17 +20,17 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Vytvořil(a)"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Vytvořeno"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Zobrazovaný název"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -50,7 +50,7 @@ msgstr "Seskupit podle..."
 #. module: mrp_operations_time_control
 #: field:operation.time.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view
@@ -61,17 +61,17 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: mrp_operations_time_control
 #: view:mrp.production:mrp_operations_time_control.mrp_production_operation_time_form_view

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-29 03:58+0000\n"
-"PO-Revision-Date: 2016-06-06 07:28+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,name:0
 msgid "Reference"
-msgstr ""
+msgstr "Riferimento"
 
 #. module: mrp_bom_reference_selection
 #: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard

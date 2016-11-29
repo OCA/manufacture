@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-09-25 14:00+0000\n"
+"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -43,12 +43,12 @@ msgstr "Създадено на"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
-msgstr ""
+msgstr "Групирай По"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,id:0
