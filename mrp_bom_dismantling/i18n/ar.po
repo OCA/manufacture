@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-07 07:44+0000\n"
-"PO-Revision-Date: 2016-08-04 12:01+0000\n"
+"POT-Creation-Date: 2016-10-14 09:40+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/oca/OCA-manufacture-9-0/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -67,13 +67,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "أنشئ بواسطة"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_date
 msgid "Created on"
-msgstr ""
+msgstr "أنشئ في"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantled_product_id
@@ -106,31 +106,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "اسم العرض"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
 msgid "ID"
-msgstr ""
+msgstr "المعرف"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "آخر تعديل في"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "آخر تحديث بواسطة"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "آخر تحديث في"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_id
