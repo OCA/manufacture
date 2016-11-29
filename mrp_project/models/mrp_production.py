@@ -14,6 +14,10 @@ class MrpProduction(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     analytic_account_id = fields.Many2one(
         related="project_id.analytic_account_id", store=True)
+    create_tasks = fields.Boolean(string="Automatically create tasks")
+    create_project = fields.Boolean(
+        string="Automatically create project if not assigned",
+    )
 
     @api.model
     def _prepare_project_vals(self, production):
@@ -57,6 +61,9 @@ class MrpProduction(models.Model):
 
     @api.multi
     def action_in_production(self):
+        """
+        Look for tasks related to the current MO without a workorder
+        """
         task_obj = self.env['project.task']
         for record in self:
             task_domain = [('mrp_production_id', '=', record.id),

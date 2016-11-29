@@ -25,7 +25,8 @@
         "views/project_project_view.xml",
         "views/account_analytic_line_view.xml",
         "views/project_task_view.xml",
-        "views/hr_analytic_timesheet.xml"
+        "views/hr_analytic_timesheet.xml",
+        "views/res_config_view.xml",
     ],
     'installable': True,
     'auto_install': False,

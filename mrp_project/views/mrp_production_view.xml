@@ -12,6 +12,10 @@
                 <field name="analytic_account_id" position="after">
                     <field name="project_id"/>
                 </field>
+                <field name="allow_reorder" position="after">
+                    <field name="create_project"/>
+                    <field name="create_tasks"/>
+                </field>
             </field>
         </record>
 
