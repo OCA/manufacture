@@ -22,12 +22,16 @@
 
 {
     'name': 'MRP Calendar View',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Manufacturing',
     'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    'depends': ['mrp_repair'],
-    'data': ['view/mrp_repair_view.xml'],
-    'installable': False,
+    'depends': [
+        'mrp_repair',
+    ],
+    'data': [
+        'view/mrp_repair_view.xml',
+    ],
+    'installable': True,
 }

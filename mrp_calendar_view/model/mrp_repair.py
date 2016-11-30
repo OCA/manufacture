@@ -22,7 +22,7 @@
 from openerp import fields, models
 
 
-class mrp_repair(models.Model):
+class MrpRepair(models.Model):
     _inherit = 'mrp.repair'
 
     user_id = fields.Many2one('res.users', 'User',
