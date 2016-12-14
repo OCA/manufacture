@@ -33,14 +33,18 @@ class MrpProduction(models.Model):
         return super(MrpProduction, self).action_confirm()
 
     @api.multi
+    def _prepare_procurement_group(self):
+        return {"name": self.name}
+
+    @api.multi
     def _create_procurement_group(self):
         self.ensure_one()
         obj_group = self.env[
             "procurement.group"]
         if self.auto_create_procurement_group and \
                 not self.raw_material_procurement_group_id:
-            self.raw_material_procurement_group_id = obj_group.create({
-                "name": self.name})
+            self.raw_material_procurement_group_id = obj_group.create(
+                self._prepare_procurement_group())
 
     @api.model
     def _make_consume_line_from_data(
