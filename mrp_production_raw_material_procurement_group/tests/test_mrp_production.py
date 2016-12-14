@@ -148,7 +148,7 @@ class MrpProductionCase(TransactionCase):
                 raw.group_id,
                 mo.raw_material_procurement_group_id)
 
-    def test_copy_mo_1(self):
+    def test_copy_mo(self):
         # Create MO
         group1 = self._create_procurement_group(
             "X 001")
@@ -163,7 +163,7 @@ class MrpProductionCase(TransactionCase):
         self.assertEqual(
             mo2.raw_material_procurement_group_id.id, False)
 
-    def test_copy_mo_2(self):
+    def test_group_name(self):
         # Create MO
         mo = self._create_mo(auto=True)
         # Click confirm button
