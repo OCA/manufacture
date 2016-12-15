@@ -49,12 +49,10 @@ class MrpProduction(models.Model):
     @api.model
     def _make_consume_line_from_data(
             self,
-            production, product, uom_id, qty,
-            uos_id, uos_qty):
+            production, product, uom_id, qty):
 
         move_id = super(MrpProduction, self)._make_consume_line_from_data(
-            production, product, uom_id, qty,
-            uos_id, uos_qty)
+            production, product, uom_id, qty)
         obj_move = self.env["stock.move"]
         move = obj_move.browse(move_id)
         if move.procure_method == "make_to_stock":
