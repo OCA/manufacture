@@ -25,6 +25,7 @@ addon | version | summary
 [mrp_production_estimated_cost](mrp_production_estimated_cost/) | 8.0.1.2.0 | Estimated costs in manufacturing orders
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
+[mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 8.0.1.0.0 | Create Procurement Group On Manufacturing Order
 [mrp_production_real_cost](mrp_production_real_cost/) | 8.0.1.0.2 | Real costs in manufacturing orders
 [mrp_project](mrp_project/) | 8.0.1.2.0 | Link production with projects
 [mrp_repair_discount](mrp_repair_discount/) | 8.0.1.0.0 | MRP Repair Discount
