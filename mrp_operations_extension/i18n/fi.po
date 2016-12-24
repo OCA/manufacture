@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"POT-Creation-Date: 2016-12-17 03:21+0000\n"
+"PO-Revision-Date: 2016-12-23 08:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgstr "Viimeksi päivitetty"
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,lot_id:0
 msgid "Lot"
-msgstr ""
+msgstr "Erä"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_operation_workcenter

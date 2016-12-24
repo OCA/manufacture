@@ -21,7 +21,7 @@ msgstr ""
 #. module: mrp_production_raw_material_procurement_group
 #: field:mrp.production,auto_create_procurement_group:0
 msgid "Auto Create Procurement Group"
-msgstr ""
+msgstr "Samodejno ustvari oskrbovalno skupino"
 
 #. module: mrp_production_raw_material_procurement_group
 #: model:ir.model,name:mrp_production_raw_material_procurement_group.model_mrp_production
@@ -31,4 +31,4 @@ msgstr "Proizvodni nalog"
 #. module: mrp_production_raw_material_procurement_group
 #: field:mrp.production,raw_material_procurement_group_id:0
 msgid "Raw Material Procurement Group"
-msgstr ""
+msgstr "Skupina za oskrbovanje surovin"
