@@ -3,12 +3,14 @@
 # * mrp_operations_time_control
 # 
 # Translators:
+# Hotellook, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-10 15:32+0000\n"
-"PO-Revision-Date: 2015-12-10 00:29+0000\n"
+"POT-Creation-Date: 2016-12-24 03:23+0000\n"
+"PO-Revision-Date: 2016-12-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +28,11 @@ msgstr "Creat de"
 #: field:operation.time.line,create_date:0
 msgid "Created on"
 msgstr "Creat în"
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,display_name:0
+msgid "Display Name"
+msgstr "Nume Afişat"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -52,6 +59,11 @@ msgstr "ID"
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
 msgid "Information"
 msgstr ""
+
+#. module: mrp_operations_time_control
+#: field:operation.time.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima actualizare în"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
@@ -144,4 +156,9 @@ msgstr "Comandă de lucru"
 #. module: mrp_operations_time_control
 #: view:operation.time.line:mrp_operations_time_control.operation_time_lines_form_view
 msgid "hours"
+msgstr ""
+
+#. module: mrp_operations_time_control
+#: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_form_view
+msgid "startworking,pause"
 msgstr ""

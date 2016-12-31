@@ -4,12 +4,13 @@
 # 
 # Translators:
 # César Castro Cruz <ulmroan@gmail.com>, 2016
+# César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-05 11:40+0000\n"
+"POT-Creation-Date: 2016-12-24 03:23+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-manufacture-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: mrp_production_partner_note
 #: model:ir.model,name:mrp_production_partner_note.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: mrp_production_partner_note
 #: model:ir.model,name:mrp_production_partner_note.model_procurement_order

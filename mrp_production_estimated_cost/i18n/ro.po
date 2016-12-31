@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 16:03+0000\n"
-"PO-Revision-Date: 2016-05-23 17:17+0000\n"
+"POT-Creation-Date: 2016-12-24 03:23+0000\n"
+"PO-Revision-Date: 2016-12-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -20,25 +20,25 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:186
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
 #, python-format
 msgid "%s-%s Post-operation"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:174
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:176
 #, python-format
 msgid "%s-%s Pre-operation"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:204
 #, python-format
 msgid "%s-%s-C-%s"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:220
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:222
 #, python-format
 msgid "%s-%s-H-%s"
 msgstr ""
@@ -108,7 +108,7 @@ msgstr "Creat în"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nume Afişat"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
@@ -168,7 +168,7 @@ msgstr "ID"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima actualizare în"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
@@ -207,7 +207,7 @@ msgid "Manufacturing costs"
 msgstr "Costuri fabricație"
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:159
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:161
 #, python-format
 msgid "One consume line has no product assigned."
 msgstr ""
@@ -253,8 +253,8 @@ msgid "Scheduled Date"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:200
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:217
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:219
 #, python-format
 msgid "There is at least this workcenter without product: %s"
 msgstr ""
@@ -271,7 +271,7 @@ msgid "Virtual Manufacturing Orders to estimate costs"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:135
+#: code:addons/mrp_production_estimated_cost/models/mrp_production.py:137
 #, python-format
 msgid "You must define one Analytic Account for this MO: %s"
 msgstr ""
