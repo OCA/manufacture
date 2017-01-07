@@ -3,47 +3,46 @@
 # * mrp_calendar_view
 # 
 # Translators:
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-06 06:14+0000\n"
-"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
+"PO-Revision-Date: 2015-10-26 16:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_calendar_view
 #: help:mrp.repair,date_repair:0
 msgid "Date of the repair, this fieldand user_id defines the calendar"
-msgstr "Date de la réparation, ce champ et user_id définit dans le calendrier"
+msgstr ""
 
 #. module: mrp_calendar_view
 #: help:mrp.repair,user_id:0
 msgid "Person in charge for the repair"
-msgstr "Personne en charge de la réparation"
+msgstr ""
 
 #. module: mrp_calendar_view
 #: field:mrp.repair,date_repair:0
 msgid "Repair Date"
-msgstr "Date de réparation"
+msgstr ""
 
 #. module: mrp_calendar_view
 #: model:ir.model,name:mrp_calendar_view.model_mrp_repair
 msgid "Repair Order"
-msgstr "Ordre de réparation"
+msgstr ""
 
 #. module: mrp_calendar_view
 #: view:mrp.repair:mrp_calendar_view.view_repair_order_calendar
 msgid "Repair Orders Calendar"
-msgstr "Calendrier des ordres de réparation"
+msgstr ""
 
 #. module: mrp_calendar_view
 #: field:mrp.repair,user_id:0
 msgid "User"
-msgstr "Utilisateur"
+msgstr "Kullanıcı"

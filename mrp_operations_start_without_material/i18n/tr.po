@@ -3,26 +3,25 @@
 # * mrp_operations_start_without_material
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 05:27+0000\n"
 "PO-Revision-Date: 2016-12-31 05:27+0000\n"
-"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>, 2016\n"
+"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mrp_operations_start_without_material
 #: model:ir.model,name:mrp_operations_start_without_material.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Nomenclature"
+msgstr "Ürün ağacı"
 
 #. module: mrp_operations_start_without_material
 #: help:mrp.production.workcenter.line,init_without_material:0
@@ -31,21 +30,19 @@ msgid ""
 "If enabled, current operation could be initialized even if thereis no "
 "material assigned to it."
 msgstr ""
-"Si coché, l'opération courante ne pourra pas être initilisée tant qu'il n'y "
-"aura pas de matériel assigné."
 
 #. module: mrp_operations_start_without_material
 #: field:mrp.production.workcenter.line,init_without_material:0
 #: field:mrp.routing.workcenter,init_without_material:0
 msgid "Init without material"
-msgstr "Initialiser sans matériel"
+msgstr ""
 
 #. module: mrp_operations_start_without_material
 #: model:ir.model,name:mrp_operations_start_without_material.model_mrp_routing_workcenter
 msgid "Work Center Usage"
-msgstr "Utilisation des postes de travail"
+msgstr ""
 
 #. module: mrp_operations_start_without_material
 #: model:ir.model,name:mrp_operations_start_without_material.model_mrp_production_workcenter_line
 msgid "Work Order"
-msgstr "Ordre de travail"
+msgstr ""

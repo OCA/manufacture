@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_production_partner_note
+# * mrp_produce_uos
 # 
 # Translators:
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
@@ -18,17 +18,12 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: mrp_production_partner_note
-#: model:ir.model,name:mrp_production_partner_note.model_res_partner
-msgid "Partner"
-msgstr "Partenaire"
+#. module: mrp_produce_uos
+#: model:ir.model,name:mrp_produce_uos.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Produit fini"
 
-#. module: mrp_production_partner_note
-#: model:ir.model,name:mrp_production_partner_note.model_procurement_order
-msgid "Procurement"
-msgstr "Procurement"
-
-#. module: mrp_production_partner_note
-#: field:res.partner,mrp_notes:0
-msgid "Production Notes"
-msgstr "Commentaires de fabrication"
+#. module: mrp_produce_uos
+#: field:mrp.product.produce,product_uos_qty:0
+msgid "Select Quantity (UOS)"
+msgstr "Sélectionner la quantité (UdV)"

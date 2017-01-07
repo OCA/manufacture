@@ -3,14 +3,15 @@
 # * quality_control_force_valid
 # 
 # Translators:
-# dglucose <eric.lemesre@gmail.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-16 09:04+0000\n"
-"Last-Translator: dglucose <eric.lemesre@gmail.com>, 2016\n"
+"POT-Creation-Date: 2016-12-31 05:27+0000\n"
+"PO-Revision-Date: 2016-12-31 05:27+0000\n"
+"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,17 +23,17 @@ msgstr ""
 #: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid
 #: field:qc.inspection,force_valid:0
 msgid "Force valid"
-msgstr ""
+msgstr "Forcer la validation"
 
 #. module: quality_control_force_valid
 #: help:qc.inspection,force_valid:0
 msgid "Mark this field if you want to override the result of the inspection"
-msgstr ""
+msgstr "Marquer ce champ si vous voulez écraser le résultat de l'inspection"
 
 #. module: quality_control_force_valid
 #: model:ir.model,name:quality_control_force_valid.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Inspection de contrôle qualité"
 
 #. module: quality_control_force_valid
 #: view:qc.inspection:quality_control_force_valid.qc_inspection_search_view_putvalid

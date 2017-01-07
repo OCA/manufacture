@@ -3,12 +3,13 @@
 # * mrp_operations_extension
 # 
 # Translators:
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 03:23+0000\n"
-"PO-Revision-Date: 2016-12-30 22:05+0000\n"
+"POT-Creation-Date: 2016-12-31 05:27+0000\n"
+"PO-Revision-Date: 2017-01-05 20:42+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,op_number:0
 msgid "# Operators"
-msgstr ""
+msgstr "# Operatörler"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,op_number:0
@@ -43,7 +44,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Ürün ağacı"
 
 #. module: mrp_operations_extension
 #: field:mrp.production.product.line,bom_line:0
@@ -313,7 +314,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Üretim emri"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh

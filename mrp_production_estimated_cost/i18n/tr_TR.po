@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-05 20:40+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
@@ -44,7 +44,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,active:0
 msgid "Active"
-msgstr "Aktif"
+msgstr "Etkin"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_account_analytic_line
@@ -59,7 +59,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
 msgid "Cancel"
-msgstr "Vazgeç"
+msgstr "İptal et"
 
 #. module: mrp_production_estimated_cost
 #: help:mrp.production,product_cost:0
@@ -101,12 +101,12 @@ msgstr "Oluşturan"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_date:0
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma tarihi"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
 msgid "Display Name"
-msgstr "Görünen İsim"
+msgstr "Görünen ad"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
@@ -161,22 +161,22 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,__last_update:0
 msgid "Last Modified on"
-msgstr "Son değişiklik"
+msgstr "En son güncelleme tarihi"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
 msgid "Last Updated by"
-msgstr "Son güncelleyen"
+msgstr "En son güncelleyen "
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_date:0
 msgid "Last Updated on"
-msgstr "Son güncelleme"
+msgstr "En son güncelleme tarihi"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
@@ -197,7 +197,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Üretim emri"
+msgstr ""
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
@@ -213,7 +213,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,product_cost:0
@@ -228,7 +228,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Ürün şablonu"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.actions.act_window,name:mrp_production_estimated_cost.action_show_production_anaytic_lines
@@ -277,7 +277,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
 msgid "or"
-msgstr "ya da"
+msgstr "ya da "
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost

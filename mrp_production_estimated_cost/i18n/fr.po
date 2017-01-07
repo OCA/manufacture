@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"POT-Creation-Date: 2016-12-31 05:27+0000\n"
+"PO-Revision-Date: 2017-01-06 06:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.view_account_analytic_line_form_inh_estimatedcost
 msgid "General Accounting"
-msgstr ""
+msgstr "Compte général"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,id:0
@@ -202,7 +202,7 @@ msgstr "Ordre de fabrication"
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost
 msgid "Manufacturing costs"
-msgstr ""
+msgstr "Coûts de fabrication"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:161

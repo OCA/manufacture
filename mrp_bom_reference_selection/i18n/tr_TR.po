@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-05 20:40+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom
@@ -23,7 +23,7 @@ msgstr ""
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 #: field:stock.production.lot,bom_id:0
 msgid "Bill of Material"
-msgstr "Ürün ağacı"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom,reference_id:0
@@ -38,12 +38,12 @@ msgstr "Oluşturan"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_date:0
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma tarihi"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,display_name:0
 msgid "Display Name"
-msgstr "Görünen İsim"
+msgstr "Görünen ad"
 
 #. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
@@ -53,22 +53,22 @@ msgstr "Grupla"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,__last_update:0
 msgid "Last Modified on"
-msgstr "Son değişiklik"
+msgstr "En son güncelleme tarihi"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
 msgid "Last Updated by"
-msgstr "Son güncelleyen"
+msgstr "En son güncelleyen "
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_date:0
 msgid "Last Updated on"
-msgstr "Son güncelleme"
+msgstr "En son güncelleme tarihi"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot
@@ -83,7 +83,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Üretim emri"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: code:addons/mrp_bom_reference_selection/models/mrp_bom_line.py:28
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,product_tmpl_id:0
 msgid "Product Template"
-msgstr ""
+msgstr "Ürün şablonu"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,reference_id:0
