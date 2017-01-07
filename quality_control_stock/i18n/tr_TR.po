@@ -3,65 +3,59 @@
 # * quality_control_stock
 # 
 # Translators:
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# oihane <oihanecruce@gmail.com>, 2016
-# oihane <oihanecruce@gmail.com>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-06 06:27+0000\n"
-"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
+"PO-Revision-Date: 2015-11-12 18:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: quality_control_stock
 #: field:stock.picking,created_inspections:0
 #: field:stock.production.lot,created_inspections:0
 msgid "Created inspections"
-msgstr "Inspections créées"
+msgstr ""
 
 #. module: quality_control_stock
 #: field:stock.picking,done_inspections:0
 #: field:stock.production.lot,done_inspections:0
 msgid "Done inspections"
-msgstr "Inspections terminées"
+msgstr ""
 
 #. module: quality_control_stock
 #: field:stock.picking,qc_inspections:0
 #: field:stock.production.lot,qc_inspections:0
 msgid "Inspections"
-msgstr "Inspections"
+msgstr ""
 
 #. module: quality_control_stock
 #: field:stock.picking,passed_inspections:0
 #: field:stock.production.lot,passed_inspections:0
 msgid "Inspections OK"
-msgstr "Inspections OK"
+msgstr ""
 
 #. module: quality_control_stock
 #: field:stock.picking,failed_inspections:0
 #: field:stock.production.lot,failed_inspections:0
 msgid "Inspections failed"
-msgstr "Inspections en échec"
+msgstr ""
 
 #. module: quality_control_stock
 #: help:stock.production.lot,qc_inspections:0
 msgid "Inspections related to this lot."
-msgstr "Inspections liés à ce lot."
+msgstr ""
 
 #. module: quality_control_stock
 #: help:stock.picking,qc_inspections:0
 msgid "Inspections related to this picking."
-msgstr "Inspections liées à ce bon."
+msgstr ""
 
 #. module: quality_control_stock
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
@@ -70,12 +64,12 @@ msgstr "Inspections liées à ce bon."
 #: field:qc.inspection.line,lot:0
 #: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
 msgid "Lot"
-msgstr "Lot"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr "Lot/n° de série"
+msgstr ""
 
 #. module: quality_control_stock
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
@@ -83,44 +77,44 @@ msgstr "Lot/n° de série"
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 #: field:qc.inspection.line,picking:0
 msgid "Picking"
-msgstr "Bons"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
-msgstr "Opération de manutention"
+msgstr "Seçim listesi"
 
 #. module: quality_control_stock
 #: field:qc.trigger,picking_type:0
 msgid "Picking type"
-msgstr "Type de bons"
+msgstr ""
 
 #. module: quality_control_stock
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 msgid "Product"
-msgstr "Article"
+msgstr "Ürün"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
 msgid "Quality control inspection"
-msgstr "Inspection de contrôle qualité"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr "Ligne d'inspection de contrôle de la qualité"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_trigger
 msgid "Quality control trigger"
-msgstr "Déclencheur de contrôle qualité"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_done
 msgid "Quality inspection from lot done"
-msgstr "Inspections de la qualité à partir de lot terminés"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_passed
@@ -160,7 +154,7 @@ msgstr ""
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
 msgid "Stock Move"
-msgstr "Mouvement de stock"
+msgstr "Stok hareketi"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
@@ -171,4 +165,4 @@ msgstr ""
 #: view:stock.picking:quality_control_stock.stock_picking_qc_view
 #: view:stock.production.lot:quality_control_stock.stock_lot_qc_view
 msgid "inspections"
-msgstr "inspections"
+msgstr ""
