@@ -14,7 +14,7 @@ Installation
 
 To install this module, you need to:
 
-1.  Clone the branch 8.0 of the repository https://github.com/OCA/manufacture
+1.  Clone the branch 9.0 of the repository https://github.com/OCA/manufacture
 2.  Add the path to this repository in your configuration (addons-path)
 3.  Update the module list
 4.  Go to menu *Setting -> Modules -> Local Modules*
@@ -36,7 +36,7 @@ To use this module, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/129/8.0
+   :target: https://runbot.odoo-community.org/runbot/129/9.0
 
 
 Bug Tracker
