@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2017-01-13 09:26+0000\n"
+"PO-Revision-Date: 2017-01-11 15:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-manufacture-9-0/language/pt/)\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-manufacture-9-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom
@@ -35,7 +35,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annuler"
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/models/mrp_bom.py:49
@@ -67,13 +67,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Créé par"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Créé le"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantled_product_id
@@ -106,31 +106,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
 msgid "Display Name"
-msgstr "Nome"
+msgstr "Afficher le nom"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
 msgid "ID"
-msgstr "ID"
+msgstr "Identifiant"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
 msgid "Last Modified on"
-msgstr "Modificado a última vez por"
+msgstr ""
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_uid
 msgid "Last Updated by"
-msgstr "Atualizado pela última vez por"
+msgstr "Dernière mise à jour par"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_date
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_date
 msgid "Last Updated on"
-msgstr "Atualizado pela última vez em"
+msgstr "Dernière mise à jour le"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_id
@@ -161,7 +161,7 @@ msgstr ""
 #: model:ir.model,name:mrp_bom_dismantling.model_product_product
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_product_id
 msgid "Product"
-msgstr "Produto"
+msgstr ""
 
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produce
@@ -182,7 +182,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_stock_move
 msgid "Stock Move"
-msgstr "Movimento Stock"
+msgstr ""
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/wizards/dismantling_product_choice.py:34
