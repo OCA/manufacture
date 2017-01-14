@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
 "PO-Revision-Date: 2015-11-12 18:38+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_ES/)\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_ES\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: quality_control_stock
 #: field:stock.picking,created_inspections:0
@@ -64,7 +64,7 @@ msgstr ""
 #: field:qc.inspection.line,lot:0
 #: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
 msgid "Lot"
-msgstr "Lote"
+msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_production_lot
@@ -83,7 +83,7 @@ msgstr ""
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Toplama Listesi"
 
 #. module: quality_control_stock
 #: field:qc.trigger,picking_type:0
@@ -94,7 +94,7 @@ msgstr ""
 #: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 msgid "Product"
-msgstr "Producto"
+msgstr "Ürün"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
@@ -154,7 +154,7 @@ msgstr ""
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Stok Taşı"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
