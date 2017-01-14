@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2017-01-12 19:41+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
+"PO-Revision-Date: 2017-01-13 07:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: quality_control_mrp
 #: field:mrp.production,created_inspections:0
@@ -36,13 +36,13 @@ msgstr ""
 #: model:ir.model,name:quality_control_mrp.model_mrp_production
 #: model:res.request.link,name:quality_control_mrp.req_link_mrp_production
 msgid "Manufacturing Order"
-msgstr "Üretim emri"
+msgstr ""
 
 #. module: quality_control_mrp
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
 #: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Product"
-msgstr "Ürün"
+msgstr "Producto"
 
 #. module: quality_control_mrp
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
