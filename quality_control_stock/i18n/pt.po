@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:46+0000\n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
 "PO-Revision-Date: 2015-11-12 18:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt/)\n"
@@ -154,7 +154,7 @@ msgstr ""
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento Stock"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type

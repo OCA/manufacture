@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:46+0000\n"
-"PO-Revision-Date: 2016-12-15 10:12+0000\n"
+"POT-Creation-Date: 2017-01-07 04:19+0000\n"
+"PO-Revision-Date: 2017-01-13 09:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,code:0
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: mrp_operations_extension
 #: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_consume

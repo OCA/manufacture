@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_project
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
+"PO-Revision-Date: 2017-01-10 08:59+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Polish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: mrp_project
+#: code:addons/mrp_project/models/mrp_production.py:40
+#, python-format
+msgid ""
+"\n"
+"        Manufacturing Order: %s\n"
+"        Product to Produce: [%s]%s\n"
+"        Quantity to Produce: %s\n"
+"        Bill of Material: %s\n"
+"        Planned Date: %s\n"
+"        "
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
+msgid "Analytic Account"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: mrp_project
+#: field:project.project,automatic_creation:0
+msgid "Automatic Creation"
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
+msgid "General Accounting"
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
+#: view:project.task:mrp_project.project_task_mrp_form_view
+msgid "MRP Data"
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
+#: view:project.project:mrp_project.project_mrp_procurement_shortcut_form_view
+#: view:project.task:mrp_project.project_task_mrp_inh_search_view
+msgid "Manufacturing"
+msgstr ""
+
+#. module: mrp_project
+#: field:project.project,production_count:0
+msgid "Manufacturing Count"
+msgstr ""
+
+#. module: mrp_project
+#: field:account.analytic.line,mrp_production_id:0
+#: field:hr.analytic.timesheet,mrp_production_id:0
+#: model:ir.model,name:mrp_project.model_mrp_production
+#: field:project.task,mrp_production_id:0
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.actions.act_window,name:mrp_project.act_project_2_production_all
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_project
+#: view:project.task:mrp_project.project_task_mrp_form_view
+msgid "Please go to the manufacturing order to see the products to consume."
+msgstr ""
+
+#. module: mrp_project
+#: view:project.task:mrp_project.project_task_mrp_form_view
+#: view:project.task:mrp_project.project_task_mrp_inh_tree_view
+#: field:project.task,final_product:0
+msgid "Product to Produce"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_project
+#: field:mrp.production,project_id:0
+msgid "Project"
+msgstr ""
+
+#. module: mrp_project
+#: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
+msgid "Project Task"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_task_work
+msgid "Project Task Work"
+msgstr ""
+
+#. module: mrp_project
+#: view:project.task:mrp_project.project_task_mrp_form_view
+#: field:project.task,production_scheduled_products:0
+msgid "Scheduled Products"
+msgstr ""
+
+#. module: mrp_project
+#: view:project.task:mrp_project.project_task_mrp_inh_search_view
+msgid "Stage"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_task
+msgid "Task"
+msgstr "Zadanie"
+
+#. module: mrp_project
+#: field:mrp.production.workcenter.line,work_ids:0
+msgid "Task works"
+msgstr ""
+
+#. module: mrp_project
+#: field:mrp.production.workcenter.line,task_ids:0
+msgid "Tasks"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr ""
+
+#. module: mrp_project
+#: field:account.analytic.line,workorder:0
+#: field:hr.analytic.timesheet,workorder:0
+#: model:ir.model,name:mrp_project.model_mrp_production_workcenter_line
+#: field:project.task,workorder:0
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_project
+#: field:project.task.work,workorder:0
+msgid "Work order"
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
+#: view:project.task:mrp_project.project_task_mrp_inh_search_view
+msgid "Workorder"
+msgstr ""
+
+#. module: mrp_project
+#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
+msgid "group_analytic_account"
+msgstr ""

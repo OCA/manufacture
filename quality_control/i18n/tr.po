@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-05 20:42+0000\n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 msgid "Approve"
-msgstr ""
+msgstr "Onayla"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
@@ -426,7 +426,7 @@ msgstr ""
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category

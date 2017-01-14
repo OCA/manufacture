@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-07 04:19+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Creat el"
 #. module: mrp_operations_time_control
 #: field:operation.time.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,end_date:0
@@ -61,7 +61,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: field:operation.time.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,write_uid:0
@@ -143,7 +143,7 @@ msgstr ""
 #: view:operation.time.line:mrp_operations_time_control.view_operation_time_lines_search
 #: field:operation.time.line,user:0
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #. module: mrp_operations_time_control
 #: model:ir.model,name:mrp_operations_time_control.model_mrp_production_workcenter_line

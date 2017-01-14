@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Aangemaakt op"
 #. module: quality_control
 #: field:qc.inspection,date:0
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: quality_control
 #: help:qc.inspection,message_last_post:0
@@ -619,7 +619,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test.question,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Reeks"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -764,7 +764,7 @@ msgstr ""
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_user
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: quality_control
 #: field:qc.inspection.line,valid_values:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 03:21+0000\n"
-"PO-Revision-Date: 2016-12-22 14:05+0000\n"
+"POT-Creation-Date: 2017-01-07 04:19+0000\n"
+"PO-Revision-Date: 2017-01-13 09:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Ativo"
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Linha Analítica"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,analytic_account_id:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-05 20:40+0000\n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
+"PO-Revision-Date: 2017-01-12 19:41+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Üretim emri"
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
 #: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: quality_control_mrp
 #: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production

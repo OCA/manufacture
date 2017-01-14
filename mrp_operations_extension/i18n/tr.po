@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Ozge Altinisik <ozge@altinkaya.com.tr>, 2016
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-05 20:42+0000\n"
+"POT-Creation-Date: 2017-01-07 04:19+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -438,7 +439,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
@@ -514,7 +515,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Stok Taşı"
 
 #. module: mrp_operations_extension
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
@@ -640,7 +641,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "oe_highlight"
-msgstr ""
+msgstr "oe_highlight"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
