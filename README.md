@@ -17,6 +17,7 @@ addon | version | summary
 [mrp_bom_note](mrp_bom_note/) | 9.0.1.0.0 | Notes in Bill of Materials
 [mrp_production_note](mrp_production_note/) | 9.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 9.0.1.0.0 | MRP - Partner production notes
+[mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 9.0.1.0.0 | Create Procurement Group On Manufacturing Order
 [mrp_sale_info](mrp_sale_info/) | 9.0.1.0.0 | Adds sale information to Manufacturing models
 
 Unported addons
