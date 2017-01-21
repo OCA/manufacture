@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:46+0000\n"
-"PO-Revision-Date: 2016-12-22 14:08+0000\n"
+"POT-Creation-Date: 2017-01-07 04:20+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr ""
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Stage"
-msgstr ""
+msgstr "Steg"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
