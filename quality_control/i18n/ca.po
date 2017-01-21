@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: field:qc.test,active:0 field:qc.test.category,active:0
 #: field:qc.trigger,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #. module: quality_control
 #: field:qc.inspection.line,possible_ql_values:0
@@ -67,7 +67,7 @@ msgstr "Cancel·la"
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Canceled"
-msgstr ""
+msgstr "Cancel·lat"
 
 #. module: quality_control
 #: field:qc.test,category:0
@@ -83,7 +83,7 @@ msgstr ""
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -383,7 +383,7 @@ msgstr ""
 #: field:qc.test.question,name:0 field:qc.test.question.value,name:0
 #: field:qc.trigger,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -426,7 +426,7 @@ msgstr ""
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
@@ -436,7 +436,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla del producte"
 
 #. module: quality_control
 #: help:qc.inspection,product:0 help:qc.inspection.line,product:0
@@ -536,7 +536,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: quality_control
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view

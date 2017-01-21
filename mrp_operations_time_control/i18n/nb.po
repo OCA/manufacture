@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:19+0000\n"
-"PO-Revision-Date: 2017-01-13 09:28+0000\n"
+"PO-Revision-Date: 2017-01-19 20:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr ""
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Pending"
-msgstr ""
+msgstr "Venter"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,production:0

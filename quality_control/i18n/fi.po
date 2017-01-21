@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2017-01-13 09:29+0000\n"
+"PO-Revision-Date: 2017-01-17 12:13+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: field:qc.test,active:0 field:qc.test.category,active:0
 #: field:qc.trigger,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
 
 #. module: quality_control
 #: field:qc.inspection.line,possible_ql_values:0
@@ -83,7 +83,7 @@ msgstr ""
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Yritys"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -407,7 +407,7 @@ msgstr ""
 #: field:qc.trigger.product_line,partners:0
 #: field:qc.trigger.product_template_line,partners:0
 msgid "Partners"
-msgstr ""
+msgstr "Kumppanit"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value

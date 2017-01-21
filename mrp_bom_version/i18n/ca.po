@@ -27,7 +27,7 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: selection:mrp.bom,state:0
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #. module: mrp_bom_version
 #: field:mrp.config.settings,group_mrp_bom_version:0

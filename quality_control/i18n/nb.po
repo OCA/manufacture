@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2017-01-13 09:28+0000\n"
+"PO-Revision-Date: 2017-01-19 20:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -569,7 +569,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr ""
+msgstr "Referanse"
 
 #. module: quality_control
 #: field:qc.test,object_id:0
@@ -593,7 +593,7 @@ msgstr ""
 #: field:qc.trigger.product_line,user:0
 #: field:qc.trigger.product_template_line,user:0
 msgid "Responsible"
-msgstr ""
+msgstr "Ansvarlig"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
