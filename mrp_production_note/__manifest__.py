@@ -4,7 +4,7 @@
 
 {
     "name": "Notes in production orders",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
@@ -23,5 +23,5 @@
     "data": [
         "views/mrp_production_view.xml",
     ],
-    'installable': False,
+    'installable': True,
 }
