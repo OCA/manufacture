@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-28 14:19+0000\n"
-"PO-Revision-Date: 2016-04-30 05:10+0000\n"
+"POT-Creation-Date: 2017-02-11 01:38+0000\n"
+"PO-Revision-Date: 2017-02-10 21:41+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgid "Minimum valid value for a quantitative question."
 msgstr "Minimalna veljavna vrednost za kvantitativno vprašanje."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:62
+#: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
 msgstr "Minimalna vrednost ne more biti višja od maksimalne vrednosti."
@@ -703,7 +703,7 @@ msgid "Tests"
 msgstr "Testiranja"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:54
+#: code:addons/quality_control/models/qc_test.py:55
 #, python-format
 msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr "Nobena vrednost ni označena kot V REDU. Označiti morate vsaj eno."
@@ -797,31 +797,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr "Ko je to polje označeno, se odgovor smatra za pravilen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:92
+#: code:addons/quality_control/models/qc_inspection.py:93
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr "Samodejno ustvarjenih inšpekcij ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:95
+#: code:addons/quality_control/models/qc_inspection.py:96
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr "Inšpekcije, ki ni osnutek ne morete odstraniti."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:108
+#: code:addons/quality_control/models/qc_inspection.py:109
 #, python-format
 msgid "You must first set the test to perform."
 msgstr "Najprej morate nastaviti test, ki se bo opravljal."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:124
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Določite EM za kvalitativna vprašanja."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:118
+#: code:addons/quality_control/models/qc_inspection.py:119
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."
