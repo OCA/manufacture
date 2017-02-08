@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, exceptions, _
+import openerp.addons.decimal_precision as dp
 
 
 class QcInspection(models.Model):
@@ -260,7 +261,7 @@ class QcInspectionLine(models.Model):
     possible_ql_values = fields.Many2many(
         comodel_name='qc.test.question.value', string='Answers')
     quantitative_value = fields.Float(
-        'Quantitative value', digits=(16, 5),
+        'Quantitative value', digits=dp.get_precision('Quality Control'),
         help="Value of the result for a quantitative question.")
     qualitative_value = fields.Many2one(
         comodel_name='qc.test.question.value', string='Qualitative value',
@@ -268,11 +269,11 @@ class QcInspectionLine(models.Model):
         domain="[('id', 'in', possible_ql_values[0][2])]")
     notes = fields.Text(string='Notes')
     min_value = fields.Float(
-        string='Min', digits=(16, 5), readonly=True,
-        help="Minimum valid value for a quantitative question.")
+        string='Min', digits=dp.get_precision('Quality Control'),
+        readonly=True, help="Minimum valid value for a quantitative question.")
     max_value = fields.Float(
-        string='Max', digits=(16, 5), readonly=True,
-        help="Maximum valid value for a quantitative question.")
+        string='Max', digits=dp.get_precision('Quality Control'),
+        readonly=True, help="Maximum valid value for a quantitative question.")
     test_uom_id = fields.Many2one(
         comodel_name='product.uom', string='Test UoM', readonly=True,
         help="UoM for minimum and maximum values for a quantitative "
