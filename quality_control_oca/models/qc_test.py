@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import models, fields, api, exceptions, _
+import openerp.addons.decimal_precision as dp
 
 
 class QcTest(models.Model):
@@ -73,8 +74,10 @@ class QcTestQuestion(models.Model):
         comodel_name='qc.test.question.value', inverse_name="test_line",
         string='Qualitative values', copy=True)
     notes = fields.Text(string='Notes')
-    min_value = fields.Float(string='Min', digits=(16, 5))
-    max_value = fields.Float(string='Max', digits=(15, 5))
+    min_value = fields.Float(string='Min',
+                             digits=dp.get_precision('Quality Control'))
+    max_value = fields.Float(string='Max',
+                             digits=dp.get_precision('Quality Control'),)
     uom_id = fields.Many2one(comodel_name='product.uom', string='Uom')
 
 
