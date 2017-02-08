@@ -27,6 +27,7 @@
                                 type="object"
                                 states="waiting"
                                 class="oe_highlight"
+                                groups="quality_control.group_quality_control_manager"
                                 string="Approve" />
                         <button name="action_cancel"
                                 type="object"
