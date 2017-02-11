@@ -31,7 +31,7 @@ addon | version | summary
 [mrp_repair_discount](mrp_repair_discount/) | 8.0.1.0.0 | MRP Repair Discount
 [mrp_sale_info](mrp_sale_info/) | 8.0.1.0.0 | Adds sale information to Manufacturing models
 [procurement_mrp_no_confirm](procurement_mrp_no_confirm/) | 8.0.1.0.0 | Procurement MRP no Confirm
-[quality_control](quality_control/) | 8.0.1.1.0 | Quality control
+[quality_control](quality_control/) | 8.0.1.2.0 | Quality control
 [quality_control_force_valid](quality_control_force_valid/) | 8.0.1.0.0 | Quality control - Manual validation
 [quality_control_mrp](quality_control_mrp/) | 8.0.1.0.0 | Quality control - MRP
 [quality_control_stock](quality_control_stock/) | 8.0.1.0.1 | Quality control - Stock
