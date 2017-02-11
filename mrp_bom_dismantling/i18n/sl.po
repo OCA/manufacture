@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 03:22+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
+"POT-Creation-Date: 2017-02-04 04:19+0000\n"
+"PO-Revision-Date: 2017-02-10 21:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-9-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -171,7 +171,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Predloga proizvoda"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produce_move_lot_ids
