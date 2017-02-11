@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2017-02-11 01:38+0000\n"
+"PO-Revision-Date: 2017-01-19 21:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgid "Minimum valid value for a quantitative question."
 msgstr "Kleinster zulässiger Wert bei quantitativen Fragen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:62
+#: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
 msgstr "Kleinster Wert darf nicht größer als größter Wert sein"
@@ -701,7 +701,7 @@ msgid "Tests"
 msgstr "Tests"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:54
+#: code:addons/quality_control/models/qc_test.py:55
 #, python-format
 msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr "Es ist kein Wer mit OK gekennzeichnet. Mind. einer muß gewählt sein."
@@ -795,31 +795,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr "Wenn dieses Feld aktiviert ist, wird die Frage als korrekt angesehen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:92
+#: code:addons/quality_control/models/qc_inspection.py:93
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr "Sie dürfen eine auto-angelegte Inspektion nicht löschen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:95
+#: code:addons/quality_control/models/qc_inspection.py:96
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr "Sie dürfen eine Inspektion, die nicht im Status Entwurf ist, nicht löschen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:108
+#: code:addons/quality_control/models/qc_inspection.py:109
 #, python-format
 msgid "You must first set the test to perform."
 msgstr "Sie müssen zunächst den durchzuführenden Test festlegen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:124
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr "Sie müssen eine Maßeinheit für quantitaiven Fragen festlegen."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:118
+#: code:addons/quality_control/models/qc_inspection.py:119
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr "Sie müssen eine Antwort für alle qualitativen Fragen vorgeben."
