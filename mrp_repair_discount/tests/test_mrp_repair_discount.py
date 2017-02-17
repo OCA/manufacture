@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests import common
+from odoo.tests import common
 
 
 class TestMrpRepairDiscount(common.SavepointCase):
@@ -45,18 +45,15 @@ class TestMrpRepairDiscount(common.SavepointCase):
 
     def test_discount(self):
         self.assertAlmostEqual(
-            self.repair_line.price_subtotal, 10,
-            self.repair_line._columns['price_subtotal'].digits[1])
+            self.repair_line.price_subtotal, 10)
         self.assertAlmostEqual(
-            self.repair.amount_total, 10,
-            self.repair._columns['amount_total'].digits[1])
+            self.repair.amount_total, 10)
 
     def test_invoice_create(self):
         self.repair.state = '2binvoiced'
         res = self.repair.action_invoice_create()
         invoice = self.env['account.invoice'].browse(res.values()[0])
-        invoice_line = invoice.invoice_line[0]
+        invoice_line = invoice.invoice_line_ids[0]
         self.assertEqual(invoice_line.discount, 50)
         self.assertAlmostEqual(
-            invoice_line.price_subtotal, 10,
-            invoice_line._columns['price_subtotal'].digits[1])
+            invoice_line.price_subtotal, 10)
