@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 04:19+0000\n"
-"PO-Revision-Date: 2017-01-13 09:28+0000\n"
+"POT-Creation-Date: 2017-02-17 15:27+0000\n"
+"PO-Revision-Date: 2017-02-16 15:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr ""
 #: field:mrp.work.order.produce,display_name:0
 #: field:workcenter.line.finish,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
@@ -267,7 +267,7 @@ msgstr ""
 #: field:mrp.work.order.produce,__last_update:0
 #: field:workcenter.line.finish,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_uid:0
