@@ -55,7 +55,7 @@ class TestMrpRepairDiscount(common.SavepointCase):
         self.repair.state = '2binvoiced'
         res = self.repair.action_invoice_create()
         invoice = self.env['account.invoice'].browse(res.values()[0])
-        invoice_line = invoice.invoice_line[0]
+        invoice_line = invoice.invoice_line_ids[0]
         self.assertEqual(invoice_line.discount, 50)
         self.assertAlmostEqual(
             invoice_line.price_subtotal, 10,
