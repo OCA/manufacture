@@ -1,0 +1,48 @@
+-
+  I create a Tax Codes
+-
+  !record {model: account.tax.code, id: tax_case}:
+    name: Tax_case
+    company_id: base.main_company
+    sign: 1
+-
+  I create a Tax
+-
+  !record {model: account.tax, id: tax10}:
+    name: Tax 10 %
+    amount: 0.1
+    type: percent
+    sequence: 1
+    company_id: base.main_company
+    type_tax_use: all
+    tax_code_id: tax_case
+-
+  !record {model: mrp.repair, id: mrp_repair_discount}:
+    address_id: base.res_partner_address_1
+    guarantee_limit: !eval datetime.today().strftime("%Y-%m-%d")
+    invoice_method: 'none'
+    product_id: product.product_product_3
+    product_uom: product.product_uom_unit
+    partner_invoice_id: base.res_partner_address_1
+    location_dest_id: stock.stock_location_14
+    location_id: stock.stock_location_stock
+    operations:
+      - location_dest_id: stock.location_production
+        location_id: stock.stock_location_stock
+        name: '[M-Las] Mouse, Laser'
+        price_unit: 50.0
+        product_id: product.product_product_11
+        product_uom: product.product_uom_unit
+        product_uom_qty: 1.0
+        state: draft
+        to_invoice: 1
+        type: add
+        discount: 10
+        tax_id:
+          - tax10
+    partner_id: base.res_partner_9
+-
+  I check the total amount of mrp_repair_rmrp1 is 49.5
+-
+  !assert {model: mrp.repair, id: mrp_repair_discount, string=amount_total should be 49.5}:
+    - amount_total == 49.5

@@ -9,6 +9,9 @@
             <xpath expr="//field[@name='operations']/tree/field[@name='price_unit']" position='after'>
                 <field name="discount"/>
             </xpath>
+            <xpath expr="//field[@name='fees_lines']/tree/field[@name='price_unit']" position='after'>
+                <field name="discount"/>
+            </xpath>
         </field>
         </record>
     </data>

@@ -5,17 +5,17 @@
 
 {
     "name": "MRP Repair Discount",
-    "version": "8.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Manufactoring",
     "license": "AGPL-3",
     "author": "Agile Business Group, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "http://www.agilebg.com",
-    "contributors": [
-        "Nicola Malcontenti <nicola.malcontenti@gmail.com>",
-    ],
     'depends': ['mrp_repair'],
     "data": ["views/mrp_repair_view.xml"],
+    "test": [
+        'test/mrp_repair_discount.yml',
+    ],
     "installable": True,
 }
