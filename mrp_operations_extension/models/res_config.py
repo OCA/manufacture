@@ -22,12 +22,9 @@ class MrpConfigSettings(models.TransientModel):
         param_obj = self.env['ir.config_parameter']
         rec = self._get_parameter(key)
         if rec:
-            if not value:
-                rec.unlink()
-            else:
-                rec.value = value
-        elif value:
-            param_obj.create({'key': key, 'value': value})
+            rec.value = str(value)
+        else:
+            param_obj.create({'key': key, 'value': str(value)})
 
     @api.multi
     def get_default_parameter_cycle_bom(self):
