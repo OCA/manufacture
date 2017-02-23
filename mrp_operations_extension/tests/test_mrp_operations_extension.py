@@ -230,3 +230,18 @@ class TestMrpOperationsExtension(common.TransactionCase):
                              'Error work order moves quantity do not match')
             self.assertEqual(workorder2.state, 'done',
                              'Error work center line not in done state')
+
+    def test_param_config(self):
+        wiz_config_obj = self.env['mrp.config.settings']
+        param_obj = self.env['ir.config_parameter']
+        rec = param_obj.search([('key', '=', 'cycle.by.bom')])
+        self.assertEqual(rec.value, 'True', 'Error cycle.by.bom is not marked')
+        rec.unlink()
+        record = wiz_config_obj.new()
+        record.set_parameter_cycle_bom()
+        rec = param_obj.search([('key', '=', 'cycle.by.bom')])
+        self.assertEqual(rec.value, 'False', 'Error cycle.by.bom is marked')
+        record.cycle_by_bom = True
+        record.set_parameter_cycle_bom()
+        rec = param_obj.search([('key', '=', 'cycle.by.bom')])
+        self.assertEqual(rec.value, 'True', 'Error cycle.by.bom not marked')
