@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-06 06:32+0000\n"
+"POT-Creation-Date: 2017-02-23 09:33+0000\n"
+"PO-Revision-Date: 2017-02-21 13:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Ligne analytique"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,analytic_account_id:0
 msgid "Analytic account"
-msgstr ""
+msgstr "Compte Analytique"
 
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
@@ -248,7 +248,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,date_planned:0
 msgid "Scheduled Date"
-msgstr ""
+msgstr "Date Prévue"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:202

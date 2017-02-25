@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-06 06:44+0000\n"
+"POT-Creation-Date: 2017-02-23 09:33+0000\n"
+"PO-Revision-Date: 2017-02-21 17:54+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -383,7 +383,7 @@ msgstr ""
 #: field:mrp.routing.operation,picking_type_id:0
 #: field:mrp.routing.workcenter,picking_type_id:0
 msgid "Picking Type"
-msgstr ""
+msgstr "Type de cueillette"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
