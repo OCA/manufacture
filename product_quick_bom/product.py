@@ -3,8 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
-from collections import defaultdict
-from odoo.exceptions import Warning as UserError
 
 
 class ProductTemplate(models.Model):
@@ -28,12 +26,13 @@ class ProductTemplate(models.Model):
             'bom_line_ids': vals,
         }
 
-    @api.one
+    @api.multi
     def _process_bom_vals(self, vals):
-        if self.bom_ids:
-            self.bom_ids[0].write({'bom_line_ids': vals})
-        else:
-            bom = self.env['mrp.bom'].create(self._prepare_bom_vals(vals))
+        for record in self:
+            if record.bom_ids:
+                record.bom_ids[0].write({'bom_line_ids': vals})
+            else:
+                record.env['mrp.bom'].create(self._prepare_bom_vals(vals))
 
     @api.model
     def create(self, vals):

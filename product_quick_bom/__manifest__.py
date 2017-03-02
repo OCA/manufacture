@@ -5,23 +5,18 @@
 {
     "name": "Product Quick Bom",
     "summary": "Create the bom directly from the product",
-    "version": "10.0.1.2.0",
+    "version": "10.0.1.0.0",
     "category": "mrp",
     "website": "https://odoo-community.org/",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        "python": [],
-        "bin": [],
-    },
     "depends": [
         "mrp",
     ],
     "data": [
         "product_view.xml",
     ],
-    "demo": [
-    ],
+
 }

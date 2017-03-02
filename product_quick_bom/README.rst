@@ -10,16 +10,6 @@ This module was written to create quickly the bom for your product.
 Indeed in the product form you now have a new tab "bom" that give you the posibility
 to add the bom line directly here
 
-Installation
-============
-
-To install this module, you just need to install it
-
-Configuration
-=============
-
-No configuration is required
-
 Usage
 =====
 
@@ -39,10 +29,6 @@ For further information, please visit:
 
 * https://www.odoo.com/forum/help-1
 
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========

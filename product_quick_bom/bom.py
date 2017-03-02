@@ -2,10 +2,7 @@
 #   Copyright (C) 2015 Akretion (http://www.akretion.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-from odoo import models, fields, api
-from collections import defaultdict
-from odoo.exceptions import Warning as UserError
+from odoo import models, fields
 
 
 class MrpBom(models.Model):
