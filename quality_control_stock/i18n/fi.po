@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:46+0000\n"
+"POT-Creation-Date: 2017-02-25 04:28+0000\n"
 "PO-Revision-Date: 2015-11-12 18:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fi/)\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Keräilylista"
 
 #. module: quality_control_stock
 #: field:qc.trigger,picking_type:0
