@@ -2,15 +2,15 @@
 #   Copyright (C) 2015 Akretion (http://www.akretion.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     bom_line_ids = fields.One2many(
-        'mrp.bom.line',
-        'product_tmpl_id',
+        comodel_name='mrp.bom.line',
+        inverse_name='product_tmpl_id',
         string='Bom Line',
         help='If you product is manufactured you can select'
              'here the componant to product them')
@@ -21,6 +21,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _prepare_bom_vals(self, vals):
+        self.ensure_one()
         return {
             'product_tmpl_id': self.id,
             'bom_line_ids': vals,
