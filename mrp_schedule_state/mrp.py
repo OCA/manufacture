@@ -22,7 +22,6 @@
 from openerp import models, api, fields, _
 from openerp.exceptions import UserError
 from datetime import datetime
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class MrpProduction(models.Model):
@@ -79,8 +78,7 @@ class MrpProduction(models.Model):
     @api.multi
     def write(self, vals, update=True):
         if vals.get('schedule_state') == 'scheduled':
-            vals['date_planned'] =\
-                datetime.now().strftime(DEFAULT_SERVER_DATE_FORMAT)
+            vals['date_planned'] = fields.Datetime.now()
         return super(MrpProduction, self).write(vals, update=update)
 
 
