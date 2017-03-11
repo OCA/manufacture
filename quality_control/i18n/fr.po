@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 04:28+0000\n"
-"PO-Revision-Date: 2017-02-25 18:58+0000\n"
+"POT-Creation-Date: 2017-03-04 04:25+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -667,7 +667,7 @@ msgstr "Résumé"
 #: field:qc.trigger.product_line,test:0
 #: field:qc.trigger.product_template_line,test:0
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #. module: quality_control
 #: field:qc.inspection.line,test_uom_id:0
