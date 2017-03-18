@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-06 09:10+0000\n"
+"POT-Creation-Date: 2017-04-24 14:00+0000\n"
+"PO-Revision-Date: 2017-04-19 01:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "显示名称"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: selection:qc.inspection,state:0
 msgid "Draft"
-msgstr ""
+msgstr "草稿"
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test_category.py:32
@@ -207,7 +207,7 @@ msgstr ""
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "HTML格式的简介，包括了各种项目的总结信息（比如消息数，作业数……）"
 
 #. module: quality_control
 #: field:qc.inspection,id:0 field:qc.inspection.line,id:0
@@ -289,7 +289,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "关注者"
 
 #. module: quality_control
 #: field:qc.inspection,message_last_post:0
@@ -569,7 +569,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr ""
+msgstr "引用"
 
 #. module: quality_control
 #: field:qc.test,object_id:0

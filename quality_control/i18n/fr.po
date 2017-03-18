@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"POT-Creation-Date: 2017-04-24 14:00+0000\n"
+"PO-Revision-Date: 2017-04-25 23:05+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgstr "Mis à jour le"
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
 msgid "Manager"
-msgstr ""
+msgstr "Responsable"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -540,7 +540,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: quality_control
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
