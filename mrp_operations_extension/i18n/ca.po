@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 04:19+0000\n"
-"PO-Revision-Date: 2017-01-17 19:17+0000\n"
+"POT-Creation-Date: 2017-03-11 04:26+0000\n"
+"PO-Revision-Date: 2017-03-14 18:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -166,7 +166,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,display_name:0
