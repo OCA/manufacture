@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-05-02 11:59+0000\n"
+"PO-Revision-Date: 2017-05-11 14:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: field:qc.inspection,company_id:0 field:qc.test,company_id:0
 #: field:qc.trigger,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Bedrijf"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -156,7 +156,7 @@ msgstr "Te tonen naam"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: selection:qc.inspection,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Concept"
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test_category.py:32
@@ -569,7 +569,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr ""
+msgstr "Referentie"
 
 #. module: quality_control
 #: field:qc.test,object_id:0
@@ -652,7 +652,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.inspection,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Samenvatting"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view

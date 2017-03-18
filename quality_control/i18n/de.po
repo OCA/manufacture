@@ -5,14 +5,15 @@
 # Translators:
 # Hotellook, 2014
 # oihane <oihanecruce@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# oihane <oihanecruce@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 01:38+0000\n"
-"PO-Revision-Date: 2017-01-19 21:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-04-24 14:00+0000\n"
+"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -181,7 +182,7 @@ msgstr "Follower"
 #. module: quality_control
 #: field:qc.test.category,complete_name:0
 msgid "Full name"
-msgstr ""
+msgstr "Vollständige Bezeichnung"
 
 #. module: quality_control
 #: selection:qc.test,type:0
