@@ -16,10 +16,10 @@ class MrpProduction(models.Model):
         related="project_id.analytic_account_id", store=True)
     create_tasks = fields.Boolean(
         string="Automatically create tasks",
-        help=_(""" Automatically create tasks linked to manufacturing orders in
+        help=""" Automatically create tasks linked to manufacturing orders in
                assigned project. The tasks will be created when the production
                is started.
-               """),
+               """,
         readonly=True,
         states={'draft': [('readonly', False)],
                 'confirmed': [('readonly', False)]
@@ -27,10 +27,10 @@ class MrpProduction(models.Model):
     )
     create_project = fields.Boolean(
         string="Automatically create project if not assigned",
-        help=_("""
+        help="""
                Automatically create and assign a project if none is selected.
                The project will be created when confirming the production order.
-               """),
+               """,
         readonly=True,
         states={'draft': [('readonly', False)]},
     )
@@ -92,7 +92,10 @@ class MrpProduction(models.Model):
             for record in self:
                 task_domain = [
                     ('mrp_production_id', '=', record.id),
-                    ('workorder', '=', False)]
+                    '|',
+                    ('workorder', 'in', record.workcenter_lines),
+                    ('workorder', '=', False),
+                ]
                 tasks = task_obj.search(task_domain)
                 if not tasks:
                     task_obj.create(self._prepare_production_task(record))
