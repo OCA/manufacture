@@ -8,6 +8,7 @@ Odoo Manufacturing Modules
 Odoo modules related to Manufacturing
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
