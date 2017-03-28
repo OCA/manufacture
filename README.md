@@ -21,6 +21,7 @@ addon | version | summary
 [mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 9.0.1.0.0 | Create Procurement Group On Manufacturing Order
 [mrp_sale_info](mrp_sale_info/) | 9.0.1.0.0 | Adds sale information to Manufacturing models
 
+
 Unported addons
 ---------------
 addon | version | summary
