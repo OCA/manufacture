@@ -37,6 +37,7 @@ addon | version | summary
 [quality_control_mrp](quality_control_mrp/) | 8.0.1.0.0 | Quality control - MRP
 [quality_control_stock](quality_control_stock/) | 8.0.1.0.1 | Quality control - Stock
 
+
 Unported addons
 ---------------
 addon | version | summary
