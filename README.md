@@ -15,6 +15,7 @@ addon | version | summary
 --- | --- | ---
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
 
+
 Unported addons
 ---------------
 addon | version | summary
