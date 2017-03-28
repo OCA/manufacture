@@ -30,7 +30,7 @@ class MrpConfigSettings(models.TransientModel):
     def get_default_parameter_cycle_bom(self):
         def get_value(key, default=''):
             rec = self._get_parameter(key)
-            return rec and rec.value or default
+            return rec and rec.value and rec.value != 'False' or default
         return {'cycle_by_bom': get_value('cycle.by.bom', False)}
 
     @api.multi
