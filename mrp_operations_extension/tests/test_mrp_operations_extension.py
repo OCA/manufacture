@@ -239,9 +239,9 @@ class TestMrpOperationsExtension(common.TransactionCase):
         rec.unlink()
         record = wiz_config_obj.new()
         record.set_parameter_cycle_bom()
-        rec = param_obj.search([('key', '=', 'cycle.by.bom')])
-        self.assertEqual(rec.value, 'False', 'Error cycle.by.bom is marked')
+        data = record.get_default_parameter_cycle_bom()
+        self.assertFalse(data['cycle_by_bom'], 'Error cycle.by.bom is marked')
         record.cycle_by_bom = True
         record.set_parameter_cycle_bom()
-        rec = param_obj.search([('key', '=', 'cycle.by.bom')])
-        self.assertEqual(rec.value, 'True', 'Error cycle.by.bom not marked')
+        data = record.get_default_parameter_cycle_bom()
+        self.assertTrue(data['cycle_by_bom'], 'Error cycle.by.bom not marked')
