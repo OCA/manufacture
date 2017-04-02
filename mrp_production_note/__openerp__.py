@@ -7,9 +7,8 @@
     "version": "9.0.1.0.0",
     "category": "Tools",
     "license": "AGPL-3",
-    "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "author": "AvanzOSC, "
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [

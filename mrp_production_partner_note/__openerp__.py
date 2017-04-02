@@ -6,14 +6,13 @@
     "name": "MRP - Partner production notes",
     "version": "9.0.1.0.0",
     "license": "AGPL-3",
-    "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "author": "AvanzOSC,"
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Pedro M. Baeza <pedro.baeza@tecnativa.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
     "category": "Tools",
