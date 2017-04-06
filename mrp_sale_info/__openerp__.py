@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 # © 2016 Antiun Ingenieria S.L. - Javier Iniesta
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
     "name": "MRP Sale Info",
     "summary": "Adds sale information to Manufacturing models",
     "version": "9.0.1.0.0",
     "category": "Manufacturing",
     "website": "http://www.antiun.com",
-    "author": "Antiun Ingeniería S.L., "
-              "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "author": "AvanzOSC, "
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
