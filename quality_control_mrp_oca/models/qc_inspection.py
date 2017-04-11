@@ -8,6 +8,15 @@ from openerp import models, fields, api
 class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
+    @api.multi
+    def _prepare_inspection_header(self, object_ref, trigger_line):
+        res = super(QcInspection, self)._prepare_inspection_header(
+            object_ref, trigger_line)
+        # Fill qty when coming from pack operations
+        if object_ref and object_ref._name == 'mrp.production':
+            res['qty'] = object_ref.product_qty
+        return res
+
     @api.depends('object_id')
     def get_production(self):
         for inspection in self:
