@@ -40,6 +40,7 @@ Contributors
 ------------
 * Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+* OpenSynergy Indonesia <https://opensynergy-indonesia.com>
 
 Maintainer
 ----------

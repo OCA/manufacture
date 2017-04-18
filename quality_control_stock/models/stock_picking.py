@@ -37,6 +37,8 @@ class StockPicking(models.Model):
     def do_transfer(self):
         res = super(StockPicking, self).do_transfer()
         inspection_model = self.env['qc.inspection']
+        package_obj = self.env['stock.quant.package']
+        product_obj = self.env['product.product']
         for operation in self.pack_operation_ids:
             qc_trigger = self.env['qc.trigger'].search(
                 [('picking_type', '=', self.picking_type_id.id)])
@@ -46,9 +48,20 @@ class StockPicking(models.Model):
                           'qc.trigger.product_line']:
                 partner = (self.partner_id
                            if qc_trigger.partner_selectable else False)
-                trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, operation.product_id, partner=partner))
+                if not operation.product_id:
+                    dict_product = package_obj._get_all_products_quantities(
+                        operation.package_id.id)
+                    product_ids = []
+                    for product_id, y in dict_product.iteritems():
+                        product_ids.append(product_id)
+                    for product in product_obj.browse(product_ids):
+                        trigger_lines = trigger_lines.union(
+                            self.env[model].get_trigger_line_for_product(
+                                qc_trigger, product, partner=partner))
+                else:
+                    trigger_lines = trigger_lines.union(
+                        self.env[model].get_trigger_line_for_product(
+                            qc_trigger, operation.product_id, partner=partner))
             for trigger_line in _filter_trigger_lines(trigger_lines):
                 inspection_model._make_inspection(operation, trigger_line)
         return res
