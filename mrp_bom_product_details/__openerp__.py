@@ -32,7 +32,7 @@
     """,
     'depends': ["base", "mrp"],
     'demo': [],
-    'data': ['views/mrp_bom_product_details.xml',],
+    'data': ['views/mrp_bom_product_details.xml', ],
     'auto_install': False,
     'installable': True,
 }

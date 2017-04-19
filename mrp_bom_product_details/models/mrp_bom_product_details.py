@@ -9,9 +9,8 @@ class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
     product_standard_price = fields.Float(
-            related='product_id.standard_price', string='Cost Price',
-            readonly=True
-    )
+        related='product_id.standard_price', string='Cost Price',
+        readonly=True)
 
     product_qty_available = fields.Float(
         related='product_id.qty_available',
