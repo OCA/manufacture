@@ -21,8 +21,10 @@
 ##############################################################################
 {
     'name': 'Bom product details',
-    'version': '0.1',
-    'author': "Solutions Libergia inc.,Odoo Community Association (OCA)",
+    'version': '9.0.1.0.0',
+    'author':  "Solutions Libergia inc., "
+               "QubiQ, "
+               "Odoo Community Association (OCA),QubiQ",
     'license': 'GPL-3 or any later version',
     'category': 'Manufacturing',
     'description': """
@@ -30,7 +32,7 @@
     """,
     'depends': ["base", "mrp"],
     'demo': [],
-    'data': ['mrp_bom_product_details.xml'],
+    'data': ['views/mrp_bom_product_details.xml',],
     'auto_install': False,
-    'installable': False,
+    'installable': True,
 }
