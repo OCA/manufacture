@@ -14,7 +14,7 @@ class MrpBom(models.Model):
         res = super(MrpBom, self)._prepare_wc_line(
             wc_use, level=level, factor=factor)
         if not self.env['mrp.config.settings']._get_parameter('cycle.by.bom',
-                                                              False):
+                                                              False) == 'True':
             production = self.env.context.get('production')
             factor = self._factor(production and production.product_qty or 1,
                                   self.product_efficiency,
