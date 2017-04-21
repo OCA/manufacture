@@ -8,11 +8,6 @@ Installation
 
 To install this module, you just need to select the module and insure yourself dependancies are available.
 
-Configuration
-=============
-
-No particular configuration to use this module.
-
 
 Usage
 =====
@@ -34,17 +29,18 @@ Contributors
 * QubiQ  <marsal.isern@qubiq.es>
 
 
-Icon
-----
-* http://en.wikipedia.org/wiki/File:People%27s_Action_Party_of_Singapore_logo.svg
-
 Maintainer
 ----------
 
-Odoo Community Association
+
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
