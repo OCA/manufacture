@@ -8,13 +8,13 @@
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page/field[@name='bom_lines']/tree//field[@name='product_id']" position="after">
-                    <field name="is_parent" invisible="1"/>
-                    <field name="product_has_own_bom" invisible="1"/>
+                    <field name="product_has_own_bom"/>
+                    <field name="bom_id" invisible="1"/>
                     <button string="View product's BOM components"
                         name="action_openProductBOMTreeView"
                         type="object"
                         icon="terp-folder-orange"
-                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('is_parent', '=', True)]}"/>
+                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('bom_id', '=', False)]}"/>
                 </xpath>
             </field>
         </record>
@@ -28,26 +28,25 @@
                     <field name="complete_bom_hierarchy_code"/>
                     <field name="complete_bom_hierarchy_name"/>
                     <field name="bom_id"/>
-                    <field name="is_parent"/>
                     <filter string="Parent BOM" name="parent_bom"
-                            domain="[('is_parent','=','True')]"/>
+                            domain="[('bom_id', '=', False)]"/>
                 </xpath>
             </field>
         </record>
 
-       <record id="mrp_bom_hierarchy_tree_view" model="ir.ui.view">
+        <record id="mrp_bom_hierarchy_tree_view" model="ir.ui.view">
             <field name="name">mrp.bom.tree</field>
             <field name="model">mrp.bom</field>
             <field name="field_parent">child_complete_ids</field>
             <field name="arch" type="xml">
-                <tree string="Bill of Materials" editable="top"
+                <tree string="Bill of Materials"
                       colors="blue:method">
-                    <button string="Parent BOM"
+                    <button string="Parent BoM"
                         name="action_openParentTreeView"
                         type="object"
                         icon="STOCK_GO_UP"
                         attrs="{'invisible': [('bom_id', '=', False)]}"/>
-                    <button string="Child BOMs"
+                    <button string="Child BoMs"
                         name="action_openChildTreeView"
                         type="object"
                         icon="STOCK_GO_DOWN"/>
@@ -58,14 +57,13 @@
                     <field name="position"/>
                     <field name="name"/>
                     <field name="bom_id"/>
-                    <field name="is_parent" invisible="1"/>
                     <field name="product_id" context="{'default_supply_method':'produce'}" on_change="onchange_product_id(product_id, name)"/>
                     <field name="product_has_own_bom" invisible="1"/>
-                    <button string="View product's BOM components"
+                    <button string="View product's BoM components"
                         name="action_openProductBOMTreeView"
                         type="object"
                         icon="terp-folder-orange"
-                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('is_parent', '=', True)]}"/>
+                        attrs="{'invisible': ['|', ('product_has_own_bom', '=', False),('bom_id', '=', False)]}"/>
                     <field name="product_qty"/>
                     <field name="product_uom" on_change="onchange_uom(product_id, product_uom)" groups="product.group_uom"/>
                     <field name="type"/>
@@ -80,7 +78,7 @@
         <record id="mrp.mrp_bom_form_action2" model="ir.actions.act_window">
             <field name="view_id" ref="mrp_bom_hierarchy_tree_view"/>
         </record>
-        
+
         <record id="action_mrp_bom_hierarchy_tree2"
                 model="ir.actions.act_window">
             <field name="name">Bill of Material Hierarchy</field>

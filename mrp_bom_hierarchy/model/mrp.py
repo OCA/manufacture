@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields, expression
+from openerp.osv import orm, fields
 
 
-class mrp_bom(osv.osv):
+class MrpBom(orm.Model):
     _inherit = 'mrp.bom'
 
     def get_child_boms(self, cr, uid, ids, context=None):
@@ -59,16 +59,6 @@ class mrp_bom(osv.osv):
                                              context=context)
             for bom_id in bom_ids:
                 result[bom_id] = True
-        return result
-
-    def _is_bom(self, cr, uid, ids, name, arg, context=None):
-        result = {}
-        if context is None:
-            context = {}
-        for bom in self.browse(cr, uid, ids, context=context):
-            result[bom.id] = False
-            if bom.bom_lines:
-                result[bom.id] = True
         return result
 
     def _bom_hierarchy_indent_calc(self, cr, uid, ids, prop, unknow_none,
@@ -110,7 +100,7 @@ class mrp_bom(osv.osv):
 
                 b = b.bom_id
             data = ' / '.join(data)
-            data = '[' + data + '] '
+            data = '[' + data + ']'
 
             res.append((bom.id, data))
         return dict(res)
@@ -137,15 +127,6 @@ class mrp_bom(osv.osv):
             res.append((bom.id, data))
         return dict(res)
 
-    def _is_parent(self, cr, uid, ids, prop, unknow_none, unknow_dict):
-        res = {}
-        for bom in self.browse(cr, uid, ids, context=None):
-            if not bom.bom_id:
-                res[bom.id] = True
-            else:
-                res[bom.id] = False
-        return res
-
     def _product_has_own_bom(self, cr, uid, ids, prop, unknow_none,
                              unknow_dict):
         res = {}
@@ -153,20 +134,12 @@ class mrp_bom(osv.osv):
             bom_ids = self.pool.get('mrp.bom').search(
                 cr, uid, [('product_id', '=', bom.product_id.id),
                           ('bom_id', '=', False)], context=None)
-            if bom_ids:
-                res[bom.id] = True
-            else:
-                res[bom.id] = False
+            res[bom.id] = bool(bom_ids)
         return res
 
     _columns = {
-        'is_parent': fields.function(_is_parent, string="Is parent BOM",
-                                     type='boolean', readonly=True,
-                                     store=True),
-        'has_child': fields.function(_is_bom, string="Has components",
-                                     type='boolean', readonly=True),
         'product_has_own_bom': fields.function(_product_has_own_bom,
-                                               string="Has own BOM",
+                                               string="Has own BoM",
                                                type='boolean', readonly=True),
         'bom_hierarchy_indent': fields.function(_bom_hierarchy_indent_calc,
                                                 method=True,

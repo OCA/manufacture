@@ -20,8 +20,8 @@
 ##############################################################################
 {
     "name": "MRP BOM Hierarchy",
-    "version": "1.0",
-    "author": "Eficent",
+    "version": "7.0.1.0.0",
+    "author": "Eficent,Odoo Community Association (OCA)",
     "website": "www.eficent.com",
     "category": "Manufacturing",
     "depends": ["mrp"],
@@ -29,20 +29,20 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-MRP BOM Hierarchy
+MRP BoM Hierarchy
 =================
 
 This module was written to extend the functionality of Bill of
 Materials to support users to better maintain the BOM hierarchy.
 
-This module replaces the existing BOM tree views with a new one, from
-which the user can create a complete BOM hierarchy.
+This module replaces the existing BoM tree views with a new one, from
+which the user can create a complete BoM hierarchy.
 
 The user can navigate from the  tree view to child BOM's, or to the
-product's BOM components with a single click.
+product's BoM components with a single click.
 
 The user can now search using the field 'Complete Reference' (or Name) to
-find all the BOM hierarchy associated to a particular BOM Reference (or
+find all the BoM hierarchy associated to a particular BoM Reference (or
 Name) at once.
 
 
@@ -74,6 +74,7 @@ Contributors
 ------------
 
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
+* Miquel Raich <miquel.raich@eficent.com>
 
 Maintainer
 ----------
@@ -89,15 +90,14 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
-""", 
-    "website": "http://www.eficent.com/",
+""",
     "license": "AGPL-3",
-    "demo": [], 
+    "demo": [],
     "data": [
         "view/mrp.xml",
-    ], 
+    ],
     "test": [],
-    "installable": True, 
-    "auto_install": False, 
+    "installable": True,
+    "auto_install": False,
     "active": False
 }
