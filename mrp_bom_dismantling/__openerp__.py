@@ -13,7 +13,6 @@
     "installable": True,
     "depends": [
         'mrp_byproduct',
-        "stock_available_mrp",
     ],
     "data": [
         "views/mrp_bom.xml",
