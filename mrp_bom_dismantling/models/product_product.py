@@ -20,7 +20,7 @@ class ProductProduct(models.Model):
         result['domain'] = [('dismantling', '=', False)]
         return result
 
-    def _get_components_needs(self, product, bom):
+    def _get_component_needs(self, product, bom):
         """ Return the needed qty of each compoments in the *bom* of *product*.
 
         :type product: product_product

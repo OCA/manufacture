@@ -74,7 +74,7 @@ class MrpBom(models.Model):
         self._check_bom_validity(check_dismantling=True)
 
         product = self._get_bom_product()
-        components = self._get_components_needs()
+        components = self._get_component_needs()
 
         # If no main component, take first sorted by Id
         if not main_component:
@@ -143,14 +143,14 @@ class MrpBom(models.Model):
         if warning:
             raise exceptions.UserError(_(warning))
 
-    def _get_components_needs(self):
+    def _get_component_needs(self):
         """ Return this BoM components and their needed qties.
 
         The result is like {component_1: 1, component_2: 5, ...}
 
         :rtype: dict(product_product, float)
         """
-        components = self.product_id._get_components_needs(
+        components = self.product_id._get_component_needs(
             product=self.product_id, bom=self
         )
         return dict(components)
