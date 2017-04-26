@@ -16,7 +16,7 @@ class TestTemplate(TransactionCase):
         # Create a BoM for this template
         bom_model = self.env['mrp.bom']
         bom_model.create({'product_tmpl_id': tmpl1.id})
-
+        tmpl1._bom_count()
         self.assertEqual(1, tmpl1.bom_count)
 
         # Create a dismantling BoM
@@ -34,9 +34,7 @@ class TestTemplate(TransactionCase):
 
         # Check count on another template
         tmpl2 = tmpl_model.create({'name': 'Template 2'})
-        self.assertEqual(0, tmpl2
-
-                         .bom_count)
+        self.assertEqual(0, tmpl2.bom_count)
 
         # And on dismantled product
         self.assertEqual(0, other_product.product_tmpl_id.bom_count)
