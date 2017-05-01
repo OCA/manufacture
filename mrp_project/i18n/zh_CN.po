@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:46+0000\n"
-"PO-Revision-Date: 2016-12-22 14:08+0000\n"
+"POT-Creation-Date: 2017-04-24 13:59+0000\n"
+"PO-Revision-Date: 2017-04-20 03:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr ""
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "Analytic Account"
-msgstr ""
+msgstr "核算科目"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_account_analytic_line
@@ -97,7 +97,7 @@ msgstr ""
 #: model:ir.model,name:mrp_project.model_project_project
 #: field:mrp.production,project_id:0
 msgid "Project"
-msgstr ""
+msgstr "项目"
 
 #. module: mrp_project
 #: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
