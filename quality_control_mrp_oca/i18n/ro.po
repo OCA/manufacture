@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control_mrp
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,19 @@ msgstr ""
 "POT-Creation-Date: 2015-12-10 15:32+0000\n"
 "PO-Revision-Date: 2015-11-19 08:08+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ro/)\n"
+"Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
+
+#. module: quality_control_mrp
+#: field:mrp.production,created_inspections:0
+msgid "Created inspections"
+msgstr ""
 
 #. module: quality_control_mrp
 #: field:mrp.production,qc_inspections:0
