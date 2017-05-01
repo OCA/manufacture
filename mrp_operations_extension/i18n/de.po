@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Hotellook, 2014
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 09:33+0000\n"
-"PO-Revision-Date: 2017-02-25 00:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-04-24 13:59+0000\n"
+"PO-Revision-Date: 2017-04-19 14:33+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Stücklistenposition"
 #. module: mrp_operations_extension
 #: field:mrp.config.settings,cycle_by_bom:0
 msgid "Calc Cycles by BoM Quantity"
-msgstr ""
+msgstr "Berechne Zyklen nach SL-Menge"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
@@ -72,7 +72,7 @@ msgstr "Auftrag abbrechen"
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel all movements"
-msgstr ""
+msgstr "Storniere alle Umlagerungen"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,capacity_per_cycle:0
@@ -181,7 +181,7 @@ msgstr "Anzeigename"
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Do all movements"
-msgstr ""
+msgstr "Alles umlagern"
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,time_stop:0
@@ -223,12 +223,12 @@ msgstr "Einzulagerndes Endprodukt"
 #: code:addons/mrp_operations_extension/models/mrp_production.py:162
 #, python-format
 msgid "Finish WO"
-msgstr ""
+msgstr "FA Abschließen"
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Finish Work Order"
-msgstr ""
+msgstr "Fertigungsauftrag fertigstellen"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -325,7 +325,7 @@ msgstr "Material"
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,is_material_ready:0
 msgid "Materials Ready"
-msgstr ""
+msgstr "Materialien bereit"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_production.py:145
@@ -398,7 +398,7 @@ msgstr "Mögliche Arbeitsplätze für diesen Vorgang"
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,possible_workcenters:0
 msgid "Possible workcenters"
-msgstr ""
+msgstr "Mögliche Arbeitsplätze"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,post_op_product:0
@@ -525,7 +525,7 @@ msgstr "Lagerbuchungen"
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "There are still some pending moves on WO"
-msgstr ""
+msgstr "Es gibt noch ausstehende Umlagerungen im FA"
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:43
@@ -629,7 +629,7 @@ msgstr "Arbeitsplätze"
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "draft,startworking"
-msgstr ""
+msgstr "draft,startworking"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_inherit_view2
@@ -641,7 +641,7 @@ msgstr "object"
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 msgid "oe_highlight"
-msgstr ""
+msgstr "oe_highlight"
 
 #. module: mrp_operations_extension
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_consume_wizard
