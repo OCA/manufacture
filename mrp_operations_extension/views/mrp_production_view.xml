@@ -245,7 +245,7 @@
         <field name="model">mrp.production.workcenter.line</field>
         <field name="priority" eval="10"/>
         <field name="arch" type="xml">
-            <calendar color="production_id" duration="hour" date_start="date_planned" string="Operations">
+            <calendar color="production_id" date_delay="hour" date_start="date_planned" string="Operations">
                 <field name="workcenter_id"/>
                 <field name="production_id"/>
                 <field name="product"/>
