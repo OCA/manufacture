@@ -30,10 +30,9 @@ class MrpProduction(models.Model):
         # reserve all that is available (standard behaviour):
         res = super(MrpProduction, self).action_assign()
         # try to create procurements:
-        mtos_route = self.env.ref('stock_mts_mto_rule.route_mto_mts')
         for move in self.move_lines:
-            if (move.state == 'confirmed' and mtos_route.id in
-                    move.product_id.route_ids.ids):
+            if (move.state == 'confirmed' and move.location_id in
+                    move.product_id.mrp_mts_mto_location_ids):
                 domain = [('product_id', '=', move.product_id.id),
                           ('state', '=', 'running'),
                           ('move_dest_id', '=', move.id)]

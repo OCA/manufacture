@@ -14,5 +14,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["mrp", "stock_mts_mto_rule"],
+    "depends": ["mrp"],
+    "data": ['views/product_template_view.xml'],
 }
