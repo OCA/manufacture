@@ -18,8 +18,9 @@ To configure this module, you need to:
 
 #. Activate the developer mode.
 #. Go to the products you want to follow this behaviour.
-#. In the view form got to the tab *Inventory* and check the box for the
-   route *Make To Order + Make To Stock*.
+#. In the view form go to the tab *Inventory* and set the *Manufacturing
+   MTO/MTS Locations*. Any other location not specified here will have the
+   standard behavior.
 
 Usage
 =====
