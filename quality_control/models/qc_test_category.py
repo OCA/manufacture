@@ -12,7 +12,7 @@ class QcTestTemplateCategory(models.Model):
     @api.one
     @api.depends('name', 'parent_id')
     def _get_complete_name(self):
-        names = [self.name]
+        names = [self.name or '']
         parent = self.parent_id
         while parent:
             names.append(parent.name)
