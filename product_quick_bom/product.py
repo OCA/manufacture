@@ -1,39 +1,19 @@
 # -*- coding: utf-8 -*-
-###############################################################################
-#
-#   Module for OpenERP
 #   Copyright (C) 2015 Akretion (http://www.akretion.com).
-#   @author Sébastien BEAU <sebastien.beau@akretion.com>
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU Affero General Public License as
-#   published by the Free Software Foundation, either version 3 of the
-#   License, or (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU Affero General Public License for more details.
-#
-#   You should have received a copy of the GNU Affero General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-###############################################################################
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
-from collections import defaultdict
-from openerp.exceptions import Warning as UserError
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     bom_line_ids = fields.One2many(
-        'mrp.bom.line',
-        'product_tmpl_id',
+        comodel_name='mrp.bom.line',
+        inverse_name='product_tmpl_id',
         string='Bom Line',
-        help='If you product is manufactured you can select'
-             'here the componant to product them')
+        help='If your product is manufactured you can select '
+             'here the component to produce them')
 
     @api.model
     def _extract_bom_line(self, vals):
@@ -41,17 +21,19 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _prepare_bom_vals(self, vals):
+        self.ensure_one()
         return {
             'product_tmpl_id': self.id,
             'bom_line_ids': vals,
         }
 
-    @api.one
+    @api.multi
     def _process_bom_vals(self, vals):
-        if self.bom_ids:
-            self.bom_ids[0].write({'bom_line_ids': vals})
-        else:
-            bom = self.env['mrp.bom'].create(self._prepare_bom_vals(vals))
+        for record in self:
+            if record.bom_ids:
+                record.bom_ids[0].write({'bom_line_ids': vals})
+            else:
+                record.env['mrp.bom'].create(self._prepare_bom_vals(vals))
 
     @api.model
     def create(self, vals):
@@ -63,10 +45,16 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, vals):
+        """ default_type is in product and bom so _context ovewrite the default
+                value for bom with typ:'product' need to becarefull
+        """
         bom_vals = self._extract_bom_line(vals)
         res = super(ProductTemplate, self).write(vals)
         if bom_vals:
-            self._process_bom_vals(bom_vals)
+            ctx = self._context.copy()
+            ctx.pop('default_type', None)
+            self.with_context(ctx)._process_bom_vals(bom_vals)
+            
         return res
 
     @api.multi
