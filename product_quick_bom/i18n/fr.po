@@ -32,7 +32,7 @@ msgstr "Composant"
 
 #. module: product_quick_bom
 #: help:product.template,bom_line_ids:0
-msgid "If you product is manufactured you can selecthere the componant to product them"
+msgid "If your product is manufactured you can select here the component to produce them"
 msgstr "Si votre produit est fabriqué vous pouvez définir les composants ici"
 
 #. module: product_quick_bom
