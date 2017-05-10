@@ -12,14 +12,13 @@ class QcTestTemplateCategory(models.Model):
     @api.one
     @api.depends('name', 'parent_id')
     def _get_complete_name(self):
-        if not self.name:
-            continue
-        names = [self.name]
-        parent = self.parent_id
-        while parent:
-            names.append(parent.name)
-            parent = parent.parent_id
-        self.complete_name = " / ".join(reversed(names))
+        if self.name:
+            names = [self.name]
+            parent = self.parent_id
+            while parent:
+                names.append(parent.name)
+                parent = parent.parent_id
+            self.complete_name = " / ".join(reversed(names))
 
     @api.constrains('parent_id')
     def _check_recursion(self):
