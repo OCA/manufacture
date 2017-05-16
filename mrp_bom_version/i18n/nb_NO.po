@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 13:59+0000\n"
+"POT-Creation-Date: 2017-08-07 06:56+0000\n"
 "PO-Revision-Date: 2015-10-26 16:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nb_NO/)\n"
@@ -104,7 +104,7 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr ""
+msgstr "Stat"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
