@@ -87,7 +87,7 @@ class MrpBom(models.Model):
     version = fields.Integer(states={'historical': [('readonly', True)]},
                              copy=False, default=1)
     parent_bom = fields.Many2one(
-        comodel_name='mrp.bom', string='Parent BoM')
+        comodel_name='mrp.bom', string='Parent BoM', copy=False)
     old_versions = fields.Many2many(
         comodel_name='mrp.bom', string='Old Versions',
         compute='_get_old_versions')
