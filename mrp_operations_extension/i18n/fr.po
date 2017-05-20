@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 09:33+0000\n"
-"PO-Revision-Date: 2017-02-21 17:54+0000\n"
+"POT-Creation-Date: 2017-05-18 11:05+0000\n"
+"PO-Revision-Date: 2017-05-18 09:21+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -81,13 +81,13 @@ msgid "Capacity per cycle"
 msgstr "Capacité par cycle"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:54
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:55
 #, python-format
 msgid "Changing Routing"
 msgstr "Changer la gamme"
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:55
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:56
 #, python-format
 msgid ""
 "Changing routing will cause to change the operation in which each component "
