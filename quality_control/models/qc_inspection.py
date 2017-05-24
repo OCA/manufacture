@@ -2,7 +2,7 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import models, fields, api, exceptions, _
+from openerp import api, exceptions, fields, models, _
 import openerp.addons.decimal_precision as dp
 
 
