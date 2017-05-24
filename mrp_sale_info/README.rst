@@ -10,8 +10,14 @@ This module extends the functionality of *sale_mrp*.
 
 * Add fields to Manufacturing Orders and Work Orders:
     * Sale order
+    * Sale line
     * Customer
     * Commitment Date
+
+Also add in search view "Group by" to Manufacturing Orders and Work Orders:
+
+	* Customer
+	* Sale order
 
 Usage
 =====
@@ -48,9 +54,10 @@ Contributors
 * Rafael Blasco <rafabn@antiun.com>
 * Antonio Espinosa <antonioea@antiun.com>
 * Javier Iniesta <javieria@antiun.com>
-* Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-* Ana Juaristi <ajuaristio@gmail.com>"
+* Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Ana Juaristi <ajuaristio@gmail.com>
+* Victor M. Martin <victor.martin@elico-corp.com>
 
 Maintainer
 ----------
