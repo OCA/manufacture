@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_qc_issue,qc.issue.user,quality_control_issue.model_qc_issue,quality_control.group_quality_control_user,1,1,1,0
+access_manager_qc_issue,qc.issue.manager,quality_control_issue.model_qc_issue,quality_control.group_quality_control_manager,1,1,1,1
+access_user_qc_problem_group,qc.problem.group.user,quality_control_issue.model_qc_problem_group,quality_control.group_quality_control_user,1,0,0,0
+access_manager_qc_problem_group,qc.problem.group.manager,quality_control_issue.model_qc_problem_group,quality_control.group_quality_control_manager,1,1,1,1
+access_user_qc_problem,qc.problem.user,quality_control_issue.model_qc_problem,quality_control.group_quality_control_user,1,1,1,0
+access_manager_qc_team,qc.problem.manager,quality_control_issue.model_qc_problem,quality_control.group_quality_control_manager,1,1,1,1
+access_user_qc_stage,qc.stage.user,quality_control_issue.model_qc_stage,quality_control.group_quality_control_user,1,0,0,0
+access_manager_qc_stage,qc.stage.manager,quality_control_issue.model_qc_stage,quality_control.group_quality_control_manager,1,1,1,1
+access_user_qc_issue_stage,qc.issue.stage.user,quality_control_issue.model_qc_issue_stage,quality_control.group_quality_control_user,1,0,0,0
+access_manager_qc_issue_stage,qc.issue.stage.manager,quality_control_issue.model_qc_issue_stage,quality_control.group_quality_control_manager,1,1,1,1
