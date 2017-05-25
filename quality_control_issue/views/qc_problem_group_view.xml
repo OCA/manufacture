@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="qc_problem_group_tree" model="ir.ui.view">
+        <field name="name">qc.problem.group.tree</field>
+        <field name="model">qc.problem.group</field>
+        <field name="arch" type="xml">
+            <tree string="Problem Groups">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="qc_problem_group_form" model="ir.ui.view">
+        <field name="name">qc.problem.group.form</field>
+        <field name="model">qc.problem.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page name="problems" string="Problems">
+                            <field name="problem_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="qc_problem_group_action" model="ir.actions.act_window">
+        <field name="name">Problem groups</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qc.problem.group</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_qc_problem_group"
+          parent="quality_control_issue.menu_qc_problem_tracking"
+          action="qc_problem_group_action"
+          sequence="60" name="Problem Groups"/>
+
+</odoo>

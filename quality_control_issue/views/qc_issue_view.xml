@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="qc_issue_tree" model="ir.ui.view">
+        <field name="name">qc.issue.tree</field>
+        <field name="model">qc.issue</field>
+        <field name="arch" type="xml">
+            <tree string="Issues">
+                <field name="name"/>
+                <field name="inspector_id"/>
+                <field name="product_id"/>
+                <field name="responsible_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="qc_issue_form" model="ir.ui.view">
+        <field name="name">qc.issue.form</field>
+        <field name="model">qc.issue</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm"
+                            type="object" states="new"
+                            string="Confirm" class="oe_highlight" />
+                    <button name="action_done"
+                            type="object" states="progress"
+                            string="Set to Done" class="oe_highlight" />
+                    <button name="action_cancel"
+                            type="object" states="new,progress"
+                            string="Cancel"/>
+                    <field name="stage_id" widget="statusbar" clickable="True"
+                           options="{'fold_field': 'fold'}"
+                           domain="['|', ('qc_team_id', '=', qc_team_id), ('qc_team_id', '=', False)]"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!--To be inhereted by other modules.-->
+                    </div>
+                    <div class="oe_title">
+                        <label string="Quality Control Issue"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group name="top">
+                        <group>
+                            <field name="inspector_id"/>
+                            <field name="responsible_id"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                            <field name="qc_team_id" widget="selection"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="lot_id"
+                                   groups="stock.group_production_lot"
+                                   attrs="{'required': [('product_tracking', 'in', ('serial', 'lot'))]}"/>
+                            <field name="product_id"/>
+                            <field name="product_tracking" invisible="1"/>
+                            <field name="product_qty"
+                                   attrs="{'invisible': [('product_tracking', '=', 'serial')]}"/>
+                            <field name="product_uom"
+                                   groups="product.group_uom"
+                                   attrs="{'invisible': [('product_tracking', '=', 'serial')]}"/>
+                            <field name="location_id"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <field name="qc_problem_ids" widget="many2many_tags"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="qc_issue_kanban_view" model="ir.ui.view">
+        <field name="name">qc.issue.kanban</field>
+        <field name="model">qc.issue</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column" default_group_by="stage_id">
+                <field name="stage_id"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                    <span class="fa fa-bars fa-lg"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                    <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                Product: <field name="product_id"/><br></br>
+                                Qty: <field name="product_qty"/> <field name="product_uom"/><br></br>
+                                Location: <field name="location_id"/>
+                                <t t-if="record.qc_problem_ids"><br></br>
+                                Problems:
+                                <t t-foreach="record.qc_problem_ids.raw_value" t-as="rec">
+                                    <t t-esc="rec"/>;
+                                </t></t>
+                                <div class="o_kanban_footer">
+                                    <!--To be inhereted.-->
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="qc_issue_search">
+        <field name="name">qc.issue.serch</field>
+        <field name="model">qc.issue</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="qc_team_id"/>
+                <field name="stage_id"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <filter string="My inspections"
+                        domain="[('inspector_id', '=', uid)]"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Stage" domain="[]"
+                            context="{'group_by':'stage_id'}"/>
+                    <filter string="Problem Group" domain="[]"
+                            context="{'group_by': 'problem_group_id'}"/>
+                    <filter string="Product" domain="[]"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter string="Location" domain="[]"
+                            context="{'group_by': 'location_id'}"/>
+                    <filter string="Company" context="{'group_by':'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="qc_issue_action" model="ir.actions.act_window">
+        <field name="name">QC Issues</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qc.issue</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_qc_issue"
+              parent="quality_control.qc_menu"
+              sequence="50" name="Issues"/>
+
+    <menuitem id="menu_qc_issue_child"
+              parent="quality_control_issue.menu_qc_issue"
+              action="qc_issue_action"
+              sequence="20" name="Issues"/>
+
+</odoo>
