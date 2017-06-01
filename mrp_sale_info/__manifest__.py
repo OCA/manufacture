@@ -4,7 +4,7 @@
 {
     "name": "MRP Sale Info",
     "summary": "Adds sale information to Manufacturing models",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Manufacturing",
     "website": "http://www.antiun.com",
     "author": "Antiun Ingeniería S.L., "
@@ -14,15 +14,14 @@
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    'installable': False,
+    'installable': True,
     "depends": [
-        "mrp_operations",
         "sale_mrp",
         "sale_order_dates",
         "stock"
     ],
     "data": [
         "views/mrp_production.xml",
-        "views/mrp_production_workcenter_line.xml"
+        "views/mrp_workorder.xml"
     ]
 }

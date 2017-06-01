@@ -51,6 +51,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
 * Ana Juaristi <ajuaristio@gmail.com>"
 * Victor M. Martin <victor.martin@elico-corp.com>
+* Bima Jati Wijaya <bimajatiwijaya@gmail.com>
 
 Maintainer
 ----------
