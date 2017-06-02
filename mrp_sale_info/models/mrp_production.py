@@ -8,7 +8,8 @@ from odoo import api, fields, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    sale_id = fields.Many2one('sale.order', compute='_compute_sale_info', string='Sale order',
+    sale_id = fields.Many2one('sale.order', compute='_compute_sale_info',
+                              string='Sale order',
                               readonly=True)
     partner_id = fields.Many2one('res.partner', compute='_compute_sale_info',
                                  string='Customer')
@@ -24,7 +25,11 @@ class MrpProduction(models.Model):
 
         for production in self:
             move = get_parent_move(production.move_finished_ids)
-            production.sale_id = move.procurement_id and move.procurement_id.sale_line_id and \
-                                 move.procurement_id.sale_line_id.order_id.id or False
-            production.partner_id = production.sale_id and production.sale_id.partner_id and production.sale_id.partner_id.id or False
-            production.commitment_date = production.sale_id and production.sale_id.commitment_date or ''
+            proc = move.procurement_id
+            production.sale_id = proc and proc.sale_line_id and \
+                proc.sale_line_id.order_id.id or False
+            production.partner_id = production.sale_id and \
+                production.sale_id.partner_id and \
+                production.sale_id.partner_id.id or False
+            production.commitment_date = production.sale_id and \
+                production.sale_id.commitment_date or ''
