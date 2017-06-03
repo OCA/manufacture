@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
 ==================================
 Partner notes in production orders
@@ -37,6 +38,7 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
+* Bima Wijaya <bimajatiwijaya@gmail.com>
 
 Maintainer
 ----------
@@ -51,4 +53,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

@@ -2,7 +2,7 @@
 # © 2016 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp.tests import common
+from odoo.tests import common
 
 
 class TestMrpProductionPartnerNote(common.TransactionCase):
@@ -11,7 +11,7 @@ class TestMrpProductionPartnerNote(common.TransactionCase):
         super(TestMrpProductionPartnerNote, self).setUp()
         self.note = "This is a test production note"
         self.procurement_model = self.env['procurement.order']
-        self.product = self.browse_ref('product.product_product_18')
+        self.product = self.browse_ref('product.product_product_5b')
         self.product.route_ids = [
             (4, self.ref('mrp.route_warehouse0_manufacture')),
             (4, self.ref('stock.route_warehouse0_mto'))]

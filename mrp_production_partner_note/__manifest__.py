@@ -4,7 +4,7 @@
 
 {
     "name": "MRP - Partner production notes",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
               "AvanzOSC,"
@@ -15,6 +15,7 @@
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
+        "Bima Wijaya <bimajatiwijaya@gmail.com>",
     ],
     "category": "Tools",
     "depends": [
@@ -27,5 +28,5 @@
     "images": [
         "images/partner_note.png",
     ],
-    'installable': False,
+    'installable': True,
 }
