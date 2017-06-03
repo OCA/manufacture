@@ -11,9 +11,7 @@ This module creates in BoM a new field to add notes
 Installation
 ============
 
-To install this module, you need to:
-
-#. install mrp application
+To install this module, you need to install mrp application.
 
 Configuration
 =============
@@ -24,17 +22,11 @@ No need configure required.
 Usage
 =====
 
-* Go to Manufacturing > Master Data > Bill of Materials
-* Edit an existing BoM and fill in the Notes field on tab Notes
+1. Go to Manufacturing > Master Data > Bill of Materials then edit an existing BoM and fill in the Notes field on tab Notes
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/9.0
-
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========
@@ -73,4 +65,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
