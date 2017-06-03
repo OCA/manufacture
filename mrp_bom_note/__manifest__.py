@@ -4,7 +4,7 @@
 
 {
     "name": "Notes in Bill of Materials",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -14,6 +14,7 @@
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
+        "Bima Wijaya <bimajatiwijaya@gmail.com>",
     ],
     "category": "Tools",
     "depends": [
@@ -22,5 +23,5 @@
     "data": [
         "views/mrp_bom_view.xml",
     ],
-    'installable': False
+    'installable': True
 }
