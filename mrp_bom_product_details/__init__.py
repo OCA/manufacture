@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import mrp_bom_product_details
+from . import models

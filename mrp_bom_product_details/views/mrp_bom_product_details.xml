@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
        <record id="mrp_bom_tree_view" model="ir.ui.view">
@@ -8,8 +8,8 @@
            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
            <field name="arch" type="xml">
                <field name="product_uom_id" position="after">
-                   <field name="product_standard_price" />
-                   <field name="product_qty_available" />
+                   <field name="product_standard_price" groups="product.group_product_variant"/>
+                   <field name="product_qty_available" groups="product.group_product_variant"/>
                </field>
            </field>
        </record>
@@ -39,4 +39,4 @@
         </record>
 		
     </data>
-</openerp>
+</odoo>

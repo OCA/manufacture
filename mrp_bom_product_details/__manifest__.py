@@ -33,7 +33,7 @@
     ],
     'demo': [],
     'data': [
-        'mrp_bom_product_details.xml'
+        'views/mrp_bom_product_details.xml',
     ],
     'auto_install': False,
     'installable': True,

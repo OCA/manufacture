@@ -2,49 +2,34 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+===================
 Bom product details
-==============
+===================
 
-This module extends the functionality of bill of material.
-- This module adds product price and stock to bom view and bom component.
+This module adds information product price and product stock on bill of material tree view and bom component.
 
-Installation
-============
-
-To install this module, you need to:
-
-#. ...
 
 Configuration
 =============
 
-No configuration required.
+To show price and product stock on bill of material, please apply product variant feature.
+1. Go to Manufacturing > Configuration > Settings > Product Variants
+   - select "Products can have several attributes, defining variants (Example: size, color,...)"
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to ...
+1. Go to Manufacturing > Master Data > Bill of Materials
+   a. Tree view bom and component bom will show cost and stock.
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/{repo_id}/{branch}
-
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
-
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/{project_repo}/issues>`_. In case of trouble, please
+<https://github.com/OCA/manufacture/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
@@ -59,14 +44,8 @@ Images
 Contributors
 ------------
 
-* Bima Wiajaya <bimajatiwijaya@gmail.com>
+* Bima Wijaya <bimajatiwijaya@gmail.com>
 
-Funders
--------
-
-The development of this module has been financially supported by:
-
-*
 
 Maintainer
 ----------
