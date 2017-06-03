@@ -14,7 +14,7 @@ Configuration
 
 To show price and product stock on bill of material, please apply product variant feature.
 1. Go to Manufacturing > Configuration > Settings > Product Variants
-   - select "Products can have several attributes, defining variants (Example: size, color,...)"
+2. Then select "Products can have several attributes, defining variants (Example: size, color,...)" and click apply
 
 Usage
 =====

@@ -25,9 +25,6 @@
     'author': "Solutions Libergia inc.,Odoo Community Association (OCA)",
     'license': 'GPL-3 or any later version',
     'category': 'Manufacturing',
-    'description': """
-    This module adds product price and stock to bom view
-    """,
     'depends': [
         "mrp",
     ],
