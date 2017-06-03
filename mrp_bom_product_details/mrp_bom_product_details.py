@@ -20,16 +20,24 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from odoo import api, fields, models, _
 
 
-class mrp_bom(orm.Model):
+class MrpBom(models.Model):
     _inherit = 'mrp.bom'
-    _columns = {
-        'product_standard_price': fields.related(
-            'product_id', 'standard_price', type='float', string='Cost Price', readonly=True
-        ),
-        'product_qty_available': fields.related(
-            'product_id', 'qty_available', type='float', string='Quantity On Hand', readonly=True
-        ),
-    }
+
+    product_standard_price = fields.Float(related='product_id.standard_price',
+                                          string='Cost Price', readonly=True)
+    product_qty_available = fields.Float(related='product_id.qty_available',
+                                         string='Quantity On Hand',
+                                         readonly=True)
+
+
+class MrpBomLine(models.Model):
+    _inherit = 'mrp.bom.line'
+
+    product_standard_price = fields.Float(related='product_id.standard_price',
+                                          string='Cost Price', readonly=True)
+    product_qty_available = fields.Float(related='product_id.qty_available',
+                                         string='Quantity On Hand',
+                                         readonly=True)

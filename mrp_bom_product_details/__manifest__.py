@@ -21,16 +21,20 @@
 ##############################################################################
 {
     'name': 'Bom product details',
-    'version': '0.1',
+    'version': '10.0.1.0.0',
     'author': "Solutions Libergia inc.,Odoo Community Association (OCA)",
     'license': 'GPL-3 or any later version',
     'category': 'Manufacturing',
     'description': """
     This module adds product price and stock to bom view
     """,
-    'depends': ["base", "mrp"],
+    'depends': [
+        "mrp",
+    ],
     'demo': [],
-    'data': ['mrp_bom_product_details.xml'],
+    'data': [
+        'mrp_bom_product_details.xml'
+    ],
     'auto_install': False,
-    'installable': False,
+    'installable': True,
 }
