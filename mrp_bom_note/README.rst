@@ -16,13 +16,15 @@ To install this module, you need to install mrp application.
 Configuration
 =============
 
-No need configure required.
+No configuration required.
 
 
 Usage
 =====
 
-1. Go to Manufacturing > Master Data > Bill of Materials then edit an existing BoM and fill in the Notes field on tab Notes
+1. Go to Manufacturing > Master Data > Bill of Materials
+2. Edit an existing BoM.
+3. Fill in the Notes field on tab Notes.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
