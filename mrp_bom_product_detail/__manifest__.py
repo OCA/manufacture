@@ -28,7 +28,6 @@
     'depends': [
         "mrp",
     ],
-    'demo': [],
     'data': [
         'views/mrp_bom_product_details.xml',
     ],

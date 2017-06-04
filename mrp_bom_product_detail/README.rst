@@ -6,16 +6,16 @@
 Bom product details
 ===================
 
-This module adds information product price and product stock on bill of material tree view and bom component.
+This module adds information product price and product stock on BoM and component.
 
 
 Configuration
 =============
 
-To show price and product stock on bill of material, please apply product variant feature.
-
-1. Go to Manufacturing > Configuration > Settings > Product Variants
-2. Then select "Products can have several attributes, defining variants (Example: size, color,...)" and click apply
+1. To show price and product stock on BoM : please apply product variant feature.
+2. Go to Manufacturing > Configuration > Settings > Product Variants
+3. Then select "Products can have several attributes, defining variants (Example: size, color,...)".
+4. Click apply.
 
 Usage
 =====
@@ -23,7 +23,7 @@ Usage
 To use this module, you need to:
 
 1. Go to Manufacturing > Master Data > Bill of Materials
-   a. Tree view bom and component bom will show cost and stock.
+2. Tree view bom and component bom will show cost and stock.
 
 
 Bug Tracker
@@ -45,6 +45,11 @@ Images
 Contributors
 ------------
 
+* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
+* Samuel Champagne <schampagne@libergia.com>
+* Sandy Carter <sandy.carter@savoirfairelinux.com>
+* Stéphane Bidoul <stephane.bidoul@acsone.eu>
+* Pedro M. Baeza <pedro.baeza@gmail.com>
 * Bima Wijaya <bimajatiwijaya@gmail.com>
 
 
