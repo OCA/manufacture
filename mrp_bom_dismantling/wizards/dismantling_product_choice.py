@@ -28,7 +28,7 @@ class DismantlingProductChoice(models.TransientModel):
         """ Update component_id domain to include only BOM components.
         """
         component_ids = sorted(
-            [c.id for c in self.bom_id._get_components_needs()]
+            [c.id for c in self.bom_id._get_component_needs()]
         )
         if not component_ids:
             raise UserError(_('This BoM does not have components.'))
