@@ -11,12 +11,6 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
-    "contributors": [
-        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>",
-        "Bima Wijaya <bimajatiwijaya@gmail.com>",
-    ],
     "category": "Tools",
     "depends": [
         "sale",
