@@ -14,7 +14,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[mrp_bom_dismantling](mrp_bom_dismantling/) | 9.0.1.0.0 | Ability to create a dismantling BOM by reversing a BOM.
+[mrp_bom_dismantling](mrp_bom_dismantling/) | 9.0.1.0.1 | Ability to create a dismantling BOM by reversing a BOM.
 [mrp_bom_note](mrp_bom_note/) | 9.0.1.0.0 | Notes in Bill of Materials
 [mrp_production_note](mrp_production_note/) | 9.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 9.0.1.0.0 | MRP - Partner production notes
