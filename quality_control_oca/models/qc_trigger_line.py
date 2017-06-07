@@ -81,7 +81,8 @@ class QcTriggerProductTemplateLine(models.Model):
         for trigger_line in product.product_tmpl_id.qc_triggers.filtered(
                 lambda r: r.trigger == trigger and (
                 not r.partners or not partner or
-                partner.commercial_partner_id in r.partners)):
+                partner.commercial_partner_id in r.partners) and
+                r.test.active):
             trigger_lines.add(trigger_line)
         return trigger_lines
 
@@ -100,6 +101,7 @@ class QcTriggerProductLine(models.Model):
         for trigger_line in product.qc_triggers.filtered(
                 lambda r: r.trigger == trigger and (
                 not r.partners or not partner or
-                partner.commercial_partner_id in r.partners)):
+                partner.commercial_partner_id in r.partners) and
+                r.test.active):
             trigger_lines.add(trigger_line)
         return trigger_lines
