@@ -30,7 +30,7 @@
                             string="Approve" />
                     <button name="action_cancel"
                             type="object"
-                            attrs="{'invisible': ['|', ('auto_generated', '=', True), ('state', 'not in', ['waiting', 'ready', 'failed', 'success'])]}"
+                            attrs="{'invisible': [('state', 'not in', ['waiting', 'ready', 'failed', 'success'])]}"
                             string="Cancel"
                             icon="gtk-cancel" />
                     <field name="state"
