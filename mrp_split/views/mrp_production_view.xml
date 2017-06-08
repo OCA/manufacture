@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form - mrp_split</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="after">
+                <button name="%(mrp_split_action)d" string="Split MO" type="action"
+                        context="{'default_production_id':active_id}"
+                        states="draft,confirmed"/>
+            </button>
+            <xpath expr="//page[last()]" position="after">
+                <page name="backorder" string="Manufacturing Backorders">
+                    <field name="backorder_ids"/>
+                </page>
+            </xpath>
+            <field name="origin" position="after">
+                <field name="backorder_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
+<!-- TODO ? <button groups="mrp.some_group"/> ???-->

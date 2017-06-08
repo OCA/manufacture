@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="mrp_split_view" model="ir.ui.view">
+        <field name="name">mrp.split.form</field>
+        <field name="model">mrp.split</field>
+        <field name="arch" type="xml">
+            <form string="Select event to register">
+                <group name="origin" string="Original Manufacturing Order"
+                       col="6">
+                    <group colspan="2">
+                        <field name="production_id" options='{"no_open": True}'/>
+                        <field name="production_qty"/>
+                        <button name="compute_product_line_ids" type="object"
+                                string="Compute lines" colspan="2" icon="fa-cogs"/>
+                    </group>
+                    <group colspan="4">
+                        <field name="product_line_ids" nolabel="1">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="product_uom"/>
+                                <field name="product_qty"/>
+                                <field name="available_qty"/>
+                                <field name="bottle_neck_factor"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <group name="destination" string="Splitting Aim:">
+                    <field name="split_qty"/>
+                </group>
+
+                <footer>
+                    <button name="do_split"
+                            type="object"
+                            string="Split"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_split_action" model="ir.actions.act_window">
+        <field name="name">Split Manufacturing Order</field>
+        <field name="res_model">mrp.split</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
