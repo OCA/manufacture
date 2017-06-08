@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="mrp_product_config_settings_versioning">
+            <field name="name">mrp.product.config.settings.versioning</field>
+            <field name="model">mrp.config.settings</field>
+            <field name="inherit_id" ref="mrp.view_mrp_config" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='module_mrp_repair']/.." position="after">
+                    <div>
+                        <field name="group_product_version" class="oe_inline"/>
+                        <label for="group_product_version"/>
+                    </div>
+                    <div attrs="{'invisible': [('group_product_version', '=', False)]}">
+                        <field name="active_product_draft" class="oe_inline"/>
+                        <label for="active_product_draft"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

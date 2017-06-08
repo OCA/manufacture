@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_version
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-06 22:48+0000\n"
+"PO-Revision-Date: 2016-03-06 22:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "Activate"
+msgstr "Attiva"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_search_view_version
+msgid "Active"
+msgstr "Attivo"
+
+#. module: product_version
+#: field:mrp.config.settings,group_product_version:0
+msgid "Allow to re-edit Products"
+msgstr "Permetti di ri-editare i Prodotti"
+
+#. module: product_version
+#: field:product.template,code:0
+msgid "Code"
+msgstr "Codice"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_search_view_version
+msgid "Group by..."
+msgstr "Raggruppa per..."
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "Historical"
+msgstr "Archiviato"
+
+#. module: product_version
+#: field:product.template,historical_date:0
+msgid "Historical Date"
+msgstr "Data di archiviazione"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_search_view_version
+msgid "Inactive"
+msgstr "Disattivato"
+
+#. module: product_version
+#: field:mrp.config.settings,active_product_draft:0
+msgid "Keep re-editing Product active"
+msgstr "Permette di ri-editare i Prodotti attivi"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "New version"
+msgstr "Nuova versione"
+
+#. module: product_version
+#: field:product.template,parent_product:0
+msgid "Parent Product"
+msgstr "Prodotto Padre"
+
+#. module: product_version
+#: model:ir.model,name:product_version.model_product_template
+msgid "Product Template"
+msgstr "Template Prodotto"
+
+#. module: product_version
+#: model:res.groups,name:product_version.group_product_version
+msgid "Product version"
+msgstr "Versione prodotto"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_search_view_version
+msgid "State"
+msgstr "Stato"
+
+#. module: product_version
+#: help:mrp.config.settings,group_product_version:0
+msgid "The active state may be passed back to state draft"
+msgstr "Lo stato attivo può ritornare allo stato bozza"
+
+#. module: product_version
+#: help:mrp.config.settings,active_product_draft:0
+msgid "This will allow you to define if those Product passed back to draft are still activated or not"
+msgstr "Permette di definire se i Prodotti ritornati allo stato bozza sono ancora attivi o no"
+
+#. module: product_version
+#: field:product.template,version:0
+msgid "Version"
+msgstr "Versione"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+msgid "Versions"
+msgstr "Versioni"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "You are going to create a new version of this Product. Are you sure?"
+msgstr "Si sta per creare una nuova versione di questo Prodotto. Si vuole proseguire?"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_version_tree_view
+msgid "You are going to historize a Product. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"
+msgstr "Si sta per archiviare un Prodotto. Così facendo non sarà più possibile utilizzare se non facendo una copia. Si vuole proseguire?"
+
+#. module: product_version
+#: view:product.template:product_version.product_template_form_view_version
+msgid "You will activate the Product. Are you sure you want to proceed?"
+msgstr "Si sta per attivare il Prodotto. Si vuole proseguire?"
