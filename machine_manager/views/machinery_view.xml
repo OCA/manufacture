@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Machine Form -->
+        <record model="ir.ui.view" id="machine_form">
+            <field name="name">machines.form</field>
+            <field name="model">machinery</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Machines">
+                    <sheet>
+                        <h2>
+                            <field name="name" nolabel="1"/>
+                        </h2>
+                        <group>
+                            <group>
+                                <field name="status" />
+                                <field name="ownership" />
+                                <field name="company" invisible="1"/>
+                                <field name="location"/>
+                            </group>
+                            <group>
+                                <field name="product" domain="[('machine_ok','=',True)]" />
+                                <field name="serial_char" attrs="{'invisible':[('product','!=', False)]}"/>
+                                <field name="serial" attrs="{'invisible':[('product','=', False)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Details">
+                               <group>
+                                     <group string="Miscellaneous">
+                                        <field name="power" />
+                                        <field name="mac" />
+                                        <field name="phone" />
+                                        <field name="ambit" />
+                                    </group>
+                                    <group string="Manufacturer">
+                                        <field name="manufacturer" />
+                                        <field name="year" />
+                                        <field name="model" />
+                                        <field name="model_type" />
+                                    </group>
+                                    <group string="License Document">
+                                        <field name="license_document" string="Document reference" />
+                                        <field name="license_document_expiration" string="Expiration" />
+                                    </group>
+                                    <group string="Insurance">
+                                        <field name="insurance" />
+                                        <field name="policy" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Financial Details">
+                                <group>
+                                    <group string="Purchase Info">
+                                        <field name="purch_date" />
+                                        <field name="purch_partner" />
+                                        <field name="purch_inv" />
+                                        <field name="purch_cost" />
+                                        <field name="purch_cycles" />
+                                        <field name="enrolldate" />
+                                    </group>
+                                    <group string="Financial Details">
+                                        <field name="deprecperc" />
+                                        <field name="deprecperiod" />
+                                        <field name="assetacc" />
+                                        <field name="depracc" />
+                                    </group>
+                                    <group string="Warranty Expiry">
+                                        <field name="warrexp" />
+                                        <field name="warrexpcy" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Machine Users">
+                                <group>
+                                    <field name="users" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="(Preventive) Maintenance">
+                                <group>
+                                    <group>
+                                        <field name="actcycles"/>
+                                        <field name="primarymeter"/>
+                                    </group>
+                                    <group>
+                                        <field name="bcyl"/>
+                                        <field name="bdate"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="machine_tree">
+            <field name="name">machine.tree</field>
+            <field name="model">machinery</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Machines">
+                    <field name="name" />
+                    <field name="company"  />
+                    <field name="year" />
+                    <field name="model" />
+                    <field name="serial" />
+                    <field name="model_type" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="machine_search">
+            <field name="name">Machine - Search</field>
+            <field name="model">machinery</field>
+            <field name="arch" type="xml">
+                <search string="Machinery Search">
+                    <field name="name"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                         <filter string="Status" domain="[]" context="{'group_by':'status'}"/>
+                         <filter string="Ownership" domain="[]" context="{'group_by':'ownership'}"/>
+                         <filter string="Stock location" domain="[]" context="{'group_by':'location'}"/>
+                         <filter string="Year" domain="[]" context="{'group_by':'year'}"/>
+                         <filter string="Model" domain="[]" context="{'group_by':'model'}"/>
+                         <filter string="Type" domain="[]" context="{'group_by':'model_type'}"/>
+                     </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_machine" model="ir.actions.act_window">
+            <field name="name">Machines</field>
+            <field name="res_model">machinery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

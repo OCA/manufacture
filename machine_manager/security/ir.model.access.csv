@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_machine_model_user,access_machine_model_user,model_machine_model,group_machine_user,1,0,0,0
+access_machine_model_manager,access_machine_model_manager,model_machine_model,group_machine_manager,1,1,1,1
+access_machinery_user,access_machinery_user,model_machinery,group_machine_user,1,0,0,0
+access_machinery_manager,access_machinery_manager,model_machinery,group_machine_manager,1,1,1,1
+access_machinery_users_user,access_machinery_users_user,model_machinery_users,group_machine_user,1,0,0,0
+access_machinery_users_manager,access_machinery_users_manager,model_machinery_users,group_machine_manager,1,1,1,1

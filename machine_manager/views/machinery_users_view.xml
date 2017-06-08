@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="machine_user_form">
+            <field name="name">machine.user.form.view</field>
+            <field name="model">machinery.users</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Machine Users">
+                    <group col="6">
+                        <field name="m_user" />
+                        <field name="start_date"  />
+                        <field name="end_date" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="machine_user_tree">
+            <field name="name">machine.user.tree.view</field>
+            <field name="model">machinery.users</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Machine Users">
+                    <field name="m_user"/>
+                    <field name="start_date"  />
+                    <field name="end_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_machine_user">
+            <field name="name">Machines</field>
+            <field name="res_model">machinery.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</openerp>
