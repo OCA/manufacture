@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_stock
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-10-09 03:43+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: quality_control_stock
+#: field:stock.picking,qc_inspections:0
+#: field:stock.production.lot,qc_inspections:0
+msgid "Inspections"
+msgstr ""
+
+#. module: quality_control_stock
+#: help:stock.production.lot,qc_inspections:0
+msgid "Inspections related to this lot."
+msgstr ""
+
+#. module: quality_control_stock
+#: help:stock.picking,qc_inspections:0
+msgid "Inspections related to this picking."
+msgstr ""
+
+#. module: quality_control_stock
+#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
+#: field:qc.inspection,lot:0
+#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
+#: field:qc.inspection.line,lot:0
+#: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
+msgid "Lot"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lote/Serial"
+
+#. module: quality_control_stock
+#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
+#: field:qc.inspection,picking:0
+#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
+#: field:qc.inspection.line,picking:0
+msgid "Picking"
+msgstr "Separação"
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_picking
+#: model:res.request.link,name:quality_control_stock.req_link_stock_picking
+msgid "Picking List"
+msgstr "Lista de separação"
+
+#. module: quality_control_stock
+#: field:qc.trigger,picking_type:0
+msgid "Picking type"
+msgstr ""
+
+#. module: quality_control_stock
+#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
+#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
+msgid "Product"
+msgstr "Produto"
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_trigger
+msgid "Quality control trigger"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_done
+msgid "Quality inspection from lot done"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_passed
+msgid "Quality inspection from lot passed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_done
+msgid "Quality inspection from picking done"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_passed
+msgid "Quality inspection from picking passed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot
+msgid "Quality inspections from lot"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_failed
+msgid "Quality inspections from lot failed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking
+msgid "Quality inspections from picking"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_failed
+msgid "Quality inspections from picking failed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:res.request.link,name:quality_control_stock.req_link_stock_move
+msgid "Stock Move"
+msgstr "Movimentação de estoque"
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_picking_type
+msgid "The picking type determines the picking view"
+msgstr ""
+
+#. module: quality_control_stock
+#: view:stock.picking:quality_control_stock.stock_picking_qc_view
+#: view:stock.production.lot:quality_control_stock.stock_lot_qc_view
+msgid "inspections"
+msgstr ""

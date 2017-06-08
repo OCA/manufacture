@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="action_qc_inspection_per_production" model="ir.actions.act_window">
+            <field name="name">Quality inspections from production order</field>
+            <field name="res_model">qc.inspection</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('production', '=', active_id)]</field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp.mrp_production_buttons">
+            <field name="name">mrp.production.buttons</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <div class="oe_title" position="after">
+                    <div class="oe_right oe_button_box" name="buttons">
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_qc_view">
+            <field name="name">mrp.production.form.qc</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_buttons" />
+            <field name="groups_id"
+                   eval="[(4, ref('quality_control.group_quality_control_user'))]" />
+            <field name="arch" type="xml">
+                <div name="buttons" position="inside">
+                    <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(action_qc_inspection_per_production)d"
+                            icon="fa-bookmark-o">
+                        <field name="created_inspections"
+                               widget="statinfo"
+                               string="inspections" />
+                    </button>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</openerp>
