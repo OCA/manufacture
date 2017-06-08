@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp_repair_layout_category_form_view" model="ir.ui.view">
+            <field name="name">mrp_repair.layout.category.form.view</field>
+            <field name="model">mrp_repair.layout.category</field>
+            <field name="arch" type="xml">
+                <form string="Report Configuration">
+                    <group>
+                        <field name="name"/>
+                        <field name="subtotal" widget="checkbox"/>
+                        <field name="separator" widget="checkbox"/>
+                        <field name="pagebreak" widget="checkbox"/>
+                        <field name="sequence"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_repair_layout_category_tree_view" model="ir.ui.view">
+            <field name="name">mrp_repair.layout.category.tree.view</field>
+            <field name="model">mrp_repair.layout.category</field>
+            <field name="arch" type="xml">
+                <tree string="Report Configuration">
+                        <field name="name"/>
+                        <field name="subtotal" widget="checkbox"/>
+                        <field name="separator" widget="checkbox"/>
+                        <field name="pagebreak" widget="checkbox"/>
+                        <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp_repair_layout_category_search_view" model="ir.ui.view" >
+	        <field name="name">mrp_repair.layout.category.search.view</field>
+	        <field name="model">mrp_repair.layout.category</field>
+	        <field name="arch" type="xml">
+                <search string="Search Name">
+                    <filter string="Total" domain="[('subtotal','=','True')]"/>
+                    <filter string="Separator" domain="[('separator','=','True')]"/>
+                    <filter string="Break" domain="[('pagebreak','=','True')]"/>
+                    <group string="Group By Name">
+                        <filter string="Name"  context="{'group_by' : 'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id='report_configuration_action' model='ir.actions.act_window'>
+            <field name="name">Report Configuration</field>
+            <field name="res_model">mrp_repair.layout.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            action="report_configuration_action" 
+            id="Report_configuration" 
+            parent="mrp.menu_mrp_configuration"
+            name="Report Layout Categories"
+        />
+    </data>
+</openerp>

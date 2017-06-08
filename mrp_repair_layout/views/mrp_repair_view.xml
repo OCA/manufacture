@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_repair_order_form_layout" model="ir.ui.view">
+            <field name="name">mrp.repair.form.layout</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Repair Line']/group/field[@name='product_id']" position="after">
+                    <field name="layout_cat_id"/>
+                </xpath>
+                <xpath expr="//tree[@string='Operations']/field[@name='product_id']" position="after">
+                    <field name="layout_cat_id"/>
+                </xpath>
+                <xpath expr="//group[@string='Product Information']/group[1]/field[@name='product_id']" position="after">
+                    <field name="layout_cat_id"/>
+                </xpath>
+                <xpath expr="//tree[@string='Fees']/field[@name='product_id']" position="after">
+                    <field name="layout_cat_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
