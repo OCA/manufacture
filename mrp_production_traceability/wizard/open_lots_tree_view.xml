@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_open_lots_tree" model="ir.ui.view">
+            <field name="name">stock.production.lot.open.tree.form</field>
+            <field name="model">stock.production.lot.open.tree</field>
+            <field name="arch" type="xml">
+                <form string="Prodcution Lots Traceability">
+                    <group>
+                        <field name="lot_id"></field>
+	                </group>
+                    <footer>
+                        <button string="Open Lots Tree" name="open_lots_tree" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_open_lots_tree" model="ir.actions.act_window">
+            <field name="name">Prodcution Lots Traceability</field>
+            <field name="res_model">stock.production.lot.open.tree</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_open_lots_tree"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_action_view_open_lots_tree" name="Production Lots Tree"
+            parent="stock.menu_traceability" action="action_view_open_lots_tree"
+            sequence="4" />
+
+    </data>
+</openerp>

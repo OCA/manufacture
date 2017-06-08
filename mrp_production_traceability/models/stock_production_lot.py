@@ -1,12 +1,28 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, api, _
+# Copyright (c)
+#    2015 Serv. Tec. Avanzados - Pedro M. Baeza (http://www.serviciosbaeza.com)
+#    2015 AvanzOsc (http://www.avanzosc.es)
+# Copyright 2017 Lorenzo Battistini - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import models, api, _, fields
 
 
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
+
+    track_lot_component_ids = fields.One2many(
+        'mrp.track.lot', 'component_lot', readonly=True,
+        string="Components tracking"
+    )
+    track_lot_final_ids = fields.One2many(
+        'mrp.track.lot', 'product_lot', readonly=True,
+        string="Final Products tracking"
+    )
+    parent_id = fields.Many2one(
+        'stock.production.lot', string="Final production lot", readonly=True)
+    children_ids = fields.One2many(
+        'stock.production.lot', 'parent_id', 'Components', readonly=True)
 
     @api.multi
     def total_traceability(self):

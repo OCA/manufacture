@@ -2,7 +2,7 @@
 <openerp>
 <data>
 
-    <!-- stock.move.view -->
+    <!-- stock.production.lot views -->
     <record id="view_production_lot_form_inh_productiontrace" model="ir.ui.view">
         <field name="name">view.production.lot.form.inh.productiontrace</field>
         <field name="model">stock.production.lot</field>
@@ -12,8 +12,31 @@
             <button name="total_traceability" icon="fa-arrows-v" class="oe_stat_button" type="object" string="Full traceability"
             attrs="{'invisible': [('quant_ids','=',[])]}"/>
            </button>
+            <field name="ref" position="after">
+                <field name="parent_id"></field>
+            </field>
         </field>
     </record>
+
+    <record id="view_lot_traceability_tree" model="ir.ui.view">
+        <field name="name">stock.production.lot.traceability.tree</field>
+        <field name="model">stock.production.lot</field>
+        <field name="field_parent">children_ids</field>
+        <field name="arch" type="xml">
+            <tree string="Production lot traceability" toolbar="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_lot_traceability_tree" model="ir.actions.act_window">
+        <field name="name">Production Lots traceability</field>
+        <field name="res_model">stock.production.lot</field>
+        <field name="domain">[('parent_id','=',False)]</field>
+        <field name="view_type">tree</field>
+        <field name="view_id" ref="view_lot_traceability_tree"/>
+    </record>
+
+    <!-- stock.move views -->
     <record id="stock_move_tree_inh_productiontrace" model="ir.ui.view">
         <field name="name">stock.move.tree.inh.productiontrace</field>
         <field name="model">stock.move</field>

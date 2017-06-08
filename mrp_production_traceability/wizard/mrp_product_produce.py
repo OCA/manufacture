@@ -49,4 +49,6 @@ class MrpProductProduce(models.TransientModel):
                              'product_lot': data.lot_id.id,
                              'production': production.id,
                              'st_move': move.id})
+                        if move.restrict_lot_id and data.lot_id:
+                            move.restrict_lot_id.parent_id = data.lot_id.id
         return result
