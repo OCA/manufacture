@@ -55,6 +55,7 @@ class TestMrpProperty(common.TransactionCase):
             ('origin', 'ilike', '%' + so.name + '%')])
         self.assertEqual(mrp_test.property_ids, so.order_line.property_ids,
                          "Different property between MRP and SO")
-        self.assertEqual(mrp_test.bom_id.property_ids, so.order_line.property_ids,
+        self.assertEqual(mrp_test.bom_id.property_ids,
+                         so.order_line.property_ids,
                          "Different property between BOM MO and SO")
         self.assertEqual(mrp_test.bom_id, self.bom2, "Wrong select BoM!")

@@ -66,8 +66,8 @@ class MrpBom(models.Model):
                             self.env.context.get('company_id'))]
 
             bom_ids = self.search(domain, order='sequence, product_id')
-            for bom in bom_ids.sorted(key=lambda p:
-            (p.sequence, p.product_id)):
+            for bom in bom_ids.sorted(key=lambda p: (p.sequence,
+                                                     p.product_id)):
                 for ctx_p in property_ids:
                     if ctx_p in [p.id for p in bom.property_ids]:
                         return bom
