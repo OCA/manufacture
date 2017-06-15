@@ -28,5 +28,23 @@
             </field>
         </record>
 
+        <record id="mrp_production_sale_info_search_view" model="ir.ui.view">
+            <field name="name">MRP Production search with Customer and Sale Order</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="partner_id" />
+                    <field name="sale_id" />
+                </field>
+                <group position="inside">
+                    <filter string="Customer" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'partner_id'}" />
+                    <filter string="Sale Order" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'sale_id'}" />
+                </group>
+            </field>
+        </record>
+
     </data>
 </odoo>

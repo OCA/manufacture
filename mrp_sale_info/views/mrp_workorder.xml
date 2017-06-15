@@ -32,5 +32,23 @@
             </field>
         </record>
 
+        <record id="view_mrp_workorder_form_view_filter" model="ir.ui.view">
+            <field name="name">MRP Production Workorder search with Customer and Sale Order</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_workcenter_form_view_filter" />
+            <field name="arch" type="xml">
+                <field name="production_id" position="after">
+                    <field name="partner_id" />
+                    <field name="sale_id" />
+                </field>
+                <group position="inside">
+                    <filter string="Customer" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'partner_id'}" />
+                    <filter string="Sale Order" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'sale_id'}" />
+                </group>
+            </field>
+        </record>
+
     </data>
 </odoo>
