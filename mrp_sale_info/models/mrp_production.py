@@ -8,11 +8,17 @@ from odoo import api, fields, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    sale_id = fields.Many2one('sale.order', compute='_compute_sale_info',
-                              string='Sale order',
-                              readonly=True)
-    partner_id = fields.Many2one('res.partner', compute='_compute_sale_info',
-                                 string='Customer')
+    sale_id = fields.Many2one(
+        'sale.order',
+        compute='_compute_sale_info',
+        string='Sale order',
+        readonly=True,
+        store=True)
+    partner_id = fields.Many2one(
+        'res.partner',
+        compute='_compute_sale_info',
+        string='Customer',
+        store=True)
     commitment_date = fields.Datetime(compute='_compute_sale_info',
                                       string='Commitment Date')
 
