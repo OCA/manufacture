@@ -3,13 +3,14 @@
 # * mrp_sale_info
 # 
 # Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 22:02+0000\n"
-"PO-Revision-Date: 2016-03-11 15:22+0000\n"
+"POT-Creation-Date: 2017-06-15 16:49+0000\n"
+"PO-Revision-Date: 2017-06-15 16:51+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +26,9 @@ msgid "Commitment Date"
 msgstr "Zusagedatum"
 
 #. module: mrp_sale_info
+#: view:mrp.production:mrp_sale_info.mrp_production_sale_info_search_view
 #: field:mrp.production,partner_id:0
+#: view:mrp.production.workcenter.line:mrp_sale_info.view_mrp_production_workcenter_form_view_filter
 #: field:mrp.production.workcenter.line,partner_id:0
 msgid "Customer"
 msgstr "Kunde"
@@ -52,6 +55,18 @@ msgstr "Zu fertigendes Produkt"
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
 msgid "Sale Information"
 msgstr "Verkaufsinformation"
+
+#. module: mrp_sale_info
+#: field:mrp.production,sale_line_id:0
+#: field:mrp.production.workcenter.line,sale_line_id:0
+msgid "Sale Line"
+msgstr "Verkaufsposition"
+
+#. module: mrp_sale_info
+#: view:mrp.production:mrp_sale_info.mrp_production_sale_info_search_view
+#: view:mrp.production.workcenter.line:mrp_sale_info.view_mrp_production_workcenter_form_view_filter
+msgid "Sale Order"
+msgstr "Verkaufsauftrag"
 
 #. module: mrp_sale_info
 #: field:mrp.production,sale_id:0
