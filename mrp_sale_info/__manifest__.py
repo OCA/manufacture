@@ -8,12 +8,6 @@
     "version": "10.0.1.0.0",
     "category": "Manufacturing",
     "website": "http://www.antiun.com",
-    "author": "Antiun Ingeniería S.L., "
-              "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Humanytek, "
-              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     'installable': True,
