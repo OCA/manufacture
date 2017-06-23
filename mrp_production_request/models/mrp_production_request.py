@@ -42,7 +42,7 @@ class MrpProductionRequest(models.Model):
         return res
 
     @api.onchange('product_id')
-    def _onchange_product_uom(self):
+    def _onchange_product_id(self):
         self.product_uom = self.product_id.uom_id
         self.bom_id = self.env['mrp.bom']._bom_find(
             product_id=self.product_id.id, properties=[])
