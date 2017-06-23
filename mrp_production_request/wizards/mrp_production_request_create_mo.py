@@ -2,9 +2,8 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
+from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import UserError
 
 
 class MrpProductionRequestCreateMo(models.TransientModel):
@@ -35,9 +34,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         bom_obj = self.env['mrp.bom']
         uom_obj = self.env['product.uom']
         bom_point = self.bom_id
-        if not bom_point:
-            raise UserError(_("Manufacture Request does not have a Bill of "
-                              "Materials defined."))
         factor = uom_obj._compute_qty(
             self.mrp_production_request_id.product_uom.id, self.pending_qty,
             bom_point.product_uom.id)
