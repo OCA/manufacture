@@ -13,7 +13,7 @@
                         states="to_approve,approved,cancel,done"
                         string="Reset"
                         type="object"
-                        groups="purchase_request.group_purchase_request_manager"/>
+                        groups="mrp_production_request.group_mrp_production_request_manager"/>
                 <button name="button_to_approve" states="draft"
                         string="Request approval" type="object"
                         class="oe_highlight"/>
@@ -183,7 +183,7 @@
         <field name="context">{"search_default_pending":1}</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to start a new purchase request process.
+            Click to start a new manufacturing request process.
           </p><p>
             A Manufacturing Request is an instruction to production to produce
             a certain quantity of a given product.
