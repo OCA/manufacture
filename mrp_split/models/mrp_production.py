@@ -9,6 +9,8 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     backorder_id = fields.Many2one(
-        comodel_name='mrp.production', string="Backorder of", copy=False)
+        comodel_name='mrp.production', string="Backorder of", copy=False,
+        readonly=True)
     backorder_ids = fields.One2many(
-        comodel_name='mrp.production', inverse_name='backorder_id')
+        comodel_name='mrp.production', inverse_name='backorder_id',
+        readonly=True)
