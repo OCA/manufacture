@@ -47,6 +47,10 @@ To create MOs from MRs you have to:
 #. Use the proposed quantity or change it and click on *Create MO* at the
    bottom of the wizard.
 
+**NOTE:** This module does not restrict the quantity that can be converted
+from a MR to MOs. It is in hands of the user to decide when a MR is ended and
+to set it to *Done* state.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/9.0

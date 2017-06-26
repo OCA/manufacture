@@ -51,14 +51,15 @@ class MrpProductionRequest(models.Model):
     def _get_mo_valid_states(self):
         return ['draft', 'confirmed', 'ready', 'in_production', 'done']
 
-    @api.one
+    @api.multi
     @api.depends('mrp_production_ids', 'mrp_production_ids.state', 'state')
     def _compute_manufactured_qty(self):
         valid_states = self._get_mo_valid_states()
-        valid_mo = self.mrp_production_ids.filtered(
-            lambda mo: mo.state in valid_states).mapped('product_qty')
-        self.manufactured_qty = sum(valid_mo)
-        self.pending_qty = max(self.product_qty - self.manufactured_qty, 0.0)
+        for req in self:
+            valid_mo = req.mrp_production_ids.filtered(
+                lambda mo: mo.state in valid_states).mapped('product_qty')
+            req.manufactured_qty = sum(valid_mo)
+            req.pending_qty = max(req.product_qty - req.manufactured_qty, 0.0)
 
     name = fields.Char(
         default="/", required=True,
@@ -160,15 +161,22 @@ class MrpProductionRequest(models.Model):
     @api.multi
     def button_done(self):
         self.write({'state': 'done'})
+        if self.mapped('procurement_id'):
+            self.mapped('procurement_id').write({'state': 'done'})
         return True
 
     @api.multi
     def _check_reset_allowed(self):
+        if any([s in self._get_mo_valid_states() for s in self.mapped(
+                'mrp_production_ids.state')]):
+            raise UserError(
+                _("You cannot reset a manufacturing request with "
+                  "manufacturing orders not cancelled."))
         if any([s in ['done', 'cancel'] for s in self.mapped(
                 'procurement_id.state')]):
             raise UserError(
-                _('You cannot reset a manufacturing request related to '
-                  'done or cancelled procurement orders.'))
+                _("You cannot reset a manufacturing request related to "
+                  "done or cancelled procurement orders."))
 
     @api.multi
     def button_draft(self):
