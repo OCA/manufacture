@@ -24,6 +24,10 @@ class ProcurementOrder(models.Model):
         if (procurement.rule_id and
                 procurement.rule_id.action == 'manufacture' and
                 procurement.product_id.mrp_production_request):
+            if not procurement.check_bom_exists():
+                procurement.message_post(
+                    body=_("No BoM exists for this product!"))
+                return False
             if not self.mrp_production_request_id:
                 request_data = self._prepare_mrp_production_request(
                     procurement)
