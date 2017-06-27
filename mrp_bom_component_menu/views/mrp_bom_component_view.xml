@@ -10,7 +10,7 @@
         <field name="res_model">mrp.bom.line</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" eval="False"/> <!-- Force empty -->
+        <field name="view_id" eval="False"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Click to add a component to a bill of material.
@@ -22,9 +22,9 @@
         </field>
     </record>
 
-        <menuitem
-            action="mrp_bom_form_action2"
-            id="menu_mrp_bom_form_action2"
-            parent="mrp.menu_mrp_bom"/>
+    <menuitem
+        action="mrp_bom_form_action2"
+        id="menu_mrp_bom_form_action2"
+        parent="mrp.menu_mrp_bom"/>
 
 </odoo>
