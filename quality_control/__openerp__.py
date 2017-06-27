@@ -3,7 +3,7 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Quality control",
