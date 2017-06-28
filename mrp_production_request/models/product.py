@@ -10,5 +10,5 @@ class ProductTemplate(models.Model):
 
     mrp_production_request = fields.Boolean(
         string='Manufacturing Request', help="Check this box to generate "
-        "manufacturing request instead of generating requests manufacturing "
-        "orders from procurement.", default=False)
+        "manufacturing request instead of generating manufacturing orders "
+        "from procurement.", default=False)
