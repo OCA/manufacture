@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_qc_team,qc.team.user,quality_control_team.model_qc_team,quality_control.group_quality_control_user,1,0,0,0
+access_manager_qc_team,qc.team.manager,quality_control_team.model_qc_team,quality_control.group_quality_control_manager,1,1,1,1
