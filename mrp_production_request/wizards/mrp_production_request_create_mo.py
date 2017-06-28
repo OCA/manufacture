@@ -15,14 +15,10 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         self.product_line_ids.unlink()
         res = self._prepare_lines()
         product_lines = res[0]
-        # workcenter_lines = res[1]  # TODO: expand with workcenter_lines
+        # TODO: expand with workcenter_lines: they are in res[1].
         for line in product_lines:
             self.env['mrp.production.request.create.mo.line'].create(
                 self._prepare_product_line(line))
-        # reset workcenter_lines in production order
-        # for line in workcenter_lines:
-        #     line['production_id'] = production.id
-        #     workcenter_line_obj.create(cr, uid, line, context)
         self._get_mo_qty()
         return {"type": "ir.actions.do_nothing"}
 
