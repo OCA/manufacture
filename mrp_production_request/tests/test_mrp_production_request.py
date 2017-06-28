@@ -18,18 +18,23 @@ class TestMrpProductionRequest(TransactionCase):
         self.product = self.env.ref('product.product_product_3')
         self.product.mrp_production_request = True
 
+        self.test_product = self.env['product.product'].create({
+            'name': 'Test Product without BoM',
+            'mrp_production_request': True,
+        })
+
         self.test_user = self.env['res.users'].create({
             'name': 'John',
             'login': 'test',
         })
 
-    def create_procurement(self, name):
+    def create_procurement(self, name, product):
         values = {
             'name': name,
             'date_planned': fields.Datetime.now(),
-            'product_id': self.product.id,
+            'product_id': product.id,
             'product_qty': 4.0,
-            'product_uom': self.product.uom_id.id,
+            'product_uom': product.uom_id.id,
             'warehouse_id': self.env.ref('stock.warehouse0').id,
             'location_id': self.env.ref('stock.stock_location_stock').id,
             'route_ids': [
@@ -39,7 +44,7 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_manufacture_request(self):
         """Tests manufacture request workflow."""
-        proc = self.create_procurement('TEST/01')
+        proc = self.create_procurement('TEST/01', self.product)
         request = proc.mrp_production_request_id
         request.button_to_approve()
         request.button_draft()
@@ -62,13 +67,15 @@ class TestMrpProductionRequest(TransactionCase):
     def test_cancellation_from_request(self):
         """Tests propagation of cancel to procurements from manufacturing
         request and not from manufacturing order."""
-        proc = self.create_procurement('TEST/02')
+        proc = self.create_procurement('TEST/02', self.product)
         request = proc.mrp_production_request_id
         wiz = self.wiz_model.create({
             'mrp_production_request_id': request.id,
         })
         wiz.mo_qty = 4.0
         wiz.create_mo()
+        with self.assertRaises(UserError):
+            request.button_draft()
         mo = self.production_model.search([
             ('mrp_production_request_id', '=', request.id)])
         mo.action_cancel()
@@ -78,7 +85,7 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_cancellation_from_proc(self):
         """Tests cancelation from procurement."""
-        proc = self.create_procurement('TEST/03')
+        proc = self.create_procurement('TEST/03', self.product)
         request = proc.mrp_production_request_id
         self.assertNotEqual(request.state, 'cancel')
         proc.cancel()
@@ -105,7 +112,9 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_raise_errors(self):
         """Tests user errors raising properly."""
-        proc = self.create_procurement('TEST/05')
+        proc_no_bom = self.create_procurement('TEST/05', self.test_product)
+        self.assertEqual(proc_no_bom.state, 'exception')
+        proc = self.create_procurement('TEST/05', self.product)
         request = proc.mrp_production_request_id
         request.button_to_approve()
         proc.write({'state': 'done'})

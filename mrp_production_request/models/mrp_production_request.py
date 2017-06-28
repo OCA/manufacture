@@ -179,8 +179,8 @@ class MrpProductionRequest(models.Model):
         if any([s in self._get_mo_valid_states() for s in self.mapped(
                 'mrp_production_ids.state')]):
             raise UserError(
-                _("You cannot reset a manufacturing request with "
-                  "manufacturing orders not cancelled."))
+                _("You cannot reset a manufacturing request if the related "
+                  "manufacturing orders are not cancelled."))
         if any([s in ['done', 'cancel'] for s in self.mapped(
                 'procurement_id.state')]):
             raise UserError(
