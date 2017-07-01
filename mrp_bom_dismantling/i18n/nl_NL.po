@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:26+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-06-27 02:53+0000\n"
+"PO-Revision-Date: 2017-06-30 08:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-9-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -106,19 +106,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
