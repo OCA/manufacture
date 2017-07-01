@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-06-17 04:37+0000\n"
+"PO-Revision-Date: 2017-06-30 08:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr ""
 #: field:qc.trigger.product_line,display_name:0
 #: field:qc.trigger.product_template_line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view
@@ -218,7 +218,7 @@ msgstr ""
 #: field:qc.trigger.product_line,id:0
 #: field:qc.trigger.product_template_line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: quality_control
 #: help:qc.inspection,auto_generated:0
@@ -308,7 +308,7 @@ msgstr ""
 #: field:qc.trigger.product_line,__last_update:0
 #: field:qc.trigger.product_template_line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: quality_control
 #: field:qc.inspection,write_uid:0 field:qc.inspection.line,write_uid:0

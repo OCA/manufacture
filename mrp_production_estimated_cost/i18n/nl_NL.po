@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-06-17 04:36+0000\n"
+"PO-Revision-Date: 2017-06-30 08:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
@@ -161,12 +161,12 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
