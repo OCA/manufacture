@@ -7,7 +7,7 @@ MRP Production Putaway Strategy
 ===============================
 
 This module allows to apply putaway strategies to the products resulting from
- the manufacturing orders.
+the manufacturing orders.
 
 The finished products will be placed in the location designated by the putaway
 strategy, based on the finished products location that was defined in the
@@ -17,7 +17,7 @@ manufacturing order.
 Usage
 =====
 
-#. Go to `Inventory / Settings' and activate the option 'Advanced routing of
+#. Go to 'Inventory / Settings' and activate the option 'Advanced routing of
    products using rules'.
 
 #. Define a putaway strategy in the location zone where the finished products

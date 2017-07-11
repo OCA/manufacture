@@ -43,14 +43,8 @@ class MrpProductionCase(TransactionCase):
         self.product1.categ_id = self.category
         self.bom1 = self.env.ref("mrp.mrp_bom_3")
 
-    def _create_mo(
-            self,
-            product=False,
-            bom=False,
-            src_loc=False,
-            dest_loc=False,
-            qty=10.0,
-            uom=False):
+    def _create_mo(self, product=False, bom=False, src_loc=False,
+                   dest_loc=False, qty=10.0, uom=False):
         if not product:
             product = self.product1
             uom = product.uom_id
