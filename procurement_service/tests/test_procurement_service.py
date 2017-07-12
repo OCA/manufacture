@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2016 Alfredo de la Fuente - AvanzOSC
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 import openerp.tests.common as common
 
 
@@ -23,6 +22,8 @@ class TestProcurementService(common.TransactionCase):
                            [self.env.ref('stock.route_warehouse0_mto').id,
                             self.env.ref('purchase.route_warehouse0_buy').id
                             ])]}
+        seller_vals = {'name': self.env.ref('base.res_partner_2').id}
+        product_vals['seller_ids'] = [(0, 0, seller_vals)]
         self.service_product = self.product_model.create(product_vals)
         partner_vals = {'name': 'Customer for procurement service',
                         'customer': True}
@@ -30,7 +31,8 @@ class TestProcurementService(common.TransactionCase):
         sale_vals = {'partner_id': self.partner.id,
                      'partner_shipping_id': self.partner.id,
                      'partner_invoice_id': self.partner.id,
-                     'pricelist_id': self.env.ref('product.list0').id}
+                     'pricelist_id': self.env.ref('product.list0').id,
+                     'picking_policy': 'direct'}
         sale_line_vals = {'product_id': self.service_product.id,
                           'name': self.service_product.name,
                           'product_uos_qty': 1,
@@ -47,3 +49,10 @@ class TestProcurementService(common.TransactionCase):
             self.assertEqual(
                 len(procs), 1,
                 "Procurement not generated for the service product type")
+            self.procurement_model._run(procs[0])
+            self.procurement_model._check(procs[0])
+            self.assertNotEqual(
+                procs[0].purchase_line_id, False,
+                "Procurement without purchase line")
+            procs[0].purchase_line_id.order_id.state = 'done'
+            self.procurement_model._check(procs[0])
