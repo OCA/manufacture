@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 05:27+0000\n"
-"PO-Revision-Date: 2017-01-06 06:27+0000\n"
+"POT-Creation-Date: 2017-07-04 07:20+0000\n"
+"PO-Revision-Date: 2017-07-12 16:19+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "Mouvement de stock"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
 msgid "The picking type determines the picking view"
-msgstr ""
+msgstr "Le type de préparation détermine la vue de préparation"
 
 #. module: quality_control_stock
 #: view:stock.picking:quality_control_stock.stock_picking_qc_view
