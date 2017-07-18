@@ -65,6 +65,9 @@ class MrpProductionRequest(models.Model):
     def _compute_manufactured_qty(self):
         valid_states = self._get_mo_valid_states()
         for req in self:
+            done_mo = req.mrp_production_ids.filtered(
+                lambda mo: mo.state in 'done').mapped('product_qty')
+            req.done_qty = sum(done_mo)
             valid_mo = req.mrp_production_ids.filtered(
                 lambda mo: mo.state in valid_states).mapped('product_qty')
             req.manufactured_qty = sum(valid_mo)
@@ -118,7 +121,7 @@ class MrpProductionRequest(models.Model):
         comodel_name='product.template', string='Product Template',
         related='product_id.product_tmpl_id')
     product_qty = fields.Float(
-        required=True, track_visibility='onchange',
+        string="Required Quantity", required=True, track_visibility='onchange',
         digits_compute=dp.get_precision('Product Unit of Measure'),
         readonly=True, states={'draft': [('readonly', False)]})
     product_uom = fields.Many2one(
@@ -128,13 +131,20 @@ class MrpProductionRequest(models.Model):
     category_uom_id = fields.Many2one(related="product_uom.category_id")
     manufactured_qty = fields.Float(
         string="Quantity in Manufacturing Orders",
-        compute=_compute_manufactured_qty, store=True,
+        compute=_compute_manufactured_qty, store=True, readonly=True,
         digits_compute=dp.get_precision('Product Unit of Measure'),
-        readonly=True)
+        help="Sum of the quantities in Manufacturing Orders (in any state).")
+    done_qty = fields.Float(
+        string="Quantity Done", store=True, readonly=True,
+        compute=_compute_manufactured_qty,
+        digits_compute=dp.get_precision('Product Unit of Measure'),
+        help="Sum of the quantities in all done Manufacturing Orders.")
     pending_qty = fields.Float(
         string="Pending Quantity", compute=_compute_manufactured_qty,
         store=True, digits_compute=dp.get_precision('Product Unit of Measure'),
-        readonly=True)
+        readonly=True,
+        help="Quantity pending to add to Manufacturing Orders "
+             "to fulfill the Manufacturing Request requirement.")
     bom_id = fields.Many2one(
         comodel_name="mrp.bom", string="Bill of Materials", required=True,
         readonly=True, states={'draft': [('readonly', False)]})
