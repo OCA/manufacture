@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 03:23+0000\n"
+"POT-Creation-Date: 2017-07-01 05:48+0000\n"
 "PO-Revision-Date: 2016-03-12 23:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-manufacture-9-0/language/ro/)\n"
@@ -25,7 +25,7 @@ msgstr "Partener"
 #. module: mrp_production_partner_note
 #: model:ir.model,name:mrp_production_partner_note.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Aprovizionare"
 
 #. module: mrp_production_partner_note
 #: model:ir.model.fields,field_description:mrp_production_partner_note.field_res_partner_mrp_notes
