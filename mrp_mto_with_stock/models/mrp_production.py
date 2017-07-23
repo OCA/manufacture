@@ -12,18 +12,8 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     @api.one
-    def action_confirm(self):
-        """Confirms stock move or put it in waiting if it's linked to another move.
-        @returns list of ids"""
-        # change the qty to make two moves (if needed)
-        res = super(MrpProduction, self).action_confirm()
-        # try to assign moves (and generate procurements!)
-        self.action_assign()
-        return res
-
-    @api.one
     def action_assign(self):
-        """Reserves available products to the production order but also reates
+        """Reserves available products to the production order but also creates
         procurements for more items if we cannot reserve enough (MTO with
         stock).
         @returns list of ids"""
@@ -34,7 +24,6 @@ class MrpProduction(models.Model):
             if (move.state == 'confirmed' and move.location_id in
                     move.product_id.mrp_mts_mto_location_ids):
                 domain = [('product_id', '=', move.product_id.id),
-                          ('state', '=', 'running'),
                           ('move_dest_id', '=', move.id)]
                 if move.group_id:
                     domain.append(('group_id', '=', move.group_id.id))
