@@ -9,7 +9,7 @@ MRP MTO with Stock
 This module extends the functionality of Manufacturing to support the creation
 of procurements when there is no stock available. This allow you to pull from
 stock until the quantity on hand is zero, and then create a procurement
-for fulfill the MO requirements.
+to fulfill the MO requirements.
 
 Configuration
 =============
