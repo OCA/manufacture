@@ -52,7 +52,7 @@ Images
 Contributors
 ------------
 
-* John Walsh <?>
+* John Walsh <John.Walsh@interclean.com>
 * Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
