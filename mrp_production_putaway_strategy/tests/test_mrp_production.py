@@ -70,7 +70,17 @@ class MrpProductionCase(TransactionCase):
         }
         return self.env['mrp.production'].create(res)
 
-    def test_putaway_strategy(self):
+    def test_putaway_strategy_01(self):
+        # Create MO
+        mo = self._create_mo()
+        # Click confirm button
+        mo.signal_workflow("button_confirm")
+        for finished in mo.move_created_ids:
+            self.assertEqual(
+                finished.location_dest_id,
+                self.bin_loc_stock)
+
+    def test_putaway_strategy_02(self):
         # Create MO
         mo = self._create_mo()
         # Click confirm button

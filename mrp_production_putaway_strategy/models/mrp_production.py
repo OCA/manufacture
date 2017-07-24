@@ -10,11 +10,12 @@ class MrpProduction(models.Model):
     @api.multi
     def action_confirm(self):
         for mo in self:
-            location = self.env['stock.location'].get_putaway_strategy(
-                mo.location_dest_id,  mo.product_id)
-            if location:
-                message = _('Applied Putaway strategy to finished products '
-                            'location %s.' % mo.location_dest_id.complete_name)
-                mo.message_post(message, message_type='comment')
-                mo.location_dest_id = location
+            if not mo.move_prod_id:
+                location = self.env['stock.location'].get_putaway_strategy(
+                    mo.location_dest_id,  mo.product_id)
+                if location:
+                    message = _('Applied Putaway strategy to finished products '
+                                'location %s.' % mo.location_dest_id.complete_name)
+                    mo.message_post(message, message_type='comment')
+                    mo.location_dest_id = location
         return super(MrpProduction, self).action_confirm()
