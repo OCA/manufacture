@@ -10,25 +10,31 @@ This module allows to apply putaway strategies to the products resulting from
 the manufacturing orders.
 
 The finished products will be placed in the location designated by the putaway
-strategy, based on the finished products location that was defined in the
-manufacturing order.
+strategy (if they do not have another destination move), based on the
+finished products location that was defined in the manufacturing order.
 
+Configuration
+=============
 
-Usage
-=====
+To configure a putaway strategy follow the next steps:
 
 #. Go to 'Inventory / Settings' and activate the option 'Advanced routing of
    products using rules'.
-
 #. Define a putaway strategy in the location zone where the finished products
    are supposed to be placed, and indicate the specific sub-location/bin
    where the products should be placed.
 
+Usage
+=====
+
+To use this module proceed as follows:
+
 #. Create a manufacturing order and indicate the product and the finished
-   products location zone. When you confirm the manufacturing order you will
-   notice that the finished products location has changed to the putway
-   location, and the chatter shows a message indicating that the putaway
-   strategy was applied.
+   products location zone.
+#. Confirm the manufacturing order.
+#. You will notice that the finished products location has changed to the
+   putaway location, and the chatter shows a message indicating that the
+   putaway strategy was applied.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
