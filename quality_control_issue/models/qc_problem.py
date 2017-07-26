@@ -19,9 +19,9 @@ class QcProblem(models.Model):
 
     def _get_default_stage_id(self):
         """ Gives default stage_id """
-        team_id = self.env['qc.team']._get_default_qc_team_id(
+        team = self.env['qc.team']._get_default_qc_team_id(
             user_id=self.env.uid)
-        return self.stage_find([], team_id, [('fold', '=', False)])
+        return self.stage_find([], team, [('fold', '=', False)])
 
     @api.multi
     def _read_group_stage_ids(self, domain, read_group_order=None,
@@ -86,7 +86,7 @@ class QcProblem(models.Model):
         'stage_id': _read_group_stage_ids
     }
 
-    def stage_find(self, cases, team_id, domain=None, order='sequence'):
+    def stage_find(self, cases, team, domain=None, order='sequence'):
         """ Override of the base.stage method
             Parameter of the stage search taken from the problem:
             - team_id: if set, stages must belong to this team or
@@ -94,8 +94,8 @@ class QcProblem(models.Model):
               stages
         """
         team_ids = set()
-        if team_id:
-            team_ids.add(team_id)
+        if team:
+            team_ids.add(team.id)
         for problem in cases:
             if problem.team_id:
                 team_ids.add(problem.team_id.id)
@@ -103,11 +103,9 @@ class QcProblem(models.Model):
         if team_ids:
             search_domain += [('|')] * (len(team_ids) - 1)
             for team_id in team_ids:
-                search_domain.append(('qc_team_id', '=', team_id.id))
+                search_domain.append(('qc_team_id', '=', team_id))
         search_domain += list(domain)
         # perform search, return the first found
-        stage_ids = self.env['qc.stage'].search(
+        stage = self.env['qc.stage'].search(
             search_domain, order=order, limit=1)
-        if stage_ids:
-            return stage_ids[0]
-        return False
+        return stage
