@@ -39,3 +39,6 @@ class QualityControlIssueStage(models.Model):
         string='Folded in Pipeline', default=False,
         help='This stage is folded in the kanban view when there are no '
              'records in that stage to display.')
+    state = fields.Selection(
+        string="QC Status",
+        selection=lambda self: self.env['qc.issue']._fields['state'].selection)
