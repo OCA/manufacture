@@ -87,7 +87,8 @@
         <field name="name">qc.issue.kanban</field>
         <field name="model">qc.issue</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_small_column" default_group_by="stage_id">
+            <kanban class="o_kanban_small_column" default_group_by="stage_id"
+                    quick_create="false" create="true">
                 <field name="stage_id"/>
                 <field name="color"/>
                 <templates>

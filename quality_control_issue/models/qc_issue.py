@@ -23,9 +23,9 @@ class QualityControlIssue(models.Model):
 
     def _get_default_stage_id(self):
         """ Gives default stage_id """
-        team_id = self.env['qc.team']._get_default_qc_team_id(
+        team = self.env['qc.team']._get_default_qc_team_id(
             user_id=self.env.uid)
-        return self.issue_stage_find([], team_id, [('fold', '=', False)])
+        return self.issue_stage_find([], team, [('fold', '=', False)])
 
     @api.multi
     def _read_group_stage_ids(self, domain, read_group_order=None,
@@ -64,8 +64,7 @@ class QualityControlIssue(models.Model):
         track_visibility='onchange')
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product",
-        readonly=True, states={"new": [("readonly", False)]},
-        required=True)
+        readonly=True, states={"new": [("readonly", False)]}, required=True)
     product_tracking = fields.Selection(related="product_id.tracking")
     product_qty = fields.Float(
         string="Product Quantity", required=True, default=1.0,
@@ -73,8 +72,8 @@ class QualityControlIssue(models.Model):
         digits_compute=dp.get_precision("Product Unit of Measure"))
     product_uom = fields.Many2one(
         comodel_name="product.uom", string="Product Unit of Measure",
-        required=True, default=_get_uom,
-        readonly=True, states={"new": [("readonly", False)]},)
+        default=_get_uom, required=True, readonly=True,
+        states={"new": [("readonly", False)]})
     lot_id = fields.Many2one(
         comodel_name="stock.production.lot", string="Lot/Serial Number",
         readonly=True, states={"new": [("readonly", False)]},)
@@ -117,7 +116,7 @@ class QualityControlIssue(models.Model):
         'stage_id': _read_group_stage_ids
     }
 
-    def issue_stage_find(self, cases, team_id, domain=None, order='sequence'):
+    def issue_stage_find(self, cases, team, domain=None, order='sequence'):
         """ Override of the base.stage method
             Parameter of the stage search taken from the problem:
             - team_id: if set, stages must belong to this team or
@@ -125,26 +124,25 @@ class QualityControlIssue(models.Model):
               stages
         """
         team_ids = set()
-        if team_id:
-            team_ids.add(team_id)
-        for problem in cases:
-            if problem.team_id:
-                team_ids.add(problem.team_id.id)
+        if team:
+            team_ids.add(team.id)
+        for issue in cases:
+            if issue.team_id:
+                team_ids.add(issue.team_id.id)
         search_domain = []
         if team_ids:
             search_domain += [('|')] * (len(team_ids) - 1)
             for team_id in team_ids:
-                search_domain.append(('qc_team_id', '=', team_id.id))
+                search_domain.append(('qc_team_id', '=', team_id))
         search_domain += list(domain)
         # perform search, return the first found
-        stage_ids = self.env['qc.issue.stage'].search(
+        stage = self.env['qc.issue.stage'].search(
             search_domain, order=order, limit=1)
-        if stage_ids:
-            return stage_ids[0]
-        return False
+        return stage
 
     @api.multi
     def action_confirm(self):
+        self._check_required_fields()
         self.write({'state': 'progress'})
 
     @api.multi
@@ -171,3 +169,8 @@ class QualityControlIssue(models.Model):
         if product:
             self.product_id = product
             self.product_uom = product.product_tmpl_id.uom_id
+
+    @api.onchange("stage_id")
+    def _onchange_stage_id(self):
+        if self.stage_id.state:
+            self.state = self.stage_id.state
