@@ -7,9 +7,16 @@ MRP MTO with Stock
 ==================
 
 This module extends the functionality of Manufacturing to support the creation
-of procurements when there is no stock available. This allow you to pull from
-stock until the quantity on hand is zero, and then create a procurement
-to fulfill the MO requirements.
+of procurements only for a part of the raw material.
+It has 2 modes. The default one allow you to pull
+from stock until the quantity on hand is zero, and then create a procurement
+to fulfill the MO requirements. In this mode, the created procurements must
+be the ones fulfilling the MO that has generated it.
+The other mode is based on the forecast quantity. It will allow to pull from
+stock until the forecast quantity is zero and then create a procurement for
+the missing products. In this mode, there is no link between the procurement
+created and MO that has generated it. The procurement may be used to fulfill
+another MO.
 
 Configuration
 =============
@@ -21,17 +28,23 @@ To configure this module, you need to:
    MTO/MTS Locations*. Any other location not specified here will have the
    standard behavior.
 
+If you want to use the second mode, based on forecast quantity
+#. Go to the warehouse you want to follow this behaviour.
+#. In the view form go to the tab *Warehouse Configuration* and set the 
+   *MRP MTO with forecast stock*. You still need to configure the products
+   like described in last step.
+
 Usage
 =====
 
 To use this module, you need to:
 
 #. Go to *Manufacturing* and create a Manufacturing Order.
-#. Click on *Confirm Production*.
+#. Click on *Check availability*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/129/9.0
+   :target: https://runbot.odoo-community.org/runbot/129/10.0
 
 Bug Tracker
 ===========
@@ -54,6 +67,7 @@ Contributors
 
 * John Walsh <John.Walsh@interclean.com>
 * Lois Rilo <lois.rilo@eficent.com>
+* Florian da Costa <florian.dacosta@akretion.com>
 
 Maintainer
 ----------
