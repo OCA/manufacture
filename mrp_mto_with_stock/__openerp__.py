@@ -15,5 +15,8 @@
     "application": False,
     "installable": True,
     "depends": ["mrp"],
-    "data": ['views/product_template_view.xml'],
+    "data": [
+        "views/product_template_view.xml",
+        "views/mrp_production_view.xml",
+    ],
 }

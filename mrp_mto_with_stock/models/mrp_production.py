@@ -3,13 +3,21 @@
 # Copyright 2015 John Walsh
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, models
+from openerp import api, models, _
+from openerp.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
+
+    @api.multi
+    def action_mass_assign(self):
+        if any([x != 'confirmed' for x in self.mapped('state')]):
+            raise UserError(_(
+                "All Manufacturing Orders must be confirmed."))
+        return self.action_assign()
 
     @api.one
     def action_assign(self):
