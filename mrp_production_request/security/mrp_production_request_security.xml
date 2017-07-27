@@ -59,5 +59,15 @@
         <field name="domain_force">[('requested_by','=',user.id)]</field>
     </record>
 
+    <record id="mpr_production_request_line_manager_rule" model="ir.rule">
+        <field name="name">Manufacturing Request Line Manager</field>
+        <field name="model_id" ref="model_mrp_production_request"/>
+        <field name="groups" eval="[(6,0, [ref('group_mrp_production_request_manager')])]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
 </data>
 </odoo>
