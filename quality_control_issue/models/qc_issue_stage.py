@@ -40,5 +40,5 @@ class QualityControlIssueStage(models.Model):
         help='This stage is folded in the kanban view when there are no '
              'records in that stage to display.')
     state = fields.Selection(
-        string="QC Status",
+        string="QC State",
         selection=lambda self: self.env['qc.issue']._fields['state'].selection)
