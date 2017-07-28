@@ -101,9 +101,12 @@ class QcProblem(models.Model):
                 team_ids.add(problem.team_id.id)
         search_domain = []
         if team_ids:
-            search_domain += [('|')] * (len(team_ids) - 1)
+            search_domain += [('|')] * (len(team_ids))
+            search_domain.append(('qc_team_id', '=', False))
             for team_id in team_ids:
                 search_domain.append(('qc_team_id', '=', team_id))
+        else:
+            search_domain.append(('qc_team_id', '=', False))
         search_domain += list(domain)
         # perform search, return the first found
         stage = self.env['qc.stage'].search(
