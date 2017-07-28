@@ -11,7 +11,12 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["quality_control", "quality_control_team", "stock"],
+    "depends": [
+        "quality_control",
+        "quality_control_team",
+        "stock",
+        "stock_scrap",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "security/quality_control_issue_security.xml",
@@ -21,5 +26,6 @@
         "views/qc_problem_view.xml",
         "views/qc_problem_group_view.xml",
         "views/qc_team_dashboard_view.xml",
+        "views/stock_scrap_view.xml",
     ],
 }

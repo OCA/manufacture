@@ -2,7 +2,8 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from openerp import api, fields, models, _
+from openerp.exceptions import UserError
 import openerp.addons.decimal_precision as dp
 
 
@@ -10,6 +11,12 @@ class QualityControlIssue(models.Model):
     _name = "qc.issue"
     _description = "Quality Control Issue"
     _inherit = "mail.thread"
+
+    @api.multi
+    def _compute_stock_scrap_qty(self):
+        for rec in self:
+            rec.stock_scrap_qty = sum(
+                self.stock_scrap_ids.mapped('scrap_qty'))
 
     @api.model
     def create(self, vals):
@@ -61,7 +68,7 @@ class QualityControlIssue(models.Model):
                    ("progress", "In Progress"),
                    ("done", "Done"),
                    ("cancel", "Cancel")], default="new",
-        track_visibility='onchange')
+        track_visibility='onchange', readonly=True)
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product",
         readonly=True, states={"new": [("readonly", False)]}, required=True)
@@ -111,6 +118,10 @@ class QualityControlIssue(models.Model):
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', required=True,
         default=lambda self: self.env.user.company_id)
+    stock_scrap_ids = fields.One2many(
+        comodel_name='stock.scrap', string='Scraps',
+        inverse_name='qc_issue_id')
+    stock_scrap_qty = fields.Integer(compute=_compute_stock_scrap_qty)
 
     _group_by_full = {
         'stage_id': _read_group_stage_ids
@@ -131,9 +142,12 @@ class QualityControlIssue(models.Model):
                 team_ids.add(issue.team_id.id)
         search_domain = []
         if team_ids:
-            search_domain += [('|')] * (len(team_ids) - 1)
+            search_domain += [('|')] * (len(team_ids))
+            search_domain.append(('qc_team_id', '=', False))
             for team_id in team_ids:
                 search_domain.append(('qc_team_id', '=', team_id))
+        else:
+            search_domain.append(('qc_team_id', '=', False))
         search_domain += list(domain)
         # perform search, return the first found
         stage = self.env['qc.issue.stage'].search(
@@ -141,8 +155,34 @@ class QualityControlIssue(models.Model):
         return stage
 
     @api.multi
+    def write(self, vals):
+        stage_obj = self.env['qc.issue.stage']
+        state = vals.get('state')
+        if state:
+            if len(self.mapped('qc_team_id')) > 1:
+                raise UserError(_(
+                    "Every issue must have the same QC team to perform this "
+                    "action."))
+            team = self[0].qc_team_id
+            stage = self.issue_stage_find([], team, [('state', '=', state)])
+            if stage:
+                vals.update({'stage_id': stage.id})
+            return super(QualityControlIssue, self).write(vals)
+        team_id = vals.get('qc_team_id')
+        if team_id is not None:
+            team = self.env['qc.team'].browse(team_id)
+            stage = self.issue_stage_find([], team, [('fold', '=', False)])
+            if stage:
+                vals.update({'stage_id': stage.id})
+        stage_id = vals.get('stage_id')
+        if stage_id:
+            state = stage_obj.browse(stage_id).state
+            if state:
+                vals.update({'state': state})
+        return super(QualityControlIssue, self).write(vals)
+
+    @api.multi
     def action_confirm(self):
-        self._check_required_fields()
         self.write({'state': 'progress'})
 
     @api.multi
@@ -170,7 +210,38 @@ class QualityControlIssue(models.Model):
             self.product_id = product
             self.product_uom = product.product_tmpl_id.uom_id
 
-    @api.onchange("stage_id")
-    def _onchange_stage_id(self):
-        if self.stage_id.state:
-            self.state = self.stage_id.state
+    @api.multi
+    def scrap_products(self):
+        self.ensure_one()
+        return {
+            'name': _('Scrap'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'stock.scrap',
+            'view_id': self.env.ref('stock_scrap.stock_scrap_form_view2').id,
+            'type': 'ir.actions.act_window',
+            'context': {
+                'default_qc_issue_id': self.id,
+                'default_location_id': self.location_id.id,
+                'default_product_id': self.product_id.id,
+                'default_scrap_qty': self.product_qty,
+                'default_product_uom_id': self.product_uom.id,
+                'default_lot_id': self.lot_id.id,
+            },
+            'target': 'new',
+        }
+
+    @api.multi
+    def action_view_stock_scrap(self):
+        action = self.env.ref('stock_scrap.action_stock_scrap')
+        result = action.read()[0]
+        lines = self.stock_scrap_ids
+        # choose the view_mode accordingly
+        if len(lines) != 1:
+            result['domain'] = "[('id', 'in', " + \
+                               str(lines.ids) + ")]"
+        elif len(lines) == 1:
+            res = self.env.ref('stock_scrap.stock_scrap_form_view', False)
+            result['views'] = [(res and res.id or False, 'form')]
+            result['res_id'] = lines.id
+        return result

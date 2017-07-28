@@ -29,7 +29,10 @@
                             string="Confirm" class="oe_highlight" />
                     <button name="action_done"
                             type="object" states="progress"
-                            string="Set to Done" class="oe_highlight" />
+                            string="Set to Done" class="oe_highlight"/>
+                    <button name="scrap_products"
+                            string="Scrap Products" type="object"
+                            states="progress"/>
                     <button name="action_cancel"
                             type="object" states="new,progress"
                             string="Cancel"/>
@@ -39,7 +42,14 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <!--To be inhereted by other modules.-->
+                        <button type="object"  name="action_view_stock_scrap"
+                                class="oe_stat_button"
+                                icon="fa-recycle"
+                                context="{'default_qc_issue_id': active_id}">
+                            <field name="stock_scrap_qty"
+                                   widget="statinfo"
+                                   string="Scrapped products"/>
+                        </button>
                     </div>
                     <div class="oe_title">
                         <label string="Quality Control Issue"/>
