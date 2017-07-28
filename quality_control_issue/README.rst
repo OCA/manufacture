@@ -6,17 +6,59 @@
 Quality Control Issue
 =====================
 
-WIP
-
 This module extends the functionality of quality Control to allow you to
 report and manage quality control issues.
+
+Configuration
+=============
+
+To configure this module in order to take advantage of the kanban views you
+need to create the stages for *issues* and *problems*. To **create** stages in
+any kanban view click on *Add New Column*. Then you can **reorder** the stages
+just dragging them.
+
+In created stages you can **configure** them clicking on the gear button that
+appears at the right of the stage name and clicking on *Edit*. Note the
+following behaviors:
+
+* You can set a *Quality Control Team*.
+
+  - Stages with no team set will be shared by all teams.
+  - Stages with a team associated will be only available for that specific
+    team.
+
+* In Issue Stages you can also relate a *QC State* to the stage.
+
+  - When you move to a different stage an issue with *QC state* defined the
+    state of the issue will also change according to it.
+  - The other way around, if you change the state, the system will look for
+    an appropriate stage and if existing the issue will be move to that stage.
+  - If you change the *QC team* of an issue, the system will get the default
+    stage for that team and apply it to the issue.
 
 Usage
 =====
 
-To use this module, you need to:
+To use Quality Control Issues, you need to:
 
-#. Go to *Quality Control > Issues > QC Issues*.
+#. Go to *Quality Control > Issues > QC Issues* or to *Quality Control >
+   Dashboard* and click on *Issues* in any of your teams.
+#. Click on create to report an issue.
+#. Select the product and quantity for the issue. Optionally you can specify
+   a location and relate the issue to some *Problem*.
+
+To manage your Quality Control Problems, you have to:
+
+#. Go to *Quality Control > Problem Tracking > Problems* or to *Quality
+   Control > Dashboard* and click on *Problems* in any of your teams.
+
+Issue Dispositions:
+-------------------
+
+You can perform the following actions in quality control issues 'in progress':
+
+* Scrap: Click on *Scrap Products* button.
+* Create RMA: Install `rma_quality_control_issue` and see instructions there.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -28,9 +70,7 @@ Known issues / Roadmap
 Todo:
 -----
 
-* Add Dispositions: RMA, scrap, rework...
-* reference to PO, MO, QC...
-* Link to Problem tracking...
+* Add more dispositions: repair, refurbish...
 
 Bug Tracker
 ===========
@@ -52,6 +92,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Jordi Ballester Alomar <jordi.ballester@eficent.com>
 
 Maintainer
 ----------
