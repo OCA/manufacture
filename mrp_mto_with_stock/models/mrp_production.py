@@ -19,7 +19,7 @@ class MrpProduction(models.Model):
                 "All Manufacturing Orders must be confirmed."))
         return self.action_assign()
 
-    @api.one
+    @api.multi
     def action_assign(self):
         """Reserves available products to the production order but also creates
         procurements for more items if we cannot reserve enough (MTO with
@@ -28,20 +28,38 @@ class MrpProduction(models.Model):
         # reserve all that is available (standard behaviour):
         res = super(MrpProduction, self).action_assign()
         # try to create procurements:
-        for move in self.move_lines:
-            if (move.state == 'confirmed' and move.location_id in
-                    move.product_id.mrp_mts_mto_location_ids):
-                domain = [('product_id', '=', move.product_id.id),
-                          ('move_dest_id', '=', move.id)]
-                if move.group_id:
-                    domain.append(('group_id', '=', move.group_id.id))
-                procurement = self.env['procurement.order'].search(domain)
-                if not procurement:
-                    qty_to_procure = (move.remaining_qty -
-                                      move.reserved_availability)
-                    proc_dict = self._prepare_mto_procurement(
-                        move, qty_to_procure)
-                    self.env['procurement.order'].create(proc_dict)
+        move_obj = self.env['stock.move']
+        for production in self:
+            for move in production.move_lines:
+                if (move.state == 'confirmed' and move.location_id in
+                        move.product_id.mrp_mts_mto_location_ids):
+                    domain = [('product_id', '=', move.product_id.id),
+                              ('move_dest_id', '=', move.id)]
+                    if move.group_id:
+                        domain.append(('group_id', '=', move.group_id.id))
+                    procurement = self.env['procurement.order'].search(domain)
+                    if not procurement:
+                        # We have to split the move because we can't have
+                        # a part of the move that have ancestors and not the
+                        # other else it won't ever be reserved.
+                        qty_to_procure = (move.remaining_qty -
+                                          move.reserved_availability)
+                        if qty_to_procure < move.product_uom_qty:
+                            move.do_unreserve()
+                            new_move_id = move_obj.split(
+                                move,
+                                qty_to_procure,
+                                restrict_lot_id=move.restrict_lot_id,
+                                restrict_partner_id=move.restrict_partner_id)
+                            new_move = move_obj.browse(
+                                new_move_id)
+                            move.action_assign()
+                        else:
+                            new_move = move
+
+                        proc_dict = self._prepare_mto_procurement(
+                            new_move, qty_to_procure)
+                        self.env['procurement.order'].create(proc_dict)
         return res
 
     def _prepare_mto_procurement(self, move, qty):
