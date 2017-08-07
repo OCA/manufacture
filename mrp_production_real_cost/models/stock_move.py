@@ -27,11 +27,13 @@ class StockMove(models.Model):
                 record.work_order.routing_wc_line.routing_id.code or '',
                 record.product_id.default_code or '',
                 _('MAT')])
+            amount = (-record.product_id.standard_price * record.product_qty)
+            if record.product_id.cost_method == 'real':
+                amount = sum([-x.cost * x.qty for x in record.quant_ids])
             analytic_vals = (production._prepare_real_cost_analytic_line(
                 journal_id, name, production, record.product_id,
                 workorder=record.work_order, qty=record.product_qty,
-                amount=(-record.product_id.standard_price *
-                        record.product_qty)))
+                amount=amount))
             task = task_obj.search([('mrp_production_id', '=', production.id),
                                     ('workorder', '=', False)])
             analytic_vals['task_id'] = task and task[0].id or False

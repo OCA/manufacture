@@ -72,6 +72,7 @@ class TestMrpProductionRealCost(common.TransactionCase):
             initial_price, self.production.product_id.standard_price)
 
     def test_produce_real(self):
+        self.production.move_lines[:1].product_id.cost_method = 'real'
         self.production.product_id.cost_method = 'real'
         for line in self.production.workcenter_lines:
             line.signal_workflow('button_start_working')
