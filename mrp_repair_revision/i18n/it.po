@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_repair_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-08 15:43+0000\n"
+"PO-Revision-Date: 2017-08-08 15:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_repair_revision
+#: field:mrp.repair,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: mrp_repair_revision
+#: field:mrp.repair,current_revision_id:0
+msgid "Current revision"
+msgstr "Revisione corrente"
+
+#. module: mrp_repair_revision
+#: view:mrp.repair:mrp_repair_revision.view_repair_order_form
+msgid "New Copy of Repair"
+msgstr "Nuova Copia della Riparazione"
+
+#. module: mrp_repair_revision
+#: code:addons/mrp_repair_revision/models/mrp_repair.py:63
+#, python-format
+msgid "New revision created: %s"
+msgstr "Nuova revisione creata: %s"
+
+#. module: mrp_repair_revision
+#: field:mrp.repair,old_revision_ids:0
+msgid "Old revisions"
+msgstr "Revisioni superate"
+
+#. module: mrp_repair_revision
+#: field:mrp.repair,unrevisioned_name:0
+msgid "Repair Reference"
+msgstr "Rif. Riparazione"
+
+#. module: mrp_repair_revision
+#: sql_constraint:mrp.repair:0
+msgid "Repair Reference and revision must be unique per Company."
+msgstr "Rif. Riparazione e revisione devono essere uniche per Azienda."
+
+#. module: mrp_repair_revision
+#: code:addons/mrp_repair_revision/models/mrp_repair.py:49
+#: model:ir.model,name:mrp_repair_revision.model_mrp_repair
+#, python-format
+msgid "Repair Order"
+msgstr "Ordine di riparazione"
+
+#. module: mrp_repair_revision
+#: field:mrp.repair,revision_number:0
+msgid "Revision"
+msgstr "Revisione"
+
+#. module: mrp_repair_revision
+#: view:mrp.repair:mrp_repair_revision.view_repair_order_form
+msgid "Revisions"
+msgstr "Revisioni"
+
+#. module: mrp_repair_revision
+#: view:mrp.repair:mrp_repair_revision.view_repair_order_form
+msgid "Superseeded by"
+msgstr "Revisionato da"
+
+#. module: mrp_repair_revision
+#: view:mrp.repair:mrp_repair_revision.view_repair_order_form
+msgid "Superseeded on"
+msgstr "Revisionato il"
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_repair_order_form" model="ir.ui.view">
+            <field name="name">mrp.repair.form</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form"></field>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="copy_mrp_repair" states="cancel" string="New Copy of Repair" type="object"/>
+                </header>
+                <notebook position="inside">
+                    <page string="Revisions">
+                        <field name="old_revision_ids" >
+                            <tree>
+                                <field name='name'/>
+                                <field name='create_date' string="Superseeded on"/>
+                                <field name='create_uid' string="Superseeded by"/>
+                                <field name='state' invisible='1'/>
+                            </tree>
+                        </field>
+                        <group attrs="{'invisible': [('active', '=', True)]}">
+                            <field name="current_revision_id"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
