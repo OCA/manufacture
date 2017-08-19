@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 04:25+0000\n"
-"PO-Revision-Date: 2017-03-06 09:09+0000\n"
+"POT-Creation-Date: 2017-08-07 06:56+0000\n"
+"PO-Revision-Date: 2017-08-11 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,7 @@ msgstr ""
 #: field:qc.test.question,name:0 field:qc.test.question.value,name:0
 #: field:qc.trigger,name:0
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_form_view

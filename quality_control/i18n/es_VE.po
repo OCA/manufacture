@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 14:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:40+0000\n"
+"POT-Creation-Date: 2017-08-07 06:56+0000\n"
+"PO-Revision-Date: 2017-05-13 18:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Venezuela) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_VE/)\n"
 "MIME-Version: 1.0\n"
@@ -635,7 +635,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,state:0
 msgid "State"
-msgstr ""
+msgstr "Provincia"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view

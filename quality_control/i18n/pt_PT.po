@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 04:28+0000\n"
-"PO-Revision-Date: 2017-03-02 09:12+0000\n"
+"POT-Creation-Date: 2017-08-07 06:56+0000\n"
+"PO-Revision-Date: 2017-08-11 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -635,7 +635,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view
