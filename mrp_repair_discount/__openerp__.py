@@ -14,8 +14,5 @@
     "website": "http://www.agilebg.com",
     'depends': ['mrp_repair'],
     "data": ["views/mrp_repair_view.xml"],
-    "test": [
-        'test/mrp_repair_discount.yml',
-    ],
     "installable": True,
 }

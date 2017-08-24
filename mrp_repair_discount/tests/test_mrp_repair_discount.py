@@ -45,11 +45,9 @@ class TestMrpRepairDiscount(common.SavepointCase):
 
     def test_discount(self):
         self.assertAlmostEqual(
-            self.repair_line.price_subtotal, 10,
-            self.repair_line._columns['price_subtotal'].digits[1])
+            self.repair_line.price_subtotal, 10)
         self.assertAlmostEqual(
-            self.repair.amount_total, 10,
-            self.repair._columns['amount_total'].digits[1])
+            self.repair.amount_total, 10)
 
     def test_invoice_create(self):
         self.repair.state = '2binvoiced'
@@ -58,5 +56,4 @@ class TestMrpRepairDiscount(common.SavepointCase):
         invoice_line = invoice.invoice_line_ids[0]
         self.assertEqual(invoice_line.discount, 50)
         self.assertAlmostEqual(
-            invoice_line.price_subtotal, 10,
-            invoice_line._columns['price_subtotal'].digits[1])
+            invoice_line.price_subtotal, 10)
