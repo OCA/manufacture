@@ -130,7 +130,7 @@ class MrpProduction(models.Model):
             general_account = (
                 product.property_account_income or
                 product.categ_id.property_account_income_categ or
-                property_obj.get('property_account_expense_categ',
+                property_obj.get('property_account_income_categ',
                                  'product.category'))
         if not production.analytic_account_id:
             raise exceptions.Warning(
