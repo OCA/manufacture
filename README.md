@@ -23,7 +23,7 @@ addon | version | summary
 [mrp_operations_start_without_material](mrp_operations_start_without_material/) | 8.0.1.0.1 | MRP Operations start without material
 [mrp_operations_time_control](mrp_operations_time_control/) | 8.0.1.1.0 | MRP Operations Time Control
 [mrp_produce_uos](mrp_produce_uos/) | 8.0.1.0.0 | MRP Produce UOS
-[mrp_production_estimated_cost](mrp_production_estimated_cost/) | 8.0.1.2.0 | Estimated costs in manufacturing orders
+[mrp_production_estimated_cost](mrp_production_estimated_cost/) | 8.0.1.2.1 | Estimated costs in manufacturing orders
 [mrp_production_note](mrp_production_note/) | 8.0.1.0.0 | Notes in production orders
 [mrp_production_partner_note](mrp_production_partner_note/) | 8.0.1.0.0 | MRP - Partner production notes
 [mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 8.0.1.0.0 | Create Procurement Group On Manufacturing Order
