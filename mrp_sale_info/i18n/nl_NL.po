@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-15 16:49+0000\n"
-"PO-Revision-Date: 2017-06-15 16:51+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-29 07:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 #: field:mrp.production,sale_id:0
 #: field:mrp.production.workcenter.line,sale_id:0
 msgid "Sale order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production_workcenter_line

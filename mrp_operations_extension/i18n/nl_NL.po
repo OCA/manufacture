@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 04:36+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -138,7 +138,7 @@ msgstr ""
 #: field:mrp.work.order.produce,create_uid:0
 #: field:workcenter.line.finish,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,create_date:0
@@ -146,7 +146,7 @@ msgstr ""
 #: field:mrp.work.order.produce,create_date:0
 #: field:workcenter.line.finish,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,custom_data:0
@@ -166,7 +166,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,display_name:0
@@ -275,7 +275,7 @@ msgstr "Laatst gewijzigd op"
 #: field:mrp.work.order.produce,write_uid:0
 #: field:workcenter.line.finish,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_date:0
@@ -283,7 +283,7 @@ msgstr ""
 #: field:mrp.work.order.produce,write_date:0
 #: field:workcenter.line.finish,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,lot_id:0

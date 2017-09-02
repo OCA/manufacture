@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 11:59+0000\n"
-"PO-Revision-Date: 2017-05-11 14:11+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-21 07:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:mrp.production,active:0
 msgid "Active"
-msgstr ""
+msgstr "Активное"
 
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_account_analytic_line

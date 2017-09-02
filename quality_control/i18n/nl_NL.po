@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 04:37+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: view:qc.inspection.set.test:quality_control.view_qc_test_set_test_form
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
@@ -117,7 +117,7 @@ msgstr ""
 #: field:qc.trigger.product_line,create_uid:0
 #: field:qc.trigger.product_template_line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: quality_control
 #: field:qc.inspection,create_date:0 field:qc.inspection.line,create_date:0
@@ -128,7 +128,7 @@ msgstr ""
 #: field:qc.trigger.product_line,create_date:0
 #: field:qc.trigger.product_template_line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: quality_control
 #: field:qc.inspection,date:0
@@ -319,7 +319,7 @@ msgstr "Laatst gewijzigd op"
 #: field:qc.trigger.product_line,write_uid:0
 #: field:qc.trigger.product_template_line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: quality_control
 #: field:qc.inspection,write_date:0 field:qc.inspection.line,write_date:0
@@ -330,7 +330,7 @@ msgstr ""
 #: field:qc.trigger.product_line,write_date:0
 #: field:qc.trigger.product_template_line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
@@ -569,7 +569,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,object_id:0
 msgid "Reference"
-msgstr ""
+msgstr "Referentie"
 
 #. module: quality_control
 #: field:qc.test,object_id:0

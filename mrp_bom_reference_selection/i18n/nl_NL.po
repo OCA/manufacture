@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 04:36+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -33,12 +33,12 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,display_name:0
@@ -63,12 +63,12 @@ msgstr "Laatst gewijzigd op"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot
@@ -110,7 +110,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,name:0
 msgid "Reference"
-msgstr ""
+msgstr "Referentie"
 
 #. module: mrp_bom_reference_selection
 #: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard

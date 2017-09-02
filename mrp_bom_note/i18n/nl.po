@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-14 13:02+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
 "PO-Revision-Date: 2015-10-26 16:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: mrp_bom_note
 #: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_notes field:mrp.bom,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Notities"
 
 #. module: mrp_bom_note
 #: view:mrp.bom:mrp_bom_note.mrp_bom_form_view_inh_notes

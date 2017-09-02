@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 06:56+0000\n"
-"PO-Revision-Date: 2017-08-11 11:54+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-21 07:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgstr "Navn"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Notater"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1

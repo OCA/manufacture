@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-17 04:36+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: view:wiz.create.virtual.mo:mrp_production_estimated_cost.wiz_create_virtual_mo_view
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: mrp_production_estimated_cost
 #: help:mrp.production,product_cost:0
@@ -96,12 +96,12 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
@@ -171,12 +171,12 @@ msgstr "Laatst gewijzigd op"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 14:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-21 07:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/mk/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: field:qc.test,active:0 field:qc.test.category,active:0
 #: field:qc.trigger,active:0
 msgid "Active"
-msgstr ""
+msgstr "Активно"
 
 #. module: quality_control
 #: field:qc.inspection.line,possible_ql_values:0
@@ -389,7 +389,7 @@ msgstr "Име"
 #: view:qc.inspection:quality_control.qc_inspection_form_view
 #: field:qc.inspection.line,notes:0 field:qc.test.question,notes:0
 msgid "Notes"
-msgstr ""
+msgstr "Белешки"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 13:59+0000\n"
-"PO-Revision-Date: 2017-03-13 12:52+0000\n"
+"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"PO-Revision-Date: 2017-08-28 12:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,product_tmpl_id:0
 msgid "Product Template"
-msgstr ""
+msgstr "产品模板"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,reference_id:0
