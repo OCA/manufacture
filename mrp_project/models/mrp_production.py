@@ -3,7 +3,7 @@
 # (c) 2015 Pedro M. Baeza - Serv. Tecnol. Avanzados
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api, _, exceptions
 
 
 class MrpProduction(models.Model):
@@ -14,6 +14,26 @@ class MrpProduction(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     analytic_account_id = fields.Many2one(
         related="project_id.analytic_account_id", store=True)
+    create_tasks = fields.Boolean(
+        string="Automatically create tasks",
+        help=""" Automatically create tasks linked to manufacturing orders in
+               assigned project. The tasks will be created when the production
+               is started.
+               """,
+        readonly=True,
+        states={'draft': [('readonly', False)],
+                'confirmed': [('readonly', False)]
+                },
+    )
+    create_project = fields.Boolean(
+        string="Automatically create project if not assigned",
+        help="""
+               Automatically create and assign a project if none is selected.
+               The project will be created when confirming the production order.
+               """,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+    )
 
     @api.model
     def _prepare_project_vals(self, production):
@@ -57,20 +77,40 @@ class MrpProduction(models.Model):
 
     @api.multi
     def action_in_production(self):
-        task_obj = self.env['project.task']
-        for record in self:
-            task_domain = [('mrp_production_id', '=', record.id),
-                           ('workorder', '=', False)]
-            tasks = task_obj.search(task_domain)
-            if not tasks:
-                task_obj.create(self._prepare_production_task(record))
+        """
+        Look for tasks related to the current MO without a workorder
+        and create if create_tasks is set and no results where found.
+        """
+        if not self.project_id:
+            raise exceptions.ValidationError(_(
+                "To create a task per work order, a project must be selected. "
+                "Please select a project or uncheck the field 'Automatically "
+                "create tasks' before starting production (no tasks will be "
+                "created."))
+        if self.create_tasks:
+            task_obj = self.env['project.task']
+            for record in self:
+                task_domain = [
+                    ('mrp_production_id', '=', record.id),
+                    '|',
+                    ('workorder', 'in', record.workcenter_lines),
+                    ('workorder', '=', False),
+                ]
+                tasks = task_obj.search(task_domain)
+                if not tasks:
+                    task_obj.create(self._prepare_production_task(record))
         return super(MrpProduction, self).action_in_production()
 
     @api.multi
     def action_confirm(self):
+        """
+        When confirming a manufacturing order, if create_project is set
+        and no project is assigned, a new one is created and linked in
+        project_id field.
+        """
         project_obj = self.env['project.project']
         result = super(MrpProduction, self).action_confirm()
-        for production in self:
+        for production in self.filtered('create_project'):
             if not production.project_id:
                 project_vals = self._prepare_project_vals(production)
                 project = project_obj.create(project_vals)

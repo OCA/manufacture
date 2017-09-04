@@ -9,3 +9,4 @@ from . import project_project
 from . import project_task
 from . import project_task_work
 from . import hr_analytic_timesheet
+from . import res_config
