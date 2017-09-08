@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 =================
-product_quick_bom
+Product Quick Bom
 =================
 
 This module was written to create quickly the bom for your product.
@@ -15,12 +15,12 @@ Usage
 
 To use this module, you need to:
 
-* go to a product form, click on edit, add a line in the bom tab and see that a bom
-  linked to the product have been created
+* Go to a product form, click on edit, add a line in the bom tab and see that a bom
+  linked to the product have been created.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/manufacture/10.0
+   :target: https://runbot.odoo-community.org/runbot/129/10.0
 
 .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
 .. branch is "8.0" for example
@@ -36,8 +36,6 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/manufacture/issues/new?body=module:%20product_quick_bom%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
 
 Credits
 =======
