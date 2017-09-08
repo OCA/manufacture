@@ -2,7 +2,7 @@
 #   Copyright (C) 2015 Akretion (http://www.akretion.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -25,18 +25,14 @@ class TestQuickBom(TransactionCase):
             (0, 0, {'product_id': self.cpu.id, 'product_qty': 1, })]})
         bom = self.computer.bom_ids
         self.assertEqual(self.computer.id, bom.product_tmpl_id.id)
-        self.assertEqual(bom.bom_line_ids[0].product_id.id,
-                         self.ram.id)
+        self.assertEqual(bom.bom_line_ids[0].product_id.id, self.ram.id)
         self.assertEqual(bom.bom_line_ids[0].product_qty, 2)
-        self.assertEqual(bom.bom_line_ids[1].product_id.id,
-                         self.hard_drive.id)
+        self.assertEqual(bom.bom_line_ids[1].product_id.id, self.hard_drive.id)
         self.assertEqual(bom.bom_line_ids[1].product_qty, 2)
-        self.assertEqual(bom.bom_line_ids[2].product_id.id,
-                         self.cpu.id)
+        self.assertEqual(bom.bom_line_ids[2].product_id.id, self.cpu.id)
         self.assertEqual(bom.bom_line_ids[2].product_qty, 1)
 
     def test_read_bom(self):
-
         bom = self.env['mrp.bom'].create({
             'type': 'normal',
             'product_tmpl_id': self.computer.id})

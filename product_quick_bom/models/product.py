@@ -54,7 +54,6 @@ class ProductTemplate(models.Model):
             ctx = self._context.copy()
             ctx.pop('default_type', None)
             self.with_context(ctx)._process_bom_vals(bom_vals)
-            
         return res
 
     @api.multi
