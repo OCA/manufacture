@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_mrpbomstructure">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <h2>BOM Stock Report</h2>
+                     <t t-foreach="docs" t-as="o">
+                         <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Location</th>
+                                    <th>Qty Available (Location)</th>
+                                    <th>BOM Ref</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="font-weight: bold;">
+                                    <td>0</td>
+                                    <td>
+                                        <span t-field="o.product_id.default_code"/>
+                                        <span t-field="o.product_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.product_qty"/>
+                                        <span groups="product.group_uom" t-field="o.product_uom_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.location_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.bom_id.code"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.line_ids" t-as="l">
+                                    <td>
+                                        <span t-field="l.bom_level"/>
+                                    </td>
+                                    <td>
+                                        <span style="color: white;"
+                                              t-esc="'... '*(l.bom_level)"/>
+                                        <span t-esc="l.product_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="l.product_qty"/>
+                                        <span t-esc="l.product_uom_id.name"
+                                              groups="product.group_uom"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.location_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.qty_available_in_source_loc"/>
+                                        <span t-esc="l.product_uom_id.name"
+                                              groups="product.group_uom"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="l.bom_line.bom_id.code"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                         </table>
+                     </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report
+        string="BoM: Current Stock Report"
+        id="action_report_bom_structure"
+        model="mrp.bom.current.stock"
+        name="mrp_bom_current_stock.report_mrpbomstructure"
+        report_type="qweb-pdf"/>
+
+</odoo>

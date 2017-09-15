@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="mrp_bom_current_stock_view_form" model="ir.ui.view">
+        <field name="name">mrp.bom.current.stock.form</field>
+        <field name="model">mrp.bom.current.stock</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="step_1"
+                       string="Select product and location to explode">
+                    <field name="product_id"
+                           domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]"/>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="bom_id"
+                           domain="['&amp;', '|', ('product_id','=',product_id),
+                           '&amp;', ('product_tmpl_id.product_variant_ids','=',product_id),
+                           ('product_id','=',False), ('type', '=', 'normal')]"/>
+                    <field name="location_id"/>
+                </group>
+                <footer>
+                    <button name="do_explode"
+                            type="object"
+                            string="Explode"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_bom_current_stock_view_form2" model="ir.ui.view">
+        <field name="name">mrp.bom.current.stock.form2</field>
+        <field name="model">mrp.bom.current.stock</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="step_2" string="Explosion result">
+                    <p>Set the source location for every component.</p><br></br>
+                    <field name="product_id" readonly="1"/>
+                    <field name="bom_id" readonly="1"/>
+                    <field name="line_ids" nolabel="1" colspan="2">
+                        <tree create="0" delete="0" editable="1">
+                            <field name="bom_level"/>
+                            <field name="product_id"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom_id"
+                                   groups="product.group_uom"/>
+                            <field name="location_id"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="%(mrp_bom_current_stock.action_report_bom_structure)d"
+                            type="action" string="Print Report"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel"
+                            string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_bom_current_stock_action" model="ir.actions.act_window">
+        <field name="name">BoM Current Stock Explosion</field>
+        <field name="res_model">mrp.bom.current.stock</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="mrp_bom_current_stock_menu"
+              action="mrp_bom_current_stock_action"
+              parent="mrp.menu_mrp_bom"
+              sequence="50"/>
+
+</odoo>
