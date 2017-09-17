@@ -66,14 +66,18 @@ class MrpBom(models.Model):
                             self.env.context.get('company_id'))]
 
             bom_ids = self.search(domain, order='sequence, product_id')
-            for bom in bom_ids.sorted(key=lambda p: (p.sequence,
-                                                     p.product_id)):
-                for ctx_p in property_ids:
-                    if ctx_p in [p.id for p in bom.property_ids]:
+            # Search a BoM which has all properties specified, or if you can
+            # not find one, you could
+            # pass a BoM without any properties with the smallest sequence
+            bom_empty_prop = False
+            for bom in bom_ids:
+                if not set(map(int, bom.property_ids or [])) - set(
+                                property_ids or []):
+                    if not property_ids or bom.property_ids:
                         return bom
-            # Not found BoM with property from procurement return first BoM
-            if bom_ids:
-                return bom_ids[0]
+                    elif not bom_empty_prop:
+                        bom_empty_prop = bom
+            return bom_empty_prop
         else:
             return super(MrpBom, self)._bom_find(product_tmpl, product,
                                                  picking_type, company_id)
