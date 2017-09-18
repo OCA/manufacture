@@ -71,8 +71,9 @@ class MrpBom(models.Model):
             # pass a BoM without any properties with the smallest sequence
             bom_empty_prop = False
             for bom in bom_ids:
-                if not set(map(int, bom.property_ids or [])) - set(
-                                property_ids or []):
+                if not set(map(int,
+                               bom.property_ids or [])
+                           ) - set(property_ids or []):
                     if not property_ids or bom.property_ids:
                         return bom
                     elif not bom_empty_prop:
