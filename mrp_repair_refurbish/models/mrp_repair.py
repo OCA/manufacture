@@ -7,11 +7,16 @@ from openerp import api, fields, models
 
 
 class mrp_repair(orm.Model):
+    """To inherit using old api is needed here in order to be able to modify
+    the onchange method for `product_id`.
+    NOTE: This should be moved to new api in v10, when the standard is also
+    migrated.
+    """
     _inherit = 'mrp.repair'
 
     def onchange_product_id(self, cr, uid, ids, product_id=None):
-        res = super(mrp_repair, self).onchange_product_id(cr, uid, ids,
-                                                          product_id=product_id)
+        res = super(mrp_repair, self).onchange_product_id(
+            cr, uid, ids, product_id=product_id)
         product = self.pool['product.product'].browse(cr, uid, product_id)
         res['value']['to_refurbish'] = True if \
             product.refurbish_product_id else False
@@ -66,6 +71,11 @@ class MrpRepair(models.Model):
 
 
 class mrp_repair_line(orm.Model):
+    """To inherit using old api is needed here in order to be able to modify
+    the onchange method for `type`.
+    NOTE: This should be moved to new api in v10, when the standard is also
+    migrated.
+    """
     _inherit = 'mrp.repair.line'
 
     def onchange_operation_type(self, cr, uid, ids, type, guarantee_limit,
@@ -74,8 +84,8 @@ class mrp_repair_line(orm.Model):
             cr, uid, ids, type, guarantee_limit, company_id=company_id,
             context=context)
 
-        if (type == 'add' and 'to_refurbish' in context
-                and context['to_refurbish']):
+        if (type == 'add' and 'to_refurbish' in context and
+                context['to_refurbish']):
             res['value']['location_dest_id'] = context[
                 'refurbish_location_dest_id']
         return res
