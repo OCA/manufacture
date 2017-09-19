@@ -9,6 +9,6 @@ from openerp import fields, models
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    refurbish_product_id = fields.Many2one(comodel_name='product.product',
-                                           string='Refurbished Product',
-                                           domain="[('type', '=', 'product')]")
+    refurbish_product_id = fields.Many2one(
+        comodel_name='product.product', string='Refurbished Product',
+        domain="[('type', '=', 'product')]")

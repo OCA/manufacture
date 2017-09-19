@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="product_normal_form_view" model="ir.ui.view">
-            <field name="name">product.product.form</field>
-            <field name="model">product.product</field>
-            <field name="mode">primary</field>
-            <field eval="7" name="priority"/>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
-                <group name="inventory" position="after">
-                    <group name="refurbish" string="Refurbish">
-                        <field name="refurbish_product_id"/>
-                    </group>
+<odoo>
+
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="mode">primary</field>
+        <field eval="7" name="priority"/>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <group name="inventory" position="after">
+                <group name="refurbish" string="Refurbish">
+                    <field name="refurbish_product_id"/>
                 </group>
-            </field>
-        </record>
-    </data>
-</openerp>
+            </group>
+        </field>
+    </record>
+
+</odoo>
