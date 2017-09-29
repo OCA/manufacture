@@ -16,5 +16,6 @@
     ],
     "data": [
         "views/mrp_view.xml",
+        "views/report_mrpbomstructure.xml",
     ],
 }
