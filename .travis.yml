@@ -1,25 +1,28 @@
 language: python
 sudo: false
-cache: pip
+cache:
+  apt: true
+  directories:
+    - $HOME/.cache/pip
 
 python:
   - "2.7"
 
 addons:
   apt:
-    sources:
-      - pov-wkhtmltopdf
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
-      - wkhtmltopdf
+      - python-simplejson
+      - python-serial
+      - python-yaml
 
 env:
   global:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
   - TRANSIFEX_USER='transbot@odoo-community.org'
   - secure: cnskjzYSLkdeEoUDIhwkwqWsNKIj36JyoA/H7ByNLBphAm9Xrs/ZE8Y5AHxsXp8zQjIGnzw4fpEEO8oakmaueFTaAKlzWS2KH8NWxTjNHkIv/+TFwYsayWNG6O39021wSMQnTRDVERNlBdTwjCTBne81a50NqCeUIrtgcwycwzU=
-
+  - WKHTMLTOPDF_VERSION="0.12.4"
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
