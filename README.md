@@ -17,6 +17,7 @@ addon | version | summary
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.0 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
 [mrp_repair_calendar_view](mrp_repair_calendar_view/) | 10.0.1.0.0 | MRP Repair Calendar View
+[mrp_repair_discount](mrp_repair_discount/) | 10.0.1.0.0 | MRP Repair Discount
 
 
 Unported addons
