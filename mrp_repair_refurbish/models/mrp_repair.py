@@ -91,6 +91,6 @@ class mrp_repair_line(orm.Model):
         elif (type == 'add' and 'to_refurbish' in context and not
                 context['to_refurbish']):
             scrap_location_ids = self.pool['stock.location'].search(cr, uid, [
-                ('scrap_location', '=', True)], context=context)
+                ('usage', '=', 'customer')], context=context)
             res['value']['location_dest_id'] = scrap_location_ids[0]
         return res
