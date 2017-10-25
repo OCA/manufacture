@@ -43,6 +43,7 @@ class DismantlingProductChoice(models.TransientModel):
     def create_bom(self):
         """ Call dismantling bom creation method with main component specified.
         """
-        return self.bom_id.create_dismantling_bom(
+        return self.with_context(
+            is_dismantling=True).bom_id.create_dismantling_bom(
             main_component=self.component_id
         )

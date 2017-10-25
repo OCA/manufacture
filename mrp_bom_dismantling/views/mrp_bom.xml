@@ -6,7 +6,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">mrp.bom</field>
             <field name="domain">[('dismantling', '=', True)]</field>
-            <field name="context">{'default_dismantling': True}</field>
+            <field name="context">{'default_dismantling': True, 'is_dismantling': True}</field>
             <field name="view_type">form</field>
         </record>
         <menuitem id="menu_mrp_bom_dismantling"

@@ -56,5 +56,6 @@ class MrpProductProduce(models.TransientModel):
                 mapping_move_lot[move_lot.move_id.id] = move_lot.lot_id.id
 
         super(MrpProductProduce, self.with_context(
-            mapping_move_lot=mapping_move_lot
+            mapping_move_lot=mapping_move_lot,
+            is_dismantling=True,
         )).do_produce()

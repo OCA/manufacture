@@ -2,7 +2,9 @@
 # © 2016 Cyril Gaudin (Camptocamp)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import time
 from openerp import _, api, exceptions, fields, models
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class MrpBom(models.Model):
@@ -170,3 +172,60 @@ class MrpBom(models.Model):
         else:
             product = self.product_id
         return product
+
+    def _bom_find(self, cr, uid, product_tmpl_id=None,
+                  product_id=None, properties=None, context=None):
+        """Override of the mrp.bom function to avoid mixing
+        a BOM and dismantling BOM when they have a product in common
+        That can lead to endless recursive loops in computed BOM
+        structure
+        """
+        if not context:
+            context = {}
+        if properties is None:
+            properties = []
+        if product_id:
+            if not product_tmpl_id:
+                product_tmpl_id = self.pool['product.product'].browse(
+                    cr, uid, product_id, context=context).product_tmpl_id.id
+            domain = [
+                '|',
+                ('product_id', '=', product_id),
+                '&',
+                ('product_id', '=', False),
+                ('product_tmpl_id', '=', product_tmpl_id)
+            ]
+        elif product_tmpl_id:
+            domain = [('product_id', '=', False),
+                      ('product_tmpl_id', '=', product_tmpl_id)]
+        else:
+            # neither product nor template, makes no sense to search
+            return False
+        if context.get('company_id'):
+            domain = domain + [('company_id', '=', context['company_id'])]
+        domain = domain + [
+            '|', ('date_start', '=', False),
+            ('date_start', '<=', time.strftime(DEFAULT_SERVER_DATE_FORMAT)),
+            '|', ('date_stop', '=', False),
+            ('date_stop', '>=', time.strftime(DEFAULT_SERVER_DATE_FORMAT))
+        ]
+        # Customisation to avoid mixing bom and dismantling
+        is_dismantling = context.get('is_dismantling', False)
+        domain += [('dismantling', '=', is_dismantling)]
+
+        # order to prioritize bom with product_id over the one without
+        ids = self.search(cr, uid, domain,
+                          order='sequence, product_id', context=context)
+        # Search a BoM which has all properties specified,
+        # or if you can not find one, you could
+        # pass a BoM without any properties with the smallest sequence
+        bom_empty_prop = False
+        for bom in self.pool.get('mrp.bom').browse(cr, uid, ids,
+                                                   context=context):
+            pr = set(map(int, bom.property_ids or [])) - set(properties or [])
+            if not pr:
+                if not properties or bom.property_ids:
+                    return bom.id
+                elif not bom_empty_prop:
+                    bom_empty_prop = bom.id
+        return bom_empty_prop

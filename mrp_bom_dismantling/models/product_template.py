@@ -71,5 +71,6 @@ class ProductTemplate(models.Model):
             ('dismantling', '=', True),
             ('dismantled_product_tmpl_id', '=', self.id),
         ]
+        action['context'] = {'is_dismantling': True}
 
         return action
