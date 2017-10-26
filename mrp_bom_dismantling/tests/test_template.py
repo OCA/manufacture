@@ -16,7 +16,7 @@ class TestTemplate(TransactionCase):
         # Create a BoM for this template
         bom_model = self.env['mrp.bom']
         bom_model.create({'product_tmpl_id': tmpl1.id})
-        tmpl1._bom_count()
+        tmpl1._get_bom_count()
         self.assertEqual(1, tmpl1.bom_count)
 
         # Create a dismantling BoM

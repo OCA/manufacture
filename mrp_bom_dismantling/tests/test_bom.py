@@ -362,7 +362,8 @@ class TestBom(TransactionCase):
 
         # Dismantling BOM main product is P3
         dmtl_bom = self.check_result_and_load_entity(
-            'mrp.bom', result, context={'active_id': bom.id}
+            'mrp.bom', result, context={'active_id': bom.id,
+                                        'is_dismantling': True}
         )
         self.assertEqual(p3.id, dmtl_bom.product_id.id)
         self.assertEqual(True, dmtl_bom.dismantling)
