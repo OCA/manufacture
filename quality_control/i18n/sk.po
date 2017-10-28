@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 14:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:42+0000\n"
+"POT-Creation-Date: 2017-09-02 09:20+0000\n"
+"PO-Revision-Date: 2017-10-16 18:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -284,7 +284,7 @@ msgstr ""
 #. module: quality_control
 #: view:product.template:quality_control.product_template_qc_form_view
 msgid "Inventory"
-msgstr ""
+msgstr "Inventár"
 
 #. module: quality_control
 #: field:qc.inspection,message_is_follower:0
@@ -426,12 +426,12 @@ msgstr ""
 #: view:qc.inspection.line:quality_control.qc_inspection_line_search_view
 #: field:qc.inspection.line,product:0 field:qc.trigger.product_line,product:0
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Kategória produktu"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
@@ -635,7 +635,7 @@ msgstr ""
 #: view:qc.inspection:quality_control.qc_inspection_search_view
 #: field:qc.inspection,state:0
 msgid "State"
-msgstr ""
+msgstr "Stav"
 
 #. module: quality_control
 #: view:qc.inspection:quality_control.qc_inspection_search_view

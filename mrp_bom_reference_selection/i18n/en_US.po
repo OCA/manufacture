@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-02 09:19+0000\n"
-"PO-Revision-Date: 2017-09-22 16:51+0000\n"
+"PO-Revision-Date: 2017-09-30 10:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
+"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en_US/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl_NL\n"
+"Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_bom_reference_selection
@@ -33,22 +33,22 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_uid:0
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr "Created by"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,create_date:0
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr "Created on"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,display_name:0
 msgid "Display Name"
-msgstr "Weergavenaam"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
 msgid "Group By"
-msgstr "Groeperen op"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,id:0
@@ -58,17 +58,17 @@ msgstr "ID"
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,__last_update:0
 msgid "Last Modified on"
-msgstr "Laatst gewijzigd op"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_uid:0
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr "Last Updated by"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,write_date:0
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Last Updated on"
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,product_tmpl_id:0
 msgid "Product Template"
-msgstr ""
+msgstr "Product Template"
 
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.line,reference_id:0
@@ -110,7 +110,7 @@ msgstr ""
 #. module: mrp_bom_reference_selection
 #: field:mrp.bom.reference,name:0
 msgid "Reference"
-msgstr "Referentie"
+msgstr ""
 
 #. module: mrp_bom_reference_selection
 #: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard

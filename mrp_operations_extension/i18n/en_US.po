@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"POT-Creation-Date: 2017-09-02 09:19+0000\n"
 "PO-Revision-Date: 2015-12-09 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: English (United States) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en_US/)\n"
@@ -60,7 +60,7 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -78,13 +78,13 @@ msgid "Capacity per cycle"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:54
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:55
 #, python-format
 msgid "Changing Routing"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: code:addons/mrp_operations_extension/models/mrp_bom.py:55
+#: code:addons/mrp_operations_extension/models/mrp_bom.py:56
 #, python-format
 msgid ""
 "Changing routing will cause to change the operation in which each component "
@@ -100,7 +100,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,code:0
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: mrp_operations_extension
 #: model:ir.actions.act_window,name:mrp_operations_extension.act_mrp_work_order_consume
@@ -138,7 +138,7 @@ msgstr ""
 #: field:mrp.work.order.produce,create_uid:0
 #: field:workcenter.line.finish,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,create_date:0
@@ -146,7 +146,7 @@ msgstr ""
 #: field:mrp.work.order.produce,create_date:0
 #: field:workcenter.line.finish,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,custom_data:0
@@ -238,7 +238,7 @@ msgstr ""
 #: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
 #: field:mrp.work.order.produce,id:0 field:workcenter.line.finish,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_operations_extension
 #: help:mrp.routing.workcenter,do_production:0
@@ -275,7 +275,7 @@ msgstr ""
 #: field:mrp.work.order.produce,write_uid:0
 #: field:workcenter.line.finish,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_date:0
@@ -283,7 +283,7 @@ msgstr ""
 #: field:mrp.work.order.produce,write_date:0
 #: field:workcenter.line.finish,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,lot_id:0
@@ -344,7 +344,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,name:0
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
@@ -646,4 +646,4 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "or"
-msgstr ""
+msgstr "or"
