@@ -28,5 +28,17 @@
             <field name="domain">[('project_id', '=', active_id)]</field>
         </record>
 
+
+        <record id="view_mrp_production_filter_project" model="ir.ui.view">
+            <field name="name">mrp.production.filter.group.project</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr='//filter[@string="Scheduled Month"]' position="after">
+                    <filter string="Project" context="{'group_by':'project_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </openerp>
