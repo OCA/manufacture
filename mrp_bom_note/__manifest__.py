@@ -4,17 +4,12 @@
 
 {
     "name": "Notes in Bill of Materials",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
-    "contributors": [
-        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>",
-    ],
     "category": "Tools",
     "depends": [
         "mrp",
@@ -22,5 +17,5 @@
     "data": [
         "views/mrp_bom_view.xml",
     ],
-    'installable': False
+    'installable': True
 }
