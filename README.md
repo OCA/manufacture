@@ -16,8 +16,10 @@ addon | version | summary
 [mrp_auto_assign](mrp_auto_assign/) | 10.0.1.0.0 | Make MO automatically reserve raw material moves at creation
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.0 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
+[mrp_progress_button](mrp_progress_button/) | 10.0.1.0.0 | Add a button on MO to make the MO state 'In Progress'
 [mrp_repair_calendar_view](mrp_repair_calendar_view/) | 10.0.1.0.0 | MRP Repair Calendar View
 [mrp_repair_discount](mrp_repair_discount/) | 10.0.1.0.0 | MRP Repair Discount
+[product_quick_bom](product_quick_bom/) | 10.0.1.0.0 | Create the bom directly from the product
 
 
 Unported addons
