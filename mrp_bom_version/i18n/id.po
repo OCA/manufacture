@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-01 00:46+0000\n"
+"POT-Creation-Date: 2017-10-28 06:43+0000\n"
 "PO-Revision-Date: 2015-10-26 16:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/id/)\n"
@@ -44,7 +44,7 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 #: selection:mrp.bom,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Draf"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
@@ -104,7 +104,7 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
 #: field:mrp.bom,state:0
 msgid "State"
-msgstr ""
+msgstr "Bagian"
 
 #. module: mrp_bom_version
 #: help:mrp.config.settings,group_mrp_bom_version:0
