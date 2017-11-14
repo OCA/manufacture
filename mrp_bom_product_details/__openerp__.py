@@ -11,7 +11,6 @@
     'author':  "Solutions Libergia inc., "
                "QubiQ, "
                "Odoo Community Association (OCA)",
-    'license': 'AGPL-3 or any later version',
     'category': 'Manufacturing',
     'depends': ["base", "mrp"],
     'data': ['views/mrp_bom_product_details.xml', ],
