@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record model="qc.trigger" id="qc_trigger_mrp">
-            <field name="name">Production done</field>
-            <field name="company_id"></field>
-        </record>
+    <record model="qc.trigger" id="qc_trigger_mrp">
+        <field name="name">Production done</field>
+        <field name="company_id"></field>
+    </record>
 
-        <record id="req_link_mrp_production" model="res.request.link">
-            <field name="name">Manufacturing Order</field>
-            <field name="object">mrp.production</field>
-        </record>
+    <record id="req_link_mrp_production" model="res.request.link">
+        <field name="name">Manufacturing Order</field>
+        <field name="object">mrp.production</field>
+    </record>
 
-    </data>
-</openerp>
+</odoo>

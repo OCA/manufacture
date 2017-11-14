@@ -35,6 +35,7 @@ Contributors
 ------------
 * Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+* Daniel Alejandro Mendieta <damendieta@libre.ec>
 
 Maintainer
 ----------
