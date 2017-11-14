@@ -5,17 +5,19 @@
 
 {
     "name": "Quality control - Stock",
-    "version": "8.0.1.0.1",
+    "version": "9.0.0.0.1",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Fábrica de Software Libre - Daniel Mendieta Pacheco, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Daniel Mendieta Pacheco <damendieta@libre.ec>",
     ],
     "depends": [
         "quality_control",

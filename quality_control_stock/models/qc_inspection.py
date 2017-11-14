@@ -8,9 +8,10 @@ from openerp import models, fields, api
 class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
     def get_picking(self):
+        self.ensure_one()
         self.picking = False
         if self.object_id:
             if self.object_id._name == 'stock.move':
@@ -20,9 +21,10 @@ class QcInspection(models.Model):
             elif self.object_id._name == 'stock.pack.operation':
                 self.picking = self.object_id.picking_id
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
     def get_lot(self):
+        self.ensure_one()
         self.lot = False
         if self.object_id:
             if self.object_id._name == 'stock.pack.operation':
@@ -32,9 +34,10 @@ class QcInspection(models.Model):
             elif self.object_id._name == 'stock.production.lot':
                 self.lot = self.object_id
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
     def _get_product(self):
+        self.ensure_one()
         """Overriden for getting the product from a stock move."""
         super(QcInspection, self)._get_product()
         if self.object_id:

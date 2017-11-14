@@ -8,9 +8,10 @@ from openerp import models, fields, api
 class StockProductionLot(models.Model):
     _inherit = 'stock.production.lot'
 
-    @api.one
+    @api.multi
     @api.depends('qc_inspections', 'qc_inspections.state')
     def _count_inspections(self):
+        self.ensure_one()
         self.created_inspections = len(self.qc_inspections)
         self.passed_inspections = len([x for x in self.qc_inspections if
                                        x.state == 'success'])
