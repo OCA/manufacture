@@ -13,6 +13,7 @@
                "Odoo Community Association (OCA)",
     'category': 'Manufacturing',
     'depends': ["base", "mrp"],
+    'license': 'AGPL-3',
     'data': ['views/mrp_bom_product_details.xml', ],
     'auto_install': False,
     'installable': True,
