@@ -10,8 +10,8 @@
     'version': '9.0.1.0.0',
     'author':  "Solutions Libergia inc., "
                "QubiQ, "
-               "Odoo Community Association (OCA),QubiQ",
-    'license': 'GPL-3 or any later version',
+               "Odoo Community Association (OCA)",
+    'license': 'AGPL-3 or any later version',
     'category': 'Manufacturing',
     'depends': ["base", "mrp"],
     'data': ['views/mrp_bom_product_details.xml', ],
