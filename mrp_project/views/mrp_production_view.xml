@@ -34,9 +34,9 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
             <field name="arch" type="xml">
-                <xpath expr='//filter[@string="Scheduled Month"]' position="after">
+	    	<group position="inside">
                     <filter string="Project" context="{'group_by':'project_id'}"/>
-                </xpath>
+		</group>
             </field>
         </record>
 
