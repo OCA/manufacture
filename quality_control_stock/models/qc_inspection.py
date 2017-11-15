@@ -11,42 +11,42 @@ class QcInspection(models.Model):
     @api.multi
     @api.depends('object_id')
     def get_picking(self):
-        self.ensure_one()
-        self.picking = False
-        if self.object_id:
-            if self.object_id._name == 'stock.move':
-                self.picking = self.object_id.picking_id
-            elif self.object_id._name == 'stock.picking':
-                self.picking = self.object_id
-            elif self.object_id._name == 'stock.pack.operation':
-                self.picking = self.object_id.picking_id
+        for r in self:
+            r.picking = False
+            if r.object_id:
+                if r.object_id._name == 'stock.move':
+                    r.picking = r.object_id.picking_id
+                elif r.object_id._name == 'stock.picking':
+                    r.picking = r.object_id
+                elif r.object_id._name == 'stock.pack.operation':
+                    r.picking = r.object_id.picking_id
 
     @api.multi
     @api.depends('object_id')
     def get_lot(self):
-        self.ensure_one()
-        self.lot = False
-        if self.object_id:
-            if self.object_id._name == 'stock.pack.operation':
-                self.lot = self.object_id.lot_id
-            elif self.object_id._name == 'stock.move':
-                self.lot = self.object_id.lot_ids[:1]
-            elif self.object_id._name == 'stock.production.lot':
-                self.lot = self.object_id
+        for r in self:
+            r.lot = False
+            if r.object_id:
+                if r.object_id._name == 'stock.pack.operation':
+                    r.lot = r.object_id.lot_id
+                elif r.object_id._name == 'stock.move':
+                    r.lot = r.object_id.lot_ids[:1]
+                elif r.object_id._name == 'stock.production.lot':
+                    r.lot = r.object_id
 
     @api.multi
     @api.depends('object_id')
     def _get_product(self):
-        self.ensure_one()
-        """Overriden for getting the product from a stock move."""
-        super(QcInspection, self)._get_product()
-        if self.object_id:
-            if self.object_id._name == 'stock.move':
-                self.product = self.object_id.product_id
-            elif self.object_id._name == 'stock.pack.operation':
-                self.product = self.object_id.product_id
-            elif self.object_id._name == 'stock.production.lot':
-                self.product = self.object_id.product_id
+        for r in self:
+            """Overriden for getting the product from a stock move."""
+            super(QcInspection, self)._get_product()
+            if r.object_id:
+                if r.object_id._name == 'stock.move':
+                    r.product = r.object_id.product_id
+                elif r.object_id._name == 'stock.pack.operation':
+                    r.product = r.object_id.product_id
+                elif r.object_id._name == 'stock.production.lot':
+                    r.product = r.object_id.product_id
 
     @api.onchange('object_id')
     def onchange_object_id(self):
