@@ -1,28 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_project
+#	* mrp_project
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: manufacture (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 13:59+0000\n"
-"PO-Revision-Date: 2017-03-31 13:01+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovak (Slovakia) (http://www.transifex.com/oca/OCA-"
-"manufacture-8-0/language/sk_SK/)\n"
-"Language: sk_SK\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: \n"
 
 #. module: mrp_project
 #: code:addons/mrp_project/models/mrp_production.py:40
 #, python-format
-msgid ""
-"\n"
+msgid "\n"
 "        Manufacturing Order: %s\n"
 "        Product to Produce: [%s]%s\n"
 "        Quantity to Produce: %s\n"
@@ -34,7 +28,7 @@ msgstr ""
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "Analytic Account"
-msgstr "Analytický účet"
+msgstr ""
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_account_analytic_line
@@ -96,12 +90,14 @@ msgstr ""
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
+#: view:mrp.production:mrp_project.view_mrp_production_filter_project
 #: field:mrp.production,project_id:0
 msgid "Project"
 msgstr ""
 
 #. module: mrp_project
-#: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
+#: field:account.analytic.line,task_id:0
+#: field:hr.analytic.timesheet,task_id:0
 msgid "Project Task"
 msgstr ""
 
@@ -164,3 +160,4 @@ msgstr ""
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "group_analytic_account"
 msgstr ""
+
