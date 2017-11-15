@@ -10,10 +10,11 @@ from openerp.addons.quality_control.models.qc_trigger_line import\
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    @api.one
+    @api.multi
     @api.depends('qc_inspections')
     def _count_inspections(self):
-        self.created_inspections = len(self.qc_inspections)
+        for r in self:
+            r.created_inspections = len(r.qc_inspections)
 
     qc_inspections = fields.One2many(
         comodel_name='qc.inspection', inverse_name='production', copy=False,

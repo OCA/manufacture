@@ -37,10 +37,10 @@
             <field name="product" position="after">
                 <field name="production"/>
             </field>
-            <filter string="Product" position="after">
+            <group position="after">
                 <filter string="Production" domain="[]"
                         context="{'group_by': 'production'}"/>
-            </filter>
+            </group>
         </field>
     </record>
 
@@ -67,10 +67,10 @@
             <field name="product" position="after">
                 <field name="production"/>
             </field>
-            <filter string="Product" position="after">
+            <group position="inside">
                 <filter string="Production order" domain="[]"
                         context="{'group_by': 'production'}"/>
-            </filter>
+            </group>
         </field>
     </record>
 
