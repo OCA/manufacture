@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record model="ir.actions.report.xml" id="mrp.report_bom_structure">
+            <field name="report_file">mrp_industrial_design_bom/report/bom_structure_industrial_design.rml</field>
+            <field name="report_rml">mrp_industrial_design_bom/report/bom_structure_industrial_design.rml</field>
+        </record>
+        <record model="ir.ui.view" id="mrp_bom_form_view_inherit">
+            <field name="name">mrp.bom.form.inherit</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page/field/tree/field[@name='product_id']" position="before">
+                    <field name="bubble_number" />
+                </xpath>
+                <xpath expr="/form/notebook/page/field/tree/field[@name='date_stop']" position="after">
+                    <field name="refdes" />
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+

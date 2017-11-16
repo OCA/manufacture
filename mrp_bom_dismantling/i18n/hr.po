@@ -1,0 +1,212 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_dismantling
+# 
+# Translators:
+# Bole <bole@dajmi5.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 23:00+0000\n"
+"PO-Revision-Date: 2016-10-05 06:39+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
+"Language-Team: Croatian (http://www.transifex.com/oca/OCA-manufacture-9-0/language/hr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Sastavnica"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_config
+msgid "Bill of Materials"
+msgstr "Sastavnice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_bom_id
+msgid "Bom id"
+msgstr "ID sastavnice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Cancel"
+msgstr "Odustani"
+
+#. module: mrp_bom_dismantling
+#: code:addons/mrp_bom_dismantling/models/mrp_bom.py:49
+#, python-format
+msgid "Choose main compoment"
+msgstr "Odaberi glavnu komponentu"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_component_id
+msgid "Component id"
+msgstr "ID komponente"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Confirm"
+msgstr "Potvrdi"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.mrp_bom_form_view
+msgid "Create Manufacturing Order"
+msgstr "Kreiraj proizvodni nalog"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.mrp_bom_form_view
+msgid "Create dismantling BoM"
+msgstr "Kreiraj nalog za rastavljanje"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_uid
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_create_date
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantled_product_id
+msgid "Dismantled product"
+msgstr "Skinuti proizvod"
+
+#. module: mrp_bom_dismantling
+#: model:ir.actions.act_window,name:mrp_bom_dismantling.mrp_bom_dismantling_form_action
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling
+#: model:ir.ui.menu,name:mrp_bom_dismantling.menu_mrp_bom_dismantling
+msgid "Dismantling"
+msgstr "Rastavljanje"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_config_settings_dismantling_product_choice
+msgid "Dismantling BOM"
+msgstr "Sastavnica za rastavljanje"
+
+#. module: mrp_bom_dismantling
+#: sql_constraint:mrp.bom:0
+msgid "Dismantling BoM should have a dismantled product."
+msgstr "Sastavnica rastavljanja bi trebala imati Skinuti proizvod"
+
+#. module: mrp_bom_dismantling
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
+msgid "Dismantling product choice"
+msgstr "Odabir proizvoda za skidanje"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_display_name
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_display_name
+msgid "Display Name"
+msgstr "Naziv "
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_id
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice___last_update
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line___last_update
+msgid "Last Modified on"
+msgstr "Zadnje modificirano"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_uid
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji ažurirao"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_bom_dismantling_product_choice_write_date
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažuriranje"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_id
+msgid "Lot"
+msgstr "Lot"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_lot_required
+msgid "Lot required"
+msgstr "Lot obavezan"
+
+#. module: mrp_bom_dismantling
+#: selection:mrp.config.settings,dismantling_product_choice:0
+msgid "Main BOM product will be set randomly"
+msgstr "Glavna sastavnica će biti nasumično određena"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_move_id
+msgid "Move id"
+msgstr "ID Temeljnice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_produce_id
+msgid "Produce"
+msgstr "Proizvedi"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_product_product
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_product_id
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produce
+msgid "Product Produce"
+msgstr "Proizvedi proizvod"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_product_template
+msgid "Product Template"
+msgstr "Predložak proizvoda"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produce_move_lot_ids
+#: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_product_produce_wizard
+msgid "Products to produce lots"
+msgstr "Proizvodi za proizvodne lotove"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_stock_move
+msgid "Stock Move"
+msgstr "Skladišni prenos"
+
+#. module: mrp_bom_dismantling
+#: code:addons/mrp_bom_dismantling/wizards/dismantling_product_choice.py:34
+#, python-format
+msgid "This BoM does not have components."
+msgstr "Ova sastavnica nema elemenata."
+
+#. module: mrp_bom_dismantling
+#: selection:mrp.config.settings,dismantling_product_choice:0
+msgid "User have to choose which component to set as main BOM product"
+msgstr "Korisnik mora odlučiti koju komponentu će postaviti kao glavni proizvod sastavnice."
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom_dismantling_product_choice
+msgid "mrp.bom.dismantling_product_choice"
+msgstr "mrp.bom.dismantling_product_choice"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_config_settings
+msgid "mrp.config.settings"
+msgstr "mrp.config.settings"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model,name:mrp_bom_dismantling.model_mrp_product_produced_line
+msgid "mrp.product.produced.line"
+msgstr "mrp.product.produced.line"

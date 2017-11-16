@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Bill of Materials action override -->
+        <record id="mrp.template_open_bom" model="ir.actions.act_window">
+            <field name="domain">[('dismantling', '=', False)]</field>
+        </record>
+    </data>
+</openerp>

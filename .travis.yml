@@ -6,7 +6,7 @@ cache:
     - $HOME/.cache/pip
 
 python:
-  - "3.5"
+  - "2.7"
 
 addons:
   apt:
@@ -19,19 +19,21 @@ addons:
 
 env:
   global:
-  - VERSION="11.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - VERSION="9.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
   - TRANSIFEX_USER='transbot@odoo-community.org'
   - secure: cnskjzYSLkdeEoUDIhwkwqWsNKIj36JyoA/H7ByNLBphAm9Xrs/ZE8Y5AHxsXp8zQjIGnzw4fpEEO8oakmaueFTaAKlzWS2KH8NWxTjNHkIv/+TFwYsayWNG6O39021wSMQnTRDVERNlBdTwjCTBne81a50NqCeUIrtgcwycwzU=
   - WKHTMLTOPDF_VERSION="0.12.4"
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 
+virtualenv:
+  system_site_packages: true
 
 before_install:
-  - "export DISPLAY=:911.0"
+  - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
 install:

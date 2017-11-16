@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
@@ -34,14 +34,14 @@ class QcSampleLine(models.Model):
     max_qty = fields.Integer('To', required=True)
     samples_taken = fields.Integer('Samples taken', required=True)
 
-    @api.one
+    @api.multi
     @api.constrains('min_qty', 'max_qty')
     def _check_interval(self):
         if self.min_qty > self.max_qty:
             raise exceptions.Warning(
                 _('Min value cannot be bigger than max value.'))
 
-    @api.one
+    @api.multi
     @api.constrains('min_qty', 'max_qty', 'sample')
     def _check_ranges(self):
         domain = [('id', '!=', self.id),
