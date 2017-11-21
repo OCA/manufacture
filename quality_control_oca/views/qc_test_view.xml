@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
 
     <record model="ir.ui.view" id="qc_test_form_view">
         <field name="name">qc.test.form</field>
@@ -122,4 +122,4 @@
               groups="group_quality_control_manager"
               sequence="20" />
 
-</openerp>
+</odoo>
