@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data noupdate="1">
         <record model="qc.test" id="qc_test_1">
             <field name="name">Generic Test (demo)</field>
@@ -36,4 +36,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
