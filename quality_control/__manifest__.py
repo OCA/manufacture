@@ -3,19 +3,17 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Quality control",
-    "version": "9.0.1.3.0",
+    "version": "10.0.1.0.1",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Eficent, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.odoomrp.com",
+    "website": "https://github.com/OCA/manufacture/tree/10.0/quality_control",
     "depends": [
         "product",
     ],
