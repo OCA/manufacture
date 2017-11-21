@@ -3,10 +3,11 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import api, exceptions, fields, models, _
-import openerp.addons.decimal_precision as dp
+from odoo import api, exceptions, fields, models, _
+import odoo.addons.decimal_precision as dp
 
 
 class QcTest(models.Model):
@@ -21,9 +22,14 @@ class QcTest(models.Model):
         link_obj = self.env['res.request.link']
         return [(r.object, r.name) for r in link_obj.search([])]
 
+    @api.onchange('type')
+    def onchange_type(self):
+        if self.type == 'generic':
+            self.object_id = False
+
     active = fields.Boolean('Active', default=True)
     name = fields.Char(
-        string='Name', required=True, translate=True, select=True)
+        string='Name', required=True, translate=True)
     test_lines = fields.One2many(
         comodel_name='qc.test.question', inverse_name='test',
         string='Questions', copy=True)
@@ -34,7 +40,7 @@ class QcTest(models.Model):
     type = fields.Selection(
         [('generic', 'Generic'),
          ('related', 'Related')],
-        string='Type', select=True, required=True, default='generic')
+        string='Type', required=True, default='generic')
     category = fields.Many2one(
         comodel_name='qc.test.category', string='Category')
     company_id = fields.Many2one(
@@ -55,8 +61,8 @@ class QcTestQuestion(models.Model):
         if (self.type == 'qualitative' and self.ql_values and
                 not self.ql_values.filtered('ok')):
             raise exceptions.Warning(
-                _("There isn't no value marked as OK. You have to mark at "
-                  "least one."))
+                _("Question %s has no value marked as OK. "
+                  "You have to mark at least one.") % self.name_get()[0][1])
 
     @api.one
     @api.constrains('min_value', 'max_value')
@@ -69,7 +75,7 @@ class QcTestQuestion(models.Model):
         string='Sequence', required=True, default="10")
     test = fields.Many2one(comodel_name='qc.test', string='Test')
     name = fields.Char(
-        string='Name', required=True, select=True, translate=True)
+        string='Name', required=True, translate=True)
     type = fields.Selection(
         [('qualitative', 'Qualitative'),
          ('quantitative', 'Quantitative')], string='Type', required=True)
@@ -91,7 +97,7 @@ class QcTestQuestionValue(models.Model):
     test_line = fields.Many2one(
         comodel_name="qc.test.question", string="Test question")
     name = fields.Char(
-        string='Name', required=True, select=True, translate=True)
+        string='Name', required=True, translate=True)
     ok = fields.Boolean(
         string='Correct answer?',
         help="When this field is marked, the answer is considered correct.")
