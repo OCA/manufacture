@@ -3,9 +3,10 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import api, exceptions, fields, models, _
+from odoo import api, exceptions, fields, models, _
 
 
 class QcTestTemplateCategory(models.Model):
@@ -32,13 +33,13 @@ class QcTestTemplateCategory(models.Model):
                                    ('parent_id', '!=', False)])
             ids = list(set([x.parent_id.id for x in parents]))
             if not level:
-                raise exceptions.Warning(
-                    _('Error ! You can not create recursive categories.'))
+                raise exceptions.UserError(
+                    _('Error! You can not create recursive categories.'))
             level -= 1
 
     name = fields.Char('Name', required=True, translate=True)
     parent_id = fields.Many2one(
-        comodel_name='qc.test.category', string='Parent category', select=True)
+        comodel_name='qc.test.category', string='Parent category')
     complete_name = fields.Char(
         compute="_get_complete_name", string='Full name')
     child_ids = fields.One2many(
