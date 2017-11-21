@@ -3,10 +3,12 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import api, exceptions, fields, models, _
-import openerp.addons.decimal_precision as dp
+from odoo import api, exceptions, fields, models, _
+from odoo.tools import formatLang
+import odoo.addons.decimal_precision as dp
 
 
 class QcInspection(models.Model):
@@ -33,12 +35,12 @@ class QcInspection(models.Model):
             self.product = False
 
     name = fields.Char(
-        string='Inspection number', required=True, default='/', select=True,
+        string='Inspection number', required=True, default='/',
         readonly=True, states={'draft': [('readonly', False)]}, copy=False)
     date = fields.Datetime(
         string='Date', required=True, readonly=True, copy=False,
         default=fields.Datetime.now,
-        states={'draft': [('readonly', False)]}, select=True)
+        states={'draft': [('readonly', False)]})
     object_id = fields.Reference(
         string='Reference', selection=_links_get, readonly=True,
         states={'draft': [('readonly', False)]}, ondelete="set null")
@@ -47,7 +49,7 @@ class QcInspection(models.Model):
         help="Product associated with the inspection")
     qty = fields.Float(string="Quantity", default=1.0)
     test = fields.Many2one(
-        comodel_name='qc.test', string='Test', readonly=True, select=True)
+        comodel_name='qc.test', string='Test', readonly=True)
     inspection_lines = fields.One2many(
         comodel_name='qc.inspection.line', inverse_name='inspection_id',
         string='Inspection lines', readonly=True,
@@ -64,14 +66,15 @@ class QcInspection(models.Model):
          ('success', 'Quality success'),
          ('failed', 'Quality failed'),
          ('canceled', 'Canceled')],
-        string='State', readonly=True, default='draft')
+        string='State', readonly=True, default='draft',
+        track_visibility='onchange')
     success = fields.Boolean(
         compute="_success", string='Success',
         help='This field will be marked if all tests have succeeded.',
         store=True)
     auto_generated = fields.Boolean(
         string='Auto-generated', readonly=True, copy=False,
-        help='If an inspection is auto-generated, it can be canceled nor '
+        help='If an inspection is auto-generated, it can be canceled but not '
              'removed.')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', readonly=True,
@@ -85,17 +88,18 @@ class QcInspection(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].get('qc.inspection')
+            vals['name'] = self.env['ir.sequence'] \
+                .next_by_code('qc.inspection')
         return super(QcInspection, self).create(vals)
 
     @api.multi
     def unlink(self):
         for inspection in self:
             if inspection.auto_generated:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You cannot remove an auto-generated inspection."))
             if inspection.state != 'draft':
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You cannot remove an inspection that is not in draft "
                       "state."))
         return super(QcInspection, self).unlink()
@@ -108,7 +112,7 @@ class QcInspection(models.Model):
     def action_todo(self):
         for inspection in self:
             if not inspection.test:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You must first set the test to perform."))
         self.write({'state': 'ready'})
 
@@ -118,12 +122,12 @@ class QcInspection(models.Model):
             for line in inspection.inspection_lines:
                 if line.question_type == 'qualitative':
                     if not line.qualitative_value:
-                        raise exceptions.Warning(
+                        raise exceptions.UserError(
                             _("You should provide an answer for all "
                               "qualitative questions."))
                 else:
                     if not line.uom_id:
-                        raise exceptions.Warning(
+                        raise exceptions.UserError(
                             _("You should provide a unit of measure for "
                               "quantitative questions."))
             if inspection.success:
@@ -235,8 +239,8 @@ class QcInspectionLine(models.Model):
             if self.uom_id.id == self.test_uom_id.id:
                 amount = self.quantitative_value
             else:
-                amount = self.env['product.uom']._compute_qty(
-                    self.uom_id.id, self.quantitative_value,
+                amount = self.env['product.uom']._compute_quantity(
+                    self.quantitative_value,
                     self.test_uom_id.id)
             self.success = self.max_value >= amount >= self.min_value
 
@@ -248,7 +252,9 @@ class QcInspectionLine(models.Model):
             self.valid_values = ", ".join([x.name for x in
                                            self.possible_ql_values if x.ok])
         else:
-            self.valid_values = "%s-%s" % (self.min_value, self.max_value)
+            self.valid_values = "%s ~ %s" % (
+                formatLang(self.env, self.min_value),
+                formatLang(self.env, self.max_value))
             if self.env.ref("product.group_uom") in self.env.user.groups_id:
                 self.valid_values += " %s" % self.test_uom_id.name
 
