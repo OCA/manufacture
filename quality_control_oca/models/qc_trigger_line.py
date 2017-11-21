@@ -3,9 +3,10 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 def _filter_trigger_lines(trigger_lines):
