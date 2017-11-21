@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
     <record model="ir.ui.view" id="qc_inspection_form_view">
@@ -21,7 +27,7 @@
                             class="oe_highlight"
                             states="ready"
                             string="Confirm"
-                            icon="gtk-ok" />
+                            icon="fa-check" />
                     <button name="action_approve"
                             type="object"
                             states="waiting"
@@ -32,7 +38,7 @@
                             type="object"
                             attrs="{'invisible': [('state', 'not in', ['waiting', 'ready', 'failed', 'success'])]}"
                             string="Cancel"
-                            icon="gtk-cancel" />
+                            icon="fa-ban" />
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="draft,waiting,success"
@@ -80,6 +86,8 @@
                                            groups="product.group_uom"
                                            attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                                     <field name="test_uom_category" invisible="1"/>
+                                    <field name="min_value" invisible="1"/>
+                                    <field name="max_value" invisible="1"/>
                                     <field name="valid_values" />
                                     <field name="success" />
                                 </tree>
