@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * quality_control
+#	* quality_control
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Korean (https://www.transifex.com/oca/teams/23907/ko/)\n"
-"Language: ko\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -61,7 +56,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 #: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
 msgid "Cancel"
-msgstr "취소"
+msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
@@ -72,7 +67,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_uom_category
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category
 msgid "Category"
-msgstr "분류"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_child_ids
@@ -93,9 +88,7 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_test_uom_category
-msgid ""
-"Conversion between Units of Measure can only occur if they belong to the "
-"same category. The conversion will be made based on the ratios."
+msgid "Conversion between Units of Measure can only occur if they belong to the same category. The conversion will be made based on the ratios."
 msgstr ""
 
 #. module: quality_control
@@ -122,7 +115,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_create_uid
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_create_uid
 msgid "Created by"
-msgstr "작성자"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_create_date
@@ -137,12 +130,12 @@ msgstr "작성자"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_create_date
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_create_date
 msgid "Created on"
-msgstr "작성일"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
 msgid "Date"
-msgstr "날짜"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_display_name
@@ -158,7 +151,7 @@ msgstr "날짜"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_display_name
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_display_name
 msgid "Display Name"
-msgstr "표시 이름"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -219,7 +212,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_id
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
@@ -231,9 +224,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_category_line_partners
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_line_partners
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_template_line_partners
-msgid ""
-"If filled, the test will only be created when the action is done for one of "
-"the specified partners. If empty, the test will always be created."
+msgid "If filled, the test will only be created when the action is done for one of the specified partners. If empty, the test will always be created."
 msgstr ""
 
 #. module: quality_control
@@ -291,7 +282,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line___last_update
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line___last_update
 msgid "Last Modified on"
-msgstr "최근 수정"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_write_uid
@@ -306,7 +297,7 @@ msgstr "최근 수정"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_uid
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_uid
 msgid "Last Updated by"
-msgstr "최근 갱신한 사람"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_write_date
@@ -321,7 +312,7 @@ msgstr "최근 갱신한 사람"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_date
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_date
 msgid "Last Updated on"
-msgstr "최근 갱신 날짜"
+msgstr ""
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
@@ -362,7 +353,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_name
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_name
 msgid "Name"
-msgstr "이름"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_notes
@@ -530,8 +521,7 @@ msgstr ""
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test.py:73
 #, python-format
-msgid ""
-"Question '%s' is not valid: minimum value can't be higher than maximum value."
+msgid "Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
 
 #. module: quality_control
@@ -581,7 +571,7 @@ msgstr ""
 #. module: quality_control
 #: selection:qc.test,type:0
 msgid "Related"
-msgstr "관련됨"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_user
@@ -617,7 +607,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_sequence
 msgid "Sequence"
-msgstr "순서"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -719,7 +709,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_type
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_type
 msgid "Type"
-msgstr "유형"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_uom_id
@@ -772,31 +762,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:99
+#: code:addons/quality_control/models/qc_inspection.py:100
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:102
+#: code:addons/quality_control/models/qc_inspection.py:103
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:115
+#: code:addons/quality_control/models/qc_inspection.py:116
 #, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:130
+#: code:addons/quality_control/models/qc_inspection.py:131
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:125
+#: code:addons/quality_control/models/qc_inspection.py:126
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
@@ -804,7 +794,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
 msgid "or"
-msgstr "또는"
+msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_set_test
@@ -825,3 +815,4 @@ msgstr ""
 #: model:ir.model,name:quality_control.model_qc_trigger_product_template_line
 msgid "qc.trigger.product_template_line"
 msgstr ""
+
