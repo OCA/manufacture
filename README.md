@@ -24,6 +24,7 @@ addon | version | summary
 [mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 9.0.1.0.0 | Create Procurement Group On Manufacturing Order
 [mrp_production_request](mrp_production_request/) | 9.0.1.0.0 | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
 [mrp_sale_info](mrp_sale_info/) | 9.0.1.0.0 | Adds sale information to Manufacturing models
+[quality_control](quality_control/) | 9.0.1.3.0 | Quality control
 
 
 Unported addons
