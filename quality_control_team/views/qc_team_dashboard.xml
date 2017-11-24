@@ -31,24 +31,7 @@
                             </div>
 
                             <div class="container o_kanban_card_manage_pane o_invisible">
-                                <div class="row">
-                                    <!--<div class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_view">-->
-                                        <!--<div class="o_kanban_card_manage_title">-->
-                                            <!--<span>View</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_new">-->
-                                        <!--<div class="o_kanban_card_manage_title">-->
-                                            <!--<span>New</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_reports">-->
-                                        <!--<div class="o_kanban_card_manage_title">-->
-                                            <!--<span>Reports</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                </div>
-
+                                <div class="row"/>
                                 <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
                                     <div class="col-xs-8">
                                         <ul class="oe_kanban_colorpicker" data-field="color"/>
