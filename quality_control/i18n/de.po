@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 14:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"POT-Creation-Date: 2017-11-18 19:04+0000\n"
+"PO-Revision-Date: 2017-11-23 23:28+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgid "Draft"
 msgstr "Entwurf"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test_category.py:32
+#: code:addons/quality_control/models/qc_test_category.py:33
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr "Fehler! Sie dürfen keine rekursiven Kategorien anlegen."
