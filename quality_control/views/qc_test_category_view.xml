@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="qc_test_category_tree_view">
+        <field name="name">qc.test.category.tree</field>
+        <field name="model">qc.test.category</field>
+        <field name="arch" type="xml">
+            <tree string="Test categories" editable="bottom">
+                <field name="complete_name"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_qc_test_category">
+        <field name="name">Test categories</field>
+        <field name="res_model">qc.test.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Test categories"
+              parent="qc_menu_test_parent"
+              id="qc_test_category_menu"
+              action="action_qc_test_category"
+              groups="group_quality_control_manager"
+              sequence="10" />
+
+</odoo>
