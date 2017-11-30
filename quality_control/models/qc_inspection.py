@@ -7,6 +7,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, exceptions, fields, models, _
+from odoo.tools import formatLang
 import odoo.addons.decimal_precision as dp
 
 
@@ -249,7 +250,9 @@ class QcInspectionLine(models.Model):
             self.valid_values = ", ".join([x.name for x in
                                            self.possible_ql_values if x.ok])
         else:
-            self.valid_values = "%s-%s" % (self.min_value, self.max_value)
+            self.valid_values = "%s ~ %s" % (
+                formatLang(self.env, self.min_value),
+                formatLang(self.env, self.max_value))
             if self.env.ref("product.group_uom") in self.env.user.groups_id:
                 self.valid_values += " %s" % self.test_uom_id.name
 
