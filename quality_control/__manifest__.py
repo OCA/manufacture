@@ -8,14 +8,10 @@
 
 {
     "name": "Quality control",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Eficent, "
-              "Agile Business Group, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture/tree/10.0/quality_control",
     "depends": [
