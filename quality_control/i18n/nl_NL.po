@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 09:20+0000\n"
-"PO-Revision-Date: 2017-09-22 17:04+0000\n"
+"POT-Creation-Date: 2017-11-25 06:20+0000\n"
+"PO-Revision-Date: 2017-11-30 19:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #: field:qc.test,active:0 field:qc.test.category,active:0
 #: field:qc.trigger,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #. module: quality_control
 #: field:qc.inspection.line,possible_ql_values:0
@@ -159,7 +159,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test_category.py:32
+#: code:addons/quality_control/models/qc_test_category.py:33
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr ""
