@@ -86,6 +86,8 @@
                                            groups="product.group_uom"
                                            attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                                     <field name="test_uom_category" invisible="1"/>
+                                    <field name="min_value" invisible="1"/>
+                                    <field name="max_value" invisible="1"/>
                                     <field name="valid_values" />
                                     <field name="success" />
                                 </tree>

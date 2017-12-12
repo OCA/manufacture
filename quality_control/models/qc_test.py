@@ -61,8 +61,8 @@ class QcTestQuestion(models.Model):
         if (self.type == 'qualitative' and self.ql_values and
                 not self.ql_values.filtered('ok')):
             raise exceptions.Warning(
-                _("There isn't no value marked as OK. You have to mark at "
-                  "least one."))
+                _("Question %s has no value marked as OK. "
+                  "You have to mark at least one.") % self.name_get()[0][1])
 
     @api.one
     @api.constrains('min_value', 'max_value')
