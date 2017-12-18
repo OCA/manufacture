@@ -10,7 +10,7 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     unreserve_visible = fields.Boolean(
-        string='Inventory Unreserve Visible',
+        string='MO Unreserve Visible',
         compute='_compute_unreserve_visible',
         help='Technical field to check when we can unreserve',
     )
