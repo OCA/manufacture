@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ===================
@@ -14,7 +14,7 @@ Installation
 ============
 
 To install this module, you just need to select the module and insure
-yourself dependancies are available.
+yourself dependencies are available.
 
 
 
