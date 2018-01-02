@@ -33,8 +33,8 @@ class QcTestTemplateCategory(models.Model):
                                    ('parent_id', '!=', False)])
             ids = list(set([x.parent_id.id for x in parents]))
             if not level:
-                raise exceptions.Warning(
-                    _('Error ! You can not create recursive categories.'))
+                raise exceptions.UserError(
+                    _('Error! You can not create recursive categories.'))
             level -= 1
 
     name = fields.Char('Name', required=True, translate=True)

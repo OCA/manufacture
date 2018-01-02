@@ -537,7 +537,7 @@ msgstr ""
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test.py:64
 #, python-format
-msgid "Question %s has no value marked as OK. You have to mark at least one."
+msgid "Question '%s' has no value marked as OK. You have to mark at least one."
 msgstr ""
 
 #. module: quality_control

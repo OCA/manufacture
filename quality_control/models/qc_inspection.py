@@ -94,10 +94,10 @@ class QcInspection(models.Model):
     def unlink(self):
         for inspection in self:
             if inspection.auto_generated:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You cannot remove an auto-generated inspection."))
             if inspection.state != 'draft':
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You cannot remove an inspection that is not in draft "
                       "state."))
         return super(QcInspection, self).unlink()
@@ -110,7 +110,7 @@ class QcInspection(models.Model):
     def action_todo(self):
         for inspection in self:
             if not inspection.test:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You must first set the test to perform."))
         self.write({'state': 'ready'})
 
@@ -120,12 +120,12 @@ class QcInspection(models.Model):
             for line in inspection.inspection_lines:
                 if line.question_type == 'qualitative':
                     if not line.qualitative_value:
-                        raise exceptions.Warning(
+                        raise exceptions.UserError(
                             _("You should provide an answer for all "
                               "qualitative questions."))
                 else:
                     if not line.uom_id:
-                        raise exceptions.Warning(
+                        raise exceptions.UserError(
                             _("You should provide a unit of measure for "
                               "quantitative questions."))
             if inspection.success:
