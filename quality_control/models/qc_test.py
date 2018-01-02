@@ -60,16 +60,19 @@ class QcTestQuestion(models.Model):
     def _check_valid_answers(self):
         if (self.type == 'qualitative' and self.ql_values and
                 not self.ql_values.filtered('ok')):
-            raise exceptions.Warning(
-                _("Question %s has no value marked as OK. "
-                  "You have to mark at least one.") % self.name_get()[0][1])
+            raise exceptions.ValidationError(
+                _("Question '%s' is not valid: "
+                  "you have to mark at least one value as OK.")
+                % self.name_get()[0][1])
 
     @api.one
     @api.constrains('min_value', 'max_value')
     def _check_valid_range(self):
         if self.type == 'quantitative' and self.min_value > self.max_value:
-            raise exceptions.Warning(
-                _("Minimum value can't be higher than maximum value."))
+            raise exceptions.ValidationError(
+                _("Question '%s' is not valid: "
+                  "minimum value can't be higher than maximum value.")
+                % self.name_get()[0][1])
 
     sequence = fields.Integer(
         string='Sequence', required=True, default="10")

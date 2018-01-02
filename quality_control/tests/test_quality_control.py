@@ -84,7 +84,7 @@ class TestQualityControl(TransactionCase):
         inspection2 = self.inspection1.copy()
         inspection2.action_draft()
         inspection2.write({'test': False})
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             inspection2.action_todo()
         inspection3 = self.inspection1.copy()
         inspection3.write({
@@ -94,7 +94,7 @@ class TestQualityControl(TransactionCase):
         for line in inspection3.inspection_lines:
             if line.question_type == 'quantitative':
                 line.quantitative_value = 15.0
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             inspection3.action_confirm()
         inspection4 = self.inspection1.copy()
         inspection4.write({
@@ -109,7 +109,7 @@ class TestQualityControl(TransactionCase):
                 })
             elif line.question_type == 'qualitative':
                 line.qualitative_value = self.val_ok
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             inspection4.action_confirm()
 
     def test_categories(self):
@@ -169,7 +169,7 @@ class TestQualityControl(TransactionCase):
                             self.qn_question.max_value) * 0.5, 2))
 
     def test_qc_inspection_not_draft_unlink(self):
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             self.inspection1.unlink()
         inspection2 = self.inspection1.copy()
         inspection2.action_cancel()
@@ -183,7 +183,7 @@ class TestQualityControl(TransactionCase):
         inspection2.write({
             'auto_generated': True,
         })
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             inspection2.unlink()
 
     def test_qc_inspection_product(self):
