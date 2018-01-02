@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
+"POT-Creation-Date: 2018-01-15 01:44+0000\n"
+"PO-Revision-Date: 2018-01-15 01:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
 msgid "Abstract line for defining triggers"
-msgstr ""
+msgstr "Riga base per la definizione dei trigger"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
@@ -50,12 +50,12 @@ msgstr "Approva"
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_auto_generated
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Auto-generated"
-msgstr ""
+msgstr "Autogenerata"
 
 #. module: quality_control
 #: model:qc.test.question.value,name:quality_control.qc_test_question_value_2
 msgid "Bad"
-msgstr ""
+msgstr "Cattivo"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -77,7 +77,7 @@ msgstr "Categoria"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_child_ids
 msgid "Child categories"
-msgstr ""
+msgstr "Categorie figlie"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_company_id
@@ -97,12 +97,15 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"Conversioni tra diverse unità di misura sono permesse solo se appartengono "
+"alla stessa categoria. La conversione sarà effettuata utilizzando i rapporti"
+" di conversione delle unità di misura."
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Correct"
-msgstr ""
+msgstr "Corretta"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_ok
@@ -158,7 +161,7 @@ msgstr "Data"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_display_name
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome Visualizzato"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -169,41 +172,41 @@ msgstr "Bozza"
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test_category.py:37
 #, python-format
-msgid "Error ! You can not create recursive categories."
-msgstr ""
+msgid "Error! You can not create recursive categories."
+msgstr "Errore! Non puoi creare categorie ricorsive."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "External notes"
-msgstr ""
+msgstr "Note esterne"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_complete_name
 msgid "Full name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: quality_control
 #: selection:qc.test,type:0
 #: model:qc.test.category,name:quality_control.qc_test_template_category_generic
 msgid "Generic"
-msgstr ""
+msgstr "Generico"
 
 #. module: quality_control
 #: model:qc.test,name:quality_control.qc_test_1
 msgid "Generic Test (demo)"
-msgstr ""
+msgstr "Test generico (demo)"
 
 #. module: quality_control
 #: model:qc.test.question.value,name:quality_control.qc_test_question_value_1
 msgid "Good"
-msgstr ""
+msgstr "Buono"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Group by..."
-msgstr ""
+msgstr "Raggruppa per..."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_id
@@ -225,7 +228,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
 msgid ""
 "If an inspection is auto-generated, it can be canceled but not removed."
-msgstr ""
+msgstr "Se un'ispezione è autogenerata, può essere cancellata ma non rimossa."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
@@ -236,19 +239,21 @@ msgid ""
 "If filled, the test will only be created when the action is done for one of "
 "the specified partners. If empty, the test will always be created."
 msgstr ""
+"Se riempito, il test verrà creato solo quando l'azione viene eseguita per "
+"uno dei partner specificati. Se vuoto, il test verrà creato sempre."
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Incorrect"
-msgstr ""
+msgstr "Non corretto"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_inspection_id
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 msgid "Inspection"
-msgstr ""
+msgstr "Ispezione"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_line
@@ -257,12 +262,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_tree_view
 msgid "Inspection lines"
-msgstr ""
+msgstr "Righe di ispezione"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_name
 msgid "Inspection number"
-msgstr ""
+msgstr "Numero ispezione"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection
@@ -307,7 +312,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_uid
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Ultima modifica di"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_write_date
@@ -322,45 +327,39 @@ msgstr "Ultimo aggiornamento da"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_date
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Ultima modifica il"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Mark todo"
-msgstr ""
+msgstr "Segna come 'da fare'"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_max_value
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_max_value
 msgid "Max"
-msgstr ""
+msgstr "Massimo"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_max_value
 msgid "Maximum valid value for a quantitative question."
-msgstr ""
+msgstr "Massimo valore valido per una domanda quantitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_min_value
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_min_value
 msgid "Min"
-msgstr ""
+msgstr "Minimo"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_min_value
 msgid "Minimum valid value for a quantitative question."
-msgstr ""
-
-#. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:72
-#, python-format
-msgid "Minimum value can't be higher than maximum value."
-msgstr ""
+msgstr "Minimo valore valido per una domanda quantitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_name
@@ -381,12 +380,12 @@ msgstr "Note"
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_1
 msgid "Overall quality"
-msgstr ""
+msgstr "Qualità generale"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_parent_id
 msgid "Parent category"
-msgstr ""
+msgstr "Categoria superiore"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_partners
@@ -394,17 +393,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_partners
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_partners
 msgid "Partners"
-msgstr "Partner"
+msgstr "Partners"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
 msgid "Possible values for qualitative questions."
-msgstr ""
+msgstr "Valori possibili per domande qualitative."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_fill_correct_values
 msgid "Pre-fill with correct values"
-msgstr ""
+msgstr "Inizializza con valori corretti"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_product
@@ -414,12 +413,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Product"
-msgstr "Prodotto "
+msgstr "Prodotto"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
 msgid "Product Category"
-msgstr "Categoria Prodotto"
+msgstr "Categoria prodotto"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
@@ -430,33 +429,33 @@ msgstr "Template prodotto"
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_product
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_product
 msgid "Product associated with the inspection"
-msgstr ""
+msgstr "Prodotto associato alla domanda"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_product_category
 msgid "Product category"
-msgstr ""
+msgstr "Categoria prodotto"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_product_template
 msgid "Product template"
-msgstr ""
+msgstr "Template prodotto"
 
 #. module: quality_control
 #: selection:qc.inspection.line,question_type:0
 #: selection:qc.test.question,type:0
 msgid "Qualitative"
-msgstr ""
+msgstr "Qualitativa"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_qualitative_value
 msgid "Qualitative value"
-msgstr ""
+msgstr "Valore qualitativo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_ql_values
 msgid "Qualitative values"
-msgstr ""
+msgstr "Valori qualitativi"
 
 #. module: quality_control
 #: model:ir.module.category,name:quality_control.module_category_quality_control
@@ -479,18 +478,18 @@ msgstr "Riga ispezione controllo qualità"
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question
 msgid "Quality control question"
-msgstr ""
+msgstr "Domanda di controllo qualità"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test
 msgid "Quality control test"
-msgstr ""
+msgstr "Test di controllo qualità"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger
 #: model:ir.ui.view,arch_db:quality_control.qc_trigger_form_view
 msgid "Quality control trigger"
-msgstr ""
+msgstr "Trigger di controllo qualità"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_product_category_qc_triggers
@@ -500,28 +499,28 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.product_template_qc_form_view
 #: model:ir.ui.view,arch_db:quality_control.qc_trigger_tree_view
 msgid "Quality control triggers"
-msgstr ""
+msgstr "Triggers di controllo qualità"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Quality failed"
-msgstr ""
+msgstr "Controllo di qualità fallito"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Quality success"
-msgstr ""
+msgstr "Controllo di qualità superato"
 
 #. module: quality_control
 #: selection:qc.inspection.line,question_type:0
 #: selection:qc.test.question,type:0
 msgid "Quantitative"
-msgstr ""
+msgstr "Quantitativa"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Quantitative value"
-msgstr ""
+msgstr "Valore quantitativo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_qty
@@ -532,29 +531,46 @@ msgstr "Quantità"
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_name
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 msgid "Question"
+msgstr "Domanda"
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_test.py:73
+#, python-format
+msgid ""
+"Question '%s' is not valid: minimum value can't be higher than maximum "
+"value."
 msgstr ""
+"La domanda '%s' non è valida: il valore minimo non può essere maggiore del "
+"valore massimo."
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_test.py:64
+#, python-format
+msgid "Question '%s' is not valid: you have to mark at least one value as OK."
+msgstr ""
+"La domanda '%s' non è valida: è necessario segnare almeno un valore come OK."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_question_type
 msgid "Question type"
-msgstr ""
+msgstr "Tipo di domanda"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_test_question_form_view
 msgid "Question value"
-msgstr ""
+msgstr "Valore domanda"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_test_lines
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 #: model:ir.ui.view,arch_db:quality_control.qc_test_form_view
 msgid "Questions"
-msgstr ""
+msgstr "Domande"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Ready"
-msgstr ""
+msgstr "Pronta"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_object_id
@@ -565,17 +581,17 @@ msgstr "Riferimento"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_object_id
 msgid "Reference object"
-msgstr ""
+msgstr "Oggetto riferimento"
 
 #. module: quality_control
 #: model:qc.test.category,name:quality_control.qc_test_template_category_referenced
 msgid "Referenced"
-msgstr ""
+msgstr "Referenziato"
 
 #. module: quality_control
 #: selection:qc.test,type:0
 msgid "Related"
-msgstr ""
+msgstr "Collegato"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_user
@@ -585,28 +601,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_user
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Responsible"
-msgstr ""
+msgstr "Responsabile"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Search inspection"
-msgstr ""
+msgstr "Cerca ispezione"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 msgid "Search inspection line"
-msgstr ""
+msgstr "Cerca riga di ispezione"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection_set_test
 #: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
 msgid "Select test"
-msgstr ""
+msgstr "Seleziona test"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_selectable
 msgid "Selectable by partner"
-msgstr ""
+msgstr "Selezionabile dai partner"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_sequence
@@ -616,7 +632,7 @@ msgstr "Sequenza"
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Set test"
-msgstr ""
+msgstr "Imposta test"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_2
@@ -639,7 +655,7 @@ msgstr "Riuscito"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_success
 msgid "Success?"
-msgstr ""
+msgstr "Superato?"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_test
@@ -652,31 +668,31 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_test_form_view
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_uom_id
 msgid "Test UoM"
-msgstr ""
+msgstr "Test UdM"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_test_category
 #: model:ir.ui.menu,name:quality_control.qc_test_category_menu
 #: model:ir.ui.view,arch_db:quality_control.qc_test_category_tree_view
 msgid "Test categories"
-msgstr ""
+msgstr "Categorie dei test"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_category
 msgid "Test category"
-msgstr ""
+msgstr "Categoria dei test"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_line
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_test_line
 #: model:ir.ui.view,arch_db:quality_control.qc_test_question_form_view
 msgid "Test question"
-msgstr ""
+msgstr "Domanda del test"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_test
@@ -684,28 +700,22 @@ msgstr ""
 #: model:ir.ui.menu,name:quality_control.qc_test_menu
 #: model:ir.ui.view,arch_db:quality_control.qc_test_tree_view
 msgid "Tests"
-msgstr ""
-
-#. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:64
-#, python-format
-msgid "There isn't no value marked as OK. You have to mark at least one."
-msgstr ""
+msgstr "Test"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_category_active
 msgid "This field allows you to hide the category without removing it."
-msgstr ""
+msgstr "Questo campo ti permette di nascondere la categoria senza rimuoverla."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_success
 msgid "This field will be marked if all tests have succeeded."
-msgstr ""
+msgstr "Questo campo sarà contrassegnato se tutti i test sono superati."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_partner_selectable
 msgid "This technical field is to allow to filter by partner in triggers"
-msgstr ""
+msgstr "Questo campo permette di filtrare i trigger per partner"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_trigger
@@ -713,7 +723,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_trigger
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_trigger
 msgid "Trigger"
-msgstr ""
+msgstr "Trigger"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_type
@@ -729,12 +739,12 @@ msgstr "UdM"
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_test_uom_id
 msgid "UoM for minimum and maximum values for a quantitative question."
-msgstr ""
+msgstr "UdM per i valori massimo e minimo delle domande quantitative."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_uom_id
 msgid "UoM of the inspection value for a quantitative question."
-msgstr ""
+msgstr "UdM del valore dell'ispezione per una domanda quantitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_uom_id
@@ -749,57 +759,58 @@ msgstr "Utente"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_valid_values
 msgid "Valid values"
-msgstr ""
+msgstr "Valori calidi"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_qualitative_value
 msgid "Value of the result for a qualitative question."
-msgstr ""
+msgstr "Valore del risultato per una domanda qualitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Value of the result for a quantitative question."
-msgstr ""
+msgstr "Valore del risultato per una domanda quantitativa."
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
 msgid "Waiting supervisor approval"
-msgstr ""
+msgstr "In attesa dell'approvazione di un supervisore"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_question_value_ok
 msgid "When this field is marked, the answer is considered correct."
 msgstr ""
+"Quando questo campo è contrassegnato, la risposta è considerata corretta."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:97
+#: code:addons/quality_control/models/qc_inspection.py:99
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
-msgstr ""
+msgstr "Non puoi rimuovere un'ispezione autogenerata."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:100
+#: code:addons/quality_control/models/qc_inspection.py:102
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
-msgstr ""
+msgstr "Non puoi rimuovere un'ispezione che non è in stato bozza."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:113
+#: code:addons/quality_control/models/qc_inspection.py:115
 #, python-format
 msgid "You must first set the test to perform."
-msgstr ""
+msgstr "È necessario impostare il test da eseguire."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:128
+#: code:addons/quality_control/models/qc_inspection.py:130
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
-msgstr ""
+msgstr "È necessaria un'unità di misura per le domande quantitative."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:123
+#: code:addons/quality_control/models/qc_inspection.py:125
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
-msgstr ""
+msgstr "È necessario fornire una risposta per tutte le domande quantitative."
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
@@ -809,19 +820,19 @@ msgstr "o"
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_set_test
 msgid "qc.inspection.set.test"
-msgstr ""
+msgstr "qc.inspection.set.test"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_category_line
 msgid "qc.trigger.product_category_line"
-msgstr ""
+msgstr "qc.trigger.product_category_line"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_line
 msgid "qc.trigger.product_line"
-msgstr ""
+msgstr "qc.trigger.product_line"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_template_line
 msgid "qc.trigger.product_template_line"
-msgstr ""
+msgstr "qc.trigger.product_template_line"
