@@ -66,7 +66,8 @@ class QcInspection(models.Model):
          ('success', 'Quality success'),
          ('failed', 'Quality failed'),
          ('canceled', 'Canceled')],
-        string='State', readonly=True, default='draft')
+        string='State', readonly=True, default='draft',
+        track_visibility='onchange')
     success = fields.Boolean(
         compute="_success", string='Success',
         help='This field will be marked if all tests have succeeded.',
