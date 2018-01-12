@@ -8,7 +8,9 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.multi
-    def _is_service_buy_make_to_order(self):
+    def _service_need_procurement(self):
+        """Override to choose when service products should generate
+        procurements"""
         for product in self:
             if (product.type == 'service' and len(product.route_ids) == 2 and
                 self.env.ref('stock.route_warehouse0_mto').id in
@@ -21,6 +23,6 @@ class ProductProduct(models.Model):
     @api.multi
     def _need_procurement(self):
         for product in self:
-            if product._is_service_buy_make_to_order():
+            if product.type == 'service' and self._service_need_procurement():
                 return True
         return super(ProductProduct, self)._need_procurement()

@@ -9,7 +9,7 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def _is_procurement_service(self):
-        return self.product_id._is_service_buy_make_to_order() or False
+        return self.product_id._service_need_procurement() or False
 
     @api.multi
     def _assign(self):

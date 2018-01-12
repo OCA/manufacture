@@ -13,7 +13,7 @@ class SaleOrderLine(models.Model):
         # after ordinary procurements: in this way we keep their
         # characteristics in the resulting purchase order
         self = self.sorted(
-            key=lambda line: line.product_id._is_service_buy_make_to_order())
+            key=lambda line: line.product_id._service_need_procurement())
         return super(SaleOrderLine, self)._action_procurement_create()
 
     @api.model
@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
         rule_obj = self.env['procurement.rule']
         vals = super(SaleOrderLine, self).\
             _prepare_order_line_procurement(group_id=group_id)
-        if self.product_id._is_service_buy_make_to_order():
+        if self.product_id._service_need_procurement():
             cond = [('warehouse_id', '=', self.order_id.warehouse_id.id),
                     ('route_id', '=',
                      self.env.ref('purchase.route_warehouse0_buy').id),
