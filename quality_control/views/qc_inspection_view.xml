@@ -27,7 +27,7 @@
                             class="oe_highlight"
                             states="ready"
                             string="Confirm"
-                            icon="gtk-ok" />
+                            icon="fa-check" />
                     <button name="action_approve"
                             type="object"
                             states="waiting"
@@ -38,7 +38,7 @@
                             type="object"
                             attrs="{'invisible': [('state', 'not in', ['waiting', 'ready', 'failed', 'success'])]}"
                             string="Cancel"
-                            icon="gtk-cancel" />
+                            icon="fa-ban" />
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="draft,waiting,success"
