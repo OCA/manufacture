@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
+"POT-Creation-Date: 2017-12-02 07:02+0000\n"
 "PO-Revision-Date: 2015-12-28 09:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: English (United States) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en_US/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: mrp_production_real_cost
 #: model:ir.model,name:mrp_production_real_cost.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Bill of Material"
 
 #. module: mrp_production_real_cost
 #: code:addons/mrp_production_real_cost/models/mrp_production_workcenter_line.py:75
