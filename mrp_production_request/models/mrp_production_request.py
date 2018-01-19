@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
-import openerp.addons.decimal_precision as dp
-from openerp.exceptions import UserError
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import UserError
 
 
 class MrpProductionRequest(models.Model):
     _name = "mrp.production.request"
     _description = "Manufacturing Request"
     _inherit = "mail.thread"
+    _order = "id DESC"
 
     @api.model
     def _company_get(self):
@@ -52,9 +53,10 @@ class MrpProductionRequest(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
-        self.product_uom = self.product_id.uom_id
+        self.product_uom_id = self.product_id.uom_id
         self.bom_id = self.env['mrp.bom']._bom_find(
-            product_id=self.product_id.id, properties=[])
+            product=self.product_id, company_id=self.company_id.id,
+            picking_type=self.picking_type_id)
 
     @api.model
     def _get_mo_valid_states(self):
@@ -122,26 +124,26 @@ class MrpProductionRequest(models.Model):
         related='product_id.product_tmpl_id')
     product_qty = fields.Float(
         string="Required Quantity", required=True, track_visibility='onchange',
-        digits_compute=dp.get_precision('Product Unit of Measure'),
+        digits=dp.get_precision('Product Unit of Measure'),
         readonly=True, states={'draft': [('readonly', False)]})
-    product_uom = fields.Many2one(
+    product_uom_id = fields.Many2one(
         comodel_name='product.uom', string='Unit of Measure',
         readonly=True, states={'draft': [('readonly', False)]},
         domain="[('category_id', '=', category_uom_id)]")
-    category_uom_id = fields.Many2one(related="product_uom.category_id")
+    category_uom_id = fields.Many2one(related="product_uom_id.category_id")
     manufactured_qty = fields.Float(
         string="Quantity in Manufacturing Orders",
         compute=_compute_manufactured_qty, store=True, readonly=True,
-        digits_compute=dp.get_precision('Product Unit of Measure'),
+        digits=dp.get_precision('Product Unit of Measure'),
         help="Sum of the quantities in Manufacturing Orders (in any state).")
     done_qty = fields.Float(
         string="Quantity Done", store=True, readonly=True,
         compute=_compute_manufactured_qty,
-        digits_compute=dp.get_precision('Product Unit of Measure'),
+        digits=dp.get_precision('Product Unit of Measure'),
         help="Sum of the quantities in all done Manufacturing Orders.")
     pending_qty = fields.Float(
         string="Pending Quantity", compute=_compute_manufactured_qty,
-        store=True, digits_compute=dp.get_precision('Product Unit of Measure'),
+        store=True, digits=dp.get_precision('Product Unit of Measure'),
         readonly=True,
         help="Quantity pending to add to Manufacturing Orders "
              "to fulfill the Manufacturing Request requirement.")
@@ -159,12 +161,17 @@ class MrpProductionRequest(models.Model):
     location_src_id = fields.Many2one(
         comodel_name='stock.location', string='Raw Materials Location',
         default=lambda self: self.env['stock.location'].browse(
-            self.env['mrp.production']._src_id_default()),
+            self.env['mrp.production']._get_default_location_src_id()),
         required=True, readonly=True, states={'draft': [('readonly', False)]})
     location_dest_id = fields.Many2one(
         comodel_name='stock.location', string='Finished Products Location',
         default=lambda self: self.env['stock.location'].browse(
-            self.env['mrp.production']._dest_id_default()),
+            self.env['mrp.production']._get_default_location_dest_id()),
+        required=True, readonly=True, states={'draft': [('readonly', False)]})
+    picking_type_id = fields.Many2one(
+        comodel_name='stock.picking.type', string='Picking Type',
+        default=lambda self: self.env['stock.picking.type'].browse(
+            self.env['mrp.production']._get_default_picking_type()),
         required=True, readonly=True, states={'draft': [('readonly', False)]})
 
     @api.multi
