@@ -1,0 +1,9 @@
+---Fields in module 'mrp_production_request'---
+mrp_production_request / mrp.production.request   / picking_type_id (many2one)    : NEW relation: stock.picking.type, required: required, req_default: function
+# NOTHING TO DO
+
+mrp_production_request / mrp.production.request   / product_uom (many2one)        : DEL relation: product.uom
+mrp_production_request / mrp.production.request   / product_uom_id (many2one)     : NEW relation: product.uom
+# Done. Renamed field: pre-migration script.
+
+---XML records in module 'mrp_production_request'---
