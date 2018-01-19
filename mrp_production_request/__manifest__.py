@@ -6,7 +6,7 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
                "step to Manufacturing Orders for better manufacture "
                "planification.",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Eficent,"
