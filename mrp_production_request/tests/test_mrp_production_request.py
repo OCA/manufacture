@@ -2,9 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
-from openerp import fields
-from openerp.exceptions import UserError
+from odoo.tests.common import TransactionCase
+from odoo import fields
+from odoo.exceptions import UserError
 
 
 class TestMrpProductionRequest(TransactionCase):
@@ -61,7 +61,6 @@ class TestMrpProductionRequest(TransactionCase):
             ('mrp_production_request_id', '=', request.id)])
         self.assertTrue(mo, "No MO created.")
         self.assertEqual(request.pending_qty, 0.0)
-        mo.action_confirm()
         request.button_done()
 
     def test_cancellation_from_request(self):

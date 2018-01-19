@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 
 
 class ProcurementOrder(models.Model):
@@ -12,31 +12,32 @@ class ProcurementOrder(models.Model):
         comodel_name="mrp.production.request", string="Manufacturing Request",
         copy=False)
 
-    @api.model
-    def _prepare_mrp_production_request(self, procurement):
-        data = self._prepare_mo_vals(procurement)
-        data['procurement_id'] = procurement.id
+    @api.multi
+    def _prepare_mrp_production_request(self):
+        self.ensure_one()
+        data = self._prepare_mo_vals(self._get_matching_bom())
+        data['procurement_id'] = self.id
         data['state'] = 'to_approve'
         return data
 
-    @api.model
-    def _run(self, procurement):
-        if (procurement.rule_id and
-                procurement.rule_id.action == 'manufacture' and
-                procurement.product_id.mrp_production_request):
-            if not procurement.check_bom_exists():
-                procurement.message_post(
+    @api.multi
+    def _run(self):
+        self.ensure_one()
+        if (self.rule_id and
+                self.rule_id.action == 'manufacture' and
+                self.product_id.mrp_production_request):
+            if not self._get_matching_bom():
+                self.message_post(
                     body=_("No BoM exists for this product!"))
                 return False
             if not self.mrp_production_request_id:
-                request_data = self._prepare_mrp_production_request(
-                    procurement)
+                request_data = self._prepare_mrp_production_request()
                 req = self.env['mrp.production.request'].create(request_data)
-                procurement.message_post(body=_(
+                self.message_post(body=_(
                     "Manufacturing Request created"))
-                procurement.mrp_production_request_id = req.id
+                self.mrp_production_request_id = req.id
             return True
-        return super(ProcurementOrder, self)._run(procurement)
+        return super(ProcurementOrder, self)._run()
 
     @api.multi
     def propagate_cancels(self):

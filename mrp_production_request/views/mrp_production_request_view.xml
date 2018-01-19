@@ -53,7 +53,7 @@
                         <field name="done_qty"/>
                         <field name="manufactured_qty"/>
                         <field name="pending_qty"/>
-                        <field name="product_uom" groups="product.group_uom"/>
+                        <field name="product_uom_id" groups="product.group_uom"/>
                         <field name="category_uom_id" invisible="1"/>
                     </group>
                 </group>
@@ -80,6 +80,7 @@
                             <group>
                                 <field name="location_src_id"/>
                                 <field name="location_dest_id"/>
+                                <field name="picking_type_id"/>
                                 <field name="date_planned"/>
                             </group>
                         </group>
