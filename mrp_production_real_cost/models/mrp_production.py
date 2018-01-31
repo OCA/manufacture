@@ -17,8 +17,12 @@ class MrpProduction(models.Model):
             cost_lines = production.analytic_line_ids.filtered(
                 lambda l: l.amount < 0)
             production.real_cost = -sum(cost_lines.mapped('amount'))
-            production.unit_real_cost = (
-                production.real_cost / production.product_qty)
+            something_done = production.move_created_ids2.filtered(
+                lambda x: x.state == 'done')
+            qty = (something_done and
+                   sum(something_done.mapped('product_uom_qty')) or
+                   production.product_qty)
+            production.unit_real_cost = (production.real_cost / qty)
 
     analytic_line_ids = fields.One2many(
         comodel_name="account.analytic.line", inverse_name="mrp_production_id",
