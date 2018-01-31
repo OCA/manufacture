@@ -4,10 +4,9 @@
 
 {
     "name": "MRP Disable force availability button",
-    "version": "9.0.1.0.0",
+    "version": "8.0.1.0.0",
     "summary": "Disable force availability button in manufacturing orders.",
-    "author": "Eficent"
-              "Odoo Community Association (OCA),",
+    "author": "Eficent,Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "category": "Manufacturing",
     "license": "AGPL-3",
