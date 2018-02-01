@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="action_server_mrp_production_mass_assign"
+            model="ir.actions.server">
+        <field name="name">Reserve MO</field>
+        <field name="condition">True</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_mrp_production" />
+        <field name="state">code</field>
+        <field name="code">self.action_mass_assign(cr, uid, context.get('active_ids', []), context=context)</field>
+    </record>
+
+    <record model="ir.values" id="action_mrp_production_mass_assign">
+        <field name="name">mrp.production.action - mass assign</field>
+        <field name="action_id"
+               ref="action_server_mrp_production_mass_assign" />
+        <field name="value" eval="'ir.actions.server,' + str(ref('action_server_mrp_production_mass_assign'))" />
+        <field name="key">action</field>
+        <field name="model_id" ref="model_mrp_production" />
+        <field name="model">mrp.production</field>
+        <field name="key2">client_action_multi</field>
+    </record>
+
+</odoo>
