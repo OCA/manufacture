@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Bills of Materials form view -->
+    <record id="mrp_bom_equivalences_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='operation_id']" position="after">
+                    <field name="use_equivalences"/>
+                    <field name="nonequivalent_product_ids" attrs="{'readonly': [('use_equivalences', '=', False)]}" context="{'nonequivalent_product_id': product_id}" widget="many2many_tags"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>
