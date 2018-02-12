@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_mrpbomstructure_location"
-              inherit_id="mrp.report_mrpbomstructure">
+              inherit_id="mrp.mrp_bom_structure_report">
         <xpath expr="//thead/tr" position="inside">
             <th>Location</th>
         </xpath>

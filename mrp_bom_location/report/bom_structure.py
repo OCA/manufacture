@@ -1,47 +1,64 @@
-# -*- coding: utf-8 -*-
 # © 2017 Eficent Business and IT Consulting Services S.L.
 #        (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import osv
-from openerp.report import report_sxw
+from odoo import api, models
 
 
-class bom_structure(report_sxw.rml_parse):
-    def __init__(self, cr, uid, name, context):
-        super(bom_structure, self).__init__(cr, uid, name, context=context)
-        self.localcontext.update({
-            'get_children': self.get_children,
-        })
+class BomStructureReport(models.AbstractModel):
+    _name = 'report.mrp.mrp_bom_structure_report'
 
-    def get_children(self, record, level=0):
+    @staticmethod
+    def _get_child_vals(record, level, qty, uom):
+        child = {
+            'pname': record.product_id.name_get()[0][1],
+            'pcode': record.product_id.default_code,
+            'puom': record.product_uom_id,
+            'uname': record.product_uom_id.name,
+            'level': level,
+            'code': record.bom_id.code,
+            'location_name': record.location_id.complete_name or '',
+        }
+        qty_per_bom = record.bom_id.product_qty
+        if uom:
+            if uom != record.bom_id.product_uom_id:
+                qty = uom._compute_quantity(qty, record.bom_id.product_uom_id)
+            child['pqty'] = (record.product_qty * qty) / qty_per_bom
+        else:
+            # for the first case, the ponderation is right
+            child['pqty'] = (record.product_qty * qty)
+        return child
+
+    def get_children(self, records, level=0):
         result = []
 
-        def _get_rec(record, level, qty=1.0):
-            for l in record:
-                res = {}
-                res['pname'] = l.product_id.name_get()[0][1]
-                res['pcode'] = l.product_id.default_code
-                res['pqty'] = l.product_qty * qty
-                res['uname'] = l.product_uom.name
-                res['level'] = level
-                res['code'] = l.bom_id.code
-                res['location_name'] = l.location_id.complete_name or ''
-                result.append(res)
+        def _get_children_recursive(records, level, qty=1.0, uom=None):
+            for l in records:
+                child = self._get_child_vals(l, level, qty, uom)
+                result.append(child)
                 if l.child_line_ids:
                     if level < 6:
                         level += 1
-                    _get_rec(l.child_line_ids, level, qty=res['pqty'])
+                    _get_children_recursive(
+                        l.child_line_ids,
+                        level,
+                        qty=child['pqty'],
+                        uom=child['puom']
+                    )
                     if level > 0 and level < 6:
                         level -= 1
             return result
 
-        children = _get_rec(record, level)
+        children = _get_children_recursive(records, level)
 
         return children
 
-
-class report_mrpbomstructure_location(osv.AbstractModel):
-    _inherit = 'report.mrp.report_mrpbomstructure'
-    _template = 'mrp.report_mrpbomstructure'
-    _wrapped_report_class = bom_structure
+    @api.multi
+    def get_report_values(self, docids, data=None):
+        return {
+            'doc_ids': docids,
+            'doc_model': 'mrp.bom',
+            'docs': self.env['mrp.bom'].browse(docids),
+            'get_children': self.get_children,
+            'data': data,
+        }
