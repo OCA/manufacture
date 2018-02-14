@@ -14,7 +14,7 @@ class MrpBom(models.Model):
         domain=[('usage', '=', 'internal')])
 
 
-class MrpBom(models.Model):
+class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     location_id = fields.Many2one(
