@@ -29,14 +29,14 @@ class bom_structure(report_sxw.rml_parse):
                 res['location_name'] = l.location_id.complete_name or ''
                 result.append(res)
                 if l.child_line_ids:
-                    if level<6:
+                    if level < 6:
                         level += 1
                     _get_rec(l.child_line_ids, level, qty=res['pqty'])
-                    if level>0 and level<6:
+                    if level > 0 and level < 6:
                         level -= 1
             return result
 
-        children = _get_rec(object,level)
+        children = _get_rec(object, level)
 
         return children
 
