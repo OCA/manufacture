@@ -16,6 +16,7 @@ addon | version | summary
 --- | --- | ---
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 9.0.1.0.0 | MRP BOM Component Menu
 [mrp_bom_dismantling](mrp_bom_dismantling/) | 9.0.1.0.1 | Ability to create a dismantling BOM by reversing a BOM.
+[mrp_bom_location](mrp_bom_location/) | 9.0.1.0.0 | Adds location field to Bill of Materials and its components.
 [mrp_bom_note](mrp_bom_note/) | 9.0.1.0.0 | Notes in Bill of Materials
 [mrp_bom_product_details](mrp_bom_product_details/) | 9.0.1.0.0 | This module adds product price and stock to bom view
 [mrp_disable_force_availability_button](mrp_disable_force_availability_button/) | 9.0.1.0.0 | Disable force availability button in manufacturing orders.
