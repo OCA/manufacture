@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -10,6 +9,7 @@ class TestMrpMtoWithStock(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(TestMrpMtoWithStock, self).setUp(*args, **kwargs)
         self.production_model = self.env['mrp.production']
+        self.procurement_model = self.env['procurement.group']
         self.bom_model = self.env['mrp.bom']
         self.stock_location_stock = self.env.ref('stock.stock_location_stock')
         self.manufacture_route = self.env.ref(
@@ -67,20 +67,12 @@ class TestMrpMtoWithStock(TransactionCase):
         self.production.action_assign()
 
         self.assertEqual(self.production.availability, 'partially_available')
-
         self.assertEquals(self.subproduct1.virtual_available, 0)
-
-        procurement_subproduct1 = self.env['procurement.order'].search(
-            [('product_id', '=', self.subproduct1.id),
-             ('group_id', '=', self.production.procurement_group_id.id)])
-
-        self.assertEquals(len(procurement_subproduct1), 1)
-        self.assertEquals(procurement_subproduct1.product_qty, 3)
-
-        production_sub1 = procurement_subproduct1.production_id
+        production_sub1 = self.production_model.search(
+            [('origin', 'ilike', self.production.name)])
         self.assertEqual(production_sub1.state, 'confirmed')
+        self.assertEquals(len(production_sub1), 1)
         self.assertEqual(production_sub1.product_qty, 3)
-
         self._update_product_qty(self.subproduct1, self.stock_location_stock,
                                  7)
 
@@ -88,20 +80,18 @@ class TestMrpMtoWithStock(TransactionCase):
         self.production2 = self.production_model.create(
             self._get_production_vals())
         self.production2.action_assign()
-        procurement_subproduct1_2 = self.env['procurement.order'].search(
-            [('product_id', '=', self.subproduct1.id),
-             ('group_id', '=', self.production2.procurement_group_id.id)])
-        self.assertEquals(len(procurement_subproduct1_2), 0)
+        p = self.production_model.search(
+            [('origin', 'ilike', self.production2.name)])
+        self.assertEquals(len(p), 0)
         self.assertEquals(self.production2.availability, 'assigned')
         self.production2.do_unreserve()
-
         self.assertEquals(self.subproduct1.virtual_available, 0)
 
         self.production.action_assign()
         # We check if first MO is able to assign it self even if it has
         # previously generate procurements, it would not be the case in the
         # other mode (without mrp_mto_mts_reservable_stock on warehouse)
-        self.assertEquals(self.production.availability, 'assigned')
+        self.assertEquals(self.production.availability, 'partially_available')
 
         self.assertEquals(self.subproduct1.virtual_available, 0)
 
@@ -126,33 +116,39 @@ class TestMrpMtoWithStock(TransactionCase):
         # Create MO and check it create sub assemblie MO.
         self.production.action_assign()
         self.assertEqual(self.production.state, 'confirmed')
+        mo = self.production_model.search(
+            [('origin', 'ilike', self.production.name)])
+        self.assertEqual(mo.product_qty, 3)
 
-        procurement_sub1 = self.env['procurement.order'].search(
-            [('product_id', '=', self.subproduct1.id),
-             ('move_dest_id', 'in', self.production.move_raw_ids.ids)])
-        self.assertEquals(len(procurement_sub1), 1)
+        mo.action_assign()
+        self.assertEqual(mo.availability, 'assigned')
+        wizard_obj = self.env['mrp.product.produce']
+        default_fields = ['lot_id', 'product_id', 'product_uom_id',
+                          'product_tracking', 'consume_line_ids',
+                          'production_id', 'product_qty', 'serial']
+        wizard_vals = wizard_obj.with_context(active_id=mo.id).\
+            default_get(default_fields)
+        wizard = wizard_obj.create(wizard_vals)
+        wizard.do_produce()
+        self.assertEqual(len(mo), 1)
+        mo.button_mark_done()
+        self.assertEqual(mo.availability, 'assigned')
+        self.assertEquals(self.subproduct1.qty_available, 5)
 
-        procurement_sub2 = self.env['procurement.order'].search(
-            [('product_id', '=', self.subproduct2.id),
-             ('move_dest_id', 'in', self.production.move_raw_ids.ids)])
-        self.assertEquals(len(procurement_sub2), 0)
-
-        production_sub1 = procurement_sub1.production_id
-        self.assertEqual(production_sub1.product_qty, 3)
-        production_sub1.action_assign()
-        self.assertEqual(production_sub1.availability, 'assigned')
+        self.production.action_assign()
+        self.assertEqual(self.production.state, 'confirmed')
 
         wizard_obj = self.env['mrp.product.produce']
         default_fields = ['lot_id', 'product_id', 'product_uom_id',
                           'product_tracking', 'consume_line_ids',
                           'production_id', 'product_qty', 'serial']
-        wizard_vals = wizard_obj.with_context(active_id=production_sub1.id).\
+        wizard_vals = wizard_obj.with_context(active_id=self.production.id).\
             default_get(default_fields)
 
         wizard = wizard_obj.create(wizard_vals)
         wizard.do_produce()
-        self.assertTrue(production_sub1.check_to_done)
-        self.assertEquals(self.subproduct1.qty_available, 2)
-        production_sub1.button_mark_done()
-        self.assertEquals(self.subproduct1.qty_available, 5)
-        self.assertEqual(self.production.availability, 'assigned')
+
+        self.assertTrue(self.production.check_to_done)
+        self.production.button_mark_done()
+        self.assertEqual(self.production.state, 'done')
+        self.assertEquals(self.subproduct2.qty_available, 2)
