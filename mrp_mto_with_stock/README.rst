@@ -29,6 +29,7 @@ To configure this module, you need to:
    standard behavior.
 
 If you want to use the second mode, based on forecast quantity
+
 #. Go to the warehouse you want to follow this behaviour.
 #. In the view form go to the tab *Warehouse Configuration* and set the 
    *MRP MTO with forecast stock*. You still need to configure the products
@@ -44,7 +45,7 @@ To use this module, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/129/10.0
+   :target: https://runbot.odoo-community.org/runbot/129/11.0
 
 Bug Tracker
 ===========
@@ -68,6 +69,7 @@ Contributors
 * John Walsh <John.Walsh@interclean.com>
 * Lois Rilo <lois.rilo@eficent.com>
 * Florian da Costa <florian.dacosta@akretion.com>
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
 Maintainer
 ----------
