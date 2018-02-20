@@ -4,7 +4,7 @@
 {
     "name": "MRP BOM Location",
     "summary": "Adds location field to Bill of Materials and its components.",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Manufacture",
     "website": "https://odoo-community.org/",
     "author": "Eficent, Odoo Community Association (OCA)",
