@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 03:54+0000\n"
-"PO-Revision-Date: 2017-11-24 03:54+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
+"POT-Creation-Date: 2018-02-15 03:55+0000\n"
+"PO-Revision-Date: 2018-02-15 03:55+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,11 +150,6 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_taxes_id
-msgid "Customer Taxes"
-msgstr "Impuestos de cliente"
-
-#. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
 msgid "Date"
 msgstr "Fecha"
@@ -192,11 +186,6 @@ msgstr "Borrador"
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr "Error. No puede crear categorías recursivas."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_expense_id
-msgid "Expense Account"
-msgstr "Cuenta de gastos"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
@@ -289,11 +278,6 @@ msgid ""
 msgstr ""
 "Si está relleno, el test solo sera creado cuando se ejecute la acción para "
 "uno de las empresas especificadas. Si está vacío, el test se creará siempre."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_income_id
-msgid "Income Account"
-msgstr "Cuenta de ingresos"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -781,24 +765,6 @@ msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr "No hay un valor marcado como correcto. Tiene que marcar al menos uno."
 
 #. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_expense_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"expenses for the current product."
-msgstr ""
-"Esta cuenta se utilizará en facturas, en lugar de la cuenta por defecto, "
-"para valorar gastos de este producto."
-
-#. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_income_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"sales for the current product."
-msgstr ""
-"Esta cuenta se utilizará en facturas, en lugar de la cuenta por defecto, "
-"para valorar los ingresos de este producto."
-
-#. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_category_active
 msgid "This field allows you to hide the category without removing it."
 msgstr "Este campo le permite ocultar la categoría sin eliminarla."
@@ -883,11 +849,6 @@ msgstr "Valor del resultado para una pregunta cualitativa."
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Value of the result for a quantitative question."
 msgstr "Valor del resultado para una pregunta cuantitativa."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_supplier_taxes_id
-msgid "Vendor Taxes"
-msgstr "Impuestos de proveedor"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0

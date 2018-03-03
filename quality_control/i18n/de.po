@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 03:54+0000\n"
-"PO-Revision-Date: 2017-11-24 03:54+0000\n"
+"POT-Creation-Date: 2018-02-15 03:55+0000\n"
+"PO-Revision-Date: 2018-02-15 03:55+0000\n"
 "Last-Translator: Akim Juillerat <akim.juillerat@camptocamp.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -151,11 +151,6 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_taxes_id
-msgid "Customer Taxes"
-msgstr "Ausgangssteuern"
-
-#. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
 msgid "Date"
 msgstr "Datum"
@@ -192,11 +187,6 @@ msgstr "Entwurf"
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr "Fehler! Sie dürfen keine rekursiven Kategorien anlegen."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_expense_id
-msgid "Expense Account"
-msgstr "Kostenkonto"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
@@ -290,11 +280,6 @@ msgid ""
 msgstr ""
 "Wenn ausgefüllt, wird der Test nur bei einem Vorgang zu angegebenem Partner "
 "angelegt. Wenn leer, wird der Test unbedingt erzeugt."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_income_id
-msgid "Income Account"
-msgstr "Erlöskonto"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -782,24 +767,6 @@ msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr "Es ist kein Wer mit OK gekennzeichnet. Mind. einer muß gewählt sein."
 
 #. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_expense_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"expenses for the current product."
-msgstr ""
-"Dieses Konto wird zur Abrechnung verwendet, anstelle des Vorgabe-"
-"Aufwandskontos dieses Produkts."
-
-#. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_income_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"sales for the current product."
-msgstr ""
-"Dieses Konto wird zur Abrechnung verwendet, anstelle des Vorgabe-Erlöskontos"
-" dieses Produkts."
-
-#. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_category_active
 msgid "This field allows you to hide the category without removing it."
 msgstr ""
@@ -885,11 +852,6 @@ msgstr "Ergebniswert bei qualitativen Fragen."
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Value of the result for a quantitative question."
 msgstr "Ergebniswert bei quantitativen Fragen."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_supplier_taxes_id
-msgid "Vendor Taxes"
-msgstr "Eingangssteuer"
 
 #. module: quality_control
 #: selection:qc.inspection,state:0

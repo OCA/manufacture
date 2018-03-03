@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 03:54+0000\n"
-"PO-Revision-Date: 2017-11-24 03:54+0000\n"
+"POT-Creation-Date: 2018-02-15 03:55+0000\n"
+"PO-Revision-Date: 2018-02-15 03:55+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -150,11 +150,6 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_taxes_id
-msgid "Customer Taxes"
-msgstr "Prodajni davki"
-
-#. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
 msgid "Date"
 msgstr "Datum"
@@ -191,11 +186,6 @@ msgstr "Osnutek"
 #, python-format
 msgid "Error ! You can not create recursive categories."
 msgstr "Napaka! Rekurzivnih kategorij ne morete ustvariti."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_expense_id
-msgid "Expense Account"
-msgstr "Konto izdatkov"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
@@ -288,11 +278,6 @@ msgid ""
 msgstr ""
 "Če označeno, se test ustvari le, ko je ukrep za enega izmed določenih "
 "partnerjev opravljen. Če prazno, se test vedno ustvari."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_income_id
-msgid "Income Account"
-msgstr "Konto prihodkov"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -780,24 +765,6 @@ msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr "Nobena vrednost ni označena kot V REDU. Označiti morate vsaj eno."
 
 #. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_expense_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"expenses for the current product."
-msgstr ""
-"Konto za račune namesto privzetega za vrednotenje stroškov trenutnega "
-"proizvoda."
-
-#. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_income_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"sales for the current product."
-msgstr ""
-"Konto za račune namesto privzetega za vrednotenje prodaje trenutnega "
-"proizvoda."
-
-#. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_category_active
 msgid "This field allows you to hide the category without removing it."
 msgstr "To polje omogoča skrivanje kategorije brez brisanja."
@@ -880,11 +847,6 @@ msgstr "Vrednost rezultata pri kvalitativnem vprašanju."
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Value of the result for a quantitative question."
 msgstr "Vrednost rezultata pri kvantitativnem vprašanju."
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_supplier_taxes_id
-msgid "Vendor Taxes"
-msgstr ""
 
 #. module: quality_control
 #: selection:qc.inspection,state:0
