@@ -53,6 +53,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Bima Wijaya <bimajatiwijaya@gmail.com>
+* Agung Rachmatullah <agung.rachmatullah@ymail.com>
 
 Maintainer
 ----------
