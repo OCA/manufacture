@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-02-12 03:48+0000\n"
+"PO-Revision-Date: 2018-02-12 03:48+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,18 +22,18 @@ msgstr ""
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
 msgid "MRP MTO with forecast stock"
-msgstr ""
+msgstr "Proizvodni MTO sa predviđenom zalihom"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_template_mrp_mts_mto_location_ids
 msgid "Manufacturing MTO/MTS Locations"
-msgstr ""
+msgstr "Proizvodne MTO/MTS lokacije"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Proizvodni nalog"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_product_template
@@ -43,25 +44,25 @@ msgstr "Predložak proizvoda"
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_product_template
 msgid "Subproduct 1"
-msgstr ""
+msgstr "Podproizvod 1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_1_product_template
 msgid "Subproduct 1-1"
-msgstr ""
+msgstr "Podproizvod 1-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 msgid "Subproduct 2"
-msgstr ""
+msgstr "Podproizvod 2"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_1_product_template
 msgid "Subproduct 2-1"
-msgstr ""
+msgstr "Podproizvod 2-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1
@@ -75,7 +76,7 @@ msgstr ""
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "TODO"
-msgstr ""
+msgstr "ZA NAPRAVITI"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1
@@ -90,11 +91,13 @@ msgid ""
 "These manufacturing locations will create procurements when there is no "
 "stock availale in the source location."
 msgstr ""
+"Ove proizvodne lokacije će kreirati nabavu kada nema dovoljno zalihe na "
+"izvorišnim skladišnim lokacijama."
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Skladište"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,help:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty

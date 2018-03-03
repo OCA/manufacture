@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
+"POT-Creation-Date: 2018-02-12 03:48+0000\n"
+"PO-Revision-Date: 2018-02-12 03:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "产品"
 #. module: product_quick_bom
 #: model:ir.model,name:product_quick_bom.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "产品模板"
 
 #. module: product_quick_bom
 #: code:addons/product_quick_bom/models/bom.py:14

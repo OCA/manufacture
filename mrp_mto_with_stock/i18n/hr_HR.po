@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Bole <bole@dajmi5.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"POT-Creation-Date: 2018-02-12 03:48+0000\n"
+"PO-Revision-Date: 2018-02-12 03:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
 "Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/hr_HR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +38,7 @@ msgstr "Proizvodni nalog"
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Predložak proizvoda"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
