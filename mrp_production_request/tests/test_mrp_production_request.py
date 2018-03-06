@@ -51,9 +51,7 @@ class TestMrpProductionRequest(TransactionCase):
         request.button_to_approve()
         request.button_approved()
         self.assertEqual(request.pending_qty, 4.0)
-        wiz = self.wiz_model.create({
-            'mrp_production_request_id': request.id,
-        })
+        wiz = self.wiz_model.with_context(active_ids=request.ids).create({})
         wiz.compute_product_line_ids()
         wiz.mo_qty = 4.0
         wiz.create_mo()
@@ -68,9 +66,7 @@ class TestMrpProductionRequest(TransactionCase):
         request and not from manufacturing order."""
         proc = self.create_procurement('TEST/02', self.product)
         request = proc.mrp_production_request_id
-        wiz = self.wiz_model.create({
-            'mrp_production_request_id': request.id,
-        })
+        wiz = self.wiz_model.with_context(active_ids=request.ids).create({})
         wiz.mo_qty = 4.0
         wiz.create_mo()
         with self.assertRaises(UserError):
