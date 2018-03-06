@@ -2,8 +2,9 @@
 # Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
+from odoo.exceptions import UserError
 
 
 class MrpProductionRequestCreateMo(models.TransientModel):
@@ -58,6 +59,17 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         comodel_name="mrp.production.request.create.mo.line",
         string="Products needed",
         inverse_name="mrp_production_request_create_mo_id", readonly=True)
+
+    @api.model
+    def default_get(self, fields):
+        rec = super(MrpProductionRequestCreateMo, self).default_get(fields)
+        active_ids = self._context.get('active_ids')
+        if not active_ids:
+            raise UserError(_(
+                "Programming error: wizard action executed without "
+                "active_ids in context."))
+        rec['mrp_production_request_id'] = active_ids[0]
+        return rec
 
     def _prepare_product_line(self, pl):
         return {
