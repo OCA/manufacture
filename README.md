@@ -14,6 +14,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [mrp_auto_assign](mrp_auto_assign/) | 10.0.1.0.0 | Make MO automatically reserve raw material moves at creation
+[mrp_bom_location](mrp_bom_location/) | 10.0.1.0.0 | Adds location field to Bill of Materials and its components.
 [mrp_bom_note](mrp_bom_note/) | 10.0.1.0.0 | Notes in Bill of Materials
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.0 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
