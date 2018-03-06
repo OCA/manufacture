@@ -21,7 +21,6 @@
                         string="Approve" type="object" class="oe_highlight"
                         groups="mrp_production_request.group_mrp_production_request_manager"/>
                 <button name="%(mrp_production_request_create_mo_action)d"
-                        context="{'default_mrp_production_request_id':active_id}"
                         states="approved"
                         string="Create Manufacturing Order" type="action"/>
                 <button name="button_done" states="approved"
