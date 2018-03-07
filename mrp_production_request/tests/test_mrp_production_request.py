@@ -4,10 +4,11 @@
 
 from openerp.tests.common import TransactionCase
 from openerp import fields
-from openerp.exceptions import UserError
+from openerp.exceptions import Warning as UserError
 
 
 class TestMrpProductionRequest(TransactionCase):
+
     def setUp(self, *args, **kwargs):
         super(TestMrpProductionRequest, self).setUp(*args, **kwargs)
         self.production_model = self.env['mrp.production']

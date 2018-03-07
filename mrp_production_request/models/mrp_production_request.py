@@ -4,7 +4,7 @@
 
 from openerp import api, fields, models, _
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import UserError
+from openerp.exceptions import Warning as UserError
 
 
 class MrpProductionRequest(models.Model):
@@ -15,7 +15,7 @@ class MrpProductionRequest(models.Model):
     @api.model
     def _company_get(self):
         company_id = self.env['res.company']._company_default_get(self._name)
-        return self.env['res.company'].browse(company_id.id)
+        return self.env['res.company'].browse(company_id)
 
     @api.model
     def _get_default_requested_by(self):
