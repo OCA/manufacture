@@ -133,7 +133,8 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_raise_errors(self):
         """Tests user errors raising properly."""
-        proc_no_bom = self.create_procurement_no_bom('TEST/05', self.test_product)
+        proc_no_bom = self.create_procurement_no_bom(
+            'TEST/05', self.test_product)
         proc_no_bom.run()
         self.assertEqual(proc_no_bom.state, 'exception')
         proc = self.create_procurement('TEST/05', self.product)
