@@ -60,6 +60,7 @@ class TestMrpProductionRequest(TransactionCase):
             "product_uom": product.uom_id.id,
             "warehouse_id": self.env.ref("stock.warehouse0").id,
             "location_id": self.env.ref("stock.stock_location_stock").id,
+            "rule_id": self.mrp_rule.id,
             "route_ids": [
                 (4, self.env.ref("mrp.route_warehouse0_manufacture").id, 0)]
         }
@@ -134,10 +135,12 @@ class TestMrpProductionRequest(TransactionCase):
         """Tests user errors raising properly."""
         proc_no_bom = self.create_procurement_no_bom('TEST/05', self.test_product)
 
-        self.env["procurement.order"]._run(proc_no_bom)
+        # self.env["procurement.order"]._run(proc_no_bom)
+        proc_no_bom.run()
 
         self.assertEqual(proc_no_bom.state, 'exception')
         proc = self.create_procurement('TEST/05', self.product)
+        proc.run()
         request = proc.mrp_production_request_id
         request.button_to_approve()
         proc.write({'state': 'done'})
