@@ -17,6 +17,9 @@ class ProcurementOrder(models.Model):
         data = self._prepare_mo_vals(procurement)
         data['procurement_id'] = procurement.id
         data['state'] = 'to_approve'
+        data.pop("move_prod_id", None)
+        data.pop("product_uos", None)
+        data.pop("product_uos_qty", None)
         return data
 
     @api.model
