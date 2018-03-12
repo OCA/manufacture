@@ -134,10 +134,7 @@ class TestMrpProductionRequest(TransactionCase):
     def test_raise_errors(self):
         """Tests user errors raising properly."""
         proc_no_bom = self.create_procurement_no_bom('TEST/05', self.test_product)
-
-        # self.env["procurement.order"]._run(proc_no_bom)
         proc_no_bom.run()
-
         self.assertEqual(proc_no_bom.state, 'exception')
         proc = self.create_procurement('TEST/05', self.product)
         proc.run()
@@ -152,20 +149,8 @@ class TestMrpProductionRequest(TransactionCase):
     def test_cancellation_from_proc(self):
         """Tests cancelation from procurement."""
         proc = self.create_procurement('TEST/03', self.product)
-
-        self.env["procurement.order"]._run(proc)
-
-        mrp_production_requests = \
-            self.env['mrp.production.request'].sudo().search([
-                ('procurement_id', '=', proc.id)])
-        if mrp_production_requests and not self.env.context.get(
-                'from_mrp_production_request'):
-            self.assertEqual(proc.state, "MASUK")
-        else:
-            self.assertEqual(proc.state, "GA MASUK")
-
+        proc.run()
         request = proc.mrp_production_request_id
         self.assertNotEqual(request.state, 'cancel')
         proc.cancel()
-        self.assertEqual(proc.state, "TEST")
         self.assertEqual(request.state, 'cancel')

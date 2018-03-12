@@ -38,18 +38,17 @@ class ProcurementOrder(models.Model):
             return True
         return super(ProcurementOrder, self)._run(procurement)
 
-    @api.multi
-    def propagate_cancels(self):
-        result = super(ProcurementOrder, self).propagate_cancels()
-        for procurement in self:
-            mrp_production_requests = \
-                self.env['mrp.production.request'].sudo().search([
-                    ('procurement_id', '=', procurement.id)])
-            if mrp_production_requests and not self.env.context.get(
-                    'from_mrp_production_request'):
-                mrp_production_requests.sudo().button_cancel()
-                for mr in mrp_production_requests:
-                    mr.sudo().message_post(
-                        body=_("Related procurement has been cancelled."))
-            procurement.write({'mrp_production_request_id': None})
+    @api.model
+    def propagate_cancel(self, procurement):
+        result = super(ProcurementOrder, self).propagate_cancel(procurement)
+        mrp_production_requests = \
+            self.env['mrp.production.request'].sudo().search([
+                ('procurement_id', '=', procurement.id)])
+        if mrp_production_requests and not self.env.context.get(
+                'from_mrp_production_request'):
+            mrp_production_requests.sudo().button_cancel()
+            for mr in mrp_production_requests:
+                mr.sudo().message_post(
+                    body=_("Related procurement has been cancelled."))
+        procurement.write({'mrp_production_request_id': None})
         return result
