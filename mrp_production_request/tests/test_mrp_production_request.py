@@ -11,41 +11,66 @@ class TestMrpProductionRequest(TransactionCase):
 
     def setUp(self, *args, **kwargs):
         super(TestMrpProductionRequest, self).setUp(*args, **kwargs)
-        self.production_model = self.env['mrp.production']
-        self.request_model = self.env['mrp.production.request']
-        self.wiz_model = self.env['mrp.production.request.create.mo']
-        self.bom_model = self.env['mrp.bom']
+        self.production_model = self.env["mrp.production"]
+        self.request_model = self.env["mrp.production.request"]
+        self.wiz_model = self.env["mrp.production.request.create.mo"]
+        self.bom_model = self.env["mrp.bom"]
+        obj_proc_rule = self.env["procurement.rule"]
 
-        self.product = self.env.ref('product.product_product_3')
+        self.product = self.env.ref("product.product_product_3")
         self.product.mrp_production_request = True
 
-        self.test_product = self.env['product.product'].create({
-            'name': 'Test Product without BoM',
-            'mrp_production_request': True,
+        self.randon_bom = self.bom_model.search([], limit=1)
+
+        self.mrp_rule = obj_proc_rule.search(
+            [("action", "=", "manufacture")])[0]
+
+        self.test_product = self.env["product.product"].create({
+            "name": "Test Product without BoM",
+            "mrp_production_request": True,
         })
 
-        self.test_user = self.env['res.users'].create({
-            'name': 'John',
-            'login': 'test',
+        self.test_user = self.env["res.users"].create({
+            "name": "John",
+            "login": "test",
         })
 
     def create_procurement(self, name, product):
         values = {
-            'name': name,
-            'date_planned': fields.Datetime.now(),
-            'product_id': product.id,
-            'product_qty': 4.0,
-            'product_uom': product.uom_id.id,
-            'warehouse_id': self.env.ref('stock.warehouse0').id,
-            'location_id': self.env.ref('stock.stock_location_stock').id,
-            'route_ids': [
-                (4, self.env.ref('mrp.route_warehouse0_manufacture').id, 0)],
+            "name": name,
+            "date_planned": fields.Datetime.now(),
+            "product_id": product.id,
+            "product_qty": 4.0,
+            "product_uom": product.uom_id.id,
+            "warehouse_id": self.env.ref("stock.warehouse0").id,
+            "location_id": self.env.ref("stock.stock_location_stock").id,
+            "route_ids": [
+                (4, self.env.ref("mrp.route_warehouse0_manufacture").id, 0)],
+            "rule_id": self.mrp_rule.id,
+            "bom_id": self.randon_bom.id
         }
-        return self.env['procurement.order'].create(values)
+        return self.env["procurement.order"].create(values)
+
+    def create_procurement_no_bom(self, name, product):
+        values = {
+            "name": name,
+            "date_planned": fields.Datetime.now(),
+            "product_id": product.id,
+            "product_qty": 4.0,
+            "product_uom": product.uom_id.id,
+            "warehouse_id": self.env.ref("stock.warehouse0").id,
+            "location_id": self.env.ref("stock.stock_location_stock").id,
+            "route_ids": [
+                (4, self.env.ref("mrp.route_warehouse0_manufacture").id, 0)]
+        }
+        return self.env["procurement.order"].create(values)
 
     def test_manufacture_request(self):
         """Tests manufacture request workflow."""
-        proc = self.create_procurement('TEST/01', self.product)
+        proc = self.create_procurement("TEST/01", self.product)
+
+        self.env["procurement.order"]._run(proc)
+
         request = proc.mrp_production_request_id
         request.button_to_approve()
         request.button_draft()
@@ -53,13 +78,13 @@ class TestMrpProductionRequest(TransactionCase):
         request.button_approved()
         self.assertEqual(request.pending_qty, 4.0)
         wiz = self.wiz_model.create({
-            'mrp_production_request_id': request.id,
+            "mrp_production_request_id": request.id,
         })
         wiz.compute_product_line_ids()
         wiz.mo_qty = 4.0
         wiz.create_mo()
         mo = self.production_model.search([
-            ('mrp_production_request_id', '=', request.id)])
+            ("mrp_production_request_id", "=", request.id)])
         self.assertTrue(mo, "No MO created.")
         self.assertEqual(request.pending_qty, 0.0)
         mo.action_confirm()
@@ -69,6 +94,9 @@ class TestMrpProductionRequest(TransactionCase):
         """Tests propagation of cancel to procurements from manufacturing
         request and not from manufacturing order."""
         proc = self.create_procurement('TEST/02', self.product)
+
+        self.env["procurement.order"]._run(proc)
+
         request = proc.mrp_production_request_id
         wiz = self.wiz_model.create({
             'mrp_production_request_id': request.id,
@@ -84,22 +112,13 @@ class TestMrpProductionRequest(TransactionCase):
         request.button_cancel()
         self.assertEqual(proc.state, 'cancel')
 
-    def test_cancellation_from_proc(self):
-        """Tests cancelation from procurement."""
-        proc = self.create_procurement('TEST/03', self.product)
-        request = proc.mrp_production_request_id
-        self.assertNotEqual(request.state, 'cancel')
-        proc.cancel()
-        self.assertEqual(request.state, 'cancel')
-
     def test_assignation(self):
         """Tests assignation of manufacturing requests."""
-        randon_bom_id = self.bom_model.search([], limit=1).id
         request = self.request_model.create({
             'assigned_to': self.test_user.id,
             'product_id': self.product.id,
             'product_qty': 5.0,
-            'bom_id': randon_bom_id,
+            'bom_id': self.randon_bom.id,
         })
         request._onchange_product_id()
         self.assertEqual(
@@ -113,7 +132,10 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_raise_errors(self):
         """Tests user errors raising properly."""
-        proc_no_bom = self.create_procurement('TEST/05', self.test_product)
+        proc_no_bom = self.create_procurement_no_bom('TEST/05', self.test_product)
+
+        self.env["procurement.order"]._run(proc_no_bom)
+
         self.assertEqual(proc_no_bom.state, 'exception')
         proc = self.create_procurement('TEST/05', self.product)
         request = proc.mrp_production_request_id
@@ -123,3 +145,24 @@ class TestMrpProductionRequest(TransactionCase):
             request.button_cancel()
         with self.assertRaises(UserError):
             request.button_draft()
+
+    def test_cancellation_from_proc(self):
+        """Tests cancelation from procurement."""
+        proc = self.create_procurement('TEST/03', self.product)
+
+        self.env["procurement.order"]._run(proc)
+
+        mrp_production_requests = \
+            self.env['mrp.production.request'].sudo().search([
+                ('procurement_id', '=', proc.id)])
+        if mrp_production_requests and not self.env.context.get(
+                'from_mrp_production_request'):
+            self.assertEqual(proc.state, "MASUK")
+        else:
+            self.assertEqual(proc.state, "GA MASUK")
+
+        request = proc.mrp_production_request_id
+        self.assertNotEqual(request.state, 'cancel')
+        proc.cancel()
+        self.assertEqual(proc.state, "TEST")
+        self.assertEqual(request.state, 'cancel')
