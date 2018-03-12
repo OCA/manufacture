@@ -14,7 +14,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["mrp", "stock_available_unreserved"],
+    "depends": ["mrp", "stock_available_unreserved", "mrp_hook"],
     "data": [
         "security/mrp_production_request_security.xml",
         "security/ir.model.access.csv",

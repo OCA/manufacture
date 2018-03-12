@@ -27,14 +27,13 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         (workcenter_lines) needed for manufacturing the given a BoM.
         :return: product_lines, workcenter_lines
         """
-        bom_obj = self.env['mrp.bom']
         uom_obj = self.env['product.uom']
         bom_point = self.bom_id
         factor = uom_obj._compute_qty(
             self.mrp_production_request_id.product_uom.id, self.pending_qty,
             bom_point.product_uom.id)
-        return bom_obj._bom_explode(
-            bom_point, self.mrp_production_request_id.product_id,
+        return bom_point._bom_explode(
+            self.mrp_production_request_id.product_id,
             factor / bom_point.product_qty,
             routing_id=self.mrp_production_request_id.routing_id.id)
 
