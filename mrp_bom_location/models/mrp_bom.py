@@ -9,6 +9,7 @@ class MrpBom(models.Model):
 
     location_id = fields.Many2one(
         related='picking_type_id.default_location_dest_id',
+        readonly=True,
         store=True,
     )
 
@@ -18,5 +19,6 @@ class MrpBomLine(models.Model):
 
     location_id = fields.Many2one(
         related='bom_id.picking_type_id.default_location_src_id',
+        readonly=True,
         store=True,
     )
