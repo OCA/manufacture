@@ -20,6 +20,9 @@ Usage
 To use this module, you need to:
 
 #. Go to *Manufacturing > Bill of Materials*.
+#. Pick or create one of them.
+#. You will see a new field to fill called "Location".
+#. One the structure report *BOM > Print > BOM Structure* location field is present
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -45,6 +48,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Mykhailo Panarin <m.panarin@mobilunity.com>
 
 Do not contact contributors directly about support or help with technical
 issues.
