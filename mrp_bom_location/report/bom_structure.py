@@ -6,7 +6,7 @@ from odoo import api, models
 
 
 class BomStructureReport(models.AbstractModel):
-    _name = 'report.mrp.mrp_bom_structure_report'
+    _inherit = 'report.mrp.mrp_bom_structure_report'
 
     @staticmethod
     def _get_child_vals(record, level, qty, uom):
