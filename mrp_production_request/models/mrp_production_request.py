@@ -99,7 +99,7 @@ class MrpProductionRequest(models.Model):
         required=True, default=_company_get)
     mrp_production_ids = fields.One2many(
         comodel_name="mrp.production", string="Manufacturing Orders",
-        inverse_name="mrp_production_request_id")
+        inverse_name="mrp_production_request_id", readonly=True)
     state = fields.Selection(
         selection=[("draft", "Draft"),
                    ("to_approve", "To Be Approved"),
