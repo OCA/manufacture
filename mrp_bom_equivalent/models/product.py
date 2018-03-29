@@ -13,7 +13,7 @@ class ProductProduct(models.Model):
             category_id = self.browse(
                 self._context.get('nonequivalent_product_id')).categ_id
             recs = self.search(
-                [('categ_id', '=', category_id.id),
+                [('categ_id', 'child_of', category_id.id),
                  ('id', '!=', self._context.get('nonequivalent_product_id')),
                  ('name', operator, name)] + args, limit=limit)
             if not recs:
@@ -30,7 +30,7 @@ class ProductProduct(models.Model):
             category_id = self.browse(
                 self._context.get('nonequivalent_product_id')).categ_id
             domain +=\
-                [('categ_id', '=', category_id.id),
+                [('categ_id', 'child_of', category_id.id),
                  ('id', '!=', self._context.get('nonequivalent_product_id'))]
         order = order or self.priority
         return super(ProductProduct, self).search_read(domain=domain,
