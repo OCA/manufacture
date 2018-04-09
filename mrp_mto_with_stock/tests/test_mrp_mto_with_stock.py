@@ -91,7 +91,7 @@ class TestMrpMtoWithStock(TransactionCase):
         # We check if first MO is able to assign it self even if it has
         # previously generate procurements, it would not be the case in the
         # other mode (without mrp_mto_mts_reservable_stock on warehouse)
-        self.assertEquals(self.production.availability, 'partially_available')
+        self.assertEquals(self.production.availability, 'assigned')
 
         self.assertEquals(self.subproduct1.virtual_available, 0)
 
