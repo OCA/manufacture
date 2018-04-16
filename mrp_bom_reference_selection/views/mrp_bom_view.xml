@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
-        <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <record id="mrp.mrp_bom_tree_parent_view" model="ir.ui.view">
             <field name="name">mrp.bom.tree</field>
             <field name="model">mrp.bom</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
+                    <!--<field name="name"/>-->
                     <field name="code"/>
                     <field name="sequence"/>
                 </tree>
@@ -19,8 +19,7 @@
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='bom_line_ids']//field[@name='product_id']" position="replace">
-                    <field name="product_id" on_change="onchange_product_id(product_id)"/>
+                <xpath expr="//field[@name='bom_line_ids']//field[@name='product_id']" position="after">
                     <field name="product_tmpl_id" invisible="1"/>
                     <field name="reference_id"
                         domain="[
@@ -33,4 +32,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>

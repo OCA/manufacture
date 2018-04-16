@@ -22,8 +22,15 @@
 
 {
     'name': 'Bill of Material Selection Reference',
-    'version': '8.0.1.1.0',
-    'author': 'Savoir-faire Linux',
+    'version': '10.0.0.1.0',
+    'author': "DVIT.ME",
+    'website': "http://dvit.me",
+    'maintainer': 'Abdulrhman mohammed',
+    "license": "AGPL-3",
+    "contributors": [
+        "obeidgad@gmail.com",
+        "a.abdeldaiem@dvit.me",
+    ],
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Bill of Material Selection Reference',
@@ -40,6 +47,6 @@
         'views/stock_production_lot_view.xml',
     ],
     'post_init_hook': 'set_bill_of_material_references',
-    'installable': False,
+    'installable': True,
     'application': True,
 }

@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_reference_selection
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-17 15:27+0000\n"
+"PO-Revision-Date: 2017-02-16 15:55+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom
+#: field:mrp.bom.reference,bom_id:0 field:mrp.product.produce,bom_id:0
+#: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
+#: field:stock.production.lot,bom_id:0
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom,reference_id:0
+msgid "BoM Reference"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,display_name:0
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: mrp_bom_reference_selection
+#: view:stock.production.lot:mrp_bom_reference_selection.search_product_lot_filter
+msgid "Group By"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_bom_reference
+msgid "MRP Bill of Material Reference"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: code:addons/mrp_bom_reference_selection/models/mrp_bom_line.py:28
+#, python-format
+msgid ""
+"Product %s from %s reference BoM must be equal to product %s in BoM line."
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: model:ir.model,name:mrp_bom_reference_selection.model_mrp_product_produce
+msgid "Product Produce"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.line,product_tmpl_id:0
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.line,reference_id:0
+msgid "Ref"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: field:mrp.bom.reference,name:0
+msgid "Reference"
+msgstr ""
+
+#. module: mrp_bom_reference_selection
+#: view:mrp.product.produce:mrp_bom_reference_selection.view_mrp_product_produce_wizard
+msgid ""
+"[\n"
+"                        ('bom_id', 'in', [False, bom_id]),\n"
+"                        ('product_id', '=', product_id),\n"
+"                    ]"
+msgstr ""
