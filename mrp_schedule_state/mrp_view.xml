@@ -27,7 +27,11 @@
     <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
     <field name="arch" type="xml">
         <field name="date_planned" position="after">
+            <field name="schedule_date"/>
             <field name="schedule_state"/>
+        </field>
+        <field name="date_planned" position="attributes">
+            <attribute name="invisible">1</attribute>
         </field>
     </field>
 </record>
@@ -37,6 +41,7 @@
     <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
     <field name="arch" type="xml">
         <field name="date_planned" position="after">
+            <field name="schedule_date"/>
             <field name="schedule_state"/>
             <button name="iter_selection_next"
                     string="next schedule state"
@@ -52,6 +57,9 @@
                     type="object"/>
             -->
         </field>
+        <field name="date_planned" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
     </field>
 </record>
 
@@ -61,7 +69,7 @@
            ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
     <field name="arch" type="xml">
         <field name="workcenter_id" position="before">
-            <field name="planned_mo"/>
+            <field name="schedule_mo"/>
             <field name="schedule_state"/>
             <button name="iter_selection_next"
                     string="next schedule state"
