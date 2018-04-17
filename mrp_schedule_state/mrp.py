@@ -46,6 +46,10 @@ class MrpProduction(models.Model):
         readonly=True,
         default='waiting',
         help="Schedule State used for ordering production")
+    # We don't use native date_planned field because it does not have the
+    # sale purpose.
+    schedule_date = fields.Datetime(
+        help="Date at which the manufacture order is scheduled")
 
     @api.multi
     def _check_planned_state(self):
@@ -77,9 +81,34 @@ class MrpProduction(models.Model):
 
     @api.multi
     def write(self, vals, update=True):
-        if vals.get('schedule_state') == 'scheduled':
-            vals['date_planned'] = fields.Datetime.now()
+        if vals.get('schedule_state') == 'scheduled' and not \
+                vals.get('schedule_date'):
+            vals['schedule_date'] = fields.Datetime.now()
+        if vals.get('schedule_state') and \
+                vals.get('schedule_state') != 'scheduled':
+            vals['schedule_date'] = False
         return super(MrpProduction, self).write(vals, update=update)
+
+    @api.multi
+    def set_planable_mo(self):
+        """ Set the MO as to able to be manufactured 'ToDo'
+            if it is ready to produce
+        """
+        for mo in self:
+            # If MO has been scheduled when it was not ready yet (still in
+            # waiting schedule_state, we can jump to schedule state already)
+            if mo.date_planned:
+                new_state = 'scheduled'
+            else:
+                new_state = 'todo'
+            mo.write({'schedule_state': new_state})
+        return True
+
+    @api.multi
+    def action_ready(self):
+        res = super(MrpProduction, self).action_ready()
+        self.set_planable_mo()
+        return res
 
 
 class MrpProductionWorkcenterLine(models.Model):
@@ -99,11 +128,17 @@ class MrpProductionWorkcenterLine(models.Model):
              "planification, scheduling and ordering",
         store=True,
         readonly=True)
-    planned_mo = fields.Datetime(
-        related='production_id.date_planned',
-        string='Planned MO',
+    schedule_mo = fields.Datetime(
+        related='production_id.schedule_date',
+        string='Schedule MO',
         readonly=True,
+        index=True,
         store=True)
+#    planned_mo = fields.Datetime(
+#        related='production_id.date_planned',
+#        string='Planned MO',
+#        readonly=True,
+#        store=True)
 
     @api.multi
     def _iter_selection(self,direction):

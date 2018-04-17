@@ -11,10 +11,11 @@
         <form string="Switch Schedule State" version="7.0">
             <group col="4">
                 <p colspan="4">
-Replace Schedule State by another one.
-'Unable' state can't be changed.
+Replace Schedule State by another one. If schedule state is waiting, only the schedule date will be set.
+The schedule state will automatically change to scheduled when the MO is ready to produce.
                 </p>
                 <field name="schedule_state"/>
+                <field name="schedule_date" attrs="{'invisible': [('schedule_state', '!=', 'scheduled')]}"/>
             </group>
             <footer>
                 <button name="switch_schedule_state" string="Apply"
