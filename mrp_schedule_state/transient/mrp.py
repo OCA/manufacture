@@ -56,7 +56,6 @@ class SwitchScheduleState(models.TransientModel):
             vals = {'schedule_date': self.schedule_date}
         manufacturing_orders = MrpProduction.browse(active_ids)
         if self.schedule_state == 'scheduled':
-            waiting_vals = vals.copy()
             waiting_mo = MrpProduction.search(
                 [('id', 'in', active_ids),
                  ('schedule_state', '=', 'waiting')])
@@ -65,7 +64,7 @@ class SwitchScheduleState(models.TransientModel):
                     raise UserError(
                         _('It is not possible to schedule waiting MOs without '
                           'A schedule_date in the future'))
-                waiting_mo.write(waiting_vals)
+                waiting_mo.write(vals)
             manufacturing_orders -= waiting_mo
         vals['schedule_state'] = self.schedule_state
         manufacturing_orders.write(vals)
