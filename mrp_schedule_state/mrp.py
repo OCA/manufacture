@@ -97,11 +97,10 @@ class MrpProduction(models.Model):
         for mo in self:
             # If MO has been scheduled when it was not ready yet (still in
             # waiting schedule_state, we can jump to schedule state already)
-            if mo.date_planned:
-                new_state = 'scheduled'
+            if mo.schedule_date:
+                mo.schedule_state = 'scheduled'
             else:
-                new_state = 'todo'
-            mo.write({'schedule_state': new_state})
+                mo.schedule_state = 'todo'
         return True
 
     @api.multi
