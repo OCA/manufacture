@@ -47,7 +47,7 @@ class MrpProduction(models.Model):
         default='waiting',
         help="Schedule State used for ordering production")
     # We don't use native date_planned field because it does not have the
-    # sale purpose.
+    # same purpose.
     schedule_date = fields.Datetime(
         help="Date at which the manufacture order is scheduled")
 
