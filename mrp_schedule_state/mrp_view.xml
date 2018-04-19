@@ -27,7 +27,7 @@
     <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
     <field name="arch" type="xml">
         <field name="date_planned" position="after">
-            <field name="schedule_date"/>
+            <field name="schedule_date" readonly="1"/>
             <field name="schedule_state"/>
         </field>
         <field name="date_planned" position="attributes">
@@ -47,7 +47,8 @@
                     string="next schedule state"
                     context="{'selection_field': 'schedule_state'}"
                     icon="gtk-go-forward"
-                    type="object"/>
+                    type="object"
+                    groups="mrp.group_mrp_manager"/>
             <!--You also may display this button to rotate in reverse way-->
             <!--
             <button name="iter_selection_prev"
