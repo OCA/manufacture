@@ -34,6 +34,7 @@ The schedule state will automatically change to scheduled when the MO is ready t
     name="Switch Schedule State"
     view_mode="form"
     target="new"
+    groups="mrp.group_mrp_manager"
     key2="client_action_multi"
     src_model="mrp.production"
     res_model="switch.schedule_state"/>
