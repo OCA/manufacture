@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mrp_bom_component_find_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.bom.component.find.wizard.form</field>
+        <field name="model">mrp.bom.component.find.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Component find">
+                <group>
+                    <field name="product_id"/>
+                    <label string=""/>
+                </group>
+                <footer>
+                    <button name="do_search_component" string="OK" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_bom_component_find_wizard_action" model="ir.actions.act_window">
+        <field name="name">Component find</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom.component.find.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="mrp_bom_component_find_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.ui.view" id="mrp_bom_component_find_line_form_view">
+        <field name="name">mrp_bom_component_find_line_form_view</field>
+        <field name="model">mrp.bom.component.find.line</field>
+        <field name="arch" type="xml">
+            <form create="false" editable="false">
+                <sheet>
+                    <group>
+                        <field name="level" />
+                        <field name="component_id" />
+                        <field name="line" />
+                        <field name="quantity" />
+                        <field name="mrp_bom_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mrp_bom_component_find_line_tree_view">
+        <field name="name">mrp_bom_component_find_line_tree_view</field>
+        <field name="model">mrp.bom.component.find.line</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="level" />
+                <field name="component_id"/>
+                <field name="line" />
+                <field name="quantity" />
+                <field name="mrp_bom_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="mrp_bom_component_find_line_search_view" model="ir.ui.view">
+        <field name="name">mrp_bom_component_find_line_search_view</field>
+        <field name="model">mrp.bom.component.find.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="level" />
+                <field name="component_id"/>
+                <field name="line" />
+                <field name="mrp_bom_id"/>
+            </search>
+        </field>
+    </record>
+    <menuitem 
+        id="mrp_bom_component_find_menu"
+        action="mrp_bom_component_find_wizard_action"  
+        sequence="900"
+        name="Component find"
+        parent="mrp.menu_mrp_bom"
+    />
+</odoo>

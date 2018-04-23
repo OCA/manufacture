@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_component_find
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-23 07:49+0000\n"
+"PO-Revision-Date: 2018-04-23 07:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_component_find
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.mrp_bom_component_find_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_component_id
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_product_id
+msgid "Component"
+msgstr "Composant"
+
+#. module: mrp_bom_component_find
+#: model:ir.actions.act_window,name:mrp_bom_component_find.mrp_bom_component_find_wizard_action
+#: model:ir.ui.menu,name:mrp_bom_component_find.mrp_bom_component_find_menu
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.mrp_bom_component_find_wizard_form
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.product_product_form_view_use_case_button
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.product_template_form_view_use_case_button
+msgid "Component find"
+msgstr "Recherche composant"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_create_uid
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_create_date
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_display_name
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_id
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line___last_update
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_write_uid
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_write_date
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_wizard_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_level
+msgid "Level"
+msgstr "Niveau"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_line
+msgid "Line"
+msgstr "Ligne"
+
+#. module: mrp_bom_component_find
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.mrp_bom_component_find_wizard_form
+msgid "OK"
+msgstr "OK"
+
+#. module: mrp_bom_component_find
+#: model:ir.model,name:mrp_bom_component_find.model_product_product
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_mrp_bom_id
+msgid "Product"
+msgstr "Article"
+
+#. module: mrp_bom_component_find
+#: model:ir.model,name:mrp_bom_component_find.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: mrp_bom_component_find
+#: model:ir.model.fields,field_description:mrp_bom_component_find.field_mrp_bom_component_find_line_wizard_id
+msgid "Wizard"
+msgstr "Assistant"
+
+#. module: mrp_bom_component_find
+#: model:ir.model,name:mrp_bom_component_find.model_mrp_bom_component_find_line
+msgid "mrp.bom.component.find.line"
+msgstr "mrp.bom.component.find.line"
+
+#. module: mrp_bom_component_find
+#: model:ir.model,name:mrp_bom_component_find.model_mrp_bom_component_find_wizard
+msgid "mrp.bom.component.find.wizard"
+msgstr "mrp.bom.component.find.wizard"
+
+#. module: mrp_bom_component_find
+#: model:ir.ui.view,arch_db:mrp_bom_component_find.mrp_bom_component_find_wizard_form
+msgid "or"
+msgstr "ou"
+
