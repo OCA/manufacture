@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #    This module copyright (C) 2015 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
@@ -23,14 +23,7 @@
 {
     'name': 'Bill of Material Selection Reference',
     'version': '10.0.0.1.0',
-    'author': "DVIT.ME",
-    'website': "http://dvit.me",
-    'maintainer': 'Abdulrhman mohammed',
-    "license": "AGPL-3",
-    "contributors": [
-        "obeidgad@gmail.com",
-        "a.abdeldaiem@dvit.me",
-    ],
+    'author': 'Savoir-faire Linux',
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Bill of Material Selection Reference',
@@ -47,6 +40,6 @@
         'views/stock_production_lot_view.xml',
     ],
     'post_init_hook': 'set_bill_of_material_references',
-    'installable': True,
+    'installable': False,
     'application': True,
 }
