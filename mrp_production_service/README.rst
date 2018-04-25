@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
@@ -6,10 +6,10 @@
 MRP Production Service
 ======================
 
-This module allows to create procurement orders from manufacturing orders when
-a services is included in the Bill of Materials.
+Creates procurement orders from manufacturing orders, for services included
+in the Bill of Materials.
 
-This allows users to include additional services that has to be procured as
+This allows users to include additional services that are to be procured as
 part of the manufacturing process.
 
 
@@ -18,7 +18,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/129/10.0
+   :target: https://runbot.odoo-community.org/runbot/129/8.0
 
 
 Bug Tracker
@@ -35,13 +35,12 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.png>`_.
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------
 
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
-* Héctor Villarreal Ortega <hector.villarreal@eficent.com>
 
 
 Maintainer
