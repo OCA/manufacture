@@ -9,11 +9,13 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo10-addon-mrp_auto_assign',
+        'odoo10-addon-mrp_bom_component_find',
         'odoo10-addon-mrp_bom_location',
         'odoo10-addon-mrp_bom_note',
         'odoo10-addon-mrp_mto_with_stock',
         'odoo10-addon-mrp_production_note',
         'odoo10-addon-mrp_production_request',
+        'odoo10-addon-mrp_production_service',
         'odoo10-addon-mrp_progress_button',
         'odoo10-addon-mrp_repair_calendar_view',
         'odoo10-addon-mrp_repair_discount',
