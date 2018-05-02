@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2017 Akretion (http://www.akretion.com). All Rights Reserved
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -54,11 +53,8 @@ class TestMrpAutoAssign(TransactionCase):
         product_qty.change_product_qty()
         return product_qty
 
-    def test_manufacture_with_forecast_stock(self):
-        """
-            Test Manufacture mto with stock based on forecast quantity
-            and no link between sub assemblies MO's and Main MO raw material
-        """
+    def test_01_manufacture_auto_assign(self):
+        """Test if Manufacturing order is auto-assigned."""
 
         production = self.production_model.create({
             'product_id': self.product_manuf.id,
