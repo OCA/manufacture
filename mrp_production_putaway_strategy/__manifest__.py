@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
-# © 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "MRP Production Putaway Strategy",
     "summary": "Applies putaway strategies to manufacturing orders for "
                "finished products.",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.eficent.com",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacture",
     "depends": ["mrp"],
     "license": "AGPL-3",
