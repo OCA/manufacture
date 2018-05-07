@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models, _
@@ -15,7 +14,7 @@ class MrpProduction(models.Model):
         product = self.env['product.product'].browse(vals.get('product_id'))
         location_id = location_dest.get_putaway_strategy(product)
         if location_id:
-            vals['location_dest_id'] = location_id
+            vals['location_dest_id'] = location_id.id
         mo = super(MrpProduction, self).create(vals)
         if location_id:
             message = _(
