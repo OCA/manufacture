@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo10-addon-mrp_auto_assign',
         'odoo10-addon-mrp_bom_component_find',
+        'odoo10-addon-mrp_bom_component_menu',
         'odoo10-addon-mrp_bom_location',
         'odoo10-addon-mrp_bom_note',
         'odoo10-addon-mrp_mto_with_stock',
