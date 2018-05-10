@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo11-addon-mrp_bom_equivalent',
         'odoo11-addon-mrp_mto_with_stock',
+        'odoo11-addon-mrp_production_service',
     ],
     classifiers=[
         'Programming Language :: Python',
