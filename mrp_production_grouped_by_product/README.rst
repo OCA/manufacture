@@ -6,11 +6,14 @@
 Production Grouped By Product
 =============================
 
-Groups pending productions by product.
+When you have several sales orders with make to (MTO) order products that
+require to be manufactured, you end up with one manufacturing order for each of
+these sales orders, which is very bad for the management.
 
-Configuration
-=============
-
+With this module, each time an MTO manufacturing order is required to be
+created, it first checks that there's no other existing order not yet started
+for the same product and bill of materials, and if there's one, then the
+quantity of that order is increased instead of creating a new one.
 
 Usage
 =====
@@ -18,6 +21,11 @@ Usage
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/11.0
+
+Known issues / Roadmap
+======================
+
+* Add a check in the product form for excluding it from being grouped.
 
 Bug Tracker
 ===========
@@ -38,7 +46,12 @@ Images
 Contributors
 ------------
 
-* David Vidal <david.vidal@tecnativa.com>
+* Tecnativa <https://www.tecnativa.com>_
+
+  * David Vidal
+  * Pedro M. Baeza
+
+Do not contact contributors directly about support or help with technical issues.
 
 Maintainer
 ----------
