@@ -46,23 +46,24 @@ class TestMrpProductionService(TransactionCase):
         self.bom_line_model.create({
             'bom_id': self.bom.id,
             'product_id': self.service.id,
-            'product_qty': 1,
+            'product_qty': 2,
         })
 
-    def test_produce_bom_with_service(self):
-        """Explode bill of material and look for a procurement of a service."""
+    def test_bom_production_service(self):
+        """Explode bill of material and look for a production service."""
         self.mrp_production_model = self.env['mrp.production']
 
         self.env['mrp.production'].create({
             'product_id': self.p1.id,
-            'product_qty': 1.0,
+            'product_qty': 3.0,
             'product_uom_id': self.p1.uom_id.id,
             'bom_id': self.bom.id
         })
 
-        procurement = self.env['purchase.order.line'].search(
+        production_service = self.env['purchase.order.line'].search(
             [('product_id', 'in',
               self.bom.bom_line_ids.mapped('product_id.id'))])
 
-        self.assertEqual(len(procurement), 1)
-        self.assertEqual(procurement.product_id.type, 'service')
+        self.assertEqual(len(production_service), 1)
+        self.assertEqual(production_service.product_id.type, 'service')
+        self.assertEqual(production_service.product_qty, 6.0)
