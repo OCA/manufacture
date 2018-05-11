@@ -8,31 +8,27 @@ from odoo import api, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.model
-    def _prepare_service_procurement_values(self, production):
-        location = production.location_src_id
+    @api.multi
+    def _prepare_service_procurement_values(self):
+        self.ensure_one()
+        location = self.location_src_id
         return {
-            'company_id': production.company_id,
-            'date_planned': production.date_planned_start,
+            'company_id': self.company_id,
+            'date_planned': self.date_planned_start,
             'warehouse_id': location.get_warehouse(),
-            'group_id': production.procurement_group_id,
+            'group_id': self.procurement_group_id,
         }
 
     @api.model
-    def _create_service_procurement(self, line):
-        data = self._prepare_service_procurement(line)
-        return self.env['procurement.rule'].create(data)
+    def _action_launch_procurement_rule(self, bom_line, dict):
+        values = self._prepare_service_procurement_values()
 
-    @api.model
-    def _action_launch_procurement_rule(self, line, production):
-        values = self._prepare_service_procurement_values(production)
-
-        name = '%s for %s' % (line.product_id.name,
-                              production.name)
+        name = '%s for %s' % (bom_line.product_id.name,
+                              self.name)
         self.env['procurement.group'].sudo().run(
-            line.product_id, line.product_qty,
-            line.product_uom_id,
-            production.location_src_id, name,
+            bom_line.product_id, dict['qty'],
+            bom_line.product_uom_id,
+            self.location_src_id, name,
             name, values)
         return True
 
@@ -49,6 +45,6 @@ class MrpProduction(models.Model):
                 picking_type=production.bom_id.picking_type_id)
             for line in lines:
                 if line[0].product_id.type == 'service':
-                    production._action_launch_procurement_rule(line[0],
-                                                               production)
+                    production._action_launch_procurement_rule(
+                        line[0], line[1])
         return res
