@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+# Copyright 2018 ABF OSIELL <http://osiell.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models, _
+
+
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
+    _parent_name = "parent_id"
+    _parent_store = True
+    _parent_order = 'name'
+
+    parent_id = fields.Many2one(
+        'mrp.production', u"Parent order",
+        index=True, ondelete='restrict')
+    child_ids = fields.One2many(
+        'mrp.production', 'parent_id', u"Child orders")
+    parent_left = fields.Integer('Left Parent', index=True)
+    parent_right = fields.Integer('Right Parent', index=True)
+
+    @api.multi
+    def _generate_moves(self):
+        """Overloaded to pass the created production order ID in the context.
+        It will be used by the 'procurement_order.make_mo()' overload to
+        set the parent relation between production orders.
+        """
+        self = self.with_context(parent_mrp_production_id=self.id)
+        return super(MrpProduction, self)._generate_moves()
+
+    @api.multi
+    def open_production_tree(self):
+        self.ensure_one()
+        if self.child_ids:
+            return {
+                'domain': "[('parent_id', '=', %s)]" % self.id,
+                'name': _(u"Hierarchy"),
+                'view_type': 'tree',
+                'view_mode': 'tree',
+                'res_model': 'mrp.production',
+                'view_id': self.env.ref(
+                    'mrp_production_hierarchy.'
+                    'mrp_production_tree_view_field_parent').id,
+                'target': 'current',
+                'type': 'ir.actions.act_window',
+                'context': dict(self.env.context),
+            }
+        return False
