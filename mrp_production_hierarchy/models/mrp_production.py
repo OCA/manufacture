@@ -33,7 +33,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         if self.child_ids:
             return {
-                'domain': "[('parent_id', '=', %s)]" % self.id,
+                'domain': "[('id', '=', %s)]" % self.id,
                 'name': _(u"Hierarchy"),
                 'view_type': 'tree',
                 'view_mode': 'tree',
