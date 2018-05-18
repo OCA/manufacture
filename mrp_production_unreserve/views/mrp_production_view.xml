@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form - mrp_production_unreserved</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id"
+               ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <button name="action_assign" position="after">
+                <field name="unreserve_visible" invisible="1"/>
+                <button name="button_unreserve" type="object"
+                        string="Unreserve"
+                        attrs="{'invisible': [('unreserve_visible', '=', False)]}"/>
+            </button>
+        </field>
+    </record>
+
+</odoo>

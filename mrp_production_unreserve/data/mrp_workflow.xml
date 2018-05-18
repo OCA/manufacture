@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="prod_trans_unreserved" model="workflow.transition">
+        <field name="act_from" ref="mrp.prod_act_ready"/>
+        <field name="act_to" ref="mrp.prod_act_confirmed"/>
+        <field name="signal">moves_unreserved</field>
+        <field name="trigger_model" eval="False"/> <!-- Force empty -->
+        <field name="trigger_expr_id" eval="False"/> <!-- Force empty -->
+        <field name="condition">True</field> <!-- Force default -->
+    </record>
+
+</odoo>
