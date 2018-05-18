@@ -10,12 +10,18 @@ class ProcurementOrder(models.Model):
 
     @api.multi
     def make_mo(self):
-        """Overload to set the parent production order ID to its childs."""
+        """Overload to set the root and parent production order ID to the
+        children production orders.
+        """
         res = super(ProcurementOrder, self).make_mo()
-        production_ids = res.values()
+        production_ids = [id_ for id_ in res.values() if id_]
         productions = self.env['mrp.production'].browse(production_ids)
         for production in productions:
             if self.env.context.get('parent_mrp_production_id'):
                 parent_id = self.env.context['parent_mrp_production_id']
-                production.parent_id = parent_id
+                root_id = self.env.context['root_mrp_production_id']
+                production.write({
+                    'parent_id': parent_id,
+                    'root_id': root_id,
+                })
         return res
