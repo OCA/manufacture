@@ -26,5 +26,9 @@ class TestMrpProductionHierarchy(TestMrpCommon):
         self.assertEqual(len(man_order.child_ids), 2)
         for child in man_order.child_ids:
             self.assertIn(child.product_id, [self.product_5, self.product_4])
+            self.assertEqual(child.root_id, man_order)
+            self.assertEqual(child.parent_id, man_order)
             for child2 in child.child_ids:
                 self.assertIn(child2.product_id, [self.product_4])
+                self.assertEqual(child2.root_id, man_order)
+                self.assertEqual(child2.parent_id, child)

@@ -11,9 +11,12 @@ class MrpProduction(models.Model):
     _parent_store = True
     _parent_order = 'name'
 
+    root_id = fields.Many2one(
+        'mrp.production', u"Root order",
+        index=True, ondelete='restrict', readonly=True)
     parent_id = fields.Many2one(
         'mrp.production', u"Parent order",
-        index=True, ondelete='restrict')
+        index=True, ondelete='restrict', readonly=True)
     child_ids = fields.One2many(
         'mrp.production', 'parent_id', u"Child orders")
     parent_left = fields.Integer('Left Parent', index=True)
@@ -25,6 +28,10 @@ class MrpProduction(models.Model):
         It will be used by the 'procurement_order.make_mo()' overload to
         set the parent relation between production orders.
         """
+        # Set the initial root production order ID
+        if not self.env.context.get('root_mrp_production_id'):
+            self = self.with_context(root_mrp_production_id=self.id)
+        # Set the parent production order ID
         self = self.with_context(parent_mrp_production_id=self.id)
         return super(MrpProduction, self)._generate_moves()
 
