@@ -28,12 +28,14 @@ class MrpProduction(models.Model):
         It will be used by the 'procurement_order.make_mo()' overload to
         set the parent relation between production orders.
         """
-        # Set the initial root production order ID
-        if not self.env.context.get('root_mrp_production_id'):
-            self = self.with_context(root_mrp_production_id=self.id)
-        # Set the parent production order ID
-        self = self.with_context(parent_mrp_production_id=self.id)
-        return super(MrpProduction, self)._generate_moves()
+        for prod in self:
+            # Set the initial root production order ID
+            if not prod.env.context.get('root_mrp_production_id'):
+                prod = prod.with_context(root_mrp_production_id=self.id)
+            # Set the parent production order ID
+            prod = prod.with_context(parent_mrp_production_id=self.id)
+            super(MrpProduction, prod)._generate_moves()
+        return True
 
     @api.multi
     def open_production_tree(self):
