@@ -13,6 +13,10 @@
                         icon="fa-sitemap"
                         attrs="{'invisible': [('child_ids', '=', [])]}"/>
                 </div>
+                <field name="origin" position="after">
+                    <field name="root_id"/>
+                    <field name="parent_id"/>
+                </field>
             </field>
         </record>
 
