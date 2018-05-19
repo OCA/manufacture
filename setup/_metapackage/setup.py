@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo10-addon-mrp_bom_note',
         'odoo10-addon-mrp_mto_with_stock',
         'odoo10-addon-mrp_production_note',
+        'odoo10-addon-mrp_production_putaway_strategy',
         'odoo10-addon-mrp_production_request',
         'odoo10-addon-mrp_production_service',
         'odoo10-addon-mrp_progress_button',
