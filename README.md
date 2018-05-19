@@ -20,6 +20,7 @@ addon | version | summary
 [mrp_bom_note](mrp_bom_note/) | 10.0.1.0.0 | Notes in Bill of Materials
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.0 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
+[mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 10.0.1.0.0 | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_production_request](mrp_production_request/) | 10.0.1.0.0 | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
 [mrp_production_service](mrp_production_service/) | 10.0.1.0.0 | Creates procurement orders from manufacturing orders, for services included in the Bill of Materials
 [mrp_progress_button](mrp_progress_button/) | 10.0.1.0.0 | Add a button on MO to make the MO state 'In Progress'
