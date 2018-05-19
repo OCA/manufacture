@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo9-addon-mrp_production_putaway_strategy',
         'odoo9-addon-mrp_production_raw_material_procurement_group',
         'odoo9-addon-mrp_production_request',
+        'odoo9-addon-mrp_production_unreserve',
         'odoo9-addon-mrp_sale_info',
         'odoo9-addon-quality_control',
     ],
