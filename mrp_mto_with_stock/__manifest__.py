@@ -9,11 +9,15 @@
     "author": "John Walsh, Eficent, Odoo Community Association (OCA)",
     "website": "https://odoo-community.org/",
     "category": "Manufacturing",
-    "version": "11.0.1.0.0",
+    "version": "11.0.2.0.0",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["stock", "sale", "purchase", "mrp"],
+    "depends": [
+        "stock",
+        "mrp",
+        "stock_available_unreserved",
+    ],
     "data": [
         'views/product_template_view.xml',
         'views/stock_warehouse.xml',
