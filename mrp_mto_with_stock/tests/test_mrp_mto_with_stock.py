@@ -106,16 +106,14 @@ class TestMrpMtoWithStock(TransactionCase):
                                  2)
         self._update_product_qty(self.subproduct2, self.stock_location_stock,
                                  4)
-
-        self.production = self.production_model.create(
-            self._get_production_vals())
-
         self._update_product_qty(self.subproduct_1_1,
                                  self.stock_location_stock, 50)
 
+        self.production = self.production_model.create(
+            self._get_production_vals())
+        self.assertEqual(len(self.production.move_raw_ids), 3)
+
         # Create MO and check it create sub assemblie MO.
-        self.production.action_assign()
-        self.assertEqual(self.production.state, 'confirmed')
         mo = self.production_model.search(
             [('origin', 'ilike', self.production.name)])
         self.assertEqual(mo.product_qty, 3)
@@ -147,6 +145,15 @@ class TestMrpMtoWithStock(TransactionCase):
 
         wizard = wizard_obj.create(wizard_vals)
         wizard.do_produce()
+        # Check that not extra moves were generated and qty's are ok:
+        self.assertEqual(len(self.production.move_raw_ids), 3)
+        for move in self.production.move_raw_ids:
+            if move.product_id == self.subproduct1 and \
+                    move.procure_method == 'make_to_order':
+                qty = 3.0
+            else:
+                qty = 2.0
+            self.assertEqual(move.quantity_done, qty)
 
         self.assertTrue(self.production.check_to_done)
         self.production.button_mark_done()
