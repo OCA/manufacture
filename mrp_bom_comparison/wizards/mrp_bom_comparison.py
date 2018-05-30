@@ -80,7 +80,7 @@ class WizardMrpBomComparison(models.TransientModel):
         'wizard.mrp.bom.comparison.line', 'wiz_id', u"Products removed",
         domain=[('state', '=', 'removed')])
     total_qty = fields.Float(
-        u"Qté totale",
+        u"Total qty",
         digits=dp.get_precision('Product Unit of Measure'),
         compute='_compute_total_qty')
 
@@ -234,14 +234,14 @@ class WizardMrpBomComparisonLine(models.TransientModel):
     wiz_id = fields.Many2one('wizard.mrp.bom.comparison', u"Wizard")
     product_id = fields.Many2one('product.product', u"Product")
     bom1_qty = fields.Float(
-        u"v1-Qté", digits=dp.get_precision('Product Unit of Measure'))
+        u"v1-Qty", digits=dp.get_precision('Product Unit of Measure'))
     bom2_qty = fields.Float(
-        u"v2-Qté", digits=dp.get_precision('Product Unit of Measure'))
+        u"v2-Qty", digits=dp.get_precision('Product Unit of Measure'))
     diff_qty = fields.Float(
-        u"Écart qté", digits=dp.get_precision('Product Unit of Measure'))
+        u"Qty gap", digits=dp.get_precision('Product Unit of Measure'))
     state = fields.Selection(
         [('changed', u"Changed"),
          ('added', u"Added"),
          ('removed', u"Removed"),
          ],
-        u"État")
+        u"State")

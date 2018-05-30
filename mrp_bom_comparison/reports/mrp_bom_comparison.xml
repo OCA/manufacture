@@ -28,11 +28,11 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="border-black">
-                                <th>Réf.</th>
-                                <th>Désignation</th>
-                                <th>v1-Qté</th>
-                                <th>v2-Qté</th>
-                                <th>Écart Qté</th>
+                                <th>Ref.</th>
+                                <th>Designation</th>
+                                <th>v1-Qty</th>
+                                <th>v2-Qty</th>
+                                <th>Qty gap</th>
                             </tr>
                         </thead>
                         <tbody t-if="not o.line_changed_ids and not o.line_added_ids and not o.line_removed_ids">
