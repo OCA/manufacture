@@ -14,6 +14,7 @@
         'mrp',
     ],
     'data': [
+        'views/stock_picking_type_views.xml',
     ],
     'installable': True,
 }
