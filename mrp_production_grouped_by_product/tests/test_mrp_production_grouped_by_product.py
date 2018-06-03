@@ -2,6 +2,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import exceptions
 from odoo.tests import common
 
 
@@ -12,11 +13,17 @@ class TestProductionGroupedByProduct(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestProductionGroupedByProduct, cls).setUpClass()
+        cls.ProcurementGroup = cls.env['procurement.group']
+        cls.MrpProduction = cls.env['mrp.production']
+        cls.env.user.company_id.manufacturing_lead = 0
+        cls.env.user.tz = False  # Make sure there's no timezone in user
+        cls.picking_type = cls.env.ref('mrp.picking_type_manufacturing')
         cls.product1 = cls.env['product.product'].create({
             'name': 'TEST Muffin',
             'route_ids': [(6, 0, [
                 cls.env.ref('mrp.route_warehouse0_manufacture').id])],
             'type': 'product',
+            'produce_delay': 0,
         })
         cls.product2 = cls.env['product.product'].create({
             'name': 'TEST Paper muffin cup',
@@ -39,49 +46,57 @@ class TestProductionGroupedByProduct(common.SavepointCase):
             })]
         })
         cls.stock_picking_type = cls.env.ref('stock.picking_type_out')
-        cls.procurement_rule = cls.env['stock.warehouse.orderpoint'].create({
-            'name': 'XXX/00000',
-            'product_id': cls.product1.id,
-            'product_min_qty': 10,
-            'product_max_qty': 100,
-        })
-        cls.mo = cls.env['mrp.production'].create({
+        cls.mo = cls.MrpProduction.create({
             'bom_id': cls.bom.id,
             'product_id': cls.product1.id,
             'product_qty': 2,
             'product_uom_id': cls.product1.uom_id.id,
+            'date_planned_finished': '2018-06-01 15:00:00',
+            'date_planned_start': '2018-06-01 15:00:00',
         })
         cls.warehouse = cls.env['stock.warehouse'].search([
             ('company_id', '=', cls.env.user.company_id.id),
         ], limit=1)
-        cls.ProcurementGroup = cls.env['procurement.group']
-        cls.MrpProduction = cls.env['mrp.production']
-
-    def test_mo_by_product(self):
-        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
-        mo = self.MrpProduction.search([('product_id', '=', self.product1.id)])
-        self.assertEqual(len(mo), 1)
-        self.assertEqual(mo.product_qty, 100)
         # Add an MTO move
-        move = self.env['stock.move'].create({
-            'name': self.product1.name,
-            'product_id': self.product1.id,
+        cls.move = cls.env['stock.move'].create({
+            'name': cls.product1.name,
+            'product_id': cls.product1.id,
             'product_uom_qty': 10,
-            'product_uom': self.product1.uom_id.id,
-            'location_id': self.warehouse.lot_stock_id.id,
+            'product_uom': cls.product1.uom_id.id,
+            'location_id': cls.warehouse.lot_stock_id.id,
             'location_dest_id': (
-                self.env.ref('stock.stock_location_customers').id
+                cls.env.ref('stock.stock_location_customers').id
             ),
             'procure_method': 'make_to_order',
-            'warehouse_id': self.warehouse.id,
+            'warehouse_id': cls.warehouse.id,
+            'date': '2018-06-01 18:00:00',
         })
-        move.with_context(test_group_mo=True)._action_confirm(merge=False)
+
+    def test_mo_by_product(self):
+        self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
         self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
         mo = self.MrpProduction.search([('product_id', '=', self.product1.id)])
         self.assertEqual(len(mo), 1)
-        self.assertEqual(mo.product_qty, 110)
+        self.assertEqual(mo.product_qty, 12)
         # Run again the scheduler to see if quantities are altered
         self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
         mo = self.MrpProduction.search([('product_id', '=', self.product1.id)])
         self.assertEqual(len(mo), 1)
-        self.assertEqual(mo.product_qty, 110)
+        self.assertEqual(mo.product_qty, 12)
+
+    def test_mo_other_date(self):
+        self.move.date = '2018-06-01 20:01:00'
+        self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search([('product_id', '=', self.product1.id)])
+        self.assertEqual(len(mo), 2)
+
+    def test_check_mo_grouping_max_hour(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.picking_type.mo_grouping_max_hour = 25
+        with self.assertRaises(exceptions.ValidationError):
+            self.picking_type.mo_grouping_max_hour = -1
+
+    def test_check_mo_grouping_interval(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.picking_type.mo_grouping_interval = -1
