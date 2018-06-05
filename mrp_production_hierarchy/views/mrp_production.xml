@@ -20,6 +20,35 @@
             </field>
         </record>
 
+        <record id="mrp_production_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="mode">extension</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="root_id"/>
+                    <field name="parent_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mrp_production_filter" model="ir.ui.view">
+            <field name="name">mrp.production.search.inherit</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[last()]" position="inside">
+                    <filter name="group_by_root_id" string="Root order"
+                        domain="[]"
+                        context="{'group_by': 'root_id'}"/>
+                    <filter name="group_by_parent_id" string="Parent order"
+                        domain="[]"
+                        context="{'group_by': 'parent_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
         <!-- New tree view based on the standard one but with 'field_parent' configured. -->
         <record id="mrp_production_tree_view_field_parent" model="ir.ui.view">
             <field name="name">mrp.production.tree</field>
