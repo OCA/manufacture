@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_mrp_inventory_create_procurement" model="ir.ui.view">
+            <field name="name">Create Procurement Order</field>
+            <field name="model">mrp.inventory.create.procurement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <form string="Create Procurement Order">
+                     <group colspan="2">
+                         <button name="make_procurement_order"
+                                 string="Create Procurement Order"
+                                 type="object"
+                                 class="oe_highlight"/>
+                         <button special="cancel" string="Cancel" class="oe_link"/>
+                     </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mrp_inventory_create_procurement" model="ir.actions.act_window">
+            <field name="name">Create Procurement Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.inventory.create.procurement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_mrp_inventory_create_procurement"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="mrp_inventory_create_procurement">
+            <field name="model_id" ref="model_mrp_inventory" />
+            <field name="name">Create RFQ</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_mrp_inventory_create_procurement'))" />
+            <field name="key">action</field>
+            <field name="model">mrp.inventory</field>
+        </record>
+   
+    </data>
+</openerp>
+

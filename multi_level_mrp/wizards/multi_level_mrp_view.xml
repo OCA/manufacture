@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+		<record id="view_run_multi_level_mrp_wizard" model="ir.ui.view">
+			<field name="name">Run MRP</field>
+			<field name="model">multi.level.mrp</field>
+			<field name="arch" type="xml">
+				<form string="Run Multi Level MRP" version="7.0">
+					<footer>
+						<button name="run_multi_level_mrp" string="Run MRP" type="object"  class="oe_highlight"  />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window name="Run MRP"
+				res_model="multi.level.mrp"
+				src_model="multi.level.mrp"
+				view_mode="form"
+				target="new"
+				key2="client_action_multi"
+				id="action_multi_level_mrp"/>
+
+    </data>
+</openerp>
+
