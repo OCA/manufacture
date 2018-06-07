@@ -3,7 +3,7 @@
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models, exceptions, _
+from odoo import api, fields, models, exceptions, _
 from datetime import date, datetime, timedelta
 import logging
 
@@ -43,7 +43,7 @@ class MultiLevelMrp(models.TransientModel):
             'mrp_llc': product.llc,
             'nbr_mrp_actions': 0,
             'nbr_mrp_actions_4w': 0,
-            'name': product.name_template,
+            'name': product.name,
             'supply_method': supply_method,
             'main_supplier_id': main_supplier_id,
             }
@@ -113,18 +113,20 @@ class MultiLevelMrp(models.TransientModel):
                 origin = 'mo'
                 mo = move.production_id.id
             else:
-                if move.move_dest_id:
+                # TODO: move.move_dest_id -> move.move_dest_ids
+                if move.move_dest_ids:
+                    move_dest_id = move.move_dest_ids[0]
                     if move.move_dest_id.production_id:
                         order_number = \
-                            move.move_dest_id.production_id.name
+                            move_dest_id.production_id.name
                         origin = 'mo'
-                        mo = move.move_dest_id.production_id.id
-                        if move.move_dest_id.production_id.product_id:
+                        mo = move_dest_id.production_id.id
+                        if move_dest_id.production_id.product_id:
                             parent_product_id = \
-                                move.move_dest_id.production_id.product_id.id
+                                move_dest_id.production_id.product_id.id
                         else:
                             parent_product_id = \
-                                move.move_dest_id.product_id.id
+                                move_dest_id.product_id.id
             if order_number is None:
                 order_number = move.name
             mrp_date = date.today()
@@ -354,18 +356,18 @@ class MultiLevelMrp(models.TransientModel):
             self.env.cr.commit()
             llc += 1
             sql_stat = """
-            UPDATE product_product AS child_product 
-            SET child_product.llc = %d
-            FROM    mrp_bom_line AS bom_line, 
-                    mrp_bom AS bom, 
-                    product_product AS parent_product
-            WHERE 
-                    child_product.llc = (%d - 1)
-                    AND child_product.id = bom_line.product_id
-                    AND bom_line.bom_id = bom.id
-                    AND parent_product.product_tmpl_id = bom.product_tmpl_id
-                    AND parent_product.llc = (%d - 1)"""
-            self.env.cr.execute(sql_stat, (llc, llc, llc, ))
+                UPDATE product_product AS child_product 
+                SET llc = %d
+                FROM    mrp_bom_line AS bom_line, 
+                        mrp_bom AS bom, 
+                        product_product AS parent_product
+                WHERE   child_product.llc = (%d - 1)
+                        AND child_product.id = bom_line.product_id
+                        AND bom_line.bom_id = bom.id
+                        AND parent_product.product_tmpl_id = bom.product_tmpl_id
+                        AND parent_product.llc = (%d - 1)
+            """ % (llc, llc, llc, )
+            self.env.cr.execute(sql_stat)
             sql_stat = 'SELECT count(id) AS counter FROM product_product ' \
                        'WHERE llc = %d' % (llc, )
             self.env.cr.execute(sql_stat)
@@ -388,47 +390,56 @@ class MultiLevelMrp(models.TransientModel):
         sql_stat = '''UPDATE product_product SET mrp_applicable = False;'''
         self.env.cr.execute(sql_stat)
 
-        sql_stat = '''
-UPDATE product_product SET mrp_applicable=True
-FROM product_template
-WHERE product_tmpl_id = product_template.id
-  AND product_template.active = True
-  AND product_template.type = 'product'
-  AND mrp_minimum_stock > (SELECT sum(qty) FROM stock_quant, stock_location
-                           WHERE stock_quant.product_id = product_product.id
-                             AND stock_quant.location_id = stock_location.id
-                             AND stock_location.usage = 'internal');'''
+        sql_stat = """
+            UPDATE product_product 
+            SET mrp_applicable=True
+            FROM product_template
+            WHERE product_tmpl_id = product_template.id
+                AND product_template.active = True
+                AND product_template.type = 'product'
+                AND mrp_minimum_stock > (
+                    SELECT sum(quantity) FROM stock_quant, stock_location
+                        WHERE stock_quant.product_id = product_product.id
+                        AND stock_quant.location_id = stock_location.id
+                        AND stock_location.usage = 'internal');"""
         self.env.cr.execute(sql_stat)
 
-        sql_stat = '''
-UPDATE product_product SET mrp_applicable=True
-FROM product_template
-WHERE product_tmpl_id = product_template.id
-  AND product_template.active = True
-  AND product_template.type = 'product'
-  AND product_product.id in (SELECT distinct product_id FROM stock_move WHERE
-  state <> 'draft' AND state <> 'cancel');'''
+        sql_stat = """
+            UPDATE product_product 
+            SET mrp_applicable=True
+            FROM product_template
+            WHERE product_tmpl_id = product_template.id
+                AND product_template.active = True
+                AND product_template.type = 'product'
+                AND product_product.id in (
+                    SELECT distinct product_id 
+                    FROM stock_move 
+                    WHERE state <> 'draft' AND state <> 'cancel');"""
         self.env.cr.execute(sql_stat)
 
-        sql_stat = '''
-UPDATE product_product SET mrp_applicable=True
-FROM product_template
-WHERE product_tmpl_id = product_template.id
-  AND product_template.active = True
-  AND product_template.type = 'product'
-  AND llc > 0;'''
+        sql_stat = """
+            UPDATE product_product 
+            SET mrp_applicable=True
+            FROM product_template
+            WHERE product_tmpl_id = product_template.id
+                AND product_template.active = True
+                AND product_template.type = 'product'
+                AND llc > 0;"""
         self.env.cr.execute(sql_stat)
 
-        sql_stat = '''
-UPDATE product_product SET mrp_applicable=True
-FROM mrp_forecast_product
-WHERE product_product.id = mrp_forecast_product.product_id;'''
+        sql_stat = """
+            UPDATE product_product 
+            SET mrp_applicable=True
+            FROM mrp_forecast_product
+            WHERE product_product.id = mrp_forecast_product.product_id;"""
         self.env.cr.execute(sql_stat)
 
         self.env.cr.commit()
         counter = 0
-        sql_stat = 'SELECT count(id) AS counter FROM product_product WHERE ' \
-                   'mrp_applicable = True'
+        sql_stat = """
+            SELECT count(id) AS counter 
+            FROM product_product 
+            WHERE mrp_applicable = True"""
         self.env.cr.execute(sql_stat)
         sql_res = self.env.cr.dictfetchone()
         if sql_res:
@@ -543,10 +554,8 @@ WHERE product_product.id = mrp_forecast_product.product_id;'''
     @api.model
     def _prepare_mrp_move_data_from_purchase_order(self, poline, mrp_product):
         mrp_date = date.today()
-        if datetime.date(datetime.strptime(
-                poline.date_planned, '%Y-%m-%d')) > date.today():
-            mrp_date = datetime.date(datetime.strptime(
-                poline.date_planned, '%Y-%m-%d'))
+        if fields.Date.from_string(poline.date_planned) > date.today():
+            mrp_date = fields.Date.from_string(poline.date_planned)
         return {
             'product_id': poline.product_id.id,
             'mrp_product_id': mrp_product.id,

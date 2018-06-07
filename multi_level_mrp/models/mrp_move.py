@@ -40,35 +40,38 @@ class MrpMove(models.Model):
                                    ('fc', 'Forecast'), ('mrp', 'MRP')),
                                   'Origin')
     mrp_processed = fields.Boolean('Processed')
-    mrp_product_id = fields.Many2one('mrp.product', 'Product', select=True)
+    mrp_product_id = fields.Many2one('mrp.product', 'Product', index=True)
     mrp_qty = fields.Float('MRP Quantity')
     mrp_type = fields.Selection((('s', 'Supply'), ('d', 'Demand')), 'Type')
     name = fields.Char('Description')
     parent_product_id = fields.Many2one('product.product',
-                                        'Parent Product', select=True)
+                                        'Parent Product', index=True)
     product_id = fields.Many2one('product.product',
-                                 'Product', select=True)
+                                 'Product', index=True)
     production_id = fields.Many2one('mrp.production',
-                                    'Manufacturing Order', select=True)
+                                    'Manufacturing Order', index=True)
     purchase_line_id = fields.Many2one('purchase.order.line',
-                                       'Purchase Order Line', select=True)
+                                       'Purchase Order Line', index=True)
     purchase_order_id = fields.Many2one('purchase.order',
-                                        'Purchase Order', select=True)
+                                        'Purchase Order', index=True)
     running_availability = fields.Float('Running Availability')
     sale_line_id = fields.Many2one('sale.order.line',
-                                   'Sale Order Line', select=True)
-    sale_order_id = fields.Many2one('sale.order', 'Sale Order', select=True)
-    state = fields.Selection((('draft', 'Draft'),
-                              ('assigned', 'Assigned'),
-                              ('confirmed', 'Confirmed'),
-                              ('waiting', 'Waiting'),
-                              ('ready', 'Ready'),
-                              ('in_production', 'In Production'),
-                              ('picking_except', 'Picking Exception'),
-                              ('sent', 'Sent'), ('approved', 'Approved'),
-                              ('except_invoice', 'Invoice Exception')),
-                             'State')
-    stock_move_id = fields.Many2one('stock.move', 'Stock Move', select=True)
+                                   'Sale Order Line', index=True)
+    sale_order_id = fields.Many2one('sale.order', 'Sale Order', index=True)
+    state = fields.Selection(
+        selection=[('draft', 'Draft'),
+                   ('assigned', 'Assigned'),
+                   ('confirmed', 'Confirmed'),
+                   ('waiting', 'Waiting'),
+                   ('partially_available', 'Partially Available'),
+                   ('ready', 'Ready'),
+                   ('in_production', 'In Production'),
+                   ('picking_except', 'Picking Exception'),
+                   ('sent', 'Sent'), ('approved', 'Approved'),
+                   ('except_invoice', 'Invoice Exception')],
+        string='State',
+    )
+    stock_move_id = fields.Many2one('stock.move', 'Stock Move', index=True)
      
     _order = 'mrp_product_id, mrp_date, mrp_type desc, id'
 
@@ -127,7 +130,7 @@ class MrpMove(models.Model):
         seqnbr = self.env['ir.sequence'].next_by_id(seq.id)
         self.env['purchase.requisition'].create({
             'origin': 'MRP - [' + self.product_id.default_code + '] ' +
-                      self.product_id.name_template,
+                      self.product_id.name,
             'exclusive': 'exclusive',
             'message_follower_ids': False,
             'date_end': False,
@@ -140,7 +143,7 @@ class MrpMove(models.Model):
                                 self.product_id.product_tmpl_id.uom_id.id,
                             'product_id': self.product_id.id,
                             'product_qty': self.mrp_qty,
-                            'name': self.product_id.name_template}]],
+                            'name': self.product_id.name}]],
             'message_ids': False,
             'description': False,
             'name': seqnbr
