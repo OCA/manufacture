@@ -10,10 +10,12 @@ class Product(models.Model):
     _inherit = 'product.product'
     
     llc = fields.Integer('Low Level Code', default=0)
-    manufacturing_order_ids = fields.One2many('mrp.production',
-                                              'product_id',
-                                              'Manufacturing Orders',
-                                              domain=[('state', '=', 'draft')])
+    manufacturing_order_ids = fields.One2many(
+        comodel_name='mrp.production',
+        inverse_name='product_id',
+        string='Manufacturing Orders',
+        domain=[('state', '=', 'draft')],
+    )
     mrp_applicable = fields.Boolean('MRP Applicable')
     mrp_exclude = fields.Boolean('Exclude from MRP')
     mrp_inspection_delay = fields.Integer('Inspection Delay', default=0)
@@ -36,6 +38,7 @@ class Product(models.Model):
                                        "MRP.")
     purchase_order_line_ids = fields.One2many('purchase.order.line',
                                               'product_id', 'Purchase Orders')
-    purchase_requisition_ids = fields.One2many('purchase.requisition.line',
-                                               'product_id',
-                                               'Purchase Requisitions')
+    # TODO: extension to purchase requisition in other module?
+    # purchase_requisition_ids = fields.One2many('purchase.requisition.line',
+    #                                            'product_id',
+    #                                            'Purchase Requisitions')

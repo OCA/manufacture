@@ -235,10 +235,10 @@ class MultiLevelMrp(models.TransientModel):
                                                     mrp_product_id)])
         for product in products:
             if product.supply_method == 'buy':
-                if product.purchase_requisition:
-                    mrp_action = 'pr'
-                else:
-                    mrp_action = 'po'
+                # if product.purchase_requisition:
+                #     mrp_action = 'pr'
+                # else:
+                mrp_action = 'po'
             else:
                 mrp_action = 'mo'
 
@@ -482,6 +482,7 @@ WHERE product_product.id = mrp_forecast_product.product_id;'''
             mrp_move_obj.create(move_data)
         return True
 
+    # TODO: extension to purchase requisition in other module?
     @api.model
     def _prepare_mrp_move_data_from_purchase_requisition(self, preql,
                                                          mrp_product):
@@ -517,6 +518,7 @@ WHERE product_product.id = mrp_forecast_product.product_id;'''
                 'state': preql.requisition_id.state,
             }
 
+    # TODO: extension to purchase requisition in other module?
     @api.model
     def _init_mrp_move_from_purchase_requisition(self, mrp_product):
         location_ids = self.env['stock.location'].search(
@@ -648,10 +650,7 @@ WHERE product_product.id = mrp_forecast_product.product_id;'''
             'mrp_origin': 'mo',
             'mrp_order_number': mo.name,
             'parent_product_id': mo.product_id.id,
-            'name': ('Demand Bom Explosion: ' + mo.name).replace(
-                'Demand Bom Explosion: ',
-                'Demand Bom Explosion: ',
-                'Demand Bom Explosion: '),
+            'name': ('Demand Bom Explosion: ' + mo.name),
         }
 
     @api.model
@@ -697,7 +696,8 @@ WHERE product_product.id = mrp_forecast_product.product_id;'''
     def _init_mrp_move(self, mrp_product):
         self._init_mrp_move_from_forecast(mrp_product)
         self._init_mrp_move_from_stock_move(mrp_product)
-        self._init_mrp_move_from_purchase_requisition(mrp_product)
+        # TODO: extension to purchase requisition in other module?
+        # self._init_mrp_move_from_purchase_requisition(mrp_product)
         self._init_mrp_move_from_purchase_order(mrp_product)
         self._init_mrp_move_from_mrp_production(mrp_product)
 
