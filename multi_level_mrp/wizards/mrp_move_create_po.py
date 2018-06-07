@@ -104,7 +104,7 @@ class MrpMoveCreatePo(models.TransientModel):
                     'date_planned': move.date_po,
                     'order_id': order_id, 
                     'name': '[' + move.product_id.default_code + '] ' +
-                            move.product_id.name_template,
+                            move.product_id.name,
                     'price_unit': unit_price,
                     'product_qty': move.qty_po,
                     'supplier_uom_id':

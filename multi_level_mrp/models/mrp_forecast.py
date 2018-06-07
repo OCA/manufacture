@@ -27,7 +27,7 @@ class MrpForecastProduct(models.Model):
     def _function_name(self):
         if self.product_id:
             self.name = "[%s] %s" % (self.product_id.default_code,
-                                     self.product_id.name_template, )
+                                     self.product_id.name, )
 
     @api.one
     @api.depends('mrp_forecast_ids')
