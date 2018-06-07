@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_inventory_user,mrp.inventory,model_mrp_inventory,mrp.group_mrp_user,1,0,0,0
+access_mrp_move_user,mrp.move,model_mrp_move,mrp.group_mrp_user,1,0,0,0
+access_mrp_product,mrp.product,model_mrp_product,base.group_user,1,0,0,0

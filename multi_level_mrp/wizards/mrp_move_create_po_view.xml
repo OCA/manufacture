@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+		<record model="ir.ui.view" id="mrp_move_create_po_form">
+			<field name="name">mrp.move.create.po.form</field>
+			<field name="model">mrp.move.create.po</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Create PO">
+				<group colspan="4">
+					<group>
+						<field name="move_id" invisible="True"/>
+						<field name="product_id" readonly="True"/>
+						<field name="mrp_qty" readonly="True"/>
+						<field name="qty_po" attrs="{'invisible':[('purchase_line_warn','==','block')]}"/>
+						<field name="mrp_date" readonly="True"/>
+						<field name="date_po" attrs="{'invisible':[('purchase_line_warn','==','block')]}"/>
+						<field name="main_supplier_id" readonly="True"/>
+						<field name="other_partner" attrs="{'invisible':[('purchase_line_warn','==','block')]}"/>
+						<field name="partner_id" attrs="{'invisible':[('other_partner','==',False)]}" domain="[('supplier','=',True),('is_company','=',True)]"/>
+						<field name="purchase_line_warn" invisible="True"/>
+						<field name="purchase_line_warn_msg" readonly="True" attrs="{'invisible':[('purchase_line_warn','==','no-message')]}"/>
+					</group>
+				</group>
+				<group colspan="4" col="4">
+					<button string="Create PO" name="create_po" icon="gtk-ok" type="object" attrs="{'invisible':[('purchase_line_warn','==','block')]}"/>
+					<button special="cancel" string="Cancel" icon="gtk-cancel"/>
+				</group>
+			</form>
+			</field>
+		</record>
+
+    </data>
+</openerp>
+

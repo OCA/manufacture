@@ -1,0 +1,7 @@
+from . import mrp_area
+from . import stock_location
+from . import mrp_forecast
+from . import product
+from . import mrp_product
+from . import mrp_move
+from . import mrp_inventory
