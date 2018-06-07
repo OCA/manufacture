@@ -117,6 +117,7 @@ class MrpMove(models.Model):
             self.mrp_processed = True
             self.name = pr.name
 
+    # TODO: extension to purchase requisition in other module?
     @api.model
     def mrp_process_pr(self):
         if self.mrp_action != 'pr':
@@ -154,7 +155,8 @@ class MrpMove(models.Model):
         self.mrp_process_mo()
         self.mrp_process_pr()
         return True
-        
+
+    # TODO: move to new API
     @api.v7
     def mrp_process_po(self, cr, uid, ids, context=None):
         view_id = self.pool.get('ir.ui.view').search(

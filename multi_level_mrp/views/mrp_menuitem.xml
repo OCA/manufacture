@@ -1,28 +1,48 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
+<odoo>
 
-        <menuitem name="MRP" id="menu_mrp" sequence="85"/>
-        <menuitem name="MRP" id="menu_mrp_mrp" parent="menu_mrp"
-                  sequence="10"/>
-        <menuitem name="MRP Areas" id="menu_mrp_areas"
-                  action="mrp_area_action" parent="menu_mrp_mrp"
-                  sequence="10"/>
-        <menuitem name="MRP Products" id="menu_mrp_products"
-                  action="mrp_product_action" parent="menu_mrp_mrp"
-                  sequence="20"/>
-        <menuitem name="MRP Inventory" id="menu_mrp_inventory"
-                  action="mrp_inventory_action" parent="menu_mrp_mrp"
-                  sequence="30"/>
-        <menuitem name="Run Multi Level MRP"
-                  action="action_multi_level_mrp" id="menu_multi_level_mrp"
-                  parent="menu_mrp_mrp" sequence="40"/>
-        <menuitem name="Forecast" id="menu_mrp_forecast"
-                  parent="menu_mrp" sequence="50"/>
-        <menuitem name="Forecasted Products" id="menu_mrp_forecast_products"
-                  action="mrp_forecast_action" parent="menu_mrp_forecast"
-                  sequence="60"/>
+    <menuitem name="MRP"
+              id="menu_mrp"
+              sequence="85"/>
 
-    </data>
-</openerp>
+    <menuitem name="MRP"
+              id="menu_mrp_mrp"
+              parent="menu_mrp"
+              sequence="10"/>
 
+    <menuitem name="MRP Areas"
+              id="menu_mrp_areas"
+              action="mrp_area_action"
+              parent="menu_mrp_mrp"
+              sequence="10"/>
+
+    <menuitem name="MRP Products"
+              id="menu_mrp_products"
+              action="mrp_product_action"
+              parent="menu_mrp_mrp"
+              sequence="20"/>
+
+    <menuitem name="MRP Inventory"
+              id="menu_mrp_inventory"
+              action="mrp_inventory_action"
+              parent="menu_mrp_mrp"
+              sequence="30"/>
+
+    <menuitem name="Run Multi Level MRP"
+              id="menu_multi_level_mrp"
+              action="action_multi_level_mrp"
+              parent="menu_mrp_mrp"
+              sequence="40"/>
+
+    <menuitem name="Forecast"
+              id="menu_mrp_forecast"
+              parent="menu_mrp"
+              sequence="50"/>
+
+    <menuitem name="Forecasted Products"
+              id="menu_mrp_forecast_products"
+              action="mrp_forecast_action"
+              parent="menu_mrp_forecast"
+              sequence="60"/>
+
+</odoo>

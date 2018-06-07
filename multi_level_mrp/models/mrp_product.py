@@ -31,7 +31,8 @@ class MrpProduct(models.Model):
     mrp_qty_available = fields.Float('MRP Qty Available')
     mrp_qty_multiple = fields.Float(string='Qty Multiple',
                                     related='product_id.mrp_qty_multiple')
-    mrp_transit_delay = fields.Integer(mrp_move_ids)
+    # TODO: this was: mrp_transit_delay = fields.Integer(mrp_move_ids) ??¿?¿¿?
+    mrp_transit_delay = fields.Integer(related = 'product_id.mrp_transit_delay')
     mrp_verified = fields.Boolean(string='MRP Verified',
                                   related='product_id.mrp_verified')
     name = fields.Char('Description')
@@ -40,8 +41,9 @@ class MrpProduct(models.Model):
     product_id = fields.Many2one('product.product', 'Product', select=True)
     product_tmpl_id = fields.Many2one('product.template', 'Product Template',
                                       related='product_id.product_tmpl_id')
-    purchase_requisition = fields.Boolean(string='Purchase Requisition',
-                                          related='product_id.purchase_requisition')
+    # TODO: extension to purchase requisition in other module?
+    # purchase_requisition = fields.Boolean(string='Purchase Requisition',
+    #                                       related='product_id.purchase_requisition')
     supply_method = fields.Selection((('buy', 'Buy'),
                                       ('produce', 'Produce')),
                                      'Supply Method')
