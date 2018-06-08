@@ -1,5 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# © 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -12,6 +12,9 @@ logger = logging.getLogger(__name__)
 
 class MultiLevelMrp(models.TransientModel):
     _name = 'multi.level.mrp'
+
+    # TODO: fix supply_method calculation.
+    # TODO: dates are not being correctly computed for supply...
 
     @api.model
     def _prepare_mrp_product_data(self, product, mrp_area):
