@@ -35,9 +35,10 @@
 				<field name="supply_qty"/>
 				<field name="final_on_hand_qty"/>
 				<field name="to_procure"/>
+                <!--TODO: use same procurement wizard as ddmrp?-->
 				<button string="Create Procurement"
-						name="%(multi_level_mrp.action_mrp_inventory_create_procurement)d"
-						icon="gtk-ok" type="action"
+						name="%(multi_level_mrp.act_mrp_inventory_procure)d"
+						icon="fa-cogs" type="action"
 						attrs="{'invisible':[('to_procure','==',0.0)]}"/>
 			</tree>
 		</field>
@@ -78,6 +79,8 @@
 		<field name="search_view_id" ref="mrp_inventory_search"/>
 		<field name="act_window_id" ref="mrp_inventory_form"/>
 	</record>
+
+	<!--TODO: remove?-->
 	<record model="ir.actions.act_window.view" id="mrp_inventory_form_action">
 		<field name="sequence" eval="22"/>
 		<field name="view_mode">form</field>

@@ -9,18 +9,18 @@ from datetime import date, datetime
 
 class MrpForecastForecast(models.Model):
     _name = 'mrp.forecast.forecast'
+    _order = 'forecast_product_id, date'
     
     date = fields.Date('Date')
     forecast_product_id = fields.Many2one('mrp.forecast.product', 'Product',
                                           select=True)
     name = fields.Char('Description')
     qty_forecast = fields.Float('Quantity')
-    
-    _order = 'forecast_product_id, date'
 
 
 class MrpForecastProduct(models.Model):
     _name = 'mrp.forecast.product'
+    # TODO: adapt to demand_estimate?? or at least to date_range??
 
     @api.one
     @api.depends('product_id')
