@@ -19,7 +19,6 @@ class Product(models.Model):
     mrp_applicable = fields.Boolean('MRP Applicable')
     mrp_exclude = fields.Boolean('Exclude from MRP')
     mrp_inspection_delay = fields.Integer('Inspection Delay', default=0)
-    mrp_lead_time = fields.Integer('Lead Time', default=1)
     mrp_maximum_order_qty = fields.Float('Maximum Order Qty', default=0.00)
     mrp_minimum_order_qty = fields.Float('Minimum Order Qty', default=0.00)
     mrp_minimum_stock = fields.Float('Minimum Stock')

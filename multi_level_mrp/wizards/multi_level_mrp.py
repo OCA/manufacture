@@ -134,9 +134,9 @@ class MultiLevelMrp(models.TransientModel):
                 order_number = move.name
             mrp_date = date.today()
             if datetime.date(datetime.strptime(
-                    move.date, '%Y-%m-%d %H:%M:%S')) > date.today():
+                    move.date_expected, '%Y-%m-%d %H:%M:%S')) > date.today():
                 mrp_date = datetime.date(datetime.strptime(
-                    move.date, '%Y-%m-%d %H:%M:%S'))
+                    move.date_expected, '%Y-%m-%d %H:%M:%S'))
             return {
                 'mrp_area_id': mrp_product.mrp_area_id.id,
                 'product_id': move.product_id.id,
@@ -150,7 +150,7 @@ class MultiLevelMrp(models.TransientModel):
                 'mrp_qty': productqty,
                 'current_qty': productqty,
                 'mrp_date': mrp_date,
-                'current_date': move.date,
+                'current_date': move.date_expected,
                 'mrp_action': 'none',
                 'mrp_type': mrp_type,
                 'mrp_processed': False,
@@ -296,17 +296,6 @@ class MultiLevelMrp(models.TransientModel):
                         for bomline in bom.bom_line_ids:
                             if bomline.product_qty <= 0.00:
                                 continue
-                            if bomline.date_start and datetime.date(
-                                    datetime.strptime(
-                                        bomline.date_start, '%Y-%m-%d')) > \
-                                    mrp_date_demand:
-                                continue
-                            if bomline.date_stop and datetime.date(
-                                    datetime.strptime(
-                                        bomline.date_stop, '%Y-%m-%d')) < \
-                                    mrp_date_demand:
-                                continue
-
                             mrp_date_demand_2 = mrp_date_demand-timedelta(
                                 days=(product.mrp_transit_delay+product.
                                       mrp_inspection_delay))
@@ -895,6 +884,7 @@ class MultiLevelMrp(models.TransientModel):
         # Read supply actions
         supply_actions_qty_by_date = {}
         mrp_type = 's'
+        #  TODO: if we remove cancel take it into account here, as well as mrp_type ('r').
         exclude_mrp_actions = ['none', 'cancel']
         sql_stat = '''SELECT mrp_date, sum(mrp_qty) as actions_qty
                    FROM mrp_move
