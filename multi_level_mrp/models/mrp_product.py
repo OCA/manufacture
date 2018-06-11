@@ -16,8 +16,8 @@ class MrpProduct(models.Model):
                                        select=True)
     mrp_inspection_delay = fields.Integer(
         string='Inspection Delay', related='product_id.mrp_inspection_delay')
-    mrp_lead_time = fields.Integer(string='Lead Time',
-                                   related='product_id.mrp_lead_time')
+    mrp_lead_time = fields.Float(string='Lead Time',
+                                   related='product_id.produce_delay')
     mrp_llc = fields.Integer('Low Level Code', select=True)
     mrp_maximum_order_qty = fields.Float(
         string='Maximum Order Qty', related='product_id.mrp_maximum_order_qty')

@@ -14,7 +14,6 @@
 							<field name="mrp_exclude"/>
 							<field name="mrp_verified"/>
 							<field name="mrp_nbr_days"/>
-							<field name="mrp_lead_time"/>
 							<field name="mrp_transit_delay"/>
 							<field name="mrp_inspection_delay"/>
 						</group>
