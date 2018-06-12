@@ -296,6 +296,10 @@ class MultiLevelMrp(models.TransientModel):
                         for bomline in bom.bom_line_ids:
                             if bomline.product_qty <= 0.00:
                                 continue
+                            if self._exclude_from_mrp(
+                                    product.mrp_area_id, bomline.product_id):
+                                # Stop explosion.
+                                continue
                             mrp_date_demand_2 = mrp_date_demand-timedelta(
                                 days=(product.mrp_transit_delay+product.
                                       mrp_inspection_delay))
