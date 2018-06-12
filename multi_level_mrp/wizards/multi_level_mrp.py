@@ -324,6 +324,7 @@ class MultiLevelMrp(models.TransientModel):
         logger.info('START MRP CLEANUP')
         self.env['mrp.move'].search([('id', '!=', 0)]).unlink()
         self.env['mrp.product'].search([('id', '!=', 0)]).unlink()
+        self.env['mrp.inventory'].search([('id', '!=', 0)]).unlink()
         logger.info('END MRP CLEANUP')
         return True
 
@@ -331,53 +332,40 @@ class MultiLevelMrp(models.TransientModel):
     def _low_level_code_calculation(self):
         logger.info('START LOW LEVEL CODE CALCULATION')
         counter = 999999
-        sql_stat = 'update product_product set llc = 0'
-        self.env.cr.execute(sql_stat)
-        sql_stat = 'SELECT count(id) AS counter FROM product_product WHERE ' \
-                   'llc = %d' % (0, )
-        self.env.cr.execute(sql_stat)
-        sql_res = self.env.cr.dictfetchone()
-        if sql_res:
-            counter = sql_res['counter']
+        self.env['product.product'].search([]).write({'llc': 0})
+        products = self.env['product.product'].search([('llc', '=', 0)])
+        if products:
+            counter = len(products)
         log_msg = 'LOW LEVEL CODE 0 FINISHED - NBR PRODUCTS: %s' % counter
         logger.info(log_msg)
 
         llc = 0
         # TODO: possibly replace condition to while counter != 0
         while counter != 999999:
-            self.env.cr.commit()
             llc += 1
-            sql_stat = """
-                UPDATE product_product AS child_product 
-                SET llc = %d
-                FROM    mrp_bom_line AS bom_line, 
-                        mrp_bom AS bom, 
-                        product_product AS parent_product
-                WHERE   child_product.llc = (%d - 1)
-                        AND child_product.id = bom_line.product_id
-                        AND bom_line.bom_id = bom.id
-                        AND parent_product.product_tmpl_id = bom.product_tmpl_id
-                        AND parent_product.llc = (%d - 1)
-            """ % (llc, llc, llc, )
-            self.env.cr.execute(sql_stat)
-            sql_stat = 'SELECT count(id) AS counter FROM product_product ' \
-                       'WHERE llc = %d' % (llc, )
-            self.env.cr.execute(sql_stat)
-            sql_res = self.env.cr.dictfetchone()
-            if sql_res:
-                counter = sql_res['counter']
+            products = self.env['product.product'].search(
+                [('llc', '=', llc - 1)])
+            p_templates = products.mapped('product_tmpl_id')
+            bom_lines = self.env['mrp.bom.line'].search(
+                [('product_id.llc', '=', llc - 1),
+                 ('bom_id.product_tmpl_id', 'in', p_templates.ids)])
+            products = bom_lines.mapped('product_id')
+            products.write({'llc': llc})
+            products = self.env['product.product'].search([('llc', '=', llc)])
+            counter = len(products)
             log_msg = 'LOW LEVEL CODE %s FINISHED - NBR PRODUCTS: %s' % (
                 llc, counter)
             logger.info(log_msg)
             if counter == 0:
                 counter = 999999
         mrp_lowest_llc = llc
-        self.env.cr.commit()
         logger.info('END LOW LEVEL CODE CALCULATION')
         return mrp_lowest_llc
 
     @api.model
     def _calculate_mrp_applicable(self):
+        # TODO: Refactor all code here
+        return True
         logger.info('CALCULATE MRP APPLICABLE')
         sql_stat = '''UPDATE product_product SET mrp_applicable = False;'''
         self.env.cr.execute(sql_stat)
@@ -426,7 +414,7 @@ class MultiLevelMrp(models.TransientModel):
             WHERE product_product.id = mrp_forecast_product.product_id;"""
         self.env.cr.execute(sql_stat)
 
-        self.env.cr.commit()
+        # self.env.cr.commit()
         counter = 0
         sql_stat = """
             SELECT count(id) AS counter 
@@ -667,11 +655,11 @@ class MultiLevelMrp(models.TransientModel):
                     continue
                 if (bomline.date_start and datetime.date(
                         datetime.strptime(bomline.date_start, '%Y-%m-%d')) >=
-                    mrp_date_demand):
+                        mrp_date_demand):
                     continue
                 if (bomline.date_stop and datetime.date(
                         datetime.strptime(bomline.date_stop, '%Y-%m-%d')) <=
-                    mrp_date_demand):
+                        mrp_date_demand):
                     continue
                 mrp_move_data = \
                     self._prepare_mrp_move_data_from_mrp_production_bom(
@@ -724,7 +712,7 @@ class MultiLevelMrp(models.TransientModel):
                 logger.info(log_msg)
                 mrp_product = self._init_mrp_product(product, mrp_area)
                 self._init_mrp_move(mrp_product)
-                self.env.cr.commit()
+                # self.env.cr.commit()
         logger.info('END MRP INITIALISATION')
 
     @api.model
@@ -802,7 +790,7 @@ class MultiLevelMrp(models.TransientModel):
         for mrp_area in self.env['mrp.area'].search([]):
             llc = 0
             while mrp_lowest_llc > llc:
-                self.env.cr.commit()
+                # self.env.cr.commit()
                 mrp_products = mrp_product_obj.search(
                     [('mrp_llc', '=', llc),
                      ('mrp_area_id', '=', mrp_area.id)])
@@ -844,19 +832,20 @@ class MultiLevelMrp(models.TransientModel):
                         qty_ordered = cm['qty_ordered']
                         onhand += qty_ordered
                     counter += 1
-                    self.env.cr.commit()
+                    # self.env.cr.commit()
             log_msg = 'MRP CALCULATION LLC %s FINISHED - NBR PRODUCTS: %s' %(
                 llc - 1, counter)
             logger.info(log_msg)
             if llc < 0:
                 counter = 999999
 
-        self.env.cr.commit()
+        # self.env.cr.commit()
         logger.info('END MRP CALCULATION')
 
     @api.model
     def _init_mrp_inventory(self, mrp_product):
         # Read Demand
+        # TODO: Replace with ORM read_group
         demand_qty_by_date = {}
         sql_stat = '''SELECT mrp_date, sum(mrp_qty) as demand_qty
                     FROM mrp_move
@@ -867,8 +856,8 @@ class MultiLevelMrp(models.TransientModel):
         for sql_res in self.env.cr.dictfetchall():
             demand_qty_by_date[sql_res['mrp_date']] = sql_res['demand_qty']
 
-
         # Read Supply
+        # TODO: Replace with ORM read_group
         supply_qty_by_date = {}
 
         sql_stat = '''SELECT mrp_date, sum(mrp_qty) as supply_qty
@@ -884,7 +873,8 @@ class MultiLevelMrp(models.TransientModel):
         # Read supply actions
         supply_actions_qty_by_date = {}
         mrp_type = 's'
-        #  TODO: if we remove cancel take it into account here, as well as mrp_type ('r').
+        # TODO: if we remove cancel take it into account here,
+        # TODO: as well as mrp_type ('r').
         exclude_mrp_actions = ['none', 'cancel']
         sql_stat = '''SELECT mrp_date, sum(mrp_qty) as actions_qty
                    FROM mrp_move
@@ -972,7 +962,7 @@ class MultiLevelMrp(models.TransientModel):
                     [('id', '=', mrp_product.id)]).write(
                     {'nbr_mrp_actions': nbr_actions,
                      'nbr_mrp_actions_4w': nbr_actions_4w})
-            self.env.cr.commit()
+            # self.env.cr.commit()
         logger.info('END MRP FINAL PROCESS')
 
     @api.one
