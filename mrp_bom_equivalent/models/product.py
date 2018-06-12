@@ -32,7 +32,7 @@ class ProductProduct(models.Model):
             domain +=\
                 [('categ_id', 'child_of', category_id.id),
                  ('id', '!=', self._context.get('nonequivalent_product_id'))]
-        order = order or self.priority
+        order = order or self.product_tmpl_id.priority
         return super(ProductProduct, self).search_read(domain=domain,
                                                        fields=fields,
                                                        offset=offset,
