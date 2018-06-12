@@ -49,7 +49,7 @@ class MultiLevelMrp(models.TransientModel):
             'name': product.name,
             'supply_method': supply_method,
             'main_supplier_id': main_supplier_id,
-            }
+        }
 
     @api.model
     def _prepare_mrp_move_data_from_forecast(self, fc, fc_id, mrpproduct):
@@ -322,9 +322,9 @@ class MultiLevelMrp(models.TransientModel):
         # sql statements due to performance issues when the auditlog is
         # installed
         logger.info('START MRP CLEANUP')
-        self.env['mrp.move'].search([('id', '!=', 0)]).unlink()
-        self.env['mrp.product'].search([('id', '!=', 0)]).unlink()
-        self.env['mrp.inventory'].search([('id', '!=', 0)]).unlink()
+        self.env['mrp.move'].search([]).unlink()
+        self.env['mrp.product'].search([]).unlink()
+        self.env['mrp.inventory'].search([]).unlink()
         logger.info('END MRP CLEANUP')
         return True
 
@@ -332,16 +332,15 @@ class MultiLevelMrp(models.TransientModel):
     def _low_level_code_calculation(self):
         logger.info('START LOW LEVEL CODE CALCULATION')
         counter = 999999
-        self.env['product.product'].search([]).write({'llc': 0})
-        products = self.env['product.product'].search([('llc', '=', 0)])
+        llc = 0
+        self.env['product.product'].search([]).write({'llc': llc})
+        products = self.env['product.product'].search([('llc', '=', llc)])
         if products:
             counter = len(products)
         log_msg = 'LOW LEVEL CODE 0 FINISHED - NBR PRODUCTS: %s' % counter
         logger.info(log_msg)
 
-        llc = 0
-        # TODO: possibly replace condition to while counter != 0
-        while counter != 999999:
+        while counter:
             llc += 1
             products = self.env['product.product'].search(
                 [('llc', '=', llc - 1)])
@@ -356,8 +355,7 @@ class MultiLevelMrp(models.TransientModel):
             log_msg = 'LOW LEVEL CODE %s FINISHED - NBR PRODUCTS: %s' % (
                 llc, counter)
             logger.info(log_msg)
-            if counter == 0:
-                counter = 999999
+
         mrp_lowest_llc = llc
         logger.info('END LOW LEVEL CODE CALCULATION')
         return mrp_lowest_llc
@@ -365,6 +363,9 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _calculate_mrp_applicable(self):
         # TODO: Refactor all code here
+        self.env['product.product'].search([
+            ('type', '=', 'product'),
+        ]).write({'mrp_applicable': True})
         return True
         logger.info('CALCULATE MRP APPLICABLE')
         sql_stat = '''UPDATE product_product SET mrp_applicable = False;'''
@@ -430,8 +431,8 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _init_mrp_product(self, product, mrp_area):
 
-        mrp_product_data = self._prepare_mrp_product_data(product,
-                                                          mrp_area)
+        mrp_product_data = self._prepare_mrp_product_data(
+            product, mrp_area)
         return self.env['mrp.product'].create(mrp_product_data)
 
     @api.model
@@ -699,8 +700,8 @@ class MultiLevelMrp(models.TransientModel):
     def _mrp_initialisation(self):
         logger.info('START MRP INITIALISATION')
         mrp_areas = self.env['mrp.area'].search([])
-        products = self.env['product.product'].search([('mrp_applicable',
-                                                        '=', True)])
+        products = self.env['product.product'].search([
+            ('mrp_applicable', '=', True)])
         init_counter = 0
         for mrp_area in mrp_areas:
             for product in products:
@@ -965,7 +966,7 @@ class MultiLevelMrp(models.TransientModel):
             # self.env.cr.commit()
         logger.info('END MRP FINAL PROCESS')
 
-    @api.one
+    @api.multi
     def run_multi_level_mrp(self):
         self._mrp_cleanup()
         mrp_lowest_llc = self._low_level_code_calculation()

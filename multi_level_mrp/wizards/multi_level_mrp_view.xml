@@ -5,7 +5,7 @@
 		<field name="name">Run MRP</field>
 		<field name="model">multi.level.mrp</field>
 		<field name="arch" type="xml">
-			<form string="Run Multi Level MRP" version="7.0">
+			<form string="Run Multi Level MRP">
 				<footer>
 					<button name="run_multi_level_mrp" string="Run MRP" type="object"  class="oe_highlight"  />
 					or
