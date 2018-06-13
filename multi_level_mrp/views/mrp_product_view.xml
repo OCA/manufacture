@@ -138,7 +138,7 @@
 				<filter string="With Actions in Coming 4 Weeks" name="actions4w" domain="[['nbr_mrp_actions_4w','!=',0]]"/>
 				<filter string="With Actions" name="actions" domain="[['nbr_mrp_actions','!=',0]]"/>
 				<filter string="Purchase Actions" domain="[['supply_method','=','buy'],['nbr_mrp_actions','!=',0]]"/>
-				<filter string="Manufacture Actions" domain="[['supply_method','=','produce'],['nbr_mrp_actions','!=',0]]"/>
+				<filter string="Manufacture Actions" domain="[['supply_method','=','manufacture'],['nbr_mrp_actions','!=',0]]"/>
 				<separator/>
 				<group expand="0" string="Group By...">
 					<filter string="Supply Method" context="{'group_by':'supply_method'}"/>
