@@ -2,13 +2,9 @@
 <odoo>
 
     <menuitem name="MRP"
-              id="menu_mrp"
-              sequence="85"/>
-
-    <menuitem name="MRP"
               id="menu_mrp_mrp"
-              parent="menu_mrp"
-              sequence="10"/>
+              parent="mrp.menu_mrp_root"
+              sequence="22"/>
 
     <menuitem name="MRP Areas"
               id="menu_mrp_areas"
@@ -34,15 +30,10 @@
               parent="menu_mrp_mrp"
               sequence="40"/>
 
-    <menuitem name="Forecast"
-              id="menu_mrp_forecast"
-              parent="menu_mrp"
-              sequence="50"/>
-
     <menuitem name="Forecasted Products"
               id="menu_mrp_forecast_products"
               action="mrp_forecast_action"
-              parent="menu_mrp_forecast"
+              parent="menu_mrp_mrp"
               sequence="60"/>
 
 </odoo>
