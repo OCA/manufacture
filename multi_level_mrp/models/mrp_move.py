@@ -1,6 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# © 2016 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar <jordi.ballester@eficent.com>
+# © 2016-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api, _
@@ -9,43 +8,66 @@ from odoo import exceptions
 
 class MrpMove(models.Model):
     _name = 'mrp.move'
- 
+    _order = 'mrp_product_id, mrp_date, mrp_type desc, id'
+
+    # TODO: too many indexes...
+
     mrp_area_id = fields.Many2one('mrp.area', 'MRP Area')
     current_date = fields.Date('Current Date')
     current_qty = fields.Float('Current Qty')
-    mrp_action = fields.Selection((('mo', 'Manufacturing Order'),
-                                   ('po', 'Purchase Order'),
-                                   ('pr', 'Purchase Request'),
-                                   ('so', 'Sale Order'),
-                                   ('push', 'Push'),
-                                   ('pull', 'Pull'),
-                                   ('cancel', 'Cancel'),
-                                   ('none', 'None')),
-                                  'Action')
+    # TODO: remove purchase request and move to other module?
+    # TODO: cancel is not needed I think...
+    mrp_action = fields.Selection(
+        selection=[('mo', 'Manufacturing Order'),
+                   ('po', 'Purchase Order'),
+                   ('pr', 'Purchase Request'),
+                   ('so', 'Sale Order'),
+                   ('cancel', 'Cancel'),
+                   ('none', 'None')],
+        string='Action',
+    )
     mrp_action_date = fields.Date('MRP Action Date')
     mrp_date = fields.Date('MRP Date')
-    mrp_move_down_ids = fields.Many2many('mrp.move', 'mrp_move_rel',
-                                         'move_up_id', 'move_down_id',
-                                         'MRP Move DOWN')
-    mrp_move_up_ids = fields.Many2many('mrp.move', 'mrp_move_rel',
-                                       'move_down_id', 'move_up_id',
-                                       'MRP Move UP')
-    mrp_minimum_stock = fields.Float(string='Minimum Stock',
-                                     related='product_id.mrp_minimum_stock')
+    mrp_move_down_ids = fields.Many2many(
+        comodel_name='mrp.move',
+        relation='mrp_move_rel',
+        column1='move_up_id',
+        column2='move_down_id',
+        string='MRP Move DOWN',
+    )
+    mrp_move_up_ids = fields.Many2many(
+        comodel_name='mrp.move',
+        relation='mrp_move_rel',
+        column1='move_down_id',
+        column2='move_up_id',
+        string='MRP Move UP',
+    )
+    mrp_minimum_stock = fields.Float(
+        string='Minimum Stock',
+        related='product_id.mrp_minimum_stock',
+    )
     mrp_order_number = fields.Char('Order Number')
-    mrp_origin = fields.Selection((('mo', 'Manufacturing Order'),
-                                   ('po', 'Purchase Order'),
-                                   ('pr', 'Purchase Request'),
-                                   ('so', 'Sale Order'), ('mv','Move'),
-                                   ('fc', 'Forecast'), ('mrp', 'MRP')),
-                                  'Origin')
+    # TODO: move purchase request to another module
+    mrp_origin = fields.Selection(
+        selection=[('mo', 'Manufacturing Order'),
+                   ('po', 'Purchase Order'),
+                   ('pr', 'Purchase Request'),
+                   ('so', 'Sale Order'),
+                   ('mv', 'Move'),
+                   ('fc', 'Forecast'), ('mrp', 'MRP')],
+        string='Origin')
     mrp_processed = fields.Boolean('Processed')
     mrp_product_id = fields.Many2one('mrp.product', 'Product', index=True)
     mrp_qty = fields.Float('MRP Quantity')
-    mrp_type = fields.Selection((('s', 'Supply'), ('d', 'Demand')), 'Type')
+    mrp_type = fields.Selection(
+        selection=[('s', 'Supply'), ('d', 'Demand')],
+        string='Type',
+    )
     name = fields.Char('Description')
-    parent_product_id = fields.Many2one('product.product',
-                                        'Parent Product', index=True)
+    parent_product_id = fields.Many2one(
+        comodel_name='product.product',
+        string='Parent Product', index=True,
+    )
     product_id = fields.Many2one('product.product',
                                  'Product', index=True)
     production_id = fields.Many2one('mrp.production',
@@ -65,15 +87,12 @@ class MrpMove(models.Model):
                    ('waiting', 'Waiting'),
                    ('partially_available', 'Partially Available'),
                    ('ready', 'Ready'),
-                   ('in_production', 'In Production'),
-                   ('picking_except', 'Picking Exception'),
-                   ('sent', 'Sent'), ('approved', 'Approved'),
-                   ('except_invoice', 'Invoice Exception')],
+                   ('sent', 'Sent'),
+                   ('to approve', 'To Approve'),
+                   ('approved', 'Approved')],
         string='State',
     )
     stock_move_id = fields.Many2one('stock.move', 'Stock Move', index=True)
-     
-    _order = 'mrp_product_id, mrp_date, mrp_type desc, id'
 
     @api.model
     def mrp_production_prepare(self, bom_id, routing_id):
