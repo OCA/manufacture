@@ -49,6 +49,16 @@ class MrpProduction(models.Model):
                             restrict_partner_id=move.restrict_partner_id)
                         new_move = move_obj.browse(new_move_id)
                         move._action_assign()
+                        # Update unit_factor for moves that were split.
+                        # We need updated factor, because it is used
+                        # to know quantity consumed when finishing MO.
+                        # If factor is left the same after split, it
+                        # would use either more or less than needed
+                        # quantity for manufacturing order.
+                        [
+                            mv._update_unit_factor(production.product_qty) for
+                            mv in (move | new_move)
+                        ]
                     else:
                         new_move = move
                 elif move.state in ('partially_available', 'confirmed') \
