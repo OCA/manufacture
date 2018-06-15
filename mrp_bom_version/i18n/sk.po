@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_bom_version
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-09-02 09:19+0000\n"
 "PO-Revision-Date: 2015-10-26 16:08+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Slovak (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sk/)\n"
+"Language-Team: Slovak (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/sk/)\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: mrp_bom_version
@@ -146,6 +147,6 @@ msgstr ""
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid ""
-"You will activate the BoM. If you haven't set a route yet, then you won't be"
-" able to do it after this. Are you sure you want to proceed?"
+"You will activate the BoM. If you haven't set a route yet, then you won't be "
+"able to do it after this. Are you sure you want to proceed?"
 msgstr ""

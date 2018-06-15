@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_bom_version
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2016-04-28 14:19+0000\n"
 "PO-Revision-Date: 2016-04-30 05:11+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -117,7 +119,8 @@ msgstr "Aktivno stanje se lahko povrne v stanje osnutek"
 msgid ""
 "This will allow you to define if those BoM passed back to draft are still "
 "activated or not"
-msgstr "Omogoči določitev, če naj kosovnice vrnjene v osnutek ostanejo aktivne ali ne"
+msgstr ""
+"Omogoči določitev, če naj kosovnice vrnjene v osnutek ostanejo aktivne ali ne"
 
 #. module: mrp_bom_version
 #: field:mrp.bom,version:0
@@ -141,12 +144,16 @@ msgstr "Ste prepričani, da želite ustvariti novo verzijo te kosovnice?"
 msgid ""
 "You are going to historize an BoM. Doing, not be able to unlock it unless "
 "you make a copy. Are you sure you want to proceed?"
-msgstr "Kosovnico postavljate v zastaranje. Ne boste je mogli odkleniti, razen, če naredite kopijo. Želite nadaljevati?"
+msgstr ""
+"Kosovnico postavljate v zastaranje. Ne boste je mogli odkleniti, razen, če "
+"naredite kopijo. Želite nadaljevati?"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_tree_view
 msgid ""
-"You will activate the BoM. If you haven't set a route yet, then you won't be"
-" able to do it after this. Are you sure you want to proceed?"
-msgstr "Aktivirali boste kosovnico. Če še niste nastavili proge, tega ne boste mogli narediti po tem. Želite nadaljevati?"
+"You will activate the BoM. If you haven't set a route yet, then you won't be "
+"able to do it after this. Are you sure you want to proceed?"
+msgstr ""
+"Aktivirali boste kosovnico. Če še niste nastavili proge, tega ne boste mogli "
+"narediti po tem. Želite nadaljevati?"
