@@ -31,7 +31,7 @@ To configure this module, you need to:
 If you want to use the second mode, based on forecast quantity
 
 #. Go to the warehouse you want to follow this behaviour.
-#. In the view form go to the tab *Warehouse Configuration* and set the 
+#. In the view form go to the tab *Warehouse Configuration* and set the
    *MRP MTO with forecast stock*. You still need to configure the products
    like described in last step.
 
@@ -70,6 +70,7 @@ Contributors
 * Lois Rilo <lois.rilo@eficent.com>
 * Florian da Costa <florian.dacosta@akretion.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Andrius Laukavičius <andrius@focusate.eu>
 
 Maintainer
 ----------
