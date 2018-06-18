@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2018-02-15 03:55+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -93,6 +94,12 @@ msgstr "Podrejene kategorije"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_company_id
 msgid "Company"
 msgstr "Družba"
+
+#. module: quality_control
+#: model:ir.ui.menu,name:quality_control.menu_qc_config
+#, fuzzy
+msgid "Configuration"
+msgstr "Potrditev"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view

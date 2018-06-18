@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>, 2017
@@ -11,13 +11,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-24 03:54+0000\n"
 "PO-Revision-Date: 2017-11-24 03:54+0000\n"
-"Last-Translator: Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>, 2017\n"
+"Last-Translator: Ana-Maria Olujić <ana-maria.olujic@slobodni-programi.hr>, "
+"2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -95,6 +97,12 @@ msgid "Company"
 msgstr "Poduzeće"
 
 #. module: quality_control
+#: model:ir.ui.menu,name:quality_control.menu_qc_config
+#, fuzzy
+msgid "Configuration"
+msgstr "Potvrdi"
+
+#. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Confirm"
 msgstr "Potvrdi"
@@ -148,11 +156,6 @@ msgid "Created on"
 msgstr "Kreirano"
 
 #. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_taxes_id
-msgid "Customer Taxes"
-msgstr ""
-
-#. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
 msgid "Date"
 msgstr "Datum"
@@ -188,11 +191,6 @@ msgstr "Skica"
 #: code:addons/quality_control/models/qc_test_category.py:36
 #, python-format
 msgid "Error ! You can not create recursive categories."
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_expense_id
-msgid "Expense Account"
 msgstr ""
 
 #. module: quality_control
@@ -282,11 +280,6 @@ msgstr ""
 msgid ""
 "If filled, the test will only be created when the action is done for one of "
 "the specified partners. If empty, the test will always be created."
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_property_account_income_id
-msgid "Income Account"
 msgstr ""
 
 #. module: quality_control
@@ -775,20 +768,6 @@ msgid "There isn't no value marked as OK. You have to mark at least one."
 msgstr ""
 
 #. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_expense_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"expenses for the current product."
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_product_product_property_account_income_id
-msgid ""
-"This account will be used for invoices instead of the default one to value "
-"sales for the current product."
-msgstr ""
-
-#. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_category_active
 msgid "This field allows you to hide the category without removing it."
 msgstr ""
@@ -870,11 +849,6 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
 msgid "Value of the result for a quantitative question."
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_product_product_supplier_taxes_id
-msgid "Vendor Taxes"
 msgstr ""
 
 #. module: quality_control
