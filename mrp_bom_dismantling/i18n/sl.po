@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_bom_dismantling
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2017-02-04 04:19+0000\n"
 "PO-Revision-Date: 2017-02-10 21:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-9-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-9-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_mrp_bom
@@ -36,6 +38,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:mrp_bom_dismantling.view_mrp_bom_dismantling_product_choice_wizard
 msgid "Cancel"
 msgstr "Preklic"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,help:mrp_bom_dismantling.field_product_product_mrp_production_request
+msgid ""
+"Check this box to generate manufacturing request instead of generating "
+"manufacturing orders from procurement."
+msgstr ""
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/models/mrp_bom.py:49
@@ -148,6 +157,16 @@ msgid "Main BOM product will be set randomly"
 msgstr ""
 
 #. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_product_product_mrp_mts_mto_location_ids
+msgid "Manufacturing MTO/MTS Locations"
+msgstr ""
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,field_description:mrp_bom_dismantling.field_product_product_mrp_production_request
+msgid "Manufacturing Request"
+msgstr ""
+
+#. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produced_line_move_id
 msgid "Move id"
 msgstr ""
@@ -183,6 +202,13 @@ msgstr ""
 #: model:ir.model,name:mrp_bom_dismantling.model_stock_move
 msgid "Stock Move"
 msgstr "Premik zaloge"
+
+#. module: mrp_bom_dismantling
+#: model:ir.model.fields,help:mrp_bom_dismantling.field_product_product_mrp_mts_mto_location_ids
+msgid ""
+"These manufacturing locations will create procurements when there is no "
+"stock availale in the source location."
+msgstr ""
 
 #. module: mrp_bom_dismantling
 #: code:addons/mrp_bom_dismantling/wizards/dismantling_product_choice.py:34
