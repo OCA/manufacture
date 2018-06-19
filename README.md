@@ -29,6 +29,7 @@ addon | version | summary
 [mrp_production_unreserve](mrp_production_unreserve/) | 9.0.1.0.0 | Allows you to unreserve Manufacturing Orders.
 [mrp_sale_info](mrp_sale_info/) | 9.0.1.0.0 | Adds sale information to Manufacturing models
 [quality_control](quality_control/) | 9.0.1.3.0 | Quality control
+[quality_control_team](quality_control_team/) | 9.0.1.0.0 | Adds quality control teams to handle different quality control workflows
 
 
 Unported addons
