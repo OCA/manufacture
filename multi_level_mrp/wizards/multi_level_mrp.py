@@ -5,10 +5,13 @@
 
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import date, datetime, timedelta
 import logging
 
 logger = logging.getLogger(__name__)
+
+ODOO_READ_GROUP_DAY_FORMAT = '%d %b %Y'
 
 
 class MultiLevelMrp(models.TransientModel):
@@ -718,7 +721,6 @@ class MultiLevelMrp(models.TransientModel):
                 mrp_product = self._init_mrp_product(product, mrp_area)
             # for mrp_product in self.env['mrp.product'].search([]):
                 self._init_mrp_move(mrp_product)
-                # self.env.cr.commit()
         logger.info('END MRP INITIALISATION')
 
     @api.model
@@ -796,7 +798,6 @@ class MultiLevelMrp(models.TransientModel):
         for mrp_area in self.env['mrp.area'].search([]):
             llc = 0
             while mrp_lowest_llc > llc:
-                # self.env.cr.commit()
                 mrp_products = mrp_product_obj.search(
                     [('mrp_llc', '=', llc),
                      ('mrp_area_id', '=', mrp_area.id)])
@@ -839,71 +840,71 @@ class MultiLevelMrp(models.TransientModel):
                         qty_ordered = cm['qty_ordered']
                         onhand += qty_ordered
                     counter += 1
-                    # self.env.cr.commit()
+
             log_msg = 'MRP CALCULATION LLC %s FINISHED - NBR PRODUCTS: %s' % (
                 llc - 1, counter)
             logger.info(log_msg)
 
-        # self.env.cr.commit()
         logger.info('END MRP CALCULATION')
 
     @api.model
     def _init_mrp_inventory(self, mrp_product):
+        mrp_move_obj = self.env['mrp.move']
         # Read Demand
-        # TODO: Replace with ORM read_group
+        demand_groups = mrp_move_obj.read_group(
+            [('mrp_product_id', '=', mrp_product.id),
+             ('mrp_type', '=', 'd')],
+            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
+        )
         demand_qty_by_date = {}
-        sql_stat = '''SELECT mrp_date, sum(mrp_qty) as demand_qty
-                    FROM mrp_move
-                    WHERE mrp_product_id = %d
-                    AND mrp_type = 'd'
-                    GROUP BY mrp_date''' % (mrp_product.id, )
-        self.env.cr.execute(sql_stat)
-        for sql_res in self.env.cr.dictfetchall():
-            demand_qty_by_date[sql_res['mrp_date']] = sql_res['demand_qty']
+        for group in demand_groups:
+            # Reformat date back to default server format.
+            group_date = datetime.strptime(
+                group['mrp_date:day'], ODOO_READ_GROUP_DAY_FORMAT).strftime(
+                DEFAULT_SERVER_DATE_FORMAT)
+            demand_qty_by_date[group_date] = group['mrp_qty']
 
         # Read Supply
-        # TODO: Replace with ORM read_group
+        supply_groups = mrp_move_obj.read_group(
+            [('mrp_product_id', '=', mrp_product.id),
+             ('mrp_type', '=', 's'),
+             ('mrp_action', '=', 'none')],
+            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
+        )
         supply_qty_by_date = {}
-
-        sql_stat = '''SELECT mrp_date, sum(mrp_qty) as supply_qty
-                    FROM mrp_move
-                    WHERE mrp_product_id = %d
-                    AND mrp_type = 's'
-                    AND mrp_action = 'none'
-                    GROUP BY mrp_date''' % (mrp_product.id, )
-        self.env.cr.execute(sql_stat)
-        for sql_res in self.env.cr.dictfetchall():
-            supply_qty_by_date[sql_res['mrp_date']] = sql_res['supply_qty']
+        for group in supply_groups:
+            # Reformat date back to default server format.
+            group_date = datetime.strptime(
+                group['mrp_date:day'], ODOO_READ_GROUP_DAY_FORMAT).strftime(
+                DEFAULT_SERVER_DATE_FORMAT)
+            supply_qty_by_date[group_date] = group['mrp_qty']
 
         # Read supply actions
-        supply_actions_qty_by_date = {}
-        mrp_type = 's'
         # TODO: if we remove cancel take it into account here,
         # TODO: as well as mrp_type ('r').
         exclude_mrp_actions = ['none', 'cancel']
-        sql_stat = '''SELECT mrp_date, sum(mrp_qty) as actions_qty
-                   FROM mrp_move
-                   WHERE mrp_product_id = %d
-                   AND mrp_qty <> 0.0
-                   AND mrp_type = 's'
-                   AND mrp_action not in %s
-                   GROUP BY mrp_date''' % (mrp_product.id,
-                                           tuple(exclude_mrp_actions))
-        self.env.cr.execute(sql_stat)
-        for sql_res in self.env.cr.dictfetchall():
-            supply_actions_qty_by_date[sql_res['mrp_date']] = \
-                sql_res['actions_qty']
+        action_groups = mrp_move_obj.read_group(
+            [('mrp_product_id', '=', mrp_product.id),
+             ('mrp_qty', '!=', 0.0),
+             ('mrp_type', '=', 's'),
+             ('mrp_action', 'not in', exclude_mrp_actions)],
+            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
+        )
+        supply_actions_qty_by_date = {}
+        for group in action_groups:
+            # Reformat date back to default server format.
+            group_date = datetime.strptime(
+                group['mrp_date:day'], ODOO_READ_GROUP_DAY_FORMAT).strftime(
+                DEFAULT_SERVER_DATE_FORMAT)
+            supply_actions_qty_by_date[group_date] = group['mrp_qty']
 
         # Dates
-        sql_stat = '''SELECT mrp_date
-                    FROM mrp_move
-                    WHERE mrp_product_id = %d
-                    GROUP BY mrp_date
-                    ORDER BY mrp_date''' % (mrp_product.id, )
-        self.env.cr.execute(sql_stat)
-        on_hand_qty = mrp_product.current_qty_available
-        for sql_res in self.env.cr.dictfetchall():
-            mdt = sql_res['mrp_date']
+        mrp_dates = set(mrp_move_obj.search([
+            ('mrp_product_id', '=', mrp_product.id)],
+            order='mrp_date').mapped('mrp_date'))
+
+        on_hand_qty = mrp_product.current_qty_available  # TODO: unreserved?
+        for mdt in sorted(mrp_dates):
             mrp_inventory_data = {
                 'mrp_product_id': mrp_product.id,
                 'date': mdt,
@@ -928,46 +929,35 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _mrp_final_process(self):
         logger.info('START MRP FINAL PROCESS')
-        mrp_areas = self.env['mrp.area'].search([])
-        mrp_product_ids = self.env['mrp.product'].search(
-            [('mrp_llc', '<', 9999),
-             ('mrp_area_id', 'in', mrp_areas.ids)])
+        mrp_product_ids = self.env['mrp.product'].search([
+            ('mrp_llc', '<', 9999),
+            ('mrp_area_id', '!=', False)])
 
         for mrp_product in mrp_product_ids:
             # Build the time-phased inventory
             self._init_mrp_inventory(mrp_product)
 
-            # Complete the info on mrp_move
+            # Complete info on mrp_move (running availability and nbr actions)
             qoh = mrp_product.mrp_qty_available
-            nbr_actions = 0
-            nbr_actions_4w = 0
-            sql_stat = 'SELECT id, mrp_date, mrp_qty, mrp_action FROM ' \
-                       'mrp_move WHERE mrp_product_id = %d ' \
-                       'ORDER BY ' \
-                       'mrp_date, ' \
-                       'mrp_type desc, id' % (mrp_product.id, )
-            self.env.cr.execute(sql_stat)
-            for sql_res in self.env.cr.dictfetchall():
-                qoh = qoh + sql_res['mrp_qty']
-                self.env['mrp.move'].search(
-                    [('id', '=', sql_res['id'])]).write(
-                    {'running_availability': qoh})
 
-            for move in mrp_product.mrp_move_ids:
-                if move.mrp_action != 'none':
-                    nbr_actions += 1
-                if move.mrp_date:
-                    if move.mrp_action != 'none' and \
-                                    datetime.date(datetime.strptime(
-                                        move.mrp_action_date, '%Y-%m-%d')) < \
-                                            date.today()+timedelta(days=29):
-                        nbr_actions_4w += 1
-            if nbr_actions > 0:
-                self.env['mrp.product'].search(
-                    [('id', '=', mrp_product.id)]).write(
-                    {'nbr_mrp_actions': nbr_actions,
-                     'nbr_mrp_actions_4w': nbr_actions_4w})
-            # self.env.cr.commit()
+            moves = self.env['mrp.move'].search([
+                ('mrp_product_id', '=', mrp_product.id)],
+                order='mrp_date, mrp_type desc, id')
+            for move in moves:
+                qoh = qoh + move.mrp_qty
+                move.running_availability = qoh
+
+            nbr_actions = mrp_product.mrp_move_ids.filtered(
+                lambda m: m.mrp_action != 'none')
+            horizon_4w = fields.Date.to_string(
+                date.today() + timedelta(weeks=4))
+            nbr_actions_4w = nbr_actions.filtered(
+                lambda m: m.mrp_action_date < horizon_4w)
+            if nbr_actions:
+                mrp_product.write({
+                    'nbr_mrp_actions': len(nbr_actions),
+                    'nbr_mrp_actions_4w': len(nbr_actions_4w),
+                })
         logger.info('END MRP FINAL PROCESS')
 
     @api.multi

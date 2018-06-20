@@ -8,9 +8,13 @@ from odoo import api, fields, models
 class MrpProduct(models.Model):
     _name = 'mrp.product'
 
-    mrp_area_id = fields.Many2one('mrp.area', 'MRP Area')
-    current_qty_available = fields.Float(string='Current Qty Available',
-                                         related='product_id.qty_available')
+    mrp_area_id = fields.Many2one(
+        comodel_name='mrp.area', string='MRP Area',
+    )
+    current_qty_available = fields.Float(
+        string='Current Qty Available',
+        related='product_id.qty_available',
+    )
     main_supplier_id = fields.Many2one(
         comodel_name='res.partner', string='Main Supplier',
         compute='_compute_main_supplier', store=True,

@@ -254,9 +254,22 @@ class TestMultiLevelMRP(SavepointCase):
         self.assertEqual(pp_2_line_4.demand_qty, 48.0)
         self.assertEqual(pp_2_line_4.to_procure, 48.0)
 
-    def test_05_actions_count(self):
-        """Test actions counters."""
-        pass
+    def test_05_moves_extra_info(self):
+        """Test running availability and actions counters computation on
+        mrp moves."""
+        # Running availability for PP-1:
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.pp_1.id)],
+            order='mrp_date, mrp_type desc, id')
+        self.assertEqual(len(moves), 6)
+        expected = [200.0, 290.0, 90.0, 0.0, 72.0, 0.0]
+        self.assertEqual(moves.mapped('running_availability'), expected)
+        # Actions counters for PP-1:
+        mrp_product = self.mrp_product_obj.search([
+            ('product_id', '=', self.pp_1.id)
+        ])
+        self.assertEqual(mrp_product.nbr_mrp_actions, 3)
+        self.assertEqual(mrp_product.nbr_mrp_actions_4w, 3)
 
     def test_06_procure_mo(self):
         """Test procurement wizard with MOs."""
