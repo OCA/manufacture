@@ -1,32 +1,32 @@
 <?xml version="1.0"?>
 <odoo>
 
-	<record model="ir.ui.view" id="view_mrp_product_product_form">
-		<field name="name">view.mrp.product.product.form</field>
-		<field name="model">product.product</field>
-		<field name="inherit_id" ref="product.product_normal_form_view"/>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-			<xpath expr="//notebook" position="inside">
-				<page string="MRP">
-					<group colspan="4" col="2">
-						<group>
-							<field name="mrp_exclude"/>
-							<field name="mrp_verified"/>
-							<field name="mrp_nbr_days"/>
-							<field name="mrp_transit_delay"/>
-							<field name="mrp_inspection_delay"/>
-						</group>
-						<group>
-							<field name="mrp_minimum_stock"/>
-							<field name="mrp_minimum_order_qty"/>
-							<field name="mrp_maximum_order_qty"/>
-							<field name="mrp_qty_multiple"/>
-						</group>
-					</group>
-				</page>
-			</xpath>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="view_mrp_product_product_form">
+        <field name="name">view.mrp.product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="MRP">
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="mrp_exclude"/>
+                            <field name="mrp_verified"/>
+                            <field name="mrp_nbr_days"/>
+                            <field name="mrp_transit_delay"/>
+                            <field name="mrp_inspection_delay"/>
+                        </group>
+                        <group>
+                            <field name="mrp_minimum_stock"/>
+                            <field name="mrp_minimum_order_qty"/>
+                            <field name="mrp_maximum_order_qty"/>
+                            <field name="mrp_qty_multiple"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
 
 </odoo>
