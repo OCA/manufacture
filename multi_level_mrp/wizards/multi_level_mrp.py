@@ -40,28 +40,24 @@ class MultiLevelMrp(models.TransientModel):
         }
 
     @api.model
-    def _prepare_mrp_move_data_from_forecast(self, fc, fc_id, mrpproduct):
+    def _prepare_mrp_move_data_from_forecast(
+            self, estimate, mrp_product, date):
         mrp_type = 'd'
         origin = 'fc'
-        mrp_date = date.today()
-        if datetime.date(datetime.strptime(fc_id.date,
-                                           '%Y-%m-%d')) > date.today():
-            mrp_date = datetime.date(datetime.strptime(
-                fc_id.date, '%Y-%m-%d'))
         return {
-            'mrp_area_id': fc.mrp_area_id.id,
-            'product_id': fc.product_id.id,
-            'mrp_product_id': mrpproduct.id,
+            'mrp_area_id': mrp_product.mrp_area_id.id,
+            'product_id': mrp_product.product_id.id,
+            'mrp_product_id': mrp_product.id,
             'production_id': None,
             'purchase_order_id': None,
             'purchase_line_id': None,
             'sale_order_id': None,
             'sale_line_id': None,
             'stock_move_id': None,
-            'mrp_qty': -fc_id.qty_forecast,
-            'current_qty': -fc_id.qty_forecast,
-            'mrp_date': mrp_date,
-            'current_date': mrp_date,
+            'mrp_qty': -estimate.daily_qty,
+            'current_qty': -estimate.daily_qty,
+            'mrp_date': date,
+            'current_date': date,
             'mrp_action': 'none',
             'mrp_type': mrp_type,
             'mrp_processed': False,
@@ -379,13 +375,6 @@ class MultiLevelMrp(models.TransientModel):
                 AND llc > 0;"""
         self.env.cr.execute(sql_stat)
 
-        sql_stat = """
-            UPDATE product_product 
-            SET mrp_applicable=True
-            FROM mrp_forecast_product
-            WHERE product_product.id = mrp_forecast_product.product_id;"""
-        self.env.cr.execute(sql_stat)
-
         # self.env.cr.commit()
         counter = 0
         sql_stat = """
@@ -408,15 +397,27 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_from_forecast(self, mrp_product):
-        forecast = self.env['mrp.forecast.product'].search(
-            [('product_id', '=', mrp_product.product_id.id),
-             ('mrp_area_id', '=', mrp_product.mrp_area_id.id)])
-        for fc in forecast:
-            for fc_id in fc.mrp_forecast_ids:
+        locations = self.env['stock.location'].search(
+            [('id', 'child_of', mrp_product.mrp_area_id.location_id.id)])
+        today = fields.Date.today()
+        estimates = self.env['stock.demand.estimate'].search([
+            ('product_id', '=', mrp_product.product_id.id),
+            ('location_id', 'in', locations.ids),
+            ('date_range_id.date_end', '>=', today)
+        ])
+        for rec in estimates:
+            start = rec.date_range_id.date_start
+            if start < today:
+                start = today
+            mrp_date = fields.Date.from_string(start)
+            date_end = fields.Date.from_string(rec.date_range_id.date_end)
+            delta = timedelta(days=1)
+            while mrp_date <= date_end:
                 mrp_move_data = \
                     self._prepare_mrp_move_data_from_forecast(
-                        fc, fc_id, mrp_product)
+                        rec, mrp_product, mrp_date)
                 self.env['mrp.move'].create(mrp_move_data)
+                mrp_date += delta
         return True
 
     # TODO: move this methods to mrp_product?? to be able to show moves with an action
