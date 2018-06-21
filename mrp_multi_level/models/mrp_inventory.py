@@ -15,7 +15,8 @@ class MrpInventory(models.Model):
     _rec_name = 'mrp_product_id'
 
     # TODO: name to pass to procurements?
-    # TODO: compute procurement_date to pass to the wizard? not needed for PO at least. Check for MO and moves
+    # TODO: compute procurement_date to pass to the wizard? not needed for
+    # PO at least. Check for MO and moves
     # TODO: substract qty already procured.
     # TODO: show a LT based on the procure method?
 

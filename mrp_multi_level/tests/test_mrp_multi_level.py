@@ -10,7 +10,7 @@ from dateutil.rrule import WEEKLY
 
 
 class TestMrpMultiLevel(SavepointCase):
-    
+
     @classmethod
     def setUpClass(cls):
         super(TestMrpMultiLevel, cls).setUpClass()
