@@ -36,7 +36,7 @@ class MultiLevelMrp(models.TransientModel):
             'product_id': product.id,
             'mrp_qty_available': product.qty_available,
             'mrp_llc': product.llc,
-            'name': product.name,
+            'name': '[%s] %s' % (mrp_area.name, product.display_name),
         }
 
     @api.model
