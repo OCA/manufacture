@@ -1,54 +1,54 @@
 <?xml version="1.0"?>
 <odoo>
 
-	<record model="ir.ui.view" id="mrp_inventory_form">
-		<field name="name">mrp.inventory.form</field>
-		<field name="model">mrp.inventory</field>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-			<form string="MRP Inventory" create="false" edit="false">
-				<sheet>
-					<group>
-						<group>
-							<field name="mrp_area_id"/>
-							<field name="mrp_product_id"/>
-							<field name="date"/>
-						</group>
-						<group>
-							<field name="initial_on_hand_qty"/>
-							<field name="demand_qty"/>
-							<field name="supply_qty"/>
-							<field name="final_on_hand_qty"/>
-							<field name="to_procure"/>
-						</group>
-					</group>
-				</sheet>
-			</form>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="mrp_inventory_form">
+        <field name="name">mrp.inventory.form</field>
+        <field name="model">mrp.inventory</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="MRP Inventory" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mrp_area_id"/>
+                            <field name="mrp_product_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="initial_on_hand_qty"/>
+                            <field name="demand_qty"/>
+                            <field name="supply_qty"/>
+                            <field name="final_on_hand_qty"/>
+                            <field name="to_procure"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-	<record model="ir.ui.view" id="mrp_inventory_tree">
-		<field name="name">mrp.inventory.tree</field>
-		<field name="model">mrp.inventory</field>
-		<field name="type">tree</field>
-		<field name="arch" type="xml">
-			<tree string="MRP Inventory" create="false">
-				<field name="mrp_area_id"/>
-				<field name="mrp_product_id"/>
-				<field name="date"/>
-				<field name="initial_on_hand_qty"/>
-				<field name="demand_qty"/>
-				<field name="supply_qty"/>
-				<field name="final_on_hand_qty"/>
-				<field name="to_procure"/>
-				<field name="date_to_procure"/>
-				<button string="Create Procurement"
-						name="%(mrp_multi_level.act_mrp_inventory_procure)d"
-						icon="fa-cogs" type="action"
-						attrs="{'invisible':[('to_procure','==',0.0)]}"/>
-			</tree>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="mrp_inventory_tree">
+        <field name="name">mrp.inventory.tree</field>
+        <field name="model">mrp.inventory</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Inventory" create="false">
+                <field name="mrp_area_id"/>
+                <field name="mrp_product_id"/>
+                <field name="date"/>
+                <field name="initial_on_hand_qty"/>
+                <field name="demand_qty"/>
+                <field name="supply_qty"/>
+                <field name="final_on_hand_qty"/>
+                <field name="to_procure"/>
+                <field name="date_to_procure"/>
+                <button string="Create Procurement"
+                        name="%(mrp_multi_level.act_mrp_inventory_procure)d"
+                        icon="fa-cogs" type="action"
+                        attrs="{'invisible':[('to_procure','==',0.0)]}"/>
+            </tree>
+        </field>
+    </record>
 
     <record id="view_mrp_inventory_pivot" model="ir.ui.view">
         <field name="name">mrp.inventory.pivot</field>
@@ -57,62 +57,62 @@
             <pivot string="MRP Inventory">
                 <field name="final_on_hand_qty" type="measure"/>
                 <field name="mrp_area_id" type="row"/>
-				<field name="mrp_product_id" type="row"/>
+                <field name="mrp_product_id" type="row"/>
                 <field name="date" interval="day" type="col"/>
             </pivot>
         </field>
     </record>
 
-	<record id="view_mrp_inventory_graph" model="ir.ui.view">
+    <record id="view_mrp_inventory_graph" model="ir.ui.view">
         <field name="name">mrp.inventory.graph</field>
         <field name="model">mrp.inventory</field>
         <field name="arch" type="xml">
             <graph string="MRP Inventory" type="line">
                 <field name="final_on_hand_qty" type="measure"/>
-				<field name="date" interval="day" type="row"/>
-				<field name="mrp_product_id" type="row"/>
+                <field name="date" interval="day" type="row"/>
+                <field name="mrp_product_id" type="row"/>
             </graph>
         </field>
     </record>
 
-	<record model="ir.ui.view" id="mrp_inventory_search">
-		<field name="name">mrp.inventory.search</field>
-		<field name="model">mrp.inventory</field>
-		<field name="type">search</field>
-		<field name="arch" type="xml">
-			<search string="MRP Inventory">
-				<group name="select" expand="0" string="Selection...">
-					<field name="mrp_product_id"/>
-					<field name="mrp_area_id"/>
-				</group>
-				<separator/>
-				<filter string="To Procure" name="filter_to_procure"
-						domain="[['to_procure','>',0.0]]"/>
-				<separator/>
-				<group expand="0" string="Group By...">
-					<filter string="Product"
-							context="{'group_by':'mrp_product_id'}"/>
-					<filter string="MRP Area"
-							context="{'group_by':'mrp_area_id'}"/>
-					<filter string="Date to Procure (By Day)"
-							context="{'group_by':'date_to_procure:day'}"/>
-					<filter string="Date to Procure (By Week)"
-							context="{'group_by':'date_to_procure:week'}"/>
-					<filter string="Date to Procure (By Month)"
-							context="{'group_by':'date_to_procure:month'}"/>
-				</group>
-			</search>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="mrp_inventory_search">
+        <field name="name">mrp.inventory.search</field>
+        <field name="model">mrp.inventory</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="MRP Inventory">
+                <group name="select" expand="0" string="Selection...">
+                    <field name="mrp_product_id"/>
+                    <field name="mrp_area_id"/>
+                </group>
+                <separator/>
+                <filter string="To Procure" name="filter_to_procure"
+                        domain="[['to_procure','>',0.0]]"/>
+                <separator/>
+                <group expand="0" string="Group By...">
+                    <filter string="Product"
+                            context="{'group_by':'mrp_product_id'}"/>
+                    <filter string="MRP Area"
+                            context="{'group_by':'mrp_area_id'}"/>
+                    <filter string="Date to Procure (By Day)"
+                            context="{'group_by':'date_to_procure:day'}"/>
+                    <filter string="Date to Procure (By Week)"
+                            context="{'group_by':'date_to_procure:week'}"/>
+                    <filter string="Date to Procure (By Month)"
+                            context="{'group_by':'date_to_procure:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
-	<record model="ir.actions.act_window" id="mrp_inventory_action">
-		<field name="name">MRP Inventory</field>
-		<field name="res_model">mrp.inventory</field>
-		<field name="type">ir.actions.act_window</field>
-		<field name="view_type">form</field>
-		<field name="view_mode">tree,form,pivot,graph</field>
-		<field name="view_id" ref="mrp_inventory_tree"/>
-		<field name="search_view_id" ref="mrp_inventory_search"/>
-	</record>
+    <record model="ir.actions.act_window" id="mrp_inventory_action">
+        <field name="name">MRP Inventory</field>
+        <field name="res_model">mrp.inventory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_id" ref="mrp_inventory_tree"/>
+        <field name="search_view_id" ref="mrp_inventory_search"/>
+    </record>
 
 </odoo>

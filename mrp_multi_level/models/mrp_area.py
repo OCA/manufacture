@@ -8,12 +8,14 @@ from odoo import fields, models
 
 class MrpArea(models.Model):
     _name = 'mrp.area'
- 
+
     name = fields.Char('Name')
     warehouse_id = fields.Many2one(
         comodel_name='stock.warehouse', string='Warehouse',
-        required=True)
+        required=True,
+    )
     location_id = fields.Many2one(
         comodel_name='stock.location', string='Location',
-        required=True)
+        required=True,
+    )
     active = fields.Boolean(default=True)
