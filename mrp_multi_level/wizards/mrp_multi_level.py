@@ -15,7 +15,7 @@ ODOO_READ_GROUP_DAY_FORMAT = '%d %b %Y'
 
 
 class MultiLevelMrp(models.TransientModel):
-    _name = 'multi.level.mrp'
+    _name = 'mrp.multi.level'
 
     # TODO: dates are not being correctly computed for supply...
 
@@ -962,7 +962,7 @@ class MultiLevelMrp(models.TransientModel):
         logger.info('END MRP FINAL PROCESS')
 
     @api.multi
-    def run_multi_level_mrp(self):
+    def run_mrp_multi_level(self):
         self._mrp_cleanup()
         mrp_lowest_llc = self._low_level_code_calculation()
         self._calculate_mrp_applicable()

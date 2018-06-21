@@ -53,7 +53,7 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
         <field name="binding_model_id"
-               ref="multi_level_mrp.model_mrp_inventory"/>
+               ref="mrp_multi_level.model_mrp_inventory"/>
     </record>
 
 </odoo>

@@ -7,7 +7,3 @@ access_mrp_product_user,mrp.product user,model_mrp_product,base.group_user,1,0,0
 access_mrp_product_manager,mrp.product manager,model_mrp_product,mrp.group_mrp_manager,1,1,1,1
 access_mrp_area_user,mrp.area user,model_mrp_area,mrp.group_mrp_user,1,0,0,0
 access_mrp_area_manager,mrp.area manager,model_mrp_area,mrp.group_mrp_manager,1,1,1,1
-access_mrp_forecast_forecast_user,mrp.forecast.forecast user,model_mrp_forecast_forecast,mrp.group_mrp_user,1,0,0,0
-access_mrp_forecast_forecast_manager,mrp.forecast.forecast manager,model_mrp_forecast_forecast,mrp.group_mrp_manager,1,1,1,1
-access_mrp_forecast_product_user,mrp.forecast.product user,model_mrp_forecast_product,mrp.group_mrp_user,1,0,0,0
-access_mrp_forecast_product_manager,mrp.forecast.product manager,model_mrp_forecast_product,mrp.group_mrp_manager,1,1,1,1

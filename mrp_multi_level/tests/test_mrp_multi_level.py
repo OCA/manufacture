@@ -9,30 +9,30 @@ from odoo import fields
 from dateutil.rrule import WEEKLY
 
 
-class TestMultiLevelMRP(SavepointCase):
+class TestMrpMultiLevel(SavepointCase):
     
     @classmethod
     def setUpClass(cls):
-        super(TestMultiLevelMRP, cls).setUpClass()
+        super(TestMrpMultiLevel, cls).setUpClass()
         cls.mo_obj = cls.env['mrp.production']
         cls.po_obj = cls.env['purchase.order']
         cls.product_obj = cls.env['product.product']
         cls.partner_obj = cls.env['res.partner']
         cls.stock_picking_obj = cls.env['stock.picking']
         cls.estimate_obj = cls.env['stock.demand.estimate']
-        cls.multi_level_mrp_wiz = cls.env['multi.level.mrp']
+        cls.mrp_multi_level_wiz = cls.env['mrp.multi.level']
         cls.mrp_inventory_procure_wiz = cls.env['mrp.inventory.procure']
         cls.mrp_inventory_obj = cls.env['mrp.inventory']
         cls.mrp_product_obj = cls.env['mrp.product']
         cls.mrp_move_obj = cls.env['mrp.move']
 
-        cls.fp_1 = cls.env.ref('multi_level_mrp.product_product_fp_1')
-        cls.fp_2 = cls.env.ref('multi_level_mrp.product_product_fp_2')
-        cls.sf_1 = cls.env.ref('multi_level_mrp.product_product_sf_1')
-        cls.sf_2 = cls.env.ref('multi_level_mrp.product_product_sf_2')
-        cls.pp_1 = cls.env.ref('multi_level_mrp.product_product_pp_1')
-        cls.pp_2 = cls.env.ref('multi_level_mrp.product_product_pp_2')
-        cls.vendor = cls.env.ref('multi_level_mrp.res_partner_lazer_tech')
+        cls.fp_1 = cls.env.ref('mrp_multi_level.product_product_fp_1')
+        cls.fp_2 = cls.env.ref('mrp_multi_level.product_product_fp_2')
+        cls.sf_1 = cls.env.ref('mrp_multi_level.product_product_sf_1')
+        cls.sf_2 = cls.env.ref('mrp_multi_level.product_product_sf_2')
+        cls.pp_1 = cls.env.ref('mrp_multi_level.product_product_pp_1')
+        cls.pp_2 = cls.env.ref('mrp_multi_level.product_product_pp_2')
+        cls.vendor = cls.env.ref('mrp_multi_level.res_partner_lazer_tech')
         cls.wh = cls.env.ref('stock.warehouse0')
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref(
@@ -100,7 +100,7 @@ class TestMultiLevelMRP(SavepointCase):
 
         # Create test MO:
         date_mo = datetime.today() + timedelta(days=9)
-        bom_fp_2 = cls.env.ref('multi_level_mrp.mrp_bom_fp_2')
+        bom_fp_2 = cls.env.ref('mrp_multi_level.mrp_bom_fp_2')
         cls.mo = cls.mo_obj.create({
             'product_id': cls.fp_2.id,
             'bom_id': bom_fp_2.id,
@@ -143,7 +143,7 @@ class TestMultiLevelMRP(SavepointCase):
             cls._create_demand_estimate(
                 cls.prod_test, cls.stock_location, dr, qty)
 
-        cls.multi_level_mrp_wiz.create({}).run_multi_level_mrp()
+        cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
 
     @classmethod
     def _create_demand_estimate(cls, product, location, date_range, qty):
@@ -215,7 +215,7 @@ class TestMultiLevelMRP(SavepointCase):
         self.assertEqual(po_move.purchase_order_id, self.po)
         self.assertEqual(po_move.purchase_line_id, self.po.order_line)
 
-    def test_04_multi_level_mrp(self):
+    def test_04_mrp_multi_level(self):
         """Tests MRP inventories created."""
         # FP-1
         fp_1_inventory_lines = self.mrp_inventory_obj.search(
