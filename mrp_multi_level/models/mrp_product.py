@@ -20,6 +20,10 @@ class MrpProduct(models.Model):
         compute='_compute_main_supplier', store=True,
         index=True,
     )
+    main_supplierinfo_id = fields.Many2one(
+        comodel_name='product.supplierinfo', string='Supplier Info',
+        compute='_compute_main_supplier', store=True,
+    )
     mrp_inspection_delay = fields.Integer(
         string='Inspection Delay', related='product_id.mrp_inspection_delay')
     mrp_lead_time = fields.Float(
@@ -101,6 +105,7 @@ class MrpProduct(models.Model):
                 lambda r: (not r.product_id or r.product_id == rec.product_id))
             if not suppliers:
                 continue
+            rec.main_supplierinfo_id = suppliers[0]
             rec.main_supplier_id = suppliers[0].name
 
     @api.multi
