@@ -4,6 +4,7 @@
 {
     'name': 'MRP Multi Level',
     'version': '11.0.1.0.0',
+    'license': 'AGPL-3',
     'author': 'Ucamco, '
               'Eficent, '
               'Odoo Community Association (OCA)',
