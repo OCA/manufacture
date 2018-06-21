@@ -52,7 +52,7 @@ class MrpInventoryProcure(models.TransientModel):
         active_model = self.env.context['active_model']
         if not mrp_inventory_ids or 'item_ids' not in fields:
             return res
-        
+
         assert active_model == 'mrp.inventory', 'Bad context propagation'
 
         items = item_obj = self.env['mrp.inventory.procure.item']
