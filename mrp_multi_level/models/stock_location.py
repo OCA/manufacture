@@ -8,7 +8,7 @@ from odoo import fields, models
 
 class StockLocation(models.Model):
     _inherit = 'stock.location'
- 
+
     mrp_area_id = fields.Many2one(
         comodel_name='mrp.area', string='MRP Area',
         help="Requirements for a particular MRP area are combined for the "
