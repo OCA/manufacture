@@ -2,7 +2,7 @@
 # Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Multi Level MRP',
+    'name': 'MRP Multi Level',
     'version': '11.0.1.0.0',
     'author': 'Ucamco, '
               'Eficent, '
@@ -17,7 +17,7 @@
         'stock_demand_estimate',
     ],
     'data': [
-        'security/multi_level_mrp_security.xml',
+        'security/mrp_multi_level_security.xml',
         'security/ir.model.access.csv',
         'views/mrp_area_view.xml',
         'views/product_view.xml',
@@ -25,9 +25,9 @@
         'views/mrp_product_view.xml',
         'wizards/mrp_inventory_procure_view.xml',
         'views/mrp_inventory_view.xml',
-        'wizards/multi_level_mrp_view.xml',
+        'wizards/mrp_multi_level_view.xml',
         'views/mrp_menuitem.xml',
-        'data/multi_level_mrp_cron.xml',
+        'data/mrp_multi_level_cron.xml',
         'data/mrp_area_data.xml',
     ],
     'demo': [

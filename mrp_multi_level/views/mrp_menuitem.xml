@@ -25,8 +25,8 @@
               sequence="30"/>
 
     <menuitem name="Run Multi Level MRP"
-              id="menu_multi_level_mrp"
-              action="action_multi_level_mrp"
+              id="menu_mrp_multi_level"
+              action="action_mrp_multi_level"
               parent="menu_mrp_mrp"
               sequence="40"/>
 

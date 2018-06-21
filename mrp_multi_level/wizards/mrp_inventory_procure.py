@@ -32,13 +32,13 @@ class MrpInventoryProcure(models.TransientModel):
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         if self.user_has_groups(
-                "multi_level_mrp.group_change_mrp_procure_qty"):
+                "mrp_multi_level.group_change_mrp_procure_qty"):
             view_id = self.env.ref(
-                'multi_level_mrp.'
+                'mrp_multi_level.'
                 'view_mrp_inventory_procure_wizard').id
         else:
             view_id = self.env.ref(
-                'multi_level_mrp.'
+                'mrp_multi_level.'
                 'view_mrp_inventory_procure_without_security').id
         return super(MrpInventoryProcure, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar,

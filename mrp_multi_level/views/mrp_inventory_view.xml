@@ -37,7 +37,7 @@
 				<field name="to_procure"/>
                 <!--TODO: use same procurement wizard as ddmrp?-->
 				<button string="Create Procurement"
-						name="%(multi_level_mrp.act_mrp_inventory_procure)d"
+						name="%(mrp_multi_level.act_mrp_inventory_procure)d"
 						icon="fa-cogs" type="action"
 						attrs="{'invisible':[('to_procure','==',0.0)]}"/>
 			</tree>
