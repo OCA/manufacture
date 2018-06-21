@@ -14,11 +14,11 @@
         'mrp',
         'stock',
         'purchase',
+        'stock_demand_estimate',
     ],
     'data': [
         'security/multi_level_mrp_security.xml',
         'security/ir.model.access.csv',
-        'views/mrp_forecast_view.xml',
         'views/mrp_area_view.xml',
         'views/product_view.xml',
         'views/stock_location_view.xml',

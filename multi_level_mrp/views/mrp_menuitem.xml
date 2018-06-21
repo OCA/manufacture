@@ -30,10 +30,4 @@
               parent="menu_mrp_mrp"
               sequence="40"/>
 
-    <menuitem name="Forecasted Products"
-              id="menu_mrp_forecast_products"
-              action="mrp_forecast_action"
-              parent="menu_mrp_mrp"
-              sequence="60"/>
-
 </odoo>

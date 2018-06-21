@@ -6,6 +6,7 @@ from datetime import date, datetime, timedelta
 
 from odoo.tests.common import SavepointCase
 from odoo import fields
+from dateutil.rrule import WEEKLY
 
 
 class TestMultiLevelMRP(SavepointCase):
@@ -15,7 +16,10 @@ class TestMultiLevelMRP(SavepointCase):
         super(TestMultiLevelMRP, cls).setUpClass()
         cls.mo_obj = cls.env['mrp.production']
         cls.po_obj = cls.env['purchase.order']
+        cls.product_obj = cls.env['product.product']
+        cls.partner_obj = cls.env['res.partner']
         cls.stock_picking_obj = cls.env['stock.picking']
+        cls.estimate_obj = cls.env['stock.demand.estimate']
         cls.multi_level_mrp_wiz = cls.env['multi.level.mrp']
         cls.mrp_inventory_procure_wiz = cls.env['mrp.inventory.procure']
         cls.mrp_inventory_obj = cls.env['mrp.inventory']
@@ -33,6 +37,20 @@ class TestMultiLevelMRP(SavepointCase):
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref(
             'stock.stock_location_customers')
+
+        # Partner:
+        vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
+
+        # Create products:
+        route_buy = cls.env.ref('purchase.route_warehouse0_buy').id
+        cls.prod_test = cls.product_obj.create({
+            'name': 'Test Top Seller',
+            'type': 'product',
+            'list_price': 150.0,
+            'produce_delay': 5.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 20.0})],
+        })
 
         # Create test picking:
         date_move = datetime.today() + timedelta(days=7)
@@ -90,7 +108,6 @@ class TestMultiLevelMRP(SavepointCase):
             'product_uom_id': cls.fp_2.uom_id.id,
             'date_planned_start': date_mo,
         })
-        cls.multi_level_mrp_wiz.create({}).run_multi_level_mrp()
 
         # Dates (Strings):
         today = datetime.today()
@@ -101,6 +118,42 @@ class TestMultiLevelMRP(SavepointCase):
         cls.date_8 = fields.Date.to_string(today + timedelta(days=8))
         cls.date_9 = fields.Date.to_string(today + timedelta(days=9))
         cls.date_10 = fields.Date.to_string(today + timedelta(days=10))
+
+        # Create Date Ranges:
+        cls.dr_type = cls.env['date.range.type'].create({
+            'name': 'Weeks',
+            'company_id': False,
+            'allow_overlap': False,
+        })
+        generator = cls.env['date.range.generator'].create({
+            'date_start': today - timedelta(days=3),
+            'name_prefix': 'W-',
+            'type_id': cls.dr_type.id,
+            'duration_count': 1,
+            'unit_of_time': WEEKLY,
+            'count': 3})
+        generator.action_apply()
+
+        # Create Demand Estimates:
+        ranges = cls.env['date.range'].search(
+            [('type_id', '=', cls.dr_type.id)])
+        qty = 140.0
+        for dr in ranges:
+            qty += 70.0
+            cls._create_demand_estimate(
+                cls.prod_test, cls.stock_location, dr, qty)
+
+        cls.multi_level_mrp_wiz.create({}).run_multi_level_mrp()
+
+    @classmethod
+    def _create_demand_estimate(cls, product, location, date_range, qty):
+        cls.estimate_obj.create({
+            'product_id': product.id,
+            'location_id': location.id,
+            'product_uom': product.uom_id.id,
+            'product_uom_qty': qty,
+            'date_range_id': date_range.id,
+        })
 
     def test_01_mrp_levels(self):
         """Tests computation of MRP levels."""
@@ -271,7 +324,25 @@ class TestMultiLevelMRP(SavepointCase):
         self.assertEqual(mrp_product.nbr_mrp_actions, 3)
         self.assertEqual(mrp_product.nbr_mrp_actions_4w, 3)
 
-    def test_06_procure_mo(self):
+    def test_06_demand_estimates(self):
+        """Tests demand estimates integration."""
+        estimates = self.estimate_obj.search(
+            [('product_id', '=', self.prod_test.id)])
+        self.assertEqual(len(estimates), 3)
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.prod_test.id),
+        ])
+        # 3 weeks - 3 days in the past = 18 days of valid estimates:
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
+        self.assertEqual(len(moves_from_estimates), 18)
+        quantities = moves_from_estimates.mapped('mrp_qty')
+        self.assertIn(-30.0, quantities)  # 210 a week => 30.0 dayly:
+        self.assertIn(-40.0, quantities)  # 280 a week => 40.0 dayly:
+        self.assertIn(-50.0, quantities)  # 350 a week => 50.0 dayly:
+        actions = moves.filtered(lambda m: m.mrp_action == 'po')
+        self.assertEqual(len(actions), 18)
+
+    def test_07_procure_mo(self):
         """Test procurement wizard with MOs."""
         mos = self.mo_obj.search([
             ('product_id', '=', self.fp_1.id)])
