@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record model="ir.ui.view" id="mrp_product_tree">
+		<field name="name">mrp.product.tree</field>
+		<field name="model">mrp.product</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<tree string="MRP Products">
+				<field name="mrp_area_id"/>
+				<field name="product_id"/>
+				<field name="mrp_verified"/>
+				<field name="mrp_move_ids"/>
+				<field name="nbr_mrp_actions_4w"/>
+				<field name="nbr_mrp_actions"/>
+				<field name="supply_method"/>
+				<field name="main_supplier_id"/>
+				<field name="mrp_llc" invisible="True"/>
+			</tree>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="mrp_product_form">
+		<field name="name">mrp.product.form</field>
+		<field name="model">mrp.product</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="MRP Product">
+				<group colspan="4" col="2">
+					<group>
+						<field name="mrp_area_id" readonly="True"/>
+						<field name="product_id" readonly="True"/>
+						<field name="product_tmpl_id" readonly="True"/>
+						<field name="mrp_verified" readonly="True"/>
+						<field name="supply_method" readonly="True"/>
+						<!--<field name="purchase_requisition" readonly="True"/>-->
+						<field name="main_supplier_id" readonly="True"/>
+						<field name="mrp_lead_time" readonly="True"/>
+						<field name="mrp_nbr_days" readonly="True"/>
+						<field name="mrp_transit_delay" readonly="True"/>
+						<field name="mrp_inspection_delay" readonly="True"/>
+					</group>
+					<group>
+						<field name="mrp_llc" readonly="True"/>
+						<field name="mrp_qty_available" readonly="True"/>
+						<field name="current_qty_available" readonly="True"/>
+						<field name="mrp_minimum_stock" readonly="True"/>
+						<field name="mrp_minimum_order_qty" readonly="True"/>
+						<field name="mrp_maximum_order_qty" readonly="True"/>
+						<field name="mrp_qty_multiple" readonly="True"/>
+					</group>
+				</group>
+				<group colspan="2" col="2">
+					<separator string="Moves"/>
+					<field name="mrp_move_ids" nolabel="1" colspan="2" context="{'default_mrp_product_id': active_id}" readonly="True">
+						<tree string="Moves" colors="red:running_availability > mrp_minimum_stock">
+							<field name="mrp_area_id" invisible="True"/>
+							<field name="mrp_product_id" invisible="True"/>
+							<field name="mrp_action_date" readonly="True"/>
+							<field name="mrp_date" readonly="True"/>
+							<field name="current_date" readonly="True"/>
+							<field name="mrp_origin" readonly="True"/>
+							<field name="state" readonly="True"/>
+							<field name="mrp_order_number" readonly="True"/>
+							<field name="parent_product_id" readonly="True"/>
+							<field name="name" readonly="True"/>
+							<field name="mrp_qty" readonly="True"/>
+							<field name="current_qty" readonly="True"/>
+							<field name="running_availability" readonly="True"/>
+							<field name="mrp_minimum_stock" invisible="True"/>
+							<field name="mrp_action" readonly="True"/>
+							<field name="mrp_type" readonly="True"/>
+							<field name="mrp_move_up_ids" readonly="True"/>
+							<field name="mrp_processed" invisible="True"/>
+						</tree>
+						<form string="Moves">
+							<group colspan="4" col="2">
+								<group>
+									<field name="mrp_area_id"
+										   invisible="True"/>
+									<field name="mrp_product_id" invisible="True"/>
+									<field name="mrp_qty" readonly="True"/>
+									<field name="current_qty" readonly="True"/>
+									<field name="mrp_date" readonly="True"/>
+									<field name="current_date" readonly="True"/>
+									<field name="mrp_action" readonly="True"/>
+									<field name="mrp_type" readonly="True"/>
+								</group>
+								<group>
+									<field name="production_id" readonly="True"/>
+									<field name="sale_order_id" readonly="True"/>
+									<field name="purchase_order_id" readonly="True"/>
+									<field name="stock_move_id" readonly="True"/>
+									<field name="mrp_processed" invisible="True"/>
+								</group>
+							</group>
+							<group colspan="2" col="2">
+								<field name="mrp_move_up_ids">
+									<tree string="Moves">
+										<field name="mrp_area_id"
+											   invisible="True"/>
+										<field name="mrp_product_id" readonly="True"/>
+										<field name="mrp_date" readonly="True"/>
+										<field name="current_date" readonly="True"/>
+										<field name="mrp_origin" readonly="True"/>
+										<field name="state" readonly="True"/>
+										<field name="mrp_order_number" readonly="True"/>
+										<field name="parent_product_id" readonly="True"/>
+										<field name="name" readonly="True"/>
+										<field name="mrp_qty" readonly="True"/>
+										<field name="current_qty" readonly="True"/>
+										<field name="running_availability" readonly="True"/>
+										<field name="mrp_action" readonly="True"/>
+										<field name="mrp_type" readonly="True"/>
+										<field name="mrp_move_up_ids" readonly="True"/>
+									</tree>
+								</field>
+							</group>
+						</form>
+					</field>
+				</group>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="mrp_search_form">
+		<field name="name">mrp.filter.form</field>
+		<field name="model">mrp.product</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search string="Search Product">
+				<group expand="0" string="Selection...">
+					<field name="product_id" select='1'/>
+					<field name="mrp_area_id"/>
+				</group>
+				<separator/>
+				<filter string="With Moves" name="moves" domain="[['mrp_move_ids','!=',False]]"/>
+				<filter string="With Actions in Coming 4 Weeks" name="actions4w" domain="[['nbr_mrp_actions_4w','!=',0]]"/>
+				<filter string="With Actions" name="actions" domain="[['nbr_mrp_actions','!=',0]]"/>
+				<filter string="Purchase Actions" domain="[['supply_method','=','buy'],['nbr_mrp_actions','!=',0]]"/>
+				<filter string="Manufacture Actions" domain="[['supply_method','=','manufacture'],['nbr_mrp_actions','!=',0]]"/>
+				<separator/>
+				<group expand="0" string="Group By...">
+					<filter string="Supply Method" context="{'group_by':'supply_method'}"/>
+					<filter string="Main Supplier" context="{'group_by':'main_supplier_id'}"/>
+					<filter string="Low Level Code" context="{'group_by':'mrp_llc'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="mrp_product_action">
+		<field name="sequence" eval="20"/>
+		<field name="name">MRP Products</field>
+		<field name="res_model">mrp.product</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="mrp_product_tree"/>
+		<field name="search_view_id" ref="mrp_search_form"/>
+		<field name="act_window_id" ref="mrp_product_form"/>
+	</record>
+	<record model="ir.actions.act_window.view" id="mrp_product_form_action">
+		<field name="sequence" eval="22"/>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="mrp_product_form"/>
+		<field name="act_window_id" ref="mrp_product_action"/>
+	</record>
+	<record model="ir.actions.act_window.view" id="mrp_product_tree_action">
+		<field name="sequence" eval="20"/>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="mrp_product_tree"/>
+		<field name="act_window_id" ref="mrp_product_action"/>
+	</record>
+
+</odoo>

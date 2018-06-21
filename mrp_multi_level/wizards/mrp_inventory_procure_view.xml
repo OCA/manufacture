@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--  Make Procurement with security access right -->
+    <record id="view_mrp_inventory_procure_wizard" model="ir.ui.view">
+        <field name="name">mrp.inventory.procure.form</field>
+        <field name="model">mrp.inventory.procure</field>
+        <field name="arch" type="xml">
+            <form string="Procurement Request">
+                <p class="oe_gray">
+                    Use this assistant to procure for this product and date.
+                    According to the product configuration,
+                    this may trigger a draft purchase order, a manufacturing
+                    order or a transfer picking.
+                </p>
+                <group name="items" string="Items">
+                    <field name="item_ids" nolabel="1">
+                        <tree string="Items" nocreate="1" editable="top">
+                            <field name="mrp_inventory_id" invisible="True"/>
+                            <field name="warehouse_id" groups="stock.group_stock_multi_locations" readonly="1"/>
+                            <field name="location_id" groups="stock.group_stock_multi_locations" readonly="1"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="qty"/>
+                            <field name="uom_id" groups="product.group_uom"/>
+                            <field name="date_planned"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Execute" name="make_procurement" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Make Procurement without security access right -->
+    <record id="view_mrp_inventory_procure_without_security" model="ir.ui.view">
+        <field name="name">mrp.inventory.procure.form - readonly qty</field>
+        <field name="model">mrp.inventory.procure</field>
+        <field name="inherit_id" ref="view_mrp_inventory_procure_wizard"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="qty" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="act_mrp_inventory_procure" model="ir.actions.act_window">
+        <field name="name">Procure</field>
+        <field name="res_model">mrp.inventory.procure</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id"
+               ref="mrp_multi_level.model_mrp_inventory"/>
+    </record>
+
+</odoo>

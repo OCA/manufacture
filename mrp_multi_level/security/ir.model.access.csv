@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_inventory_user,mrp.inventory user,model_mrp_inventory,mrp.group_mrp_user,1,0,0,0
+access_mrp_inventory_manager,mrp.inventory manager,model_mrp_inventory,mrp.group_mrp_manager,1,1,1,1
+access_mrp_move_user,mrp.move user,model_mrp_move,mrp.group_mrp_user,1,0,0,0
+access_mrp_move_manager,mrp.move manager,model_mrp_move,mrp.group_mrp_manager,1,1,1,1
+access_mrp_product_user,mrp.product user,model_mrp_product,base.group_user,1,0,0,0
+access_mrp_product_manager,mrp.product manager,model_mrp_product,mrp.group_mrp_manager,1,1,1,1
+access_mrp_area_user,mrp.area user,model_mrp_area,mrp.group_mrp_user,1,0,0,0
+access_mrp_area_manager,mrp.area manager,model_mrp_area,mrp.group_mrp_manager,1,1,1,1
