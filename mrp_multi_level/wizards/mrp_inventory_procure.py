@@ -80,6 +80,9 @@ class MrpInventoryProcure(models.TransientModel):
                     'INT: ' + str(self.env.user.login),  # origin?
                     values
                 )
+                item.mrp_inventory_id.to_procure -= \
+                    item.uom_id._compute_quantity(
+                        item.qty, item.product_id.uom_id)
             except UserError as error:
                     errors.append(error.name)
             if errors:
