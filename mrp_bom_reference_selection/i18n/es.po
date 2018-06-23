@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_bom_reference_selection
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # oihane <oihanecruce@gmail.com>, 2016
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
 "PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_bom_reference_selection
@@ -94,7 +95,9 @@ msgstr "Órden de producción"
 #, python-format
 msgid ""
 "Product %s from %s reference BoM must be equal to product %s in BoM line."
-msgstr "El producto %s de la LdM con referencia %s debe ser el mismo que el producto %s en la línea de la LdM."
+msgstr ""
+"El producto %s de la LdM con referencia %s debe ser el mismo que el producto "
+"%s en la línea de la LdM."
 
 #. module: mrp_bom_reference_selection
 #: model:ir.model,name:mrp_bom_reference_selection.model_mrp_product_produce
@@ -123,4 +126,8 @@ msgid ""
 "                        ('bom_id', 'in', [False, bom_id]),\n"
 "                        ('product_id', '=', product_id),\n"
 "                    ]"
-msgstr "[\n                        ('bom_id', 'in', [False, bom_id]),\n                        ('product_id', '=', product_id),\n                    ]"
+msgstr ""
+"[\n"
+"                        ('bom_id', 'in', [False, bom_id]),\n"
+"                        ('product_id', '=', product_id),\n"
+"                    ]"
