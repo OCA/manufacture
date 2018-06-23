@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_sale_info
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
 "PO-Revision-Date: 2016-10-13 23:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-manufacture-8-0/language/en_US/)\n"
+"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-"
+"manufacture-8-0/language/en_US/)\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_sale_info
@@ -24,7 +25,9 @@ msgid "Commitment Date"
 msgstr ""
 
 #. module: mrp_sale_info
+#: view:mrp.production:mrp_sale_info.mrp_production_sale_info_search_view
 #: field:mrp.production,partner_id:0
+#: view:mrp.production.workcenter.line:mrp_sale_info.view_mrp_production_workcenter_form_view_filter
 #: field:mrp.production.workcenter.line,partner_id:0
 msgid "Customer"
 msgstr ""
@@ -33,8 +36,8 @@ msgstr ""
 #: help:mrp.production,commitment_date:0
 #: help:mrp.production.workcenter.line,commitment_date:0
 msgid ""
-"Date by which the products are sure to be delivered. This is a date that you"
-" can promise to the customer, based on the Product Lead Times."
+"Date by which the products are sure to be delivered. This is a date that you "
+"can promise to the customer, based on the Product Lead Times."
 msgstr ""
 
 #. module: mrp_sale_info
@@ -51,6 +54,19 @@ msgstr ""
 #: view:mrp.production.workcenter.line:mrp_sale_info.mrp_production_workcenter_form_view_inherit
 msgid "Sale Information"
 msgstr ""
+
+#. module: mrp_sale_info
+#: field:mrp.production,sale_line_id:0
+#: field:mrp.production.workcenter.line,sale_line_id:0
+msgid "Sale Line"
+msgstr ""
+
+#. module: mrp_sale_info
+#: view:mrp.production:mrp_sale_info.mrp_production_sale_info_search_view
+#: view:mrp.production.workcenter.line:mrp_sale_info.view_mrp_production_workcenter_form_view_filter
+#, fuzzy
+msgid "Sale Order"
+msgstr "Work Order"
 
 #. module: mrp_sale_info
 #: field:mrp.production,sale_id:0

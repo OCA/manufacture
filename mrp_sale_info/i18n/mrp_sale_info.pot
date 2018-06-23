@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_sale_info
+#	* mrp_sale_info
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: manufacture (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-15 16:49+0000\n"
-"PO-Revision-Date: 2017-06-15 16:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
-"language/fi/)\n"
-"Language: fi\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: mrp_sale_info
 #: field:mrp.production,commitment_date:0
@@ -30,14 +25,12 @@ msgstr ""
 #: view:mrp.production.workcenter.line:mrp_sale_info.view_mrp_production_workcenter_form_view_filter
 #: field:mrp.production.workcenter.line,partner_id:0
 msgid "Customer"
-msgstr "Asiakas"
+msgstr ""
 
 #. module: mrp_sale_info
 #: help:mrp.production,commitment_date:0
 #: help:mrp.production.workcenter.line,commitment_date:0
-msgid ""
-"Date by which the products are sure to be delivered. This is a date that you "
-"can promise to the customer, based on the Product Lead Times."
+msgid "Date by which the products are sure to be delivered. This is a date that you can promise to the customer, based on the Product Lead Times."
 msgstr ""
 
 #. module: mrp_sale_info
@@ -77,3 +70,4 @@ msgstr ""
 #: model:ir.model,name:mrp_sale_info.model_mrp_production_workcenter_line
 msgid "Work Order"
 msgstr ""
+

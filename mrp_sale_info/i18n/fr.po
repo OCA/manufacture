@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_sale_info
-# 
+#
 # Translators:
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-06-15 16:49+0000\n"
 "PO-Revision-Date: 2017-06-15 16:51+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mrp_sale_info
@@ -36,9 +37,12 @@ msgstr "Client"
 #: help:mrp.production,commitment_date:0
 #: help:mrp.production.workcenter.line,commitment_date:0
 msgid ""
-"Date by which the products are sure to be delivered. This is a date that you"
-" can promise to the customer, based on the Product Lead Times."
-msgstr "Date à laquelle vous êtes sûr de pouvoir livrer le produit. C'est la date sur laquelle vous pouvez vous engager auprès de votre client, basée sur le temps de fabrication du produit."
+"Date by which the products are sure to be delivered. This is a date that you "
+"can promise to the customer, based on the Product Lead Times."
+msgstr ""
+"Date à laquelle vous êtes sûr de pouvoir livrer le produit. C'est la date "
+"sur laquelle vous pouvez vous engager auprès de votre client, basée sur le "
+"temps de fabrication du produit."
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
