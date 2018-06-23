@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_production_request
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # enjolras <yo@miguelrevilla.com>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-12 03:48+0000\n"
 "Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_request
@@ -337,6 +337,13 @@ msgid "Products needed"
 msgstr "Productos necesarios"
 
 #. module: mrp_production_request
+#: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:68
+#, python-format
+msgid ""
+"Programming error: wizard action executed without active_ids in context."
+msgstr ""
+
+#. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_mo_qty
 msgid "Quantity"
 msgstr "Cantidad"
@@ -365,8 +372,8 @@ msgstr "Cantidad en pedidos de fabricación"
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_pending_qty
 msgid ""
-"Quantity pending to add to Manufacturing Orders to fulfill the Manufacturing"
-" Request requirement."
+"Quantity pending to add to Manufacturing Orders to fulfill the Manufacturing "
+"Request requirement."
 msgstr ""
 
 #. module: mrp_production_request
@@ -545,16 +552,15 @@ msgstr ""
 #: code:addons/mrp_production_request/models/mrp_production_request.py:218
 #, python-format
 msgid ""
-"You cannot reject a manufacturing request related to done procurement "
-"orders."
+"You cannot reject a manufacturing request related to done procurement orders."
 msgstr ""
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/mrp_production_request.py:199
 #, python-format
 msgid ""
-"You cannot reset a manufacturing request if the related manufacturing orders"
-" are not cancelled."
+"You cannot reset a manufacturing request if the related manufacturing orders "
+"are not cancelled."
 msgstr ""
 
 #. module: mrp_production_request
