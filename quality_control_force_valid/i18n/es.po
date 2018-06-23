@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control_force_valid
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2015-10-07 10:44+0000\n"
 "PO-Revision-Date: 2015-10-09 10:50+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/odoomrp-wip-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: quality_control_force_valid
@@ -26,7 +27,8 @@ msgstr "Forzar validez"
 #. module: quality_control_force_valid
 #: help:qc.inspection,force_valid:0
 msgid "Mark this field if you want to override the result of the inspection"
-msgstr "Marque esta casilla si quiere sobreescribir el resultado de la inspección"
+msgstr ""
+"Marque esta casilla si quiere sobreescribir el resultado de la inspección"
 
 #. module: quality_control_force_valid
 #: model:ir.model,name:quality_control_force_valid.model_qc_inspection
