@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_project
-# 
+#
 # Translators:
 # César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-14 13:02+0000\n"
 "PO-Revision-Date: 2016-09-05 11:47+0000\n"
 "Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
-"Language-Team: Galician (http://www.transifex.com/oca/OCA-manufacture-8-0/language/gl/)\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/gl/)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_project
@@ -29,7 +30,13 @@ msgid ""
 "        Bill of Material: %s\n"
 "        Planned Date: %s\n"
 "        "
-msgstr "\nOrde de fabricación: %s\nProduto a fabricar: [%s]%s\nCantidade a fabricar: %s\nLista de materiais: %s\nData prevista: %s"
+msgstr ""
+"\n"
+"Orde de fabricación: %s\n"
+"Produto a fabricar: [%s]%s\n"
+"Cantidade a fabricar: %s\n"
+"Lista de materiais: %s\n"
+"Data prevista: %s"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
