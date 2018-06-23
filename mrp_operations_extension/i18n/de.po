@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_operations_extension
-# 
+#
 # Translators:
 # Hotellook, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-05-18 11:05+0000\n"
 "PO-Revision-Date: 2017-05-13 18:19+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_operations_extension
@@ -91,7 +92,9 @@ msgstr "Ändere Routing"
 msgid ""
 "Changing routing will cause to change the operation in which each component "
 "will be consumed, by default it is set the first one of the routing"
-msgstr "Veränderung des Routing wird den Vorgang verändern, in dem die jeweilige Komponente verbraucht wird; per Vorgabe ist dies der erste Vorgang"
+msgstr ""
+"Veränderung des Routing wird den Vorgang verändern, in dem die jeweilige "
+"Komponente verbraucht wird; per Vorgabe ist dies der erste Vorgang"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -248,14 +251,20 @@ msgid ""
 "If enabled, the production and movement to stock of the final products will "
 "be done in this operation. There can be only one operation per route with "
 "this check marked."
-msgstr "Wenn aktiviert, wird die Fertigung und Einlagerung des Endprodukts in diesem Vorgang erledigt. Es darf nur einen Vorgang pro Route geben, in dem dies aktiviert ist."
+msgstr ""
+"Wenn aktiviert, wird die Fertigung und Einlagerung des Endprodukts in diesem "
+"Vorgang erledigt. Es darf nur einen Vorgang pro Route geben, in dem dies "
+"aktiviert ist."
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,custom_data:0
 msgid ""
 "If you mark this check, this means that the work center in this routing has "
 "different capacity data than the defined on the work center itself"
-msgstr "Wenn Sie dies aktivieren, bedeutet dies, dass der Arbeitsplatz in diesem Routing eine andere Kapazität aufweist als der Arbeitsplatz selbst definiert hat"
+msgstr ""
+"Wenn Sie dies aktivieren, bedeutet dies, dass der Arbeitsplatz in diesem "
+"Routing eine andere Kapazität aufweist als der Arbeitsplatz selbst definiert "
+"hat"
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
@@ -353,7 +362,9 @@ msgstr "Bezeichnung"
 msgid ""
 "Once copied, if you change operation data, it won't be reflected here, "
 "unless you select it again."
-msgstr "Einmal kopiert, wenn Sie Vorgangsdaten ändern, werden diese hier nicht wiedergegeben, es seie denn, Sie wählen diese erneut aus."
+msgstr ""
+"Einmal kopiert, wenn Sie Vorgangsdaten ändern, werden diese hier nicht "
+"wiedergegeben, es seie denn, Sie wählen diese erneut aus."
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.workcenter,operation:0
@@ -510,7 +521,8 @@ msgstr "Menge festlegen"
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
 msgid "Select the operation to copy its current data to this routing line."
-msgstr "Wähle Vorgang, dessen Daten in diese Routingposition kopiert werden sollen."
+msgstr ""
+"Wähle Vorgang, dessen Daten in diese Routingposition kopiert werden sollen."
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_stock_move
@@ -538,7 +550,8 @@ msgstr "Es muss genau eine Position als Vorgabe festglegt sein."
 #, python-format
 msgid ""
 "There must be one and only one operation with 'Produce here' check marked."
-msgstr "Es muß genau ein Vorgang bestehen, bei mit 'fertige hier' ausgewählt ist."
+msgstr ""
+"Es muß genau ein Vorgang bestehen, bei mit 'fertige hier' ausgewählt ist."
 
 #. module: mrp_operations_extension
 #: field:mrp.production.workcenter.line,time_start:0

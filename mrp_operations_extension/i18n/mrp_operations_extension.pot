@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_operations_extension
+#	* mrp_operations_extension
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: manufacture (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-22 16:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-"
-"manufacture-8-0/language/zh_TW/)\n"
-"Language: zh_TW\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,op_number:0
@@ -61,7 +56,7 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "Cancel"
-msgstr "刪除"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
@@ -87,9 +82,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_bom.py:56
 #, python-format
-msgid ""
-"Changing routing will cause to change the operation in which each component "
-"will be consumed, by default it is set the first one of the routing"
+msgid "Changing routing will cause to change the operation in which each component will be consumed, by default it is set the first one of the routing"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -139,7 +132,7 @@ msgstr ""
 #: field:mrp.work.order.produce,create_uid:0
 #: field:workcenter.line.finish,create_uid:0
 msgid "Created by"
-msgstr "建立者"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,create_date:0
@@ -147,7 +140,7 @@ msgstr "建立者"
 #: field:mrp.work.order.produce,create_date:0
 #: field:workcenter.line.finish,create_date:0
 msgid "Created on"
-msgstr "建立於"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,custom_data:0
@@ -167,7 +160,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,description:0
 msgid "Description"
-msgstr "說明"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,display_name:0
@@ -175,7 +168,7 @@ msgstr "說明"
 #: field:mrp.work.order.produce,display_name:0
 #: field:workcenter.line.finish,display_name:0
 msgid "Display Name"
-msgstr "顯示名稱"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
@@ -236,24 +229,21 @@ msgid "Force Reservation"
 msgstr ""
 
 #. module: mrp_operations_extension
-#: field:mrp.operation.workcenter,id:0 field:mrp.routing.operation,id:0
-#: field:mrp.work.order.produce,id:0 field:workcenter.line.finish,id:0
+#: field:mrp.operation.workcenter,id:0
+#: field:mrp.routing.operation,id:0
+#: field:mrp.work.order.produce,id:0
+#: field:workcenter.line.finish,id:0
 msgid "ID"
-msgstr "編號"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: help:mrp.routing.workcenter,do_production:0
-msgid ""
-"If enabled, the production and movement to stock of the final products will "
-"be done in this operation. There can be only one operation per route with "
-"this check marked."
+msgid "If enabled, the production and movement to stock of the final products will be done in this operation. There can be only one operation per route with this check marked."
 msgstr ""
 
 #. module: mrp_operations_extension
 #: help:mrp.operation.workcenter,custom_data:0
-msgid ""
-"If you mark this check, this means that the work center in this routing has "
-"different capacity data than the defined on the work center itself"
+msgid "If you mark this check, this means that the work center in this routing has different capacity data than the defined on the work center itself"
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -268,7 +258,7 @@ msgstr ""
 #: field:mrp.work.order.produce,__last_update:0
 #: field:workcenter.line.finish,__last_update:0
 msgid "Last Modified on"
-msgstr "最後修改:"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_uid:0
@@ -276,7 +266,7 @@ msgstr "最後修改:"
 #: field:mrp.work.order.produce,write_uid:0
 #: field:workcenter.line.finish,write_uid:0
 msgid "Last Updated by"
-msgstr "最後更新："
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,write_date:0
@@ -284,7 +274,7 @@ msgstr "最後更新："
 #: field:mrp.work.order.produce,write_date:0
 #: field:workcenter.line.finish,write_date:0
 msgid "Last Updated on"
-msgstr "最後更新於"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,lot_id:0
@@ -345,13 +335,11 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,name:0
 msgid "Name"
-msgstr "名稱"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_form_view_inh
-msgid ""
-"Once copied, if you change operation data, it won't be reflected here, "
-"unless you select it again."
+msgid "Once copied, if you change operation data, it won't be reflected here, unless you select it again."
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -535,8 +523,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_routing.py:17
 #, python-format
-msgid ""
-"There must be one and only one operation with 'Produce here' check marked."
+msgid "There must be one and only one operation with 'Produce here' check marked."
 msgstr ""
 
 #. module: mrp_operations_extension
@@ -573,7 +560,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
 msgid "Total"
-msgstr "總計"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: field:mrp.work.order.produce,track_production:0
@@ -647,4 +634,5 @@ msgstr ""
 #: view:mrp.work.order.produce:mrp_operations_extension.view_mrp_product_produce_wizard
 #: view:workcenter.line.finish:mrp_operations_extension.finish_wo_form_view
 msgid "or"
-msgstr "或"
+msgstr ""
+
