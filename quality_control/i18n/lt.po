@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Viktoras Norkus <viktoras@bmx.lt>, 2018
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2018-01-16 08:02+0000\n"
 "Last-Translator: Viktoras Norkus <viktoras@bmx.lt>, 2018\n"
 "Language-Team: Lithuanian (https://www.transifex.com/oca/teams/23907/lt/)\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -224,8 +225,7 @@ msgstr "ID"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
-msgid ""
-"If an inspection is auto-generated, it can be canceled but not removed."
+msgid "If an inspection is auto-generated, it can be canceled but not removed."
 msgstr ""
 
 #. module: quality_control
@@ -533,8 +533,7 @@ msgstr ""
 #: code:addons/quality_control/models/qc_test.py:73
 #, python-format
 msgid ""
-"Question '%s' is not valid: minimum value can't be higher than maximum "
-"value."
+"Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
 
 #. module: quality_control

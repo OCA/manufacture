@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * quality_control
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2018-01-15 01:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-07-28 10:23+0000\n"
+"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -98,8 +99,8 @@ msgid ""
 "same category. The conversion will be made based on the ratios."
 msgstr ""
 "Conversioni tra diverse unità di misura sono permesse solo se appartengono "
-"alla stessa categoria. La conversione sarà effettuata utilizzando i rapporti"
-" di conversione delle unità di misura."
+"alla stessa categoria. La conversione sarà effettuata utilizzando i rapporti "
+"di conversione delle unità di misura."
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -226,8 +227,7 @@ msgstr "ID"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
-msgid ""
-"If an inspection is auto-generated, it can be canceled but not removed."
+msgid "If an inspection is auto-generated, it can be canceled but not removed."
 msgstr "Se un'ispezione è autogenerata, può essere cancellata ma non rimossa."
 
 #. module: quality_control
@@ -537,8 +537,7 @@ msgstr "Domanda"
 #: code:addons/quality_control/models/qc_test.py:73
 #, python-format
 msgid ""
-"Question '%s' is not valid: minimum value can't be higher than maximum "
-"value."
+"Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
 "La domanda '%s' non è valida: il valore minimo non può essere maggiore del "
 "valore massimo."
@@ -759,7 +758,7 @@ msgstr "Utente"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_valid_values
 msgid "Valid values"
-msgstr "Valori calidi"
+msgstr "Valori validi"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_qualitative_value
