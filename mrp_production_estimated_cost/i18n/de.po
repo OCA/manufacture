@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mrp_production_estimated_cost
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-24 13:59+0000\n"
 "PO-Revision-Date: 2017-04-19 14:33+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_estimated_cost
@@ -70,7 +71,10 @@ msgid ""
 "Cost price of the product template used for standard stock valuation in "
 "accounting and used as a base price on purchase orders. Expressed in the "
 "default unit of measure of the product."
-msgstr "Einstandspreis der Produktvorlage, zur Ermittlung der Standard-Bestandsbewertung der Buchhaltung und als Grundpreis bei Bestellungen. Angegeben in Standardmengeneinheit des Produkts."
+msgstr ""
+"Einstandspreis der Produktvorlage, zur Ermittlung der Standard-"
+"Bestandsbewertung der Buchhaltung und als Grundpreis bei Bestellungen. "
+"Angegeben in Standardmengeneinheit des Produkts."
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_buttons_inh_estimatedcost
