@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields
+from odoo import fields, models
 
 
 class QcTrigger(models.Model):

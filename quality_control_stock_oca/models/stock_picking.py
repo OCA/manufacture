@@ -1,37 +1,41 @@
 # -*- coding: utf-8 -*-
-# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.addons.quality_control.models.qc_trigger_line import\
+from odoo import api, fields, models
+from odoo.addons.quality_control.models.qc_trigger_line import\
     _filter_trigger_lines
 
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    @api.one
+    @api.multi
     @api.depends('qc_inspections', 'qc_inspections.state')
-    def _count_inspections(self):
-        self.created_inspections = len(self.qc_inspections)
-        self.passed_inspections = len([x for x in self.qc_inspections if
-                                       x.state == 'success'])
-        self.failed_inspections = len([x for x in self.qc_inspections if
-                                       x.state == 'failed'])
-        self.done_inspections = (self.passed_inspections +
-                                 self.failed_inspections)
+    def _compute_count_inspections(self):
+        for picking in self:
+            picking.created_inspections = len(picking.qc_inspections)
+            picking.passed_inspections = \
+                len([x for x in picking.qc_inspections
+                     if x.state == 'success'])
+            picking.failed_inspections = \
+                len([x for x in picking.qc_inspections
+                     if x.state == 'failed'])
+            picking.done_inspections = \
+                (picking.passed_inspections + picking.failed_inspections)
 
     qc_inspections = fields.One2many(
         comodel_name='qc.inspection', inverse_name='picking', copy=False,
         string='Inspections', help="Inspections related to this picking.")
     created_inspections = fields.Integer(
-        compute="_count_inspections", string="Created inspections")
+        compute="_compute_count_inspections", string="Created inspections")
     done_inspections = fields.Integer(
-        compute="_count_inspections", string="Done inspections")
+        compute="_compute_count_inspections", string="Done inspections")
     passed_inspections = fields.Integer(
-        compute="_count_inspections", string="Inspections OK")
+        compute="_compute_count_inspections", string="Inspections OK")
     failed_inspections = fields.Integer(
-        compute="_count_inspections", string="Inspections failed")
+        compute="_compute_count_inspections", string="Inspections failed")
 
     @api.multi
     def do_transfer(self):

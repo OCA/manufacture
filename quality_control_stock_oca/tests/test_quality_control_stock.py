@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Oihane Crucelaegui - AvanzOSC
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestQualityControl(TransactionCase):
@@ -18,7 +19,9 @@ class TestQualityControl(TransactionCase):
         self.partner2 = self.env.ref('base.res_partner_4')
         self.test = self.env.ref('quality_control.qc_test_1')
         self.picking_type = self.env.ref('stock.picking_type_out')
-        self.sequence = self.env.ref('stock.seq_type_picking_out')
+        self.location_dest = self.env.ref('stock.stock_location_customers')
+        self.sequence = self.env['ir.sequence'] \
+            .search([('prefix', 'like', '/OUT/')], limit=1)
         inspection_lines = (
             self.inspection_model._prepare_inspection_lines(self.test))
         self.inspection1 = self.inspection_model.create({
@@ -37,19 +40,27 @@ class TestQualityControl(TransactionCase):
             'product_uom': self.product.uom_id.id,
             'product_uom_qty': 2.0,
             'location_id': self.picking_type.default_location_src_id.id,
-            'location_dest_id': self.picking_type.default_location_dest_id.id,
+            'location_dest_id': self.location_dest.id,
         }
-        self.picking1 = self.picking_model.create({
-            'partner_id': self.partner1.id,
-            'picking_type_id': self.picking_type.id,
-            'move_lines': [(0, 0, move_vals)],
-        })
+        self.picking1 = self.picking_model \
+            .with_context(default_picking_type_id=self.picking_type.id) \
+            .create({
+                'partner_id': self.partner1.id,
+                'picking_type_id': self.picking_type.id,
+                'move_lines': [(0, 0, move_vals)],
+                'location_dest_id': self.location_dest.id
+            })
         self.picking1.action_confirm()
         self.picking1.force_assign()
         self.picking1.do_prepare_partial()
         for line in self.picking1.pack_operation_ids.filtered(
                 lambda r: r.product_id == self.product):
-            line.write({'lot_id': self.lot.id})
+            line.write({
+                'pack_lot_ids': [(0, 0, {
+                    'lot_id': self.lot.id,
+                    'qty': 2.0
+                })]
+            })
 
     def test_inspection_create_for_product(self):
         self.product.qc_triggers = [(
@@ -200,24 +211,24 @@ class TestQualityControl(TransactionCase):
     def test_picking_type(self):
         picking_type = self.picking_type_model.create({
             'name': 'Test Picking Type',
-            'sequence_id': self.sequence.id,
             'code': 'outgoing',
+            'sequence_id': self.sequence.id
         })
         trigger = self.qc_trigger_model.search(
             [('picking_type', '=', picking_type.id)])
         self.assertEqual(len(trigger), 1,
                          'One trigger must have been created.')
-        self.assertEqual(trigger.name, picking_type.complete_name,
+        self.assertEqual(trigger.name, picking_type.name,
                          'Trigger name must match picking type name.')
         picking_type.write({
             'name': 'Test Name Change',
         })
-        self.assertEqual(trigger.name, picking_type.complete_name,
+        self.assertEqual(trigger.name, picking_type.name,
                          'Trigger name must match picking type name.')
 
     def test_qc_inspection_picking(self):
         self.inspection1.write({
-            'object_id': '%s,%d' % (self.picking1._model,
+            'object_id': '%s,%d' % (self.picking1._name,
                                     self.picking1.id),
         })
         self.assertEquals(self.inspection1.picking,
@@ -225,7 +236,7 @@ class TestQualityControl(TransactionCase):
 
     def test_qc_inspection_stock_move(self):
         self.inspection1.write({
-            'object_id': '%s,%d' % (self.picking1.move_lines[:1]._model,
+            'object_id': '%s,%d' % (self.picking1.move_lines[:1]._name,
                                     self.picking1.move_lines[:1].id),
         })
         self.inspection1.onchange_object_id()
@@ -240,7 +251,7 @@ class TestQualityControl(TransactionCase):
 
     def test_qc_inspection_lot(self):
         self.inspection1.write({
-            'object_id': '%s,%d' % (self.lot._model,
+            'object_id': '%s,%d' % (self.lot._name,
                                     self.lot.id),
         })
         self.inspection1.onchange_object_id()
