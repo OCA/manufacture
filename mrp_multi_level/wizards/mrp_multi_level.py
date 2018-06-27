@@ -220,8 +220,15 @@ class MultiLevelMrp(models.TransientModel):
         else:
             mrp_date_supply = mrp_date
 
-        mrp_action_date = mrp_date - timedelta(
-            days=mrp_product_id.mrp_lead_time)
+        calendar = mrp_product_id.mrp_area_id.calendar_id
+        if calendar and mrp_product_id.mrp_lead_time:
+            date_str = fields.Date.to_string(mrp_date)
+            dt = fields.Datetime.from_string(date_str)
+            res = calendar.plan_days(-1 * mrp_product_id.mrp_lead_time -1, dt)
+            mrp_action_date = res.date()
+        else:
+            mrp_action_date = mrp_date - timedelta(
+                days=mrp_product_id.mrp_lead_time)
 
         qty_ordered = 0.00
         qty_to_order = mrp_qty
@@ -235,8 +242,7 @@ class MultiLevelMrp(models.TransientModel):
             qty_ordered = qty_ordered + qty
 
             if mrp_action == 'mo':
-                mrp_date_demand = mrp_date - timedelta(
-                    days=mrp_product_id.mrp_lead_time)
+                mrp_date_demand = mrp_action_date
                 if mrp_date_demand < date.today():
                     mrp_date_demand = date.today()
                 if not mrp_product_id.product_id.bom_ids:
