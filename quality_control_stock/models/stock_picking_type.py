@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from odoo import api, models
 
 
 class StockPickingType(models.Model):
@@ -10,8 +11,9 @@ class StockPickingType(models.Model):
 
     @api.multi
     def _create_qc_trigger(self):
+        self.ensure_one()
         qc_trigger = {
-            'name': self.complete_name,
+            'name': self.name,
             'company_id': self.warehouse_id.company_id.id,
             'picking_type': self.id,
             'partner_selectable': True,
@@ -31,5 +33,5 @@ class StockPickingType(models.Model):
             qc_trigger_model = self.env['qc.trigger'].sudo()
             qc_trigger = qc_trigger_model.search(
                 [('picking_type', '=', self.id)])
-            qc_trigger.name = self.complete_name
+            qc_trigger.name = self.name
         return res
