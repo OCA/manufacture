@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Oihane Crucelaegui - AvanzOSC
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestQualityControlMrp(TransactionCase):
@@ -12,15 +13,16 @@ class TestQualityControlMrp(TransactionCase):
         self.production_model = self.env['mrp.production']
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
-        self.product = self.env.ref('product.product_product_4')
+        self.product = self.env.ref('mrp.product_product_computer_desk')
         self.test = self.env.ref('quality_control.qc_test_1')
         self.trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
+        self.bom = self.env['mrp.bom']._bom_find(product=self.product)
         self.production1 = self.production_model.create({
             'product_id': self.product.id,
             'product_qty': 2.0,
-            'product_uom': self.product.uom_id.id,
+            'product_uom_id': self.product.uom_id.id,
+            'bom_id': self.bom.id
         })
-        self.production1.action_confirm()
         self.production1.action_assign()
         inspection_lines = (
             self.inspection_model._prepare_inspection_lines(self.test))
@@ -36,9 +38,14 @@ class TestQualityControlMrp(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.production1.action_produce(
-            self.production1.id, self.production1.product_qty,
-            'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id],
+        }).create({
+            'product_qty': self.production1.product_qty
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
 
@@ -49,9 +56,14 @@ class TestQualityControlMrp(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.production1.action_produce(
-            self.production1.id, self.production1.product_qty,
-            'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id]
+        }).create({
+            'product_qty': self.production1.product_qty
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
 
@@ -62,9 +74,14 @@ class TestQualityControlMrp(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.production1.action_produce(
-            self.production1.id, self.production1.product_qty,
-            'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id],
+        }).create({
+            'product_qty': self.production1.product_qty
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
 
@@ -81,9 +98,14 @@ class TestQualityControlMrp(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.production1.action_produce(
-            self.production1.id, self.production1.product_qty,
-            'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id]
+        }).create({
+            'product_qty': self.production1.product_qty
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created')
 
@@ -94,18 +116,30 @@ class TestQualityControlMrp(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.production1.action_produce(
-            self.production1.id, 1.0, 'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id],
+        }).create({
+            'product_qty': 1.0
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 1,
                          'Only one inspection must be created.')
-        self.production1.action_produce(
-            self.production1.id, 1.0, 'consume_produce')
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production1.id,
+            'active_ids': [self.production1.id],
+        }).create({
+            'product_qty': 1.0
+        })
+        produce_wizard.do_produce()
+        self.production1.post_inventory()
         self.assertEqual(self.production1.created_inspections, 2,
                          'There must be only 2 inspections.')
 
     def test_qc_inspection_mo(self):
         self.inspection1.write({
-            'object_id': '%s,%d' % (self.production1._model,
+            'object_id': '%s,%d' % (self.production1._name,
                                     self.production1.id),
         })
         self.assertEquals(self.inspection1.production,
