@@ -19,3 +19,5 @@ class MrpArea(models.Model):
         required=True,
     )
     active = fields.Boolean(default=True)
+    calendar_id = fields.Many2one('resource.calendar',
+                                  'Working Hours')
