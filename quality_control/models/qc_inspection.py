@@ -88,7 +88,8 @@ class QcInspection(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].get('qc.inspection')
+            vals['name'] = self.env['ir.sequence'] \
+                .next_by_code('qc.inspection')
         return super(QcInspection, self).create(vals)
 
     @api.multi
