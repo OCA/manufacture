@@ -2,7 +2,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from odoo.tests.common import SavepointCase
 from odoo import fields
@@ -37,6 +37,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref(
             'stock.stock_location_customers')
+        cls.calendar = cls.env.ref('resource.resource_calendar_std')
 
         # Partner:
         vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
@@ -53,7 +54,8 @@ class TestMrpMultiLevel(SavepointCase):
         })
 
         # Create test picking:
-        date_move = datetime.today() + timedelta(days=7)
+        res = cls.calendar.plan_days(7+1, datetime.today())
+        date_move = res.date()
         cls.picking_1 = cls.stock_picking_obj.create({
             'picking_type_id': cls.env.ref('stock.picking_type_out').id,
             'location_id': cls.stock_location.id,
@@ -83,7 +85,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.picking_1.action_confirm()
 
         # Create Test PO:
-        date_po = datetime.today() + timedelta(days=1)
+        date_po = cls.calendar.plan_days(1+1, datetime.today()).date()
         cls.po = cls.po_obj.create({
             'name': 'Test PO-001',
             'partner_id': cls.vendor.id,
@@ -99,7 +101,7 @@ class TestMrpMultiLevel(SavepointCase):
         })
 
         # Create test MO:
-        date_mo = datetime.today() + timedelta(days=9)
+        date_mo = cls.calendar.plan_days(9+1, datetime.today()).date()
         bom_fp_2 = cls.env.ref('mrp_multi_level.mrp_bom_fp_2')
         cls.mo = cls.mo_obj.create({
             'product_id': cls.fp_2.id,
@@ -111,13 +113,20 @@ class TestMrpMultiLevel(SavepointCase):
 
         # Dates (Strings):
         today = datetime.today()
-        cls.date_3 = fields.Date.to_string(today + timedelta(days=3))
-        cls.date_5 = fields.Date.to_string(today + timedelta(days=5))
-        cls.date_6 = fields.Date.to_string(today + timedelta(days=6))
-        cls.date_7 = fields.Date.to_string(today + timedelta(days=7))
-        cls.date_8 = fields.Date.to_string(today + timedelta(days=8))
-        cls.date_9 = fields.Date.to_string(today + timedelta(days=9))
-        cls.date_10 = fields.Date.to_string(today + timedelta(days=10))
+        cls.date_3 = fields.Date.to_string(
+            cls.calendar.plan_days(3+1, datetime.today()).date())
+        cls.date_5 = fields.Date.to_string(
+            cls.calendar.plan_days(5+1, datetime.today()).date())
+        cls.date_6 = fields.Date.to_string(
+            cls.calendar.plan_days(6+1, datetime.today()).date())
+        cls.date_7 = fields.Date.to_string(
+            cls.calendar.plan_days(7+1, datetime.today()).date())
+        cls.date_8 = fields.Date.to_string((
+            cls.calendar.plan_days(8+1, datetime.today()).date()))
+        cls.date_9 = fields.Date.to_string((
+            cls.calendar.plan_days(9+1, datetime.today()).date()))
+        cls.date_10 = fields.Date.to_string(
+            cls.calendar.plan_days(10+1, datetime.today()).date())
 
         # Create Date Ranges:
         cls.dr_type = cls.env['date.range.type'].create({
@@ -359,7 +368,7 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertTrue(mos)
         self.assertEqual(mos.product_qty, 100.0)
         datetime_5 = fields.Datetime.to_string(
-            date.today() + timedelta(days=5))
+            self.calendar.plan_days(5 + 1, datetime.today()).date())
         self.assertEqual(mos.date_planned_start, datetime_5)
 
     # TODO: test procure wizard: pos, multiple...
