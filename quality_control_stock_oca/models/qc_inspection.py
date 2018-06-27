@@ -1,41 +1,46 @@
 # -*- coding: utf-8 -*-
-# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
+from odoo import api, fields, models
 
 
 class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
-    def get_picking(self):
-        self.picking = False
-        if self.object_id:
-            if self.object_id._name == 'stock.move':
-                self.picking = self.object_id.picking_id
-            elif self.object_id._name == 'stock.picking':
-                self.picking = self.object_id
-            elif self.object_id._name == 'stock.pack.operation':
-                self.picking = self.object_id.picking_id
+    def _compute_picking(self):
+        for inspection in self:
+            inspection.picking = False
+            if inspection.object_id:
+                if inspection.object_id._name == 'stock.move':
+                    inspection.picking = inspection.object_id.picking_id
+                elif inspection.object_id._name == 'stock.picking':
+                    inspection.picking = inspection.object_id
+                elif inspection.object_id._name == 'stock.pack.operation':
+                    inspection.picking = inspection.object_id.picking_id
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
-    def get_lot(self):
-        self.lot = False
-        if self.object_id:
-            if self.object_id._name == 'stock.pack.operation':
-                self.lot = self.object_id.lot_id
-            elif self.object_id._name == 'stock.move':
-                self.lot = self.object_id.lot_ids[:1]
-            elif self.object_id._name == 'stock.production.lot':
-                self.lot = self.object_id
+    def _compute_lot(self):
+        for inspection in self:
+            inspection.lot = False
+            if inspection.object_id:
+                if inspection.object_id._name == 'stock.pack.operation':
+                    inspection.lot = \
+                        inspection.object_id.pack_lot_ids[:1].lot_id
+                elif inspection.object_id._name == 'stock.move':
+                    inspection.lot = inspection.object_id.lot_ids[:1]
+                elif inspection.object_id._name == 'stock.production.lot':
+                    inspection.lot = inspection.object_id
 
-    @api.one
+    @api.multi
     @api.depends('object_id')
     def _get_product(self):
         """Overriden for getting the product from a stock move."""
+        self.ensure_one()
         super(QcInspection, self)._get_product()
         if self.object_id:
             if self.object_id._name == 'stock.move':
@@ -65,9 +70,10 @@ class QcInspection(models.Model):
         return res
 
     picking = fields.Many2one(
-        comodel_name="stock.picking", compute="get_picking", store=True)
+        comodel_name="stock.picking", compute="_compute_picking", store=True)
     lot = fields.Many2one(
-        comodel_name='stock.production.lot', compute="get_lot", store=True)
+        comodel_name='stock.production.lot', compute="_compute_lot",
+        store=True)
 
 
 class QcInspectionLine(models.Model):

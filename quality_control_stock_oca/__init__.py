@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-# (c) 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import models
-from openerp import SUPERUSER_ID
+from odoo import api, SUPERUSER_ID
 
 
 def post_init_hook(cr, registry):
     # Create QC triggers
-    picking_type_ids = registry['stock.picking.type'].search(
-        cr, SUPERUSER_ID, [])
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    picking_type_ids = env['stock.picking.type'].sudo().search([])
     for picking_type_id in picking_type_ids:
-        registry['stock.picking.type']._create_qc_trigger(
-            cr, SUPERUSER_ID, picking_type_id)
+        picking_type_id.sudo()._create_qc_trigger()
