@@ -19,17 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: quality_control_mrp
-#: field:mrp.production,created_inspections:0
+#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_created_inspections
 msgid "Created inspections"
 msgstr ""
 
 #. module: quality_control_mrp
-#: field:mrp.production,qc_inspections:0
+#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_qc_inspections
 msgid "Inspections"
 msgstr ""
 
 #. module: quality_control_mrp
-#: help:mrp.production,qc_inspections:0
+#: model:ir.model.fields,help:quality_control_mrp.field_mrp_production_qc_inspections
 msgid "Inspections related to this production."
 msgstr ""
 
@@ -40,14 +40,8 @@ msgid "Manufacturing Order"
 msgstr ""
 
 #. module: quality_control_mrp
-#: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
-#: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
-msgid "Product"
-msgstr "Producte"
-
-#. module: quality_control_mrp
-#: view:qc.inspection:quality_control_mrp.qc_inspection_search_view_production
-#: field:qc.inspection,production:0
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_production
+#: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_search_view_production
 msgid "Production"
 msgstr ""
 
@@ -57,8 +51,8 @@ msgid "Production done"
 msgstr ""
 
 #. module: quality_control_mrp
-#: view:qc.inspection.line:quality_control_mrp.qc_inspection_line_search_production_view
-#: field:qc.inspection.line,production:0
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_line_production
+#: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Production order"
 msgstr ""
 
@@ -78,6 +72,9 @@ msgid "Quality inspections from production order"
 msgstr ""
 
 #. module: quality_control_mrp
-#: view:mrp.production:quality_control_mrp.mrp_production_qc_view
+#: model:ir.ui.view,arch_db:quality_control_mrp.mrp_production_qc_view
 msgid "inspections"
 msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "Producte"
