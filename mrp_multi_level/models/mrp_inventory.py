@@ -51,7 +51,8 @@ class MrpInventory(models.Model):
 
     @api.multi
     @api.depends('mrp_product_id', 'mrp_product_id.main_supplierinfo_id',
-                 'mrp_product_id.mrp_lead_time')
+                 'mrp_product_id.mrp_lead_time',
+                 'mrp_product_id.mrp_area_id.calendar_id')
     def _compute_date_to_procure(self):
         today = date.today()
         for rec in self.filtered(lambda r: r.date):
@@ -61,8 +62,13 @@ class MrpInventory(models.Model):
             elif rec.mrp_product_id.supply_method == 'manufacture':
                 delay = rec.mrp_product_id.mrp_lead_time
             # TODO: 'move' supply method
-            date_to_procure = fields.Date.from_string(
-                rec.date) - timedelta(days=delay)
+            if delay and rec.mrp_area_id.calendar_id:
+                dt_date = fields.Datetime.from_string(rec.date)
+                date_to_procure = rec.mrp_area_id.calendar_id.plan_days(
+                    -delay - 1, dt_date).date()
+            else:
+                date_to_procure = fields.Date.from_string(
+                    rec.date) - timedelta(days=delay)
             if date_to_procure < today:
                 date_to_procure = today
             rec.date_to_procure = date_to_procure
