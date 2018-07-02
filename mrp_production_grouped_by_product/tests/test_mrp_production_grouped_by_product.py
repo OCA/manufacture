@@ -70,6 +70,7 @@ class TestProductionGroupedByProduct(common.SavepointCase):
             'procure_method': 'make_to_order',
             'warehouse_id': cls.warehouse.id,
             'date': '2018-06-01 18:00:00',
+            'date_expected': '2018-06-01 18:00:00',
         })
 
     def test_mo_by_product(self):
@@ -85,7 +86,9 @@ class TestProductionGroupedByProduct(common.SavepointCase):
         self.assertEqual(mo.product_qty, 12)
 
     def test_mo_other_date(self):
-        self.move.date = '2018-06-01 20:01:00'
+        self.move.write(
+            {'date_expected': '2018-06-01 20:01:00',
+             'date': '2018-06-01 20:01:00'})
         self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
         self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
         mo = self.MrpProduction.search([('product_id', '=', self.product1.id)])
