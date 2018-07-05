@@ -38,9 +38,9 @@ class MrpInventory(models.Model):
     initial_on_hand_qty = fields.Float(string='Starting Inventory')
     final_on_hand_qty = fields.Float(string='Forecasted Inventory')
     to_procure = fields.Float(string='To procure')
-    date_to_procure = fields.Date(
-        string="Date to Procure",
-        compute="_compute_date_to_procure",
+    order_release_date = fields.Date(
+        string="Order Release Date",
+        compute="_compute_order_release_date",
         store=True,
     )
 
@@ -53,7 +53,7 @@ class MrpInventory(models.Model):
     @api.depends('mrp_product_id', 'mrp_product_id.main_supplierinfo_id',
                  'mrp_product_id.mrp_lead_time',
                  'mrp_product_id.mrp_area_id.calendar_id')
-    def _compute_date_to_procure(self):
+    def _compute_order_release_date(self):
         today = date.today()
         for rec in self.filtered(lambda r: r.date):
             delay = 0
@@ -64,11 +64,11 @@ class MrpInventory(models.Model):
             # TODO: 'move' supply method
             if delay and rec.mrp_area_id.calendar_id:
                 dt_date = fields.Datetime.from_string(rec.date)
-                date_to_procure = rec.mrp_area_id.calendar_id.plan_days(
+                order_release_date = rec.mrp_area_id.calendar_id.plan_days(
                     -delay - 1, dt_date).date()
             else:
-                date_to_procure = fields.Date.from_string(
+                order_release_date = fields.Date.from_string(
                     rec.date) - timedelta(days=delay)
-            if date_to_procure < today:
-                date_to_procure = today
-            rec.date_to_procure = date_to_procure
+            if order_release_date < today:
+                order_release_date = today
+            rec.order_release_date = order_release_date
