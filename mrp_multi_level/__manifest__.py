@@ -16,6 +16,7 @@
         'stock',
         'purchase',
         'stock_demand_estimate',
+        'mrp_warehouse_calendar',
     ],
     'data': [
         'security/mrp_multi_level_security.xml',
