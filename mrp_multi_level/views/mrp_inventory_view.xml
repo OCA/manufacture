@@ -43,7 +43,7 @@
                 <field name="supply_qty"/>
                 <field name="final_on_hand_qty"/>
                 <field name="to_procure"/>
-                <field name="date_to_procure"/>
+                <field name="order_release_date"/>
                 <button string="Create Procurement"
                         name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                         icon="fa-cogs" type="action"
@@ -97,11 +97,11 @@
                     <filter string="MRP Area"
                             context="{'group_by':'mrp_area_id'}"/>
                     <filter string="Date to Procure (By Day)"
-                            context="{'group_by':'date_to_procure:day'}"/>
+                            context="{'group_by':'order_release_date:day'}"/>
                     <filter string="Date to Procure (By Week)"
-                            context="{'group_by':'date_to_procure:week'}"/>
+                            context="{'group_by':'order_release_date:week'}"/>
                     <filter string="Date to Procure (By Month)"
-                            context="{'group_by':'date_to_procure:month'}"/>
+                            context="{'group_by':'order_release_date:month'}"/>
                 </group>
             </search>
         </field>

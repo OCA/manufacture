@@ -224,7 +224,8 @@ class MultiLevelMrp(models.TransientModel):
         if calendar and mrp_product_id.mrp_lead_time:
             date_str = fields.Date.to_string(mrp_date)
             dt = fields.Datetime.from_string(date_str)
-            res = calendar.plan_days(-1 * mrp_product_id.mrp_lead_time -1, dt)
+            res = calendar.plan_days(
+                -1 * mrp_product_id.mrp_lead_time - 1, dt)
             mrp_action_date = res.date()
         else:
             mrp_action_date = mrp_date - timedelta(
