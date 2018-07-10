@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo11-addon-mrp_mto_with_stock',
         'odoo11-addon-mrp_production_grouped_by_product',
         'odoo11-addon-mrp_production_service',
+        'odoo11-addon-mrp_warehouse_calendar',
     ],
     classifiers=[
         'Programming Language :: Python',
