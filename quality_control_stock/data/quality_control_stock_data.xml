@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="req_link_stock_move" model="res.request.link">
+        <field name="name">Stock Move</field>
+        <field name="object">stock.move</field>
+    </record>
+
+    <record id="req_link_stock_picking" model="res.request.link">
+        <field name="name">Picking List</field>
+        <field name="object">stock.picking</field>
+    </record>
+
+    <record id="req_link_stock_production_lot" model="res.request.link">
+        <field name="name">Lot</field>
+        <field name="object">stock.production.lot</field>
+    </record>
+</odoo>
