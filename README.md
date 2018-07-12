@@ -28,6 +28,7 @@ addon | version | summary
 [mrp_repair_discount](mrp_repair_discount/) | 10.0.1.0.0 | MRP Repair Discount
 [product_quick_bom](product_quick_bom/) | 10.0.1.0.0 | Create the bom directly from the product
 [quality_control](quality_control/) | 10.0.1.0.3 | Quality control
+[quality_control_stock](quality_control_stock/) | 10.0.1.0.0 | Quality control - Stock
 
 
 Unported addons
