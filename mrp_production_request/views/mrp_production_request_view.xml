@@ -80,7 +80,8 @@
                                 <field name="location_src_id"/>
                                 <field name="location_dest_id"/>
                                 <field name="picking_type_id"/>
-                                <field name="date_planned"/>
+                                <field name="date_planned_start"/>
+                                <field name="date_planned_finished" invisible="1"/>/>
                             </group>
                         </group>
 
@@ -110,7 +111,7 @@
                 <field name="pending_qty"/>
                 <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                 <field name="origin"/>
-                <field name="date_planned"/>
+                <field name="date_planned_start"/>
                 <field name="state"/>
             </tree>
       </field>
