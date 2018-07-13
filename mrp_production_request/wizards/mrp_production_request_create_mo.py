@@ -95,7 +95,11 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             'location_dest_id': request_id.location_dest_id.id,
             'picking_type_id': request_id.picking_type_id.id,
             'routing_id': request_id.routing_id.id,
-            'date_planned': request_id.date_planned,
+            'date_planned_start': request_id.date_planned_start,
+            'date_planned_finished': request_id.date_planned_finished,
+            'procurement_group_id': request_id.procurement_group_id.id,
+            'procurement_ids': [(6, 0, request_id.procurement_ids.ids)],
+            'propagate': request_id.propagate,
             'company_id': request_id.company_id.id,
         }
 
