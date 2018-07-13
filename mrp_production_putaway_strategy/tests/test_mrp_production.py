@@ -15,7 +15,6 @@ class MrpProductionCase(TransactionCase):
             "code": "X WH",
             "reception_steps": "one_step",
             "delivery_steps": "ship_only",
-            "resupply_from_wh": False,
             "default_resupply_wh_id": False,
         })
 
