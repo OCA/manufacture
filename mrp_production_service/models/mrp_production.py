@@ -16,7 +16,7 @@ class MrpProduction(models.Model):
             'name': '%s for %s' % (line.product_id.name, production.name),
             'origin': production.origin,
             'company_id': production.company_id.id,
-            'date_planned_start': production.date_planned_start,
+            'date_planned': production.date_planned_start,
             'product_id': line.product_id.id,
             'product_qty': line.product_qty,
             'product_uom': line.product_uom_id.id,
