@@ -6,7 +6,7 @@
     "name": "MRP Production Service",
     "summary": "Creates procurement orders from manufacturing orders, for "
                "services included in the Bill of Materials",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "author": "Eficent,"
               "Odoo Community Association (OCA)",
     "website": "https://www.odoo-community.org",
