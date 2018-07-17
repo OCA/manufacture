@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo11-addon-mrp_bom_equivalent',
         'odoo11-addon-mrp_bom_location',
         'odoo11-addon-mrp_mto_with_stock',
+        'odoo11-addon-mrp_multi_level',
         'odoo11-addon-mrp_production_grouped_by_product',
         'odoo11-addon-mrp_production_service',
         'odoo11-addon-mrp_warehouse_calendar',
