@@ -12,28 +12,29 @@ class QcInspection(models.Model):
     @api.multi
     @api.depends('object_id')
     def get_picking(self):
-        self.ensure_one()
-        self.picking = False
-        if self.object_id:
-            if self.object_id._name == 'stock.move':
-                self.picking = self.object_id.picking_id
-            elif self.object_id._name == 'stock.picking':
-                self.picking = self.object_id
-            elif self.object_id._name == 'stock.pack.operation':
-                self.picking = self.object_id.picking_id
+        for inspection in self:
+            inspection.picking = False
+            if inspection.object_id:
+                if inspection.object_id._name == 'stock.move':
+                    inspection.picking = inspection.object_id.picking_id
+                elif inspection.object_id._name == 'stock.picking':
+                    inspection.picking = inspection.object_id
+                elif inspection.object_id._name == 'stock.pack.operation':
+                    inspection.picking = inspection.object_id.picking_id
 
     @api.multi
     @api.depends('object_id')
     def get_lot(self):
-        self.ensure_one()
-        self.lot = False
-        if self.object_id:
-            if self.object_id._name == 'stock.pack.operation':
-                self.lot = self.object_id.pack_lot_ids[:1].lot_id
-            elif self.object_id._name == 'stock.move':
-                self.lot = self.object_id.lot_ids[:1]
-            elif self.object_id._name == 'stock.production.lot':
-                self.lot = self.object_id
+        for inspection in self:
+            inspection.lot = False
+            if inspection.object_id:
+                if inspection.object_id._name == 'stock.pack.operation':
+                    inspection.lot = \
+                        inspection.object_id.pack_lot_ids[:1].lot_id
+                elif inspection.object_id._name == 'stock.move':
+                    inspection.lot = inspection.object_id.lot_ids[:1]
+                elif inspection.object_id._name == 'stock.production.lot':
+                    inspection.lot = inspection.object_id
 
     @api.multi
     @api.depends('object_id')
