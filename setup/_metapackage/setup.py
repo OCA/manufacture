@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo10-addon-mrp_repair_discount',
         'odoo10-addon-product_quick_bom',
         'odoo10-addon-quality_control',
+        'odoo10-addon-quality_control_mrp',
         'odoo10-addon-quality_control_stock',
     ],
     classifiers=[
