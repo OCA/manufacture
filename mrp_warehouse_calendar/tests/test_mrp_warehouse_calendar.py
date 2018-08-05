@@ -64,10 +64,9 @@ class TestMrpWarehouseCalendar(TransactionCase):
             'Test', values)
         mo = self.env['mrp.production'].search(
             [('product_id', '=', self.product.id)], limit=1)
-        date_plan_start = fields.Datetime.from_string(
-            mo.date_planned_start).date()
+        date_plan_start = fields.Date.to_date(mo.date_planned_start)
         # Friday 4th Jan 2097
-        friday = fields.Datetime.from_string('2097-01-04 09:00:00').date()
+        friday = fields.Date.to_date('2097-01-04 09:00:00')
 
         self.assertEqual(date_plan_start, friday)
 
@@ -81,7 +80,6 @@ class TestMrpWarehouseCalendar(TransactionCase):
         })
         mo.date_planned_start = '2097-01-04 09:00:00'
         mo.onchange_date_planned()
-        date_plan_finished = fields.Datetime.from_string(
-            mo.date_planned_finished).date()
-        monday = fields.Datetime.from_string('2097-01-07 09:00:00').date()
+        date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
+        monday = fields.Date.to_date('2097-01-07 09:00:00')
         self.assertEqual(date_plan_finished, monday)
