@@ -23,7 +23,7 @@ MRP Warehouse Calendar
     :target: https://runbot.odoo-community.org/runbot/129/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 With this module the manufacturing orders created from procurements consider
 the calendar assigned to the warehouse of the picking type of the
@@ -103,9 +103,9 @@ promote its widespread use.
     :target: https://github.com/jbeficent
     :alt: jbeficent
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-jbeficent| 
+|maintainer-jbeficent|
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/11.0/mrp_warehouse_calendar>`_ project on GitHub.
 

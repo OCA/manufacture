@@ -4,15 +4,15 @@
 from odoo import fields, models
 
 
-class ProcurementRule(models.Model):
-    _inherit = 'procurement.rule'
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
 
     def _get_date_planned(self, product_id, values):
-        date_planned = super(ProcurementRule, self)._get_date_planned(
+        date_planned = super(StockRule, self)._get_date_planned(
             product_id, values)
         picking_type = self.picking_type_id or \
             values['warehouse_id'].manu_type_id
-        dt_planned = fields.Datetime.from_string(values['date_planned'])
+        dt_planned = fields.Datetime.to_datetime(values['date_planned'])
         warehouse = picking_type.warehouse_id
         if warehouse.calendar_id and product_id.produce_delay:
             lead_days = values['company_id'].manufacturing_lead + \
