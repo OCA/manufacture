@@ -115,7 +115,7 @@ promote its widespread use.
     :target: https://github.com/lreficent
     :alt: lreficent
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-jbeficent| |maintainer-lreficent| 
 
