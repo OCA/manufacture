@@ -1,0 +1,3 @@
+This module allows sales users to add properties to sale order lines. The properties are propagated to the procurement order and then used to control the selection of the BoM. If there are properties set on a sale order line, the first BoM that has all those properties will be selected for the production order. If there are properties set on a sale order line and no such BoM can be found, but there is a BoM without any properties, that BoM will be returned. If no properties are set on a sale order line, no filter on properties will be applied even if there are BoMs both with and without properties for the given product or product variant.
+
+Installation of this module will activate the sale order line form view.
