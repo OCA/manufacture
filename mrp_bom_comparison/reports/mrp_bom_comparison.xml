@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ABF OSIELL <http://osiell.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<template id="report_mrp_bom_comparison">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>BoM v1</th>
+                                <th>BoM v2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span t-field="o.bom1_id"/></td>
+                                <td><span t-field="o.bom2_id"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br/>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="border-black">
+                                <th>Ref.</th>
+                                <th>Designation</th>
+                                <th>v1-Qty</th>
+                                <th>v2-Qty</th>
+                                <th>Qty gap</th>
+                            </tr>
+                        </thead>
+                        <tbody t-if="not o.line_changed_ids and not o.line_added_ids and not o.line_removed_ids">
+                            <tr>
+                                <td colspan="5" class="text-center">NO DIFFERENCE DETECTED</td>
+                            </tr>
+                        </tbody>
+                        <tbody t-if="o.line_changed_ids">
+                            <tr>
+                                <th colspan="5"><br/>Products updated</th>
+                            </tr>
+                            <t t-foreach="o.line_changed_ids" t-as="line">
+                            <tr>
+                                <td class="text-warning"><span t-field="line.product_id.default_code"/></td>
+                                <td><span t-field="line.product_id.name"/></td>
+                                <td class="text-right"><span t-field="line.bom1_qty"/></td>
+                                <td class="text-right"><span t-field="line.bom2_qty"/></td>
+                                <td class="text-right text-warning"><span t-field="line.diff_qty"/></td>
+                            </tr>
+                            </t>
+                        </tbody>
+                        <tbody t-if="o.line_added_ids">
+                            <tr>
+                                <th colspan="5"><br/>Products added to BoM v2</th>
+                            </tr>
+                            <t t-foreach="o.line_added_ids" t-as="line">
+                            <tr>
+                                <td class="text-success"><span t-field="line.product_id.default_code"/></td>
+                                <td><span t-field="line.product_id.name"/></td>
+                                <td class="text-right"><span t-field="line.bom1_qty"/></td>
+                                <td class="text-right"><span t-field="line.bom2_qty"/></td>
+                                <td class="text-right text-success"><span t-field="line.diff_qty"/></td>
+                            </tr>
+                            </t>
+                        </tbody>
+                        <tbody t-if="o.line_removed_ids">
+                            <tr>
+                                <th colspan="5"><br/>Products removed from BoM v2</th>
+                            </tr>
+                            <t t-foreach="o.line_removed_ids" t-as="line">
+                            <tr>
+                                <td class="text-danger"><span t-field="line.product_id.default_code"/></td>
+                                <td><span t-field="line.product_id.name"/></td>
+                                <td class="text-right"><span t-field="line.bom1_qty"/></td>
+                                <td class="text-right"><span t-field="line.bom2_qty"/></td>
+                                <td class="text-right text-danger"><span t-field="line.diff_qty"/></td>
+                            </tr>
+                            </t>
+                        </tbody>
+                        <tfoot t-if="o.line_changed_ids or o.line_added_ids or o.line_removed_ids">
+                            <tr class="no_border">
+                                <th class="text-right" colspan="4">TOTAL</th>
+                                <td class="text-right"><span t-field="o.total_qty"/></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+</odoo>
