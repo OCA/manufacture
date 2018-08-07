@@ -18,7 +18,8 @@ class MrpProduction(models.Model):
         'mrp.production', u"Parent order",
         index=True, ondelete='restrict', readonly=True)
     child_ids = fields.One2many(
-        'mrp.production', 'parent_id', u"Child orders")
+        'mrp.production', 'parent_id', u"Child orders",
+        domain=[('state', '!=', 'cancel')])
     parent_left = fields.Integer('Left Parent', index=True)
     parent_right = fields.Integer('Right Parent', index=True)
 
@@ -42,8 +43,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         if self.child_ids:
             return {
-                'domain': "[('id', '=', %s), ('state', '!=', 'cancel')]" % (
-                    self.id),
+                'domain': "[('id', '=', %s)]" % self.id,
                 'name': _(u"Hierarchy"),
                 'view_type': 'tree',
                 'view_mode': 'tree',
