@@ -4,14 +4,15 @@
 {
     "name": "MRP Sale Info",
     "summary": "Adds sale information to Manufacturing models",
-    "version": "8.0.1.0.0",
+    "version": "8.0.2.0.0",
     "category": "Manufacturing",
     "website": "http://www.antiun.com",
     "author": "Antiun Ingeniería S.L., "
               "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
+              "Odoo Community Association (OCA), "
+              "Binovo",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
