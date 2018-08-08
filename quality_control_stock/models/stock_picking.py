@@ -13,7 +13,7 @@ class StockPicking(models.Model):
 
     @api.multi
     @api.depends('qc_inspections', 'qc_inspections.state')
-    def _count_inspections(self):
+    def _compute_count_inspections(self):
         for picking in self:
             picking.created_inspections = len(picking.qc_inspections)
             picking.passed_inspections = \
@@ -29,13 +29,13 @@ class StockPicking(models.Model):
         comodel_name='qc.inspection', inverse_name='picking', copy=False,
         string='Inspections', help="Inspections related to this picking.")
     created_inspections = fields.Integer(
-        compute="_count_inspections", string="Created inspections")
+        compute="_compute_count_inspections", string="Created inspections")
     done_inspections = fields.Integer(
-        compute="_count_inspections", string="Done inspections")
+        compute="_compute_count_inspections", string="Done inspections")
     passed_inspections = fields.Integer(
-        compute="_count_inspections", string="Inspections OK")
+        compute="_compute_count_inspections", string="Inspections OK")
     failed_inspections = fields.Integer(
-        compute="_count_inspections", string="Inspections failed")
+        compute="_compute_count_inspections", string="Inspections failed")
 
     @api.multi
     def do_transfer(self):

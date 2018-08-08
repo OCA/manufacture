@@ -11,7 +11,7 @@ class QcInspection(models.Model):
 
     @api.multi
     @api.depends('object_id')
-    def get_picking(self):
+    def _compute_picking(self):
         for inspection in self:
             inspection.picking = False
             if inspection.object_id:
@@ -24,7 +24,7 @@ class QcInspection(models.Model):
 
     @api.multi
     @api.depends('object_id')
-    def get_lot(self):
+    def _compute_lot(self):
         for inspection in self:
             inspection.lot = False
             if inspection.object_id:
@@ -70,9 +70,10 @@ class QcInspection(models.Model):
         return res
 
     picking = fields.Many2one(
-        comodel_name="stock.picking", compute="get_picking", store=True)
+        comodel_name="stock.picking", compute="_compute_picking", store=True)
     lot = fields.Many2one(
-        comodel_name='stock.production.lot', compute="get_lot", store=True)
+        comodel_name='stock.production.lot', compute="_compute_lot",
+        store=True)
 
 
 class QcInspectionLine(models.Model):
