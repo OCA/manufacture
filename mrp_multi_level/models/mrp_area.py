@@ -19,5 +19,8 @@ class MrpArea(models.Model):
         required=True,
     )
     active = fields.Boolean(default=True)
-    calendar_id = fields.Many2one('resource.calendar',
-                                  'Working Hours')
+    calendar_id = fields.Many2one(
+        comodel_name='resource.calendar',
+        string='Working Hours',
+        related='warehouse_id.calendar_id',
+    )
