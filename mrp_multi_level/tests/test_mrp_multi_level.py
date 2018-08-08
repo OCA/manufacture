@@ -38,6 +38,8 @@ class TestMrpMultiLevel(SavepointCase):
         cls.customer_location = cls.env.ref(
             'stock.stock_location_customers')
         cls.calendar = cls.env.ref('resource.resource_calendar_std')
+        # Add calendar to WH:
+        cls.wh.calendar_id = cls.calendar
 
         # Partner:
         vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
@@ -367,9 +369,8 @@ class TestMrpMultiLevel(SavepointCase):
             ('product_id', '=', self.fp_1.id)])
         self.assertTrue(mos)
         self.assertEqual(mos.product_qty, 100.0)
-        datetime_5 = fields.Datetime.to_string(
-            self.calendar.plan_days(5 + 1, datetime.today()).date())
-        self.assertEqual(mos.date_planned_start, datetime_5)
+        mo_date_start = mos.date_planned_start.split(' ')[0]
+        self.assertEqual(mo_date_start, self.date_5)
 
     # TODO: test procure wizard: pos, multiple...
     # TODO: test multiple destination IDS:...

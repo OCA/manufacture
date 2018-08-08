@@ -274,11 +274,7 @@ class MultiLevelMrp(models.TransientModel):
                                 mrp_date_demand_2,
                                 bom, name)
                         mrpmove_id2 = self.env['mrp.move'].create(move_data)
-                        sql_stat = "INSERT INTO mrp_move_rel (" \
-                                   "move_up_id, " \
-                                   "move_down_id) values (%d, %d)" % \
-                                   (mrpmove_id, mrpmove_id2, )
-                        self.env.cr.execute(sql_stat)
+                        mrpmove_id.mrp_move_down_ids = [(4, mrpmove_id2.id)]
         values['qty_ordered'] = qty_ordered
         log_msg = '%s' % qty_ordered
         logger.info(log_msg)
