@@ -30,7 +30,7 @@ addon | version | summary
 [product_quick_bom](product_quick_bom/) | 10.0.1.0.0 | Create the bom directly from the product
 [quality_control](quality_control/) | 10.0.1.0.3 | Quality control
 [quality_control_mrp](quality_control_mrp/) | 10.0.1.0.0 | MRP extension for quality control
-[quality_control_stock](quality_control_stock/) | 10.0.1.0.1 | Quality control - Stock
+[quality_control_stock](quality_control_stock/) | 10.0.1.0.2 | Quality control - Stock
 
 
 Unported addons
