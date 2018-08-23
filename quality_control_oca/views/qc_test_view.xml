@@ -101,7 +101,7 @@
                             <field name="min_value"
                                    class="oe_inline"
                                    nolabel="1"
-                                   attrs="{'required': [('type',' =', 'quantitative')]}" />
+                                   attrs="{'required': [('type','=', 'quantitative')]}" />
                             <span> - </span>
                             <field name="max_value"
                                    class="oe_inline"
