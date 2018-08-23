@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
