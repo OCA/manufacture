@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -15,7 +14,7 @@ class QcTestTemplateCategory(models.Model):
 
     @api.multi
     @api.depends('name', 'parent_id')
-    def _get_complete_name(self):
+    def _compute_get_complete_name(self):
         for record in self:
             names = [record.name or '']
             parent = record.parent_id
@@ -41,7 +40,7 @@ class QcTestTemplateCategory(models.Model):
     parent_id = fields.Many2one(
         comodel_name='qc.test.category', string='Parent category')
     complete_name = fields.Char(
-        compute="_get_complete_name", string='Full name')
+        compute="_compute_get_complete_name", string='Full name')
     child_ids = fields.One2many(
         comodel_name='qc.test.category', inverse_name='parent_id',
         string='Child categories')
