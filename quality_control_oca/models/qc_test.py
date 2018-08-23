@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -55,24 +54,24 @@ class QcTestQuestion(models.Model):
     _description = 'Quality control question'
     _order = 'sequence, id'
 
-    @api.one
     @api.constrains('ql_values')
     def _check_valid_answers(self):
-        if (self.type == 'qualitative' and self.ql_values and
-                not self.ql_values.filtered('ok')):
-            raise exceptions.ValidationError(
-                _("Question '%s' is not valid: "
-                  "you have to mark at least one value as OK.")
-                % self.name_get()[0][1])
+        for tc in self:
+            if (tc.type == 'qualitative' and tc.ql_values and
+                    not tc.ql_values.filtered('ok')):
+                raise exceptions.ValidationError(
+                    _("Question '%s' is not valid: "
+                      "you have to mark at least one value as OK.")
+                    % tc.name_get()[0][1])
 
-    @api.one
     @api.constrains('min_value', 'max_value')
     def _check_valid_range(self):
-        if self.type == 'quantitative' and self.min_value > self.max_value:
-            raise exceptions.ValidationError(
-                _("Question '%s' is not valid: "
-                  "minimum value can't be higher than maximum value.")
-                % self.name_get()[0][1])
+        for tc in self:
+            if tc.type == 'quantitative' and tc.min_value > tc.max_value:
+                raise exceptions.ValidationError(
+                    _("Question '%s' is not valid: "
+                      "minimum value can't be higher than maximum value.")
+                    % tc.name_get()[0][1])
 
     sequence = fields.Integer(
         string='Sequence', required=True, default="10")

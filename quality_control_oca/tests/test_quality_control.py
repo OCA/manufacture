@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -58,9 +57,9 @@ class TestQualityControl(TransactionCase):
         self.assertTrue(
             self.inspection1.success,
             'Incorrect state in inspection %s' % self.inspection1.name)
-        self.assertEquals(self.inspection1.state, 'success')
+        self.assertEqual(self.inspection1.state, 'success')
         self.inspection1.action_approve()
-        self.assertEquals(self.inspection1.state, 'success')
+        self.assertEqual(self.inspection1.state, 'success')
 
     def test_inspection_incorrect(self):
         for line in self.inspection1.inspection_lines:
@@ -76,9 +75,9 @@ class TestQualityControl(TransactionCase):
         self.assertFalse(
             self.inspection1.success,
             'Incorrect state in inspection %s' % self.inspection1.name)
-        self.assertEquals(self.inspection1.state, 'waiting')
+        self.assertEqual(self.inspection1.state, 'waiting')
         self.inspection1.action_approve()
-        self.assertEquals(self.inspection1.state, 'failed')
+        self.assertEqual(self.inspection1.state, 'failed')
 
     def test_actions_errors(self):
         inspection2 = self.inspection1.copy()
@@ -120,7 +119,7 @@ class TestQualityControl(TransactionCase):
             'name': 'Category TWO',
             'parent_id': category1.id,
         })
-        self.assertEquals(
+        self.assertEqual(
             category2.complete_name,
             '%s / %s' % (category1.name, category2.name),
             'Something went wrong when computing complete name')
@@ -150,20 +149,20 @@ class TestQualityControl(TransactionCase):
             trigger_lines = trigger_lines.union(
                 self.env[model].get_trigger_line_for_product(
                     self.qc_trigger, self.product))
-        self.assertEquals(len(trigger_lines), 3)
+        self.assertEqual(len(trigger_lines), 3)
         filtered_trigger_lines = _filter_trigger_lines(trigger_lines)
-        self.assertEquals(len(filtered_trigger_lines), 1)
+        self.assertEqual(len(filtered_trigger_lines), 1)
         for trigger_line in filtered_trigger_lines:
             inspection = self.inspection_model._make_inspection(
                 self.product, trigger_line)
-            self.assertEquals(inspection.state, 'ready')
+            self.assertEqual(inspection.state, 'ready')
             self.assertTrue(inspection.auto_generated)
-            self.assertEquals(inspection.test, self.test)
+            self.assertEqual(inspection.test, self.test)
             for line in inspection.inspection_lines:
                 if line.question_type == 'qualitative':
-                    self.assertEquals(line.qualitative_value, self.val_ok)
+                    self.assertEqual(line.qualitative_value, self.val_ok)
                 elif line.question_type == 'quantitative':
-                    self.assertEquals(
+                    self.assertAlmostEqual(
                         round(line.quantitative_value, 2), round((
                             self.qn_question.min_value +
                             self.qn_question.max_value) * 0.5, 2))
@@ -173,9 +172,9 @@ class TestQualityControl(TransactionCase):
             self.inspection1.unlink()
         inspection2 = self.inspection1.copy()
         inspection2.action_cancel()
-        self.assertEquals(inspection2.state, 'canceled')
+        self.assertEqual(inspection2.state, 'canceled')
         inspection2.action_draft()
-        self.assertEquals(inspection2.state, 'draft')
+        self.assertEqual(inspection2.state, 'draft')
         inspection2.unlink()
 
     def test_qc_inspection_auto_generate_unlink(self):
@@ -190,8 +189,7 @@ class TestQualityControl(TransactionCase):
         self.inspection1.write({
             'object_id': '%s,%d' % (self.product._name, self.product.id),
         })
-        self.assertEquals(self.inspection1.product,
-                          self.product)
+        self.assertEqual(self.inspection1.product_id, self.product)
 
     def test_qc_test_question_constraints(self):
         with self.assertRaises(exceptions.ValidationError):
