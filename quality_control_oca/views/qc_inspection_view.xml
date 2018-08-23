@@ -63,7 +63,7 @@
                             <field name="user" />
                             <field name="object_id" />
                             <field name="qty" />
-                            <field name="product" />
+                            <field name="product_id" />
                         </group>
                         <group>
                             <field name="date" />
@@ -122,7 +122,7 @@
                 <field name="user" />
                 <field name="test" />
                 <field name="qty" />
-                <field name="product" />
+                <field name="product_id" />
                 <field name="success" />
                 <field name="state" />
             </tree>
@@ -138,7 +138,7 @@
                     <field name="name" />
                     <field name="user" />
                     <field name="object_id" />
-                    <field name="product" />
+                    <field name="product_id" />
                     <field name="test" />
                 </group>
                 <newline />
@@ -159,7 +159,7 @@
                             context="{'group_by': 'user'}" />
                     <filter string="Product"
                             domain="[]"
-                            context="{'group_by': 'product'}" />
+                            context="{'group_by': 'product_id'}" />
                     <filter string="State"
                             domain="[]"
                             context="{'group_by': 'state'}" />
@@ -192,7 +192,7 @@
         <field name="arch" type="xml">
             <tree string="Inspection lines" delete="false" create="false" colors="red: success==False">
                 <field name="inspection_id" />
-                <field name="product" />
+                <field name="product_id" />
                 <field name="name" />
                 <field name="question_type" />
                 <field name="possible_ql_values" invisible="1" />
@@ -218,7 +218,7 @@
                 <group>
                     <field name="name" />
                     <field name="inspection_id" />
-                    <field name="product" />
+                    <field name="product_id" />
                     <field name="success" />
                 </group>
                 <newline />
@@ -233,7 +233,7 @@
                             context="{'group_by': 'inspection_id'}" />
                     <filter string="Product"
                             domain="[]"
-                            context="{'group_by': 'product'}" />
+                            context="{'group_by': 'product_id'}" />
                     <filter string="Question"
                             domain="[]"
                             context="{'group_by': 'name'}" />

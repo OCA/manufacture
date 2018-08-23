@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -8,9 +7,10 @@
 
 {
     "name": "Quality control",
-    "version": "10.0.1.0.3",
+    "version": "11.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
+    "summary": "Generic infrastructure for quality tests.",
     "author": "OdooMRP team, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture/tree/10.0/quality_control",
