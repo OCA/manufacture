@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -14,25 +13,25 @@ import odoo.addons.decimal_precision as dp
 class QcInspection(models.Model):
     _name = 'qc.inspection'
     _description = 'Quality control inspection'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    @api.one
     @api.depends('inspection_lines', 'inspection_lines.success')
-    def _success(self):
-        self.success = all([x.success for x in self.inspection_lines])
+    def _compute_success(self):
+        for i in self:
+            i.success = all([x.success for x in i.inspection_lines])
 
     @api.multi
     def _links_get(self):
         link_obj = self.env['res.request.link']
         return [(r.object, r.name) for r in link_obj.search([])]
 
-    @api.one
     @api.depends('object_id')
-    def _get_product(self):
-        if self.object_id and self.object_id._name == 'product.product':
-            self.product = self.object_id
-        else:
-            self.product = False
+    def _compute_product_id(self):
+        for i in self:
+            if i.object_id and i.object_id._name == 'product.product':
+                i.product_id = i.object_id
+            else:
+                i.product_id = False
 
     name = fields.Char(
         string='Inspection number', required=True, default='/',
@@ -44,9 +43,10 @@ class QcInspection(models.Model):
     object_id = fields.Reference(
         string='Reference', selection=_links_get, readonly=True,
         states={'draft': [('readonly', False)]}, ondelete="set null")
-    product = fields.Many2one(
-        comodel_name="product.product", compute="_get_product", store=True,
-        help="Product associated with the inspection")
+    product_id = fields.Many2one(
+        comodel_name="product.product", compute="_compute_product_id",
+        store=True, help="Product associated with the inspection",
+        oldname='product')
     qty = fields.Float(string="Quantity", default=1.0)
     test = fields.Many2one(
         comodel_name='qc.test', string='Test', readonly=True)
@@ -69,7 +69,7 @@ class QcInspection(models.Model):
         string='State', readonly=True, default='draft',
         track_visibility='onchange')
     success = fields.Boolean(
-        compute="_success", string='Success',
+        compute="_compute_success", string='Success',
         help='This field will be marked if all tests have succeeded.',
         store=True)
     auto_generated = fields.Boolean(
@@ -228,42 +228,43 @@ class QcInspectionLine(models.Model):
     _name = 'qc.inspection.line'
     _description = "Quality control inspection line"
 
-    @api.one
     @api.depends('question_type', 'uom_id', 'test_uom_id', 'max_value',
                  'min_value', 'quantitative_value', 'qualitative_value',
                  'possible_ql_values')
-    def quality_test_check(self):
-        if self.question_type == 'qualitative':
-            self.success = self.qualitative_value.ok
-        else:
-            if self.uom_id.id == self.test_uom_id.id:
-                amount = self.quantitative_value
+    def _compute_quality_test_check(self):
+        for l in self:
+            if l.question_type == 'qualitative':
+                l.success = l.qualitative_value.ok
             else:
-                amount = self.env['product.uom']._compute_quantity(
-                    self.quantitative_value,
-                    self.test_uom_id.id)
-            self.success = self.max_value >= amount >= self.min_value
+                if l.uom_id.id == l.test_uom_id.id:
+                    amount = l.quantitative_value
+                else:
+                    amount = self.env['product.uom']._compute_quantity(
+                        l.quantitative_value,
+                        l.test_uom_id.id)
+                l.success = l.max_value >= amount >= l.min_value
 
-    @api.one
     @api.depends('possible_ql_values', 'min_value', 'max_value', 'test_uom_id',
                  'question_type')
-    def get_valid_values(self):
-        if self.question_type == 'qualitative':
-            self.valid_values = ", ".join([x.name for x in
-                                           self.possible_ql_values if x.ok])
-        else:
-            self.valid_values = "%s ~ %s" % (
-                formatLang(self.env, self.min_value),
-                formatLang(self.env, self.max_value))
-            if self.env.ref("product.group_uom") in self.env.user.groups_id:
-                self.valid_values += " %s" % self.test_uom_id.name
+    def _compute_valid_values(self):
+        for l in self:
+            if l.question_type == 'qualitative':
+                l.valid_values = \
+                    ", ".join([x.name for x in l.possible_ql_values if x.ok])
+            else:
+                l.valid_values = "%s ~ %s" % (
+                    formatLang(self.env, l.min_value),
+                    formatLang(self.env, l.max_value))
+                if self.env.ref("product.group_uom") \
+                        in self.env.user.groups_id:
+                    l.valid_values += " %s" % l.test_uom_id.name
 
     inspection_id = fields.Many2one(
         comodel_name='qc.inspection', string='Inspection', ondelete='cascade')
     name = fields.Char(string="Question", readonly=True)
-    product = fields.Many2one(
-        comodel_name="product.product", related="inspection_id.product",
-        store=True)
+    product_id = fields.Many2one(
+        comodel_name="product.product", related="inspection_id.product_id",
+        store=True,  oldname='product')
     test_line = fields.Many2one(
         comodel_name='qc.test.question', string='Test question',
         readonly=True)
@@ -275,7 +276,7 @@ class QcInspectionLine(models.Model):
     qualitative_value = fields.Many2one(
         comodel_name='qc.test.question.value', string='Qualitative value',
         help="Value of the result for a qualitative question.",
-        domain="[('id', 'in', possible_ql_values[0][2])]")
+        domain="[('id', 'in', possible_ql_values)]")
     notes = fields.Text(string='Notes')
     min_value = fields.Float(
         string='Min', digits=dp.get_precision('Quality Control'),
@@ -299,6 +300,6 @@ class QcInspectionLine(models.Model):
          ('quantitative', 'Quantitative')],
         string='Question type', readonly=True)
     valid_values = fields.Char(string="Valid values", store=True,
-                               compute="get_valid_values")
+                               compute="_compute_valid_values")
     success = fields.Boolean(
-        compute="quality_test_check", string="Success?", store=True)
+        compute="_compute_quality_test_check", string="Success?", store=True)
