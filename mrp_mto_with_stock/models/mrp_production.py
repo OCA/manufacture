@@ -122,6 +122,13 @@ class MrpProduction(models.Model):
             raise UserError('\n'.join(errors))
         return True
 
+    # This method should be overriden in submodule to manage cases where
+    # we need to add quantities to the forecast quantity. Like draft purchase
+    # order, purchase request, etc...
+    @api.model
+    def _get_incoming_qty_waiting_validation(self, move):
+        return 0.0
+
     @api.multi
     def get_mto_qty_to_procure(self, move):
         self.ensure_one()
@@ -130,6 +137,8 @@ class MrpProduction(models.Model):
         virtual_available = move_location.product_id.virtual_available
         qty_available = move.product_id.uom_id._compute_quantity(
             virtual_available, move.product_uom)
+        draft_incoming_qty = self._get_incoming_qty_waiting_validation(move)
+        qty_available += draft_incoming_qty
         if qty_available >= 0:
             return 0.0
         else:
