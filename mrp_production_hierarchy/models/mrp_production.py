@@ -7,9 +7,6 @@ from odoo import api, fields, models, _
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
-    _parent_name = "parent_id"
-    _parent_store = True
-    _parent_order = 'name'
 
     root_id = fields.Many2one(
         'mrp.production', u"Root order",
@@ -20,8 +17,6 @@ class MrpProduction(models.Model):
     child_ids = fields.One2many(
         'mrp.production', 'parent_id', u"Child orders",
         domain=[('state', '!=', 'cancel')])
-    parent_left = fields.Integer('Left Parent', index=True)
-    parent_right = fields.Integer('Right Parent', index=True)
 
     @api.multi
     def _generate_moves(self):
