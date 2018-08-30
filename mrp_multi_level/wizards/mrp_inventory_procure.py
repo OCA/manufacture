@@ -17,9 +17,9 @@ class MrpInventoryProcure(models.TransientModel):
     )
 
     @api.model
-    def _prepare_item(self, mrp_inventory):
+    def _prepare_item(self, mrp_inventory, qty_override=0.0):
         return {
-            'qty': mrp_inventory.to_procure,
+            'qty': qty_override if qty_override else mrp_inventory.to_procure,
             'uom_id': mrp_inventory.uom_id.id,
             'date_planned': mrp_inventory.date,
             'mrp_inventory_id': mrp_inventory.id,
@@ -57,7 +57,17 @@ class MrpInventoryProcure(models.TransientModel):
 
         items = item_obj = self.env['mrp.inventory.procure.item']
         for line in mrp_inventory_obj.browse(mrp_inventory_ids):
-            items += item_obj.create(self._prepare_item(line))
+            max_order = line.mrp_product_id.mrp_maximum_order_qty
+            qty_to_order = line.to_procure
+            if max_order and max_order < qty_to_order:
+                # split the procurement in batches:
+                while qty_to_order > 0.0:
+                    qty = line.mrp_product_id._adjust_qty_to_order(
+                        qty_to_order)
+                    items += item_obj.create(self._prepare_item(line, qty))
+                    qty_to_order -= qty
+            else:
+                items += item_obj.create(self._prepare_item(line))
         res['item_ids'] = [(6, 0, items.ids)]
         return res
 
