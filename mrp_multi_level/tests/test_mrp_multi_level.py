@@ -54,8 +54,38 @@ class TestMrpMultiLevel(SavepointCase):
             'route_ids': [(6, 0, [route_buy])],
             'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 20.0})],
         })
+        cls.prod_min = cls.product_obj.create({
+            'name': 'Product with minimum order qty',
+            'type': 'product',
+            'list_price': 50.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
+            'mrp_minimum_order_qty': 50.0,
+            'mrp_maximum_order_qty': 0.0,
+            'mrp_qty_multiple': 1.0,
+        })
+        cls.prod_max = cls.product_obj.create({
+            'name': 'Product with maximum order qty',
+            'type': 'product',
+            'list_price': 50.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
+            'mrp_minimum_order_qty': 50.0,
+            'mrp_maximum_order_qty': 100.0,
+            'mrp_qty_multiple': 1.0,
+        })
+        cls.prod_multiple = cls.product_obj.create({
+            'name': 'Product with qty multiple',
+            'type': 'product',
+            'list_price': 50.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
+            'mrp_minimum_order_qty': 50.0,
+            'mrp_maximum_order_qty': 500.0,
+            'mrp_qty_multiple': 25.0,
+        })
 
-        # Create test picking:
+        # Create test picking for FP-1 and FP-2:
         res = cls.calendar.plan_days(7+1, datetime.today())
         date_move = res.date()
         cls.picking_1 = cls.stock_picking_obj.create({
@@ -85,6 +115,45 @@ class TestMrpMultiLevel(SavepointCase):
                 })]
         })
         cls.picking_1.action_confirm()
+
+        # Create test picking for procure qty adjustment tests:
+        cls.picking_2 = cls.stock_picking_obj.create({
+            'picking_type_id': cls.env.ref('stock.picking_type_out').id,
+            'location_id': cls.stock_location.id,
+            'location_dest_id': cls.customer_location.id,
+            'move_lines': [
+                (0, 0, {
+                    'name': 'Test move prod_min',
+                    'product_id': cls.prod_min.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': cls.prod_min.uom_id.id,
+                    'product_uom_qty': 16,
+                    'location_id': cls.stock_location.id,
+                    'location_dest_id': cls.customer_location.id
+                }),
+                (0, 0, {
+                    'name': 'Test move prod_max',
+                    'product_id': cls.prod_max.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': cls.prod_max.uom_id.id,
+                    'product_uom_qty': 140,
+                    'location_id': cls.stock_location.id,
+                    'location_dest_id': cls.customer_location.id
+                }),
+                (0, 0, {
+                    'name': 'Test move prod_multiple',
+                    'product_id': cls.prod_multiple.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': cls.prod_multiple.uom_id.id,
+                    'product_uom_qty': 112,
+                    'location_id': cls.stock_location.id,
+                    'location_dest_id': cls.customer_location.id
+                })]
+        })
+        cls.picking_2.action_confirm()
 
         # Create Test PO:
         date_po = cls.calendar.plan_days(1+1, datetime.today()).date()
@@ -371,6 +440,29 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertEqual(mos.product_qty, 100.0)
         mo_date_start = mos.date_planned_start.split(' ')[0]
         self.assertEqual(mo_date_start, self.date_5)
+
+    def test_08_adjust_qty_to_order(self):
+        """Test the adjustments made to the qty to procure when minimum,
+        maximum order quantities and quantity multiple are set."""
+        # minimum order quantity:
+        mrp_inv_min = self.mrp_inventory_obj.search([
+            ('mrp_product_id.product_id', '=', self.prod_min.id)])
+        self.assertEqual(mrp_inv_min.to_procure, 50.0)
+        # maximum order quantity:
+        mrp_inv_max = self.mrp_inventory_obj.search([
+            ('mrp_product_id.product_id', '=', self.prod_max.id)])
+        self.assertEqual(mrp_inv_max.to_procure, 150)
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.prod_max.id),
+            ('mrp_action', '!=', 'none'),
+        ])
+        self.assertEqual(len(moves), 2)
+        self.assertIn(100.0, moves.mapped('mrp_qty'))
+        self.assertIn(50.0, moves.mapped('mrp_qty'))
+        # quantity multiple:
+        mrp_inv_multiple = self.mrp_inventory_obj.search([
+            ('mrp_product_id.product_id', '=', self.prod_multiple.id)])
+        self.assertEqual(mrp_inv_multiple.to_procure, 125)
 
     # TODO: test procure wizard: pos, multiple...
     # TODO: test multiple destination IDS:...
