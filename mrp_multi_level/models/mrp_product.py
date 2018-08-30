@@ -2,6 +2,8 @@
 # © 2016-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from math import ceil
+
 from odoo import api, fields, models
 
 
@@ -118,15 +120,16 @@ class MrpProduct(models.Model):
 
     @api.multi
     def _adjust_qty_to_order(self, qty_to_order):
-        # TODO: consider mrp_qty_multiple?
         self.ensure_one()
-        if not self.mrp_maximum_order_qty and not self.mrp_minimum_order_qty:
+        if (not self.mrp_maximum_order_qty and not
+                self.mrp_minimum_order_qty and self.mrp_qty_multiple == 1.0):
             return qty_to_order
         if qty_to_order < self.mrp_minimum_order_qty:
             return self.mrp_minimum_order_qty
+        if self.mrp_qty_multiple:
+            multiplier = ceil(qty_to_order / self.mrp_qty_multiple)
+            qty_to_order = multiplier * self.mrp_qty_multiple
         if self.mrp_maximum_order_qty and qty_to_order > \
                 self.mrp_maximum_order_qty:
-            qty = self.mrp_maximum_order_qty
-        else:
-            qty = qty_to_order
-        return qty
+            return self.mrp_maximum_order_qty
+        return qty_to_order
