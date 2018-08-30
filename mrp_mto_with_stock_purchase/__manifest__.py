@@ -6,7 +6,7 @@
     "summary": "Module needed to make mrp_mto_with_stock module compatible "
                "with purchase module.",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "version": "11.0.1.0.0",
     "license": "AGPL-3",
