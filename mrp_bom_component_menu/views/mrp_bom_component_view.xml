@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="mrp_bom_form_action2" model="ir.actions.act_window">
+        <field name="name">Bill of Material Components</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a component to a bill of material.
+          </p><p>
+            Bills of materials components are components and by-products
+            used to create master bills of materials.  Use this menu to
+            search in which BoM a specific component is used.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        action="mrp_bom_form_action2"
+        id="menu_mrp_bom_form_action2"
+        parent="mrp.menu_mrp_bom"/>
+
+</odoo>
