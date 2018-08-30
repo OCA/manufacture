@@ -122,11 +122,13 @@ class MrpProduction(models.Model):
             raise UserError('\n'.join(errors))
         return True
 
-    # This method should be overriden in submodule to manage cases where
-    # we need to add quantities to the forecast quantity. Like draft purchase
-    # order, purchase request, etc...
     @api.model
     def _get_incoming_qty_waiting_validation(self, move):
+        """
+        This method should be overriden in submodule to manage cases where
+        we need to add quantities to the forecast quantity. Like draft
+        purchase order, purchase request, etc...
+        """
         return 0.0
 
     @api.multi
