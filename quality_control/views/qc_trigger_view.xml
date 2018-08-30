@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="qc_trigger_form_view">
+        <field name="name">qc.trigger.form</field>
+        <field name="model">qc.trigger</field>
+        <field name="arch" type="xml">
+            <form string="Quality control trigger">
+            <group>
+                <field name="name" />
+                <field name="active" />
+                <field name="partner_selectable" />
+            </group>
+            <group>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="qc_trigger_tree_view">
+        <field name="name">qc.trigger.tree</field>
+        <field name="model">qc.trigger</field>
+        <field name="arch" type="xml">
+            <tree string="Quality control triggers" editable="bottom">
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
+

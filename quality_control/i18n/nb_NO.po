@@ -1,0 +1,828 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-12 03:48+0000\n"
+"PO-Revision-Date: 2018-02-12 03:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/oca/"
+"teams/23907/nb_NO/)\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_trigger_line
+msgid "Abstract line for defining triggers"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
+msgid "Accept"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_active
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_active
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_active
+msgid "Active"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_possible_ql_values
+#: model:ir.ui.view,arch_db:quality_control.qc_test_question_form_view
+msgid "Answers"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Approve"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_auto_generated
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Auto-generated"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test.question.value,name:quality_control.qc_test_question_value_2
+msgid "Bad"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+#: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
+msgid "Cancel"
+msgstr "Lukk"
+
+#. module: quality_control
+#: selection:qc.inspection,state:0
+msgid "Canceled"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_uom_category
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category
+msgid "Category"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_child_ids
+msgid "Child categories"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_company_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_company_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_company_id
+msgid "Company"
+msgstr "Firma"
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Confirm"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_test_uom_category
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Correct"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_ok
+msgid "Correct answer?"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_create_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_create_uid
+msgid "Created by"
+msgstr "Laget av"
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_create_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_create_date
+msgid "Created on"
+msgstr "Laget den"
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_date
+msgid "Date"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_display_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_display_name
+msgid "Display Name"
+msgstr "Vis navn"
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+#: selection:qc.inspection,state:0
+msgid "Draft"
+msgstr "Drøfting"
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_test_category.py:37
+#, python-format
+msgid "Error! You can not create recursive categories."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "External notes"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_complete_name
+msgid "Full name"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.test,type:0
+#: model:qc.test.category,name:quality_control.qc_test_template_category_generic
+msgid "Generic"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test,name:quality_control.qc_test_1
+msgid "Generic Test (demo)"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test.question.value,name:quality_control.qc_test_question_value_1
+msgid "Good"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Group by..."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
+msgid "If an inspection is auto-generated, it can be canceled but not removed."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_product_category_line_partners
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_product_line_partners
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_product_template_line_partners
+msgid ""
+"If filled, the test will only be created when the action is done for one of "
+"the specified partners. If empty, the test will always be created."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Incorrect"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_inspection_id
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+msgid "Inspection"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_inspection_line
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_inspection_lines
+#: model:ir.ui.menu,name:quality_control.qc_inspection_lines_menu
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_tree_view
+msgid "Inspection lines"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_name
+msgid "Inspection number"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_inspection
+#: model:ir.ui.menu,name:quality_control.qc_inspection_menu
+#: model:ir.ui.menu,name:quality_control.qc_inspection_menu_parent
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_tree_view
+msgid "Inspections"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_internal_notes
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Internal notes"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_test___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line___last_update
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line___last_update
+msgid "Last Modified on"
+msgstr "Sist endret den"
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_uid
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_uid
+msgid "Last Updated by"
+msgstr "Sist oppdatert av"
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_write_date
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_write_date
+msgid "Last Updated on"
+msgstr "Sist oppdatert den"
+
+#. module: quality_control
+#: model:res.groups,name:quality_control.group_quality_control_manager
+msgid "Manager"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Mark todo"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_max_value
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_max_value
+msgid "Max"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_max_value
+msgid "Maximum valid value for a quantitative question."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_min_value
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_min_value
+msgid "Min"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_min_value
+msgid "Minimum valid value for a quantitative question."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_name
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_name
+msgid "Name"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_notes
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_notes
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Notes"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test.question,name:quality_control.qc_test_question_1
+msgid "Overall quality"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_category_parent_id
+msgid "Parent category"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_partners
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_partners
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_partners
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_partners
+msgid "Partners"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_test_question_value
+msgid "Possible values for qualitative questions."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_fill_correct_values
+msgid "Pre-fill with correct values"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_product_product
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_product
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_product
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_product
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Product"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_product
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_product
+msgid "Product associated with the inspection"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_product_category
+msgid "Product category"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_product_template
+msgid "Product template"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection.line,question_type:0
+#: selection:qc.test.question,type:0
+msgid "Qualitative"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_qualitative_value
+msgid "Qualitative value"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_ql_values
+msgid "Qualitative values"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.module.category,name:quality_control.module_category_quality_control
+#: model:ir.ui.menu,name:quality_control.qc_menu
+#: model:ir.ui.view,arch_db:quality_control.product_category_qc_form_view
+#: model:ir.ui.view,arch_db:quality_control.product_template_qc_form_view
+msgid "Quality control"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_test_question
+msgid "Quality control question"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_test
+msgid "Quality control test"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_trigger
+#: model:ir.ui.view,arch_db:quality_control.qc_trigger_form_view
+msgid "Quality control trigger"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_product_category_qc_triggers
+#: model:ir.model.fields,field_description:quality_control.field_product_product_qc_triggers
+#: model:ir.model.fields,field_description:quality_control.field_product_template_qc_triggers
+#: model:ir.ui.view,arch_db:quality_control.product_category_qc_form_view
+#: model:ir.ui.view,arch_db:quality_control.product_template_qc_form_view
+#: model:ir.ui.view,arch_db:quality_control.qc_trigger_tree_view
+msgid "Quality control triggers"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection,state:0
+msgid "Quality failed"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection,state:0
+msgid "Quality success"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection.line,question_type:0
+#: selection:qc.test.question,type:0
+msgid "Quantitative"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_quantitative_value
+msgid "Quantitative value"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_name
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+msgid "Question"
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_test.py:73
+#, python-format
+msgid ""
+"Question '%s' is not valid: minimum value can't be higher than maximum value."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_test.py:64
+#, python-format
+msgid "Question '%s' is not valid: you have to mark at least one value as OK."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_question_type
+msgid "Question type"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_test_question_form_view
+msgid "Question value"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_test_lines
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+#: model:ir.ui.view,arch_db:quality_control.qc_test_form_view
+msgid "Questions"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection,state:0
+msgid "Ready"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_object_id
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Reference"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_object_id
+msgid "Reference object"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test.category,name:quality_control.qc_test_template_category_referenced
+msgid "Referenced"
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.test,type:0
+msgid "Related"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_user
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_user
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_user
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_user
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_user
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Responsible"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Search inspection"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+msgid "Search inspection line"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_inspection_set_test
+#: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
+msgid "Select test"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_selectable
+msgid "Selectable by partner"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
+msgid "Set test"
+msgstr ""
+
+#. module: quality_control
+#: model:qc.test.question,name:quality_control.qc_test_question_2
+msgid "Size"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_state
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "State"
+msgstr "Stat"
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_success
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+msgid "Success"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_success
+msgid "Success?"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_set_test_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_test
+#: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
+#: model:ir.ui.view,arch_db:quality_control.qc_test_form_view
+msgid "Test"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_uom_id
+msgid "Test UoM"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_test_category
+#: model:ir.ui.menu,name:quality_control.qc_test_category_menu
+#: model:ir.ui.view,arch_db:quality_control.qc_test_category_tree_view
+msgid "Test categories"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_test_category
+msgid "Test category"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_line
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_test_line
+#: model:ir.ui.view,arch_db:quality_control.qc_test_question_form_view
+msgid "Test question"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_test
+#: model:ir.ui.menu,name:quality_control.qc_menu_test_parent
+#: model:ir.ui.menu,name:quality_control.qc_test_menu
+#: model:ir.ui.view,arch_db:quality_control.qc_test_tree_view
+msgid "Tests"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_test_category_active
+msgid "This field allows you to hide the category without removing it."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_success
+msgid "This field will be marked if all tests have succeeded."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_partner_selectable
+msgid "This technical field is to allow to filter by partner in triggers"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_trigger
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_trigger
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_trigger
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_trigger
+msgid "Trigger"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_type
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_type
+msgid "Type"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_uom_id
+msgid "UoM"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_test_uom_id
+msgid "UoM for minimum and maximum values for a quantitative question."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_uom_id
+msgid "UoM of the inspection value for a quantitative question."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_test_question_uom_id
+msgid "Uom"
+msgstr ""
+
+#. module: quality_control
+#: model:res.groups,name:quality_control.group_quality_control_user
+msgid "User"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_valid_values
+msgid "Valid values"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_qualitative_value
+msgid "Value of the result for a qualitative question."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_quantitative_value
+msgid "Value of the result for a quantitative question."
+msgstr ""
+
+#. module: quality_control
+#: selection:qc.inspection,state:0
+msgid "Waiting supervisor approval"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model.fields,help:quality_control.field_qc_test_question_value_ok
+msgid "When this field is marked, the answer is considered correct."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_inspection.py:99
+#, python-format
+msgid "You cannot remove an auto-generated inspection."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_inspection.py:102
+#, python-format
+msgid "You cannot remove an inspection that is not in draft state."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_inspection.py:115
+#, python-format
+msgid "You must first set the test to perform."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_inspection.py:130
+#, python-format
+msgid "You should provide a unit of measure for quantitative questions."
+msgstr ""
+
+#. module: quality_control
+#: code:addons/quality_control/models/qc_inspection.py:125
+#, python-format
+msgid "You should provide an answer for all qualitative questions."
+msgstr ""
+
+#. module: quality_control
+#: model:ir.ui.view,arch_db:quality_control.view_qc_test_set_test_form
+msgid "or"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_inspection_set_test
+msgid "qc.inspection.set.test"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_trigger_product_category_line
+msgid "qc.trigger.product_category_line"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_trigger_product_line
+msgid "qc.trigger.product_line"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.model,name:quality_control.model_qc_trigger_product_template_line
+msgid "qc.trigger.product_template_line"
+msgstr ""

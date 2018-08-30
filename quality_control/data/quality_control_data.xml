@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+        <record id="qc_test_template_category_generic" model="qc.test.category">
+            <field name="name">Generic</field>
+        </record>
+
+        <record id="qc_test_template_category_referenced" model="qc.test.category">
+            <field name="name">Referenced</field>
+        </record>
+
+        <record forcecreate="True" id="decimal_quality_control" model="decimal.precision">
+            <field name="name">Quality Control</field>
+            <field name="digits">5</field>
+        </record>
+    </data>
+
+    <data>
+        <record id="seq_qc_inspection" model="ir.sequence">
+            <field name="name">Quality inspection</field>
+            <field name="code">qc.inspection</field>
+            <field name="prefix">QC-</field>
+            <field name="padding">6</field>
+        </record>
+    </data>
+</odoo>
