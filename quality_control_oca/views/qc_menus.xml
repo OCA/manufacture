@@ -10,17 +10,18 @@
     <menuitem name="Quality control"
               id="qc_menu"
               groups="group_quality_control_user"
-              sequence="40" />
+              sequence="40"
+              web_icon="quality_control,static/description/icon.png"/>
 
     <menuitem name="Inspections"
               parent="qc_menu"
               id="qc_inspection_menu_parent"
-              sequence="10" />
+              sequence="10"/>
 
     <menuitem parent="qc_menu"
               name="Tests"
               id="qc_menu_test_parent"
               groups="group_quality_control_manager"
-              sequence="20" />
+              sequence="20"/>
 
 </odoo>
