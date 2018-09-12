@@ -9,7 +9,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import date, datetime, timedelta
 import locale
 import logging
-
+from odoo.tools.float_utils import float_round
 logger = logging.getLogger(__name__)
 
 ODOO_READ_GROUP_DAY_FORMAT = '%d %b %Y'
@@ -45,6 +45,10 @@ class MultiLevelMrp(models.TransientModel):
             self, estimate, mrp_product, date):
         mrp_type = 'd'
         origin = 'fc'
+        daily_qty = float_round(
+            estimate.daily_qty,
+            precision_rounding=mrp_product.product_id.uom_id.rounding,
+            rounding_method='HALF-UP')
         return {
             'mrp_area_id': mrp_product.mrp_area_id.id,
             'product_id': mrp_product.product_id.id,
@@ -53,8 +57,8 @@ class MultiLevelMrp(models.TransientModel):
             'purchase_order_id': None,
             'purchase_line_id': None,
             'stock_move_id': None,
-            'mrp_qty': -estimate.daily_qty,
-            'current_qty': -estimate.daily_qty,
+            'mrp_qty': -daily_qty,
+            'current_qty': -daily_qty,
             'mrp_date': date,
             'current_date': date,
             'mrp_action': 'none',
@@ -257,7 +261,8 @@ class MultiLevelMrp(models.TransientModel):
                     if bomcount != 1:
                         continue
                     for bomline in bom.bom_line_ids:
-                        if bomline.product_qty <= 0.00:
+                        if bomline.product_qty <= 0.00 or \
+                                bomline.product_id.type != 'product':
                             continue
                         if self._exclude_from_mrp(
                                 mrp_product_id.mrp_area_id,
