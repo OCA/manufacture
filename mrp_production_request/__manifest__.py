@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
@@ -6,7 +5,9 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
                "step to Manufacturing Orders for better manufacture "
                "planification.",
-    "version": "10.0.1.1.0",
+    "version": "11.0.1.0.0",
+    "development_status": "Mature",
+    "maintainers": ['lreficent'],
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Eficent,"
@@ -22,7 +23,6 @@
         "wizards/mrp_production_request_create_mo_view.xml",
         "views/mrp_production_request_view.xml",
         "views/product_template_view.xml",
-        "views/procurement_order_view.xml",
         "views/mrp_production_view.xml",
     ],
 }

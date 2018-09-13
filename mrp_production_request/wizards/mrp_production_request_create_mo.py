@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -98,7 +97,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             'date_planned_start': request_id.date_planned_start,
             'date_planned_finished': request_id.date_planned_finished,
             'procurement_group_id': request_id.procurement_group_id.id,
-            'procurement_ids': [(6, 0, request_id.procurement_ids.ids)],
             'propagate': request_id.propagate,
             'company_id': request_id.company_id.id,
         }
