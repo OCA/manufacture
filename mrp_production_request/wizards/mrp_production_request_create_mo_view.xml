@@ -3,7 +3,7 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
 
-   <record id="mrp_production_request_create_mo_view" model="ir.ui.view">
+    <record id="mrp_production_request_create_mo_view" model="ir.ui.view">
         <field name="name">mrp.production.request.create.mo.form</field>
         <field name="model">mrp.production.request.create.mo</field>
         <field name="arch" type="xml">
