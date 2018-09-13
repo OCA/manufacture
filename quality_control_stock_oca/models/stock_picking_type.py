@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -15,7 +14,7 @@ class StockPickingType(models.Model):
         qc_trigger = {
             'name': self.name,
             'company_id': self.warehouse_id.company_id.id,
-            'picking_type': self.id,
+            'picking_type_id': self.id,
             'partner_selectable': True,
         }
         return self.env['qc.trigger'].sudo().create(qc_trigger)
@@ -31,7 +30,9 @@ class StockPickingType(models.Model):
         res = super(StockPickingType, self).write(vals)
         if vals.get('name') or vals.get('warehouse_id'):
             qc_trigger_model = self.env['qc.trigger'].sudo()
-            qc_trigger = qc_trigger_model.search(
-                [('picking_type', '=', self.id)])
-            qc_trigger.name = self.name
+            for rec in self:
+                qc_trigger = qc_trigger_model.search(
+                    [('picking_type_id', '=', rec.id)])
+                qc_trigger.name = rec.name
+
         return res
