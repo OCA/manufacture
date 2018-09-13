@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -13,49 +12,53 @@ class QcInspection(models.Model):
     @api.depends('object_id')
     def _compute_picking(self):
         for inspection in self:
-            inspection.picking = False
+            inspection.picking_id = False
             if inspection.object_id:
                 if inspection.object_id._name == 'stock.move':
-                    inspection.picking = inspection.object_id.picking_id
+                    inspection.picking_id = inspection.object_id.picking_id
                 elif inspection.object_id._name == 'stock.picking':
-                    inspection.picking = inspection.object_id
-                elif inspection.object_id._name == 'stock.pack.operation':
-                    inspection.picking = inspection.object_id.picking_id
+                    inspection.picking_id = inspection.object_id
+                elif inspection.object_id._name == 'stock.move.line':
+                    inspection.picking_id = inspection.object_id.picking_id
 
     @api.multi
     @api.depends('object_id')
     def _compute_lot(self):
         for inspection in self:
-            inspection.lot = False
+            inspection.lot_id = False
             if inspection.object_id:
-                if inspection.object_id._name == 'stock.pack.operation':
-                    inspection.lot = \
-                        inspection.object_id.pack_lot_ids[:1].lot_id
+                if inspection.object_id._name == 'stock.move.line':
+                    inspection.lot_id = \
+                        inspection.object_id.lot_id
                 elif inspection.object_id._name == 'stock.move':
-                    inspection.lot = inspection.object_id.lot_ids[:1]
+                    inspection.lot_id = \
+                        self.env['stock.move.line'].search([
+                            ('lot_id', '!=', False),
+                            ('move_id', '=', inspection.object_id.id)
+                        ])[:1].lot_id
                 elif inspection.object_id._name == 'stock.production.lot':
-                    inspection.lot = inspection.object_id
+                    inspection.lot_id = inspection.object_id
 
     @api.multi
     @api.depends('object_id')
-    def _get_product(self):
+    def _compute_product_id(self):
         """Overriden for getting the product from a stock move."""
         self.ensure_one()
-        super(QcInspection, self)._get_product()
+        super(QcInspection, self)._compute_product_id()
         if self.object_id:
             if self.object_id._name == 'stock.move':
-                self.product = self.object_id.product_id
-            elif self.object_id._name == 'stock.pack.operation':
-                self.product = self.object_id.product_id
+                self.product_id = self.object_id.product_id
+            elif self.object_id._name == 'stock.move.line':
+                self.product_id = self.object_id.product_id
             elif self.object_id._name == 'stock.production.lot':
-                self.product = self.object_id.product_id
+                self.product_id = self.object_id.product_id
 
     @api.onchange('object_id')
     def onchange_object_id(self):
         if self.object_id:
             if self.object_id._name == 'stock.move':
                 self.qty = self.object_id.product_qty
-            elif self.object_id._name == 'stock.pack.operation':
+            elif self.object_id._name == 'stock.move.line':
                 self.qty = self.object_id.product_qty
 
     @api.multi
@@ -63,15 +66,15 @@ class QcInspection(models.Model):
         res = super(QcInspection, self)._prepare_inspection_header(
             object_ref, trigger_line)
         # Fill qty when coming from pack operations
-        if object_ref and object_ref._name == 'stock.pack.operation':
+        if object_ref and object_ref._name == 'stock.move.line':
             res['qty'] = object_ref.product_qty
         if object_ref and object_ref._name == 'stock.move':
             res['qty'] = object_ref.product_uom_qty
         return res
 
-    picking = fields.Many2one(
+    picking_id = fields.Many2one(
         comodel_name="stock.picking", compute="_compute_picking", store=True)
-    lot = fields.Many2one(
+    lot_id = fields.Many2one(
         comodel_name='stock.production.lot', compute="_compute_lot",
         store=True)
 
@@ -79,9 +82,9 @@ class QcInspection(models.Model):
 class QcInspectionLine(models.Model):
     _inherit = 'qc.inspection.line'
 
-    picking = fields.Many2one(
-        comodel_name="stock.picking", related="inspection_id.picking",
+    picking_id = fields.Many2one(
+        comodel_name="stock.picking", related="inspection_id.picking_id",
         store=True)
-    lot = fields.Many2one(
-        comodel_name="stock.production.lot", related="inspection_id.lot",
+    lot_id = fields.Many2one(
+        comodel_name="stock.production.lot", related="inspection_id.lot_id",
         store=True)
