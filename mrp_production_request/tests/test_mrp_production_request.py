@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -14,38 +13,90 @@ class TestMrpProductionRequest(TransactionCase):
         self.request_model = self.env['mrp.production.request']
         self.wiz_model = self.env['mrp.production.request.create.mo']
         self.bom_model = self.env['mrp.bom']
+        self.group_model = self.env['procurement.group']
+        self.product_model = self.env['product.product']
+        self.bom_model = self.env['mrp.bom']
+        self.boml_model = self.env['mrp.bom.line']
 
+        self.warehouse = self.env.ref('stock.warehouse0')
+        self.stock_loc = self.env.ref('stock.stock_location_stock')
+        route_manuf = self.env.ref('mrp.route_warehouse0_manufacture')
+
+        # Prepare Products:
         self.product = self.env.ref('product.product_product_3')
         self.product.mrp_production_request = True
+        self.product.route_ids = [(4, route_manuf.id, 0)]
 
-        self.test_product = self.env['product.product'].create({
+        self.product_no_bom = self.product_model.create({
             'name': 'Test Product without BoM',
             'mrp_production_request': True,
+            'route_ids': [(6, 0, route_manuf.ids)],
+        })
+        self.product_orderpoint = self.product_model.create({
+            'name': 'Test Product for orderpoint',
+            'mrp_production_request': True,
+            'route_ids': [(6, 0, route_manuf.ids)],
+        })
+        product_component = self.product_model.create({
+            'name': 'Test component',
+            'mrp_production_request': True,
+            'route_ids': [(6, 0, route_manuf.ids)],
         })
 
+        # Create Bill of Materials:
+        self.test_bom_1 = self.bom_model.create({
+            'product_id': self.product_orderpoint.id,
+            'product_tmpl_id': self.product_orderpoint.product_tmpl_id.id,
+            'product_uom_id': self.product_orderpoint.uom_id.id,
+            'product_qty': 1.0,
+            'type': 'normal',
+        })
+        self.boml_model.create({
+            'bom_id': self.test_bom_1.id,
+            'product_id': product_component.id,
+            'product_qty': 1.0,
+        })
+
+        # Create Orderpoint:
+        self.orderpoint = self.env['stock.warehouse.orderpoint'].create({
+            'warehouse_id': self.warehouse.id,
+            'location_id': self.warehouse.lot_stock_id.id,
+            'product_id': self.product_orderpoint.id,
+            'product_min_qty': 10.0,
+            'product_max_qty': 50.0,
+            'product_uom': self.product_orderpoint.uom_id.id,
+        })
+
+        # Create Procurement Group:
+        self.test_group = self.group_model.create({
+            'name': 'TEST',
+        })
+
+        # Create User:
         self.test_user = self.env['res.users'].create({
             'name': 'John',
             'login': 'test',
         })
 
-    def create_procurement(self, name, product):
+    def procure(self, group, product, qty=4.0,):
         values = {
-            'name': name,
             'date_planned': fields.Datetime.now(),
-            'product_id': product.id,
-            'product_qty': 4.0,
-            'product_uom': product.uom_id.id,
-            'warehouse_id': self.env.ref('stock.warehouse0').id,
-            'location_id': self.env.ref('stock.stock_location_stock').id,
-            'route_ids': [
-                (4, self.env.ref('mrp.route_warehouse0_manufacture').id, 0)],
+            'group_id': group,
         }
-        return self.env['procurement.order'].create(values)
+        self.group_model.run(
+            product, qty, product.uom_id, self.stock_loc,
+            group.name, group.name, values,
+        )
+        return True
 
-    def test_manufacture_request(self):
+    def test_01_manufacture_request(self):
         """Tests manufacture request workflow."""
-        proc = self.create_procurement('TEST/01', self.product)
-        request = proc.mrp_production_request_id
+        self.procure(self.test_group, self.product)
+        request = self.request_model.search([
+            ('product_id', '=', self.product.id),
+            ('procurement_group_id', '=', self.test_group.id),
+        ])
+        self.assertEqual(len(request), 1)
         request.button_to_approve()
         request.button_draft()
         request.button_to_approve()
@@ -61,32 +112,7 @@ class TestMrpProductionRequest(TransactionCase):
         self.assertEqual(request.pending_qty, 0.0)
         request.button_done()
 
-    def test_cancellation_from_request(self):
-        """Tests propagation of cancel to procurements from manufacturing
-        request and not from manufacturing order."""
-        proc = self.create_procurement('TEST/02', self.product)
-        request = proc.mrp_production_request_id
-        wiz = self.wiz_model.with_context(active_ids=request.ids).create({})
-        wiz.mo_qty = 4.0
-        wiz.create_mo()
-        with self.assertRaises(UserError):
-            request.button_draft()
-        mo = self.production_model.search([
-            ('mrp_production_request_id', '=', request.id)])
-        mo.action_cancel()
-        self.assertNotEqual(proc.state, 'cancel')
-        request.button_cancel()
-        self.assertEqual(proc.state, 'cancel')
-
-    def test_cancellation_from_proc(self):
-        """Tests cancelation from procurement."""
-        proc = self.create_procurement('TEST/03', self.product)
-        request = proc.mrp_production_request_id
-        self.assertNotEqual(request.state, 'cancel')
-        proc.cancel()
-        self.assertEqual(request.state, 'cancel')
-
-    def test_assignation(self):
+    def test_02_assignation(self):
         """Tests assignation of manufacturing requests."""
         randon_bom_id = self.bom_model.search([], limit=1).id
         request = self.request_model.create({
@@ -105,15 +131,27 @@ class TestMrpProductionRequest(TransactionCase):
         self.assertTrue(request.message_follower_ids,
                         "Followers not added correctly.")
 
-    def test_raise_errors(self):
+    def test_03_substract_qty_from_orderpoint(self):
+        """Quantity in Manufacturing Requests should be considered by
+        orderpoints."""
+        request = self.request_model.search([
+            ('product_id', '=', self.product_orderpoint.id),
+        ])
+        self.assertFalse(request)
+        self.env['procurement.group'].run_scheduler()
+        request = self.request_model.search([
+            ('product_id', '=', self.product_orderpoint.id),
+        ])
+        self.assertEqual(len(request), 1)
+        # Running again the scheduler should not generate a new MR.
+        self.env['procurement.group'].run_scheduler()
+        request = self.request_model.search([
+            ('product_id', '=', self.product_orderpoint.id),
+        ])
+        self.assertEqual(len(request), 1)
+
+    def test_04_raise_errors(self):
         """Tests user errors raising properly."""
-        proc_no_bom = self.create_procurement('TEST/05', self.test_product)
-        self.assertEqual(proc_no_bom.state, 'exception')
-        proc = self.create_procurement('TEST/05', self.product)
-        request = proc.mrp_production_request_id
-        request.button_to_approve()
-        proc.write({'state': 'done'})
         with self.assertRaises(UserError):
-            request.button_cancel()
-        with self.assertRaises(UserError):
-            request.button_draft()
+            # No Bill of Materials:
+            self.procure(self.test_group, self.product_no_bom)
