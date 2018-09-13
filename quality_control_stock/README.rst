@@ -14,13 +14,13 @@ Quality control - Stock
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/10.0/quality_control_stock
+    :target: https://github.com/OCA/manufacture/tree/11.0/quality_control_stock
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-10-0/manufacture-10-0-quality_control_stock
+    :target: https://translation.odoo-community.org/projects/manufacture-11-0/manufacture-11-0-quality_control_stock
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/129/10.0
+    :target: https://runbot.odoo-community.org/runbot/129/11.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -66,6 +66,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Simone Rubino <simone.rubino@agilebg.com>
+* Ignacio Ales <ignacio.ales@guadaltech.es>
 
 Maintainers
 ~~~~~~~~~~~

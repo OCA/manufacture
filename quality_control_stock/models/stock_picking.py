@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -12,21 +11,21 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     @api.multi
-    @api.depends('qc_inspections', 'qc_inspections.state')
+    @api.depends('qc_inspections_ids', 'qc_inspections_ids.state')
     def _compute_count_inspections(self):
         for picking in self:
-            picking.created_inspections = len(picking.qc_inspections)
+            picking.created_inspections = len(picking.qc_inspections_ids)
             picking.passed_inspections = \
-                len([x for x in picking.qc_inspections
+                len([x for x in picking.qc_inspections_ids
                      if x.state == 'success'])
             picking.failed_inspections = \
-                len([x for x in picking.qc_inspections
+                len([x for x in picking.qc_inspections_ids
                      if x.state == 'failed'])
             picking.done_inspections = \
                 (picking.passed_inspections + picking.failed_inspections)
 
-    qc_inspections = fields.One2many(
-        comodel_name='qc.inspection', inverse_name='picking', copy=False,
+    qc_inspections_ids = fields.One2many(
+        comodel_name='qc.inspection', inverse_name='picking_id', copy=False,
         string='Inspections', help="Inspections related to this picking.")
     created_inspections = fields.Integer(
         compute="_compute_count_inspections", string="Created inspections")
@@ -38,12 +37,12 @@ class StockPicking(models.Model):
         compute="_compute_count_inspections", string="Inspections failed")
 
     @api.multi
-    def do_transfer(self):
-        res = super(StockPicking, self).do_transfer()
+    def action_done(self):
+        res = super(StockPicking, self).action_done()
         inspection_model = self.env['qc.inspection']
-        for operation in self.pack_operation_ids:
+        for operation in self.move_lines:
             qc_trigger = self.env['qc.trigger'].search(
-                [('picking_type', '=', self.picking_type_id.id)])
+                [('picking_type_id', '=', self.picking_type_id.id)])
             trigger_lines = set()
             for model in ['qc.trigger.product_category_line',
                           'qc.trigger.product_template_line',
