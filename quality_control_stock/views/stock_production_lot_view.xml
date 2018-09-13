@@ -6,28 +6,28 @@
         <field name="name">Quality inspections from lot</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('lot', '=', active_id)]</field>
+        <field name="domain">[('lot_id', '=', active_id)]</field>
     </record>
 
     <record id="action_qc_inspection_per_lot_done" model="ir.actions.act_window">
         <field name="name">Quality inspection from lot done</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('lot', '=', active_id), ('state', 'not in', ['draft', 'waiting'])]</field>
+        <field name="domain">[('lot_id', '=', active_id), ('state', 'not in', ['draft', 'waiting'])]</field>
     </record>
 
     <record id="action_qc_inspection_per_lot_passed" model="ir.actions.act_window">
         <field name="name">Quality inspection from lot passed</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('lot', '=', active_id), ('state', '=', 'success')]</field>
+        <field name="domain">[('lot_id', '=', active_id), ('state', '=', 'success')]</field>
     </record>
 
     <record id="action_qc_inspection_per_lot_failed" model="ir.actions.act_window">
         <field name="name">Quality inspections from lot failed</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('lot', '=', active_id), ('state', '=', 'failed')]</field>
+        <field name="domain">[('lot_id', '=', active_id), ('state', '=', 'failed')]</field>
     </record>
 
     <record model="ir.ui.view" id="stock_lot_qc_view">
