@@ -7,9 +7,9 @@
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control.qc_inspection_form_view"/>
         <field name="arch" type="xml">
-            <field name="product" position="after">
-                <field name="picking"/>
-                <field name="lot" groups="stock.group_production_lot"/>
+            <field name="product_id" position="after">
+                <field name="picking_id"/>
+                <field name="lot_id" groups="stock.group_production_lot"  />
             </field>
         </field>
     </record>
@@ -19,9 +19,9 @@
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control.qc_inspection_tree_view"/>
         <field name="arch" type="xml">
-            <field name="product" position="after">
-                <field name="picking"/>
-                <field name="lot" groups="stock.group_production_lot"/>
+            <field name="product_id" position="after">
+                <field name="picking_id"/>
+                <field name="lot_id" groups="stock.group_production_lot"/>
             </field>
         </field>
     </record>
@@ -31,18 +31,18 @@
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control.qc_inspection_search_view"/>
         <field name="arch" type="xml">
-            <field name="product" position="after">
-                <field name="picking"/>
-                <field name="lot" groups="stock.group_production_lot"/>
+            <field name="product_id" position="after">
+                <field name="picking_id"/>
+                <field name="lot_id" groups="stock.group_production_lot"/>
             </field>
             <group expand="0" position="inside">
                 <filter string="Picking"
                         domain="[]"
-                        context="{'group_by': 'picking'}"/>
+                        context="{'group_by': 'picking_id'}"/>
                 <filter string="Lot"
                         domain="[]"
                         groups="stock.group_production_lot"
-                        context="{'group_by': 'lot'}"/>
+                        context="{'group_by': 'lot_id'}"/>
             </group>
         </field>
     </record>
@@ -52,9 +52,9 @@
         <field name="model">qc.inspection.line</field>
         <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view"/>
         <field name="arch" type="xml">
-            <field name="product" position="after">
-                <field name="picking"/>
-                <field name="lot"/>
+            <field name="product_id" position="after">
+                <field name="picking_id"/>
+                <field name="lot_id"/>
             </field>
         </field>
     </record>
@@ -64,9 +64,9 @@
         <field name="model">qc.inspection.line</field>
         <field name="inherit_id" ref="quality_control.qc_inspection_line_search_view"/>
         <field name="arch" type="xml">
-            <field name="product" position="after">
-                <field name="picking"/>
-                <field name="lot"/>
+            <field name="product_id" position="after">
+                <field name="picking_id"/>
+                <field name="lot_id"/>
             </field>
             <group expand="0" position="inside">
                 <filter string="Picking"
