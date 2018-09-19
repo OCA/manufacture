@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -142,5 +141,5 @@ class TestQualityControlMrp(TransactionCase):
             'object_id': '%s,%d' % (self.production1._name,
                                     self.production1.id),
         })
-        self.assertEquals(self.inspection1.production,
-                          self.production1)
+        self.assertEqual(self.inspection1.production_id,
+                         self.production1)

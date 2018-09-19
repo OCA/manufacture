@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -12,16 +11,15 @@ class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     @api.multi
-    @api.depends('qc_inspections')
-    def _count_inspections(self):
+    @api.depends('qc_inspections_ids')
+    def _compute_count_inspections(self):
         for production in self:
-            production.created_inspections = len(production.qc_inspections)
+            production.created_inspections = len(production.qc_inspections_ids)
 
-    qc_inspections = fields.One2many(
-        comodel_name='qc.inspection', inverse_name='production', copy=False,
+    qc_inspections_ids = fields.One2many(
+        comodel_name='qc.inspection', inverse_name='production_id', copy=False,
         string='Inspections', help="Inspections related to this production.")
-    created_inspections = fields.Integer(
-        compute="_count_inspections", string="Created inspections")
+    created_inspections = fields.Integer(compute="_compute_count_inspections")
 
     @api.multi
     def post_inventory(self):
