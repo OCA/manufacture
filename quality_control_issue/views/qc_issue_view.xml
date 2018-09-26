@@ -140,13 +140,17 @@
     </record>
 
     <record model="ir.ui.view" id="qc_issue_search">
-        <field name="name">qc.issue.serch</field>
+        <field name="name">qc.issue.search</field>
         <field name="model">qc.issue</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name"/>
+                <field name="inspector_id"/>
+                <field name="product_id"/>
+                <field name="responsible_id"/>
+                <field name="state"/>
                 <field name="qc_team_id"/>
                 <field name="stage_id"/>
-                <field name="product_id"/>
                 <field name="location_id"/>
                 <filter string="My inspections"
                         domain="[('inspector_id', '=', uid)]"/>

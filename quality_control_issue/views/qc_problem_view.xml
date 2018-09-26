@@ -96,20 +96,20 @@
     </record>
 
     <record model="ir.ui.view" id="qc_problem_search">
-        <field name="name">qc.problem.serch</field>
+        <field name="name">qc.problem.search</field>
         <field name="model">qc.problem</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name"/>
+                <field name="notes"/>
                 <field name="qc_team_id"/>
                 <field name="stage_id"/>
                 <field name="problem_group_id"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Stage" domain="[]"
-                            context="{'group_by':'stage_id'}"/>
-                    <filter string="Problem Group" domain="[]"
-                            context="{'group_by': 'problem_group_id'}"/>
-                    <filter string="Company" context="{'group_by':'company_id'}"
-                            groups="base.group_multi_company"/>
+                    <filter string="Stage" domain="[]" context="{'group_by':'stage_id'}"/>
+                    <filter string="Problem Group" domain="[]" context="{'group_by': 'problem_group_id'}"/>
+                    <filter string="QC Team" domain="[]" context="{'group_by': 'qc_team_id'}"/>
+                    <filter string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
                 </group>
             </search>
         </field>
