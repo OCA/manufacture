@@ -10,25 +10,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-09-26 08:25+0000\n"
+"Last-Translator: William Olhasque <william.olhasque@scopea.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
 msgid "MRP MTO with forecast stock"
-msgstr ""
+msgstr "MRP MTO avec stock prévisionnel"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_template_mrp_mts_mto_location_ids
 msgid "Manufacturing MTO/MTS Locations"
-msgstr ""
+msgstr "Emplacement de fabrication MTO/MTS"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
@@ -44,25 +45,25 @@ msgstr "Modèle d'article"
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_product_template
 msgid "Subproduct 1"
-msgstr ""
+msgstr "Sous-produit 1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_1_product_template
 msgid "Subproduct 1-1"
-msgstr ""
+msgstr "Sous-produit 1-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 msgid "Subproduct 2"
-msgstr ""
+msgstr "Sous-produit 2"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_1_product_template
 msgid "Subproduct 2-1"
-msgstr ""
+msgstr "Sous-produit 2-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1
@@ -76,13 +77,13 @@ msgstr ""
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "TODO"
-msgstr ""
+msgstr "A faire"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "TOP"
-msgstr ""
+msgstr "Top"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,help:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
@@ -91,11 +92,13 @@ msgid ""
 "These manufacturing locations will create procurements when there is no "
 "stock availale in the source location."
 msgstr ""
+"Ces emplacements de fabrication vont créer des approvisionnements quand il "
+"n'y aura pas de stock disponible dans l'emplacement source."
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Entrepôt"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,help:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
@@ -105,3 +108,7 @@ msgid ""
 "forecast stock. In this case, the created procurements won't be linked to "
 "the raw material moves"
 msgstr ""
+"En utilisant Mrp_mto_with_stock, l'approvisionnement est basé sur le stock "
+"réservable par défaut. Cocher cette case si vous souhaitez baser celui-ci "
+"sur le stock prévisionnel. Dans ce cas, les approvisionnements crées ne "
+"seront pas liés aux mouvements de matière première."
