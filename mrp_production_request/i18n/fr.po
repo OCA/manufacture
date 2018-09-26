@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2018-02-12 03:48+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2018-09-26 08:21+0000\n"
+"Last-Translator: William Olhasque <william.olhasque@scopea.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
@@ -25,6 +26,8 @@ msgid ""
 "A Manufacturing Request is an instruction to production to produce\n"
 "            a certain quantity of a given product."
 msgstr ""
+"Une demande de fabrication est une demande à la production de produire\n"
+"une certaine quantité d'un produit donné."
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
@@ -50,18 +53,18 @@ msgstr "Assigné à"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Assigned to me"
-msgstr ""
+msgstr "Qui me sont assigné"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_bom_id
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_bom_id
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Nomenclature"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_bottle_neck_factor
 msgid "Bottle neck factor"
-msgstr ""
+msgstr "Goulot d'étranglement"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
@@ -86,11 +89,13 @@ msgid ""
 "Check this box to generate manufacturing request instead of generating "
 "manufacturing orders from procurement."
 msgstr ""
+"Cocher cette case pour générer une demande de production à la place de "
+"générer des ordres de fabrication depuis les approvisionnements."
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
 msgid "Click to start a new manufacturing request process."
-msgstr ""
+msgstr "Cliquer pour commencer un nouveau processus de demande de production."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_company_id
@@ -100,7 +105,7 @@ msgstr "Société"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Compute lines"
-msgstr ""
+msgstr "Calculer les lignes"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_category_uom_id
@@ -108,17 +113,19 @@ msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
+"La conversion entres les unités de mesure ne fonctionne que si elles "
+"appartiennent à la même catégorie. La conversion se base sur les ratios."
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Create MO"
-msgstr ""
+msgstr "Créer un OF"
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_create_mo_action
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Create Manufacturing Order"
-msgstr ""
+msgstr "Créer un Ordre de Fabrication"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_create_uid
@@ -162,12 +169,12 @@ msgstr "Brouillon"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Extra information"
-msgstr ""
+msgstr "Information supplémentaire"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_dest_id
 msgid "Finished Products Location"
-msgstr ""
+msgstr "Emplacement des Produits Finis"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_id
@@ -200,7 +207,7 @@ msgstr "Dernière mise à jour le"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_location_id
 msgid "Location id"
-msgstr ""
+msgstr "Id Emplacement"
 
 #. module: mrp_production_request
 #: model:res.groups,name:mrp_production_request.group_mrp_production_request_manager
@@ -210,7 +217,7 @@ msgstr "Gestionnaire"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Manufacture Request status"
-msgstr ""
+msgstr "Status des demandes de production"
 
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
@@ -220,7 +227,7 @@ msgstr "Ordre de fabrication"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Manufacturing Order:"
-msgstr ""
+msgstr "Ordre de fabrication :"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_mrp_production_ids
@@ -239,35 +246,35 @@ msgstr "Ordre de fabrication"
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Manufacturing Request"
-msgstr ""
+msgstr "Demande de production"
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/procurement.py:36
 #, python-format
 msgid "Manufacturing Request created"
-msgstr ""
+msgstr "Demande de production créée"
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_action
 #: model:ir.ui.menu,name:mrp_production_request.menu_mrp_production_request_act
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_tree
 msgid "Manufacturing Requests"
-msgstr ""
+msgstr "Demandes de production"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_mrp_production_request_create_mo_id
 msgid "Mrp production request create mo id"
-msgstr ""
+msgstr "MRP Demande de production crée OF Id"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_mrp_production_request_id
 msgid "Mrp production request id"
-msgstr ""
+msgstr "MRP Demande de production Id"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "My requests"
-msgstr ""
+msgstr "Mes demandes"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_name
@@ -278,23 +285,23 @@ msgstr "Nom"
 #: code:addons/mrp_production_request/models/procurement.py:31
 #, python-format
 msgid "No BoM exists for this product!"
-msgstr ""
+msgstr "Il n'existe pas de nomenclature pour ce produit !"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Pending Qty"
-msgstr ""
+msgstr "Qté en attente"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_pending_qty
 msgid "Pending Quantity"
-msgstr ""
+msgstr "Quantité en attente"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_picking_type_id
 msgid "Picking Type"
-msgstr ""
+msgstr "Type de prélévement"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_date_planned
@@ -304,7 +311,7 @@ msgstr "Date demandée"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_procurement_order
 msgid "Procurement"
-msgstr "Procurement"
+msgstr "Approvisionnement"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_id
@@ -314,7 +321,7 @@ msgstr "Ordre d'approvisionnement"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_state
 msgid "Procurement State"
-msgstr ""
+msgstr "Etat de l'approvisionnement"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_id
@@ -331,7 +338,7 @@ msgstr "Modèle de produit"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_product_line_ids
 msgid "Products needed"
-msgstr ""
+msgstr "Produits nécessaires"
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:68
@@ -339,6 +346,8 @@ msgstr ""
 msgid ""
 "Programming error: wizard action executed without active_ids in context."
 msgstr ""
+"Erreur de programmation : l'action du wizard n'a pas d'active_ids dans le "
+"contexte."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_mo_qty
@@ -353,17 +362,17 @@ msgstr "Quantité disponible"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_done_qty
 msgid "Quantity Done"
-msgstr ""
+msgstr "Quantité réalisée"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_qty
 msgid "Quantity Required"
-msgstr ""
+msgstr "Quantité requise"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_manufactured_qty
 msgid "Quantity in Manufacturing Orders"
-msgstr ""
+msgstr "Quantité dans les Ordres de fabrication"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
@@ -372,16 +381,18 @@ msgid ""
 "Quantity pending to add to Manufacturing Orders to fulfill the Manufacturing "
 "Request requirement."
 msgstr ""
+"Quantité restante à ajouter aux Ordres de fabrication pour compléter les "
+"besoins de la Demande de production."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_src_id
 msgid "Raw Materials Location"
-msgstr ""
+msgstr "Emplacement des matières premières"
 
 #. module: mrp_production_request
 #: model:ir.actions.server,name:mrp_production_request.action_server_mrp_production_request_refresh
 msgid "Refresh Quantities"
-msgstr ""
+msgstr "Rafraîchir les quantités"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
@@ -392,7 +403,7 @@ msgstr "Rejeter"
 #: code:addons/mrp_production_request/models/procurement.py:54
 #, python-format
 msgid "Related procurement has been cancelled."
-msgstr ""
+msgstr "L'approvisionnement lié a été annulé."
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
@@ -407,12 +418,12 @@ msgstr "Demande acceptée"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is cancelled"
-msgstr ""
+msgstr "La demande est annulée"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is done"
-msgstr ""
+msgstr "La demande est faite"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -422,7 +433,7 @@ msgstr "La demande doit être approuvée"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request with pending quantity"
-msgstr ""
+msgstr "La demande a encore des quantités en attente"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_requested_by
@@ -433,12 +444,12 @@ msgstr "Demandé par"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Requested by me"
-msgstr ""
+msgstr "Demandé par moi"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_qty
 msgid "Required Quantity"
-msgstr ""
+msgstr "Quantité requise"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
@@ -448,17 +459,17 @@ msgstr "Réinitialiser"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_routing_id
 msgid "Routing"
-msgstr ""
+msgstr "Gamme"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Search Manufacturing Request"
-msgstr ""
+msgstr "Rechercher des Demandes de production"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Select event to register"
-msgstr ""
+msgstr "Sélectionner un événement à enregistrer"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -484,11 +495,12 @@ msgstr "Mouvement de stock"
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_manufactured_qty
 msgid "Sum of the quantities in Manufacturing Orders (in any state)."
 msgstr ""
+"Sommes des quantités dans les Ordres de fabrication (quelque soit le statut)."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_done_qty
 msgid "Sum of the quantities in all done Manufacturing Orders."
-msgstr ""
+msgstr "Somme des quantités dans les Ordres de fabrication."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_routing_id
@@ -498,6 +510,11 @@ msgid ""
 "operations and to plan future loads on work centers based on production "
 "plannification."
 msgstr ""
+"La liste des opérations (liste des postes de travail) à réaliser pour "
+"produire le produit fini. La gamme est principalement utilisée pour calculer "
+"les coûts des postes de travail pendant les opérations ainsi que la "
+"planification de la charge future des postes de travail basée sur la "
+"planification de la production."
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -507,7 +524,7 @@ msgstr "A approuver"
 #. module: mrp_production_request
 #: selection:mrp.production.request,state:0
 msgid "To Be Approved"
-msgstr ""
+msgstr "A approuver"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -543,7 +560,7 @@ msgstr "Utilisateur"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo
 msgid "Wizard to create Manufacturing Orders"
-msgstr ""
+msgstr "Accompagnement pour créer les Ordres de fabrication"
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/mrp_production_request.py:218
@@ -551,6 +568,8 @@ msgstr ""
 msgid ""
 "You cannot reject a manufacturing request related to done procurement orders."
 msgstr ""
+"Vous ne pouvez pas rejeter une demande de production liée à des ordres "
+"d'approvisionnement réalisés."
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/mrp_production_request.py:199
@@ -559,6 +578,8 @@ msgid ""
 "You cannot reset a manufacturing request if the related manufacturing orders "
 "are not cancelled."
 msgstr ""
+"Vous ne pouvez pas remettre à zéro une demande de production si les ordres "
+"de fabrication associés ne sont pas annulés."
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/mrp_production_request.py:204
@@ -567,11 +588,13 @@ msgid ""
 "You cannot reset a manufacturing request related to done or cancelled "
 "procurement orders."
 msgstr ""
+"Vous ne pouvez pas remettre à zéro une demande de production liée à des "
+"ordres d'approvisionnement réalisés ou annulés."
 
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 msgid "mrp.production.request.create.mo.line"
-msgstr ""
+msgstr "mrp.production.request.create.mo.line"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
