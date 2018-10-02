@@ -1,0 +1,158 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_mrp_operations
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-09-10 16:38+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (United States) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/en_US/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production:quality_control_mrp_operations.mrp_production_quality_form_view
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_form_quality_view
+msgid "Create Test"
+msgstr "Create Test"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:87
+#: code:addons/quality_control_mrp_operations/models/mrp.py:92
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:160
+#, python-format
+msgid "Finalization Operation Error!"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_mrp_routing_operation
+msgid "MRP Routing Operation"
+msgstr "MRP Routing Operation"
+
+#. module: quality_control_mrp_operations
+#: view:qc.inspection:quality_control_mrp_operations.qc_inspection_search_view_operation
+#: field:qc.inspection,workcenter_line_id:0
+#: view:qc.inspection.line:quality_control_mrp_operations.qc_inspection_line_search_operation_view
+#: field:qc.inspection.line,workcenter_line_id:0
+msgid "Operation"
+msgstr "Operation"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:35
+#: code:addons/quality_control_mrp_operations/models/mrp.py:40
+#, python-format
+msgid "Operation Creation Error!"
+msgstr "Operation Creation Error!"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:52
+#: code:addons/quality_control_mrp_operations/models/mrp.py:57
+#: code:addons/quality_control_mrp_operations/models/mrp.py:116
+#: code:addons/quality_control_mrp_operations/models/mrp.py:121
+#, python-format
+msgid "Operation Modification Error!"
+msgstr "Operation Modification Error!"
+
+#. module: quality_control_mrp_operations
+#: view:qc.inspection:quality_control_mrp_operations.qc_inspection_search_view_operation
+#: view:qc.inspection.line:quality_control_mrp_operations.qc_inspection_line_search_operation_view
+msgid "Product"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production:quality_control_mrp_operations.mrp_production_quality_form_view
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_form_quality_view
+msgid "Quality Test"
+msgstr "Quality Test"
+
+#. module: quality_control_mrp_operations
+#: model:ir.actions.act_window,name:quality_control_mrp_operations.action_qc_test_per_operation
+#: model:ir.actions.act_window,name:quality_control_mrp_operations.action_qc_test_per_production
+#: field:mrp.production.workcenter.line,test_ids:0
+msgid "Quality Tests"
+msgstr "Quality Tests"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+#: field:mrp.production.workcenter.line,required_test:0
+msgid "Required Test"
+msgstr "Required Test"
+
+#. module: quality_control_mrp_operations
+#: field:mrp.routing.operation,required_test:0
+msgid "Required test"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: field:mrp.production.workcenter.line,qtemplate_id:0
+#: field:mrp.routing.operation,qtemplate_id:0
+msgid "Test"
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Test Template"
+msgstr "Test Template"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:161
+#, python-format
+msgid ""
+"There are quality tests in draft or approval pending state for this "
+"operation. Please finish or cancel them."
+msgstr ""
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Work Center"
+msgstr "Work Center"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr "Work Order"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Work Orders"
+msgstr "Work Orders"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:41
+#: code:addons/quality_control_mrp_operations/models/mrp.py:58
+#: code:addons/quality_control_mrp_operations/models/mrp.py:93
+#: code:addons/quality_control_mrp_operations/models/mrp.py:122
+#, python-format
+msgid "You must define template test"
+msgstr "You must define template test"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:36
+#: code:addons/quality_control_mrp_operations/models/mrp.py:53
+#: code:addons/quality_control_mrp_operations/models/mrp.py:88
+#: code:addons/quality_control_mrp_operations/models/mrp.py:117
+#, python-format
+msgid "You must define the test template"
+msgstr "You must define the test template"

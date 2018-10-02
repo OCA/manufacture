@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="action_qc_test_per_operation" model="ir.actions.act_window">
+            <field name="name">Quality Tests</field>
+            <field name="res_model">qc.inspection</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_workcenter_line_id': [active_id],
+                'default_workcenter_line_id': active_id,
+                }
+            </field>
+            <field name="domain">[('workcenter_line_id','=',active_id)]
+            </field>
+        </record>
+        <record id="action_qc_test_per_production" model="ir.actions.act_window">
+            <field name="name">Quality Tests</field>
+            <field name="res_model">qc.inspection</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_production_id': [active_id],
+                'default_production_id': active_id,
+                }
+            </field>
+            <field name="domain">[('production_id','=',active_id)]
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_quality_form_view">
+            <field name="name">mrp.production.quality.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations_extension.mrp_production_form_view_inh" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_lines']/form//notebook" position="inside">
+                    <page string="Quality Test" attrs="{'invisible': [('required_test','=',False)]}">
+                        <field name="test_ids" nolabel="1" colspan="4"/>
+                    </page>
+                </xpath>
+                <button name="button_start_working" position="before">
+                    <button name="create_quality_test" string="Create Test" 
+                        type="object" groups="base.group_user"
+                        attrs="{'invisible':['|',('required_test','=',False),'&amp;',('required_test','=',True),('state','not in',('draft','startworking'))]}" />
+                </button>
+                <xpath expr="//field[@name='workcenter_lines']/form//field[@name='name']" position="after">
+                    <div class="oe_right oe_button_box" name="buttons2">
+                        <button class="oe_inline oe_stat_button"
+                            type="action" name="%(action_qc_test_per_operation)d"
+                            icon="fa-bookmark-o">
+                            <field name="ope_tests" widget="statinfo" />
+                        </button>
+                    </div>
+                    <group colspan="4" col="10" >
+                        <field name="required_test" colspan="2"/>
+                        <field name="qtemplate_id" colspan="4" attrs="{'invisible': [('required_test','=',False)]}"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='workcenter_lines']/tree/field[@name='workcenter_id']" position="before">
+                    <field name="required_test" />
+                    <field name="qtemplate_id" attrs="{'invisible': [('required_test','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_production_workcenter_line_form_quality_view">
+            <field name="name">mrp.production.workcenter.line.quality.form</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id"
+                ref="mrp_operations_extension.workcenter_line_inh_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']/.." position="before">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button class="oe_inline oe_stat_button"
+                            type="action" name="%(action_qc_test_per_operation)d"
+                            icon="fa-bookmark-o">
+                            <field name="ope_tests" widget="statinfo" />
+                        </button>
+                    </div>
+                </xpath>
+                <button name="button_start_working" position="before">
+                    <button name="create_quality_test" string="Create Test" 
+                        type="object" groups="base.group_user"
+                        attrs="{'invisible':['|',('required_test','=',False),'&amp;',('required_test','=',True),('state','not in',('draft','startworking'))]}" />
+                </button>
+                 <field name="name" position="after">
+                    <group colspan="4" col="10" >
+                        <field name="required_test" colspan="2"/>
+                        <field name="qtemplate_id" colspan="4" attrs="{'invisible': [('required_test','=',False)]}"/>
+                    </group>
+                 </field>
+                 <notebook position="inside">
+                    <page string="Quality Test" attrs="{'invisible': [('required_test','=',False)]}">
+                        <field name="test_ids" nolabel="1" colspan="4"/>
+                    </page>
+                 </notebook>
+            </field>
+        </record>
+
+        <record id="mrp_production_workcenter_line_quality_search_view" model="ir.ui.view">
+            <field name="name">mrp.production.workcenter.line.quality.search</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id" ref="mrp_operations.view_mrp_production_workcenter_form_view_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" string="Work Orders" position="before">
+                    <field name="qtemplate_id" />
+                </field>
+                <filter string="Work Center" position="before">
+                    <filter string="Required Test" domain="[]" context="{'group_by':'required_test'}"/>
+                    <filter string="Test Template" domain="[]" context="{'group_by':'qtemplate_id'}"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

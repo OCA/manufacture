@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_mrp_operations
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-09-20 19:04+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/odoomrp-wip-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production:quality_control_mrp_operations.mrp_production_quality_form_view
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_form_quality_view
+msgid "Create Test"
+msgstr "Ustvari testiranje"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:87
+#: code:addons/quality_control_mrp_operations/models/mrp.py:92
+#, python-format
+msgid "Error!"
+msgstr "Napaka!"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:160
+#, python-format
+msgid "Finalization Operation Error!"
+msgstr "Napaka pri zaključevanju operacije!"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_mrp_routing_operation
+msgid "MRP Routing Operation"
+msgstr "MRP operacije usmerjanja"
+
+#. module: quality_control_mrp_operations
+#: view:qc.inspection:quality_control_mrp_operations.qc_inspection_search_view_operation
+#: field:qc.inspection,workcenter_line_id:0
+#: view:qc.inspection.line:quality_control_mrp_operations.qc_inspection_line_search_operation_view
+#: field:qc.inspection.line,workcenter_line_id:0
+msgid "Operation"
+msgstr "Operacija"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:35
+#: code:addons/quality_control_mrp_operations/models/mrp.py:40
+#, python-format
+msgid "Operation Creation Error!"
+msgstr "Napaka pri ustvarjanju operacije!"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:52
+#: code:addons/quality_control_mrp_operations/models/mrp.py:57
+#: code:addons/quality_control_mrp_operations/models/mrp.py:116
+#: code:addons/quality_control_mrp_operations/models/mrp.py:121
+#, python-format
+msgid "Operation Modification Error!"
+msgstr "Napaka pri spremembi operacije!"
+
+#. module: quality_control_mrp_operations
+#: view:qc.inspection:quality_control_mrp_operations.qc_inspection_search_view_operation
+#: view:qc.inspection.line:quality_control_mrp_operations.qc_inspection_line_search_operation_view
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production:quality_control_mrp_operations.mrp_production_quality_form_view
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_form_quality_view
+msgid "Quality Test"
+msgstr "Kvalitativno testranje"
+
+#. module: quality_control_mrp_operations
+#: model:ir.actions.act_window,name:quality_control_mrp_operations.action_qc_test_per_operation
+#: model:ir.actions.act_window,name:quality_control_mrp_operations.action_qc_test_per_production
+#: field:mrp.production.workcenter.line,test_ids:0
+msgid "Quality Tests"
+msgstr "Kvalitativna testiranja"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inšpekcija nadzora kvalitete"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Inšpekcijska postavka kontrole kakovosti"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+#: field:mrp.production.workcenter.line,required_test:0
+msgid "Required Test"
+msgstr "Zahtevano testiranje"
+
+#. module: quality_control_mrp_operations
+#: field:mrp.routing.operation,required_test:0
+msgid "Required test"
+msgstr "Zahtevano testiranje"
+
+#. module: quality_control_mrp_operations
+#: field:mrp.production.workcenter.line,qtemplate_id:0
+#: field:mrp.routing.operation,qtemplate_id:0
+msgid "Test"
+msgstr "Testiranje"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Test Template"
+msgstr "Predloga testiranja"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:161
+#, python-format
+msgid ""
+"There are quality tests in draft or approval pending state for this "
+"operation. Please finish or cancel them."
+msgstr "Za to operacijo obstajajo testiranja v stanju osnutek ali čakanje odobritve. Dokončajte jih ali jih prekličite."
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Work Center"
+msgstr "Delovni center"
+
+#. module: quality_control_mrp_operations
+#: model:ir.model,name:quality_control_mrp_operations.model_mrp_production_workcenter_line
+msgid "Work Order"
+msgstr "Delovni nalog"
+
+#. module: quality_control_mrp_operations
+#: view:mrp.production.workcenter.line:quality_control_mrp_operations.mrp_production_workcenter_line_quality_search_view
+msgid "Work Orders"
+msgstr "Delovni nalogi"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:41
+#: code:addons/quality_control_mrp_operations/models/mrp.py:58
+#: code:addons/quality_control_mrp_operations/models/mrp.py:93
+#: code:addons/quality_control_mrp_operations/models/mrp.py:122
+#, python-format
+msgid "You must define template test"
+msgstr "Najprej morate določiti predlogo testiranja"
+
+#. module: quality_control_mrp_operations
+#: code:addons/quality_control_mrp_operations/models/mrp.py:36
+#: code:addons/quality_control_mrp_operations/models/mrp.py:53
+#: code:addons/quality_control_mrp_operations/models/mrp.py:88
+#: code:addons/quality_control_mrp_operations/models/mrp.py:117
+#, python-format
+msgid "You must define the test template"
+msgstr "Najprej morate določiti predlogo testiranja"
