@@ -82,7 +82,7 @@ class MrpOperationWorkcenter(models.Model):
     _description = 'MRP Operation Workcenter'
 
     custom_data = fields.Boolean(
-        string="Custom", default=False,
+        string="Custom", default=True,
         help="If you mark this check, this means that the work center in this "
              "routing has different capacity data than the defined on the "
              "work center itself")
