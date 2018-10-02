@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2018-10-02 09:47+0000\n"
+"PO-Revision-Date: 2018-10-02 11:32+0000\n"
 "Last-Translator: Alexandre Fayolle <alexandre.fayolle@camptocamp.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -112,7 +112,7 @@ msgstr "Correct"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_value_ok
 msgid "Correct answer?"
-msgstr ""
+msgstr "Réponse correcte ?"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_create_uid
@@ -175,34 +175,34 @@ msgstr "Brouillon"
 #: code:addons/quality_control/models/qc_test_category.py:37
 #, python-format
 msgid "Error! You can not create recursive categories."
-msgstr ""
+msgstr "Erreur : il n'est pas permis de créer des catégories récursives."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "External notes"
-msgstr ""
+msgstr "Notes externes"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_complete_name
 msgid "Full name"
-msgstr ""
+msgstr "Nom complet"
 
 #. module: quality_control
 #: selection:qc.test,type:0
 #: model:qc.test.category,name:quality_control.qc_test_template_category_generic
 msgid "Generic"
-msgstr ""
+msgstr "Générique"
 
 #. module: quality_control
 #: model:qc.test,name:quality_control.qc_test_1
 msgid "Generic Test (demo)"
-msgstr ""
+msgstr "Test générique (démo)"
 
 #. module: quality_control
 #: model:qc.test.question.value,name:quality_control.qc_test_question_value_1
 msgid "Good"
-msgstr ""
+msgstr "Bon"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -230,6 +230,8 @@ msgstr "Id."
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
 msgid "If an inspection is auto-generated, it can be canceled but not removed."
 msgstr ""
+"Si une inspection est auto générée, elle peut être annulée mais pas "
+"supprimée."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
@@ -240,6 +242,8 @@ msgid ""
 "If filled, the test will only be created when the action is done for one of "
 "the specified partners. If empty, the test will always be created."
 msgstr ""
+"Si ce champ est rempli, le test sera créé au moment où l'action est exécutée "
+"pour un des partenaires spécifiés. Sinon, le test sera toujours créé."
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
@@ -261,12 +265,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_tree_view
 msgid "Inspection lines"
-msgstr ""
+msgstr "Lignes d'inspection"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_name
 msgid "Inspection number"
-msgstr ""
+msgstr "Numéro d'inspection"
 
 #. module: quality_control
 #: model:ir.actions.act_window,name:quality_control.action_qc_inspection
@@ -280,7 +284,7 @@ msgstr "Inspections"
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_internal_notes
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Internal notes"
-msgstr ""
+msgstr "Notes internes"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection___last_update
@@ -336,7 +340,7 @@ msgstr "Responsable"
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Mark todo"
-msgstr ""
+msgstr "Marquer à faire"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_max_value
