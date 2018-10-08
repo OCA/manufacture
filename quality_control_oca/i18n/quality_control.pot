@@ -82,6 +82,11 @@ msgid "Company"
 msgstr ""
 
 #. module: quality_control
+#: model:ir.ui.menu,name:quality_control.menu_qc_config
+msgid "Configuration"
+msgstr ""
+
+#. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Confirm"
 msgstr ""
