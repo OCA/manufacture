@@ -24,4 +24,10 @@
               groups="group_quality_control_manager"
               sequence="20"/>
 
+    <menuitem name="Configuration"
+              id="menu_qc_config"
+              groups="base.group_system"
+              parent="qc_menu"
+              sequence="100"/>
+
 </odoo>
