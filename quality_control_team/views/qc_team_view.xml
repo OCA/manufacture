@@ -92,12 +92,6 @@
         </field>
     </record>
 
-    <menuitem name="Configuration"
-        id="quality_control.menu_qc_config"
-        groups="base.group_system"
-        parent="quality_control.qc_menu"
-        sequence="100"/>
-
     <menuitem name="Quality Control Teams"
         id="qc_team_config_menu"
         groups="base.group_system"
