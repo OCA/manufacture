@@ -5,7 +5,7 @@
     "name": "Quality Control Team",
     "summary": "Adds quality control teams to handle different quality "
                "control workflows",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Quality Control",
     "website": "https://odoo-community.org/",
     "author": "Eficent, Odoo Community Association (OCA)",
