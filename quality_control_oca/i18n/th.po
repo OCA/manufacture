@@ -87,6 +87,11 @@ msgid "Company"
 msgstr "บริษัท"
 
 #. module: quality_control
+#: model:ir.ui.menu,name:quality_control.menu_qc_config
+msgid "Configuration"
+msgstr ""
+
+#. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
 msgid "Confirm"
 msgstr ""
@@ -167,7 +172,7 @@ msgid "Draft"
 msgstr "ฉบับร่าง"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test_category.py:37
+#: code:addons/quality_control/models/qc_test_category.py:36
 #, python-format
 msgid "Error! You can not create recursive categories."
 msgstr ""
@@ -401,8 +406,8 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_product
-#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_product
-#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_product
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_product_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_inspection_product_id
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_product
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
@@ -411,28 +416,20 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_category
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_product_category
 msgid "Product Category"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_product_template
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_product_template
 msgid "Product Template"
 msgstr ""
 
 #. module: quality_control
-#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_product
-#: model:ir.model.fields,help:quality_control.field_qc_inspection_product
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_line_product_id
+#: model:ir.model.fields,help:quality_control.field_qc_inspection_product_id
 msgid "Product associated with the inspection"
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_product_category
-msgid "Product category"
-msgstr ""
-
-#. module: quality_control
-#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_product_template
-msgid "Product template"
 msgstr ""
 
 #. module: quality_control
@@ -528,14 +525,14 @@ msgid "Question"
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:73
+#: code:addons/quality_control/models/qc_test.py:72
 #, python-format
 msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:64
+#: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
 msgstr ""
@@ -772,31 +769,31 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:99
+#: code:addons/quality_control/models/qc_inspection.py:100
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:102
+#: code:addons/quality_control/models/qc_inspection.py:103
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:115
+#: code:addons/quality_control/models/qc_inspection.py:116
 #, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:130
+#: code:addons/quality_control/models/qc_inspection.py:131
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_inspection.py:125
+#: code:addons/quality_control/models/qc_inspection.py:126
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
