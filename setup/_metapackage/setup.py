@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo10-addon-quality_control',
         'odoo10-addon-quality_control_mrp',
         'odoo10-addon-quality_control_stock',
+        'odoo10-addon-quality_control_team',
     ],
     classifiers=[
         'Programming Language :: Python',
