@@ -32,6 +32,7 @@ addon | version | summary
 [quality_control](quality_control/) | 10.0.1.0.3 | Quality control
 [quality_control_mrp](quality_control_mrp/) | 10.0.1.0.0 | MRP extension for quality control
 [quality_control_stock](quality_control_stock/) | 10.0.1.0.2 | Quality control - Stock
+[quality_control_team](quality_control_team/) | 10.0.1.0.0 | Adds quality control teams to handle different quality control workflows
 
 
 Unported addons
