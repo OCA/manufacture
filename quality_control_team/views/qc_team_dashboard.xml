@@ -25,8 +25,8 @@
                             </div>
                             <div class="container o_kanban_card_content o_visible">
                                 <div class="row">
-                                    <div class="col-xs-6 o_kanban_primary_left" name="to_replace_in_qc_issue"/>
-                                    <div class="col-xs-6 o_kanban_primary_right"/>
+                                    <div class="col-xs-6 o_kanban_primary_left" name="card_left"/>
+                                    <div class="col-xs-6 o_kanban_primary_right" name="card_right"/>
                                 </div>
                             </div>
 

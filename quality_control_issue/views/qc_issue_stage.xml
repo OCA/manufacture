@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="qc_issue_stage_tree" model="ir.ui.view">
+        <field name="name">qc.issue.stage.tree</field>
+        <field name="model">qc.issue.stage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" groups="base.group_no_one"/>
+                <field name="name"/>
+                <field name="fold"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="qc_issue_stage_config_action" model="ir.actions.act_window">
+        <field name="name">Quality Control Issue Stages</field>
+        <field name="res_model">qc.issue.stage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Issue Stages"
+        id="qc_issue_stage_config_menu"
+        groups="base.group_system"
+        parent="quality_control.menu_qc_config"
+        action="qc_issue_stage_config_action"
+        sequence="20"/>
+
+</odoo>
