@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.project.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@groups='stock.group_stock_multi_locations']" position="after">
+                <group name="project">
+                    <field name="project_id"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position='inside'>
+                <!-- icon="fa-project-diagram"
+                    This must to be the proper icon, but, until Odoos 12 version the current Font-Awesome version is 4.7, such has not this icon; instead we will use the current icon.
+                    https://github.com/odoo/odoo/issues/21648#issuecomment-353099417
+                -->
+                <button class="oe_stat_button"
+                        type="action"
+                        name="%(mrp_production_createproject_action)d"
+                        icon="fa-tasks"
+                        help="Choose Project"
+                        groups="mrp.group_mrp_manager,mrp.group_mrp_routings,project.group_project_user"
+                        attrs="{'invisible':['|',('state','!=','confirmed'),('project_id','!=',False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Choose</span>
+                        <span class="o_stat_text">Project</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -127,12 +127,12 @@ msgid "Task"
 msgstr "Feladat"
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,work_ids:0
+#: field:mrp.workorder,work_ids:0
 msgid "Task works"
 msgstr ""
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,task_ids:0
+#: field:mrp.workorder,task_ids:0
 msgid "Tasks"
 msgstr ""
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # (c) 2015 Pedro M. Baeza - Serv. Tecnol. Avanzados
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -11,6 +10,7 @@ class TestMrpProject(common.TransactionCase):
     def setUp(self):
         super(TestMrpProject, self).setUp()
         self.product = self.env['product.product'].create({'name': 'Test'})
+        self.uom_unit = self.env.ref('product.product_uom_unit')
         self.bom = self.env['mrp.bom'].create(
             {
                 'product_id': self.product.id,
@@ -19,7 +19,8 @@ class TestMrpProject(common.TransactionCase):
         self.production = self.env['mrp.production'].create(
             {
                 'product_id': self.product.id,
-                'product_uom': self.env.ref('product.product_uom_unit').id,
+                'product_qty': 1,
+                'product_uom_id': self.uom_unit.id,
                 'bom_id': self.bom.id,
             })
         self.task = self.env['project.task'].create({
