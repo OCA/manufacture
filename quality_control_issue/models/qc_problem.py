@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # Copyright 2017 Aleph Objects, Inc. (https://www.alephobjects.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models, SUPERUSER_ID
 
 AVAILABLE_PRIORITIES = [
     ('0', 'Normal'),
@@ -25,32 +24,20 @@ class QcProblem(models.Model):
         return self.stage_find([], team, [('fold', '=', False)])
 
     @api.multi
-    def _read_group_stage_ids(self, domain, read_group_order=None,
-                              access_rights_uid=None):
-        access_rights_uid = access_rights_uid or self._uid
-        stage_obj = self.env['qc.stage']
+    def _read_group_stage_ids(self, stages, domain, order=None):
         search_domain = []
         qc_team_id = self.env.context.get('default_qc_team_id') or False
         if qc_team_id:
-            search_domain += ['|', ('id', 'in', self.ids)]
+            search_domain += ['|', ('id', 'in', stages.ids)]
             search_domain += ['|', ('qc_team_id', '=', qc_team_id)]
             search_domain += [('qc_team_id', '=', False)]
         else:
-            search_domain += ['|', ('id', 'in', self.ids)]
+            search_domain += ['|', ('id', 'in', stages.ids)]
             search_domain += [('qc_team_id', '=', False)]
-        # perform search
-        stage_ids = stage_obj._search(search_domain,
-                                      access_rights_uid=access_rights_uid)
-        result = [stage.name_get()[0] for stage in
-                  stage_obj.browse(stage_ids)]
-        # restore order of the search
-        result.sort(
-            lambda x, y: cmp(stage_ids.index(x[0]), stage_ids.index(y[0])))
 
-        fold = {}
-        for stage in stage_obj.browse(stage_ids):
-            fold[stage.id] = stage.fold or False
-        return result, fold
+        stage_ids = stages._search(
+            search_domain, order=order, access_rights_uid=SUPERUSER_ID)
+        return stages.browse(stage_ids)
 
     @api.one
     @api.depends('issue_ids')
@@ -71,10 +58,13 @@ class QcProblem(models.Model):
     priority = fields.Selection(
         selection=AVAILABLE_PRIORITIES, string='Rating', index=True)
     stage_id = fields.Many2one(
-        comodel_name="qc.stage", string='Stage', track_visibility='onchange',
-        select=True, default=_get_default_stage_id,
+        comodel_name="qc.stage", string='Stage',
+        track_visibility='onchange',
+        index=True, default=_get_default_stage_id,
+        group_expand='_read_group_stage_ids',
         domain="['|', ('qc_team_id', '=', False), "
-               "('qc_team_id', '=', qc_team_id)]")
+               "('qc_team_id', '=', qc_team_id)]",
+    )
     qc_team_id = fields.Many2one(
         comodel_name='qc.team', string='QC Team',
         default=lambda self: self.env[
