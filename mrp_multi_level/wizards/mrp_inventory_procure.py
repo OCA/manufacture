@@ -132,7 +132,8 @@ class MrpInventoryProcureItem(models.TransientModel):
 
     def _prepare_procurement_values(self, group=False):
         return {
-            'date_planned': self.date_planned,  # TODO: play with this...
+            'date_planned': fields.Datetime.to_string(
+                fields.Date.from_string(self.date_planned)),
             'warehouse_id': self.warehouse_id,
             # 'company_id': self.company_id, # TODO: consider company
             'group_id': group,
