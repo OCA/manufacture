@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo9-addon-mrp_production_unreserve',
         'odoo9-addon-mrp_sale_info',
         'odoo9-addon-quality_control',
+        'odoo9-addon-quality_control_issue',
         'odoo9-addon-quality_control_team',
     ],
     classifiers=[
