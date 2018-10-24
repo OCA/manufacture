@@ -39,12 +39,12 @@
         <field name="inherit_id" ref="quality_control_team.qc_team_view_kanban"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="inside">
+            <xpath expr="//div[@name='card_left']" position="inside">
                 <button class="btn btn-primary" type="action"
                         name="%(team_qc_issue_act)d">Issues
                 </button>
             </xpath>
-            <xpath expr="//div[contains(@class, 'o_kanban_primary_right')]" position="inside">
+            <xpath expr="//div[@name='card_right']" position="inside">
                <button class="btn btn-primary" type="action"
                         name="%(team_qc_problem_act)d">Problems
                 </button>
