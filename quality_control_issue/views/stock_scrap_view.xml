@@ -7,7 +7,7 @@
     <record id="stock_scrap_form_view" model="ir.ui.view">
         <field name="name">stock.scrap.form - quality_control_issue</field>
         <field name="model">stock.scrap</field>
-        <field name="inherit_id" ref="stock_scrap.stock_scrap_form_view"/>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
         <field name="arch" type="xml">
             <field name="owner_id" position="after">
                 <field name="qc_issue_id" attrs="{'invisible': [('qc_issue_id', '=', False)]}"/>
@@ -18,7 +18,7 @@
     <record id="stock_scrap_form_view2" model="ir.ui.view">
         <field name="name">stock.scrap.form2 - quality_control_issue</field>
         <field name="model">stock.scrap</field>
-        <field name="inherit_id" ref="stock_scrap.stock_scrap_form_view2"/>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view2"/>
         <field name="arch" type="xml">
             <field name="owner_id" position="after">
                 <field name="qc_issue_id" attrs="{'invisible': [('qc_issue_id', '=', False)]}"/>

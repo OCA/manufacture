@@ -81,8 +81,10 @@
                                 <div>
                                     <strong><field name="name"/></strong>
                                 </div>
-                                <field name="problem_group_id"/><br></br>
-                                <field name="issue_count"/> issues
+                                <group name="info">
+                                    <field name="problem_group_id"/><br></br>
+                                    <field name="issue_count"/> issues
+                                </group>
                                 <div class="o_kanban_footer">
                                     <field name="priority" widget="priority" groups="base.group_user"/>
                                 </div>

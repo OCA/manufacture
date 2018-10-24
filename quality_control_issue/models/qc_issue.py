@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # Copyright 2017 Aleph Objects, Inc. (https://www.alephobjects.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
-from openerp.exceptions import UserError
-import openerp.addons.decimal_precision as dp
+from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo.exceptions import UserError
+import odoo.addons.decimal_precision as dp
 
 
 class QualityControlIssue(models.Model):
@@ -35,33 +34,29 @@ class QualityControlIssue(models.Model):
             user_id=self.env.uid)
         return self.issue_stage_find([], team, [('fold', '=', False)])
 
+    def _get_default_location_id(self):
+        company_user = self.env.user.company_id
+        warehouse = self.env['stock.warehouse'].search([
+            ('company_id', '=', company_user.id)], limit=1)
+        if warehouse:
+            return warehouse.lot_stock_id.id
+        return None
+
     @api.multi
-    def _read_group_stage_ids(self, domain, read_group_order=None,
-                              access_rights_uid=None):
-        access_rights_uid = access_rights_uid or self._uid
-        stage_obj = self.env['qc.issue.stage']
+    def _read_group_stage_ids(self, stages, domain, order=None):
         search_domain = []
         qc_team_id = self.env.context.get('default_qc_team_id') or False
         if qc_team_id:
-            search_domain += ['|', ('id', 'in', self.ids)]
+            search_domain += ['|', ('id', 'in', stages.ids)]
             search_domain += ['|', ('qc_team_id', '=', qc_team_id)]
             search_domain += [('qc_team_id', '=', False)]
         else:
-            search_domain += ['|', ('id', 'in', self.ids)]
+            search_domain += ['|', ('id', 'in', stages.ids)]
             search_domain += [('qc_team_id', '=', False)]
-        # perform search
-        stage_ids = stage_obj._search(search_domain,
-                                      access_rights_uid=access_rights_uid)
-        result = [stage.name_get()[0] for stage in
-                  stage_obj.browse(stage_ids)]
-        # restore order of the search
-        result.sort(
-            lambda x, y: cmp(stage_ids.index(x[0]), stage_ids.index(y[0])))
 
-        fold = {}
-        for stage in stage_obj.browse(stage_ids):
-            fold[stage.id] = stage.fold or False
-        return result, fold
+        stage_ids = stages._search(
+            search_domain, order=order, access_rights_uid=SUPERUSER_ID)
+        return stages.browse(stage_ids)
 
     name = fields.Char(readonly=True)
     state = fields.Selection(
@@ -77,7 +72,7 @@ class QualityControlIssue(models.Model):
     product_qty = fields.Float(
         string="Product Quantity", required=True, default=1.0,
         readonly=True, states={"new": [("readonly", False)]},
-        digits_compute=dp.get_precision("Product Unit of Measure"))
+        digits=dp.get_precision("Product Unit of Measure"))
     product_uom = fields.Many2one(
         comodel_name="product.uom", string="Product Unit of Measure",
         default=_get_uom, required=True, readonly=True,
@@ -87,6 +82,7 @@ class QualityControlIssue(models.Model):
         readonly=True, states={"new": [("readonly", False)]},)
     location_id = fields.Many2one(
         comodel_name="stock.location", string="Location",
+        default=_get_default_location_id,
         readonly=True, states={"new": [("readonly", False)]},)
     inspector_id = fields.Many2one(
         comodel_name="res.users", string="Inspector",
@@ -108,9 +104,11 @@ class QualityControlIssue(models.Model):
     stage_id = fields.Many2one(
         comodel_name="qc.issue.stage", string='Stage',
         track_visibility='onchange',
-        select=True, default=_get_default_stage_id,
+        index=True, default=_get_default_stage_id,
+        group_expand='_read_group_stage_ids',
         domain="['|', ('qc_team_id', '=', False), "
-               "('qc_team_id', '=', qc_team_id)]")
+               "('qc_team_id', '=', qc_team_id)]",
+    )
     qc_team_id = fields.Many2one(
         comodel_name='qc.team', string='QC Team',
         default=lambda self: self.env[
@@ -219,7 +217,7 @@ class QualityControlIssue(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'stock.scrap',
-            'view_id': self.env.ref('stock_scrap.stock_scrap_form_view2').id,
+            'view_id': self.env.ref('stock.stock_scrap_form_view2').id,
             'type': 'ir.actions.act_window',
             'context': {
                 'default_qc_issue_id': self.id,
@@ -234,7 +232,7 @@ class QualityControlIssue(models.Model):
 
     @api.multi
     def action_view_stock_scrap(self):
-        action = self.env.ref('stock_scrap.action_stock_scrap')
+        action = self.env.ref('stock.action_stock_scrap')
         result = action.read()[0]
         lines = self.stock_scrap_ids
         # choose the view_mode accordingly
@@ -242,7 +240,7 @@ class QualityControlIssue(models.Model):
             result['domain'] = "[('id', 'in', " + \
                                str(lines.ids) + ")]"
         elif len(lines) == 1:
-            res = self.env.ref('stock_scrap.stock_scrap_form_view', False)
+            res = self.env.ref('stock.stock_scrap_form_view', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = lines.id
         return result
