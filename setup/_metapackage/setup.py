@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo11-addon-mrp_sale_info',
         'odoo11-addon-mrp_warehouse_calendar',
         'odoo11-addon-quality_control',
+        'odoo11-addon-quality_control_team',
     ],
     classifiers=[
         'Programming Language :: Python',
