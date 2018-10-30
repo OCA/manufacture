@@ -69,8 +69,20 @@ To launch replenishment orders (moves, purchases, production orders...):
    hand side gears in any record.
 #. On the wizard, check everything is ok and click *Execute*.
 
+Known issues / Roadmap
+======================
+
+* The functionality related to field *Nbr. Days* in products is not
+  functional for the time being. Please, stay tuned to future updates.
+
 Changelog
 =========
+
+11.0.1.1.0 (2018-08-30)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Consider *Qty Multiple* on product to propose the quantity to procure.
+  (`#297 <https://github.com/OCA/manufacture/pull/297>`_)
 
 11.0.1.0.1 (2018-08-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
