@@ -34,5 +34,4 @@ class StockPickingType(models.Model):
                 qc_trigger = qc_trigger_model.search(
                     [('picking_type_id', '=', rec.id)])
                 qc_trigger.name = rec.name
-
         return res
