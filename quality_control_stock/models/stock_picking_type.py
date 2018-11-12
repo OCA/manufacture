@@ -31,7 +31,8 @@ class StockPickingType(models.Model):
         res = super(StockPickingType, self).write(vals)
         if vals.get('name') or vals.get('warehouse_id'):
             qc_trigger_model = self.env['qc.trigger'].sudo()
-            qc_trigger = qc_trigger_model.search(
-                [('picking_type', '=', self.id)])
-            qc_trigger.name = self.name
+            for rec in self:
+                qc_trigger = qc_trigger_model.search(
+                    [('picking_type', '=', rec.id)])
+                qc_trigger.name = rec.name
         return res
