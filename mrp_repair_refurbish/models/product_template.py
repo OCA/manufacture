@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# © 2016 Cyril Gaudin (Camptocamp)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -30,14 +29,13 @@ class ProductTemplate(models.Model):
         for template in unique_variants:
             template.refurbish_product_id = \
                 template.product_variant_ids.refurbish_product_id
-        for template in (self - unique_variants):
-            template.refurbish_product_id = False
 
-    @api.one
+    @api.multi
     def _set_refurbish_product(self):
-        if len(self.product_variant_ids) == 1:
-            self.product_variant_ids.refurbish_product_id = \
-                self.refurbish_product_id
+        for rec in self:
+            if len(rec.product_variant_ids) == 1:
+                rec.product_variant_ids.refurbish_product_id = \
+                    rec.refurbish_product_id
 
     def _search_refurbish_product(self, operator, value):
         products = self.env['product.product'].search([
