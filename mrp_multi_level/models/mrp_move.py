@@ -7,13 +7,16 @@ from odoo import models, fields
 
 class MrpMove(models.Model):
     _name = 'mrp.move'
-    _order = 'mrp_product_id, mrp_date, mrp_type desc, id'
+    _order = 'product_mrp_area_id, mrp_date, mrp_type desc, id'
 
     # TODO: too many indexes...
 
     mrp_area_id = fields.Many2one(
         comodel_name='mrp.area',
+        related='product_mrp_area_id.mrp_area_id',
         string='MRP Area',
+        store=True,
+        index=True,
     )
     current_date = fields.Date(string='Current Date')
     current_qty = fields.Float(string='Current Qty')
@@ -43,7 +46,7 @@ class MrpMove(models.Model):
     )
     mrp_minimum_stock = fields.Float(
         string='Minimum Stock',
-        related='product_id.mrp_minimum_stock',
+        related='product_mrp_area_id.mrp_minimum_stock',
     )
     mrp_order_number = fields.Char(string='Order Number')
     # TODO: replace by a char origin?
@@ -54,8 +57,8 @@ class MrpMove(models.Model):
                    ('fc', 'Forecast'), ('mrp', 'MRP')],
         string='Origin')
     mrp_processed = fields.Boolean(string='Processed')
-    mrp_product_id = fields.Many2one(
-        comodel_name='mrp.product',
+    product_mrp_area_id = fields.Many2one(
+        comodel_name='product.mrp.area',
         string='Product', index=True,
     )
     mrp_qty = fields.Float(string='MRP Quantity')
