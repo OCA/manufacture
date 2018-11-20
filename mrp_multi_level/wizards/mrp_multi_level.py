@@ -70,12 +70,6 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _prepare_mrp_move_data_from_stock_move(
             self, product_mrp_area, move, direction='in'):
-        if not((move.location_id.usage == 'internal' and
-                move.location_dest_id.usage != 'internal')
-                or (move.location_id.usage != 'internal' and
-                    move.location_dest_id.usage == 'internal')):
-            # TODO: not sure about this 'if'...
-            return {}
         if direction == 'out':
             mrp_type = 'd'
             product_qty = -move.product_qty
@@ -416,7 +410,8 @@ class MultiLevelMrp(models.TransientModel):
         return True
 
     @api.model
-    def _prepare_mrp_move_data_from_purchase_order(self, poline, product_mrp_area):
+    def _prepare_mrp_move_data_from_purchase_order(
+            self, poline, product_mrp_area):
         mrp_date = date.today()
         if fields.Date.from_string(poline.date_planned) > date.today():
             mrp_date = fields.Date.from_string(poline.date_planned)
@@ -497,7 +492,8 @@ class MultiLevelMrp(models.TransientModel):
         for mrp_area in mrp_areas:
             for product_mrp_area in product_mrp_areas.filtered(
                     lambda a: a.mrp_area_id == mrp_area):
-                if product_mrp_area.mrp_exclude:
+                if self._exclude_from_mrp(
+                        product_mrp_area.product_id, mrp_area):
                     continue
                 init_counter += 1
                 log_msg = 'MRP INIT: %s - %s ' % (
@@ -615,7 +611,8 @@ class MultiLevelMrp(models.TransientModel):
 
                     if onhand < product_mrp_area.mrp_minimum_stock and \
                             nbr_create == 0:
-                        qtytoorder = product_mrp_area.mrp_minimum_stock - onhand
+                        qtytoorder = \
+                            product_mrp_area.mrp_minimum_stock - onhand
                         cm = self.create_move(
                             product_mrp_area_id=product_mrp_area,
                             mrp_date=date.today(),

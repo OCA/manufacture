@@ -59,6 +59,28 @@
                             <field name="main_supplierinfo_id"/>
                         </group>
                     </group>
+                    <group string="MRP moves" name="mrp_moves" groups="base.group_no_one">
+                        <field name="mrp_move_ids" nolabel="1">
+                            <tree>
+                                <field name="mrp_action_date"/>
+                                <field name="mrp_date"/>
+                                <field name="current_date"/>
+                                <field name="mrp_origin"/>
+                                <field name="state"/>
+                                <field name="mrp_order_number"/>
+                                <field name="parent_product_id"/>
+                                <field name="name"/>
+                                <field name="mrp_qty"/>
+                                <field name="current_qty"/>
+                                <field name="running_availability"/>
+                                <field name="mrp_minimum_stock" />
+                                <field name="mrp_action"/>
+                                <field name="mrp_type"/>
+                                <field name="mrp_move_up_ids"/>
+                                <field name="mrp_processed"/>
+                            </tree>
+                        </field>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -70,10 +92,8 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Product MRP Area parameters">
-                <group expand="0" string="Selection...">
-                    <field name="product_id" select='1'/>
-                    <field name="mrp_area_id"/>
-                </group>
+                <field name="product_id"/>
+                <field name="mrp_area_id"/>
                 <separator/>
             </search>
         </field>

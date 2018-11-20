@@ -11,19 +11,21 @@ class ProductMRPArea(models.Model):
     _description = 'Product MRP Area'
 
     active = fields.Boolean(default=True)
-    mrp_area_id = fields.Many2one('mrp.area',
-                                  required=True,
-                                  )
-    product_id = fields.Many2one('product.product',
-                                 required=True,
-                                 string='Product',
-                                 )
-    product_tmpl_id = fields.Many2one('product.template',
-                                      readonly=True,
-                                      related='product_id.product_tmpl_id',
-                                      store=True,
-                                      )
-
+    mrp_area_id = fields.Many2one(
+        comodel_name='mrp.area',
+        required=True,
+    )
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        required=True,
+        string='Product',
+    )
+    product_tmpl_id = fields.Many2one(
+        comodel_name='product.template',
+        readonly=True,
+        related='product_id.product_tmpl_id',
+        store=True,
+    )
     # TODO: applicable and exclude... redundant??
     mrp_applicable = fields.Boolean(string='MRP Applicable')
     mrp_exclude = fields.Boolean(string='Exclude from MRP')
@@ -71,10 +73,11 @@ class ProductMRPArea(models.Model):
 
     qty_available = fields.Float('Quantity Available',
                                  compute='_compute_qty_available')
-    mrp_move_ids = fields.One2many(comodel_name='mrp.move',
-                                   inverse_name='product_mrp_area_id',
-                                   readonly=True,
-                                   )
+    mrp_move_ids = fields.One2many(
+        comodel_name='mrp.move',
+        inverse_name='product_mrp_area_id',
+        readonly=True,
+    )
     _sql_constraints = [
         ('product_mrp_area_uniq', 'unique(product_id, mrp_area_id)',
          'The product/MRP Area parameters combination must be unique.'),
@@ -89,17 +92,9 @@ class ProductMRPArea(models.Model):
     @api.multi
     def _compute_qty_available(self):
         for rec in self:
-            qty_available = 0.0
-            product_obj = self.env['product.product']
             # TODO: move mrp_qty_available computation, maybe unreserved??
-            location_ids = self.env['stock.location'].search(
-                [('id', 'child_of',
-                  rec.mrp_area_id.location_id.id)])
-            for location in location_ids:
-                product_l = product_obj.with_context(
-                    {'location': location.id}).browse(rec.product_id.id)
-                qty_available += product_l.qty_available
-            rec.qty_available = qty_available
+            rec.qty_available = rec.product_id.with_context(
+                {'location': rec.mrp_area_id.location_id.id}).qty_available
 
     @api.multi
     def _compute_supply_method(self):
@@ -115,7 +110,8 @@ class ProductMRPArea(models.Model):
             rec.supply_method = rule.action if rule else 'none'
 
     @api.multi
-    @api.depends('supply_method')
+    @api.depends('supply_method', 'product_id.route_ids',
+                 'product_id.seller_ids')
     def _compute_main_supplier(self):
         """Simplified and similar to procurement.rule logic."""
         for rec in self.filtered(lambda r: r.supply_method == 'buy'):

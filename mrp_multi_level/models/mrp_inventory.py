@@ -17,7 +17,6 @@ class MrpInventory(models.Model):
     # TODO: name to pass to procurements?
     # TODO: compute procurement_date to pass to the wizard? not needed for
     # PO at least. Check for MO and moves
-    # TODO: substract qty already procured.
     # TODO: show a LT based on the procure method?
 
     mrp_area_id = fields.Many2one(
@@ -25,8 +24,13 @@ class MrpInventory(models.Model):
         related='product_mrp_area_id.mrp_area_id', store=True,
     )
     product_mrp_area_id = fields.Many2one(
-        comodel_name='product.mrp.area', string='Product',
+        comodel_name='product.mrp.area', string='Product Parameters',
         index=True,
+    )
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        related='product_mrp_area_id.product_id',
+        store=True,
     )
     uom_id = fields.Many2one(
         comodel_name='product.uom', string='Product UoM',

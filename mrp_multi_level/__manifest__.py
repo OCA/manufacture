@@ -38,9 +38,9 @@
     'demo': [
         'demo/product_category_demo.xml',
         'demo/product_product_demo.xml',
-        'demo/product_product_demo.xml',
-        'demo/product_mrp_area_demo.xml',
+        'demo/res_partner_demo.xml',
         'demo/product_supplierinfo_demo.xml',
+        'demo/product_mrp_area_demo.xml',
         'demo/mrp_bom_demo.xml',
         'demo/initial_on_hand_demo.xml',
     ],

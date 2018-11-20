@@ -15,7 +15,8 @@ class ProductTemplate(models.Model):
     mrp_area_count = fields.Integer(
         string='MRP Area Parameter Count',
         readonly=True,
-        compute='_compute_mrp_area_count')
+        compute='_compute_mrp_area_count',
+    )
 
     @api.multi
     def _compute_mrp_area_count(self):
@@ -29,12 +30,10 @@ class ProductTemplate(models.Model):
         result = action.read()[0]
         mrp_area_ids = self.with_context(
             active_test=False).mrp_area_ids.ids
-        if len(mrp_area_ids) > 1:
+        if len(mrp_area_ids) != 1:
             result['domain'] = [('id', 'in', mrp_area_ids)]
         else:
             res = self.env.ref('mrp_multi_level.product_mrp_area_form', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = mrp_area_ids[0]
-        result['context'] = {
-            'default_product_id': self.product_variant_ids[0].id}
         return result
