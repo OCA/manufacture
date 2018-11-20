@@ -23,7 +23,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.estimate_obj = cls.env['stock.demand.estimate']
         cls.mrp_multi_level_wiz = cls.env['mrp.multi.level']
         cls.mrp_inventory_procure_wiz = cls.env['mrp.inventory.procure']
-        cls.mrp_inventory_obj = cls.env['mrp.inventory']        
+        cls.mrp_inventory_obj = cls.env['mrp.inventory']
         cls.mrp_move_obj = cls.env['mrp.move']
 
         cls.fp_1 = cls.env.ref('mrp_multi_level.product_product_fp_1')
@@ -417,9 +417,9 @@ class TestMrpMultiLevel(SavepointCase):
         expected = [200.0, 290.0, 90.0, 0.0, 72.0, 0.0]
         self.assertEqual(moves.mapped('running_availability'), expected)
         # Actions counters for PP-1:
-        product_mrp_area = self.product_mrp_area_obj.search([
-            ('product_id', '=', self.pp_1.id)
-        ])
+        # product_mrp_area = self.product_mrp_area_obj.search([
+        #     ('product_id', '=', self.pp_1.id)
+        # ])  # TODO
         # self.assertEqual(product_mrp_area.nbr_mrp_actions, 3) # TODO
         # self.assertEqual(product_mrp_area.nbr_mrp_actions_4w, 3) # TODO
 
