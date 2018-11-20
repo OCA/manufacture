@@ -1,3 +1,14 @@
+11.0.2.0.0 (2018-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REW] Refactor MRP Area.
+  (`#322 <https://github.com/OCA/manufacture/pull/322>`_):
+
+  * MRP product concept dropped in favor of *Product MRP Area Parameters*.
+    This allow to set different MRP parameters for the same product in
+    different areas.
+  * Menu items reordering.
+
 11.0.1.1.0 (2018-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
