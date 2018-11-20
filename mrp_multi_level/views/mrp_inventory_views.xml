@@ -11,7 +11,7 @@
                     <group>
                         <group>
                             <field name="mrp_area_id"/>
-                            <field name="mrp_product_id"/>
+                            <field name="product_mrp_area_id"/>
                             <field name="date"/>
                         </group>
                         <group>
@@ -35,7 +35,7 @@
         <field name="arch" type="xml">
             <tree string="MRP Inventory" create="false">
                 <field name="mrp_area_id"/>
-                <field name="mrp_product_id"/>
+                <field name="product_mrp_area_id"/>
                 <field name="date"/>
                 <field name="uom_id" groups="product.group_uom"/>
                 <field name="initial_on_hand_qty"/>
@@ -59,7 +59,7 @@
             <pivot string="MRP Inventory">
                 <field name="final_on_hand_qty" type="measure"/>
                 <field name="mrp_area_id" type="row"/>
-                <field name="mrp_product_id" type="row"/>
+                <field name="product_mrp_area_id" type="row"/>
                 <field name="date" interval="day" type="col"/>
             </pivot>
         </field>
@@ -72,7 +72,7 @@
             <graph string="MRP Inventory" type="line">
                 <field name="final_on_hand_qty" type="measure"/>
                 <field name="date" interval="day" type="row"/>
-                <field name="mrp_product_id" type="row"/>
+                <field name="product_mrp_area_id" type="row"/>
             </graph>
         </field>
     </record>
@@ -84,7 +84,7 @@
         <field name="arch" type="xml">
             <search string="MRP Inventory">
                 <group name="select" expand="0" string="Selection...">
-                    <field name="mrp_product_id"/>
+                    <field name="product_mrp_area_id"/>
                     <field name="mrp_area_id"/>
                 </group>
                 <separator/>
@@ -93,7 +93,7 @@
                 <separator/>
                 <group expand="0" string="Group By...">
                     <filter string="Product"
-                            context="{'group_by':'mrp_product_id'}"/>
+                            context="{'group_by':'product_mrp_area_id'}"/>
                     <filter string="MRP Area"
                             context="{'group_by':'mrp_area_id'}"/>
                     <filter string="Date to Procure (By Day)"
