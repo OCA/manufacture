@@ -10,7 +10,7 @@ import odoo.addons.decimal_precision as dp
 class QualityControlIssue(models.Model):
     _name = "qc.issue"
     _description = "Quality Control Issue"
-    _inherit = "mail.thread"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     @api.multi
     def _compute_stock_scrap_qty(self):
