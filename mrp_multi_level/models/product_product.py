@@ -1,7 +1,7 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
 # Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
+import ast
 from odoo import api, fields, models
 
 
@@ -41,11 +41,19 @@ class Product(models.Model):
         self.ensure_one()
         action = self.env.ref('mrp_multi_level.product_mrp_area_action')
         result = action.read()[0]
+        ctx = ast.literal_eval(result.get('context'))
+        if not ctx:
+            ctx = {}
+        mrp_areas = self.env['mrp.area'].search([])
+        if len(mrp_areas) == 1:
+            ctx.update({'default_mrp_area_id': mrp_areas[0].id})
         area_ids = self.mrp_area_ids.ids
+        ctx.update({'default_product_id': self.id})
         if self.mrp_area_count != 1:
             result['domain'] = [('id', 'in', area_ids)]
         else:
             res = self.env.ref('mrp_multi_level.product_mrp_area_form', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = area_ids[0]
+        result['context'] = ctx
         return result
