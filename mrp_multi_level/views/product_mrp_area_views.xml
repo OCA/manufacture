@@ -59,28 +59,30 @@
                             <field name="main_supplierinfo_id"/>
                         </group>
                     </group>
-                    <group string="MRP moves" name="mrp_moves" groups="base.group_no_one">
-                        <field name="mrp_move_ids" nolabel="1">
-                            <tree>
-                                <field name="mrp_action_date"/>
-                                <field name="mrp_date"/>
-                                <field name="current_date"/>
-                                <field name="mrp_origin"/>
-                                <field name="state"/>
-                                <field name="mrp_order_number"/>
-                                <field name="parent_product_id"/>
-                                <field name="name"/>
-                                <field name="mrp_qty"/>
-                                <field name="current_qty"/>
-                                <field name="running_availability"/>
-                                <field name="mrp_minimum_stock" />
-                                <field name="mrp_action"/>
-                                <field name="mrp_type"/>
-                                <field name="mrp_move_up_ids"/>
-                                <field name="mrp_processed"/>
-                            </tree>
-                        </field>
-                    </group>
+                    <notebook>
+                        <page name="mrp_moves" string="MRP Moves" groups="base.group_no_one">
+                            <field name="mrp_move_ids" nolabel="1">
+                                <tree>
+                                    <field name="mrp_action_date"/>
+                                    <field name="mrp_date"/>
+                                    <field name="current_date"/>
+                                    <field name="mrp_origin"/>
+                                    <field name="state"/>
+                                    <field name="mrp_order_number"/>
+                                    <field name="parent_product_id"/>
+                                    <field name="name"/>
+                                    <field name="mrp_qty"/>
+                                    <field name="current_qty"/>
+                                    <field name="running_availability"/>
+                                    <field name="mrp_minimum_stock" />
+                                    <field name="mrp_action"/>
+                                    <field name="mrp_type"/>
+                                    <field name="mrp_move_up_ids"/>
+                                    <field name="mrp_processed"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
