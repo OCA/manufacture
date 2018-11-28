@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_product_mrp_area_product_form">
+    <record model="ir.ui.view" id="view_mrp_product_product_form">
         <field name="name">view.product.mrp.area.product.form</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
