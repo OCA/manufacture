@@ -1,6 +1,6 @@
 # Copyright 2018 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
+import ast
 from odoo import api, fields, models
 
 
@@ -28,12 +28,22 @@ class ProductTemplate(models.Model):
         self.ensure_one()
         action = self.env.ref('mrp_multi_level.product_mrp_area_action')
         result = action.read()[0]
+        ctx = ast.literal_eval(result.get('context'))
+        mrp_areas = self.env['mrp.area'].search([])
+        if 'context' not in result:
+            result['context'] = {}
+        if len(mrp_areas) == 1:
+            ctx.update({'default_mrp_area_id': mrp_areas[0].id})
         mrp_area_ids = self.with_context(
             active_test=False).mrp_area_ids.ids
+        if len(self.product_variant_ids) == 1:
+            variant = self.product_variant_ids[0]
+            ctx.update({'default_product_id': variant.id})
         if len(mrp_area_ids) != 1:
             result['domain'] = [('id', 'in', mrp_area_ids)]
         else:
             res = self.env.ref('mrp_multi_level.product_mrp_area_form', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = mrp_area_ids[0]
+        result['context'] = ctx
         return result
