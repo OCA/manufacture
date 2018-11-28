@@ -531,7 +531,7 @@ class MultiLevelMrp(models.TransientModel):
                                     product_mrp_area.mrp_minimum_stock - \
                                     product_mrp_area - last_qty
                                 cm = self.create_move(
-                                    product_mrp_area_id=product_mrp_area.id,
+                                    product_mrp_area_id=product_mrp_area,
                                     mrp_date=last_date,
                                     mrp_qty=qtytoorder,
                                     name=name)
@@ -562,7 +562,7 @@ class MultiLevelMrp(models.TransientModel):
                    (product_mrp_area.mrp_nbr_days, )
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
             cm = self.create_move(
-                product_mrp_area_id=product_mrp_area.id, mrp_date=last_date,
+                product_mrp_area_id=product_mrp_area, mrp_date=last_date,
                 mrp_qty=qtytoorder, name=name)
             qty_ordered = cm['qty_ordered']
             onhand += qty_ordered
@@ -748,18 +748,18 @@ class MultiLevelMrp(models.TransientModel):
             for move in moves:
                 qoh = qoh + move.mrp_qty
                 move.running_availability = qoh
-
-            nbr_actions = product_mrp_area.mrp_move_ids.filtered(
-                lambda m: m.mrp_action != 'none')
-            horizon_4w = fields.Date.to_string(
-                date.today() + timedelta(weeks=4))
-            nbr_actions_4w = nbr_actions.filtered(
-                lambda m: m.mrp_action_date < horizon_4w)
-            if nbr_actions:
-                product_mrp_area.write({
-                    'nbr_mrp_actions': len(nbr_actions),
-                    'nbr_mrp_actions_4w': len(nbr_actions_4w),
-                })
+            # TODO: Possible clean up needed here
+            # nbr_actions = product_mrp_area.mrp_move_ids.filtered(
+            #     lambda m: m.mrp_action != 'none')
+            # horizon_4w = fields.Date.to_string(
+            #     date.today() + timedelta(weeks=4))
+            # nbr_actions_4w = nbr_actions.filtered(
+            #     lambda m: m.mrp_action_date < horizon_4w)
+            # if nbr_actions:
+            #     product_mrp_area.write({
+            #         'nbr_mrp_actions': len(nbr_actions),
+            #         'nbr_mrp_actions_4w': len(nbr_actions_4w),
+            #     })
         logger.info('END MRP FINAL PROCESS')
 
     @api.multi
