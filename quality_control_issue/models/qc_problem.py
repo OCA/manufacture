@@ -15,7 +15,7 @@ AVAILABLE_PRIORITIES = [
 class QcProblem(models.Model):
     _name = "qc.problem"
     _description = "Quality Control Problem Tracking"
-    _inherit = "mail.thread"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _get_default_stage_id(self):
         """ Gives default stage_id """
