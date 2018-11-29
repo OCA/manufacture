@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form - mrp_production_request</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id"
+               ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="availability" position="after">
+                <field name="mrp_production_request_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

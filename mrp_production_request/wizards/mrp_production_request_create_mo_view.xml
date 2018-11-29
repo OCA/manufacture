@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="mrp_production_request_create_mo_view" model="ir.ui.view">
+        <field name="name">mrp.production.request.create.mo.form</field>
+        <field name="model">mrp.production.request.create.mo</field>
+        <field name="arch" type="xml">
+            <form string="Select event to register">
+                <group name="origin" string="Manufacture Request status"
+                       col="6">
+                    <group colspan="2">
+                        <field name="mrp_production_request_id"
+                               options='{"no_open": True}'/>
+                        <field name="pending_qty"/>
+                        <button name="compute_product_line_ids" type="object"
+                                string="Compute lines" colspan="2" icon="fa-cogs"/>
+                    </group>
+                    <group colspan="4">
+                        <field name="product_line_ids" nolabel="1">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="product_uom_id"/>
+                                <field name="product_qty"/>
+                                <field name="available_qty"/>
+                                <field name="bottle_neck_factor"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <group name="destination" string="Manufacturing Order:" col="4">
+                    <field name="mo_qty"/>
+                    <field name="product_uom_id" options="{'no_open': True}"
+                           groups="product.group_uom"/>
+                </group>
+
+                <footer>
+                    <button name="create_mo"
+                            type="object"
+                            string="Create MO"
+                            class="oe_highlight"/>
+                    or
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_production_request_create_mo_action" model="ir.actions.act_window">
+        <field name="name">Create Manufacturing Order</field>
+        <field name="res_model">mrp.production.request.create.mo</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

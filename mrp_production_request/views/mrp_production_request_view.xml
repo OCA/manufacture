@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record model="ir.ui.view" id="view_mrp_production_request_form">
+        <field name="name">mrp.production.request.form</field>
+        <field name="model">mrp.production.request</field>
+        <field name="arch" type="xml">
+            <form string="Manufacturing Request">
+            <header>
+                <button name="button_draft"
+                        states="to_approve,approved,cancel,done"
+                        string="Reset"
+                        type="object"
+                        groups="mrp_production_request.group_mrp_production_request_manager"/>
+                <button name="button_to_approve" states="draft"
+                        string="Request approval" type="object"
+                        class="oe_highlight"/>
+                <button name="button_approved" states="to_approve"
+                        string="Approve" type="object" class="oe_highlight"
+                        groups="mrp_production_request.group_mrp_production_request_manager"/>
+                <button name="%(mrp_production_request_create_mo_action)d"
+                        states="approved"
+                        string="Create Manufacturing Order" type="action"/>
+                <button name="button_done" states="approved"
+                        string="Done" type="object" class="oe_highlight"
+                        groups="mrp_production_request.group_mrp_production_request_manager"/>
+                <button name="button_cancel" states="to_approve,approved"
+                        string="Reject" type="object"
+                        groups="mrp_production_request.group_mrp_production_request_manager"/>
+                <field name="state" widget="statusbar"
+                       statusbar_visible="draft,approved,done"/>
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"  name="action_view_mrp_productions"
+                            class="oe_stat_button"
+                            icon="fa-wrench"
+                            attrs="{'invisible': [('mrp_production_count', '=', 0)]}">
+                        <field name="mrp_production_count" widget="statinfo"
+                               string="MOs"/>
+                    </button>
+                </div>
+
+                <label string="Manufacturing Request"/>
+                <h1>
+                    <field name="name"/>
+                </h1>
+                <group name="request">
+                    <group>
+                        <field name="product_id"
+                               domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]"/>
+                        <field name="product_tmpl_id" invisible="1"/>
+                        <field name="bom_id"
+                               domain="['&amp;', '|', ('product_id','=',product_id),
+                               '&amp;', ('product_tmpl_id.product_variant_ids','=',product_id),
+                               ('product_id','=',False), ('type', '=', 'normal')]"/>
+                    </group>
+                    <group>
+                        <field name="product_qty"/>
+                        <field name="done_qty"/>
+                        <field name="manufactured_qty"/>
+                        <field name="pending_qty"/>
+                        <field name="product_uom_id" groups="product.group_uom"/>
+                        <field name="category_uom_id" invisible="1"/>
+                    </group>
+                </group>
+                <group>
+                    <group name="users">
+                        <field name="requested_by"/>
+                        <field name="assigned_to"/>
+                    </group>
+                    <group name="dates">
+                        <field name="date_planned_start"/>
+                        <field name="date_planned_finished" invisible="1"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page name="mrp_production" string="Manufacturing Orders">
+                        <field name="mrp_production_ids"/>
+                    </page>
+                    <page name="extra" string="Extra information">
+                        <group>
+                            <group>
+                                <field name="location_src_id"/>
+                                <field name="location_dest_id"/>
+                                <field name="picking_type_id"/>
+
+                            </group>
+                            <group>
+                                <field name="origin"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_mrp_production_request_tree">
+        <field name="name">mrp.production.request.tree</field>
+        <field name="model">mrp.production.request</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state in ('draft','to_approve')"
+                  decoration-muted="state in ('cancel')"
+                  string="Manufacturing Requests">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="requested_by"/>
+                <field name="assigned_to"/>
+                <field name="product_qty"/>
+                <field name="pending_qty"/>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="origin"/>
+                <field name="date_planned_start"/>
+                <field name="state"/>
+            </tree>
+      </field>
+    </record>
+
+    <record id="view_mrp_production_request_search" model="ir.ui.view">
+        <field name="name">mrp.production.request.search</field>
+        <field name="model">mrp.production.request</field>
+        <field name="arch" type="xml">
+            <search string="Search Manufacturing Request">
+                <field name="name" string="Manufacturing Request"/>
+                <field name="mrp_production_ids" string="Manufacturing Orders"/>
+                <field name="requested_by"/>
+                <field name="assigned_to" />
+                <field name="origin"/>
+                <field name="state"/>
+                <field name="pending_qty" invisible="1"/>
+                <!--Filters:-->
+                <filter name="unassigned" string="Unassigned"
+                        domain="[('assigned_to','=', False)]"
+                        help="Unassigned Request"/>
+                <filter domain="[('assigned_to','=', uid)]"
+                        string="Assigned to me"/>
+                <filter domain="[('requested_by','=', uid)]"
+                        string="My requests" help="Requested by me"/>
+                <separator/>
+                <filter domain="[('pending_qty','!=', 0.0)]"
+                        string="Pending Qty" name="pending"
+                        help="Request with pending quantity"/>
+                <separator/>
+                <filter string="To Do" name="todo"
+                        domain="[('state','in',('draft', 'to_approve','approved'))]"
+                        help="Manufacturing Requests not done or cancelled."/>
+                <separator/>
+                <filter name="state_draft" string="Draft"
+                        domain="[('state','=','draft')]"
+                        help="Request is to be approved"/>
+                <filter name="state_to_approve" string="To Approve"
+                        domain="[('state','=','to_approve')]"
+                        help="Request is to be approved"/>
+                <filter name="state_approved" string="Approved"
+                        domain="[('state','=','approved')]"
+                        help="Request is approved"/>
+                <filter name="state_cancel" string="Cancelled"
+                        domain="[('state','=','cancel')]"
+                        help="Request is cancelled"/>
+                <filter name="state_done" string="Done"
+                        domain="[('state','=','done')]"
+                        help="Request is done"/>
+                <separator/>
+                <filter string="Unread Messages"
+                        name="message_needaction"
+                        domain="[('message_needaction','=',True)]"/>
+                <!--Group by:-->
+                <filter string="Requested by" icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'requested_by'}"/>
+                <filter string="Assigned to" icon="terp-personal"
+                        domain="[]"
+                        context="{'group_by':'assigned_to'}"/>
+                <filter string="Source" icon="terp-gtk-jump-to-rtl" domain="[]"
+                        context="{'group_by':'origin'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="mrp_production_request_action">
+        <field name="name">Manufacturing Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"search_default_todo":1}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to start a new manufacturing request process.
+          </p><p>
+            A Manufacturing Request is an instruction to production to produce
+            a certain quantity of a given product.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_production_request_act"
+        sequence="10"
+        parent="mrp.menu_mrp_manufacturing"
+        action="mrp_production_request_action"
+        />
+
+    <!--Sever actions-->
+    <record id="action_server_mrp_production_request_refresh"
+            model="ir.actions.server">
+        <field name="name">Refresh Quantities</field>
+        <field name="model_id" ref="model_mrp_production_request" />
+        <field name="binding_model_id" ref="model_mrp_production_request"/>
+        <field name="state">code</field>
+        <field name="code">records._compute_manufactured_qty()</field>
+    </record>
+
+</odoo>

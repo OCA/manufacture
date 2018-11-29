@@ -1,0 +1,578 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_production_request
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-12 03:48+0000\n"
+"PO-Revision-Date: 2018-02-12 03:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Thai (https://www.transifex.com/oca/teams/23907/th/)\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: mrp_production_request
+#: model:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
+msgid ""
+"A Manufacturing Request is an instruction to production to produce\n"
+"            a certain quantity of a given product."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Approve"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+#: selection:mrp.production.request,state:0
+msgid "Approved"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_assigned_to
+msgid "Approver"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Assigned to"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Assigned to me"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_bom_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_bom_id
+msgid "Bill of Materials"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_bottle_neck_factor
+msgid "Bottle neck factor"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+#: selection:mrp.production.request,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_category_uom_id
+msgid "Category"
+msgstr "หมวด"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_product_product_mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_product_template_mrp_production_request
+msgid ""
+"Check this box to generate manufacturing request instead of generating "
+"manufacturing orders from procurement."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
+msgid "Click to start a new manufacturing request process."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_company_id
+msgid "Company"
+msgstr "บริษัท"
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Compute lines"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_category_uom_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Create MO"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_create_mo_action
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Create Manufacturing Order"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_create_uid
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_create_uid
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_uid
+msgid "Created by"
+msgstr "สร้างโดย"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_date
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_create_date
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_create_date
+msgid "Created on"
+msgstr "สร้างเมื่อ"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_description
+msgid "Description"
+msgstr "รายละเอียด"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_display_name
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_display_name
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+#: selection:mrp.production.request,state:0
+msgid "Done"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+#: selection:mrp.production.request,state:0
+msgid "Draft"
+msgstr "ฉบับร่าง"
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Extra information"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_dest_id
+msgid "Finished Products Location"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request___last_update
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo___last_update
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line___last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_write_uid
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_write_uid
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_write_uid
+msgid "Last Updated by"
+msgstr "อัพเดทครั้งสุดท้ายโดย"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_write_date
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_write_date
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_write_date
+msgid "Last Updated on"
+msgstr "อัพเดทครั้งสุดท้ายเมื่อ"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_location_id
+msgid "Location id"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:res.groups,name:mrp_production_request.group_mrp_production_request_manager
+msgid "Manager"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Manufacture Request status"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Manufacturing Order:"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_mrp_production_ids
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_mrp_production_request_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_procurement_order_mrp_production_request_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_product_product_mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_product_template_mrp_production_request
+#: model:ir.module.category,name:mrp_production_request.module_category_mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Manufacturing Request"
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/procurement.py:36
+#, python-format
+msgid "Manufacturing Request created"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_action
+#: model:ir.ui.menu,name:mrp_production_request.menu_mrp_production_request_act
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_tree
+msgid "Manufacturing Requests"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_mrp_production_request_create_mo_id
+msgid "Mrp production request create mo id"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_mrp_production_request_id
+msgid "Mrp production request id"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "My requests"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_name
+msgid "Name"
+msgstr "ชื่อ"
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/procurement.py:31
+#, python-format
+msgid "No BoM exists for this product!"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Pending Qty"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_pending_qty
+msgid "Pending Quantity"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_picking_type_id
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_date_planned
+msgid "Planned Date"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_id
+msgid "Procurement Order"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_state
+msgid "Procurement State"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_id
+msgid "Product"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_product_template
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_product_line_ids
+msgid "Products needed"
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:68
+#, python-format
+msgid ""
+"Programming error: wizard action executed without active_ids in context."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_mo_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_available_qty
+msgid "Quantity Available"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_done_qty
+msgid "Quantity Done"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_qty
+msgid "Quantity Required"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_manufactured_qty
+msgid "Quantity in Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_pending_qty
+msgid ""
+"Quantity pending to add to Manufacturing Orders to fulfill the Manufacturing "
+"Request requirement."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_src_id
+msgid "Raw Materials Location"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.actions.server,name:mrp_production_request.action_server_mrp_production_request_refresh
+msgid "Refresh Quantities"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Reject"
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/procurement.py:54
+#, python-format
+msgid "Related procurement has been cancelled."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Request approval"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Request is approved"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Request is cancelled"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Request is done"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Request is to be approved"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Request with pending quantity"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_requested_by
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Requested by"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Requested by me"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_qty
+msgid "Required Quantity"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
+msgid "Reset"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_routing_id
+msgid "Routing"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Search Manufacturing Request"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "Select event to register"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Source"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_origin
+msgid "Source Document"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_state
+msgid "State"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_manufactured_qty
+msgid "Sum of the quantities in Manufacturing Orders (in any state)."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_done_qty
+msgid "Sum of the quantities in all done Manufacturing Orders."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_routing_id
+msgid ""
+"The list of operations (list of work centers) to produce the finished "
+"product. The routing is mainly used to compute work center costs during "
+"operations and to plan future loads on work centers based on production "
+"plannification."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "To Approve"
+msgstr ""
+
+#. module: mrp_production_request
+#: selection:mrp.production.request,state:0
+msgid "To Be Approved"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Unassigned"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Unassigned Request"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_product_uom_id
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
+msgid "Unread Messages"
+msgstr "ข้อความที่ยังไม่ได้อ่าน"
+
+#. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_uom_id
+msgid "UoM"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:res.groups,name:mrp_production_request.group_mrp_production_request_user
+msgid "User"
+msgstr "ผู้ใช้"
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo
+msgid "Wizard to create Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/mrp_production_request.py:218
+#, python-format
+msgid ""
+"You cannot reject a manufacturing request related to done procurement orders."
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/mrp_production_request.py:199
+#, python-format
+msgid ""
+"You cannot reset a manufacturing request if the related manufacturing orders "
+"are not cancelled."
+msgstr ""
+
+#. module: mrp_production_request
+#: code:addons/mrp_production_request/models/mrp_production_request.py:204
+#, python-format
+msgid ""
+"You cannot reset a manufacturing request related to done or cancelled "
+"procurement orders."
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
+msgid "mrp.production.request.create.mo.line"
+msgstr ""
+
+#. module: mrp_production_request
+#: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
+msgid "or"
+msgstr "หรือ"
