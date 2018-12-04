@@ -58,7 +58,6 @@ class TestProgressButton(TransactionCase):
             Test Manufacture mto with stock based on forecast quantity
             and no link between sub assemblies MO's and Main MO raw material
         """
-
         production = self.production_model.create({
             'product_id': self.product_manuf.id,
             'product_qty': 1,
@@ -67,4 +66,3 @@ class TestProgressButton(TransactionCase):
         })
         production.action_progress()
         self.assertEqual(production.state, 'progress')
-        
