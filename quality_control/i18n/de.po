@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2018-01-15 01:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -88,9 +89,8 @@ msgstr "Unternehmen"
 
 #. module: quality_control
 #: model:ir.ui.menu,name:quality_control.menu_qc_config
-#, fuzzy
 msgid "Configuration"
-msgstr "Bestätigen"
+msgstr "Konfiguration"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -178,7 +178,7 @@ msgstr "Entwurf"
 #: code:addons/quality_control/models/qc_test_category.py:36
 #, python-format
 msgid "Error! You can not create recursive categories."
-msgstr ""
+msgstr "Fehler! Sie können keine rekursiven Kategorien erstellen."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_external_notes
@@ -211,7 +211,7 @@ msgstr "Gut"
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Group by..."
-msgstr "Gruppiere"
+msgstr "Gruppiere..."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_id
@@ -233,6 +233,8 @@ msgstr "ID"
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_auto_generated
 msgid "If an inspection is auto-generated, it can be canceled but not removed."
 msgstr ""
+"Wenn eine Inspektion automatisch erzeugt wurde, kann sie abgebrochen, aber "
+"nicht gelöscht werden."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
@@ -535,12 +537,16 @@ msgstr "Frage"
 msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
+"Frage '%s' ist nicht gültig: Das Minimum darf nicht größer als das Maximum "
+"sein."
 
 #. module: quality_control
 #: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
 msgstr ""
+"Frage '%s' ist nicht gültig: Sie müssen mindestens einen Wert als OK "
+"markieren."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_question_type
@@ -739,7 +745,7 @@ msgstr "ME für kleinste und größte Werte in quantitativen Fragen."
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_uom_id
 msgid "UoM of the inspection value for a quantitative question."
-msgstr "ME des Prüfwertes bei quantitativen Fragen"
+msgstr "ME des Prüfwertes bei quantitativen Fragen."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_uom_id
@@ -815,22 +821,22 @@ msgstr "oder"
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_set_test
 msgid "qc.inspection.set.test"
-msgstr ""
+msgstr "qc.inspection.set.test"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_category_line
 msgid "qc.trigger.product_category_line"
-msgstr ""
+msgstr "qc.trigger.product_category_line"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_line
 msgid "qc.trigger.product_line"
-msgstr ""
+msgstr "qc.trigger.product_line"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_product_template_line
 msgid "qc.trigger.product_template_line"
-msgstr ""
+msgstr "qc.trigger.product_template_line"
 
 #~ msgid "Product category"
 #~ msgstr "Produktkategorie"
