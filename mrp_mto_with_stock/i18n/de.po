@@ -9,25 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
 msgid "MRP MTO with forecast stock"
-msgstr ""
+msgstr "MRP MTO mit Bestandsvorhersage"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_template_mrp_mts_mto_location_ids
 msgid "Manufacturing MTO/MTS Locations"
-msgstr ""
+msgstr "Lagerorte für die Fertigung MTO/MTS"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
@@ -43,25 +44,25 @@ msgstr "Produktvorlage"
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_product_template
 msgid "Subproduct 1"
-msgstr ""
+msgstr "Teilprodukt 1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_1_product_template
 msgid "Subproduct 1-1"
-msgstr ""
+msgstr "Teilprodukt 1-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 msgid "Subproduct 2"
-msgstr ""
+msgstr "Teilprodukt 2"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_1_product_template
 msgid "Subproduct 2-1"
-msgstr ""
+msgstr "Teilprodukt 2-1"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1
@@ -75,7 +76,7 @@ msgstr ""
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 #: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "TODO"
-msgstr ""
+msgstr "TODO"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1
@@ -90,11 +91,13 @@ msgid ""
 "These manufacturing locations will create procurements when there is no "
 "stock availale in the source location."
 msgstr ""
+"Diese Lagerorte für die Fertigung werden Beschaffungen auslösen, wenn kein "
+"Bestand im Quelllager vorhanden ist."
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Lager"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,help:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
@@ -104,3 +107,7 @@ msgid ""
 "forecast stock. In this case, the created procurements won't be linked to "
 "the raw material moves"
 msgstr ""
+"Wenn Sie Mrp_mto_with-stock verwenden, basiert die ausgelöste Beschaffung "
+"standardmäßig auf reservierbaren Bestand. Aktivieren Sie diese Option, wenn "
+"es auf Bestandsvorhersagen basieren soll. In diesem Fall werden die "
+"ausgelösten Beschaffungen nicht mit Lagerbewegungen des Rohmaterials verlinkt"
