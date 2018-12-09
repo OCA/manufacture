@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"PO-Revision-Date: 2018-12-09 15:51+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -82,7 +82,7 @@ msgstr "TODO"
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1
 #: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "TOP"
-msgstr ""
+msgstr "Oben"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,help:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
