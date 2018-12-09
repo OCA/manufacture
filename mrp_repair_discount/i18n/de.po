@@ -6,31 +6,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2018-12-10 11:58+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: mrp_repair_discount
 #: model:ir.model.fields,field_description:mrp_repair_discount.field_mrp_repair_fee_discount
 #: model:ir.model.fields,field_description:mrp_repair_discount.field_mrp_repair_line_discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Rabatt (%)"
 
 #. module: mrp_repair_discount
 #: model:ir.model,name:mrp_repair_discount.model_mrp_repair_fee
 msgid "Repair Fees Line"
-msgstr ""
+msgstr "Reparaturgebührenzeile"
 
 #. module: mrp_repair_discount
 #: model:ir.model,name:mrp_repair_discount.model_mrp_repair_line
 msgid "Repair Line"
-msgstr ""
+msgstr "Reparaturzeile"
 
 #. module: mrp_repair_discount
 #: model:ir.model,name:mrp_repair_discount.model_mrp_repair
 msgid "Repair Order"
-msgstr ""
+msgstr "Reparaturauftrag"
