@@ -11,14 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-15 03:55+0000\n"
-"PO-Revision-Date: 2018-02-15 03:55+0000\n"
-"Last-Translator: Akim Juillerat <akim.juillerat@camptocamp.com>, 2017\n"
+"PO-Revision-Date: 2018-12-10 11:58+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -97,9 +98,8 @@ msgstr "Unternehmen"
 
 #. module: quality_control
 #: model:ir.ui.menu,name:quality_control.menu_qc_config
-#, fuzzy
 msgid "Configuration"
-msgstr "Bestätigen"
+msgstr "Konfiguration"
 
 #. module: quality_control
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -240,7 +240,7 @@ msgstr "Gut"
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_line_search_view
 #: model:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "Group by..."
-msgstr "Gruppiere"
+msgstr "Gruppiere..."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_id
@@ -273,7 +273,7 @@ msgstr "Wenn angewählt, erfordern neue Meldungen Ihre Aufmerksamkeit."
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Wenn angewählt, erfordern neue Meldungen Ihre Aufmerksamkeit"
+msgstr "Wenn angewählt, erfordern neue Meldungen Ihre Aufmerksamkeit."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
@@ -425,7 +425,7 @@ msgstr "Kleinster zulässiger Wert bei quantitativen Fragen."
 #: code:addons/quality_control/models/qc_test.py:66
 #, python-format
 msgid "Minimum value can't be higher than maximum value."
-msgstr "Kleinster Wert darf nicht größer als größter Wert sein"
+msgstr "Kleinster Wert darf nicht größer als größter Wert sein."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_category_name
@@ -807,7 +807,7 @@ msgstr "Art"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line_test_uom_category
 msgid "Unit of Measure Category"
-msgstr "Kategorie der Maßeinheit "
+msgstr "Kategorie der Mengeneinheit"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_message_unread
@@ -832,7 +832,7 @@ msgstr "ME für kleinste und größte Werte in quantitativen Fragen."
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line_uom_id
 msgid "UoM of the inspection value for a quantitative question."
-msgstr "ME des Prüfwertes bei quantitativen Fragen"
+msgstr "ME des Prüfwertes bei quantitativen Fragen."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_uom_id
@@ -908,4 +908,4 @@ msgstr "oder"
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_set_test
 msgid "qc.inspection.set.test"
-msgstr ""
+msgstr "qc.inspection.set.test"
