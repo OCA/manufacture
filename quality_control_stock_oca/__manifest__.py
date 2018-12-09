@@ -20,6 +20,7 @@
         "stock",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "data/quality_control_stock_data.xml",
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
