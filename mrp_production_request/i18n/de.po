@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"PO-Revision-Date: 2018-12-09 15:51+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -505,7 +505,7 @@ msgstr "Produktionsanfrage suchen"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Select event to register"
-msgstr ""
+msgstr "Ereignis zur Registrierung wählen"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -567,7 +567,7 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "To Approve"
-msgstr ""
+msgstr "Genehmigen"
 
 #. module: mrp_production_request
 #: selection:mrp.production.request,state:0
