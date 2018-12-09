@@ -6,47 +6,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 msgid "<br/>\n"
 "                                Location:"
 msgstr ""
+"<br/>\n"
+"                                Lagerort:"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 msgid "<br/>\n"
 "                                Problems:"
 msgstr ""
+"<br/>\n"
+"                                Probleme:"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 msgid "<br/>\n"
 "                                Qty:"
 msgstr ""
+"<br/>\n"
+"                                Menge:"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_responsible_id
 msgid "Assigned to"
-msgstr ""
+msgstr "Zugewiesen an"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_form
 #: selection:qc.issue,state:0
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_color
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_color
 msgid "Color Index"
-msgstr ""
+msgstr "Farbindex"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_company_id
@@ -55,12 +64,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_form
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_create_uid
@@ -69,7 +78,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_create_uid
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt durch"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_create_date
@@ -78,18 +87,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_create_date
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_kanban_view
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_description
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_display_name
@@ -98,47 +107,49 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_display_name
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: quality_control_issue
 #: selection:qc.issue,state:0
 msgid "Done"
-msgstr ""
+msgstr "Erledigt"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_kanban_view
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #. module: quality_control_issue
 #: code:addons/quality_control_issue/models/qc_issue.py:162
 #, python-format
 msgid "Every issue must have the same QC team to perform this action."
 msgstr ""
+"Jedes Problem muss dasselbe Qualitätskontrollteam haben, um diese Aktion "
+"durchzuführen."
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_fold
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_fold
 msgid "Folded in Pipeline"
-msgstr ""
+msgstr "In der Pipeline eingeklappt"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "Future Activities"
-msgstr ""
+msgstr "Zukünftige Aktivitäten"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "Group By..."
-msgstr ""
+msgstr "Gruppiere..."
 
 #. module: quality_control_issue
 #: selection:qc.problem,priority:0
 msgid "High"
-msgstr ""
+msgstr "Hoch"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_id
@@ -147,22 +158,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_id
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: quality_control_issue
 #: selection:qc.issue,state:0
 msgid "In Progress"
-msgstr ""
+msgstr "in Bearbeitung"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_inspector_id
 msgid "Inspector"
-msgstr ""
+msgstr "Prüfer"
 
 #. module: quality_control_issue
 #: model:ir.ui.menu,name:quality_control_issue.qc_issue_stage_config_menu
 msgid "Issue Stages"
-msgstr ""
+msgstr "Problem-Stufen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_issue_count
@@ -171,12 +182,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_tree
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_team_view_kanban
 msgid "Issues"
-msgstr ""
+msgstr "Probleme"
 
 #. module: quality_control_issue
 #: model:ir.actions.act_window,name:quality_control_issue.team_qc_issue_act
 msgid "Issues by team"
-msgstr ""
+msgstr "Probleme des Teams"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue___last_update
@@ -185,7 +196,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group___last_update
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_write_uid
@@ -194,7 +205,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_write_uid
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert durch"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_write_date
@@ -203,72 +214,72 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_write_date
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "Late Activities"
-msgstr ""
+msgstr "Verspätete Aktivitäten"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_location_id
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 msgid "Location"
-msgstr ""
+msgstr "Lagerort"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_lot_id
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "Chargen-/Seriennummer"
 
 #. module: quality_control_issue
 #: selection:qc.problem,priority:0
 msgid "Low"
-msgstr ""
+msgstr "Gering"
 
 #. module: quality_control_issue
 #: model:ir.actions.act_window,help:quality_control_issue.team_qc_issue_act
 msgid "Manage Quality Control Issues through your team flow."
-msgstr ""
+msgstr "Verwalten Sie Qualitätenskontrollthemen durch Ihr Team Flow."
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "My Activities"
-msgstr ""
+msgstr "Meine Aktivitäten"
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 msgid "My inspections"
-msgstr ""
+msgstr "Meine Inspektionen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_name
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_name
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_name
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #. module: quality_control_issue
 #: selection:qc.issue,state:0
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #. module: quality_control_issue
 #: selection:qc.problem,priority:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_notes
 msgid "Notes"
-msgstr ""
+msgstr "Notizen"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_problem_ids
 msgid "Problem"
-msgstr ""
+msgstr "Problem"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_problem_group_id
@@ -430,7 +441,7 @@ msgid "Show all records which has next action date is before today"
 msgstr ""
 
 #. module: quality_control_issue
-#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6095
+#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6099
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_stage_id
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
@@ -505,4 +516,3 @@ msgstr ""
 #: model:ir.model,name:quality_control_issue.model_stock_scrap
 msgid "stock.scrap"
 msgstr ""
-
