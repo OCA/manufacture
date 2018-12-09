@@ -19,51 +19,50 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: quality_control_stock
-#: field:stock.picking,created_inspections:0
-#: field:stock.production.lot,created_inspections:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_created_inspections
 msgid "Created inspections"
 msgstr ""
 
 #. module: quality_control_stock
-#: field:stock.picking,done_inspections:0
-#: field:stock.production.lot,done_inspections:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_done_inspections
 msgid "Done inspections"
 msgstr ""
 
 #. module: quality_control_stock
-#: field:stock.picking,qc_inspections:0
-#: field:stock.production.lot,qc_inspections:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_qc_inspections_ids
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_qc_inspections_ids
 msgid "Inspections"
 msgstr ""
 
 #. module: quality_control_stock
-#: field:stock.picking,passed_inspections:0
-#: field:stock.production.lot,passed_inspections:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_passed_inspections
 msgid "Inspections OK"
 msgstr ""
 
 #. module: quality_control_stock
-#: field:stock.picking,failed_inspections:0
-#: field:stock.production.lot,failed_inspections:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_failed_inspections
 msgid "Inspections failed"
 msgstr ""
 
 #. module: quality_control_stock
-#: help:stock.production.lot,qc_inspections:0
+#: model:ir.model.fields,help:quality_control_stock.field_stock_production_lot_qc_inspections_ids
 msgid "Inspections related to this lot."
 msgstr ""
 
 #. module: quality_control_stock
-#: help:stock.picking,qc_inspections:0
+#: model:ir.model.fields,help:quality_control_stock.field_stock_picking_qc_inspections_ids
 msgid "Inspections related to this picking."
 msgstr ""
 
 #. module: quality_control_stock
-#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
-#: field:qc.inspection,lot:0
-#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
-#: field:qc.inspection.line,lot:0
-#: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_lot_id
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_lot_id
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 msgid "Lot"
 msgstr ""
 
@@ -73,29 +72,22 @@ msgid "Lot/Serial"
 msgstr ""
 
 #. module: quality_control_stock
-#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
-#: field:qc.inspection,picking:0
-#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
-#: field:qc.inspection.line,picking:0
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_picking_id
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_picking_id
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 msgid "Picking"
 msgstr ""
 
 #. module: quality_control_stock
-#: model:ir.model,name:quality_control_stock.model_stock_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
 msgstr ""
 
 #. module: quality_control_stock
-#: field:qc.trigger,picking_type:0
-msgid "Picking type"
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type_id
+msgid "Picking Type"
 msgstr ""
-
-#. module: quality_control_stock
-#: view:qc.inspection:quality_control_stock.qc_inspection_search_view_picking
-#: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
-msgid "Product"
-msgstr "产品"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
@@ -159,11 +151,19 @@ msgstr ""
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
-msgid "The picking type determines the picking view"
+msgid "The operation type determines the picking view"
 msgstr ""
 
 #. module: quality_control_stock
-#: view:stock.picking:quality_control_stock.stock_picking_qc_view
-#: view:stock.production.lot:quality_control_stock.stock_lot_qc_view
+#: model:ir.model,name:quality_control_stock.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
+#: model:ir.ui.view,arch_db:quality_control_stock.stock_picking_qc_view
 msgid "inspections"
 msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "产品"
