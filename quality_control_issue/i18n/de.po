@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* quality_control_issue
+# 	* quality_control_issue
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
-msgid "<br/>\n"
+msgid ""
+"<br/>\n"
 "                                Location:"
 msgstr ""
 "<br/>\n"
@@ -26,7 +27,8 @@ msgstr ""
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
-msgid "<br/>\n"
+msgid ""
+"<br/>\n"
 "                                Problems:"
 msgstr ""
 "<br/>\n"
@@ -34,7 +36,8 @@ msgstr ""
 
 #. module: quality_control_issue
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
-msgid "<br/>\n"
+msgid ""
+"<br/>\n"
 "                                Qty:"
 msgstr ""
 "<br/>\n"
@@ -441,7 +444,7 @@ msgid "Show all records which has next action date is before today"
 msgstr ""
 
 #. module: quality_control_issue
-#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6099
+#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6095
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_stage_id
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
@@ -467,7 +470,9 @@ msgstr ""
 #. module: quality_control_issue
 #: model:ir.model.fields,help:quality_control_issue.field_qc_issue_stage_fold
 #: model:ir.model.fields,help:quality_control_issue.field_qc_stage_fold
-msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgid ""
+"This stage is folded in the kanban view when there are no records in that "
+"stage to display."
 msgstr ""
 
 #. module: quality_control_issue
