@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2018-12-09 15:51+0000\n"
+"PO-Revision-Date: 2018-12-09 20:50+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -33,7 +33,7 @@ msgstr "Lagerorte für die Fertigung MTO/MTS"
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Fertigungsautrag"
+msgstr "Fertigungsauftrag"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_product_template
