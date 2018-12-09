@@ -9,6 +9,8 @@ class TestQualityControl(TransactionCase):
 
     def setUp(self):
         super(TestQualityControl, self).setUp()
+
+        self.users_model = self.env['res.users']
         self.picking_model = self.env['stock.picking']
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
@@ -33,6 +35,11 @@ class TestQualityControl(TransactionCase):
             'name': 'Lot for tests',
             'product_id': self.product.id,
         })
+        self.group_stock_user = self.env.ref('stock.group_stock_user')
+        self.company1 = self.env.ref('base.main_company')
+        self.user1_id = self._create_user(
+            'user_1', [self.group_stock_user], self.company1)
+
         move_vals = {
             'name': self.product.name,
             'product_id': self.product.id,
@@ -42,7 +49,7 @@ class TestQualityControl(TransactionCase):
             'location_dest_id': self.location_dest.id,
             'quantity_done': 1.0
         }
-        self.picking1 = self.picking_model \
+        self.picking1 = self.picking_model.sudo(self.user1_id) \
             .with_context(default_picking_type_id=self.picking_type.id) \
             .create({
                 'partner_id': self.partner1.id,
@@ -68,6 +75,21 @@ class TestQualityControl(TransactionCase):
                 'sequence': sequence
             })
             sequence += 10
+
+    def _create_user(self, login, groups, company):
+        """ Create a user."""
+        group_ids = [group.id for group in groups]
+        user = self.users_model.with_context({'no_reset_password': True}).\
+            create({
+                'name': 'Sale User',
+                'login': login,
+                'password': 'test',
+                'email': 'test@yourcompany.com',
+                'company_id': company.id,
+                'company_ids': [(4, company.id)],
+                'groups_id': [(6, 0, group_ids)]
+            })
+        return user.id
 
     def test_inspection_create_for_product(self):
         self.product.qc_triggers = [(
