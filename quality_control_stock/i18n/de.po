@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-24 14:00+0000\n"
-"PO-Revision-Date: 2018-12-10 11:58+0000\n"
+"PO-Revision-Date: 2018-12-13 09:58+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/de/)\n"
@@ -99,7 +99,7 @@ msgstr "Kommissionierungsart"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
 msgid "Quality control inspection"
-msgstr "Prüfung der Qualitätskontrolle"
+msgstr "Qualitätskontrollinspektion"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection_line
@@ -154,7 +154,7 @@ msgstr "Qualitätsprüfungen aus Kommissionierung gescheitert"
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
 msgid "Stock Move"
-msgstr "Lagerbuchung"
+msgstr "Lagerbewegung"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
