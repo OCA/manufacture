@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-09 15:51+0000\n"
+"PO-Revision-Date: 2018-12-13 11:58+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -81,7 +81,7 @@ msgstr "Bestätigen"
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_create_uid
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_create_uid
 msgid "Created by"
-msgstr "Erstellt durch"
+msgstr "Erstellt von"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_create_date
@@ -147,7 +147,7 @@ msgstr "Zukünftige Aktivitäten"
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
 msgid "Group By..."
-msgstr "Gruppiere..."
+msgstr "Gruppiere nach..."
 
 #. module: quality_control_issue
 #: selection:qc.problem,priority:0
@@ -208,7 +208,7 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_write_uid
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_stage_write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_write_date
@@ -262,7 +262,7 @@ msgstr "Meine Inspektionen"
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_group_name
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_name
 msgid "Name"
-msgstr "Name"
+msgstr "Bezeichnung"
 
 #. module: quality_control_issue
 #: selection:qc.issue,state:0
