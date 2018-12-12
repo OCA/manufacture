@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-09 20:50+0000\n"
+"PO-Revision-Date: 2018-12-13 11:58+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -96,7 +96,7 @@ msgstr "Zuletzt geändert am"
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_write_date
