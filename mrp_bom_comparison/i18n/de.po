@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-10 11:58+0000\n"
+"PO-Revision-Date: 2018-12-13 09:58+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -128,7 +128,7 @@ msgstr "Zuletzt geändert am"
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_write_uid
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: mrp_bom_comparison
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_write_date
