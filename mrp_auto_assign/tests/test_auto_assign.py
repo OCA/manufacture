@@ -14,7 +14,7 @@ class TestMrpAutoAssign(TransactionCase):
         self.stock_location_stock = self.env.ref('stock.stock_location_stock')
         self.manufacture_route = self.env.ref(
             'mrp.route_warehouse0_manufacture')
-        self.uom_unit = self.env.ref('product.product_uom_unit')
+        self.uom_unit = self.env.ref('uom.product_uom_unit')
 
         self.product_manuf = self.env['product.product'].create({
             'name': 'Manuf',
