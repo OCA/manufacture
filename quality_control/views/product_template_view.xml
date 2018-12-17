@@ -11,19 +11,22 @@
         <field name="name">product.template.qc</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_manager'))]" />
         <field name="arch" type="xml">
-            <xpath expr="//page[2]" position="inside">
-                <group name="qc" string="Quality control">
-                    <field name="qc_triggers" nolabel="1">
-                        <tree string="Quality control triggers" editable="bottom">
-                            <field name="trigger" widget="selection"/>
-                            <field name="test"/>
-                            <field name="user" />
-                            <field name="partners" widget="many2many_tags" />
-                        </tree>
-                    </field>
-                </group>
-            </xpath>
+            <page name="variants" position="after">
+                <page name="quality_control" string="Quality Control">
+                    <group name="qc" string="Quality control">
+                        <field name="qc_triggers" nolabel="1">
+                            <tree string="Quality control triggers" editable="bottom">
+                                <field name="trigger" widget="selection"/>
+                                <field name="test"/>
+                                <field name="user" />
+                                <field name="partners" widget="many2many_tags" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </page>
         </field>
     </record>
 
