@@ -11,7 +11,7 @@
         <field name="name">product.template.qc</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
-        <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_manager'))]" />
+        <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_user'))]" />
         <field name="arch" type="xml">
             <page name="inventory" position="inside">
                 <group name="qc" string="Quality control">
