@@ -11,8 +11,9 @@
         <field name="name">product.template.qc</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_user'))]" />
         <field name="arch" type="xml">
-            <xpath expr="//page[2]" position="inside">
+            <page name="inventory" position="inside">
                 <group name="qc" string="Quality control">
                     <field name="qc_triggers" nolabel="1">
                         <tree string="Quality control triggers" editable="bottom">
@@ -23,7 +24,7 @@
                         </tree>
                     </field>
                 </group>
-            </xpath>
+            </page>
         </field>
     </record>
 
