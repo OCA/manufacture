@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* quality_control_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_created_inspections
+msgid "Created inspections"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_done_inspections
+msgid "Done inspections"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_qc_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_qc_inspections
+msgid "Inspections"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_passed_inspections
+msgid "Inspections OK"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_failed_inspections
+msgid "Inspections failed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,help:quality_control_stock.field_stock_production_lot_qc_inspections
+msgid "Inspections related to this lot."
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,help:quality_control_stock.field_stock_picking_qc_inspections
+msgid "Inspections related to this picking."
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_lot
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_lot
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
+#: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
+msgid "Lot"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_picking
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_picking
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
+msgid "Picking"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:res.request.link,name:quality_control_stock.req_link_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type
+msgid "Picking type"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_qc_trigger
+msgid "Quality control trigger"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_done
+msgid "Quality inspection from lot done"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_passed
+msgid "Quality inspection from lot passed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_done
+msgid "Quality inspection from picking done"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_passed
+msgid "Quality inspection from picking passed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot
+msgid "Quality inspections from lot"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_failed
+msgid "Quality inspections from lot failed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking
+msgid "Quality inspections from picking"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_failed
+msgid "Quality inspections from picking failed"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:res.request.link,name:quality_control_stock.req_link_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_picking_type
+msgid "The picking type determines the picking view"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.model,name:quality_control_stock.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: quality_control_stock
+#: model:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
+#: model:ir.ui.view,arch_db:quality_control_stock.stock_picking_qc_view
+msgid "inspections"
+msgstr ""
+
