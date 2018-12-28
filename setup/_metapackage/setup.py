@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo11-addon-mrp_warehouse_calendar',
         'odoo11-addon-quality_control',
         'odoo11-addon-quality_control_issue',
+        'odoo11-addon-quality_control_stock',
         'odoo11-addon-quality_control_team',
     ],
     classifiers=[
