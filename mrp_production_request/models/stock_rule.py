@@ -5,8 +5,8 @@ from odoo import api, models, _
 from odoo.exceptions import UserError
 
 
-class ProcurementOrder(models.Model):
-    _inherit = "procurement.rule"
+class StockRule(models.Model):
+    _inherit = "stock.rule"
 
     @api.multi
     def _prepare_mrp_production_request(
@@ -20,6 +20,9 @@ class ProcurementOrder(models.Model):
         orderpoint = values.get('orderpoint_id')
         if orderpoint:
             data['orderpoint_id'] = orderpoint.id
+        procurement_group = values.get('group_id')
+        if procurement_group:
+            data['procurement_group_id'] = procurement_group.id
         return data
 
     @api.multi

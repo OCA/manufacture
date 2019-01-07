@@ -5,7 +5,7 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
                "step to Manufacturing Orders for better manufacture "
                "planification.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "development_status": "Mature",
     "maintainers": ['lreficent'],
     "category": "Manufacturing",
@@ -13,8 +13,6 @@
     "author": "Eficent,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
-    "installable": True,
     "depends": ["mrp", "stock_available_unreserved"],
     "data": [
         "security/mrp_production_request_security.xml",

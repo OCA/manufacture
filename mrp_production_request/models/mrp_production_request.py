@@ -88,7 +88,7 @@ class MrpProductionRequest(models.Model):
         digits=dp.get_precision('Product Unit of Measure'), default=1.0,
         readonly=True, states={'draft': [('readonly', False)]})
     product_uom_id = fields.Many2one(
-        comodel_name='product.uom', string='Unit of Measure',
+        comodel_name='uom.uom', string='Unit of Measure',
         readonly=True, states={'draft': [('readonly', False)]},
         domain="[('category_id', '=', category_uom_id)]")
     category_uom_id = fields.Many2one(related="product_uom_id.category_id")
@@ -180,7 +180,7 @@ class MrpProductionRequest(models.Model):
     def _subscribe_assigned_user(self, vals):
         self.ensure_one()
         if vals.get('assigned_to'):
-            self.message_subscribe_users(user_ids=[self.assigned_to.id])
+            self.message_subscribe(partner_ids=[self.assigned_to.id])
 
     @api.model
     def _create_sequence(self, vals):

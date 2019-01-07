@@ -10,17 +10,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
     _name = "mrp.production.request.create.mo"
     _description = "Wizard to create Manufacturing Orders"
 
-    @api.multi
-    def compute_product_line_ids(self):
-        self.product_line_ids.unlink()
-        res = self._prepare_lines()
-        product_lines = res[1]
-        for line in product_lines:
-            self.env['mrp.production.request.create.mo.line'].create(
-                self._prepare_product_line(line))
-        self._get_mo_qty()
-        return {"type": "ir.actions.do_nothing"}
-
     def _prepare_lines(self):
         """Get the components (product_lines) needed for manufacturing the
         given a BoM.
@@ -42,6 +31,22 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             bottle_neck = max(min(1, bottle_neck), 0)
             rec.mo_qty = rec.pending_qty * bottle_neck
 
+    @api.multi
+    def compute_product_line_ids(self):
+        self.product_line_ids.unlink()
+        res = self._prepare_lines()
+        product_lines = res[1]
+        for line in product_lines:
+            self.env['mrp.production.request.create.mo.line'].create(
+                self._prepare_product_line(line))
+        self._get_mo_qty()
+        # The wuzard must be reloaded in order to show the new product lines
+        action = self.env.ref(
+            'mrp_production_request.mrp_production_request_create_mo_action')
+        res = action.read()[0]
+        res['res_id'] = self.id
+        return res
+
     mrp_production_request_id = fields.Many2one(
         comodel_name="mrp.production.request", readonly=True)
     bom_id = fields.Many2one(
@@ -58,16 +63,25 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         comodel_name="mrp.production.request.create.mo.line",
         string="Products needed",
         inverse_name="mrp_production_request_create_mo_id", readonly=True)
+    date_planned_start = fields.Datetime(
+        'Deadline Start', copy=False, default=fields.Datetime.now,
+        index=True, required=True,
+        states={'confirmed': [('readonly', False)]}, oldname="date_planned")
 
     @api.model
     def default_get(self, fields):
         rec = super(MrpProductionRequestCreateMo, self).default_get(fields)
         active_ids = self._context.get('active_ids')
+        active_model = self._context.get('active_model')
+        request = self.env[active_model].browse(active_ids)
         if not active_ids:
             raise UserError(_(
                 "Programming error: wizard action executed without "
                 "active_ids in context."))
-        rec['mrp_production_request_id'] = active_ids[0]
+        rec.update({
+            'mrp_production_request_id': request.id,
+            'date_planned_start': request.date_planned_start,
+        })
         return rec
 
     def _prepare_product_line(self, pl):
@@ -94,7 +108,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             'location_dest_id': request_id.location_dest_id.id,
             'picking_type_id': request_id.picking_type_id.id,
             'routing_id': request_id.routing_id.id,
-            'date_planned_start': request_id.date_planned_start,
+            'date_planned_start': self.date_planned_start,
             'date_planned_finished': request_id.date_planned_finished,
             'procurement_group_id': request_id.procurement_group_id.id,
             'propagate': request_id.propagate,
@@ -118,6 +132,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
 
 class MrpProductionRequestCreateMoLine(models.TransientModel):
     _name = "mrp.production.request.create.mo.line"
+    _description = "Raw Mrp Production request Lines"
 
     @api.multi
     def _compute_available_qty(self):
@@ -142,7 +157,7 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
         string='Quantity Required', required=True,
         digits=dp.get_precision('Product Unit of Measure'))
     product_uom_id = fields.Many2one(
-        comodel_name='product.uom', string='UoM', required=True)
+        comodel_name='uom.uom', string='UoM', required=True)
     mrp_production_request_create_mo_id = fields.Many2one(
         comodel_name='mrp.production.request.create.mo')
     available_qty = fields.Float(

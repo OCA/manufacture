@@ -15,7 +15,6 @@ class TestMrpProductionRequest(TransactionCase):
         self.bom_model = self.env['mrp.bom']
         self.group_model = self.env['procurement.group']
         self.product_model = self.env['product.product']
-        self.bom_model = self.env['mrp.bom']
         self.boml_model = self.env['mrp.bom.line']
 
         self.warehouse = self.env.ref('stock.warehouse0')
