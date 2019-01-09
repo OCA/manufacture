@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
+<odoo>
+    <record id="qc_test_form_view" model="ir.ui.view">
+        <field name="name">Add formula</field>
+        <field name="model">qc.test</field>
+        <field name="inherit_id" ref="quality_control.qc_test_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='test_lines']/tree/field[@name='name']" position="before">
+                <field name="code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

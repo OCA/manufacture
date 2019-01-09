@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
+<odoo>
+    <record id="qc_test_question_form_view" model="ir.ui.view">
+        <field name="name">Add formula</field>
+        <field name="model">qc.test.question</field>
+        <field name="inherit_id"
+               ref="quality_control.qc_test_question_form_view"/>
+        <field name="arch" type="xml">
+            <group name="qualitative" position="before">
+                <group>
+                    <field name="code"/>
+                    <field name="formula"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="qc_test_question_tree_view">
+        <field name="name">qc.test.question.tree</field>
+        <field name="model">qc.test.question</field>
+        <field name="arch" type="xml">
+            <tree string="Test questions" delete="false" create="false">
+                <field name="sequence" widget="handle"/>
+                <field name="test"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="formula"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_qc_test_questions">
+        <field name="name">Test questions</field>
+        <field name="res_model">qc.test.question</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Test questions"
+              parent="quality_control.qc_menu_test_parent"
+              id="qc_test_questions_menu"
+              action="action_qc_test_questions"/>
+</odoo>
