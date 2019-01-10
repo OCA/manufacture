@@ -53,9 +53,6 @@
                             </field>
                         </page>
                         <page string="More Info" name="more_info" groups="base.group_no_one">
-                            <group>
-                                <field name="active"/>
-                            </group>
                             <group string="Company" groups="base.group_multi_company">
                                 <field name="company_id" options="{'no_create': True}"/>
                             </group>
