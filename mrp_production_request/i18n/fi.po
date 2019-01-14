@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
 "PO-Revision-Date: 2019-01-14 16:41+0000\n"
-"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
+"Last-Translator: difbit <timo.kekalainen@hotmail.com>\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "Peruutettu"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_category_uom_id
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_product_product_mrp_production_request
@@ -100,7 +100,7 @@ msgstr "Yritys"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Compute lines"
-msgstr ""
+msgstr "Laske rivit"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_category_uom_id
@@ -112,13 +112,13 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.mrp_production_request_create_mo_view
 msgid "Create MO"
-msgstr ""
+msgstr "Luo valmistustilaus"
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_create_mo_action
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Create Manufacturing Order"
-msgstr ""
+msgstr "Luo valmistustilaus"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_create_uid
@@ -137,12 +137,12 @@ msgstr "Luotu"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_date_planned_finished
 msgid "Deadline End"
-msgstr ""
+msgstr "Määräajan lopetus"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_date_planned_start
 msgid "Deadline Start"
-msgstr ""
+msgstr "Määräajan aloitus"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_description
@@ -172,12 +172,12 @@ msgstr "Luonnos"
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Extra information"
-msgstr ""
+msgstr "Lisätiedot"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_dest_id
 msgid "Finished Products Location"
-msgstr ""
+msgstr "Valmiiden tuotteiden paikka"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_id
@@ -257,20 +257,20 @@ msgstr ""
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Manufacturing Request"
-msgstr ""
+msgstr "Valmistusehdotus"
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/models/procurement.py:36
 #, python-format
 msgid "Manufacturing Request created"
-msgstr ""
+msgstr "Valmistusehdotus luotu"
 
 #. module: mrp_production_request
 #: model:ir.actions.act_window,name:mrp_production_request.mrp_production_request_action
 #: model:ir.ui.menu,name:mrp_production_request.menu_mrp_production_request_act
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_tree
 msgid "Manufacturing Requests"
-msgstr ""
+msgstr "Valmistusehdotukset"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_mrp_production_request_create_mo_id
@@ -285,7 +285,7 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "My requests"
-msgstr ""
+msgstr "Omat ehdotukset"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_name
@@ -296,43 +296,43 @@ msgstr "Nimi"
 #: code:addons/mrp_production_request/models/procurement.py:31
 #, python-format
 msgid "No BoM exists for this product!"
-msgstr ""
+msgstr "Osaluetteloa ei ole olemassa tälle tuotteelle!"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Pending Qty"
-msgstr ""
+msgstr "Odottava määrä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_pending_qty
 msgid "Pending Quantity"
-msgstr ""
+msgstr "Odottava määrä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_picking_type_id
 msgid "Picking Type"
-msgstr ""
+msgstr "Keräilyn tyyppi"
 
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Hankinta"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_group_id
 msgid "Procurement Group"
-msgstr ""
+msgstr "Hankintaryhmä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_id
 msgid "Procurement Order"
-msgstr ""
+msgstr "Hankintatilaus"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_state
 msgid "Procurement State"
-msgstr ""
+msgstr "Hankinnan tila"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_id
@@ -349,7 +349,7 @@ msgstr "Tuotteen malli"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_product_line_ids
 msgid "Products needed"
-msgstr ""
+msgstr "Vaatii tuotteita"
 
 #. module: mrp_production_request
 #: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:68
@@ -371,22 +371,22 @@ msgstr "Määrä"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_available_qty
 msgid "Quantity Available"
-msgstr ""
+msgstr "Käytettävissä oleva määrä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_done_qty
 msgid "Quantity Done"
-msgstr ""
+msgstr "Siirretty määrä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line_product_qty
 msgid "Quantity Required"
-msgstr ""
+msgstr "Tarvittava määrä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_manufactured_qty
 msgid "Quantity in Manufacturing Orders"
-msgstr ""
+msgstr "Määrä valmistustilauksissa"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request_create_mo_pending_qty
@@ -399,7 +399,7 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_location_src_id
 msgid "Raw Materials Location"
-msgstr ""
+msgstr "Raaka-aineiden paikka"
 
 #. module: mrp_production_request
 #: model:ir.actions.server,name:mrp_production_request.action_server_mrp_production_request_refresh
@@ -409,7 +409,7 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Reject"
-msgstr ""
+msgstr "Hylkää"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_procurement_ids
@@ -425,38 +425,38 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Request approval"
-msgstr ""
+msgstr "Pyytää hyväksyntää"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is approved"
-msgstr ""
+msgstr "Pyyntö hyväksytty"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is cancelled"
-msgstr ""
+msgstr "Pyyntö hylätty"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is done"
-msgstr ""
+msgstr "Pyyntö valmis"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request is to be approved"
-msgstr ""
+msgstr "Ehdotus odottaa hyväksyntää"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Request with pending quantity"
-msgstr ""
+msgstr "Ehdotus odottavalla määrällä"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_requested_by
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Requested by"
-msgstr ""
+msgstr "Pyynnön esittäjä"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -466,17 +466,17 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_product_qty
 msgid "Required Quantity"
-msgstr ""
+msgstr "Tarvittava määrä"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 msgid "Reset"
-msgstr ""
+msgstr "Aseta uudelleen"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_routing_id
 msgid "Routing"
-msgstr ""
+msgstr "Reititys"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
@@ -491,12 +491,12 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Source"
-msgstr ""
+msgstr "Lähde"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_origin
 msgid "Source Document"
-msgstr ""
+msgstr "Lähdedokumentti"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_state
@@ -530,7 +530,7 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "To Approve"
-msgstr ""
+msgstr "Hyväksyttävänä"
 
 #. module: mrp_production_request
 #: selection:mrp.production.request,state:0
@@ -540,12 +540,12 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Unassigned"
-msgstr ""
+msgstr "Kohdistamaton"
 
 #. module: mrp_production_request
 #: model:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Unassigned Request"
-msgstr ""
+msgstr "Kohdistamaton ehdotus"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_product_uom_id
