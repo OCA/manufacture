@@ -1,3 +1,3 @@
-This module updates the value of the user_id field in a Manufacturing Order. In the case
-the MO has been created as a result of a manual procurement the user_id will show the user
-that triggered it.
+This module updates a new field *Requested by* in Manufacturing Orders
+in the case the MO has been created as a result of a manual procurement from
+an orderpoint.
