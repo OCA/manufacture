@@ -9,12 +9,14 @@
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
-    "category": "MRP",
+    "category": "Manufacturing",
     "depends": [
         "mrp",
         "stock_orderpoint_manual_procurement",
     ],
-    "data": [],
+    "data": [
+        "views/mrp_production_view.xml",
+    ],
     "license": "AGPL-3",
     'installable': True,
     'application': False,

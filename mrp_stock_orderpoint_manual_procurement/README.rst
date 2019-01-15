@@ -25,14 +25,20 @@ MRP Stock Orderpoint Manual Procurement
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module updates the value of the user_id field in a Manufacturing Order. In the case
-the MO has been created as a result of a manual procurement the user_id will show the user
-that triggered it.
+This module updates a new field *Requested by* in Manufacturing Orders
+in the case the MO has been created as a result of a manual procurement from
+an orderpoint.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Usage
+=====
+
+Go to an orderpoint an do a manual procurement for a manufactured product.
+Your user will be set as *Requeste by* in the newly created MO.
 
 Bug Tracker
 ===========
@@ -56,6 +62,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Adria Gil Sorribes <adria.gil@eficent.com>
+* Lois Rilo Antelo <lois.rilo@eficent.com>
 
 Maintainers
 ~~~~~~~~~~~
