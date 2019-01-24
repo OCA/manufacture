@@ -5,14 +5,10 @@
 
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import date, datetime, timedelta
-import locale
 import logging
 from odoo.tools.float_utils import float_round
 logger = logging.getLogger(__name__)
-
-ODOO_READ_GROUP_DAY_FORMAT = '%d %b %Y'
 
 
 class MultiLevelMrp(models.TransientModel):
@@ -640,67 +636,75 @@ class MultiLevelMrp(models.TransientModel):
         logger.info('END MRP CALCULATION')
 
     @api.model
-    def _convert_group_date_to_default(self, group_date):
-        """Odoo read_group time format include the month as locale’s
-        abbreviated name (%b). Using 'en_GB' as common language for read_group
-        calls and this conversion avoids possible issues with locales."""
-        lc = locale.setlocale(locale.LC_TIME)
-        try:
-            locale.setlocale(locale.LC_TIME, 'en_GB.UTF-8')
-            return datetime.strptime(
-                group_date, ODOO_READ_GROUP_DAY_FORMAT).strftime(
-                DEFAULT_SERVER_DATE_FORMAT)
-        finally:
-            locale.setlocale(locale.LC_TIME, lc)
+    def _get_demand_groups(self, mrp_product):
+        query = """
+            SELECT mrp_date, sum(mrp_qty)
+            FROM mrp_move
+            WHERE mrp_product_id = %(mrp_product)s
+            AND mrp_type = 'd'
+            GROUP BY mrp_date
+        """
+        params = {
+            'mrp_product': mrp_product.id
+        }
+        return query, params
+
+    @api.model
+    def _get_supply_groups(self, mrp_product):
+        query = """
+                SELECT mrp_date, sum(mrp_qty)
+                FROM mrp_move
+                WHERE mrp_product_id = %(mrp_product)s
+                AND mrp_type = 's'
+                AND mrp_action = 'none'
+                GROUP BY mrp_date
+            """
+        params = {
+            'mrp_product': mrp_product.id
+        }
+        return query, params
+
+    @api.model
+    def _get_supply_action_groups(self, mrp_product):
+        exclude_mrp_actions = ['none', 'cancel']
+        query = """
+                SELECT mrp_date, sum(mrp_qty)
+                FROM mrp_move
+                WHERE mrp_product_id = %(mrp_product)s
+                AND mrp_qty <> 0.0
+                AND mrp_type = 's'
+                AND mrp_action not in %(excluded_mrp_actions)s
+                GROUP BY mrp_date
+            """
+        params = {
+            'mrp_product': mrp_product.id,
+            'excluded_mrp_actions': tuple(exclude_mrp_actions,)
+        }
+        return query, params
 
     @api.model
     def _init_mrp_inventory(self, mrp_product):
         mrp_move_obj = self.env['mrp.move']
         # Read Demand
-        demand_groups = mrp_move_obj.with_context(lang='en_GB').read_group(
-            [('mrp_product_id', '=', mrp_product.id),
-             ('mrp_type', '=', 'd')],
-            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
-        )
         demand_qty_by_date = {}
-        for group in demand_groups:
-            # Reformat date back to default server format.
-            group_date = self._convert_group_date_to_default(
-                group['mrp_date:day'])
-            demand_qty_by_date[group_date] = group['mrp_qty']
-
+        query, params = self._get_demand_groups(mrp_product)
+        self.env.cr.execute(query, params)
+        for mrp_date, qty in self.env.cr.fetchall():
+            demand_qty_by_date[mrp_date] = qty
         # Read Supply
-        supply_groups = mrp_move_obj.with_context(lang='en_GB').read_group(
-            [('mrp_product_id', '=', mrp_product.id),
-             ('mrp_type', '=', 's'),
-             ('mrp_action', '=', 'none')],
-            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
-        )
         supply_qty_by_date = {}
-        for group in supply_groups:
-            # Reformat date back to default server format.
-            group_date = self._convert_group_date_to_default(
-                group['mrp_date:day'])
-            supply_qty_by_date[group_date] = group['mrp_qty']
-
+        query, params = self._get_supply_groups(mrp_product)
+        self.env.cr.execute(query, params)
+        for mrp_date, qty in self.env.cr.fetchall():
+            supply_qty_by_date[mrp_date] = qty
         # Read supply actions
         # TODO: if we remove cancel take it into account here,
         # TODO: as well as mrp_type ('r').
-        exclude_mrp_actions = ['none', 'cancel']
-        action_groups = mrp_move_obj.with_context(lang='en_GB').read_group(
-            [('mrp_product_id', '=', mrp_product.id),
-             ('mrp_qty', '!=', 0.0),
-             ('mrp_type', '=', 's'),
-             ('mrp_action', 'not in', exclude_mrp_actions)],
-            ['mrp_date', 'mrp_qty'], ['mrp_date:day'],
-        )
         supply_actions_qty_by_date = {}
-        for group in action_groups:
-            # Reformat date back to default server format.
-            group_date = self._convert_group_date_to_default(
-                group['mrp_date:day'])
-            supply_actions_qty_by_date[group_date] = group['mrp_qty']
-
+        query, params = self._get_supply_action_groups(mrp_product)
+        self.env.cr.execute(query, params)
+        for mrp_date, qty in self.env.cr.fetchall():
+            supply_actions_qty_by_date[mrp_date] = qty
         # Dates
         mrp_dates = set(mrp_move_obj.search([
             ('mrp_product_id', '=', mrp_product.id)],
