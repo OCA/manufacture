@@ -34,6 +34,8 @@ If you want to use the second mode, based on forecast quantity
 #. In the view form go to the tab *Warehouse Configuration* and set the *MRP 
    MTO with forecast stock*. You still need to configure the products
    like described in last step.
+   
+* NOTE: product you want follow this behaviour must not have configured routes. 
 
 Usage
 =====
