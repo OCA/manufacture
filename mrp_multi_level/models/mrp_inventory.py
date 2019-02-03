@@ -10,23 +10,27 @@ from datetime import timedelta, date
 
 class MrpInventory(models.Model):
     _name = 'mrp.inventory'
-    _order = 'mrp_product_id, date'
+    _order = 'product_mrp_area_id, date'
     _description = 'MRP inventory projections'
-    _rec_name = 'mrp_product_id'
+    _rec_name = 'product_mrp_area_id'
 
     # TODO: name to pass to procurements?
     # TODO: compute procurement_date to pass to the wizard? not needed for
     # PO at least. Check for MO and moves
-    # TODO: substract qty already procured.
     # TODO: show a LT based on the procure method?
 
     mrp_area_id = fields.Many2one(
         comodel_name='mrp.area', string='MRP Area',
-        related='mrp_product_id.mrp_area_id', store=True,
+        related='product_mrp_area_id.mrp_area_id', store=True,
     )
-    mrp_product_id = fields.Many2one(
-        comodel_name='mrp.product', string='Product',
+    product_mrp_area_id = fields.Many2one(
+        comodel_name='product.mrp.area', string='Product Parameters',
         index=True,
+    )
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        related='product_mrp_area_id.product_id',
+        store=True,
     )
     uom_id = fields.Many2one(
         comodel_name='product.uom', string='Product UoM',
@@ -47,20 +51,21 @@ class MrpInventory(models.Model):
     @api.multi
     def _compute_uom_id(self):
         for rec in self:
-            rec.uom_id = rec.mrp_product_id.product_id.uom_id
+            rec.uom_id = rec.product_mrp_area_id.product_id.uom_id
 
     @api.multi
-    @api.depends('mrp_product_id', 'mrp_product_id.main_supplierinfo_id',
-                 'mrp_product_id.mrp_lead_time',
-                 'mrp_product_id.mrp_area_id.calendar_id')
+    @api.depends('product_mrp_area_id',
+                 'product_mrp_area_id.main_supplierinfo_id',
+                 'product_mrp_area_id.mrp_lead_time',
+                 'product_mrp_area_id.mrp_area_id.calendar_id')
     def _compute_order_release_date(self):
         today = date.today()
         for rec in self.filtered(lambda r: r.date):
             delay = 0
-            if rec.mrp_product_id.supply_method == 'buy':
-                delay = rec.mrp_product_id.main_supplierinfo_id.delay
-            elif rec.mrp_product_id.supply_method == 'manufacture':
-                delay = rec.mrp_product_id.mrp_lead_time
+            if rec.product_mrp_area_id.supply_method == 'buy':
+                delay = rec.product_mrp_area_id.main_supplierinfo_id.delay
+            elif rec.product_mrp_area_id.supply_method == 'manufacture':
+                delay = rec.product_mrp_area_id.mrp_lead_time
             # TODO: 'move' supply method
             if delay and rec.mrp_area_id.calendar_id:
                 dt_date = fields.Datetime.from_string(rec.date)
