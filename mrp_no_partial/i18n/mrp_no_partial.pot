@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_no_partial
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_no_partial
+#: model:ir.model.fields,help:mrp_no_partial.field_stock_picking_type_mrp_no_partial
+msgid "Check this if you want to block production orders if all the quantities have not been done."
+msgstr ""
+
+#. module: mrp_no_partial
+#: model:ir.model,name:mrp_no_partial.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_no_partial
+#: model:ir.model.fields,field_description:mrp_no_partial.field_stock_picking_type_mrp_no_partial
+msgid "No Partial Production Orders"
+msgstr ""
+
+#. module: mrp_no_partial
+#: code:addons/mrp_no_partial/models/mrp_production.py:33
+#, python-format
+msgid "Please fill in every product quantity in this Production Order. You cannot validate a Production Order with not done quantities!"
+msgstr ""
+
+#. module: mrp_no_partial
+#: model:ir.model,name:mrp_no_partial.model_stock_picking_type
+msgid "The picking type determines the picking view"
+msgstr ""
+
