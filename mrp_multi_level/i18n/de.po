@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-12-13 11:58+0000\n"
+"PO-Revision-Date: 2019-02-13 15:50+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_mrp_action
@@ -305,14 +305,13 @@ msgstr "Bereich"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product_mrp_area_count
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_template_mrp_area_count
 msgid "MRP Area Parameter Count"
-msgstr ""
+msgstr "Anzahl der Bereich-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product_mrp_area_ids
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_template_mrp_area_ids
-#, fuzzy
 msgid "MRP Area parameters"
-msgstr "Bereiche"
+msgstr "Bereich-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_areas
@@ -406,7 +405,6 @@ msgstr "Lagerbewegung"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_area_id
-#, fuzzy
 msgid "Mrp Area"
 msgstr "Bereich"
 
@@ -417,7 +415,6 @@ msgstr "Bestand (MRP)"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_move_ids
-#, fuzzy
 msgid "Mrp Move"
 msgstr "Lagerbewegungen"
 
@@ -535,29 +532,26 @@ msgstr "Produkt"
 
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_product_mrp_area
-#, fuzzy
 msgid "Product MRP Area"
-msgstr "Bereich"
+msgstr "Produkt - Bereich"
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.product_mrp_area_action
 #: model:ir.ui.menu,name:mrp_multi_level.menu_product_mrp_area_parameters
 msgid "Product MRP Area Parameters"
-msgstr ""
+msgstr "Produkt-Bereich-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
 #: model:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_tree
-#, fuzzy
 msgid "Product MRP Area parameters"
-msgstr "Produktvorlage"
+msgstr "Produkt-Bereich-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_product_mrp_area_id
-#, fuzzy
 msgid "Product Parameters"
-msgstr "Produktvorlage"
+msgstr "Produkt-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_product_template
@@ -598,9 +592,8 @@ msgstr "Menge"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_qty_available
-#, fuzzy
 msgid "Quantity Available"
-msgstr "Aktuell verfügbare Menge"
+msgstr "Verfügbare Menge"
 
 #. module: mrp_multi_level
 #: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:80
@@ -696,7 +689,7 @@ msgstr "Liefermethode"
 #. module: mrp_multi_level
 #: sql_constraint:product.mrp.area:0
 msgid "The product/MRP Area parameters combination must be unique."
-msgstr ""
+msgstr "Die Kombination der Produkt-/Bereich-Parameter muss einzigartig sein."
 
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
