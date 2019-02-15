@@ -6,71 +6,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-02-15 14:50+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_active
 msgid "Active"
-msgstr ""
+msgstr "Ativo"
 
 #. module: quality_control_team
 #: model:ir.actions.act_window,help:quality_control_team.qc_team_config_action
 msgid "Click here to define a new quality control team."
-msgstr ""
+msgstr "Clique aqui para definir uma nova equipa de controlo de qualidade."
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_color
 msgid "Color Index"
-msgstr ""
+msgstr "Índice de Cor"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_company_id
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: quality_control_team
 #: model:ir.actions.act_window,name:quality_control_team.qc_team_dashboard_act
 #: model:ir.ui.menu,name:quality_control_team.menu_qc_team_act
 msgid "Dashboard"
-msgstr ""
+msgstr "Painel"
 
 #. module: quality_control_team
 #: model:ir.actions.act_window,help:quality_control_team.qc_team_dashboard_act
 msgid "Define a new quality control teams going to <b><i>Configuration &gt;\n"
 "                Quality Control Teams</i></b>."
 msgstr ""
+"Defina novas equipas de controlo de qualidade em <b><i>Configuração &gt;\n"
+"                Equipas de Controlo de Qualidade</i></b>."
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a Exibir"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "Follow this QC team to automatically track the events associated to users of this team."
 msgstr ""
+"Siga esta equipa de CQ para rastrear automaticamente os eventos associados a "
+"utilizadores desta equipa."
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_search
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupar por..."
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_id
@@ -80,42 +86,42 @@ msgstr ""
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Modificado a última vez por"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Atualizado pela última vez por"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Atualizado pela última vez em"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
 msgid "More <i class=\"fa fa-caret-down\"/>"
-msgstr ""
+msgstr "Mais <i class=\"fa fa-caret-down\"/>"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "More Info"
-msgstr ""
+msgstr "Mais info"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_search
 msgid "My Teams"
-msgstr ""
+msgstr "As Minhas Equipas"
 
 #. module: quality_control_team
 #: model:ir.model,name:quality_control_team.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Parceiro"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_search
 msgid "QC teams Search"
-msgstr ""
+msgstr "Pesquisa em equipas de CQ"
 
 #. module: quality_control_team
 #: model:ir.model,name:quality_control_team.model_qc_team
@@ -125,23 +131,23 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_tree
 msgid "Quality Control Team"
-msgstr ""
+msgstr "Equipa de Controlo de Qualidade"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "Quality Control Team name..."
-msgstr ""
+msgstr "Nome da Equipa de Controlo de Qualidade ..."
 
 #. module: quality_control_team
 #: model:ir.actions.act_window,name:quality_control_team.qc_team_config_action
 #: model:ir.ui.menu,name:quality_control_team.qc_team_config_menu
 msgid "Quality Control Teams"
-msgstr ""
+msgstr "Equipas de Controlo de Qualidade"
 
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "Quality Control team"
-msgstr ""
+msgstr "Equipa de Controlo de Qualidade"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_reply_to
@@ -151,29 +157,31 @@ msgstr ""
 #. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_user_id
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_search
 msgid "Team Leader"
-msgstr ""
+msgstr "Líder da equipa"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team_member_ids
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
 msgid "Team Members"
-msgstr ""
+msgstr "Membros da Equipa"
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team_color
 msgid "The color of the team"
-msgstr ""
+msgstr "A cor da equipa"
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team_reply_to
 msgid "The email address put in the 'Reply-To' of all emails sent by Odoo about cases in this QC team"
 msgstr ""
+"O endereço de email colocado no 'Reply-To' de todos os emails enviados pelo "
+"Odoo relacionados com casos desta equipa de CQ"
 
 #. module: quality_control_team
 #: model:ir.actions.act_window,help:quality_control_team.qc_team_config_action
@@ -181,8 +189,12 @@ msgid "Use quality control team to organize your different\n"
 "                departments into separate teams. Each team will work in\n"
 "                its own list of processes, stages..."
 msgstr ""
+"Use equipas de controlo de qualidade para organizar os seus diferentes\n"
+"                departamentos em equipas separadas. Cada equipa irá "
+"trabalhar na\n"
+"                sua própria lista de processos, etapas, etc..."
 
 #. module: quality_control_team
 #: model:ir.model,name:quality_control_team.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Utilizadores"
