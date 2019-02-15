@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-07 04:20+0000\n"
-"PO-Revision-Date: 2015-11-12 18:38+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-02-15 14:50+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/pt/)\n"
 "Language: pt\n"
@@ -17,46 +17,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_created_inspections
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_created_inspections
 msgid "Created inspections"
-msgstr ""
+msgstr "Inspeções criadas"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_done_inspections
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_done_inspections
 msgid "Done inspections"
-msgstr ""
+msgstr "Inspeções efetuadas"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_qc_inspections
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_qc_inspections
 msgid "Inspections"
-msgstr ""
+msgstr "Inspeções"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_passed_inspections
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_passed_inspections
 msgid "Inspections OK"
-msgstr ""
+msgstr "Inspeções OK"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_failed_inspections
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_failed_inspections
 msgid "Inspections failed"
-msgstr ""
+msgstr "Inspeções falhadas"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,help:quality_control_stock.field_stock_production_lot_qc_inspections
 msgid "Inspections related to this lot."
-msgstr ""
+msgstr "Inspeções relacionadas com este lote."
 
 #. module: quality_control_stock
 #: model:ir.model.fields,help:quality_control_stock.field_stock_picking_qc_inspections
 msgid "Inspections related to this picking."
-msgstr ""
+msgstr "Inspeções relacionadas com este movimento de stock."
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_lot
@@ -65,12 +66,12 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 #: model:res.request.link,name:quality_control_stock.req_link_stock_production_lot
 msgid "Lot"
-msgstr ""
+msgstr "Lote"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Lote/Número de Série"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_picking
@@ -78,72 +79,72 @@ msgstr ""
 #: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
 #: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 msgid "Picking"
-msgstr ""
+msgstr "Operação de Stock"
 
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Lista de Operação de Stock"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type
 msgid "Picking type"
-msgstr ""
+msgstr "Tipo de operação de stock"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Inspeção de controlo de qualidade"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr ""
+msgstr "Linha de inspeção de controlo de qualidade"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_trigger
 msgid "Quality control trigger"
-msgstr ""
+msgstr "Acionador do controlo de qualidade"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_done
 msgid "Quality inspection from lot done"
-msgstr ""
+msgstr "Inspeção de qualidade de lote efetuada"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_passed
 msgid "Quality inspection from lot passed"
-msgstr ""
+msgstr "Inspeção de qualidade de lote passou"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_done
 msgid "Quality inspection from picking done"
-msgstr ""
+msgstr "Inspeção de qualidade de operação de stock efetuada"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_passed
 msgid "Quality inspection from picking passed"
-msgstr ""
+msgstr "Inspeção de qualidade de operação de stock passou"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot
 msgid "Quality inspections from lot"
-msgstr ""
+msgstr "Inspeção de qualidade de lote"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_failed
 msgid "Quality inspections from lot failed"
-msgstr ""
+msgstr "Inspeção de qualidade de lote falhou"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking
 msgid "Quality inspections from picking"
-msgstr ""
+msgstr "Inspeção de qualidade de operação de stock"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_failed
 msgid "Quality inspections from picking failed"
-msgstr ""
+msgstr "Inspeção de qualidade de operação de stock falhou"
 
 #. module: quality_control_stock
 #: model:res.request.link,name:quality_control_stock.req_link_stock_move
@@ -153,18 +154,18 @@ msgstr "Movimento Stock"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
 msgid "The picking type determines the picking view"
-msgstr ""
+msgstr "O tipo de operação de stock determina a vista da operação"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferência"
 
 #. module: quality_control_stock
 #: model:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
 #: model:ir.ui.view,arch_db:quality_control_stock.stock_picking_qc_view
 msgid "inspections"
-msgstr ""
+msgstr "inspeções"
 
 #~ msgid "Product"
 #~ msgstr "Produto"
