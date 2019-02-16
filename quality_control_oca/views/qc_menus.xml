@@ -10,8 +10,9 @@
     <menuitem name="Quality control"
               id="qc_menu"
               groups="group_quality_control_user"
+              web_icon="quality_control,static/description/icon.png"
               sequence="40"
-              web_icon="quality_control,static/description/icon.png"/>
+    />
 
     <menuitem name="Inspections"
               parent="qc_menu"
