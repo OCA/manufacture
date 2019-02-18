@@ -10,6 +10,7 @@
     <menuitem name="Quality control"
               id="qc_menu"
               groups="group_quality_control_user"
+              web_icon="quality_control,static/description/icon.png"
               sequence="40" />
 
     <menuitem name="Inspections"
