@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo11-addon-mrp_mto_with_stock',
         'odoo11-addon-mrp_mto_with_stock_purchase',
         'odoo11-addon-mrp_multi_level',
+        'odoo11-addon-mrp_production_auto_post_inventory',
         'odoo11-addon-mrp_production_grouped_by_product',
         'odoo11-addon-mrp_production_putaway_strategy',
         'odoo11-addon-mrp_production_request',
