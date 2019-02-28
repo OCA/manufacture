@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                 <button name="%(action_mrp_uo_account_moves)d" type="action" string="Account Moves"
-                        class="oe_stat_button" icon="fa-list"
+                        class="oe_stat_button" icon="fa-list" groups="account.group_account_user"
                         attrs="{'invisible': [('state', 'not in', ('done'))]}"/>
             </xpath>
         </field>
