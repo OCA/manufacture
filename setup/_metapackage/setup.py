@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo11-addon-mrp_progress_button',
         'odoo11-addon-mrp_repair_refurbish',
         'odoo11-addon-mrp_sale_info',
+        'odoo11-addon-mrp_stock_orderpoint_manual_procurement',
         'odoo11-addon-mrp_warehouse_calendar',
         'odoo11-addon-quality_control',
         'odoo11-addon-quality_control_issue',
