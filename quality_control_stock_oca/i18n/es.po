@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-11 18:07+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"PO-Revision-Date: 2019-03-01 14:52+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_created_inspections
@@ -89,7 +90,6 @@ msgstr "Albarán"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type_id
-#, fuzzy
 msgid "Picking Type"
 msgstr "Tipo de albarán"
 
@@ -155,14 +155,13 @@ msgstr "Movimiento de stock"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
-#, fuzzy
 msgid "The operation type determines the picking view"
-msgstr "El tipo de albarán determina la vista"
+msgstr "El tipo de operación determina la vista del albarán"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferir"
 
 #. module: quality_control_stock
 #: model:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
