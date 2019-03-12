@@ -7,9 +7,10 @@ class StockMove(models.Model):
 
     _inherit = 'stock.move'
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         if 'force_refurbish_location_dest_id' in self.env.context:
-            vals['location_dest_id'] = self.env.context[
-                'force_refurbish_location_dest_id']
-        return super().create(vals)
+            for vals in vals_list:
+                vals['location_dest_id'] = self.env.context[
+                    'force_refurbish_location_dest_id']
+        return super().create(vals_list)
