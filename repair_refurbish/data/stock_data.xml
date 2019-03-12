@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_location_refurbish" model="stock.location">
+            <field name="name">Refurbish</field>
+            <field name="location_id"
+                   ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">production</field>
+            <field name="company_id"></field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+
+        <record forcecreate="True" id="property_stock_refurbish"
+                model="ir.property">
+            <field name="name">property_stock_refurbish</field>
+            <field name="fields_id"
+                   search="[('model','=','product.template'),('name','=','property_stock_refurbish')]"/>
+            <field eval="'stock.location,'+str(stock_location_refurbish)"
+                   name="value"/>
+        </record>
+
+    </data>
+</odoo>
