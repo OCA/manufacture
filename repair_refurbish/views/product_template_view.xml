@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <group name="inventory" position="after">
+                <group name="refurbish" string="Refurbish" attrs="{'invisible':[('product_variant_count', '&gt;', 1)]}">
+                    <field name="refurbish_product_id"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_template_property_form" model="ir.ui.view">
+        <field name="name">product.template.stock.property.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+
+            <field name="property_stock_production"
+                   position="after">
+                <field name="property_stock_refurbish"
+                       domain="[('usage','=','production')]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
