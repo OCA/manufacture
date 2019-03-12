@@ -8,15 +8,15 @@ class TestMrpMtoWithStock(TransactionCase):
 
     def setUp(self, *args, **kwargs):
         super(TestMrpMtoWithStock, self).setUp(*args, **kwargs)
-        self.repair_obj = self.env['mrp.repair']
-        self.repair_line_obj = self.env['mrp.repair.line']
+        self.repair_obj = self.env['repair.order']
+        self.repair_line_obj = self.env['repair.line']
         self.product_obj = self.env['product.product']
         self.move_obj = self.env['stock.move']
 
         self.stock_location_stock = self.env.ref('stock.stock_location_stock')
         self.customer_location = self.env.ref('stock.stock_location_customers')
         self.refurbish_loc = self.env.ref(
-            'mrp_repair_refurbish.stock_location_refurbish')
+            'repair_refurbish.stock_location_refurbish')
 
         self.refurbish_product = self.product_obj.create({
             'name': 'Refurbished Awesome Screen',

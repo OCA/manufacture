@@ -4,10 +4,12 @@
 from odoo import api, fields, models
 
 
-class MrpRepair(models.Model):
-    _inherit = 'mrp.repair'
+class RepairOrder(models.Model):
+    _inherit = 'repair.order'
 
     to_refurbish = fields.Boolean()
+    location_dest_id = fields.Many2one(
+        string='Delivery Location', comodel_name='stock.location')
     refurbish_location_dest_id = fields.Many2one(
         string='Refurbished Delivery Location', comodel_name='stock.location')
     refurbish_product_id = fields.Many2one(
@@ -19,7 +21,7 @@ class MrpRepair(models.Model):
 
     @api.onchange('product_id')
     def onchange_product_id(self):
-        res = super(MrpRepair, self).onchange_product_id()
+        res = super().onchange_product_id()
         self.to_refurbish = True if \
             self.product_id.refurbish_product_id else False
         return res
@@ -52,7 +54,9 @@ class MrpRepair(models.Model):
 
     @api.multi
     def action_repair_done(self):
-        res = super(MrpRepair, self).action_repair_done()
+        res = super(RepairOrder, self.with_context(
+            force_refurbish_location_dest_id=self.location_dest_id.id
+        )).action_repair_done()
         for repair in self:
             if repair.to_refurbish:
                 move = self.env['stock.move'].create(
@@ -64,7 +68,7 @@ class MrpRepair(models.Model):
 
 
 class RepairLine(models.Model):
-    _inherit = 'mrp.repair.line'
+    _inherit = 'repair.line'
 
     @api.onchange('type', 'repair_id')
     def onchange_operation_type(self):
