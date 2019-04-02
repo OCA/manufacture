@@ -1,6 +1,7 @@
-# © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
+# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
+# - Lois Rilo <lois.rilo@eficent.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, exceptions, _
@@ -507,64 +508,48 @@ class MultiLevelMrp(models.TransientModel):
         last_date = None
         last_qty = 0.00
         onhand = product_mrp_area.qty_available
-        move_ids = []
-        for move in product_mrp_area.mrp_move_ids:
-            move_ids.append(move.id)
-        for move_id in move_ids:
-            move_rec = self.env['mrp.move'].search(
-                [('id', '=', move_id)])
-            for move in move_rec:
-                if move.mrp_action == 'none':
-                    if last_date is not None:
-                        if datetime.date(
-                                datetime.strptime(
-                                    move.mrp_date, '%Y-%m-%d')) \
-                                > last_date+timedelta(
-                                    days=product_mrp_area.mrp_nbr_days):
-                            if (onhand + last_qty + move.mrp_qty) \
-                                    < product_mrp_area.mrp_minimum_stock \
-                                    or (onhand + last_qty) \
-                                    < product_mrp_area.mrp_minimum_stock:
-                                name = 'Grouped Demand for %d Days' % \
-                                    product_mrp_area.mrp_nbr_days
-                                qtytoorder = \
-                                    product_mrp_area.mrp_minimum_stock - \
-                                    product_mrp_area - last_qty
-                                cm = self.create_move(
-                                    product_mrp_area_id=product_mrp_area,
-                                    mrp_date=last_date,
-                                    mrp_qty=qtytoorder,
-                                    name=name)
-                                qty_ordered = cm['qty_ordered']
-                                onhand = onhand + last_qty + qty_ordered
-                                last_date = None
-                                last_qty = 0.00
-                                nbr_create += 1
-                    if (onhand + last_qty + move.mrp_qty) < \
-                            product_mrp_area.mrp_minimum_stock or \
-                            (onhand + last_qty) < \
-                            product_mrp_area.mrp_minimum_stock:
-                        if last_date is None:
-                            last_date = datetime.date(
-                                datetime.strptime(move.mrp_date,
-                                                  '%Y-%m-%d'))
-                            last_qty = move.mrp_qty
-                        else:
-                            last_qty = last_qty + move.mrp_qty
-                    else:
-                        last_date = datetime.date(
-                            datetime.strptime(move.mrp_date,
-                                              '%Y-%m-%d'))
-                        onhand = onhand + move.mrp_qty
+        grouping_delta = product_mrp_area.mrp_nbr_days
+        for move in product_mrp_area.mrp_move_ids.filtered(
+                lambda m: m.mrp_action == 'none'):
+            if last_date and (
+                    fields.Date.from_string(move.mrp_date)
+                    >= last_date + timedelta(days=grouping_delta)) and (
+                        (onhand + last_qty + move.mrp_qty)
+                        < product_mrp_area.mrp_minimum_stock
+                        or (onhand + last_qty)
+                        < product_mrp_area.mrp_minimum_stock):
+                name = 'Grouped Demand for %d Days' % grouping_delta
+                qtytoorder = product_mrp_area.mrp_minimum_stock - last_qty
+                cm = self.create_move(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=last_date,
+                    mrp_qty=qtytoorder,
+                    name=name)
+                qty_ordered = cm.get('qty_ordered', 0.0)
+                onhand = onhand + last_qty + qty_ordered
+                last_date = None
+                last_qty = 0.00
+                nbr_create += 1
+            if (onhand + last_qty + move.mrp_qty) < \
+                    product_mrp_area.mrp_minimum_stock or \
+                    (onhand + last_qty) < \
+                    product_mrp_area.mrp_minimum_stock:
+                if not last_date:
+                    last_date = fields.Date.from_string(move.mrp_date)
+                    last_qty = move.mrp_qty
+                else:
+                    last_qty += move.mrp_qty
+            else:
+                last_date = fields.Date.from_string(move.mrp_date)
+                onhand += move.mrp_qty
 
-        if last_date is not None and last_qty != 0.00:
-            name = 'Grouped Demand for %d Days' % \
-                   (product_mrp_area.mrp_nbr_days, )
+        if last_date and last_qty != 0.00:
+            name = 'Grouped Demand for %d Days' % grouping_delta
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
             cm = self.create_move(
                 product_mrp_area_id=product_mrp_area, mrp_date=last_date,
                 mrp_qty=qtytoorder, name=name)
-            qty_ordered = cm['qty_ordered']
+            qty_ordered = cm.get('qty_ordered', 0.0)
             onhand += qty_ordered
             nbr_create += 1
         return nbr_create
@@ -605,7 +590,6 @@ class MultiLevelMrp(models.TransientModel):
                                 else:
                                     onhand += move.mrp_qty
                     else:
-                        # TODO: review this
                         nbr_create = self._init_mrp_move_grouped_demand(
                             nbr_create, product_mrp_area)
 
