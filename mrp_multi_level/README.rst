@@ -78,14 +78,15 @@ To launch replenishment orders (moves, purchases, production orders...):
    hand side gears in any record.
 #. On the wizard, check everything is ok and click *Execute*.
 
-Known issues / Roadmap
-======================
-
-* The functionality related to field *Nbr. Days* in products is not
-  functional for the time being. Please, stay tuned to future updates.
-
 Changelog
 =========
+
+11.0.2.1.0 (2019-04-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Implement *Nbr. Days* functionality to be able to group demand when
+  generating supply proposals.
+  (`#345 <https://github.com/OCA/manufacture/pull/345>`_):
 
 11.0.2.0.0 (2018-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
