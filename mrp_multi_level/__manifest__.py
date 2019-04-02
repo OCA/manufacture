@@ -1,9 +1,9 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     'name': 'MRP Multi Level',
-    'version': '11.0.2.0.0',
+    'version': '11.0.2.1.0',
     'development_status': 'Beta',
     'license': 'AGPL-3',
     'author': 'Ucamco, '
