@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -17,6 +17,8 @@ class TestMrpMultiLevel(SavepointCase):
         cls.mo_obj = cls.env['mrp.production']
         cls.po_obj = cls.env['purchase.order']
         cls.product_obj = cls.env['product.product']
+        cls.loc_obj = cls.env['stock.location']
+        cls.mrp_area_obj = cls.env['mrp.area']
         cls.product_mrp_area_obj = cls.env['product.mrp.area']
         cls.partner_obj = cls.env['res.partner']
         cls.stock_picking_obj = cls.env['stock.picking']
@@ -45,6 +47,18 @@ class TestMrpMultiLevel(SavepointCase):
         # Partner:
         vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
 
+        # Create secondary location and MRP Area:
+        cls.sec_loc = cls.loc_obj.create({
+            'name': 'Test location',
+            'usage': 'internal',
+            'location_id': cls.wh.view_location_id.id,
+        })
+        cls.secondary_area = cls.mrp_area_obj.create({
+            'name': 'Test',
+            'warehouse_id': cls.wh.id,
+            'location_id': cls.sec_loc.id,
+        })
+
         # Create products:
         route_buy = cls.env.ref('purchase.route_warehouse0_buy').id
         cls.prod_test = cls.product_obj.create({
@@ -58,6 +72,12 @@ class TestMrpMultiLevel(SavepointCase):
         cls.product_mrp_area_obj.create({
             'product_id': cls.prod_test.id,
             'mrp_area_id': cls.mrp_area.id,
+        })
+        # Parameters in secondary area with nbr_days set.
+        cls.product_mrp_area_obj.create({
+            'product_id': cls.prod_test.id,
+            'mrp_area_id': cls.secondary_area.id,
+            'mrp_nbr_days': 7,
         })
         cls.prod_min = cls.product_obj.create({
             'name': 'Product with minimum order qty',
@@ -239,6 +259,8 @@ class TestMrpMultiLevel(SavepointCase):
             qty += 70.0
             cls._create_demand_estimate(
                 cls.prod_test, cls.stock_location, dr, qty)
+            cls._create_demand_estimate(
+                cls.prod_test, cls.sec_loc, dr, qty)
 
         cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
 
@@ -425,11 +447,13 @@ class TestMrpMultiLevel(SavepointCase):
 
     def test_06_demand_estimates(self):
         """Tests demand estimates integration."""
-        estimates = self.estimate_obj.search(
-            [('product_id', '=', self.prod_test.id)])
+        estimates = self.estimate_obj.search([
+            ('product_id', '=', self.prod_test.id),
+            ('location_id', '=', self.stock_location.id)])
         self.assertEqual(len(estimates), 3)
         moves = self.mrp_move_obj.search([
             ('product_id', '=', self.prod_test.id),
+            ('mrp_area_id', '=', self.mrp_area.id),
         ])
         # 3 weeks - 3 days in the past = 18 days of valid estimates:
         moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
@@ -440,6 +464,9 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertIn(-50.0, quantities)  # 350 a week => 50.0 dayly:
         actions = moves.filtered(lambda m: m.mrp_action == 'po')
         self.assertEqual(len(actions), 18)
+        inventories = self.mrp_inventory_obj.search([
+            ('mrp_area_id', '=', self.secondary_area.id)])
+        self.assertEqual(len(inventories), 18)
 
     def test_07_procure_mo(self):
         """Test procurement wizard with MOs."""
@@ -482,6 +509,30 @@ class TestMrpMultiLevel(SavepointCase):
         mrp_inv_multiple = self.mrp_inventory_obj.search([
             ('product_mrp_area_id.product_id', '=', self.prod_multiple.id)])
         self.assertEqual(mrp_inv_multiple.to_procure, 125)
+
+    def test_09_group_demand(self):
+        """Test demand grouping functionality, `nbr_days`."""
+        estimates = self.estimate_obj.search([
+            ('product_id', '=', self.prod_test.id),
+            ('location_id', '=', self.sec_loc.id)])
+        self.assertEqual(len(estimates), 3)
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.prod_test.id),
+            ('mrp_area_id', '=', self.secondary_area.id),
+        ])
+        # 3 weeks - 3 days in the past = 18 days of valid estimates:
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
+        self.assertEqual(len(moves_from_estimates), 18)
+        # 18 days of demand / 7 nbr_days = 2.57 => 3 supply moves expected.
+        supply_moves = moves.filtered(lambda m: m.mrp_type == 's')
+        self.assertEqual(len(supply_moves), 3)
+        quantities = supply_moves.mapped('mrp_qty')
+        week_1_expected = sum(moves_from_estimates[0:7].mapped('mrp_qty'))
+        self.assertIn(abs(week_1_expected), quantities)
+        week_2_expected = sum(moves_from_estimates[7:14].mapped('mrp_qty'))
+        self.assertIn(abs(week_2_expected), quantities)
+        week_3_expected = sum(moves_from_estimates[14:].mapped('mrp_qty'))
+        self.assertIn(abs(week_3_expected), quantities)
 
     # TODO: test procure wizard: pos, multiple...
     # TODO: test multiple destination IDS:...
