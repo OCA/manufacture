@@ -430,7 +430,7 @@ msgid "Show all records which has next action date is before today"
 msgstr ""
 
 #. module: quality_control_issue
-#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6116
+#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_6120
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_stage_id
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
