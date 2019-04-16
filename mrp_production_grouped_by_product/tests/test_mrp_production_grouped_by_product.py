@@ -1,5 +1,6 @@
 # Copyright 2018 Tecnativa - David Vidal
 # Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
@@ -17,7 +18,11 @@ class TestProductionGroupedByProduct(common.SavepointCase):
         cls.MrpProduction = cls.env['mrp.production']
         cls.env.user.company_id.manufacturing_lead = 0
         cls.env.user.tz = False  # Make sure there's no timezone in user
-        cls.picking_type = cls.env.ref('mrp.picking_type_manufacturing')
+
+        cls.picking_type = cls.env['stock.picking.type'].search([
+            ('code', '=', 'mrp_operation'),
+            ('sequence_id.company_id', '=', cls.env.user.company_id.id)
+        ], limit=1)
         cls.product1 = cls.env['product.product'].create({
             'name': 'TEST Muffin',
             'route_ids': [(6, 0, [
@@ -95,11 +100,13 @@ class TestProductionGroupedByProduct(common.SavepointCase):
         self.assertEqual(len(mo), 2)
 
     def test_check_mo_grouping_max_hour(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.picking_type.mo_grouping_max_hour = 25
-        with self.assertRaises(exceptions.ValidationError):
-            self.picking_type.mo_grouping_max_hour = -1
+        if self.picking_type:
+            with self.assertRaises(exceptions.ValidationError):
+                self.picking_type.mo_grouping_max_hour = 25
+            with self.assertRaises(exceptions.ValidationError):
+                self.picking_type.mo_grouping_max_hour = -1
 
     def test_check_mo_grouping_interval(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.picking_type.mo_grouping_interval = -1
+        if self.picking_type:
+            with self.assertRaises(exceptions.ValidationError):
+                self.picking_type.mo_grouping_interval = -1
