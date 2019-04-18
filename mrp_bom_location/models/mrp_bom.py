@@ -24,6 +24,5 @@ class MrpBomLine(models.Model):
 
     location_id = fields.Many2one(
         related='bom_id.location_id',
-        readonly=True,
         store=True,
     )
