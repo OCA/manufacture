@@ -131,7 +131,9 @@
         <field name="arch" type="xml">
             <search string="Search Manufacturing Request">
                 <field name="name" string="Manufacturing Request"/>
+                <field name="product_id"/>
                 <field name="mrp_production_ids" string="Manufacturing Orders"/>
+                <field name="bom_id"/>
                 <field name="requested_by"/>
                 <field name="assigned_to" />
                 <field name="origin"/>
