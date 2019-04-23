@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_component_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_component_menu
+#: model:ir.actions.act_window,name:mrp_bom_component_menu.mrp_bom_form_action2
+#: model:ir.ui.menu,name:mrp_bom_component_menu.menu_mrp_bom_form_action2
+msgid "Bill of Material Components"
+msgstr ""
+
+#. module: mrp_bom_component_menu
+#: model:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
+msgid "Bills of materials components are components and by-products\n"
+"            used to create master bills of materials.  Use this menu to\n"
+"            search in which BoM a specific component is used."
+msgstr ""
+
+#. module: mrp_bom_component_menu
+#: model:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
+msgid "Click to add a component to a bill of material."
+msgstr ""
+
