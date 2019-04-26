@@ -354,7 +354,7 @@ class MrpProduction(models.Model):
                 'product_id': service.id,
                 'product_uom': service_tmpl.uom_po_id.id,
                 'price_unit': (service_supplier_infos[0].price
-                               if service_supplier_infos[0].price
+                               if service_supplier_infos
                                else 0.0),
                 'company_id': self.env.user.company_id.id,
                 'date_planned': str(datetime.now())
