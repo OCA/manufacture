@@ -17,3 +17,4 @@ class MrpProduction(models.Model):
         mr_proc = self.mrp_production_request_id.procurement_id
         if mr_proc and mr_proc.move_dest_id:
             move.write({"move_dest_id": mr_proc.move_dest_id.id})
+        return move
