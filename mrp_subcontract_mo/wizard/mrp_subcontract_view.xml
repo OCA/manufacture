@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="view_mrp_subcontract" model="ir.ui.view">
+        <field name="name">MRP Subcontract</field>
+        <field name="model">mrp.subcontract</field>
+        <field name="arch" type="xml">
+            <form string="Subcontract">
+                <group>
+                    <field name="production_id" invisible="1"/>
+                    <!-- displays subcontractor selection widget (mandatory) -->
+                    <field name="subcontractor_id" context="{'default_is_company': True, 'default_supplier': True, 'default_subcontractor': True, 'default_customer': False}"/>
+                    <!-- displays service selection widget (optional) -->
+                    <field name="service_id" context="{'default_type': 'service', 'default_type_subcontracting': True}"/>
+                </group>
+                <footer>
+                    <!-- displays button to subcontract related manufacturing order -->
+                    <button name="do_subcontract" type="object" string="Subcontract" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to create wizard -->
+    <record id="act_mrp_subcontract" model="ir.actions.act_window">
+        <field name="name">Subcontract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.subcontract</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

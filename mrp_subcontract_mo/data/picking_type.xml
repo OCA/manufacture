@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_stock_sub_delivery" model="ir.sequence">
+            <field name="name">Subcontractor sequence out</field>
+            <field name="prefix">SD</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_stock_sub_receipt" model="ir.sequence">
+            <field name="name">Subcontractor sequence in</field>
+            <field name="prefix">SR</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="sequence_stock_sub_dropship" model="ir.sequence">
+            <field name="name">Subcontractor sequence dropship</field>
+            <field name="prefix">SDS</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+
+    <data noupdate="0">
+        <record id="picking_type_delivery_subcontracting" model="stock.picking.type">
+            <field name="name">Delivery to Subcontractors</field>
+            <field name="sequence_id" ref="sequence_stock_sub_delivery"/>
+            <field name="default_location_src_id" ref="stock.stock_location_stock"/>
+            <field name="default_location_dest_id" ref="stock_location_subcontractor"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="code">outgoing</field>
+        </record>
+
+        <record id="picking_type_receipt_subcontracting" model="stock.picking.type">
+            <field name="name">Receipts from Subcontractors</field>
+            <field name="sequence_id" ref="sequence_stock_sub_receipt"/>
+            <field name="default_location_dest_id" ref="stock.stock_location_stock"/>
+            <field name="default_location_src_id" ref="stock_location_subcontractor"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="code">incoming</field>
+        </record>
+
+        <record id="picking_type_dropship_subcontracting" model="stock.picking.type">
+            <field name="name">Dropship to Subcontractors</field>
+            <field name="sequence_id" ref="sequence_stock_sub_dropship"/>
+            <field name="default_location_dest_id" ref="stock_location_subcontractor"/>
+            <field name="default_location_src_id" ref="stock_location_subcontractor"/>
+            <field name="warehouse_id" eval="False"/>
+            <field name="code">incoming</field>
+        </record>
+    </data>
+        
+</odoo>

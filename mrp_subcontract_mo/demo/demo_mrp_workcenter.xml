@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data noupdate="1">
+        <record id="my_workcenter" model="mrp.workcenter">
+            <field name="name">My Workcenter</field>
+        </record>
+    </data>
+</odoo>

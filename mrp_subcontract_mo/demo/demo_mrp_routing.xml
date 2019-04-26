@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Semi-Finished product routing with 1 step -->
+        <record id="routing_sfp" model="mrp.routing">
+            <field name="name">Routing 1 step for semi-finished product</field>
+        </record>
+        <record id="routing_sfp_sanding" model="mrp.routing.workcenter">
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_sfp"/>
+            <field name="workcenter_id" ref="mrp_subcontract_mo.my_workcenter"/>
+            <field name="name">Sanding</field>
+            <field name="sequence">90</field>
+        </record>
+
+        <!-- Finished product routing with 1 step -->
+        <record id="routing_fp" model="mrp.routing">
+            <field name="name">Routing 1 step for finished product</field>
+        </record>
+        <record id="routing_fp_painting" model="mrp.routing.workcenter">
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_fp"/>
+            <field name="workcenter_id" ref="mrp_subcontract_mo.my_workcenter"/>
+            <field name="name">Painting</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- Finished product routing with 2 steps -->
+        <record id="routing_fp_2" model="mrp.routing">
+            <field name="name">Routing 2 steps for finished product</field>
+        </record>
+        <record id="routing_fp_2_painting" model="mrp.routing.workcenter">
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_fp_2"/>
+            <field name="workcenter_id" ref="mrp_subcontract_mo.my_workcenter"/>
+            <field name="name">Painting</field>
+            <field name="sequence">100</field>
+        </record>
+        <record id="routing_fp_2_assembly" model="mrp.routing.workcenter">
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_fp_2"/>
+            <field name="workcenter_id" ref="mrp_subcontract_mo.my_workcenter"/>
+            <field name="name">Assembly</field>
+            <field name="sequence">110</field>
+        </record>
+    </data>
+</odoo>

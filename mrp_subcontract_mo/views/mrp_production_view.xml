@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<https://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data>
+        <record id="subcontracting_view_mrp_production_form" model="ir.ui.view">
+            <field name="name">subcontracting.view.mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <!-- displays a button to subcontract order if MO in confirmed state and not already subcontracted -->
+                <xpath expr="//header/button[@name='button_plan']" position="after">
+                    <button type="object" string="Subcontract Order" name="subcontract_mo" attrs="{'invisible': ['|', '|', ('state', 'not in', ('confirmed')),('manufacturing_type', 'in', ['external']), ('id', '=', False)]}" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//button[@name='action_view_mo_delivery']" position="replace">
+                    <!-- replaces picking buttons to display number of completed pickings on the total of pickings -->
+                    <button type="object" name="action_view_mo_delivery" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value"><field name="delivery_done_count" widget="statinfo" nolabel="1"/> / <field name="delivery_count" widget="statinfo" nolabel="1"/></span>
+                            <span class="o_stat_text">Pickings</span>
+                        </div>
+                    </button>
+                    <!-- displays a button to list RFQ/PO related to this MO -->
+                    <button type="object" name="action_view_mo_purchase" class="oe_stat_button" icon="fa-shopping-cart" attrs="{'invisible': [('purchase_count', '=', 0)]}" groups="base.group_user">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value"><field name="purchase_done_count" widget="statinfo" nolabel="1"/> / <field name="purchase_count" widget="statinfo" nolabel="1"/></span>
+                            <span class="o_stat_text">Purchases</span>
+                        </div>
+                    </button>
+                </xpath>
+                <!-- displays subcontracting fields if MO already created, subcontractor and service if MO is subcontracted -->
+                <xpath expr="//field[@name='date_planned_start']" position="before">
+                    <field name="manufacturing_type" attrs="{'invisible': [('id', '=', False)]}"/>
+                    <field name="subcontractor_id" attrs="{'invisible': ['|', ('id', '=', False), ('manufacturing_type','not in', ['external'])]}"/>
+                    <field name="service_id" attrs="{'invisible': ['|', ('id', '=', False), ('manufacturing_type','not in', ['external'])]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

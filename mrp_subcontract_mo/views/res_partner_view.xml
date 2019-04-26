@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data>
+        <record id="subcontracting_view_partner_form" model="ir.ui.view">
+            <field name="name">subcontracting.view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- displays a tick whether the supplier is a subcontractor -->
+                <xpath expr="//field[@name='property_supplier_payment_term_id']" position="before">
+                    <field name="subcontractor" attrs="{'invisible': [('supplier', '!=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

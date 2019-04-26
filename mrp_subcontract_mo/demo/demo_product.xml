@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- 3 components and supplier info associated -->
+        <record id="component_1" model="product.product">
+            <field name="name">Component 1</field>
+            <field name="default_code">cp1</field>
+            <field name="list_price">0.0</field>
+            <field name="type">product</field>
+            <field eval="0" name="sale_ok"/>
+            <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('purchase_stock.route_warehouse0_buy')])]"></field>
+            <field name="tracking">none</field>
+        </record>
+        <record id="component_1_supplierinfo_vendor_a" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.component_1_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.vendor_a"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">100</field>
+        </record>
+        <record id="component_2" model="product.product">
+            <field name="name">Component 2</field>
+            <field name="default_code">cp2</field>
+            <field name="list_price">0.0</field>
+            <field name="type">product</field>
+            <field eval="0" name="sale_ok"/>
+            <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('purchase_stock.route_warehouse0_buy')])]"></field>
+            <field name="tracking">none</field>
+        </record>
+        <record id="component_2_supplierinfo_vendor_a" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.component_2_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.vendor_a"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">200</field>
+        </record>
+        <record id="component_3" model="product.product">
+            <field name="name">Component 3</field>
+            <field name="default_code">cp3</field>
+            <field name="list_price">0.0</field>
+            <field name="type">product</field>
+            <field eval="0" name="sale_ok"/>
+            <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('purchase_stock.route_warehouse0_buy')])]"></field>
+            <field name="tracking">none</field>
+        </record>
+        <record id="component_3_supplierinfo_vendor_a" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.component_3_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.vendor_a"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">300</field>
+        </record>
+
+        <!-- Semi-Finished product -->
+        <record id="semi_finished" model="product.product">
+            <field name="name">Semi-Finished Product</field>
+            <field name="default_code">sfp</field>
+            <field name="type">product</field>
+            <field eval="0" name="sale_ok"/>
+            <field eval="0" name="purchase_ok"/>
+            <field name="list_price">0.0</field>
+            <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('mrp.route_warehouse0_manufacture')])]"></field>
+            <field name="tracking">lot</field>
+        </record>
+
+        <!-- Finished product -->
+        <record id="finished" model="product.product">
+            <field name="name">Finished Product</field>
+            <field name="default_code">fp</field>
+            <field name="type">product</field>
+            <field name="sale_ok">1</field>
+            <field eval="0" name="purchase_ok"/>
+            <field name="list_price">20000.0</field>
+            <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('mrp.route_warehouse0_manufacture')])]"></field>
+            <field name="tracking">lot</field>
+        </record>
+
+        <!-- Painting Service -->
+        <record id="painting" model="product.product">
+            <field name="name">PAINTING</field>
+            <field name="default_code">PAINTING1</field>
+            <field name="type">service</field>
+            <field name="type_subcontracting">1</field>
+            <field eval="0" name="sale_ok"/>
+            <field name="list_price">0.0</field>
+        </record>
+        <record id="painting_supplierinfo_subcontractor_1" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.painting_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.subcontractor_1"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">500</field>
+        </record>
+        <record id="painting_supplierinfo_subcontractor_2" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.painting_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.subcontractor_2"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">800</field>
+        </record>
+
+
+        <!-- Assembly Service -->
+        <record id="assembly" model="product.product">
+            <field name="name">ASSEMBLY</field>
+            <field name="default_code">ASSEMBLY1</field>
+            <field name="type">service</field>
+            <field name="type_subcontracting">1</field>
+            <field eval="0" name="sale_ok"/>
+            <field name="list_price">0.0</field>
+        </record>
+        <record id="assembly_supplierinfo_subcontractor_1" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.assembly_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.subcontractor_1"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">5000</field>
+        </record>
+        <record id="assembly_supplierinfo_subcontractor_2" model="product.supplierinfo">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.assembly_product_template"/>
+            <field name="name" ref="mrp_subcontract_mo.subcontractor_2"/>
+            <field name="delay">0</field>
+            <field name="min_qty">0</field>
+            <field name="price">8000</field>
+        </record>
+    </data>
+</odoo>

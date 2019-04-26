@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="stock_location_subcontractor" model="stock.location">
+        <field name="name">Subcontractors</field>
+        <field name="location_id" ref="stock.stock_location_customers"/>
+        <field name="usage">internal</field>
+        <field name="company_id"></field>
+    </record>
+</odoo>

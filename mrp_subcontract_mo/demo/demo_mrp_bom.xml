@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Semi-Finished product BOM no route-->
+        <record id="bom_semi_finished_no_route" model="mrp.bom">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.semi_finished_product_template"/>
+            <field name="sequence">1</field>
+            <field name="code">no route</field>
+        </record>
+        <record id="bom_semi_finished_component_1_no_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_1"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_semi_finished_no_route"/>
+        </record>
+        <record id="bom_semi_finished_component_2_no_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_2"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_semi_finished_no_route"/>
+        </record>
+
+
+        <!-- Semi-Finished product BOM with Route -->
+        <record id="bom_semi_finished_route" model="mrp.bom">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.semi_finished_product_template"/>
+            <field name="sequence">10</field>
+            <field name="code">with route</field>
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_sfp"/>
+        </record>
+        <record id="bom_semi_finished_component_1_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_1"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_semi_finished_route"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_sfp_sanding"/>
+        </record>
+        <record id="bom_semi_finished_component_2_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_2"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_semi_finished_route"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_sfp_sanding"/>
+        </record>
+
+        <!-- Finished product BOM no route -->
+        <record id="bom_finished_no_route" model="mrp.bom">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.finished_product_template"/>
+            <field name="sequence">1</field>
+            <field name="code">no route</field>
+        </record>
+        <record id="bom_finished_component_1_no_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.semi_finished"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_no_route"/>
+        </record>
+        <record id="bom_finished_component_2_no_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_3"/>
+            <field name="product_qty">2</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_no_route"/>
+        </record>
+
+        <!-- Finished product BOM with route 1 step -->
+        <record id="bom_finished_route" model="mrp.bom">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.finished_product_template"/>
+            <field name="sequence">1</field>
+            <field name="code">with route 1 step</field>
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_fp"/>
+        </record>
+        <record id="bom_finished_component_1_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.semi_finished"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_route"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_fp_painting"/>
+        </record>
+        <record id="bom_finished_component_2_route" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_3"/>
+            <field name="product_qty">2</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_route"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_fp_painting"/>
+        </record>
+
+        <!-- Finished product BOM with route 2 steps -->
+        <record id="bom_finished_route_2" model="mrp.bom">
+            <field name="product_tmpl_id" ref="mrp_subcontract_mo.finished_product_template"/>
+            <field name="sequence">1</field>
+            <field name="code">with route 2 steps</field>
+            <field name="routing_id" ref="mrp_subcontract_mo.routing_fp_2"/>
+        </record>
+        <record id="bom_finished_component_1_route_2" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.semi_finished"/>
+            <field name="product_qty">1</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_route_2"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_fp_2_assembly"/>
+        </record>
+        <record id="bom_finished_component_2_route_2" model="mrp.bom.line">
+            <field name="product_id" ref="mrp_subcontract_mo.component_3"/>
+            <field name="product_qty">2</field>
+            <field name="bom_id" ref="mrp_subcontract_mo.bom_finished_route_2"/>
+            <field name="operation_id" ref="mrp_subcontract_mo.routing_fp_2_assembly"/>
+        </record>
+    </data>
+</odoo>

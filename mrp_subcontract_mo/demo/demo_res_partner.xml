@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Vendor A for purchase of components -->
+        <record id="vendor_a" model="res.partner">
+            <field name="name">Vendor A</field>
+            <field name="supplier">1</field>
+            <field eval="0" name="customer"/>
+            <field name="is_company">1</field>
+            <field name="country_id" ref="base.it"/>
+        </record>
+
+        <!-- 2 subcontractors for providing subcontracted services -->
+        <record id="subcontractor_1" model="res.partner">
+            <field name="name">Subcontractor 1</field>
+            <field name="supplier">1</field>
+            <field name="subcontractor">1</field>
+            <field eval="0" name="customer"/>
+            <field name="is_company">1</field>
+            <field name="country_id" ref="base.it"/>
+        </record>
+        <record id="subcontractor_2" model="res.partner">
+            <field name="name">Subcontractor 2</field>
+            <field name="supplier">1</field>
+            <field name="subcontractor">1</field>
+            <field eval="0" name="customer"/>
+            <field name="is_company">1</field>
+            <field name="country_id" ref="base.it"/>
+        </record>
+
+        <!-- Force Company country to Italy -->
+        <record id="base.main_company" model="res.company">
+            <field name="country_id" ref="base.it"/>
+        </record>
+    </data>
+</odoo>

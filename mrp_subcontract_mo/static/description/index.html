@@ -1,0 +1,71 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">MRP Subcontracting</h2>
+            <p>This module allows to subcontract Manufacturing Orders
+
+When a manufacturing order is subcontracted, a Subcontractor is selected (from Suppliers) and optionnally a service to be subcontracted for the manufacturing (e.g. Painting or Assembly).
+Raw materials from BOM and finished materials pickings and stock moves are automatically created, as well as purchase order in case a service to be subcontracted has been selected.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Configuration</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">This modules requires some configuration as follows:
+                <ul>
+                    <li>On partner form, when creating / selecting a supplier, a new field allows to define whether this supplier is also a subcontractor.</li>
+                    <li>On product form, when creating / selecting a service, a new fields allows to define whether this service can be subcontracted.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Usage</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">After creation of a Manufacturing Order (either manually or from Sale Order), a new button is displayed in the Manufacturing Order form <strong>Subcontract Order</strong><br>
+            When clicking on this button a wizards appears allowing you to select :
+                <ul>
+                    <li><strong>Subcontractor</strong> to whom this Manufacturing Order would be subcontracted</li>
+                    <li>Associated <strong>Service</strong> that could be purchased from this Subcontractor to Manufacture the products</li>
+                </ul>
+            </p>
+            <p class="oe_mt32">The existing Pickings button is updated to display all pickings related to this Manufacturing Order (including Purchase pickings for raw materials if applicable) and the number of completed ones.<br>
+            An additional Purchases button is added to display all RFQ / Purchase Orders related to this Manufacturing Order (including Purchase Orders for raw materials if applicable) and the number of confirmed ones.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Credits</h2>
+        </div>
+        <div class="oe_span12">
+            <h3>Contributors</h3>
+            <ul>
+                <li>Remi - Le Filament &lt;<a href="mailto:30716308+remi-filament@users.noreply.github.com">30716308+remi-filament@users.noreply.github.com</a>&gt;</li>
+                <li>Marc - Scopea &lt;<a href="mailto:marc.aubry@scopea.fr">marc.aubry@scopea.fr</a>&gt;</li>
+            </ul>
+        </div>
+        <div class="oe_span12">
+            <h3>Maintainer</h3>
+            <p>
+                This module is maintained by the OCA.<br/>
+                OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.<br/>
+                To contribute to this module, please visit <a href="http://odoo-community.org">http://odoo-community.org</a>.<br/>
+                <a href="http://odoo-community.org"><img class="oe_picture oe_centered" src="http://odoo-community.org/logo.png"></a>
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2019 Le Filament (<http://www.le-filament.com>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data>
+        <record id="subcontracting_view_product_supplierinfo_form" model="ir.ui.view">
+            <field name="name">subcontracting.view.product.supplierinfo.form</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <!-- loads boolean whether related product is subcontracted -->
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="type_subcontracting" invisible="1" />
+                </xpath>
+                <!-- replaces domain and context to limit to subcontractors in case related product is subcontracted -->
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" domain="[('subcontractor', '=', context.get('type_subcontracting'))]" context="{'default_customer': 0, 'search_default_supplier': 1, 'default_supplier': 1, 'default_subcontractor': context.get('type_subcontracting')}" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
