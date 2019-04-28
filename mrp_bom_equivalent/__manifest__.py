@@ -1,10 +1,11 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "MRP BoM Equivalences",
     "summary": "Specify non-equivalent products to a part on a BOM",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "category": "MRP",
