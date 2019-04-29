@@ -10,7 +10,8 @@ class ProductTemplate(models.Model):
     refurbish_product_id = fields.Many2one(
         comodel_name='product.product', string='Refurbished Product',
         compute='_compute_refurbish_product',
-        inverse='_set_refurbish_product', search='_search_refurbish_product',
+        inverse='_inverse_refurbish_product',
+        search='_search_refurbish_product',
         domain="[('type', '=', 'product')]")
 
     property_stock_refurbish = fields.Many2one(
@@ -31,7 +32,7 @@ class ProductTemplate(models.Model):
                 template.product_variant_ids.refurbish_product_id
 
     @api.multi
-    def _set_refurbish_product(self):
+    def _inverse_refurbish_product(self):
         for rec in self:
             if len(rec.product_variant_ids) == 1:
                 rec.product_variant_ids.refurbish_product_id = \
