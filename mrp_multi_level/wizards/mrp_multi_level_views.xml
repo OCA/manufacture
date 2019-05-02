@@ -6,6 +6,9 @@
         <field name="model">mrp.multi.level</field>
         <field name="arch" type="xml">
             <form string="Run MRP Multi Level">
+                <group>
+                    <field name="mrp_area_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
                 <footer>
                     <button name="run_mrp_multi_level" string="Run MRP" type="object"  class="oe_highlight"  />
                     or

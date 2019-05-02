@@ -81,6 +81,12 @@ To launch replenishment orders (moves, purchases, production orders...):
 Changelog
 =========
 
+11.0.2.2.0 (2019-05-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Able to run MRP only for selected areas.
+  (`#360 <https://github.com/OCA/manufacture/pull/360>`_):
+
 11.0.2.1.0 (2019-04-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
