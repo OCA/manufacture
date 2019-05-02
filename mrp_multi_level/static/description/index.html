@@ -386,40 +386,41 @@ and explodes this down to the lowest level.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#configuration" id="id10">Configuration</a><ul>
-<li><a class="reference internal" href="#mrp-areas" id="id11">MRP Areas</a></li>
-<li><a class="reference internal" href="#product-mrp-area-parameters" id="id12">Product MRP Area Parameters</a></li>
+<li><a class="reference internal" href="#configuration" id="id12">Configuration</a><ul>
+<li><a class="reference internal" href="#mrp-areas" id="id13">MRP Areas</a></li>
+<li><a class="reference internal" href="#product-mrp-area-parameters" id="id14">Product MRP Area Parameters</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#usage" id="id13">Usage</a></li>
-<li><a class="reference internal" href="#changelog" id="id14">Changelog</a><ul>
-<li><a class="reference internal" href="#id1" id="id15">11.0.2.1.0 (2019-04-02)</a></li>
-<li><a class="reference internal" href="#id3" id="id16">11.0.2.0.0 (2018-11-20)</a></li>
-<li><a class="reference internal" href="#id5" id="id17">11.0.1.1.0 (2018-08-30)</a></li>
-<li><a class="reference internal" href="#id7" id="id18">11.0.1.0.1 (2018-08-03)</a></li>
-<li><a class="reference internal" href="#id9" id="id19">11.0.1.0.0 (2018-07-09)</a></li>
+<li><a class="reference internal" href="#usage" id="id15">Usage</a></li>
+<li><a class="reference internal" href="#changelog" id="id16">Changelog</a><ul>
+<li><a class="reference internal" href="#id1" id="id17">11.0.2.2.0 (2019-05-02)</a></li>
+<li><a class="reference internal" href="#id3" id="id18">11.0.2.1.0 (2019-04-02)</a></li>
+<li><a class="reference internal" href="#id5" id="id19">11.0.2.0.0 (2018-11-20)</a></li>
+<li><a class="reference internal" href="#id7" id="id20">11.0.1.1.0 (2018-08-30)</a></li>
+<li><a class="reference internal" href="#id9" id="id21">11.0.1.0.1 (2018-08-03)</a></li>
+<li><a class="reference internal" href="#id11" id="id22">11.0.1.0.0 (2018-07-09)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="id20">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id21">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id22">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id23">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id24">Maintainers</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id23">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id24">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id25">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id26">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id27">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="configuration">
-<h2><a class="toc-backref" href="#id10">Configuration</a></h2>
+<h2><a class="toc-backref" href="#id12">Configuration</a></h2>
 <div class="section" id="mrp-areas">
-<h3><a class="toc-backref" href="#id11">MRP Areas</a></h3>
+<h3><a class="toc-backref" href="#id13">MRP Areas</a></h3>
 <ul class="simple">
 <li>Go to <em>Manufacturing &gt; Configuration &gt; MRP Areas</em> and define or edit
 any existing area. You can specify the working hours for every area.</li>
 </ul>
 </div>
 <div class="section" id="product-mrp-area-parameters">
-<h3><a class="toc-backref" href="#id12">Product MRP Area Parameters</a></h3>
+<h3><a class="toc-backref" href="#id14">Product MRP Area Parameters</a></h3>
 <ul class="simple">
 <li>Go to <em>Manufacturing &gt; Master Data &gt; Product MRP Area Parameters</em> and set
 the MRP parameters for a given product and area.</li>
@@ -427,7 +428,7 @@ the MRP parameters for a given product and area.</li>
 </div>
 </div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#id13">Usage</a></h2>
+<h2><a class="toc-backref" href="#id15">Usage</a></h2>
 <p>To manually run the MRP scheduler:</p>
 <ol class="arabic simple">
 <li>Go to <em>Manufacturing &gt; Operations &gt; Run MRP Multi Level</em>.</li>
@@ -443,17 +444,24 @@ hand side gears in any record.</li>
 </ol>
 </div>
 <div class="section" id="changelog">
-<h2><a class="toc-backref" href="#id14">Changelog</a></h2>
+<h2><a class="toc-backref" href="#id16">Changelog</a></h2>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id15">11.0.2.1.0 (2019-04-02)</a></h3>
+<h3><a class="toc-backref" href="#id17">11.0.2.2.0 (2019-05-02)</a></h3>
+<ul class="simple">
+<li>[IMP] Able to run MRP only for selected areas.
+(<a class="reference external" href="https://github.com/OCA/manufacture/pull/360">#360</a>):</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id18">11.0.2.1.0 (2019-04-02)</a></h3>
 <ul class="simple">
 <li>[IMP] Implement <em>Nbr. Days</em> functionality to be able to group demand when
 generating supply proposals.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/345">#345</a>):</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h3><a class="toc-backref" href="#id16">11.0.2.0.0 (2018-11-20)</a></h3>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id19">11.0.2.0.0 (2018-11-20)</a></h3>
 <ul class="simple">
 <li>[REW] Refactor MRP Area.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/322">#322</a>):<ul>
@@ -465,15 +473,15 @@ different areas.</li>
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h3><a class="toc-backref" href="#id17">11.0.1.1.0 (2018-08-30)</a></h3>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id20">11.0.1.1.0 (2018-08-30)</a></h3>
 <ul class="simple">
 <li>[FIX] Consider <em>Qty Multiple</em> on product to propose the quantity to procure.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/297">#297</a>)</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3><a class="toc-backref" href="#id18">11.0.1.0.1 (2018-08-03)</a></h3>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id21">11.0.1.0.1 (2018-08-03)</a></h3>
 <ul class="simple">
 <li>[FIX] User and system locales doesn’t break MRP calculation.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/290">#290</a>)</li>
@@ -482,15 +490,15 @@ as a related on MRP Areas.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/290">#290</a>)</li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h3><a class="toc-backref" href="#id19">11.0.1.0.0 (2018-07-09)</a></h3>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id22">11.0.1.0.0 (2018-07-09)</a></h3>
 <ul class="simple">
 <li>Start of the history.</li>
 </ul>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#id20">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#id23">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/manufacture/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -498,16 +506,16 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#id21">Credits</a></h2>
+<h2><a class="toc-backref" href="#id24">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#id22">Authors</a></h3>
+<h3><a class="toc-backref" href="#id25">Authors</a></h3>
 <ul class="simple">
 <li>Ucamco</li>
 <li>Eficent</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#id23">Contributors</a></h3>
+<h3><a class="toc-backref" href="#id26">Contributors</a></h3>
 <ul class="simple">
 <li>Wim Audenaert &lt;<a class="reference external" href="mailto:wim.audenaert&#64;ucamco.com">wim.audenaert&#64;ucamco.com</a>&gt;</li>
 <li>Jordi Ballester &lt;<a class="reference external" href="mailto:jordi.ballester&#64;eficent.com">jordi.ballester&#64;eficent.com</a>&gt;</li>
@@ -515,7 +523,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#id24">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#id27">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
