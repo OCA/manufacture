@@ -15,6 +15,12 @@ logger = logging.getLogger(__name__)
 class MultiLevelMrp(models.TransientModel):
     _name = 'mrp.multi.level'
 
+    mrp_area_ids = fields.Many2many(
+        comodel_name="mrp.area",
+        string="MRP Areas to run",
+        help="If empty, all areas will be computed.",
+    )
+
     # TODO: dates are not being correctly computed for supply...
 
     @api.model
@@ -269,31 +275,36 @@ class MultiLevelMrp(models.TransientModel):
                         mrpmove_id2 = self.env['mrp.move'].create(move_data)
                         mrpmove_id.mrp_move_down_ids = [(4, mrpmove_id2.id)]
         values['qty_ordered'] = qty_ordered
-        log_msg = '%s' % qty_ordered
-        logger.info(log_msg)
+        log_msg = '[%s] %s: qty_ordered = %s' % (
+            product_mrp_area_id.mrp_area_id.name,
+            product_mrp_area_id.product_id.default_code or
+            product_mrp_area_id.product_id.name,
+            qty_ordered,
+        )
+        logger.debug(log_msg)
         return values
 
     @api.model
-    def _mrp_cleanup(self):
-        # Some part of the code with the new API is replaced by
-        # sql statements due to performance issues when the auditlog is
-        # installed
-        logger.info('START MRP CLEANUP')
-        self.env['mrp.move'].search([]).unlink()
-        self.env['mrp.inventory'].search([]).unlink()
-        logger.info('END MRP CLEANUP')
+    def _mrp_cleanup(self, mrp_areas):
+        logger.info('Start MRP Cleanup')
+        domain = []
+        if mrp_areas:
+            domain += [('mrp_area_id', 'in', mrp_areas.ids)]
+        self.env['mrp.move'].search(domain).unlink()
+        self.env['mrp.inventory'].search(domain).unlink()
+        logger.info('End MRP Cleanup')
         return True
 
     @api.model
     def _low_level_code_calculation(self):
-        logger.info('START LOW LEVEL CODE CALCULATION')
+        logger.info('Start low level code calculation')
         counter = 999999
         llc = 0
         self.env['product.product'].search([]).write({'llc': llc})
         products = self.env['product.product'].search([('llc', '=', llc)])
         if products:
             counter = len(products)
-        log_msg = 'LOW LEVEL CODE 0 FINISHED - NBR PRODUCTS: %s' % counter
+        log_msg = 'Low level code 0 finished - Nbr. products: %s' % counter
         logger.info(log_msg)
 
         while counter:
@@ -308,33 +319,38 @@ class MultiLevelMrp(models.TransientModel):
             products.write({'llc': llc})
             products = self.env['product.product'].search([('llc', '=', llc)])
             counter = len(products)
-            log_msg = 'LOW LEVEL CODE %s FINISHED - NBR PRODUCTS: %s' % (
+            log_msg = 'Low level code %s finished - Nbr. products: %s' % (
                 llc, counter)
             logger.info(log_msg)
 
         mrp_lowest_llc = llc
-        logger.info('END LOW LEVEL CODE CALCULATION')
+        logger.info('End low level code calculation')
         return mrp_lowest_llc
 
     @api.model
-    def _adjust_mrp_applicable(self):
+    def _adjust_mrp_applicable(self, mrp_areas):
         """This method is meant to modify the products that are applicable
            to MRP Multi level calculation
         """
         return True
 
     @api.model
-    def _calculate_mrp_applicable(self):
-        logger.info('CALCULATE MRP APPLICABLE')
-        self.env['product.mrp.area'].search([]).write(
+    def _calculate_mrp_applicable(self, mrp_areas):
+        logger.info('Start Calculate MRP Applicable')
+        domain = []
+        if mrp_areas:
+            domain += [('mrp_area_id', 'in', mrp_areas.ids)]
+        self.env['product.mrp.area'].search(domain).write(
             {'mrp_applicable': False})
-        self.env['product.mrp.area'].search([
-            ('product_id.type', '=', 'product'),
-        ]).write({'mrp_applicable': True})
-        self._adjust_mrp_applicable()
-        counter = self.env['product.mrp.area'].search([
-            ('mrp_applicable', '=', True)], count=True)
-        log_msg = 'END CALCULATE MRP APPLICABLE: %s' % counter
+        domain += [('product_id.type', '=', 'product')]
+        self.env['product.mrp.area'].search(domain).write(
+            {'mrp_applicable': True})
+        self._adjust_mrp_applicable(mrp_areas)
+        count_domain = [('mrp_applicable', '=', True)]
+        if mrp_areas:
+            count_domain += [('mrp_area_id', 'in', mrp_areas.ids)]
+        counter = self.env['product.mrp.area'].search(count_domain, count=True)
+        log_msg = 'End Calculate MRP Applicable: %s' % counter
         logger.info(log_msg)
         return True
 
@@ -484,11 +500,14 @@ class MultiLevelMrp(models.TransientModel):
         return product_mrp_area.mrp_exclude
 
     @api.model
-    def _mrp_initialisation(self):
-        logger.info('START MRP INITIALISATION')
-        mrp_areas = self.env['mrp.area'].search([])
+    def _mrp_initialisation(self, mrp_areas):
+        logger.info('Start MRP initialisation')
+        if not mrp_areas:
+            mrp_areas = self.env['mrp.area'].search([])
         product_mrp_areas = self.env['product.mrp.area'].search([
-            ('mrp_applicable', '=', True)])
+            ('mrp_area_id', 'in', mrp_areas.ids),
+            ('mrp_applicable', '=', True),
+        ])
         init_counter = 0
         for mrp_area in mrp_areas:
             for product_mrp_area in product_mrp_areas.filtered(
@@ -497,11 +516,11 @@ class MultiLevelMrp(models.TransientModel):
                         product_mrp_area.product_id, mrp_area):
                     continue
                 init_counter += 1
-                log_msg = 'MRP INIT: %s - %s ' % (
+                log_msg = 'MRP Init: %s - %s ' % (
                     init_counter, product_mrp_area.display_name)
                 logger.info(log_msg)
                 self._init_mrp_move(product_mrp_area)
-        logger.info('END MRP INITIALISATION')
+        logger.info('End MRP initialisation')
 
     @api.model
     def _init_mrp_move_grouped_demand(self, nbr_create, product_mrp_area):
@@ -555,11 +574,13 @@ class MultiLevelMrp(models.TransientModel):
         return nbr_create
 
     @api.model
-    def _mrp_calculation(self, mrp_lowest_llc):
-        logger.info('START MRP CALCULATION')
+    def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
+        logger.info('Start MRP calculation')
         product_mrp_area_obj = self.env['product.mrp.area']
         counter = 0
-        for mrp_area in self.env['mrp.area'].search([]):
+        if not mrp_areas:
+            mrp_areas = self.env['mrp.area'].search([])
+        for mrp_area in mrp_areas:
             llc = 0
             while mrp_lowest_llc > llc:
                 product_mrp_areas = product_mrp_area_obj.search(
@@ -606,11 +627,11 @@ class MultiLevelMrp(models.TransientModel):
                         onhand += qty_ordered
                     counter += 1
 
-            log_msg = 'MRP CALCULATION LLC %s FINISHED - NBR PRODUCTS: %s' % (
+            log_msg = 'MRP Calculation LLC %s Finished - Nbr. products: %s' % (
                 llc - 1, counter)
             logger.info(log_msg)
 
-        logger.info('END MRP CALCULATION')
+        logger.info('Enb MRP calculation')
 
     @api.model
     def _get_demand_groups(self, product_mrp_area):
@@ -714,10 +735,12 @@ class MultiLevelMrp(models.TransientModel):
             self.env['mrp.inventory'].create(mrp_inventory_data)
 
     @api.model
-    def _mrp_final_process(self):
-        logger.info('START MRP FINAL PROCESS')
-        product_mrp_area_ids = self.env['product.mrp.area'].search([
-            ('product_id.llc', '<', 9999)])
+    def _mrp_final_process(self, mrp_areas):
+        logger.info('Start MRP final process')
+        domain = [('product_id.llc', '<', 9999)]
+        if mrp_areas:
+            domain += [('mrp_area_id', 'in', mrp_areas.ids)]
+        product_mrp_area_ids = self.env['product.mrp.area'].search(domain)
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
@@ -732,25 +755,13 @@ class MultiLevelMrp(models.TransientModel):
             for move in moves:
                 qoh = qoh + move.mrp_qty
                 move.running_availability = qoh
-            # TODO: Possible clean up needed here
-            # nbr_actions = product_mrp_area.mrp_move_ids.filtered(
-            #     lambda m: m.mrp_action != 'none')
-            # horizon_4w = fields.Date.to_string(
-            #     date.today() + timedelta(weeks=4))
-            # nbr_actions_4w = nbr_actions.filtered(
-            #     lambda m: m.mrp_action_date < horizon_4w)
-            # if nbr_actions:
-            #     product_mrp_area.write({
-            #         'nbr_mrp_actions': len(nbr_actions),
-            #         'nbr_mrp_actions_4w': len(nbr_actions_4w),
-            #     })
-        logger.info('END MRP FINAL PROCESS')
+        logger.info('End MRP final process')
 
     @api.multi
     def run_mrp_multi_level(self):
-        self._mrp_cleanup()
+        self._mrp_cleanup(self.mrp_area_ids)
         mrp_lowest_llc = self._low_level_code_calculation()
-        self._calculate_mrp_applicable()
-        self._mrp_initialisation()
-        self._mrp_calculation(mrp_lowest_llc)
-        self._mrp_final_process()
+        self._calculate_mrp_applicable(self.mrp_area_ids)
+        self._mrp_initialisation(self.mrp_area_ids)
+        self._mrp_calculation(mrp_lowest_llc, self.mrp_area_ids)
+        self._mrp_final_process(self.mrp_area_ids)
