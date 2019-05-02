@@ -21,6 +21,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.mrp_area_obj = cls.env['mrp.area']
         cls.product_mrp_area_obj = cls.env['product.mrp.area']
         cls.partner_obj = cls.env['res.partner']
+        cls.res_users = cls.env['res.users']
         cls.stock_picking_obj = cls.env['stock.picking']
         cls.estimate_obj = cls.env['stock.demand.estimate']
         cls.mrp_multi_level_wiz = cls.env['mrp.multi.level']
@@ -34,6 +35,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.sf_2 = cls.env.ref('mrp_multi_level.product_product_sf_2')
         cls.pp_1 = cls.env.ref('mrp_multi_level.product_product_pp_1')
         cls.pp_2 = cls.env.ref('mrp_multi_level.product_product_pp_2')
+        cls.company = cls.env.ref('base.main_company')
         cls.mrp_area = cls.env.ref('mrp_multi_level.mrp_area_stock_wh0')
         cls.vendor = cls.env.ref('mrp_multi_level.res_partner_lazer_tech')
         cls.wh = cls.env.ref('stock.warehouse0')
@@ -46,6 +48,16 @@ class TestMrpMultiLevel(SavepointCase):
 
         # Partner:
         vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
+
+        # Create user:
+        group_mrp_manager = cls.env.ref('mrp.group_mrp_manager')
+        group_user = cls.env.ref('base.group_user')
+        group_stock_manager = cls.env.ref('stock.group_stock_manager')
+        cls.mrp_manager = cls._create_user(
+            'Test User',
+            [group_mrp_manager, group_user, group_stock_manager],
+            cls.company,
+        )
 
         # Create secondary location and MRP Area:
         cls.sec_loc = cls.loc_obj.create({
@@ -274,6 +286,18 @@ class TestMrpMultiLevel(SavepointCase):
             'date_range_id': date_range.id,
         })
 
+    @classmethod
+    def _create_user(cls, login, groups, company):
+        user = cls.res_users.create({
+            'name': login,
+            'login': login,
+            'password': 'demo',
+            'email': 'example@yourcompany.com',
+            'company_id': company.id,
+            'groups_id': [(6, 0, [group.id for group in groups])]
+        })
+        return user
+
     def test_01_mrp_levels(self):
         """Tests computation of MRP levels."""
         self.assertEqual(self.fp_1.llc, 0)
@@ -438,12 +462,6 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertEqual(len(moves), 6)
         expected = [200.0, 290.0, 90.0, 0.0, 72.0, 0.0]
         self.assertEqual(moves.mapped('running_availability'), expected)
-        # Actions counters for PP-1:
-        # product_mrp_area = self.product_mrp_area_obj.search([
-        #     ('product_id', '=', self.pp_1.id)
-        # ])  # TODO
-        # self.assertEqual(product_mrp_area.nbr_mrp_actions, 3) # TODO
-        # self.assertEqual(product_mrp_area.nbr_mrp_actions_4w, 3) # TODO
 
     def test_06_demand_estimates(self):
         """Tests demand estimates integration."""
@@ -533,6 +551,20 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertIn(abs(week_2_expected), quantities)
         week_3_expected = sum(moves_from_estimates[14:].mapped('mrp_qty'))
         self.assertIn(abs(week_3_expected), quantities)
+
+    def test_10_isolated_mrp_area_run(self):
+        """Test running MRP for just one area."""
+        self.mrp_multi_level_wiz.sudo(self.mrp_manager).create({
+            'mrp_area_ids': [(6, 0, self.secondary_area.ids)],
+        }).run_mrp_multi_level()
+        this = self.mrp_inventory_obj.search([
+            ('mrp_area_id', '=', self.secondary_area.id)], limit=1)
+        self.assertTrue(this)
+        # Only recently exectued areas should have been created by test user:
+        self.assertEqual(this.create_uid, self.mrp_manager)
+        prev = self.mrp_inventory_obj.search([
+            ('mrp_area_id', '!=', self.secondary_area.id)], limit=1)
+        self.assertNotEqual(this.create_uid, prev.create_uid)
 
     # TODO: test procure wizard: pos, multiple...
     # TODO: test multiple destination IDS:...
