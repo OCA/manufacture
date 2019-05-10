@@ -54,7 +54,7 @@
                                 string="Set test" />
                     </div>
                     <h1>
-                        <label string="Inspection "/>
+                        <label string="Inspection " for="name"/>
                         <field name="name" class="oe_inline"/>
                     </h1>
                     <group>
@@ -83,7 +83,7 @@
                                     <field name="quantitative_value"
                                            attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                                     <field name="uom_id"
-                                           groups="product.group_uom"
+                                           groups="uom.group_uom"
                                            attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                                     <field name="test_uom_category" invisible="1"/>
                                     <field name="min_value" invisible="1"/>
@@ -143,30 +143,39 @@
                 </group>
                 <newline />
                 <filter string="Correct"
+                        name="correct"
                         domain="[('success', '=', True)]"/>
                 <filter string="Incorrect"
+                        name="incorrect"
                         domain="[('success', '=', False)]"/>
                 <newline />
                 <group expand="0" string="Group by...">
                     <filter string="Reference"
+                            name="group_by_object_id"
                             domain="[]"
                             context="{'group_by': 'object_id'}" />
                     <filter string="Test"
+                            name="group_by_test"
                             domain="[]"
                             context="{'group_by': 'test'}" />
                     <filter string="Responsible"
+                            name="group_by_user"
                             domain="[]"
                             context="{'group_by': 'user'}" />
                     <filter string="Product"
+                            name="group_by_product_id"
                             domain="[]"
                             context="{'group_by': 'product_id'}" />
                     <filter string="State"
+                            name="group_by_state"
                             domain="[]"
                             context="{'group_by': 'state'}" />
                     <filter string="Success"
+                            name="group_by_success"
                             domain="[]"
                             context="{'group_by': 'success'}" />
                     <filter string="Auto-generated"
+                            name="group_by_auto_generated"
                             domain="[]"
                             context="{'group_by': 'auto_generated'}" />
                 </group>
@@ -201,7 +210,7 @@
                 <field name="quantitative_value"
                        attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                 <field name="uom_id"
-                       groups="product.group_uom"
+                       groups="uom.group_uom"
                        attrs="{'readonly': [('question_type', '=', 'qualitative')]}" />
                 <field name="test_uom_category" invisible="1"/>
                 <field name="valid_values" />
@@ -223,21 +232,27 @@
                 </group>
                 <newline />
                 <filter string="Correct"
+                        name="correct"
                         domain="[('success', '=', True)]"/>
                 <filter string="Incorrect"
+                        name="incorrect"
                         domain="[('success', '=', False)]"/>
                 <newline />
                 <group expand="0" string="Group by...">
                     <filter string="Inspection"
+                            name="group_by_inspection_id"
                             domain="[]"
                             context="{'group_by': 'inspection_id'}" />
                     <filter string="Product"
+                            name="group_by_product_id"
                             domain="[]"
                             context="{'group_by': 'product_id'}" />
                     <filter string="Question"
+                            name="group_by_name"
                             domain="[]"
                             context="{'group_by': 'name'}" />
                     <filter string="Success"
+                            name="group_by_success"
                             domain="[]"
                             context="{'group_by': 'success'}" />
                 </group>

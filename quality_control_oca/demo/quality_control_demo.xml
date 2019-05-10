@@ -32,7 +32,7 @@
             <field name="type">quantitative</field>
             <field name="min_value" eval="1.0" />
             <field name="max_value" eval="10.0" />
-            <field name="uom_id" ref="product.product_uom_unit" />
+            <field name="uom_id" ref="uom.product_uom_unit" />
         </record>
 
     </data>

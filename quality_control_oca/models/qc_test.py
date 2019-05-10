@@ -17,9 +17,8 @@ class QcTest(models.Model):
     _description = 'Quality control test'
 
     @api.multi
-    def _links_get(self):
-        link_obj = self.env['res.request.link']
-        return [(r.object, r.name) for r in link_obj.search([])]
+    def object_selection_values(self):
+        return set()
 
     @api.onchange('type')
     def onchange_type(self):
@@ -33,7 +32,7 @@ class QcTest(models.Model):
         comodel_name='qc.test.question', inverse_name='test',
         string='Questions', copy=True)
     object_id = fields.Reference(
-        string='Reference object', selection=_links_get,)
+        string='Reference object', selection=object_selection_values,)
     fill_correct_values = fields.Boolean(
         string='Pre-fill with correct values')
     type = fields.Selection(
@@ -89,7 +88,7 @@ class QcTestQuestion(models.Model):
                              digits=dp.get_precision('Quality Control'))
     max_value = fields.Float(string='Max',
                              digits=dp.get_precision('Quality Control'),)
-    uom_id = fields.Many2one(comodel_name='product.uom', string='Uom')
+    uom_id = fields.Many2one(comodel_name='uom.uom', string='Uom')
 
 
 class QcTestQuestionValue(models.Model):
