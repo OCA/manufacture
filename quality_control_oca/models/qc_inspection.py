@@ -21,9 +21,12 @@ class QcInspection(models.Model):
             i.success = all([x.success for x in i.inspection_lines])
 
     @api.multi
-    def _links_get(self):
-        link_obj = self.env['res.request.link']
-        return [(r.object, r.name) for r in link_obj.search([])]
+    def object_selection_values(self):
+        """
+        Overridable method for adding more object models to an inspection.
+        :return: A list with the selection's possible values.
+        """
+        return list()
 
     @api.depends('object_id')
     def _compute_product_id(self):
@@ -41,8 +44,10 @@ class QcInspection(models.Model):
         default=fields.Datetime.now,
         states={'draft': [('readonly', False)]})
     object_id = fields.Reference(
-        string='Reference', selection=_links_get, readonly=True,
-        states={'draft': [('readonly', False)]}, ondelete="set null")
+        string='Reference',
+        selection=lambda self: self.object_selection_values(),
+        readonly=True, states={'draft': [('readonly', False)]},
+        ondelete="set null")
     product_id = fields.Many2one(
         comodel_name="product.product", compute="_compute_product_id",
         store=True, help="Product associated with the inspection",
@@ -85,11 +90,12 @@ class QcInspection(models.Model):
         comodel_name='res.users', string='Responsible',
         track_visibility='always', default=lambda self: self.env.user)
 
-    @api.model
-    def create(self, vals):
-        if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'] \
-                .next_by_code('qc.inspection')
+    @api.model_create_multi
+    def create(self, val_list):
+        for vals in val_list:
+            if vals.get('name', '/') == '/':
+                vals['name'] = self.env['ir.sequence'] \
+                    .next_by_code('qc.inspection')
         return super(QcInspection, self).create(vals)
 
     @api.multi
@@ -239,7 +245,7 @@ class QcInspectionLine(models.Model):
                 if l.uom_id.id == l.test_uom_id.id:
                     amount = l.quantitative_value
                 else:
-                    amount = self.env['product.uom']._compute_quantity(
+                    amount = self.env['uom.uom']._compute_quantity(
                         l.quantitative_value,
                         l.test_uom_id.id)
                 l.success = l.max_value >= amount >= l.min_value
@@ -255,7 +261,7 @@ class QcInspectionLine(models.Model):
                 l.valid_values = "%s ~ %s" % (
                     formatLang(self.env, l.min_value),
                     formatLang(self.env, l.max_value))
-                if self.env.ref("product.group_uom") \
+                if self.env.ref("uom.group_uom") \
                         in self.env.user.groups_id:
                     l.valid_values += " %s" % l.test_uom_id.name
 
@@ -285,14 +291,14 @@ class QcInspectionLine(models.Model):
         string='Max', digits=dp.get_precision('Quality Control'),
         readonly=True, help="Maximum valid value for a quantitative question.")
     test_uom_id = fields.Many2one(
-        comodel_name='product.uom', string='Test UoM', readonly=True,
+        comodel_name='uom.uom', string='Test UoM', readonly=True,
         help="UoM for minimum and maximum values for a quantitative "
              "question.")
     test_uom_category = fields.Many2one(
-        comodel_name="product.uom.categ", related="test_uom_id.category_id",
+        comodel_name="uom.category", related="test_uom_id.category_id",
         store=True)
     uom_id = fields.Many2one(
-        comodel_name='product.uom', string='UoM',
+        comodel_name='uom.uom', string='UoM',
         domain="[('category_id', '=', test_uom_category)]",
         help="UoM of the inspection value for a quantitative question.")
     question_type = fields.Selection(
