@@ -15,6 +15,7 @@ class QcInspectionSetTest(models.TransientModel):
     the template.
     """
     _name = 'qc.inspection.set.test'
+    _description = 'Set test for inspection'
 
     test = fields.Many2one(comodel_name='qc.test', string='Test')
 
