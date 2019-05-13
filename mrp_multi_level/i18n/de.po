@@ -209,6 +209,11 @@ msgstr ""
 "verifiziert."
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_multi_level_mrp_area_ids
+msgid "If empty, all areas will be computed."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_inspection_delay
 msgid "Inspection Delay"
 msgstr "Inspektionsverzögerung"
@@ -318,6 +323,13 @@ msgstr "Bereich-Parameter"
 #: model:ir.ui.view,arch_db:mrp_multi_level.product_template_only_form_view_mrp
 #: model:ir.ui.view,arch_db:mrp_multi_level.view_mrp_product_product_form
 msgid "MRP Areas"
+msgstr "Bereiche"
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_mrp_area_ids
+#, fuzzy
+#| msgid "MRP Areas"
+msgid "MRP Areas to run"
 msgstr "Bereiche"
 
 #. module: mrp_multi_level
@@ -436,7 +448,7 @@ msgid "Nbr. Days"
 msgstr "# Tage"
 
 #. module: mrp_multi_level
-#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:167
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:173
 #, python-format
 msgid "No MRP product found"
 msgstr "Kein Produkt für MRP gefunden"
