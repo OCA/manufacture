@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_warehouse_calendar
+# 	* mrp_warehouse_calendar
 #
 msgid ""
 msgstr ""
@@ -18,10 +18,15 @@ msgstr ""
 
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_mrp_production
-msgid "Manufacturing Order"
+#, fuzzy
+#| msgid "Manufacturing Order"
+msgid "Production Order"
 msgstr "Fertigungsauftrag"
 
 #. module: mrp_warehouse_calendar
-#: model:ir.model,name:mrp_warehouse_calendar.model_procurement_rule
-msgid "Procurement Rule"
-msgstr "Beschaffungsregel"
+#: model:ir.model,name:mrp_warehouse_calendar.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#~ msgid "Procurement Rule"
+#~ msgstr "Beschaffungsregel"
