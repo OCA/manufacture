@@ -17,27 +17,34 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_production_grouped_by_product
-#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type_mo_grouping_interval
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
 msgid "MO grouping interval (days)"
 msgstr "Intervalo de agrupación de OFs (días)"
 
 #. module: mrp_production_grouped_by_product
-#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type_mo_grouping_max_hour
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
 msgid "MO grouping max. hour (UTC)"
 msgstr "Hora máx. agrupación OFs (UTC)"
 
 #. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
-msgid "Manufacturing Order"
+#, fuzzy
+#| msgid "Manufacturing Order"
+msgid "Production Order"
 msgstr "Orden de fabricación"
 
 #. module: mrp_production_grouped_by_product
-#: model:ir.model,name:mrp_production_grouped_by_product.model_procurement_rule
-msgid "Procurement Rule"
-msgstr "Regla de abastecimiento"
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
 
 #. module: mrp_production_grouped_by_product
-#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type_mo_grouping_max_hour
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
 msgid ""
 "The maximum hour (between 0 and 23) for considering new manufacturing orders "
 "inside the same interval period, and thus being grouped on the same MO. "
@@ -48,15 +55,10 @@ msgstr ""
 "la misma OF. IMPORTANTE: La hora debe expresarse en UTC."
 
 #. module: mrp_production_grouped_by_product
-#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type_mo_grouping_interval
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
 msgid ""
 "The number of days for grouping together on the same manufacturing order."
 msgstr "El número de días para agrupar juntas las órdenes de fabricación."
-
-#. module: mrp_production_grouped_by_product
-#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
-msgid "The operation type determines the picking view"
-msgstr "El tipo de operación determina la vista de la operación"
 
 #. module: mrp_production_grouped_by_product
 #: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:36
@@ -69,3 +71,9 @@ msgstr "Debe introducir un valor positivo para el intervalo."
 #, python-format
 msgid "You have to enter a valid hour between 0 and 23."
 msgstr "Debe introducir una hora válida entre 0 y 23."
+
+#~ msgid "Procurement Rule"
+#~ msgstr "Regla de abastecimiento"
+
+#~ msgid "The operation type determines the picking view"
+#~ msgstr "El tipo de operación determina la vista de la operación"
