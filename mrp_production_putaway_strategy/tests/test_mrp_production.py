@@ -38,9 +38,9 @@ class MrpProductionCase(TransactionCase):
 
         self.loc_production = self.env.ref(
             "stock.location_production")
-        self.product1 = self.env.ref("mrp.product_product_19")
+        self.product1 = self.env.ref("mrp.product_product_computer_desk")
         self.product1.categ_id = self.category
-        self.bom1 = self.env.ref("mrp.mrp_bom_3")
+        self.bom1 = self.env.ref("mrp.mrp_bom_desk")
 
     def _create_mo(self, product=False, bom=False, src_loc=False,
                    dest_loc=False, qty=10.0, uom=False):
