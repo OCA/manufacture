@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -17,15 +17,16 @@ class MrpInventoryProcure(models.TransientModel):
     )
 
     @api.model
-    def _prepare_item(self, mrp_inventory, qty_override=0.0):
+    def _prepare_item(self, planned_order):
         return {
-            'qty': qty_override if qty_override else mrp_inventory.to_procure,
-            'uom_id': mrp_inventory.uom_id.id,
-            'date_planned': mrp_inventory.date,
-            'mrp_inventory_id': mrp_inventory.id,
-            'product_id': mrp_inventory.product_mrp_area_id.product_id.id,
-            'warehouse_id': mrp_inventory.mrp_area_id.warehouse_id.id,
-            'location_id': mrp_inventory.mrp_area_id.location_id.id,
+            'planned_order_id': planned_order.id,
+            'qty': planned_order.mrp_qty - planned_order.qty_released,
+            'uom_id': planned_order.mrp_inventory_id.uom_id.id,
+            'date_planned': planned_order.due_date,
+            'mrp_inventory_id': planned_order.mrp_inventory_id.id,
+            'product_id': planned_order.product_id.id,
+            'warehouse_id': planned_order.mrp_area_id.warehouse_id.id,
+            'location_id': planned_order.mrp_area_id.location_id.id,
         }
 
     @api.model
@@ -56,17 +57,9 @@ class MrpInventoryProcure(models.TransientModel):
         assert active_model == 'mrp.inventory', 'Bad context propagation'
 
         items = item_obj = self.env['mrp.inventory.procure.item']
-        for line in mrp_inventory_obj.browse(mrp_inventory_ids):
-            max_order = line.product_mrp_area_id.mrp_maximum_order_qty
-            qty_to_order = line.to_procure
-            if max_order and max_order < qty_to_order:
-                # split the procurement in batches:
-                while qty_to_order > 0.0:
-                    qty = line.product_mrp_area_id._adjust_qty_to_order(
-                        qty_to_order)
-                    items += item_obj.create(self._prepare_item(line, qty))
-                    qty_to_order -= qty
-            else:
+        for line in mrp_inventory_obj.browse(mrp_inventory_ids).mapped(
+                'planned_order_ids'):
+            if line.qty_released < line.mrp_qty:
                 items += item_obj.create(self._prepare_item(line))
         res['item_ids'] = [(6, 0, items.ids)]
         return res
@@ -90,11 +83,9 @@ class MrpInventoryProcure(models.TransientModel):
                     'INT: ' + str(self.env.user.login),  # origin?
                     values
                 )
-                item.mrp_inventory_id.to_procure -= \
-                    item.uom_id._compute_quantity(
-                        item.qty, item.product_id.uom_id)
+                item.planned_order_id.qty_released += item.qty
             except UserError as error:
-                    errors.append(error.name)
+                errors.append(error.name)
             if errors:
                 raise UserError('\n'.join(errors))
         return {'type': 'ir.actions.act_window_close'}
@@ -116,6 +107,9 @@ class MrpInventoryProcureItem(models.TransientModel):
     mrp_inventory_id = fields.Many2one(
         string='Mrp Inventory',
         comodel_name='mrp.inventory',
+    )
+    planned_order_id = fields.Many2one(
+        comodel_name='mrp.planned.order',
     )
     product_id = fields.Many2one(
         string='Product',
