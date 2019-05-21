@@ -28,6 +28,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.mrp_inventory_procure_wiz = cls.env['mrp.inventory.procure']
         cls.mrp_inventory_obj = cls.env['mrp.inventory']
         cls.mrp_move_obj = cls.env['mrp.move']
+        cls.planned_order_obj = cls.env['mrp.planned.order']
 
         cls.fp_1 = cls.env.ref('mrp_multi_level.product_product_fp_1')
         cls.fp_2 = cls.env.ref('mrp_multi_level.product_product_fp_2')
@@ -322,38 +323,36 @@ class TestMrpMultiLevel(SavepointCase):
         """Tests for mrp moves generated."""
         moves = self.mrp_move_obj.search([
             ('product_id', '=', self.pp_1.id),
-            ('mrp_action', '=', 'none'),
         ])
         self.assertEqual(len(moves), 3)
         self.assertNotIn('s', moves.mapped('mrp_type'))
         for move in moves:
-            self.assertTrue(move.mrp_move_up_ids)
-            if move.mrp_move_up_ids.product_mrp_area_id.product_id == \
+            self.assertTrue(move.planned_order_up_ids)
+            if move.planned_order_up_ids.product_mrp_area_id.product_id == \
                     self.fp_1:
                 # Demand coming from FP-1
-                self.assertEqual(move.mrp_move_up_ids.mrp_action, 'mo')
+                self.assertEqual(
+                    move.planned_order_up_ids.mrp_action, "manufacture")
                 self.assertEqual(move.mrp_qty, -200.0)
-            elif move.mrp_move_up_ids.product_mrp_area_id.product_id == \
+            elif move.planned_order_up_ids.product_mrp_area_id.product_id == \
                     self.sf_1:
                 # Demand coming from FP-2 -> SF-1
-                self.assertEqual(move.mrp_move_up_ids.mrp_action, 'mo')
+                self.assertEqual(
+                    move.planned_order_up_ids.mrp_action, "manufacture")
                 if move.mrp_date == self.date_5:
                     self.assertEqual(move.mrp_qty, -90.0)
                 elif move.mrp_date == self.date_8:
                     self.assertEqual(move.mrp_qty, -72.0)
         # Check actions:
-        moves = self.mrp_move_obj.search([
+        planned_orders = self.planned_order_obj.search([
             ('product_id', '=', self.pp_1.id),
-            ('mrp_action', '!=', 'none'),
         ])
-        self.assertEqual(len(moves), 3)
-        for move in moves:
-            self.assertEqual(move.mrp_action, 'po')
-            self.assertEqual(move.mrp_type, 's')
+        self.assertEqual(len(planned_orders), 3)
+        for plan in planned_orders:
+            self.assertEqual(plan.mrp_action, 'buy')
         # Check PP-2 PO being accounted:
         po_move = self.mrp_move_obj.search([
             ('product_id', '=', self.pp_2.id),
-            ('mrp_action', '=', 'none'),
             ('mrp_type', '=', 's'),
         ])
         self.assertEqual(len(po_move), 1)
@@ -452,16 +451,15 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertEqual(pp_2_line_4.demand_qty, 48.0)
         self.assertEqual(pp_2_line_4.to_procure, 48.0)
 
-    def test_05_moves_extra_info(self):
-        """Test running availability and actions counters computation on
-        mrp moves."""
+    def test_05_planned_availability(self):
+        """Test planned availability computation."""
         # Running availability for PP-1:
-        moves = self.mrp_move_obj.search([
+        invs = self.mrp_inventory_obj.search([
             ('product_id', '=', self.pp_1.id)],
-            order='mrp_date, mrp_type desc, id')
-        self.assertEqual(len(moves), 6)
-        expected = [200.0, 290.0, 90.0, 0.0, 72.0, 0.0]
-        self.assertEqual(moves.mapped('running_availability'), expected)
+            order='date')
+        self.assertEqual(len(invs), 2)
+        expected = [0.0, 0.0]  # No grouping, lot size nor safety stock.
+        self.assertEqual(invs.mapped('running_availability'), expected)
 
     def test_06_demand_estimates(self):
         """Tests demand estimates integration."""
@@ -480,8 +478,14 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertIn(-30.0, quantities)  # 210 a week => 30.0 dayly:
         self.assertIn(-40.0, quantities)  # 280 a week => 40.0 dayly:
         self.assertIn(-50.0, quantities)  # 350 a week => 50.0 dayly:
-        actions = moves.filtered(lambda m: m.mrp_action == 'po')
-        self.assertEqual(len(actions), 18)
+        plans = self.planned_order_obj.search([
+            ('product_id', '=', self.prod_test.id),
+            ('mrp_area_id', '=', self.mrp_area.id),
+        ])
+        action = list(set(plans.mapped("mrp_action")))
+        self.assertEqual(len(action), 1)
+        self.assertEqual(action[0], "buy")
+        self.assertEqual(len(plans), 18)
         inventories = self.mrp_inventory_obj.search([
             ('mrp_area_id', '=', self.secondary_area.id)])
         self.assertEqual(len(inventories), 18)
@@ -516,13 +520,12 @@ class TestMrpMultiLevel(SavepointCase):
         mrp_inv_max = self.mrp_inventory_obj.search([
             ('product_mrp_area_id.product_id', '=', self.prod_max.id)])
         self.assertEqual(mrp_inv_max.to_procure, 150)
-        moves = self.mrp_move_obj.search([
+        plans = self.planned_order_obj.search([
             ('product_id', '=', self.prod_max.id),
-            ('mrp_action', '!=', 'none'),
         ])
-        self.assertEqual(len(moves), 2)
-        self.assertIn(100.0, moves.mapped('mrp_qty'))
-        self.assertIn(50.0, moves.mapped('mrp_qty'))
+        self.assertEqual(len(plans), 2)
+        self.assertIn(100.0, plans.mapped('mrp_qty'))
+        self.assertIn(50.0, plans.mapped('mrp_qty'))
         # quantity multiple:
         mrp_inv_multiple = self.mrp_inventory_obj.search([
             ('product_mrp_area_id.product_id', '=', self.prod_multiple.id)])
@@ -538,13 +541,16 @@ class TestMrpMultiLevel(SavepointCase):
             ('product_id', '=', self.prod_test.id),
             ('mrp_area_id', '=', self.secondary_area.id),
         ])
+        supply_plans = self.planned_order_obj.search([
+            ('product_id', '=', self.prod_test.id),
+            ('mrp_area_id', '=', self.secondary_area.id),
+        ])
         # 3 weeks - 3 days in the past = 18 days of valid estimates:
         moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
         self.assertEqual(len(moves_from_estimates), 18)
         # 18 days of demand / 7 nbr_days = 2.57 => 3 supply moves expected.
-        supply_moves = moves.filtered(lambda m: m.mrp_type == 's')
-        self.assertEqual(len(supply_moves), 3)
-        quantities = supply_moves.mapped('mrp_qty')
+        self.assertEqual(len(supply_plans), 3)
+        quantities = supply_plans.mapped('mrp_qty')
         week_1_expected = sum(moves_from_estimates[0:7].mapped('mrp_qty'))
         self.assertIn(abs(week_1_expected), quantities)
         week_2_expected = sum(moves_from_estimates[7:14].mapped('mrp_qty'))
