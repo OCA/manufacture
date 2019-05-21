@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <record model="ir.ui.view" id="mrp_inventory_form">
+    <record id="mrp_inventory_form" model="ir.ui.view">
         <field name="name">mrp.inventory.form</field>
         <field name="model">mrp.inventory</field>
         <field name="type">form</field>
@@ -29,7 +29,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="mrp_inventory_tree">
+    <record id="mrp_inventory_tree" model="ir.ui.view">
         <field name="name">mrp.inventory.tree</field>
         <field name="model">mrp.inventory</field>
         <field name="type">tree</field>
@@ -49,6 +49,7 @@
                         name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                         icon="fa-cogs" type="action"
                         attrs="{'invisible':[('to_procure','&lt;=',0.0)]}"/>
+                <field name="running_availability"/>
             </tree>
         </field>
     </record>
@@ -78,7 +79,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="mrp_inventory_search">
+    <record id="mrp_inventory_search" model="ir.ui.view">
         <field name="name">mrp.inventory.search</field>
         <field name="model">mrp.inventory</field>
         <field name="type">search</field>
@@ -108,7 +109,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="mrp_inventory_action">
+    <record id="mrp_inventory_action" model="ir.actions.act_window">
         <field name="name">MRP Inventory</field>
         <field name="res_model">mrp.inventory</field>
         <field name="type">ir.actions.act_window</field>

@@ -1,3 +1,9 @@
+11.0.3.0.0 (2019-05-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REW/IMP] Rework to include Planned Orders.
+  (`#365 <https://github.com/OCA/manufacture/pull/365>`_):
+
 11.0.2.2.0 (2019-05-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
