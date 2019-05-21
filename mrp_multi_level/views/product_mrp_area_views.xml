@@ -49,13 +49,15 @@
                             <field name="mrp_exclude"/>
                             <field name="mrp_verified"/>
                             <field name="mrp_nbr_days"/>
-                            <field name="mrp_transit_delay"/>
-                            <field name="mrp_inspection_delay"/>
+                            <!--hide delays for now-->
+                            <field name="mrp_transit_delay" invisible="1"/>
+                            <field name="mrp_inspection_delay" invisible="1"/>
                             <field name="mrp_minimum_stock"/>
                             <field name="mrp_minimum_order_qty"/>
                             <field name="mrp_maximum_order_qty"/>
                             <field name="mrp_qty_multiple"/>
                             <field name="supply_method"/>
+                            <field name="mrp_lead_time"/>
                             <field name="main_supplierinfo_id"/>
                         </group>
                     </group>
@@ -63,7 +65,6 @@
                         <page name="mrp_moves" string="MRP Moves" groups="base.group_no_one">
                             <field name="mrp_move_ids" nolabel="1">
                                 <tree>
-                                    <field name="mrp_action_date"/>
                                     <field name="mrp_date"/>
                                     <field name="current_date"/>
                                     <field name="mrp_origin"/>
@@ -73,12 +74,21 @@
                                     <field name="name"/>
                                     <field name="mrp_qty"/>
                                     <field name="current_qty"/>
-                                    <field name="running_availability"/>
-                                    <field name="mrp_minimum_stock" />
-                                    <field name="mrp_action"/>
                                     <field name="mrp_type"/>
-                                    <field name="mrp_move_up_ids"/>
-                                    <field name="mrp_processed"/>
+                                    <field name="planned_order_up_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="planned_orders" string="Planned Orders" groups="base.group_no_one">
+                            <field name="planned_order_ids" nolabel="1">
+                                <tree>
+                                    <field name="order_release_date"/>
+                                    <field name="due_date"/>
+                                    <field name="name"/>
+                                    <field name="mrp_qty"/>
+                                    <field name="mrp_action"/>
+                                    <field name="qty_released"/>
+                                    <field name="fixed"/>
                                 </tree>
                             </field>
                         </page>
