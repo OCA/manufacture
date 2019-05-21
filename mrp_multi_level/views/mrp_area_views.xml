@@ -21,17 +21,28 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="MRP Area">
-                <group colspan="4" col="2">
-                    <group>
-                        <field name="name"/>
-                        <field name="active"/>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="warehouse_id"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group name="settings">
+                            <field name="warehouse_id"/>
+                            <field name="location_id"/>
+                            <field name="calendar_id"/>
+                        </group>
                     </group>
-                    <group>
-                        <field name="warehouse_id"/>
-                        <field name="location_id"/>
-                        <field name="calendar_id"/>
-                    </group>
-                </group>
+                </sheet>
             </form>
         </field>
     </record>
