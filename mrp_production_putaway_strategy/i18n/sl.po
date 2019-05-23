@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_production_putaway_strategy
+#
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-29 03:19+0000\n"
+"PO-Revision-Date: 2017-08-29 03:19+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: mrp_production_putaway_strategy
+#: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:20
+#, python-format
+msgid ""
+"Applied Putaway strategy to finished products.\n"
+"Finished Products Location: %s."
+msgstr ""
+
+#. module: mrp_production_putaway_strategy
+#: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Proizvodni nalog"
