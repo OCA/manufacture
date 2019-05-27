@@ -9,8 +9,9 @@ class StockMove(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        if 'force_refurbish_location_dest_id' in self.env.context:
+        refurbish_location_dest_id = self.env.context.get(
+            'force_refurbish_location_dest_id', False)
+        if refurbish_location_dest_id:
             for vals in vals_list:
-                vals['location_dest_id'] = self.env.context[
-                    'force_refurbish_location_dest_id']
-        return super().create(vals_list)
+                vals['location_dest_id'] = refurbish_location_dest_id
+        return super(StockMove, self).create(vals_list)
