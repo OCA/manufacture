@@ -10,20 +10,20 @@ class StockPickingType(models.Model):
 
     @api.multi
     def _create_qc_trigger(self):
-        self.ensure_one()
-        qc_trigger = {
-            'name': self.name,
-            'company_id': self.warehouse_id.company_id.id,
-            'picking_type_id': self.id,
-            'partner_selectable': True,
-        }
-        return self.env['qc.trigger'].sudo().create(qc_trigger)
+        for picking_type in self:
+            qc_trigger = {
+                'name': picking_type.name,
+                'company_id': picking_type.warehouse_id.company_id.id,
+                'picking_type_id': picking_type.id,
+                'partner_selectable': True
+            }
+            self.env['qc.trigger'].sudo().create(qc_trigger)
 
-    @api.model
-    def create(self, vals):
-        picking_type = super(StockPickingType, self).create(vals)
-        picking_type._create_qc_trigger()
-        return picking_type
+    @api.model_create_multi
+    def create(self, val_list):
+        picking_types = super(StockPickingType, self).create(val_list)
+        picking_types._create_qc_trigger()
+        return picking_types
 
     @api.multi
     def write(self, vals):

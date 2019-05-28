@@ -75,12 +75,12 @@ msgid "Picking"
 msgstr ""
 
 #. module: quality_control_stock
-#: model:res.request.link,name:quality_control_stock.req_link_stock_picking
+#: code:addons/quality_control_stock/models/qc_inspection.py:14
 msgid "Picking List"
-msgstr ""
+msgstr ""c
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type_id
+#: model:ir.model.fields,field_descrption:quality_control_stock.field_qc_trigger_picking_type_id
 msgid "Picking Type"
 msgstr ""
 
@@ -140,7 +140,7 @@ msgid "Quality inspections from picking failed"
 msgstr ""
 
 #. module: quality_control_stock
-#: model:res.request.link,name:quality_control_stock.req_link_stock_move
+#: code:addons/quality_control_stock/models/qc_inspection.py:14
 msgid "Stock Move"
 msgstr ""
 

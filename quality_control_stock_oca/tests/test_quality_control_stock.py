@@ -58,7 +58,6 @@ class TestQualityControl(TransactionCase):
                 'location_dest_id': self.location_dest.id
             })
         self.picking1.action_confirm()
-        self.picking1.force_assign()
         sequence = 10
         for line in self.picking1.move_lines.filtered(
                 lambda r: r.product_id == self.product):
@@ -98,7 +97,7 @@ class TestQualityControl(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         inspection = self.picking1.qc_inspections_ids[:1]
@@ -117,7 +116,7 @@ class TestQualityControl(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
@@ -130,7 +129,7 @@ class TestQualityControl(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
@@ -144,7 +143,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner1.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
@@ -158,7 +157,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner1.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
@@ -172,7 +171,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner1.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
@@ -186,7 +185,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner2.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 0,
                          'No inspection must be created')
 
@@ -198,7 +197,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner2.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 0,
                          'No inspection must be created')
 
@@ -210,7 +209,7 @@ class TestQualityControl(TransactionCase):
                 'partners': [(6, 0, self.partner2.ids)],
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 0,
                          'No inspection must be created')
 
@@ -227,7 +226,7 @@ class TestQualityControl(TransactionCase):
                 'test': self.test.id,
             }
         )]
-        self.picking1.do_transfer()
+        self.picking1.action_done()
         self.assertEqual(self.picking1.created_inspections, 1,
                          'Only one inspection must be created')
         self.assertEqual(self.picking1.qc_inspections_ids[:1].test, self.test,
