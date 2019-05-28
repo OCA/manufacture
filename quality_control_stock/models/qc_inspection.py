@@ -9,6 +9,12 @@ class QcInspection(models.Model):
     _inherit = 'qc.inspection'
 
     @api.multi
+    def object_selection_values(self):
+        result = super(QcInspection, self).object_selection_values()
+        result.extend([('stock.picking', "Picking List"), ('stock.move', "Stock Move")])
+        return result
+
+    @api.multi
     @api.depends('object_id')
     def _compute_picking(self):
         for inspection in self:
