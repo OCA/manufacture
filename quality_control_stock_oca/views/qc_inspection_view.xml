@@ -38,9 +38,11 @@
             <group expand="0" position="inside">
                 <filter string="Picking"
                         domain="[]"
+                        name="group_by_picking_id"
                         context="{'group_by': 'picking_id'}"/>
                 <filter string="Lot"
                         domain="[]"
+                        name="group_by_lot_id"
                         groups="stock.group_production_lot"
                         context="{'group_by': 'lot_id'}"/>
             </group>
@@ -71,10 +73,12 @@
             <group expand="0" position="inside">
                 <filter string="Picking"
                         domain="[]"
-                        context="{'group_by': 'picking'}"/>
+                        name="group_by_picking_id"
+                        context="{'group_by': 'picking_id'}"/>
                 <filter string="Lot"
                         domain="[]"
-                        context="{'group_by': 'lot'}"/>
+                        name="group_by_lot_id"
+                        context="{'group_by': 'lot_id'}"/>
             </group>
         </field>
     </record>
