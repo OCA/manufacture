@@ -40,9 +40,9 @@ class StockPicking(models.Model):
     def action_done(self):
         res = super(StockPicking, self).action_done()
         inspection_model = self.env['qc.inspection']
+        qc_trigger = self.env['qc.trigger'].search(
+            [('picking_type_id', '=', self.picking_type_id.id)])
         for operation in self.move_lines:
-            qc_trigger = self.env['qc.trigger'].search(
-                [('picking_type_id', '=', self.picking_type_id.id)])
             trigger_lines = set()
             for model in ['qc.trigger.product_category_line',
                           'qc.trigger.product_template_line',
