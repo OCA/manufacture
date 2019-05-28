@@ -5,7 +5,7 @@
 
 {
     "name": "Quality control - Stock",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
@@ -13,7 +13,7 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/11.0/"
+    "website": "https://github.com/OCA/manufacture/tree/12.0/"
                "quality_control_stock",
     "depends": [
         "quality_control",
@@ -21,7 +21,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "data/quality_control_stock_data.xml",
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_production_lot_view.xml",
