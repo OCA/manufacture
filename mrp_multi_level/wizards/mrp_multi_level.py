@@ -221,7 +221,7 @@ class MultiLevelMrp(models.TransientModel):
                 if bomline.product_qty <= 0.00 or \
                         bomline.product_id.type != 'product':
                     continue
-                if self._exclude_from_mrp(
+                if self.with_context(mrp_explosion=True)._exclude_from_mrp(
                         bomline.product_id,
                         product_mrp_area_id.mrp_area_id):
                     # Stop explosion.
@@ -745,6 +745,10 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
+            if self._exclude_from_mrp(
+                    product_mrp_area.product_id,
+                    product_mrp_area.mrp_area_id):
+                continue
             self._init_mrp_inventory(product_mrp_area)
         logger.info('End MRP final process')
 
