@@ -15,6 +15,7 @@ class MrpPlannedOrder(models.Model):
         comodel_name="product.mrp.area",
         string="Product",
         index=True,
+        required=True,
     )
     mrp_area_id = fields.Many2one(
         comodel_name="mrp.area",
@@ -22,11 +23,13 @@ class MrpPlannedOrder(models.Model):
         string="MRP Area",
         store=True,
         index=True,
+        readonly=True,
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
         related="product_mrp_area_id.product_id",
         store=True,
+        readonly=True,
     )
     order_release_date = fields.Date(
         string="Release Date",
