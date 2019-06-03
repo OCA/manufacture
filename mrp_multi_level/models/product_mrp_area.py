@@ -131,13 +131,13 @@ class ProductMRPArea(models.Model):
     def _compute_supply_method(self):
         group_obj = self.env['procurement.group']
         for rec in self:
+            proc_loc = rec.location_proc_id or rec.mrp_area_id.location_id
             values = {
                 'warehouse_id': rec.mrp_area_id.warehouse_id,
                 'company_id': self.env.user.company_id.id,
                 # TODO: better way to get company
             }
-            rule = group_obj._get_rule(
-                rec.product_id, rec.mrp_area_id.location_id, values)
+            rule = group_obj._get_rule(rec.product_id, proc_loc, values)
             rec.supply_method = rule.action if rule else 'none'
 
     @api.multi
