@@ -2,20 +2,21 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [REW/IMP] Rework to include Planned Orders.
-  (`#365 <https://github.com/OCA/manufacture/pull/365>`_):
+  (`#365 <https://github.com/OCA/manufacture/pull/365>`_).
+* [IMP] Able to procure from a different location than the area's location.
 
 11.0.2.2.0 (2019-05-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Able to run MRP only for selected areas.
-  (`#360 <https://github.com/OCA/manufacture/pull/360>`_):
+  (`#360 <https://github.com/OCA/manufacture/pull/360>`_).
 
 11.0.2.1.0 (2019-04-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Implement *Nbr. Days* functionality to be able to group demand when
   generating supply proposals.
-  (`#345 <https://github.com/OCA/manufacture/pull/345>`_):
+  (`#345 <https://github.com/OCA/manufacture/pull/345>`_).
 
 11.0.2.0.0 (2018-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
