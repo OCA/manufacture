@@ -26,6 +26,7 @@ class MrpInventory(models.Model):
     product_mrp_area_id = fields.Many2one(
         comodel_name='product.mrp.area', string='Product Parameters',
         index=True,
+        required=True,
     )
     product_id = fields.Many2one(
         comodel_name='product.product',

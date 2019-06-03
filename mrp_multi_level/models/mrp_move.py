@@ -14,6 +14,7 @@ class MrpMove(models.Model):
     product_mrp_area_id = fields.Many2one(
         comodel_name="product.mrp.area",
         string="Product", index=True,
+        required=True,
     )
     mrp_area_id = fields.Many2one(
         comodel_name="mrp.area",
