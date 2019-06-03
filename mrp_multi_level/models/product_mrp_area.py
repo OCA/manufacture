@@ -29,6 +29,16 @@ class ProductMRPArea(models.Model):
         related='product_id.product_tmpl_id',
         store=True,
     )
+    location_id = fields.Many2one(
+        related="mrp_area_id.location_id",
+    )
+    location_proc_id = fields.Many2one(
+        string="Procure Location",
+        comodel_name="stock.location",
+        domain="[('location_id', 'child_of', location_id)]",
+        help="Set this if you need to procure from a different location"
+             "than area's location.",
+    )
     # TODO: applicable and exclude... redundant??
     mrp_applicable = fields.Boolean(string='MRP Applicable')
     mrp_exclude = fields.Boolean(string='Exclude from MRP')
