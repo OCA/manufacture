@@ -26,7 +26,9 @@ class MrpInventoryProcure(models.TransientModel):
             'mrp_inventory_id': planned_order.mrp_inventory_id.id,
             'product_id': planned_order.product_id.id,
             'warehouse_id': planned_order.mrp_area_id.warehouse_id.id,
-            'location_id': planned_order.mrp_area_id.location_id.id,
+            'location_id':
+            planned_order.product_mrp_area_id.location_proc_id.id or
+            planned_order.mrp_area_id.location_id.id,
         }
 
     @api.model
