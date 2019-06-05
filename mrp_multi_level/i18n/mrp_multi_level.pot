@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-02 14:01+0000\n"
+"PO-Revision-Date: 2019-06-02 14:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,6 +29,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
 msgid "Approved"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Area"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -54,6 +61,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:res.groups,name:mrp_multi_level.group_change_mrp_procure_qty
 msgid "Change procure quantity in MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_stock_demand_estimate
+msgid "Compute Stock Estimates"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -156,18 +168,6 @@ msgid "Execute"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_1
-#: model:product.template,name:mrp_multi_level.product_product_fp_1_product_template
-msgid "FP-1"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_2
-#: model:product.template,name:mrp_multi_level.product_product_fp_2_product_template
-msgid "FP-2"
-msgstr ""
-
-#. module: mrp_multi_level
 #: selection:mrp.move,mrp_origin:0
 msgid "Forecast"
 msgstr ""
@@ -175,6 +175,16 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_final_on_hand_qty
 msgid "Forecasted Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory_gauge_color
+msgid "GREEN: ok / YELLOW: attention // RED: under stock"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_gauge_color
+msgid "Gauge color"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -204,13 +214,33 @@ msgid "If empty, all areas will be computed."
 msgstr ""
 
 #. module: mrp_multi_level
+#: selection:mrp.move,state:0
+msgid "In Progress"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_inspection_delay
 msgid "Inspection Delay"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_location
 msgid "Inventory Locations"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Reserved"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Ordered"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -264,6 +294,11 @@ msgid "Location"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_looking_up
+msgid "Looking up"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product_llc
 msgid "Low Level Code"
 msgstr ""
@@ -271,7 +306,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_mrp
 #: selection:mrp.move,mrp_origin:0
-#: model:product.category,name:mrp_multi_level.product_category_mrp
 msgid "MRP"
 msgstr ""
 
@@ -372,6 +406,21 @@ msgid "Make Procurements from MRP inventory projections"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_manufactoring_material
+msgid "Manufactoring Material"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_manufactoring_order
+msgid "Manufactoring Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: selection:mrp.move,mrp_origin:0
+msgid "Manufacturing Material"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_production_id
 #: selection:mrp.move,mrp_action:0
 #: selection:mrp.move,mrp_origin:0
@@ -438,6 +487,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:173
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:190
 #, python-format
 msgid "No MRP product found"
 msgstr ""
@@ -448,8 +498,18 @@ msgid "None"
 msgstr ""
 
 #. module: mrp_multi_level
+#: selection:mrp.move,mrp_origin:0
+msgid "Not Defined"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area_mrp_nbr_days
 msgid "Number of days to group demand for this product during the MRP run, in order to determine the quantity to order."
+msgstr ""
+
+#. module: mrp_multi_level
+#: selection:mrp.move,state:0
+msgid "Open"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -468,20 +528,6 @@ msgid "Origin"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_1
-#: model:product.template,name:mrp_multi_level.product_product_pp_1_product_template
-#: model:stock.inventory.line,product_name:mrp_multi_level.stock_inventory_line_1
-msgid "PP-1"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_2
-#: model:product.template,name:mrp_multi_level.product_product_pp_2_product_template
-#: model:stock.inventory.line,product_name:mrp_multi_level.stock_inventory_line_2
-msgid "PP-2"
-msgstr ""
-
-#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_parent_product_id
 msgid "Parent Product"
 msgstr ""
@@ -489,6 +535,12 @@ msgstr ""
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
 msgid "Partially Available"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory_mrp_responsible_user_id
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area_mrp_responsible_user_id
+msgid "Person in charge"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -562,9 +614,15 @@ msgid "Product UoM"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_purchase_order_id
-#: selection:mrp.move,mrp_action:0
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_purchase_blanket_order
 #: selection:mrp.move,mrp_origin:0
+msgid "Purchase Blanket Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_purchase_order_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_purchase_order
+#: selection:mrp.move,mrp_action:0
 msgid "Purchase Order"
 msgstr ""
 
@@ -594,6 +652,11 @@ msgid "Quantity Available"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_quantity_on_hand
+msgid "Quantity On Hand"
+msgstr ""
+
+#. module: mrp_multi_level
 #: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:80
 #, python-format
 msgid "Quantity must be positive."
@@ -605,8 +668,20 @@ msgid "Ready"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_request_for_quotation
+#: selection:mrp.move,mrp_origin:0
+msgid "Request for Quotation"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_stock_location_mrp_area_id
 msgid "Requirements for a particular MRP area are combined for the purposes of procurement by the MRP."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_mrp_responsible_user_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_mrp_responsible_user_id
+msgid "Responsible"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -627,16 +702,15 @@ msgid "Running Availability"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_1
-#: model:product.template,name:mrp_multi_level.product_product_sf_1_product_template
-msgid "SF-1"
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_sale_blanket_order
+#: selection:mrp.move,mrp_origin:0
+msgid "Sale Blanket Order"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_2
-#: model:product.template,name:mrp_multi_level.product_product_sf_2_product_template
-#: model:stock.inventory.line,product_name:mrp_multi_level.stock_inventory_line_3
-msgid "SF-2"
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_use_sale_order
+#: selection:mrp.move,mrp_origin:0
+msgid "Sale Order"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -647,6 +721,16 @@ msgstr ""
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
 msgid "Sent"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Set the MRP parameters for calculation:"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area_mrp_looking_up
+msgid "Set the number of days to look at in the future"
 msgstr ""
 
 #. module: mrp_multi_level
