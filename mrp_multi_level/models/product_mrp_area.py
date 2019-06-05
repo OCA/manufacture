@@ -78,6 +78,20 @@ class ProductMRPArea(models.Model):
         inverse_name='product_mrp_area_id',
         readonly=True,
     )
+
+    # mf20190601
+    mrp_responsible_user_id = fields.Many2one(
+        'res.users',
+        'Responsible',
+        track_visibility=True,
+        help="Person in charge"
+    )
+
+    mrp_looking_up = fields.Integer(
+        string='Looking up',
+        help="Set the number of days to look at in the future"
+    )
+
     _sql_constraints = [
         ('product_mrp_area_uniq', 'unique(product_id, mrp_area_id)',
          'The product/MRP Area parameters combination must be unique.'),
