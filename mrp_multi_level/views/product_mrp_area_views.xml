@@ -51,6 +51,7 @@
                             <field name="mrp_exclude"/>
                             <field name="mrp_verified"/>
                             <field name="mrp_nbr_days"/>
+                            <field name="group_estimate_days"/>
                             <!--hide delays for now-->
                             <field name="mrp_transit_delay" invisible="1"/>
                             <field name="mrp_inspection_delay" invisible="1"/>
