@@ -58,7 +58,7 @@ class MultiLevelMrp(models.TransientModel):
             'purchase_order_id': None,
             'purchase_line_id': None,
             'stock_move_id': None,
-            'mrp_qty': -daily_qty,
+            'mrp_qty': -daily_qty * product_mrp_area.group_estimate_days,
             'current_qty': -daily_qty,
             'mrp_date': date,
             'current_date': date,
@@ -360,21 +360,28 @@ class MultiLevelMrp(models.TransientModel):
         return True
 
     @api.model
-    def _init_mrp_move_from_forecast(self, product_mrp_area):
+    def _estimates_domain(self, product_mrp_area):
         locations = product_mrp_area.mrp_area_id._get_locations()
-        today = fields.Date.today()
-        estimates = self.env['stock.demand.estimate'].search([
+        return [
             ('product_id', '=', product_mrp_area.product_id.id),
             ('location_id', 'in', locations.ids),
-            ('date_range_id.date_end', '>=', today)
-        ])
+            ('date_range_id.date_end', '>=', fields.Date.today()),
+        ]
+
+    @api.model
+    def _init_mrp_move_from_forecast(self, product_mrp_area):
+        if not product_mrp_area.group_estimate_days:
+            return False
+        today = fields.Date.today()
+        domain = self._estimates_domain(product_mrp_area)
+        estimates = self.env['stock.demand.estimate'].search(domain)
         for rec in estimates:
             start = rec.date_range_id.date_start
             if start < today:
                 start = today
             mrp_date = fields.Date.from_string(start)
             date_end = fields.Date.from_string(rec.date_range_id.date_end)
-            delta = timedelta(days=1)
+            delta = timedelta(days=product_mrp_area.group_estimate_days)
             while mrp_date <= date_end:
                 mrp_move_data = \
                     self._prepare_mrp_move_data_from_forecast(
