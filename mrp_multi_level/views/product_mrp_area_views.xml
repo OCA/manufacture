@@ -21,6 +21,7 @@
                 <field name="mrp_qty_multiple"/>
                 <field name="supply_method"/>
                 <field name="main_supplierinfo_id"/>
+                <field name="mrp_responsible_user_id"/>
             </tree>
         </field>
     </record>
@@ -57,6 +58,8 @@
                             <field name="mrp_qty_multiple"/>
                             <field name="supply_method"/>
                             <field name="main_supplierinfo_id"/>
+                            <field name="mrp_looking_up"/>
+                            <field name="mrp_responsible_user_id"/>
                         </group>
                     </group>
                     <notebook>

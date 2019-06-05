@@ -37,6 +37,7 @@
             <tree string="MRP Inventory" create="false">
                 <field name="mrp_area_id"/>
                 <field name="product_id"/>
+                <field name="gauge_color"/>
                 <field name="date"/>
                 <field name="uom_id" groups="product.group_uom"/>
                 <field name="initial_on_hand_qty"/>
@@ -45,6 +46,7 @@
                 <field name="final_on_hand_qty"/>
                 <field name="to_procure"/>
                 <field name="order_release_date"/>
+                <field name="mrp_responsible_user_id"/>
                 <button string="Create Procurement"
                         name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                         icon="fa-cogs" type="action"
