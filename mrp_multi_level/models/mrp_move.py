@@ -50,11 +50,18 @@ class MrpMove(models.Model):
     )
     mrp_order_number = fields.Char(string='Order Number')
     # TODO: replace by a char origin?
+    # ANDPIO-2109-05-28
     mrp_origin = fields.Selection(
         selection=[('mo', 'Manufacturing Order'),
-                   ('po', 'Purchase Order'),
+                   ('mm', 'Manufacturing Material'),
+                   ('po', 'Request for Quotation'),
+                   ('so', 'Sale Order'),
+                   ('sb', 'Sale Blanket Order'),
+                   ('pb', 'Purchase Blanket Order'),
                    ('mv', 'Move'),
-                   ('fc', 'Forecast'), ('mrp', 'MRP')],
+                   ('fc', 'Forecast'),
+                   ('mrp', 'MRP'),
+                   ('??', 'Not Defined')],
         string='Origin')
     mrp_processed = fields.Boolean(string='Processed')
     product_mrp_area_id = fields.Many2one(
@@ -96,6 +103,8 @@ class MrpMove(models.Model):
                    ('partially_available', 'Partially Available'),
                    ('ready', 'Ready'),
                    ('sent', 'Sent'),
+                   ('open', 'Open'),
+                   ('in_progress', 'In Progress'),
                    ('to approve', 'To Approve'),
                    ('approved', 'Approved')],
         string='State',
