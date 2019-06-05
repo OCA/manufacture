@@ -3,11 +3,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     'name': 'MRP Multi Level',
-    'version': '11.0.2.2.0',
+    'version': '11.0.3.0.0',
     'development_status': 'Beta',
     'license': 'AGPL-3',
     'author': 'Ucamco, '
               'Eficent, '
+              'Openindustry.it, '
               'Odoo Community Association (OCA)',
     'maintainers': ['jbeficent', 'lreficent'],
     'summary': 'Adds an MRP Scheduler',
@@ -19,6 +20,8 @@
         'purchase',
         'stock_demand_estimate',
         'mrp_warehouse_calendar',
+        'sale_blanket_order',
+        'purchase_requisition',
     ],
     'data': [
         'security/mrp_multi_level_security.xml',
@@ -46,4 +49,5 @@
     ],
     'installable': True,
     'application': True,
+    'auto-install': False,
 }
