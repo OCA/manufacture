@@ -48,6 +48,23 @@ class MrpInventory(models.Model):
         store=True,
     )
 
+    # mf20190601
+    mrp_responsible_user_id = fields.Many2one(
+        'res.users',
+        'Responsible',
+        track_visibility=True,
+        help="Person in charge",
+        related = 'product_mrp_area_id.mrp_responsible_user_id',
+        store = False
+    )
+
+    gauge_color = fields.Char(
+        string='Gauge color',
+        help="GREEN: ok / YELLOW: attention // RED: under stock",
+        default='GREEN'
+    )
+
+
     @api.multi
     def _compute_uom_id(self):
         for rec in self:
