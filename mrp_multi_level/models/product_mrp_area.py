@@ -6,7 +6,8 @@
 
 from math import ceil
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class ProductMRPArea(models.Model):
@@ -98,10 +99,29 @@ class ProductMRPArea(models.Model):
         inverse_name="product_mrp_area_id",
         readonly=True,
     )
+    group_estimate_days = fields.Integer(
+        string="Group Days of Estimates",
+        default=1,
+    )
     _sql_constraints = [
         ('product_mrp_area_uniq', 'unique(product_id, mrp_area_id)',
          'The product/MRP Area parameters combination must be unique.'),
     ]
+
+    @api.multi
+    @api.constrains(
+        "mrp_minimum_order_qty", "mrp_maximum_order_qty", "mrp_qty_multiple",
+        "mrp_minimum_stock", "mrp_nbr_days", "group_estimate_days",
+    )
+    def _check_negatives(self):
+        values = self.read([
+            "mrp_minimum_order_qty", "mrp_maximum_order_qty",
+            "mrp_qty_multiple",
+            "mrp_minimum_stock", "mrp_nbr_days", "group_estimate_days",
+        ])
+        for rec in values:
+            if any(v < 0 for v in rec.values()):
+                raise ValidationError(_("You cannot use a negative number."))
 
     @api.multi
     def name_get(self):
