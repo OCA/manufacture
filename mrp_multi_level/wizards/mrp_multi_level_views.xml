@@ -6,8 +6,40 @@
         <field name="model">mrp.multi.level</field>
         <field name="arch" type="xml">
             <form string="Run MRP Multi Level">
-                <group>
-                    <field name="mrp_area_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <p class="modal-header">
+                    <h2>Parameter MRP for calculation:</h2>
+                </p>
+                <group name="1">
+                    <group name="title">
+                        <separator string="Inventory"/>
+                    </group>
+                    <group name="qty">
+                        <field name="use_quantity_on_hand" widget="checkbox"/>
+                    </group>
+                </group>
+                <group name="2">
+                    <separator string="Reserved"/>
+                    <group name="out">
+                        <field name="use_sale_order" widget="checkbox"/>
+                        <field name="use_sale_blanket_order" widget="checkbox"/>
+                        <field name="use_manufactoring_material" widget="checkbox"/>
+                        <field name="use_stock_demand_estimate" widget="checkbox"/>
+                    </group>
+                    <separator string="Ordered"/>
+                    <group name="in">
+                        <field name="use_purchase_order" widget="checkbox"/>
+                        <field name="use_manufactoring_order" widget="checkbox"/>
+                        <field name="use_purchase_blanket_order" widget="checkbox"/>
+                        <field name="use_request_for_quotation" widget="checkbox"/>
+                    </group>
+                </group>
+                <group name="3">
+                    <group name="title">
+                        <separator string="Area"/>
+                    </group>
+                    <group name="area">
+                        <field name="mrp_area_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
                 </group>
                 <footer>
                     <button name="run_mrp_multi_level" string="Run MRP" type="object"  class="oe_highlight"  />
