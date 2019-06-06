@@ -1,0 +1,55 @@
+image: python:3.5
+stages:
+  - test
+
+services:
+  - postgres:10
+
+variables:
+  POSTGRES_DB: project_ci_test
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: ""
+  TEST_DBNAME: '${CI_PROJECT_PATH_SLUG}-pipeline-${CI_PIPELINE_ID}'
+  DEPLOY_DBNAME: '${CI_PROJECT_PATH_SLUG}-${CI_COMMIT_REF_SLUG}'
+  RUNNER_HOME: '/home/gitlab-runner'
+  INSTANCE_PATH: '${RUNNER_HOME}/instances/${CI_PROJECT_PATH_SLUG}-${CI_COMMIT_REF_SLUG}'
+  TRAVIS_BUILD_DIR: "$CI_PROJECT_DIR"
+  VERSION: "12.0"
+  ODOO_BRANCH: "12.0"
+  ODOO_REPO: "odoo/odoo"
+
+
+before_script:
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  - apt-get install -y  sudo postgresql-client expect-dev python-lxml nodejs python-dev python-pip build-essential libsasl2-dev python-dev libldap2-dev libssl-dev
+  - pip install coverage coveralls codecov
+  # Add ssh keys to be able to get enterprise code.
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+test:
+  stage: test
+  tags:
+    - postgres
+    - docker
+  variables:
+    LINT_CHECK: "0"
+    TESTS: "1"
+    EXCLUDE: ""
+  script:
+    # We need to export the PG* here, otherwise the postgresql container
+    # Wil pick them up
+    - export PGHOST="postgres"
+    - export PGUSER="postgres"
+    - export PGPASSWORD=""
+    - git clone https://github.com/OCA/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
+    - export PATH=${HOME}/maintainer-quality-tools/travis:${HOME}/gitlab_tools:${PATH}
+    - travis_install_nightly
+    - travis_run_tests
+    - travis_after_tests_success || true
+  coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
