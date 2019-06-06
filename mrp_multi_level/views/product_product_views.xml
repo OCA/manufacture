@@ -12,7 +12,7 @@
                     name="action_view_mrp_area_parameters"
                     class="oe_stat_button"
                     icon="fa-eject"
-                    groups="mrp.group_mrp_user,rma.group_mrp_manager">
+                    groups="mrp.group_mrp_user">
                         <field name="mrp_area_count" widget="statinfo"
                                string="MRP Areas"/>
                 </button>
