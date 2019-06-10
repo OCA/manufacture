@@ -28,7 +28,7 @@ class MrpProduction(models.Model):
         for production in self:
             warehouse = production.location_src_id.get_warehouse()
             mto_with_no_move_dest_id = warehouse.mrp_mto_mts_forecast_qty
-            move_ids = copy.copy(self.move_raw_ids.ids)
+            move_ids = copy.copy(production.move_raw_ids.ids)
             for move in move_obj.browse(move_ids):
                 new_move = False
                 qty_to_procure = 0.0
