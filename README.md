@@ -20,7 +20,7 @@ addon | version | summary
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 10.0.1.0.0 | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 10.0.1.0.0 | Adds location field to Bill of Materials and its components.
 [mrp_bom_note](mrp_bom_note/) | 10.0.1.0.0 | Notes in Bill of Materials
-[mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.0 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
+[mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.1 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_mto_with_stock_purchase](mrp_mto_with_stock_purchase/) | 10.0.1.0.0 | Module needed to make mrp_mto_with_stock module compatible with purchase module.
 [mrp_no_partial](mrp_no_partial/) | 10.0.1.0.0 | Block the production order if all quantities are not done
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
