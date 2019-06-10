@@ -10,7 +10,7 @@
     "author": "John Walsh, Eficent, Odoo Community Association (OCA)",
     "website": "https://odoo-community.org/",
     "category": "Manufacturing",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "license": "AGPL-3",
     "application": False,
     "installable": True,

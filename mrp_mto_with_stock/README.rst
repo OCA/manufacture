@@ -69,6 +69,7 @@ Contributors
 * John Walsh <John.Walsh@interclean.com>
 * Lois Rilo <lois.rilo@eficent.com>
 * Florian da Costa <florian.dacosta@akretion.com>
+* Isaac Gallart <igallart@puntsistemes.es>
 
 Maintainer
 ----------
