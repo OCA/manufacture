@@ -37,8 +37,6 @@
                             <field name="location_id"/>
                         </group>
                         <group name="settings">
-                            <field name="warehouse_id"/>
-                            <field name="location_id"/>
                             <field name="calendar_id"/>
                         </group>
                     </group>
