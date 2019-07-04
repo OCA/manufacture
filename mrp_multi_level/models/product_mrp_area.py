@@ -149,8 +149,7 @@ class ProductMRPArea(models.Model):
 
     @api.multi
     def _compute_supply_method(self):
-        group_obj = self.env['procurement.group'].with_context(
-            no_auto_create_group=True)
+        group_obj = self.env['procurement.group']
         for rec in self:
             proc_loc = rec.location_proc_id or rec.mrp_area_id.location_id
             values = {
