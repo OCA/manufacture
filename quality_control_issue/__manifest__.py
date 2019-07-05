@@ -4,7 +4,7 @@
 {
     "name": "Quality Control Issue",
     "summary": "Allow to manage and report Quality Control Issues.",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.1.0",
     "development_status": "Production/Stable",
     "category": "Quality Control",
     "website": "https://odoo-community.org/",
