@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-mrp_bom_component_menu',
         'odoo11-addon-mrp_bom_equivalent',
         'odoo11-addon-mrp_bom_location',
+        'odoo11-addon-mrp_bom_tracking',
         'odoo11-addon-mrp_mto_with_stock',
         'odoo11-addon-mrp_mto_with_stock_purchase',
         'odoo11-addon-mrp_multi_level',
