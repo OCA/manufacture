@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-mrp_auto_assign',
         'odoo12-addon-mrp_bom_component_menu',
         'odoo12-addon-mrp_bom_location',
+        'odoo12-addon-mrp_bom_tracking',
         'odoo12-addon-mrp_production_grouped_by_product',
         'odoo12-addon-mrp_production_putaway_strategy',
         'odoo12-addon-mrp_warehouse_calendar',
