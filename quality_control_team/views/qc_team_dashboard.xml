@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+<!-- Copyright 2017-19 Eficent Business and IT Consulting Services S.L.
  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
     <record id="qc_team_view_kanban" model="ir.ui.view" >
@@ -20,23 +20,22 @@
                                     <div class="o_primary"><field name="name"/></div>
                                 </div>
                                 <div class="o_kanban_manage_button_section">
-                                    <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
+                                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
                                 </div>
                             </div>
-                            <div class="container o_kanban_card_content o_visible">
-                                <div class="row">
-                                    <div class="col-xs-6 o_kanban_primary_left" name="card_left"/>
-                                    <div class="col-xs-6 o_kanban_primary_right" name="card_right"/>
+                            <div class="container o_kanban_card_content">
+                                <div class="row o_kanban_card_upper_content">
+                                    <div class="col-6 o_kanban_primary_left" name="card_left"/>
+                                    <div class="col-6 o_kanban_primary_right" name="card_right"/>
                                 </div>
                             </div>
 
-                            <div class="container o_kanban_card_manage_pane o_invisible">
-                                <div class="row"/>
-                                <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
-                                    <div class="col-xs-8">
-                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                            <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                <div t-if="widget.editable" class="o_kanban_card_manage_settings row" groups="quality_control.group_quality_control_manager">
+                                    <div role="menuitem" aria-haspopup="true" class="col-8">
+                                        <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
                                     </div>
-                                    <div class="col-xs-4 text-right">
+                                    <div role="menuitem" class="col-4 text-right">
                                         <a type="edit">Settings</a>
                                     </div>
                                 </div>
@@ -58,7 +57,7 @@
                 <filter name="personal" string="My Teams"
                         domain="['|', ('member_ids', '=', uid), ('user_id', '=', uid)]"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Team Leader" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter name="group_user_id" string="Team Leader" domain="[]" context="{'group_by':'user_id'}"/>
                 </group>
             </search>
         </field>
