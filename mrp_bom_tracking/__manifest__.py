@@ -3,9 +3,9 @@
 
 {
     "name": "MRP BoM Tracking",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "summary": "Add track visibility to some fields of mrp boms.",
+    "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": [
@@ -15,5 +15,5 @@
         "views/bom_template.xml",
     ],
     "license": "LGPL-3",
-    'installable': True,
+    "installable": True,
 }
