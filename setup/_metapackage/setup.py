@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo12-addon-mrp_production_putaway_strategy',
         'odoo12-addon-mrp_warehouse_calendar',
         'odoo12-addon-quality_control',
+        'odoo12-addon-quality_control_team',
         'odoo12-addon-repair_refurbish',
     ],
     classifiers=[
