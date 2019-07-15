@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="stock_scrap_form_view" model="ir.ui.view">
+        <field name="name">stock.scrap.form - quality_control_issue</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field name="qc_issue_id" attrs="{'invisible': [('qc_issue_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_scrap_form_view2" model="ir.ui.view">
+        <field name="name">stock.scrap.form2 - quality_control_issue</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view2"/>
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field name="qc_issue_id" attrs="{'invisible': [('qc_issue_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
