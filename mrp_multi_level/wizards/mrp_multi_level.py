@@ -767,3 +767,7 @@ class MultiLevelMrp(models.TransientModel):
         self._mrp_initialisation(self.mrp_area_ids)
         self._mrp_calculation(mrp_lowest_llc, self.mrp_area_ids)
         self._mrp_final_process(self.mrp_area_ids)
+        # Open MRP inventory screen to show result if manually run:
+        action = self.env.ref("mrp_multi_level.mrp_inventory_action")
+        result = action.read()[0]
+        return result
