@@ -1,13 +1,13 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
 
 
 class TestMrpManualProcurement(TransactionCase):
 
-    def setUp(self, *args, **kwargs):
-        super(TestMrpManualProcurement, self).setUp(*args, **kwargs)
+    def setUp(self):
+        super(TestMrpManualProcurement, self).setUp()
 
         self.production_model = self.env['mrp.production']
         self.product_model = self.env['product.product']
@@ -31,9 +31,9 @@ class TestMrpManualProcurement(TransactionCase):
         test_route = self.route_model.create({
             'name': 'Stock -> Test',
             'product_selectable': True,
-            'pull_ids': [(0, 0, {
+            'rule_ids': [(0, 0, {
                 'name': 'stock to test',
-                'action': 'move',
+                'action': 'pull',
                 'location_id': self.secondary_loc.id,
                 'location_src_id': self.stock_loc.id,
                 'procure_method': 'make_to_order',
