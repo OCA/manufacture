@@ -8,7 +8,7 @@
         <field name="name">qc.issue.tree</field>
         <field name="model">qc.issue</field>
         <field name="arch" type="xml">
-            <tree string="Issues">
+            <tree>
                 <field name="name"/>
                 <field name="inspector_id"/>
                 <field name="product_id"/>
@@ -52,7 +52,7 @@
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label string="Quality Control Issue"/>
+                        <label for="name" string="Quality Control Issue"/>
                         <h1>
                             <field name="name"/>
                         </h1>
@@ -75,13 +75,14 @@
                             <field name="product_qty"
                                    attrs="{'invisible': [('product_tracking', '=', 'serial')]}"/>
                             <field name="product_uom"
-                                   groups="product.group_uom"
+                                   groups="uom.group_uom"
                                    attrs="{'invisible': [('product_tracking', '=', 'serial')]}"/>
                             <field name="location_id"/>
                         </group>
                     </group>
                     <group name="bottom">
-                        <field name="qc_problem_ids" widget="many2many_tags"/>
+                        <field name="qc_problem_ids" widget="many2many_tags"
+                               options="{'color_field': 'color'}"/>
                         <field name="description"/>
                     </group>
                 </sheet>
@@ -104,35 +105,42 @@
                 <field name="color"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
-                            <div class="o_dropdown_kanban dropdown">
-
-                                <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
-                                    <span class="fa fa-bars fa-lg"/>
-                                </a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                    <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
-                                    <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
-                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
-                                </ul>
-                            </div>
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
                             <div class="oe_kanban_content">
-                                <div>
-                                    <strong><field name="name"/></strong>
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+
+                                    </div>
+                                    <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                        <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown"
+                                           href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                            <span class="fa fa-ellipsis-v"/>
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                            <div role="separator" class="dropdown-divider"/>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                Product: <field name="product_id"/><br></br>
-                                Qty: <field name="product_qty"/> <field name="product_uom"/><br></br>
-                                Location: <field name="location_id"/>
-                                <t t-if="record.qc_problem_ids"><br></br>
-                                Problems:
-                                <t t-foreach="record.qc_problem_ids.raw_value" t-as="rec">
-                                    <t t-esc="rec"/>;
-                                </t></t>
-                                <div class="o_kanban_footer">
+                                <div class="o_kanban_record_body">
+                                    <div>
+                                        <field name="qc_problem_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </div>
+                                    <div class="text-muted o_kanban_record_subtitle">
+                                        Product: <field name="product_id"/>
+                                        Qty: <field name="product_qty"/> <field name="product_uom"/><br/>
+                                        Location: <field name="location_id"/>
+                                    </div>
+
+                                </div>
+                                <div class="o_kanban_record_bottom">
                                     <!--To be inhereted.-->
                                 </div>
                             </div>
-                            <div class="oe_clear"></div>
+                            <div class="oe_clear"/>
                         </div>
                     </t>
                 </templates>
@@ -153,7 +161,8 @@
                 <field name="qc_team_id"/>
                 <field name="stage_id"/>
                 <field name="location_id"/>
-                <filter string="My inspections"
+                <filter name="my_inspections"
+                        string="My inspections"
                         domain="[('inspector_id', '=', uid)]"/>
                 <separator/>
                 <filter string="My Activities" name="activities_my"
@@ -168,15 +177,17 @@
                     domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
                     ]"/>
                 <group expand="0" string="Group By...">
-                    <filter string="Stage" domain="[]"
+                    <filter name="groupby_stage"
+                            string="Stage" domain="[]"
                             context="{'group_by':'stage_id'}"/>
-                    <filter string="Problem Group" domain="[]"
-                            context="{'group_by': 'problem_group_id'}"/>
-                    <filter string="Product" domain="[]"
+                    <filter name="groupby_product"
+                            string="Product" domain="[]"
                             context="{'group_by': 'product_id'}"/>
-                    <filter string="Location" domain="[]"
+                    <filter name="groupby_location"
+                            string="Location" domain="[]"
                             context="{'group_by': 'location_id'}"/>
-                    <filter string="Company" context="{'group_by':'company_id'}"
+                    <filter name="groupby_company"
+                            string="Company" context="{'group_by':'company_id'}"
                             groups="base.group_multi_company"/>
                 </group>
             </search>

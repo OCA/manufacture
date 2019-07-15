@@ -16,6 +16,7 @@ class QcProblem(models.Model):
     _name = "qc.problem"
     _description = "Quality Control Problem Tracking"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "priority desc, id desc"
 
     def _get_default_stage_id(self):
         """ Gives default stage_id """
@@ -56,7 +57,11 @@ class QcProblem(models.Model):
         string="Issues", compute=_compute_count, store=True)
     color = fields.Integer(string='Color Index')
     priority = fields.Selection(
-        selection=AVAILABLE_PRIORITIES, string='Rating', index=True)
+        selection=AVAILABLE_PRIORITIES,
+        default="0",
+        string="Rating",
+        index=True,
+    )
     stage_id = fields.Many2one(
         comodel_name="qc.stage", string='Stage',
         track_visibility='onchange',

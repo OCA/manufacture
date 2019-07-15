@@ -74,7 +74,7 @@ class QualityControlIssue(models.Model):
         readonly=True, states={"new": [("readonly", False)]},
         digits=dp.get_precision("Product Unit of Measure"))
     product_uom = fields.Many2one(
-        comodel_name="product.uom", string="Product Unit of Measure",
+        comodel_name="uom.uom", string="Product Unit of Measure",
         default=_get_uom, required=True, readonly=True,
         states={"new": [("readonly", False)]})
     lot_id = fields.Many2one(

@@ -14,6 +14,7 @@ AVAILABLE_PRIORITIES = [
 
 class QualityControlIssueStage(models.Model):
     _name = "qc.issue.stage"
+    _description = "Quality Control Issue Stage"
     _rec_name = 'name'
     _order = "sequence, name, id"
 
