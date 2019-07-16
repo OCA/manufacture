@@ -16,3 +16,11 @@ class MrpProduction(models.Model):
             'date_start': datetime.now(),
         })
         return True
+
+    @api.multi
+    def action_confirm(self):
+        self.write({
+            'state': 'confirmed',
+            'date_start': False,
+        })
+        return True

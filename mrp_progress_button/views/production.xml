@@ -9,6 +9,11 @@
                     <button name="action_progress" attrs="{'invisible': ['|', ('state', '!=', 'confirmed'), ('routing_id', '!=', False)]}"
                             type="object" string="Mark As Started" class="oe_highlight"/>
                 </button>
+                <button name="open_produce_product" position="after">
+                    <button name="action_confirm"
+                            attrs="{'invisible': ['|', '|', ('state', '!=', 'progress'), ('routing_id', '!=', False), ('post_visible', '=', True)]}"
+                            type="object" string="Set to Confirmed"/>
+                </button>
             </field>
         </record>
 
