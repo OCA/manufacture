@@ -19,7 +19,7 @@ addon | version | summary
 [mrp_calendar_view](mrp_calendar_view/) | 8.0.1.0.0 | MRP Calendar View
 [mrp_disable_force_availability_button](mrp_disable_force_availability_button/) | 8.0.1.0.0 | Disable force availability button in manufacturing orders.
 [mrp_hook](mrp_hook/) | 8.0.1.0.0 | MRP Hooks
-[mrp_operations_extension](mrp_operations_extension/) | 8.0.2.0.0 | Manufacturing Operations Extension
+[mrp_operations_extension](mrp_operations_extension/) | 8.0.2.0.1 | Manufacturing Operations Extension
 [mrp_operations_project](mrp_operations_project/) | 8.0.1.0.0 | Create task for work orders with operators
 [mrp_operations_start_without_material](mrp_operations_start_without_material/) | 8.0.1.0.1 | MRP Operations start without material
 [mrp_operations_time_control](mrp_operations_time_control/) | 8.0.1.1.0 | MRP Operations Time Control
