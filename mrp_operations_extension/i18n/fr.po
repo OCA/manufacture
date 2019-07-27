@@ -33,6 +33,12 @@ msgid "# operators"
 msgstr "# opérateurs"
 
 #. module: mrp_operations_extension
+#: code:addons/mrp_operations_extension/wizard/change_production_qty.py:17
+#, python-format
+msgid "Active Id not found"
+msgstr ""
+
+#. module: mrp_operations_extension
 #: view:mrp.production:mrp_operations_extension.mrp_production_form_view_inh
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Actual Production Date"
@@ -80,6 +86,11 @@ msgstr "Annuler tous les mouvements"
 #: field:mrp.operation.workcenter,capacity_per_cycle:0
 msgid "Capacity per cycle"
 msgstr "Capacité par cycle"
+
+#. module: mrp_operations_extension
+#: model:ir.model,name:mrp_operations_extension.model_change_production_qty
+msgid "Change Quantity of Products"
+msgstr ""
 
 #. module: mrp_operations_extension
 #: code:addons/mrp_operations_extension/models/mrp_bom.py:55
