@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-mrp_bom_tracking',
         'odoo12-addon-mrp_production_grouped_by_product',
         'odoo12-addon-mrp_production_putaway_strategy',
+        'odoo12-addon-mrp_stock_orderpoint_manual_procurement',
         'odoo12-addon-mrp_warehouse_calendar',
         'odoo12-addon-quality_control',
         'odoo12-addon-quality_control_issue',
