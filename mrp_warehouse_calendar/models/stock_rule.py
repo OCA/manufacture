@@ -1,5 +1,5 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# Copyright 2018-19 Eficent Business and IT Consulting Services, S.L.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields, models
 
@@ -12,12 +12,15 @@ class StockRule(models.Model):
             product_id, values)
         picking_type = self.picking_type_id or \
             values['warehouse_id'].manu_type_id
-        dt_planned = fields.Datetime.to_datetime(values['date_planned'])
+        # We force the date planned to be at the beginning of the day.
+        # So no work intervals are found in planned date.
+        dt_planned = fields.Datetime.to_datetime(
+            values['date_planned']).replace(hour=0)
         warehouse = picking_type.warehouse_id
         if warehouse.calendar_id and product_id.produce_delay:
             lead_days = values['company_id'].manufacturing_lead + \
                 product_id.produce_delay
             date_expected = warehouse.calendar_id.plan_days(
-                -1 * lead_days - 1, dt_planned)
+                -1 * lead_days, dt_planned)
             date_planned = date_expected
         return date_planned
