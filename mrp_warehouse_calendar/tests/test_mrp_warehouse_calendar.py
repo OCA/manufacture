@@ -1,5 +1,5 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
@@ -62,6 +62,28 @@ class TestMrpWarehouseCalendar(TransactionCase):
             self.product.uom_id,
             self.warehouse.lot_stock_id, 'Test',
             'Test', values)
+        mo = self.env['mrp.production'].search(
+            [('product_id', '=', self.product.id)], limit=1)
+        date_plan_start = fields.Date.to_date(mo.date_planned_start)
+        # Friday 4th Jan 2097
+        friday = fields.Date.to_date('2097-01-04 09:00:00')
+
+        self.assertEqual(date_plan_start, friday)
+
+    def test_procurement_with_calendar_02(self):
+        """Test procuring at the beginning of the day, with no work intervals
+        before."""
+        values = {
+            'date_planned': '2097-01-07 01:00:00',  # Monday
+            'warehouse_id': self.warehouse,
+            'company_id': self.company,
+            'rule_id': self.manufacture_route,
+        }
+        self.env['procurement.group'].run(
+            self.product, 100,
+            self.product.uom_id,
+            self.warehouse.lot_stock_id, 'Test 2',
+            'Test 2', values)
         mo = self.env['mrp.production'].search(
             [('product_id', '=', self.product.id)], limit=1)
         date_plan_start = fields.Date.to_date(mo.date_planned_start)
