@@ -1,3 +1,11 @@
+12.0.1.0.0 (2019-08-05)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [MIG] Migration to v12:
+
+  * Estimates as a forecasting mechanism is moved to a new module
+    (mrp_multi_level_estimate).
+
 11.0.3.0.0 (2019-05-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
