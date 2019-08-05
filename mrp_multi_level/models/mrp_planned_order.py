@@ -1,6 +1,6 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import models, fields
 
@@ -13,7 +13,7 @@ class MrpPlannedOrder(models.Model):
     name = fields.Char(string="Description")
     product_mrp_area_id = fields.Many2one(
         comodel_name="product.mrp.area",
-        string="Product",
+        string="Product MRP Area",
         index=True,
         required=True,
     )
@@ -52,7 +52,9 @@ class MrpPlannedOrder(models.Model):
     mrp_action = fields.Selection(
         selection=[("manufacture", "Manufacturing Order"),
                    ("buy", "Purchase Order"),
-                   ("move", "Transfer"),
+                   ('pull', 'Pull From'),
+                   ('push', 'Push To'),
+                   ('pull_push', 'Pull & Push'),
                    ("none", "None")],
         string="Action",
     )

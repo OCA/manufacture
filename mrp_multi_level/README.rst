@@ -10,17 +10,17 @@ MRP Multi Level
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/11.0/mrp_multi_level
+    :target: https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-11-0/manufacture-11-0-mrp_multi_level
+    :target: https://translation.odoo-community.org/projects/manufacture-12-0/manufacture-12-0-mrp_multi_level
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/129/11.0
+    :target: https://runbot.odoo-community.org/runbot/129/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -36,11 +36,12 @@ Key Features
 ------------
 
 * MRP parameters set by product variant MRP area pairs.
-* Integration with `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/11.0/stock_demand_estimate>`_ system.
 * Cron job to calculate the MRP demand.
 * Manually calculate the MRP demand.
 * Confirm the calculated MRP demand and create PO's, or MO's.
 * Able to see the products for which action is needed throught Planned Orders.
+* Integration with `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`_ system.
+  Note: You need to install `mrp_multi_level_estimate module <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level_estimate>`_.
 
 **Table of contents**
 
@@ -80,6 +81,14 @@ To launch replenishment orders (moves, purchases, production orders...):
 
 Changelog
 =========
+
+12.0.1.0.0 (2019-08-05)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [MIG] Migration to v12:
+
+  * Estimates as a forecasting mechanism is moved to a new module
+    (mrp_multi_level_estimate).
 
 11.0.3.0.0 (2019-05-22)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,7 +147,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_multi_level%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_multi_level%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -182,6 +191,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-jbeficent| |maintainer-lreficent| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/11.0/mrp_multi_level>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
