@@ -1,19 +1,21 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
 # © 2016-18 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import models, fields
 
 
 class MrpMove(models.Model):
     _name = 'mrp.move'
+    _description = "MRP Move"
     _order = 'product_mrp_area_id, mrp_date, mrp_type desc, id'
 
     # TODO: too many indexes...
 
     product_mrp_area_id = fields.Many2one(
         comodel_name="product.mrp.area",
-        string="Product", index=True,
+        string="Product MRP Area",
+        index=True,
         required=True,
     )
     mrp_area_id = fields.Many2one(
