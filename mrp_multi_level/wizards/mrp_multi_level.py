@@ -2,18 +2,17 @@
 # Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo <lois.rilo@eficent.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models, exceptions, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 import logging
-from odoo.tools.float_utils import float_round
 logger = logging.getLogger(__name__)
 
 
 class MultiLevelMrp(models.TransientModel):
     _name = 'mrp.multi.level'
+    _description = "Multi Level MRP"
 
     mrp_area_ids = fields.Many2many(
         comodel_name="mrp.area",
@@ -27,7 +26,6 @@ class MultiLevelMrp(models.TransientModel):
     def _prepare_product_mrp_area_data(self, product_mrp_area):
         qty_available = 0.0
         product_obj = self.env['product.product']
-        # TODO: move mrp_qty_available computation, maybe unreserved??
         location_ids = product_mrp_area.mrp_area_id._get_locations()
         for location in location_ids:
             product_l = product_obj.with_context(
@@ -39,35 +37,6 @@ class MultiLevelMrp(models.TransientModel):
             'product_mrp_area_id': product_mrp_area.id,
             'mrp_qty_available': qty_available,
             'mrp_llc': product_mrp_area.product_id.llc,
-        }
-
-    @api.model
-    def _prepare_mrp_move_data_from_forecast(
-            self, estimate, product_mrp_area, date):
-        mrp_type = 'd'
-        origin = 'fc'
-        daily_qty = float_round(
-            estimate.daily_qty,
-            precision_rounding=product_mrp_area.product_id.uom_id.rounding,
-            rounding_method='HALF-UP')
-        return {
-            'mrp_area_id': product_mrp_area.mrp_area_id.id,
-            'product_id': product_mrp_area.product_id.id,
-            'product_mrp_area_id': product_mrp_area.id,
-            'production_id': None,
-            'purchase_order_id': None,
-            'purchase_line_id': None,
-            'stock_move_id': None,
-            'mrp_qty': -daily_qty * product_mrp_area.group_estimate_days,
-            'current_qty': -daily_qty,
-            'mrp_date': date,
-            'current_date': date,
-            'mrp_type': mrp_type,
-            'mrp_origin': origin,
-            'mrp_order_number': None,
-            'parent_product_id': None,
-            'name': 'Forecast',
-            'state': 'confirmed',
         }
 
     @api.model
@@ -91,7 +60,6 @@ class MultiLevelMrp(models.TransientModel):
             origin = 'mo'
             mo = move.production_id.id
         else:
-            # TODO: move.move_dest_id -> move.move_dest_ids. DONE, review
             if move.move_dest_ids:
                 # move_dest_id = move.move_dest_ids[:1]
                 for move_dest_id in move.move_dest_ids:
@@ -107,11 +75,8 @@ class MultiLevelMrp(models.TransientModel):
         if order_number is None:
             order_number = move.name
         mrp_date = date.today()
-        if datetime.date(datetime.strptime(
-                move.date_expected,
-                DEFAULT_SERVER_DATETIME_FORMAT)) > date.today():
-            mrp_date = datetime.date(datetime.strptime(
-                move.date_expected, DEFAULT_SERVER_DATETIME_FORMAT))
+        if move.date_expected.date() > date.today():
+            mrp_date = move.date_expected.date()
         return {
             'product_id': move.product_id.id,
             'product_mrp_area_id': product_mrp_area.id,
@@ -192,8 +157,9 @@ class MultiLevelMrp(models.TransientModel):
         if calendar and product_mrp_area.mrp_lead_time:
             date_str = fields.Date.to_string(mrp_date)
             dt = fields.Datetime.from_string(date_str)
+            # dt is at the beginning of the day (00:00)
             res = calendar.plan_days(
-                -1 * product_mrp_area.mrp_lead_time - 1, dt)
+                -1 * product_mrp_area.mrp_lead_time, dt)
             mrp_action_date = res.date()
         else:
             mrp_action_date = mrp_date - timedelta(
@@ -360,34 +326,8 @@ class MultiLevelMrp(models.TransientModel):
         return True
 
     @api.model
-    def _estimates_domain(self, product_mrp_area):
-        locations = product_mrp_area.mrp_area_id._get_locations()
-        return [
-            ('product_id', '=', product_mrp_area.product_id.id),
-            ('location_id', 'in', locations.ids),
-            ('date_range_id.date_end', '>=', fields.Date.today()),
-        ]
-
-    @api.model
     def _init_mrp_move_from_forecast(self, product_mrp_area):
-        if not product_mrp_area.group_estimate_days:
-            return False
-        today = fields.Date.today()
-        domain = self._estimates_domain(product_mrp_area)
-        estimates = self.env['stock.demand.estimate'].search(domain)
-        for rec in estimates:
-            start = rec.date_range_id.date_start
-            if start < today:
-                start = today
-            mrp_date = fields.Date.from_string(start)
-            date_end = fields.Date.from_string(rec.date_range_id.date_end)
-            delta = timedelta(days=product_mrp_area.group_estimate_days)
-            while mrp_date <= date_end:
-                mrp_move_data = \
-                    self._prepare_mrp_move_data_from_forecast(
-                        rec, product_mrp_area, mrp_date)
-                self.env['mrp.move'].create(mrp_move_data)
-                mrp_date += delta
+        """This method is meant to be inherited to add a forecast mechanism."""
         return True
 
     # TODO: move this methods to product_mrp_area?? to be able to
@@ -416,7 +356,6 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_from_stock_move(self, product_mrp_area):
-        # TODO: Should we exclude the quantity done from the moves?
         move_obj = self.env['stock.move']
         mrp_move_obj = self.env['mrp.move']
         in_domain = self._in_stock_moves_domain(product_mrp_area)
