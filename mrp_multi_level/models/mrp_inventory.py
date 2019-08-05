@@ -2,7 +2,7 @@
 # Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
 
@@ -34,7 +34,7 @@ class MrpInventory(models.Model):
         store=True,
     )
     uom_id = fields.Many2one(
-        comodel_name='product.uom', string='Product UoM',
+        comodel_name='uom.uom', string='Product UoM',
         compute='_compute_uom_id',
     )
     date = fields.Date(string='Date')
@@ -84,9 +84,11 @@ class MrpInventory(models.Model):
         for rec in self.filtered(lambda r: r.date):
             delay = rec.product_mrp_area_id.mrp_lead_time
             if delay and rec.mrp_area_id.calendar_id:
-                dt_date = fields.Datetime.from_string(rec.date)
+                dt_date = fields.Datetime.to_datetime(rec.date)
+                # dt_date is at the beginning of the day (00:00),
+                # so we can subtract the delay straight forward.
                 order_release_date = rec.mrp_area_id.calendar_id.plan_days(
-                    -delay - 1, dt_date).date()
+                    -delay, dt_date).date()
             else:
                 order_release_date = fields.Date.from_string(
                     rec.date) - timedelta(days=delay)
