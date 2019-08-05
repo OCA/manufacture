@@ -2,13 +2,14 @@
 # © 2016-19 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
 
 
 class MrpArea(models.Model):
     _name = 'mrp.area'
+    _description = "MRP Area"
 
     name = fields.Char(required=True)
     warehouse_id = fields.Many2one(

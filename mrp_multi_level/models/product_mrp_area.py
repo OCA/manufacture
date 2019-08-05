@@ -2,7 +2,7 @@
 # Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from math import ceil
 
@@ -80,11 +80,12 @@ class ProductMRPArea(models.Model):
         selection=[('buy', 'Buy'),
                    ('none', 'Undefined'),
                    ('manufacture', 'Produce'),
-                   ('move', 'Transfer')],
+                   ('pull', 'Pull From'),
+                   ('push', 'Push To'),
+                   ('pull_push', 'Pull & Push')],
         string='Supply Method',
         compute='_compute_supply_method',
     )
-
     qty_available = fields.Float(
         string="Quantity Available",
         compute="_compute_qty_available",
@@ -99,10 +100,7 @@ class ProductMRPArea(models.Model):
         inverse_name="product_mrp_area_id",
         readonly=True,
     )
-    group_estimate_days = fields.Integer(
-        string="Group Days of Estimates",
-        default=1,
-    )
+
     _sql_constraints = [
         ('product_mrp_area_uniq', 'unique(product_id, mrp_area_id)',
          'The product/MRP Area parameters combination must be unique.'),
@@ -111,13 +109,12 @@ class ProductMRPArea(models.Model):
     @api.multi
     @api.constrains(
         "mrp_minimum_order_qty", "mrp_maximum_order_qty", "mrp_qty_multiple",
-        "mrp_minimum_stock", "mrp_nbr_days", "group_estimate_days",
+        "mrp_minimum_stock", "mrp_nbr_days",
     )
     def _check_negatives(self):
         values = self.read([
             "mrp_minimum_order_qty", "mrp_maximum_order_qty",
-            "mrp_qty_multiple",
-            "mrp_minimum_stock", "mrp_nbr_days", "group_estimate_days",
+            "mrp_qty_multiple", "mrp_minimum_stock", "mrp_nbr_days",
         ])
         for rec in values:
             if any(v < 0 for v in rec.values()):
