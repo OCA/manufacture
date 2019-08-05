@@ -1,6 +1,6 @@
 # Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
@@ -95,6 +95,7 @@ class MrpInventoryProcure(models.TransientModel):
 
 class MrpInventoryProcureItem(models.TransientModel):
     _name = 'mrp.inventory.procure.item'
+    _description = "MRP Inventory procure item"
 
     wiz_id = fields.Many2one(
         comodel_name='mrp.inventory.procure', string='Wizard',
@@ -103,7 +104,7 @@ class MrpInventoryProcureItem(models.TransientModel):
     qty = fields.Float(string='Quantity')
     uom_id = fields.Many2one(
         string='Unit of Measure',
-        comodel_name='product.uom',
+        comodel_name='uom.uom',
     )
     date_planned = fields.Date(string='Planned Date', required=False)
     mrp_inventory_id = fields.Many2one(

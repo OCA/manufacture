@@ -1,11 +1,12 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
 # Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 {
     'name': 'MRP Multi Level',
-    'version': '11.0.3.1.1',
+    'version': '12.0.1.0.0',
     'development_status': 'Beta',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'author': 'Ucamco, '
               'Eficent, '
               'Odoo Community Association (OCA)',
@@ -15,9 +16,7 @@
     'category': 'Manufacturing',
     'depends': [
         'mrp',
-        'stock',
-        'purchase',
-        'stock_demand_estimate',
+        'purchase_stock',
         'mrp_warehouse_calendar',
     ],
     'data': [

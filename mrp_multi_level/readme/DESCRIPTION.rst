@@ -9,8 +9,9 @@ Key Features
 ------------
 
 * MRP parameters set by product variant MRP area pairs.
-* Integration with `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/11.0/stock_demand_estimate>`_ system.
 * Cron job to calculate the MRP demand.
 * Manually calculate the MRP demand.
 * Confirm the calculated MRP demand and create PO's, or MO's.
 * Able to see the products for which action is needed throught Planned Orders.
+* Integration with `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`_ system.
+  Note: You need to install `mrp_multi_level_estimate module <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level_estimate>`_.
