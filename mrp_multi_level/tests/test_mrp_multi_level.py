@@ -1,303 +1,12 @@
 # Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from datetime import datetime, timedelta
-
-from odoo.tests.common import SavepointCase
+from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 from odoo import fields
-from dateutil.rrule import WEEKLY
 
 
-class TestMrpMultiLevel(SavepointCase):
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestMrpMultiLevel, cls).setUpClass()
-        cls.mo_obj = cls.env['mrp.production']
-        cls.po_obj = cls.env['purchase.order']
-        cls.product_obj = cls.env['product.product']
-        cls.loc_obj = cls.env['stock.location']
-        cls.mrp_area_obj = cls.env['mrp.area']
-        cls.product_mrp_area_obj = cls.env['product.mrp.area']
-        cls.partner_obj = cls.env['res.partner']
-        cls.res_users = cls.env['res.users']
-        cls.stock_picking_obj = cls.env['stock.picking']
-        cls.estimate_obj = cls.env['stock.demand.estimate']
-        cls.mrp_multi_level_wiz = cls.env['mrp.multi.level']
-        cls.mrp_inventory_procure_wiz = cls.env['mrp.inventory.procure']
-        cls.mrp_inventory_obj = cls.env['mrp.inventory']
-        cls.mrp_move_obj = cls.env['mrp.move']
-        cls.planned_order_obj = cls.env['mrp.planned.order']
-
-        cls.fp_1 = cls.env.ref('mrp_multi_level.product_product_fp_1')
-        cls.fp_2 = cls.env.ref('mrp_multi_level.product_product_fp_2')
-        cls.sf_1 = cls.env.ref('mrp_multi_level.product_product_sf_1')
-        cls.sf_2 = cls.env.ref('mrp_multi_level.product_product_sf_2')
-        cls.pp_1 = cls.env.ref('mrp_multi_level.product_product_pp_1')
-        cls.pp_2 = cls.env.ref('mrp_multi_level.product_product_pp_2')
-        cls.company = cls.env.ref('base.main_company')
-        cls.mrp_area = cls.env.ref('mrp_multi_level.mrp_area_stock_wh0')
-        cls.vendor = cls.env.ref('mrp_multi_level.res_partner_lazer_tech')
-        cls.wh = cls.env.ref('stock.warehouse0')
-        cls.stock_location = cls.wh.lot_stock_id
-        cls.customer_location = cls.env.ref(
-            'stock.stock_location_customers')
-        cls.calendar = cls.env.ref('resource.resource_calendar_std')
-        # Add calendar to WH:
-        cls.wh.calendar_id = cls.calendar
-
-        # Partner:
-        vendor1 = cls.partner_obj.create({'name': 'Vendor 1'})
-
-        # Create user:
-        group_mrp_manager = cls.env.ref('mrp.group_mrp_manager')
-        group_user = cls.env.ref('base.group_user')
-        group_stock_manager = cls.env.ref('stock.group_stock_manager')
-        cls.mrp_manager = cls._create_user(
-            'Test User',
-            [group_mrp_manager, group_user, group_stock_manager],
-            cls.company,
-        )
-
-        # Create secondary location and MRP Area:
-        cls.sec_loc = cls.loc_obj.create({
-            'name': 'Test location',
-            'usage': 'internal',
-            'location_id': cls.wh.view_location_id.id,
-        })
-        cls.secondary_area = cls.mrp_area_obj.create({
-            'name': 'Test',
-            'warehouse_id': cls.wh.id,
-            'location_id': cls.sec_loc.id,
-        })
-
-        # Create products:
-        route_buy = cls.env.ref('purchase.route_warehouse0_buy').id
-        cls.prod_test = cls.product_obj.create({
-            'name': 'Test Top Seller',
-            'type': 'product',
-            'list_price': 150.0,
-            'produce_delay': 5.0,
-            'route_ids': [(6, 0, [route_buy])],
-            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 20.0})],
-        })
-        cls.product_mrp_area_obj.create({
-            'product_id': cls.prod_test.id,
-            'mrp_area_id': cls.mrp_area.id,
-        })
-        # Parameters in secondary area with nbr_days set.
-        cls.product_mrp_area_obj.create({
-            'product_id': cls.prod_test.id,
-            'mrp_area_id': cls.secondary_area.id,
-            'mrp_nbr_days': 7,
-        })
-        cls.prod_min = cls.product_obj.create({
-            'name': 'Product with minimum order qty',
-            'type': 'product',
-            'list_price': 50.0,
-            'route_ids': [(6, 0, [route_buy])],
-            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
-        })
-        cls.product_mrp_area_obj.create({
-            'product_id': cls.prod_min.id,
-            'mrp_area_id': cls.mrp_area.id,
-            'mrp_minimum_order_qty': 50.0,
-            'mrp_maximum_order_qty': 0.0,
-            'mrp_qty_multiple': 1.0,
-        })
-
-        cls.prod_max = cls.product_obj.create({
-            'name': 'Product with maximum order qty',
-            'type': 'product',
-            'list_price': 50.0,
-            'route_ids': [(6, 0, [route_buy])],
-            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
-        })
-        cls.product_mrp_area_obj.create({
-            'product_id': cls.prod_max.id,
-            'mrp_area_id': cls.mrp_area.id,
-            'mrp_minimum_order_qty': 50.0,
-            'mrp_maximum_order_qty': 100.0,
-            'mrp_qty_multiple': 1.0,
-        })
-        cls.prod_multiple = cls.product_obj.create({
-            'name': 'Product with qty multiple',
-            'type': 'product',
-            'list_price': 50.0,
-            'route_ids': [(6, 0, [route_buy])],
-            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 10.0})],
-        })
-        cls.product_mrp_area_obj.create({
-            'product_id': cls.prod_multiple.id,
-            'mrp_area_id': cls.mrp_area.id,
-            'mrp_minimum_order_qty': 50.0,
-            'mrp_maximum_order_qty': 500.0,
-            'mrp_qty_multiple': 25.0,
-        })
-        # Create test picking for FP-1 and FP-2:
-        res = cls.calendar.plan_days(7+1, datetime.today())
-        date_move = res.date()
-        cls.picking_1 = cls.stock_picking_obj.create({
-            'picking_type_id': cls.env.ref('stock.picking_type_out').id,
-            'location_id': cls.stock_location.id,
-            'location_dest_id': cls.customer_location.id,
-            'move_lines': [
-                (0, 0, {
-                    'name': 'Test move fp-1',
-                    'product_id': cls.fp_1.id,
-                    'date_expected': date_move,
-                    'date': date_move,
-                    'product_uom': cls.fp_1.uom_id.id,
-                    'product_uom_qty': 100,
-                    'location_id': cls.stock_location.id,
-                    'location_dest_id': cls.customer_location.id
-                }),
-                (0, 0, {
-                    'name': 'Test move fp-2',
-                    'product_id': cls.fp_2.id,
-                    'date_expected': date_move,
-                    'date': date_move,
-                    'product_uom': cls.fp_2.uom_id.id,
-                    'product_uom_qty': 15,
-                    'location_id': cls.stock_location.id,
-                    'location_dest_id': cls.customer_location.id
-                })]
-        })
-        cls.picking_1.action_confirm()
-
-        # Create test picking for procure qty adjustment tests:
-        cls.picking_2 = cls.stock_picking_obj.create({
-            'picking_type_id': cls.env.ref('stock.picking_type_out').id,
-            'location_id': cls.stock_location.id,
-            'location_dest_id': cls.customer_location.id,
-            'move_lines': [
-                (0, 0, {
-                    'name': 'Test move prod_min',
-                    'product_id': cls.prod_min.id,
-                    'date_expected': date_move,
-                    'date': date_move,
-                    'product_uom': cls.prod_min.uom_id.id,
-                    'product_uom_qty': 16,
-                    'location_id': cls.stock_location.id,
-                    'location_dest_id': cls.customer_location.id
-                }),
-                (0, 0, {
-                    'name': 'Test move prod_max',
-                    'product_id': cls.prod_max.id,
-                    'date_expected': date_move,
-                    'date': date_move,
-                    'product_uom': cls.prod_max.uom_id.id,
-                    'product_uom_qty': 140,
-                    'location_id': cls.stock_location.id,
-                    'location_dest_id': cls.customer_location.id
-                }),
-                (0, 0, {
-                    'name': 'Test move prod_multiple',
-                    'product_id': cls.prod_multiple.id,
-                    'date_expected': date_move,
-                    'date': date_move,
-                    'product_uom': cls.prod_multiple.uom_id.id,
-                    'product_uom_qty': 112,
-                    'location_id': cls.stock_location.id,
-                    'location_dest_id': cls.customer_location.id
-                })]
-        })
-        cls.picking_2.action_confirm()
-
-        # Create Test PO:
-        date_po = cls.calendar.plan_days(1+1, datetime.today()).date()
-        cls.po = cls.po_obj.create({
-            'name': 'Test PO-001',
-            'partner_id': cls.vendor.id,
-            'order_line': [
-                (0, 0, {
-                    'name': 'Test PP-2 line',
-                    'product_id': cls.pp_2.id,
-                    'date_planned': date_po,
-                    'product_qty': 5.0,
-                    'product_uom': cls.pp_2.uom_id.id,
-                    'price_unit': 25.0,
-                })],
-        })
-
-        # Create test MO:
-        date_mo = cls.calendar.plan_days(9+1, datetime.today()).date()
-        bom_fp_2 = cls.env.ref('mrp_multi_level.mrp_bom_fp_2')
-        cls.mo = cls.mo_obj.create({
-            'product_id': cls.fp_2.id,
-            'bom_id': bom_fp_2.id,
-            'product_qty': 12.0,
-            'product_uom_id': cls.fp_2.uom_id.id,
-            'date_planned_start': date_mo,
-        })
-
-        # Dates (Strings):
-        today = datetime.today()
-        cls.date_3 = fields.Date.to_string(
-            cls.calendar.plan_days(3+1, datetime.today()).date())
-        cls.date_5 = fields.Date.to_string(
-            cls.calendar.plan_days(5+1, datetime.today()).date())
-        cls.date_6 = fields.Date.to_string(
-            cls.calendar.plan_days(6+1, datetime.today()).date())
-        cls.date_7 = fields.Date.to_string(
-            cls.calendar.plan_days(7+1, datetime.today()).date())
-        cls.date_8 = fields.Date.to_string((
-            cls.calendar.plan_days(8+1, datetime.today()).date()))
-        cls.date_9 = fields.Date.to_string((
-            cls.calendar.plan_days(9+1, datetime.today()).date()))
-        cls.date_10 = fields.Date.to_string(
-            cls.calendar.plan_days(10+1, datetime.today()).date())
-
-        # Create Date Ranges:
-        cls.dr_type = cls.env['date.range.type'].create({
-            'name': 'Weeks',
-            'company_id': False,
-            'allow_overlap': False,
-        })
-        generator = cls.env['date.range.generator'].create({
-            'date_start': today - timedelta(days=3),
-            'name_prefix': 'W-',
-            'type_id': cls.dr_type.id,
-            'duration_count': 1,
-            'unit_of_time': WEEKLY,
-            'count': 3})
-        generator.action_apply()
-
-        # Create Demand Estimates:
-        ranges = cls.env['date.range'].search(
-            [('type_id', '=', cls.dr_type.id)])
-        qty = 140.0
-        for dr in ranges:
-            qty += 70.0
-            cls._create_demand_estimate(
-                cls.prod_test, cls.stock_location, dr, qty)
-            cls._create_demand_estimate(
-                cls.prod_test, cls.sec_loc, dr, qty)
-
-        cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
-
-    @classmethod
-    def _create_demand_estimate(cls, product, location, date_range, qty):
-        cls.estimate_obj.create({
-            'product_id': product.id,
-            'location_id': location.id,
-            'product_uom': product.uom_id.id,
-            'product_uom_qty': qty,
-            'date_range_id': date_range.id,
-        })
-
-    @classmethod
-    def _create_user(cls, login, groups, company):
-        user = cls.res_users.create({
-            'name': login,
-            'login': login,
-            'password': 'demo',
-            'email': 'example@yourcompany.com',
-            'company_id': company.id,
-            'groups_id': [(6, 0, [group.id for group in groups])]
-        })
-        return user
+class TestMrpMultiLevel(TestMrpMultiLevelCommon):
 
     def test_01_mrp_levels(self):
         """Tests computation of MRP levels."""
@@ -461,36 +170,7 @@ class TestMrpMultiLevel(SavepointCase):
         expected = [0.0, 0.0]  # No grouping, lot size nor safety stock.
         self.assertEqual(invs.mapped('running_availability'), expected)
 
-    def test_06_demand_estimates(self):
-        """Tests demand estimates integration."""
-        estimates = self.estimate_obj.search([
-            ('product_id', '=', self.prod_test.id),
-            ('location_id', '=', self.stock_location.id)])
-        self.assertEqual(len(estimates), 3)
-        moves = self.mrp_move_obj.search([
-            ('product_id', '=', self.prod_test.id),
-            ('mrp_area_id', '=', self.mrp_area.id),
-        ])
-        # 3 weeks - 3 days in the past = 18 days of valid estimates:
-        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
-        self.assertEqual(len(moves_from_estimates), 18)
-        quantities = moves_from_estimates.mapped('mrp_qty')
-        self.assertIn(-30.0, quantities)  # 210 a week => 30.0 dayly:
-        self.assertIn(-40.0, quantities)  # 280 a week => 40.0 dayly:
-        self.assertIn(-50.0, quantities)  # 350 a week => 50.0 dayly:
-        plans = self.planned_order_obj.search([
-            ('product_id', '=', self.prod_test.id),
-            ('mrp_area_id', '=', self.mrp_area.id),
-        ])
-        action = list(set(plans.mapped("mrp_action")))
-        self.assertEqual(len(action), 1)
-        self.assertEqual(action[0], "buy")
-        self.assertEqual(len(plans), 18)
-        inventories = self.mrp_inventory_obj.search([
-            ('mrp_area_id', '=', self.secondary_area.id)])
-        self.assertEqual(len(inventories), 18)
-
-    def test_07_procure_mo(self):
+    def test_06_procure_mo(self):
         """Test procurement wizard with MOs."""
         mos = self.mo_obj.search([
             ('product_id', '=', self.fp_1.id)])
@@ -506,10 +186,10 @@ class TestMrpMultiLevel(SavepointCase):
             ('product_id', '=', self.fp_1.id)])
         self.assertTrue(mos)
         self.assertEqual(mos.product_qty, 100.0)
-        mo_date_start = mos.date_planned_start.split(' ')[0]
+        mo_date_start = fields.Date.to_date(mos.date_planned_start)
         self.assertEqual(mo_date_start, self.date_5)
 
-    def test_08_adjust_qty_to_order(self):
+    def test_07_adjust_qty_to_order(self):
         """Test the adjustments made to the qty to procure when minimum,
         maximum order quantities and quantity multiple are set."""
         # minimum order quantity:
@@ -531,12 +211,12 @@ class TestMrpMultiLevel(SavepointCase):
             ('product_mrp_area_id.product_id', '=', self.prod_multiple.id)])
         self.assertEqual(mrp_inv_multiple.to_procure, 125)
 
-    def test_09_group_demand(self):
+    def test_08_group_demand(self):
         """Test demand grouping functionality, `nbr_days`."""
-        estimates = self.estimate_obj.search([
+        pickings = self.stock_picking_obj.search([
             ('product_id', '=', self.prod_test.id),
             ('location_id', '=', self.sec_loc.id)])
-        self.assertEqual(len(estimates), 3)
+        self.assertEqual(len(pickings), 5)
         moves = self.mrp_move_obj.search([
             ('product_id', '=', self.prod_test.id),
             ('mrp_area_id', '=', self.secondary_area.id),
@@ -545,20 +225,19 @@ class TestMrpMultiLevel(SavepointCase):
             ('product_id', '=', self.prod_test.id),
             ('mrp_area_id', '=', self.secondary_area.id),
         ])
-        # 3 weeks - 3 days in the past = 18 days of valid estimates:
-        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == 'd')
-        self.assertEqual(len(moves_from_estimates), 18)
-        # 18 days of demand / 7 nbr_days = 2.57 => 3 supply moves expected.
-        self.assertEqual(len(supply_plans), 3)
+        moves_demand = moves.filtered(lambda m: m.mrp_type == 'd')
+        self.assertEqual(len(moves_demand), 5)
+        # two groups expected:
+        # 1. days 8, 9 and 10.
+        # 2. days 20, and 22.
+        self.assertEqual(len(supply_plans), 2)
         quantities = supply_plans.mapped('mrp_qty')
-        week_1_expected = sum(moves_from_estimates[0:7].mapped('mrp_qty'))
+        week_1_expected = sum(moves_demand[0:3].mapped('mrp_qty'))
         self.assertIn(abs(week_1_expected), quantities)
-        week_2_expected = sum(moves_from_estimates[7:14].mapped('mrp_qty'))
+        week_2_expected = sum(moves_demand[3:].mapped('mrp_qty'))
         self.assertIn(abs(week_2_expected), quantities)
-        week_3_expected = sum(moves_from_estimates[14:].mapped('mrp_qty'))
-        self.assertIn(abs(week_3_expected), quantities)
 
-    def test_10_isolated_mrp_area_run(self):
+    def test_09_isolated_mrp_area_run(self):
         """Test running MRP for just one area."""
         self.mrp_multi_level_wiz.sudo(self.mrp_manager).create({
             'mrp_area_ids': [(6, 0, self.secondary_area.ids)],
@@ -571,6 +250,3 @@ class TestMrpMultiLevel(SavepointCase):
         prev = self.mrp_inventory_obj.search([
             ('mrp_area_id', '!=', self.secondary_area.id)], limit=1)
         self.assertNotEqual(this.create_uid, prev.create_uid)
-
-    # TODO: test procure wizard: pos, multiple...
-    # TODO: test multiple destination IDS:...
