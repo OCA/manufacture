@@ -21,7 +21,7 @@
                             <field name="supply_qty"/>
                             <field name="final_on_hand_qty"/>
                             <field name="to_procure"/>
-                            <field name="uom_id" groups="product.group_uom"/>
+                            <field name="uom_id" groups="uom.group_uom"/>
                         </group>
                     </group>
                 </sheet>
@@ -38,7 +38,7 @@
                 <field name="mrp_area_id"/>
                 <field name="product_id"/>
                 <field name="date"/>
-                <field name="uom_id" groups="product.group_uom"/>
+                <field name="uom_id" groups="uom.group_uom"/>
                 <field name="initial_on_hand_qty"/>
                 <field name="demand_qty"/>
                 <field name="supply_qty"/>
@@ -94,15 +94,20 @@
                         domain="[['to_procure','>',0.0]]"/>
                 <separator/>
                 <group expand="0" string="Group By...">
-                    <filter string="Product"
+                    <filter name="group_product"
+                            string="Product"
                             context="{'group_by':'product_mrp_area_id'}"/>
-                    <filter string="MRP Area"
+                    <filter name="group_mrp_area"
+                            string="MRP Area"
                             context="{'group_by':'mrp_area_id'}"/>
-                    <filter string="Date to Procure (By Day)"
+                    <filter name="group_release_date_day"
+                            string="Date to Procure (By Day)"
                             context="{'group_by':'order_release_date:day'}"/>
-                    <filter string="Date to Procure (By Week)"
+                    <filter name="group_release_date_week"
+                            string="Date to Procure (By Week)"
                             context="{'group_by':'order_release_date:week'}"/>
-                    <filter string="Date to Procure (By Month)"
+                    <filter name="group_release_date_month"
+                            string="Date to Procure (By Month)"
                             context="{'group_by':'order_release_date:month'}"/>
                 </group>
             </search>
