@@ -25,14 +25,6 @@ class QcInspection(models.Model):
         link_obj = self.env['res.request.link']
         return [(r.object, r.name) for r in link_obj.search([])]
 
-    @api.depends('object_id')
-    def _compute_product_id(self):
-        for i in self:
-            if i.object_id and i.object_id._name == 'product.product':
-                i.product_id = i.object_id
-            else:
-                i.product_id = False
-
     name = fields.Char(
         string='Inspection number', required=True, default='/',
         readonly=True, states={'draft': [('readonly', False)]}, copy=False)
@@ -44,7 +36,7 @@ class QcInspection(models.Model):
         string='Reference', selection=_links_get, readonly=True,
         states={'draft': [('readonly', False)]}, ondelete="set null")
     product_id = fields.Many2one(
-        comodel_name="product.product", compute="_compute_product_id",
+        comodel_name="product.product", compute="_compute_values",
         store=True, help="Product associated with the inspection",
         oldname='product')
     qty = fields.Float(string="Quantity", default=1.0)
@@ -84,6 +76,12 @@ class QcInspection(models.Model):
     user = fields.Many2one(
         comodel_name='res.users', string='Responsible',
         track_visibility='always', default=lambda self: self.env.user)
+
+    @api.depends('object_id')
+    def _compute_values(self):
+        data = self._get_values_by_object()
+        for inspection, vals in data.items():
+            inspection.update(vals)
 
     @api.model
     def create(self, vals):
@@ -222,6 +220,18 @@ class QcInspection(models.Model):
                 data['quantitative_value'] = (line.min_value +
                                               line.max_value) * 0.5
         return data
+    
+    def _get_values_by_object(self):
+        res = {}
+        product_object = self.search([
+            ('id', 'in', self.ids),
+            ('object_id', '!=', False),
+        ]).filtered(lambda x: x.object_id._name == 'product.product')
+        for inspection in product_object:
+            res[inspection] = {'product_id': inspection.object_id.id}
+        for inspection in self - product_object:
+            res[inspection] = {'product_id': False}
+        return res
 
 
 class QcInspectionLine(models.Model):
