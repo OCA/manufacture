@@ -5,7 +5,8 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, exceptions, fields, models, _
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 from odoo.tools import formatLang
 import odoo.addons.decimal_precision as dp
 
@@ -86,18 +87,17 @@ class QcInspection(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'] \
-                .next_by_code('qc.inspection')
+            vals['name'] = self.env['ir.sequence'].next_by_code('qc.inspection')
         return super(QcInspection, self).create(vals)
 
     @api.multi
     def unlink(self):
         for inspection in self:
             if inspection.auto_generated:
-                raise exceptions.UserError(
+                raise UserError(
                     _("You cannot remove an auto-generated inspection."))
             if inspection.state != 'draft':
-                raise exceptions.UserError(
+                raise UserError(
                     _("You cannot remove an inspection that is not in draft "
                       "state."))
         return super(QcInspection, self).unlink()
@@ -108,10 +108,8 @@ class QcInspection(models.Model):
 
     @api.multi
     def action_todo(self):
-        for inspection in self:
-            if not inspection.test:
-                raise exceptions.UserError(
-                    _("You must first set the test to perform."))
+        if not all(inspection.test for inspection in self):
+            raise UserError(_("You must first set the test to perform."))
         self.write({'state': 'ready'})
 
     @api.multi
@@ -120,26 +118,20 @@ class QcInspection(models.Model):
             for line in inspection.inspection_lines:
                 if line.question_type == 'qualitative':
                     if not line.qualitative_value:
-                        raise exceptions.UserError(
+                        raise UserError(
                             _("You should provide an answer for all "
                               "qualitative questions."))
                 else:
                     if not line.uom_id:
-                        raise exceptions.UserError(
+                        raise UserError(
                             _("You should provide a unit of measure for "
                               "quantitative questions."))
-            if inspection.success:
-                inspection.state = 'success'
-            else:
-                inspection.state = 'waiting'
+            inspection.state = inspection.success and 'success' or 'waiting'
 
     @api.multi
     def action_approve(self):
         for inspection in self:
-            if inspection.success:
-                inspection.state = 'success'
-            else:
-                inspection.state = 'failed'
+            inspection.state = inspection.success and 'success' or 'failed'
 
     @api.multi
     def action_cancel(self):
@@ -188,12 +180,11 @@ class QcInspection(models.Model):
 
     @api.multi
     def _prepare_inspection_lines(self, test, force_fill=False):
-        new_data = []
-        for line in test.test_lines:
-            data = self._prepare_inspection_line(
-                test, line, fill=test.fill_correct_values or force_fill)
-            new_data.append((0, 0, data))
-        return new_data
+        fill = test.fill_correct_values or force_fill
+        return [
+            (0, 0, self._prepare_inspection_line(test, line, fill=fill))
+            for line in test.test_lines
+        ]
 
     @api.multi
     def _prepare_inspection_line(self, test, line, fill=None):
@@ -257,6 +248,8 @@ class QcInspectionLine(models.Model):
     @api.depends('possible_ql_values', 'min_value', 'max_value', 'test_uom_id',
                  'question_type')
     def _compute_valid_values(self):
+        group_uom_in_user = self.env.ref("product.group_uom") \
+                            in self.env.user.groups_id
         for l in self:
             if l.question_type == 'qualitative':
                 l.valid_values = \
@@ -265,8 +258,7 @@ class QcInspectionLine(models.Model):
                 l.valid_values = "%s ~ %s" % (
                     formatLang(self.env, l.min_value),
                     formatLang(self.env, l.max_value))
-                if self.env.ref("product.group_uom") \
-                        in self.env.user.groups_id:
+                if group_uom_in_user:
                     l.valid_values += " %s" % l.test_uom_id.name
 
     inspection_id = fields.Many2one(

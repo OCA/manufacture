@@ -21,10 +21,11 @@ class QcInspection(models.Model):
         res = super(QcInspection, self)._prepare_inspection_header(
             object_ref, trigger_line)
         # Fill qty when coming from pack operations
-        if object_ref and object_ref._name == 'stock.move.line':
-            res['qty'] = object_ref.product_qty
-        if object_ref and object_ref._name == 'stock.move':
-            res['qty'] = object_ref.product_uom_qty
+        if object_ref:
+            if object_ref._name == 'stock.move.line':
+                res['qty'] = object_ref.product_qty
+            elif object_ref._name == 'stock.move':
+                res['qty'] = object_ref.product_uom_qty
         return res
 
     picking_id = fields.Many2one(
