@@ -21,50 +21,50 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_created_inspections
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot__created_inspections
 msgid "Created inspections"
 msgstr "Ustvarjene inšpekcije"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_done_inspections
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot__done_inspections
 msgid "Done inspections"
 msgstr "Opravljene inšpekcije"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_qc_inspections_ids
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_qc_inspections_ids
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__qc_inspections_ids
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot__qc_inspections_ids
 msgid "Inspections"
 msgstr "Inšpekcije"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_passed_inspections
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot__passed_inspections
 msgid "Inspections OK"
 msgstr "Uspešne inšpekcije"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking_failed_inspections
-#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot_failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock.field_stock_production_lot__failed_inspections
 msgid "Inspections failed"
 msgstr "Neuspešne inšpekcije"
 
 #. module: quality_control_stock
-#: model:ir.model.fields,help:quality_control_stock.field_stock_production_lot_qc_inspections_ids
+#: model:ir.model.fields,help:quality_control_stock.field_stock_production_lot__qc_inspections_ids
 msgid "Inspections related to this lot."
 msgstr "Inšpekcije vezane na ta lot."
 
 #. module: quality_control_stock
-#: model:ir.model.fields,help:quality_control_stock.field_stock_picking_qc_inspections_ids
+#: model:ir.model.fields,help:quality_control_stock.field_stock_picking__qc_inspections_ids
 msgid "Inspections related to this picking."
 msgstr "Inšpekcije vezane na ta zbirnik."
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_lot_id
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_lot_id
-#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
-#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection__lot_id
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line__lot_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 msgid "Lot"
 msgstr "Lot"
 
@@ -74,20 +74,16 @@ msgid "Lot/Serial"
 msgstr "Lot/serijska št."
 
 #. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line_picking_id
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_picking_id
-#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
-#: model:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection__picking_id
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_inspection_line__picking_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.qc_inspection_search_view_picking
 msgid "Picking"
 msgstr "Zbirnik"
 
 #. module: quality_control_stock
-#: model:res.request.link,name:quality_control_stock.req_link_stock_picking
-msgid "Picking List"
-msgstr "Zbirnik"
-
-#. module: quality_control_stock
-#: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger_picking_type_id
+#: model:ir.model,name:quality_control_stock.model_stock_picking_type
+#: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger__picking_type_id
 #, fuzzy
 msgid "Picking Type"
 msgstr "Tip zbirnika"
@@ -148,26 +144,25 @@ msgid "Quality inspections from picking failed"
 msgstr "Neuspešne inšpekcije kakovosti na zbirniku"
 
 #. module: quality_control_stock
-#: model:res.request.link,name:quality_control_stock.req_link_stock_move
-msgid "Stock Move"
-msgstr "Premik zaloge"
-
-#. module: quality_control_stock
-#: model:ir.model,name:quality_control_stock.model_stock_picking_type
-#, fuzzy
-msgid "The operation type determines the picking view"
-msgstr "Tip zbirnika določi prikaz zbirnika"
-
-#. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
 msgid "Transfer"
 msgstr ""
 
 #. module: quality_control_stock
-#: model:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
-#: model:ir.ui.view,arch_db:quality_control_stock.stock_picking_qc_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.stock_lot_qc_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock.stock_picking_qc_view
 msgid "inspections"
 msgstr "inšpekcije"
+
+#~ msgid "Picking List"
+#~ msgstr "Zbirnik"
+
+#~ msgid "Stock Move"
+#~ msgstr "Premik zaloge"
+
+#, fuzzy
+#~ msgid "The operation type determines the picking view"
+#~ msgstr "Tip zbirnika določi prikaz zbirnika"
 
 #~ msgid "Product"
 #~ msgstr "Proizvod"
