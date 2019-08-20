@@ -8,7 +8,7 @@ from odoo.addons.mrp.tests.common import TestMrpCommon
 class TestMrpProductionHierarchy(TestMrpCommon):
 
     def setUp(self):
-        super(TestMrpProductionHierarchy, self).setUp()
+        super().setUp()
         self.bom_2.write({'type': 'normal'})
         route_manufacture = self.env.ref('mrp.route_warehouse0_manufacture')
         route_mto = self.env.ref('stock.route_warehouse0_mto')
