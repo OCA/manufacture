@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 ABF OSIELL <http://osiell.com>
+# Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -21,7 +22,7 @@ class MrpProduction(models.Model):
     @api.multi
     def _generate_moves(self):
         """Overloaded to pass the created production order ID in the context.
-        It will be used by the 'procurement_order.make_mo()' overload to
+        It will be used by the 'stock_rule._prepare_mo_vals()' overload to
         set the parent relation between production orders.
         """
         for prod in self:
@@ -38,16 +39,23 @@ class MrpProduction(models.Model):
         self.ensure_one()
         if self.child_ids:
             return {
-                'domain': "[('id', '=', %s)]" % self.id,
+                'domain': [('root_id', '=', self.id)],
                 'name': _(u"Hierarchy"),
-                'view_type': 'tree',
                 'view_mode': 'tree',
                 'res_model': 'mrp.production',
-                'view_id': self.env.ref(
-                    'mrp_production_hierarchy.'
-                    'mrp_production_tree_view_field_parent').id,
+                'views': [
+                    (self.env.ref(
+                        'mrp_production_hierarchy.mrp_production_tree_view').id,
+                        'tree'),
+                    (self.env.ref(
+                        'mrp_production_hierarchy.mrp_production_form_view').id,
+                        'form')
+                ],
                 'target': 'current',
                 'type': 'ir.actions.act_window',
-                'context': dict(self.env.context),
+                'context': dict(
+                    self.env.context,
+                    search_default_group_by_root_id=True,
+                    search_default_group_by_parent_id=True),
             }
         return False
