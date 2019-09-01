@@ -19,6 +19,11 @@ class ProductMRPArea(models.Model):
         comodel_name='mrp.area',
         required=True,
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='mrp_area_id.warehouse_id.company_id',
+        store=True,
+    )
     product_id = fields.Many2one(
         comodel_name='product.product',
         required=True,
