@@ -28,6 +28,11 @@ class MrpInventory(models.Model):
         index=True,
         required=True,
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='product_mrp_area_id.mrp_area_id.warehouse_id.company_id',
+        store=True,
+    )
     product_id = fields.Many2one(
         comodel_name='product.product',
         related='product_mrp_area_id.product_id',
