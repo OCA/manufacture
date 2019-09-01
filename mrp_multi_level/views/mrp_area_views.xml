@@ -9,6 +9,7 @@
             <tree string="MRP Area">
                 <field name="name"/>
                 <field name="warehouse_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
                 <field name="location_id"/>
                 <field name="calendar_id"/>
             </tree>
@@ -35,6 +36,7 @@
                         <group>
                             <field name="warehouse_id"/>
                             <field name="location_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                         <group name="settings">
                             <field name="calendar_id"/>

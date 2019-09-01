@@ -16,6 +16,11 @@ class MrpArea(models.Model):
         comodel_name='stock.warehouse', string='Warehouse',
         required=True,
     )
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        related='warehouse_id.company_id',
+        store=True,
+    )
     location_id = fields.Many2one(
         comodel_name='stock.location', string='Location',
         required=True,
