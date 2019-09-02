@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="mrp_area_stock_wh0" model="mrp.area">
+        <field name="name">WH/Stock</field>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+    </record>
+
+</odoo>

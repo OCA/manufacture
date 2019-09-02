@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_run_mrp_multi_level_wizard" model="ir.ui.view">
+        <field name="name">Run MRP</field>
+        <field name="model">mrp.multi.level</field>
+        <field name="arch" type="xml">
+            <form string="Run MRP Multi Level">
+                <group>
+                    <field name="mrp_area_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="run_mrp_multi_level" string="Run MRP" type="object"  class="oe_highlight"  />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="Run MRP"
+            res_model="mrp.multi.level"
+            src_model="mrp.multi.level"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_mrp_multi_level"/>
+
+</odoo>
