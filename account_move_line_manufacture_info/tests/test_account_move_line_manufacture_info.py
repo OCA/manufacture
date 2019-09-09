@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
+from odoo.tests import Form
 
 
 class TestAccountMoveLineManufactureInfo(common.SavepointCase):
@@ -58,7 +59,7 @@ class TestAccountMoveLineManufactureInfo(common.SavepointCase):
             'categ_id': cls.categ_physical.id,
         })
         cls.component_2 = cls.product_obj.create({
-            'name': 'RM 01',
+            'name': 'RM 02',
             'type': 'product',
             'standard_price': 15.0,
             'categ_id': cls.categ_physical.id,
@@ -100,13 +101,13 @@ class TestAccountMoveLineManufactureInfo(common.SavepointCase):
         })
 
     def _produce(self, mo, qty=0.0):
-        wiz = self.produce_wiz.with_context({
+        wiz = Form(self.produce_wiz.with_context({
             'active_id': mo.id,
             'active_ids': [mo.id],
-        }).create({
-            'product_qty': qty or mo.product_qty,
-        })
-        wiz.do_produce()
+        }))
+        wiz.product_qty = qty or mo.product_qty
+        produce_wizard = wiz.save()
+        produce_wizard.do_produce()
         return True
 
     def test_01_manufacture_order(self):
