@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo12-addon-product_mrp_info',
         'odoo12-addon-quality_control',
         'odoo12-addon-quality_control_issue',
+        'odoo12-addon-quality_control_stock',
         'odoo12-addon-quality_control_team',
         'odoo12-addon-repair_refurbish',
     ],
