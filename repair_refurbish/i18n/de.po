@@ -28,6 +28,11 @@ msgid "Product"
 msgstr "Produkt"
 
 #. module: repair_refurbish
+#: model:ir.model,name:repair_refurbish.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_product_template
 msgid "Product Template"
 msgstr "Produktvorlage"
