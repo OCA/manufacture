@@ -84,8 +84,16 @@ class TestMrpMtoWithStock(TransactionCase):
             if m.product_id == self.product:
                 self.assertEqual(m.location_id, self.stock_location_stock)
                 self.assertEqual(m.location_dest_id, self.refurbish_loc)
+                self.assertEqual(m.mapped('move_line_ids.location_id'),
+                                 self.stock_location_stock)
+                self.assertEqual(m.mapped('move_line_ids.location_dest_id'),
+                                 self.refurbish_loc)
             elif m.product_id == self.refurbish_product:
                 self.assertEqual(m.location_id, self.refurbish_loc)
                 self.assertEqual(m.location_dest_id, self.customer_location)
+                self.assertEqual(m.mapped('move_line_ids.location_id'),
+                                 self.refurbish_loc)
+                self.assertEqual(m.mapped('move_line_ids.location_dest_id'),
+                                 self.customer_location)
             else:
                 self.assertTrue(False, "Unexpected move.")
