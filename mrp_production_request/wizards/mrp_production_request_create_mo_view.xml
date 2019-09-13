@@ -29,10 +29,18 @@
                         </field>
                     </group>
                 </group>
-                <group name="destination" string="Manufacturing Order:" col="4">
-                    <field name="mo_qty"/>
-                    <field name="product_uom_id" options="{'no_open': True}"
-                           groups="product.group_uom"/>
+                <group name="destination" string="Manufacturing Order:">
+                    <group name="product_qty">
+                        <label for="mo_qty"/>
+                        <div>
+                            <field name="mo_qty" class="oe_inline"/>
+                            <field name="product_uom_id" class="oe_inline" options="{'no_open': True}" groups="uom.group_uom"/>
+                        </div>
+                    </group>
+                    <group name="date_planned">
+                        <field name="date_planned_start"/>
+                        <field name="date_planned_finished"/>
+                    </group>
                 </group>
 
                 <footer>

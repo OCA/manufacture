@@ -18,7 +18,7 @@ class MrpProduction(models.Model):
         Storing them on the MR and writing them on the finished moves as it
         would happen if they were present in the MO, is the best workaround
         without changing the standard data model."""
-        move = super(MrpProduction, self)._generate_finished_moves()
+        move = super()._generate_finished_moves()
         request = self.mrp_production_request_id
         if request and request.move_dest_ids:
             move.write({
