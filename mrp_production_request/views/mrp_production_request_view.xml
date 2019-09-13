@@ -43,7 +43,7 @@
                     </button>
                 </div>
 
-                <label string="Manufacturing Request"/>
+                <label for="name" string="Manufacturing Request"/>
                 <h1>
                     <field name="name"/>
                 </h1>
@@ -62,7 +62,7 @@
                         <field name="done_qty"/>
                         <field name="manufactured_qty"/>
                         <field name="pending_qty"/>
-                        <field name="product_uom_id" groups="product.group_uom"/>
+                        <field name="product_uom_id" groups="uom.group_uom"/>
                         <field name="category_uom_id" invisible="1"/>
                     </group>
                 </group>
@@ -73,7 +73,7 @@
                     </group>
                     <group name="dates">
                         <field name="date_planned_start"/>
-                        <field name="date_planned_finished" invisible="1"/>
+                        <field name="date_planned_finished"/>
                     </group>
                 </group>
                 <notebook>
@@ -135,7 +135,7 @@
                 <field name="mrp_production_ids" string="Manufacturing Orders"/>
                 <field name="bom_id"/>
                 <field name="requested_by"/>
-                <field name="assigned_to" />
+                <field name="assigned_to"/>
                 <field name="origin"/>
                 <field name="state"/>
                 <field name="pending_qty" invisible="1"/>
@@ -143,16 +143,19 @@
                 <filter name="unassigned" string="Unassigned"
                         domain="[('assigned_to','=', False)]"
                         help="Unassigned Request"/>
-                <filter domain="[('assigned_to','=', uid)]"
+                <filter name="assigned_to_me"
+                        domain="[('assigned_to','=', uid)]"
                         string="Assigned to me"/>
-                <filter domain="[('requested_by','=', uid)]"
+                <filter name="requested_by_me"
+                        domain="[('requested_by','=', uid)]"
                         string="My requests" help="Requested by me"/>
                 <separator/>
-                <filter domain="[('pending_qty','!=', 0.0)]"
-                        string="Pending Qty" name="pending"
+                <filter name="pending"
+                        domain="[('pending_qty','!=', 0.0)]"
+                        string="Pending Qty"
                         help="Request with pending quantity"/>
                 <separator/>
-                <filter string="To Do" name="todo"
+                <filter name="todo" string="To Do"
                         domain="[('state','in',('draft', 'to_approve','approved'))]"
                         help="Manufacturing Requests not done or cancelled."/>
                 <separator/>
@@ -172,17 +175,21 @@
                         domain="[('state','=','done')]"
                         help="Request is done"/>
                 <separator/>
-                <filter string="Unread Messages"
-                        name="message_needaction"
+                <filter name="message_needaction"
+                        string="Unread Messages"
                         domain="[('message_needaction','=',True)]"/>
                 <!--Group by:-->
-                <filter string="Requested by" icon="terp-personal"
+                <filter name="requested_by_group_by"
+                        string="Requested by" icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'requested_by'}"/>
-                <filter string="Assigned to" icon="terp-personal"
+                <filter name="assign_to_group_by"
+                        string="Assigned to" icon="terp-personal"
                         domain="[]"
                         context="{'group_by':'assigned_to'}"/>
-                <filter string="Source" icon="terp-gtk-jump-to-rtl" domain="[]"
+                <filter name="origin_group_by"
+                        string="Source"
+                        domain="[]"
                         context="{'group_by':'origin'}"/>
             </search>
         </field>

@@ -19,4 +19,4 @@ class StockMove(models.Model):
                 vals['production_id'])
             if production.mrp_production_request_id:
                 vals['propagate'] = False
-        return super(StockMove, self).create(vals)
+        return super().create(vals)

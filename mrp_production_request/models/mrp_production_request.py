@@ -1,4 +1,4 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-19 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -14,7 +14,7 @@ class MrpProductionRequest(models.Model):
 
     @api.model
     def _company_get(self):
-        company_id = self.env['res.company']._company_default_get(self._name)
+        company_id = self.env['res.company']._company_default_get()
         return self.env['res.company'].browse(company_id.id)
 
     @api.model
@@ -29,7 +29,7 @@ class MrpProductionRequest(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     requested_by = fields.Many2one(
         comodel_name='res.users', string='Requested by',
-        default=_get_default_requested_by,
+        default=lambda self: self._get_default_requested_by(),
         required=True, track_visibility='onchange',
         readonly=True, states={'draft': [('readonly', False)]})
     assigned_to = fields.Many2one(
@@ -50,7 +50,7 @@ class MrpProductionRequest(models.Model):
         states={'confirmed': [('readonly', False)]})
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
-        required=True, default=_company_get)
+        required=True, default=lambda self: self._company_get())
     mrp_production_ids = fields.One2many(
         comodel_name="mrp.production", string="Manufacturing Orders",
         inverse_name="mrp_production_request_id", readonly=True)
@@ -88,7 +88,7 @@ class MrpProductionRequest(models.Model):
         digits=dp.get_precision('Product Unit of Measure'), default=1.0,
         readonly=True, states={'draft': [('readonly', False)]})
     product_uom_id = fields.Many2one(
-        comodel_name='product.uom', string='Unit of Measure',
+        comodel_name='uom.uom', string='Unit of Measure',
         readonly=True, states={'draft': [('readonly', False)]},
         domain="[('category_id', '=', category_uom_id)]")
     category_uom_id = fields.Many2one(related="product_uom_id.category_id")
@@ -180,7 +180,8 @@ class MrpProductionRequest(models.Model):
     def _subscribe_assigned_user(self, vals):
         self.ensure_one()
         if vals.get('assigned_to'):
-            self.message_subscribe_users(user_ids=[self.assigned_to.id])
+            self.message_subscribe(
+                partner_ids=self.assigned_to.mapped('partner_id').ids)
 
     @api.model
     def _create_sequence(self, vals):
@@ -194,13 +195,13 @@ class MrpProductionRequest(models.Model):
         """Add sequence if name is not defined and subscribe to the thread
         the user assigned to the request."""
         vals = self._create_sequence(vals)
-        res = super(MrpProductionRequest, self).create(vals)
+        res = super().create(vals)
         res._subscribe_assigned_user(vals)
         return res
 
     @api.multi
     def write(self, vals):
-        res = super(MrpProductionRequest, self).write(vals)
+        res = super().write(vals)
         for request in self:
             request._subscribe_assigned_user(vals)
         return res

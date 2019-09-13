@@ -8,7 +8,7 @@ class Orderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
 
     def _quantity_in_progress(self):
-        res = super(Orderpoint, self)._quantity_in_progress()
+        res = super()._quantity_in_progress()
         mrp_requests = self.env['mrp.production.request'].search([
             ('state', 'not in', ('done', 'cancel')),
             ('orderpoint_id', 'in', self.ids),
