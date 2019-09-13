@@ -1,4 +1,4 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-19 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -19,7 +19,12 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             self.env['mrp.production.request.create.mo.line'].create(
                 self._prepare_product_line(line))
         self._get_mo_qty()
-        return {"type": "ir.actions.do_nothing"}
+        # The wizard must be reloaded in order to show the new product lines
+        action = self.env.ref(
+            'mrp_production_request.mrp_production_request_create_mo_action')
+        res = action.read()[0]
+        res['res_id'] = self.id
+        return res
 
     def _prepare_lines(self):
         """Get the components (product_lines) needed for manufacturing the
@@ -58,16 +63,30 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         comodel_name="mrp.production.request.create.mo.line",
         string="Products needed",
         inverse_name="mrp_production_request_create_mo_id", readonly=True)
+    date_planned_start = fields.Datetime(
+        string="Deadline Start",
+        required=True,
+    )
+    date_planned_finished = fields.Datetime(
+        string="Deadline End",
+        required=True,
+    )
 
     @api.model
     def default_get(self, fields):
-        rec = super(MrpProductionRequestCreateMo, self).default_get(fields)
+        rec = super().default_get(fields)
         active_ids = self._context.get('active_ids')
+        active_model = self._context.get('active_model')
         if not active_ids:
             raise UserError(_(
                 "Programming error: wizard action executed without "
                 "active_ids in context."))
-        rec['mrp_production_request_id'] = active_ids[0]
+        request = self.env[active_model].browse(active_ids)
+        rec.update({
+            'mrp_production_request_id': active_ids[0],
+            'date_planned_start': request[0].date_planned_start,
+            'date_planned_finished': request[0].date_planned_finished,
+        })
         return rec
 
     def _prepare_product_line(self, pl):
@@ -94,8 +113,8 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             'location_dest_id': request_id.location_dest_id.id,
             'picking_type_id': request_id.picking_type_id.id,
             'routing_id': request_id.routing_id.id,
-            'date_planned_start': request_id.date_planned_start,
-            'date_planned_finished': request_id.date_planned_finished,
+            'date_planned_start': self.date_planned_start,
+            'date_planned_finished': self.date_planned_finished,
             'procurement_group_id': request_id.procurement_group_id.id,
             'propagate': request_id.propagate,
             'company_id': request_id.company_id.id,
@@ -118,6 +137,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
 
 class MrpProductionRequestCreateMoLine(models.TransientModel):
     _name = "mrp.production.request.create.mo.line"
+    _description = "Wizard to create Manufacturing Orders Line"
 
     @api.multi
     def _compute_available_qty(self):
@@ -142,12 +162,14 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
         string='Quantity Required', required=True,
         digits=dp.get_precision('Product Unit of Measure'))
     product_uom_id = fields.Many2one(
-        comodel_name='product.uom', string='UoM', required=True)
+        comodel_name='uom.uom', string='UoM', required=True)
     mrp_production_request_create_mo_id = fields.Many2one(
         comodel_name='mrp.production.request.create.mo')
     available_qty = fields.Float(
-        string='Quantity Available', compute=_compute_available_qty,
+        string='Quantity Available', compute='_compute_available_qty',
         digits=dp.get_precision('Product Unit of Measure'))
-    bottle_neck_factor = fields.Float(compute=_compute_bottle_neck_factor)
-    location_id = fields.Many2one(comodel_name='stock.location',
-                                  required=True)
+    bottle_neck_factor = fields.Float(
+        compute='_compute_bottle_neck_factor')
+    location_id = fields.Many2one(
+        comodel_name='stock.location',
+        required=True)
