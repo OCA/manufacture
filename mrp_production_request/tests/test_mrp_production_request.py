@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 class TestMrpProductionRequest(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(TestMrpProductionRequest, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.production_model = self.env['mrp.production']
         self.request_model = self.env['mrp.production.request']
         self.wiz_model = self.env['mrp.production.request.create.mo']
@@ -102,7 +102,9 @@ class TestMrpProductionRequest(TransactionCase):
         request.button_to_approve()
         request.button_approved()
         self.assertEqual(request.pending_qty, 4.0)
-        wiz = self.wiz_model.with_context(active_ids=request.ids).create({})
+        wiz = self.wiz_model.with_context(
+            active_ids=request.ids,
+            active_model="mrp.production.request").create({})
         wiz.compute_product_line_ids()
         wiz.mo_qty = 4.0
         wiz.create_mo()
