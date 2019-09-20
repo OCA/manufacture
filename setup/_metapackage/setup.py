@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo12-addon-mrp_multi_level',
         'odoo12-addon-mrp_production_grouped_by_product',
         'odoo12-addon-mrp_production_putaway_strategy',
+        'odoo12-addon-mrp_production_request',
         'odoo12-addon-mrp_stock_orderpoint_manual_procurement',
         'odoo12-addon-mrp_warehouse_calendar',
         'odoo12-addon-product_mrp_info',
