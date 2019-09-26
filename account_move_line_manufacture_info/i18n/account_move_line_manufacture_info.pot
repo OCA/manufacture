@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,8 +16,8 @@ msgstr ""
 #. module: account_move_line_manufacture_info
 #: model:ir.actions.act_window,name:account_move_line_manufacture_info.action_mrp_account_moves
 #: model:ir.actions.act_window,name:account_move_line_manufacture_info.action_mrp_uo_account_moves
-#: model:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_production_form_view
-#: model:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_unbuild_form_view
+#: model_terms:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_production_form_view
+#: model_terms:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_unbuild_form_view
 msgid "Account Moves"
 msgstr ""
 
@@ -27,7 +27,7 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: account_move_line_manufacture_info
-#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line_manufacture_order_id
+#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line__manufacture_order_id
 msgid "Manufacture Order"
 msgstr ""
 
@@ -37,7 +37,7 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: account_move_line_manufacture_info
-#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line_unbuild_order_id
+#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line__unbuild_order_id
 msgid "Unbuild Order"
 msgstr ""
 
