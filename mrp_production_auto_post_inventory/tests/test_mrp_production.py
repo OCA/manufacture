@@ -59,6 +59,8 @@ class TestMrpProductionAutoPost(common.SavepointCase):
         }).create({
             'product_qty': qty or mo.product_qty,
         })
+        wiz._onchange_product_qty()
+        wiz._convert_to_write(wiz._cache)
         wiz.do_produce()
         return True
 
