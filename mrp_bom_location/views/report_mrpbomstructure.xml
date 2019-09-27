@@ -13,7 +13,7 @@
 
     <template id="report_mrp_bom_line" inherit_id="mrp.report_mrp_bom_line">
         <xpath expr="//tr/td[last()]" position="before">
-            <td t-if="l['location_id']">
+            <td t-if="l.get('location_id', False)">
                 <span><a href="#" t-att-data-res-id="l['location_id'].id" t-att-data-model="'stock.location'" class="o_mrp_bom_action"><t t-esc="l['location_id'].complete_name"/></a></span>
             </td>
         </xpath>
@@ -24,9 +24,10 @@
 
     <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
         <xpath expr="//tr" position="inside">
-            <td>
+            <td t-if="l.get('location_name', False)">
                 <span t-esc="l['location_name']"/>
             </td>
+            <td t-else=""/>
         </xpath>
     </template>
 </odoo>
