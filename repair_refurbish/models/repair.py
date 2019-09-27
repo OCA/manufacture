@@ -64,7 +64,8 @@ class RepairOrder(models.Model):
     @api.multi
     def action_repair_done(self):
         res = super(RepairOrder, self.with_context(
-            force_refurbish_location_dest_id=self.location_dest_id.id
+            force_refurbish_location_dest_id=self.location_dest_id.id,
+            to_refurbish=self.to_refurbish,
         )).action_repair_done()
         for repair in self:
             if repair.to_refurbish:
