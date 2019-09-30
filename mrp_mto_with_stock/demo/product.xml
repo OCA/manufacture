@@ -12,8 +12,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="standard_price">600.00</field>
         <field name="list_price">400.00</field>
         <field name="type">product</field>
-        <field name="uom_id" ref="product.product_uom_unit"/>
-        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
         <field name="description">TODO</field>
         <field name="default_code">MANUF</field>
         <field name="route_ids" eval="[(6, 0, [ref('stock.route_warehouse0_mto'), ref('mrp.route_warehouse0_manufacture')])]"/>
@@ -25,8 +25,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="standard_price">300.00</field>
         <field name="list_price">100.00</field>
         <field name="type">product</field>
-        <field name="uom_id" ref="product.product_uom_unit"/>
-        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
         <field name="description">TODO</field>
         <field name="default_code">MANUF 1-1</field>
         <field name="route_ids" eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"/>
@@ -39,8 +39,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="standard_price">100.00</field>
         <field name="list_price">30.00</field>
         <field name="type">product</field>
-        <field name="uom_id" ref="product.product_uom_unit"/>
-        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
         <field name="description">TODO</field>
         <field name="default_code">MANUF 1-2</field>
         <field name="route_ids" eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"/>
@@ -53,8 +53,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="standard_price">10.00</field>
         <field name="list_price">3.00</field>
         <field name="type">product</field>
-        <field name="uom_id" ref="product.product_uom_unit"/>
-        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
         <field name="description">TODO</field>
         <field name="default_code">MANUF 1-1-1</field>
     </record>
@@ -65,22 +65,22 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="standard_price">10.00</field>
         <field name="list_price">3.00</field>
         <field name="type">product</field>
-        <field name="uom_id" ref="product.product_uom_unit"/>
-        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
         <field name="description">TODO</field>
         <field name="default_code">MANUF 1-2-1</field>
     </record>
 
     <record id="mrp_bom_manuf_1" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_manufacture_1_product_template"/>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">10</field>
     </record>
 
     <record id="mrp_bom_line_manuf_1_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_manufacture_1_1"/>
         <field name="product_qty">5</field>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">1</field>
         <field name="bom_id" ref="mrp_bom_manuf_1"/>
     </record>
@@ -88,35 +88,35 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="mrp_bom_line_manuf_1_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_manufacture_1_2"/>
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">1</field>
         <field name="bom_id" ref="mrp_bom_manuf_1"/>
     </record>
 
     <record id="mrp_bom_manuf_1_1" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_manufacture_1_1_product_template"/>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">10</field>
     </record>
 
     <record id="mrp_bom_line_manuf_1_1_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_manufacture_1_1_1"/>
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">1</field>
         <field name="bom_id" ref="mrp_bom_manuf_1_1"/>
     </record>
 
     <record id="mrp_bom_manuf_1_2" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_manufacture_1_2_product_template"/>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">10</field>
     </record>
 
     <record id="mrp_bom_line_manuf_1_2_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_manufacture_1_2_1"/>
         <field name="product_qty">4</field>
-        <field name="product_uom_id" ref="product.product_uom_unit"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">1</field>
         <field name="bom_id" ref="mrp_bom_manuf_1_2"/>
     </record>
