@@ -31,6 +31,7 @@ addon | version | summary
 [mrp_progress_button](mrp_progress_button/) | 10.0.1.0.0 | Add a button on MO to make the MO state 'In Progress'
 [mrp_repair_calendar_view](mrp_repair_calendar_view/) | 10.0.1.0.0 | MRP Repair Calendar View
 [mrp_repair_discount](mrp_repair_discount/) | 10.0.1.0.0 | MRP Repair Discount
+[mrp_sale_info](mrp_sale_info/) | 10.0.1.0.0 | Adds sale information to Manufacturing models
 [product_quick_bom](product_quick_bom/) | 10.0.1.0.0 | Create the bom directly from the product
 [quality_control](quality_control/) | 10.0.1.0.3 | Quality control
 [quality_control_mrp](quality_control_mrp/) | 10.0.1.0.0 | MRP extension for quality control
@@ -48,7 +49,6 @@ addon | version | summary
 [mrp_industrial_design_bom](mrp_industrial_design_bom/) | 1.0 (unported) | Industrial design specification in BoM
 [mrp_production_partner_note](mrp_production_partner_note/) | 9.0.1.0.0 (unported) | MRP - Partner production notes
 [mrp_production_properties](mrp_production_properties/) | 0.1 (unported) | Mrp Production Properties
-[mrp_sale_info](mrp_sale_info/) | 9.0.1.0.0 (unported) | Adds sale information to Manufacturing models
 
 [//]: # (end addons)
 
