@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-mrp_bom_location',
         'odoo12-addon-mrp_bom_tracking',
         'odoo12-addon-mrp_multi_level',
+        'odoo12-addon-mrp_multi_level_estimate',
         'odoo12-addon-mrp_production_grouped_by_product',
         'odoo12-addon-mrp_production_putaway_strategy',
         'odoo12-addon-mrp_production_request',
