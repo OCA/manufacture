@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo10-addon-mrp_progress_button',
         'odoo10-addon-mrp_repair_calendar_view',
         'odoo10-addon-mrp_repair_discount',
+        'odoo10-addon-mrp_sale_info',
         'odoo10-addon-product_quick_bom',
         'odoo10-addon-quality_control',
         'odoo10-addon-quality_control_mrp',
