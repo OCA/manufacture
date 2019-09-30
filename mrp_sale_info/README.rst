@@ -9,8 +9,15 @@ MRP Sale Info
 This module extends the functionality of sale_mrp and adds related fields to Manufacturing Orders and Work Orders:
 
     * Sale order
+    * Sale line
     * Customer
     * Commitment Date
+
+
+Also add in search view "Group by" to Manufacturing Orders and Work Orders:
+
+   	* Customer
+   	* Sale order
 
 Usage
 =====
@@ -51,6 +58,8 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
 * Ana Juaristi <ajuaristio@gmail.com>"
 * Victor M. Martin <victor.martin@elico-corp.com>
+* Bima Jati Wijaya <bimajatiwijaya@gmail.com>
+* Manuel A. Márquez <manuel@humanytek.com>
 
 Maintainer
 ----------

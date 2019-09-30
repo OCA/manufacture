@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+            <field name="name">MRP Production Work Order Tree with Sale Order</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workcenter_tree_view_inherit"/>
+            <field name="arch" type="xml">
+                <field name="date_planned_start" position="after">
+                    <field name="sale_id"/>
+                    <field name="partner_id"/>
+                    <field name="commitment_date"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_workorder_sale_form_view_inherit" model="ir.ui.view">
+            <field name="name">MRP Production Work Order Form with Sale Order</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page/group[1]" position="after">
+                    <group string="Sale Information">
+                        <field name="sale_id"/>
+                        <field name="partner_id"/>
+                        <field name="commitment_date"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_mrp_workorder_form_view_filter" model="ir.ui.view">
+            <field name="name">MRP Production Workorder search with Customer and Sale Order</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_workcenter_form_view_filter" />
+            <field name="arch" type="xml">
+                <field name="production_id" position="after">
+                    <field name="partner_id" />
+                    <field name="sale_id" />
+                </field>
+                <group position="inside">
+                    <filter string="Customer" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'partner_id'}" />
+                    <filter string="Sale Order" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'sale_id'}" />
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
+    <data>
 
-    <record id="mrp_production_form_view" model="ir.ui.view">
-        <field name="name">MRP Production Form with Sale Order</field>
-        <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="sale_mrp.mrp_production_form_view_inherit_sale_mrp" />
-        <field name="arch" type="xml">
-            <field name="sale_name" position="after">
-                <field name="sale_id"/>
-                <field name="partner_id"/>
-                <field name="commitment_date"/>
+        <record id="mrp_production_form_view" model="ir.ui.view">
+            <field name="name">MRP Production Form with Sale Order</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <field name="availability" position="after">
+                    <field name="sale_id"/>
+                    <field name="partner_id"/>
+                    <field name="commitment_date"/>
+                </field>
             </field>
-        </field>
-    </record>
+        </record>
 
-    <record id="mrp_production_tree_view" model="ir.ui.view">
-        <field name="name">MRP Production Tree with Sale Order</field>
-        <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="date_planned" position="after">
-                <field name="sale_id"/>
-                <field name="partner_id"/>
-                <field name="commitment_date"/>
+        <record id="mrp_production_tree_view" model="ir.ui.view">
+            <field name="name">MRP Production Tree with Sale Order</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="date_planned_start" position="after">
+                    <field name="sale_id"/>
+                    <field name="partner_id"/>
+                    <field name="commitment_date"/>
+                </field>
             </field>
-        </field>
-    </record>
+        </record>
 
-</data>
-</openerp>
+        <record id="mrp_production_sale_info_search_view" model="ir.ui.view">
+            <field name="name">MRP Production search with Customer and Sale Order</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="partner_id" />
+                    <field name="sale_id" />
+                </field>
+                <group position="inside">
+                    <filter string="Customer" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'partner_id'}" />
+                    <filter string="Sale Order" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'sale_id'}" />
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
