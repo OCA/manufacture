@@ -3,7 +3,7 @@
 {
     "name": "MRP Repair Refurbish",
     "summary": "Create refurbished products during repair",
-    "version": "12.0.1.1.2",
+    "version": "12.0.1.1.3",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Eficent, Odoo Community Association (OCA)",
