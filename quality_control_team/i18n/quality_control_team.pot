@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_res_users_sale_order_count
+msgid "# of Sales Order"
+msgstr ""
+
+#. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_res_users_property_account_payable_id
 msgid "Account Payable"
 msgstr ""
@@ -83,6 +88,11 @@ msgstr ""
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_res_users_currency_id
 msgid "Currency"
+msgstr ""
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_res_users_property_stock_customer
+msgid "Customer Location"
 msgstr ""
 
 #. module: quality_control_team
@@ -295,6 +305,11 @@ msgid "Reply-To"
 msgstr ""
 
 #. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_res_users_sale_order_ids
+msgid "Sales Order"
+msgstr ""
+
+#. module: quality_control_team
 #: model:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
 msgid "Settings"
 msgstr ""
@@ -352,6 +367,16 @@ msgid "This payment term will be used instead of the default one for sale orders
 msgstr ""
 
 #. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_res_users_property_stock_customer
+msgid "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
+msgstr ""
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_res_users_property_stock_supplier
+msgid "This stock location will be used, instead of the default one, as the source location for goods you receive from the current partner"
+msgstr ""
+
+#. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_res_users_total_invoiced
 msgid "Total Invoiced"
 msgstr ""
@@ -401,6 +426,11 @@ msgstr ""
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_res_users_currency_id
 msgid "Utility field to express amount currency"
+msgstr ""
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_res_users_property_stock_supplier
+msgid "Vendor Location"
 msgstr ""
 
 #. module: quality_control_team
