@@ -464,7 +464,7 @@ msgid "Set to Done"
 msgstr ""
 
 #. module: quality_control_issue
-#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_5306
+#: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue_stage_id_5416
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem_stage_id
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
 #: model:ir.ui.view,arch_db:quality_control_issue.qc_problem_search
