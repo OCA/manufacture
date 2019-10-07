@@ -30,7 +30,7 @@ addon | version | summary
 [mrp_production_raw_material_procurement_group](mrp_production_raw_material_procurement_group/) | 8.0.1.0.0 | Create Procurement Group On Manufacturing Order
 [mrp_production_real_cost](mrp_production_real_cost/) | 8.0.1.0.2 | Real costs in manufacturing orders
 [mrp_production_request](mrp_production_request/) | 8.0.1.0.0 | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
-[mrp_project](mrp_project/) | 8.0.1.2.0 | Link production with projects
+[mrp_project](mrp_project/) | 8.0.1.2.1 | Link production with projects
 [mrp_repair_discount](mrp_repair_discount/) | 8.0.1.0.0 | MRP Repair Discount
 [mrp_sale_info](mrp_sale_info/) | 8.0.1.0.0 | Adds sale information to Manufacturing models
 [procurement_mrp_no_confirm](procurement_mrp_no_confirm/) | 8.0.1.0.0 | Procurement MRP no Confirm
