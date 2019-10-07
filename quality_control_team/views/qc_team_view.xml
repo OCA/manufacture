@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+    <record id="qc_team_view_form" model="ir.ui.view">
+        <field name="name">qc.team.form</field>
+        <field name="model">qc.team</field>
+        <field name="arch" type="xml">
+            <form string="Quality Control Team">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Quality Control team"/>
+                        <h1>
+                            <field name="name" placeholder="Quality Control Team name..."/>
+                        </h1>
+                        <div name="options_active"/>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager']}"/>
+                        </group>
+                        <group name="right">
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="members" string="Team Members">
+                            <field name="member_ids" widget="many2many" options="{'not_delete': True}">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                <div class="o_kanban_record_top">
+                                                    <img t-att-src="kanban_image('res.users', 'image_small', record.id.raw_value)" height="40" width="40" class="oe_avatar oe_kanban_avatar_smallbox mb0"/>
+                                                    <div class="o_kanban_record_headings ml8">
+                                                        <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                                    </div>
+                                                    <a t-if="! read_only_mode" type="delete" class="text-danger">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                        <page string="More Info" name="more_info" groups="base.group_no_one">
+                            <group string="Company" groups="base.group_multi_company">
+                                <field name="company_id" options="{'no_create': True}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                           help="Follow this QC team to automatically track the events associated to users of this team."/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="qc_team_view_tree" model="ir.ui.view">
+        <field name="name">qc.team.tree</field>
+        <field name="model">qc.team</field>
+        <field name="field_parent">child_ids</field>
+        <field name="arch" type="xml">
+            <tree string="Quality Control Team">
+                <field name="name"/>
+                <field name="active" invisible="1"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="qc_team_config_action" model="ir.actions.act_window">
+        <field name="name">Quality Control Teams</field>
+        <field name="res_model">qc.team</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to define a new quality control team.
+            </p><p>
+                Use quality control team to organize your different
+                departments into separate teams. Each team will work in
+                its own list of processes, stages...
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Quality Control Teams"
+        id="qc_team_config_menu"
+        groups="base.group_system"
+        parent="quality_control.menu_qc_config"
+        action="qc_team_config_action"
+        sequence="10"/>
+
+</odoo>

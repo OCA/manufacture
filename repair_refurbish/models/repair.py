@@ -49,13 +49,23 @@ class RepairOrder(models.Model):
             self.address_id.id or False,
             'location_id': self.location_dest_id.id,
             'location_dest_id': self.refurbish_location_dest_id.id,
-            'restrict_lot_id': self.refurbish_lot_id.id,
-        }
+            'move_line_ids': [(0, 0, {
+                'product_id': self.refurbish_product_id.id,
+                'lot_id': self.refurbish_lot_id.id,
+                'product_uom_qty': self.product_qty,
+                'product_uom_id': self.product_uom.id or
+                self.refurbish_product_id.uom_id.id,
+                'qty_done': self.product_qty,
+                'package_id': False,
+                'result_package_id': False,
+                'location_id': self.location_dest_id.id,
+                'location_dest_id': self.refurbish_location_dest_id.id})]}
 
     @api.multi
     def action_repair_done(self):
         res = super(RepairOrder, self.with_context(
-            force_refurbish_location_dest_id=self.location_dest_id.id
+            force_refurbish_location_dest_id=self.location_dest_id.id,
+            to_refurbish=self.to_refurbish,
         )).action_repair_done()
         for repair in self:
             if repair.to_refurbish:

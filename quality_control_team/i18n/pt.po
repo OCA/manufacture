@@ -1,0 +1,304 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* quality_control_team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-12 11:24+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr ""
+"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Dirija\" title=\""
+"Dirija\"/>"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_needaction
+msgid "Action Needed"
+msgstr "Ação Necessária"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__active
+msgid "Active"
+msgstr "Ativo"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº de Anexos"
+
+#. module: quality_control_team
+#: model_terms:ir.actions.act_window,help:quality_control_team.qc_team_config_action
+msgid "Click here to define a new quality control team."
+msgstr "Clique aqui para definir uma nova equipa do controlo de qualidade."
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__color
+msgid "Color Index"
+msgstr "Índice de Cor"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__company_id
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "Company"
+msgstr "Empresa"
+
+#. module: quality_control_team
+#: model:ir.model,name:quality_control_team.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: quality_control_team
+#: model:ir.actions.act_window,name:quality_control_team.qc_team_dashboard_act
+#: model:ir.ui.menu,name:quality_control_team.menu_qc_team_act
+msgid "Dashboard"
+msgstr "Painel"
+
+#. module: quality_control_team
+#: model_terms:ir.actions.act_window,help:quality_control_team.qc_team_dashboard_act
+msgid "Define a new quality control teams going to <b><i>Configuration &gt;\n"
+"                Quality Control Teams</i></b>."
+msgstr ""
+"Defina novas equipas do controlo de qualidade em <b><i>Configurações &gt; "
+"Equipas do Controlo de Qualidade</i></b>."
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__display_name
+msgid "Display Name"
+msgstr "Nome a Exibir"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "Follow this QC team to automatically track the events associated to users of this team."
+msgstr ""
+"Siga esta equipa do CQ para rastrear automaticamente os eventos associados "
+"aos seus utilizadores."
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canais)"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Parceiros)"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_search
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__id
+msgid "ID"
+msgstr ""
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Se assinalado, uma nova mensagem requer a sua atenção."
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se assinalado, novas mensagens requerem a sua atenção."
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se assinalado, algumas mensagens sofreram um erro de entrega."
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_is_follower
+msgid "Is Follower"
+msgstr "É Seguidor"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team____last_update
+msgid "Last Modified on"
+msgstr "Modificado a última vez por"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__write_uid
+msgid "Last Updated by"
+msgstr "Atualizado pela última vez por"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__write_date
+msgid "Last Updated on"
+msgstr "Atualizado pela última vez em"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Anexo Principal"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_has_error
+msgid "Message Delivery error"
+msgstr "Erro de Entrega de Mensagem"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_ids
+msgid "Messages"
+msgstr "Mensagens"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "More Info"
+msgstr "Mais info"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_search
+msgid "My Teams"
+msgstr "Minhas Equipas"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Ações"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de erro"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensagens que requerem uma ação"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensagens com erro de entrega"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensagens não lidas"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_search
+msgid "QC teams Search"
+msgstr "Pesquisar equipas do CQ"
+
+#. module: quality_control_team
+#: model:ir.model,name:quality_control_team.model_qc_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__name
+#: model:ir.model.fields,field_description:quality_control_team.field_res_partner__qc_team_id
+#: model:ir.model.fields,field_description:quality_control_team.field_res_users__qc_team_id
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_tree
+msgid "Quality Control Team"
+msgstr "Equipa do Controlo de Qualidade"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "Quality Control Team name..."
+msgstr "Nome da Equipa do Controlo de Qualidade..."
+
+#. module: quality_control_team
+#: model:ir.actions.act_window,name:quality_control_team.qc_team_config_action
+#: model:ir.ui.menu,name:quality_control_team.qc_team_config_menu
+msgid "Quality Control Teams"
+msgstr "Equipas do Controlo de Qualidade"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "Quality Control team"
+msgstr "Equipa do controlo de qualidade"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__reply_to
+msgid "Reply-To"
+msgstr "Responder-a"
+
+#. module: quality_control_team
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
+msgid "Settings"
+msgstr "Configurações"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__user_id
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_search
+msgid "Team Leader"
+msgstr "Líder da Equipa"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__member_ids
+#: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
+msgid "Team Members"
+msgstr "Membros da Equipa"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__color
+msgid "The color of the team"
+msgstr "Cor da equipa"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__reply_to
+msgid "The email address put in the 'Reply-To' of all emails sent by Odoo about cases in this QC team"
+msgstr ""
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_unread
+msgid "Unread Messages"
+msgstr "Mensagens Não Lidas"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensagens Não Lidas"
+
+#. module: quality_control_team
+#: model_terms:ir.actions.act_window,help:quality_control_team.qc_team_config_action
+msgid "Use quality control team to organize your different\n"
+"                departments into separate teams. Each team will work in\n"
+"                its own list of processes, stages..."
+msgstr ""
+"Utilize equipas do controlo de qualidade para organizar os seus diferentes "
+"departamentos em equipas separadas. Cada equipa trabalhará na sua própria "
+"lista de processos, etapas, etc..."
+
+#. module: quality_control_team
+#: model:ir.model,name:quality_control_team.model_res_users
+msgid "Users"
+msgstr "Utilizadores"
+
+#. module: quality_control_team
+#: model:ir.model.fields,field_description:quality_control_team.field_qc_team__website_message_ids
+msgid "Website Messages"
+msgstr "Mensagens do Website"
+
+#. module: quality_control_team
+#: model:ir.model.fields,help:quality_control_team.field_qc_team__website_message_ids
+msgid "Website communication history"
+msgstr "Histórico de comunicações do website"
