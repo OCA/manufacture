@@ -3,3 +3,4 @@
 product-attribute
 account-analytic
 product-variant
+stock-logistics-warehouse
