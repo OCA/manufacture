@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo8-addon-mrp_production_partner_note',
         'odoo8-addon-mrp_production_raw_material_procurement_group',
         'odoo8-addon-mrp_production_real_cost',
+        'odoo8-addon-mrp_production_request',
         'odoo8-addon-mrp_project',
         'odoo8-addon-mrp_repair_discount',
         'odoo8-addon-mrp_sale_info',
