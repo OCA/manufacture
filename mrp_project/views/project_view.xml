@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="project_mrp_procurement_shortcut_form_view">
+        <field name="name">project.shortcuts.mrp.procurement.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='attachment_tree_view']" position="before">
+                <button class="oe_inline oe_stat_button"
+                        type="object"
+                        name="mrp_production_tree_view"
+                        icon="fa-cogs"
+                        help="View project's production"
+                        groups="mrp.group_mrp_user, mrp.group_mrp_manager, mrp.group_mrp_routings">
+                    <!-- context="{'default_analytic_account_id': analytic_account_id,'search_default_analytic_account_id': [analytic_account_id]}"-->
+                    <field string="Manufacturing" name="production_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

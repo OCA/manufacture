@@ -90,7 +90,6 @@ msgstr ""
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
-#: view:mrp.production:mrp_project.view_mrp_production_filter_project
 #: field:mrp.production,project_id:0
 msgid "Project"
 msgstr ""
@@ -123,12 +122,12 @@ msgid "Task"
 msgstr ""
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,work_ids:0
+#: field:mrp.workorder,work_ids:0
 msgid "Task works"
 msgstr ""
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,task_ids:0
+#: field:mrp.workorder,task_ids:0
 msgid "Tasks"
 msgstr ""
 

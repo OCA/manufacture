@@ -30,44 +30,51 @@ msgid ""
 "        Planned Date: %s\n"
 "        "
 msgstr ""
+"\n"
+"        Üretim Siparişi: %s\n"
+"        Üretilecek Ürün: [%s]%s\n"
+"        Üretilecek Miktar: %s\n"
+"        Malzeme Listesi: %s\n"
+"        Planlanan Tarih: %s\n"
+"        "
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "Analytic Account"
-msgstr ""
+msgstr "Analitik Hesap"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Analitik Çizgi"
 
 #. module: mrp_project
 #: field:project.project,automatic_creation:0
 msgid "Automatic Creation"
-msgstr ""
+msgstr "Otomatik Oluşturma"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
 msgid "General Accounting"
-msgstr ""
+msgstr "Genel Muhasebe"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "MRP Data"
-msgstr ""
+msgstr "MRP Verileri"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 #: view:project.project:mrp_project.project_mrp_procurement_shortcut_form_view
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Manufacturing"
-msgstr ""
+msgstr "Üretim"
 
 #. module: mrp_project
 #: field:project.project,production_count:0
 msgid "Manufacturing Count"
-msgstr ""
+msgstr "Üretim Miktarı"
 
 #. module: mrp_project
 #: field:account.analytic.line,mrp_production_id:0
@@ -75,51 +82,51 @@ msgstr ""
 #: model:ir.model,name:mrp_project.model_mrp_production
 #: field:project.task,mrp_production_id:0
 msgid "Manufacturing Order"
-msgstr "Üretim emri"
+msgstr "Üretim Siparişi"
 
 #. module: mrp_project
 #: model:ir.actions.act_window,name:mrp_project.act_project_2_production_all
 msgid "Manufacturing Orders"
-msgstr ""
+msgstr "Üretim Siparişleri"
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "Please go to the manufacturing order to see the products to consume."
-msgstr ""
+msgstr "Tüketilecek ürünleri görmek için lütfen üretim siparişine gidin."
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 #: view:project.task:mrp_project.project_task_mrp_inh_tree_view
 #: field:project.task,final_product:0
 msgid "Product to Produce"
-msgstr ""
+msgstr "Üretilecek Ürün"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
 #: field:mrp.production,project_id:0
 msgid "Project"
-msgstr ""
+msgstr "Proje"
 
 #. module: mrp_project
 #: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
 msgid "Project Task"
-msgstr ""
+msgstr "Proje Görevi"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task_work
 msgid "Project Task Work"
-msgstr ""
+msgstr "Groje Görev Çalışması"
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 #: field:project.task,production_scheduled_products:0
 msgid "Scheduled Products"
-msgstr ""
+msgstr "Zamanlanmış Ürünler"
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Stage"
-msgstr ""
+msgstr "Evre"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
@@ -127,19 +134,19 @@ msgid "Task"
 msgstr "Görev"
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,work_ids:0
+#: field:mrp.workorder,work_ids:0
 msgid "Task works"
-msgstr ""
+msgstr "Görev Çalışması"
 
 #. module: mrp_project
-#: field:mrp.production.workcenter.line,task_ids:0
+#: field:mrp.workorder,task_ids:0
 msgid "Tasks"
-msgstr ""
+msgstr "Görevler"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr ""
+msgstr "Zaman Çizelgesi Satırı"
 
 #. module: mrp_project
 #: field:account.analytic.line,workorder:0
@@ -147,18 +154,18 @@ msgstr ""
 #: model:ir.model,name:mrp_project.model_mrp_production_workcenter_line
 #: field:project.task,workorder:0
 msgid "Work Order"
-msgstr ""
+msgstr "İş Emri"
 
 #. module: mrp_project
 #: field:project.task.work,workorder:0
 msgid "Work order"
-msgstr ""
+msgstr "İş Emri"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Workorder"
-msgstr ""
+msgstr "İş Emri"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
