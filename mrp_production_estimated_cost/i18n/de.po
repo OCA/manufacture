@@ -66,6 +66,13 @@ msgid "Cancel"
 msgstr "Stornieren"
 
 #. module: mrp_production_estimated_cost
+#: help:product.product,mrp_production_request:0
+msgid ""
+"Check this box to generate manufacturing request instead of generating "
+"manufacturing orders from procurement."
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: help:mrp.production,product_cost:0
 msgid ""
 "Cost price of the product template used for standard stock valuation in "
@@ -128,8 +135,7 @@ msgid "Estim. STD"
 msgstr "Plan-STD"
 
 #. module: mrp_production_estimated_cost
-#: field:account.analytic.line,estim_avg_cost:0
-#: field:mrp.production,avg_cost:0
+#: field:account.analytic.line,estim_avg_cost:0 field:mrp.production,avg_cost:0
 msgid "Estimated Average Cost"
 msgstr "Geplante durchschn. Kosten"
 
@@ -145,8 +151,7 @@ msgid "Estimated Costs"
 msgstr "Geplante Kosten"
 
 #. module: mrp_production_estimated_cost
-#: field:account.analytic.line,estim_std_cost:0
-#: field:mrp.production,std_cost:0
+#: field:account.analytic.line,estim_std_cost:0 field:mrp.production,std_cost:0
 msgid "Estimated Standard Cost"
 msgstr "Geplante Standardkosten"
 
@@ -205,6 +210,13 @@ msgstr "Manuelle Standardkosten"
 #: model:ir.model,name:mrp_production_estimated_cost.model_mrp_production
 msgid "Manufacturing Order"
 msgstr "Fertigungsauftrag"
+
+#. module: mrp_production_estimated_cost
+#: field:product.product,mrp_production_request:0
+#, fuzzy
+#| msgid "Manufacturing costs"
+msgid "Manufacturing Request"
+msgstr "Fertigungskosten"
 
 #. module: mrp_production_estimated_cost
 #: view:mrp.production:mrp_production_estimated_cost.mrp_production_form_view_inh_estimatedcost

@@ -64,6 +64,13 @@ msgid "Cancel"
 msgstr "Odustani"
 
 #. module: mrp_production_estimated_cost
+#: help:product.product,mrp_production_request:0
+msgid ""
+"Check this box to generate manufacturing request instead of generating "
+"manufacturing orders from procurement."
+msgstr ""
+
+#. module: mrp_production_estimated_cost
 #: help:mrp.production,product_cost:0
 msgid ""
 "Cost price of the product template used for standard stock valuation in "
@@ -123,8 +130,7 @@ msgid "Estim. STD"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: field:account.analytic.line,estim_avg_cost:0
-#: field:mrp.production,avg_cost:0
+#: field:account.analytic.line,estim_avg_cost:0 field:mrp.production,avg_cost:0
 msgid "Estimated Average Cost"
 msgstr ""
 
@@ -140,8 +146,7 @@ msgid "Estimated Costs"
 msgstr ""
 
 #. module: mrp_production_estimated_cost
-#: field:account.analytic.line,estim_std_cost:0
-#: field:mrp.production,std_cost:0
+#: field:account.analytic.line,estim_std_cost:0 field:mrp.production,std_cost:0
 msgid "Estimated Standard Cost"
 msgstr ""
 
@@ -199,6 +204,13 @@ msgstr ""
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_mrp_production
 msgid "Manufacturing Order"
+msgstr "Proizvodni nalog"
+
+#. module: mrp_production_estimated_cost
+#: field:product.product,mrp_production_request:0
+#, fuzzy
+#| msgid "Manufacturing Order"
+msgid "Manufacturing Request"
 msgstr "Proizvodni nalog"
 
 #. module: mrp_production_estimated_cost
