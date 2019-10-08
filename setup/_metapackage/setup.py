@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo12-addon-quality_control_stock',
         'odoo12-addon-quality_control_team',
         'odoo12-addon-repair_refurbish',
+        'odoo12-addon-stock_picking_product_kit_helper',
     ],
     classifiers=[
         'Programming Language :: Python',
