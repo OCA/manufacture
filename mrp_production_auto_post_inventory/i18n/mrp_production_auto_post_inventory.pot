@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,8 +19,13 @@ msgid "Companies"
 msgstr ""
 
 #. module: mrp_production_auto_post_inventory
-#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_company_mrp_production_auto_post_inventory
-#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_config_settings_mrp_production_auto_post_inventory
+#: model:ir.model,name:mrp_production_auto_post_inventory.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
+#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory
+#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory
 msgid "Production Auto Post-Inventory"
 msgstr ""
 
@@ -30,24 +35,19 @@ msgid "Record Production"
 msgstr ""
 
 #. module: mrp_production_auto_post_inventory
-#: model:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
+#: model_terms:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
 msgid "Sets to automatic the post-inventory step in a manufacturing order."
 msgstr ""
 
 #. module: mrp_production_auto_post_inventory
-#: model:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
+#: model_terms:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
 msgid "Sets to automatic the post-inventory step in a manufacturing order.\n"
 "                            The inventory will be automatically posted after some quantity has been produced."
 msgstr ""
 
 #. module: mrp_production_auto_post_inventory
-#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_company_mrp_production_auto_post_inventory
-#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_config_settings_mrp_production_auto_post_inventory
+#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory
+#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory
 msgid "Sets to automatic the post-inventory step in a manufacturingorder. The inventory will be automatically posted after some quantity has been produced"
-msgstr ""
-
-#. module: mrp_production_auto_post_inventory
-#: model:ir.model,name:mrp_production_auto_post_inventory.model_res_config_settings
-msgid "res.config.settings"
 msgstr ""
 
