@@ -43,8 +43,8 @@ class MrpProduction(models.Model):
             boms, lines = production.bom_id.explode(
                 production.product_id, factor,
                 picking_type=production.bom_id.picking_type_id)
+            lines = lines.filtered(lambda r: r.product_id.type == 'service')
             for line in lines:
-                if line[0].product_id.type == 'service':
-                    production._action_launch_procurement_rule(
-                        line[0], line[1])
+                production._action_launch_procurement_rule(
+                    line[0], line[1])
         return res
