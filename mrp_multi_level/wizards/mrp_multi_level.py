@@ -226,6 +226,11 @@ class MultiLevelMrp(models.TransientModel):
             name, mrp_date_supply, mrp_action_date, values=None,
     ):
         self = self.with_context(auditlog_disabled=True)
+        if self._exclude_from_mrp(
+                product_mrp_area_id.product_id,
+                product_mrp_area_id.mrp_area_id):
+            values['qty_ordered'] = 0.0
+            return values
 
         qty_ordered = values.get("qty_ordered", 0.0) if values else 0.0
         qty_to_order = mrp_qty
