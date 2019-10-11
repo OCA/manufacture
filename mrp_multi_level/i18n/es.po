@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-08-25 15:00+0000\n"
-"Last-Translator: Lois Rilo <lois.rilo@eficent.com>\n"
+"PO-Revision-Date: 2019-10-11 18:37+0000\n"
+"Last-Translator: layadelcarmen <layadelcarmen@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
@@ -620,9 +620,8 @@ msgstr "Producto"
 #: model:ir.model,name:mrp_multi_level.model_product_mrp_area
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__product_mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__product_mrp_area_id
-#, fuzzy
 msgid "Product MRP Area"
-msgstr "Area MRP"
+msgstr "Área MRP"
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.product_mrp_area_action
