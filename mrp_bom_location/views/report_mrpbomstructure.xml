@@ -2,10 +2,10 @@
 <odoo>
     <template id="report_mrpbomstructure_location" inherit_id="mrp.report_mrp_bom">
         <xpath expr="//thead/tr/th[last()]" position="before">
-            <th t-if="data['bom'].location_id" class="o_mrp_has_attachments" title="Location of the product">Location</th>
+            <th t-if="data['bom'].location_id" class="o_mrp_bom_cost text-right" title="Location of the product">Location</th>
         </xpath>
         <xpath expr="//tbody/tr/td[last()]" position="before">
-            <td t-if="data['bom'].location_id">
+            <td t-if="data['bom'].location_id" class="text-right">
                 <span><a href="#" t-if="data['report_type'] == 'html'" t-att-data-res-id="data['bom'].location_id.id" t-att-data-model="'stock.location'" class="o_mrp_bom_action"><t t-esc="data['bom'].location_id.complete_name"/></a><t t-else="" t-esc="data['bom'].location_id.complete_name"/></span>
             </td>
         </xpath>
@@ -24,7 +24,7 @@
 
     <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
         <xpath expr="//tr" position="inside">
-            <td t-if="l.get('location_name', False)">
+            <td t-if="l.get('location_name', False)" class="text-right">
                 <span t-esc="l['location_name']"/>
             </td>
             <td t-else=""/>
