@@ -13,7 +13,6 @@ class ProductTemplate(models.Model):
         compute="_compute_mo_count",
     )
 
-    @api.multi
     def _compute_mo_count(self):
         read_group_res = self.env["mrp.production"].read_group(
             [("product_id", "in", self.mapped("product_variant_ids").ids)],
@@ -52,7 +51,6 @@ class ProductProduct(models.Model):
         for product in self:
             product.mo_count = mapped_data.get(product.id, 0)
 
-    @api.multi
     def action_view_mrp_productions(self):
         product_ids = self.ids
         action = self.env.ref("mrp.act_product_mrp_production").read()[0]

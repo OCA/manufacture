@@ -8,13 +8,13 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
         <field name="arch" type="xml">
-            <button name="toggle_active" position="before">
+            <div class="oe_button_box" position="inside">
                 <button class="oe_stat_button" name="action_view_mrp_productions" type="object"
                         attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
                         icon="fa-wrench" help="Manufactured Orders">
                     <field string="MO's" name="mo_count" widget="statinfo" />
                 </button>
-            </button>
+            </div>
         </field>
     </record>
 
@@ -25,13 +25,13 @@
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
         <field name="arch" type="xml">
-            <button name="toggle_active" position="before">
+            <div class="oe_button_box" position="inside">
                 <button class="oe_stat_button" name="action_view_mrp_productions" type="object"
                         attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}"
                         icon="fa-wrench" help="Manufactured Orders">
                     <field string="MO's" name="mo_count" widget="statinfo"/>
                 </button>
-            </button>
+            </div>
         </field>
     </record>
 
