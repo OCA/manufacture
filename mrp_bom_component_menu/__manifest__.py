@@ -7,14 +7,9 @@
     "version": "13.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
-    "author": "Eficent,"
-              "Odoo Community Association (OCA)",
+    "author": "Eficent," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "mrp",
-    ],
-    "data": [
-        "views/mrp_bom_component_view.xml",
-    ],
+    "depends": ["mrp"],
+    "data": ["views/mrp_bom_component_view.xml"],
 }
