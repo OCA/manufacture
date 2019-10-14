@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -9,10 +8,11 @@ class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
 
     # re-defines the field to change the default
-    sequence = fields.Integer(default=9999)
+    sequence = fields.Integer(default=9999, string='original sequence')
 
     # displays sequence on the stock moves
     sequence2 = fields.Integer(help="Shows the sequence in the BOM line.",
+                               string='Sequence',
                                related='sequence', readonly=False, store=True)
 
     @api.model
