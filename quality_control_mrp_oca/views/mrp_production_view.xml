@@ -6,7 +6,7 @@
         <field name="name">Quality inspections from production order</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('production', '=', active_id)]</field>
+        <field name="domain">[('production_id', '=', active_id)]</field>
     </record>
 
     <record model="ir.ui.view" id="mrp_production_qc_view">
