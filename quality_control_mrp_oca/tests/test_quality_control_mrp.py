@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -13,7 +12,7 @@ class TestQualityControlMrp(TransactionCase):
         self.production_model = self.env['mrp.production']
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
-        self.product = self.env.ref('mrp.product_product_computer_desk')
+        self.product = self.env.ref('mrp.product_product_wood_panel')
         self.test = self.env.ref('quality_control.qc_test_1')
         self.trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
         self.bom = self.env['mrp.bom']._bom_find(product=self.product)
@@ -142,5 +141,5 @@ class TestQualityControlMrp(TransactionCase):
             'object_id': '%s,%d' % (self.production1._name,
                                     self.production1.id),
         })
-        self.assertEquals(self.inspection1.production,
+        self.assertEquals(self.inspection1.production_id,
                           self.production1)
