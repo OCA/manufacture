@@ -488,7 +488,8 @@ class MultiLevelMrp(models.TransientModel):
                         or (onhand + last_qty)
                         < product_mrp_area.mrp_minimum_stock):
                 name = 'Grouped Demand for %d Days' % grouping_delta
-                qtytoorder = product_mrp_area.mrp_minimum_stock - last_qty
+                qtytoorder = product_mrp_area.mrp_minimum_stock - \
+                    onhand - last_qty
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
