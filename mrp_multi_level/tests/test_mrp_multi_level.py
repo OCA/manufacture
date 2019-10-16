@@ -250,3 +250,17 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         prev = self.mrp_inventory_obj.search([
             ('mrp_area_id', '!=', self.secondary_area.id)], limit=1)
         self.assertNotEqual(this.create_uid, prev.create_uid)
+
+    def test_11_special_scenario_1(self):
+        """When grouping demand supply and demand are in the same day but
+        supply goes first."""
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.product_scenario_1.id)])
+        self.assertEqual(len(moves), 4)
+        mrp_invs = self.mrp_inventory_obj.search([
+            ('product_id', '=', self.product_scenario_1.id)])
+        self.assertEqual(len(mrp_invs), 2)
+        # Net needs = 124 + 90 - 87 = 127 -> 130 (because of qty multiple)
+        self.assertEqual(mrp_invs[0].to_procure, 130)
+        # Net needs = 18, available on-hand = 3 -> 15
+        self.assertEqual(mrp_invs[1].to_procure, 15)
