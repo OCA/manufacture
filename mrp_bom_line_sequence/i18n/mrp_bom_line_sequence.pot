@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_bom_line_sequence
-#: model:ir.ui.view,arch_db:mrp_bom_line_sequence.mrp_bom_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_line_sequence.mrp_bom_form_view
 msgid "\"handle\""
 msgstr ""
 
@@ -24,22 +24,32 @@ msgid "Bill of Material"
 msgstr ""
 
 #. module: mrp_bom_line_sequence
-#: model:ir.model.fields,field_description:mrp_bom_line_sequence.field_mrp_bom_max_line_sequence
+#: model:ir.model,name:mrp_bom_line_sequence.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_bom_line_sequence
+#: model:ir.model.fields,help:mrp_bom_line_sequence.field_mrp_bom_line__sequence
+msgid "Gives the sequence order when displaying."
+msgstr ""
+
+#. module: mrp_bom_line_sequence
+#: model:ir.model.fields,field_description:mrp_bom_line_sequence.field_mrp_bom__max_line_sequence
 msgid "Max sequence in lines"
 msgstr ""
 
 #. module: mrp_bom_line_sequence
-#: model:ir.model.fields,field_description:mrp_bom_line_sequence.field_mrp_bom_line_sequence2
+#: model:ir.model.fields,field_description:mrp_bom_line_sequence.field_mrp_bom_line__sequence2
 msgid "Sequence"
 msgstr ""
 
 #. module: mrp_bom_line_sequence
-#: model:ir.model.fields,help:mrp_bom_line_sequence.field_mrp_bom_line_sequence2
+#: model:ir.model.fields,help:mrp_bom_line_sequence.field_mrp_bom_line__sequence2
 msgid "Shows the sequence in the BOM line."
 msgstr ""
 
 #. module: mrp_bom_line_sequence
-#: model:ir.model,name:mrp_bom_line_sequence.model_mrp_bom_line
-msgid "mrp.bom.line"
+#: model:ir.model.fields,field_description:mrp_bom_line_sequence.field_mrp_bom_line__sequence
+msgid "original sequence"
 msgstr ""
 
