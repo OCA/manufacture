@@ -20,31 +20,32 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_created_inspections
+#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production__created_inspections
 msgid "Created inspections"
 msgstr "Inspeções criadas"
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_qc_inspections
+#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production__qc_inspections_ids
 msgid "Inspections"
 msgstr "Inspeções"
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,help:quality_control_mrp.field_mrp_production_qc_inspections
+#: model:ir.model.fields,help:quality_control_mrp.field_mrp_production__qc_inspections_ids
 msgid "Inspections related to this production."
 msgstr "Inspeções relacionadas com esta produção."
 
 #. module: quality_control_mrp
-#: model:ir.model,name:quality_control_mrp.model_mrp_production
-#: model:res.request.link,name:quality_control_mrp.req_link_mrp_production
-msgid "Manufacturing Order"
-msgstr "Ordem de Fabrico"
-
-#. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_production
-#: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_search_view_production
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection__production_id
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_search_view_production
 msgid "Production"
 msgstr "Produção"
+
+#. module: quality_control_mrp
+#: model:ir.model,name:quality_control_mrp.model_mrp_production
+#, fuzzy
+#| msgid "Production order"
+msgid "Production Order"
+msgstr "Ordem de produção"
 
 #. module: quality_control_mrp
 #: model:qc.trigger,name:quality_control_mrp.qc_trigger_mrp
@@ -52,8 +53,8 @@ msgid "Production done"
 msgstr "Produção efetuada"
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_line_production
-#: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_line_search_production_view
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_line__production_id
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Production order"
 msgstr "Ordem de produção"
 
@@ -73,9 +74,12 @@ msgid "Quality inspections from production order"
 msgstr "Inspeções de qualidade da ordem de fabrico"
 
 #. module: quality_control_mrp
-#: model:ir.ui.view,arch_db:quality_control_mrp.mrp_production_qc_view
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp.mrp_production_qc_view
 msgid "inspections"
 msgstr "inspeções"
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Ordem de Fabrico"
 
 #~ msgid "Product"
 #~ msgstr "Produto"
