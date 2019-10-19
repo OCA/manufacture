@@ -1,0 +1,1 @@
+Istall with standar method
