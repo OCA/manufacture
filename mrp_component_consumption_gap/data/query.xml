@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+
+<record id="mrp_component_consumption" model="bi.sql.view">
+    <field name="name">Components consumption 🔧</field>
+    <field name="technical_name">mrp_component_consumption</field>
+    <field name="view_order">pivot,tree</field>
+    <field name="query"><![CDATA[
+
+SELECT p.default_code || ' ' || t.name x_component, sum(s.product_uom_qty) x_component_qty, u.name x_un_component
+, m.date_finished x_date
+, round(m.product_qty/sum(s.product_uom_qty) / (b.product_qty/l.product_qty), 3) * 100 x_percent_consumption
+, p2.default_code || ' ' || t2.name x_manufactured
+, m.name || '' || m.date_finished x_production
+, m.product_qty x_manuf_qty, um.name x_un_manuf
+FROM stock_move s
+  INNER JOIN uom_uom u ON s.product_uom = u.id
+  INNER JOIN mrp_production m ON s.raw_material_production_id = m.id
+  INNER JOIN uom_uom um ON m.product_uom_id = um.id
+  INNER JOIN mrp_bom b ON m.bom_id = b.id
+  INNER JOIN mrp_bom_line l ON s.bom_line_id = l.id
+  INNER JOIN product_product p ON s.product_id = p.id LEFT JOIN product_template t ON p.product_tmpl_id = t.id
+  INNER JOIN product_product p2 ON m.product_id = p2.id LEFT JOIN product_template t2 ON p2.product_tmpl_id = t2.id
+WHERE 
+ s.state != 'cancel'
+ AND m.state = 'done'
+ AND s.product_uom_qty > 0
+ AND s.product_id = 139
+GROUP BY m.id, t.name, p.default_code, t2.name, p2.default_code, u.name
+, um.name, m.product_id, s.bom_line_id, b.product_qty, l.product_qty
+ORDER BY m.product_id, m.id DESC
+
+]]>
+    </field>
+</record>
+
+
+<function model="bi.sql.view" name="button_validate_sql_expression" 
+          eval="([ref('mrp_component_consumption')])"/>
+
+
+<function model="bi.sql.view" name="button_create_sql_view_and_model"
+          eval="([ref('mrp_component_consumption')])"/>
+
+<function model="bi.sql.view" name="button_create_ui"
+          eval="([ref('mrp_component_consumption')])"/>
+
+</odoo>
