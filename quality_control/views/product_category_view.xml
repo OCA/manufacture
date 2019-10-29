@@ -16,7 +16,7 @@
                 <group name="qc" string="Quality control">
                     <field name="qc_triggers" nolabel="1">
                         <tree string="Quality control triggers" editable="bottom">
-                            <field name="trigger" widget="selection" />
+                            <field name="trigger" options="{'no_create': True, 'no_edit': True, 'no_open': True}" />
                             <field name="test" />
                             <field name="user" />
                             <field name="partners" widget="many2many_tags" />
