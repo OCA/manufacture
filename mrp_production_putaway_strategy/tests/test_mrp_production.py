@@ -27,20 +27,16 @@ class MrpProductionCase(TransactionCase):
             'usage': 'internal'
         })
 
-        self.putaway_strategy = self.env['product.putaway'].create({
-            'name': 'Fixed Loc',
-            'method': 'fixed',
-            'fixed_location_ids': [(
-                0, 0, {'fixed_location_id': self.bin_loc_stock.id,
-                       'category_id': self.category.id})]
-        })
-        self.loc_stock.putaway_strategy_id = self.putaway_strategy
-
-        self.loc_production = self.env.ref(
-            "stock.location_production")
         self.product1 = self.env.ref("mrp.product_product_computer_desk")
         self.product1.categ_id = self.category
         self.bom1 = self.env.ref("mrp.mrp_bom_desk")
+
+        self.putaway_strategy = self.env['stock.putaway.rule'].create({
+            'product_id': self.product1.id,
+            'location_in_id': self.loc_stock.id,
+            'location_out_id': self.bin_loc_stock.id,
+        })
+        self.loc_stock.putaway_strategy_id = self.putaway_strategy
 
     def _create_mo(self, product=False, bom=False, src_loc=False,
                    dest_loc=False, qty=10.0, uom=False):
