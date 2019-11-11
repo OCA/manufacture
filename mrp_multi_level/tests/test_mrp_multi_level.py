@@ -43,6 +43,7 @@ class TestMrpMultiLevel(SavepointCase):
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref(
             'stock.stock_location_customers')
+        cls.supplier_location = cls.env.ref('stock.stock_location_suppliers')
         cls.calendar = cls.env.ref('resource.resource_calendar_std')
         # Add calendar to WH:
         cls.wh.calendar_id = cls.calendar
@@ -70,6 +71,19 @@ class TestMrpMultiLevel(SavepointCase):
             'name': 'Test',
             'warehouse_id': cls.wh.id,
             'location_id': cls.sec_loc.id,
+        })
+        # Create an area for design special cases and test them, different
+        # cases will be expected to not share products, this way each case
+        # can be isolated.
+        cls.cases_loc = cls.loc_obj.create({
+            'name': 'Special Cases location',
+            'usage': 'internal',
+            'location_id': cls.wh.view_location_id.id,
+        })
+        cls.cases_area = cls.mrp_area_obj.create({
+            'name': 'Special Cases Tests',
+            'warehouse_id': cls.wh.id,
+            'location_id': cls.cases_loc.id,
         })
 
         # Create products:
@@ -135,6 +149,36 @@ class TestMrpMultiLevel(SavepointCase):
             'mrp_maximum_order_qty': 500.0,
             'mrp_qty_multiple': 25.0,
         })
+        # Create more products to test special corner case scenarios:
+        cls.product_scenario_1 = cls.product_obj.create({
+            'name': 'Product Special Scenario 1',
+            'type': 'product',
+            'list_price': 100.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': vendor1.id, 'price': 20.0})],
+        })
+        cls.product_mrp_area_obj.create({
+            'product_id': cls.product_scenario_1.id,
+            'mrp_area_id': cls.cases_area.id,
+            'mrp_nbr_days': 7,
+            'mrp_qty_multiple': 5.0,
+        })
+
+        # Create pickings for Scenario 1:
+        dt_base = cls.calendar.plan_days(3 + 1, datetime.today())
+        cls._create_picking_in(
+            cls.product_scenario_1, 87, dt_base, location=cls.cases_loc)
+        dt_bit_later = dt_base + timedelta(hours=1)
+        cls._create_picking_out(
+            cls.product_scenario_1, 124, dt_bit_later, location=cls.cases_loc)
+        dt_base_2 = cls.calendar.plan_days(3 + 1, datetime.today())
+        cls._create_picking_out(
+            cls.product_scenario_1, 90, dt_base_2, location=cls.cases_loc)
+
+        dt_next_group = cls.calendar.plan_days(10 + 1, datetime.today())
+        cls._create_picking_out(
+            cls.product_scenario_1, 18, dt_next_group, location=cls.cases_loc)
+
         # Create test picking for FP-1 and FP-2:
         res = cls.calendar.plan_days(7+1, datetime.today())
         date_move = res.date()
@@ -298,6 +342,52 @@ class TestMrpMultiLevel(SavepointCase):
             'groups_id': [(6, 0, [group.id for group in groups])]
         })
         return user
+
+    @classmethod
+    def _create_picking_in(cls, product, qty, date_move, location=None):
+        if not location:
+            location = cls.stock_location
+        picking = cls.stock_picking_obj.create({
+            'picking_type_id': cls.env.ref('stock.picking_type_in').id,
+            'location_id': cls.supplier_location.id,
+            'location_dest_id': location.id,
+            'move_lines': [
+                (0, 0, {
+                    'name': 'Test Move',
+                    'product_id': product.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': product.uom_id.id,
+                    'product_uom_qty': qty,
+                    'location_id': cls.supplier_location.id,
+                    'location_dest_id': location.id,
+                })],
+        })
+        picking.action_confirm()
+        return picking
+
+    @classmethod
+    def _create_picking_out(cls, product, qty, date_move, location=None):
+        if not location:
+            location = cls.stock_location
+        picking = cls.stock_picking_obj.create({
+            'picking_type_id': cls.env.ref('stock.picking_type_out').id,
+            'location_id': location.id,
+            'location_dest_id': cls.customer_location.id,
+            'move_lines': [
+                (0, 0, {
+                    'name': 'Test Move',
+                    'product_id': product.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': product.uom_id.id,
+                    'product_uom_qty': qty,
+                    'location_id': location.id,
+                    'location_dest_id': cls.customer_location.id,
+                })],
+        })
+        picking.action_confirm()
+        return picking
 
     def test_01_mrp_levels(self):
         """Tests computation of MRP levels."""
@@ -572,5 +662,16 @@ class TestMrpMultiLevel(SavepointCase):
             ('mrp_area_id', '!=', self.secondary_area.id)], limit=1)
         self.assertNotEqual(this.create_uid, prev.create_uid)
 
-    # TODO: test procure wizard: pos, multiple...
-    # TODO: test multiple destination IDS:...
+    def test_11_special_scenario_1(self):
+        """When grouping demand supply and demand are in the same day but
+        supply goes first."""
+        moves = self.mrp_move_obj.search([
+            ('product_id', '=', self.product_scenario_1.id)])
+        self.assertEqual(len(moves), 4)
+        mrp_invs = self.mrp_inventory_obj.search([
+            ('product_id', '=', self.product_scenario_1.id)])
+        self.assertEqual(len(mrp_invs), 2)
+        # Net needs = 124 + 90 - 87 = 127 -> 130 (because of qty multiple)
+        self.assertEqual(mrp_invs[0].to_procure, 130)
+        # Net needs = 18, available on-hand = 3 -> 15
+        self.assertEqual(mrp_invs[1].to_procure, 15)
