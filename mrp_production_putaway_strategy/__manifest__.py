@@ -5,7 +5,7 @@
     "name": "MRP Production Putaway Strategy",
     "summary": "Applies putaway strategies to manufacturing orders for "
                "finished products.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
