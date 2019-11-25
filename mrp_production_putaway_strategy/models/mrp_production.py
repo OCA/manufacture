@@ -21,5 +21,5 @@ class MrpProduction(models.Model):
                 "Applied Putaway strategy to finished products.\n"
                 "Finished Products Location: %s." %
                 mo.location_dest_id.complete_name)
-            mo.message_post(message, message_type='comment')
+            mo.message_post(body=message, message_type='comment')
         return mo
