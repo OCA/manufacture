@@ -9,7 +9,7 @@
         <field name="groups_id"
                eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
-            <field name="product" position="after">
+            <field name="product_id" position="after">
                 <field name="production" />
             </field>
         </field>
@@ -22,7 +22,7 @@
         <field name="groups_id"
                eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
-            <field name="product" position="after">
+            <field name="product_id" position="after">
                 <field name="production" />
             </field>
         </field>
@@ -35,11 +35,12 @@
         <field name="groups_id"
                eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
-            <field name="product" position="after">
+            <field name="product_id" position="after">
                 <field name="production" />
             </field>
             <group expand="0" position="inside">
                 <filter string="Production"
+                        name="production"
                         domain="[]"
                         context="{'group_by': 'production'}" />
             </group>
@@ -53,7 +54,7 @@
         <field name="groups_id"
                eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
-            <field name="product" position="after">
+            <field name="product_id" position="after">
                 <field name="production" />
             </field>
         </field>
@@ -66,11 +67,12 @@
         <field name="groups_id"
                eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
-            <field name="product" position="after">
+            <field name="product_id" position="after">
                 <field name="production" />
             </field>
             <group expand="0" position="inside">
                 <filter string="Production order"
+                        name="production_order"
                         domain="[]"
                         context="{'group_by': 'production'}" />
             </group>

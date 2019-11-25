@@ -1,27 +1,26 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from datetime import datetime
 
 
 class TestQualityControlMrp(TransactionCase):
 
     def setUp(self):
-        super(TestQualityControlMrp, self).setUp()
+        super().setUp()
         self.production_model = self.env['mrp.production']
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
         self.product = self.env.ref('mrp.product_product_computer_desk')
         self.test = self.env.ref('quality_control.qc_test_1')
         self.trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
-        self.bom = self.env['mrp.bom']._bom_find(product=self.product)
         self.production1 = self.production_model.create({
             'product_id': self.product.id,
             'product_qty': 2.0,
             'product_uom_id': self.product.uom_id.id,
-            'bom_id': self.bom.id
+            'bom_id': self.ref("mrp.mrp_bom_desk"),
         })
         self.production1.action_assign()
         inspection_lines = (
@@ -29,6 +28,14 @@ class TestQualityControlMrp(TransactionCase):
         self.inspection1 = self.inspection_model.create({
             'name': 'Test Inspection',
             'inspection_lines': inspection_lines,
+        })
+        # Disable tracking to simplify this test
+        self.product.tracking = 'none'
+
+    def _create_lot(self, product_id):
+        return self.env['stock.production.lot'].create({
+            "name": "Test Lot - %s" % datetime.now(),
+            "product_id": product_id,
         })
 
     def test_inspection_create_for_product(self):
@@ -42,7 +49,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id],
         }).create({
-            'product_qty': self.production1.product_qty
+            'product_qty': self.production1.product_qty,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
@@ -60,7 +67,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id]
         }).create({
-            'product_qty': self.production1.product_qty
+            'product_qty': self.production1.product_qty,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
@@ -78,7 +85,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id],
         }).create({
-            'product_qty': self.production1.product_qty
+            'product_qty': self.production1.product_qty,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
@@ -102,7 +109,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id]
         }).create({
-            'product_qty': self.production1.product_qty
+            'product_qty': self.production1.product_qty,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
@@ -120,7 +127,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id],
         }).create({
-            'product_qty': 1.0
+            'product_qty': 1.0,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
@@ -130,7 +137,7 @@ class TestQualityControlMrp(TransactionCase):
             'active_id': self.production1.id,
             'active_ids': [self.production1.id],
         }).create({
-            'product_qty': 1.0
+            'product_qty': 1.0,
         })
         produce_wizard.do_produce()
         self.production1.post_inventory()
