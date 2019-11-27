@@ -2,8 +2,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import time
-import openerp.tests.common as common
-from openerp import fields
+import odoo.tests.common as common
+from odoo import fields
 
 
 class TestMrpProject(common.TransactionCase):
