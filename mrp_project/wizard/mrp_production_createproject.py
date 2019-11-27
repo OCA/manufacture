@@ -22,7 +22,6 @@ class MrpProductionCreateProject(models.TransientModel):
     )
     project_id = fields.Many2one(
         'project.project',
-        string='Project',
         help=_("Leave it blank if you want create a new project with"
                "the manufacturing order's name as default name.")
     )
