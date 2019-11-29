@@ -3,15 +3,14 @@
 {
     "name": "MRP Production Request",
     "summary": "Allows you to use Manufacturing Request as a previous "
-               "step to Manufacturing Orders for better manufacture "
-               "planification.",
-    "version": "12.0.1.0.0",
+    "step to Manufacturing Orders for better manufacture "
+    "planification.",
+    "version": "13.0.1.0.0",
     "development_status": "Mature",
-    "maintainers": ['lreficent'],
+    "maintainers": ["lreficent"],
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
-    "author": "Eficent,"
-              "Odoo Community Association (OCA)",
+    "author": "Eficent," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,

@@ -59,7 +59,6 @@
     <record id="mrp_production_request_create_mo_action" model="ir.actions.act_window">
         <field name="name">Create Manufacturing Order</field>
         <field name="res_model">mrp.production.request.create.mo</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
