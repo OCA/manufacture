@@ -1,5 +1,6 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
@@ -8,6 +9,8 @@ class TestMrpWarehouseCalendar(TransactionCase):
     def setUp(self):
         super(TestMrpWarehouseCalendar, self).setUp()
         self.move_obj = self.env["stock.move"]
+        self.pg_obj = self.env["procurement.group"]
+
         self.company = self.env.ref("base.main_company")
         self.warehouse = self.env.ref("stock.warehouse0")
         self.customer_loc = self.env.ref("stock.stock_location_customers")
@@ -53,14 +56,19 @@ class TestMrpWarehouseCalendar(TransactionCase):
             "company_id": self.company,
             "rule_id": self.manufacture_route,
         }
-        self.env["procurement.group"].run(
-            self.product,
-            100,
-            self.product.uom_id,
-            self.warehouse.lot_stock_id,
-            "Test",
-            "Test",
-            values,
+        self.pg_obj.run(
+            [
+                self.pg_obj.Procurement(
+                    self.product,
+                    100,
+                    self.product.uom_id,
+                    self.warehouse.lot_stock_id,
+                    "Test",
+                    "Test",
+                    self.warehouse.company_id,
+                    values,
+                )
+            ]
         )
         mo = self.env["mrp.production"].search(
             [("product_id", "=", self.product.id)], limit=1
@@ -80,14 +88,19 @@ class TestMrpWarehouseCalendar(TransactionCase):
             "company_id": self.company,
             "rule_id": self.manufacture_route,
         }
-        self.env["procurement.group"].run(
-            self.product,
-            100,
-            self.product.uom_id,
-            self.warehouse.lot_stock_id,
-            "Test 2",
-            "Test 2",
-            values,
+        self.pg_obj.run(
+            [
+                self.pg_obj.Procurement(
+                    self.product,
+                    100,
+                    self.product.uom_id,
+                    self.warehouse.lot_stock_id,
+                    "Test 2",
+                    "Test 2",
+                    self.warehouse.company_id,
+                    values,
+                )
+            ]
         )
         mo = self.env["mrp.production"].search(
             [("product_id", "=", self.product.id)], limit=1
