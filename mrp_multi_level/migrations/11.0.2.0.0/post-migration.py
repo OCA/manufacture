@@ -1,7 +1,8 @@
 # Copyright 2019 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import logging
-from odoo import api, SUPERUSER_ID
+
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 
@@ -10,7 +11,8 @@ __name__ = "Upgrade to 11.0.2.0.0"
 
 def _migrate_product_to_product_mrp_area(env):
     _logger.info("Migrating product parameters to Product MRP Areas")
-    env.cr.execute("""
+    env.cr.execute(
+        """
         SELECT DISTINCT mrp_area.id, pr.id, pr.mrp_applicable, pr.mrp_exclude,
         pr.mrp_inspection_delay, pr.mrp_maximum_order_qty,
         pr.mrp_minimum_order_qty, pr.mrp_minimum_stock, pr.mrp_nbr_days,
@@ -21,27 +23,41 @@ def _migrate_product_to_product_mrp_area(env):
         ON pt.id = pr.product_tmpl_id
         WHERE pr.mrp_exclude = False
         AND pt.type = 'product'
-    """)
-    product_mrp_area_model = env['product.mrp.area']
-    for mrp_area_id, product_id, mrp_applicable, mrp_exclude,\
-        mrp_inspection_delay, mrp_maximum_order_qty, mrp_minimum_order_qty, \
-        mrp_minimum_stock, mrp_nbr_days, mrp_qty_multiple, mrp_transit_delay,\
-            mrp_verified, active in env.cr.fetchall():
-            product_mrp_area_model.create({
-                'mrp_area_id': mrp_area_id,
-                'product_id': product_id,
-                'mrp_applicable': mrp_applicable,
-                'mrp_exclude': mrp_exclude,
-                'mrp_inspection_delay': mrp_inspection_delay,
-                'mrp_maximum_order_qty': mrp_maximum_order_qty,
-                'mrp_minimum_order_qty': mrp_minimum_order_qty,
-                'mrp_minimum_stock': mrp_minimum_stock,
-                'mrp_nbr_days': mrp_nbr_days,
-                'mrp_qty_multiple': mrp_qty_multiple,
-                'mrp_transit_delay': mrp_transit_delay,
-                'mrp_verified': mrp_verified,
-                'active': active,
-            })
+    """
+    )
+    product_mrp_area_model = env["product.mrp.area"]
+    for (
+        mrp_area_id,
+        product_id,
+        mrp_applicable,
+        mrp_exclude,
+        mrp_inspection_delay,
+        mrp_maximum_order_qty,
+        mrp_minimum_order_qty,
+        mrp_minimum_stock,
+        mrp_nbr_days,
+        mrp_qty_multiple,
+        mrp_transit_delay,
+        mrp_verified,
+        active,
+    ) in env.cr.fetchall():
+        product_mrp_area_model.create(
+            {
+                "mrp_area_id": mrp_area_id,
+                "product_id": product_id,
+                "mrp_applicable": mrp_applicable,
+                "mrp_exclude": mrp_exclude,
+                "mrp_inspection_delay": mrp_inspection_delay,
+                "mrp_maximum_order_qty": mrp_maximum_order_qty,
+                "mrp_minimum_order_qty": mrp_minimum_order_qty,
+                "mrp_minimum_stock": mrp_minimum_stock,
+                "mrp_nbr_days": mrp_nbr_days,
+                "mrp_qty_multiple": mrp_qty_multiple,
+                "mrp_transit_delay": mrp_transit_delay,
+                "mrp_verified": mrp_verified,
+                "active": active,
+            }
+        )
 
 
 def migrate(cr, version):
