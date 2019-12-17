@@ -2,7 +2,7 @@
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class MrpPlannedOrder(models.Model):
@@ -26,8 +26,8 @@ class MrpPlannedOrder(models.Model):
         readonly=True,
     )
     company_id = fields.Many2one(
-        comodel_name='res.company',
-        related='product_mrp_area_id.mrp_area_id.warehouse_id.company_id',
+        comodel_name="res.company",
+        related="product_mrp_area_id.mrp_area_id.warehouse_id.company_id",
         store=True,
     )
     product_id = fields.Many2one(
@@ -37,12 +37,10 @@ class MrpPlannedOrder(models.Model):
         readonly=True,
     )
     order_release_date = fields.Date(
-        string="Release Date",
-        help="Order release date planned by MRP.",
+        string="Release Date", help="Order release date planned by MRP."
     )
     due_date = fields.Date(
-        string="Due Date",
-        help="Date in which the supply must have been completed.",
+        string="Due Date", help="Date in which the supply must have been completed."
     )
     qty_released = fields.Float()
     fixed = fields.Boolean()
@@ -55,12 +53,14 @@ class MrpPlannedOrder(models.Model):
         string="MRP Move DOWN",
     )
     mrp_action = fields.Selection(
-        selection=[("manufacture", "Manufacturing Order"),
-                   ("buy", "Purchase Order"),
-                   ('pull', 'Pull From'),
-                   ('push', 'Push To'),
-                   ('pull_push', 'Pull & Push'),
-                   ("none", "None")],
+        selection=[
+            ("manufacture", "Manufacturing Order"),
+            ("buy", "Purchase Order"),
+            ("pull", "Pull From"),
+            ("push", "Push To"),
+            ("pull_push", "Pull & Push"),
+            ("none", "None"),
+        ],
         string="Action",
     )
     mrp_inventory_id = fields.Many2one(
