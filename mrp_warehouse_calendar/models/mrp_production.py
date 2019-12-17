@@ -1,4 +1,4 @@
-# Copyright 2018 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models
@@ -17,9 +17,9 @@ class MrpProduction(models.Model):
             )
             self.date_planned_finished = date_expected_finished
 
-    @api.multi
+    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
-        mo = super(MrpProduction, self).copy(default=default)
+        mo = super().copy(default=default)
         dt_planned = mo.date_planned_start
         warehouse = mo.picking_type_id.warehouse_id
         if warehouse.calendar_id and mo.product_id.produce_delay:
