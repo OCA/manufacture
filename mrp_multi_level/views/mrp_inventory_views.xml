@@ -121,7 +121,6 @@
         <field name="name">MRP Inventory</field>
         <field name="res_model">mrp.inventory</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,pivot,graph</field>
         <field name="view_id" ref="mrp_inventory_tree"/>
         <field name="search_view_id" ref="mrp_inventory_search"/>

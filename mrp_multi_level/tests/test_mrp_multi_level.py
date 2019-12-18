@@ -1,10 +1,9 @@
-# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields
 
-from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
+from .common import TestMrpMultiLevelCommon
 
 
 class TestMrpMultiLevel(TestMrpMultiLevelCommon):
@@ -83,11 +82,10 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(len(fp_2_line_1), 1)
         self.assertEqual(fp_2_line_1.demand_qty, 15.0)
         self.assertEqual(fp_2_line_1.to_procure, 15.0)
-        # TODO: ask odoo to fix it... should be date10
         fp_2_line_2 = self.mrp_inventory_obj.search(
             [
                 ("product_mrp_area_id.product_id", "=", self.fp_2.id),
-                ("date", "=", self.date_9),
+                ("date", "=", self.date_10),
             ]
         )
         self.assertEqual(len(fp_2_line_2), 1)
@@ -280,7 +278,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
 
     def test_09_isolated_mrp_area_run(self):
         """Test running MRP for just one area."""
-        self.mrp_multi_level_wiz.sudo(self.mrp_manager).create(
+        self.mrp_multi_level_wiz.with_user(self.mrp_manager).create(
             {"mrp_area_ids": [(6, 0, self.secondary_area.ids)]}
         ).run_mrp_multi_level()
         this = self.mrp_inventory_obj.search(
