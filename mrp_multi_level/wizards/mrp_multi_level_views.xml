@@ -20,10 +20,9 @@
 
     <act_window name="Run MRP"
             res_model="mrp.multi.level"
-            src_model="mrp.multi.level"
+            binding_model="mrp.multi.level"
             view_mode="form"
             target="new"
-            key2="client_action_multi"
             id="action_mrp_multi_level"/>
 
 </odoo>
