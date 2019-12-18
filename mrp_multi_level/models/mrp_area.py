@@ -1,10 +1,10 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# © 2016-19 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar <jordi.ballester@eficent.com>
-# - Lois Rilo Antelo <lois.rilo@eficent.com>
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+# - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MrpArea(models.Model):
@@ -28,7 +28,6 @@ class MrpArea(models.Model):
         related="warehouse_id.calendar_id",
     )
 
-    @api.multi
     def _get_locations(self):
         self.ensure_one()
         return self.env["stock.location"].search(

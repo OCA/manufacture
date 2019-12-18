@@ -4,7 +4,5 @@
         <field name="name">Lazer Tech</field>
         <field name="is_company">1</field>
         <field name="company_id" ref="base.main_company"/>
-        <field name="customer" eval="False"/>
-        <field name="supplier" eval="True"/>
     </record>
 </odoo>

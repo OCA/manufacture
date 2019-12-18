@@ -33,15 +33,11 @@
         <field name="arch" type="xml">
             <form string="Product MRP Area parameters">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object"
-                                class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button"
-                                options='{"terminology": "archive"}'/>
-                        </button>
-                    </div>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <group colspan="4" col="2">
                         <group>
+                            <field name="active" invisible="1"/>
                             <field name="mrp_area_id"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="product_tmpl_id" invisible="1"/>
@@ -120,7 +116,6 @@
         <field name="name">Product MRP Area Parameters</field>
         <field name="res_model">product.mrp.area</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="product_mrp_area_tree"/>
         <field name="search_view_id" ref="product_mrp_area_search"/>
