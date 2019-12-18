@@ -1,5 +1,4 @@
-# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, fields, models
@@ -64,30 +63,36 @@ class MrpInventoryProcure(models.TransientModel):
         res["item_ids"] = [(6, 0, items.ids)]
         return res
 
-    @api.multi
     def make_procurement(self):
         self.ensure_one()
         errors = []
+        pg = self.env["procurement.group"]
+        procurements = []
         for item in self.item_ids:
             if not item.qty:
                 raise ValidationError(_("Quantity must be positive."))
             values = item._prepare_procurement_values()
-            # Run procurement
-            try:
-                self.env["procurement.group"].run(
+            procurements.append(
+                pg.Procurement(
                     item.product_id,
                     item.qty,
                     item.uom_id,
                     item.location_id,
-                    "INT: " + str(self.env.user.login),  # name?
-                    "INT: " + str(self.env.user.login),  # origin?
+                    "MRP: " + str(self.env.user.login),  # name?
+                    "MRP: " + str(self.env.user.login),  # origin?
+                    item.mrp_inventory_id.company_id,
                     values,
                 )
+            )
+        # Run procurements
+        try:
+            pg.run(procurements)
+            for item in self.item_ids:
                 item.planned_order_id.qty_released += item.qty
-            except UserError as error:
-                errors.append(error.name)
-            if errors:
-                raise UserError("\n".join(errors))
+        except UserError as error:
+            errors.append(error.name)
+        if errors:
+            raise UserError("\n".join(errors))
         return {"type": "ir.actions.act_window_close"}
 
 
@@ -122,7 +127,6 @@ class MrpInventoryProcureItem(models.TransientModel):
             "group_id": group,
         }
 
-    @api.multi
     @api.onchange("uom_id")
     def onchange_uom_id(self):
         for rec in self:
