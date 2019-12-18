@@ -1,5 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# © 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields, models

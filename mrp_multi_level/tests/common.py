@@ -1,9 +1,9 @@
-# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from datetime import datetime, timedelta
 
+from odoo.tests import Form
 from odoo.tests.common import SavepointCase
 
 
@@ -209,6 +209,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
                 "picking_type_id": cls.env.ref("stock.picking_type_out").id,
                 "location_id": cls.stock_location.id,
                 "location_dest_id": cls.customer_location.id,
+                "scheduled_date": date_move,
                 "move_lines": [
                     (
                         0,
@@ -249,6 +250,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
                 "picking_type_id": cls.env.ref("stock.picking_type_out").id,
                 "location_id": cls.stock_location.id,
                 "location_dest_id": cls.customer_location.id,
+                "scheduled_date": date_move,
                 "move_lines": [
                     (
                         0,
@@ -323,15 +325,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
         # Create test MO:
         date_mo = cls.calendar.plan_days(9 + 1, datetime.today().replace(hour=0)).date()
         bom_fp_2 = cls.env.ref("mrp_multi_level.mrp_bom_fp_2")
-        cls.mo = cls.mo_obj.create(
-            {
-                "product_id": cls.fp_2.id,
-                "bom_id": bom_fp_2.id,
-                "product_qty": 12.0,
-                "product_uom_id": cls.fp_2.uom_id.id,
-                "date_planned_start": date_mo,
-            }
-        )
+        cls.mo = cls._create_mo(cls.fp_2, bom_fp_2, date_mo, qty=12.0)
 
         # Dates:
         today = datetime.today().replace(hour=0)
@@ -361,6 +355,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
                 "picking_type_id": cls.env.ref("stock.picking_type_out").id,
                 "location_id": cls.sec_loc.id,
                 "location_dest_id": cls.customer_location.id,
+                "scheduled_date": date_move,
                 "move_lines": [
                     (
                         0,
@@ -403,6 +398,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
                 "picking_type_id": cls.env.ref("stock.picking_type_in").id,
                 "location_id": cls.supplier_location.id,
                 "location_dest_id": location.id,
+                "scheduled_date": date_move,
                 "move_lines": [
                     (
                         0,
@@ -433,6 +429,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
                 "picking_type_id": cls.env.ref("stock.picking_type_out").id,
                 "location_id": location.id,
                 "location_dest_id": cls.customer_location.id,
+                "scheduled_date": date_move,
                 "move_lines": [
                     (
                         0,
@@ -453,3 +450,15 @@ class TestMrpMultiLevelCommon(SavepointCase):
         )
         picking.action_confirm()
         return picking
+
+    @classmethod
+    def _create_mo(cls, product, bom, date, qty=10.0):
+        mo_form = Form(cls.mo_obj)
+        mo_form.product_id = product
+        mo_form.bom_id = bom
+        mo_form.product_qty = qty
+        mo_form.date_planned_start = date
+        mo = mo_form.save()
+        # Confirm the MO to generate stock moves:
+        mo.action_confirm()
+        return mo

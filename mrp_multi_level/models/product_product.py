@@ -1,9 +1,10 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 import ast
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Product(models.Model):
@@ -32,12 +33,10 @@ class Product(models.Model):
         compute="_compute_mrp_area_count",
     )
 
-    @api.multi
     def _compute_mrp_area_count(self):
         for rec in self:
             rec.mrp_area_count = len(rec.mrp_area_ids)
 
-    @api.multi
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
         action = self.env.ref("mrp_multi_level.product_mrp_area_action")

@@ -1,7 +1,7 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar <jordi.ballester@eficent.com>
-# - Lois Rilo Antelo <lois.rilo@eficent.com>
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+# - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from math import ceil
@@ -104,7 +104,6 @@ class ProductMRPArea(models.Model):
         )
     ]
 
-    @api.multi
     @api.constrains(
         "mrp_minimum_order_qty",
         "mrp_maximum_order_qty",
@@ -126,14 +125,15 @@ class ProductMRPArea(models.Model):
             if any(v < 0 for v in rec.values()):
                 raise ValidationError(_("You cannot use a negative number."))
 
-    @api.multi
     def name_get(self):
         return [
-            (area.id, "[{}] {}".format(area.mrp_area_id.name, area.product_id.display_name))
+            (
+                area.id,
+                "[{}] {}".format(area.mrp_area_id.name, area.product_id.display_name),
+            )
             for area in self
         ]
 
-    @api.multi
     def _compute_mrp_lead_time(self):
         produced = self.filtered(lambda r: r.supply_method == "manufacture")
         purchased = self.filtered(lambda r: r.supply_method == "buy")
@@ -145,14 +145,12 @@ class ProductMRPArea(models.Model):
         for rec in self - produced - purchased:
             rec.mrp_lead_time = 0
 
-    @api.multi
     def _compute_qty_available(self):
         for rec in self:
             rec.qty_available = rec.product_id.with_context(
                 {"location": rec.mrp_area_id.location_id.id}
             ).qty_available
 
-    @api.multi
     def _compute_supply_method(self):
         group_obj = self.env["procurement.group"]
         for rec in self:
@@ -165,7 +163,6 @@ class ProductMRPArea(models.Model):
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
             rec.supply_method = rule.action if rule else "none"
 
-    @api.multi
     @api.depends("supply_method", "product_id.route_ids", "product_id.seller_ids")
     def _compute_main_supplier(self):
         """Simplified and similar to procurement.rule logic."""
@@ -178,7 +175,6 @@ class ProductMRPArea(models.Model):
             rec.main_supplierinfo_id = suppliers[0]
             rec.main_supplier_id = suppliers[0].name
 
-    @api.multi
     def _adjust_qty_to_order(self, qty_to_order):
         self.ensure_one()
         if (

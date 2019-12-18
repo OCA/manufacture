@@ -1,7 +1,7 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar <jordi.ballester@eficent.com>
-# - Lois Rilo Antelo <lois.rilo@eficent.com>
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+# - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from datetime import date, timedelta
@@ -63,7 +63,6 @@ class MrpInventory(models.Model):
         comodel_name="mrp.planned.order", inverse_name="mrp_inventory_id", readonly=True
     )
 
-    @api.multi
     def _compute_uom_id(self):
         for rec in self:
             rec.uom_id = rec.product_mrp_area_id.product_id.uom_id
@@ -75,7 +74,6 @@ class MrpInventory(models.Model):
                 rec.planned_order_ids.mapped("qty_released")
             )
 
-    @api.multi
     @api.depends(
         "product_mrp_area_id",
         "product_mrp_area_id.main_supplierinfo_id",

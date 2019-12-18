@@ -1,7 +1,7 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
-# - Jordi Ballester Alomar <jordi.ballester@eficent.com>
-# - Lois Rilo <lois.rilo@eficent.com>
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+# - Lois Rilo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 import logging
@@ -298,7 +298,9 @@ class MultiLevelMrp(models.TransientModel):
             products.write({"llc": llc})
             products = self.env["product.product"].search([("llc", "=", llc)])
             counter = len(products)
-            log_msg = "Low level code {} finished - Nbr. products: {}".format(llc, counter)
+            log_msg = "Low level code {} finished - Nbr. products: {}".format(
+                llc, counter
+            )
             logger.info(log_msg)
 
         mrp_lowest_llc = llc
@@ -473,8 +475,7 @@ class MultiLevelMrp(models.TransientModel):
                     continue
                 init_counter += 1
                 log_msg = "MRP Init: {} - {} ".format(
-                    init_counter,
-                    product_mrp_area.display_name,
+                    init_counter, product_mrp_area.display_name
                 )
                 logger.info(log_msg)
                 self._init_mrp_move(product_mrp_area)
@@ -603,8 +604,7 @@ class MultiLevelMrp(models.TransientModel):
                     counter += 1
 
             log_msg = "MRP Calculation LLC {} Finished - Nbr. products: {}".format(
-                llc - 1,
-                counter,
+                llc - 1, counter
             )
             logger.info(log_msg)
 
@@ -723,7 +723,6 @@ class MultiLevelMrp(models.TransientModel):
             self._init_mrp_inventory(product_mrp_area)
         logger.info("End MRP final process")
 
-    @api.multi
     def run_mrp_multi_level(self):
         self._mrp_cleanup(self.mrp_area_ids)
         mrp_lowest_llc = self._low_level_code_calculation()
