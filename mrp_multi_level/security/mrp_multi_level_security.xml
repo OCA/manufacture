@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <record id="group_change_mrp_procure_qty" model="res.groups">
+        <field name="name">Change procure quantity in MRP</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="mrp_area_comp_rule" model="ir.rule">
+        <field name="name">MRP Area multi-company rule</field>
+        <field name="model_id" ref="model_mrp_area"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="mrp_product_mrp_area_comp_rule" model="ir.rule">
+        <field name="name">Product MRP Area multi-company rule</field>
+        <field name="model_id" ref="model_product_mrp_area"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="mrp_inventory_comp_rule" model="ir.rule">
+        <field name="name">MRP Inventory multi-company rule</field>
+        <field name="model_id" ref="model_mrp_inventory"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="mrp_move_comp_rule" model="ir.rule">
+        <field name="name">MRP Move multi-company rule</field>
+        <field name="model_id" ref="model_mrp_move"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="mrp_planned_order_comp_rule" model="ir.rule">
+        <field name="name">MRP Planned Order multi-company rule</field>
+        <field name="model_id" ref="model_mrp_planned_order"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+</odoo>
