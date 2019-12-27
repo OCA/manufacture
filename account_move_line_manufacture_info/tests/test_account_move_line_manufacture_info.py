@@ -1,4 +1,4 @@
-# 2018 Eficent Business and IT Consulting Services S.L.
+# 2018 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
@@ -14,10 +14,13 @@ class TestAccountMoveLineManufactureInfo(common.SavepointCase):
         cls.account_move_line_obj = cls.env["account.move.line"]
         cls.bom_obj = cls.env["mrp.bom"]
         cls.bom_line_obj = cls.env["mrp.bom.line"]
-        cls.location_production = cls.env.ref("stock.location_production")
         cls.production_obj = cls.env["mrp.production"]
         cls.produce_wiz = cls.env["mrp.product.produce"]
         cls.unbuild_obj = cls.env["mrp.unbuild"]
+
+        cls.location_production = cls.env["stock.location"].search(
+            [("usage", "=", "production"), ("company_id", "=", cls.env.company.id)]
+        )
 
         # Create accounts for WIP
         cls.account_wip = cls.env["account.account"].create(
@@ -124,24 +127,25 @@ class TestAccountMoveLineManufactureInfo(common.SavepointCase):
         wiz = Form(
             self.produce_wiz.with_context({"active_id": mo.id, "active_ids": [mo.id]})
         )
-        wiz.product_qty = qty or mo.product_qty
+        wiz.qty_producing = qty or mo.product_qty
         produce_wizard = wiz.save()
         produce_wizard.do_produce()
         return True
 
+    def _generate_mo(self, product_id, bom_id, qty=5.0):
+        mo_form = Form(self.production_obj)
+        mo_form.product_id = product_id
+        mo_form.bom_id = bom_id
+        mo_form.product_qty = qty
+        mo = mo_form.save()
+        mo.action_confirm()
+        return mo
+
     def test_01_manufacture_order(self):
         """Create Manufacture Order and check account move lines created"""
         self.product_top.write({"standard_price": 445.0})
-        mo = self.production_obj.create(
-            {
-                "name": "MO-01",
-                "product_id": self.product_top.id,
-                "product_uom_id": self.product_top.uom_id.id,
-                "product_qty": 5.0,
-                "bom_id": self.bom_top.id,
-            }
-        )
-        mo.action_assign()
+        mo = self._generate_mo(self.product_top, self.bom_top)
+
         self._produce(mo, 5.0)
         mo.button_mark_done()
         account_move_lines = self.account_move_line_obj.search(
@@ -152,27 +156,18 @@ class TestAccountMoveLineManufactureInfo(common.SavepointCase):
     def test_02_ubuild_order(self):
         """Create Unbuild Order and check account move lines created"""
         self.product_top.write({"standard_price": 445.0})
-        mo = self.production_obj.create(
-            {
-                "name": "MO-01",
-                "product_id": self.product_top.id,
-                "product_uom_id": self.product_top.uom_id.id,
-                "product_qty": 5.0,
-                "bom_id": self.bom_top.id,
-            }
-        )
-        mo.action_assign()
+        mo = self._generate_mo(self.product_top, self.bom_top)
+
         self._produce(mo, 3.0)
         mo.button_mark_done()
-        uo = self.unbuild_obj.create(
-            {
-                "product_id": self.product_top.id,
-                "bom_id": self.bom_top.id,
-                "product_qty": 1.0,
-                "product_uom_id": self.product_top.uom_id.id,
-            }
-        )
-        uo.action_unbuild()
+
+        uo = Form(self.unbuild_obj)
+        uo.product_id = self.product_top
+        uo.bom_id = self.bom_top
+        uo.product_qty = 1
+        uo.product_uom_id = self.product_top.uom_id
+        uo.save().action_unbuild()
+
         account_move_lines = self.account_move_line_obj.search(
             [("unbuild_order_id", "=", uo.id)]
         )
