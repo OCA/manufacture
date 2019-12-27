@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_multi_level
+# 	* mrp_multi_level
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,17 +25,19 @@ msgid "Active"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__approved
 msgid "Approved"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
 msgid "Archived"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__assigned
 msgid "Assigned"
 msgstr ""
 
@@ -45,7 +47,7 @@ msgid "Associated MRP Inventory"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__buy
 msgid "Buy"
 msgstr ""
 
@@ -70,7 +72,7 @@ msgid "Company"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__confirmed
 msgid "Confirmed"
 msgstr ""
 
@@ -140,7 +142,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__demand_qty
-#: selection:mrp.move,mrp_type:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_type__d
 msgid "Demand"
 msgstr ""
 
@@ -163,7 +165,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__draft
 msgid "Draft"
 msgstr ""
 
@@ -200,7 +202,7 @@ msgid "Fixed"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,mrp_origin:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__fc
 msgid "Forecast"
 msgstr ""
 
@@ -228,7 +230,8 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_verified
-msgid "Identifies that this product has been verified to be valid for the MRP."
+msgid ""
+"Identifies that this product has been verified to be valid for the MRP."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -306,9 +309,8 @@ msgid "Low Level Code"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mrp
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_mrp
-#: selection:mrp.move,mrp_origin:0
-#: model:product.category,name:mrp_multi_level.product_category_mrp
 msgid "MRP"
 msgstr ""
 
@@ -412,8 +414,8 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mo
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__manufacture
 msgid "Manufacturing Order"
 msgstr ""
 
@@ -433,7 +435,7 @@ msgid "Minimum Order Qty"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,mrp_origin:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mv
 msgid "Move"
 msgstr ""
 
@@ -471,19 +473,21 @@ msgid "Nbr. Days"
 msgstr ""
 
 #. module: mrp_multi_level
-#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:121
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #, python-format
 msgid "No MRP product found"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.planned.order,mrp_action:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__none
 msgid "None"
 msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
-msgid "Number of days to group demand for this product during the MRP run, in order to determine the quantity to order."
+msgid ""
+"Number of days to group demand for this product during the MRP run, in order"
+" to determine the quantity to order."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -524,7 +528,7 @@ msgid "Parent Product"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__partially_available
 msgid "Partially Available"
 msgstr ""
 
@@ -572,7 +576,7 @@ msgid "Procurement Request"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__manufacture
 msgid "Produce"
 msgstr ""
 
@@ -624,21 +628,21 @@ msgid "Product UoM"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.planned.order,mrp_action:0
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull_push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull_push
 msgid "Pull & Push"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.planned.order,mrp_action:0
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull
 msgid "Pull From"
 msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__po
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__buy
 msgid "Purchase Order"
 msgstr ""
 
@@ -653,8 +657,8 @@ msgid "Purchase Orders"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.planned.order,mrp_action:0
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__push
 msgid "Push To"
 msgstr ""
 
@@ -680,13 +684,13 @@ msgid "Quantity Available"
 msgstr ""
 
 #. module: mrp_multi_level
-#: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:75
+#: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:0
 #, python-format
 msgid "Quantity must be positive."
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__ready
 msgid "Ready"
 msgstr ""
 
@@ -697,7 +701,9 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
-msgid "Requirements for a particular MRP area are combined for the purposes of procurement by the MRP."
+msgid ""
+"Requirements for a particular MRP area are combined for the purposes of "
+"procurement by the MRP."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -735,13 +741,15 @@ msgid "Selection..."
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__sent
 msgid "Sent"
 msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__location_proc_id
-msgid "Set this if you need to procure from a different locationthan area's location."
+msgid ""
+"Set this if you need to procure from a different locationthan area's "
+"location."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -766,7 +774,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__supply_qty
-#: selection:mrp.move,mrp_type:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_type__s
 msgid "Supply"
 msgstr ""
 
@@ -785,7 +793,7 @@ msgid "The company is automatically set from your user preferences."
 msgstr ""
 
 #. module: mrp_multi_level
-#: sql_constraint:product.mrp.area:0
+#: model:ir.model.constraint,message:mrp_multi_level.constraint_product_mrp_area_product_mrp_area_uniq
 msgid "The product/MRP Area parameters combination must be unique."
 msgstr ""
 
@@ -795,7 +803,7 @@ msgid "Theoretical inventory level if all planned orderswere released."
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__to_approve
 msgid "To Approve"
 msgstr ""
 
@@ -820,7 +828,7 @@ msgid "Type"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:product.mrp.area,supply_method:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__none
 msgid "Undefined"
 msgstr ""
 
@@ -842,12 +850,13 @@ msgstr ""
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_sf_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_sf_2_product_template
-msgid "Unit(s)"
+msgid "Units"
 msgstr ""
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
-msgid "Use this assistant to procure for this product and date.\n"
+msgid ""
+"Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
 "                    this may trigger a draft purchase order, a manufacturing\n"
 "                    order or a transfer picking."
@@ -859,7 +868,7 @@ msgid "Verified for MRP"
 msgstr ""
 
 #. module: mrp_multi_level
-#: selection:mrp.move,state:0
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__waiting
 msgid "Waiting"
 msgstr ""
 
@@ -880,29 +889,12 @@ msgid "Working Hours"
 msgstr ""
 
 #. module: mrp_multi_level
-#: code:addons/mrp_multi_level/models/product_mrp_area.py:126
+#: code:addons/mrp_multi_level/models/product_mrp_area.py:0
 #, python-format
 msgid "You cannot use a negative number."
-msgstr ""
-
-#. module: mrp_multi_level
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_1
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_2
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_1
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_2
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_1
-#: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_2
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_1_product_template
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_2_product_template
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_pp_1_product_template
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_pp_2_product_template
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_sf_1_product_template
-#: model:product.template,weight_uom_name:mrp_multi_level.product_product_sf_2_product_template
-msgid "kg"
 msgstr ""
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr ""
-
