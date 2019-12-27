@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-mrp_bom_component_menu',
         'odoo13-addon-mrp_bom_location',
+        'odoo13-addon-mrp_multi_level',
         'odoo13-addon-mrp_warehouse_calendar',
     ],
     classifiers=[
