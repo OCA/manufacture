@@ -7,12 +7,14 @@
 from math import ceil
 
 from odoo import api, fields, models, _
+from odoo.osv import expression
 from odoo.exceptions import ValidationError
 
 
 class ProductMRPArea(models.Model):
     _name = 'product.mrp.area'
     _description = 'Product MRP Area'
+    _rec_name = "product_id"
 
     active = fields.Boolean(default=True)
     mrp_area_id = fields.Many2one(
@@ -131,6 +133,18 @@ class ProductMRPArea(models.Model):
         return [(area.id, '[%s] %s' % (
             area.mrp_area_id.name,
             area.product_id.display_name)) for area in self]
+
+    @api.model
+    def _name_search(self, name, args=None, operator='ilike', limit=100,
+                     name_get_uid=None):
+        if operator in ('ilike', 'like', '=', '=like', '=ilike'):
+            args = expression.AND([
+                args or [],
+                [('product_id.name', operator, name)]
+            ])
+        return super(ProductMRPArea, self)._name_search(
+            name, args=args, operator=operator, limit=limit,
+            name_get_uid=name_get_uid)
 
     @api.multi
     def _compute_mrp_lead_time(self):
