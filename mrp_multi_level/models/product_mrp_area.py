@@ -8,6 +8,7 @@ from math import ceil
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv import expression
 
 
 class ProductMRPArea(models.Model):
@@ -133,6 +134,16 @@ class ProductMRPArea(models.Model):
             )
             for area in self
         ]
+
+    @api.model
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        if operator in ("ilike", "like", "=", "=like", "=ilike"):
+            args = expression.AND([args or [], [("product_id.name", operator, name)]])
+        return super(ProductMRPArea, self)._name_search(
+            name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid
+        )
 
     def _compute_mrp_lead_time(self):
         produced = self.filtered(lambda r: r.supply_method == "manufacture")
