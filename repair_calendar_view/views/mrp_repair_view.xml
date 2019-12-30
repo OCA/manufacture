@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_repair_order_calendar_form" model="ir.ui.view">
-        <field name="name">mrp.repair.calendar.form</field>
-        <field name="model">mrp.repair</field>
-        <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
+        <field name="name">repair.calendar.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='guarantee_limit']" position="after">
                 <field name="date_repair"/>
@@ -16,7 +16,7 @@
 
     <record id="view_repair_order_calendar" model="ir.ui.view">
         <field name="name">Repair Orders Calendar</field>
-        <field name="model">mrp.repair</field>
+        <field name="model">repair.order</field>
         <field name="arch" type="xml">
             <calendar string="Repair Orders Calendar" date_start="date_repair" color="user_id">
                 <field name="product_id"/>
@@ -25,8 +25,8 @@
         </field>
     </record>
 
-    <record id="mrp_repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">calendar,tree,form</field>
+    <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,calendar,form</field>
     </record>
 
 </odoo>
