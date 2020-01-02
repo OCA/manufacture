@@ -1,5 +1,5 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
-# - Lois Rilo <lois.rilo@eficent.com>
+# Copyright 2019-20 ForgeFlow S.L. (http://www.forgeflow.com)
+# - Lois Rilo <lois.rilo@forgeflow.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
@@ -47,7 +47,7 @@ class MultiLevelMrp(models.TransientModel):
         return [
             ("product_id", "=", product_mrp_area.product_id.id),
             ("location_id", "in", locations.ids),
-            ("date_range_id.date_end", ">=", fields.Date.today()),
+            ("date_to", ">=", fields.Date.today()),
         ]
 
     @api.model
