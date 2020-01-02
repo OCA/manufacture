@@ -47,7 +47,7 @@ class MultiLevelMrp(models.TransientModel):
         return [
             ("product_id", "=", product_mrp_area.product_id.id),
             ("location_id", "in", locations.ids),
-            ("date_range_id.date_end", ">=", fields.Date.today()),
+            ("date_to", ">=", fields.Date.today()),
         ]
 
     @api.model
