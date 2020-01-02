@@ -14,7 +14,7 @@
     "category": "Manufacturing",
     "depends": [
         "mrp_multi_level",
-        "stock_demand_estimate",
+        "stock_demand_estimate_matrix",
     ],
     "data": [
         "views/product_mrp_area_views.xml",
