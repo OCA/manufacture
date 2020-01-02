@@ -55,25 +55,21 @@ class MultiLevelMrp(models.TransientModel):
             origin = 'po'
             po = move.purchase_line_id.order_id.id
             po_line = move.purchase_line_id.id
-        if move.production_id:
+        elif move.production_id:
             order_number = move.production_id.name
             origin = 'mo'
             mo = move.production_id.id
+        elif move.move_dest_ids:
+            for move_dest_id in move.move_dest_ids.filtered("production_id"):
+                order_number = move_dest_id.production_id.name
+                origin = "mo"
+                mo = move_dest_id.production_id.id
+                parent_product_id = (
+                    move_dest_id.production_id.product_id or
+                    move_dest_id.product_id).id
         else:
-            if move.move_dest_ids:
-                # move_dest_id = move.move_dest_ids[:1]
-                for move_dest_id in move.move_dest_ids:
-                    if move_dest_id.production_id:
-                        order_number = move_dest_id.production_id.name
-                        origin = 'mo'
-                        mo = move_dest_id.production_id.id
-                        if move_dest_id.production_id.product_id:
-                            parent_product_id = \
-                                move_dest_id.production_id.product_id.id
-                        else:
-                            parent_product_id = move_dest_id.product_id.id
-        if order_number is None:
-            order_number = move.name
+            order_number = (move.picking_id or move).name
+            origin = "mv"
         mrp_date = date.today()
         if move.date_expected.date() > date.today():
             mrp_date = move.date_expected.date()
@@ -108,7 +104,7 @@ class MultiLevelMrp(models.TransientModel):
             'order_release_date': mrp_action_date,
             'mrp_action': product_mrp_area.supply_method,
             'qty_released': 0.0,
-            'name': 'Supply: ' + name,
+            'name': 'Planned supply for: ' + name,
         }
 
     @api.model
