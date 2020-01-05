@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="mrp_move_form" model="ir.ui.view">
+        <field name="name">mrp.move.form</field>
+        <field name="model">mrp.move</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="MRP Move" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="product_mrp_area_id"/>
+                        <field name="mrp_date"/>
+                        <field name="current_date"/>
+                        <field name="mrp_origin"/>
+                        <field name="state"/>
+                        <field name="mrp_order_number"/>
+                        <field name="parent_product_id"/>
+                        <field name="name"/>
+                        <field name="mrp_qty"/>
+                        <field name="current_qty"/>
+                        <field name="mrp_type"/>
+                    </group>
+                    <notebook>
+                        <page name="requirements_pegging" string="Requirements pegging">
+                            <group name="move_up" string="Upstream demand">
+                                <field name="mrp_move_up_ids" nolabel="1"/>
+                            </group>
+                            <group name="move_down" string="Downstream demand">
+                                <field name="mrp_move_down_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page name="planned_orders" string="Planned Orders">
+                            <field name="planned_order_up_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_move_tree" model="ir.ui.view">
+        <field name="name">mrp.move.tree</field>
+        <field name="model">mrp.move</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="MRP move" create="false" edit="false">
+                <field name="product_mrp_area_id"/>
+                <field name="mrp_date"/>
+                <field name="current_date"/>
+                <field name="mrp_origin"/>
+                <field name="state"/>
+                <field name="mrp_order_number"/>
+                <field name="parent_product_id"/>
+                <field name="name"/>
+                <field name="mrp_qty"/>
+                <field name="current_qty"/>
+                <field name="mrp_type"/>
+                <field name="planned_order_up_ids"/>
+                <field name="mrp_move_up_ids"/>
+                <field name="mrp_move_down_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mrp_move_search" model="ir.ui.view">
+        <field name="name">mrp.move.search</field>
+        <field name="model">mrp.move</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="MRP move">
+                <field name="company_id" groups="base.group_multi_company"/>
+                <group name="select" expand="0" string="Selection...">
+                    <field name="product_id"/>
+                    <field name="mrp_area_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mrp_move_action" model="ir.actions.act_window">
+        <field name="name">MRP move</field>
+        <field name="res_model">mrp.move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="mrp_move_tree"/>
+        <field name="search_view_id" ref="mrp_move_search"/>
+    </record>
+
+</odoo>

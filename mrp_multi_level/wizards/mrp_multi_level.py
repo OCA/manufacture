@@ -202,7 +202,8 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def explode_action(
-            self, product_mrp_area_id, mrp_action_date, name, qty, action
+            self, product_mrp_area_id, mrp_action_date, name, qty, action,
+            values=None
     ):
         """Explode requirements."""
         mrp_date_demand = mrp_action_date
@@ -236,6 +237,9 @@ class MultiLevelMrp(models.TransientModel):
                         mrp_date_demand_2,
                         bom, name)
                 mrpmove_id2 = self.env['mrp.move'].create(move_data)
+                if values and 'move_up_ids' in values.keys():
+                    mrpmove_id2.mrp_move_up_ids = [
+                        (6, 0, values['move_up_ids'])]
                 if hasattr(action, "mrp_move_down_ids"):
                     action.mrp_move_down_ids = [(4, mrpmove_id2.id)]
         return True
@@ -275,7 +279,7 @@ class MultiLevelMrp(models.TransientModel):
             if product_mrp_area_id.supply_method == 'manufacture':
                 self.explode_action(
                     product_mrp_area_id, mrp_action_date,
-                    name, qty, planned_order)
+                    name, qty, planned_order, values)
 
         values['qty_ordered'] = qty_ordered
         log_msg = '[%s] %s: qty_ordered = %s' % (
@@ -533,6 +537,7 @@ class MultiLevelMrp(models.TransientModel):
         last_qty = 0.00
         onhand = product_mrp_area.qty_available
         grouping_delta = product_mrp_area.mrp_nbr_days
+        grouped_demand_moves = self.env['mrp.move']
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):
                 continue
@@ -546,11 +551,15 @@ class MultiLevelMrp(models.TransientModel):
                 name = 'Grouped Demand for %d Days' % grouping_delta
                 qtytoorder = product_mrp_area.mrp_minimum_stock - \
                     onhand - last_qty
+                values = {
+                    'move_up_ids': grouped_demand_moves.ids,
+                }
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
                     mrp_qty=qtytoorder,
-                    name=name)
+                    name=name,
+                    values=values)
                 qty_ordered = cm.get('qty_ordered', 0.0)
                 onhand = onhand + last_qty + qty_ordered
                 last_date = None
@@ -563,18 +572,25 @@ class MultiLevelMrp(models.TransientModel):
                 if not last_date or last_qty == 0.0:
                     last_date = fields.Date.from_string(move.mrp_date)
                     last_qty = move.mrp_qty
+                    grouped_demand_moves |= move
                 else:
                     last_qty += move.mrp_qty
+                    grouped_demand_moves |= move
             else:
                 last_date = fields.Date.from_string(move.mrp_date)
                 onhand += move.mrp_qty
+                grouped_demand_moves |= move
 
         if last_date and last_qty != 0.00:
             name = 'Grouped Demand for %d Days' % grouping_delta
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
+            values = {
+                'move_up_ids': grouped_demand_moves.ids,
+            }
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area, mrp_date=last_date,
-                mrp_qty=qtytoorder, name=name)
+                mrp_qty=qtytoorder, name=name,
+                values=values)
             qty_ordered = cm.get('qty_ordered', 0.0)
             onhand += qty_ordered
             nbr_create += 1
@@ -610,10 +626,14 @@ class MultiLevelMrp(models.TransientModel):
                             qtytoorder = product_mrp_area.mrp_minimum_stock - \
                                 onhand - move.mrp_qty
                             if qtytoorder > 0.0:
+                                values = {
+                                    'move_up_ids': move.ids,
+                                }
                                 cm = self.create_action(
                                     product_mrp_area_id=product_mrp_area,
                                     mrp_date=move.mrp_date,
-                                    mrp_qty=qtytoorder, name=move.name)
+                                    mrp_qty=qtytoorder, name=move.name,
+                                    values=values)
                                 qty_ordered = cm['qty_ordered']
                                 onhand += move.mrp_qty + qty_ordered
                                 nbr_create += 1

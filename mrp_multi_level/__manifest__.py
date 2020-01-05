@@ -27,6 +27,7 @@
         'views/product_product_views.xml',
         'views/product_template_views.xml',
         'views/product_mrp_area_views.xml',
+        'views/mrp_move_views.xml',
         'views/stock_location_views.xml',
         'wizards/mrp_inventory_procure_views.xml',
         'views/mrp_inventory_views.xml',

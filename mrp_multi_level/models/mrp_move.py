@@ -13,7 +13,7 @@ class MrpMove(models.Model):
 
     product_mrp_area_id = fields.Many2one(
         comodel_name="product.mrp.area",
-        string="Product", index=True,
+        string="Product MRP Area", index=True,
         required=True,
     )
     mrp_area_id = fields.Many2one(
@@ -43,6 +43,20 @@ class MrpMove(models.Model):
         column1="move_down_id",
         column2="order_id",
         string="Planned Orders UP",
+    )
+    mrp_move_up_ids = fields.Many2many(
+        comodel_name="mrp.move",
+        relation="mrp_move_rel",
+        column1="move_id",
+        column2="move_up_id",
+        string="MRP Move UP",
+    )
+    mrp_move_down_ids = fields.Many2many(
+        comodel_name="mrp.move",
+        relation="mrp_move_rel",
+        column1="move_up_id",
+        column2="move_id",
+        string="MRP Move DOWN",
     )
     mrp_order_number = fields.Char(string='Order Number')
     mrp_origin = fields.Selection(

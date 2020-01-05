@@ -98,3 +98,21 @@ class MrpInventory(models.Model):
             if order_release_date < today:
                 order_release_date = today
             rec.order_release_date = order_release_date
+
+    @api.multi
+    def _get_demand_mrp_moves_domain(self):
+        self.ensure_one()
+        return [
+            ('product_mrp_area_id', '=', self.product_mrp_area_id.id),
+            ('mrp_type', '=', 'd'),
+            ('mrp_date', '=', self.date),
+        ]
+
+    @api.multi
+    def action_view_demand_mrp_moves(self):
+        action = self.env.ref("mrp_multi_level.mrp_move_action")
+        moves_domain = self._get_demand_mrp_moves_domain()
+        moves = self.env['mrp.move'].search(moves_domain)
+        result = action.read()[0]
+        result["domain"] = [("id", "in", moves.ids)]
+        return result

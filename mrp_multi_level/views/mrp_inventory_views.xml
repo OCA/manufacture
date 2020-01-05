@@ -43,6 +43,10 @@
                 <field name="uom_id" groups="product.group_uom"/>
                 <field name="initial_on_hand_qty"/>
                 <field name="demand_qty"/>
+                <button string="See demand moves"
+                        name="action_view_demand_mrp_moves"
+                        icon="fa fa-list" type="object"
+                        attrs="{'invisible':[('demand_qty','=',0)]}"/>
                 <field name="supply_qty"/>
                 <field name="final_on_hand_qty"/>
                 <field name="to_procure"/>
