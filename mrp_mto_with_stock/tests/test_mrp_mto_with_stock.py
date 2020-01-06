@@ -14,7 +14,7 @@ class TestMrpMtoWithStock(TransactionCase):
         self.stock_location_stock = self.env.ref('stock.stock_location_stock')
         self.manufacture_route = self.env.ref(
             'mrp.route_warehouse0_manufacture')
-        self.uom_unit = self.env.ref('product.product_uom_unit')
+        self.uom_unit = self.env.ref('uom.product_uom_unit')
         self.warehouse = self.env.ref('stock.warehouse0')
 
         self.top_product = self.env.ref(
@@ -55,10 +55,8 @@ class TestMrpMtoWithStock(TransactionCase):
 
         self.warehouse.mrp_mto_mts_forecast_qty = True
 
-        self._update_product_qty(self.subproduct1, self.stock_location_stock,
-                                 2)
-        self._update_product_qty(self.subproduct2, self.stock_location_stock,
-                                 4)
+        self._update_product_qty(self.subproduct1, self.stock_location_stock, 2)
+        self._update_product_qty(self.subproduct2, self.stock_location_stock, 4)
 
         self.production = self.production_model.create(
             self._get_production_vals())
@@ -73,8 +71,7 @@ class TestMrpMtoWithStock(TransactionCase):
         self.assertEqual(production_sub1.state, 'confirmed')
         self.assertEquals(len(production_sub1), 1)
         self.assertEqual(production_sub1.product_qty, 3)
-        self._update_product_qty(self.subproduct1, self.stock_location_stock,
-                                 7)
+        self._update_product_qty(self.subproduct1, self.stock_location_stock, 7)
 
         # Create second MO and check it does not create procurement
         self.production2 = self.production_model.create(
@@ -99,35 +96,30 @@ class TestMrpMtoWithStock(TransactionCase):
         """
             Test Manufacture mto with stock based on reservable stock
             and there is a link between sub assemblies MO's and Main MO raw
-            materi  al
+            material
         """
 
-        self._update_product_qty(self.subproduct1, self.stock_location_stock,
-                                 2)
-        self._update_product_qty(self.subproduct2, self.stock_location_stock,
-                                 4)
-        self._update_product_qty(self.subproduct_1_1,
-                                 self.stock_location_stock, 50)
+        self._update_product_qty(self.subproduct1, self.stock_location_stock, 2)
+        self._update_product_qty(self.subproduct2, self.stock_location_stock, 4)
+        self._update_product_qty(self.subproduct_1_1, self.stock_location_stock, 50)
 
-        self.production = self.production_model.create(
-            self._get_production_vals())
+        self.production = self.production_model.create(self._get_production_vals())
         self.assertEqual(len(self.production.move_raw_ids), 3)
 
         # Create MO and check it create sub assemblie MO.
-        mo = self.production_model.search(
-            [('origin', 'ilike', self.production.name)])
+        mo = self.production_model.search([('origin', 'ilike', self.production.name)])
         self.assertEqual(mo.product_qty, 3)
 
         mo.action_assign()
         self.assertEqual(mo.availability, 'assigned')
-        wizard_obj = self.env['mrp.product.produce']
-        default_fields = ['lot_id', 'product_id', 'product_uom_id',
-                          'product_tracking', 'consume_line_ids',
-                          'production_id', 'product_qty', 'serial']
-        wizard_vals = wizard_obj.with_context(active_id=mo.id).\
-            default_get(default_fields)
-        wizard = wizard_obj.create(wizard_vals)
-        wizard.do_produce()
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': mo.id,
+            'active_ids': [mo.id]
+        }).create({
+            'product_qty': mo.product_qty
+        })
+        produce_wizard._onchange_product_qty()
+        produce_wizard.do_produce()
         self.assertEqual(len(mo), 1)
         mo.button_mark_done()
         self.assertEqual(mo.availability, 'assigned')
@@ -136,15 +128,14 @@ class TestMrpMtoWithStock(TransactionCase):
         self.production.action_assign()
         self.assertEqual(self.production.state, 'confirmed')
 
-        wizard_obj = self.env['mrp.product.produce']
-        default_fields = ['lot_id', 'product_id', 'product_uom_id',
-                          'product_tracking', 'consume_line_ids',
-                          'production_id', 'product_qty', 'serial']
-        wizard_vals = wizard_obj.with_context(active_id=self.production.id).\
-            default_get(default_fields)
-
-        wizard = wizard_obj.create(wizard_vals)
-        wizard.do_produce()
+        produce_wizard = self.env['mrp.product.produce'].with_context({
+            'active_id': self.production.id,
+            'active_ids': [self.production.id]
+        }).create({
+            'product_qty': self.production.product_qty
+        })
+        produce_wizard._onchange_product_qty()
+        produce_wizard.do_produce()
         # Check that not extra moves were generated and qty's are ok:
         self.assertEqual(len(self.production.move_raw_ids), 3)
         for move in self.production.move_raw_ids:
