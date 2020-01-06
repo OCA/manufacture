@@ -4,6 +4,7 @@
 
 from odoo import api, models
 from odoo.exceptions import UserError
+from odoo.tools import float_compare
 import copy
 
 
@@ -25,6 +26,8 @@ class MrpProduction(models.Model):
         res = super(MrpProduction, self).action_assign()
         # try to create procurements:
         move_obj = self.env['stock.move']
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for production in self:
             warehouse = production.location_src_id.get_warehouse()
             mto_with_no_move_dest_id = warehouse.mrp_mto_mts_forecast_qty
@@ -37,7 +40,8 @@ class MrpProduction(models.Model):
                         and mto_with_no_move_dest_id and \
                         self._mto_with_stock_condition(move):
                     qty_to_procure = production.get_mto_qty_to_procure(move)
-                    if qty_to_procure > 0.0:
+                    if float_compare(
+                            qty_to_procure, 0, precision_digits=precision) > 0:
                         new_move = move
                     else:
                         continue
@@ -53,11 +57,11 @@ class MrpProduction(models.Model):
         res = super()._adjust_procure_method()
         warehouse = self.location_src_id.get_warehouse()
         mto_with_no_move_dest_id = warehouse.mrp_mto_mts_forecast_qty
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for move in self.move_raw_ids:
             if not self._mto_with_stock_condition(move):
                 continue
-            new_move = False
-            qty_to_procure = 0.0
             if not mto_with_no_move_dest_id:
                 # We have to split the move because we can't have
                 # a part of the move that have ancestors and not the
@@ -66,11 +70,15 @@ class MrpProduction(models.Model):
                     move.product_uom_qty -
                     move.product_id.qty_available_not_res,
                     move.product_uom_qty)
-                if 0.0 < qty_to_procure < move.product_uom_qty:
+                if qty_to_procure > 0.0 and float_compare(
+                    qty_to_procure, move.product_uom_qty,
+                    precision_digits=precision
+                ) < 0:
                     # we need to adjust the unit_factor of the stock moves
                     # to split correctly the load of each one.
                     ratio = qty_to_procure / move.product_uom_qty
-                    new_move = move.copy({
+                    # create new move for make to order part
+                    move.copy({
                         'product_uom_qty': qty_to_procure,
                         'procure_method': 'make_to_order',
                         'unit_factor': move.unit_factor * ratio,
@@ -80,19 +88,8 @@ class MrpProduction(models.Model):
                             move.product_uom_qty - qty_to_procure,
                         'unit_factor': move.unit_factor * (1 - ratio),
                     })
-                    move._action_confirm()
-                    move._action_assign()
-                elif qty_to_procure > 0.0:
-                    new_move = move
-                else:
-                    # If we don't need to procure, we reserve the qty
-                    # for this move so it won't be available for others,
-                    # which would generate planning issues.
-                    move._action_confirm()
-                    move._action_assign()
-            if new_move:
-                self.run_procurement(
-                    new_move, qty_to_procure, mto_with_no_move_dest_id)
+                move._action_confirm()
+                move._action_assign()
         return res
 
     @api.multi
@@ -122,28 +119,21 @@ class MrpProduction(models.Model):
             raise UserError('\n'.join(errors))
         return True
 
-    @api.model
-    def _get_incoming_qty_waiting_validation(self, move):
-        """
-        This method should be overriden in submodule to manage cases where
-        we need to add quantities to the forecast quantity. Like draft
-        purchase order, purchase request, etc...
-        """
-        return 0.0
-
     @api.multi
     def get_mto_qty_to_procure(self, move):
         self.ensure_one()
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         stock_location_id = move.location_id.id
         move_location = move.with_context(location=stock_location_id)
         virtual_available = move_location.product_id.virtual_available
         qty_available = move.product_id.uom_id._compute_quantity(
             virtual_available, move.product_uom)
-        draft_incoming_qty = self._get_incoming_qty_waiting_validation(move)
-        qty_available += draft_incoming_qty
-        if qty_available >= 0:
+        if float_compare(qty_available, 0, precision_digits=precision) >= 0:
             return 0.0
         else:
-            if abs(qty_available) < move.product_uom_qty:
+            if float_compare(
+                    abs(qty_available), move.product_uom_qty,
+                    precision_digits=precision) < 0:
                 return abs(qty_available)
         return move.product_uom_qty
