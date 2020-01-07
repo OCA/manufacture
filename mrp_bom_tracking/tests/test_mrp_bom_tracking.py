@@ -6,49 +6,33 @@ from odoo.tests import common
 
 
 class TestBomTracking(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.product_obj = cls.env['product.product']
-        cls.bom_obj = cls.env['mrp.bom']
-        cls.bom_line_obj = cls.env['mrp.bom.line']
+        cls.product_obj = cls.env["product.product"]
+        cls.bom_obj = cls.env["mrp.bom"]
+        cls.bom_line_obj = cls.env["mrp.bom.line"]
 
         # Create products:
-        cls.product_1 = cls.product_obj.create({
-            'name': 'TEST 01',
-            'type': 'product',
-        })
+        cls.product_1 = cls.product_obj.create({"name": "TEST 01", "type": "product"})
 
-        cls.component_1 = cls.product_obj.create({
-            'name': 'RM 01',
-            'type': 'product',
-        })
-        cls.component_2 = cls.product_obj.create({
-            'name': 'RM 02',
-            'type': 'product',
-        })
-        cls.component_2_alt = cls.product_obj.create({
-            'name': 'RM 02-B',
-            'type': 'product',
-        })
+        cls.component_1 = cls.product_obj.create({"name": "RM 01", "type": "product"})
+        cls.component_2 = cls.product_obj.create({"name": "RM 02", "type": "product"})
+        cls.component_2_alt = cls.product_obj.create(
+            {"name": "RM 02-B", "type": "product"}
+        )
 
         # Create Bills of Materials:
-        cls.bom = cls.bom_obj.create({
-            'product_tmpl_id': cls.product_1.product_tmpl_id.id,
-
-        })
-        cls.line_1 = cls.bom_line_obj.create({
-            'product_id': cls.component_1.id,
-            'bom_id': cls.bom.id,
-            'product_qty': 2.0,
-        })
-        cls.line_2 = cls.bom_line_obj.create({
-            'product_id': cls.component_2.id,
-            'bom_id': cls.bom.id,
-            'product_qty': 5.0,
-        })
+        cls.bom = cls.bom_obj.create(
+            {"product_tmpl_id": cls.product_1.product_tmpl_id.id}
+        )
+        cls.line_1 = cls.bom_line_obj.create(
+            {"product_id": cls.component_1.id, "bom_id": cls.bom.id, "product_qty": 2.0}
+        )
+        cls.line_2 = cls.bom_line_obj.create(
+            {"product_id": cls.component_2.id, "bom_id": cls.bom.id, "product_qty": 5.0}
+        )
 
     def test_01_change_bom_line_qty(self):
         before = self.bom.message_ids
