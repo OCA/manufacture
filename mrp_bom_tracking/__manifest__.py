@@ -8,12 +8,8 @@
     "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "depends": [
-        "mrp",
-    ],
-    "data": [
-        "views/bom_template.xml",
-    ],
+    "depends": ["mrp"],
+    "data": ["views/bom_template.xml"],
     "license": "LGPL-3",
     "installable": True,
 }
