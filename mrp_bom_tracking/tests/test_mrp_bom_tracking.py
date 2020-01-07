@@ -1,5 +1,5 @@
-# 2019 Eficent Business and IT Consulting Services S.L.
-# - Lois Rilo <lois.rilo@eficent.com>
+# Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
+# - Lois Rilo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
@@ -16,7 +16,6 @@ class TestBomTracking(common.SavepointCase):
 
         # Create products:
         cls.product_1 = cls.product_obj.create({"name": "TEST 01", "type": "product"})
-
         cls.component_1 = cls.product_obj.create({"name": "RM 01", "type": "product"})
         cls.component_2 = cls.product_obj.create({"name": "RM 02", "type": "product"})
         cls.component_2_alt = cls.product_obj.create(

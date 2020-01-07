@@ -1,19 +1,19 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    code = fields.Char(track_visibility="onchange")
-    product_tmpl_id = fields.Many2one(track_visibility="always")
-    product_qty = fields.Float(track_visibility="onchange")
-    picking_type_id = fields.Many2one(track_visibility="onchange")
-    type = fields.Selection(track_visibility="onchange")
+    code = fields.Char(tracking=True)
+    product_id = fields.Many2one(tracking=True)
+    product_tmpl_id = fields.Many2one(tracking=True)
+    product_qty = fields.Float(tracking=True)
+    picking_type_id = fields.Many2one(tracking=True)
+    type = fields.Selection(tracking=True)
 
-    @api.multi
     def write(self, values):
         bom_line_ids = {}
         if "bom_line_ids" in values:
@@ -48,7 +48,6 @@ class MrpBom(models.Model):
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
-    @api.multi
     def write(self, values):
         if "product_id" in values:
             for bom in self.mapped("bom_id"):
