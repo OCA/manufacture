@@ -6,13 +6,13 @@ from odoo import models
 
 
 class StockRule(models.Model):
-    _inherit = 'stock.rule'
+    _inherit = "stock.rule"
 
-    def _run_manufacture(self, product_id, product_qty, product_uom,
-                         location_id, name, origin, values):
+    def _run_manufacture(
+        self, product_id, product_qty, product_uom, location_id, name, origin, values
+    ):
         return super(
-            StockRule, self.with_context(group_mo_by_product=True),
+            StockRule, self.with_context(group_mo_by_product=True)
         )._run_manufacture(
-            product_id, product_qty, product_uom, location_id, name, origin,
-            values,
+            product_id, product_qty, product_uom, location_id, name, origin, values
         )
