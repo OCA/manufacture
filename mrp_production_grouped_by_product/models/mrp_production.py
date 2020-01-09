@@ -39,7 +39,7 @@ class MrpProduction(models.Model):
             ("bom_id", "=", vals.get("bom_id", False)),
             ("routing_id", "=", vals.get("routing_id", False)),
             ("company_id", "=", vals.get("company_id", False)),
-            ("state", "=", "confirmed"),
+            ("state", "=", "draft"),
         ]
         if not vals.get("date_planned_finished"):
             return domain

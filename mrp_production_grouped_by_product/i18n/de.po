@@ -63,13 +63,13 @@ msgstr ""
 "Dies ist die Anzahl von Tagen zur Gruppierung in demselben Fertigungsauftrag."
 
 #. module: mrp_production_grouped_by_product
-#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:36
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
 #, python-format
 msgid "You have to enter a positive value for interval."
 msgstr "Sie müssen für das Intervall einen Wert größer 0 eingeben."
 
 #. module: mrp_production_grouped_by_product
-#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:29
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
 #, python-format
 msgid "You have to enter a valid hour between 0 and 23."
 msgstr "Sie müssen eine gültige Uhrzeit zwischen 0 und 23 eingeben."
