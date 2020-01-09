@@ -27,7 +27,6 @@ class StockPicking(models.Model):
         bom = BOM._bom_find(product=product, company_id=company.id)
         return bom and bom.type == "phantom"
 
-    @api.multi
     def _compute_has_product_kit(self):
         for picking in self:
             if any(
@@ -36,7 +35,6 @@ class StockPicking(models.Model):
             ):
                 picking.has_product_kit = True
 
-    @api.multi
     def show_product_kit(self):
         """Find move_lines with product kit to create helper line."""
         self.ensure_one()
@@ -61,7 +59,6 @@ class StockPicking(models.Model):
         self.product_kit_helper_ids.unlink()
         self.write({"product_kit_helper_ids": helpers})
 
-    @api.multi
     def action_product_kit_helper(self):
         """Assign product kit's quantity to stock move."""
         self.ensure_one()
@@ -101,7 +98,6 @@ class StockPickingProductKitHelper(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def action_explode_helper(self):
         """Explodes product kit quantity to detailed product in stock move."""
         self.ensure_one()
