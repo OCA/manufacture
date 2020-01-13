@@ -4,16 +4,14 @@
 from odoo import fields, models
 
 
-class MRPBoMLine(models.Model):
-    _inherit = 'mrp.bom.line'
+class MrpBoMLine(models.Model):
+    _inherit = "mrp.bom.line"
 
-    use_equivalences = fields.Boolean(
-        string='Use equivalences'
-    )
+    use_equivalences = fields.Boolean(string="Use equivalences")
     nonequivalent_product_ids = fields.Many2many(
         "product.product",
         "mrp_bom_line_product_rel",
         "bom_line_id",
         "product_id",
-        string="Non-Equivalent Products"
+        string="Non-Equivalent Products",
     )

@@ -5,36 +5,51 @@ from odoo import api, models
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
-        if 'nonequivalent_product_id' in self._context:
-            category_id = self.browse(
-                self._context.get('nonequivalent_product_id')).categ_id
+    def name_search(self, name, args=None, operator="ilike", limit=100):
+        if "nonequivalent_product_id" in self._context:
+            equivalent_category_id = self.browse(
+                self._context.get("nonequivalent_product_id")
+            ).equivalent_categ_id
             recs = self.search(
-                [('categ_id', 'child_of', category_id.id),
-                 ('id', '!=', self._context.get('nonequivalent_product_id')),
-                 ('name', operator, name)] + args, limit=limit)
+                [
+                    ("equivalent_categ_id", "=", equivalent_category_id.id),
+                    (
+                        "id",
+                        "!=",
+                        self._context.get("nonequivalent_product_id"),
+                    ),
+                    ("name", operator, name),
+                ]
+                + args,
+                limit=limit,
+            )
             if not recs:
                 recs = self.browse()
             return recs.name_get()
-        return super(ProductProduct, self).name_search(name, args=args,
-                                                       operator=operator,
-                                                       limit=limit)
+        return super(ProductProduct, self).name_search(
+            name, args=args, operator=operator, limit=limit
+        )
 
     @api.model
-    def search_read(self, domain=None, fields=None, offset=0, limit=None,
-                    order=None):
-        if 'nonequivalent_product_id' in self._context:
-            category_id = self.browse(
-                self._context.get('nonequivalent_product_id')).categ_id
-            domain +=\
-                [('categ_id', 'child_of', category_id.id),
-                 ('id', '!=', self._context.get('nonequivalent_product_id'))]
+    def search_read(
+        self, domain=None, fields=None, offset=0, limit=None, order=None
+    ):
+        if "nonequivalent_product_id" in self._context:
+            equivalent_category_id = self.browse(
+                self._context.get("nonequivalent_product_id")
+            ).equivalent_category_id
+            domain += [
+                ("equivalent_categ_id", "=", equivalent_category_id.id),
+                ("id", "!=", self._context.get("nonequivalent_product_id")),
+            ]
         order = order or self.product_tmpl_id.priority
-        return super(ProductProduct, self).search_read(domain=domain,
-                                                       fields=fields,
-                                                       offset=offset,
-                                                       limit=limit,
-                                                       order=order)
+        return super(ProductProduct, self).search_read(
+            domain=domain,
+            fields=fields,
+            offset=offset,
+            limit=limit,
+            order=order,
+        )
