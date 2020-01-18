@@ -12,7 +12,7 @@ class TestMrpBomNote(TransactionCase):
         self.bom = self.env['mrp.bom']
 
     def test_notes(self):
-        uom_unit = self.env.ref('product.product_uom_unit')
+        uom_unit = self.env.ref('uom.product_uom_unit')
         product_t_fg = self.product_t.create({
             'name': 'Chair',
             'type': 'product',

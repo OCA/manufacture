@@ -26,7 +26,7 @@ msgid "Bill of Material"
 msgstr ""
 
 #. module: mrp_bom_note
-#: model:ir.model.fields,field_description:mrp_bom_note.field_mrp_bom_notes
-#: model:ir.ui.view,arch_db:mrp_bom_note.mrp_bom_view_notes_form
+#: model:ir.model.fields,field_description:mrp_bom_note.field_mrp_bom__notes
+#: model_terms:ir.ui.view,arch_db:mrp_bom_note.mrp_bom_view_notes_form
 msgid "Notes"
 msgstr "Bilješke"
