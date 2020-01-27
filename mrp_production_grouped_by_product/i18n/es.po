@@ -61,13 +61,13 @@ msgid ""
 msgstr "El número de días para agrupar juntas las órdenes de fabricación."
 
 #. module: mrp_production_grouped_by_product
-#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:36
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
 #, python-format
 msgid "You have to enter a positive value for interval."
 msgstr "Debe introducir un valor positivo para el intervalo."
 
 #. module: mrp_production_grouped_by_product
-#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:29
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
 #, python-format
 msgid "You have to enter a valid hour between 0 and 23."
 msgstr "Debe introducir una hora válida entre 0 y 23."
