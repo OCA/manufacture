@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
+<odoo>
+    <record id="qc_inspection_form_view" model="ir.ui.view">
+        <field name="name">Add formula</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control.qc_inspection_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[2]" position="inside">
+                <button name="calculate_lines_values" string="Compute lines" type="object"/>
+            </xpath>
+            <xpath expr="//field[@name='inspection_lines']/tree/field[@name='name']" position="before">
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="formula" invisble="True"/>
+                <button name="calculate_value" string="Compute" type="object"
+                        attrs="{'invisible': [('formula', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='inspection_lines']/tree/field[@name='qualitative_value']" position="before">
+                <field name="input_value" attrs="{'readonly': [('formula', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='inspection_lines']/tree/field[@name='qualitative_value']" position="attributes">
+                <attribute name="attrs">{'readonly': [
+                    '|',
+                    ('question_type', '=', 'quantitative'),
+                    ('formula', '!=', False)
+                    ]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='inspection_lines']/tree/field[@name='quantitative_value']" position="attributes">
+                <attribute name="attrs">{'readonly': [
+                    '|',
+                    ('question_type', '=', 'qualitative'),
+                    ('formula', '!=', False)
+                    ]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='inspection_lines']/tree/field[@name='uom_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [
+                    '|',
+                    ('question_type', '=', 'qualitative'),
+                    ('formula', '!=', False)
+                    ]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

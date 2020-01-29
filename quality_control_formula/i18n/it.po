@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* quality_control_formula
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-09 17:11+0000\n"
+"PO-Revision-Date: 2019-01-09 17:11+0000\n"
+"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_inspection_line_code
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_test_question_code
+msgid "Code"
+msgstr "Codice"
+
+#. module: quality_control_formula
+#: model:ir.ui.view,arch_db:quality_control_formula.qc_inspection_form_view
+msgid "Compute"
+msgstr "Calcola"
+
+#. module: quality_control_formula
+#: model:ir.ui.view,arch_db:quality_control_formula.qc_inspection_form_view
+msgid "Compute lines"
+msgstr "Calcola righe"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_inspection_line_formula
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_test_question_formula
+msgid "Formula"
+msgstr "Formula"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_inspection_line_input_value
+msgid "Input value"
+msgstr "Valore in input"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,help:quality_control_formula.field_qc_inspection_line_formula
+msgid "Python formula for evaluating the current inspection line.Provided values are 'input_value' and the values of all the previous inspection lines (the variable name is the 'code' field)."
+msgstr "Formula Python per valutare la riga di ispezione.I valori disponibili sono 'input_value' e i valori di tutte le righe di ispezione precedenti (il nome della variabile equivale al campo 'codice')."
+
+#. module: quality_control_formula
+#: model:ir.model.fields,help:quality_control_formula.field_qc_test_question_formula
+msgid "Python formula for evaluating the current question.Provided values are 'input_value' and the values of all the previous questions (the variable name is the 'code' field)."
+msgstr "Formula Python formula per valutare la domanda del test.I valori disponibili sono 'input_value' e i valori di tutte le domande precedenti (il nome della variabile equivale al campo 'codice')."
+
+#. module: quality_control_formula
+#: model:ir.model,name:quality_control_formula.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Ispezione controllo di qualità"
+
+#. module: quality_control_formula
+#: model:ir.model,name:quality_control_formula.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Riga ispezione controllo qualità"
+
+#. module: quality_control_formula
+#: model:ir.model,name:quality_control_formula.model_qc_test_question
+msgid "Quality control question"
+msgstr "Domanda di controllo qualità"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,field_description:quality_control_formula.field_qc_inspection_line_sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: quality_control_formula
+#: model:ir.actions.act_window,name:quality_control_formula.action_qc_test_questions
+#: model:ir.ui.menu,name:quality_control_formula.qc_test_questions_menu
+#: model:ir.ui.view,arch_db:quality_control_formula.qc_test_question_tree_view
+msgid "Test questions"
+msgstr "Domande dei test"
+
+#. module: quality_control_formula
+#: model:ir.model.fields,help:quality_control_formula.field_qc_inspection_line_code
+msgid "Used for the evaluation of formulas: name of the variable corresponding to this inspection line's value."
+msgstr "Utilizzato per la valutazione delle formule: il nome della variabile corrispondente al valore di questa ispezione."
+
+#. module: quality_control_formula
+#: model:ir.model.fields,help:quality_control_formula.field_qc_test_question_code
+msgid "Used for the evaluation of formulas: name of the variable corresponding to this question's value."
+msgstr "Utilizzato per la valutazione delle formule: il nome della variabile corrispondente al valore di questa domanda."

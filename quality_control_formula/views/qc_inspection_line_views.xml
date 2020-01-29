@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Simone Rubino - Agile Business Group
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+  -->
+
+<odoo>
+    <record id="qc_inspection_line_tree_view" model="ir.ui.view">
+        <field name="name">Add formula</field>
+        <field name="model">qc.inspection.line</field>
+        <field name="inherit_id" ref="quality_control.qc_inspection_line_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="inspection_id" position="before">
+                <field name="sequence" widget="handle"/>
+            </field>
+            <field name="name" position="before">
+                <field name="code"/>
+                <field name="formula"/>
+            </field>
+        </field>
+    </record>
+</odoo>
