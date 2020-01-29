@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo10-addon-mrp_sale_info',
         'odoo10-addon-product_quick_bom',
         'odoo10-addon-quality_control',
+        'odoo10-addon-quality_control_formula',
         'odoo10-addon-quality_control_mrp',
         'odoo10-addon-quality_control_stock',
         'odoo10-addon-quality_control_team',
