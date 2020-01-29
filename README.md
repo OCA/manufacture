@@ -34,6 +34,7 @@ addon | version | summary
 [mrp_sale_info](mrp_sale_info/) | 10.0.1.0.0 | Adds sale information to Manufacturing models
 [product_quick_bom](product_quick_bom/) | 10.0.1.0.0 | Create the bom directly from the product
 [quality_control](quality_control/) | 10.0.1.0.3 | Quality control
+[quality_control_formula](quality_control_formula/) | 10.0.1.0.0 | Use formulas in inspection lines.
 [quality_control_mrp](quality_control_mrp/) | 10.0.1.0.0 | MRP extension for quality control
 [quality_control_stock](quality_control_stock/) | 10.0.1.0.2 | Quality control - Stock
 [quality_control_team](quality_control_team/) | 10.0.1.0.0 | Adds quality control teams to handle different quality control workflows
