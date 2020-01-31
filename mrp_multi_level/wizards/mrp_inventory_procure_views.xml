@@ -23,6 +23,7 @@
                             <field name="qty"/>
                             <field name="uom_id" groups="uom.group_uom"/>
                             <field name="date_planned"/>
+                            <field name="supply_method"/>
                         </tree>
                     </field>
                 </group>
