@@ -62,6 +62,12 @@ class MrpInventory(models.Model):
     planned_order_ids = fields.One2many(
         comodel_name="mrp.planned.order", inverse_name="mrp_inventory_id", readonly=True
     )
+    supply_method = fields.Selection(
+        string="Supply Method",
+        related="product_mrp_area_id.supply_method",
+        readonly=True,
+        store=True,
+    )
 
     def _compute_uom_id(self):
         for rec in self:
