@@ -25,6 +25,7 @@ class MrpInventoryProcure(models.TransientModel):
             "warehouse_id": planned_order.mrp_area_id.warehouse_id.id,
             "location_id": planned_order.product_mrp_area_id.location_proc_id.id
             or planned_order.mrp_area_id.location_id.id,
+            "supply_method": planned_order.product_mrp_area_id.supply_method,
         }
 
     @api.model
@@ -116,6 +117,17 @@ class MrpInventoryProcureItem(models.TransientModel):
     product_id = fields.Many2one(string="Product", comodel_name="product.product")
     warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
     location_id = fields.Many2one(string="Location", comodel_name="stock.location")
+    supply_method = fields.Selection(
+        string="Supply Method",
+        selection=[
+            ("buy", "Buy"),
+            ("none", "Undefined"),
+            ("manufacture", "Produce"),
+            ("pull", "Pull From"),
+            ("push", "Push To"),
+            ("pull_push", "Pull & Push"),
+        ],
+    )
 
     def _prepare_procurement_values(self, group=False):
         return {
