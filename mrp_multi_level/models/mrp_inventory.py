@@ -67,6 +67,12 @@ class MrpInventory(models.Model):
         inverse_name="mrp_inventory_id",
         readonly=True,
     )
+    supply_method = fields.Selection(
+        string="Supply Method",
+        related="product_mrp_area_id.supply_method",
+        readonly=True,
+        store=True,
+    )
 
     @api.multi
     def _compute_uom_id(self):

@@ -19,16 +19,16 @@ class MrpInventoryProcure(models.TransientModel):
     @api.model
     def _prepare_item(self, planned_order):
         return {
-            'planned_order_id': planned_order.id,
-            'qty': planned_order.mrp_qty - planned_order.qty_released,
-            'uom_id': planned_order.mrp_inventory_id.uom_id.id,
-            'date_planned': planned_order.due_date,
-            'mrp_inventory_id': planned_order.mrp_inventory_id.id,
-            'product_id': planned_order.product_id.id,
-            'warehouse_id': planned_order.mrp_area_id.warehouse_id.id,
-            'location_id':
-            planned_order.product_mrp_area_id.location_proc_id.id or
-            planned_order.mrp_area_id.location_id.id,
+            "planned_order_id": planned_order.id,
+            "qty": planned_order.mrp_qty - planned_order.qty_released,
+            "uom_id": planned_order.mrp_inventory_id.uom_id.id,
+            "date_planned": planned_order.due_date,
+            "mrp_inventory_id": planned_order.mrp_inventory_id.id,
+            "product_id": planned_order.product_id.id,
+            "warehouse_id": planned_order.mrp_area_id.warehouse_id.id,
+            "location_id": planned_order.product_mrp_area_id.location_proc_id.id
+            or planned_order.mrp_area_id.location_id.id,
+            "supply_method": planned_order.product_mrp_area_id.supply_method,
         }
 
     @api.model
@@ -125,6 +125,21 @@ class MrpInventoryProcureItem(models.TransientModel):
     location_id = fields.Many2one(
         string='Location',
         comodel_name='stock.location',
+    )
+    planned_order_id = fields.Many2one(comodel_name="mrp.planned.order")
+    product_id = fields.Many2one(string="Product", comodel_name="product.product")
+    warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
+    location_id = fields.Many2one(string="Location", comodel_name="stock.location")
+    supply_method = fields.Selection(
+        string="Supply Method",
+        selection=[
+            ("buy", "Buy"),
+            ("none", "Undefined"),
+            ("manufacture", "Produce"),
+            ("pull", "Pull From"),
+            ("push", "Push To"),
+            ("pull_push", "Pull & Push"),
+        ],
     )
 
     def _prepare_procurement_values(self, group=False):
