@@ -34,6 +34,7 @@ class ProductMRPArea(models.Model):
         readonly=True,
         related='product_id.product_tmpl_id',
         store=True,
+        compute_sudo=True,
     )
     location_id = fields.Many2one(
         related="mrp_area_id.location_id",
@@ -75,11 +76,11 @@ class ProductMRPArea(models.Model):
     main_supplier_id = fields.Many2one(
         comodel_name='res.partner', string='Main Supplier',
         compute='_compute_main_supplier', store=True,
-        index=True,
+        index=True, compute_sudo=True,
     )
     main_supplierinfo_id = fields.Many2one(
         comodel_name='product.supplierinfo', string='Supplier Info',
-        compute='_compute_main_supplier', store=True,
+        compute='_compute_main_supplier', store=True, compute_sudo=True,
     )
     supply_method = fields.Selection(
         selection=[('buy', 'Buy'),
@@ -169,7 +170,9 @@ class ProductMRPArea(models.Model):
         """Simplified and similar to procurement.rule logic."""
         for rec in self.filtered(lambda r: r.supply_method == 'buy'):
             suppliers = rec.product_id.seller_ids.filtered(
-                lambda r: (not r.product_id or r.product_id == rec.product_id))
+                lambda r: (not r.product_id or r.product_id == rec.product_id)
+                and (not r.company_id or r.company_id == rec.company_id)
+            )
             if not suppliers:
                 continue
             rec.main_supplierinfo_id = suppliers[0]
