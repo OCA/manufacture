@@ -87,10 +87,10 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="MRP Inventory">
-                <field name="company_id" groups="base.group_multi_company"/>
                 <group name="select" expand="0" string="Selection...">
                     <field name="product_id"/>
                     <field name="mrp_area_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </group>
                 <separator/>
                 <filter string="To Procure" name="filter_to_procure"
