@@ -18,32 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.model.fields,help:mrp_repair_calendar_view.field_mrp_repair_date_repair
+#. module: repair_calendar_view
+#: model:ir.model.fields,help:repair_calendar_view.field_repair_order__date_repair
 msgid "Date of the repair, this field and user_id defines the calendar"
 msgstr "Date de la réparation, ce champ et user_id définissent le calendrier"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.model.fields,help:mrp_repair_calendar_view.field_mrp_repair_user_id
+#. module: repair_calendar_view
+#: model:ir.model.fields,help:repair_calendar_view.field_repair_order__user_id
 msgid "Person in charge for the repair"
 msgstr "Personne en charge de la réparation"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.model.fields,field_description:mrp_repair_calendar_view.field_mrp_repair_date_repair
+#. module: repair_calendar_view
+#: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__date_repair
 msgid "Repair Date"
 msgstr "Date de la réparation"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.model,name:mrp_repair_calendar_view.model_mrp_repair
+#. module: repair_calendar_view
+#: model:ir.model,name:repair_calendar_view.model_repair_order
 msgid "Repair Order"
 msgstr "Ordre de réparation"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.ui.view,arch_db:mrp_repair_calendar_view.view_repair_order_calendar
+#. module: repair_calendar_view
+#: model_terms:ir.ui.view,arch_db:repair_calendar_view.view_repair_order_calendar
 msgid "Repair Orders Calendar"
 msgstr "Calendrier des ordres de réparation"
 
-#. module: mrp_repair_calendar_view
-#: model:ir.model.fields,field_description:mrp_repair_calendar_view.field_mrp_repair_user_id
+#. module: repair_calendar_view
+#: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__user_id
 msgid "User"
 msgstr "Utilisateur"
