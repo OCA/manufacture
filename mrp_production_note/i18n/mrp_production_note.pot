@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_production_note
-#: model:ir.model,name:mrp_production_note.model_mrp_production
-msgid "Manufacturing Order"
+#: model:ir.model.fields,field_description:mrp_production_note.field_mrp_production__notes
+#: model_terms:ir.ui.view,arch_db:mrp_production_note.mrp_production_view_notes_form
+msgid "Notes"
 msgstr ""
 
 #. module: mrp_production_note
-#: model:ir.model.fields,field_description:mrp_production_note.field_mrp_production_notes
-#: model:ir.ui.view,arch_db:mrp_production_note.mrp_production_view_notes_form
-msgid "Notes"
+#: model:ir.model,name:mrp_production_note.model_mrp_production
+msgid "Production Order"
 msgstr ""
 
