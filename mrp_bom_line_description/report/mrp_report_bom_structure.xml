@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 PlanetaTIC <info@planetatic.com>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <template id="report_mrp_bom_line" inherit_id="mrp.report_mrp_bom_line">
+        <xpath expr="//tr/td[1]" position="inside">
+            <t t-if="l.get('description')">
+                <br/>
+                <span t-att-style="space_td"/>
+                <span t-att-class="None if l['child_bom'] else 'o_mrp_bom_no_fold'" t-esc="l['description']"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
+        <xpath expr="//tr/td[1]" position="inside">
+            <t t-if="l.get('description')">
+                <br/>
+                <span t-att-style="space_td"/>
+                <span t-esc="l['description']"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
