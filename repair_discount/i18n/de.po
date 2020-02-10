@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_repair_discount
+# 	* mrp_repair_discount
 #
 msgid ""
 msgstr ""
@@ -16,23 +16,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.3\n"
 
-#. module: mrp_repair_discount
-#: model:ir.model.fields,field_description:mrp_repair_discount.field_mrp_repair_fee_discount
-#: model:ir.model.fields,field_description:mrp_repair_discount.field_mrp_repair_line_discount
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__discount
 msgid "Discount (%)"
 msgstr "Rabatt (%)"
 
-#. module: mrp_repair_discount
-#: model:ir.model,name:mrp_repair_discount.model_mrp_repair_fee
-msgid "Repair Fees Line"
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_fee
+#, fuzzy
+msgid "Repair Fees"
 msgstr "Reparaturgebührenzeile"
 
-#. module: mrp_repair_discount
-#: model:ir.model,name:mrp_repair_discount.model_mrp_repair_line
-msgid "Repair Line"
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_line
+#, fuzzy
+msgid "Repair Line (parts)"
 msgstr "Reparaturzeile"
 
-#. module: mrp_repair_discount
-#: model:ir.model,name:mrp_repair_discount.model_mrp_repair
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_order
 msgid "Repair Order"
 msgstr "Reparaturauftrag"
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__price_subtotal
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__price_subtotal
+msgid "Subtotal"
+msgstr ""
