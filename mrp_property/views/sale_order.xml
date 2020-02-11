@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form_inherit_sale_mrp" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='order_line']/form/group/group/field[@name='tax_id']" position="after">
+                <field name="property_ids" widget="many2many_tags" groups="sale.group_mrp_properties"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

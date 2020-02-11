@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='sequence']" position="after">
+                <field name="property_ids" groups="product.group_mrp_properties"
+                       widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
