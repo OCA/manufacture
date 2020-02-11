@@ -29,6 +29,7 @@ addon | version | summary
 [mrp_production_request](mrp_production_request/) | 10.0.1.1.0 | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
 [mrp_production_service](mrp_production_service/) | 10.0.1.0.1 | Creates procurement orders from manufacturing orders, for services included in the Bill of Materials
 [mrp_progress_button](mrp_progress_button/) | 10.0.1.0.0 | Add a button on MO to make the MO state 'In Progress'
+[mrp_property](mrp_property/) | 10.0.1.0.0 | Control BoM selection from properties on sale order lines
 [mrp_repair_calendar_view](mrp_repair_calendar_view/) | 10.0.1.0.0 | MRP Repair Calendar View
 [mrp_repair_discount](mrp_repair_discount/) | 10.0.1.0.0 | MRP Repair Discount
 [mrp_sale_info](mrp_sale_info/) | 10.0.1.0.0 | Adds sale information to Manufacturing models
