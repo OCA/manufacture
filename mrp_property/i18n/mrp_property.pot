@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_property
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,help:mrp_property.mrp_property_group_action
+msgid "Click to create a group of properties."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,help:mrp_property.mrp_property_action
+msgid "Click to create a new property."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_create_uid
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_create_date
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,help:mrp_property.mrp_property_group_action
+msgid "Define specific property groups that can be assigned to your\n"
+"                bill of materials and sales orders. Properties allows Odoo\n"
+"                to automatically select the right bill of materials according\n"
+"                to properties selected in the sales order by salesperson."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_description
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_description
+msgid "Description"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_display_name
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,help:mrp_property.mrp_property_group_action
+msgid "For instance, in the property group \"Warranty\", you an have\n"
+"                two properties: 1 year warranty, 3 years warranty. Depending\n"
+"                on the propoerties selected in the sales order, Odoo will\n"
+"                schedule a production using the matching bill of materials."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.ui.view,arch_db:mrp_property.view_mrp_property_search
+msgid "Group By"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_id_5883
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,help:mrp_property.field_mrp_bom_property_ids
+msgid "If a production product is manufactured for a sale order, the BoM that has the same properties as the sale order line will be selected (a BoM with no properties at all could be selected as a fallback."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,help:mrp_property.field_sale_order_line_property_ids
+msgid "If a production product is manufactured for this sale order, the BoM that has the same properties as the sale order line will be selected (a BoM with no properties at all could be selected as a fallback"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property___last_update
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_write_uid
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_write_date
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_mrp_property
+msgid "MRP Property"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_name
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_name
+#: model:ir.ui.view,arch_db:mrp_property.view_mrp_property_search
+msgid "Name"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,name:mrp_property.mrp_property_action
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_bom_property_ids
+#: model:ir.model.fields,field_description:mrp_property.field_procurement_order_property_ids
+#: model:ir.model.fields,field_description:mrp_property.field_sale_order_line_property_ids
+#: model:ir.ui.menu,name:mrp_property.menu_mrp_property_action
+msgid "Properties"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_mrp_property_group
+#: model:ir.model.fields,field_description:mrp_property.field_mrp_property_group_id
+#: model:ir.ui.view,arch_db:mrp_property.view_mrp_property_search
+msgid "Property Group"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,name:mrp_property.mrp_property_group_action
+#: model:ir.ui.menu,name:mrp_property.menu_mrp_property_group_action
+msgid "Property Groups"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.ui.view,arch_db:mrp_property.view_mrp_property_search
+msgid "Search"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model,name:mrp_property.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.model.fields,help:mrp_property.field_procurement_order_property_ids
+msgid "The BoM that has the same properties as this procurement will be selected unless there is a BoM with no properties at all."
+msgstr ""
+
+#. module: mrp_property
+#: model:ir.actions.act_window,help:mrp_property.mrp_property_action
+msgid "The Properties in Odoo are used to select the right bill of\n"
+"                materials for manufacturing a product when you have different\n"
+"                ways of building the same product.  You can assign several\n"
+"                properties to each bill of materials.  When a salesperson\n"
+"                creates a sales order, they can relate it to several properties\n"
+"                and Odoo will automatically select the BoM to use according\n"
+"                the needs."
+msgstr ""
+
