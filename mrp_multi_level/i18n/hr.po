@@ -51,6 +51,7 @@ msgid "Associated MRP Inventory"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__buy
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__buy
 msgid "Buy"
 msgstr ""
@@ -579,6 +580,7 @@ msgid "Procurement Request"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__manufacture
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__manufacture
 msgid "Produce"
 msgstr ""
@@ -631,12 +633,14 @@ msgid "Product UoM"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull_push
 msgid "Pull & Push"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull
 msgid "Pull From"
@@ -660,6 +664,7 @@ msgid "Purchase Orders"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__push
 msgid "Push To"
@@ -782,7 +787,10 @@ msgid "Supply"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__supply_method
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__supply_method
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_method
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Supply Method"
 msgstr ""
 
@@ -831,6 +839,7 @@ msgid "Type"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__none
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__none
 msgid "Undefined"
 msgstr ""
