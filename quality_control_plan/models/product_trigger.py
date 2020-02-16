@@ -10,7 +10,6 @@ class QcProduct(models.Model):
     Extend product model with a field to store quality control plan assigned
     """
 
-    # model extended
     _inherit = ['qc.trigger.product_template_line']
 
     # new filed
@@ -23,7 +22,6 @@ class QcCategory(models.Model):
     Extend product category model with a field to store quality control plan assigned
     """
 
-    # model extended
     _inherit = ['qc.trigger.product_category_line']
 
     # new filed

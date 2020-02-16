@@ -12,11 +12,9 @@ from odoo import fields, models
 
 class QcTriggerPartnerLine(models.Model):
     """
-    New model
-    extend quality trigger with partner control plan
+    Extend quality trigger with partner control plan
     """
 
-    # extended model
     _inherit = "qc.trigger.line"
 
     # model

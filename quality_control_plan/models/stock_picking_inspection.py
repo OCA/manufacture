@@ -10,7 +10,6 @@ class StockPicking(models.Model):
     Extend picking method
     """
 
-    # inherit model
     _inherit = 'stock.picking'
 
     @api.multi
@@ -30,22 +29,19 @@ class StockPicking(models.Model):
 
             # get quality trigger associate to movement type
             qc_trigger = self.env['qc.trigger'
-                                  ].search([('picking_type_id',
-                                             '=',
-                                             self.picking_type_id.id
-                                             )
-                                            ])
+                            ].search([('picking_type_id', '=', self.picking_type_id.id)
+                                        ])
 
             # get partner associate to movement
             partner = (self.partner_id)
 
-            # get trigger for movemetn type on partner
+            # get trigger for movement type on partner
             trigger_line = self.env['qc.trigger.partner_line'
                                     ].search([('partner', '=', partner.id),
                                               ('trigger', '=', qc_trigger.id)
                                               ],
-                                             limit=1
-                                             )
+                                              limit=1
+                                              )
 
             # add new ispection
             if trigger_line:
