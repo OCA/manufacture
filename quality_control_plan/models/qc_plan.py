@@ -7,15 +7,13 @@ from odoo import fields, models, api
 
 class QcPlan(models.Model):
     """
-    New model
-    to manage quality control plans
+    Manage quality control plans
     """
 
     # model
     _name = 'qc.plan'
     _description = 'Quality Control Plan'
 
-    # extend model of messages and followers
     _inherit = ['mail.thread']
 
     # fields
@@ -27,6 +25,7 @@ class QcPlan(models.Model):
     free_pass = fields.Boolean('Free pass')
     # control levels of the plan
     plan_ids = fields.One2many('qc.level', 'plan_id', 'Plan')
+
 
     @api.onchange('free_pass')
     def on_change_free_pass(self):
@@ -43,8 +42,7 @@ class QcPlan(models.Model):
 
 class QcLevel(models.Model):
     """
-    New model
-    to manage the lelevs for a control plan
+    Manage the lelevs for a control plan
     """
 
     # model
@@ -62,8 +60,9 @@ class QcLevel(models.Model):
     chk_type = fields.Selection([('nr', 'Absolute value'),
                                  ('percent', 'Percent'),
                                  ],
-                                'Measure',
-                                default='nr')
+                                 'Measure',
+                                 default='nr'
+                                )
 
     # define record name to display in form view
     _rec_name = 'id'

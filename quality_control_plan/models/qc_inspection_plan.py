@@ -12,7 +12,6 @@ class QcInspection(models.Model):
     create nonconformity from inspection
     """
 
-    # extended method
     _inherit = ['qc.inspection']
 
     # new fields
@@ -26,39 +25,6 @@ class QcInspection(models.Model):
                                      'Nonconformity'
                                      )
 
-    @api.multi
-    def create_non_conformity(self, **kwargs):
-        """
-        Open nc form view prefilled with inspection data
-        """
-
-        # get partner if exists
-        if self.picking_id.partner_id.id:
-            partner = self.picking_id.partner_id.id
-        else:
-            partner = False
-
-        tmp_form_name = "mgmtsystem_nonconformity.view_mgmtsystem_nonconformity_form"
-        return {
-            # open nc form view
-            'name'      : _('Create Nonconformity on not compliant Inspection'),
-            'view_type' : 'form',
-            'view_mode' : 'form',
-            'res_model' : 'mgmtsystem.nonconformity',
-            'view_id'   : self.env.ref(tmp_form_name).id,
-            'type'      : 'ir.actions.act_window',
-
-            # fill fields with inspection data
-            'context': {
-                'default_name'          : _('Inspection not compliant'),
-                'default_product_id'    : self.product_id.id,
-                'default_partner_id'    : partner,
-                'default_qty_checked'   : self.qty_checked,
-                'default_inspection_id' : self.id
-            },
-
-            'target': 'new'
-        }
 
     @api.model
     def create(self, values):
@@ -76,10 +42,7 @@ class QcInspection(models.Model):
         # get partner from picking if exists
         if new_record.picking_id:
             partner_id = self.env['stock.picking'
-                                  ].search([('id',
-                                             '=',
-                                             new_record.picking_id.id
-                                             )],
+                                  ].search([('id', '=', new_record.picking_id.id)],
                                            limit=1
                                            ).partner_id.id
         else:
@@ -94,54 +57,36 @@ class QcInspection(models.Model):
 
         # try get plan for product and partner
         solution_art_prt = self.env['qc.trigger.product_template_line'
-                                    ].search([('product_template',
-                                               '=',
-                                               product_id.product_tmpl_id.id
-                                               ),
-                                              ('partners',
-                                               '=',
-                                               partner_id
-                                               )
-                                              ],
-                                             limit=1
-                                             )
+                    ].search([  ('product_template', '=', product_id.product_tmpl_id.id),
+                                ('partners', '=', partner_id)
+                                ],
+                                limit=1
+                                )
 
         if len(solution_art_prt) == 0:
             # try get plan for category and partner
             solution_cat_prt = self.env['qc.trigger.product_category_line'
-                                        ].search([('product_category',
-                                                   '=',
-                                                   product_id.categ_id.id
-                                                   ),
-                                                  ('partners',
-                                                   '=',
-                                                   partner_id
-                                                   )
-                                                  ],
-                                                 limit=1
-                                                 )
+                    ].search([  ('product_category', '=', product_id.categ_id.id),
+                                ('partners', '=', partner_id)
+                                ],
+                                limit=1
+                                )
 
         if len(solution_art_prt) + len(solution_cat_prt) == 0:
             # try get plan for product
             solution_art = self.env['qc.trigger.product_template_line'
-                                    ].search([('product_template',
-                                               '=',
-                                               product_id.product_tmpl_id.id
-                                               )
-                                              ],
-                                             limit=1
-                                             )
+                    ].search([  ('product_template', '=', product_id.product_tmpl_id.id)
+                                ],
+                                limit=1
+                                )
 
         if len(solution_art_prt) + len(solution_cat_prt) + len(solution_art) == 0:
             # try get plan for category
             solution_cat = self.env['qc.trigger.product_category_line'
-                                    ].search([('product_category',
-                                               '=',
-                                               product_id.categ_id.id
-                                               )
-                                              ],
-                                             limit=1
-                                             )
+                    ].search([  ('product_category', '=', product_id.categ_id.id)
+                                ],
+                                limit=1
+                                )
 
         if (len(solution_art_prt)
             + len(solution_cat_prt)
@@ -150,13 +95,10 @@ class QcInspection(models.Model):
                 == 0):
             # try get plan for partner
             solution_prt = self.env['qc.trigger.partner_line'
-                                    ].search([('partner',
-                                               '=',
-                                               partner_id
-                                               )
-                                              ],
-                                             limit=1
-                                             )
+                    ].search([  ('partner', '=', partner_id)
+                                ],
+                                limit=1
+                                )
 
         # if no plan return the new record
         if (len(solution_art_prt)
@@ -196,18 +138,12 @@ class QcInspection(models.Model):
             else:
                 # get check informations from qc.level
                 qty_related = self.env['qc.level'
-                                       ].search([('plan_id',
-                                                  '=',
-                                                  plan_id.id
-                                                  ),
-                                                 ('qty_received',
-                                                  '<',
-                                                  new_record.qty
-                                                  )
-                                                 ],
-                                                limit=1,
-                                                order='qty_received desc'
-                                                )
+                        ].search([  ('plan_id', '=', plan_id.id),
+                                    ('qty_received', '<', new_record.qty)
+                                    ],
+                                    limit=1,
+                                    order='qty_received desc'
+                                    )
                 # assign qty to checked
                 if qty_related:
                     if qty_related.chk_type == 'percent':
@@ -229,3 +165,37 @@ class QcInspection(models.Model):
                     new_record.qty_checked = 1
 
         return new_record
+
+    @api.multi
+    def create_nonconformity(self, **kwargs):
+        """
+        Open NC form view prefilled with inspection data
+        """
+
+        # get partner if exists
+        if self.picking_id.partner_id.id:
+            partner = self.picking_id.partner_id.id
+        else:
+            partner = False
+
+        tmp_form_name = "mgmtsystem_nonconformity.view_mgmtsystem_nonconformity_form"
+        return {
+            # open nc form view
+            'name'      : _('Create Nonconformity on not compliant Inspection'),
+            'view_type' : 'form',
+            'view_mode' : 'form',
+            'res_model' : 'mgmtsystem.nonconformity',
+            'view_id'   : self.env.ref(tmp_form_name).id,
+            'type'      : 'ir.actions.act_window',
+
+            # fill fields with inspection data
+            'context': {
+                'default_name'          : _('Inspection not compliant'),
+                'default_product_id'    : self.product_id.id,
+                'default_partner_id'    : partner,
+                'default_qty_checked'   : self.qty_checked,
+                'default_inspection_id' : self.id
+            },
+
+            'target': 'new'
+        }
