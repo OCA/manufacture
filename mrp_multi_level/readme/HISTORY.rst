@@ -1,3 +1,29 @@
+13.0.1.2.0 (2020-02-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor changes
+  (`#468 <https://github.com/OCA/manufacture/pull/468>`_).
+
+  * Planned Orders become fixed on manual creation by default
+  * Released Quantity becomes readonly
+  * Add product reference if Planned Order name is not defined on bom explosion
+
+13.0.1.1.0 (2020-02-21)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Minor changes
+  (`#469 <https://github.com/OCA/manufacture/pull/469>`_).
+
+  * Fix Main supplier computation in multi company
+  * Drop Triplicated field in search view
+
+
+* [IMP] Minor changes
+  (`#463 <https://github.com/OCA/manufacture/pull/463>`_).
+
+  * Show supply method on MRP Inventory
+  * Allow no-MRP users to look into Products
+
 13.0.1.0.0 (2019-12-18)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
