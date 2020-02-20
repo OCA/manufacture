@@ -110,6 +110,7 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_action": product_mrp_area.supply_method,
             "qty_released": 0.0,
             "name": "Supply: " + name,
+            "fixed": False,
         }
 
     @api.model
@@ -138,9 +139,11 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_origin": "mrp",
             "mrp_order_number": None,
             "parent_product_id": bom.product_id.id,
-            "name": ("Demand Bom Explosion: " + name).replace(
-                "Demand Bom Explosion: Demand Bom " "Explosion: ",
-                "Demand Bom Explosion: ",
+            "name": (
+                "Demand Bom Explosion: %s"
+                % (name or product.product_id.default_code or product.product_id.name)
+            ).replace(
+                "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
             ),
         }
 
