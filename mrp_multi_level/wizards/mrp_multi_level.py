@@ -105,6 +105,7 @@ class MultiLevelMrp(models.TransientModel):
             'mrp_action': product_mrp_area.supply_method,
             'qty_released': 0.0,
             'name': 'Planned supply for: ' + name,
+            'fixed': False,
         }
 
     @api.model
@@ -117,26 +118,27 @@ class MultiLevelMrp(models.TransientModel):
                 _("No MRP product found"))
 
         return {
-            'mrp_area_id': product.mrp_area_id.id,
-            'product_id': bomline.product_id.id,
-            'product_mrp_area_id': product_mrp_area.id,
-            'production_id': None,
-            'purchase_order_id': None,
-            'purchase_line_id': None,
-            'stock_move_id': None,
-            'mrp_qty': -(qty * bomline.product_qty),  # TODO: review with UoM
-            'current_qty': None,
-            'mrp_date': mrp_date_demand_2,
-            'current_date': None,
-            'mrp_type': 'd',
-            'mrp_origin': 'mrp',
-            'mrp_order_number': None,
-            'parent_product_id': bom.product_id.id,
-            'name':
-                ('Demand Bom Explosion: ' + name).replace(
-                    'Demand Bom Explosion: Demand Bom '
-                    'Explosion: ',
-                    'Demand Bom Explosion: '),
+            "mrp_area_id": product.mrp_area_id.id,
+            "product_id": bomline.product_id.id,
+            "product_mrp_area_id": product_mrp_area.id,
+            "production_id": None,
+            "purchase_order_id": None,
+            "purchase_line_id": None,
+            "stock_move_id": None,
+            "mrp_qty": -(qty * bomline.product_qty),  # TODO: review with UoM
+            "current_qty": None,
+            "mrp_date": mrp_date_demand_2,
+            "current_date": None,
+            "mrp_type": "d",
+            "mrp_origin": "mrp",
+            "mrp_order_number": None,
+            "parent_product_id": bom.product_id.id,
+            "name": (
+                "Demand Bom Explosion: %s"
+                % (name or product.product_id.default_code or product.product_id.name)
+            ).replace(
+                "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
+            ),
         }
 
     @api.model
