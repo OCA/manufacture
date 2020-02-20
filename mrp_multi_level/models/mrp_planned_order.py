@@ -42,8 +42,8 @@ class MrpPlannedOrder(models.Model):
     due_date = fields.Date(
         string="Due Date", help="Date in which the supply must have been completed."
     )
-    qty_released = fields.Float()
-    fixed = fields.Boolean()
+    qty_released = fields.Float(readonly=True)
+    fixed = fields.Boolean(default=True)
     mrp_qty = fields.Float(string="Quantity")
     mrp_move_down_ids = fields.Many2many(
         comodel_name="mrp.move",
