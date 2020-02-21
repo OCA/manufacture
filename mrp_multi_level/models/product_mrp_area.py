@@ -157,8 +157,7 @@ class ProductMRPArea(models.Model):
             proc_loc = rec.location_proc_id or rec.mrp_area_id.location_id
             values = {
                 "warehouse_id": rec.mrp_area_id.warehouse_id,
-                "company_id": self.env.user.company_id.id,
-                # TODO: better way to get company
+                "company_id": self.env.company,
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
             rec.supply_method = rule.action if rule else "none"
@@ -169,6 +168,7 @@ class ProductMRPArea(models.Model):
         for rec in self.filtered(lambda r: r.supply_method == "buy"):
             suppliers = rec.product_id.seller_ids.filtered(
                 lambda r: (not r.product_id or r.product_id == rec.product_id)
+                and (not r.company_id or r.company_id == rec.company_id)
             )
             if not suppliers:
                 continue
