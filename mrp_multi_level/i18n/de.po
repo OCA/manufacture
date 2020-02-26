@@ -131,18 +131,10 @@ msgstr "Das ist das Fälligkeitsdatum, zu dem der Auftrag erledigt sein muss."
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Day)"
+#, fuzzy
+#| msgid "Date to Procure (By Day)"
+msgid "Date to Procure"
 msgstr "Beschaffungsdatum (nach Tagen)"
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Month)"
-msgstr "Beschaffungsdatum (nach Monaten)"
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Week)"
-msgstr "Beschaffungsdatum (nach Wochen)"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__demand_qty
@@ -932,6 +924,12 @@ msgstr "Es darf keine negative Zahl angegeben werden."
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr "oder"
+
+#~ msgid "Date to Procure (By Month)"
+#~ msgstr "Beschaffungsdatum (nach Monaten)"
+
+#~ msgid "Date to Procure (By Week)"
+#~ msgstr "Beschaffungsdatum (nach Wochen)"
 
 #~ msgid "Transfer"
 #~ msgstr "Umbuchen"
