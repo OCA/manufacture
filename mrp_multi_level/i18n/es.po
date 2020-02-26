@@ -133,18 +133,10 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Day)"
+#, fuzzy
+#| msgid "Date to Procure (By Day)"
+msgid "Date to Procure"
 msgstr "Fecha para reaprovisionar (por día)"
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Month)"
-msgstr "Fecha para reaprovisionar (por mes)"
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Week)"
-msgstr "Fecha para reaprovisionar (por semana)"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__demand_qty
@@ -940,6 +932,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Date to Procure (By Month)"
+#~ msgstr "Fecha para reaprovisionar (por mes)"
+
+#~ msgid "Date to Procure (By Week)"
+#~ msgstr "Fecha para reaprovisionar (por semana)"
 
 #~ msgid "Transfer"
 #~ msgstr "Transfer"
