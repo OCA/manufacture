@@ -128,17 +128,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Day)"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Month)"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Date to Procure (By Week)"
+msgid "Date to Procure"
 msgstr ""
 
 #. module: mrp_multi_level
