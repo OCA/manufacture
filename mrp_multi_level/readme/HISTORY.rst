@@ -1,3 +1,16 @@
+13.0.1.3.0 (2020-03-02)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor changes"
+  (`#470 <https://github.com/OCA/manufacture/pull/470>`_).
+
+  * Planned Order release and due date become required.
+  * Add button to Product MRP Area to update MOQ from Supplier Info.
+  * Link Manufacturing Orders with Planned Orders.
+  * Allow Mrp Inventory Procure Wizard to be used from other models.
+  * Make MRP Inventory creation more extensible.
+  * Main Supplier computation (v13 requires explicit False definitions)
+
 13.0.1.2.0 (2020-02-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
