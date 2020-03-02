@@ -57,7 +57,17 @@
                             <field name="mrp_transit_delay" invisible="1"/>
                             <field name="mrp_inspection_delay" invisible="1"/>
                             <field name="mrp_minimum_stock"/>
-                            <field name="mrp_minimum_order_qty"/>
+                            <label for="mrp_minimum_order_qty"/>
+                            <div name="mrp_minimum_order_qty" class="o_row">
+                                <field name="mrp_minimum_order_qty"/>
+                                <span name="update_min_qty">
+                                    <button string="Get from main supplier" type="object"
+                                        name="update_min_qty_from_main_supplier"
+                                        attrs="{'invisible':[('supply_method', '!=', 'buy'), ('main_supplierinfo_id', '=', False)]}"
+                                        class="oe_link pt-0 oe_inline"
+                                    />
+                                </span>
+                            </div>
                             <field name="mrp_maximum_order_qty"/>
                             <field name="mrp_qty_multiple"/>
                             <field name="supply_method"/>

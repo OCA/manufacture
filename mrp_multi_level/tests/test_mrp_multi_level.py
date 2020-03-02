@@ -24,9 +24,12 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(product_mrp_area.supply_method, 'buy')
         self.assertEqual(product_mrp_area.main_supplier_id, self.vendor)
         self.assertEqual(product_mrp_area.qty_available, 10.0)
-        product_mrp_area = self.product_mrp_area_obj.search([
-            ('product_id', '=', self.sf_1.id)])
-        self.assertEqual(product_mrp_area.supply_method, 'manufacture')
+        product_mrp_area = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.sf_1.id)]
+        )
+        self.assertEqual(product_mrp_area.supply_method, "manufacture")
+        self.assertFalse(product_mrp_area.main_supplier_id)
+        self.assertFalse(product_mrp_area.main_supplierinfo_id)
 
     def test_03_mrp_moves(self):
         """Tests for mrp moves generated."""
