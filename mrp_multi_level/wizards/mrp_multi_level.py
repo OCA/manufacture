@@ -649,6 +649,33 @@ class MultiLevelMrp(models.TransientModel):
         return query, params
 
     @api.model
+    def _prepare_mrp_inventory_data(
+        self,
+        product_mrp_area,
+        mdt,
+        on_hand_qty,
+        running_availability,
+        demand_qty_by_date,
+        supply_qty_by_date,
+        planned_qty_by_date,
+    ):
+        """Return dict to create mrp.inventory records on MRP Multi Level Scheduler"""
+        mrp_inventory_data = {"product_mrp_area_id": product_mrp_area.id, "date": mdt}
+        demand_qty = demand_qty_by_date.get(mdt, 0.0)
+        mrp_inventory_data["demand_qty"] = abs(demand_qty)
+        supply_qty = supply_qty_by_date.get(mdt, 0.0)
+        mrp_inventory_data["supply_qty"] = abs(supply_qty)
+        mrp_inventory_data["initial_on_hand_qty"] = on_hand_qty
+        on_hand_qty += supply_qty + demand_qty
+        mrp_inventory_data["final_on_hand_qty"] = on_hand_qty
+        # Consider that MRP plan is followed exactly:
+        running_availability += (
+            supply_qty + demand_qty + planned_qty_by_date.get(mdt, 0.0)
+        )
+        mrp_inventory_data["running_availability"] = running_availability
+        return mrp_inventory_data, running_availability
+
+    @api.model
     def _init_mrp_inventory(self, product_mrp_area):
         mrp_move_obj = self.env["mrp.move"]
         planned_order_obj = self.env["mrp.planned.order"]
@@ -683,23 +710,15 @@ class MultiLevelMrp(models.TransientModel):
         )._product_available()[product_mrp_area.product_id.id]["qty_available"]
         running_availability = on_hand_qty
         for mdt in sorted(mrp_dates):
-            mrp_inventory_data = {
-                "product_mrp_area_id": product_mrp_area.id,
-                "date": mdt,
-            }
-            demand_qty = demand_qty_by_date.get(mdt, 0.0)
-            mrp_inventory_data["demand_qty"] = abs(demand_qty)
-            supply_qty = supply_qty_by_date.get(mdt, 0.0)
-            mrp_inventory_data["supply_qty"] = abs(supply_qty)
-            mrp_inventory_data["initial_on_hand_qty"] = on_hand_qty
-            on_hand_qty += supply_qty + demand_qty
-            mrp_inventory_data["final_on_hand_qty"] = on_hand_qty
-            # Consider that MRP plan is followed exactly:
-            running_availability += (
-                supply_qty + demand_qty + planned_qty_by_date.get(mdt, 0.0)
+            mrp_inventory_data, running_availability = self._prepare_mrp_inventory_data(
+                product_mrp_area,
+                mdt,
+                on_hand_qty,
+                running_availability,
+                demand_qty_by_date,
+                supply_qty_by_date,
+                planned_qty_by_date,
             )
-            mrp_inventory_data["running_availability"] = running_availability
-
             inv_id = self.env["mrp.inventory"].create(mrp_inventory_data)
             # attach planned orders to inventory
             planned_order_obj.search(
