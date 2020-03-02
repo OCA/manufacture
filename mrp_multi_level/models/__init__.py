@@ -6,3 +6,5 @@ from . import mrp_move
 from . import mrp_planned_order
 from . import mrp_inventory
 from . import product_mrp_area
+from . import stock_rule
+from . import mrp_production
