@@ -47,21 +47,19 @@ class MrpInventoryProcure(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(MrpInventoryProcure, self).default_get(fields)
-        mrp_inventory_obj = self.env["mrp.inventory"]
-        mrp_inventory_ids = self.env.context["active_ids"] or []
+        active_ids = self.env.context["active_ids"] or []
         active_model = self.env.context["active_model"]
-        if not mrp_inventory_ids or "item_ids" not in fields:
+        if not active_ids or "item_ids" not in fields:
             return res
-
-        assert active_model == "mrp.inventory", "Bad context propagation"
-
-        items = item_obj = self.env["mrp.inventory.procure.item"]
-        for line in mrp_inventory_obj.browse(mrp_inventory_ids).mapped(
-            "planned_order_ids"
-        ):
-            if line.qty_released < line.mrp_qty:
-                items += item_obj.create(self._prepare_item(line))
-        res["item_ids"] = [(6, 0, items.ids)]
+        if active_model == "mrp.inventory":
+            items = item_obj = self.env["mrp.inventory.procure.item"]
+            mrp_inventory_obj = self.env["mrp.inventory"]
+            for line in mrp_inventory_obj.browse(active_ids).mapped(
+                "planned_order_ids"
+            ):
+                if line.qty_released < line.mrp_qty:
+                    items += item_obj.create(self._prepare_item(line))
+            res["item_ids"] = [(6, 0, items.ids)]
         return res
 
     def make_procurement(self):
@@ -109,7 +107,7 @@ class MrpInventoryProcureItem(models.TransientModel):
     )
     qty = fields.Float(string="Quantity")
     uom_id = fields.Many2one(string="Unit of Measure", comodel_name="uom.uom")
-    date_planned = fields.Date(string="Planned Date", required=False)
+    date_planned = fields.Date(string="Planned Date", required=True)
     mrp_inventory_id = fields.Many2one(
         string="Mrp Inventory", comodel_name="mrp.inventory"
     )
@@ -127,6 +125,7 @@ class MrpInventoryProcureItem(models.TransientModel):
             ("push", "Push To"),
             ("pull_push", "Pull & Push"),
         ],
+        readonly=True,
     )
 
     def _prepare_procurement_values(self, group=False):
@@ -135,8 +134,8 @@ class MrpInventoryProcureItem(models.TransientModel):
                 fields.Date.from_string(self.date_planned)
             ),
             "warehouse_id": self.warehouse_id,
-            # 'company_id': self.company_id, # TODO: consider company
             "group_id": group,
+            "planned_order_id": self.planned_order_id.id,
         }
 
     @api.onchange("uom_id")

@@ -171,9 +171,14 @@ class ProductMRPArea(models.Model):
                 and (not r.company_id or r.company_id == rec.company_id)
             )
             if not suppliers:
+                rec.main_supplierinfo_id = False
+                rec.main_supplier_id = False
                 continue
             rec.main_supplierinfo_id = suppliers[0]
             rec.main_supplier_id = suppliers[0].name
+        for rec in self.filtered(lambda r: r.supply_method != "buy"):
+            rec.main_supplierinfo_id = False
+            rec.main_supplier_id = False
 
     def _adjust_qty_to_order(self, qty_to_order):
         self.ensure_one()
@@ -191,3 +196,9 @@ class ProductMRPArea(models.Model):
         if self.mrp_maximum_order_qty and qty_to_order > self.mrp_maximum_order_qty:
             return self.mrp_maximum_order_qty
         return qty_to_order
+
+    def update_min_qty_from_main_supplier(self):
+        for rec in self.filtered(
+            lambda r: r.main_supplierinfo_id and r.supply_method == "buy"
+        ):
+            rec.mrp_minimum_order_qty = rec.main_supplierinfo_id.min_qty

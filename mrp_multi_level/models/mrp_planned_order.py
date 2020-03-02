@@ -37,10 +37,12 @@ class MrpPlannedOrder(models.Model):
         readonly=True,
     )
     order_release_date = fields.Date(
-        string="Release Date", help="Order release date planned by MRP."
+        string="Release Date", help="Order release date planned by MRP.", required=True
     )
     due_date = fields.Date(
-        string="Due Date", help="Date in which the supply must have been completed."
+        string="Due Date",
+        help="Date in which the supply must have been completed.",
+        required=True,
     )
     qty_released = fields.Float(readonly=True)
     fixed = fields.Boolean(default=True)
