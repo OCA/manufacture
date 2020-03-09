@@ -21,12 +21,14 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: mrp_production_note
-#: model:ir.model,name:mrp_production_note.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Fertigungsauftrag"
-
-#. module: mrp_production_note
-#: model:ir.model.fields,field_description:mrp_production_note.field_mrp_production_notes
-#: model:ir.ui.view,arch_db:mrp_production_note.mrp_production_view_notes_form
+#: model:ir.model.fields,field_description:mrp_production_note.field_mrp_production__notes
+#: model_terms:ir.ui.view,arch_db:mrp_production_note.mrp_production_view_notes_form
 msgid "Notes"
 msgstr "Hinweise"
+
+#. module: mrp_production_note
+#: model:ir.model,name:mrp_production_note.model_mrp_production
+#, fuzzy
+#| msgid "Manufacturing Order"
+msgid "Production Order"
+msgstr "Fertigungsauftrag"
