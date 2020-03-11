@@ -140,7 +140,18 @@ class ProductMRPArea(models.Model):
         self, name, args=None, operator="ilike", limit=100, name_get_uid=None
     ):
         if operator in ("ilike", "like", "=", "=like", "=ilike"):
-            args = expression.AND([args or [], [("product_id.name", operator, name)]])
+            args = expression.AND(
+                [
+                    args or [],
+                    [
+                        "|",
+                        "|",
+                        ("product_id.name", operator, name),
+                        ("product_id.default_code", operator, name),
+                        ("mrp_area_id.name", operator, name),
+                    ],
+                ]
+            )
         return super(ProductMRPArea, self)._name_search(
             name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid
         )
