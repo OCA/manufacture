@@ -20,33 +20,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_quick_bom
-#: model:ir.model,name:product_quick_bom.model_mrp_bom
-msgid "Bill of Material"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid "Bill of Materials"
 msgstr ""
 
 #. module: product_quick_bom
-#: model:ir.model.fields,field_description:product_quick_bom.field_product_product_bom_line_ids
-#: model:ir.model.fields,field_description:product_quick_bom.field_product_template_bom_line_ids
-msgid "Bom Line"
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__bom_id
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__bom_id
+msgid "Bill of Materials (quick access)"
 msgstr ""
 
 #. module: product_quick_bom
-#: model:ir.ui.view,arch_db:product_quick_bom.product_template_form_view
-msgid "Bom line"
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__specific_bom_line_ids
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__specific_bom_line_ids
+msgid "BoM Lines"
 msgstr ""
 
 #. module: product_quick_bom
-#: model:ir.model.fields,help:product_quick_bom.field_product_product_bom_line_ids
-#: model:ir.model.fields,help:product_quick_bom.field_product_template_bom_line_ids
-msgid ""
-"If your product is manufactured you can select here the component to produce "
-"them"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid "Create BoM"
 msgstr ""
-
-#. module: product_quick_bom
-#: model:ir.model.fields,field_description:product_quick_bom.field_mrp_bom_line_product_tmpl_id
-msgid "Product"
-msgstr "Producto"
 
 #. module: product_quick_bom
 #: model:ir.model,name:product_quick_bom.model_product_template
@@ -54,12 +47,20 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_quick_bom
-#: code:addons/product_quick_bom/models/bom.py:14
-#, python-format
-msgid "You can only have one Bom per product template"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product doesn't have a BoM yet, you must create one before updating its "
+"components."
 msgstr ""
 
 #. module: product_quick_bom
-#: model:ir.model,name:product_quick_bom.model_mrp_bom_line
-msgid "mrp.bom.line"
-msgstr "mrp.bom.line"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product is linked to several BoMs, modifications must be done BoM-side."
+msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "mrp.bom.line"
+#~ msgstr "mrp.bom.line"
