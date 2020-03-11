@@ -20,35 +20,32 @@ msgstr ""
 "X-Generator: Weblate 3.6.1\n"
 
 #. module: product_quick_bom
-#: model:ir.model,name:product_quick_bom.model_mrp_bom
-msgid "Bill of Material"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+#, fuzzy
+#| msgid "Bill of Material"
+msgid "Bill of Materials"
 msgstr "Lista de Materiais"
 
 #. module: product_quick_bom
-#: model:ir.model.fields,field_description:product_quick_bom.field_product_product_bom_line_ids
-#: model:ir.model.fields,field_description:product_quick_bom.field_product_template_bom_line_ids
-msgid "Bom Line"
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__bom_id
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__bom_id
+#, fuzzy
+#| msgid "Bill of Material"
+msgid "Bill of Materials (quick access)"
+msgstr "Lista de Materiais"
+
+#. module: product_quick_bom
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__specific_bom_line_ids
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__specific_bom_line_ids
+#, fuzzy
+#| msgid "Bom Line"
+msgid "BoM Lines"
 msgstr "Linha de LdM"
 
 #. module: product_quick_bom
-#: model:ir.ui.view,arch_db:product_quick_bom.product_template_form_view
-msgid "Bom line"
-msgstr "Linha de LdM"
-
-#. module: product_quick_bom
-#: model:ir.model.fields,help:product_quick_bom.field_product_product_bom_line_ids
-#: model:ir.model.fields,help:product_quick_bom.field_product_template_bom_line_ids
-msgid ""
-"If your product is manufactured you can select here the component to produce "
-"them"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid "Create BoM"
 msgstr ""
-"Se o seu produto é fabricado pode aqui selecionar os componentes para o "
-"produzir"
-
-#. module: product_quick_bom
-#: model:ir.model.fields,field_description:product_quick_bom.field_mrp_bom_line_product_tmpl_id
-msgid "Product"
-msgstr "Produto"
 
 #. module: product_quick_bom
 #: model:ir.model,name:product_quick_bom.model_product_template
@@ -56,12 +53,30 @@ msgid "Product Template"
 msgstr "Modelo de Produto"
 
 #. module: product_quick_bom
-#: code:addons/product_quick_bom/models/bom.py:14
-#, python-format
-msgid "You can only have one Bom per product template"
-msgstr "Só pode ter uma LdM para cada modelo de produto"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product doesn't have a BoM yet, you must create one before updating its "
+"components."
+msgstr ""
 
 #. module: product_quick_bom
-#: model:ir.model,name:product_quick_bom.model_mrp_bom_line
-msgid "mrp.bom.line"
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product is linked to several BoMs, modifications must be done BoM-side."
 msgstr ""
+
+#~ msgid "Bom line"
+#~ msgstr "Linha de LdM"
+
+#~ msgid ""
+#~ "If your product is manufactured you can select here the component to "
+#~ "produce them"
+#~ msgstr ""
+#~ "Se o seu produto é fabricado pode aqui selecionar os componentes para o "
+#~ "produzir"
+
+#~ msgid "Product"
+#~ msgstr "Produto"
+
+#~ msgid "You can only have one Bom per product template"
+#~ msgstr "Só pode ter uma LdM para cada modelo de produto"
