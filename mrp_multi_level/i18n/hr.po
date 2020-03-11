@@ -207,6 +207,11 @@ msgid "Forecasted Inventory"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Get from main supplier"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Group By..."
 msgstr ""
@@ -540,6 +545,7 @@ msgstr ""
 #: model:ir.model,name:mrp_multi_level.model_mrp_planned_order
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__planned_order_ids
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__planned_order_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__planned_order_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__planned_order_ids
 msgid "Planned Order"
 msgstr ""
@@ -620,6 +626,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__uom_id
 msgid "Product UoM"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_production
+msgid "Production Order"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -763,6 +774,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__stock_move_id
 msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_stock_rule
+msgid "Stock Rule"
 msgstr ""
 
 #. module: mrp_multi_level
