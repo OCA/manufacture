@@ -14,7 +14,6 @@ from odoo.exceptions import ValidationError
 class ProductMRPArea(models.Model):
     _name = 'product.mrp.area'
     _description = 'Product MRP Area'
-    _rec_name = "product_id"
 
     active = fields.Boolean(default=True)
     mrp_area_id = fields.Many2one(
@@ -140,7 +139,10 @@ class ProductMRPArea(models.Model):
         if operator in ('ilike', 'like', '=', '=like', '=ilike'):
             args = expression.AND([
                 args or [],
-                [('product_id.name', operator, name)]
+                ['|', '|',
+                 ('product_id.name', operator, name),
+                 ('product_id.default_code', operator, name),
+                 ('mrp_area_id.name', operator, name)]
             ])
         return super(ProductMRPArea, self)._name_search(
             name, args=args, operator=operator, limit=limit,
