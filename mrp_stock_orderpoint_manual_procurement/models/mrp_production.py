@@ -5,9 +5,6 @@ from odoo import fields, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
-    requested_by = fields.Many2one(
-        comodel_name='res.users',
-        track_visibility='always',
-    )
+    requested_by = fields.Many2one(comodel_name="res.users", track_visibility="always")
