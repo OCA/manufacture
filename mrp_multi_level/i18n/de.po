@@ -208,6 +208,13 @@ msgid "Forecasted Inventory"
 msgstr "Vorhergesagter Bestand"
 
 #. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+#, fuzzy
+#| msgid "Main Supplier"
+msgid "Get from main supplier"
+msgstr "Hauptlieferant"
+
+#. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Group By..."
 msgstr "Gruppiere nach..."
@@ -551,6 +558,7 @@ msgstr "Geplantes Datum"
 #: model:ir.model,name:mrp_multi_level.model_mrp_planned_order
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__planned_order_ids
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__planned_order_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__planned_order_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__planned_order_ids
 msgid "Planned Order"
 msgstr "Geplanter Auftrag"
@@ -634,6 +642,13 @@ msgstr "Produktvorlage"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__uom_id
 msgid "Product UoM"
 msgstr "Produkt ME"
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_production
+#, fuzzy
+#| msgid "Product Parameters"
+msgid "Production Order"
+msgstr "Produkt-Parameter"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull_push
@@ -780,6 +795,13 @@ msgstr "Status"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__stock_move_id
 msgid "Stock Move"
+msgstr "Lagerbewegung"
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_stock_rule
+#, fuzzy
+#| msgid "Stock Move"
+msgid "Stock Rule"
 msgstr "Lagerbewegung"
 
 #. module: mrp_multi_level
