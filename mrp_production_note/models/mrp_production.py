@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     notes = fields.Html()
