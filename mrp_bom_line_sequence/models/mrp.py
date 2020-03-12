@@ -1,4 +1,4 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -31,7 +31,6 @@ class MrpBomLine(models.Model):
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    @api.multi
     @api.depends("bom_line_ids")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in move lines.
@@ -47,7 +46,6 @@ class MrpBom(models.Model):
         string="Max sequence in lines", compute="_compute_max_line_sequence"
     )
 
-    @api.multi
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
@@ -55,6 +53,5 @@ class MrpBom(models.Model):
                 line.sequence = current_sequence
                 current_sequence += 1
 
-    @api.multi
     def copy(self, default=None):
         return super(MrpBom, self.with_context(keep_line_sequence=True)).copy(default)
