@@ -3,7 +3,7 @@ which are not manufactured in the ERP.
 
 When you try to do it, you get this warning:
 
-Some of your components are tracked, you have to specify a manufacturing order in order to retrieve the correct components. 
+Some of your components are tracked, you have to specify a manufacturing order in order to retrieve the correct components.
 
 Unfortunately, it doesn't cover all the use cases.
 

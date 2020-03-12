@@ -10,5 +10,6 @@ class ProductTemplate(models.Model):
 
     allow_unbuild_purchased = fields.Boolean(
         help="If checked, unbuild orders doesn't assume a previous "
-             "manufacturing order have built this product.\n"
-             "In this case it's a purchased product and you want unbuild it")
+        "manufacturing order have built this product.\n"
+        "In this case it's a purchased product and you want unbuild it"
+    )
