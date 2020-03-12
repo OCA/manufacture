@@ -4,19 +4,14 @@
 {
     "name": "MRP Work Order Sequence",
     "summary": "adds sequence to production work orders.",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Manufacturing",
-    "author": "Eficent, "
-              "Odoo Community Association (OCA)",
+    "author": "Eficent, " "Odoo Community Association (OCA)",
     "development_status": "Beta",
     "maintainers": ["lreficent"],
     "website": "https://github.com/OCA/manufacture",
     "license": "LGPL-3",
-    "depends": [
-        "mrp",
-    ],
-    "data": [
-        "views/mrp_workorder_view.xml",
-    ],
+    "depends": ["mrp"],
+    "data": ["views/mrp_workorder_view.xml"],
     "installable": True,
 }
