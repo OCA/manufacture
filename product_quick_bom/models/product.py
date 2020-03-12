@@ -26,10 +26,7 @@ class ProductTemplate(models.Model):
     # we just add a button to create one
     def button_create_bom(self):
         self.ensure_one()
-        vals = {
-            "product_tmpl_id": self.id,
-            "type": "normal",
-        }
+        vals = {"product_tmpl_id": self.id, "type": "normal"}
         self.env["mrp.bom"].create(vals)
 
     specific_bom_line_ids = fields.One2many(
