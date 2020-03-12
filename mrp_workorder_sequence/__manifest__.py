@@ -1,4 +1,4 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
@@ -6,7 +6,7 @@
     "summary": "adds sequence to production work orders.",
     "version": "13.0.1.0.0",
     "category": "Manufacturing",
-    "author": "Eficent, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "development_status": "Beta",
     "maintainers": ["lreficent"],
     "website": "https://github.com/OCA/manufacture",
