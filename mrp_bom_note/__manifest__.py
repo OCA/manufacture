@@ -3,19 +3,15 @@
 
 {
     "name": "Notes in Bill of Materials",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
+    "AvanzOSC,"
+    "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "depends": [
-        "mrp",
-    ],
-    "data": [
-        "views/mrp_bom_view.xml",
-    ],
-    "installable": True
+    "depends": ["mrp"],
+    "data": ["views/mrp_bom_view.xml"],
+    "installable": True,
 }
