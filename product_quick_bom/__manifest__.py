@@ -4,7 +4,7 @@
 {
     "name": "Product Quick Bom",
     "summary": "Create the bom directly from the product",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "mrp",
     "website": "https://github.com/OCA/manufacture",
     "author": "Akretion, Odoo Community Association (OCA)",
