@@ -14,17 +14,16 @@ class QcInspectionSetTest(models.TransientModel):
     also fill in all lines of the inspection with the corresponding lines of
     the template.
     """
-    _name = 'qc.inspection.set.test'
-    _description = 'Set test for inspection'
 
-    test = fields.Many2one(comodel_name='qc.test', string='Test')
+    _name = "qc.inspection.set.test"
+    _description = "Set test for inspection"
+
+    test = fields.Many2one(comodel_name="qc.test", string="Test")
 
     @api.multi
     def action_create_test(self):
-        inspection = self.env['qc.inspection'].browse(
-            self.env.context['active_id'])
+        inspection = self.env["qc.inspection"].browse(self.env.context["active_id"])
         inspection.test = self.test
         inspection.inspection_lines.unlink()
-        inspection.inspection_lines = inspection._prepare_inspection_lines(
-            self.test)
+        inspection.inspection_lines = inspection._prepare_inspection_lines(self.test)
         return True
