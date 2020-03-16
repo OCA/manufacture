@@ -14,4 +14,5 @@ class ProductTemplate(models.Model):
     qc_triggers = fields.One2many(
         comodel_name="qc.trigger.product_template_line",
         inverse_name="product_template",
-        string="Quality control triggers")
+        string="Quality control triggers",
+    )

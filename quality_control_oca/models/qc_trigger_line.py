@@ -25,13 +25,19 @@ class QcTriggerLine(models.AbstractModel):
     trigger = fields.Many2one(comodel_name="qc.trigger", required=True)
     test = fields.Many2one(comodel_name="qc.test", required=True)
     user = fields.Many2one(
-        comodel_name='res.users', string='Responsible',
-        track_visibility='always', default=lambda self: self.env.user)
+        comodel_name="res.users",
+        string="Responsible",
+        track_visibility="always",
+        default=lambda self: self.env.user,
+    )
     partners = fields.Many2many(
-        comodel_name='res.partner', string='Partners',
-        help='If filled, the test will only be created when the action is done'
-        ' for one of the specified partners. If empty, the test will always be'
-        ' created.', domain="[('parent_id', '=', False)]")
+        comodel_name="res.partner",
+        string="Partners",
+        help="If filled, the test will only be created when the action is done"
+        " for one of the specified partners. If empty, the test will always be"
+        " created.",
+        domain="[('parent_id', '=', False)]",
+    )
 
     def get_trigger_line_for_product(self, trigger, product, partner=False):
         """Overridable method for getting trigger_line associated to a product.
@@ -53,15 +59,18 @@ class QcTriggerProductCategoryLine(models.Model):
 
     def get_trigger_line_for_product(self, trigger, product, partner=False):
         trigger_lines = super(
-            QcTriggerProductCategoryLine,
-            self).get_trigger_line_for_product(trigger, product,
-                                               partner=partner)
+            QcTriggerProductCategoryLine, self
+        ).get_trigger_line_for_product(trigger, product, partner=partner)
         category = product.categ_id
         while category:
             for trigger_line in category.qc_triggers.filtered(
-                    lambda r: r.trigger == trigger and (
-                    not r.partners or not partner or
-                    partner.commercial_partner_id in r.partners)):
+                lambda r: r.trigger == trigger
+                and (
+                    not r.partners
+                    or not partner
+                    or partner.commercial_partner_id in r.partners
+                )
+            ):
                 trigger_lines.add(trigger_line)
             category = category.parent_id
         return trigger_lines
@@ -75,14 +84,17 @@ class QcTriggerProductTemplateLine(models.Model):
 
     def get_trigger_line_for_product(self, trigger, product, partner=False):
         trigger_lines = super(
-            QcTriggerProductTemplateLine,
-            self).get_trigger_line_for_product(trigger, product,
-                                               partner=partner)
+            QcTriggerProductTemplateLine, self
+        ).get_trigger_line_for_product(trigger, product, partner=partner)
         for trigger_line in product.product_tmpl_id.qc_triggers.filtered(
-                lambda r: r.trigger == trigger and (
-                not r.partners or not partner or
-                partner.commercial_partner_id in r.partners) and
-                r.test.active):
+            lambda r: r.trigger == trigger
+            and (
+                not r.partners
+                or not partner
+                or partner.commercial_partner_id in r.partners
+            )
+            and r.test.active
+        ):
             trigger_lines.add(trigger_line)
         return trigger_lines
 
@@ -94,14 +106,17 @@ class QcTriggerProductLine(models.Model):
     product = fields.Many2one(comodel_name="product.product")
 
     def get_trigger_line_for_product(self, trigger, product, partner=False):
-        trigger_lines = super(
-            QcTriggerProductLine,
-            self).get_trigger_line_for_product(trigger, product,
-                                               partner=partner)
+        trigger_lines = super(QcTriggerProductLine, self).get_trigger_line_for_product(
+            trigger, product, partner=partner
+        )
         for trigger_line in product.qc_triggers.filtered(
-                lambda r: r.trigger == trigger and (
-                not r.partners or not partner or
-                partner.commercial_partner_id in r.partners) and
-                r.test.active):
+            lambda r: r.trigger == trigger
+            and (
+                not r.partners
+                or not partner
+                or partner.commercial_partner_id in r.partners
+            )
+            and r.test.active
+        ):
             trigger_lines.add(trigger_line)
         return trigger_lines
