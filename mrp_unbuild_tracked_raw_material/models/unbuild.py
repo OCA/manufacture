@@ -13,8 +13,7 @@ logger = logging.getLogger(__name__)
 
 MESSAGE = (
     "Some of your components are tracked, you have to specify "
-    "a manufacturing order in order to retrieve "
-    "the correct components."
+    "a manufacturing order in order to retrieve the correct components."
 )
 ALTER_MESSAGE = (
     "Alternatively, you may unbuild '%s' tracked product "
@@ -65,21 +64,22 @@ class MrpUnbuild(models.Model):
         # Comes from
         # https://github.com/OCA/ocb/blob/12.0/addons/mrp/models/...
         # mrp_unbuild.py#L117
-        if consume_move.has_tracking != "none":
-            self.env["stock.move.line"].create(
-                {
-                    "move_id": consume_move.id,
-                    "lot_id": self.lot_id.id,
-                    "qty_done": consume_move.product_uom_qty,
-                    "product_id": consume_move.product_id.id,
-                    "product_uom_id": consume_move.product_uom.id,
-                    "location_id": consume_move.location_id.id,
-                    "location_dest_id": consume_move.location_dest_id.id,
-                }
-            )
-        else:
-            consume_move.quantity_done = consume_move.product_uom_qty
-        consume_move._action_done()
+        if consume_move:
+            if consume_move.has_tracking != "none":
+                self.env["stock.move.line"].create(
+                    {
+                        "move_id": consume_move.id,
+                        "lot_id": self.lot_id.id,
+                        "qty_done": consume_move.product_uom_qty,
+                        "product_id": consume_move.product_id.id,
+                        "product_uom_id": consume_move.product_uom.id,
+                        "location_id": consume_move.location_id.id,
+                        "location_dest_id": consume_move.location_dest_id.id,
+                    }
+                )
+            else:
+                consume_move.quantity_done = consume_move.product_uom_qty
+            consume_move._action_done()
 
         # Comment from odoo original module:
         # TODO: Will fail if user do more than one unbuild with lot
@@ -121,10 +121,14 @@ class MrpUnbuild(models.Model):
             {"produce_line_ids": [(6, 0, produced_move_line_ids.ids)]}
         )
         self.message_post(
-            body=_("Product has been unbuilt without previous " "manufacturing order")
+            body=_("Product has been unbuilt without previous manufacturing order")
         )
         return self.write({"state": "done"})
 
     def _prepare_lots_for_purchased_unbuild(self, product):
         # Customize your data lot with your own code
-        return {"name": datetime.now().strftime(DT_FORMAT), "product_id": product.id}
+        return {
+            "name": datetime.now().strftime(DT_FORMAT),
+            "product_id": product.id,
+            "company_id": self.env.company.id,
+        }

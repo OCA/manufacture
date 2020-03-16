@@ -10,6 +10,7 @@ from odoo.addons.mrp.tests.common import TestMrpCommon
 
 class TestUnbuildUnmanufacturedProduct(TestMrpCommon):
     def setUp(self, *args, **kwargs):
+        self.company = self.env.ref("base.main_company")
         self.loc = self.env.ref("stock.stock_location_stock")
         super().setUp(*args, **kwargs)
 
@@ -44,10 +45,13 @@ class TestUnbuildUnmanufacturedProduct(TestMrpCommon):
         return (bom, prd_to_build, prd_to_use1, prd_to_use2)
 
     def test_unbuild(self):
-        """ """
         bom, prd_to_build, prd_to_use1, prd_to_use2 = self.create_data()
         lot = self.env["stock.production.lot"].create(
-            {"name": "%s" % datetime.now(), "product_id": prd_to_build.id}
+            {
+                "name": "%s" % datetime.now(),
+                "product_id": prd_to_build.id,
+                "company_id": self.company.id,
+            }
         )
         self.env["stock.quant"]._update_available_quantity(
             prd_to_build, self.loc, 10, lot_id=lot
@@ -59,6 +63,8 @@ class TestUnbuildUnmanufacturedProduct(TestMrpCommon):
                 "product_qty": 1.0,
                 "lot_id": lot.id,
                 "product_uom_id": self.uom_unit.id,
+                "location_id": self.loc.id,
+                "location_dest_id": self.loc.id,
             }
         )
         unbuild.action_validate()
@@ -68,7 +74,9 @@ class TestUnbuildUnmanufacturedProduct(TestMrpCommon):
 
     def _check_qty(self, qty, product):
         self.assertEqual(
-            self.env["stock.quant"]._get_available_quantity(product, self.loc),
+            self.env["stock.quant"]._get_available_quantity(
+                product, self.loc, allow_negative=True
+            ),
             qty,
             "You should have the {} product '{}' in stock".format(qty, product.name),
         )
