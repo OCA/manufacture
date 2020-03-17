@@ -43,17 +43,13 @@ msgstr "Activo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_ids
-#, fuzzy
-#| msgid "Active"
 msgid "Activities"
-msgstr "Activo"
+msgstr "Actividades"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_state
-#, fuzzy
-#| msgid "Active"
 msgid "Activity State"
-msgstr "Activo"
+msgstr "Estado de actividad"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line__possible_ql_values
@@ -722,8 +718,6 @@ msgstr "Responsable"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_user_id
-#, fuzzy
-#| msgid "Responsible"
 msgid "Responsible User"
 msgstr "Responsable"
 
@@ -760,10 +754,8 @@ msgstr "Establecer test"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_inspection_set_test
-#, fuzzy
-#| msgid "Search inspection"
 msgid "Set test for inspection"
-msgstr "Buscar inspección"
+msgstr "Establecer test para inspección"
 
 #. module: quality_control
 #: model:qc.test.question,name:quality_control.qc_test_question_2
