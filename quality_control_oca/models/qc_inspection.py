@@ -1,14 +1,12 @@
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
 from odoo.tools import formatLang
-
-import odoo.addons.decimal_precision as dp
 
 
 class QcInspection(models.Model):
@@ -21,13 +19,12 @@ class QcInspection(models.Model):
         for i in self:
             i.success = all([x.success for x in i.inspection_lines])
 
-    @api.multi
     def object_selection_values(self):
         """
         Overridable method for adding more object models to an inspection.
         :return: A list with the selection's possible values.
         """
-        return list()
+        return [("product.product", "Product")]
 
     @api.depends("object_id")
     def _compute_product_id(self):
@@ -55,7 +52,7 @@ class QcInspection(models.Model):
     )
     object_id = fields.Reference(
         string="Reference",
-        selection=lambda self: self.object_selection_values(),
+        selection="object_selection_values",
         readonly=True,
         states={"draft": [("readonly", False)]},
         ondelete="set null",
@@ -65,7 +62,6 @@ class QcInspection(models.Model):
         compute="_compute_product_id",
         store=True,
         help="Product associated with the inspection",
-        oldname="product",
     )
     qty = fields.Float(string="Quantity", default=1.0)
     test = fields.Many2one(comodel_name="qc.test", string="Test", readonly=True)
@@ -93,7 +89,7 @@ class QcInspection(models.Model):
         string="State",
         readonly=True,
         default="draft",
-        track_visibility="onchange",
+        tracking=True,
     )
     success = fields.Boolean(
         compute="_compute_success",
@@ -105,22 +101,19 @@ class QcInspection(models.Model):
         string="Auto-generated",
         readonly=True,
         copy=False,
-        help="If an inspection is auto-generated, it can be canceled but not "
-        "removed.",
+        help="If an inspection is auto-generated, it can be canceled but not removed.",
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
         readonly=True,
         states={"draft": [("readonly", False)]},
-        default=lambda self: self.env["res.company"]._company_default_get(
-            "qc.inspection"
-        ),
+        default=lambda self: self.env.company,
     )
     user = fields.Many2one(
         comodel_name="res.users",
         string="Responsible",
-        track_visibility="always",
+        tracking=True,
         default=lambda self: self.env.user,
     )
 
@@ -129,9 +122,8 @@ class QcInspection(models.Model):
         for vals in val_list:
             if vals.get("name", "/") == "/":
                 vals["name"] = self.env["ir.sequence"].next_by_code("qc.inspection")
-        return super(QcInspection, self).create(vals)
+        return super().create(vals)
 
-    @api.multi
     def unlink(self):
         for inspection in self:
             if inspection.auto_generated:
@@ -140,47 +132,41 @@ class QcInspection(models.Model):
                 )
             if inspection.state != "draft":
                 raise exceptions.UserError(
-                    _("You cannot remove an inspection that is not in draft " "state.")
+                    _("You cannot remove an inspection that is not in draft state.")
                 )
-        return super(QcInspection, self).unlink()
+        return super().unlink()
 
-    @api.multi
     def action_draft(self):
         self.write({"state": "draft"})
 
-    @api.multi
     def action_todo(self):
         for inspection in self:
             if not inspection.test:
                 raise exceptions.UserError(_("You must first set the test to perform."))
         self.write({"state": "ready"})
 
-    @api.multi
     def action_confirm(self):
         for inspection in self:
             for line in inspection.inspection_lines:
-                if line.question_type == "qualitative":
-                    if not line.qualitative_value:
-                        raise exceptions.UserError(
-                            _(
-                                "You should provide an answer for all "
-                                "qualitative questions."
-                            )
+                if line.question_type == "qualitative" and not line.qualitative_value:
+                    raise exceptions.UserError(
+                        _(
+                            "You should provide an answer for all "
+                            "qualitative questions."
                         )
-                else:
-                    if not line.uom_id:
-                        raise exceptions.UserError(
-                            _(
-                                "You should provide a unit of measure for "
-                                "quantitative questions."
-                            )
+                    )
+                elif line.question_type != "qualitative" and not line.uom_id:
+                    raise exceptions.UserError(
+                        _(
+                            "You should provide a unit of measure for "
+                            "quantitative questions."
                         )
+                    )
             if inspection.success:
                 inspection.state = "success"
             else:
                 inspection.state = "waiting"
 
-    @api.multi
     def action_approve(self):
         for inspection in self:
             if inspection.success:
@@ -188,11 +174,9 @@ class QcInspection(models.Model):
             else:
                 inspection.state = "failed"
 
-    @api.multi
     def action_cancel(self):
         self.write({"state": "canceled"})
 
-    @api.multi
     def set_test(self, trigger_line, force_fill=False):
         for inspection in self:
             header = self._prepare_inspection_header(inspection.object_id, trigger_line)
@@ -205,7 +189,6 @@ class QcInspection(models.Model):
                 trigger_line.test, force_fill=force_fill
             )
 
-    @api.multi
     def _make_inspection(self, object_ref, trigger_line):
         """Overridable hook method for creating inspection from test.
         :param object_ref: Object instance
@@ -218,7 +201,6 @@ class QcInspection(models.Model):
         inspection.set_test(trigger_line)
         return inspection
 
-    @api.multi
     def _prepare_inspection_header(self, object_ref, trigger_line):
         """Overridable hook method for preparing inspection header.
         :param object_ref: Object instance
@@ -235,7 +217,6 @@ class QcInspection(models.Model):
             "auto_generated": True,
         }
 
-    @api.multi
     def _prepare_inspection_lines(self, test, force_fill=False):
         new_data = []
         for line in test.test_lines:
@@ -245,7 +226,6 @@ class QcInspection(models.Model):
             new_data.append((0, 0, data))
         return new_data
 
-    @api.multi
     def _prepare_inspection_line(self, test, line, fill=None):
         data = {
             "name": line.name,
@@ -320,10 +300,7 @@ class QcInspectionLine(models.Model):
     )
     name = fields.Char(string="Question", readonly=True)
     product_id = fields.Many2one(
-        comodel_name="product.product",
-        related="inspection_id.product_id",
-        store=True,
-        oldname="product",
+        comodel_name="product.product", related="inspection_id.product_id", store=True,
     )
     test_line = fields.Many2one(
         comodel_name="qc.test.question", string="Test question", readonly=True
@@ -332,8 +309,8 @@ class QcInspectionLine(models.Model):
         comodel_name="qc.test.question.value", string="Answers"
     )
     quantitative_value = fields.Float(
-        "Quantitative value",
-        digits=dp.get_precision("Quality Control"),
+        string="Quantitative value",
+        digits="Quality Control",
         help="Value of the result for a quantitative question.",
     )
     qualitative_value = fields.Many2one(
@@ -345,13 +322,13 @@ class QcInspectionLine(models.Model):
     notes = fields.Text(string="Notes")
     min_value = fields.Float(
         string="Min",
-        digits=dp.get_precision("Quality Control"),
+        digits="Quality Control",
         readonly=True,
         help="Minimum valid value for a quantitative question.",
     )
     max_value = fields.Float(
         string="Max",
-        digits=dp.get_precision("Quality Control"),
+        digits="Quality Control",
         readonly=True,
         help="Maximum valid value for a quantitative question.",
     )
