@@ -1,7 +1,7 @@
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -12,7 +12,6 @@ class QcTestTemplateCategory(models.Model):
     _name = "qc.test.category"
     _description = "Test category"
 
-    @api.multi
     @api.depends("name", "parent_id")
     def _compute_get_complete_name(self):
         for record in self:
@@ -24,17 +23,11 @@ class QcTestTemplateCategory(models.Model):
             record.complete_name = " / ".join(reversed(names))
 
     @api.constrains("parent_id")
-    def _check_recursion(self):
-        ids = self.ids
-        level = 100
-        while ids:
-            parents = self.search([("id", "in", ids), ("parent_id", "!=", False)])
-            ids = list({x.parent_id.id for x in parents})
-            if not level:
-                raise exceptions.UserError(
-                    _("Error! You can not create recursive categories.")
-                )
-            level -= 1
+    def _check_parent_id(self):
+        if not self._check_recursion():
+            raise exceptions.UserError(
+                _("Error! You can not create recursive categories.")
+            )
 
     name = fields.Char("Name", required=True, translate=True)
     parent_id = fields.Many2one(
