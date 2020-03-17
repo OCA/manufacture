@@ -1,7 +1,7 @@
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-2020 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -12,7 +12,6 @@ class QcTestTemplateCategory(models.Model):
     _name = "qc.test.category"
     _description = "Test category"
 
-    @api.multi
     @api.depends("name", "parent_id")
     def _compute_get_complete_name(self):
         for record in self:
