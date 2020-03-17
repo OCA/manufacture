@@ -24,5 +24,3 @@ The complete inspection workflow is:
     Draft -> Confirmed -> Success
                 |
                 | -> Failure (Pending approval) -> Approved
-
-Based on the nan_quality_control_* modules from NaN·tic.
