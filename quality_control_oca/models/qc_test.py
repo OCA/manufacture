@@ -1,13 +1,11 @@
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
-
-import odoo.addons.decimal_precision as dp
 
 
 class QcTest(models.Model):
@@ -18,7 +16,6 @@ class QcTest(models.Model):
     _name = "qc.test"
     _description = "Quality control test"
 
-    @api.multi
     def object_selection_values(self):
         return set()
 
@@ -36,7 +33,7 @@ class QcTest(models.Model):
         copy=True,
     )
     object_id = fields.Reference(
-        string="Reference object", selection=object_selection_values,
+        string="Reference object", selection="object_selection_values",
     )
     fill_correct_values = fields.Boolean(string="Pre-fill with correct values")
     type = fields.Selection(
@@ -49,7 +46,7 @@ class QcTest(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get("qc.test"),
+        default=lambda self: self.env.company,
     )
 
 
@@ -103,8 +100,8 @@ class QcTestQuestion(models.Model):
         copy=True,
     )
     notes = fields.Text(string="Notes")
-    min_value = fields.Float(string="Min", digits=dp.get_precision("Quality Control"))
-    max_value = fields.Float(string="Max", digits=dp.get_precision("Quality Control"),)
+    min_value = fields.Float(string="Min", digits="Quality Control")
+    max_value = fields.Float(string="Max", digits="Quality Control")
     uom_id = fields.Many2one(comodel_name="uom.uom", string="Uom")
 
 
