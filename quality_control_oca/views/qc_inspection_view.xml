@@ -2,7 +2,7 @@
 <!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
     Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
-    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 ForgeFlow S.L.
     Copyright 2017 Simone Rubino - Agile Business Group
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -38,7 +38,7 @@
                         type="object"
                         states="waiting"
                         class="oe_highlight"
-                        groups="quality_control.group_quality_control_manager"
+                        groups="quality_control_oca.group_quality_control_manager"
                         string="Approve"
                     />
                     <button
@@ -52,13 +52,12 @@
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,waiting,success"
-                        statusbar_colors='{"success": "blue", "failed": "red"}'
                     />
                 </header>
                 <sheet>
-                    <div class="oe_right oe_button_box" name="buttons">
+                    <div class="oe_button_box" name="button_box">
                         <button
-                            class="oe_inline oe_stat_button"
+                            class="oe_stat_button"
                             type="action"
                             name="%(action_qc_inspection_set_test)d"
                             icon="fa-bookmark-o"
@@ -227,7 +226,6 @@
     <record model="ir.actions.act_window" id="action_qc_inspection">
         <field name="name">Inspections</field>
         <field name="res_model">qc.inspection</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
@@ -241,10 +239,11 @@
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
             <tree
+                decoration-danger="success==False"
+                decoration-info="success==True"
                 string="Inspection lines"
                 delete="false"
                 create="false"
-                colors="red: success==False"
             >
                 <field name="inspection_id" />
                 <field name="product_id" />
@@ -325,8 +324,8 @@
     <record model="ir.actions.act_window" id="action_qc_inspection_line">
         <field name="name">Inspection lines</field>
         <field name="res_model">qc.inspection.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree</field>
+        <field name="view_id" ref="qc_inspection_line_tree_view" />
     </record>
     <menuitem
         name="Inspection lines"

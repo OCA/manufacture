@@ -1,7 +1,7 @@
 # Copyright 2010 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -13,7 +13,7 @@ from ..models.qc_trigger_line import _filter_trigger_lines
 
 class TestQualityControl(TransactionCase):
     def setUp(self):
-        super(TestQualityControl, self).setUp()
+        super().setUp()
         self.inspection_model = self.env["qc.inspection"]
         self.category_model = self.env["qc.test.category"]
         self.question_model = self.env["qc.test.question"]
@@ -21,12 +21,12 @@ class TestQualityControl(TransactionCase):
         self.qc_trigger = self.env["qc.trigger"].create(
             {"name": "Test Trigger", "active": True}
         )
-        self.test = self.env.ref("quality_control.qc_test_1")
-        self.val_ok = self.env.ref("quality_control.qc_test_question_value_1")
-        self.val_ko = self.env.ref("quality_control.qc_test_question_value_2")
-        self.qn_question = self.env.ref("quality_control.qc_test_question_2")
+        self.test = self.env.ref("quality_control_oca.qc_test_1")
+        self.val_ok = self.env.ref("quality_control_oca.qc_test_question_value_1")
+        self.val_ko = self.env.ref("quality_control_oca.qc_test_question_value_2")
+        self.qn_question = self.env.ref("quality_control_oca.qc_test_question_2")
         self.cat_generic = self.env.ref(
-            "quality_control.qc_test_template_category_generic"
+            "quality_control_oca.qc_test_template_category_generic"
         )
         self.product = self.env.ref("product.product_product_11")
         inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
@@ -122,7 +122,7 @@ class TestQualityControl(TransactionCase):
             "{} / {}".format(category1.name, category2.name),
             "Something went wrong when computing complete name",
         )
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(exceptions.UserError):
             category1.parent_id = category2.id
 
     def test_get_qc_trigger_product(self):
