@@ -2,7 +2,7 @@
 <!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
     Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
-    Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    Copyright 2017 ForgeFlow S.L.
     Copyright 2017 Simone Rubino - Agile Business Group
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -28,7 +28,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
     </record>
     <record id="qc_inspection_multi_company_rule" model="ir.rule">
         <field name="name">Quality control inspection multi-company</field>
@@ -36,7 +36,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
     </record>
     <record id="qc_trigger_multi_company_rule" model="ir.rule">
         <field name="name">Quality control trigger multi-company</field>
@@ -44,6 +44,6 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
     </record>
 </odoo>
