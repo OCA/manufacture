@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -15,16 +15,16 @@ msgstr ""
 
 #. module: quality_control_mrp
 #: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_created_inspections
-msgid "Created inspections"
+msgid "Created Inspections"
 msgstr ""
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_qc_inspections
+#: model:ir.model.fields,field_description:quality_control_mrp.field_mrp_production_qc_inspections_ids
 msgid "Inspections"
 msgstr ""
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,help:quality_control_mrp.field_mrp_production_qc_inspections
+#: model:ir.model.fields,help:quality_control_mrp.field_mrp_production_qc_inspections_ids
 msgid "Inspections related to this production."
 msgstr ""
 
@@ -35,7 +35,7 @@ msgid "Manufacturing Order"
 msgstr ""
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_production
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_production_id
 #: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_search_view_production
 msgid "Production"
 msgstr ""
@@ -46,7 +46,7 @@ msgid "Production done"
 msgstr ""
 
 #. module: quality_control_mrp
-#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_line_production
+#: model:ir.model.fields,field_description:quality_control_mrp.field_qc_inspection_line_production_id
 #: model:ir.ui.view,arch_db:quality_control_mrp.qc_inspection_line_search_production_view
 msgid "Production order"
 msgstr ""
