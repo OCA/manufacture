@@ -1,4 +1,4 @@
-# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP Repair Refurbish",
@@ -6,9 +6,8 @@
     "version": "12.0.1.1.3",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
-    "author": "Eficent, Odoo Community Association (OCA)",
+    "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
     "depends": ["repair",],
     "data": [
