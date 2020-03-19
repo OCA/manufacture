@@ -41,7 +41,6 @@ class RepairOrder(models.Model):
             self.refurbish_product_id = False
             self.refurbish_location_dest_id = False
 
-    @api.multi
     def _get_refurbish_stock_move_dict(self):
         return {
             "name": self.name,
@@ -71,7 +70,6 @@ class RepairOrder(models.Model):
             ],
         }
 
-    @api.multi
     def action_repair_done(self):
         res = super(
             RepairOrder,
