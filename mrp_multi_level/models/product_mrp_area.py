@@ -224,3 +224,38 @@ class ProductMRPArea(models.Model):
             lambda r: r.main_supplierinfo_id and r.supply_method == "buy"
         ):
             rec.mrp_minimum_order_qty = rec.main_supplierinfo_id.min_qty
+
+    def _in_stock_moves_domain(self):
+        self.ensure_one()
+        locations = self.mrp_area_id._get_locations()
+        return [
+            ("product_id", "=", self.product_id.id),
+            ("state", "not in", ["done", "cancel"]),
+            ("product_qty", ">", 0.00),
+            ("location_id", "not in", locations.ids),
+            ("location_dest_id", "in", locations.ids),
+        ]
+
+    def _out_stock_moves_domain(self):
+        self.ensure_one()
+        locations = self.mrp_area_id._get_locations()
+        return [
+            ("product_id", "=", self.product_id.id),
+            ("state", "not in", ["done", "cancel"]),
+            ("product_qty", ">", 0.00),
+            ("location_id", "in", locations.ids),
+            ("location_dest_id", "not in", locations.ids),
+        ]
+
+    def action_view_stock_moves(self, domain):
+        self.ensure_one()
+        action = self.env.ref("stock.stock_move_action").read()[0]
+        action["domain"] = domain
+        action["context"] = {}
+        return action
+
+    def action_view_incoming_stock_moves(self):
+        return self.action_view_stock_moves(self._in_stock_moves_domain())
+
+    def action_view_outgoing_stock_moves(self):
+        return self.action_view_stock_moves(self._out_stock_moves_domain())
