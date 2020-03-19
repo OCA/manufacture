@@ -10,9 +10,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        'repair',
-    ],
+    "depends": ["repair",],
     "data": [
         "views/repair_view.xml",
         "data/stock_data.xml",
