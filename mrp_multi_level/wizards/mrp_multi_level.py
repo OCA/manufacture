@@ -338,37 +338,13 @@ class MultiLevelMrp(models.TransientModel):
         """This method is meant to be inherited to add a forecast mechanism."""
         return True
 
-    # TODO: move this methods to product_mrp_area?? to be able to
-    # show moves with an action
-    @api.model
-    def _in_stock_moves_domain(self, product_mrp_area):
-        locations = product_mrp_area.mrp_area_id._get_locations()
-        return [
-            ("product_id", "=", product_mrp_area.product_id.id),
-            ("state", "not in", ["done", "cancel"]),
-            ("product_qty", ">", 0.00),
-            ("location_id", "not in", locations.ids),
-            ("location_dest_id", "in", locations.ids),
-        ]
-
-    @api.model
-    def _out_stock_moves_domain(self, product_mrp_area):
-        locations = product_mrp_area.mrp_area_id._get_locations()
-        return [
-            ("product_id", "=", product_mrp_area.product_id.id),
-            ("state", "not in", ["done", "cancel"]),
-            ("product_qty", ">", 0.00),
-            ("location_id", "in", locations.ids),
-            ("location_dest_id", "not in", locations.ids),
-        ]
-
     @api.model
     def _init_mrp_move_from_stock_move(self, product_mrp_area):
         move_obj = self.env["stock.move"]
         mrp_move_obj = self.env["mrp.move"]
-        in_domain = self._in_stock_moves_domain(product_mrp_area)
+        in_domain = product_mrp_area._in_stock_moves_domain()
         in_moves = move_obj.search(in_domain)
-        out_domain = self._out_stock_moves_domain(product_mrp_area)
+        out_domain = product_mrp_area._out_stock_moves_domain()
         out_moves = move_obj.search(out_domain)
         if in_moves:
             for move in in_moves:
