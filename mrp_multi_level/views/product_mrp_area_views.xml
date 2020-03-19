@@ -31,7 +31,22 @@
         <field name="arch" type="xml">
             <form string="Product MRP Area parameters">
                 <sheet>
-                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_incoming_stock_moves"
+                            string="Incoming Moves"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                        <button
+                            name="action_view_outgoing_stock_moves"
+                            string="Outgoing Moves"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                    </div>
                     <widget
                         name="web_ribbon"
                         title="Archived"
