@@ -3,13 +3,13 @@
 {
     "name": "MRP Repair Refurbish",
     "summary": "Create refurbished products during repair",
-    "version": "12.0.1.1.3",
+    "version": "13.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["repair",],
+    "depends": ["repair"],
     "data": [
         "views/repair_view.xml",
         "data/stock_data.xml",

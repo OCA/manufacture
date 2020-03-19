@@ -37,7 +37,6 @@ class ProductTemplate(models.Model):
                 template.product_variant_ids.refurbish_product_id
             )
 
-    @api.multi
     def _inverse_refurbish_product(self):
         for rec in self:
             if len(rec.product_variant_ids) == 1:
