@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -20,21 +20,17 @@ class QualityControlTeam(models.Model):
                 self.env.context.get("default_qc_team_id")
             )
         if not qc_team_id or not qc_team_id.exists():
-            company_id = self.sudo(user_id).company_id.id
-            qc_team_id = (
-                self.env["qc.team"]
-                .sudo()
-                .search(
-                    [
-                        "|",
-                        ("user_id", "=", user_id),
-                        ("member_ids", "=", user_id),
-                        "|",
-                        ("company_id", "=", False),
-                        ("company_id", "child_of", [company_id]),
-                    ],
-                    limit=1,
-                )
+            company_id = self.with_user(user_id).company_id.id
+            qc_team_id = self.env["qc.team"].search(
+                [
+                    "|",
+                    ("user_id", "=", user_id),
+                    ("member_ids", "=", user_id),
+                    "|",
+                    ("company_id", "=", False),
+                    ("company_id", "child_of", [company_id]),
+                ],
+                limit=1,
             )
         if not qc_team_id:
             default_team_id = self.env.ref(
@@ -49,7 +45,7 @@ class QualityControlTeam(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get("qc.team"),
+        default=lambda self: self.env.company,
     )
     user_id = fields.Many2one(comodel_name="res.users", string="Team Leader")
     member_ids = fields.One2many(

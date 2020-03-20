@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Copyright 2017-19 Eficent Business and IT Consulting Services S.L.
- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+    <!-- Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
+         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
     <record id="qc_team_view_kanban" model="ir.ui.view">
         <field name="name">qc.team.dashboard</field>
         <field name="model">qc.team</field>
@@ -100,7 +100,6 @@
     <record id="qc_team_dashboard_act" model="ir.actions.act_window">
         <field name="name">Dashboard</field>
         <field name="res_model">qc.team</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,form</field>
         <field name="context">{'search_default_personal':1}</field>
         <field name="help" type="html">

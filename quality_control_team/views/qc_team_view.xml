@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+    <!-- Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
+         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
     <record id="qc_team_view_form" model="ir.ui.view">
         <field name="name">qc.team.form</field>
         <field name="model">qc.team</field>
@@ -136,7 +136,6 @@
     <record id="qc_team_config_action" model="ir.actions.act_window">
         <field name="name">Quality Control Teams</field>
         <field name="res_model">qc.team</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">

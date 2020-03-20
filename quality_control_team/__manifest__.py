@@ -1,14 +1,14 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Quality Control Team",
     "summary": "Adds quality control teams to handle different quality "
     "control workflows",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.0.0",
     "development_status": "Mature",
     "category": "Quality Control",
-    "website": "https://odoo-community.org/",
-    "author": "Eficent, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["lreficent"],
     "license": "AGPL-3",
     "application": False,
