@@ -7,95 +7,97 @@ from odoo.fields import first
 
 
 class QcInspection(models.Model):
-    _inherit = 'qc.inspection'
+    _inherit = "qc.inspection"
 
     picking_id = fields.Many2one(
-        comodel_name="stock.picking", compute="_compute_picking", store=True)
+        comodel_name="stock.picking", compute="_compute_picking", store=True
+    )
     lot_id = fields.Many2one(
-        comodel_name='stock.production.lot', compute="_compute_lot",
-        store=True)
+        comodel_name="stock.production.lot", compute="_compute_lot", store=True
+    )
 
     @api.multi
     def object_selection_values(self):
         result = super().object_selection_values()
-        result.extend([
-            ('stock.picking', "Picking List"), ('stock.move', "Stock Move")])
+        result.extend([("stock.picking", "Picking List"), ("stock.move", "Stock Move")])
         return result
 
     @api.multi
-    @api.depends('object_id')
+    @api.depends("object_id")
     def _compute_picking(self):
         for inspection in self:
             if inspection.object_id:
-                if inspection.object_id._name == 'stock.move':
+                if inspection.object_id._name == "stock.move":
                     inspection.picking_id = inspection.object_id.picking_id
-                elif inspection.object_id._name == 'stock.picking':
+                elif inspection.object_id._name == "stock.picking":
                     inspection.picking_id = inspection.object_id
-                elif inspection.object_id._name == 'stock.move.line':
+                elif inspection.object_id._name == "stock.move.line":
                     inspection.picking_id = inspection.object_id.picking_id
 
     @api.multi
-    @api.depends('object_id')
+    @api.depends("object_id")
     def _compute_lot(self):
         moves = self.filtered(
-            lambda i: i.object_id and
-            i.object_id._name == 'stock.move').mapped('object_id')
-        move_lines = self.env['stock.move.line'].search([
-            ('lot_id', '!=', False),
-            ('move_id', 'in', [move.id for move in moves])])
+            lambda i: i.object_id and i.object_id._name == "stock.move"
+        ).mapped("object_id")
+        move_lines = self.env["stock.move.line"].search(
+            [("lot_id", "!=", False), ("move_id", "in", [move.id for move in moves])]
+        )
 
         for inspection in self:
             if inspection.object_id:
-                if inspection.object_id._name == 'stock.move.line':
-                    inspection.lot_id = \
-                        inspection.object_id.lot_id
-                elif inspection.object_id._name == 'stock.move':
-                    inspection.lot_id = first(move_lines.filtered(
-                        lambda line: line.move_id == inspection.object_id
-                    )).lot_id
-                elif inspection.object_id._name == 'stock.production.lot':
+                if inspection.object_id._name == "stock.move.line":
+                    inspection.lot_id = inspection.object_id.lot_id
+                elif inspection.object_id._name == "stock.move":
+                    inspection.lot_id = first(
+                        move_lines.filtered(
+                            lambda line: line.move_id == inspection.object_id
+                        )
+                    ).lot_id
+                elif inspection.object_id._name == "stock.production.lot":
                     inspection.lot_id = inspection.object_id
 
     @api.multi
-    @api.depends('object_id')
+    @api.depends("object_id")
     def _compute_product_id(self):
         """Overriden for getting the product from a stock move."""
         self.ensure_one()
         super(QcInspection, self)._compute_product_id()
         if self.object_id:
-            if self.object_id._name == 'stock.move':
+            if self.object_id._name == "stock.move":
                 self.product_id = self.object_id.product_id
-            elif self.object_id._name == 'stock.move.line':
+            elif self.object_id._name == "stock.move.line":
                 self.product_id = self.object_id.product_id
-            elif self.object_id._name == 'stock.production.lot':
+            elif self.object_id._name == "stock.production.lot":
                 self.product_id = self.object_id.product_id
 
-    @api.onchange('object_id')
+    @api.onchange("object_id")
     def onchange_object_id(self):
         if self.object_id:
-            if self.object_id._name == 'stock.move':
+            if self.object_id._name == "stock.move":
                 self.qty = self.object_id.product_qty
-            elif self.object_id._name == 'stock.move.line':
+            elif self.object_id._name == "stock.move.line":
                 self.qty = self.object_id.product_qty
 
     @api.multi
     def _prepare_inspection_header(self, object_ref, trigger_line):
         res = super(QcInspection, self)._prepare_inspection_header(
-            object_ref, trigger_line)
+            object_ref, trigger_line
+        )
         # Fill qty when coming from pack operations
-        if object_ref and object_ref._name == 'stock.move.line':
-            res['qty'] = object_ref.product_qty
-        if object_ref and object_ref._name == 'stock.move':
-            res['qty'] = object_ref.product_uom_qty
+        if object_ref and object_ref._name == "stock.move.line":
+            res["qty"] = object_ref.product_qty
+        if object_ref and object_ref._name == "stock.move":
+            res["qty"] = object_ref.product_uom_qty
         return res
 
 
 class QcInspectionLine(models.Model):
-    _inherit = 'qc.inspection.line'
+    _inherit = "qc.inspection.line"
 
     picking_id = fields.Many2one(
-        comodel_name="stock.picking", related="inspection_id.picking_id",
-        store=True)
+        comodel_name="stock.picking", related="inspection_id.picking_id", store=True
+    )
     lot_id = fields.Many2one(
-        comodel_name="stock.production.lot", related="inspection_id.lot_id",
-        store=True)
+        comodel_name="stock.production.lot", related="inspection_id.lot_id", store=True
+    )
