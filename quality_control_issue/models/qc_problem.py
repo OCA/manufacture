@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # Copyright 2017 Aleph Objects, Inc. (https://www.alephobjects.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -23,7 +23,6 @@ class QcProblem(models.Model):
         team = self.env["qc.team"]._get_default_qc_team_id(user_id=self.env.uid)
         return self.stage_find([], team, [("fold", "=", False)])
 
-    @api.multi
     def _read_group_stage_ids(self, stages, domain, order=None):
         search_domain = []
         qc_team_id = self.env.context.get("default_qc_team_id") or False
@@ -40,7 +39,6 @@ class QcProblem(models.Model):
         )
         return stages.browse(stage_ids)
 
-    @api.one
     @api.depends("issue_ids")
     def _compute_count(self):
         self.issue_count = len(self.issue_ids)

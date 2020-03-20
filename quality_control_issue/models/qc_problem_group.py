@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # Copyright 2017 Aleph Objects, Inc. (https://www.alephobjects.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -17,5 +17,5 @@ class QcProblemGroup(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )

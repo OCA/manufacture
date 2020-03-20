@@ -1,11 +1,9 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # Copyright 2017 Aleph Objects, Inc. (https://www.alephobjects.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import UserError
-
-import odoo.addons.decimal_precision as dp
 
 
 class QualityControlIssue(models.Model):
@@ -13,7 +11,6 @@ class QualityControlIssue(models.Model):
     _description = "Quality Control Issue"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
-    @api.multi
     def _compute_stock_scrap_qty(self):
         for rec in self:
             rec.stock_scrap_qty = sum(self.stock_scrap_ids.mapped("scrap_qty"))
@@ -21,9 +18,8 @@ class QualityControlIssue(models.Model):
     @api.model
     def create(self, vals):
         vals["name"] = self.env["ir.sequence"].next_by_code("qc.issue") or ""
-        return super(QualityControlIssue, self).create(vals)
+        return super().create(vals)
 
-    @api.one
     def _get_uom(self):
         self.product_uom = self.product_id.product_tmpl_id.uom_id
 
@@ -41,7 +37,6 @@ class QualityControlIssue(models.Model):
             return warehouse.lot_stock_id.id
         return None
 
-    @api.multi
     def _read_group_stage_ids(self, stages, domain, order=None):
         search_domain = []
         qc_team_id = self.env.context.get("default_qc_team_id") or False
@@ -84,7 +79,7 @@ class QualityControlIssue(models.Model):
         default=1.0,
         readonly=True,
         states={"new": [("readonly", False)]},
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     product_uom = fields.Many2one(
         comodel_name="uom.uom",
@@ -154,7 +149,7 @@ class QualityControlIssue(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
     )
     stock_scrap_ids = fields.One2many(
         comodel_name="stock.scrap", string="Scraps", inverse_name="qc_issue_id"
@@ -189,7 +184,6 @@ class QualityControlIssue(models.Model):
         stage = self.env["qc.issue.stage"].search(search_domain, order=order, limit=1)
         return stage
 
-    @api.multi
     def write(self, vals):
         stage_obj = self.env["qc.issue.stage"]
         state = vals.get("state")
@@ -219,15 +213,12 @@ class QualityControlIssue(models.Model):
                 vals.update({"state": state})
         return super(QualityControlIssue, self).write(vals)
 
-    @api.multi
     def action_confirm(self):
         self.write({"state": "progress"})
 
-    @api.multi
     def action_done(self):
         self.write({"state": "done"})
 
-    @api.multi
     def action_cancel(self):
         self.write({"state": "cancel"})
 
@@ -247,7 +238,6 @@ class QualityControlIssue(models.Model):
             self.product_id = product
             self.product_uom = product.product_tmpl_id.uom_id
 
-    @api.multi
     def scrap_products(self):
         self.ensure_one()
         return {
@@ -268,7 +258,6 @@ class QualityControlIssue(models.Model):
             "target": "new",
         }
 
-    @api.multi
     def action_view_stock_scrap(self):
         action = self.env.ref("stock.action_stock_scrap")
         result = action.read()[0]

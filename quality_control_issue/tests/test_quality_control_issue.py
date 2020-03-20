@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 from odoo.exceptions import AccessError
@@ -8,7 +8,7 @@ from odoo.tests import common
 class TestQualityControlIssue(common.SingleTransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestQualityControlIssue, cls).setUpClass()
+        super().setUpClass()
 
         cls.qc_problem_grp_obj = cls.env["qc.problem.group"]
         cls.qc_problem_obj = cls.env["qc.problem"]
@@ -61,18 +61,18 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_01_create_qc_problem_group(self):
         """Test to create a QC problem group"""
         # QC Manager creates QC Problem group
-        self.qc_problem_group = self.qc_problem_grp_obj.sudo(self.qc_manager.id).create(
+        self.qc_problem_group = self.qc_problem_grp_obj.with_user(self.qc_manager.id).create(
             {"name": "QC Problem Group Test", "company_id": self.company.id}
         )
 
         # QC User tries to create QC Problem group
         with self.assertRaises(AccessError):
-            self.qc_problem_grp_obj.sudo(self.qc_user.id).create(
+            self.qc_problem_grp_obj.with_user(self.qc_user.id).create(
                 {"name": "QC Problem Group Test", "company_id": self.company.id}
             )
         # QC User lists all QC Problem groups
         qc_problem_group_list = (
-            self.qc_problem_grp_obj.sudo(self.qc_user.id).search([]).mapped("name")
+            self.qc_problem_grp_obj.with_user(self.qc_user.id).search([]).mapped("name")
         )
         self.assertEquals(
             len(qc_problem_group_list),
@@ -83,11 +83,11 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_02_create_qc_problem(self):
         """Test to create a QC problem"""
         # Create first QC Problem Group
-        qc_problem_group = self.qc_problem_grp_obj.sudo(self.qc_manager.id).create(
+        qc_problem_group = self.qc_problem_grp_obj.with_user(self.qc_manager.id).create(
             {"name": "QC Problem Group Test", "company_id": self.company.id}
         )
         # QC Manager creates QC Problem
-        self.qc_problem = self.qc_problem_obj.sudo(self.qc_manager.id).create(
+        self.qc_problem = self.qc_problem_obj.with_user(self.qc_manager.id).create(
             {
                 "name": "QC Problem Test",
                 "company_id": self.company.id,
@@ -96,7 +96,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         )
 
         # QC User creates QC Problem
-        self.qc_problem_obj.sudo(self.qc_user.id).create(
+        self.qc_problem_obj.with_user(self.qc_user.id).create(
             {
                 "name": "QC Problem Test 2",
                 "company_id": self.company.id,
@@ -105,7 +105,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         )
         # QC User lists all QC Problem
         qc_problem_list = (
-            self.qc_problem_obj.sudo(self.qc_user.id).search([]).mapped("name")
+            self.qc_problem_obj.with_user(self.qc_user.id).search([]).mapped("name")
         )
         self.assertEquals(
             len(qc_problem_list),
@@ -116,18 +116,18 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_03_create_qc_stage(self):
         """Test to create a QC stage"""
         # QC Manager creates QC Stage
-        self.qc_stage = self.qc_stage_obj.sudo(self.qc_manager.id).create(
-            {"name": "QC Stage Test", "team_id": self.team.id}
+        self.qc_stage = self.qc_stage_obj.with_user(self.qc_manager.id).create(
+            {"name": "QC Stage Test", "qc_team_id": self.team.id}
         )
 
         # QC User tries to create QC Stage
         with self.assertRaises(AccessError):
-            self.qc_stage_obj.sudo(self.qc_user.id).create(
+            self.qc_stage_obj.with_user(self.qc_user.id).create(
                 {"name": "QC Stage Test 2", "team_id": self.team.id}
             )
         # QC User lists all QC Stage
         qc_stage_list = (
-            self.qc_stage_obj.sudo(self.qc_user.id).search([]).mapped("name")
+            self.qc_stage_obj.with_user(self.qc_user.id).search([]).mapped("name")
         )
         self.assertEquals(
             len(qc_stage_list), 3, "User 1 should have read access " "to all QC stages"
@@ -136,7 +136,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_04_create_qc_issue(self):
         """Test to create a QC issue"""
         # QC Manager creates QC Issue
-        self.qc_issue = self.qc_issue_obj.sudo(self.qc_manager.id).create(
+        self.qc_issue = self.qc_issue_obj.with_user(self.qc_manager.id).create(
             {
                 "product_id": self.product_1.id,
                 "product_qty": 1.0,
@@ -146,7 +146,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         )
 
         # QC User creates QC Issue
-        self.qc_issue_2 = self.qc_issue_obj.sudo(self.qc_user.id).create(
+        self.qc_issue_2 = self.qc_issue_obj.with_user(self.qc_user.id).create(
             {
                 "product_id": self.product_1.id,
                 "product_qty": 1.0,
@@ -156,7 +156,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         )
         # QC User lists all QC Issue
         qc_issue_list = (
-            self.qc_issue_obj.sudo(self.qc_user.id).search([]).mapped("name")
+            self.qc_issue_obj.with_user(self.qc_user.id).search([]).mapped("name")
         )
         self.assertEquals(
             len(qc_issue_list), 2, "User 2 should have read access " "to all QC issues"
@@ -165,18 +165,18 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_05_create_qc_issue_stage(self):
         """Test to create a QC issue stage"""
         # QC Manager creates QC Issue Stage
-        self.qc_issue_stage = self.qc_issue_stage_obj.sudo(self.qc_manager.id).create(
+        self.qc_issue_stage = self.qc_issue_stage_obj.with_user(self.qc_manager.id).create(
             {"name": "QC Stage Test", "qc_team_id": self.team.id}
         )
 
         # QC User tries to create QC Issue Stage
         with self.assertRaises(AccessError):
-            self.qc_issue_stage_obj.sudo(self.qc_user.id).create(
+            self.qc_issue_stage_obj.with_user(self.qc_user.id).create(
                 {"name": "QC Stage Test 2", "qc_team_id": self.team.id}
             )
         # QC User lists all QC Issue Stage
         qc_issue_stage_list = (
-            self.qc_issue_stage_obj.sudo(self.qc_user.id).search([]).mapped("name")
+            self.qc_issue_stage_obj.with_user(self.qc_user.id).search([]).mapped("name")
         )
         self.assertEquals(
             len(qc_issue_stage_list),
@@ -187,7 +187,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
     def test_06_write_qc_issue(self):
         """Test to write a QC issue stage"""
         # QC Manager creates QC Issue
-        qc_issue = self.qc_issue_obj.sudo(self.qc_manager.id).create(
+        qc_issue = self.qc_issue_obj.with_user(self.qc_manager.id).create(
             {
                 "product_id": self.product_1.id,
                 "product_qty": 1.0,
@@ -197,20 +197,20 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         )
 
         # Change product
-        qc_issue.sudo(self.qc_manager.id).write(
+        qc_issue.with_user(self.qc_manager.id).write(
             {"product_id": self.product_2.id, "product_uom": self.product_2.uom_id.id}
         )
 
         # Change quantity
-        qc_issue.sudo(self.qc_manager.id).write({"product_qty": 2.0})
+        qc_issue.with_user(self.qc_manager.id).write({"product_qty": 2.0})
 
         # Change inspector
-        qc_issue.sudo(self.qc_manager.id).write({"inspector_id": self.qc_user.id})
+        qc_issue.with_user(self.qc_manager.id).write({"inspector_id": self.qc_user.id})
 
     def test_07_scrap_products(self):
         """Test scrapped products"""
         # QC Manager creates QC Issue
-        qc_issue = self.qc_issue_obj.sudo(self.qc_manager.id).create(
+        qc_issue = self.qc_issue_obj.with_user(self.qc_manager.id).create(
             {
                 "product_id": self.product_1.id,
                 "product_qty": 1.0,
