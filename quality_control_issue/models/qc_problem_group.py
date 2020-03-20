@@ -11,7 +11,11 @@ class QcProblemGroup(models.Model):
 
     name = fields.Char()
     problem_ids = fields.One2many(
-        comodel_name="qc.problem", inverse_name="problem_group_id")
+        comodel_name="qc.problem", inverse_name="problem_group_id"
+    )
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', required=True,
-        default=lambda self: self.env.user.company_id)
+        comodel_name="res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.user.company_id,
+    )

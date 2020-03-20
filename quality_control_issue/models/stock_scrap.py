@@ -9,4 +9,5 @@ class QualityControlIssueStage(models.Model):
     _inherit = "stock.scrap"
 
     qc_issue_id = fields.Many2one(
-        comodel_name="qc.issue", string="Quality Control Issue")
+        comodel_name="qc.issue", string="Quality Control Issue"
+    )

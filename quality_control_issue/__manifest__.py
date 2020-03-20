@@ -4,20 +4,16 @@
 {
     "name": "Quality Control Issue",
     "summary": "Allow to manage and report Quality Control Issues.",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Quality Control",
     "website": "https://odoo-community.org/",
-    "author": "Eficent , Odoo Community Association (OCA)",
+    "author": "Eficent, Odoo Community Association (OCA)",
     "maintainers": ["lreficent"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "quality_control",
-        "quality_control_team",
-        "stock",
-    ],
+    "depends": ["quality_control", "quality_control_team", "stock"],
     "data": [
         "security/ir.model.access.csv",
         "security/quality_control_issue_security.xml",

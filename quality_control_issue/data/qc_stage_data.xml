@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <data noupdate="0">
         <record model="qc.stage" id="qc_stage_new">
             <field name="name">New</field>
@@ -11,7 +9,6 @@
             <field name="fold">False</field>
         </record>
     </data>
-
     <data noupdate="0">
         <record model="qc.stage" id="qc_stage_done">
             <field name="name">Done</field>
@@ -19,5 +16,4 @@
             <field name="fold">True</field>
         </record>
     </data>
-
 </odoo>

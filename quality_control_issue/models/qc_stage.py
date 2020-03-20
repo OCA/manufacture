@@ -5,17 +5,17 @@
 from odoo import api, fields, models
 
 AVAILABLE_PRIORITIES = [
-    ('0', 'Normal'),
-    ('1', 'Low'),
-    ('2', 'High'),
-    ('3', 'Very High'),
+    ("0", "Normal"),
+    ("1", "Low"),
+    ("2", "High"),
+    ("3", "Very High"),
 ]
 
 
 class QualityControlStage(models.Model):
     _name = "qc.stage"
     _description = "Quality Control Stage"
-    _rec_name = 'name'
+    _rec_name = "name"
     _order = "sequence, name, id"
 
     @api.model
@@ -24,19 +24,20 @@ class QualityControlStage(models.Model):
         qc team in context should not create a stage for the current team only.
         """
         ctx = dict(self.env.context)
-        if ctx.get('default_qc_team_id') and not ctx.get('some_context'):
-            ctx.pop('default_qc_team_id')
-        return super(QualityControlStage,
-                     self.with_context(ctx)).default_get(fields)
+        if ctx.get("default_qc_team_id") and not ctx.get("some_context"):
+            ctx.pop("default_qc_team_id")
+        return super(QualityControlStage, self.with_context(ctx)).default_get(fields)
 
-    name = fields.Char('Stage Name', required=True)
+    name = fields.Char("Stage Name", required=True)
     sequence = fields.Integer(
-        string='Sequence', help="Used to order stages. Lower is better.",
-        default=1)
+        string="Sequence", help="Used to order stages. Lower is better.", default=1
+    )
     qc_team_id = fields.Many2one(
-        comodel_name='qc.team', string='Quality Control Team',
-        ondelete='set null')
+        comodel_name="qc.team", string="Quality Control Team", ondelete="set null"
+    )
     fold = fields.Boolean(
-        string='Folded in Pipeline', default=False,
-        help='This stage is folded in the kanban view when there are no '
-             'records in that stage to display.')
+        string="Folded in Pipeline",
+        default=False,
+        help="This stage is folded in the kanban view when there are no "
+        "records in that stage to display.",
+    )
