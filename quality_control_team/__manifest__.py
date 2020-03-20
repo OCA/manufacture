@@ -3,8 +3,8 @@
 {
     "name": "Quality Control Team",
     "summary": "Adds quality control teams to handle different quality "
-               "control workflows",
-    "version": "12.0.1.1.0",
+    "control workflows",
+    "version": "13.0.1.1.0",
     "development_status": "Mature",
     "category": "Quality Control",
     "website": "https://odoo-community.org/",
@@ -13,9 +13,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "quality_control",
-    ],
+    "depends": ["quality_control"],
     "data": [
         "security/ir.model.access.csv",
         "views/qc_team_view.xml",
