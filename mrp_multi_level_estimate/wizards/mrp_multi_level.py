@@ -4,8 +4,10 @@
 
 import logging
 from datetime import timedelta
+
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_round
+
 logger = logging.getLogger(__name__)
 
 
@@ -13,14 +15,14 @@ class MultiLevelMrp(models.TransientModel):
     _inherit = "mrp.multi.level"
 
     @api.model
-    def _prepare_mrp_move_data_from_estimate(
-            self, estimate, product_mrp_area, date):
+    def _prepare_mrp_move_data_from_estimate(self, estimate, product_mrp_area, date):
         mrp_type = "d"
         origin = "fc"
         daily_qty = float_round(
             estimate.daily_qty,
             precision_rounding=product_mrp_area.product_id.uom_id.rounding,
-            rounding_method="HALF-UP")
+            rounding_method="HALF-UP",
+        )
         return {
             "mrp_area_id": product_mrp_area.mrp_area_id.id,
             "product_id": product_mrp_area.product_id.id,
@@ -52,8 +54,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_from_forecast(self, product_mrp_area):
-        res = super(MultiLevelMrp, self)._init_mrp_move_from_forecast(
-            product_mrp_area)
+        res = super(MultiLevelMrp, self)._init_mrp_move_from_forecast(product_mrp_area)
         if not product_mrp_area.group_estimate_days:
             return False
         today = fields.Date.today()
@@ -67,9 +68,9 @@ class MultiLevelMrp(models.TransientModel):
             date_end = fields.Date.from_string(rec.date_range_id.date_end)
             delta = timedelta(days=product_mrp_area.group_estimate_days)
             while mrp_date <= date_end:
-                mrp_move_data = \
-                    self._prepare_mrp_move_data_from_estimate(
-                        rec, product_mrp_area, mrp_date)
+                mrp_move_data = self._prepare_mrp_move_data_from_estimate(
+                    rec, product_mrp_area, mrp_date
+                )
                 self.env["mrp.move"].create(mrp_move_data)
                 mrp_date += delta
         return res
