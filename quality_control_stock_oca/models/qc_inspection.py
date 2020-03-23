@@ -16,13 +16,17 @@ class QcInspection(models.Model):
         comodel_name="stock.production.lot", compute="_compute_lot", store=True
     )
 
-    @api.multi
     def object_selection_values(self):
         result = super().object_selection_values()
-        result.extend([("stock.picking", "Picking List"), ("stock.move", "Stock Move")])
+        result.extend(
+            [
+                ("stock.picking", "Picking List"),
+                ("stock.move", "Stock Move"),
+                ("stock.production.lot", "Lot/Serial Number"),
+            ]
+        )
         return result
 
-    @api.multi
     @api.depends("object_id")
     def _compute_picking(self):
         for inspection in self:
@@ -34,7 +38,6 @@ class QcInspection(models.Model):
                 elif inspection.object_id._name == "stock.move.line":
                     inspection.picking_id = inspection.object_id.picking_id
 
-    @api.multi
     @api.depends("object_id")
     def _compute_lot(self):
         moves = self.filtered(
@@ -57,7 +60,6 @@ class QcInspection(models.Model):
                 elif inspection.object_id._name == "stock.production.lot":
                     inspection.lot_id = inspection.object_id
 
-    @api.multi
     @api.depends("object_id")
     def _compute_product_id(self):
         """Overriden for getting the product from a stock move."""
@@ -79,11 +81,8 @@ class QcInspection(models.Model):
             elif self.object_id._name == "stock.move.line":
                 self.qty = self.object_id.product_qty
 
-    @api.multi
     def _prepare_inspection_header(self, object_ref, trigger_line):
-        res = super(QcInspection, self)._prepare_inspection_header(
-            object_ref, trigger_line
-        )
+        res = super()._prepare_inspection_header(object_ref, trigger_line)
         # Fill qty when coming from pack operations
         if object_ref and object_ref._name == "stock.move.line":
             res["qty"] = object_ref.product_qty

@@ -20,8 +20,10 @@ class TestQualityControl(TransactionCase):
         self.test = self.env.ref("quality_control.qc_test_1")
         self.picking_type = self.env.ref("stock.picking_type_out")
         self.location_dest = self.env.ref("stock.stock_location_customers")
-        self.sequence = self.env["ir.sequence"].search(
-            [("prefix", "like", "/OUT/")], limit=1
+        self.group_stock_user = self.env.ref("stock.group_stock_user")
+        self.company = self.env.ref("base.main_company")
+        self.sequence = self.env["ir.sequence"].create(
+            {"code": "out", "name": "outgoing_sequence"}
         )
         inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
         self.inspection1 = self.inspection_model.create(
@@ -31,12 +33,14 @@ class TestQualityControl(TransactionCase):
             [("picking_type_id", "=", self.picking_type.id)]
         )
         self.lot = self.env["stock.production.lot"].create(
-            {"name": "Lot for tests", "product_id": self.product.id}
+            {
+                "name": "Lot for tests",
+                "product_id": self.product.id,
+                "company_id": self.company.id,
+            }
         )
-        self.group_stock_user = self.env.ref("stock.group_stock_user")
-        self.company1 = self.env.ref("base.main_company")
         self.user1_id = self._create_user(
-            "user_1", [self.group_stock_user], self.company1
+            "user_1", [self.group_stock_user], self.company
         )
 
         move_vals = {
@@ -49,7 +53,7 @@ class TestQualityControl(TransactionCase):
             "quantity_done": 1.0,
         }
         self.picking1 = (
-            self.picking_model.sudo(self.user1_id)
+            self.picking_model.with_user(self.user1_id)
             .with_context(default_picking_type_id=self.picking_type.id)
             .create(
                 {
@@ -296,6 +300,7 @@ class TestQualityControl(TransactionCase):
             {
                 "name": "Test Picking Type",
                 "code": "outgoing",
+                "sequence_code": "OUT",
                 "sequence_id": self.sequence.id,
             }
         )
