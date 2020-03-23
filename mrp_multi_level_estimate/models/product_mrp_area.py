@@ -12,11 +12,14 @@ class ProductMRPArea(models.Model):
         string="Group Days of Estimates",
         default=1,
         help="The days to group your estimates as demand for the MRP."
-             "It can be different from the lenght of the date ranges you "
-             "use in the estimates.",
+        "It can be different from the lenght of the date ranges you "
+        "use in the estimates.",
     )
 
     _sql_constraints = [
-        ("group_estimate_days_check", "CHECK( group_estimate_days >= 0 )",
-         "Group Days of Estimates must be greater than or equal to zero."),
+        (
+            "group_estimate_days_check",
+            "CHECK( group_estimate_days >= 0 )",
+            "Group Days of Estimates must be greater than or equal to zero.",
+        ),
     ]
