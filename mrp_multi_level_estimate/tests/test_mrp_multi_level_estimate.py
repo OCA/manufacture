@@ -48,7 +48,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
                 "name_prefix": "W-",
                 "type_id": cls.dr_type.id,
                 "duration_count": 1,
-                "unit_of_time": WEEKLY,
+                "unit_of_time": str(WEEKLY),
                 "count": 3,
             }
         )
