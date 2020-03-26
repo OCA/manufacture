@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
+     Part of ForgeFlow. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="mrp_planned_order_view_tree" model="ir.ui.view">
+        <field name="name">mrp.planned.order.tree</field>
+        <field name="model">mrp.planned.order</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="fixed != True">
+                <field name="product_mrp_area_id" />
+                <field name="product_id" />
+                <field name="mrp_area_id" />
+                <field name="order_release_date" />
+                <field name="due_date" />
+                <field name="qty_released" />
+                <field name="mrp_qty" />
+                <field name="fixed" />
+            </tree>
+        </field>
+    </record>
+    <record id="mrp_planned_order_view_form" model="ir.ui.view">
+        <field name="name">mrp.planned.order.form</field>
+        <field name="model">mrp.planned.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_linked_mrp_production"
+                            type="object"
+                            icon="fa-wrench"
+                            attrs="{'invisible':[('mo_count', '=', 0)]}"
+                            class="oe_stat_button"
+                        >
+                            <field name="mo_count" widget="statinfo" string="MOs" />
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_mrp_area_id" />
+                            <field name="product_id" />
+                            <field name="mrp_area_id" />
+                            <field name="name" />
+                            <field name="fixed" />
+                        </group>
+                        <group>
+                            <field name="mrp_action" />
+                            <field name="order_release_date" />
+                            <field name="due_date" />
+                            <field name="mrp_qty" />
+                            <field name="qty_released" />
+                        </group>
+                    </group>
+                    <group groups="base.group_no_one">
+                        <field name="mrp_move_down_ids" readonly="True" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_planned_order_view_pivot" model="ir.ui.view">
+        <field name="name">mrp.planned.order.pivot</field>
+        <field name="model">mrp.planned.order</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="mrp_area_id" type="row" />
+                <field name="product_id" type="row" />
+                <field name="mrp_qty" type="measure" />
+                <field name="due_date" interval="week" type="col" />
+            </pivot>
+        </field>
+    </record>
+    <record id="mrp_planned_order_view_search" model="ir.ui.view">
+        <field name="name">mrp.planned.order.search</field>
+        <field name="model">mrp.planned.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" />
+                <field name="mrp_area_id" />
+                <separator />
+                <filter string="Fixed" name="fixed" domain="[('fixed','=',True)]" />
+                <group name='group_by' expand="0" string="Group By...">
+                    <filter
+                        name='product_parameters'
+                        string="Product Parameters"
+                        context="{'group_by':'product_mrp_area_id'}"
+                    />
+                    <filter
+                        name='due_date'
+                        string="Due Date"
+                        context="{'group_by':'due_date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="mrp_planned_order_action" model="ir.actions.act_window">
+        <field name="name">Planned Orders</field>
+        <field name="res_model">mrp.planned.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="context">{'search_default_fixed': 1}</field>
+    </record>
+    <menuitem
+        name="Planned Orders"
+        id="menu_mrp_planned_order"
+        action="mrp_planned_order_action"
+        parent="mrp.mrp_planning_menu_root"
+        sequence="20"
+    />
+    <record id="action_server_planned_order_toggle_fixed" model="ir.actions.server">
+        <field name="name">Toggle Fixed</field>
+        <field name="model_id" ref="mrp_multi_level.model_mrp_planned_order" />
+        <field name="binding_model_id" ref="mrp_multi_level.model_mrp_planned_order" />
+        <field name="state">code</field>
+        <field name="code">records.action_toggle_fixed()</field>
+    </record>
+    <record id="act_mrp_inventory_procure_planned_order" model="ir.actions.act_window">
+        <field name="name">Procure</field>
+        <field name="res_model">mrp.inventory.procure</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="mrp_multi_level.model_mrp_planned_order" />
+    </record>
+</odoo>
