@@ -8,9 +8,6 @@
             <xpath expr="//field[@name='guarantee_limit']" position="after">
                 <field name="date_repair" />
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="user_id" />
-            </xpath>
         </field>
     </record>
     <record id="view_repair_order_calendar" model="ir.ui.view">
@@ -28,6 +25,6 @@
         </field>
     </record>
     <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,calendar,form</field>
+        <field name="view_mode">tree,kanban,graph,pivot,calendar,form</field>
     </record>
 </odoo>
