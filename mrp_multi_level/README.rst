@@ -82,6 +82,13 @@ To launch replenishment orders (moves, purchases, production orders...):
 Changelog
 =========
 
+13.0.1.4.0 (2020-03-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+  * Add menu entry for planned orders
+  * Add button to navigate from planned orders to linked manufacturing orders
+  * Add action to convert planned orders to fixed
+  * When changing the due date in a planned order the release date is recomputed
+
 13.0.1.3.0 (2020-03-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
