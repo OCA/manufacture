@@ -5,12 +5,17 @@ from odoo import fields, models
 
 
 class RepairOrder(models.Model):
-    _inherit = 'repair.order'
+    _inherit = "repair.order"
 
-    user_id = fields.Many2one('res.users', 'User',
-                              default=lambda self: self.env.user,
-                              help="Person in charge for the repair")
-    date_repair = fields.Datetime('Repair Date', default=fields.Datetime.now,
-                                  copy=False,
-                                  help="Date of the repair, this field "
-                                  "and user_id defines the calendar")
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="User",
+        default=lambda self: self.env.user,
+        help="Person in charge for the repair",
+    )
+    date_repair = fields.Datetime(
+        string="Repair Date",
+        default=fields.Datetime.now,
+        copy=False,
+        help="Date of the repair, this field " "and user_id defines the calendar",
+    )
