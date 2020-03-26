@@ -169,6 +169,7 @@ msgstr "Borrador"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__due_date
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 #, fuzzy
 #| msgid "Current Date"
 msgid "Due Date"
@@ -198,6 +199,7 @@ msgstr "FP-2"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 msgid "Fixed"
 msgstr ""
 
@@ -220,6 +222,7 @@ msgstr "Proveedor Principal"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 msgid "Group By..."
 msgstr "Agrupar por..."
 
@@ -312,6 +315,11 @@ msgstr "Ubicación"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__llc
 msgid "Low Level Code"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_form
+msgid "MOs"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -433,6 +441,7 @@ msgid "Manufacturing Order"
 msgstr "Order de Fabricación"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_production_ids
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__manufacturing_order_ids
 msgid "Manufacturing Orders"
 msgstr "Órdenes de Fabricación"
@@ -446,6 +455,11 @@ msgstr "Ctd. Máxima de Pedido"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_order_qty
 msgid "Minimum Order Qty"
 msgstr "Ctd. Mínima de Pedido"
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mo_count
+msgid "Mo Count"
+msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mv
@@ -573,6 +587,8 @@ msgid "Planned Order"
 msgstr "Fecha Planificada"
 
 #. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.mrp_planned_order_action
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_planned_order
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #, fuzzy
 #| msgid "Planned Date"
@@ -588,6 +604,7 @@ msgstr "Órdenes de Compra"
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure
+#: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure_planned_order
 msgid "Procure"
 msgstr "Abastecer"
 
@@ -643,6 +660,7 @@ msgstr "Producto Modelo"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__product_mrp_area_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 #, fuzzy
 msgid "Product Parameters"
 msgstr "Producto Modelo"
@@ -868,6 +886,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
 msgid "To procure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.server,name:mrp_multi_level.action_server_planned_order_toggle_fixed
+msgid "Toggle Fixed"
 msgstr ""
 
 #. module: mrp_multi_level
