@@ -97,10 +97,12 @@ class MrpInventory(models.Model):
                 order_release_date = rec.mrp_area_id.calendar_id.plan_days(
                     -delay, dt_date
                 ).date()
-            else:
+            elif delay:
                 order_release_date = fields.Date.from_string(rec.date) - timedelta(
                     days=delay
                 )
+            else:
+                order_release_date = rec.date
             if order_release_date < today:
                 order_release_date = today
             rec.order_release_date = order_release_date
