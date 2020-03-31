@@ -1,4 +1,4 @@
-# Copyright 2018-19 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 #   (http://www.eficent.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 

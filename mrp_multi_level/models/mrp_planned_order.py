@@ -1,4 +1,4 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from datetime import timedelta

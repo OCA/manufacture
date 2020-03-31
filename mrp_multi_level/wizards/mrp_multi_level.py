@@ -1,5 +1,5 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo <lois.rilo@eficent.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).

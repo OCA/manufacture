@@ -1,3 +1,43 @@
+12.0.2.0.0 (2020-03-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+* Improving the management of planned orders:
+
+  * Add menu entry for planned orders
+  * Add button to navigate from planned orders to linked manufacturing orders
+  * Add action to convert planned orders to fixed
+  * When changing the due date in a planned order the release date is recomputed
+
+* [IMP] Minor changes"
+  (`#470 <https://github.com/OCA/manufacture/pull/470>`_).
+
+  * Planned Order release and due date become required.
+  * Add button to Product MRP Area to update MOQ from Supplier Info.
+  * Link Manufacturing Orders with Planned Orders.
+  * Allow Mrp Inventory Procure Wizard to be used from other models.
+  * Make MRP Inventory creation more extensible.
+  * Main Supplier computation (v13 requires explicit False definitions)
+
+* [IMP] Minor changes
+  (`#468 <https://github.com/OCA/manufacture/pull/468>`_).
+
+  * Planned Orders become fixed on manual creation by default
+  * Released Quantity becomes readonly
+  * Add product reference if Planned Order name is not defined on bom explosion
+
+* [FIX] Minor changes
+  (`#469 <https://github.com/OCA/manufacture/pull/469>`_).
+
+  * Fix Main supplier computation in multi company
+  * Drop Triplicated field in search view
+
+
+* [IMP] Minor changes
+  (`#463 <https://github.com/OCA/manufacture/pull/463>`_).
+
+  * Show supply method on MRP Inventory
+  * Allow no-MRP users to look into Products
+
+
 12.0.1.0.0 (2019-08-05)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
