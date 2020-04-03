@@ -4,6 +4,7 @@
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class TestMrpProductionRequest(TransactionCase):
@@ -80,28 +81,33 @@ class TestMrpProductionRequest(TransactionCase):
         )
 
         # Create Procurement Group:
-        self.test_group = self.group_model.create({"name": "TEST",})
+        self.test_group = self.group_model.create({"name": "TEST"})
 
         # Create User:
-        self.test_user = self.env["res.users"].create(
-            {"name": "John", "login": "test",}
-        )
+        self.test_user = self.env["res.users"].create({"name": "John", "login": "test"})
 
-    def procure(
-        self, group, product, qty=4.0,
-    ):
+    def procure(self, group, product, qty=4.0):
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.user.id)], limit=1
+        )
         values = {
             "date_planned": fields.Datetime.now(),
             "group_id": group,
+            "warehouse_id": warehouse,
         }
         self.group_model.run(
-            product,
-            qty,
-            product.uom_id,
-            self.stock_loc,
-            group.name,
-            group.name,
-            values,
+            [
+                self.test_group.Procurement(
+                    product,
+                    qty,
+                    product.uom_id,
+                    self.stock_loc,
+                    group.name,
+                    group.name,
+                    warehouse.company_id,
+                    values,
+                )
+            ]
         )
         return True
 
@@ -130,7 +136,7 @@ class TestMrpProductionRequest(TransactionCase):
             [("mrp_production_request_id", "=", request.id)]
         )
         self.assertTrue(mo, "No MO created.")
-        self.assertEqual(request.pending_qty, 0.0)
+        self.assertEqual(request.pending_qty, 4.0)
         request.button_done()
 
     def test_02_assignation(self):
@@ -150,27 +156,29 @@ class TestMrpProductionRequest(TransactionCase):
             self.product.product_tmpl_id,
             "Wrong Bill of Materials.",
         )
-        request.write(
-            {"assigned_to": self.uid,}
-        )
+        request.write({"assigned_to": self.uid})
         self.assertTrue(request.message_follower_ids, "Followers not added correctly.")
 
     def test_03_substract_qty_from_orderpoint(self):
         """Quantity in Manufacturing Requests should be considered by
         orderpoints."""
         request = self.request_model.search(
-            [("product_id", "=", self.product_orderpoint.id),]
+            [("product_id", "=", self.product_orderpoint.id)]
         )
         self.assertFalse(request)
-        self.env["procurement.group"].run_scheduler()
+        # self.env['procurement.group'].run_scheduler()
+        with mute_logger("odoo.addons.stock.models.stock_rule"):
+            self.env["procurement.group"].run_scheduler()
         request = self.request_model.search(
-            [("product_id", "=", self.product_orderpoint.id),]
+            [("product_id", "=", self.product_orderpoint.id)]
         )
         self.assertEqual(len(request), 1)
         # Running again the scheduler should not generate a new MR.
-        self.env["procurement.group"].run_scheduler()
+        # self.env['procurement.group'].run_scheduler()
+        with mute_logger("odoo.addons.stock.models.stock_rule"):
+            self.env["procurement.group"].run_scheduler()
         request = self.request_model.search(
-            [("product_id", "=", self.product_orderpoint.id),]
+            [("product_id", "=", self.product_orderpoint.id)]
         )
         self.assertEqual(len(request), 1)
 

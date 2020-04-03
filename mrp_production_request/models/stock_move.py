@@ -8,7 +8,7 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     created_mrp_production_request_id = fields.Many2one(
-        comodel_name="mrp.production.request", string="Created Production Request",
+        comodel_name="mrp.production.request", string="Created Production Request"
     )
 
     @api.model
@@ -16,5 +16,5 @@ class StockMove(models.Model):
         if "production_id" in vals:
             production = self.env["mrp.production"].browse(vals["production_id"])
             if production.mrp_production_request_id:
-                vals["propagate"] = False
+                vals["propagate_cancel"] = False
         return super().create(vals)
