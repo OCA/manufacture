@@ -4,14 +4,11 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-import odoo.addons.decimal_precision as dp
-
 
 class MrpProductionRequestCreateMo(models.TransientModel):
     _name = "mrp.production.request.create.mo"
     _description = "Wizard to create Manufacturing Orders"
 
-    @api.multi
     def compute_product_line_ids(self):
         self.product_line_ids.unlink()
         res = self._prepare_lines()
@@ -42,7 +39,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             self.mrp_production_request_id.product_id, factor / bom_point.product_qty
         )
 
-    @api.multi
     def _get_mo_qty(self):
         """Propose a qty to create a MO available to produce."""
         for rec in self:
@@ -54,12 +50,10 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         comodel_name="mrp.production.request", readonly=True
     )
     bom_id = fields.Many2one(related="mrp_production_request_id.bom_id", readonly=True)
-    mo_qty = fields.Float(
-        string="Quantity", digits=dp.get_precision("Product Unit of Measure")
-    )
+    mo_qty = fields.Float(string="Quantity", digits="Product Unit of Measure")
     pending_qty = fields.Float(
         related="mrp_production_request_id.pending_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     product_uom_id = fields.Many2one(related="mrp_production_request_id.product_uom_id")
     product_line_ids = fields.One2many(
@@ -68,8 +62,8 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         inverse_name="mrp_production_request_create_mo_id",
         readonly=True,
     )
-    date_planned_start = fields.Datetime(string="Deadline Start", required=True,)
-    date_planned_finished = fields.Datetime(string="Deadline End", required=True,)
+    date_planned_start = fields.Datetime(string="Deadline Start", required=True)
+    date_planned_finished = fields.Datetime(string="Deadline End", required=True)
 
     @api.model
     def default_get(self, fields):
@@ -102,7 +96,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             "location_id": self.mrp_production_request_id.location_src_id.id,
         }
 
-    @api.multi
     def _prepare_manufacturing_order(self):
         self.ensure_one()
         request_id = self.mrp_production_request_id
@@ -120,11 +113,10 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             "date_planned_start": self.date_planned_start,
             "date_planned_finished": self.date_planned_finished,
             "procurement_group_id": request_id.procurement_group_id.id,
-            "propagate": request_id.propagate,
+            "propagate_cancel": request_id.propagate,
             "company_id": request_id.company_id.id,
         }
 
-    @api.multi
     def create_mo(self):
         self.ensure_one()
         vals = self._prepare_manufacturing_order()
@@ -133,7 +125,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         action = self.env.ref("mrp.mrp_production_action").read()[0]
         res = self.env.ref("mrp.mrp_production_form_view")
         action.update(
-            {"res_id": mo and mo.id, "views": [(res and res.id or False, "form")],}
+            {"res_id": mo and mo.id, "views": [(res and res.id or False, "form")]}
         )
         return action
 
@@ -142,7 +134,6 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
     _name = "mrp.production.request.create.mo.line"
     _description = "Wizard to create Manufacturing Orders Line"
 
-    @api.multi
     def _compute_available_qty(self):
         for rec in self:
             product_available = rec.product_id.with_context(
@@ -155,7 +146,6 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
             )
             rec.available_qty = res
 
-    @api.multi
     def _compute_bottle_neck_factor(self):
         for rec in self:
             if rec.product_qty:
@@ -165,9 +155,7 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
         comodel_name="product.product", string="Product", required=True
     )
     product_qty = fields.Float(
-        string="Quantity Required",
-        required=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        string="Quantity Required", required=True, digits="Product Unit of Measure"
     )
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom", string="UoM", required=True
@@ -178,7 +166,7 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
     available_qty = fields.Float(
         string="Quantity Available",
         compute="_compute_available_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     bottle_neck_factor = fields.Float(compute="_compute_bottle_neck_factor")
     location_id = fields.Many2one(comodel_name="stock.location", required=True)

@@ -7,9 +7,11 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <field name="availability" position="after">
-                <field name="mrp_production_request_id" />
-            </field>
+            <xpath expr="//form/sheet/notebook/page[3]/group" position="after">
+                <group>
+                    <field name="mrp_production_request_id" />
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>
