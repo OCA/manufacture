@@ -4,19 +4,12 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-import odoo.addons.decimal_precision as dp
-
 
 class MrpProductionRequest(models.Model):
     _name = "mrp.production.request"
     _description = "Manufacturing Request"
     _inherit = "mail.thread"
     _order = "date_planned_start desc, id desc"
-
-    @api.model
-    def _company_get(self):
-        company_id = self.env["res.company"]._company_default_get()
-        return self.env["res.company"].browse(company_id.id)
 
     @api.model
     def _get_default_requested_by(self):
@@ -64,7 +57,6 @@ class MrpProductionRequest(models.Model):
         index=True,
         required=True,
         states={"confirmed": [("readonly", False)]},
-        oldname="date_planned",
     )
     date_planned_finished = fields.Datetime(
         "Deadline End",
@@ -77,7 +69,7 @@ class MrpProductionRequest(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        default=lambda self: self._company_get(),
+        default=lambda self: self.env.company,
     )
     mrp_production_ids = fields.One2many(
         comodel_name="mrp.production",
@@ -86,7 +78,7 @@ class MrpProductionRequest(models.Model):
         readonly=True,
     )
     mrp_production_count = fields.Integer(
-        compute="_compute_mrp_production_count", string="MO's Count",
+        compute="_compute_mrp_production_count", string="MO's Count"
     )
     state = fields.Selection(
         selection=[
@@ -129,7 +121,7 @@ class MrpProductionRequest(models.Model):
         string="Required Quantity",
         required=True,
         track_visibility="onchange",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         default=1.0,
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -147,7 +139,7 @@ class MrpProductionRequest(models.Model):
         compute="_compute_manufactured_qty",
         store=True,
         readonly=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="Sum of the quantities in Manufacturing Orders (in any state).",
     )
     done_qty = fields.Float(
@@ -155,14 +147,14 @@ class MrpProductionRequest(models.Model):
         store=True,
         readonly=True,
         compute="_compute_manufactured_qty",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         help="Sum of the quantities in all done Manufacturing Orders.",
     )
     pending_qty = fields.Float(
         string="Pending Quantity",
         compute="_compute_manufactured_qty",
         store=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         readonly=True,
         help="Quantity pending to add to Manufacturing Orders "
         "to fulfill the Manufacturing Request requirement.",
@@ -229,14 +221,13 @@ class MrpProductionRequest(models.Model):
             "name_uniq",
             "unique(name, company_id)",
             "Reference must be unique per Company!",
-        ),
+        )
     ]
 
     @api.model
     def _get_mo_valid_states(self):
         return ["planned", "confirmed", "progress", "done"]
 
-    @api.multi
     @api.depends("mrp_production_ids", "mrp_production_ids.state", "state")
     def _compute_manufactured_qty(self):
         valid_states = self._get_mo_valid_states()
@@ -251,21 +242,20 @@ class MrpProductionRequest(models.Model):
             req.manufactured_qty = sum(valid_mo)
             req.pending_qty = max(req.product_qty - req.manufactured_qty, 0.0)
 
-    @api.multi
     def _compute_mrp_production_count(self):
         for rec in self:
             rec.mrp_production_count = len(rec.mrp_production_ids)
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
-        self.product_uom_id = self.product_id.uom_id
-        self.bom_id = self.env["mrp.bom"]._bom_find(
-            product=self.product_id,
-            company_id=self.company_id.id,
-            picking_type=self.picking_type_id,
-        )
+        if self.product_id:
+            self.product_uom_id = self.product_id.uom_id
+            self.bom_id = self.env["mrp.bom"]._bom_find(
+                product=self.product_id,
+                company_id=self.company_id.id,
+                picking_type=self.picking_type_id,
+            )
 
-    @api.multi
     def _subscribe_assigned_user(self, vals):
         self.ensure_one()
         if vals.get("assigned_to"):
@@ -290,29 +280,24 @@ class MrpProductionRequest(models.Model):
         res._subscribe_assigned_user(vals)
         return res
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         for request in self:
             request._subscribe_assigned_user(vals)
         return res
 
-    @api.multi
     def button_to_approve(self):
         self.write({"state": "to_approve"})
         return True
 
-    @api.multi
     def button_approved(self):
         self.write({"state": "approved"})
         return True
 
-    @api.multi
     def button_done(self):
         self.write({"state": "done"})
         return True
 
-    @api.multi
     def _check_reset_allowed(self):
         if any(
             [
@@ -327,13 +312,11 @@ class MrpProductionRequest(models.Model):
                 )
             )
 
-    @api.multi
     def button_draft(self):
         self._check_reset_allowed()
         self.write({"state": "draft"})
         return True
 
-    @api.multi
     def _check_cancel_allowed(self):
         if any([s == "done" for s in self.mapped("state")]):
             raise UserError(
@@ -343,7 +326,6 @@ class MrpProductionRequest(models.Model):
                 )
             )
 
-    @api.multi
     def button_cancel(self):
         self._check_cancel_allowed()
         self.write({"state": "cancel"})
@@ -352,7 +334,6 @@ class MrpProductionRequest(models.Model):
         )._action_cancel()
         return True
 
-    @api.multi
     def action_view_mrp_productions(self):
         action = self.env.ref("mrp.mrp_production_action")
         result = action.read()[0]

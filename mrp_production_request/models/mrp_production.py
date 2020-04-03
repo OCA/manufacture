@@ -24,7 +24,5 @@ class MrpProduction(models.Model):
         move = super()._generate_finished_moves()
         request = self.mrp_production_request_id
         if request and request.move_dest_ids:
-            move.write(
-                {"move_dest_ids": [(4, x.id) for x in request.move_dest_ids],}
-            )
+            move.write({"move_dest_ids": [(4, x.id) for x in request.move_dest_ids]})
         return move
