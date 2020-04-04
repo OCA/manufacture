@@ -14,15 +14,16 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-04 07:20+0000\n"
-"PO-Revision-Date: 2017-07-12 16:19+0000\n"
-"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
+"PO-Revision-Date: 2020-04-04 12:19+0000\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: quality_control_stock
 #: model:ir.model.fields,field_description:quality_control_stock.field_stock_picking__created_inspections
@@ -88,9 +89,8 @@ msgstr "Bons"
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking_type
 #: model:ir.model.fields,field_description:quality_control_stock.field_qc_trigger__picking_type_id
-#, fuzzy
 msgid "Picking Type"
-msgstr "Type de bons"
+msgstr "Type de préparation"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_qc_inspection
@@ -115,7 +115,7 @@ msgstr "Inspections de la qualité à partir de lot terminés"
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_lot_passed
 msgid "Quality inspection from lot passed"
-msgstr ""
+msgstr "Inspections de la qualité à partir de lot précédents"
 
 #. module: quality_control_stock
 #: model:ir.actions.act_window,name:quality_control_stock.action_qc_inspection_per_picking_done
