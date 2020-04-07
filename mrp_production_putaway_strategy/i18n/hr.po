@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: mrp_production_putaway_strategy
-#: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:20
+#: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:0
 #, python-format
 msgid ""
 "Applied Putaway strategy to finished products.\n"

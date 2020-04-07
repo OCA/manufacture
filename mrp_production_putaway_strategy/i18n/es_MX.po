@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mrp_production_putaway_strategy
-#: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:20
+#: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:0
 #, python-format
 msgid ""
 "Applied Putaway strategy to finished products.\n"
