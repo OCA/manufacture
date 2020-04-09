@@ -740,6 +740,11 @@ msgid "Run MRP"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:res.groups,name:mrp_multi_level.group_mrp_multi_level_run
+msgid "Run MRP Manually"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "Run MRP Multi Level"
