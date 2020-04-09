@@ -24,7 +24,7 @@
               id="menu_mrp_multi_level"
               action="action_mrp_multi_level"
               parent="mrp.menu_mrp_manufacturing"
-              groups="mrp.group_mrp_manager"
+              groups="mrp_multi_level.group_mrp_multi_level_run"
               sequence="40"/>
 
 </odoo>
