@@ -1,3 +1,11 @@
+13.0.1.5.0 (2020-04-09)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Features**
+
+- Show *Run MRP Multi Level* menu only to a specific new security group *Run MRP Manually*. (`#492 <https://github.com/OCA/manufacture/issues/492>`_)
+
+
 13.0.1.4.0 (2020-03-26)
 ~~~~~~~~~~~~~~~~~~~~~~~
   * Add menu entry for planned orders
