@@ -82,6 +82,46 @@ To launch replenishment orders (moves, purchases, production orders...):
 Changelog
 =========
 
+12.0.2.0.0 (2020-03-31)
+~~~~~~~~~~~~~~~~~~~~~~~
+* Improving the management of planned orders:
+
+  * Add menu entry for planned orders
+  * Add button to navigate from planned orders to linked manufacturing orders
+  * Add action to convert planned orders to fixed
+  * When changing the due date in a planned order the release date is recomputed
+
+* [IMP] Minor changes"
+  (`#470 <https://github.com/OCA/manufacture/pull/470>`_).
+
+  * Planned Order release and due date become required.
+  * Add button to Product MRP Area to update MOQ from Supplier Info.
+  * Link Manufacturing Orders with Planned Orders.
+  * Allow Mrp Inventory Procure Wizard to be used from other models.
+  * Make MRP Inventory creation more extensible.
+  * Main Supplier computation (v13 requires explicit False definitions)
+
+* [IMP] Minor changes
+  (`#468 <https://github.com/OCA/manufacture/pull/468>`_).
+
+  * Planned Orders become fixed on manual creation by default
+  * Released Quantity becomes readonly
+  * Add product reference if Planned Order name is not defined on bom explosion
+
+* [FIX] Minor changes
+  (`#469 <https://github.com/OCA/manufacture/pull/469>`_).
+
+  * Fix Main supplier computation in multi company
+  * Drop Triplicated field in search view
+
+
+* [IMP] Minor changes
+  (`#463 <https://github.com/OCA/manufacture/pull/463>`_).
+
+  * Show supply method on MRP Inventory
+  * Allow no-MRP users to look into Products
+
+
 12.0.1.0.0 (2019-08-05)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -158,14 +198,15 @@ Authors
 ~~~~~~~
 
 * Ucamco
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
 * Wim Audenaert <wim.audenaert@ucamco.com>
-* Jordi Ballester <jordi.ballester@eficent.com>
-* Lois Rilo <lois.rilo@eficent.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
+* Héctor Villarreal <hector.villarreal@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -180,16 +221,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-jbeficent| image:: https://github.com/jbeficent.png?size=40px
-    :target: https://github.com/jbeficent
-    :alt: jbeficent
-.. |maintainer-lreficent| image:: https://github.com/lreficent.png?size=40px
-    :target: https://github.com/lreficent
-    :alt: lreficent
+.. |maintainer-JordiBForgeFlow| image:: https://github.com/JordiBForgeFlow.png?size=40px
+    :target: https://github.com/JordiBForgeFlow
+    :alt: JordiBForgeFlow
+.. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
+    :target: https://github.com/LoisRForgeFlow
+    :alt: LoisRForgeFlow
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-jbeficent| |maintainer-lreficent| 
+|maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level>`_ project on GitHub.
 

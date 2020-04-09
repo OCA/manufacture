@@ -1,5 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
@@ -66,6 +66,12 @@ class MrpInventory(models.Model):
         comodel_name="mrp.planned.order",
         inverse_name="mrp_inventory_id",
         readonly=True,
+    )
+    supply_method = fields.Selection(
+        string="Supply Method",
+        related="product_mrp_area_id.supply_method",
+        readonly=True,
+        store=True,
     )
 
     @api.multi

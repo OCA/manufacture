@@ -14,6 +14,7 @@
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="product_id"/>
                             <field name="product_mrp_area_id"/>
+                            <field name="supply_method"/>
                             <field name="date"/>
                         </group>
                         <group>
@@ -51,6 +52,7 @@
                         name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                         icon="fa-cogs" type="action"
                         attrs="{'invisible':[('to_procure','&lt;=',0.0)]}"/>
+                <field name="supply_method"/>
                 <field name="running_availability"/>
             </tree>
         </field>
@@ -103,15 +105,12 @@
                     <filter name="group_mrp_area"
                             string="MRP Area"
                             context="{'group_by':'mrp_area_id'}"/>
-                    <filter name="group_release_date_day"
-                            string="Date to Procure (By Day)"
-                            context="{'group_by':'order_release_date:day'}"/>
-                    <filter name="group_release_date_week"
-                            string="Date to Procure (By Week)"
-                            context="{'group_by':'order_release_date:week'}"/>
-                    <filter name="group_release_date_month"
-                            string="Date to Procure (By Month)"
-                            context="{'group_by':'order_release_date:month'}"/>
+                    <filter name="group_supply_method"
+                            string="Supply Method"
+                            context="{'group_by':'supply_method'}"/>
+                    <filter name="group_release_date"
+                            string="Date to Procure"
+                            context="{'group_by':'order_release_date'}"/>
                 </group>
             </search>
         </field>

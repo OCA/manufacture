@@ -1,5 +1,5 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016-18 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import ast
 from odoo import api, fields, models
