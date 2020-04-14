@@ -5,6 +5,7 @@ from datetime import timedelta
 from itertools import zip_longest
 
 from odoo import _, api, fields, models
+import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv import expression
 from odoo.tools.float_utils import float_compare
@@ -221,4 +222,5 @@ class MprPlannedOrderSheetLine(models.TransientModel):
     date_range_id = fields.Many2one(comodel_name="date.range", string="Date Range",)
     value_x = fields.Char(string="Period")
     value_y = fields.Char(string="Product")
-    product_qty = fields.Float(string="Quantity", digits="Product UoM")
+    product_qty = fields.Float(
+        string="Quantity", digits=dp.get_precision("Product UoM"))
