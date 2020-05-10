@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models
@@ -53,4 +52,3 @@ class MrpProductProduce(models.TransientModel):
                     ml.product_uom_qty = ml.qty_done
                 self.subcontract_move_id._recompute_state()
         return res
-

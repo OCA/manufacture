@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo.tests.common import Form, SavepointCase
@@ -7,7 +6,7 @@ class TestMrpSubcontractingCommon(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestMrpSubcontractingCommon, cls).setUpClass()
+        super().setUp()
         # 1: Create a subcontracting partner
         main_partner = cls.env['res.partner'].create({'name': 'main_partner'})
         cls.subcontractor_partner1 = cls.env['res.partner'].create({

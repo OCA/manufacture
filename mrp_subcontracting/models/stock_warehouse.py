@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models, _
@@ -17,7 +16,9 @@ class StockWarehouse(models.Model):
         'stock.rule', 'Subcontracting MTS Rule'
     )
 
-    subcontracting_route_id = fields.Many2one('stock.location.route', 'Resupply Subcontractor', ondelete='restrict')
+    subcontracting_route_id = fields.Many2one('stock.location.route',
+                                              'Resupply Subcontractor',
+                                              ondelete='restrict')
 
     subcontracting_type_id = fields.Many2one(
         'stock.picking.type', 'Subcontracting Operation Type',
@@ -29,7 +30,9 @@ class StockWarehouse(models.Model):
         for warehouse in self:
             result[warehouse.id].update({
                 'subcontract': [
-                    self.Routing(warehouse.lot_stock_id, subcontract_location_id, warehouse.out_type_id, 'pull'),
+                    self.Routing(warehouse.lot_stock_id,
+                                 subcontract_location_id,
+                                 warehouse.out_type_id, 'pull'),
                 ]
             })
         return result
@@ -46,7 +49,8 @@ class StockWarehouse(models.Model):
                     'product_selectable': False,
                     'company_id': self.company_id.id,
                     'sequence': 10,
-                    'name': self._format_routename(name=_('Resupply Subcontractor'))
+                    'name': self._format_routename(
+                        name=_('Resupply Subcontractor'))
                 },
                 'route_update_values': {
                     'active': self.subcontracting_to_resupply,
@@ -70,8 +74,10 @@ class StockWarehouse(models.Model):
                     'company_id': self.company_id.id,
                     'action': 'pull',
                     'auto': 'manual',
-                    'route_id': self._find_global_route('stock.route_warehouse0_mto', _('Make To Order')).id,
-                    'name': self._format_rulename(self.lot_stock_id, subcontract_location_id, 'MTO'),
+                    'route_id': self._find_global_route(
+                        'stock.route_warehouse0_mto', _('Make To Order')).id,
+                    'name': self._format_rulename(
+                        self.lot_stock_id, subcontract_location_id, 'MTO'),
                     'location_id': subcontract_location_id.id,
                     'location_src_id': self.lot_stock_id.id,
                     'picking_type_id': self.out_type_id.id
@@ -87,9 +93,11 @@ class StockWarehouse(models.Model):
                     'company_id': self.company_id.id,
                     'action': 'pull',
                     'auto': 'manual',
-                    'route_id': self._find_global_route('mrp_subcontracting.route_resupply_subcontractor_mto',
-                                                        _('Resupply Subcontractor on Order')).id,
-                    'name': self._format_rulename(self.lot_stock_id, subcontract_location_id, False),
+                    'route_id': self._find_global_route(
+                        'mrp_subcontracting.route_resupply_subcontractor_mto',
+                        _('Resupply Subcontractor on Order')).id,
+                    'name': self._format_rulename(
+                        self.lot_stock_id, subcontract_location_id, False),
                     'location_id': production_location_id.id,
                     'location_src_id': subcontract_location_id.id,
                     'picking_type_id': self.out_type_id.id
@@ -102,23 +110,29 @@ class StockWarehouse(models.Model):
         return rules
 
     def _get_picking_type_create_values(self, max_sequence):
-        data, next_sequence = super(StockWarehouse, self)._get_picking_type_create_values(max_sequence)
+        data, next_sequence = super()._get_picking_type_create_values(
+            max_sequence)
         data.update({
             'subcontracting_type_id': {
                 'name': _('Subcontracting'),
                 'code': 'mrp_operation',
                 'use_create_components_lots': True,
                 'sequence': next_sequence + 2,
-                'sequence_code': 'SBC',
-                'company_id': self.company_id.id,
+                #'sequence_code': 'SBC',
+                #'company_id': self.company_id.id,
             },
         })
         return data, max_sequence + 4
 
     def _get_sequence_values(self):
-        values = super(StockWarehouse, self)._get_sequence_values()
+        values = super()._get_sequence_values()
         values.update({
-            'subcontracting_type_id': {'name': self.name + ' ' + _('Sequence subcontracting'), 'prefix': self.code + '/SBC/', 'padding': 5, 'company_id': self.company_id.id},
+            'subcontracting_type_id': {
+                'name': self.name + ' ' + _('Sequence subcontracting'),
+                'prefix': self.code + '/SBC/',
+                'padding': 5,
+                #'company_id': self.company_id.id,
+            },
         })
         return values
 
