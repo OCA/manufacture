@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo import fields, models, _
 
@@ -116,10 +119,7 @@ class StockWarehouse(models.Model):
             'subcontracting_type_id': {
                 'name': _('Subcontracting'),
                 'code': 'mrp_operation',
-                'use_create_components_lots': True,
                 'sequence': next_sequence + 2,
-                #'sequence_code': 'SBC',
-                #'company_id': self.company_id.id,
             },
         })
         return data, max_sequence + 4
@@ -131,7 +131,7 @@ class StockWarehouse(models.Model):
                 'name': self.name + ' ' + _('Sequence subcontracting'),
                 'prefix': self.code + '/SBC/',
                 'padding': 5,
-                #'company_id': self.company_id.id,
+                'company_id': self.company_id.id,
             },
         })
         return values

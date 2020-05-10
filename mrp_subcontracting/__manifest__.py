@@ -1,13 +1,14 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 {
-    'name': "mrp_subcontracting",
+    'name': "Subcontract Productions",
     'version': '12.0.1.0.0',
-    'summary': "Subcontract Productions",
-    'description': "",
-    "author": "Odoo S.A., Odoo Community Association (OCA)",
-    'website': 'https://www.odoo.com/page/manufacturing',
-    'category': 'Manufacturing/Manufacturing',
+    "author": "Odoo S.A., Tecnativa, Odoo Community Association (OCA)",
+    'website': 'https://github.com/OCA/manufacture',
+    'category': 'Manufacturing Orders & BOMs',
     'depends': ['mrp'],
     'data': [
         'data/mrp_subcontracting_data.xml',
@@ -21,4 +22,6 @@
     'demo': [
         'data/mrp_subcontracting_demo.xml',
     ],
+    "uninstall_hook": "uninstall_hook",
+    "license": "LGPL-3",
 }

@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from datetime import timedelta
 
@@ -31,8 +34,9 @@ class StockPicking(models.Model):
                 picking.display_action_record_components = False
                 continue
             # Hide if the production is to close
-            if not subcontracted_productions.filtered(
-                    lambda mo: mo.state not in ('to_close', 'done')):
+            if not subcontracted_productions.filtered(lambda mo: (
+                not mo.check_to_done and mo.state != 'done'
+            )):
                 picking.display_action_record_components = False
                 continue
             picking.display_action_record_components = True
@@ -42,17 +46,16 @@ class StockPicking(models.Model):
     # -------------------------------------------------------------------------
 
     def action_done(self):
-        res = super(StockPicking, self).action_done()
         productions = self.env['mrp.production']
         for picking in self:
             for move in picking.move_lines:
                 if not move.is_subcontract:
                     continue
-                production = move.move_orig_ids.production_id
+                production = move.move_orig_ids.mapped('production_id')
                 if move._has_tracked_subcontract_components():
                     move.move_orig_ids.filtered(
-                        lambda m: m.state not in ('done', 'cancel'))\
-                            .move_line_ids.unlink()
+                        lambda m: m.state not in ('done', 'cancel')
+                    ).move_line_ids.unlink()
                     move_finished_ids = move.move_orig_ids.filtered(
                         lambda m: m.state not in ('done', 'cancel'))
                     for ml in move.move_line_ids:
@@ -72,31 +75,33 @@ class StockPicking(models.Model):
                         produce = self.env['mrp.product.produce'].with_context(
                             default_production_id=production.id).create({
                                 'production_id': production.id,
-                                'qty_producing': move_line.qty_done,
+                                'product_id': production.product_id.id,
+                                'product_qty': move_line.qty_done,
                                 'product_uom_id': move_line.product_uom_id.id,
-                                'finished_lot_id': move_line.lot_id.id,
-                                'consumption': 'strict',
+                                'lot_id': move_line.lot_id.id,
                             })
-                        produce._generate_produce_lines()
-                        produce._record_production()
+                        produce._onchange_product_qty()
+                        produce.do_produce()
                 productions |= production
-            for subcontracted_production in productions:
-                if subcontracted_production.state == 'progress':
-                    subcontracted_production.post_inventory()
-                else:
-                    subcontracted_production.button_mark_done()
-                # For concistency, set the date on production move before the
-                # date on picking. (Tracability report + Product Moves menu
-                # item)
-                minimum_date = min(picking.move_line_ids.mapped('date'))
-                production_moves = subcontracted_production.move_raw_ids\
-                    | subcontracted_production.move_finished_ids
-                production_moves.write({
-                    'date': minimum_date - timedelta(seconds=1),
-                })
-                production_moves.move_line_ids.write({
-                    'date': minimum_date - timedelta(seconds=1),
-                })
+        for subcontracted_production in productions:
+            if subcontracted_production.check_to_done:
+                subcontracted_production.button_mark_done()
+            else:
+                subcontracted_production.post_inventory()
+        res = super(StockPicking, self).action_done()
+        for subcontracted_production in productions:
+            # For consistency, set the date on production move before the
+            # date on picking. (Traceability report + Product Moves menu
+            # item)
+            minimum_date = min(picking.move_line_ids.mapped('date'))
+            production_moves = subcontracted_production.move_raw_ids\
+                | subcontracted_production.move_finished_ids
+            production_moves.write({
+                'date': minimum_date - timedelta(seconds=1),
+            })
+            production_moves.mapped('move_line_ids').write({
+                'date': minimum_date - timedelta(seconds=1),
+            })
         return res
 
     def action_record_components(self):
@@ -156,12 +161,10 @@ class StockPicking(models.Model):
         self.ensure_one()
         for move, bom in subcontract_details:
             mo = self.env['mrp.production'].with_context(
-                force_company=move.company_id.id)\
-                .create(self._prepare_subcontract_mo_vals(move, bom))
-            self.env['stock.move'].create(mo._get_moves_raw_values())
-
+                force_company=move.company_id.id
+            ).create(self._prepare_subcontract_mo_vals(move, bom))
             # Link the finished to the receipt move.
             finished_move = mo.move_finished_ids.filtered(
                 lambda m: m.product_id == move.product_id)
             finished_move.write({'move_dest_ids': [(4, move.id, False)]})
-            mo._generate_moves()
+            mo.action_assign()

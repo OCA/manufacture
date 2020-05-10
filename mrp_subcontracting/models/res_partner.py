@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo import fields, models
 

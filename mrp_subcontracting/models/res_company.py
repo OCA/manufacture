@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo import api, fields, models, _
 
@@ -14,9 +17,15 @@ class ResCompany(models.Model):
             [('subcontracting_location_id', '=', False)])
         company_without_subcontracting_loc._create_subcontracting_location()
 
-    def _create_per_company_locations(self):
-        super(ResCompany, self)._create_per_company_locations()
+    def create_transit_location(self):
+        """As there's no standard method for creating locations and we must
+        create the subcontracting location before the warehouse creation, we
+        inherit this method for performing the subcontracting location
+        creation as well.
+        """
+        res = super().create_transit_location()
         self._create_subcontracting_location()
+        return res
 
     def _create_subcontracting_location(self):
         parent_location = self.env.ref(

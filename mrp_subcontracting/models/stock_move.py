@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from collections import defaultdict
 
@@ -16,24 +19,22 @@ class StockMove(models.Model):
     )
 
     def _compute_show_subcontracting_details_visible(self):
-        """
-        Compute if the action button in order to see moves raw is visible
-        """
+        """Compute if the action button in order to see raw moves is visible"""
         for move in self:
-            if move.is_subcontract and move\
-                ._has_tracked_subcontract_components() and\
-                    not float_is_zero(
-                        move.quantity_done,
-                        precision_rounding=move.product_uom.rounding):
-                move.show_subcontracting_details_visible = True
-            else:
-                move.show_subcontracting_details_visible = False
+            move.show_subcontracting_details_visible = (
+                move.is_subcontract and
+                move._has_tracked_subcontract_components() and
+                not float_is_zero(
+                    move.quantity_done,
+                    precision_rounding=move.product_uom.rounding
+                )
+            )
 
     def _compute_show_details_visible(self):
         """ If the move is subcontract and the components are tracked. Then the
         show details button is visible.
         """
-        res = super(StockMove, self)._compute_show_details_visible()
+        res = super()._compute_show_details_visible()
         for move in self:
             if not move.is_subcontract:
                 continue
@@ -45,11 +46,11 @@ class StockMove(models.Model):
     def copy(self, default=None):
         self.ensure_one()
         if not self.is_subcontract or 'location_id' in default:
-            return super(StockMove, self).copy(default=default)
+            return super().copy(default=default)
         if not default:
             default = {}
         default['location_id'] = self.picking_id.location_id.id
-        return super(StockMove, self).copy(default=default)
+        return super().copy(default=default)
 
     def write(self, values):
         """ If the initial demand is updated then also update the linked
@@ -57,10 +58,12 @@ class StockMove(models.Model):
         """
         if 'product_uom_qty' in values:
             if self.env.context.get('cancel_backorder') is False:
-                return super(StockMove, self).write(values)
-            self.filtered(lambda m: m.is_subcontract
-            and m.state not in ['draft', 'cancel', 'done'])._update_subcontract_order_qty(values['product_uom_qty'])
-        return super(StockMove, self).write(values)
+                return super().write(values)
+            self.filtered(lambda m: (
+                m.is_subcontract and
+                m.state not in ['draft', 'cancel', 'done']
+            ))._update_subcontract_order_qty(values['product_uom_qty'])
+        return super().write(values)
 
     def action_show_details(self):
         """ Open the produce wizard in order to register tracked components for
@@ -77,8 +80,8 @@ class StockMove(models.Model):
                     float_compare(self.quantity_done, self.product_uom_qty,
                                   precision_rounding=rounding) < 0:
                 return self._action_record_components()
-        action = super(StockMove, self).action_show_details()
-        if self.is_subcontract:
+        action = super().action_show_details()
+        if self.is_subcontract and self._has_tracked_subcontract_components():
             action['views'] = [
                 (self.env.ref('stock.view_stock_move_operations').id, 'form'),
             ]
@@ -103,6 +106,12 @@ class StockMove(models.Model):
             'target': 'current',
             'domain': [('id', 'in', moves.ids)],
         }
+
+    def _action_cancel(self):
+        for move in self:
+            if move.is_subcontract:
+                move.move_orig_ids.production_id.action_cancel()
+        return super()._action_cancel()
 
     def _action_confirm(self, merge=True, merge_into=False):
         subcontract_details_per_picking = defaultdict(list)
@@ -138,10 +147,23 @@ class StockMove(models.Model):
                 *list(subcontract_details_per_picking.keys())).action_assign()
         return res
 
+    def _action_assign(self):
+        """As we don't have the bypass reservation method in v12 at stock.move
+        level, we have to trick this method for splitting the assign in
+        2 steps, classifying previously the subcontract moves and then
+        faking location_id.should_bypass_reservation method through
+        context.
+        """
+        subcontract_moves = self.filtered('is_subcontract')
+        res = super(StockMove, self - subcontract_moves)._action_assign()
+        super(StockMove, subcontract_moves.with_context(
+            mrp_subcontracting_bypass_reservation=True))._action_assign()
+        return res
+
     def _action_record_components(self):
         action = self.env.ref('mrp.act_mrp_product_produce').read()[0]
         action['context'] = dict(
-            default_production_id=self.move_orig_ids.production_id.id,
+            active_id=self.move_orig_ids.production_id.id,
             default_subcontract_move_id=self.id
         )
         return action
@@ -161,9 +183,11 @@ class StockMove(models.Model):
             if not move._has_tracked_subcontract_components():
                 continue
             rounding = move.product_uom.rounding
-            if float_compare(move.quantity_done,
-                             move.move_orig_ids.production_id.qty_produced,
-                             precision_rounding=rounding) > 0:
+            if float_compare(
+                move.quantity_done,
+                sum(move.move_orig_ids.mapped('production_id.qty_produced')),
+                precision_rounding=rounding
+            ) > 0:
                 overprocessed_moves |= move
         if overprocessed_moves:
             raise UserError(_("""
@@ -177,19 +201,18 @@ operations.""") % ('\n'.join(overprocessed_moves.mapped(
 
     def _get_subcontract_bom(self):
         self.ensure_one()
-        bom = self.env['mrp.bom'].sudo()._bom_subcontract_find(
+        return self.env['mrp.bom'].sudo()._bom_subcontract_find(
             product=self.product_id,
             picking_type=self.picking_type_id,
             company_id=self.company_id.id,
             bom_type='subcontract',
             subcontractor=self.picking_id.partner_id,
         )
-        return bom
 
     def _has_tracked_subcontract_components(self):
         self.ensure_one()
         return any(m.has_tracking != 'none' for m in
-                   self.move_orig_ids.production_id.move_raw_ids)
+                   self.move_orig_ids.mapped('production_id.move_raw_ids'))
 
     def _prepare_extra_move_vals(self, qty):
         vals = super()._prepare_extra_move_vals(qty)
@@ -201,21 +224,12 @@ operations.""") % ('\n'.join(overprocessed_moves.mapped(
         vals['location_id'] = self.location_id.id
         return vals
 
-    def _should_bypass_reservation(self):
-        """ If the move is subcontracted then ignore the reservation. """
-        should_bypass_reservation = super()._should_bypass_reservation()
-        if not should_bypass_reservation and self.is_subcontract:
-            return True
-        return should_bypass_reservation
-
     def _update_subcontract_order_qty(self, quantity):
         for move in self:
             quantity_change = quantity - move.product_uom_qty
             production = move.move_orig_ids.production_id
             if production:
-                self.env['change.production.qty'].with_context(
-                    skip_activity=True).create({
-                        'mo_id': production.id,
-                        'product_qty': production.product_uom_qty
-                        + quantity_change,
-                    }).change_prod_qty()
+                self.env['change.production.qty'].create({
+                    'mo_id': production.id,
+                    'product_qty': production.product_uom_qty + quantity_change
+                }).change_prod_qty()
