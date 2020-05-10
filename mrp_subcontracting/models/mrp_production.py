@@ -1,7 +1,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):

@@ -1,7 +1,9 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 from odoo.osv.expression import AND
 
 
@@ -10,8 +12,7 @@ class MrpBom(models.Model):
 
     type = fields.Selection(selection_add=[('subcontract', 'Subcontracting')])
     subcontractor_ids = fields.Many2many(
-        'res.partner', 'mrp_bom_subcontractor', string='Subcontractors',
-        check_company=True)
+        'res.partner', 'mrp_bom_subcontractor', string='Subcontractors')
 
     def _bom_subcontract_find(self, product_tmpl=None, product=None,
                               picking_type=None, company_id=False,
@@ -29,10 +30,12 @@ class MrpBom(models.Model):
         else:
             return self.env['mrp.bom']
 
-    # This is a copy from mrp v13.0
     @api.model
     def _bom_find_domain(self, product_tmpl=None, product=None,
                          picking_type=None, company_id=False, bom_type=False):
+        """Helper method that is present on v13 but not in v12. We recreate
+        it here with v12 conditions.
+        """
         if product:
             if not product_tmpl:
                 product_tmpl = product.product_tmpl_id
@@ -43,21 +46,13 @@ class MrpBom(models.Model):
             ]
         elif product_tmpl:
             domain = [('product_tmpl_id', '=', product_tmpl.id)]
-        else:
-            # neither product nor template, makes no sense to search
-            raise UserError(_(
-                'You should provide either a product or a product template to\
-                 search a BoM'))
         if picking_type:
             domain += ['|', ('picking_type_id', '=', picking_type.id),
                        ('picking_type_id', '=', False)]
         if company_id or self.env.context.get('company_id'):
             domain = domain + [
-                '|', ('company_id', '=', False),
                 ('company_id', '=',
-                 company_id or self.env.context.get('company_id')),
-            ]
+                 company_id or self.env.context.get('company_id'))]
         if bom_type:
             domain += [('type', '=', bom_type)]
-        # order to prioritize bom with product_id over the one without
         return domain

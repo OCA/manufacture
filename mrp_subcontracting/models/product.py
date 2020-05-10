@@ -1,4 +1,7 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo import api, fields, models
 
@@ -17,4 +20,5 @@ class SupplierInfo(models.Model):
             boms = supplier.product_id.variant_bom_ids
             boms |= supplier.product_tmpl_id.bom_ids.filtered(
                 lambda b: not b.product_id)
-            supplier.is_subcontractor = supplier.name in boms.subcontractor_ids
+            supplier.is_subcontractor = (
+                supplier.name in boms.mapped('subcontractor_ids'))

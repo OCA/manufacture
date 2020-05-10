@@ -1,12 +1,16 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# Copyright 2019 Odoo
+# Copyright 2020 Tecnativa - Alexandre Díaz
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo.tests.common import Form, SavepointCase
+
 
 class TestMrpSubcontractingCommon(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super().setUp()
+        super().setUpClass()
         # 1: Create a subcontracting partner
         main_partner = cls.env['res.partner'].create({'name': 'main_partner'})
         cls.subcontractor_partner1 = cls.env['res.partner'].create({
