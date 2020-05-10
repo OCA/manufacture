@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
     'name': "mrp_subcontracting",
-    'version': '0.1',
+    'version': '12.0.1.0.0',
     'summary': "Subcontract Productions",
     'description': "",
+    "author": "Odoo S.A., Odoo Community Association (OCA)",
     'website': 'https://www.odoo.com/page/manufacturing',
     'category': 'Manufacturing/Manufacturing',
     'depends': ['mrp'],
@@ -21,5 +21,4 @@
     'demo': [
         'data/mrp_subcontracting_demo.xml',
     ],
-    'uninstall_hook': 'uninstall_hook',
 }

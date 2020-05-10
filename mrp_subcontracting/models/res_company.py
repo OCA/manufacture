@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
@@ -20,11 +19,13 @@ class ResCompany(models.Model):
         self._create_subcontracting_location()
 
     def _create_subcontracting_location(self):
-        parent_location = self.env.ref('stock.stock_location_locations_partner', raise_if_not_found=False)
-        property_stock_subcontractor_res_partner_field = self.env['ir.model.fields'].search([
-            ('model', '=', 'res.partner'),
-            ('name', '=', 'property_stock_subcontractor')
-        ])
+        parent_location = self.env.ref(
+            'stock.stock_location_locations_partner', raise_if_not_found=False)
+        property_stock_subcontractor_res_partner_field = self.env[
+            'ir.model.fields'].search([
+                ('model', '=', 'res.partner'),
+                ('name', '=', 'property_stock_subcontractor')
+            ])
         for company in self:
             subcontracting_location = self.env['stock.location'].create({
                 'name': _('%s: Subcontracting Location') % company.name,
