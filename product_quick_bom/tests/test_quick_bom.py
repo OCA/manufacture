@@ -15,9 +15,10 @@ class TestQuickBom(TransactionCase):
         self.prd_1 = self.env.ref("mrp.product_product_computer_desk_bolt")
         self.prd_2 = self.env.ref("mrp.product_product_computer_desk_screw")
         self.prd_3 = self.env.ref("mrp.product_product_wood_ply")
-        self.tmpl_4 = self.env.ref(
-            "product.product_delivery_02_product_template"
-        )
+        self.tmpl_4 = self.env['product.template'].create({
+            'name': 'Test template 4',
+            'type': 'product',
+        })
 
     def test_create_bom(self):
         self.tmpl_4.button_create_bom()
