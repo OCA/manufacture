@@ -93,6 +93,11 @@ msgid "Reference"
 msgstr ""
 
 #. module: mrp_bom_tracking
+#: selection:mrp.bom,type:0
+msgid "Subcontracting"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid "When a procurement has a ‘produce’ route with a operation type set, it will try to create a Manufacturing Order for that product using a BoM of the same operation type. That allows to define stock rules which trigger different manufacturing orders with different BoMs."
 msgstr ""
