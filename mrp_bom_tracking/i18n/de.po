@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_bom_tracking
+# 	* mrp_bom_tracking
 #
 msgid ""
 msgstr ""
@@ -16,19 +16,22 @@ msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
-msgid ":\n"
+msgid ""
+":\n"
 "                New component<br/>"
 msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
-msgid ":\n"
+msgid ""
+":\n"
 "                Removed component<br/>"
 msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
-msgid "<br/>\n"
+msgid ""
+"<br/>\n"
 "                    Product Unit of Measure:"
 msgstr ""
 
@@ -94,8 +97,17 @@ msgid "Reference"
 msgstr ""
 
 #. module: mrp_bom_tracking
+#: selection:mrp.bom,type:0
+msgid "Subcontracting"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
-msgid "When a procurement has a ‘produce’ route with a operation type set, it will try to create a Manufacturing Order for that product using a BoM of the same operation type. That allows to define stock rules which trigger different manufacturing orders with different BoMs."
+msgid ""
+"When a procurement has a ‘produce’ route with a operation type set, it will "
+"try to create a Manufacturing Order for that product using a BoM of the same "
+"operation type. That allows to define stock rules which trigger different "
+"manufacturing orders with different BoMs."
 msgstr ""
 
 #. module: mrp_bom_tracking
