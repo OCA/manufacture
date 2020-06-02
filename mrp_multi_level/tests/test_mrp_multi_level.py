@@ -267,3 +267,25 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(mrp_invs[0].to_procure, 130)
         # Net needs = 18, available on-hand = 3 -> 15
         self.assertEqual(mrp_invs[1].to_procure, 15)
+
+    def test_bom_line_attribute_value_skip(self):
+        """Check for the correct demand on components of a product with
+        multiple variants"""
+        # No demand or supply for AV-12 or AV-21
+        av_12_supply = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.av_12.id)
+        ])
+        self.assertFalse(av_12_supply)
+        av_21_supply = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.av_21.id)
+        ])
+        self.assertFalse(av_21_supply)
+        # Supply for AV-11 and AV-22
+        av_11_supply = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.av_11.id)
+        ])
+        self.assertTrue(av_11_supply)
+        av_22_supply = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.av_22.id)
+        ])
+        self.assertTrue(av_22_supply)
