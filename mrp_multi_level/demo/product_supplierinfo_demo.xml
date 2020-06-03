@@ -15,4 +15,12 @@
         <field name="min_qty">0</field>
         <field name="price">100</field>
     </record>
+
+    <record id="product_supplierinfo_pp_3" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_pp_3_product_template"/>
+        <field name="name" ref="res_partner_lazer_tech"/>
+        <field name="delay">3</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
 </odoo>

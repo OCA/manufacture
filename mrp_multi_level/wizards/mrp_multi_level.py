@@ -97,6 +97,11 @@ class MultiLevelMrp(models.TransientModel):
             self, product_mrp_area, qty, mrp_date_supply,
             mrp_action_date, name
     ):
+        supply_method_names = dict(
+            product_mrp_area._fields['supply_method'].selection)
+        order_name = 'Planned %s supply for: %s' % (
+            supply_method_names.get(
+                product_mrp_area.supply_method, 'Undefined'), name)
         return {
             'product_mrp_area_id': product_mrp_area.id,
             'mrp_qty': qty,
@@ -104,7 +109,7 @@ class MultiLevelMrp(models.TransientModel):
             'order_release_date': mrp_action_date,
             'mrp_action': product_mrp_area.supply_method,
             'qty_released': 0.0,
-            'name': 'Planned supply for: ' + name,
+            'name': order_name,
             'fixed': False,
         }
 
@@ -241,7 +246,7 @@ class MultiLevelMrp(models.TransientModel):
             planned_order = self.env['mrp.planned.order'].create(order_data)
             qty_ordered = qty_ordered + qty
 
-            if product_mrp_area_id.supply_method == 'manufacture':
+            if product_mrp_area_id.supply_method in ['manufacture', 'phantom']:
                 self.explode_action(
                     product_mrp_area_id, mrp_action_date,
                     name, qty, planned_order)
@@ -643,7 +648,8 @@ class MultiLevelMrp(models.TransientModel):
         supply_qty = supply_qty_by_date.get(mdt, 0.0)
         mrp_inventory_data["supply_qty"] = abs(supply_qty)
         mrp_inventory_data["initial_on_hand_qty"] = on_hand_qty
-        on_hand_qty += supply_qty + demand_qty
+        if product_mrp_area.supply_method != 'phantom':
+            on_hand_qty += supply_qty + demand_qty
         mrp_inventory_data["final_on_hand_qty"] = on_hand_qty
         # Consider that MRP plan is followed exactly:
         running_availability += (

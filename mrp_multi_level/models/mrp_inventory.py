@@ -82,8 +82,10 @@ class MrpInventory(models.Model):
     @api.depends("planned_order_ids", "planned_order_ids.qty_released")
     def _compute_to_procure(self):
         for rec in self:
-            rec.to_procure = sum(rec.planned_order_ids.mapped('mrp_qty')) - \
-                sum(rec.planned_order_ids.mapped('qty_released'))
+            planned_qty = rec.planned_order_ids.\
+                filtered(lambda x: x.mrp_action != 'phantom').mapped('mrp_qty')
+            ordered_qty = rec.planned_order_ids.mapped('qty_released')
+            rec.to_procure = sum(planned_qty) - sum(ordered_qty)
 
     @api.multi
     @api.depends('product_mrp_area_id',

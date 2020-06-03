@@ -57,6 +57,7 @@ class MrpPlannedOrder(models.Model):
     )
     mrp_action = fields.Selection(
         selection=[("manufacture", "Manufacturing Order"),
+                   ('phantom', 'Kit'),
                    ("buy", "Purchase Order"),
                    ('pull', 'Pull From'),
                    ('push', 'Push To'),

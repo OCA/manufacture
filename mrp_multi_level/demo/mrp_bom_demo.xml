@@ -43,6 +43,13 @@
         <field name="sequence">5</field>
         <field name="bom_id" ref="mrp_bom_fp_2"/>
     </record>
+    <record id="mrp_bom_fp_2_line_sf_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_sf_3"/>
+        <field name="product_qty">2</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_fp_2"/>
+    </record>
     <!-- SF-1 -->
      <record id="mrp_bom_sf_1" model="mrp.bom">
         <field name="product_tmpl_id"
@@ -77,5 +84,20 @@
         <field name="product_uom_id" ref="uom.product_uom_unit"/>
         <field name="sequence">5</field>
         <field name="bom_id" ref="mrp_bom_sf_2"/>
+    </record>
+    <!-- SF-3 -->
+     <record id="mrp_bom_sf_3" model="mrp.bom">
+        <field name="product_tmpl_id"
+               ref="product_product_sf_3_product_template"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="sequence">5</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="mrp_bom_sf_3_line_pp_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_pp_3"/>
+        <field name="product_qty">7</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_sf_3"/>
     </record>
 </odoo>

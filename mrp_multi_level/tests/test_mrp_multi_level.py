@@ -267,3 +267,21 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(mrp_invs[0].to_procure, 130)
         # Net needs = 18, available on-hand = 3 -> 15
         self.assertEqual(mrp_invs[1].to_procure, 15)
+
+    def test_phantom_comp_planning(self):
+        """Phantom components should have zero quantity to procure."""
+        # SF-3
+        sf_3_line_1 = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.sf_3.id),
+            ('date', '=', self.date_6)])
+        self.assertEqual(sf_3_line_1.supply_method, 'phantom')
+        self.assertEqual(len(sf_3_line_1), 1)
+        self.assertEqual(sf_3_line_1.demand_qty, 30.0)
+        self.assertEqual(sf_3_line_1.to_procure, 0.0)
+        # PP-3
+        pp_3_line_1 = self.mrp_inventory_obj.search([
+            ('product_mrp_area_id.product_id', '=', self.pp_3.id),
+            ('date', '=', self.date_6)])
+        self.assertEqual(len(pp_3_line_1), 1)
+        self.assertEqual(pp_3_line_1.demand_qty, 210.0)
+        self.assertEqual(pp_3_line_1.to_procure, 210.0)
