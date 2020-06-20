@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2018-02-12 03:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2020-06-20 22:32+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: mrp_production_request
 #: model_terms:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
@@ -199,39 +200,39 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores (Canais)"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Parceiros)"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__id
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo__id
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line__id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Se marcado, novas mensagens solicitarão sua atenção."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se marcado novas mensagens solicitarão sua atenção."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se marcadas, algumas mensagens apresentam um erro de entrega."
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__propagate
@@ -372,29 +373,27 @@ msgstr "Nome"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Ações"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_has_error_counter
 msgid "Number of error"
-msgstr ""
+msgstr "Número de Erro"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensagens que requerem uma ação"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensagens com erro de entrega"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
-#, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
-msgstr "Mensagens não lidas"
+msgstr "Número de mensagens não lidas"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__orderpoint_id
