@@ -44,7 +44,6 @@ msgstr "Produzione"
 #. module: quality_control_mrp
 #: model:ir.model,name:quality_control_mrp.model_mrp_production
 #, fuzzy
-#| msgid "Production order"
 msgid "Production Order"
 msgstr "Ordine di produzione"
 
