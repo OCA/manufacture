@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2020-06-20 22:31+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-06-22 02:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -783,9 +783,9 @@ msgid ""
 "Planned: Future activities."
 msgstr ""
 "Status baseado em atividades\n"
-"Vencido: a data de vencimento já passou\n"
+"Vencida: a data de vencimento já passou\n"
 "Hoje: a data da atividade é hoje\n"
-"Planejado: Atividades futuras."
+"Planejada: Atividades futuras."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__success
@@ -936,7 +936,7 @@ msgstr "Aguardando aprovação de um supervisor"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__website_message_ids
 msgid "Website Messages"
-msgstr "Mensagens do site"
+msgstr "Mensagens do Site"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__website_message_ids
