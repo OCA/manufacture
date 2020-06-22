@@ -6,57 +6,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-06-22 23:20+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
 msgid "MO grouping interval (days)"
-msgstr ""
+msgstr "Intervalo de Agrupamento das Ordens de Manufatura (em dias)"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
 msgid "MO grouping max. hour (UTC)"
 msgstr ""
+"Agrupamento das Ordens de Manufatura pela hora mais tardia (entre 0 e 23) "
+"(UTC: Universal Time Coordinated)"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo de Coleta"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordem de Produção"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regra de Estoque"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
 msgid "The maximum hour (between 0 and 23) for considering new manufacturing orders inside the same interval period, and thus being grouped on the same MO. IMPORTANT: The hour should be expressed in UTC."
 msgstr ""
+"A hora máxima (entre 0 e 23) para considerar novas ordens de fabricação "
+"dentro do mesmo intervalo e, assim, ser agrupada no mesma Ordem de "
+"Manufatura. IMPORTANTE: A hora deve ser expressa em UTC."
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
 msgid "The number of days for grouping together on the same manufacturing order."
-msgstr ""
+msgstr "O número de dias a serem agrupados na mesma ordem de fabricação."
 
 #. module: mrp_production_grouped_by_product
 #: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:36
 #, python-format
 msgid "You have to enter a positive value for interval."
-msgstr ""
+msgstr "Você deve entrar com um número positivo para o intervalo."
 
 #. module: mrp_production_grouped_by_product
 #: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:29
 #, python-format
 msgid "You have to enter a valid hour between 0 and 23."
-msgstr ""
+msgstr "Você deve entrar com uma hora válida entre 0 e 23."
