@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-06-22 23:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Bill Of Material"
-msgstr ""
+msgstr "Lista de Materiais"
 
 #. module: mrp_bom_component_menu
 #: model:ir.actions.act_window,name:mrp_bom_component_menu.mrp_bom_form_action2
 #: model:ir.ui.menu,name:mrp_bom_component_menu.menu_mrp_bom_form_action2
 msgid "Bill of Material Components"
-msgstr ""
+msgstr "Componentes da Lista de Materiais"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
@@ -31,38 +33,42 @@ msgid "Bills of materials components are components and by-products\n"
 "                used to create master bills of materials.  Use this menu to\n"
 "                search in which BoM a specific component is used."
 msgstr ""
+"Listas de componentes de materiais são componentes e subprodutos\n"
+"                 usados para criar listas mestre de materiais. Use este menu "
+"para\n"
+"                 procurar em qual Lista um componente específico é usado."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
 msgid "Click to add a component to a bill of material."
-msgstr ""
+msgstr "Clique para adicionar um componente a uma Lista de Materiais."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_tree_view
 msgid "Components"
-msgstr ""
+msgstr "Componentes"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Default Unit of Measure"
-msgstr ""
+msgstr "Unidade de Medida Padrão"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupar Por..."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Routings"
-msgstr ""
+msgstr "Roteamentos"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Search Bill Of Material Components"
-msgstr ""
+msgstr "Buscar Componentes da Lista de Materiais"
