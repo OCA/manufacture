@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-22 23:20+0000\n"
+"PO-Revision-Date: 2020-06-23 02:19+0000\n"
 "Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -44,74 +44,81 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component quantities or UoMs have been updated.</strong>"
 msgstr ""
+"<strong>As quantidades de componentes ou as Unidades de Medida foram "
+"atualizadas.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid "<strong>The components have changed.</strong>"
-msgstr ""
+msgstr "<strong>Os componentes foram alterados</strong>"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Lista de Materiais"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Linha da Lista de Materiais"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Tipo de Lista de Materiais"
 
 #. module: mrp_bom_tracking
 #: selection:mrp.bom,type:0
 msgid "Kit"
-msgstr ""
+msgstr "Kit"
 
 #. module: mrp_bom_tracking
 #: selection:mrp.bom,type:0
 msgid "Manufacture this product"
-msgstr ""
+msgstr "Manufature este produto"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Tipo de Operação"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "Product Quantity:"
-msgstr ""
+msgstr "Quantidade de Produto:"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantidade"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #. module: mrp_bom_tracking
 #: selection:mrp.bom,type:0
 msgid "Subcontracting"
-msgstr ""
+msgstr "Subcontratação"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid "When a procurement has a ‘produce’ route with a operation type set, it will try to create a Manufacturing Order for that product using a BoM of the same operation type. That allows to define stock rules which trigger different manufacturing orders with different BoMs."
 msgstr ""
+"Quando uma aquisição tem uma rota de 'produção' com um tipo de operação "
+"definido, esta tenta criar uma Ordem de Fabricação para esse produto usando "
+"uma Lista de Materiais do mesmo tipo de operação. Isso permite definir "
+"regras de estoque que acionam diferentes ordens de fabricação com diferentes "
+"Listas de Materiais."
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "component<br/>"
-msgstr ""
+msgstr "componente<br/>"
