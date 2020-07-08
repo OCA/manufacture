@@ -14,3 +14,5 @@ class RepairOrder(models.Model):
                                   copy=False,
                                   help="Date of the repair, this field "
                                   "and user_id defines the calendar")
+    duration = fields.Float('Repair Duration',
+                            help="Duration in hours and minutes.")

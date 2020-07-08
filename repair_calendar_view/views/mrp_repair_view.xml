@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='guarantee_limit']" position="after">
                 <field name="date_repair"/>
+                <field name="duration"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="user_id"/>
@@ -18,7 +19,7 @@
         <field name="name">Repair Orders Calendar</field>
         <field name="model">repair.order</field>
         <field name="arch" type="xml">
-            <calendar string="Repair Orders Calendar" date_start="date_repair" color="user_id">
+            <calendar string="Repair Orders Calendar" date_start="date_repair" date_delay="duration" color="user_id">
                 <field name="product_id"/>
                 <field name="partner_id"/>
             </calendar>
