@@ -1,7 +1,8 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class MrpProduction(models.Model):
@@ -41,3 +42,15 @@ class MrpProduction(models.Model):
             if mo_type.sequence_id:
                 vals["name"] = mo_type.sequence_id.next_by_id()
         return super().create(vals)
+
+    @api.constrains("company_id", "mo_type_id")
+    def _check_mo_type_company(self):
+        for rec in self:
+            if rec.company_id != rec.mo_type_id.company_id:
+                raise ValidationError(
+                    _("Document's company and type's company mismatch")
+                )
+
+    @api.onchange("company_id")
+    def check_company(self):
+        self.mo_type_id = False

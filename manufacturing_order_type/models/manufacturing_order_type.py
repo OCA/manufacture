@@ -56,3 +56,10 @@ class ManufacturingOrderType(models.Model):
         string="Operation Type",
         domain="[('code', '=', 'mrp_operation'), ('company_id', '=', company_id)]",
     )
+
+    # @api.constraints('company_id', 'picking_type_id')
+    # def _check_company_id(self):
+    #     for r in self:
+    #         if r.company_id == record.picking_type_id:
+    #             raise ValidationError(
+    #                 _("Amount cannot be negative"))
