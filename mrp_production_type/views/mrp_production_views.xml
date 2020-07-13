@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <field name="bom_id" position="after">
+                <field name="mo_type_id" required="True" />
+            </field>
+        </field>
+    </record>
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field
+                    name="mo_type_id"
+                    invisible="context.get('group_by') == 'mo_type_id'"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_mrp_production_filter" model="ir.ui.view">
+        <field name="name">mrp.production.select</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="mo_type_id" />
+            </field>
+            <group position="inside">
+                <filter
+                    string="Type"
+                    name="mo_type_id"
+                    context="{'group_by': 'mo_type_id'}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
