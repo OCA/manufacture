@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_production_type,mrp.production.type,model_mrp_production_type,mrp.group_mrp_user,1,0,0,0
+access_mrp_production_type_manager,mrp.production.type manager,model_mrp_production_type,mrp.group_mrp_manager,1,1,1,1
