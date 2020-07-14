@@ -1,0 +1,1 @@
+Putting bom_line_id as the father could be useful? possible?

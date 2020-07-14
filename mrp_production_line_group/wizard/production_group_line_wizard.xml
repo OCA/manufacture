@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_production_group_line_wizard" model="ir.ui.view">
+        <field name="name">production.group.line.wizard</field>
+        <field name="model">production.group.line.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Group MRP Production Lines">
+                <div>
+                    <group>
+                        <field name="mo_id" invisible="True"/>
+                    </group>
+                </div>
+                <div>
+                    Are you sure you want to confirm group lines?
+                </div>
+                <footer>
+                    <button name="cancel_button" string="Discard" special="cancel" class="btn-secondary"/>
+                    <button name="action_done" string="Confirm" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_production_group_line" model="ir.actions.act_window">
+        <field name="name">Group MRP Production Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">production.group.line.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
