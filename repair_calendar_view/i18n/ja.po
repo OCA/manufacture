@@ -24,11 +24,6 @@ msgid "Date of the repair, this field and user_id defines the calendar"
 msgstr ""
 
 #. module: repair_calendar_view
-#: model:ir.model.fields,help:repair_calendar_view.field_repair_order__user_id
-msgid "Person in charge for the repair"
-msgstr ""
-
-#. module: repair_calendar_view
 #: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__date_repair
 msgid "Repair Date"
 msgstr ""
@@ -43,7 +38,5 @@ msgstr ""
 msgid "Repair Orders Calendar"
 msgstr ""
 
-#. module: repair_calendar_view
-#: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__user_id
-msgid "User"
-msgstr "ユーザ"
+#~ msgid "User"
+#~ msgstr "ユーザ"
