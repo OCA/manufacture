@@ -28,11 +28,6 @@ msgstr ""
 "calendario"
 
 #. module: repair_calendar_view
-#: model:ir.model.fields,help:repair_calendar_view.field_repair_order__user_id
-msgid "Person in charge for the repair"
-msgstr "Persona a cargo de la reparación"
-
-#. module: repair_calendar_view
 #: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__date_repair
 msgid "Repair Date"
 msgstr "Fecha de reparación"
@@ -47,7 +42,8 @@ msgstr "Pedido de reparación"
 msgid "Repair Orders Calendar"
 msgstr "Calendario de pedidos de reparación"
 
-#. module: repair_calendar_view
-#: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__user_id
-msgid "User"
-msgstr "Usuario"
+#~ msgid "Person in charge for the repair"
+#~ msgstr "Persona a cargo de la reparación"
+
+#~ msgid "User"
+#~ msgstr "Usuario"
