@@ -239,6 +239,11 @@ msgid "If empty, all areas will be computed."
 msgstr ""
 
 #. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Incoming Moves"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_inspection_delay
 msgid "Inspection Delay"
 msgstr ""
@@ -518,6 +523,11 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_origin
 msgid "Origin"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Outgoing Moves"
 msgstr ""
 
 #. module: mrp_multi_level
