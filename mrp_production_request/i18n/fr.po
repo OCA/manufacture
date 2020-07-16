@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2020-04-04 12:19+0000\n"
+"PO-Revision-Date: 2020-07-16 19:19+0000\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -100,7 +100,7 @@ msgid ""
 "manufacturing orders from procurement."
 msgstr ""
 "Cocher cette case pour générer une demande de fabrication au lieu d'un ordre "
-"de fabrication lors de l'approvisionnent."
+"de fabrication lors de l'approvisionnement."
 
 #. module: mrp_production_request
 #: model_terms:ir.actions.act_window,help:mrp_production_request.mrp_production_request_action
