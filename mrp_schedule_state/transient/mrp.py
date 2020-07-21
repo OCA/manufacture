@@ -68,7 +68,7 @@ class SwitchScheduleState(models.TransientModel):
                 raise UserError(
                     _('It is not possible to schedule Manufacture Orders '
                       'In the past.'))
-            vals = {'schedule_date': self.schedule_date}
+            vals = {'schedule_date': self.schedule_date, 'schedule_uid': self.env.user.id}
         manufacturing_orders = MrpProduction.browse(active_ids)
         if self.schedule_state == 'scheduled':
             waiting_mo = MrpProduction.search(
