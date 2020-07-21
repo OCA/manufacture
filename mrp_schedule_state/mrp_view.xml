@@ -28,6 +28,7 @@
     <field name="arch" type="xml">
         <field name="date_planned" position="after">
             <field name="schedule_date" readonly="1"/>
+            <field name="schedule_uid" readonly="1"/>
             <field name="schedule_state"/>
         </field>
         <field name="date_planned" position="attributes">

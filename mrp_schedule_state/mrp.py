@@ -50,6 +50,7 @@ class MrpProduction(models.Model):
     # same purpose.
     schedule_date = fields.Datetime(
         help="Date at which the manufacture order is scheduled")
+    schedule_uid = fields.Many2one('res.users', string="Scheduled by")
 
     @api.multi
     def _check_planned_state(self):
@@ -84,9 +85,11 @@ class MrpProduction(models.Model):
         if vals.get('schedule_state') == 'scheduled' and not \
                 vals.get('schedule_date'):
             vals['schedule_date'] = fields.Datetime.now()
+            vals['schedule_uid'] = self.env.user.id
         if vals.get('schedule_state') and \
                 vals.get('schedule_state') != 'scheduled':
             vals['schedule_date'] = False
+            vals['schedule_uid'] = False
         return super(MrpProduction, self).write(vals, update=update)
 
     @api.multi
