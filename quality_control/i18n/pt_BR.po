@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2020-06-22 02:19+0000\n"
+"PO-Revision-Date: 2020-07-28 15:59+0000\n"
 "Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -187,7 +187,7 @@ msgstr "Data"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line__display_name
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line__display_name
 msgid "Display Name"
-msgstr "Nome Exibido"
+msgstr "Exibir Nome"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
@@ -275,12 +275,12 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se marcadas, novas mensagens irão requer sua atenção."
+msgstr "Se marcadas novas mensagens requerem sua atenção."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se marcadas, novas mensagens irão requer sua atenção."
+msgstr "Se marcadas, novas mensagens requerem sua atenção."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error
@@ -359,7 +359,7 @@ msgstr "É Seguidor"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line____last_update
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line____last_update
 msgid "Last Modified on"
-msgstr "Última Modificação em"
+msgstr "Última Modificação Feita em"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__write_uid
@@ -374,7 +374,7 @@ msgstr "Última Modificação em"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line__write_uid
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line__write_uid
 msgid "Last Updated by"
-msgstr "Última Atualização feita por"
+msgstr "Última Atualização Feita por"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__write_date
@@ -389,12 +389,12 @@ msgstr "Última Atualização feita por"
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line__write_date
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line__write_date
 msgid "Last Updated on"
-msgstr "Última Atualização feita em"
+msgstr "Última Atualização Feita em"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Anexo principal"
+msgstr "Anexo Principal"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_manager
@@ -420,7 +420,7 @@ msgstr "Valor máximo para a questão quantitativa."
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error
 msgid "Message Delivery error"
-msgstr "Erro na entrega da mensagem"
+msgstr "Erro de Entrega da Mensagem"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_ids
@@ -477,12 +477,12 @@ msgstr "Número de Ações"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error_counter
 msgid "Number of error"
-msgstr "Número de erro"
+msgstr "Número de Erros"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensagens que requer uma ação"
+msgstr "Número de mensagens que requerem uma ação"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error_counter
@@ -772,7 +772,7 @@ msgstr "Tamanho"
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__state
 #: model_terms:ir.ui.view,arch_db:quality_control.qc_inspection_search_view
 msgid "State"
-msgstr "Estado"
+msgstr "Situação"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__activity_state
@@ -785,7 +785,7 @@ msgstr ""
 "Status baseado em atividades\n"
 "Vencida: a data de vencimento já passou\n"
 "Hoje: a data da atividade é hoje\n"
-"Planejada: Atividades futuras."
+"Planejada: Atividade futura."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__success
@@ -891,7 +891,7 @@ msgstr "Contador de Mensagens Não Lidas"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line__uom_id
 msgid "UoM"
-msgstr "UoM"
+msgstr "Unidade de Medida"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection_line__test_uom_id
@@ -941,7 +941,7 @@ msgstr "Mensagens do Site"
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__website_message_ids
 msgid "Website communication history"
-msgstr "Histórico de comunicação do site"
+msgstr "Histórico de comunicação através do site"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_test_question_value__ok
