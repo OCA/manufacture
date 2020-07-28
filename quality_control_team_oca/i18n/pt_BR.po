@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-20 22:33+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-07-28 15:59+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -124,12 +124,12 @@ msgstr "ID"
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se marcado, novas mensagens solicitarão sua atenção."
+msgstr "Se marcado, novas mensagens requerem sua atenção."
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se marcado novas mensagens solicitarão sua atenção."
+msgstr "Se marcado novas mensagens requerem sua atenção."
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__message_has_error
@@ -194,7 +194,7 @@ msgstr "Número do erro"
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensagens que requer uma ação"
+msgstr "Número de mensagens que requerem uma ação"
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__message_has_error_counter
