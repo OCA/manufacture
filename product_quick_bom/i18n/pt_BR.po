@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2020-06-22 02:19+0000\n"
+"PO-Revision-Date: 2020-07-28 15:59+0000\n"
 "Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -45,7 +45,7 @@ msgstr "Criar Lista de Materiais"
 #. module: product_quick_bom
 #: model:ir.model,name:product_quick_bom.model_product_template
 msgid "Product Template"
-msgstr "Produto Modelo"
+msgstr "Modelo de Produto"
 
 #. module: product_quick_bom
 #: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
