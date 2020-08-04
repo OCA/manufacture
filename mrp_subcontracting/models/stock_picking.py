@@ -109,7 +109,7 @@ class StockPicking(models.Model):
         for move in self.move_lines:
             if not move._has_tracked_subcontract_components():
                 continue
-            production = move.move_orig_ids.production_id
+            production = move.move_orig_ids.mapped("production_id")
             if not production or production.state in ('done', 'to_close'):
                 continue
             return move._action_record_components()

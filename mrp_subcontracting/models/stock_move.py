@@ -72,7 +72,7 @@ class StockMove(models.Model):
         self.ensure_one()
         if self.is_subcontract:
             rounding = self.product_uom.rounding
-            production = self.move_orig_ids.production_id
+            production = self.move_orig_ids.mapped("production_id")
             if self._has_tracked_subcontract_components() and\
                     float_compare(production.qty_produced,
                                   production.product_uom_qty,
@@ -93,7 +93,7 @@ class StockMove(models.Model):
 
     def action_show_subcontract_details(self):
         """ Display moves raw for subcontracted product self. """
-        moves = self.move_orig_ids.production_id.move_raw_ids
+        moves = self.move_orig_ids.mapped("production_id").move_raw_ids
         tree_view = self.env.ref(
             'mrp_subcontracting.mrp_subcontracting_move_tree_view')
         form_view = self.env.ref(
@@ -110,7 +110,7 @@ class StockMove(models.Model):
     def _action_cancel(self):
         for move in self:
             if move.is_subcontract:
-                move.move_orig_ids.production_id.action_cancel()
+                move.move_orig_ids.mapped("production_id").action_cancel()
         return super()._action_cancel()
 
     def _action_confirm(self, merge=True, merge_into=False):
@@ -119,7 +119,7 @@ class StockMove(models.Model):
             if move.location_id.usage != 'supplier' \
                     or move.location_dest_id.usage == 'supplier':
                 continue
-            if move.move_orig_ids.production_id:
+            if move.move_orig_ids.mapped("production_id"):
                 continue
             bom = move._get_subcontract_bom()
             if not bom:
@@ -163,7 +163,7 @@ class StockMove(models.Model):
     def _action_record_components(self):
         action = self.env.ref('mrp.act_mrp_product_produce').read()[0]
         action['context'] = dict(
-            active_id=self.move_orig_ids.production_id.id,
+            active_id=self.move_orig_ids.mapped("production_id").id,
             default_subcontract_move_id=self.id
         )
         return action
@@ -227,7 +227,7 @@ operations.""") % ('\n'.join(overprocessed_moves.mapped(
     def _update_subcontract_order_qty(self, quantity):
         for move in self:
             quantity_change = quantity - move.product_uom_qty
-            production = move.move_orig_ids.production_id
+            production = move.move_orig_ids.mapped("production_id")
             if production:
                 self.env['change.production.qty'].create({
                     'mo_id': production.id,
