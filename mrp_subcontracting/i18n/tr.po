@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* mrp_subcontracting
-# 
+#
 # Translators:
 # Ediz Duman <neps1192@gmail.com>, 2019
 # Martin Trigaux, 2019
@@ -9,7 +9,7 @@
 # Umur Akın <umura@projetgrup.com>, 2019
 # Tugay Hatıl <tugayh@projetgrup.com>, 2020
 # Buket Şeker <buket_skr@hotmail.com>, 2020
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
@@ -18,35 +18,44 @@ msgstr ""
 "PO-Revision-Date: 2019-08-26 09:12+0000\n"
 "Last-Translator: Buket Şeker <buket_skr@hotmail.com>, 2020\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:0
+#: code:addons/mrp_subcontracting/models/stock_move.py:193
 #, python-format
 msgid ""
 "\n"
-"You have to use 'Records Components' button in order to register quantity for a\n"
+"You have to use 'Records Components' button in order to register quantity "
+"for a\n"
 "subcontracted product(s) with tracked component(s):\n"
 " %s.\n"
 "If you want to process more than initially planned, you\n"
-"can use the edit + unlock buttons in order to adapt the initial demand on the\n"
+"can use the edit + unlock buttons in order to adapt the initial demand on "
+"the\n"
 "operations."
 msgstr ""
 "\n"
-"Takip edilen bileşen (ler) e sahip taşeron ürün (ler) in miktarını kaydetmek için 'Bileşenleri Kaydet' düğmesini kullanmalısınız:\n"
+"Takip edilen bileşen (ler) e sahip taşeron ürün (ler) in miktarını kaydetmek "
+"için 'Bileşenleri Kaydet' düğmesini kullanmalısınız:\n"
 " %s\n"
 "Başlangıçta planlanandan daha fazlasını işlemek istiyorsanız,\n"
-"işlemlerdeki ilk talebi uyarlamak için düzenle + kilit açma düğmelerini kullanabilir."
+"işlemlerdeki ilk talebi uyarlamak için düzenle + kilit açma düğmelerini "
+"kullanabilir."
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/res_company.py:0
+#: code:addons/mrp_subcontracting/models/res_company.py:40
 #, python-format
 msgid "%s: Subcontracting Location"
 msgstr "%s: Fason Konumu"
+
+#. module: mrp_subcontracting
+#: model:ir.model,name:mrp_subcontracting.model_stock_backorder_confirmation
+msgid "Backorder Confirmation"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_bom
@@ -60,14 +69,24 @@ msgstr "BoM Türü"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
+#, fuzzy
+#| msgid ""
+#| "Choose a vendor of type subcontractor if you want to subcontract the "
+#| "product"
 msgid ""
-"Choose a vendor of type subcontractor if you want to subcontract the product"
+"Choose a vendor of type subcontractor if you want to         subcontract the "
+"product"
 msgstr "Ürünü fasonda yapmak istiyorsanız fason tipi bir satıcı seçin"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_company
 msgid "Companies"
 msgstr "Şirketler"
+
+#. module: mrp_subcontracting
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
+msgid "Consumed"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_partner
@@ -80,10 +99,27 @@ msgid "Display Action Record Components"
 msgstr "Eylem Kaydı Bileşenlerini Görüntüleme"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
+#: model:ir.model,name:mrp_subcontracting.model_stock_location
+#, fuzzy
+#| msgid "Subcontractor Location"
+msgid "Inventory Locations"
+msgstr "Fason Firma Konumu"
+
+#. module: mrp_subcontracting
+#: selection:mrp.bom,type:0
+msgid "Kit"
+msgstr ""
+
+#. module: mrp_subcontracting
+#: code:addons/mrp_subcontracting/models/stock_warehouse.py:81
 #, python-format
 msgid "Make To Order"
 msgstr "MTO"
+
+#. module: mrp_subcontracting
+#: selection:mrp.bom,type:0
+msgid "Manufacture this product"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move_line
@@ -91,7 +127,14 @@ msgid "Product Moves (Stock Move Line)"
 msgstr "Ürün Hareketleri (Stok Hareket Satırları)"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:0
+#: model:ir.model,name:mrp_subcontracting.model_mrp_production
+#, fuzzy
+#| msgid "Record Production"
+msgid "Production Order"
+msgstr "Üretimi Kaydını İşle"
+
+#. module: mrp_subcontracting
+#: code:addons/mrp_subcontracting/models/stock_move.py:102
 #, python-format
 msgid "Raw Materials for %s"
 msgstr "%s için hammaddeler"
@@ -112,14 +155,19 @@ msgid "Register components for subcontracted product"
 msgstr "Fason ürün için bileşenleri kaydetme"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
+msgid "Reserved"
+msgstr ""
+
+#. module: mrp_subcontracting
+#: code:addons/mrp_subcontracting/models/stock_warehouse.py:56
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_route_id
 #, python-format
 msgid "Resupply Subcontractor"
 msgstr "İkmal Fasoncu"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
+#: code:addons/mrp_subcontracting/models/stock_warehouse.py:101
 #: model:stock.location.route,name:mrp_subcontracting.route_resupply_subcontractor_mto
 #, python-format
 msgid "Resupply Subcontractor on Order"
@@ -141,7 +189,7 @@ msgid "Return Picking"
 msgstr "Ters Transfer"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
+#: code:addons/mrp_subcontracting/models/stock_warehouse.py:131
 #, python-format
 msgid "Sequence subcontracting"
 msgstr "Sıralı Fason"
@@ -167,8 +215,8 @@ msgid "Subcontracted"
 msgstr "Fason"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
-#: model:ir.model.fields.selection,name:mrp_subcontracting.selection__mrp_bom__type__subcontract
+#: code:addons/mrp_subcontracting/models/stock_warehouse.py:120
+#: selection:mrp.bom,type:0
 #, python-format
 msgid "Subcontracting"
 msgstr "Fason"
@@ -225,7 +273,12 @@ msgstr ""
 "olarak kullanılan stok yeri."
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:0
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
+msgid "To Consume"
+msgstr ""
+
+#. module: mrp_subcontracting
+#: code:addons/mrp_subcontracting/models/stock_move.py:130
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr "Fason yapmak için planlanan transfer oluştur."
