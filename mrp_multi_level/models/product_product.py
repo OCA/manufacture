@@ -8,7 +8,7 @@ from odoo import api, fields, models
 class Product(models.Model):
     _inherit = 'product.product'
 
-    llc = fields.Integer(string='Low Level Code', default=0)
+    llc = fields.Integer(string='Low Level Code', default=0, index=True)
     manufacturing_order_ids = fields.One2many(
         comodel_name='mrp.production',
         inverse_name='product_id',
