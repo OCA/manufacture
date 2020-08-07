@@ -1,39 +1,46 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_project
+#	* mrp_project
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: manufacture (8.0)\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-10-13 23:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-"
-"manufacture-8-0/language/en_US/)\n"
-"Language: en_US\n"
+"POT-Creation-Date: 2020-11-02 07:04+0000\n"
+"PO-Revision-Date: 2020-11-02 07:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:40
+#: code:addons/mrp_project/models/mrp_production.py:65
 #, python-format
-msgid ""
-"\n"
-"        Manufacturing Order: %s\n"
-"        Product to Produce: [%s]%s\n"
-"        Quantity to Produce: %s\n"
-"        Bill of Material: %s\n"
-"        Planned Date: %s\n"
-"        "
+msgid "\n"
+"            <p><b>Manufacturing Order:</b> {0}</p>\n"
+"            <p><b>Product to Produce:</b> [{1}]{2}</p>\n"
+"            <p><b>Quantity to Produce:</b> {3}</p>\n"
+"            <p><b>Bill of Material:</b> {4} - {5}</p>\n"
+"            <p><b>Planned Date:</b> {6} - {7}</p>\n"
+"            "
 msgstr ""
 
 #. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
-msgid "Analytic Account"
+#: code:addons/mrp_project/models/project.py:28
+#, python-format
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Manufacturing Orders can be related to your project.</p><p>\n"
+"                Go to your Manufacturing Order and to click in the respective\n"
+"                button to relate Manufacturing Orders with your Project.\n"
+"                </p>"
+msgstr ""
+
+#. module: mrp_project
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_form_view
+msgid "<span class=\"o_stat_text\">Choose</span>\n"
+"                        <span class=\"o_stat_text\">Project</span>"
 msgstr ""
 
 #. module: mrp_project
@@ -42,125 +49,144 @@ msgid "Analytic Line"
 msgstr ""
 
 #. module: mrp_project
-#: field:project.project,automatic_creation:0
+#: code:addons/mrp_project/models/project.py:44
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__automatic_creation
+#, python-format
 msgid "Automatic Creation"
 msgstr ""
 
 #. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
-msgid "General Accounting"
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_createproject_view_form
+msgid "Cancel"
 msgstr ""
 
 #. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
-#: view:project.task:mrp_project.project_task_mrp_form_view
-msgid "MRP Data"
+#: model:ir.actions.act_window,name:mrp_project.mrp_production_createproject_action
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_createproject_view_form
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_form_view
+msgid "Choose Project"
 msgstr ""
 
 #. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
-#: view:project.project:mrp_project.project_mrp_procurement_shortcut_form_view
-#: view:project.task:mrp_project.project_task_mrp_inh_search_view
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_project
+#: code:addons/mrp_project/wizard/mrp_production_createproject.py:26
+#: model:ir.model.fields,help:mrp_project.field_mrp_production_createproject__project_id
+#, python-format
+msgid "Leave it blank if you want create a new project withthe manufacturing order's name as default name."
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_mrp_production_createproject
+msgid "MO Create Project Wizard"
+msgstr ""
+
+#. module: mrp_project
+#: model_terms:ir.ui.view,arch_db:mrp_project.account_analytic_line_mrp_search_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_mrp_procurement_shortcut_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_task_mrp_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_task_mrp_inh_search_view
 msgid "Manufacturing"
 msgstr ""
 
 #. module: mrp_project
-#: field:project.project,production_count:0
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__production_count
 msgid "Manufacturing Count"
 msgstr ""
 
 #. module: mrp_project
-#: field:account.analytic.line,mrp_production_id:0
-#: field:hr.analytic.timesheet,mrp_production_id:0
-#: model:ir.model,name:mrp_project.model_mrp_production
-#: field:project.task,mrp_production_id:0
+#: model:ir.model.fields,field_description:mrp_project.field_account_analytic_line__mrp_production_id
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__mrp_production_id
 msgid "Manufacturing Order"
 msgstr ""
 
 #. module: mrp_project
-#: model:ir.actions.act_window,name:mrp_project.act_project_2_production_all
+#: code:addons/mrp_project/models/project.py:21
+#, python-format
 msgid "Manufacturing Orders"
 msgstr ""
 
 #. module: mrp_project
-#: view:project.task:mrp_project.project_task_mrp_form_view
-msgid "Please go to the manufacturing order to see the products to consume."
-msgstr ""
-
-#. module: mrp_project
-#: view:project.task:mrp_project.project_task_mrp_form_view
-#: view:project.task:mrp_project.project_task_mrp_inh_tree_view
-#: field:project.task,final_product:0
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__final_product
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_task_mrp_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_task_mrp_inh_tree_view
 msgid "Product to Produce"
 msgstr ""
 
 #. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__mrp_production_id
+msgid "Production"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
-#: field:mrp.production,project_id:0
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__project_id
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_createproject__project_id
 msgid "Project"
 msgstr ""
 
 #. module: mrp_project
-#: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
-msgid "Project Task"
-msgstr ""
-
-#. module: mrp_project
-#: model:ir.model,name:mrp_project.model_project_task_work
-msgid "Project Task Work"
-msgstr ""
-
-#. module: mrp_project
-#: view:project.task:mrp_project.project_task_mrp_form_view
-#: field:project.task,production_scheduled_products:0
-msgid "Scheduled Products"
-msgstr ""
-
-#. module: mrp_project
-#: view:project.task:mrp_project.project_task_mrp_inh_search_view
-msgid "Stage"
-msgstr ""
-
-#. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_workorder__task_id
 msgid "Task"
 msgstr ""
 
 #. module: mrp_project
-#: field:mrp.workorder,work_ids:0
-msgid "Task works"
+#: code:addons/mrp_project/wizard/mrp_production_createproject.py:68
+#, python-format
+msgid "This manufacturing order already has a related project.\n"
+"                    Order: {0}, Project: {1}"
 msgstr ""
 
 #. module: mrp_project
-#: field:mrp.workorder,task_ids:0
-msgid "Tasks"
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_mrp_procurement_shortcut_form_view
+msgid "View project's production"
 msgstr ""
 
 #. module: mrp_project
-#: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
-msgid "Timesheet Line"
-msgstr ""
-
-#. module: mrp_project
-#: field:account.analytic.line,workorder:0
-#: field:hr.analytic.timesheet,workorder:0
-#: model:ir.model,name:mrp_project.model_mrp_production_workcenter_line
-#: field:project.task,workorder:0
+#: model:ir.model,name:mrp_project.model_mrp_workorder
+#: model:ir.model.fields,field_description:mrp_project.field_account_analytic_line__mrp_workorder_id
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__mrp_workorder_id
+#: model_terms:ir.ui.view,arch_db:mrp_project.account_analytic_line_mrp_search_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_task_mrp_inh_search_view
 msgid "Work Order"
-msgstr "Work Order"
-
-#. module: mrp_project
-#: field:project.task.work,workorder:0
-msgid "Work order"
 msgstr ""
 
-#. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
-#: view:project.task:mrp_project.project_task_mrp_inh_search_view
-msgid "Workorder"
-msgstr ""
-
-#. module: mrp_project
-#: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
-msgid "group_analytic_account"
-msgstr ""

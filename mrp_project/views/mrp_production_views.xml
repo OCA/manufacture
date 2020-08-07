@@ -28,6 +28,16 @@
                     </div>
                 </button>
             </xpath>
+            <xpath expr="//button[@name='button_plan']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', '|', ('state', '!=', 'confirmed'), ('routing_id', '=', False), ('is_locked', '=', False), ('project_id', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_plan']" position="after">
+                <button name="button_plan"
+                        id="button_plan_confirm"
+                        attrs="{'invisible': ['|', '|', '|', ('state', '!=', 'confirmed'), ('routing_id', '=', False), ('is_locked', '=', False), ('project_id', '!=', False)]}"
+                        confirm="Project is missing: are you sure to create tasks not linked to a project?"
+                        type="object" string="Create Workorders" class="oe_highlight"/>
+            </xpath>
         </field>
     </record>
     <record model="ir.ui.view" id="mrp_production_workorder_tree_view_inherit">

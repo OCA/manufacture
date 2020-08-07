@@ -24,7 +24,7 @@ class AccountAnalyticLine(models.Model):
         vals['mrp_production_id'] = vals.get(
             'mrp_production_id', False
         ) or production and production.id
-        vals['workorder'] = vals.get(
-            'workorder', False
+        vals['mrp_workorder_id'] = vals.get(
+            'mrp_workorder_id', False
         ) or workorder and workorder.id
         return super(AccountAnalyticLine, self).create(vals)

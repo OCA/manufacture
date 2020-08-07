@@ -19,6 +19,7 @@ MRP Project Link
 ================
 Link production with projects
         """,
+    "maintainers": ['sergiocorato'],
     "depends": [
         "mrp_analytic",
         "sale_mrp_link",

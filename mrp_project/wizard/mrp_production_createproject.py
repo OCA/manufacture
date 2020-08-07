@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 class MrpProductionCreateProject(models.TransientModel):
     """ wizard to create a Project from a Manufacturing Order """
     _name = "mrp.production.createproject"
+    _description = "MO Create Project Wizard"
 
     @api.model
     def default_get(self, fields):
@@ -18,7 +19,6 @@ class MrpProductionCreateProject(models.TransientModel):
     mrp_production_id = fields.Many2one(
         'mrp.production',
         string='Production',
-        domain=[('type', '=', 'production')]
     )
     project_id = fields.Many2one(
         'project.project',
@@ -42,10 +42,10 @@ class MrpProductionCreateProject(models.TransientModel):
 
         if not project.id and not production.project_id:
             if 'sale_order_id' in obj_production._fields and \
-                    'related_project_id' in obj_order._fields:
+                    'project_id' in obj_order._fields:
                 sale_order = production.sale_order_id
                 if sale_order:
-                    project = sale_order.related_project_id
+                    project = sale_order.project_id
                     if project.id:
                         production.write({
                             'analytic_account_id':
