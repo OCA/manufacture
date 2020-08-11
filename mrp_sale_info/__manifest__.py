@@ -1,5 +1,6 @@
 # Copyright 2016 Antiun Ingenieria S.L. - Javier Iniesta
 # Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP Sale Info",
@@ -15,8 +16,6 @@
     'installable': True,
     "depends": [
         "mrp",
-        "sale_mrp",
-        "stock",
         "sale_stock",
     ],
     "data": [
