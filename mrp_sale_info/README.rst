@@ -25,7 +25,8 @@ MRP Sale Info
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module extends the functionality of sale_mrp and adds related fields to Manufacturing Orders and Work Orders:
+This module extends the functionality of Odoo for adding related fields to
+Manufacturing Orders and Work Orders:
 
   * Sale order
   * Customer
@@ -63,11 +64,15 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Rafael Blasco <rafabn@antiun.com>
-* Antonio Espinosa <antonioea@antiun.com>
-* Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Ana Juaristi <anajuaristi@avanzosc.es>
+* `AvanzOsc <http://www.avanzosc.es>`_:
+
+  * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+  * Ana Juaristi <anajuaristi@avanzosc.es>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Antonio Espinosa
+  * Rafael Blasco
+  * Pedro M. Baeza
 * Rubén Bravo <rubenred18@gmail.com>
 
 Maintainers

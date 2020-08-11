@@ -1,4 +1,5 @@
-This module extends the functionality of sale_mrp and adds related fields to Manufacturing Orders and Work Orders:
+This module extends the functionality of Odoo for adding related fields to
+Manufacturing Orders and Work Orders:
 
   * Sale order
   * Customer
