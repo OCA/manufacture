@@ -291,8 +291,8 @@ class MultiLevelMrp(models.TransientModel):
                  ('bom_id.product_tmpl_id', 'in', p_templates.ids)])
             products = bom_lines.mapped('product_id')
             products.write({'llc': llc})
-            products = self.env['product.product'].search([('llc', '=', llc)])
-            counter = len(products)
+            counter = self.env['product.product'].search_count([('llc', '=',
+                                                               llc)])
             log_msg = 'Low level code %s finished - Nbr. products: %s' % (
                 llc, counter)
             logger.info(log_msg)
