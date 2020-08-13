@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-mrp_production_note',
         'odoo12-addon-mrp_production_putaway_strategy',
         'odoo12-addon-mrp_production_request',
+        'odoo12-addon-mrp_sale_info',
         'odoo12-addon-mrp_stock_orderpoint_manual_procurement',
         'odoo12-addon-mrp_subcontracting',
         'odoo12-addon-mrp_unbuild_tracked_raw_material',
