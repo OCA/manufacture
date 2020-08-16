@@ -69,9 +69,6 @@ msgstr "Stuklijst soort"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
 #, fuzzy
-#| msgid ""
-#| "Choose a vendor of type subcontractor if you want to subcontract the "
-#| "product"
 msgid ""
 "Choose a vendor of type subcontractor if you want to         subcontract the "
 "product"
@@ -102,7 +99,6 @@ msgstr "Toon actie record componenten"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
 #, fuzzy
-#| msgid "Subcontractor Location"
 msgid "Inventory Locations"
 msgstr "UItbestedingslocatie"
 
@@ -130,7 +126,6 @@ msgstr "Productmutaties (voorraadmutatieregels)"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
 #, fuzzy
-#| msgid "Record Production"
 msgid "Production Order"
 msgstr "Productie vastleggen"
 

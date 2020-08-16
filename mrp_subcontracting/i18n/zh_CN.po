@@ -90,7 +90,6 @@ msgstr "显示动作记录零件"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
 #, fuzzy
-#| msgid "Subcontractor Location"
 msgid "Inventory Locations"
 msgstr "外包位置"
 
@@ -118,7 +117,6 @@ msgstr "产品移动(移库明细)"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
 #, fuzzy
-#| msgid "Record Production"
 msgid "Production Order"
 msgstr "记录生产"
 

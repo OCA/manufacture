@@ -116,7 +116,6 @@ msgstr "Movimenti del prodotto (riga movimento magazzino)"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
 #, fuzzy
-#| msgid "Record Production"
 msgid "Production Order"
 msgstr "Registrare la produzione"
 
