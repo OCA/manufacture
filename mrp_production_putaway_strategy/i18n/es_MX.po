@@ -30,6 +30,5 @@ msgstr ""
 #. module: mrp_production_putaway_strategy
 #: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Orden de fabricación"
