@@ -209,7 +209,6 @@ msgstr "Proizvodni nalog"
 #. module: mrp_production_estimated_cost
 #: field:product.product,mrp_production_request:0
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Manufacturing Request"
 msgstr "Proizvodni nalog"
 

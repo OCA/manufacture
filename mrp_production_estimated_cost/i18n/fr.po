@@ -208,7 +208,6 @@ msgstr "Ordre de fabrication"
 #. module: mrp_production_estimated_cost
 #: field:product.product,mrp_production_request:0
 #, fuzzy
-#| msgid "Manufacturing costs"
 msgid "Manufacturing Request"
 msgstr "Coûts de fabrication"
 
