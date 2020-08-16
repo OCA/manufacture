@@ -114,7 +114,6 @@ msgstr "Pohyby produktu (trasa pohybu zboží)"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
 #, fuzzy
-#| msgid "Record Production"
 msgid "Production Order"
 msgstr "Záznam výroby"
 
