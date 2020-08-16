@@ -39,8 +39,8 @@ msgid "Approve"
 msgstr "Genehmigen"
 
 #. module: mrp_production_request
+#: model:ir.model.fields.selection,name:mrp_production_request.selection__mrp_production_request__state__approved
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
-#: selection:mrp.production.request,state:0
 msgid "Approved"
 msgstr "Genehmigt"
 
@@ -82,8 +82,8 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: mrp_production_request
+#: model:ir.model.fields.selection,name:mrp_production_request.selection__mrp_production_request__state__cancel
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
-#: selection:mrp.production.request,state:0
 msgid "Cancelled"
 msgstr "Abgebrochen"
 
@@ -183,15 +183,15 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: mrp_production_request
+#: model:ir.model.fields.selection,name:mrp_production_request.selection__mrp_production_request__state__done
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_form
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
-#: selection:mrp.production.request,state:0
 msgid "Done"
 msgstr "Erledigt"
 
 #. module: mrp_production_request
+#: model:ir.model.fields.selection,name:mrp_production_request.selection__mrp_production_request__state__draft
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
-#: selection:mrp.production.request,state:0
 msgid "Draft"
 msgstr "Entwurf"
 
@@ -228,17 +228,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mrp_production_request
-#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_needaction
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_has_error
+#: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -351,7 +348,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -389,7 +385,7 @@ msgstr ""
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: mrp_production_request
@@ -405,7 +401,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -451,7 +446,6 @@ msgstr "Produktvorlage"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Procurement Order"
 msgid "Production Order"
 msgstr "Fertigungsauftrag"
 
@@ -461,7 +455,7 @@ msgid "Products needed"
 msgstr "Benötigte Produkte"
 
 #. module: mrp_production_request
-#: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:81
+#: code:addons/mrp_production_request/wizards/mrp_production_request_create_mo.py:0
 #, python-format
 msgid ""
 "Programming error: wizard action executed without active_ids in context."
@@ -515,7 +509,7 @@ msgid "Raw Materials Location"
 msgstr "Lagerort für Rohmaterialien"
 
 #. module: mrp_production_request
-#: sql_constraint:mrp.production.request:0
+#: model:ir.model.constraint,message:mrp_production_request.constraint_mrp_production_request_name_uniq
 msgid "Reference must be unique per Company!"
 msgstr ""
 
@@ -586,6 +580,11 @@ msgid "Routing"
 msgstr "Arbeitsplan"
 
 #. module: mrp_production_request
+#: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: mrp_production_request
 #: model_terms:ir.ui.view,arch_db:mrp_production_request.view_mrp_production_request_search
 msgid "Search Manufacturing Request"
 msgstr "Produktionsanfrage suchen"
@@ -623,7 +622,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Lagerbewegung"
 
@@ -652,7 +650,7 @@ msgstr ""
 "Produktionsplanung."
 
 #. module: mrp_production_request
-#: code:addons/mrp_production_request/models/stock_rule.py:43
+#: code:addons/mrp_production_request/models/stock_rule.py:0
 #, python-format
 msgid ""
 "There is no Bill of Material found for the product %s. Please define a Bill "
@@ -665,7 +663,7 @@ msgid "To Approve"
 msgstr "Genehmigen"
 
 #. module: mrp_production_request
-#: selection:mrp.production.request,state:0
+#: model:ir.model.fields.selection,name:mrp_production_request.selection__mrp_production_request__state__to_approve
 msgid "To Be Approved"
 msgstr "Zu genehmigen"
 
@@ -699,7 +697,6 @@ msgstr "Ungelesene Nachrichten"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Ungelesene Nachrichten"
 
@@ -716,7 +713,6 @@ msgstr "Benutzer"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -733,12 +729,11 @@ msgstr "Assistent zur Erstellung von Fertigungsaufträgen"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Wizard to create Manufacturing Orders"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Assistent zur Erstellung von Fertigungsaufträgen"
 
 #. module: mrp_production_request
-#: code:addons/mrp_production_request/models/mrp_production_request.py:242
+#: code:addons/mrp_production_request/models/mrp_production_request.py:0
 #, python-format
 msgid ""
 "You cannot reject a manufacturing request related to done procurement orders."
@@ -747,7 +742,7 @@ msgstr ""
 "Beschaffungsaufträge bereits erledigt sind."
 
 #. module: mrp_production_request
-#: code:addons/mrp_production_request/models/mrp_production_request.py:229
+#: code:addons/mrp_production_request/models/mrp_production_request.py:0
 #, python-format
 msgid ""
 "You cannot reset a manufacturing request if the related manufacturing orders "
