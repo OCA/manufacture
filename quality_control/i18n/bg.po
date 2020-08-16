@@ -43,14 +43,12 @@ msgstr "Активен"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_ids
 #, fuzzy
-#| msgid "Active"
 msgid "Activities"
 msgstr "Активен"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_state
 #, fuzzy
-#| msgid "Active"
 msgid "Activity State"
 msgstr "Активен"
 
