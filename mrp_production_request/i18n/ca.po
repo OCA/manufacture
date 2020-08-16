@@ -336,7 +336,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Missatges sense llegir"
 
@@ -388,7 +387,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Missatges sense llegir"
 
@@ -433,7 +431,6 @@ msgstr "Plantilla del producte"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Product"
 msgid "Production Order"
 msgstr "Producte"
 
@@ -606,7 +603,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Moviments d'estoc"
 
@@ -677,7 +673,6 @@ msgstr "Missatges sense llegir"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Missatges sense llegir"
 
@@ -694,7 +689,6 @@ msgstr "Usuari"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Missatges sense llegir"
 
