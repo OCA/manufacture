@@ -19,9 +19,6 @@ msgstr ""
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 #, fuzzy
-#| msgid ""
-#| "<br/>\n"
-#| "                                Location:"
 msgid ""
 "<br/>\n"
 "                                        Location:"
@@ -39,7 +36,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__activity_ids
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__activity_ids
 #, fuzzy
-#| msgid "My Activities"
 msgid "Activities"
 msgstr "Meine Aktivitäten"
 
@@ -326,7 +322,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__message_ids
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__message_ids
 #, fuzzy
-#| msgid "Issue Stages"
 msgid "Messages"
 msgstr "Problem-Stufen"
 
@@ -369,7 +364,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__activity_type_id
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__activity_type_id
 #, fuzzy
-#| msgid "Late Activities"
 msgid "Next Activity Type"
 msgstr "Verspätete Aktivitäten"
 
@@ -525,7 +519,6 @@ msgstr "Qualitätskontroll-Thema"
 #. module: quality_control_issue
 #: model:ir.model,name:quality_control_issue.model_qc_issue_stage
 #, fuzzy
-#| msgid "Quality Control Issue Stages"
 msgid "Quality Control Issue Stage"
 msgstr "Qualitätskontroll-Themenstufen"
 
@@ -552,7 +545,6 @@ msgstr "Qualitätskontroll-Verfolgungsgruppen"
 #. module: quality_control_issue
 #: model:ir.model,name:quality_control_issue.model_qc_stage
 #, fuzzy
-#| msgid "Quality Control Issue Stages"
 msgid "Quality Control Stage"
 msgstr "Qualitätskontroll-Themenstufen"
 
