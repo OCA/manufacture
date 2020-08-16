@@ -130,7 +130,6 @@ msgstr "Das ist das Fälligkeitsdatum, zu dem der Auftrag erledigt sein muss."
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 #, fuzzy
-#| msgid "Date to Procure (By Day)"
 msgid "Date to Procure"
 msgstr "Beschaffungsdatum (nach Tagen)"
 
@@ -210,7 +209,6 @@ msgstr "Vorhergesagter Bestand"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #, fuzzy
-#| msgid "Main Supplier"
 msgid "Get from main supplier"
 msgstr "Hauptlieferant"
 
@@ -386,14 +384,12 @@ msgstr "Bestand"
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_mrp_inventory_procure_item
 #, fuzzy
-#| msgid "mrp.inventory.procure.item"
 msgid "MRP Inventory procure item"
 msgstr "mrp.inventory.procure.item"
 
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_mrp_move
 #, fuzzy
-#| msgid "MRP Moves"
 msgid "MRP Move"
 msgstr "Lagerbewegungen"
 
@@ -525,7 +521,6 @@ msgstr "Auftragsfreigabe-Datum"
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order__order_release_date
 #, fuzzy
-#| msgid "Order Release Date"
 msgid "Order release date planned by MRP."
 msgstr "Auftragsfreigabe-Datum"
 
@@ -585,7 +580,6 @@ msgstr "Geplante Aufträge"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__planned_order_up_ids
 #, fuzzy
-#| msgid "Purchase Orders"
 msgid "Planned Orders UP"
 msgstr "Einkaufsbestellungen"
 
@@ -662,7 +656,6 @@ msgstr "Produkt ME"
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_mrp_production
 #, fuzzy
-#| msgid "Product Parameters"
 msgid "Production Order"
 msgstr "Produkt-Parameter"
 
@@ -758,7 +751,6 @@ msgstr "Ressourcenplanung (MRP) ausführen"
 #. module: mrp_multi_level
 #: model:res.groups,name:mrp_multi_level.group_mrp_multi_level_run
 #, fuzzy
-#| msgid "Run MRP Multi Level"
 msgid "Run MRP Manually"
 msgstr "Mehrstufige Ressourcenplanung (MRP) ausführen"
 
@@ -822,7 +814,6 @@ msgstr "Lagerbewegung"
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Lagerbewegung"
 

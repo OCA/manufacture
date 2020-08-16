@@ -45,7 +45,6 @@ msgstr "Asignado"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_inventory_id
 #, fuzzy
-#| msgid "Forecasted Inventory"
 msgid "Associated MRP Inventory"
 msgstr "Previsión de stock"
 
@@ -132,7 +131,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 #, fuzzy
-#| msgid "Date to Procure (By Day)"
 msgid "Date to Procure"
 msgstr "Fecha para reaprovisionar (por día)"
 
@@ -169,7 +167,6 @@ msgstr "Borrador"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__due_date
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 #, fuzzy
-#| msgid "Current Date"
 msgid "Due Date"
 msgstr "Fecha actual"
 
@@ -214,7 +211,6 @@ msgstr "Previsión de stock"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #, fuzzy
-#| msgid "Main Supplier"
 msgid "Get from main supplier"
 msgstr "Proveedor Principal"
 
@@ -368,7 +364,6 @@ msgstr "Areas MRP"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__mrp_area_ids
 #, fuzzy
-#| msgid "MRP Areas"
 msgid "MRP Areas to run"
 msgstr "Areas MRP"
 
@@ -391,14 +386,12 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_mrp_inventory_procure_item
 #, fuzzy
-#| msgid "MRP inventory projections"
 msgid "MRP Inventory procure item"
 msgstr "Proyección de Stock MRP"
 
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_mrp_move
 #, fuzzy
-#| msgid "MRP Moves"
 msgid "MRP Move"
 msgstr "Movimientos MRP"
 
@@ -530,7 +523,6 @@ msgstr "Fecha de Lanzamiento de Orden"
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order__order_release_date
 #, fuzzy
-#| msgid "Order Release Date"
 msgid "Order release date planned by MRP."
 msgstr "Fecha de Lanzamiento de Orden"
 
@@ -564,7 +556,6 @@ msgstr "Parcialmente Disponible"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__running_availability
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Availability"
 msgstr "Fecha Planificada"
 
@@ -580,7 +571,6 @@ msgstr "Fecha Planificada"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__planned_order_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__planned_order_ids
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Order"
 msgstr "Fecha Planificada"
 
@@ -589,14 +579,12 @@ msgstr "Fecha Planificada"
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_planned_order
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Orders"
 msgstr "Fecha Planificada"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__planned_order_up_ids
 #, fuzzy
-#| msgid "Purchase Orders"
 msgid "Planned Orders UP"
 msgstr "Órdenes de Compra"
 
@@ -609,7 +597,6 @@ msgstr "Abastecer"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__location_proc_id
 #, fuzzy
-#| msgid "Location"
 msgid "Procure Location"
 msgstr "Ubicación"
 
@@ -753,7 +740,6 @@ msgstr "Listo"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__order_release_date
 #, fuzzy
-#| msgid "Order Release Date"
 msgid "Release Date"
 msgstr "Fecha de Lanzamiento de Orden"
 
@@ -773,7 +759,6 @@ msgstr "Ejecutar MRP"
 #. module: mrp_multi_level
 #: model:res.groups,name:mrp_multi_level.group_mrp_multi_level_run
 #, fuzzy
-#| msgid "Run MRP Multi Level"
 msgid "Run MRP Manually"
 msgstr "Ejecutar MRP Multi Nivel"
 
@@ -835,7 +820,6 @@ msgstr "Movimiento de Stock"
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Movimiento de Stock"
 
