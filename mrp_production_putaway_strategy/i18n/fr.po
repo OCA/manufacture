@@ -30,6 +30,5 @@ msgstr "Stratégie de dépôt appliqué à l'emplacement des produits finis %s."
 #. module: mrp_production_putaway_strategy
 #: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Ordre de fabrication"
