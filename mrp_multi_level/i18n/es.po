@@ -45,7 +45,6 @@ msgstr "Asignado"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order_mrp_inventory_id
 #, fuzzy
-#| msgid "Forecasted Inventory"
 msgid "Associated MRP Inventory"
 msgstr "Previsión de stock"
 
@@ -175,7 +174,6 @@ msgstr "Borrador"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order_due_date
 #, fuzzy
-#| msgid "Current Date"
 msgid "Due Date"
 msgstr "Fecha actual"
 
@@ -364,7 +362,6 @@ msgstr "Areas MRP"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level_mrp_area_ids
 #, fuzzy
-#| msgid "MRP Areas"
 msgid "MRP Areas to run"
 msgstr "Areas MRP"
 
@@ -505,7 +502,6 @@ msgstr "Fecha de Lanzamiento de Orden"
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order_order_release_date
 #, fuzzy
-#| msgid "Order Release Date"
 msgid "Order release date planned by MRP."
 msgstr "Fecha de Lanzamiento de Orden"
 
@@ -541,7 +537,6 @@ msgstr "Parcialmente Disponible"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_running_availability
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Availability"
 msgstr "Fecha Planificada"
 
@@ -556,21 +551,18 @@ msgstr "Fecha Planificada"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item_planned_order_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_planned_order_ids
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Order"
 msgstr "Fecha Planificada"
 
 #. module: mrp_multi_level
 #: model:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #, fuzzy
-#| msgid "Planned Date"
 msgid "Planned Orders"
 msgstr "Fecha Planificada"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move_planned_order_up_ids
 #, fuzzy
-#| msgid "Purchase Orders"
 msgid "Planned Orders UP"
 msgstr "Órdenes de Compra"
 
@@ -582,7 +574,6 @@ msgstr "Abastecer"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area_location_proc_id
 #, fuzzy
-#| msgid "Location"
 msgid "Procure Location"
 msgstr "Ubicación"
 
@@ -698,7 +689,6 @@ msgstr "Listo"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order_order_release_date
 #, fuzzy
-#| msgid "Order Release Date"
 msgid "Release Date"
 msgstr "Fecha de Lanzamiento de Orden"
 
