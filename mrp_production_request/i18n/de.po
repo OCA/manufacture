@@ -348,7 +348,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -402,7 +401,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -448,7 +446,6 @@ msgstr "Produktvorlage"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Procurement Order"
 msgid "Production Order"
 msgstr "Fertigungsauftrag"
 
@@ -625,7 +622,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Lagerbewegung"
 
@@ -701,7 +697,6 @@ msgstr "Ungelesene Nachrichten"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Ungelesene Nachrichten"
 
@@ -718,7 +713,6 @@ msgstr "Benutzer"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Ungelesene Nachrichten"
 
@@ -735,7 +729,6 @@ msgstr "Assistent zur Erstellung von Fertigungsaufträgen"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Wizard to create Manufacturing Orders"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Assistent zur Erstellung von Fertigungsaufträgen"
 
