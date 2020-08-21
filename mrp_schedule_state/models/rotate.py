@@ -14,18 +14,17 @@ def get_neighbor_element(my_itr, initial=None):
 
 
 class AbstractSelectionRotate(models.Model):
-    _name = 'abstract.selection.rotate'
+    _name = "abstract.selection.rotate"
 
     @api.multi
     def _iter_selection(self, direction):
         " Allows to update the field selection value "
-        if 'selection_field' not in self.env.context:
+        if "selection_field" not in self.env.context:
             return True
-        field = self.env.context['selection_field']
+        field = self.env.context["selection_field"]
         # extract first value in each tuple as content of the selection field
-        values = [elm[0]
-                  for elm in self._get_values_from_selection(field)]
-        if direction == 'prev':
+        values = [elm[0] for elm in self._get_values_from_selection(field)]
+        if direction == "prev":
             values = reversed(values)
         my_itr = iter(values)
         for item in self:
@@ -47,13 +46,13 @@ class AbstractSelectionRotate(models.Model):
                     icon="gtk-go-forward"
                     type="object"/>
         """
-        self._iter_selection('next')
+        self._iter_selection("next")
         return True
 
     @api.multi
     def iter_selection_prev(self):
         " see previous method "
-        self._iter_selection('prev')
+        self._iter_selection("prev")
         return True
 
     @api.multi
@@ -65,4 +64,6 @@ class AbstractSelectionRotate(models.Model):
             [('val1', 'My Val1'),
              ('val2', 'My Val2')]
         """
-        return [(), ]
+        return [
+            (),
+        ]
