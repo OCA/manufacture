@@ -3,38 +3,37 @@
 
 from openerp import models, api, fields, _
 from openerp.exceptions import UserError
-from openerp.tools import (
-    DEFAULT_SERVER_DATETIME_FORMAT
-)
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime, timedelta
 
 
 class SwitchScheduleState(models.TransientModel):
-    _name = 'switch.schedule_state'
+    _name = "switch.schedule_state"
 
     @api.model
     def _get_state(self):
-        active_ids = self.env.context.get('active_ids', [])
-        manufacturing_orders = self.env['mrp.production'].browse(active_ids)
-        result = manufacturing_orders._get_values_from_selection(
-            'schedule_state')
+        active_ids = self.env.context.get("active_ids", [])
+        manufacturing_orders = self.env["mrp.production"].browse(active_ids)
+        result = manufacturing_orders._get_values_from_selection("schedule_state")
         return result
 
-    @api.constrains('schedule_state', 'schedule_date')
+    @api.constrains("schedule_state", "schedule_date")
     def check_schedule_date(self):
         for wiz in self:
-            if self.schedule_state != 'scheduled' and self.schedule_date:
+            if self.schedule_state != "scheduled" and self.schedule_date:
                 raise UserError(
-                    _('It is not possible to put a schedule date without '
-                      'changing the state to scheduled.'))
+                    _(
+                        "It is not possible to put a schedule date without "
+                        "changing the state to scheduled."
+                    )
+                )
 
     schedule_state = fields.Selection(
-        _get_state,
-        string='Schedule State',
-        required=True)
+        _get_state, string="Schedule State", required=True
+    )
     schedule_date = fields.Datetime(
-        help="If left empty, manufacture order will be schedule at current "
-             "datetime")
+        help="If left empty, manufacture order will be schedule at current " "datetime"
+    )
 
     @api.multi
     def switch_schedule_state(self):
@@ -45,8 +44,8 @@ class SwitchScheduleState(models.TransientModel):
             will go to scheduled once the MO is ready.
         """
         self.ensure_one()
-        MrpProduction = self.env['mrp.production']
-        active_ids = self.env.context.get('active_ids', [])
+        MrpProduction = self.env["mrp.production"]
+        active_ids = self.env.context.get("active_ids", [])
         vals = {}
         if self.schedule_date:
             # forbid to schedule in the past
@@ -55,25 +54,33 @@ class SwitchScheduleState(models.TransientModel):
             # to put the now datetime in the wizard and validate because
             # It take time to click on the wizard validation button!
             now_with_margin = now - timedelta(minutes=10)
-            now_with_margin = now_with_margin.strftime(
-                DEFAULT_SERVER_DATETIME_FORMAT)
+            now_with_margin = now_with_margin.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             if self.schedule_date < now_with_margin:
                 raise UserError(
-                    _('It is not possible to schedule Manufacture Orders '
-                      'In the past.'))
-            vals = {'schedule_date': self.schedule_date, 'schedule_uid': self.env.user.id}
+                    _(
+                        "It is not possible to schedule Manufacture Orders "
+                        "In the past."
+                    )
+                )
+            vals = {
+                "schedule_date": self.schedule_date,
+                "schedule_uid": self.env.user.id,
+            }
         manufacturing_orders = MrpProduction.browse(active_ids)
-        if self.schedule_state == 'scheduled':
+        if self.schedule_state == "scheduled":
             waiting_mo = MrpProduction.search(
-                [('id', 'in', active_ids),
-                 ('schedule_state', '=', 'waiting')])
+                [("id", "in", active_ids), ("schedule_state", "=", "waiting")]
+            )
             if waiting_mo:
                 if not self.schedule_date:
                     raise UserError(
-                        _('It is not possible to schedule waiting MOs without '
-                          'A schedule_date in the future'))
+                        _(
+                            "It is not possible to schedule waiting MOs without "
+                            "A schedule_date in the future"
+                        )
+                    )
                 waiting_mo.write(vals)
             manufacturing_orders -= waiting_mo
-        vals['schedule_state'] = self.schedule_state
+        vals["schedule_state"] = self.schedule_state
         manufacturing_orders.write(vals)
         return True
