@@ -1,14 +1,15 @@
 #  Copyright (C) 2015 Akretion (http://www.akretion.com).
 #  @author David BEAL <david.beal@akretion.com>
 
-from openerp import models, api, fields, _
-from openerp.exceptions import UserError
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo import models, api, fields, _
+from odoo.exceptions import UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime, timedelta
 
 
 class SwitchScheduleState(models.TransientModel):
     _name = "switch.schedule_state"
+    _description = "Allow to switch the schedule state"
 
     @api.model
     def _get_state(self):
@@ -16,6 +17,13 @@ class SwitchScheduleState(models.TransientModel):
         manufacturing_orders = self.env["mrp.production"].browse(active_ids)
         result = manufacturing_orders._get_values_from_selection("schedule_state")
         return result
+
+    schedule_state = fields.Selection(
+        _get_state, string="Schedule State", required=True
+    )
+    schedule_date = fields.Datetime(
+        help="If left empty, manufacture order will be schedule at current " "datetime"
+    )
 
     @api.constrains("schedule_state", "schedule_date")
     def check_schedule_date(self):
@@ -28,14 +36,6 @@ class SwitchScheduleState(models.TransientModel):
                     )
                 )
 
-    schedule_state = fields.Selection(
-        _get_state, string="Schedule State", required=True
-    )
-    schedule_date = fields.Datetime(
-        help="If left empty, manufacture order will be schedule at current " "datetime"
-    )
-
-    @api.multi
     def switch_schedule_state(self):
         """
             It is possible to schedule waiting MO in advance (before it is
@@ -54,7 +54,6 @@ class SwitchScheduleState(models.TransientModel):
             # to put the now datetime in the wizard and validate because
             # It take time to click on the wizard validation button!
             now_with_margin = now - timedelta(minutes=10)
-            now_with_margin = now_with_margin.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             if self.schedule_date < now_with_margin:
                 raise UserError(
                     _(
@@ -64,7 +63,7 @@ class SwitchScheduleState(models.TransientModel):
                 )
             vals = {
                 "schedule_date": self.schedule_date,
-                "schedule_uid": self.env.user.id,
+                "schedule_user_id": self.env.user.id,
             }
         manufacturing_orders = MrpProduction.browse(active_ids)
         if self.schedule_state == "scheduled":
@@ -83,4 +82,3 @@ class SwitchScheduleState(models.TransientModel):
             manufacturing_orders -= waiting_mo
         vals["schedule_state"] = self.schedule_state
         manufacturing_orders.write(vals)
-        return True

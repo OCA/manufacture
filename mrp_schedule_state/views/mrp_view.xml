@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
-<record id="view_mrp_production_filter" model="ir.ui.view">
+ <record id="view_mrp_production_filter" model="ir.ui.view">
     <field name="model">mrp.production</field>
     <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
     <field name="arch" type="xml">
-        <filter name="inprogress" position="after">
+        <filter name="starred" position="after">
             <separator/>
             <filter string="SCH waiting" name="sch_waiting"
                     domain="[('schedule_state','=','waiting')]"/>
@@ -22,18 +21,19 @@
     <field name="context">{'search_default_sch_todo': True, 'search_default_ready': True}</field>
 </record>
 
+
 <record id="mrp_production_form_view" model="ir.ui.view">
     <field name="model">mrp.production</field>
     <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
     <field name="arch" type="xml">
-        <field name="date_planned" position="after">
+        <field name="date_planned_start" position="after">
             <field name="schedule_date" readonly="1"/>
-            <field name="schedule_uid" readonly="1"/>
+            <field name="schedule_user_id" readonly="1"/>
             <field name="schedule_state"/>
         </field>
-        <field name="date_planned" position="attributes">
+<!--         <field name="date_planned" position="attributes">
             <attribute name="invisible">1</attribute>
-        </field>
+        </field> -->
     </field>
 </record>
 
@@ -41,15 +41,15 @@
     <field name="model">mrp.production</field>
     <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
     <field name="arch" type="xml">
-        <field name="date_planned" position="after">
+        <field name="date_planned_start" position="after">
             <field name="schedule_date"/>
-            <field name="schedule_state"/>
             <button name="iter_selection_next"
-                    string="next schedule state"
                     context="{'selection_field': 'schedule_state'}"
-                    icon="gtk-go-forward"
+                    class="fa fa-arrow-right"
                     type="object"
+                    title="Next Schedule"
                     groups="mrp.group_mrp_manager"/>
+            <field name="schedule_state"/>
             <!--You also may display this button to rotate in reverse way-->
             <!--
             <button name="iter_selection_prev"
@@ -59,31 +59,30 @@
                     type="object"/>
             -->
         </field>
-        <field name="date_planned" position="attributes">
+<!--         <field name="date_planned_start" position="attributes">
             <attribute name="invisible">1</attribute>
-        </field>
+        </field> -->
     </field>
 </record>
 
-<record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
-    <field name="model">mrp.production.workcenter.line</field>
+<record id="mrp_production_workorder_tree_view" model="ir.ui.view">
+    <field name="model">mrp.workorder</field>
     <field name="inherit_id"
-           ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"/>
+           ref="mrp.mrp_production_workorder_tree_view"/>
     <field name="arch" type="xml">
         <field name="workcenter_id" position="before">
             <field name="schedule_mo"/>
-            <field name="schedule_state"/>
             <button name="iter_selection_next"
-                    string="next schedule state"
                     context="{'selection_field': 'schedule_state'}"
-                    icon="gtk-go-forward"
+                    class="fa fa-arrow-right"
+                    title="Next Schedule"
                     type="object"/>
-            </field>
-        <xpath expr="//tree/field[@name='date_planned']" position="attributes">
+            <field name="schedule_state"/>
+        </field>
+<!--         <xpath expr="//tree/field[@name='date_planned']" position="attributes">
             <attribute name="invisible">1</attribute>
-        </xpath>
+        </xpath> -->
     </field>
 </record>
 
-    </data>
-</openerp>
+</odoo>

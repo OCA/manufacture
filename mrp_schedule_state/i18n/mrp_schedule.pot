@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_schedule
-#: help:mrp.production.workcenter.line,schedule_state:0
+#: help:mrp.workorder,schedule_state:0
 msgid "'sub state' of MO state 'Ready To Produce' dedicated to planification, scheduling and ordering"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgid "Cancel"
 msgstr ""
 
 #. module: mrp_schedule
-#: field:mrp.production.workcenter.line,schedule_state:0
+#: field:mrp.workorder,schedule_state:0
 msgid "MO Schedule"
 msgstr ""
 
@@ -95,21 +95,21 @@ msgstr ""
 
 #. module: mrp_schedule
 #: code:_description:0
-#: model:ir.model,name:mrp_schedule.model_mrp_production_workcenter_line
+#: model:ir.model,name:mrp_schedule.model_mrp.workorder
 #, python-format
 msgid "Work Order"
 msgstr ""
 
 #. module: mrp_schedule
 #: code:_description:0
-#: model:ir.model,name:mrp_schedule.model_abstract_selection_rotate
+#: model:ir.model,name:mrp_schedule.model_selection.rotate.mixin
 #, python-format
-msgid "abstract.selection.rotate"
+msgid "selection.rotate.mixin"
 msgstr ""
 
 #. module: mrp_schedule
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
+#: view:mrp.workorder:0
 msgid "next schedule state"
 msgstr ""
 
