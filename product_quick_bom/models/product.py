@@ -16,9 +16,9 @@ class ProductTemplate(models.Model):
                 rec.bom_id = self.env["mrp.bom"]
 
     bom_id = fields.Many2one(
-        "mrp.bom",
+        comodel_name="mrp.bom",
         string="Bill of Materials (quick access)",
-        compute=_compute_bom_id,
+        compute="_compute_bom_id",
         store=True,
     )
 
