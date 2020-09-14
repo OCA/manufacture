@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <!-- mrp.unbuild.rebuild.variant sequence -->
+
+  <record id="sequence_mrp_unbuild_rebuild_variant" model="ir.sequence">
+    <field name="name">MrpUnbuildRebuildVariant</field>
+    <field name="code">mrp.unbuild.rebuild.variant</field>
+    <field name="prefix">UBRB-</field>
+    <field name="padding" eval="3"/>
+    <field name="number_increment">1</field>
+  </record>
+
+</odoo>

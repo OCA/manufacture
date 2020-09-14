@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="product.attribute" id="product_attribute_phono">
+        <field name="name">Phono</field>
+    </record>
+
+    <record model="product.attribute.value" id="product_attribute_value_phono_with">
+        <field name="name">With Phono</field>
+        <field name="attribute_id" ref="product_attribute_phono" />
+    </record>
+
+    <record model="product.attribute" id="product_attribute_tuner">
+        <field name="name">Tuner</field>
+    </record>
+
+    <record model="product.attribute.value" id="product_attribute_value_tuner_with">
+        <field name="name">With Tuner</field>
+        <field name="attribute_id" ref="product_attribute_tuner" />
+    </record>
+
+    <record model="product.template" id="product_template_amplifier">
+        <field name="name">Amplifier</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record model="product.template.attribute.line" id="product_template_attribute_line_amplifier_phono">
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+        <field name="attribute_id" ref="product_attribute_phono"/>
+        <field name="value_ids" eval="[(6,0,[ref('product_attribute_value_phono_with')])]"/>
+    </record>
+
+    <record model="product.template.attribute.line" id="product_template_attribute_line_amplifier_tuner">
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+        <field name="attribute_id" ref="product_attribute_tuner"/>
+        <field name="value_ids" eval="[(6,0,[ref('product_attribute_value_tuner_with')])]"/>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_with_phono_with_tuner">
+        <field name="attribute_value_ids" eval="[(6,0,[ref('product_attribute_value_phono_with'), ref('product_attribute_value_tuner_with')])]"/>
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_without_phono_with_tuner">
+        <field name="attribute_value_ids" eval="[(6,0,[ref('product_attribute_value_tuner_with')])]"/>
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_with_phono_without_tuner">
+        <field name="attribute_value_ids" eval="[(6,0,[ref('product_attribute_value_phono_with')])]"/>
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_case">
+        <field name="name">Amplifier case</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_preamp">
+        <field name="name">Amplifier preamp</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_power_amp">
+        <field name="name">Amplifier power amp</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_phono">
+        <field name="name">Amplifier phono module</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+    </record>
+
+    <record model="product.product" id="product_product_amplifier_tuner">
+        <field name="name">Amplifier tuner module</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+    </record>
+
+    <record model="mrp.bom" id="mrp_bom_amplifier">
+        <field name="product_tmpl_id" ref="product_template_amplifier"/>
+    </record>
+
+    <record model="mrp.bom.line" id="mrp_bom_line_amplifier_case">
+        <field name="bom_id" ref="mrp_bom_amplifier" />
+        <field name="product_id" ref="product_product_amplifier_case" />
+    </record>
+    <record model="mrp.bom.line" id="mrp_bom_line_amplifier_preamp">
+        <field name="bom_id" ref="mrp_bom_amplifier" />
+        <field name="product_id" ref="product_product_amplifier_preamp" />
+    </record>
+    <record model="mrp.bom.line" id="mrp_bom_line_amplifier_power_amp">
+        <field name="bom_id" ref="mrp_bom_amplifier" />
+        <field name="product_id" ref="product_product_amplifier_power_amp" />
+    </record>
+    <record model="mrp.bom.line" id="mrp_bom_line_amplifier_phono">
+        <field name="bom_id" ref="mrp_bom_amplifier" />
+        <field name="product_id" ref="product_product_amplifier_phono" />
+        <field name="attribute_value_ids" eval="[(6,0,[ref('product_attribute_value_phono_with')])]" />
+    </record>
+    <record model="mrp.bom.line" id="mrp_bom_line_amplifier_tuner">
+        <field name="bom_id" ref="mrp_bom_amplifier" />
+        <field name="product_id" ref="product_product_amplifier_tuner" />
+        <field name="attribute_value_ids" eval="[(6,0,[ref('product_attribute_value_tuner_with')])]" />
+    </record>
+</odoo>

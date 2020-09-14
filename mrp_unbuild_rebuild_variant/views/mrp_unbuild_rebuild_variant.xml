@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="mrp_unbuild_rebuild_variant_view_form" model="ir.ui.view">
+      <field name="name">mrp.unbuild.rebuild.variant.form</field>
+      <field name="model">mrp.unbuild.rebuild.variant</field>
+      <field name="arch" type="xml">
+        <form string="Unbuild Rebuild Variants">
+            <header>
+                <button name="process" string="Unbuild" type="object" states="draft" class="oe_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <h1><field name="name" readonly="1"/></h1>
+                <group>
+                    <field name="quantity"/>
+                    <field name="stock_location_id"/>
+                </group>
+                <group>
+                    <group name="Unbuild">
+                        <field name="unbuild_product_tracking" invisible="1"/>
+                        <field name="unbuild_product_id" context="{'unbuild_rebuild': True}" />
+                        <field name="unbuild_lot_id" attrs="{'invisible': [('unbuild_product_tracking', '=', False)]}"/>
+                        <field name="unbuild_order_id" readonly="1"/>
+                    </group>
+                    <group name="Rebuild">
+                        <field name="valid_rebuild_product_ids" invisible="1"/>
+                        <field name="rebuild_product_tracking" invisible="1"/>
+                        <field name="rebuild_product_id"  context="{'unbuild_rebuild': True}" domain="[('id', 'in', valid_rebuild_product_ids), ('id', '!=', id)]"/>
+                        <field name="rebuild_lot_id"/>
+                        <field name="rebuild_order_id" readonly="1"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="mrp_unbuild_rebuild_variant_view_tree" model="ir.ui.view">
+      <field name="name">mrp.unbuild.rebuild.variant.tree</field>
+      <field name="model">mrp.unbuild.rebuild.variant</field>
+      <field name="arch" type="xml">
+        <tree string="Unbuild Rebuild Variants">
+            <field name="unbuild_bom_id"/>
+            <field name="unbuild_product_id"/>
+            <field name="unbuild_lot_id"/>
+            <field name="rebuild_bom_id"/>
+            <field name="rebuild_product_id"/>
+            <field name="rebuild_lot_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="mrp_unbuild_rebuild_variant_action" model="ir.actions.act_window">
+      <field name="name">Unbuild Rebuild Variant</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">mrp.unbuild.rebuild.variant</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="mrp_unbuild_rebuild_variant_view_tree"/>
+    </record>
+
+    <menuitem id="mrp_unbuild_rebuild_variant_menu"
+      parent="mrp.menu_mrp_manufacturing"
+      action="mrp_unbuild_rebuild_variant_action"/>
+
+</odoo>
