@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_quick_bom
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-28 03:44+0000\n"
+"PO-Revision-Date: 2017-11-28 03:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: product_quick_bom
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid "Bill of Materials"
+msgstr ""
+
+#. module: product_quick_bom
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__bom_id
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__bom_id
+msgid "Bill of Materials (quick access)"
+msgstr ""
+
+#. module: product_quick_bom
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_product__specific_bom_line_ids
+#: model:ir.model.fields,field_description:product_quick_bom.field_product_template__specific_bom_line_ids
+msgid "BoM Lines"
+msgstr ""
+
+#. module: product_quick_bom
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid "Create BoM"
+msgstr ""
+
+#. module: product_quick_bom
+#: model:ir.model,name:product_quick_bom.model_product_template
+msgid "Product Template"
+msgstr "Predloga proizvoda"
+
+#. module: product_quick_bom
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product doesn't have a BoM yet, you must create one before updating its "
+"components."
+msgstr ""
+
+#. module: product_quick_bom
+#: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
+msgid ""
+"The product is linked to several BoMs, modifications must be done BoM-side."
+msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "Proizvod"
