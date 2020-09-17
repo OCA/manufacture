@@ -33,6 +33,11 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls.sf_2 = cls.env.ref('mrp_multi_level.product_product_sf_2')
         cls.pp_1 = cls.env.ref('mrp_multi_level.product_product_pp_1')
         cls.pp_2 = cls.env.ref('mrp_multi_level.product_product_pp_2')
+        cls.product_4b = cls.env.ref('product.product_product_4b')
+        cls.av_11 = cls.env.ref('mrp_multi_level.product_product_av_11')
+        cls.av_12 = cls.env.ref('mrp_multi_level.product_product_av_12')
+        cls.av_21 = cls.env.ref('mrp_multi_level.product_product_av_21')
+        cls.av_22 = cls.env.ref('mrp_multi_level.product_product_av_22')
         cls.company = cls.env.ref('base.main_company')
         cls.mrp_area = cls.env.ref('mrp_multi_level.mrp_area_stock_wh0')
         cls.vendor = cls.env.ref('mrp_multi_level.res_partner_lazer_tech')
@@ -176,7 +181,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls._create_picking_out(
             cls.product_scenario_1, 18, dt_next_group, location=cls.cases_loc)
 
-        # Create test picking for FP-1 and FP-2:
+        # Create test picking for FP-1, FP-2 and Desk(steel, black):
         res = cls.calendar.plan_days(7 + 1, datetime.today().replace(hour=0))
         date_move = res.date()
         cls.picking_1 = cls.stock_picking_obj.create({
@@ -203,7 +208,18 @@ class TestMrpMultiLevelCommon(SavepointCase):
                     'product_uom_qty': 15,
                     'location_id': cls.stock_location.id,
                     'location_dest_id': cls.customer_location.id
-                })]
+                }),
+                (0, 0, {
+                    'name': 'Test move product-4b',
+                    'product_id': cls.product_4b.id,
+                    'date_expected': date_move,
+                    'date': date_move,
+                    'product_uom': cls.product_4b.uom_id.id,
+                    'product_uom_qty': 15,
+                    'location_id': cls.stock_location.id,
+                    'location_dest_id': cls.customer_location.id
+                }),
+            ]
         })
         cls.picking_1.action_confirm()
 

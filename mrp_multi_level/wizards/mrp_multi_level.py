@@ -190,6 +190,8 @@ class MultiLevelMrp(models.TransientModel):
                         product_mrp_area_id.mrp_area_id):
                     # Stop explosion.
                     continue
+                if bomline._skip_bom_line(product_mrp_area_id.product_id):
+                    continue
                 # TODO: review: mrp_transit_delay, mrp_inspection_delay
                 mrp_date_demand_2 = mrp_date_demand - timedelta(
                     days=(product_mrp_area_id.mrp_transit_delay +
