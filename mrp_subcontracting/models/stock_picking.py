@@ -72,10 +72,9 @@ class StockPicking(models.Model):
                         })
                 else:
                     for move_line in move.move_line_ids:
-                        active_id = production and production.id or False
                         produce = self.env['mrp.product.produce'].with_context(
                             default_production_id=production.id,
-                            active_id=active_id).create({
+                            active_id=production.id).create({
                                 'production_id': production.id,
                                 'product_id': production.product_id.id,
                                 'product_qty': move_line.qty_done,
