@@ -17,6 +17,30 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_11
+#: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
+msgid "AV-11 steel"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_12
+#: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
+msgid "AV-12 aluminium"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_21
+#: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
+msgid "AV-21 white"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_22
+#: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
+msgid "AV-22 black"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
 msgid "Action"
 msgstr "Acción"
@@ -903,12 +927,20 @@ msgid "Unit of Measure"
 msgstr "Unidad de Medida"
 
 #. module: mrp_multi_level
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_11
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_12
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_21
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_22
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
@@ -961,12 +993,20 @@ msgid "You cannot use a negative number."
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_11
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_12
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_21
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_22
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_2
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_2
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_11_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_12_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_21_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_22_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_2_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_pp_1_product_template

@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_multi_level
+# 	* mrp_multi_level
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,30 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.10\n"
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_11
+#: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
+msgid "AV-11 steel"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_12
+#: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
+msgid "AV-12 aluminium"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_21
+#: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
+msgid "AV-21 white"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_22
+#: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
+msgid "AV-22 black"
+msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
@@ -419,8 +443,7 @@ msgstr "Fazer compras a partir de projeções de inventário MRP"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: selection:mrp.move,mrp_origin:0 selection:mrp.planned.order,mrp_action:0
 msgid "Manufacturing Order"
 msgstr "Ordem de Manufatura"
 
@@ -496,7 +519,9 @@ msgstr "Nenhum"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
-msgid "Number of days to group demand for this product during the MRP run, in order to determine the quantity to order."
+msgid ""
+"Number of days to group demand for this product during the MRP run, in order "
+"to determine the quantity to order."
 msgstr ""
 "Número de dias para agrupar a demanda por este produto durante a execução do "
 "MRP, a fim de determinar a quantidade a ser solicitada."
@@ -665,8 +690,7 @@ msgstr "Puxar de"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: selection:mrp.move,mrp_origin:0 selection:mrp.planned.order,mrp_action:0
 msgid "Purchase Order"
 msgstr "Ordem de Compra"
 
@@ -726,7 +750,9 @@ msgstr "Data de lançamento"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
-msgid "Requirements for a particular MRP area are combined for the purposes of procurement by the MRP."
+msgid ""
+"Requirements for a particular MRP area are combined for the purposes of "
+"procurement by the MRP."
 msgstr ""
 "Os requisitos para uma área MRP específica são combinados para fins de "
 "aquisição pelo MRP."
@@ -777,7 +803,9 @@ msgstr "Enviado"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__location_proc_id
-msgid "Set this if you need to procure from a different locationthan area's location."
+msgid ""
+"Set this if you need to procure from a different locationthan area's "
+"location."
 msgstr ""
 "Defina isso se você precisar procurar em um local diferente do que na área."
 
@@ -884,12 +912,20 @@ msgid "Unit of Measure"
 msgstr "Unidade de Medida"
 
 #. module: mrp_multi_level
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_11
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_12
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_21
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_22
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
@@ -901,9 +937,11 @@ msgstr "Unidade(s)"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
-msgid "Use this assistant to procure for this product and date.\n"
+msgid ""
+"Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
-"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    this may trigger a draft purchase order, a "
+"manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
 "Use este assistente para planejar e adquirir este produto. De acordo com a "
@@ -943,12 +981,20 @@ msgid "You cannot use a negative number."
 msgstr "Você não pode usar um número negativo."
 
 #. module: mrp_multi_level
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_11
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_12
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_21
+#: model:product.product,weight_uom_name:mrp_multi_level.product_product_av_22
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_fp_2
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_pp_2
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_1
 #: model:product.product,weight_uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_11_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_12_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_21_product_template
+#: model:product.template,weight_uom_name:mrp_multi_level.product_product_av_22_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_fp_2_product_template
 #: model:product.template,weight_uom_name:mrp_multi_level.product_product_pp_1_product_template
