@@ -632,15 +632,21 @@ class TestSubcontractingTracking(TransactionCase):
 
         # 2. Create a BOM of subcontracting type
         # 2.1. Comp1 has tracking by lot
+        seller = self.env['product.supplierinfo'].create({
+            'name': self.subcontractor_partner1.id,
+            'price': 10.0,
+        })
         self.comp1_sn = self.env['product.product'].create({
             'name': 'Component1',
             'type': 'product',
+            'seller_ids': [(6, 0, [seller.id])],
             'categ_id': self.env.ref('product.product_category_all').id,
             'tracking': 'serial'
         })
         self.comp2 = self.env['product.product'].create({
             'name': 'Component2',
             'type': 'product',
+            'seller_ids': [(6, 0, [seller.id])],
             'categ_id': self.env.ref('product.product_category_all').id,
         })
 
