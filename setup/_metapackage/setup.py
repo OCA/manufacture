@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-account_move_line_manufacture_info',
         'odoo12-addon-mrp_auto_assign',
+        'odoo12-addon-mrp_auto_create_lot',
         'odoo12-addon-mrp_bom_component_menu',
         'odoo12-addon-mrp_bom_line_sequence',
         'odoo12-addon-mrp_bom_location',
