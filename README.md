@@ -22,7 +22,7 @@ addon | version | summary
 [mrp_bom_note](mrp_bom_note/) | 10.0.1.0.0 | Notes in Bill of Materials
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 10.0.1.0.1 | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_mto_with_stock_purchase](mrp_mto_with_stock_purchase/) | 10.0.1.0.0 | Module needed to make mrp_mto_with_stock module compatible with purchase module.
-[mrp_no_partial](mrp_no_partial/) | 10.0.1.0.0 | Block the production order if all quantities are not done
+[mrp_no_partial](mrp_no_partial/) | 10.0.1.0.1 | Block the production order if all quantities are not done
 [mrp_production_hierarchy](mrp_production_hierarchy/) | 10.0.1.0.0 | View the hierarchy of generated production orders
 [mrp_production_note](mrp_production_note/) | 10.0.1.0.0 | Notes in production orders
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 10.0.1.0.1 | Applies putaway strategies to manufacturing orders for finished products.
