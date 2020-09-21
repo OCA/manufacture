@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  Copyright 2020 Camptocamp
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form.with.post_inventory</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='post_inventory']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_user</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
