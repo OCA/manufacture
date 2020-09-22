@@ -116,7 +116,7 @@ class StockRule(models.Model):
     def _run_manufacture(self, procurements):
         for procurement, _rule in procurements:
             if self._need_production_request(procurement.product_id):
-                return self._run_production_request(
+                self._run_production_request(
                     procurement.product_id,
                     procurement.product_qty,
                     procurement.product_uom,
