@@ -79,6 +79,14 @@ class StockRule(models.Model):
             )
 
         # create the MR as SUPERUSER because the current user may not
+        # to avoid everytime MR creation
+        existing_MRs = request_obj.search(
+            [('product_id', '=', product_id.id),
+             ('state', '=', 'to_approve'),
+             ('company_id', '=', values['company_id'].id),
+             ('procurement_group_id', '=', values.get('group_id').id)])
+        if existing_MRs:
+            return True
         # have the rights to do it (mto product launched by a sale for example)
         request = request_obj_sudo.create(
             self._prepare_mrp_production_request(
