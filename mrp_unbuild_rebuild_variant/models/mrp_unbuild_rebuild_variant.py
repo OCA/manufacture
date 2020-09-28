@@ -8,6 +8,19 @@ class MrpUnbuildRebuildVariant(models.Model):
     _name = "mrp.unbuild.rebuild.variant"
     _description = "Wrapper aroud the unbuild - rebuild process."
 
+    def _get_default_location_id(self):
+        # Copied from mrp/models/mrp_unbuild.py
+        stock_location = self.env.ref('stock.stock_location_stock', raise_if_not_found=False)
+        try:
+            stock_location.check_access_rule('read')
+            return stock_location.id
+        except (AttributeError, exceptions.AccessError):
+            return self.env['stock.warehouse'].search(
+                [
+                    ('company_id', '=', self.env.user.company_id.id)
+                ], limit=1
+            ).lot_stock_id.id
+
     name = fields.Char(
         default=lambda self: self.env["ir.sequence"].next_by_code(self._name),
         readonly=True,
@@ -18,42 +31,62 @@ class MrpUnbuildRebuildVariant(models.Model):
         default="draft",
         readonly=True,
     )
-    stock_location_id = fields.Many2one("stock.location")
-    # TODO: WHAT SHOULD BE COMPUTED HERE
-    unbuild_product_id = fields.Many2one("product.product")
-    unbuild_bom_id = fields.Many2one("mrp.bom", compute="_compute_unbuild_product_id")
-    # if unbuild product is tracked:
-    unbuild_product_tracking = fields.Selection(
-        string="Unbuild Product Tracking", related="unbuild_product_id.tracking"
+
+    # Unbuild fields
+    unbuild_product_id = fields.Many2one("product.product", required=True)
+    unbuild_bom_id = fields.Many2one(
+        "mrp.bom", compute="_compute_unbuild_product_id", required=True,
     )
+    # if unbuild product is tracked:
     unbuild_lot_id = fields.Many2one(
         "stock.production.lot",
         domain="[('product_id', '=', unbuild_product_id)]",
-        required=True
     )
     # if unbuild product's bom includes tracked components:
-    unbuild_original_mo_id = fields.Many2one("mrp.production")
-    # if unbuild product's bom does not include tracked components:
+    unbuild_original_mo_id = fields.Many2one(
+        "mrp.production",
+        domain=(
+            "[('product_id', '=', unbuild_product_id),"
+            "('state', 'in', ['done', 'cancel'])]"
+        ),
+    )
+
+    # Common fields
     quantity = fields.Float(default=1.0)
-
-    rebuild_product_template = fields.Many2one(
-        "product.template", compute="_compute_valid_template"
+    stock_location_id = fields.Many2one(
+        "stock.location", required=True, default=_get_default_location_id
+    )
+    product_template_id = fields.Many2one(
+        "product.template", related="unbuild_product_id.product_tmpl_id"
+    )
+    product_tracking = fields.Selection(
+        string="Product Tracking", related="product_template_id.tracking"
     )
 
-    # TODO: Domain for same product.template
-    rebuild_product_tracking = fields.Selection(
-        string="Rebuild Product Tracking", related="rebuild_product_id.tracking"
+    # Rebuild fields
+    rebuild_product_id = fields.Many2one(
+        "product.product", domain=("[('product_tmpl_id', '=', product_template_id)]")
     )
-    valid_rebuild_product_ids = fields.Many2many(
-        "product.product", compute="_compute_unbuild_product_id"
-    )
-    rebuild_product_id = fields.Many2one("product.product")
-    # TODO: Check if this bom could be different than unbuild_bom_id
     rebuild_bom_id = fields.Many2one("mrp.bom", compute="_compute_rebuild_product_id")
     rebuild_lot_id = fields.Many2one("stock.production.lot")
 
     unbuild_order_id = fields.Many2one("mrp.unbuild", readonly=True)
     rebuild_order_id = fields.Many2one("mrp.production", readonly=True)
+
+    @api.constrains("unbuild_lot_id")
+    def _check_unbuild_lot_id(self):
+        if self.product_tracking != "none" and not self.unbuild_lot_id.id:
+            raise ValueError(
+                _("A lot number should be provided if unbuild product is tracked.")
+            )
+
+    @api.constrains("quantity")
+    def _check_quantity(self):
+        if self.product_tracking != "none" and self.quantity != 1.0:
+            raise ValueError(
+                _("Quantity should be set to 1.0 if unbuild product is tracked.")
+            )
+
 
     @api.onchange("rebuild_product_id")
     def _compute_rebuild_product_id(self):

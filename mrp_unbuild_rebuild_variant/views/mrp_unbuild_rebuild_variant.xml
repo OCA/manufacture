@@ -19,17 +19,16 @@
                     <field name="stock_location_id"/>
                 </group>
                 <group>
+                    <field name="product_tracking" invisible="1"/>
+                    <field name="product_template_id" invisible="1"/>
                     <group name="Unbuild">
-                        <field name="unbuild_product_tracking" invisible="1"/>
                         <field name="unbuild_product_id" context="{'unbuild_rebuild': True}" />
-                        <field name="unbuild_lot_id" attrs="{'invisible': [('unbuild_product_tracking', '=', False)]}"/>
+                        <field name="unbuild_lot_id" attrs="{'invisible': [('product_tracking', '=', False)]}"/>
                         <field name="unbuild_order_id" readonly="1"/>
                     </group>
                     <group name="Rebuild">
-                        <field name="valid_rebuild_product_ids" invisible="1"/>
-                        <field name="rebuild_product_tracking" invisible="1"/>
-                        <field name="rebuild_product_id"  context="{'unbuild_rebuild': True}" domain="[('id', 'in', valid_rebuild_product_ids), ('id', '!=', id)]"/>
-                        <field name="rebuild_lot_id"/>
+                        <field name="rebuild_product_id"  context="{'unbuild_rebuild': True}"/>
+                        <field name="rebuild_lot_id" attrs="{'invisible': [('product_tracking', '=', False)]}"/>
                         <field name="rebuild_order_id" readonly="1"/>
                     </group>
                 </group>
