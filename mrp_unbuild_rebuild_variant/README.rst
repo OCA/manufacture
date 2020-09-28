@@ -27,6 +27,8 @@ MRP unbuild rebuild variant
 
 This module adds a new `mrp.unbuild.rebuild.variant` which acts as a wrapper around the unbuilding - rebuilding process of different variants.
 
+This is quite useful as it ensures the same tracked components will be used in the rebuilding process.
+
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
    Only for development or testing purpose, do not use in production.

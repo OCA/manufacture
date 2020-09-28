@@ -10,7 +10,9 @@ class MrpUnbuildRebuildVariant(models.Model):
 
     def _get_default_location_id(self):
         # Copied from mrp/models/mrp_unbuild.py
-        stock_location = self.env.ref('stock.stock_location_stock', raise_if_not_found=False)
+        stock_location = self.env.ref(
+            'stock.stock_location_stock', raise_if_not_found=False
+        )
         try:
             stock_location.check_access_rule('read')
             return stock_location.id
@@ -86,7 +88,6 @@ class MrpUnbuildRebuildVariant(models.Model):
             raise ValueError(
                 _("Quantity should be set to 1.0 if unbuild product is tracked.")
             )
-
 
     @api.onchange("rebuild_product_id")
     def _compute_rebuild_product_id(self):
