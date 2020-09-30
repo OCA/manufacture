@@ -1,3 +1,3 @@
-* Lois Rilo Antelo <lois.rilo@eficent.com>
-* Jordi Ballester <jordi.ballester@eficent.com>
+* Lois Rilo Antelo <lois.rilo@forgeflow.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
 * Chandresh Thakkar <chandresh.thakkar.serpentcs@gmail.com>
