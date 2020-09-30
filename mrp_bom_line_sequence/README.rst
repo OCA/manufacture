@@ -23,7 +23,7 @@ BOM lines with sequence number
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Provide a new field sequence on bom components, which allows to manage the
 order of moves in a picking.
@@ -59,7 +59,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Eficent Business and IT Consulting Services S.L. <contact@eficent.com>
+* ForgeFlow S.L. <contact@forgeflow.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 
 Maintainers
