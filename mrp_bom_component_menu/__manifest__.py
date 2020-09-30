@@ -1,5 +1,5 @@
-# Copyright 2017-19 Eficent Business and IT Consulting Services, S.L.
-#     (<https://www.eficent.com>)
+# Copyright 2017-19 ForgeFlow, S.L.
+#     (<https://www.forgeflow.com>)
 # Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
@@ -7,7 +7,7 @@
     "version": "13.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
-    "author": "Eficent," "Odoo Community Association (OCA)",
+    "author": "ForgeFlow," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["mrp"],
