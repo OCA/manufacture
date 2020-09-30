@@ -8,7 +8,7 @@
     "category": "Manufacturing",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "development_status": "Beta",
-    "maintainers": ["lreficent"],
+    "maintainers": ["LoisRForgeFlow"],
     "website": "https://github.com/OCA/manufacture",
     "license": "LGPL-3",
     "depends": ["mrp"],
