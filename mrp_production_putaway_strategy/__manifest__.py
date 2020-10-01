@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -6,7 +6,7 @@
     "summary": "Applies putaway strategies to manufacturing orders for "
     "finished products.",
     "version": "13.0.1.0.0",
-    "author": "Eficent, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacture",
     "depends": ["mrp"],
