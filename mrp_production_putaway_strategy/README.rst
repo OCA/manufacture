@@ -23,7 +23,7 @@ MRP Production Putaway Strategy
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to apply putaway strategies to the products resulting from
 the manufacturing orders.

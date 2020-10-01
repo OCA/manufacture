@@ -23,7 +23,7 @@ MRP Work Order Sequence
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Provide a new field sequence on production orders's work orders, that provides
 clear information on the process order of those.
@@ -81,7 +81,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow|
+|maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/13.0/mrp_workorder_sequence>`_ project on GitHub.
 
