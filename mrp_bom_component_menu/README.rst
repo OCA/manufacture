@@ -23,7 +23,7 @@ MRP BOM Component Menu
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Adds a menu item *Bill of Material Components*.
 
