@@ -23,7 +23,7 @@ MRP Repair Refurbish
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds the ability to obtain refurbished product as a consequence
 of the repair of a product that was defective.
