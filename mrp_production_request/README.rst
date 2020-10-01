@@ -23,7 +23,7 @@ MRP Production Request
     :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module extends the functionality of Manufacturing to allow you to use
 Manufacturing Request (MR) as a previous step to Manufacturing Orders (MO).
@@ -148,7 +148,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow|
+|maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/13.0/mrp_production_request>`_ project on GitHub.
 
