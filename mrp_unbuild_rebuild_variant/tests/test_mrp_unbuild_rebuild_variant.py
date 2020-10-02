@@ -118,6 +118,37 @@ class TestMrpUnbuildRebuildVariant(SavepointCase):
             }
         )
 
+    def test_rebuild_is_a_subset_of_unbuild(self):
+        lot_phono = self._create_lot_number(
+            self.product_amplifier_phono, "60001"
+        )
+        rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(
+            {
+                "unbuild_bom_id": self.amplifier_bom.id,
+                "unbuild_product_id": self.product_amplifier_phono.id,
+                "unbuild_lot_id": lot_phono.id,
+                "quantity": 1.0,
+                "rebuild_bom_id": self.amplifier_bom.id,
+                "rebuild_product_id": self.product_amplifier_tuner.id,
+            }
+        )
+        # rebuild product is not a subset of unbuild product (tuner missing)
+        # _check_dismantled_contains_components should raise an exception 
+        with self.assertRaises(exceptions.UserError):
+            rebuild_order.process()
+        rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(
+            {
+                "unbuild_bom_id": self.amplifier_bom.id,
+                "unbuild_product_id": self.product_amplifier_phono_tuner.id,
+                "unbuild_lot_id": self.lot_50001.id,
+                "quantity": 1.0,
+                "rebuild_bom_id": self.amplifier_bom.id,
+                "rebuild_product_id": self.product_amplifier_tuner.id,
+            }
+        )
+        rebuild_order.process()
+
+
     def test_unbuild_rebuild(self):
         rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(
             {
@@ -193,7 +224,7 @@ class TestMrpUnbuildRebuildVariant(SavepointCase):
             }
         )
         # As there's no phono product in stock, the rebuild should raise an exception
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(exceptions.UserError):
             rebuild_order.process()
         # Now, try to dismantle product with all options instead
         rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(

@@ -37,7 +37,7 @@ class MrpUnbuildRebuildVariant(models.Model):
     # Unbuild fields
     unbuild_product_id = fields.Many2one("product.product", required=True)
     unbuild_bom_id = fields.Many2one(
-        "mrp.bom", compute="_compute_unbuild_product_id", required=True,
+        "mrp.bom", compute="_compute_unbuild_bom_id", required=True,
     )
     # if unbuild product is tracked:
     unbuild_lot_id = fields.Many2one(
@@ -52,11 +52,12 @@ class MrpUnbuildRebuildVariant(models.Model):
             "('state', 'in', ['done', 'cancel'])]"
         ),
     )
+    unbuild_order_id = fields.Many2one("mrp.unbuild", readonly=True)
 
     # Common fields
     quantity = fields.Float(default=1.0)
     stock_location_id = fields.Many2one(
-        "stock.location", required=True, default=_get_default_location_id
+        "stock.location", required=True, default=lambda r: r._get_default_location_id()
     )
     product_template_id = fields.Many2one(
         "product.template", related="unbuild_product_id.product_tmpl_id"
@@ -69,44 +70,39 @@ class MrpUnbuildRebuildVariant(models.Model):
     rebuild_product_id = fields.Many2one(
         "product.product", domain=("[('product_tmpl_id', '=', product_template_id)]")
     )
-    rebuild_bom_id = fields.Many2one("mrp.bom", compute="_compute_rebuild_product_id")
+    rebuild_bom_id = fields.Many2one("mrp.bom", compute="_compute_rebuild_bom_id")
     rebuild_lot_id = fields.Many2one("stock.production.lot")
-
-    unbuild_order_id = fields.Many2one("mrp.unbuild", readonly=True)
     rebuild_order_id = fields.Many2one("mrp.production", readonly=True)
 
     @api.constrains("unbuild_lot_id")
     def _check_unbuild_lot_id(self):
         if self.product_tracking != "none" and not self.unbuild_lot_id.id:
-            raise ValueError(
+            raise exceptions.ValidationError(
                 _("A lot number should be provided if unbuild product is tracked.")
             )
 
     @api.constrains("quantity")
     def _check_quantity(self):
         if self.product_tracking != "none" and self.quantity != 1.0:
-            raise ValueError(
+            raise exceptions.ValidationError(
                 _("Quantity should be set to 1.0 if unbuild product is tracked.")
             )
 
-    @api.onchange("rebuild_product_id")
-    def _compute_rebuild_product_id(self):
+    @api.depends("rebuild_product_id")
+    def _compute_rebuild_bom_id(self):
         for record in self:
             if record.rebuild_product_id:
                 record.rebuild_bom_id = record.env["mrp.bom"]._bom_find(
                     product=record.rebuild_product_id
                 )
 
-    @api.onchange("unbuild_product_id")
-    def _compute_unbuild_product_id(self):
+    @api.depends("unbuild_product_id")
+    def _compute_unbuild_bom_id(self):
         for record in self:
             if record.unbuild_product_id:
                 record.unbuild_bom_id = record.env["mrp.bom"]._bom_find(
                     product=record.unbuild_product_id
                 )
-                record.valid_rebuild_product_ids = [(6, 0, (
-                    record.unbuild_product_id.product_tmpl_id.product_variant_ids.ids
-                ))]
 
     def _filter_bom_lines_for_variant(self, lines, variant):
         """
@@ -119,7 +115,7 @@ class MrpUnbuildRebuildVariant(models.Model):
         )
         return lines
 
-    def _check_dismatled_contains_components(self):
+    def _check_dismantled_contains_components(self):
         """
         For the moment, ensure that every component required to build the
         `rebuild` product is a component of the `unbuild` product as well.
@@ -130,7 +126,7 @@ class MrpUnbuildRebuildVariant(models.Model):
         rebuild_tmpl = self.rebuild_product_id.product_tmpl_id
         unbuild_tmpl = self.unbuild_product_id.product_tmpl_id
         if not (rebuild_tmpl == unbuild_tmpl):
-            raise exceptions.ValidationError(
+            raise exceptions.UserError(
                 _("Both unbuild and rebuild products should have the same template.")
             )
         # Check 2 : rebuild product is a subset of unbuild product
@@ -148,14 +144,14 @@ class MrpUnbuildRebuildVariant(models.Model):
                 lambda l: l.product_id == product_id
             )
             if not available_bom_line:
-                raise exceptions.ValidationError(
+                raise exceptions.UserError(
                     _("There's no {} in unbuild product.").format(product_id.name)
                 )
             total_available = sum(
                 [line.product_qty for line in available_bom_line]
             )
             if qty > total_available:
-                raise exceptions.ValidationError(
+                raise exceptions.UserError(
                     _(
                         "There's not enough {} in unbuild product.\n"
                         "{} expected; {} available after dismantling."
@@ -204,7 +200,7 @@ class MrpUnbuildRebuildVariant(models.Model):
             error_string = "\n".join(
                 ["{}: {} missing".format(p, q) for p, q in errors.items()]
             )
-            raise exceptions.ValidationError(
+            raise exceptions.UserError(
                 _("Missing products:\n{}").format(error_string)
             )
 
@@ -222,7 +218,7 @@ class MrpUnbuildRebuildVariant(models.Model):
             limit=1,
         )
         if not origin_manufacturing_order:
-            raise exceptions.ValidationError(
+            raise exceptions.UserError(
                 _("No matching manufacturing order found for lot {}").format(
                     self.unbuild_lot_id.name
                 )
@@ -289,7 +285,7 @@ class MrpUnbuildRebuildVariant(models.Model):
 
     def process(self):
         self.ensure_one()
-        self._check_dismatled_contains_components()
+        self._check_dismantled_contains_components()
         self._check_availability()
 
         # Get manufacturing order for product to be unbuilt
