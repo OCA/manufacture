@@ -9,7 +9,7 @@ class Orderpoint(models.Model):
 
     def _quantity_in_progress(self):
         res = super()._quantity_in_progress()
-        mrp_requests = self.env['mrp.production.request'].search([
+        mrp_requests = self.env['mrp.production.request'].sudo().search([
             ('state', 'not in', ('done', 'cancel')),
             ('orderpoint_id', 'in', self.ids),
         ])
