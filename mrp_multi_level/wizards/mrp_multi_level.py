@@ -120,7 +120,13 @@ class MultiLevelMrp(models.TransientModel):
         )
         if not product_mrp_area:
             raise exceptions.Warning(_("No MRP product found"))
-
+        factor = (
+            product.product_id.uom_id._compute_quantity(
+                qty, bomline.bom_id.product_uom_id
+            )
+            / bomline.bom_id.product_qty
+        )
+        line_quantity = factor * bomline.product_qty
         return {
             "mrp_area_id": product.mrp_area_id.id,
             "product_id": bomline.product_id.id,
@@ -129,7 +135,7 @@ class MultiLevelMrp(models.TransientModel):
             "purchase_order_id": None,
             "purchase_line_id": None,
             "stock_move_id": None,
-            "mrp_qty": -(qty * bomline.product_qty),  # TODO: review with UoM
+            "mrp_qty": -line_quantity,  # TODO: review with UoM
             "current_qty": None,
             "mrp_date": mrp_date_demand_2,
             "current_date": None,
