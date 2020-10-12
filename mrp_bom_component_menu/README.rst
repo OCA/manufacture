@@ -15,6 +15,8 @@ To use this module, you need to:
 
 #. Go to menu *Manufacturing -> Products -> Bill of Material Components*
 
+The purpose of this menu item is to search and view in which BoM a specific component is used. So, "Create" buttom is hidden.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/129/11.0
