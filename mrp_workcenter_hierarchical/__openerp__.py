@@ -12,15 +12,14 @@
     'depends': [
         'mrp_operations',
     ],
-    'website': 'http://www.akretion.com/',
+    'website': 'https://github.com/OCA/manufacture',
     'data': [
         'views/workcenter_view.xml',
     ],
     'demo': [
-        'demo/mrp_demo.xml',
+        'data/mrp_demo.xml',
     ],
     'license': 'AGPL-3',
-    'tests': [],
     'installable': True,
     'auto_install': False,
     'application': False,
