@@ -22,16 +22,27 @@ class StockPickingType(models.Model):
     @api.model_create_multi
     def create(self, val_list):
         picking_types = super(StockPickingType, self).create(val_list)
-        picking_types._create_qc_trigger()
+        picking_types.filtered("active")._create_qc_trigger()
         return picking_types
 
     @api.multi
     def write(self, vals):
         res = super(StockPickingType, self).write(vals)
+        qc_trigger_model = self.env['qc.trigger'].sudo()
         if vals.get('name') or vals.get('warehouse_id'):
-            qc_trigger_model = self.env['qc.trigger'].sudo()
             for rec in self:
                 qc_triggers = qc_trigger_model.search(
                     [('picking_type_id', '=', rec.id)])
                 qc_triggers.write({'name': rec.name})
+        if "active" in vals:
+            if vals["active"]:
+                for record in self:
+                    if not qc_trigger_model.search(
+                        [('picking_type_id', '=', record.id)]
+                    ):
+                        record._create_qc_trigger()
+            else:
+                qc_trigger_model.search(
+                    [('picking_type_id', 'in', self.ids)]
+                ).unlink()
         return res

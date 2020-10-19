@@ -242,17 +242,32 @@ class TestQualityControl(TransactionCase):
             'code': 'outgoing',
             'sequence_id': self.sequence.id
         })
-        trigger = self.qc_trigger_model.search(
-            [('picking_type_id', '=', picking_type.id)])
+        domain = [('picking_type_id', '=', picking_type.id)]
+        trigger = self.qc_trigger_model.search(domain)
         self.assertEqual(len(trigger), 1,
                          'One trigger must have been created.')
         self.assertEqual(trigger.name, picking_type.name,
                          'Trigger name must match picking type name.')
-        picking_type.write({
-            'name': 'Test Name Change',
-        })
+        picking_type.write({'name': 'Test Name Change'})
         self.assertEqual(trigger.name, picking_type.name,
                          'Trigger name must match picking type name.')
+        picking_type.write({"active": False})
+        trigger = self.qc_trigger_model.search(domain)
+        self.assertFalse(trigger)
+        picking_type.write({"active": True})
+        trigger = self.qc_trigger_model.search(domain)
+        self.assertTrue(trigger)
+
+    def test_picking_type_inactive(self):
+        picking_type = self.picking_type_model.create({
+            'name': 'Test Picking Type',
+            'code': 'outgoing',
+            "active": False,
+            'sequence_id': self.sequence.id
+        })
+        trigger = self.qc_trigger_model.search(
+            [('picking_type_id', '=', picking_type.id)])
+        self.assertFalse(trigger)
 
     def test_qc_inspection_picking(self):
         self.inspection1.write({
