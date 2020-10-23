@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2020 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+<record id="view_mrp_product_produce_wizard" model="ir.ui.view">
+    <field name="name">auto_fill.mrp.product.produce.form</field>
+    <field name="model">mrp.product.produce</field>
+    <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+    <field name="arch" type="xml">
+        <field name="serial" position="after">
+            <field name="auto_fill_done" invisible="1"/>
+        </field>
+        <button name="do_produce" position="before">
+            <button name="action_consume_line_auto_fill"
+                type="object"
+                string="Auto Fill"
+                attrs="{'invisible': ['|', ('consume_line_ids', '=', []), ('auto_fill_done', '=', True)]}"
+                class="btn-primary"
+                />
+        </button>
+    </field>
+</record>
+
+</odoo>
