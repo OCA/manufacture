@@ -59,7 +59,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Eficent Business and IT Consulting Services S.L. <contact@eficent.com>
+* ForgeFlow S.L. <contact@forgeflow.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 
 Maintainers
