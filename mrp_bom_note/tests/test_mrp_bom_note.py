@@ -56,7 +56,7 @@ class TestMrpBomNote(TransactionCase):
                 "product_uom_id": uom_unit.id,
                 "product_qty": 1.0,
                 "type": "normal",
-                "move_raw_ids": [
+                "bom_line_ids": [
                     (0, 0, {"product_id": product_1.id, "product_qty": 4}),
                     (0, 0, {"product_id": product_2.id, "product_qty": 2}),
                     (0, 0, {"product_id": product_3.id, "product_qty": 2}),
