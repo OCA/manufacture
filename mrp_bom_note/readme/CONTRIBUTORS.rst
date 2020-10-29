@@ -4,3 +4,4 @@
 * Bima Wijaya <bimajatiwijaya@gmail.com>
 * Agung Rachmatullah <agung.rachmatullah@ymail.com>
 * Laurent Bélorgey <lb@lalieutenante.com>
+* Pimolnat Suntian <pimolnats@ecosoft.co.th>
