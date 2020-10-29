@@ -1,4 +1,4 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -46,7 +46,6 @@ class TestMrpManualProcurement(TransactionCase):
                             "picking_type_id": self.env.ref(
                                 "stock.picking_type_internal"
                             ).id,
-                            "propagate": True,
                         },
                     )
                 ],
@@ -105,7 +104,9 @@ class TestMrpManualProcurement(TransactionCase):
             "active_ids": orderpoint.ids,
             "active_id": orderpoint.id,
         }
-        wizard = self.manual_procurement_wiz.sudo(user).with_context(context).create({})
+        wizard = (
+            self.manual_procurement_wiz.with_user(user).with_context(context).create({})
+        )
         wizard.make_procurement()
         return wizard
 
