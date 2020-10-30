@@ -247,7 +247,7 @@ class MultiLevelMrp(models.TransientModel):
             planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
-            if product_mrp_area_id.supply_method == "manufacture":
+            if product_mrp_area_id._to_be_exploded():
                 self.explode_action(
                     product_mrp_area_id, mrp_action_date, name, qty, planned_order
                 )

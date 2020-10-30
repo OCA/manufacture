@@ -259,3 +259,10 @@ class ProductMRPArea(models.Model):
 
     def action_view_outgoing_stock_moves(self):
         return self.action_view_stock_moves(self._out_stock_moves_domain())
+
+    def _to_be_exploded(self):
+        self.ensure_one()
+        if self.supply_method == "manufacture":
+            return True
+        else:
+            return False
