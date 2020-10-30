@@ -220,3 +220,8 @@ class ProductMRPArea(models.Model):
             lambda r: r.main_supplierinfo_id and r.supply_method == "buy"
         ):
             rec.mrp_minimum_order_qty = rec.main_supplierinfo_id.min_qty
+
+    @api.multi
+    def _to_be_exploded(self):
+        self.ensure_one()
+        return self.supply_method == 'manufacture'
