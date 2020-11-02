@@ -196,3 +196,11 @@ class ProductMRPArea(models.Model):
                 self.mrp_maximum_order_qty:
             return self.mrp_maximum_order_qty
         return qty_to_order
+
+    @api.multi
+    def _to_be_exploded(self):
+        self.ensure_one()
+        if self.supply_method == 'manufacture':
+            return True
+        else:
+            return False
