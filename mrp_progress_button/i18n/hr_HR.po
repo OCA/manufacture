@@ -21,11 +21,14 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: mrp_progress_button
-#: model:ir.model,name:mrp_progress_button.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Proizvodni nalog"
-
-#. module: mrp_progress_button
-#: model:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
 msgid "Mark As Started"
 msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model,name:mrp_progress_button.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Proizvodni nalog"
