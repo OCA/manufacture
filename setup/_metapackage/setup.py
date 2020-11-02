@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo13-addon-mrp_bom_component_menu',
         'odoo13-addon-mrp_bom_line_sequence',
         'odoo13-addon-mrp_bom_location',
+        'odoo13-addon-mrp_bom_note',
         'odoo13-addon-mrp_bom_tracking',
         'odoo13-addon-mrp_multi_level',
         'odoo13-addon-mrp_multi_level_estimate',
