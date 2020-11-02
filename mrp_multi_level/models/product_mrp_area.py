@@ -173,7 +173,7 @@ class ProductMRPArea(models.Model):
             proc_loc = rec.location_proc_id or rec.mrp_area_id.location_id
             values = {
                 'warehouse_id': rec.mrp_area_id.warehouse_id,
-                'company_id': self.env.user.company_id.id,
+                'company_id': self.env.user.company_id,
                 # TODO: better way to get company
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
