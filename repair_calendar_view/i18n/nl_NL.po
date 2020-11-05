@@ -25,6 +25,11 @@ msgid "Date of the repair, this field and user_id defines the calendar"
 msgstr "Datum van de reparatie, dit veld en user_id bepalen de kalender"
 
 #. module: repair_calendar_view
+#: model:ir.model.fields,help:repair_calendar_view.field_repair_order__duration
+msgid "Duration in hours and minutes."
+msgstr ""
+
+#. module: repair_calendar_view
 #: model:ir.model.fields,help:repair_calendar_view.field_repair_order__user_id
 msgid "Person in charge for the repair"
 msgstr "Persoon verantwoordelijk voor de reparatie"
@@ -33,6 +38,11 @@ msgstr "Persoon verantwoordelijk voor de reparatie"
 #: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__date_repair
 msgid "Repair Date"
 msgstr "Reparatiedatum"
+
+#. module: repair_calendar_view
+#: model:ir.model.fields,field_description:repair_calendar_view.field_repair_order__duration
+msgid "Repair Duration"
+msgstr ""
 
 #. module: repair_calendar_view
 #: model:ir.model,name:repair_calendar_view.model_repair_order
