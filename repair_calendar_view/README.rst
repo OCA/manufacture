@@ -23,7 +23,7 @@ Repair Calendar View
     :target: https://runbot.odoo-community.org/runbot/129/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This Module adds a calendar view for the repair orders
 
@@ -58,14 +58,7 @@ Contributors
 * Alex Comba <alex.comba@agilebg.com>
 * Carlos Jimeno <carlos.jimeno@guadaltech.es>
 * María Asunción Daza <mariaasuncion.daza@guadaltech.es>
-
-Other credits
-~~~~~~~~~~~~~
-
-Images
-------
-
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Marcel Savegnago <marcel.savegnago@escodoo.com.br>
 
 Maintainers
 ~~~~~~~~~~~
