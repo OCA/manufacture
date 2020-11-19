@@ -14,7 +14,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "quality_control",
+        "quality_control_oca",
     ],
     "data": [
         "security/ir.model.access.csv",

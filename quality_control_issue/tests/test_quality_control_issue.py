@@ -26,7 +26,7 @@ class TestQualityControlIssue(common.SingleTransactionCase):
         # Create Users and Groups
         # User assigned to quality control user group
         cls.group_qc_user = cls.env.ref(
-            'quality_control.group_quality_control_user')
+            'quality_control_oca.group_quality_control_user')
         cls.group_user = cls.env.ref(
             'base.group_user')
         cls.qc_user = cls._create_user(

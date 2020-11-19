@@ -15,7 +15,7 @@
     "website": "https://github.com/OCA/manufacture/tree/12.0/"
                "quality_control_mrp",
     "depends": [
-        "quality_control",
+        "quality_control_oca",
         "quality_control_stock",
         "mrp"
     ],

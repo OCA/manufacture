@@ -6,14 +6,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Quality control",
+    "name": "Quality control OCA",
     "version": "12.0.1.2.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
     "author": "OdooMRP team, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/12.0/quality_control",
+    "website": "https://github.com/OCA/manufacture/tree/12.0/quality_control_oca",
     "depends": [
         "product",
     ],

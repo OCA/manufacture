@@ -34,7 +34,7 @@ setuptools.setup(
         'odoo12-addon-mrp_workorder_sequence',
         'odoo12-addon-product_mrp_info',
         'odoo12-addon-product_quick_bom',
-        'odoo12-addon-quality_control',
+        'odoo12-addon-quality_control_oca',
         'odoo12-addon-quality_control_issue',
         'odoo12-addon-quality_control_mrp',
         'odoo12-addon-quality_control_stock',

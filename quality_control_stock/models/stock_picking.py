@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.addons.quality_control.models.qc_trigger_line import\
+from odoo.addons.quality_control_oca.models.qc_trigger_line import\
     _filter_trigger_lines
 
 

@@ -16,7 +16,7 @@
     "website": "https://github.com/OCA/manufacture/tree/12.0/"
                "quality_control_stock",
     "depends": [
-        "quality_control",
+        "quality_control_oca",
         "stock",
     ],
     "data": [

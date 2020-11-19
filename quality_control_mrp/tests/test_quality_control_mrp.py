@@ -13,7 +13,7 @@ class TestQualityControlMrp(TransactionCase):
         self.inspection_model = self.env['qc.inspection']
         self.qc_trigger_model = self.env['qc.trigger']
         self.product = self.env.ref('mrp.product_product_wood_panel')
-        self.test = self.env.ref('quality_control.qc_test_1')
+        self.test = self.env.ref('quality_control_oca.qc_test_1')
         self.trigger = self.env.ref('quality_control_mrp.qc_trigger_mrp')
         self.bom = self.env['mrp.bom']._bom_find(product=self.product)
         self.production1 = self.production_model.create({
