@@ -28,6 +28,5 @@ msgstr "备注"
 #. module: mrp_production_note
 #: model:ir.model,name:mrp_production_note.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "制造订单"
