@@ -29,7 +29,6 @@ msgstr "Stückliste"
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_mrp_bom_line
 #, fuzzy
-#| msgid "Bill of Material"
 msgid "Bill of Material Line"
 msgstr "Stückliste"
 
