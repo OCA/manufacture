@@ -21,6 +21,5 @@ msgstr ""
 #. module: mrp_auto_assign
 #: model:ir.model,name:mrp_auto_assign.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Fertigungsautrag"
