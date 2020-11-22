@@ -434,7 +434,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Productieorder"
 
@@ -701,7 +700,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Productieorder"
 

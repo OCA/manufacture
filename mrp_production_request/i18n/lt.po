@@ -341,7 +341,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Neskaityti pranešimai"
 
@@ -393,7 +392,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Neskaityti pranešimai"
 
@@ -438,7 +436,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Gamybos užsakymas"
 
@@ -675,7 +672,6 @@ msgstr "Neskaityti pranešimai"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Neskaityti pranešimai"
 
@@ -692,7 +688,6 @@ msgstr "Naudotojas"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Neskaityti pranešimai"
 
@@ -709,7 +704,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Gamybos užsakymas"
 

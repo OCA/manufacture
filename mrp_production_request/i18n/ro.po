@@ -434,7 +434,6 @@ msgstr "Produs șablon"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Comandă fabricație"
 
@@ -602,7 +601,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Mișcare stoc"
 
@@ -703,7 +701,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Manufacturing Orders"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Comenzi fabricație"
 

@@ -342,7 +342,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Messages"
 msgstr "Neprebrana sporočila"
 
@@ -394,7 +393,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model.fields,help:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Number of unread messages"
 msgstr "Neprebrana sporočila"
 
@@ -440,7 +438,6 @@ msgstr "Predloga proizvoda"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Procurement Order"
 msgid "Production Order"
 msgstr "Oskrbovalni nalog"
 
@@ -608,7 +605,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Premik zaloge"
 
@@ -679,7 +675,6 @@ msgstr "Neprebrana sporočila"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__message_unread_counter
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Unread Messages Counter"
 msgstr "Neprebrana sporočila"
 
@@ -696,7 +691,6 @@ msgstr "Uporabnik"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__website_message_ids
 #, fuzzy
-#| msgid "Unread Messages"
 msgid "Website Messages"
 msgstr "Neprebrana sporočila"
 
@@ -713,7 +707,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production_request_create_mo_line
 #, fuzzy
-#| msgid "Manufacturing Orders"
 msgid "Wizard to create Manufacturing Orders Line"
 msgstr "Proizvodni nalogi"
 

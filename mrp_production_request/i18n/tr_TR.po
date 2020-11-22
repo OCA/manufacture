@@ -436,7 +436,6 @@ msgstr "Ürün şablonu"
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_mrp_production
 #, fuzzy
-#| msgid "Product"
 msgid "Production Order"
 msgstr "Ürün"
 
@@ -604,7 +603,6 @@ msgstr ""
 #. module: mrp_production_request
 #: model:ir.model,name:mrp_production_request.model_stock_rule
 #, fuzzy
-#| msgid "Stock Move"
 msgid "Stock Rule"
 msgstr "Stok Hareketi"
 
