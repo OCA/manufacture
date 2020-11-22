@@ -19,7 +19,6 @@ msgstr ""
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_mrp_production
 #, fuzzy
-#| msgid "Manufacturing Order"
 msgid "Production Order"
 msgstr "Fertigungsauftrag"
 
