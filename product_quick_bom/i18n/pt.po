@@ -22,7 +22,6 @@ msgstr ""
 #. module: product_quick_bom
 #: model_terms:ir.ui.view,arch_db:product_quick_bom.product_template_only_form_view_bomlines
 #, fuzzy
-#| msgid "Bill of Material"
 msgid "Bill of Materials"
 msgstr "Lista de Materiais"
 
@@ -30,7 +29,6 @@ msgstr "Lista de Materiais"
 #: model:ir.model.fields,field_description:product_quick_bom.field_product_product__bom_id
 #: model:ir.model.fields,field_description:product_quick_bom.field_product_template__bom_id
 #, fuzzy
-#| msgid "Bill of Material"
 msgid "Bill of Materials (quick access)"
 msgstr "Lista de Materiais"
 
@@ -38,7 +36,6 @@ msgstr "Lista de Materiais"
 #: model:ir.model.fields,field_description:product_quick_bom.field_product_product__specific_bom_line_ids
 #: model:ir.model.fields,field_description:product_quick_bom.field_product_template__specific_bom_line_ids
 #, fuzzy
-#| msgid "Bom Line"
 msgid "BoM Lines"
 msgstr "Linha de LdM"
 
