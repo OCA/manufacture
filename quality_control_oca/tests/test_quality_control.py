@@ -21,12 +21,12 @@ class TestQualityControl(TransactionCase):
         self.qc_trigger = self.env["qc.trigger"].create(
             {"name": "Test Trigger", "active": True}
         )
-        self.test = self.env.ref("quality_control.qc_test_1")
-        self.val_ok = self.env.ref("quality_control.qc_test_question_value_1")
-        self.val_ko = self.env.ref("quality_control.qc_test_question_value_2")
-        self.qn_question = self.env.ref("quality_control.qc_test_question_2")
+        self.test = self.env.ref("quality_control_oca.qc_test_1")
+        self.val_ok = self.env.ref("quality_control_oca.qc_test_question_value_1")
+        self.val_ko = self.env.ref("quality_control_oca.qc_test_question_value_2")
+        self.qn_question = self.env.ref("quality_control_oca.qc_test_question_2")
         self.cat_generic = self.env.ref(
-            "quality_control.qc_test_template_category_generic"
+            "quality_control_oca.qc_test_template_category_generic"
         )
         self.product = self.env.ref("product.product_product_11")
         inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
