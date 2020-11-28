@@ -20,6 +20,8 @@
             <group>
                 <field name="company_id" groups="base.group_multi_company"/>
             </group>
+            <group name="trigger_lines" colspan="2">
+            </group>
             </form>
         </field>
     </record>
@@ -34,6 +36,30 @@
             </tree>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="qc_trigger_tree2_view">
+        <field name="name">qc.trigger.tree</field>
+        <field name="model">qc.trigger</field>
+        <field name="arch" type="xml">
+            <tree string="Quality control triggers">
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_qc_trigger">
+        <field name="name">Triggers</field>
+        <field name="res_model">qc.trigger</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="qc_trigger_tree2_view"/>
+    </record>
+
+    <menuitem name="Triggers"
+              parent="menu_qc_config"
+              id="qc_trigger_menu"
+              action="action_qc_trigger"/>
 
 </odoo>
 
