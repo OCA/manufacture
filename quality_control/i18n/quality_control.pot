@@ -599,6 +599,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_product_template__qc_triggers
 #: model_terms:ir.ui.view,arch_db:quality_control.product_category_qc_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control.product_template_qc_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control.qc_trigger_tree2_view
 #: model_terms:ir.ui.view,arch_db:quality_control.qc_trigger_tree_view
 msgid "Quality control triggers"
 msgstr ""
@@ -843,6 +844,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line__trigger
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line__trigger
 msgid "Trigger"
+msgstr ""
+
+#. module: quality_control
+#: model:ir.actions.act_window,name:quality_control.action_qc_trigger
+#: model:ir.ui.menu,name:quality_control.qc_trigger_menu
+msgid "Triggers"
 msgstr ""
 
 #. module: quality_control
