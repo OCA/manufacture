@@ -45,18 +45,19 @@ class StockPicking(models.Model):
     def action_done(self):
         res = super(StockPicking, self).action_done()
         inspection_model = self.env['qc.inspection']
-        qc_trigger = self.env['qc.trigger'].search(
-            [('picking_type_id', '=', self.picking_type_id.id)])
-        for operation in self.move_lines:
-            trigger_lines = set()
-            for model in ['qc.trigger.product_category_line',
-                          'qc.trigger.product_template_line',
-                          'qc.trigger.product_line']:
-                partner = (self.partner_id
-                           if qc_trigger.partner_selectable else False)
-                trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, operation.product_id, partner=partner))
-            for trigger_line in _filter_trigger_lines(trigger_lines):
-                inspection_model._make_inspection(operation, trigger_line)
+        for record in self:
+            qc_trigger = record.env['qc.trigger'].search(
+                [('picking_type_id', '=', record.picking_type_id.id)])
+            for operation in record.move_lines:
+                trigger_lines = set()
+                for model in ['qc.trigger.product_category_line',
+                              'qc.trigger.product_template_line',
+                              'qc.trigger.product_line']:
+                    partner = (record.partner_id
+                               if qc_trigger.partner_selectable else False)
+                    trigger_lines = trigger_lines.union(
+                        record.env[model].get_trigger_line_for_product(
+                            qc_trigger, operation.product_id, partner=partner))
+                for trigger_line in _filter_trigger_lines(trigger_lines):
+                    inspection_model._make_inspection(operation, trigger_line)
         return res
