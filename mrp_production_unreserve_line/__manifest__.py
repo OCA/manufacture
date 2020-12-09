@@ -9,7 +9,7 @@
     'category': 'Stock',
     'author': 'PlanetaTIC'
               ' Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/stock-logistics-workflow',
+    'website': 'https://github.com/OCA/manufacture',
     'license': 'AGPL-3',
     'depends': [
         'mrp',
