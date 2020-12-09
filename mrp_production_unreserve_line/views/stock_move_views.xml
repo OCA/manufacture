@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<data>
+
+<record id="view_stock_move_lots" model="ir.ui.view">
+    <field name="name">stock.move.operations.form</field>
+    <field name="model">stock.move</field>
+    <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
+    <field name="arch" type="xml">
+        <xpath expr="/form/*" position="before">
+            <header>
+                <button name="do_unreserve" string="Unreserve" groups="base.group_user" type="object"
+                    attrs="{'invisible': [('state', '!=', 'assigned')]}"/>
+            </header>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</odoo>
