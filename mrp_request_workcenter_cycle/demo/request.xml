@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="mrp.production.request" id="wood_panel_request">
+        <field name="product_id" ref="mrp.product_product_wood_panel"/>
+        <field name="bom_id" ref="mrp.mrp_bom_wood_panel"/>
+    </record>
+
+    <function model="mrp.production.request" name="populate_qty_by_workcenter">
+        <value eval="[ref('mrp_request_workcenter_cycle.wood_panel_request')]"/>
+    </function>
+
+</odoo>

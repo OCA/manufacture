@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="mrp.workcenter" id="oven1">
+        <field name="name">Oven 1</field>
+    </record>
+    <record model="mrp.workcenter" id="oven2">
+        <field name="name">Oven 2</field>
+    </record>
+
+    <record model="product.workcenter.quantity" id="wood_panel_oven1">
+        <field name="product_id" ref="mrp.product_product_wood_panel"/>
+        <field name="workcenter_id" ref="oven1"/>
+        <field name="product_qty">110</field>
+        <field name="workcenter_cycle_no">1</field>
+    </record>
+    <record model="product.workcenter.quantity" id="wood_panel_oven2">
+        <field name="product_id" ref="mrp.product_product_wood_panel"/>
+        <field name="workcenter_id" ref="oven2"/>
+        <field name="product_qty">80</field>
+        <field name="workcenter_cycle_no">2</field>
+    </record>
+
+</odoo>

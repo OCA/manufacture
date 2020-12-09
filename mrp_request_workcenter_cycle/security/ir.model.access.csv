@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_prd_wkcenter_qty_user,product.workcenter.qty.user,model_product_workcenter_quantity,base.group_user,1,0,0,0
+access_prd_wkcenter_qty_manager,product.workcenter.qty.manager,model_product_workcenter_quantity,mrp_production_request.group_mrp_production_request_manager,1,1,1,1
+access_produc_request_wkcenter_qty_user,production.request.workcenter.user,model_mrp_request_workcenter,mrp_production_request.group_mrp_production_request_user,1,1,1,1
