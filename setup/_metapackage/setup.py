@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo12-addon-mrp_production_request',
         'odoo12-addon-mrp_production_show_post_inventory',
         'odoo12-addon-mrp_progress_button',
+        'odoo12-addon-mrp_request_workcenter_cycle',
         'odoo12-addon-mrp_sale_info',
         'odoo12-addon-mrp_stock_orderpoint_manual_procurement',
         'odoo12-addon-mrp_subcontracting',
