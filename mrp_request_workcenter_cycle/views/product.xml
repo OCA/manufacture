@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_product_form_view_bom_button">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="mrp.product_product_form_view_bom_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='traceability']" position="after">
+                <group name="manufacturing">
+                    <group string="Capacity by workcenter" groups="mrp_production_request.group_mrp_production_request_user">
+                        <field name="qty_by_workcenter_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="workcenter_id"/>
+                                <field name="product_qty"/>
+                                <field name="workcenter_cycle_no"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

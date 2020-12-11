@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_mrp_production_request_form">
+        <field name="model">mrp.production.request</field>
+        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//header/button[@name='%(mrp_production_request.mrp_production_request_create_mo_action)d']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('workcenter_lines_count', '>', 0), ('state', '!=', 'approved'), ('mrp_production_count', '>', 0)]}</attribute>
+                <attribute name="states">False</attribute>
+                <attribute name="class">oe_highlight</attribute>
+            </xpath>
+             <xpath expr="//header/button[@name='%(mrp_production_request.mrp_production_request_create_mo_action)d']" position="after">
+                <button name="button_create_mo_by_workcenter" type="object"
+                        string="Create Manufacturing Orders" class="oe_highlight" 
+                        title="Manufacturing Orders'll be created according to workcenters"
+                        attrs="{'invisible': ['|', '|', ('workcenter_lines_count', '=', 0), ('state', '!=', 'approved'), ('mrp_production_count', '>', 0)]}"/>
+            </xpath>
+            <field name="product_qty" position="after">
+                <field name="auto_product_qty" invisible="1"/>
+            </field>
+            <field name="product_qty" position="attributes">
+                <attribute name="attrs">{'readonly': ['|', ('state', 'not in', 'draft'), ('workcenter_lines_count', '&gt;', 0)]}</attribute>
+            </field>
+
+            <xpath expr="//page[@name='extra']" position="after">
+                <page name="workcenter" string="Workcenters">
+                    <group name="capacity" col="4">
+                        <group colspan="2">
+                            <field name="target_quantity"/>
+                            <field name="workcenter_lines_count" attrs="{'invisible': 1}"/>
+                            <field name="qty_by_workcenter_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}" colspan="2">
+                                <tree editable="bottom">
+                                    <field name="workcenter_id"/>
+                                    <field name="workcenter_cycle_no"/>
+                                    <field name="product_qty"/>
+                                </tree>
+                            </field>
+                            <div title="">One manufacturing order is created by cycle.</div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
