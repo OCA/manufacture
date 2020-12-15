@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_cost_operation_form_custom" model="ir.ui.view">
+        <field name="name">mrp.cost.operation.form</field>
+        <field name="model">account.analytic.line</field>
+        <field
+            name="inherit_id"
+            ref="mrp_analytic_cost_material.custom_account_analytic_line_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="product_category_id" position="after">
+                <field name="workcenter_productivity_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
