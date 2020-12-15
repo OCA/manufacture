@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workorder_custom_tree" model="ir.ui.view">
+        <field name="name">mrp.workorder.custom.tree</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+        <field name="arch" type="xml">
+            <field name="duration" position="after">
+                <field name="duration_estimated" widget="float_time" />
+            </field>
+        </field>
+    </record>
+</odoo>

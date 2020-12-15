@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_analytic_cost_operation_variance_tree" model="ir.ui.view">
+        <field name="name">mrp.analytic.cost.operation.tree</field>
+        <field name="model">mrp.workcenter.analytic.estimate</field>
+        <field
+            name="inherit_id"
+            ref="mrp_analytic_cost_variance.mrp_workcenter_analytic_estimate_list"
+        />
+        <field name="arch" type="xml">
+            <field name="work_order_id" position="after">
+                <field name="work_center_id" />
+            </field>
+        </field>
+    </record>
+    <record id="mrp_analytic_cost_operation_variance_filter" model="ir.ui.view">
+        <field name="name">mrp.analytic.cost.operation.filter</field>
+        <field name="model">mrp.workcenter.analytic.estimate</field>
+        <field
+            name="inherit_id"
+            ref="mrp_analytic_cost_variance.view_search_mrp_analytic_workcenter_estimate"
+        />
+        <field name="arch" type="xml">
+            <filter name="groupby_mo" position="after">
+                <filter
+                    name="groupby_workcenter"
+                    string="Work Center"
+                    domain="[]"
+                    context="{'group_by' : 'work_center_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
