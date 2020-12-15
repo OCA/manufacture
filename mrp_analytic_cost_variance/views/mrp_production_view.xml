@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_cost_analysis_form" model="ir.ui.view">
+        <field name="name">mrp.production.cost.analysis.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_view_mo_delivery" position="after">
+                <button
+                    type="action"
+                    string="Cost Analysis"
+                    class="oe_stat_button"
+                    icon="fa-arrow-circle-right"
+                    name="%(action_mrp_workcenter_analytic_estimate_production)d"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

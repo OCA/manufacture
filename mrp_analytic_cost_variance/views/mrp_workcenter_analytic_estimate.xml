@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model='ir.ui.view' id='mrp_workcenter_analytic_estimate_list'>
+        <field name='name'>mrp.workcenter.estimate.tree</field>
+        <field name='model'>mrp.workcenter.analytic.estimate</field>
+        <field name='arch' type='xml'>
+            <tree
+                editable="top"
+                string='Workcenter Analytic Estimate'
+                decoration-danger="quantity_variance &lt; 1 or cost_variance &lt; 1"
+                decoration-muted="quantity_actual == 0.0"
+            >
+                <field name='work_order_id' />
+                <field name='manufacturing_order_id' />
+                <field name='analytic_account_id' />
+                <field name='product_id' />
+                <field name='product_category_id' />
+                <field name='factor' />
+                <field name='unit_cost' />
+                <field name='quantity_estimate' />
+                <field name='quantity_actual' />
+                <field name='cost_estimate' />
+                <field name='cost_actual' />
+                <field name='quantity_variance' />
+                <field name='cost_variance' />
+            </tree>
+        </field>
+    </record>
+    <record id="view_search_mrp_analytic_workcenter_estimate" model="ir.ui.view">
+        <field name="name">mrp.workcenter.analytic.estimate.search</field>
+        <field name="model">mrp.workcenter.analytic.estimate</field>
+        <field name="arch" type="xml">
+            <search string="Analytic Workcenter">
+                <filter
+                    name="groupby_mo"
+                    string="Manufacture Order"
+                    domain="[]"
+                    context="{'group_by' : 'manufacturing_order_id'}"
+                />
+                <filter
+                    name="groupby_analytic"
+                    string="Analytic Account"
+                    domain="[]"
+                    context="{'group_by' : 'analytic_account_id'}"
+                />
+                <filter
+                    name="groupby_product"
+                    string="Product"
+                    domain="[]"
+                    context="{'group_by' : 'product_id'}"
+                />
+                <filter
+                    name="groupby_product_category"
+                    string="Product Category"
+                    domain="[]"
+                    context="{'group_by' : 'product_category_id'}"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_mrp_workcenter_analytic_estimate" model="ir.actions.act_window">
+        <field name="name">MRP Cost Analytic</field>
+        <field name="res_model">mrp.workcenter.analytic.estimate</field>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+    <record
+        id="action_mrp_workcenter_analytic_estimate_production"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Cost Analysis</field>
+        <field name="res_model">mrp.workcenter.analytic.estimate</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('manufacturing_order_id','=',active_id)]</field>
+    </record>
+    <menuitem
+        id="mrp_workcenter_analytic_est"
+        name="Cost Analysis"
+        parent="mrp.menu_mrp_reporting"
+        action="action_mrp_workcenter_analytic_estimate"
+        sequence="31"
+    />
+</odoo>
