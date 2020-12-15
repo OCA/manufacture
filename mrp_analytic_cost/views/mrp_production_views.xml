@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="custom_mrp_production_form_view" model="ir.ui.view">
+        <field name="name">custom.mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button
+                    name="generate_analytic_lines"
+                    type="object"
+                    icon="fa-cog"
+                    string="Material Costs"
+                    groups="base.group_no_one"
+                />
+                </xpath>
+        </field>
+    </record>
+</odoo>
