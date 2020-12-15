@@ -1,7 +1,10 @@
 To use:
 
 * On the Manufacturing Order, set the Analytic Account to use. This may correspond to a Project.
-* On Manufacturing Orders, when a stock reservation is triggered, Analytic Items are automatically generated .
+* On Manufacturing Orders, Analytic Items are automatically generated when:
+
+  * Raw materials are consumed, or
+  * Time is spent on work order Operations, with a Work Center with a Cost Type product set.
 
 To analyze costs:
 

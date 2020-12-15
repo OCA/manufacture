@@ -48,6 +48,14 @@ class StockMove(models.Model):
             self.generate_mrp_raw_analytic_line()
         return res
 
+    @api.model
+    def create(self, vals):
+        qty_done = vals.get("qty_done")
+        res = super().create(vals)
+        if qty_done:
+            res.generate_mrp_raw_analytic_line()
+        return res
+
 
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
