@@ -16,4 +16,6 @@
         "views/mrp_workorder_view.xml",
     ],
     "installable": True,
+    "maintainer": "dreispt",
+    "development_status": "Alpha",
 }
