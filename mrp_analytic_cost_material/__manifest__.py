@@ -12,5 +12,7 @@
     "license": "AGPL-3",
     "depends": ["mrp_analytic", "account"],
     "data": ["views/account_analytic_line_view.xml"],
+    "maintainer": "dreispt",
+    "development_status": "Alpha",
     "installable": True,
 }
