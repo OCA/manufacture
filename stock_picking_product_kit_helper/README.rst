@@ -19,11 +19,8 @@ Stock Picking Product Kit Helper
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/manufacture-13-0/manufacture-13-0-stock_picking_product_kit_helper
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/129/13.0
-    :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| 
 
 When sales order contain product kits (product with BOM of type kit),
 the delivery order (stock.move) created by it will be exploded to multiple product lines.
