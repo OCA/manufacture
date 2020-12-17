@@ -5,7 +5,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <button name="action_view_mo_delivery" position="after">
+            <div name="button_box" position="inside">
                 <button
                     type="action"
                     string="Cost Analysis"
@@ -13,7 +13,8 @@
                     icon="fa-arrow-circle-right"
                     name="%(action_mrp_workcenter_analytic_estimate_production)d"
                 />
-            </button>
+                <!-- TODO: add statistics fields? -->
+            </div>
         </field>
     </record>
 </odoo>

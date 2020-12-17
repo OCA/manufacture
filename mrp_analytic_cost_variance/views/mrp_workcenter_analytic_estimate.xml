@@ -31,6 +31,10 @@
         <field name="model">mrp.workcenter.analytic.estimate</field>
         <field name="arch" type="xml">
             <search string="Analytic Workcenter">
+                <field name="manufacturing_order_id" />
+                <field name="analytic_account_id" />
+                <field name="product_id" />
+                <field name="product_category_id" />
                 <filter
                     name="groupby_mo"
                     string="Manufacture Order"

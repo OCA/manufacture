@@ -3,47 +3,39 @@ from odoo import api, fields, models
 
 class WorkCenterAnalyticEstimate(models.Model):
     _name = "mrp.workcenter.analytic.estimate"
-    _description = "Work center analytic estimate"
+    _description = "Work Center Analytic Estimate"
     _rec_name = "work_order_id"
 
     @api.depends("factor")
     def _compute_calc_quantity_estimate(self):
-        quantity = 0.0
         for record in self:
-            quantity += record.work_order_id.duration_expected * record.factor
-        self.quantity_estimate = quantity
+            self.quantity_estimate = (
+                record.work_order_id.duration_expected * record.factor
+            )
 
     @api.depends("unit_cost", "quantity_estimate")
     def _compute_calc_cost_estimate(self):
-        cost = 0.0
         for record in self:
-            cost += record.unit_cost * record.quantity_estimate
-        self.cost_estimate = cost
+            self.cost_estimate = record.unit_cost * record.quantity_estimate
 
-    @api.depends("analytic_account_id")
+    @api.depends("analytic_account_id", "analytic_line_ids")
     def _compute_calc_cost_quantity_actual(self):
-        cost = 0.0
-        quantity = 0.0
-        analytic_line_obj = self.env["account.analytic.line"]
+        # FIXME: computed stored filed will create a transaction bottleneck!
+        AnalyticLine = self.env["account.analytic.line"]
         for record in self:
-            lines = analytic_line_obj.search_read(
+            # FIXME: optimize using read_group before th for loop
+            lines = AnalyticLine.search_read(
                 [("account_id", "=", record.analytic_account_id.id)],
                 ["amount", "unit_amount"],
             )
-            cost += sum([r["amount"] for r in lines])
-            quantity += sum([r["unit_amount"] for r in lines])
-        self.cost_actual = cost
-        self.quantity_actual = quantity
+            self.cost_actual = sum([r["amount"] for r in lines])
+            self.quantity_actual = sum([r["unit_amount"] for r in lines])
 
     @api.depends("quantity_estimate", "cost_estimate", "cost_actual", "quantity_actual")
     def _compute_calc_variance(self):
-        quantity = 0.0
-        cost = 0.0
         for record in self:
-            cost += record.cost_actual - record.cost_estimate
-            quantity += record.quantity_actual - record.quantity_estimate
-        self.cost_variance = cost
-        self.quantity_variance = quantity
+            self.cost_variance = record.cost_actual - record.cost_estimate
+            self.quantity_variance = record.quantity_actual - record.quantity_estimate
 
     work_order_id = fields.Many2one(
         "mrp.workorder",
@@ -64,12 +56,13 @@ class WorkCenterAnalyticEstimate(models.Model):
     product_category_id = fields.Many2one(
         related="product_id.categ_id", string="Product Category", store=True
     )
-    factor = fields.Float(string="Factor", default=1.0)
-    unit_cost = fields.Float(
-        related="product_id.standard_price",
-        string="Unit Cost (Estimate)",
-        store=True,
+    # TODO: confirm it is useful to keep this One2many field
+    analytic_line_ids = fields.One2many(
+        comodel_name="account.analytic.line",
+        inverse_name="workcenter_analytic_estimate_id",
     )
+    factor = fields.Float(string="Factor", default=1.0)
+    unit_cost = fields.Float(string="Unit Cost (Estimate)")
     quantity_estimate = fields.Float(
         compute="_compute_calc_quantity_estimate",
         string="Quantity (Estimate)",
@@ -83,20 +76,20 @@ class WorkCenterAnalyticEstimate(models.Model):
     cost_actual = fields.Float(
         compute="_compute_calc_cost_quantity_actual",
         string="Cost (Actual)",
-        store=True,
+        # store=True,  # FIXME
     )
     quantity_actual = fields.Float(
         compute="_compute_calc_cost_quantity_actual",
         string="Quantity (Actual)",
-        store=True,
+        # store=True,  # FIXME
     )
     quantity_variance = fields.Float(
         compute="_compute_calc_variance",
         string="Quantity (Variance)",
-        store=True,
+        # store=True,  # FIXME
     )
     cost_variance = fields.Float(
         compute="_compute_calc_variance",
         string="Cost (Variance)",
-        store=True,
+        # store=True,  # FIXME
     )
