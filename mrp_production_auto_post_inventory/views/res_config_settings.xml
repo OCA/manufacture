@@ -22,6 +22,12 @@
                             Sets to automatic the post-inventory step in a manufacturing order.
                             The inventory will be automatically posted after some quantity has been produced.
                         </div>
+                        <div class="content-group" attrs="{'invisible': [('mrp_production_auto_post_inventory','=',False)]}">
+                            <div id="mrp_production_auto_post_inventory_cron" class="mt16">
+                                <field name="mrp_production_auto_post_inventory_cron" class="oe_inline"/>
+                                <label string="Use scheduled job to post-inventory" class="o_light_label" for="mrp_production_auto_post_inventory_cron"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

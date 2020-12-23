@@ -14,6 +14,7 @@
         'mrp',
     ],
     'data': [
+        'data/cron.xml',
         'views/res_config_settings.xml',
     ],
     'installable': True,

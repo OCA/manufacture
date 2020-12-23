@@ -11,5 +11,8 @@ class MrpProductProduce(models.TransientModel):
     def do_produce(self):
         res = super(MrpProductProduce, self).do_produce()
         if self.production_id.company_id.mrp_production_auto_post_inventory:
-            self.production_id.post_inventory()
+            if self.production_id.company_id.mrp_production_auto_post_inventory_cron:
+                self.production_id.to_post_inventory_cron = True
+            else:
+                self.production_id.post_inventory()
         return res

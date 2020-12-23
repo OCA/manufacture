@@ -12,3 +12,7 @@ class ResCompany(models.Model):
         help="Sets to automatic the post-inventory step in a manufacturing"
              "order. The inventory will be automatically posted after some "
              "quantity has been produced")
+
+    mrp_production_auto_post_inventory_cron = fields.Boolean(
+        string="Auto Post-Inventory by Scheduler",
+        help="Defer auto post-inventory by scheduled job")

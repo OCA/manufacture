@@ -11,3 +11,7 @@ class ResConfigSettings(models.TransientModel):
     mrp_production_auto_post_inventory = fields.Boolean(
         related='company_id.mrp_production_auto_post_inventory',
         readonly=False)
+
+    mrp_production_auto_post_inventory_cron = fields.Boolean(
+        related='company_id.mrp_production_auto_post_inventory_cron',
+        readonly=False)

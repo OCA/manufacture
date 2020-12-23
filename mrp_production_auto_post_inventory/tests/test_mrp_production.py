@@ -64,6 +64,10 @@ class TestMrpProductionAutoPost(common.SavepointCase):
         wiz.do_produce()
         return True
 
+    def apply_cron(self):
+        self.env.ref('mrp_production_auto_post_inventory.'
+                     'ir_cron_mrp_production_post_inventory').method_direct_trigger()
+
     def test_01_manufacture_order_no_auto_post(self):
         """Create Manufacture Order with auto post inventory False"""
         self.company_1.mrp_production_auto_post_inventory = False
@@ -101,6 +105,46 @@ class TestMrpProductionAutoPost(common.SavepointCase):
         })
         mo.action_assign()
         self._produce(mo, 1.0)
+        raw_moves = self.stock_move_obj.search([
+            ('raw_material_production_id', '=', mo.id),
+            ('state', '=', 'done')]
+        )
+        finished_moves = self.stock_move_obj.search([
+            ('production_id', '=', mo.id),
+            ('state', '=', 'done')]
+        )
+        self.assertEqual(len(raw_moves), 2)
+        self.assertEqual(len(finished_moves), 1)
+
+    def test_03_manufacture_order_auto_post_cron(self):
+        """Create Manufacture Order with auto post inventory True and use Cron Job"""
+        self.company_1.mrp_production_auto_post_inventory = True
+        self.company_1.mrp_production_auto_post_inventory_cron = True
+        mo = self.production_obj.create({
+            'name': 'MO-01',
+            'product_id': self.product_top.id,
+            'product_uom_id': self.product_top.uom_id.id,
+            'product_qty': 5.0,
+            'bom_id': self.bom_top.id,
+            'company_id': self.company_1.id,
+        })
+        mo.action_assign()
+        self._produce(mo, 1.0)
+        self.assertTrue(mo.to_post_inventory_cron)  # To post by cron job
+        # Waiting for job
+        raw_moves = self.stock_move_obj.search([
+            ('raw_material_production_id', '=', mo.id),
+            ('state', '=', 'done')]
+        )
+        finished_moves = self.stock_move_obj.search([
+            ('production_id', '=', mo.id),
+            ('state', '=', 'done')]
+        )
+        self.assertEqual(len(raw_moves), 0)
+        self.assertEqual(len(finished_moves), 0)
+        # Run the job
+        self.apply_cron()
+        self.assertFalse(mo.to_post_inventory_cron)  # Posted by cron job
         raw_moves = self.stock_move_obj.search([
             ('raw_material_production_id', '=', mo.id),
             ('state', '=', 'done')]
