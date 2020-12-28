@@ -275,8 +275,11 @@ class TestSubcontractingFlows(TestMrpSubcontractingCommon):
         # Tick "manufacture" and MTO on self.comp2
         mto_route = self.env.ref('stock.route_warehouse0_mto')
         manufacture_route = self.env.ref('mrp.route_warehouse0_manufacture')
-        self.comp2.write({'route_ids': [(4, manufacture_route.id, None)]})
-        self.comp2.write({'route_ids': [(4, mto_route.id, None)]})
+        self.comp2.write({'route_ids': [
+            (5, False),
+            (4, manufacture_route.id, None),
+            (4, mto_route.id, None),
+        ]})
         orderpoint_form = Form(self.env['stock.warehouse.orderpoint'])
         orderpoint_form.product_id = self.comp2
         orderpoint_form.product_min_qty = 0.0
