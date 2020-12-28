@@ -210,8 +210,11 @@ class TestSubcontractingFlows(TestMrpSubcontractingCommon):
         # Tick "manufacture" and MTO on self.comp2
         mto_route = self.env.ref('stock.route_warehouse0_mto')
         manufacture_route = self.env.ref('mrp.route_warehouse0_manufacture')
-        self.comp2.write({'route_ids': [(4, manufacture_route.id, None)]})
-        self.comp2.write({'route_ids': [(4, mto_route.id, None)]})
+        self.comp2.write({'route_ids': [
+            (5, False),
+            (4, manufacture_route.id, None),
+            (4, mto_route.id, None),
+        ]})
         # Create a receipt picking from the subcontractor
         picking_form = Form(self.env['stock.picking'])
         picking_form.picking_type_id = self.env.ref('stock.picking_type_in')
