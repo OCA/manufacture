@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_request_bom_structure
+#	* mrp_request_bom_structure
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-04 10:35+0000\n"
-"PO-Revision-Date: 2020-12-04 10:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,25 +16,26 @@ msgstr ""
 #. module: mrp_request_bom_structure
 #: model:ir.model,name:mrp_request_bom_structure.model_report_mrp_report_bom_structure
 msgid "BOM Structure Report"
-msgstr "Rapport de structure de nomenclature"
+msgstr ""
 
 #. module: mrp_request_bom_structure
 #: model_terms:ir.ui.view,arch_db:mrp_request_bom_structure.view_mrp_production_request_form
 msgid "Bom Structure"
-msgstr "Structure de nomenclature"
+msgstr ""
 
 #. module: mrp_request_bom_structure
 #: model_terms:ir.ui.view,arch_db:mrp_request_bom_structure.view_mrp_production_request_form
 msgid "Go to Bom Structure report"
-msgstr "Se rendre vers le rapport de Structure de nomenclature"
+msgstr ""
 
 #. module: mrp_request_bom_structure
 #: model:ir.model,name:mrp_request_bom_structure.model_mrp_production_request
 msgid "Manufacturing Request"
-msgstr "Demande de fabrication"
+msgstr ""
 
 #. module: mrp_request_bom_structure
 #: code:addons/mrp_request_bom_structure/models/mrp_request.py:26
 #, python-format
 msgid "Structure"
-msgstr "Structure"
+msgstr ""
+
