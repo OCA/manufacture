@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="view_mrp_production_request_form">
+        <field name="model">mrp.production.request</field>
+        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//header/button[@name='button_cancel']" position="after">
+                <button name="button_open_structure_report" type="object"
+                        string="Bom Structure" title="Go to Bom Structure report"
+                        attrs="{'invisible': [('product_qty', '=', 0)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
