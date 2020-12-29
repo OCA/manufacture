@@ -1,95 +1,83 @@
 from odoo import api, fields, models
 
 
-class WorkCenterAnalyticEstimate(models.Model):
-    _name = "mrp.workcenter.analytic.estimate"
-    _description = "Work Center Analytic Estimate"
-    _rec_name = "work_order_id"
-
-    @api.depends("factor")
-    def _compute_calc_quantity_estimate(self):
-        for record in self:
-            self.quantity_estimate = (
-                record.work_order_id.duration_expected * record.factor
-            )
+class MrpAnalyticEstimate(models.Model):
+    _name = "mrp.analytic.estimate"
+    _description = "Manufacturing Analytic Estimate"
+    _rec_name = "production_id"
 
     @api.depends("unit_cost", "quantity_estimate")
-    def _compute_calc_cost_estimate(self):
+    def _compute_amount_estimate(self):
         for record in self:
-            self.cost_estimate = record.unit_cost * record.quantity_estimate
+            record.cost_estimate = record.unit_cost * record.quantity_estimate
 
-    @api.depends("analytic_account_id", "analytic_line_ids")
+    @api.depends(
+        "analytic_account_id", "production_id", "work_order_id", "stock_move_id"
+    )
     def _compute_calc_cost_quantity_actual(self):
-        # FIXME: computed stored filed will create a transaction bottleneck!
-        AnalyticLine = self.env["account.analytic.line"]
+        # FIXME: computed stored field will create a transaction bottleneck!
+        AnalyticItem = self.env["account.analytic.line"].sudo()
+        all_items = AnalyticItem.search(
+            [("manufacturing_order_id", "in", self.mapped("production_id").ids)]
+        )
         for record in self:
-            # FIXME: optimize using read_group before th for loop
-            lines = AnalyticLine.search_read(
-                [("account_id", "=", record.analytic_account_id.id)],
-                ["amount", "unit_amount"],
-            )
-            self.cost_actual = sum([r["amount"] for r in lines])
-            self.quantity_actual = sum([r["unit_amount"] for r in lines])
+            if record.stock_move_id:
+                lines = all_items.filtered(
+                    lambda x: x.stock_move_id == record.stock_move_id
+                )
+            else:
+                lines = all_items.filtered(
+                    lambda x: x.workorder_id == record.work_order_id
+                )
+            record.cost_actual = sum(lines.mapped("amount"))
+            record.quantity_actual = sum([r.unit_amount for r in lines if r.amount])
 
     @api.depends("quantity_estimate", "cost_estimate", "cost_actual", "quantity_actual")
     def _compute_calc_variance(self):
         for record in self:
-            self.cost_variance = record.cost_actual - record.cost_estimate
-            self.quantity_variance = record.quantity_actual - record.quantity_estimate
+            record.cost_variance = record.cost_actual - record.cost_estimate
+            record.quantity_variance = record.quantity_actual - record.quantity_estimate
 
-    work_order_id = fields.Many2one(
-        "mrp.workorder",
-        string="Work Order",
-    )
-    manufacturing_order_id = fields.Many2one(
-        related="work_order_id.production_id", string="Manufacture Order", store=True
-    )
+    production_id = fields.Many2one("mrp.production", string="Manufacture Order")
     analytic_account_id = fields.Many2one(
-        related="work_order_id.production_id.analytic_account_id",
+        related="production_id.analytic_account_id",
         string="Analytic Account",
         store=True,
     )
-    product_id = fields.Many2one(
-        "product.product",
-        string="Product",
-    )
+    product_id = fields.Many2one("product.product", string="Product")
     product_category_id = fields.Many2one(
         related="product_id.categ_id", string="Product Category", store=True
     )
-    # TODO: confirm it is useful to keep this One2many field
-    analytic_line_ids = fields.One2many(
-        comodel_name="account.analytic.line",
-        inverse_name="workcenter_analytic_estimate_id",
-    )
-    factor = fields.Float(string="Factor", default=1.0)
+    work_order_id = fields.Many2one("mrp.workorder", string="Work Order")
+    stock_move_id = fields.Many2one("stock.move", string="Material Component")
+
+    # Estimates
     unit_cost = fields.Float(string="Unit Cost (Estimate)")
-    quantity_estimate = fields.Float(
-        compute="_compute_calc_quantity_estimate",
-        string="Quantity (Estimate)",
-        store=True,
-    )
+    quantity_estimate = fields.Float("Qty (Est.)")
     cost_estimate = fields.Float(
-        compute="_compute_calc_cost_estimate",
-        string="Cost (Estimate)",
-        store=True,
+        compute="_compute_amount_estimate", string="Cost (Est.)", store=True
     )
+
+    # Actuals
     cost_actual = fields.Float(
         compute="_compute_calc_cost_quantity_actual",
-        string="Cost (Actual)",
+        string="Cost (Act.)",
         # store=True,  # FIXME
     )
     quantity_actual = fields.Float(
         compute="_compute_calc_cost_quantity_actual",
-        string="Quantity (Actual)",
+        string="Quantity (Act.)",
         # store=True,  # FIXME
     )
+
+    # Variances
     quantity_variance = fields.Float(
         compute="_compute_calc_variance",
-        string="Quantity (Variance)",
+        string="Quantity (Var.)",
         # store=True,  # FIXME
     )
     cost_variance = fields.Float(
         compute="_compute_calc_variance",
-        string="Cost (Variance)",
+        string="Cost (Var.)",
         # store=True,  # FIXME
     )

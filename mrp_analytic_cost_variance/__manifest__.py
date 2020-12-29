@@ -10,8 +10,9 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
-    "depends": ["mrp_analytic_cost_material"],
+    "depends": ["mrp_analytic_cost_material", "mrp_analytic_cost_operation"],
     "data": [
+        # FIXME: define proper access security
         "security/ir.model.access.csv",
         "views/mrp_workcenter_analytic_estimate.xml",
         "views/mrp_production_view.xml",

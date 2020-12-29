@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model='ir.ui.view' id='mrp_workcenter_analytic_estimate_list'>
-        <field name='name'>mrp.workcenter.estimate.tree</field>
-        <field name='model'>mrp.workcenter.analytic.estimate</field>
+        <field name='name'>mrp.estimate.tree</field>
+        <field name='model'>mrp.analytic.estimate</field>
         <field name='arch' type='xml'>
             <tree
                 editable="top"
-                string='Workcenter Analytic Estimate'
-                decoration-danger="quantity_variance &lt; 1 or cost_variance &lt; 1"
+                string='Manufacturing Estimate'
                 decoration-muted="quantity_actual == 0.0"
+                decoration-success="quantity_actual &gt; 0.0 and cost_variance &lt; 0.0"
+                decoration-danger="quantity_variance &gt; 0.0 or cost_variance &gt; 0.0"
             >
-                <field name='work_order_id' />
-                <field name='manufacturing_order_id' />
                 <field name='analytic_account_id' />
+                <field name='production_id' />
                 <field name='product_id' />
-                <field name='product_category_id' />
-                <field name='factor' />
-                <field name='unit_cost' />
+                <field name='work_order_id' />
+                <field name='stock_move_id' />
                 <field name='quantity_estimate' />
                 <field name='quantity_actual' />
                 <field name='cost_estimate' />
@@ -27,11 +26,11 @@
         </field>
     </record>
     <record id="view_search_mrp_analytic_workcenter_estimate" model="ir.ui.view">
-        <field name="name">mrp.workcenter.analytic.estimate.search</field>
-        <field name="model">mrp.workcenter.analytic.estimate</field>
+        <field name="name">mrp.analytic.estimate.search</field>
+        <field name="model">mrp.analytic.estimate</field>
         <field name="arch" type="xml">
-            <search string="Analytic Workcenter">
-                <field name="manufacturing_order_id" />
+            <search>
+                <field name="production_id" />
                 <field name="analytic_account_id" />
                 <field name="product_id" />
                 <field name="product_category_id" />
@@ -39,7 +38,7 @@
                     name="groupby_mo"
                     string="Manufacture Order"
                     domain="[]"
-                    context="{'group_by' : 'manufacturing_order_id'}"
+                    context="{'group_by' : 'production_id'}"
                 />
                 <filter
                     name="groupby_analytic"
@@ -64,7 +63,7 @@
     </record>
     <record id="action_mrp_workcenter_analytic_estimate" model="ir.actions.act_window">
         <field name="name">MRP Cost Analytic</field>
-        <field name="res_model">mrp.workcenter.analytic.estimate</field>
+        <field name="res_model">mrp.analytic.estimate</field>
         <field name="view_mode">tree,pivot</field>
     </record>
     <record
@@ -72,9 +71,9 @@
         model="ir.actions.act_window"
     >
         <field name="name">Cost Analysis</field>
-        <field name="res_model">mrp.workcenter.analytic.estimate</field>
+        <field name="res_model">mrp.analytic.estimate</field>
         <field name="view_mode">tree</field>
-        <field name="domain">[('manufacturing_order_id','=',active_id)]</field>
+        <field name="domain">[('production_id','=',active_id)]</field>
     </record>
     <menuitem
         id="mrp_workcenter_analytic_est"
