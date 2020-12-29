@@ -1,22 +1,22 @@
-from openerp import models, api
+from odoo import models
 
 
 def get_neighbor_element(my_itr, initial=None):
     try:
-        val = my_itr.next()
+        val = my_itr.__next__()
         if initial:
             while val != initial:
-                val = my_itr.next()
-            val = my_itr.next()
+                val = my_itr.__next__()
+            val = my_itr.__next__()
         return val
     except StopIteration:
         return None
 
 
-class AbstractSelectionRotate(models.Model):
-    _name = "abstract.selection.rotate"
+class SelectionRotateMixin(models.AbstractModel):
+    _name = "selection.rotate.mixin"
+    _description = "Make it possible"
 
-    @api.multi
     def _iter_selection(self, direction):
         " Allows to update the field selection value "
         if "selection_field" not in self.env.context:
@@ -36,33 +36,30 @@ class AbstractSelectionRotate(models.Model):
             item.write({field: value})
         return True
 
-    @api.multi
     def iter_selection_next(self):
-        """ You can trigger this method by this xml declaration
-            in your own view to iterate field selection
+        """You can trigger this method by this xml declaration
+        in your own view to iterate field selection
 
-            <button name="iter_selection_next"
-                    context="{'selection_field': 'my_selection_field'}"
-                    icon="gtk-go-forward"
-                    type="object"/>
+        <button name="iter_selection_next"
+                context="{'selection_field': 'my_selection_field'}"
+                icon="gtk-go-forward"
+                type="object"/>
         """
         self._iter_selection("next")
         return True
 
-    @api.multi
     def iter_selection_prev(self):
         " see previous method "
         self._iter_selection("prev")
         return True
 
-    @api.multi
     def _get_values_from_selection(self, field):
-        """ Override this method
-            to return your own list of tuples
-            which match with field selection values or a sub part
+        """Override this method
+        to return your own list of tuples
+        which match with field selection values or a sub part
 
-            [('val1', 'My Val1'),
-             ('val2', 'My Val2')]
+        [('val1', 'My Val1'),
+         ('val2', 'My Val2')]
         """
         return [
             (),
