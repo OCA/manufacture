@@ -1,0 +1,263 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-08 20:35+0000\n"
+"PO-Revision-Date: 2020-04-08 22:59+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: it\n"
+
+#. module: quality_control_plan
+#: selection:qc.level,chk_type:0
+msgid "Absolute value"
+msgstr "Valore assoluto"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.qc_inspection_qty_checked
+msgid "Add Nonconformity"
+msgstr "Aggiungi non conformità"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_inspection_plan_id
+msgid "Control Plan"
+msgstr "Piano di controllo"
+
+#. module: quality_control_plan
+#: model:ir.actions.act_window,name:quality_control_plan.qc_level_action
+#: model:ir.ui.menu,name:quality_control_plan.menu_qc_level
+#: model:ir.ui.view,arch_db:quality_control_plan.view_form_plan
+msgid "Control Plan Levels"
+msgstr "Livelli piano di controllo"
+
+#. module: quality_control_plan
+#: model:ir.actions.act_window,name:quality_control_plan.qc_plan_action
+#: model:ir.ui.menu,name:quality_control_plan.menu_qc_plan
+msgid "Control Plans"
+msgstr "Piani di controllo"
+
+#. module: quality_control_plan
+#: code:addons/quality_control_plan/models/qc_inspection_plan.py:193
+#, python-format
+msgid "Create Nonconformity on not compliant Inspection"
+msgstr "Crea una non conformità per una ispezione non conforme"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_create_uid
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_create_uid
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_create_date
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_create_date
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_description
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_display_name
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_display_name
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_free_pass
+msgid "Free pass"
+msgstr "Fre pass"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_id
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_id
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,help:quality_control_plan.field_qc_level_chk_type
+msgid "Indicate how to use quantity checked value"
+msgstr "Indica come considerare il valore della quantità da controllare"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_mgmtsystem_nonconformity_inspection_id
+msgid "Inspection"
+msgstr "Ispezione"
+
+#. module: quality_control_plan
+#: code:addons/quality_control_plan/models/qc_inspection_plan.py:202
+#, python-format
+msgid "Inspection not compliant"
+msgstr "Ispezione non conforme"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level___last_update
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan___last_update
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line___last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_write_uid
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_write_uid
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_write_uid
+msgid "Last Updated by"
+msgstr "Aggiornato da"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_write_date
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_write_date
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_write_date
+msgid "Last Updated on"
+msgstr "Aggiornato il"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.view_form_plan
+msgid "Level lines"
+msgstr "Linee livello"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_chk_type
+msgid "Measure"
+msgstr "Misura"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,help:quality_control_plan.field_qc_level_qty_received
+msgid "Minimum received quantity reference"
+msgstr "Riferimento minima quantità ricevuta"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_mgmtsystem_nonconformity
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_inspection_inspection_ids
+#: model:ir.ui.view,arch_db:quality_control_plan.qc_inspection_qty_checked
+msgid "Nonconformity"
+msgstr "Non conformità"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_partner
+msgid "Partner"
+msgstr "Fornitore"
+
+#. module: quality_control_plan
+#: selection:qc.level,chk_type:0
+msgid "Percent"
+msgstr "Percentuale"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_plan_id
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_plan_ids
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_plan_id
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_product_category_line_plan_id
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_product_template_line_plan_id
+#: model:ir.ui.view,arch_db:quality_control_plan.view_form_plan
+msgid "Plan"
+msgstr "Piano"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.view_tree_plan
+msgid "QC Plan"
+msgstr "Piano QC"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.view_form_level
+#: model:ir.ui.view,arch_db:quality_control_plan.view_tree_level
+msgid "QC level"
+msgstr "Livello QC"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.view_mgmtsystem_nonconformity_partner
+msgid "Quality"
+msgstr "Qualità"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_plan
+msgid "Quality Control Plan"
+msgstr "Piano controllo qualità"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_level
+msgid "Quality Control Plan Levels"
+msgstr "Livelli piano controllo qualità"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.view_mgmtsystem_nonconformity_partner
+msgid "Quality control"
+msgstr "Controllo qualità"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Ispezione controllo qualità"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_res_partner_qc_triggers
+#: model:ir.model.fields,field_description:quality_control_plan.field_res_users_qc_triggers
+#: model:ir.ui.view,arch_db:quality_control_plan.view_mgmtsystem_nonconformity_partner
+msgid "Quality control triggers"
+msgstr "Automatismi controllo qualità"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_inspection_qty_checked
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_qty_checked
+msgid "Quantity checked"
+msgstr "Quantità controllata"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,help:quality_control_plan.field_qc_level_qty_checked
+msgid "Quantity to check if the received goods is higher than the reference"
+msgstr "Quantità da controllare se la merce ricevuta è superiore al riferimento"
+
+#. module: quality_control_plan
+#: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_qty_received
+msgid "Quantity to inspect"
+msgstr "Quantità da controllare"
+
+#. module: quality_control_plan
+#: model:ir.ui.view,arch_db:quality_control_plan.qc_inspection_qty_checked
+msgid "Total quantity"
+msgstr "Quantità totale"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_stock_picking
+msgid "Transfer"
+msgstr "Trasferimento"
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_trigger_partner_line
+msgid "qc.trigger.partner_line"
+msgstr ""
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_trigger_product_category_line
+msgid "qc.trigger.product_category_line"
+msgstr ""
+
+#. module: quality_control_plan
+#: model:ir.model,name:quality_control_plan.model_qc_trigger_product_template_line
+msgid "qc.trigger.product_template_line"
+msgstr ""
