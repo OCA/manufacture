@@ -10,7 +10,7 @@
                     name="generate_analytic_line"
                     class="btn-primary"
                     type="object"
-                    string="Generate Analytic Items"
+                    string="Generate Material Analytic Items"
                 />
                 </xpath>
         </field>
