@@ -29,6 +29,11 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_count
+msgid "Subcontract Production Count"
+msgstr ""
+
+#. module: mrp_subcontracting_purchase_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_ids
 msgid "Subcontract Production Orders"
 msgstr ""
