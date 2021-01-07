@@ -15,7 +15,11 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[mrp_analytic_cost_material](mrp_analytic_cost_material/) | 14.0.1.0.1 | Track raw material costs as Analytic Items during the manufacturing process
 
 [//]: # (end addons)
 
