@@ -3,10 +3,10 @@
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
+
 <odoo>
     <!-- Defines views for plan and levels -->
-    
+
     <!-- ############# PLAN #################### -->
     <!-- Plan Form view -->
     <record id="view_form_plan" model="ir.ui.view">
@@ -25,12 +25,12 @@
                             <field name="free_pass"/>
                         </group>
                         <group>
-                            
+
                         </group>
                     </group>
-                    <label string="Control Plan Levels" style="display: block;"/>
+                    <label for="plan_ids" string="Control Plan Levels" style="display: block;"/>
                     <field name="plan_ids" nolabel="1" style="width: 70%">
-                        <tree string="Level lines" editable="top" delete="true" 
+                        <tree string="Level lines" editable="top" delete="true"
                               create="true">
                             <field name="qty_received" />
                             <field name="qty_checked" />
@@ -69,9 +69,9 @@
                 <sheet>
                     <group>
                         <field name="plan_id" style="width: 25%"/>
-                        <field name="qty_received" 
+                        <field name="qty_received"
                                style="text-align: right; width: 6em"/>
-                        <field name="qty_checked" 
+                        <field name="qty_checked"
                                style="text-align: right; width: 6em"/>
                         <field name="chk_type" style="width: 25%"/>
                     </group>

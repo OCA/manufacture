@@ -5,10 +5,10 @@
 {
     "name":     "Quality Control - Control Plan",
     "summary":  "Control Plan for Inspection quantity definition.",
-    "version":  "11.0.1.0.0",
+    "version":  "12.0.1.0.0",
 
     "author":   "Associazione PNLUG - Gruppo Odoo, Odoo Community Association (OCA)",
-    "website":  "https://gitlab.com/PNLUG/Odoo/management-system-improvements/tree/"
+    "website":  "https://github.com/OCA/manufacture"
                 "11.0/quality_control_plan",
     "license":  "AGPL-3",
 
