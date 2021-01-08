@@ -226,6 +226,7 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_line_partners
+#: model:ir.model.fields,help:quality_control.field_qc_trigger_partner_line_partners
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_category_line_partners
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_line_partners
 #: model:ir.model.fields,help:quality_control.field_qc_trigger_product_template_line_partners
@@ -379,6 +380,7 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_partners
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_line_partners
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_partners
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_partners
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_partners
@@ -573,6 +575,7 @@ msgstr ""
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_user
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_user
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_line_user
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_user
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_user
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_user
@@ -639,6 +642,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_test
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question_test
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_test
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_line_test
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_test
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_test
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_test
@@ -696,6 +700,7 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_line_trigger
+#: model:ir.model.fields,field_description:quality_control.field_qc_trigger_partner_line_trigger
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_category_line_trigger
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_line_trigger
 #: model:ir.model.fields,field_description:quality_control.field_qc_trigger_product_template_line_trigger
