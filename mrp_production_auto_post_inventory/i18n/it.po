@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_auto_post_inventory
+# 	* mrp_production_auto_post_inventory
 #
 msgid ""
 msgstr ""
@@ -17,6 +17,19 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: mrp_production_auto_post_inventory
+#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory_cron
+#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory_cron
+msgid "Auto Post-Inventory by Scheduler"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
+#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_mrp_production__to_post_inventory_cron
+msgid ""
+"Checked if configured in settings to auto post-inventory by scheduler. "
+"Unchecked when post-inventory is done"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
 #: model:ir.model,name:mrp_production_auto_post_inventory.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -27,10 +40,28 @@ msgid "Config Settings"
 msgstr "Impostazioni configurazione"
 
 #. module: mrp_production_auto_post_inventory
+#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory_cron
+#: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory_cron
+msgid "Defer auto post-inventory by scheduled job"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
+#: model:ir.actions.server,name:mrp_production_auto_post_inventory.ir_cron_mrp_production_post_inventory_ir_actions_server
+#: model:ir.cron,cron_name:mrp_production_auto_post_inventory.ir_cron_mrp_production_post_inventory
+#: model:ir.cron,name:mrp_production_auto_post_inventory.ir_cron_mrp_production_post_inventory
+msgid "MRP Production Post Inventory"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
 #: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory
 #: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory
 msgid "Production Auto Post-Inventory"
 msgstr "Validazione automatica delle giacenze di produzione"
+
+#. module: mrp_production_auto_post_inventory
+#: model:ir.model,name:mrp_production_auto_post_inventory.model_mrp_production
+msgid "Production Order"
+msgstr ""
 
 #. module: mrp_production_auto_post_inventory
 #: model:ir.model,name:mrp_production_auto_post_inventory.model_mrp_product_produce
@@ -46,8 +77,10 @@ msgstr ""
 
 #. module: mrp_production_auto_post_inventory
 #: model_terms:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
-msgid "Sets to automatic the post-inventory step in a manufacturing order.\n"
-"                            The inventory will be automatically posted after some quantity has been produced."
+msgid ""
+"Sets to automatic the post-inventory step in a manufacturing order.\n"
+"                            The inventory will be automatically posted after "
+"some quantity has been produced."
 msgstr ""
 "Imposta ad automatica la fase di validazione delle giacenze in un ordine di "
 "produzione.\n"
@@ -57,8 +90,20 @@ msgstr ""
 #. module: mrp_production_auto_post_inventory
 #: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_company__mrp_production_auto_post_inventory
 #: model:ir.model.fields,help:mrp_production_auto_post_inventory.field_res_config_settings__mrp_production_auto_post_inventory
-msgid "Sets to automatic the post-inventory step in a manufacturingorder. The inventory will be automatically posted after some quantity has been produced"
+msgid ""
+"Sets to automatic the post-inventory step in a manufacturingorder. The "
+"inventory will be automatically posted after some quantity has been produced"
 msgstr ""
 "Imposta ad automatica la fase di validazione delle giacenze in un ordine di "
 "produzione. I movimenti saranno automaticamente registrati dopo la "
 "produzione di qualunque quantità"
+
+#. module: mrp_production_auto_post_inventory
+#: model:ir.model.fields,field_description:mrp_production_auto_post_inventory.field_mrp_production__to_post_inventory_cron
+msgid "To Post-Inventory by Job"
+msgstr ""
+
+#. module: mrp_production_auto_post_inventory
+#: model_terms:ir.ui.view,arch_db:mrp_production_auto_post_inventory.res_config_settings_view_form_auto_post_inventory
+msgid "Use scheduled job to post-inventory"
+msgstr ""
