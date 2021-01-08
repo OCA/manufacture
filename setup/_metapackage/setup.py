@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo11-addon-quality_control',
         'odoo11-addon-quality_control_issue',
         'odoo11-addon-quality_control_mrp',
+        'odoo11-addon-quality_control_plan',
         'odoo11-addon-quality_control_stock',
         'odoo11-addon-quality_control_team',
     ],
