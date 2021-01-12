@@ -1,4 +1,4 @@
-# Copyright 2018-19 ForgeFlow S.L.
+# Copyright 2018-20 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, models
@@ -114,9 +114,10 @@ class StockRule(models.Model):
         return True
 
     def _run_manufacture(self, procurements):
+        no_mr_procs = []
         for procurement, _rule in procurements:
             if self._need_production_request(procurement.product_id):
-                return self._run_production_request(
+                self._run_production_request(
                     procurement.product_id,
                     procurement.product_qty,
                     procurement.product_uom,
@@ -126,5 +127,7 @@ class StockRule(models.Model):
                     procurement.values,
                     procurement.company_id,
                 )
+            else:
+                no_mr_procs.append((procurement, _rule))
 
-        return super()._run_manufacture(procurements)
+        return super()._run_manufacture(no_mr_procs)

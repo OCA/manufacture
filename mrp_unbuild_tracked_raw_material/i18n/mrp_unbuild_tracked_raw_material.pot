@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_tracked_raw_material
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_tracked_raw_material
+#: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:0
+#, python-format
+msgid ""
+"%s \n"
+"\n"
+"%s"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: model:ir.model.fields,field_description:mrp_unbuild_tracked_raw_material.field_product_product__allow_unbuild_purchased
+#: model:ir.model.fields,field_description:mrp_unbuild_tracked_raw_material.field_product_template__allow_unbuild_purchased
+msgid "Allow Unbuild Purchased"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_product__allow_unbuild_purchased
+#: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_template__allow_unbuild_purchased
+msgid ""
+"If checked, unbuild orders doesn't assume a previous manufacturing order have built this product.\n"
+"In this case it's a purchased product and you want unbuild it"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: model:ir.model,name:mrp_unbuild_tracked_raw_material.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:0
+#, python-format
+msgid "Product has been unbuilt without previous manufacturing order"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: model:ir.model,name:mrp_unbuild_tracked_raw_material.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:0
+#, python-format
+msgid "Unbuild Purchased"
+msgstr ""
+
+#. module: mrp_unbuild_tracked_raw_material
+#: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:0
+#, python-format
+msgid ""
+"Unbuild of component of tracked as serial is not supported for now: contact "
+"maintainers of 'mrp_unbuild_tracked_raw_material' module if you want this "
+"feature"
+msgstr ""

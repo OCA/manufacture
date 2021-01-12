@@ -19,7 +19,6 @@ msgstr ""
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 #, fuzzy
-#| msgid "Bill of Material Components"
 msgid "Bill Of Material"
 msgstr "Stücklistenkomponenten"
 
@@ -32,10 +31,6 @@ msgstr "Stücklistenkomponenten"
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
 #, fuzzy
-#| msgid ""
-#| "Bills of materials components are components and by-products\n"
-#| "            used to create master bills of materials.  Use this menu to\n"
-#| "            search in which BoM a specific component is used."
 msgid ""
 "Bills of materials components are components and by-products\n"
 "                used to create master bills of materials.  Use this menu to\n"
@@ -79,6 +74,5 @@ msgstr ""
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 #, fuzzy
-#| msgid "Bill of Material Components"
 msgid "Search Bill Of Material Components"
 msgstr "Stücklistenkomponenten"
