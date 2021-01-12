@@ -3,4 +3,3 @@
 
 from . import account_analytic_line
 from . import mrp_workcenter
-from . import mrp_workcenter_analytic_structure

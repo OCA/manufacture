@@ -7,7 +7,7 @@ from odoo import fields, models
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    workcenter_productivity_id = fields.Many2one(
-        "mrp.workcenter.productivity",
-        string="Manufacturing Time Log",
+    workorder_id = fields.Many2one(
+        "mrp.workorder",
+        string="Work Order",
     )
