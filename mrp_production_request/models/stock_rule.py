@@ -43,9 +43,6 @@ class StockRule(models.Model):
         orderpoint = values.get("orderpoint_id")
         if orderpoint:
             data["orderpoint_id"] = orderpoint.id
-        procurement_group = values.get("group_id")
-        if procurement_group:
-            data["procurement_group_id"] = procurement_group.id
         return data
 
     def _need_production_request(self, product_id, action="manufacture"):
