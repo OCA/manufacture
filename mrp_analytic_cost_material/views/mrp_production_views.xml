@@ -5,12 +5,13 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <xpath expr='//button[@name="button_mark_done"]' position='before'>
+            <xpath expr="//button[@name='action_cancel']" position="before">
                 <button
-                    name="generate_analytic_line"
-                    class="btn-primary"
+                    name="generate_analytic_lines"
                     type="object"
-                    string="Generate Material Analytic Items"
+                    icon="fa-cog"
+                    string="Material Costs"
+                    groups="base.group_no_one"
                 />
                 </xpath>
         </field>
