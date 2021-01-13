@@ -4,10 +4,10 @@
 {
     "name": "Production - Manual Quant Assignment",
     "version": "12.0.1.0.0",
-    "category": "Manufacturing",
+    "category": "Manufactureing",
     "license": "AGPL-3",
     "author": "Quartile Limited, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacturing",
+    "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp", "stock_quant_manual_assign"],
     "data": ["views/mrp_production_views.xml"],
     "installable": True,
