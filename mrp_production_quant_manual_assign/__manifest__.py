@@ -4,7 +4,7 @@
 {
     "name": "Production - Manual Quant Assignment",
     "version": "12.0.1.0.0",
-    "category": "Manufactureing",
+    "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "Quartile Limited, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
