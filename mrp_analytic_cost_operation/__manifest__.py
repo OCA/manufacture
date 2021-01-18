@@ -10,7 +10,7 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
-    "depends": ["mrp_analytic"],
+    "depends": ["mrp_analytic", "analytic_activity_based_cost"],
     "data": [
         "views/mrp_workcenter_view.xml",
     ],

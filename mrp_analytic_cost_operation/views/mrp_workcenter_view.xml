@@ -9,6 +9,11 @@
             <field name="costs_hour" position="before">
                 <field name="analytic_product_id" />
             </field>
+            <field name="costs_hour" position="attributes">
+                <attribute
+                    name="attrs"
+                >{"readonly": [("analytic_product_id", "!=", False)]}</attribute>
+            </field>
 
         </field>
     </record>
