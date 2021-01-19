@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-mrp_analytic_cost_material',
+        'odoo14-addon-mrp_workcenter_hierarchical',
     ],
     classifiers=[
         'Programming Language :: Python',
