@@ -1,3 +1,4 @@
-To use this module, you need to go to:
+ * Go to Manufacturing > Configuration > Work Centers
+ * Set parent field on workcenters
 
- * Manufacturing > Configuration > Workcenter Hierarchical
+  ../static/src/img/img1.png

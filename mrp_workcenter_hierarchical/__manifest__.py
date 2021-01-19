@@ -1,10 +1,10 @@
-# © 2016 Akretion (http://www.akretion.com)
+# 2016 Akretion (http://www.akretion.com)
 # David BEAL <david.beal@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "MRP Workcenter Hierarchical",
-    "version": "14.0.0.0.0",
+    "version": "14.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "summary": "Organise Workcenters by section",
     "category": "Manufacturing",

@@ -1,96 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<openerp>
-    <data noupdate="0">
-        <record id="mrp_workcenter_top" model="mrp.workcenter">
-            <field name="name">Assembly 1</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-        </record>
-        <record id="mrp_workcenter_2" model="mrp.workcenter">
-            <field name="name">Assembly workshop 2</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-            <field name="parent_id" ref="mrp_workcenter_top" />
-        </record>
-        <record id="mrp_workcenter_A" model="mrp.workcenter">
-            <field name="name">Assembly A</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-            <field name="parent_id" ref="mrp_workcenter_2" />
-        </record>
-        <record id="mrp_workcenter_B" model="mrp.workcenter">
-            <field name="name">Assembly B</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-            <field name="parent_id" ref="mrp_workcenter_2" />
-        </record>
-        <record id="mrp_workcenter_C" model="mrp.workcenter">
-            <field name="name">Assembly C</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-            <field name="parent_id" ref="mrp.mrp_workcenter_0" />
-        </record>
-        <record id="mrp_workcenter_E" model="mrp.workcenter">
-            <field name="name">Assembly E</field>
-            <field name="calendar_id" ref="resource.timesheet_group1" />
-            <field name="capacity_per_cycle">5</field>
-            <field name="time_cycle">1</field>
-            <field name="time_start">0.1</field>
-            <field name="time_stop">0.1</field>
-            <field name="time_efficiency">0.87</field>
-            <field name="product_id" ref="product.product_assembly" />
-            <field name="costs_hour">0.1</field>
-            <field name="costs_hour_account_id" ref="mrp.account_assembly_hours" />
-            <field name="costs_cycle">0.05</field>
-            <field name="costs_cycle_account_id" ref="mrp.account_assembly_cycle" />
-        </record>
-        <record id="mrp.mrp_workcenter_0" model="mrp.workcenter">
-            <field name="parent_id" ref="mrp_workcenter_top" />
-        </record>
-    </data>
-</openerp>
+<odoo>
+
+    <record id="workc_12345" model="mrp.workcenter">
+        <field name="name">12345</field>
+    </record>
+    <record id="workc_1234" model="mrp.workcenter">
+        <field name="name">1234</field>
+        <field name="parent_id" ref="workc_12345" />
+    </record>
+    <record id="workc_123" model="mrp.workcenter">
+        <field name="name">123</field>
+        <field name="parent_id" ref="workc_1234" />
+    </record>
+    <record id="workc_12" model="mrp.workcenter">
+        <field name="name">12</field>
+        <field name="parent_id" ref="workc_123" />
+    </record>
+    <record id="workc_1" model="mrp.workcenter">
+        <field name="name">1</field>
+        <field name="parent_id" ref="workc_12" />
+    </record>
+
+
+    <record id="mrp_workcenter_tree_view_demo" model="ir.ui.view">
+        <!-- This view is only pedagocical purpose on demo -->
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_tree_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="parent_level_1_id" />
+                <field name="parent_level_2_id" />
+                <field name="parent_level_3_id" />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>
