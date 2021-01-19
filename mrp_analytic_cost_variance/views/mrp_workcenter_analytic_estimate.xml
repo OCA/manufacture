@@ -16,12 +16,12 @@
                 <field name='product_id' />
                 <field name='work_order_id' />
                 <field name='stock_move_id' />
-                <field name='quantity_estimate' />
-                <field name='quantity_actual' />
                 <field name='cost_estimate' />
                 <field name='cost_actual' />
-                <field name='quantity_variance' />
                 <field name='cost_variance' />
+                <field name='quantity_estimate' />
+                <field name='quantity_actual' />
+                <field name='quantity_variance' />
             </tree>
         </field>
     </record>

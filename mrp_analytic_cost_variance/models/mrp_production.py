@@ -11,14 +11,13 @@ class MrpProduction(models.Model):
         self.ensure_one()
         assert not (material and operation)
         if operation:
-            wc = operation.workcenter_id
             return {
                 "production_id": self.id,
                 # TODO: consider removing the analytic_activity_cost dependency
-                "product_id": wc.analytic_product_id.id,
-                "unit_cost": wc.costs_hour,
+                "product_id": operation.workcenter_id.analytic_product_id.id,
+                "unit_cost": operation.workcenter_id.costs_hour,
                 "quantity_estimate": operation.duration_expected / 60,
-                "work_order_id": wc.id,
+                "work_order_id": operation.id,
             }
         if material:
             return {
@@ -37,8 +36,8 @@ class MrpProduction(models.Model):
                     _(
                         "An Analytic Account is required. "
                         "Please set it on on Manufacturing Order %s"
-                    ),
-                    mo.name,
+                    )
+                    % mo.name,
                 )
             for operation in mo.workorder_ids:
                 vals = mo._prepare_estimate_line(operation=operation)

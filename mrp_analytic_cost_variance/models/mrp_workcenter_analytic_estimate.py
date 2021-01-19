@@ -22,15 +22,23 @@ class MrpAnalyticEstimate(models.Model):
         )
         for record in self:
             if record.stock_move_id:
-                lines = all_items.filtered(
+                items = all_items.filtered(
                     lambda x: x.stock_move_id == record.stock_move_id
                 )
             else:
-                lines = all_items.filtered(
+                items = all_items.filtered(
                     lambda x: x.workorder_id == record.work_order_id
                 )
-            record.cost_actual = sum(lines.mapped("amount"))
-            record.quantity_actual = sum([r.unit_amount for r in lines if r.amount])
+            # Do not sum amounts for parent Cost Types, to avoid duplication
+            record.cost_actual = -sum([x.amount for x in items if not x.child_ids])
+            # Do not sum qty for child Cost Types, to avoid duplication
+            record.quantity_actual = sum(
+                [
+                    x.unit_amount
+                    for x in items
+                    if not (x.product_id.is_cost_type and not x.child_ids)
+                ]
+            )
 
     @api.depends("quantity_estimate", "cost_estimate", "cost_actual", "quantity_actual")
     def _compute_calc_variance(self):
