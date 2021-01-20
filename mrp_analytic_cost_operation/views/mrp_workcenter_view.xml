@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workcenter_form_view_custom" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.custom</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+        <field name="arch" type="xml">
+
+            <field name="costs_hour" position="before">
+                <field name="analytic_product_id" />
+            </field>
+            <field name="costs_hour" position="attributes">
+                <attribute
+                    name="attrs"
+                >{"readonly": [("analytic_product_id", "!=", False)]}</attribute>
+            </field>
+
+        </field>
+    </record>
+</odoo>
