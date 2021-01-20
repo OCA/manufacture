@@ -1,7 +1,7 @@
 # Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class StockMove(models.Model):
@@ -41,7 +41,28 @@ class StockMove(models.Model):
                 analytic_line = AnalyticLine.create(line_vals)
                 analytic_line.on_change_unit_amount()
 
-    def _quantity_done_set(self):
+    def write(self, vals):
         """ When material is consumed, generate Analytic Items """
-        super()._quantity_done_set()
-        self.generate_mrp_raw_analytic_line()
+        res = super().write(vals)
+        if vals.get("qty_done"):
+            self.generate_mrp_raw_analytic_line()
+        return res
+
+
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+
+    def write(self, vals):
+        qty_done = vals.get("qty_done")
+        res = super().write(vals)
+        if qty_done:
+            self.mapped("move_id").generate_mrp_raw_analytic_line()
+        return res
+
+    @api.model
+    def create(self, vals):
+        qty_done = vals.get("qty_done")
+        res = super().create(vals)
+        if qty_done:
+            res.mapped("move_id").generate_mrp_raw_analytic_line()
+        return res
