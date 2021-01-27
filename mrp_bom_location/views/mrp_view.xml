@@ -9,7 +9,7 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-            <field name="routing_id" position="before">
+            <field name="product_id" position="after">
                 <field name="location_id" />
             </field>
             <xpath
@@ -20,6 +20,7 @@
             </xpath>
         </field>
     </record>
+
     <record id="mrp_bom_tree_view" model="ir.ui.view">
         <field name="name">mrp.bom.tree - mrp_bom_location</field>
         <field name="model">mrp.bom</field>
@@ -30,6 +31,7 @@
             </field>
         </field>
     </record>
+
     <record id="view_mrp_bom_filter" model="ir.ui.view">
         <field name="name">mrp.bom.select - mrp_bom_location</field>
         <field name="model">mrp.bom</field>
@@ -47,6 +49,7 @@
             </group>
         </field>
     </record>
+
     <record id="mrp_bom_line_view_form" model="ir.ui.view">
         <field name="name">mrp.bom.line.view.form - mrp_bom_location</field>
         <field name="model">mrp.bom.line</field>
