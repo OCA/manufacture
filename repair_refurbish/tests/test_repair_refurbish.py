@@ -66,6 +66,7 @@ class TestMrpMtoWithStock(TransactionCase):
                 "product_qty": 3.0,
                 "product_uom": self.product.uom_id.id,
                 "location_dest_id": self.customer_location.id,
+                "location_id": self.stock_location_stock.id,
             }
         )
         repair.onchange_product_id()
@@ -129,6 +130,7 @@ class TestMrpMtoWithStock(TransactionCase):
                 "product_uom": self.product.uom_id.id,
                 "location_dest_id": self.customer_location.id,
                 "to_refurbish": False,
+                "location_id": self.stock_location_stock.id,
             }
         )
 
