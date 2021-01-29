@@ -5,7 +5,7 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
                "step to Manufacturing Orders for better manufacture "
                "planification.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Mature",
     "maintainers": ['lreficent'],
     "category": "Manufacturing",
