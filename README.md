@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [mrp_analytic_cost_material](mrp_analytic_cost_material/) | 14.0.1.0.1 | Track raw material costs as Analytic Items during the manufacturing process
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 | Organise Workcenters by section
+[repair_refurbish](repair_refurbish/) | 14.0.1.0.0 | Create refurbished products during repair
 
 [//]: # (end addons)
 
