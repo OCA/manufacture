@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-mrp_analytic_cost_material',
         'odoo14-addon-mrp_workcenter_hierarchical',
+        'odoo14-addon-repair_refurbish',
     ],
     classifiers=[
         'Programming Language :: Python',
