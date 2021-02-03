@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 - TODAY, Marcel Savegnago - Escodoo (<https://www.escodoo.com.br>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div data-key="repair"
+                     class="app_settings_block"
+                     data-string="Repair"
+                     string="Repair"
+                     groups="stock.group_stock_user">
+                    <h2>Repair</h2>
+                    <div id="configure_repair" class="row mt16 o_settings_container" title="Configure Repair">
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_repair_config_settings" model="ir.actions.act_window">
+        <field name="name">General Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'repair'}</field>
+    </record>
+
+    <menuitem id="menu_repair_configuration"
+              name="Configuration"
+              parent="repair.menu_repair_order"
+              sequence="100"
+              groups="stock.group_stock_user"/>
+
+    <menuitem id="menu_repair_config_settings"
+              parent="menu_repair_configuration"
+              sequence="100"
+              action="action_repair_config_settings"
+              groups="stock.group_stock_user"/>
+
+</odoo>
