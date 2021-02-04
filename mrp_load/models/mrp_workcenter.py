@@ -6,15 +6,16 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 
 import pytz
-from openerp import api, fields, models
-from openerp.exceptions import UserError
-from openerp.tools.translate import _
+
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 ACTIVE_PRODUCTION_STATES = ["ready", "in_production"]
 
 
 class MrpWorkcenter(models.Model):
     _inherit = "mrp.workcenter"
+    _order = "parent_id, sequence, id"
 
     online = fields.Boolean(
         string="Online",
@@ -33,40 +34,34 @@ class MrpWorkcenter(models.Model):
         help="Theorical date when all work orders will be done",
     )
 
-    @api.multi
     def _get_sql_load_params(self):
         return {
             "state": tuple(ACTIVE_PRODUCTION_STATES),
             "workcenter_ids": tuple(self.ids),
         }
 
-    @api.multi
     def _get_sql_load_select(self):
         return [
-            "wl.workcenter_id AS workcenter",
-            "sum(wl.hour) AS hour",
+            "mw.workcenter_id AS workcenter",
+            "sum(mw.duration) AS duration",
         ]
 
-    @api.multi
     def _get_sql_load_from(self):
-        return """mrp_production_workcenter_line wl
-            LEFT JOIN mrp_production mp ON wl.production_id = mp.id"""
+        return """mrp_workorder mw
+            LEFT JOIN mrp_production mp ON mw.production_id = mp.id"""
 
-    @api.multi
     def _get_sql_load_where(self):
         return [
             "mp.state IN %(state)s",
-            "wl.state != 'done'",
-            "wl.workcenter_id IN %(workcenter_ids)s",
+            "mw.state != 'done'",
+            "mw.workcenter_id IN %(workcenter_ids)s",
         ]
 
-    @api.multi
     def _get_sql_load_group(self):
         return [
-            "wl.workcenter_id",
+            "mw.workcenter_id",
         ]
 
-    @api.multi
     def _get_sql_load_query(self):
         select = self._get_sql_load_select()
         from_cl = self._get_sql_load_from()
@@ -90,9 +85,8 @@ class MrpWorkcenter(models.Model):
             "date_end": None,
         }
 
-    @api.multi
     def _set_load_in_vals(self, data, elm):
-        data[elm["workcenter"]]["load"] += elm["hour"]
+        data[elm["workcenter"]]["load"] += elm["duration"]
 
     @api.model
     def auto_recompute_load(self, domain=None):
@@ -101,7 +95,6 @@ class MrpWorkcenter(models.Model):
         records = self.search(domain)
         return records.recompute_load()
 
-    @api.multi
     def recompute_load(self):
         query = self._get_sql_load_query()
         params = self._get_sql_load_params()
@@ -116,19 +109,16 @@ class MrpWorkcenter(models.Model):
             vals = defaults.copy()
             vals.update(data[workcenter.id])
             workcenter.write(vals)
-        return True
 
-    @api.multi
     def _get_calendar(self):
         self.ensure_one()
-        if self.calendar_id:
-            return self.calendar_id
-        elif self.company_id.calendar_id:
-            return self.company_id.calendar_id
+        if self.resource_calendar_id:
+            return self.resource_calendar_id
+        elif self.company_id.resource_calendar_id:
+            return self.company_id.resource_calendar_id
         else:
             raise UserError(_("You need to define a calendar for the company !"))
 
-    @api.multi
     def _get_capacity_date_to(self, date_from):
         # By default the capacity is computed until the end of the day
         # You can inherit this method to compute it until the end of the week
@@ -138,34 +128,31 @@ class MrpWorkcenter(models.Model):
         date_to = datetime(date_from.year, date_from.month, date_from.day) + timedelta(
             days=1
         )
-        if self._context.get("tz"):
-            local_tz = pytz.timezone(self._context["tz"])
+        if self.env.context.get("tz"):
+            local_tz = pytz.timezone(self.env.context["tz"])
             tz_date_to = local_tz.localize(date_to)
             date_to = tz_date_to.astimezone(pytz.utc).replace(tzinfo=None)
         return date_to
 
-    @api.multi
     def _get_capacity(self):
         self.ensure_one()
-        calendar = self._get_calendar()
-        date_from = datetime.now()
-        date_to = self._get_capacity_date_to(date_from)
-        return self.env["resource.calendar"]._interval_hours_get(
-            calendar.id, date_from, date_to, timezone_from_uid=self._uid
-        )
+        # calendar = self._get_calendar()
+        # date_from = datetime.now()
+        # date_to = self._get_capacity_date_to(date_from)
+        # return self.env["resource.calendar"]._interval_hours_get(
+        #     calendar.id, date_from, date_to, timezone_from_uid=self._uid
+        # )
 
-    @api.multi
     def _add_capacity_data(self, data):
         calendar_obj = self.env["resource.calendar"]
         now = datetime.now()
-        if self._context.get("tz"):
+        if self.env.context.get("tz"):
             # be carefull, resource module will not take in account the time
             # zone. So we have to create a naive localized datetime
             # to send the right information
-            local_tz = pytz.timezone(self._context["tz"])
+            local_tz = pytz.timezone(self.env.context["tz"])
             tz_now = pytz.utc.localize(now)
             now = tz_now.astimezone(local_tz).replace(tzinfo=None)
-
         for workcenter in self:
             date_end = None
             capacity = 0
@@ -178,6 +165,8 @@ class MrpWorkcenter(models.Model):
                     )
                     if res:
                         date_end = res[-1][-1]
+            if capacity == 0.0 or not capacity:
+                capacity = 0.001
             data[workcenter.id].update(
                 {
                     "date_end": date_end,
@@ -185,15 +174,12 @@ class MrpWorkcenter(models.Model):
                 }
             )
 
-    @api.multi
     def set_online(self):
         return self._set_online_to(True)
 
-    @api.multi
     def set_offline(self):
         return self._set_online_to(False)
 
-    @api.multi
     def _set_online_to(self, online):
         self.write({"online": online})
         self.auto_recompute_load(domain=[("id", "in", self.ids)])

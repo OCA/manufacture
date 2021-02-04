@@ -2,9 +2,10 @@
 # David BEAL <david.beal@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import http
-from openerp.addons.web.controllers import main
-from openerp.http import request
+from odoo import http
+from odoo.http import request
+
+from odoo.addons.web.controllers import main
 
 
 class Action(main.Action):
@@ -18,9 +19,9 @@ class Action(main.Action):
                 if action_id == mrp_action_id:
                     env["mrp.workcenter"].auto_recompute_load()
             except ValueError:
-                raise
                 if action_id == "mrp.mrp_workcenter_action":
                     env["mrp.workcenter"].auto_recompute_load()
-        return super(Action, self).load(
+                raise
+        return super().load(
             action_id, do_not_eval=do_not_eval, additional_context=additional_context
         )
