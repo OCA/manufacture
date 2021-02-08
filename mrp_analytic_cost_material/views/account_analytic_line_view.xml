@@ -9,7 +9,6 @@
                 <group name="manufacture" string="Manufacture">
                     <field name="stock_move_id" />
                     <field name="manufacturing_order_id" />
-                    <field name="product_category_id" />
                 </group>
             </group>
         </field>
@@ -30,12 +29,6 @@
                     name="group_by_mo"
                     domain="[]"
                     context="{'group_by': 'manufacturing_order_id'}"
-                />
-                <filter
-                    string="Product Category"
-                    name="product_category"
-                    domain="[]"
-                    context="{'group_by': 'product_category_id'}"
                 />
             </filter>
         </field>

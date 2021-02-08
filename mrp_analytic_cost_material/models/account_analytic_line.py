@@ -15,8 +15,3 @@ class AccountAnalyticLine(models.Model):
         "mrp.production",
         string="Related Manufacturing Order",
     )
-    product_category_id = fields.Many2one(
-        related="product_id.categ_id",
-        string="Product Category",
-        store=True,
-    )
