@@ -103,11 +103,6 @@ Contributors
   * Pedro M. Baeza
   * Carlos Roca
 
-Other credits
-~~~~~~~~~~~~~
-
-* Originally based on the old nan_quality_control_* modules from NaN·tic.
-
 Maintainers
 ~~~~~~~~~~~
 
