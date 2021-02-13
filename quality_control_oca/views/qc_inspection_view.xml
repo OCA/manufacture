@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 ForgeFlow S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="qc_inspection_form_view">
+        <field name="name">qc.inspection.form</field>
+        <field name="model">qc.inspection</field>
+        <field name="arch" type="xml">
+            <form string="Inspection">
+                <header>
+                    <button
+                        name="action_draft"
+                        type="object"
+                        attrs="{'invisible': [('state', '!=', 'canceled')]}"
+                        string="Draft"
+                    />
+                    <button
+                        name="action_todo"
+                        type="object"
+                        class="oe_highlight"
+                        states="draft"
+                        string="Mark todo"
+                    />
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        class="oe_highlight"
+                        states="ready"
+                        string="Confirm"
+                        icon="fa-check"
+                    />
+                    <button
+                        name="action_approve"
+                        type="object"
+                        states="waiting"
+                        class="oe_highlight"
+                        groups="quality_control_oca.group_quality_control_manager"
+                        string="Approve"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        attrs="{'invisible': [('state', 'not in', ['waiting', 'ready', 'failed', 'success'])]}"
+                        string="Cancel"
+                        icon="fa-ban"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,waiting,success"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="action"
+                            name="%(action_qc_inspection_set_test)d"
+                            icon="fa-bookmark-o"
+                            states="draft"
+                            string="Set test"
+                        />
+                    </div>
+                    <h1>
+                        <label string="Inspection " for="name" />
+                        <field name="name" class="oe_inline" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="test" />
+                            <field name="user" />
+                            <field name="object_id" />
+                            <field name="qty" />
+                            <field name="product_id" />
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="success" />
+                            <field name="auto_generated" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Questions">
+                            <field name="inspection_lines" nolabel="1">
+                                <tree
+                                    string="Inspection lines"
+                                    editable="top"
+                                    delete="false"
+                                    create="false"
+                                >
+                                    <field name="name" />
+                                    <field name="question_type" />
+                                    <field name="possible_ql_values" invisible="1" />
+                                    <field
+                                        name="qualitative_value"
+                                        attrs="{'readonly': [('question_type', '=', 'quantitative')]}"
+                                    />
+                                    <field
+                                        name="quantitative_value"
+                                        attrs="{'readonly': [('question_type', '=', 'qualitative')]}"
+                                    />
+                                    <field
+                                        name="uom_id"
+                                        groups="uom.group_uom"
+                                        attrs="{'readonly': [('question_type', '=', 'qualitative')]}"
+                                    />
+                                    <field name="test_uom_category" invisible="1" />
+                                    <field name="min_value" invisible="1" />
+                                    <field name="max_value" invisible="1" />
+                                    <field name="valid_values" />
+                                    <field name="success" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <group string="Internal notes">
+                                <field name="internal_notes" nolabel="1" />
+                            </group>
+                            <group string="External notes">
+                                <field name="external_notes" nolabel="1" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_inspection_tree_view">
+        <field name="name">qc.inspection.tree</field>
+        <field name="model">qc.inspection</field>
+        <field name="arch" type="xml">
+            <tree string="Inspections">
+                <field name="name" />
+                <field name="user" />
+                <field name="test" />
+                <field name="qty" />
+                <field name="product_id" />
+                <field name="success" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_inspection_search_view">
+        <field name="name">qc.inspection.search</field>
+        <field name="model">qc.inspection</field>
+        <field name="arch" type="xml">
+            <search string="Search inspection">
+                <group>
+                    <field name="name" />
+                    <field name="user" />
+                    <field name="object_id" />
+                    <field name="product_id" />
+                    <field name="test" />
+                </group>
+                <newline />
+                <filter
+                    string="Correct"
+                    name="correct"
+                    domain="[('success', '=', True)]"
+                />
+                <filter
+                    string="Incorrect"
+                    name="incorrect"
+                    domain="[('success', '=', False)]"
+                />
+                <newline />
+                <group expand="0" string="Group by...">
+                    <filter
+                        string="Reference"
+                        name="group_by_object_id"
+                        domain="[]"
+                        context="{'group_by': 'object_id'}"
+                    />
+                    <filter
+                        string="Test"
+                        name="group_by_test"
+                        domain="[]"
+                        context="{'group_by': 'test'}"
+                    />
+                    <filter
+                        string="Responsible"
+                        name="group_by_user"
+                        domain="[]"
+                        context="{'group_by': 'user'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="group_by_product_id"
+                        domain="[]"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="group_by_state"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        string="Success"
+                        name="group_by_success"
+                        domain="[]"
+                        context="{'group_by': 'success'}"
+                    />
+                    <filter
+                        string="Auto-generated"
+                        name="group_by_auto_generated"
+                        domain="[]"
+                        context="{'group_by': 'auto_generated'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection">
+        <field name="name">Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        name="Inspections"
+        parent="qc_inspection_menu_parent"
+        id="qc_inspection_menu"
+        action="action_qc_inspection"
+    />
+    <record model="ir.ui.view" id="qc_inspection_line_tree_view">
+        <field name="name">qc.inspection.line.tree</field>
+        <field name="model">qc.inspection.line</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-danger="success==False"
+                decoration-info="success==True"
+                string="Inspection lines"
+                delete="false"
+                create="false"
+            >
+                <field name="inspection_id" />
+                <field name="product_id" />
+                <field name="name" />
+                <field name="question_type" />
+                <field name="possible_ql_values" invisible="1" />
+                <field
+                    name="qualitative_value"
+                    attrs="{'readonly': [('question_type', '=', 'quantitative')]}"
+                />
+                <field
+                    name="quantitative_value"
+                    attrs="{'readonly': [('question_type', '=', 'qualitative')]}"
+                />
+                <field
+                    name="uom_id"
+                    groups="uom.group_uom"
+                    attrs="{'readonly': [('question_type', '=', 'qualitative')]}"
+                />
+                <field name="test_uom_category" invisible="1" />
+                <field name="valid_values" />
+                <field name="success" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_inspection_line_search_view">
+        <field name="name">qc.inspection.line.search</field>
+        <field name="model">qc.inspection.line</field>
+        <field name="arch" type="xml">
+            <search string="Search inspection line">
+                <group>
+                    <field name="name" />
+                    <field name="inspection_id" />
+                    <field name="product_id" />
+                    <field name="success" />
+                </group>
+                <newline />
+                <filter
+                    string="Correct"
+                    name="correct"
+                    domain="[('success', '=', True)]"
+                />
+                <filter
+                    string="Incorrect"
+                    name="incorrect"
+                    domain="[('success', '=', False)]"
+                />
+                <newline />
+                <group expand="0" string="Group by...">
+                    <filter
+                        string="Inspection"
+                        name="group_by_inspection_id"
+                        domain="[]"
+                        context="{'group_by': 'inspection_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="group_by_product_id"
+                        domain="[]"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="Question"
+                        name="group_by_name"
+                        domain="[]"
+                        context="{'group_by': 'name'}"
+                    />
+                    <filter
+                        string="Success"
+                        name="group_by_success"
+                        domain="[]"
+                        context="{'group_by': 'success'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_line">
+        <field name="name">Inspection lines</field>
+        <field name="res_model">qc.inspection.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="qc_inspection_line_tree_view" />
+    </record>
+    <menuitem
+        name="Inspection lines"
+        parent="qc_inspection_menu_parent"
+        id="qc_inspection_lines_menu"
+        action="action_qc_inspection_line"
+    />
+</odoo>

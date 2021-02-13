@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 ForgeFlow S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_qc_test_set_test_form" model="ir.ui.view">
+        <field name="name">qc.inspection.set.test.form</field>
+        <field name="model">qc.inspection.set.test</field>
+        <field name="arch" type="xml">
+            <form string="Select test" version="7.0">
+                <group>
+                    <field name="test" />
+                </group>
+                <footer>
+                    <button
+                        name="action_create_test"
+                        string="Accept"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button special="cancel" class="oe_link" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_qc_inspection_set_test" model="ir.actions.act_window">
+        <field name="name">Select test</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qc.inspection.set.test</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 ForgeFlow S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="qc_test_form_view">
+        <field name="name">qc.test.form</field>
+        <field name="model">qc.test</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" class="oe_inline" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="type" />
+                            <field
+                                name="object_id"
+                                attrs="{'invisible': [('type','=','generic')]}"
+                            />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="category" />
+                            <field name="fill_correct_values" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <field name="test_lines" nolabel="1">
+                        <tree string="Questions">
+                            <field name="sequence" widget="handle" />
+                            <field name="name" />
+                            <field name="type" />
+                            <field name="min_value" />
+                            <field name="max_value" />
+                            <field name="uom_id" />
+                            <field name="ql_values" />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_test_tree_view">
+        <field name="name">qc.test.tree</field>
+        <field name="model">qc.test</field>
+        <field name="arch" type="xml">
+            <tree string="Tests">
+                <field name="name" />
+                <field name="category" />
+                <field name="type" />
+                <field name="object_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_test">
+        <field name="name">Tests</field>
+        <field name="res_model">qc.test</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.view" id="qc_test_question_form_view">
+        <field name="name">qc.test.question.form</field>
+        <field name="model">qc.test.question</field>
+        <field name="arch" type="xml">
+            <form string="Test question">
+                <label for="name" class="oe_edit_only" />
+                <h1>
+                    <field name="name" class="oe_inline" />
+                </h1>
+                <group>
+                    <field name="sequence" />
+                    <field name="type" />
+                </group>
+                <group
+                    name="qualitative"
+                    string="Answers"
+                    colspan="4"
+                    attrs="{'invisible': [('type', '!=', 'qualitative')]}"
+                >
+                    <field
+                        name="ql_values"
+                        nolabel="1"
+                        attrs="{'required': [('type','=','qualitative')]}"
+                    >
+                        <tree string="Question value" editable="bottom">
+                            <field name="name" />
+                            <field name="ok" />
+                        </tree>
+                    </field>
+                </group>
+                <div
+                    name="quantitative"
+                    align="center"
+                    attrs="{'invisible': [('type', '!=', 'quantitative')]}"
+                >
+                    <h1 name="quantitative-data">
+                        <span name="quantitative-interval">
+                            <field
+                                name="min_value"
+                                class="oe_inline"
+                                nolabel="1"
+                                attrs="{'required': [('type','=', 'quantitative')]}"
+                            />
+                            <span> - </span>
+                            <field
+                                name="max_value"
+                                class="oe_inline"
+                                nolabel="1"
+                                attrs="{'required': [('type', '=', 'quantitative')]}"
+                            />
+                        </span>
+                        <span name="quantitative-uom">
+                            <field
+                                name="uom_id"
+                                class="oe_inline"
+                                nolabel="1"
+                                attrs="{'required': [('type', '=', 'quantitative')]}"
+                            />
+                        </span>
+                    </h1>
+                </div>
+                <field name="notes" />
+            </form>
+        </field>
+    </record>
+    <menuitem
+        name="Tests"
+        parent="qc_menu_test_parent"
+        id="qc_test_menu"
+        action="action_qc_test"
+        groups="group_quality_control_manager"
+        sequence="20"
+    />
+</odoo>
