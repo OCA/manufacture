@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * quality_control
+# 	* quality_control_oca
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
-"Language: fa\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_line
@@ -86,7 +81,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "Cancel"
-msgstr "لغو"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__canceled
@@ -97,7 +92,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__test_uom_category
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__category
 msgid "Category"
-msgstr "دسته‌بندی"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__child_ids
@@ -152,7 +147,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__create_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__create_uid
 msgid "Created by"
-msgstr "ایجاد شده توسط"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__create_date
@@ -167,7 +162,7 @@ msgstr "ایجاد شده توسط"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__create_date
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__create_date
 msgid "Created on"
-msgstr "ایجاد شده در"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
@@ -188,7 +183,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__display_name
 msgid "Display Name"
-msgstr "نام نمایشی"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__draft
@@ -264,7 +259,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__id
 msgid "ID"
-msgstr "شناسه"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_icon
@@ -278,7 +273,8 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__auto_generated
-msgid "If an inspection is auto-generated, it can be canceled but not removed."
+msgid ""
+"If an inspection is auto-generated, it can be canceled but not removed."
 msgstr ""
 
 #. module: quality_control_oca
@@ -363,7 +359,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line____last_update
 msgid "Last Modified on"
-msgstr "تاریخ آخرین به‌روزرسانی"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
@@ -378,7 +374,7 @@ msgstr "تاریخ آخرین به‌روزرسانی"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_uid
 msgid "Last Updated by"
-msgstr "آخرین به روز رسانی توسط"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_date
@@ -393,7 +389,7 @@ msgstr "آخرین به روز رسانی توسط"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_date
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_date
 msgid "Last Updated on"
-msgstr "آخرین به روز رسانی در"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
@@ -449,7 +445,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__name
 msgid "Name"
-msgstr "نام"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_date_deadline
@@ -669,7 +665,8 @@ msgstr ""
 #: code:addons/quality_control_oca/models/qc_test.py:0
 #, python-format
 msgid ""
-"Question '%s' is not valid: minimum value can't be higher than maximum value."
+"Question '%s' is not valid: minimum value can't be higher than maximum "
+"value."
 msgstr ""
 
 #. module: quality_control_oca
@@ -765,7 +762,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__sequence
 msgid "Sequence"
-msgstr "دنباله"
+msgstr ""
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -881,7 +878,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
-msgstr "نوع"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_decoration
@@ -991,4 +988,4 @@ msgstr ""
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
-msgstr "یا"
+msgstr ""
