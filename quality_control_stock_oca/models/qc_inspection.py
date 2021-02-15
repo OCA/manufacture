@@ -64,7 +64,7 @@ class QcInspection(models.Model):
     def _compute_product_id(self):
         """Overriden for getting the product from a stock move."""
         self.ensure_one()
-        super(QcInspection, self)._compute_product_id()
+        super()._compute_product_id()
         if self.object_id:
             if self.object_id._name == "stock.move":
                 self.product_id = self.object_id.product_id
