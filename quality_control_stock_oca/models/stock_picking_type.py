@@ -20,12 +20,12 @@ class StockPickingType(models.Model):
 
     @api.model_create_multi
     def create(self, val_list):
-        picking_types = super(StockPickingType, self).create(val_list)
+        picking_types = super().create(val_list)
         picking_types._create_qc_trigger()
         return picking_types
 
     def write(self, vals):
-        res = super(StockPickingType, self).write(vals)
+        res = super().write(vals)
         if vals.get("name") or vals.get("warehouse_id"):
             qc_trigger_model = self.env["qc.trigger"].sudo()
             for rec in self:
