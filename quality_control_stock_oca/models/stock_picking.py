@@ -5,7 +5,7 @@
 
 from odoo import api, fields, models
 
-from odoo.addons.quality_control.models.qc_trigger_line import _filter_trigger_lines
+from odoo.addons.quality_control_oca.models.qc_trigger_line import _filter_trigger_lines
 
 
 class StockPicking(models.Model):
@@ -53,7 +53,7 @@ class StockPicking(models.Model):
             )
 
     def action_done(self):
-        res = super(StockPicking, self).action_done()
+        res = super().action_done()
         inspection_model = self.env["qc.inspection"]
         qc_trigger = self.env["qc.trigger"].search(
             [("picking_type_id", "=", self.picking_type_id.id)]

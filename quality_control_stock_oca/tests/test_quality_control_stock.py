@@ -7,8 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestQualityControl(TransactionCase):
     def setUp(self):
-        super(TestQualityControl, self).setUp()
-
+        super().setUp()
         self.users_model = self.env["res.users"]
         self.picking_model = self.env["stock.picking"]
         self.inspection_model = self.env["qc.inspection"]
@@ -17,7 +16,7 @@ class TestQualityControl(TransactionCase):
         self.product = self.env.ref("product.product_product_2")
         self.partner1 = self.env.ref("base.res_partner_2")
         self.partner2 = self.env.ref("base.res_partner_4")
-        self.test = self.env.ref("quality_control.qc_test_1")
+        self.test = self.env.ref("quality_control_oca.qc_test_1")
         self.picking_type = self.env.ref("stock.picking_type_out")
         self.location_dest = self.env.ref("stock.stock_location_customers")
         self.group_stock_user = self.env.ref("stock.group_stock_user")
@@ -42,7 +41,6 @@ class TestQualityControl(TransactionCase):
         self.user1_id = self._create_user(
             "user_1", [self.group_stock_user], self.company
         )
-
         move_vals = {
             "name": self.product.name,
             "product_id": self.product.id,
