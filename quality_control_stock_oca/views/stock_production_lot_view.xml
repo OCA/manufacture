@@ -38,7 +38,7 @@
         <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field
             name="groups_id"
-            eval="[(4, ref('quality_control.group_quality_control_user'))]"
+            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
         />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
