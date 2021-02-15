@@ -4,14 +4,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Quality control - Stock",
+    "name": "Quality control - Stock (OCA)",
     "version": "13.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
     "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
-    "depends": ["quality_control", "stock"],
+    "depends": ["quality_control_oca", "stock"],
     "data": [
         "security/ir.model.access.csv",
         "views/qc_inspection_view.xml",
