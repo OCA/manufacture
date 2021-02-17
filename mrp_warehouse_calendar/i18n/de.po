@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_warehouse_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2018-12-09 10:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
+
+#. module: mrp_warehouse_calendar
+#: model:ir.model,name:mrp_warehouse_calendar.model_mrp_production
+#, fuzzy
+msgid "Production Order"
+msgstr "Fertigungsauftrag"
+
+#. module: mrp_warehouse_calendar
+#: model:ir.model,name:mrp_warehouse_calendar.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#~ msgid "Procurement Rule"
+#~ msgstr "Beschaffungsregel"
