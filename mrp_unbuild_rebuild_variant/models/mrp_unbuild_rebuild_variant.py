@@ -182,7 +182,8 @@ class MrpUnbuildRebuildVariant(models.Model):
                 lambda l: l.product_id == product
             )
             if unbuild_bom_line:
-                qty -= unbuild_bom_line.product_qty
+                # same product can appear several time in a bom
+                qty -= sum([l.product_qty for l in unbuild_bom_line])
 
             # Then, substract qty in stock
             in_stock_quants = self.env["stock.quant"].search(
@@ -273,12 +274,27 @@ class MrpUnbuildRebuildVariant(models.Model):
         return rebuild_order
 
     def _assign_previous_lots(self, unbuilt_raw_moves, rebuilt_produce_lines):
+        used_unbuilt_raw_move = []
+        used_unbuilt_raw_move_line = []
         for line in rebuilt_produce_lines:
             unbuilt_raw_move = unbuilt_raw_moves.filtered(
                 lambda m: m.product_id == line.product_id
+                and line.id not in used_unbuilt_raw_move
             )
             if unbuilt_raw_move:
-                unbuilt_move_line = unbuilt_raw_move.active_move_line_ids
+                first_raw_move = fields.first(unbuilt_raw_move)
+                used_unbuilt_raw_move.append(first_raw_move.id)
+
+                first_raw_move_line = fields.first(
+                    first_raw_move.active_move_line_ids.filtered(
+                        lambda ml: ml.id not in used_unbuilt_raw_move_line
+                    )
+                )
+                used_unbuilt_raw_move_line.append(
+                    first_raw_move_line.id
+                )
+
+                unbuilt_move_line = first_raw_move_line
                 unbuilt_move_line.ensure_one()
                 line.lot_id = unbuilt_move_line.lot_id
                 unbuilt_raw_moves -= unbuilt_raw_move
