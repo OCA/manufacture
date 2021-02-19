@@ -1,7 +1,7 @@
 # Copyright 2020 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -17,7 +17,6 @@ class PurchaseOrder(models.Model):
         compute="_compute_subcontract_production_count"
     )
 
-    @api.multi
     def action_view_mrp(self):
         productions = self.subcontract_production_ids
         action = self.env.ref("mrp.mrp_production_action").read()[0]
@@ -32,7 +31,6 @@ class PurchaseOrder(models.Model):
             action = {"type": "ir.actions.act_window_close"}
         return action
 
-    @api.multi
     def _compute_subcontract_production_count(self):
         for order in self:
             order.subcontract_production_count = len(order.subcontract_production_ids)
