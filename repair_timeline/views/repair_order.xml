@@ -13,7 +13,7 @@
                 event_open_popup="true"
                 zoomKey="ctrlKey"
                 mode="week"
-                colors="#ec7063:user_id == false;#2ecb71:kanban_state=='done';"
+                colors="#ec7063:user_id == false;#2ecb71:state=='done';"
             >
                 <field name="partner_id" />
                 <templates>
@@ -27,6 +27,6 @@
         </field>
     </record>
     <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,pivot,calendar,timeline,form</field>
+        <field name="view_mode">tree,kanban,graph,pivot,calendar,timeline,form</field>
     </record>
 </odoo>
