@@ -10,7 +10,7 @@
     "author": "Escodoo,Odoo Community Association (OCA)",
     "maintainers": ["marcelsavegnago"],
     "images": ["static/description/banner.png"],
-    "website": "https://github.com/oca/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "depends": ["repair"],
     "data": ["views/res_config_settings.xml"],
 }

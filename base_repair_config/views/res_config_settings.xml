@@ -34,16 +34,9 @@
         <field name="context">{'module' : 'repair'}</field>
     </record>
     <menuitem
-        id="menu_repair_configuration"
-        name="Configuration"
-        parent="repair.menu_repair_order"
-        sequence="100"
-        groups="stock.group_stock_user"
-    />
-    <menuitem
         id="menu_repair_config_settings"
-        parent="menu_repair_configuration"
-        sequence="100"
+        parent="repair.repair_menu_config"
+        sequence="1"
         action="action_repair_config_settings"
         groups="stock.group_stock_user"
     />
