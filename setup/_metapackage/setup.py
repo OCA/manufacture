@@ -48,6 +48,7 @@ setuptools.setup(
         'odoo12-addon-repair_calendar_view',
         'odoo12-addon-repair_discount',
         'odoo12-addon-repair_refurbish',
+        'odoo12-addon-repair_timeline',
         'odoo12-addon-stock_picking_product_kit_helper',
     ],
     classifiers=[
