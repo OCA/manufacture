@@ -40,6 +40,17 @@
         </field>
     </record>
 
+    <record id="view_repair_order_graph" model="ir.ui.view">
+        <field name="name">repair.order.graph (in base_repair)</field>
+        <field name="model">repair.order</field>
+        <field name="arch" type="xml">
+            <graph string="Repair Orders">
+                <field name="create_date"/>
+                <field name="product_id"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="view_repair_order_pivot" model="ir.ui.view">
         <field name="name">repair.order.pivot (in base_repair)</field>
         <field name="model">repair.order</field>
@@ -64,8 +75,30 @@
         </field>
     </record>
 
-    <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,pivot,calendar,form</field>
+    <record id="action_repair_order_report" model="ir.actions.act_window">
+        <field name="name">Repair Analysis</field>
+        <field name="res_model">repair.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot,calendar,form</field>
+        <field name="context">{
+            'search_default_product': 1,
+            'search_default_createDate': 1
+            }</field>
     </record>
+
+    <record id="action_window_repair_order_graph" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_repair_order_graph"/>
+        <field name="act_window_id" ref="action_repair_order_report"/>
+    </record>
+
+    <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,graph,pivot,calendar,form</field>
+    </record>
+
+    <menuitem id="repair_menu_reporting" name="Reporting" parent="repair.menu_repair_order" groups="stock.group_stock_user"/>
+
+    <menuitem id="repair_menu" name="Repairs" parent="repair_menu_reporting" action="action_repair_order_report"/>
 
 </odoo>

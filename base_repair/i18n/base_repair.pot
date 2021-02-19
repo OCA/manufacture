@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-19 19:46+0000\n"
+"PO-Revision-Date: 2021-02-19 19:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +31,11 @@ msgid "Person in charge for the repair"
 msgstr ""
 
 #. module: base_repair
+#: model:ir.actions.act_window,name:base_repair.action_repair_order_report
+msgid "Repair Analysis"
+msgstr ""
+
+#. module: base_repair
 #: model:ir.model.fields,field_description:base_repair.field_repair_order__date_repair
 #: model_terms:ir.ui.view,arch_db:base_repair.view_repair_order_search
 msgid "Repair Date"
@@ -45,6 +52,7 @@ msgid "Repair Order"
 msgstr ""
 
 #. module: base_repair
+#: model_terms:ir.ui.view,arch_db:base_repair.view_repair_order_graph
 #: model_terms:ir.ui.view,arch_db:base_repair.view_repair_order_pivot
 msgid "Repair Orders"
 msgstr ""
@@ -52,6 +60,16 @@ msgstr ""
 #. module: base_repair
 #: model_terms:ir.ui.view,arch_db:base_repair.view_repair_order_calendar
 msgid "Repair Orders Calendar"
+msgstr ""
+
+#. module: base_repair
+#: model:ir.ui.menu,name:base_repair.repair_menu
+msgid "Repairs"
+msgstr ""
+
+#. module: base_repair
+#: model:ir.ui.menu,name:base_repair.repair_menu_reporting
+msgid "Reporting"
 msgstr ""
 
 #. module: base_repair
