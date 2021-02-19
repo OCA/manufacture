@@ -1,71 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 - TODAY, Escodoo
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
-
 <odoo>
-
     <record id="view_repair_order_calendar_form" model="ir.ui.view">
         <field name="name">repair.calendar.form (in base_repair)</field>
         <field name="model">repair.order</field>
-        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='guarantee_limit']" position="after">
-                <field name="date_repair"/>
-                <field name="duration"/>
+                <field name="date_repair" />
+                <field name="duration" />
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="user_id"/>
+                <field name="user_id" />
             </xpath>
         </field>
     </record>
-
     <record id="view_repair_order_search" model="ir.ui.view">
         <field name="name">repair.order.search (in base_repair)</field>
         <field name="model">repair.order</field>
-        <field name="inherit_id" ref="repair.view_repair_order_form_filter"/>
+        <field name="inherit_id" ref="repair.view_repair_order_form_filter" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field string="Responsible User" name="user_id"/>
+                <field string="Responsible User" name="user_id" />
             </field>
-
-            <filter name="guarantee_limit" domain="[]" context="{'group_by':'guarantee_limit'}" position="after">
-                <filter name="user_id"
+            <filter name="guarantee_limit" position="after">
+                <filter
+                    name="user_id"
                     string="Responsible User"
-                    context="{'group_by': 'user_id'}"/>
-                <filter name="date_repair"
+                    context="{'group_by': 'user_id'}"
+                />
+                <filter
+                    name="date_repair"
                     string="Repair Date"
-                    context="{'group_by': 'date_repair'}"/>
+                    context="{'group_by': 'date_repair'}"
+                />
             </filter>
-
         </field>
     </record>
-
-    <record id="view_repair_order_pivot" model="ir.ui.view">
-        <field name="name">repair.order.pivot (in base_repair)</field>
-        <field name="model">repair.order</field>
-        <field name="type">pivot</field>
-        <field name="arch" type="xml">
-            <pivot string="Repair Orders" display_quantity="true">
-                <field name="state" type="row"/>
-                <field name="partner_id" type="row"/>
-                <field name="duration" type="col"/>
-            </pivot>
-        </field>
-    </record>
-
     <record id="view_repair_order_calendar" model="ir.ui.view">
         <field name="name">repair.order.calendar (in base_repair)</field>
         <field name="model">repair.order</field>
         <field name="arch" type="xml">
-            <calendar string="Repair Orders Calendar" date_start="date_repair" date_delay="duration" color="user_id">
-                <field name="product_id"/>
-                <field name="partner_id"/>
+            <calendar
+                string="Repair Orders Calendar"
+                date_start="date_repair"
+                date_delay="duration"
+                color="user_id"
+            >
+                <field name="product_id" />
+                <field name="partner_id" />
             </calendar>
         </field>
     </record>
-
     <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,pivot,calendar,form</field>
+        <field name="view_mode">tree,kanban,graph,pivot,calendar,form</field>
     </record>
-
 </odoo>
