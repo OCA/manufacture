@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_location_form_inherit" model="ir.ui.view">
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+
+            <field name="valuation_out_account_id" position="after">
+                <field name="valuation_clear_account_id" />
+                <field name="valuation_variance_account_id" />
+                <div colspan="2" class="alert alert-info mt16" role="status">
+                    <p><b>Manufacturing WIP</b></p>
+                    <p>
+                        Set Input and Output accounts with the <b
+                        >raw material WIP</b> account.
+                        <br />
+                        The <b
+                        >Clearing account</b> is used to clear all the WIP accounts.
+                        Remaining balance is posted to the <b>Variance account</b>.
+                    </p>
+                </div>
+            </field>
+
+        </field>
+    </record>
+</odoo>
