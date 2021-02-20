@@ -1,0 +1,63 @@
+# Copyright (C) 2021 Open Source Integrators
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+
+from odoo import models
+
+
+class MRPProduction(models.Model):
+    _inherit = "mrp.production"
+
+    def _get_tracking_items(self):
+        return self.mapped("move_raw_ids.analytic_tracking_item_id") | self.mapped(
+            "workorder_ids.analytic_tracking_item_id"
+        )
+
+    def action_confirm(self):
+        """
+        On MO Confirm, save the planned amount on the tracking item.
+        Note that in some cases, the Analytic Account might be set
+        just after MO confirmation.
+        """
+        res = super().action_confirm()
+        self.mapped("move_raw_ids").set_tracking_item(update_planned=True)
+        self.mapped("workorder_ids").set_tracking_item(update_planned=True)
+        return res
+
+    def write(self, vals):
+        """
+        When setting the Analytic account,
+        generate tracking items.
+
+        On MTO, the Analytic Account might be set after the action_confirm(),
+        so the planned amount needs to be set here.
+
+        TODO: in what cases the planned amounts update shoudl be prevented?
+        """
+        res = super().write(vals)
+        if "analytic_account_id" in vals:
+            update_planned = any(x.state == "confirmed" for x in self)
+            tracking_items = self._get_tracking_items()
+            tracking_items.write({"analytic_id": vals["analytic_account_id"]})
+            tracking_items.child_ids.write({"analytic_id": vals["analytic_account_id"]})
+            self.move_raw_ids.set_tracking_item(update_planned=update_planned)
+            self.workorder_ids.set_tracking_item(update_planned=update_planned)
+        return res
+
+    def button_mark_done(self):
+        res = super().button_mark_done()
+        mfg_done = self.filtered(lambda x: x.state == "done")
+        mfg_done._get_tracking_items().process_wip_and_variance_on_done()
+        return res
+
+    def action_cancel(self):
+        res = super().action_cancel()
+        self._get_tracking_items().action_cancel()
+        return res
+
+    def copy(self, default=None):
+        new = super().copy(default=default)
+        # Force creating of new tracking items
+        new.move_raw_ids.set_tracking_item(force=True)
+        new.workorder_ids.set_tracking_item(force=True)
+        return new
