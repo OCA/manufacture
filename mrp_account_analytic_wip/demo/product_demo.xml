@@ -1,0 +1,90 @@
+<odoo>
+
+    <record id="analytic_job1" model="account.analytic.account">
+        <field name="name">Manufacturing Job 1</field>
+        <field name="code">JOB01</field>
+    </record>
+
+    <record id="product_category_manufacture" model="product.category">
+        <field name="parent_id" ref="product.product_category_all" />
+        <field name="name">Manufacture</field>
+        <field name="property_cost_method">standard</field>
+        <field name="property_valuation">real_time</field>
+        <field name="property_wip_account_id" ref="account_analytic_wip.wip_account" />
+        <field
+            name="property_variance_account_id"
+            ref="account_analytic_wip.variance_account"
+        />
+    </record>
+
+    <record id="part_1" model="product.product">
+        <field name="name">Machine Part 1</field>
+        <field name="type">product</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">True</field>
+        <field name="categ_id" ref="product_category_manufacture" />
+        <field name="standard_price">10.0</field>
+    </record>
+    <record id="part_2" model="product.product">
+        <field name="name">Machine Part 2</field>
+        <field name="type">product</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">True</field>
+        <field name="categ_id" ref="product_category_manufacture" />
+        <field name="standard_price">15.0</field>
+    </record>
+    <record id="final_machine" model="product.product">
+        <field name="name">Final Machine</field>
+        <field name="type">product</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">False</field>
+        <field name="categ_id" ref="product_category_manufacture" />
+        <field name="standard_price">330.0</field>
+    </record>
+
+    <!-- Resource: mrp.workcenter: unit cost = 80 Labor + 20 OH = 100 -->
+    <record id="mrp_workcenter" model="mrp.workcenter">
+        <field name="name">Manufacturing Line (Cost Driver)</field>
+        <field name="resource_calendar_id" ref="resource.resource_calendar_std" />
+        <field
+            name="analytic_product_id"
+            ref="analytic_activity_based_cost.machine_cost_driver"
+        />
+    </record>
+
+    <record id="bom_final_machine" model="mrp.bom">
+        <field name="product_tmpl_id" ref="final_machine_product_template" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+    </record>
+
+    <record id="bom_final_machine_op1" model="mrp.routing.workcenter">
+        <field name="bom_id" ref="bom_final_machine" />
+        <field name="workcenter_id" ref="mrp_workcenter" />
+        <field name="sequence">10</field>
+        <field name="name">Preparation</field>
+        <field name="time_cycle_manual">30</field>
+    </record>
+    <record id="bom_final_machine_op2" model="mrp.routing.workcenter">
+        <field name="bom_id" ref="bom_final_machine" />
+        <field name="workcenter_id" ref="mrp_workcenter" />
+        <field name="sequence">20</field>
+        <field name="name">Assembly</field>
+        <field name="time_cycle_manual">30</field>
+    </record>
+
+    <record id="bom_final_machine_raw1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_final_machine" />
+        <field name="product_id" ref="part_1" />
+        <field name="product_qty">10</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="operation_id" ref="bom_final_machine_op2" />
+    </record>
+    <record id="bom_final_machine_raw2" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_final_machine" />
+        <field name="product_id" ref="part_2" />
+        <field name="product_qty">10</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="operation_id" ref="bom_final_machine_op2" />
+    </record>
+
+</odoo>

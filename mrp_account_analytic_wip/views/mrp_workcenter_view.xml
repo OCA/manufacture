@@ -13,6 +13,7 @@
                 <attribute
                     name="attrs"
                 >{"readonly": [("analytic_product_id", "!=", False)]}</attribute>
+                <attribute name="force_save">1</attribute>
             </field>
 
         </field>
