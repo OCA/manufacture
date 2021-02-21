@@ -14,14 +14,15 @@ class AnalyticTrackingItem(models.Model):
 
     def _compute_name(self):
         super()._compute_name()
-        for item in self.filtered("workorder_id"):
-            item.name = "{} / {}".format(
-                item.analytic_id.display_name, item.workorder_id.display_name
-            )
+        for tracking in self.filtered("workorder_id"):
+            workorder = tracking.workorder_id
+            tracking.name = workorder.display_name
 
     @api.depends("manual_planned_amount", "workorder_id")
     def _compute_planned_amount(self):
-        for item in self:
-            item.planned_amount = (
-                item.manual_planned_amount or item.workorder_id.tracked_planned_amount
-            )
+        super()._compute_planned_amount()
+        for tracking in self.filtered("workorder_id"):
+            workorder = tracking.workorder_id
+            hours = workorder.duration_expected / 60
+            unit_cost = workorder.workcenter_id.costs_hour
+            tracking.planned_amount += hours * unit_cost
