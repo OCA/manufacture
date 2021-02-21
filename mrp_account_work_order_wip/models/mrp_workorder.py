@@ -9,9 +9,21 @@ class MRPWorkOrder(models.Model):
     _name = "mrp.workorder"
     _inherit = ["mrp.workorder", "account.analytic.tracked.mixin"]
 
-    def _prepare_tracking_item_domain(self):
+    def _prepare_mrp_workorder_analytic_item(self):
+        """
+        Prepare additional values for Analytic Items created.
+        For compatibility with analytic_activity_cost
+        """
         self.ensure_one()
-        return [("workorder_id", "=", self.id)]
+        vals = super()._prepare_mrp_workorder_analytic_item()
+        vals["analytic_tracking_item_id"] = self.analytic_tracking_item_id.id
+        return vals
+
+    def _get_tracking_planned_amount(self):
+        super()._get_tracking_planned_amount()
+        hours = self.duration_expected / 60
+        unit_cost = self.workcenter_id.costs_hour
+        return hours * unit_cost
 
     def _prepare_tracking_item_values(self):
         vals = super()._prepare_tracking_item_values()
@@ -24,10 +36,4 @@ class MRPWorkOrder(models.Model):
                     "workorder_id": self.id,
                 }
             )
-        return vals
-
-    def _prepare_mrp_workorder_analytic_item(self):
-        self.ensure_one()
-        vals = super()._prepare_mrp_workorder_analytic_item()
-        vals["analytic_tracking_item_id"] = self.analytic_tracking_item_id.id
         return vals
