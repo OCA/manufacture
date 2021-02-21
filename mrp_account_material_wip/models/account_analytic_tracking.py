@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AnalyticTrackingItem(models.Model):
@@ -12,6 +12,7 @@ class AnalyticTrackingItem(models.Model):
         "stock.move", string="Stock Move", ondelete="restrict"
     )
 
+    # FIXME: not searchable (see account_analytic_wip)
     def _compute_name(self):
         super()._compute_name()
         for tracking in self.filtered("stock_move_id"):
@@ -20,12 +21,3 @@ class AnalyticTrackingItem(models.Model):
                 move.raw_material_production_id.display_name,
                 move.product_id.display_name,
             )
-
-    @api.depends("manual_planned_amount", "stock_move_id")
-    def _compute_planned_amount(self):
-        super()._compute_planned_amount()
-        for tracking in self.filtered("stock_move_id"):
-            move = tracking.stock_move_id
-            qty = move.product_uom_qty
-            unit_cost = move.product_id.standard_price
-            tracking.planned_amount += qty * unit_cost
