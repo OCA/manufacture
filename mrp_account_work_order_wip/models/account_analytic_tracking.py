@@ -14,7 +14,7 @@ class AnalyticTrackingItem(models.Model):
 
     def _compute_name(self):
         super()._compute_name()
-        for item in self.filtered("work_order_id"):
+        for item in self.filtered("workorder_id"):
             item.name = "{} / {}".format(
                 item.analytic_id.display_name, item.workorder_id.display_name
             )
