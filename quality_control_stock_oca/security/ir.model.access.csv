@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_qc_inspection_stock_user,qc_inspection stock user,quality_control_oca.model_qc_inspection,stock.group_stock_user,1,1,1,0
+access_user_qc_inspection_line_stock_user,qc_inspection_line stock user,quality_control_oca.model_qc_inspection_line,stock.group_stock_user,1,1,1,0
+access_user_qc_test_stock_user,qc_test stock_user,quality_control_oca.model_qc_test,stock.group_stock_user,1,0,0,0
+access_user_qc_test_question_stock_user,qc_test_question stock user,quality_control_oca.model_qc_test_question,stock.group_stock_user,1,0,0,0
+access_user_qc_test_question_value_stock_user,qc_test_question_value_stock_user,quality_control_oca.model_qc_test_question_value,stock.group_stock_user,1,0,0,0
+access_manager_qc_trigger_stock_user,qc_trigger stock user,quality_control_oca.model_qc_trigger,stock.group_stock_user,1,0,0,0
+access_manager_qc_trigger_product_category_line_stock_user,qc_trigger product_category line stock user,quality_control_oca.model_qc_trigger_product_category_line,stock.group_stock_user,1,0,0,0
