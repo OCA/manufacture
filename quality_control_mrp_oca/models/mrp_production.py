@@ -4,15 +4,14 @@
 
 from odoo import api, fields, models
 
-from odoo.addons.quality_control.models.qc_trigger_line import _filter_trigger_lines
+from odoo.addons.quality_control_oca.models.qc_trigger_line import _filter_trigger_lines
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.multi
     @api.depends("qc_inspections_ids")
-    def _count_inspections(self):
+    def _compute_created_inspections(self):
         for production in self:
             production.created_inspections = len(production.qc_inspections_ids)
 
@@ -24,22 +23,21 @@ class MrpProduction(models.Model):
         help="Inspections related to this production.",
     )
     created_inspections = fields.Integer(
-        compute="_count_inspections", string="Created inspections"
+        compute="_compute_created_inspections", string="Created inspections"
     )
 
-    @api.multi
     def post_inventory(self):
         done_moves = self.mapped("move_finished_ids").filtered(
             lambda r: r.state == "done"
         )
-        res = super(MrpProduction, self).post_inventory()
+        res = super().post_inventory()
         inspection_model = self.env["qc.inspection"]
         new_done_moves = (
             self.mapped("move_finished_ids").filtered(lambda r: r.state == "done")
             - done_moves
         )
         if new_done_moves:
-            qc_trigger = self.env.ref("quality_control_mrp.qc_trigger_mrp")
+            qc_trigger = self.env.ref("quality_control_mrp_oca.qc_trigger_mrp")
         for move in new_done_moves:
             trigger_lines = set()
             for model in [
