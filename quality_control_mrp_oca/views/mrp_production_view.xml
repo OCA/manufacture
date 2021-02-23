@@ -7,6 +7,9 @@
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('production_id', '=', active_id)]</field>
+        <field
+            name="context"
+        >{'default_object_id': 'mrp.production,' + str(active_id)}</field>
     </record>
     <record model="ir.ui.view" id="mrp_production_qc_view">
         <field name="name">mrp.production.form.qc</field>
@@ -14,7 +17,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field
             name="groups_id"
-            eval="[(4, ref('quality_control.group_quality_control_user'))]"
+            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
         />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
