@@ -8,21 +8,16 @@
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Agile Business Group, "
-              "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/12.0/"
-               "quality_control_mrp",
-    "depends": [
-        "quality_control",
-        "quality_control_stock",
-        "mrp"
-    ],
+    "AvanzOSC, "
+    "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "Agile Business Group, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture/tree/12.0/" "quality_control_mrp",
+    "depends": ["quality_control", "quality_control_stock", "mrp"],
     "data": [
-        'data/quality_control_mrp_data.xml',
-        'views/qc_inspection_view.xml',
-        'views/mrp_production_view.xml'
+        "data/quality_control_mrp_data.xml",
+        "views/qc_inspection_view.xml",
+        "views/mrp_production_view.xml",
     ],
     "installable": True,
     "auto_install": True,
