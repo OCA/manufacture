@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "MRP extension for quality control",
-    "version": "12.0.1.0.0",
+    "name": "MRP extension for quality control (OCA)",
+    "version": "13.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
@@ -12,8 +12,8 @@
     "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
     "Agile Business Group, "
     "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/12.0/" "quality_control_mrp",
-    "depends": ["quality_control", "quality_control_stock", "mrp"],
+    "website": "https://github.com/OCA/manufacture",
+    "depends": ["quality_control_oca", "quality_control_stock_oca", "mrp"],
     "data": [
         "data/quality_control_mrp_data.xml",
         "views/qc_inspection_view.xml",
