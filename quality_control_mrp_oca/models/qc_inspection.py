@@ -8,18 +8,15 @@ from odoo import api, fields, models
 class QcInspection(models.Model):
     _inherit = "qc.inspection"
 
-    @api.multi
     def _prepare_inspection_header(self, object_ref, trigger_line):
-        res = super(QcInspection, self)._prepare_inspection_header(
-            object_ref, trigger_line
-        )
+        res = super()._prepare_inspection_header(object_ref, trigger_line)
         # Fill qty when coming from pack operations
         if object_ref and object_ref._name == "mrp.production":
             res["qty"] = object_ref.product_qty
         return res
 
     @api.depends("object_id")
-    def get_production(self):
+    def _compute_production_id(self):
         for inspection in self:
             if inspection.object_id:
                 if inspection.object_id._name == "stock.move":
@@ -31,18 +28,17 @@ class QcInspection(models.Model):
     def _compute_product_id(self):
         """Overriden for getting the product from a manufacturing order."""
         for inspection in self:
-            super(QcInspection, inspection)._compute_product_id()
+            super()._compute_product_id()
             if inspection.object_id and inspection.object_id._name == "mrp.production":
                 inspection.product_id = inspection.object_id.product_id
 
-    @api.multi
     def object_selection_values(self):
-        objects = super(QcInspection, self).object_selection_values()
+        objects = super().object_selection_values()
         objects.append(("mrp.production", "Manufacturing Order"))
         return objects
 
     production_id = fields.Many2one(
-        comodel_name="mrp.production", compute="get_production", store=True
+        comodel_name="mrp.production", compute="_compute_production_id", store=True
     )
 
 
