@@ -6,7 +6,7 @@
     'summary': """
         This module extends the functionality of Odoo Repair module
         to add some basic features.""",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'license': 'AGPL-3',
     'author': 'Escodoo, Agile Business Group, Odoo Community Association (OCA)',
     'maintainers': ['marcelsavegnago'],
