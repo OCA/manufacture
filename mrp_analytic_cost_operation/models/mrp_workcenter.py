@@ -46,9 +46,11 @@ class MRPWorkorder(models.Model):
         res = super().write(vals)
         if vals.get("duration"):
             AnalyticLine = self.env["account.analytic.line"].sudo()
-            workorders = self.filtered("workcenter_id.analytic_product_id")
+            workorders = self.filtered("workcenter_id.analytic_product_id").filtered(
+                "production_id.analytic_account_id"
+            )
             existing_items = workorders and AnalyticLine.search(
-                [("workorder_id", "=", self.ids)]
+                [("workorder_id", "in", self.ids)]
             )
             for workorder in workorders:
                 line_vals = self._prepare_mrp_workorder_analytic_item()
