@@ -35,6 +35,8 @@ This module extends the functionality of Odoo Repair module to add some basic fe
 * Includes grouping by Repair Date
 * Implements Calendar view
 * Implements PivotTable view
+* Implements Graph view
+* Includes Reporting menu
 
 **Table of contents**
 
