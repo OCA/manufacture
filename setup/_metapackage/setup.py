@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-account_move_line_manufacture_info',
+        'odoo13-addon-base_repair',
         'odoo13-addon-mrp_bom_component_menu',
         'odoo13-addon-mrp_bom_line_sequence',
         'odoo13-addon-mrp_bom_location',
