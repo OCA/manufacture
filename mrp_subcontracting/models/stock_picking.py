@@ -30,7 +30,9 @@ class StockPicking(models.Model):
             subcontracted_moves = subcontracted_productions.mapped(
                 'move_raw_ids')
             if all(subcontracted_move.has_tracking == 'none'
-                   for subcontracted_move in subcontracted_moves):
+                   for subcontracted_move in subcontracted_moves) and \
+                all(subcontracted_production.product_id.tracking == 'none'
+                    for subcontracted_production in subcontracted_productions):
                 picking.display_action_record_components = False
                 continue
             # Hide if the production is to close
@@ -108,8 +110,6 @@ class StockPicking(models.Model):
     def action_record_components(self):
         self.ensure_one()
         for move in self.move_lines:
-            if not move._has_tracked_subcontract_components():
-                continue
             production = move.move_orig_ids.mapped("production_id")
             if not production or production.state in ('done', 'to_close'):
                 continue

@@ -73,12 +73,11 @@ class StockMove(models.Model):
         if self.is_subcontract:
             rounding = self.product_uom.rounding
             production = self.move_orig_ids.mapped("production_id")
-            if self._has_tracked_subcontract_components() and\
-                    float_compare(production.qty_produced,
-                                  production.product_uom_qty,
-                                  precision_rounding=rounding) < 0 and\
-                    float_compare(self.quantity_done, self.product_uom_qty,
-                                  precision_rounding=rounding) < 0:
+            if float_compare(production.qty_produced,
+                             production.product_uom_qty,
+                             precision_rounding=rounding) < 0 and \
+                float_compare(self.quantity_done, self.product_uom_qty,
+                              precision_rounding=rounding) < 0:
                 return self._action_record_components()
         action = super().action_show_details()
         if self.is_subcontract and self._has_tracked_subcontract_components():
@@ -136,7 +135,7 @@ class StockMove(models.Model):
                     force_company=move.company_id.id)
                 .property_stock_subcontractor.id
             })
-        for picking, subcontract_details in\
+        for picking, subcontract_details in \
                 subcontract_details_per_picking.items():
             picking._subcontracted_produce(subcontract_details)
 
