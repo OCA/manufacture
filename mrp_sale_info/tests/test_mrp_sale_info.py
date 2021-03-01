@@ -18,8 +18,14 @@ class TestMrpSaleInfo(common.SavepointCase):
                 ],
             }
         )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Test mrp_sale_info Material", "type": "consu"}
+        )
         cls.bom = cls.env["mrp.bom"].create(
             {"product_tmpl_id": cls.product.product_tmpl_id.id}
+        )
+        cls.env["mrp.bom.line"].create(
+            {"bom_id": cls.bom.id, "product_id": cls.product_2.id, "product_qty": 2}
         )
         cls.partner = cls.env["res.partner"].create({"name": "Test client"})
         cls.sale_order = cls.env["sale.order"].create(
