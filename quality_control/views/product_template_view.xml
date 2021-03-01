@@ -8,9 +8,9 @@
 <odoo>
 
     <record model="ir.ui.view" id="product_template_qc_form_view">
-        <field name="name">product.template.qc</field>
+        <field name="name">product.template.common.qc</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_user'))]" />
         <field name="arch" type="xml">
             <page name="inventory" position="inside">
