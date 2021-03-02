@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo13-addon-mrp_production_note',
         'odoo13-addon-mrp_production_putaway_strategy',
         'odoo13-addon-mrp_production_request',
+        'odoo13-addon-mrp_sale_info',
         'odoo13-addon-mrp_unbuild_tracked_raw_material',
         'odoo13-addon-mrp_warehouse_calendar',
         'odoo13-addon-mrp_workorder_sequence',
