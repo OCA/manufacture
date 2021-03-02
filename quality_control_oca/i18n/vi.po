@@ -593,7 +593,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.module.category,name:quality_control_oca.module_category_quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_qc_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
 msgid "Quality control"
 msgstr ""
 
@@ -628,7 +628,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_qc_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_tree_view
 msgid "Quality control triggers"
 msgstr ""
