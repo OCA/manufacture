@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo13-addon-mrp_warehouse_calendar',
         'odoo13-addon-mrp_workorder_sequence',
         'odoo13-addon-product_quick_bom',
+        'odoo13-addon-quality_control_mrp_oca',
         'odoo13-addon-quality_control_oca',
         'odoo13-addon-quality_control_stock_oca',
         'odoo13-addon-repair_calendar_view',
