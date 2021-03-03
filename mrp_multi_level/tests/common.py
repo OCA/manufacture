@@ -222,7 +222,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move fp-1",
                             "product_id": cls.fp_1.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.fp_1.uom_id.id,
                             "product_uom_qty": 100,
@@ -236,7 +235,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move fp-2",
                             "product_id": cls.fp_2.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.fp_2.uom_id.id,
                             "product_uom_qty": 15,
@@ -250,7 +248,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move product-4b",
                             "product_id": cls.product_4b.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.product_4b.uom_id.id,
                             "product_uom_qty": 150,
@@ -277,7 +274,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move prod_min",
                             "product_id": cls.prod_min.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.prod_min.uom_id.id,
                             "product_uom_qty": 16,
@@ -291,7 +287,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move prod_max",
                             "product_id": cls.prod_max.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.prod_max.uom_id.id,
                             "product_uom_qty": 140,
@@ -305,7 +300,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move prod_multiple",
                             "product_id": cls.prod_multiple.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.prod_multiple.uom_id.id,
                             "product_uom_qty": 112,
@@ -382,7 +376,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test move",
                             "product_id": cls.prod_test.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": cls.prod_test.uom_id.id,
                             "product_uom_qty": qty,
@@ -425,7 +418,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test Move",
                             "product_id": product.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": product.uom_id.id,
                             "product_uom_qty": qty,
@@ -456,7 +448,6 @@ class TestMrpMultiLevelCommon(SavepointCase):
                         {
                             "name": "Test Move",
                             "product_id": product.id,
-                            "date_expected": date_move,
                             "date": date_move,
                             "product_uom": product.uom_id.id,
                             "product_uom_qty": qty,

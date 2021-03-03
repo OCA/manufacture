@@ -75,8 +75,8 @@ class MultiLevelMrp(models.TransientModel):
             order_number = (move.picking_id or move).name
             origin = "mv"
         mrp_date = date.today()
-        if move.date_expected.date() > date.today():
-            mrp_date = move.date_expected.date()
+        if move.date.date() > date.today():
+            mrp_date = move.date.date()
         return {
             "product_id": move.product_id.id,
             "product_mrp_area_id": product_mrp_area.id,
@@ -87,7 +87,7 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_qty": product_qty,
             "current_qty": product_qty,
             "mrp_date": mrp_date,
-            "current_date": move.date_expected,
+            "current_date": move.date,
             "mrp_type": mrp_type,
             "mrp_origin": origin,
             "mrp_order_number": order_number,
