@@ -318,7 +318,7 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _adjust_mrp_applicable(self, mrp_areas):
         """This method is meant to modify the products that are applicable
-           to MRP Multi level calculation
+        to MRP Multi level calculation
         """
         return True
 
@@ -500,9 +500,10 @@ class MultiLevelMrp(models.TransientModel):
                 last_qty = 0.00
                 nbr_create += 1
             if (
-                (onhand + last_qty + move.mrp_qty) < product_mrp_area.mrp_minimum_stock
-                or (onhand + last_qty) < product_mrp_area.mrp_minimum_stock
-            ):
+                onhand + last_qty + move.mrp_qty
+            ) < product_mrp_area.mrp_minimum_stock or (
+                onhand + last_qty
+            ) < product_mrp_area.mrp_minimum_stock:
                 if not last_date or last_qty == 0.0:
                     last_date = fields.Date.from_string(move.mrp_date)
                     last_qty = move.mrp_qty
