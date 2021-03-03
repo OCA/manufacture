@@ -50,7 +50,7 @@
                 <field name="to_procure" />
                 <field name="order_release_date" />
                 <button
-                    string="Create Procurement"
+                    title="Create Procurement"
                     name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                     icon="fa-cogs"
                     type="action"
