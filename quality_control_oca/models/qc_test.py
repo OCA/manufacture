@@ -33,7 +33,8 @@ class QcTest(models.Model):
         copy=True,
     )
     object_id = fields.Reference(
-        string="Reference object", selection="object_selection_values",
+        string="Reference object",
+        selection="object_selection_values",
     )
     fill_correct_values = fields.Boolean(string="Pre-fill with correct values")
     type = fields.Selection(
