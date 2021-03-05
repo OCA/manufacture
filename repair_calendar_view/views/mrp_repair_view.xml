@@ -7,6 +7,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='guarantee_limit']" position="after">
                 <field name="date_repair" />
+                <field name="duration" />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="user_id" />
             </xpath>
         </field>
     </record>
