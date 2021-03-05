@@ -10,7 +10,7 @@
         name="Quality Control"
         id="qc_menu"
         groups="group_quality_control_user"
-        web_icon="quality_control_oca/static/description/icon.png"
+        web_icon="quality_control_oca,static/description/icon.png"
         sequence="40"
     />
     <menuitem
