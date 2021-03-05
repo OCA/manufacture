@@ -266,41 +266,43 @@ class QcInspectionLine(models.Model):
         "possible_ql_values",
     )
     def _compute_quality_test_check(self):
-        for l in self:
-            if l.question_type == "qualitative":
-                l.success = l.qualitative_value.ok
+        for insp_line in self:
+            if insp_line.question_type == "qualitative":
+                insp_line.success = insp_line.qualitative_value.ok
             else:
-                if l.uom_id.id == l.test_uom_id.id:
-                    amount = l.quantitative_value
+                if insp_line.uom_id.id == insp_line.test_uom_id.id:
+                    amount = insp_line.quantitative_value
                 else:
                     amount = self.env["uom.uom"]._compute_quantity(
-                        l.quantitative_value, l.test_uom_id.id
+                        insp_line.quantitative_value, insp_line.test_uom_id.id
                     )
-                l.success = l.max_value >= amount >= l.min_value
+                insp_line.success = insp_line.max_value >= amount >= insp_line.min_value
 
     @api.depends(
         "possible_ql_values", "min_value", "max_value", "test_uom_id", "question_type"
     )
     def _compute_valid_values(self):
-        for l in self:
-            if l.question_type == "qualitative":
-                l.valid_values = ", ".join(
-                    [x.name for x in l.possible_ql_values if x.ok]
+        for insp_line in self:
+            if insp_line.question_type == "qualitative":
+                insp_line.valid_values = ", ".join(
+                    [x.name for x in insp_line.possible_ql_values if x.ok]
                 )
             else:
-                l.valid_values = "{} ~ {}".format(
-                    formatLang(self.env, l.min_value),
-                    formatLang(self.env, l.max_value),
+                insp_line.valid_values = "{} ~ {}".format(
+                    formatLang(self.env, insp_line.min_value),
+                    formatLang(self.env, insp_line.max_value),
                 )
                 if self.env.ref("uom.group_uom") in self.env.user.groups_id:
-                    l.valid_values += " %s" % l.test_uom_id.name
+                    insp_line.valid_values += " %s" % insp_line.test_uom_id.name
 
     inspection_id = fields.Many2one(
         comodel_name="qc.inspection", string="Inspection", ondelete="cascade"
     )
     name = fields.Char(string="Question", readonly=True)
     product_id = fields.Many2one(
-        comodel_name="product.product", related="inspection_id.product_id", store=True,
+        comodel_name="product.product",
+        related="inspection_id.product_id",
+        store=True,
     )
     test_line = fields.Many2one(
         comodel_name="qc.test.question", string="Test question", readonly=True
