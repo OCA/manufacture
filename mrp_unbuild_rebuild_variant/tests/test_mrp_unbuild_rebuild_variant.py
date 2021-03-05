@@ -133,7 +133,7 @@ class TestMrpUnbuildRebuildVariant(SavepointCase):
             }
         )
         # rebuild product is not a subset of unbuild product (tuner missing)
-        # _check_dismantled_contains_components should raise an exception 
+        # _check_dismantled_contains_components should raise an exception
         with self.assertRaises(exceptions.UserError):
             rebuild_order.process()
         rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(
@@ -147,7 +147,6 @@ class TestMrpUnbuildRebuildVariant(SavepointCase):
             }
         )
         rebuild_order.process()
-
 
     def test_unbuild_rebuild(self):
         rebuild_order = self.env["mrp.unbuild.rebuild.variant"].create(
