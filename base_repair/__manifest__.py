@@ -6,12 +6,12 @@
     "summary": """
         This module extends the functionality of Odoo Repair module
         to add some basic features.""",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "author": "Escodoo, Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": ["marcelsavegnago"],
     "images": ["static/description/banner.png"],
-    "website": "https://github.com/oca/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["repair"],
     "data": ["views/repair_order.xml"],
