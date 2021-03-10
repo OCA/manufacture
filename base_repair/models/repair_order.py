@@ -8,13 +8,6 @@ class RepairOrder(models.Model):
 
     _inherit = "repair.order"
 
-    user_id = fields.Many2one(
-        "res.users",
-        "User",
-        default=lambda self: self.env.user,
-        help="Person in charge for the repair",
-    )
-
     date_repair = fields.Datetime(
         "Repair Date",
         default=fields.Datetime.now,
