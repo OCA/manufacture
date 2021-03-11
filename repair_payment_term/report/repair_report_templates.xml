@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_sale_payment_term" inherit_id="repair.report_repairorder">
+        <xpath expr="//div[@t-if='o.guarantee_limit']" position="after">
+            <div name="payment_term" t-if="o.payment_term_id and o.invoice_method !='none'" class="col-3 bm-2">
+                <strong>Payment Terms:</strong>
+                <p class="m-0" t-field="o.payment_term_id"/>
+            </div>
+        </xpath>
+        <xpath expr="//p[@t-field='o.quotation_notes']" position="after">
+            <p t-if="o.payment_term_id.note and o.invoice_method !='none'" id="payment_term_note">
+                <span t-field="o.payment_term_id.note" />
+            </p>
+        </xpath>
+    </template>
+
+</odoo>
