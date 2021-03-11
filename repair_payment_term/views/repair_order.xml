@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 KMEE
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="repair_order_form_view">
+        <field name="name">repair.order.form (in repair_payment_term)</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_method" position="after" >
+                <field name="payment_term_id" attrs="{'invisible': [('invoice_method', '==', 'none')]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
