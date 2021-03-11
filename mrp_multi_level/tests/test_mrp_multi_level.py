@@ -278,21 +278,21 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         week_2_expected = sum(moves_demand[3:].mapped("mrp_qty"))
         self.assertIn(abs(week_2_expected), quantities)
 
-    # def test_09_isolated_mrp_area_run(self):
-    #     """Test running MRP for just one area."""
-    #     self.mrp_multi_level_wiz.with_user(self.mrp_manager).create(
-    #         {"mrp_area_ids": [(6, 0, self.secondary_area.ids)]}
-    #     ).run_mrp_multi_level()
-    #     this = self.mrp_inventory_obj.search(
-    #         [("mrp_area_id", "=", self.secondary_area.id)], limit=1
-    #     )
-    #     self.assertTrue(this)
-    #     # Only recently exectued areas should have been created by test user:
-    #     self.assertEqual(this.create_uid, self.mrp_manager)
-    #     prev = self.mrp_inventory_obj.search(
-    #         [("mrp_area_id", "!=", self.secondary_area.id)], limit=1
-    #     )
-    #     self.assertNotEqual(this.create_uid, prev.create_uid)
+    def test_09_isolated_mrp_area_run(self):
+        """Test running MRP for just one area."""
+        self.mrp_multi_level_wiz.with_user(self.mrp_manager).create(
+            {"mrp_area_ids": [(6, 0, self.secondary_area.ids)]}
+        ).run_mrp_multi_level()
+        this = self.mrp_inventory_obj.search(
+            [("mrp_area_id", "=", self.secondary_area.id)], limit=1
+        )
+        self.assertTrue(this)
+        # Only recently exectued areas should have been created by test user:
+        self.assertEqual(this.create_uid, self.mrp_manager)
+        prev = self.mrp_inventory_obj.search(
+            [("mrp_area_id", "!=", self.secondary_area.id)], limit=1
+        )
+        self.assertNotEqual(this.create_uid, prev.create_uid)
 
     def test_11_special_scenario_1(self):
         """When grouping demand supply and demand are in the same day but
