@@ -17,6 +17,10 @@
                             <field name="product_id" />
                             <field name="product_mrp_area_id" />
                             <field name="supply_method" />
+                            <field
+                                name="main_supplier_id"
+                                attrs="{'invisible': [('supply_method', '!=', 'buy')]}"
+                            />
                             <field name="date" />
                         </group>
                         <group>
@@ -64,6 +68,7 @@
                 />
                 <field name="planned_order_ids" invisible="1" />
                 <field name="supply_method" />
+                <field name="main_supplier_id" optional="hide" />
                 <field name="running_availability" />
             </tree>
         </field>
@@ -124,6 +129,11 @@
                         name="group_supply_method"
                         string="Supply Method"
                         context="{'group_by':'supply_method'}"
+                    />
+                    <filter
+                        name="group_main_supplier_id"
+                        string="Main Supplier"
+                        context="{'group_by':'main_supplier_id'}"
                     />
                     <filter
                         name="group_release_date"
