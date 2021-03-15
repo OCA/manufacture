@@ -6,39 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-22 02:19+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
+"PO-Revision-Date: 2021-03-15 07:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_11
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
 msgid "AV-11 steel"
-msgstr ""
+msgstr "AV-11 aço"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_12
 #: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
 msgid "AV-12 aluminium"
-msgstr ""
+msgstr "AV-12 alumínio"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_21
 #: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
 msgid "AV-21 white"
-msgstr ""
+msgstr "AV-21 branco"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_22
 #: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
 msgid "AV-22 black"
-msgstr ""
+msgstr "AV-22 preto"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
@@ -944,9 +944,11 @@ msgid ""
 "manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
-"Use este assistente para planejar e adquirir este produto. De acordo com a "
-"configuração do produto, isso pode desencadear um rascunho de ordem de "
-"compra, ordem de manufatura ou coleta de transferência."
+"Use este assistente para planejar e adquirir este produto.\n"
+"                    De acordo com a configuração do produto,\n"
+"                    isso pode desencadear um rascunho de ordem de compra, "
+"ordem de manufatura\n"
+"                    ou coleta de transferência."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_verified
