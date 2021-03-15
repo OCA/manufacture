@@ -6,204 +6,215 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-15 07:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_mrp_request_workcenter__workcenter_cycle_no
 msgid "A cycle is complete ended process for the machine.\n"
 "Multiple cycles are several machines of the same kind in parallel or the same machine used several times."
 msgstr ""
+"Um ciclo é um processo completo para a máquina.\n"
+"Vários ciclos são várias máquinas do mesmo tipo em paralelo ou a mesma "
+"máquina usada várias vezes."
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_production_request__auto_product_qty
 msgid "Auto Product Qty"
-msgstr ""
+msgstr "Quantidade Automática de Produto"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_product__qty_by_workcenter_ids
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.product_product_form_view_bom_button
 msgid "Capacity by workcenter"
-msgstr ""
+msgstr "Capacidade por centro de trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: code:addons/mrp_request_workcenter_cycle/models/request.py:40
 #, python-format
 msgid "Computing quantity with different units is not supported for now."
 msgstr ""
+"A quantidade de computação com diferentes unidades não é suportada por "
+"enquanto."
 
 #. module: mrp_request_workcenter_cycle
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.view_mrp_production_request_form
 msgid "Create Manufacturing Orders"
-msgstr ""
+msgstr "Criar Ordens de Fabricação"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__create_uid
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__create_date
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__workcenter_cycle_no
 msgid "Cycle Number"
-msgstr ""
+msgstr "Número do Ciclo"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__workcenter_cycle_no
 msgid "Cycles"
-msgstr ""
+msgstr "Ciclos"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_product_workcenter_quantity__workcenter_cycle_no
 msgid "Default number of cycles for the workcenter set for Manufacturing Request of this product.\n"
 ""
 msgstr ""
+"Número padrão de ciclos para o centro de trabalho definido para requisição "
+"de fabricação deste produto.\n"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__display_name
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Exibir Nome"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__id
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter____last_update
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificação Feita em"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__write_uid
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima atualização por"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__write_date
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: mrp_request_workcenter_cycle
 #: code:addons/mrp_request_workcenter_cycle/models/request.py:95
 #, python-format
 msgid "MO already exists"
-msgstr ""
+msgstr "MO já existe"
 
 #. module: mrp_request_workcenter_cycle
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.view_mrp_production_request_form
 msgid "Manufacturing Orders'll be created according to workcenters"
-msgstr ""
+msgstr "Ordens de Fabricação serão criadas de acordo com centros de trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_mrp_production_request
 msgid "Manufacturing Request"
-msgstr ""
+msgstr "Requisição de Fabricação"
 
 #. module: mrp_request_workcenter_cycle
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.view_mrp_production_request_form
 msgid "One manufacturing order is created by cycle."
-msgstr ""
+msgstr "Uma ordem de fabricação é criada por ciclo."
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_product_product
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__product_id
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__product_qty
 msgid "Product Qty"
-msgstr ""
+msgstr "Qtd de Ingresso"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__request_id
 msgid "Production Request"
-msgstr ""
+msgstr "Requisição de Produção"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__product_qty
 msgid "Products by cycle"
-msgstr ""
+msgstr "Produtos por ciclo"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_product_workcenter_quantity__product_qty
 msgid "Quantity of the product that the workcenter use in a cycle."
-msgstr ""
+msgstr "Quantidade do produto que o centro de trabalho usa em um ciclo."
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_product_workcenter_quantity
 msgid "Quantity that can be produced with a workcenter cycle"
-msgstr ""
+msgstr "Quantidade que pode ser produzida com um ciclo de centro de trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_production_request__target_quantity
 msgid "Target Quantity"
-msgstr ""
+msgstr "Quantidade Alvo"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_mrp_production_request__workcenter_lines_count
 msgid "Technical field: size of qty_by_workcenter_ids field"
-msgstr ""
+msgstr "Campo técnico: tamanho do campo qty_by_workcenter_ids"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_mrp_production_request__target_quantity
 msgid "This is your initial quantity defined before any cycle adjustement."
 msgstr ""
+"Esta é a sua quantidade inicial definida antes de qualquer ajuste de ciclo."
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_mrp_production_request_create_mo
 msgid "Wizard to create Manufacturing Orders"
-msgstr ""
+msgstr "Assistente para criar Ordens de Fabricação"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_request_workcenter__workcenter_id
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_product_workcenter_quantity__workcenter_id
 msgid "Workcenter"
-msgstr ""
+msgstr "Centro de Trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_production_request__workcenter_lines_count
 msgid "Workcenter Lines Count"
-msgstr ""
+msgstr "Contagem de Linhas do Centro de Trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: sql_constraint:mrp.request.workcenter:0
 msgid "Workcenter field must be unique by manufacturing request"
 msgstr ""
+"O campo de centro de trabalho deve ser único por requisição de fabricação"
 
 #. module: mrp_request_workcenter_cycle
 #: sql_constraint:product.workcenter.quantity:0
 msgid "Workcenter field must be unique by product"
-msgstr ""
+msgstr "O campo de centro de trabalho deve ser único por produto"
 
 #. module: mrp_request_workcenter_cycle
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.view_mrp_production_request_form
 msgid "Workcenters"
-msgstr ""
+msgstr "Centros de Trabalho"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_mrp_request_workcenter
 msgid "Workcenters attached to Production Request"
-msgstr ""
+msgstr "Centros de Trabalho anexados à Requisição de Produção"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,field_description:mrp_request_workcenter_cycle.field_mrp_production_request__qty_by_workcenter_ids
 msgid "Workcenters cycles number"
-msgstr ""
+msgstr "Número de ciclos de Centros de Trabalho"
