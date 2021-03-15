@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-03 06:08+0000\n"
-"PO-Revision-Date: 2021-03-15 05:14+0000\n"
+"PO-Revision-Date: 2021-03-15 07:45+0000\n"
 "Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/"
 "OCA-manufacture-9-0/language/pt_BR/)\n"
@@ -35,7 +35,7 @@ msgstr "Cliente"
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordem de Produção"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
@@ -46,12 +46,12 @@ msgstr "Ordem de venda"
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
 msgid "Source Procurement Group"
-msgstr ""
+msgstr "Fonte do Grupo de Aquisição"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regra de Estoque"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
@@ -60,6 +60,9 @@ msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
 msgstr ""
+"Esta é a data de entrega prometida ao cliente. Se definido, o pedido de "
+"entrega será agendado com base nesta data, em vez de prazos de lead time do "
+"produto."
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_workorder
@@ -71,6 +74,7 @@ msgstr "Ordem de Trabalho"
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__partner_id
 msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Você pode encontrar um cliente pelo nome, TIN, E-mail ou Referência Interna."
 
 #~ msgid ""
 #~ "Date by which the products are sure to be delivered. This is a date that "
