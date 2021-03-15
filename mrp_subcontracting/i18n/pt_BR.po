@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-27 09:22+0000\n"
-"PO-Revision-Date: 2020-07-28 15:59+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/"
-"teams/41243/pt_BR/)\n"
+"PO-Revision-Date: 2021-03-15 07:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/"
+"41243/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:193
@@ -40,11 +40,13 @@ msgid ""
 "operations."
 msgstr ""
 "\n"
-"Você precisa usar o botão 'Componentes de Registros' para registrar a "
+"Você precisa usar o botão 'Componentes de Registros' para registrar a \n"
 "quantidade de um ou mais produto(s) subcontratado(s) com componente(s) "
-"rastreado(s): %s.\n"
-"Se você deseja processar mais do que o planejado inicialmente, pode usar os "
-"botões editar+desbloquear para adaptar a demanda inicial no operações."
+"rastreado(s): \n"
+"%s.\n"
+"Se você deseja processar mais do que o planejado inicialmente, pode\n"
+"usar os botões editar+desbloquear para adaptar a demanda inicial no \n"
+"operações."
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/res_company.py:40
@@ -55,7 +57,7 @@ msgstr "%s: Localização da Subcontratação"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_backorder_confirmation
 msgid "Backorder Confirmation"
-msgstr ""
+msgstr "Confirmação de Backorder"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_bom
@@ -69,13 +71,12 @@ msgstr "Tipo de Lista de Materiais"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
-#, fuzzy
 msgid ""
 "Choose a vendor of type subcontractor if you want to         subcontract the "
 "product"
 msgstr ""
-"Escolha um fornecedor do tipo subcontratado, se desejar subcontratar o "
-"produto"
+"Escolha um fornecedor de subcontratados do tipo se você quiser         "
+"subcontratar o produto"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_company
@@ -85,7 +86,7 @@ msgstr "Empresas"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "Consumed"
-msgstr ""
+msgstr "Consumido"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_partner
@@ -99,14 +100,13 @@ msgstr "Exibir Componentes do Registro de Ação"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
-#, fuzzy
 msgid "Inventory Locations"
-msgstr "Localização da Subcontratação"
+msgstr "Locais de Inventário"
 
 #. module: mrp_subcontracting
 #: selection:mrp.bom,type:0
 msgid "Kit"
-msgstr ""
+msgstr "Kit"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:81
@@ -117,7 +117,7 @@ msgstr "Fabricação para atender pedido"
 #. module: mrp_subcontracting
 #: selection:mrp.bom,type:0
 msgid "Manufacture this product"
-msgstr ""
+msgstr "Fabricar este produto"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move_line
@@ -126,9 +126,8 @@ msgstr "Movimentações de Produto (Linha da Movimentação do Estoque)"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
-#, fuzzy
 msgid "Production Order"
-msgstr "Registrar Produção"
+msgstr "Requisição de Produção"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:102
@@ -154,7 +153,7 @@ msgstr "Registrar componentes para produto subcontratado"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "Reserved"
-msgstr ""
+msgstr "Reservado"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:56
@@ -226,13 +225,12 @@ msgstr "Localização da Subcontratação"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_mto_pull_id
 msgid "Subcontracting MTO Rule"
-msgstr ""
-"Regra de Subcontratação MTO (Made to Order: Fabricação para atender pedido)"
+msgstr "Regra de Subcontratação MTO (Made to Order: Fabricação para o Pedido)"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_pull_id
 msgid "Subcontracting MTS Rule"
-msgstr "Regra de Subcontratação MTs (Made to Stock: Fabricação para estoque)"
+msgstr "Regra de Subcontratação MTS (Made to Stock: Fabricação para Estoque)"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_type_id
@@ -273,7 +271,7 @@ msgstr ""
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "To Consume"
-msgstr ""
+msgstr "Para Consumo"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:130
