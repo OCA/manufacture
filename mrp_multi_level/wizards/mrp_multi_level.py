@@ -392,6 +392,13 @@ class MultiLevelMrp(models.TransientModel):
         }
 
     @api.model
+    def _create_mrp_move_from_purchase_order(self, line, product_mrp_area):
+        mrp_move_data = self._prepare_mrp_move_data_from_purchase_order(
+            line, product_mrp_area
+        )
+        self.env["mrp.move"].create(mrp_move_data)
+
+    @api.model
     def _init_mrp_move_from_purchase_order(self, product_mrp_area):
         location_ids = product_mrp_area.mrp_area_id._get_locations()
         picking_types = self.env["stock.picking.type"].search(
@@ -413,10 +420,7 @@ class MultiLevelMrp(models.TransientModel):
         )
 
         for line in po_lines:
-            mrp_move_data = self._prepare_mrp_move_data_from_purchase_order(
-                line, product_mrp_area
-            )
-            self.env["mrp.move"].create(mrp_move_data)
+            self._create_mrp_move_from_purchase_order(line, product_mrp_area)
 
     @api.model
     def _get_product_mrp_area_from_product_and_area(self, product, mrp_area):
