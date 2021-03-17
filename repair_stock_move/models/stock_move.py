@@ -10,4 +10,5 @@ class StockMove(models.Model):
     repair_line_id = fields.Many2one(
         comodel_name="repair.line",
         string="Repair Line",
+        ondelete="cascade",
     )
