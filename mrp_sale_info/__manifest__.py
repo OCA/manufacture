@@ -7,7 +7,7 @@
     "summary": "Adds sale information to Manufacturing models",
     "version": "13.0.1.0.0",
     "category": "Manufacturing",
-    "website": "https://github.com/oca/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "author": "AvanzOSC, " "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
