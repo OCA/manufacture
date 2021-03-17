@@ -6,8 +6,26 @@
         <field name="model">repair.order</field>
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
-            <field name="product_qty" position="replace">
-                <field name="product_qty" />
+            <header position="inside">
+                <button
+                    name="action_assign"
+                    attrs="{'invisible': [('show_check_availability', '=', False)]}"
+                    string="Check Availability"
+                    type="object"
+                    class="oe_highlight"
+                    groups="base.group_user"
+                />
+                <button
+                    name="action_force_availability"
+                    attrs="{'invisible': [('show_check_availability', '=', False)]}"
+                    string="Force Availability"
+                    type="object"
+                    groups="base.group_user"
+                />
+                <field name="show_check_availability" invisible="1" />
+            </header>
+            <field name="product_qty" position="attributes">
+                <attribute name="attrs" />
             </field>
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                 <button

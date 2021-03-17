@@ -4,8 +4,9 @@
 {
     "name": "Repair Stock Move",
     "version": "14.0.1.0.0",
+    "development_status": "Alpha",
     "license": "LGPL-3",
-    "category": "RMA",
+    "category": "Repair",
     "summary": "Ongoing Repair Stock Moves Definition in odoo",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
@@ -13,7 +14,6 @@
     "data": [
         "views/repair_order_views.xml",
     ],
-    "post_load": "post_load_hook",
     "installable": True,
     "application": False,
 }
