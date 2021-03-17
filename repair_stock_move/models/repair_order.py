@@ -1,8 +1,8 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import _, fields, models
-from odoo.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
 
@@ -13,12 +13,14 @@ class RepairOrder(models.Model):
         comodel_name="stock.move",
         inverse_name="repair_id",
     )
+    show_check_availability = fields.Boolean(
+        compute="_compute_show_check_availability",
+        help="Technical field used to compute whether the button "
+        "'Check Availability' should be displayed.",
+    )
+    ignore_availability = fields.Boolean()
+    # Make "Parts" editable in more states.
     operations = fields.One2many(
-        comodel_name="repair.line",
-        inverse_name="repair_id",
-        string="Parts",
-        copy=True,
-        readonly=True,
         states={
             "draft": [("readonly", False)],
             "confirmed": [("readonly", False)],
@@ -26,27 +28,7 @@ class RepairOrder(models.Model):
             "ready": [("readonly", False)],
         },
     )
-
-    product_qty = fields.Float(
-        "Product Quantity",
-        default=1.0,
-        digits="Product Unit of Measure",
-        readonly=True,
-        required=True,
-        states={
-            "draft": [("readonly", False)],
-            "confirmed": [("readonly", False)],
-            "under_repair": [("readonly", False)],
-            "ready": [("readonly", False)],
-        },
-    )
-
     fees_lines = fields.One2many(
-        comodel_name="repair.fee",
-        inverse_name="repair_id",
-        string="Operations",
-        copy=True,
-        readonly=True,
         states={
             "draft": [("readonly", False)],
             "confirmed": [("readonly", False)],
@@ -55,40 +37,76 @@ class RepairOrder(models.Model):
         },
     )
 
-    def action_validate(self):
-        res = super().action_validate()
-        self._check_company()
-        self.operations._check_company()
-        self.fees_lines._check_company()
-        res = {}
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
-        Move = self.env["stock.move"]
-        for repair in self:
-            # Try to create move with the appropriate owner
-            owner_id = False
-            available_qty_owner = self.env["stock.quant"]._get_available_quantity(
-                repair.product_id,
-                repair.location_id,
-                repair.lot_id,
-                strict=True,
+    @api.depends("state")
+    def _compute_show_check_availability(self):
+        for rec in self:
+            rec.show_check_availability = (
+                any(
+                    move.state in ("waiting", "confirmed", "partially_available")
+                    and float_compare(
+                        move.product_uom_qty,
+                        0,
+                        precision_rounding=move.product_uom.rounding,
+                    )
+                    for move in rec.stock_move_ids
+                )
+                and not rec.ignore_availability
             )
-            if available_qty_owner <= 0.0:
-                raise ValidationError(
-                    _("There is no stock of product: ") + repair.product_id.display_name
-                )
-            if (
-                float_compare(
-                    available_qty_owner, repair.product_qty, precision_digits=precision
-                )
-                >= 0
-            ):
-                owner_id = repair.partner_id.id
 
+    def _create_repair_stock_move(self):
+        self.ensure_one()
+        return self.env["stock.move"].create(
+            {
+                "name": self.name,
+                "product_id": self.product_id.id,
+                "product_uom": self.product_uom.id or self.product_id.uom_id.id,
+                "product_uom_qty": self.product_qty,
+                "partner_id": self.address_id.id,
+                "location_id": self.location_id.id,
+                "location_dest_id": self.location_id.id,
+                "repair_id": self.id,
+                "origin": self.name,
+                "company_id": self.company_id.id,
+            }
+        )
+
+    def action_repair_confirm(self):
+        res = super().action_repair_confirm()
+        for repair in self:
             moves = self.env["stock.move"]
             for operation in repair.operations:
                 move = operation.create_stock_move()
+                moves |= move
+                operation.write({"move_id": move.id})
+            move = repair._create_repair_stock_move()
+            repair.move_id = move
+        self.mapped("stock_move_ids")._action_confirm()
+        return res
+
+    def action_assign(self):
+        self.filtered(lambda r: r.state == "draft").action_repair_start()
+        moves = self.mapped("stock_move_ids")
+        moves = moves.filtered(
+            lambda move: move.state not in ("draft", "cancel", "done")
+        )
+        if not moves:
+            raise UserError(_("Nothing to check the availability for."))
+        moves._action_assign()
+        return True
+
+    def action_repair_start(self):
+        res = super().action_repair_start()
+        self.mapped("stock_move_ids")._action_assign()
+        return res
+
+    def action_force_availability(self):
+        self.write({"ignore_availability": True})
+
+    def _force_qty_done_in_repair_lines(self):
+        for operation in self.mapped("operations"):
+            for move in operation.stock_move_ids:
+                if move.state not in ["confirmed", "waiting", "partially_available"]:
+                    continue
                 product_qty = move.product_uom._compute_quantity(
                     operation.product_uom_qty,
                     move.product_id.uom_id,
@@ -101,69 +119,19 @@ class RepairOrder(models.Model):
                     strict=False,
                 )
                 move._update_reserved_quantity(
-                    product_qty,
+                    product_qty - move.reserved_availability,
                     available_quantity,
                     move.location_id,
                     lot_id=operation.lot_id,
                     strict=False,
                 )
                 move._set_quantity_done(operation.product_uom_qty)
-
                 if operation.lot_id:
                     move.move_line_ids.lot_id = operation.lot_id
 
-                moves |= move
-                operation.write({"move_id": move.id, "state": "draft"})
-            move = Move.create(
-                {
-                    "name": repair.name,
-                    "product_id": repair.product_id.id,
-                    "product_uom": repair.product_uom.id or repair.product_id.uom_id.id,
-                    "product_uom_qty": repair.product_qty,
-                    "partner_id": repair.address_id.id,
-                    "location_id": repair.location_id.id,
-                    "location_dest_id": repair.location_id.id,
-                    "move_line_ids": [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": repair.product_id.id,
-                                "lot_id": repair.lot_id.id,
-                                "product_uom_qty": 0,  # bypass reservation here
-                                "product_uom_id": repair.product_uom.id
-                                or repair.product_id.uom_id.id,
-                                "qty_done": repair.product_qty,
-                                "package_id": False,
-                                "result_package_id": False,
-                                "owner_id": owner_id,
-                                "location_id": repair.location_id.id,  # TODO:ownerstuff
-                                "company_id": repair.company_id.id,
-                                "location_dest_id": repair.location_id.id,
-                            },
-                        )
-                    ],
-                    "repair_id": repair.id,
-                    "origin": repair.name,
-                    "company_id": repair.company_id.id,
-                }
-            )
-            consumed_lines = moves.mapped("move_line_ids")
-            produced_lines = move.move_line_ids
-            moves |= move
-            produced_lines.write({"consume_line_ids": [(6, 0, consumed_lines.ids)]})
-            res[repair.id] = move.id
-            repair.move_id = move
-        return res
-
-    def action_repair_start(self):
-        super().action_repair_start()
-        (self.move_id | self.operations.mapped("move_id"))._action_confirm()
-
     def action_open_stock_moves(self):
         self.ensure_one()
-        stock_move_ids = self.move_id.ids + self.operations.move_id.ids
-        domain = [("id", "in", stock_move_ids)]
+        domain = [("id", "in", self.mapped("stock_move_ids").ids)]
         action = {
             "name": _("Stock Moves"),
             "view_type": "tree",
@@ -176,9 +144,33 @@ class RepairOrder(models.Model):
         return action
 
     def action_repair_cancel(self):
-        if self.move_id.state != "draft" or self.operations:
-            raise ValidationError(
-                _("Unable to cancel repair order due to already generated stock moves.")
-            )
-        else:
-            super().action_repair_cancel()
+        self.mapped("stock_move_ids")._action_cancel()
+        return super().action_repair_cancel()
+
+    def action_repair_end(self):
+        if any(r.show_check_availability for r in self):
+            raise UserError(_("Some related stock moves are not available."))
+        # I can not everything has been reserved.
+        self._force_qty_done_in_repair_lines()
+        for repair in self:
+            operation_moves = repair.mapped("operations.move_id")
+            if operation_moves:
+                consumed_lines = operation_moves.mapped("move_line_ids")
+                produced_lines = repair.move_id.move_line_ids
+                operation_moves |= repair.move_id
+                produced_lines.write({"consume_line_ids": [(6, 0, consumed_lines.ids)]})
+
+        self.move_id._set_quantity_done(self.move_id.product_uom_qty)
+        self.move_id._action_done()
+        for move in self.mapped("operations.move_id"):
+            move._set_quantity_done(move.product_uom_qty)
+            move._action_done()
+        return super().action_repair_end()
+
+    def action_repair_done(self):
+        self.ensure_one()
+        if self.stock_move_ids:
+            # With this module this should always be the case, so this is
+            # effectively overriding the method.
+            return {self.id: self.move_id.id}
+        return super().action_repair_done()
