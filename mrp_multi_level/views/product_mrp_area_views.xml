@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_mrp_area_tree">
+        <field name="name">product.mrp.area.tree</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Product MRP Area parameters">
+                <field name="mrp_area_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="product_tmpl_id" />
+                <field name="product_id" groups="product.group_product_variant" />
+                <field name="mrp_exclude" />
+                <field name="mrp_verified" />
+                <field name="mrp_nbr_days" />
+                <field name="mrp_transit_delay" />
+                <field name="mrp_inspection_delay" />
+                <field name="mrp_minimum_stock" />
+                <field name="mrp_minimum_order_qty" />
+                <field name="mrp_maximum_order_qty" />
+                <field name="mrp_qty_multiple" />
+                <field name="supply_method" />
+                <field name="main_supplierinfo_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_mrp_area_form">
+        <field name="name">product.mrp.area.form</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Product MRP Area parameters">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_incoming_stock_moves"
+                            string="Incoming Moves"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                        <button
+                            name="action_view_outgoing_stock_moves"
+                            string="Outgoing Moves"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        />
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="mrp_area_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="product_tmpl_id" invisible="1" />
+                            <field name="product_id" />
+                            <field name="location_id" invisible="1" />
+                            <field
+                                name="location_proc_id"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                        <group>
+                            <field name="mrp_exclude" />
+                            <field name="mrp_verified" />
+                            <field name="mrp_nbr_days" />
+                            <!--hide delays for now-->
+                            <field name="mrp_transit_delay" invisible="1" />
+                            <field name="mrp_inspection_delay" invisible="1" />
+                            <field name="mrp_minimum_stock" />
+                            <label for="mrp_minimum_order_qty" />
+                            <div name="mrp_minimum_order_qty" class="o_row">
+                                <field name="mrp_minimum_order_qty" />
+                                <span name="update_min_qty">
+                                    <button
+                                        string="Get from main supplier"
+                                        type="object"
+                                        name="update_min_qty_from_main_supplier"
+                                        attrs="{'invisible':[('supply_method', '!=', 'buy'), ('main_supplierinfo_id', '=', False)]}"
+                                        class="oe_link pt-0 oe_inline"
+                                    />
+                                </span>
+                            </div>
+                            <field name="mrp_maximum_order_qty" />
+                            <field name="mrp_qty_multiple" />
+                            <field name="supply_method" />
+                            <field name="mrp_lead_time" />
+                            <field name="main_supplierinfo_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            name="mrp_moves"
+                            string="MRP Moves"
+                            groups="base.group_no_one"
+                        >
+                            <field name="mrp_move_ids" nolabel="1">
+                                <tree>
+                                    <field name="mrp_date" />
+                                    <field name="current_date" />
+                                    <field name="mrp_origin" />
+                                    <field name="state" />
+                                    <field name="mrp_order_number" />
+                                    <field name="parent_product_id" />
+                                    <field name="name" />
+                                    <field name="mrp_qty" />
+                                    <field name="current_qty" />
+                                    <field name="mrp_type" />
+                                    <field name="planned_order_up_ids" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page
+                            name="planned_orders"
+                            string="Planned Orders"
+                            groups="base.group_no_one"
+                        >
+                            <field name="planned_order_ids" nolabel="1">
+                                <tree>
+                                    <field name="order_release_date" />
+                                    <field name="due_date" />
+                                    <field name="name" />
+                                    <field name="mrp_qty" />
+                                    <field name="mrp_action" />
+                                    <field name="qty_released" />
+                                    <field name="fixed" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_mrp_area_search">
+        <field name="name">product.mrp.area.search</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Product MRP Area parameters">
+                <field name="product_id" />
+                <field name="mrp_area_id" />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="product_mrp_area_action">
+        <field name="name">Product MRP Area Parameters</field>
+        <field name="res_model">product.mrp.area</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="product_mrp_area_tree" />
+        <field name="search_view_id" ref="product_mrp_area_search" />
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_supplierinfo_av_11" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_av_11_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">4</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+    <record id="product_supplierinfo_av_12" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_av_12_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">4</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+    <record id="product_supplierinfo_av_21" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_av_21_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">4</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+    <record id="product_supplierinfo_av_22" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_av_22_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">4</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+    <record id="product_supplierinfo_pp_1" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_pp_1_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">4</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+    <record id="product_supplierinfo_pp_2" model="product.supplierinfo">
+        <field name="product_tmpl_id" ref="product_product_pp_2_product_template" />
+        <field name="name" ref="res_partner_lazer_tech" />
+        <field name="delay">2</field>
+        <field name="min_qty">0</field>
+        <field name="price">100</field>
+    </record>
+</odoo>

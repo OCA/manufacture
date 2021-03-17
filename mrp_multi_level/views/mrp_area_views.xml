@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_area_tree">
+        <field name="name">mrp.area.tree</field>
+        <field name="model">mrp.area</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Area">
+                <field name="name" />
+                <field name="warehouse_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="location_id" />
+                <field name="calendar_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mrp_area_form">
+        <field name="name">mrp.area.form</field>
+        <field name="model">mrp.area</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="MRP Area">
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="warehouse_id" />
+                            <field name="location_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="settings">
+                            <field name="calendar_id" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="mrp_area_action">
+        <field name="name">MRP Area</field>
+        <field name="res_model">mrp.area</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="mrp_area_tree" />
+    </record>
+</odoo>
