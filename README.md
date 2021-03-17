@@ -5,9 +5,9 @@
 
 <!-- /!\ do not modify above this line -->
 
-# manufacture
+# Odoo Manufacturing Modules
 
-TODO: add repo description.
+Odoo modules related to Manufacturing
 
 <!-- /!\ do not modify below this line -->
 
