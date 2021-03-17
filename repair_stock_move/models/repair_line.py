@@ -24,6 +24,7 @@ class RepairLine(models.Model):
                 "location_id": self.location_id.id,
                 "location_dest_id": self.location_dest_id.id,
                 "repair_id": self.repair_id.id,
+                "repair_line_id": self.id,
                 "origin": self.repair_id.name,
                 "company_id": self.company_id.id,
             }
@@ -35,16 +36,19 @@ class RepairLine(models.Model):
         res = super().create(vals)
         if res and res.repair_id.state == "confirmed":
             move = res.create_stock_move()
+            move._action_confirm()
             res.move_id = move
-            move._set_quantity_done(res.product_uom_qty)
         if res and res.repair_id.state == "under_repair":
             move = res.create_stock_move()
             move._action_confirm()
-            move._set_quantity_done(res.product_uom_qty)
+            move._action_assign()
             res.move_id = move
         return res
 
-    def unlink(self):
-        for rec in self:
-            rec.move_id.unlink()
-        return super().unlink()
+    @api.onchange("product_id")
+    def _onchange_location(self):
+        if self.state == "draft":
+            self.location_id = self.repair_id.location_id
+
+    # TODO: write qty - update stock move.
+    # TODO: default repair location in repair lines.

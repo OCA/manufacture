@@ -55,6 +55,7 @@ class TestRepairStockMove(common.SavepointCase):
         )
 
         # Repair Orders
+        dest_loc_id = cls.product_1.property_stock_production.id
         cls.repair1 = cls.env["repair.order"].create(
             {
                 "address_id": cls.res_partner_address_1.id,
@@ -70,9 +71,9 @@ class TestRepairStockMove(common.SavepointCase):
                         0,
                         0,
                         {
-                            "location_dest_id": cls.product_1.property_stock_production.id,
+                            "location_dest_id": dest_loc_id,
                             "location_id": cls.stock_location_14.id,
-                            "name": cls.product_1.get_product_multiline_description_sale(),
+                            "name": cls.product_1.display_name,
                             "product_id": cls.product_2.id,
                             "product_uom": cls.env.ref("uom.product_uom_unit").id,
                             "product_uom_qty": 1.0,
@@ -88,7 +89,7 @@ class TestRepairStockMove(common.SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.service.get_product_multiline_description_sale(),
+                            "name": cls.service.display_name,
                             "product_id": cls.service.id,
                             "product_uom_qty": 1.0,
                             "product_uom": cls.env.ref("uom.product_uom_unit").id,
@@ -108,19 +109,6 @@ class TestRepairStockMove(common.SavepointCase):
         self.repair1.action_validate()
         self.assertEqual(
             self.repair1.move_id.state,
-            "draft",
-            "Generated stock move state should be draft",
-        )
-        for operation in self.repair1.operations:
-            self.assertEqual(
-                operation.move_id.state,
-                "draft",
-                "Generated stock move state should be draft",
-            )
-        # Start Repair
-        self.repair1.action_repair_start()
-        self.assertEqual(
-            self.repair1.move_id.state,
             "confirmed",
             "Generated stock move state should be confirmed",
         )
@@ -130,6 +118,8 @@ class TestRepairStockMove(common.SavepointCase):
                 "confirmed",
                 "Generated stock move state should be confirmed",
             )
+        # Start Repair
+        self.repair1.action_repair_start()
         # End Repair
         self.repair1.action_repair_end()
         self.assertEqual(
