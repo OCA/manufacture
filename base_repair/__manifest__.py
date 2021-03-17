@@ -11,7 +11,7 @@
     "author": "Escodoo, Agile Business Group, Odoo Community Association (OCA)",
     "maintainers": ["marcelsavegnago"],
     "images": ["static/description/banner.png"],
-    "website": "https://github.com/oca/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["repair"],
     "data": ["views/repair_order.xml"],
