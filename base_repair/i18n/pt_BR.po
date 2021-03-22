@@ -28,11 +28,6 @@ msgid "Duration in hours and minutes."
 msgstr "Duração em horas e minutos."
 
 #. module: base_repair
-#: model:ir.model.fields,help:base_repair.field_repair_order__user_id
-msgid "Person in charge for the repair"
-msgstr "Responsável pelo reparo"
-
-#. module: base_repair
 #: model:ir.model.fields,field_description:base_repair.field_repair_order__date_repair
 #: model_terms:ir.ui.view,arch_db:base_repair.view_repair_order_search
 msgid "Repair Date"
@@ -58,10 +53,8 @@ msgstr "Calendário de Pedidos de Reparo"
 msgid "Responsible User"
 msgstr "Usuário Responsável"
 
-#. module: base_repair
-#: model:ir.model.fields,field_description:base_repair.field_repair_order__user_id
-msgid "User"
-msgstr ""
+#~ msgid "Person in charge for the repair"
+#~ msgstr "Responsável pelo reparo"
 
 #~ msgid "Repair Orders"
 #~ msgstr "Ordens de Reparo"
