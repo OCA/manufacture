@@ -20,7 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [account_move_line_manufacture_info](account_move_line_manufacture_info/) | 13.0.1.0.0 | Account Move Line Manufacture Information
-[base_repair](base_repair/) | 13.0.1.0.0 | This module extends the functionality of Odoo Repair module to add some basic features.
+[base_repair](base_repair/) | 13.0.1.1.0 | This module extends the functionality of Odoo Repair module to add some basic features.
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 13.0.1.0.0 | MRP BOM Component Menu
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 13.0.1.0.0 | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 13.0.1.0.1 | Adds location field to Bill of Materials and its components.
