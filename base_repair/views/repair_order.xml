@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 - TODAY, Escodoo
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="view_repair_order_calendar_form" model="ir.ui.view">
+        <field name="name">repair.calendar.form (in base_repair)</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='guarantee_limit']" position="after">
+                <field name="date_repair" />
+                <field name="duration" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_repair_order_search" model="ir.ui.view">
+        <field name="name">repair.order.search (in base_repair)</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field string="Responsible User" name="user_id" />
+            </field>
+            <filter name="guarantee_limit" position="after">
+                <filter
+                    name="user_id"
+                    string="Responsible User"
+                    context="{'group_by': 'user_id'}"
+                />
+                <filter
+                    name="date_repair"
+                    string="Repair Date"
+                    context="{'group_by': 'date_repair'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="view_repair_order_calendar" model="ir.ui.view">
+        <field name="name">repair.order.calendar (in base_repair)</field>
+        <field name="model">repair.order</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Repair Orders Calendar"
+                date_start="date_repair"
+                date_delay="duration"
+                color="user_id"
+            >
+                <field name="product_id" />
+                <field name="partner_id" />
+            </calendar>
+        </field>
+    </record>
+    <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,graph,pivot,calendar,form</field>
+    </record>
+</odoo>
