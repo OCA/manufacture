@@ -11,9 +11,6 @@
                 <field name="date_repair" />
                 <field name="duration" />
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="user_id" />
-            </xpath>
         </field>
     </record>
     <record id="view_repair_order_search" model="ir.ui.view">
