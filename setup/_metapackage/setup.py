@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-mrp_analytic_cost_material',
         'odoo14-addon-mrp_bom_location',
         'odoo14-addon-mrp_multi_level',
+        'odoo14-addon-mrp_multi_level_estimate',
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
         'odoo14-addon-repair_refurbish',
