@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="product_mrp_area_form" model="ir.ui.view">
+        <field name="name">product.mrp.area.form - estimates</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp_multi_level.product_mrp_area_form" />
+        <field name="arch" type="xml">
+            <field name="mrp_nbr_days" position="after">
+                <field name="group_estimate_days" />
+            </field>
+        </field>
+    </record>
+</odoo>
