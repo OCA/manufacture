@@ -22,7 +22,7 @@ addon | version | summary
 [base_repair](base_repair/) | 14.0.1.0.0 | This module extends the functionality of Odoo Repair module to add some basic features.
 [mrp_analytic_cost_material](mrp_analytic_cost_material/) | 14.0.1.0.1 | Track raw material costs as Analytic Items during the manufacturing process
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 | Adds location field to Bill of Materials and its components.
-[mrp_multi_level](mrp_multi_level/) | 14.0.1.0.0 | Adds an MRP Scheduler
+[mrp_multi_level](mrp_multi_level/) | 14.0.1.0.1 | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.0.0 | Allows to consider demand estimates using MRP multi level.
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 | Organise Workcenters by section
