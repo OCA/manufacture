@@ -71,7 +71,7 @@ class MultiLevelMrp(models.TransientModel):
                 parent_product_id = (
                     move_dest_id.production_id.product_id or move_dest_id.product_id
                 ).id
-        else:
+        if not order_number:
             order_number = (move.picking_id or move).name
             origin = "mv"
         mrp_date = date.today()
