@@ -15,14 +15,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-27 09:22+0000\n"
-"PO-Revision-Date: 2019-08-26 09:12+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@gmail.com>, 2020\n"
+"PO-Revision-Date: 2021-04-07 18:46+0000\n"
+"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:193
@@ -38,17 +39,26 @@ msgid ""
 "the\n"
 "operations."
 msgstr ""
+"\n"
+"Si deve utilizzare il pulsante 'Componenti registrati' per registrare la "
+"quantità per  \n"
+"prodotto (i)  subappaltato con componente (i) tracciato (i):\n"
+" %s.\n"
+"Se si vuole  processare più di quanto inizialmente pianificato,\n"
+"si possono usare i tasti modifica + sblocca per adattare la domanda iniziale "
+"sulle\n"
+"operazioni."
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/res_company.py:40
 #, python-format
 msgid "%s: Subcontracting Location"
-msgstr ""
+msgstr "%s: Ubicazione terzista"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_backorder_confirmation
 msgid "Backorder Confirmation"
-msgstr ""
+msgstr "Conferma ordine residuo"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_bom
@@ -66,6 +76,8 @@ msgid ""
 "Choose a vendor of type subcontractor if you want to         subcontract the "
 "product"
 msgstr ""
+"Scegliere un fornitore di tipo terzista se si vuole          subappaltare il "
+"prodotto"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_company
@@ -75,7 +87,7 @@ msgstr "Aziende"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "Consumed"
-msgstr ""
+msgstr "Consumato"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_partner
@@ -85,17 +97,17 @@ msgstr "Contatto"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_picking__display_action_record_components
 msgid "Display Action Record Components"
-msgstr ""
+msgstr "Mostra azione Registra Componenti"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
 msgid "Inventory Locations"
-msgstr ""
+msgstr "Ubicazioni di invetario"
 
 #. module: mrp_subcontracting
 #: selection:mrp.bom,type:0
 msgid "Kit"
-msgstr ""
+msgstr "Kit"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:81
@@ -106,7 +118,7 @@ msgstr "Produzione su ordine"
 #. module: mrp_subcontracting
 #: selection:mrp.bom,type:0
 msgid "Manufacture this product"
-msgstr ""
+msgstr "Produrre questo prodotto"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move_line
@@ -115,15 +127,14 @@ msgstr "Movimenti del prodotto (riga movimento magazzino)"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production
-#, fuzzy
 msgid "Production Order"
-msgstr "Registrare la produzione"
+msgstr "Ordine di produzione"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:102
 #, python-format
 msgid "Raw Materials for %s"
-msgstr ""
+msgstr "Componenti per %s"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_product_produce
@@ -133,41 +144,41 @@ msgstr "Registrare la produzione"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.stock_picking_form_view
 msgid "Record components"
-msgstr ""
+msgstr "Registra componenti"
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.stock_picking_form_view
 msgid "Register components for subcontracted product"
-msgstr ""
+msgstr "Registra componenti per prodotto subappaltato"
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "Reserved"
-msgstr ""
+msgstr "Riservato"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:56
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_route_id
 #, python-format
 msgid "Resupply Subcontractor"
-msgstr ""
+msgstr "Rifornisci terzista"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:101
 #: model:stock.location.route,name:mrp_subcontracting.route_resupply_subcontractor_mto
 #, python-format
 msgid "Resupply Subcontractor on Order"
-msgstr ""
+msgstr "Rifornisci il terzista su ordine"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_to_resupply
 msgid "Resupply Subcontractors"
-msgstr ""
+msgstr "Rifornisci i terzisti"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_stock_warehouse__subcontracting_to_resupply
 msgid "Resupply subcontractors with components"
-msgstr ""
+msgstr "Rifornisci i terzisti con componenti"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_return_picking
@@ -178,12 +189,12 @@ msgstr "Prelievo di reso"
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:131
 #, python-format
 msgid "Sequence subcontracting"
-msgstr ""
+msgstr "Sequenza di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move__show_subcontracting_details_visible
 msgid "Show Subcontracting Details Visible"
-msgstr ""
+msgstr "Mostra i dettagli di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move
@@ -198,7 +209,7 @@ msgstr "Regola di magazzino"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
 msgid "Subcontracted"
-msgstr ""
+msgstr "Subappaltato"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:120
@@ -210,7 +221,7 @@ msgstr "Subappalto"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_company__subcontracting_location_id
 msgid "Subcontracting Location"
-msgstr ""
+msgstr "Ubicazione di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_mto_pull_id
@@ -225,13 +236,13 @@ msgstr "Regola MTS subappalto"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_type_id
 msgid "Subcontracting Operation Type"
-msgstr ""
+msgstr "Tipo operazione di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__property_stock_subcontractor
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_users__property_stock_subcontractor
 msgid "Subcontractor Location"
-msgstr ""
+msgstr "Ubicazione di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_bom__subcontractor_ids
@@ -246,7 +257,7 @@ msgstr "Listino prezzi fornitore"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move__is_subcontract
 msgid "The move is a subcontract receipt"
-msgstr ""
+msgstr "Il movimento è una ricezione di subappalto"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_res_partner__property_stock_subcontractor
@@ -255,17 +266,20 @@ msgid ""
 "The stock location used as source and destination when sending        goods "
 "to this contact during a subcontracting process."
 msgstr ""
+"La ubicazione di magazzino usata come origine e destinazione quando si "
+"spediscono        prodotti a questo contatto durante il processo di "
+"subappalto."
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
 msgid "To Consume"
-msgstr ""
+msgstr "Da consumare"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:130
 #, python-format
 msgid "To subcontract, use a planned transfer."
-msgstr ""
+msgstr "Da subappaltare, utilizzare un trasferimento pianificato."
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_picking
@@ -280,4 +294,4 @@ msgstr "Magazzino"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_product_produce__subcontract_move_id
 msgid "stock move from the subcontract picking"
-msgstr ""
+msgstr "movimento di magazzino da trasferimento di subappalto"
