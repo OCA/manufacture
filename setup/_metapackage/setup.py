@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
         'odoo14-addon-repair_refurbish',
+        'odoo14-addon-repair_stock_move',
     ],
     classifiers=[
         'Programming Language :: Python',
