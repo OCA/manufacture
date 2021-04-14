@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_mrp"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    attrs="{'invisible':[('subcontract_production_count', '=', 0)]}"
+                    groups="stock.group_stock_user"
+                >
+                    <field name="subcontract_production_ids" invisible="1" />
+                    <field
+                        name="subcontract_production_count"
+                        widget="statinfo"
+                        string="Productions"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
