@@ -27,6 +27,7 @@ addon | version | summary
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 | Organise Workcenters by section
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.0 | Create refurbished products during repair
+[repair_stock_move](repair_stock_move/) | 14.0.1.0.0 | Ongoing Repair Stock Moves Definition in odoo
 
 [//]: # (end addons)
 
