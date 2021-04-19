@@ -6,8 +6,9 @@
     "depends": ["mrp"],
     "website": "https://github.com/OCA/manufacture",
     "data": [
-        "wizards/mrp_view.xml",
-        "views/mrp_view.xml",
+        "wizards/switch_schedule_state_view.xml",
+        "views/mrp_production_view.xml",
+        "views/mrp_workorder_view.xml",
         "security/ir.model.access.csv",
     ],
     "maintainer": "bealdav,florian-dacosta",

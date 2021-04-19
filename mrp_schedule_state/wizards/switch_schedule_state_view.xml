@@ -15,7 +15,7 @@
                     </div>
                     <field name="schedule_state" widget="radio" />
                     <field
-                        name="date_planned_start"
+                        name="schedule_date"
                         attrs="{'invisible': [('schedule_state', '!=', 'scheduled')]}"
                     />
                 </group>

@@ -5,8 +5,7 @@ from odoo import fields, models
 
 
 class MrpWorkorder(models.Model):
-    _inherit = ["mrp.workorder", "selection.rotate.mixin"]
-    _name = "mrp.workorder"
+    _inherit = "mrp.workorder"
 
     schedule_state = fields.Selection(
         related="production_id.schedule_state",
@@ -18,18 +17,13 @@ class MrpWorkorder(models.Model):
         "planification, scheduling and ordering",
     )
     schedule_mo = fields.Datetime(
-        related="production_id.date_planned_start",
+        related="production_id.schedule_date",
         string="Schedule MO",
         readonly=True,
         index=True,
         store=True,
     )
 
-    def _iter_selection(self, direction):
-        """Allows to update the field selection to its next value
-        here, we pass through the related field
-        to go towards 'schedule_state' in mrp.production
-        """
-        for elm in self:
-            elm.production_id._iter_selection(direction)
-        return True
+    def next_schedule_state(self):
+        self.ensure_one()
+        self.production_id.next_schedule_state()

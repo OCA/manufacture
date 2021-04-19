@@ -26,7 +26,7 @@
     </record>
     <record id="mrp.mrp_production_action" model="ir.actions.act_window">
         <field name="context">
-            {'search_default_sch_todo': True, 'search_default_ready': True}
+            {'search_default_sch_todo': True}
         </field>
     </record>
     <record id="mrp_production_form_view" model="ir.ui.view">
@@ -42,7 +42,13 @@
                 />
             </xpath>
             <field name="user_id" position="before">
-                <field name="schedule_state" />
+                <field name="schedule_state" readonly="1" />
+            </field>
+            <field name="date_planned_start" position="after">
+                <field name="schedule_date" readonly="1" optional="show" />
+            </field>
+            <field name="date_planned_start" position="attributes">
+                <attribute name="invisible">1</attribute>
             </field>
             <xpath
                 expr="//page[@name='miscellaneous']/group[1]/group[1]"
@@ -65,41 +71,19 @@
                 />
             </xpath>
             <field name="date_planned_start" position="after">
+                <field name="schedule_date" />
                 <button
-                    name="iter_selection_next"
-                    context="{'selection_field': 'schedule_state'}"
-                    class="Schedule"
-                    type="object"
-                    title="Next Schedule"
-                    groups="mrp.group_mrp_manager"
-                />
-                <field name="schedule_state" />
-                <!--You also may display this button to rotate in reverse way-->
-                <!--
-                <button name="iter_selection_prev"
-                        string="previous scheduled state"
-                        context="{'selection_field': 'schedule_state'}"
-                        icon="gtk-go-back"
-                        type="object"/>
-                -->
-            </field>
-        </field>
-    </record>
-    <record id="mrp_production_workorder_tree_view" model="ir.ui.view">
-        <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view" />
-        <field name="arch" type="xml">
-            <field name="workcenter_id" position="before">
-                <field name="schedule_mo" />
-                <button
-                    name="iter_selection_next"
-                    context="{'selection_field': 'schedule_state'}"
+                    name="next_schedule_state"
                     class="fa fa-arrow-right"
-                    title="Next Schedule"
+                    title="Schedule/Unschedule"
                     type="object"
                 />
                 <field name="schedule_state" />
             </field>
+            <field name="date_planned_start" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
+
 </odoo>

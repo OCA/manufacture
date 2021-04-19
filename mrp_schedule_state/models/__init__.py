@@ -1,3 +1,2 @@
-from . import rotate
-from . import production
-from . import workorder
+from . import mrp_production
+from . import mrp_workorder

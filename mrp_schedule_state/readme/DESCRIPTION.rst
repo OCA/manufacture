@@ -1,6 +1,6 @@
 This module add a field 'schedule state' in Manufacturing Order as sub state.
 
-It's a kind of 'sub state' of MO state 'Ready To Produce' dedicated to
+It's a kind of 'sub state' of MO reservation state dedicated to
 planification, scheduling and ordering
 
 It allows to automate production ordering when used in combination
