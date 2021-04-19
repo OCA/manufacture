@@ -10,7 +10,7 @@
     "license": "AGPL-3",
     "author": "Escodoo,Odoo Community Association (OCA)",
     "maintainers": ["marcelsavegnago"],
-    "website": "https://github.com/oca/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "images": ["static/description/banner.png"],
     "depends": ["base_repair", "web_timeline"],
     "data": ["views/repair_order.xml"],
