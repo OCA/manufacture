@@ -26,7 +26,10 @@
             </timeline>
         </field>
     </record>
-    <record id="repair.action_repair_order_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,graph,pivot,calendar,timeline,form</field>
+    <record id="action_repair_order_tree" model="ir.actions.act_window">
+        <field name="name">Repair Orders</field>
+        <field name="res_model">repair.order</field>
+        <field name="inherit_id" ref="repair.action_repair_order_tree"/>
+        <field name="view_mode">timeline</field>
     </record>
 </odoo>
