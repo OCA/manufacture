@@ -10,14 +10,22 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     source_procurement_group_id = fields.Many2one(
-        comodel_name='procurement.group', readonly=True,
+        comodel_name="procurement.group",
+        readonly=True,
     )
     sale_id = fields.Many2one(
-        comodel_name='sale.order', string='Sale order', readonly=True,
-        store=True, related='source_procurement_group_id.sale_id')
+        comodel_name="sale.order",
+        string="Sale order",
+        readonly=True,
+        store=True,
+        related="source_procurement_group_id.sale_id",
+    )
     partner_id = fields.Many2one(
-        comodel_name='res.partner', related='sale_id.partner_id',
-        string='Customer', store=True)
+        comodel_name="res.partner",
+        related="sale_id.partner_id",
+        string="Customer",
+        store=True,
+    )
     commitment_date = fields.Datetime(
-        related='sale_id.commitment_date', string='Commitment Date',
-        store=True)
+        related="sale_id.commitment_date", string="Commitment Date", store=True
+    )
