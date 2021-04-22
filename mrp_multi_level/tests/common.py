@@ -165,6 +165,19 @@ class TestMrpMultiLevelCommon(SavepointCase):
             'mrp_nbr_days': 7,
             'mrp_qty_multiple': 5.0,
         })
+        # Another product:
+        cls.product_tz = cls.product_obj.create(
+            {
+                "name": "Product Timezone",
+                "type": "product",
+                "list_price": 100.0,
+                "route_ids": [(6, 0, [route_buy])],
+                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+            }
+        )
+        cls.product_mrp_area_obj.create(
+            {"product_id": cls.product_tz.id, "mrp_area_id": cls.cases_area.id}
+        )
 
         # Create pickings for Scenario 1:
         dt_base = cls.calendar.plan_days(3 + 1, datetime.today())

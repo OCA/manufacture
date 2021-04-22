@@ -1,5 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# © 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# © 2016-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@eficent.com>
 # - Lois Rilo Antelo <lois.rilo@eficent.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
@@ -31,6 +31,14 @@ class MrpArea(models.Model):
         string='Working Hours',
         related='warehouse_id.calendar_id',
     )
+
+    @api.model
+    def _datetime_to_date_tz(self, dt_to_convert=None):
+        """Coverts a datetime to date considering the timezone of MRP Area.
+        If no datetime is provided, it returns today's date in the timezone."""
+        return fields.Date.context_today(
+            self.with_context(tz=self.calendar_id.tz), timestamp=dt_to_convert,
+        )
 
     @api.multi
     def _get_locations(self):

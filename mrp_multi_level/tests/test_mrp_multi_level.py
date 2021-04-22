@@ -1,9 +1,11 @@
-# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2018-21 ForgeFlow S.L. (https://www.forgeflow.com)
 #   (http://www.eficent.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 from odoo import fields
+
+from datetime import date, datetime
 
 
 class TestMrpMultiLevel(TestMrpMultiLevelCommon):
@@ -289,3 +291,40 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             ('product_mrp_area_id.product_id', '=', self.av_22.id)
         ])
         self.assertTrue(av_22_supply)
+
+    def test_13_timezone_handling(self):
+        self.calendar.tz = "Australia/Sydney"  # Oct-Apr/Apr-Oct: UTC+11/UTC+10
+        date_move = datetime(2090, 4, 19, 20, 00)  # Apr 20 6/7 am in Sidney
+        sidney_date = date(2090, 4, 20)
+        self._create_picking_in(
+            self.product_tz, 10.0, date_move, location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", self.product_tz.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.date, sidney_date)
+
+    def test_14_timezone_not_set(self):
+        self.wh.calendar_id = False
+        date_move = datetime(2090, 4, 19, 20, 00)
+        self._create_picking_in(
+            self.product_tz, 10.0, date_move, location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", self.product_tz.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.date, date_move.date())
