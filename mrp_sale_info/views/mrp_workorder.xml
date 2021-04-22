@@ -3,7 +3,10 @@
     <record id="mrp_production_workorder_tree_view_inherit" model="ir.ui.view">
         <field name="name">MRP Work Order Tree with Sale Order</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view_inherit" />
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
         <field name="arch" type="xml">
             <field name="date_planned_start" position="after">
                 <field name="sale_id" />
@@ -18,11 +21,20 @@
         <field name="model">mrp.workorder</field>
         <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
         <field name="arch" type="xml">
-            <field name="production_id" position="after">
-                <field name="sale_id" />
-                <field name="partner_id" />
-                <field name="commitment_date" />
-            </field>
+            <page name="time_tracking" position="after">
+                <!-- "miscellaneous" doesn't exist in base view -->
+                <!-- and seems too easy to overwrite accidentally -->
+                <!-- thus, create new sale_info tab -->
+                <page
+                    string="Sale information"
+                    name="sale_info"
+                    groups="mrp.group_mrp_manager"
+                >
+                    <field name="sale_id" />
+                    <field name="partner_id" />
+                    <field name="commitment_date" />
+                </page>
+            </page>
         </field>
     </record>
 
