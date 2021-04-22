@@ -8,13 +8,16 @@ class TestMrpSaleInfo(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        route_manufacture_1 = cls.env.ref("mrp.route_warehouse0_manufacture")
+        route_manufacture_2 = cls.env.ref("stock.route_warehouse0_mto")
+        route_manufacture_2.active = True
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test mrp_sale_info product",
                 "type": "product",
                 "route_ids": [
-                    (4, cls.env.ref("mrp.route_warehouse0_manufacture").id),
-                    (4, cls.env.ref("stock.route_warehouse0_mto").id),
+                    (4, route_manufacture_1.id),
+                    (4, route_manufacture_2.id),
                 ],
             }
         )
