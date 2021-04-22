@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.addons.base.res.res_partner import _tz_get
 
 
 class MrpArea(models.Model):
@@ -30,6 +31,24 @@ class MrpArea(models.Model):
         string='Working Hours',
         related='warehouse_id.calendar_id',
     )
+    tz = fields.Selection(
+        _tz_get, string='Timezone', required=True,
+        default=lambda self: self._context.get(
+            'tz') or self.env.user.tz or 'UTC',
+        help="This field is used in order to define in which timezone "
+             "the MRP Area will work.")
+
+    @api.model
+    def _datetime_to_date_tz(self, dt_to_convert=None):
+        """Coverts a datetime to date considering the timezone
+        of MRP Area. If no datetime is provided, it returns today's
+        date in the timezone."""
+        if isinstance(dt_to_convert, str):
+            dt_to_convert = fields.Datetime.from_string(dt_to_convert)
+        return fields.Date.context_today(
+            self.with_context(tz=self.tz),
+            timestamp=dt_to_convert,
+        )
 
     @api.multi
     def _get_locations(self):

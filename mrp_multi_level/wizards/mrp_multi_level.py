@@ -5,8 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, exceptions, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 import logging
 from odoo.tools.float_utils import float_round
 logger = logging.getLogger(__name__)
@@ -20,8 +19,6 @@ class MultiLevelMrp(models.TransientModel):
         string="MRP Areas to run",
         help="If empty, all areas will be computed.",
     )
-
-    # TODO: dates are not being correctly computed for supply...
 
     @api.model
     def _prepare_product_mrp_area_data(self, product_mrp_area):
@@ -73,6 +70,7 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _prepare_mrp_move_data_from_stock_move(
             self, product_mrp_area, move, direction='in'):
+        area = product_mrp_area.mrp_area_id
         if direction == 'out':
             mrp_type = 'd'
             product_qty = -move.product_qty
@@ -107,12 +105,13 @@ class MultiLevelMrp(models.TransientModel):
             else:
                 order_number = move.name
             origin = "mv"
-        mrp_date = date.today()
-        if datetime.date(datetime.strptime(
-                move.date_expected,
-                DEFAULT_SERVER_DATETIME_FORMAT)) > date.today():
-            mrp_date = datetime.date(datetime.strptime(
-                move.date_expected, DEFAULT_SERVER_DATETIME_FORMAT))
+        # The date to display is based on the timezone of the warehouse.
+        today_tz = area._datetime_to_date_tz()
+        move_date_tz = area._datetime_to_date_tz(move.date_expected)
+        if move_date_tz > today_tz:
+            mrp_date = move_date_tz
+        else:
+            mrp_date = today_tz
         return {
             'product_id': move.product_id.id,
             'product_mrp_area_id': product_mrp_area.id,
