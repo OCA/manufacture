@@ -22,8 +22,6 @@ class MultiLevelMrp(models.TransientModel):
         help="If empty, all areas will be computed.",
     )
 
-    # TODO: dates are not being correctly computed for supply...
-
     @api.model
     def _prepare_product_mrp_area_data(self, product_mrp_area):
         qty_available = 0.0
@@ -45,6 +43,7 @@ class MultiLevelMrp(models.TransientModel):
     def _prepare_mrp_move_data_from_stock_move(
         self, product_mrp_area, move, direction="in"
     ):
+        area = product_mrp_area.mrp_area_id
         if direction == "out":
             mrp_type = "d"
             product_qty = -move.product_qty
@@ -74,9 +73,13 @@ class MultiLevelMrp(models.TransientModel):
         if not order_number:
             order_number = (move.picking_id or move).name
             origin = "mv"
-        mrp_date = date.today()
-        if move.date.date() > date.today():
-            mrp_date = move.date.date()
+        # The date to display is based on the timezone of the warehouse.
+        today_tz = area._datetime_to_date_tz()
+        move_date_tz = area._datetime_to_date_tz(move.date)
+        if move_date_tz > today_tz:
+            mrp_date = move_date_tz
+        else:
+            mrp_date = today_tz
         return {
             "product_id": move.product_id.id,
             "product_mrp_area_id": product_mrp_area.id,

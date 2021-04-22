@@ -1,10 +1,10 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2016-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 # - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class MrpArea(models.Model):
@@ -27,6 +27,15 @@ class MrpArea(models.Model):
         string="Working Hours",
         related="warehouse_id.calendar_id",
     )
+
+    @api.model
+    def _datetime_to_date_tz(self, dt_to_convert=None):
+        """Coverts a datetime to date considering the timezone of MRP Area.
+        If no datetime is provided, it returns today's date in the timezone."""
+        return fields.Date.context_today(
+            self.with_context(tz=self.calendar_id.tz),
+            timestamp=dt_to_convert,
+        )
 
     def _get_locations(self):
         self.ensure_one()
