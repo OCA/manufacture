@@ -8,3 +8,4 @@
   * Rafael Blasco
   * Pedro M. Baeza
 * Rubén Bravo <rubenred18@gmail.com>
+* Kevin Khao <kevin.khao@akretion.com>
