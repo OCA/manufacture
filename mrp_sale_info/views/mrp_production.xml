@@ -5,11 +5,13 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <field name="availability" position="after">
-                <field name="sale_id" />
-                <field name="partner_id" />
-                <field name="commitment_date" />
-            </field>
+            <page name="miscellaneous" position="inside">
+                <group>
+                    <field name="sale_id" />
+                    <field name="partner_id" />
+                    <field name="commitment_date" />
+                </group>
+            </page>
         </field>
     </record>
 
