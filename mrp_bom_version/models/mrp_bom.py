@@ -54,8 +54,6 @@ class MrpBom(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     product_qty = fields.Float(
         readonly=True, states={'draft': [('readonly', False)]})
-    name = fields.Char(
-        states={'historical': [('readonly', True)]})
     code = fields.Char(
         states={'historical': [('readonly', True)]})
     type = fields.Selection(
@@ -80,14 +78,14 @@ class MrpBom(models.Model):
         states={'historical': [('readonly', True)]})
     product_efficiency = fields.Float(
         states={'historical': [('readonly', True)]})
-    message_follower_ids = fields.Many2many(
+    message_follower_ids = fields.One2many(
         states={'historical': [('readonly', True)]})
     message_ids = fields.One2many(
         states={'historical': [('readonly', True)]})
     version = fields.Integer(states={'historical': [('readonly', True)]},
                              copy=False, default=1)
     parent_bom = fields.Many2one(
-        comodel_name='mrp.bom', string='Parent BoM', copy=False)
+        comodel_name='mrp.bom', string='Parent BoM')
     old_versions = fields.Many2many(
         comodel_name='mrp.bom', string='Old Versions',
         compute='_get_old_versions')

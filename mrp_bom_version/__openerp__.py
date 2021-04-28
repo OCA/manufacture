@@ -6,19 +6,13 @@
 {
     "name": "MRP - BoM version",
     "summary": "BoM versioning",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
-    "contributors": [
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>",
-        "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
-        "Oihane Crucelaegui <oihanecrucelaegui@avanzosc.es>",
-    ],
     "category": "Manufacturing",
     "depends": [
         "mrp",

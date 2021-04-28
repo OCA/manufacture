@@ -11,11 +11,11 @@ class MrpConfigSettings(models.TransientModel):
     group_mrp_bom_version = fields.Boolean(
         string='Allow to re-edit BoMs',
         implied_group='mrp_bom_version.group_mrp_bom_version',
-        help='The active state may be passed back to state draft')
+        help='The active state may be passed back to state draft.')
     active_draft = fields.Boolean(
         string='Keep re-editing BoM active',
-        help='This will allow you to define if those BoM passed back to draft'
-        ' are still activated or not')
+        help='This will allow you to define whether those BoM passed back to draft'
+        ' can still be re-activated or not.')
 
     def _get_parameter(self, key, default=False):
         param_obj = self.env['ir.config_parameter']
