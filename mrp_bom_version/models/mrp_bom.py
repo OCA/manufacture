@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # (c) 2015 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -92,7 +91,7 @@ class MrpBom(models.Model):
 
     @api.multi
     def button_draft(self):
-        active_draft = self.env['mrp.config.settings']._get_parameter(
+        active_draft = self.env['res.config.settings']._get_parameter(
             'active.draft')
         self.write({
             'active': active_draft and active_draft.value or False,
@@ -115,7 +114,7 @@ class MrpBom(models.Model):
 
     @api.multi
     def _copy_bom(self):
-        active_draft = self.env['mrp.config.settings']._get_parameter(
+        active_draft = self.env['res.config.settings']._get_parameter(
             'active.draft')
         new_bom = self.copy({
             'version': self.version + 1,
