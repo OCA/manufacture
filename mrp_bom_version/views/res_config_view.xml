@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <record model="ir.ui.view" id="mrp_config_settings_versioning">
         <field name="name">mrp.config.settings.versioning</field>
         <field name="model">mrp.config.settings</field>
@@ -11,4 +11,4 @@
             </xpath>
         </field>
     </record>
-</openerp>
+</odoo>
