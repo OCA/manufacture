@@ -16,31 +16,19 @@ class ResConfigSettings(models.TransientModel):
         help='This will allow you to define whether those BoM passed back to draft'
         ' can still be re-activated or not.')
 
-    def _get_parameter(self, key, default=False):
-        param_obj = self.env['ir.config_parameter']
-        rec = param_obj.search([('key', '=', key)])
-        return rec or default
-
-    def _write_or_create_param(self, key, value):
-        param_obj = self.env['ir.config_parameter']
-        rec = self._get_parameter(key)
-        if rec:
-            if not value:
-                rec.unlink()
-            else:
-                rec.value = value
-        elif value:
-            param_obj.create({'key': key, 'value': value})
+    @api.model
+    def get_values(self):
+        res = super(ResConfigSettings, self).get_values()
+        res.update(active_draft=self.env[
+            'ir.config_parameter'].sudo().get_param(
+            'active_draft',
+            False)
+        )
+        return res
 
     @api.multi
-    def get_default_parameters(self):
-        def get_value(key, default=''):
-            rec = self._get_parameter(key)
-            return rec and rec.value or default
-        return {
-            'active_draft': get_value('active.draft', False),
-        }
+    def set_values(self):
+        super(ResConfigSettings, self).set_values()
+        self.env['ir.config_parameter'].sudo().set_param(
+            'active_draft', self.active_draft)
 
-    @api.multi
-    def set_parameters(self):
-        self._write_or_create_param('active.draft', self.active_draft)

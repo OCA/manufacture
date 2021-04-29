@@ -17,18 +17,18 @@
                 <button name="button_draft" type="object" string="Draft"
                         groups="mrp_bom_version.group_mrp_bom_version"
                         attrs="{'invisible':[('state','!=','active')]}"
-                        icon="terp-document-new" />
+                        icon="fa-file" />
                 <button name="button_activate" type="object" string="Activate"
                         attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
-                        icon="terp-camera_test"
+                        icon="fa-check"
                         confirm="You will now activate the BoM. Please make sure to set up a route as after activation, then you will not be allowed to do so. Are you sure you want to proceed?"/>
                 <button name="button_new_version" type="object" string="New version"
                         attrs="{'invisible':[('state','==','historical')]}"
-                        icon="gtk-execute"
+                        icon="fa-level-up"
                         confirm="You are going to create a new version of this BoM. Are you sure you want to proceed?"/>
                 <button name="button_historical" type="object" string="Historical"
                         attrs="{'invisible':[('state','!=','active')]}"
-                        icon="gtk-convert"
+                        icon="fa-archive"
                         confirm="You are going to archive a BoM. Doing so, you will not be able to unlock it unless you make a new copy. Are you sure you want to proceed?"/>
             </xpath>
         </field>
@@ -86,8 +86,8 @@
                 <filter string="Inactive" domain="[('active','=',False)]" name="is_inactive_filter"/>
             </xpath>
             <xpath expr="//group" position="inside">
-                <filter string="Active" domain="[]" context="{'group_by':'active'}"/>
-                <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                <filter string="Active" domain="[]" context="{'group_by':'active'}" name="group_by_active"/>
+                <filter string="State" domain="[]" context="{'group_by':'state'}" name="group_by_state"/>
             </xpath>
         </field>
     </record>

@@ -51,7 +51,7 @@ class TestMrpBomVersion(common.TransactionCase):
             self.mrp_bom.active, 'Check must be False')
 
     def test_mrp_bom_back2draft_active(self):
-        self.parameter_model.create({'key': 'active.draft', 'value': True})
+        self.parameter_model.create({'key': 'active_draft', 'value': True})
         self.mrp_bom.button_activate()
         self.mrp_bom.button_draft()
         self.assertTrue(
@@ -75,7 +75,7 @@ class TestMrpBomVersion(common.TransactionCase):
             self.assertEqual(
                 new_bom.active,
                 self.parameter_model.search(
-                    [('key', '=', 'active.draft')]).value,
+                    [('key', '=', 'active_draft')]).value,
                 'It does not match active draft check state set in company')
             self.assertEqual(
                 new_bom.state, 'draft',
