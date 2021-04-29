@@ -6,6 +6,8 @@ from . import models
 
 def set_active_bom_active_state(cr, registry):
     """Set those active BoMs to state 'active'"""
-    cr.execute("""UPDATE mrp_bom
+    cr.execute(
+        """UPDATE mrp_bom
                      SET state = 'active'
-                   WHERE active = True""")
+                   WHERE active = True"""
+    )

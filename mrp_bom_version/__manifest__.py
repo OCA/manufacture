@@ -8,14 +8,12 @@
     "version": "12.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
-    "website": "http://www.odoomrp.com",
+    "AvanzOSC,"
+    "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "depends": [
-        "mrp",
-    ],
+    "depends": ["mrp"],
     "data": [
         "data/mrp_bom_data.xml",
         "security/mrp_bom_version_security.xml",
