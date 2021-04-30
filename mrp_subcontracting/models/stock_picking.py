@@ -72,17 +72,18 @@ class StockPicking(models.Model):
                         })
                 else:
                     for move_line in move.move_line_ids:
-                        produce = self.env['mrp.product.produce'].with_context(
-                            default_production_id=production.id,
-                            active_id=production.id).create({
-                                'production_id': production.id,
-                                'product_id': production.product_id.id,
-                                'product_qty': move_line.qty_done,
-                                'product_uom_id': move_line.product_uom_id.id,
-                                'lot_id': move_line.lot_id.id,
-                            })
-                        produce._onchange_product_qty()
-                        produce.do_produce()
+                        if move_line.qty_done != 0:
+                            produce = self.env['mrp.product.produce'].with_context(
+                                default_production_id=production.id,
+                                active_id=production.id).create({
+                                    'production_id': production.id,
+                                    'product_id': production.product_id.id,
+                                    'product_qty': move_line.qty_done,
+                                    'product_uom_id': move_line.product_uom_id.id,
+                                    'lot_id': move_line.lot_id.id,
+                                })
+                            produce._onchange_product_qty()
+                            produce.do_produce()
                 productions |= production
         for subcontracted_production in productions:
             if subcontracted_production.check_to_done:
