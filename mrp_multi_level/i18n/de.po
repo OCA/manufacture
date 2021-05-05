@@ -468,7 +468,7 @@ msgid "Nbr. Days"
 msgstr "# Tage"
 
 #. module: mrp_multi_level
-#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:157
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:156
 #, python-format
 msgid "No MRP product found"
 msgstr "Kein Produkt für MRP gefunden"
@@ -789,6 +789,18 @@ msgid "Theoretical inventory level if all planned orderswere released."
 msgstr ""
 "Dies ist der theoretische Lagerbestand, wenn alle geplanten Aufträge "
 "freigegeben werden."
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_area_tz
+msgid ""
+"This field is used in order to define in which timezone the MRP Area will "
+"work."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area_tz
+msgid "Timezone"
+msgstr ""
 
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
