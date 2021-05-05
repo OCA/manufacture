@@ -4,7 +4,7 @@
 
 {
     'name': 'MRP Multi Level',
-    'version': '12.0.2.2.2',
+    'version': '12.0.2.3.0',
     'development_status': 'Beta',
     'license': 'LGPL-3',
     'author': 'Ucamco, '
