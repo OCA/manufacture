@@ -100,6 +100,20 @@ class TestMrpMultiLevel(SavepointCase):
             'product_id': cls.prod_test.id,
             'mrp_area_id': cls.mrp_area.id,
         })
+        # Another product:
+        cls.product_tz = cls.product_obj.create(
+            {
+                "name": "Product Timezone",
+                "type": "product",
+                "list_price": 100.0,
+                "route_ids": [(6, 0, [route_buy])],
+                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+            }
+        )
+        cls.product_mrp_area_obj.create(
+            {"product_id": cls.product_tz.id, "mrp_area_id": cls.cases_area.id}
+        )
+
         # Parameters in secondary area with nbr_days set.
         cls.product_mrp_area_obj.create({
             'product_id': cls.prod_test.id,
@@ -675,3 +689,42 @@ class TestMrpMultiLevel(SavepointCase):
         self.assertEqual(mrp_invs[0].to_procure, 130)
         # Net needs = 18, available on-hand = 3 -> 15
         self.assertEqual(mrp_invs[1].to_procure, 15)
+
+    def test_timezone_handling(self):
+        self.cases_area.tz = "Australia/Sydney"
+        # Sidney timezone -> Oct-Apr/Apr-Oct: UTC+11/UTC+10
+        date_move = datetime(2090, 4, 19, 20, 00)  # Apr 20 6/7 am in Sidney
+        sidney_date = "2090-04-20"
+        self._create_picking_in(
+            self.product_tz, 10.0, date_move, location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", self.product_tz.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.date, sidney_date)
+
+    def test_timezone_not_set(self):
+        self.wh.calendar_id = False
+        date_move = datetime(2090, 4, 19, 20, 00)
+        no_tz_date = "2090-04-19"
+        self._create_picking_in(
+            self.product_tz, 10.0, date_move, location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", self.product_tz.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.date, no_tz_date)

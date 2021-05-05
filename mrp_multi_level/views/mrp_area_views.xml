@@ -40,6 +40,7 @@
                         </group>
                         <group name="settings">
                             <field name="calendar_id"/>
+                            <field name="tz"/>
                         </group>
                     </group>
                 </sheet>
