@@ -3,7 +3,7 @@
 
 {
     "name": "MRP BoM Tracking",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "Eficent, Odoo Community Association (OCA)",
     "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
