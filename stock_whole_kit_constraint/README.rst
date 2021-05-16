@@ -36,11 +36,12 @@ deliveries so that the components can't be partially delivered.
 Configuration
 =============
 
-To disallow kits partial deliveries:
+To allow/disallow the partial delivery of kits:
 
 #. Go to the kit product template or variant and then to the *Inventory* tab,
    *Logistics* group.
-#. Set *Allow Partial Kit* off.
+#. The "Allow Partial Kit" check controls this. If marked, it will allow it.
+#. By default, the check is not marked.
 
 Usage
 =====
