@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-19 10:36+0000\n"
-"PO-Revision-Date: 2021-03-19 10:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,7 +23,7 @@ msgstr ""
 #. module: stock_whole_kit_constraint
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_product__allow_partial_kit_delivery
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_template__allow_partial_kit_delivery
-msgid "If not set when a kit product components are delivered, it won't be allowed to do it partially."
+msgid "If not set, and this product is delivered with a BoM of type kit, partial deliveries of the components won't be allowed."
 msgstr ""
 
 #. module: stock_whole_kit_constraint
