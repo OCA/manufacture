@@ -56,6 +56,7 @@ addon | version | summary
 [repair_refurbish](repair_refurbish/) | 12.0.1.1.3 | Create refurbished products during repair
 [repair_timeline](repair_timeline/) | 12.0.1.0.1 | Add timeline view
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 12.0.1.0.0 | Set quanity in picking line based on product kit quantity
+[stock_whole_kit_constraint](stock_whole_kit_constraint/) | 12.0.1.0.0 | Avoid to deliver a kit partially
 
 [//]: # (end addons)
 
