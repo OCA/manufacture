@@ -5,7 +5,7 @@
 
 {
     'name': "Subcontract Productions",
-    'version': '12.0.1.0.4',
+    'version': '12.0.1.0.5',
     "author": "Odoo S.A., Tecnativa, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/manufacture',
     'category': 'Manufacturing Orders & BOMs',
