@@ -38,7 +38,7 @@ addon | version | summary
 [mrp_request_workcenter_cycle](mrp_request_workcenter_cycle/) | 12.0.1.0.0 | MRP Request Workcenter Cycle
 [mrp_sale_info](mrp_sale_info/) | 12.0.1.0.0 | Adds sale information to Manufacturing models
 [mrp_stock_orderpoint_manual_procurement](mrp_stock_orderpoint_manual_procurement/) | 12.0.1.0.0 | Updates the value of MO Responsible and keeps trackof changes regarding this field
-[mrp_subcontracting](mrp_subcontracting/) | 12.0.1.0.4 | Subcontract Productions
+[mrp_subcontracting](mrp_subcontracting/) | 12.0.1.0.5 | Subcontract Productions
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 12.0.1.0.0 | Link Purchase Order to Subcontract Productions
 [mrp_unbuild_tracked_raw_material](mrp_unbuild_tracked_raw_material/) | 12.0.1.0.0 | Allow to unbuild tracked purchased products
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 12.0.1.0.1 | Considers the warehouse calendars in manufacturing
