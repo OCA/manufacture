@@ -6,6 +6,7 @@
 from datetime import timedelta
 
 from odoo import api, fields, models
+from odoo.tools import float_is_zero
 
 
 class StockPicking(models.Model):
@@ -59,6 +60,11 @@ class StockPicking(models.Model):
                     move_finished_ids = move.move_orig_ids.filtered(
                         lambda m: m.state not in ('done', 'cancel'))
                     for ml in move.move_line_ids:
+                        if float_is_zero(
+                            ml.qty_done,
+                            precision_rounding=ml.product_uom_id.rounding
+                        ):
+                            continue
                         ml.copy({
                             'picking_id': False,
                             'production_id':
@@ -72,6 +78,11 @@ class StockPicking(models.Model):
                         })
                 else:
                     for move_line in move.move_line_ids:
+                        if float_is_zero(
+                            move_line.qty_done,
+                            precision_rounding=move_line.product_uom_id.rounding
+                        ):
+                            continue
                         produce = self.env['mrp.product.produce'].with_context(
                             default_production_id=production.id,
                             active_id=production.id).create({
