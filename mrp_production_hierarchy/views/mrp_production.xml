@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="mrp_production_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <field name="child_ids" invisible="1"/>
+                    <button name="open_production_tree" type="object"
+                        string="Hierarchy" class="oe_stat_button"
+                        icon="fa-sitemap"
+                        attrs="{'invisible': [('child_ids', '=', [])]}"/>
+                </div>
+                <field name="origin" position="after">
+                    <field name="root_id" attrs="{'invisible': [('root_id', '=', False)]}"/>
+                    <field name="parent_id" attrs="{'invisible': [('parent_id', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_production_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="mode">extension</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="root_id"/>
+                    <field name="parent_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mrp_production_filter" model="ir.ui.view">
+            <field name="name">mrp.production.search.inherit</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[last()]" position="inside">
+                    <filter name="group_by_root_id" string="Root order"
+                        domain="[]"
+                        context="{'group_by': 'root_id'}"/>
+                    <filter name="group_by_parent_id" string="Parent order"
+                        domain="[]"
+                        context="{'group_by': 'parent_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>
