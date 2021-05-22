@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">Manufacturing Order: add Tracking Items</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_analytic_tracking_items"
+                    type="object"
+                    icon="fa-hourglass-half"
+                    attrs="{'invisible': [('analytic_tracking_item_count', '=', 0)]}"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <field name="analytic_tracking_item_count" invisible="1" />
+                        <span class="o_stat_value">
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="analytic_tracking_item_amount"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}"
+                            />
+                        </span>
+                        <span class="o_stat_text">WIP Actual</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

@@ -12,7 +12,6 @@
     "depends": ["mrp_analytic", "analytic_activity_based_cost"],
     "data": [
         "views/account_analytic_line_view.xml",
-        "views/mrp_production_views.xml",
         "views/mrp_workcenter_view.xml",
     ],
     "maintainer": "dreispt",

@@ -2,16 +2,47 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import models
+from odoo import _, fields, models
 
 
 class MRPProduction(models.Model):
     _inherit = "mrp.production"
 
+    analytic_tracking_item_count = fields.Integer(
+        "WIP Item Count", compute="_compute_analytic_tracking_item"
+    )
+    analytic_tracking_item_amount = fields.Integer(
+        "WIP Actual Amount", compute="_compute_analytic_tracking_item"
+    )
+    currency_id = fields.Many2one("res.currency", related="company_id.currency_id")
+
     def _get_tracking_items(self):
-        return self.mapped("move_raw_ids.analytic_tracking_item_id") | self.mapped(
-            "workorder_ids.analytic_tracking_item_id"
+        """
+        Returns a recordset with the related Ttacking Items
+        """
+        return (
+            self.mapped("move_raw_ids.analytic_tracking_item_id")
+            | self.mapped("workorder_ids.analytic_tracking_item_id")
+            | self.mapped("workorder_ids.analytic_tracking_item_id.child_ids")
         )
+
+    def _compute_analytic_tracking_item(self):
+        for mo in self:
+            tracking_items = mo._get_tracking_items()
+            mo.analytic_tracking_item_count = len(tracking_items)
+            mo.analytic_tracking_item_amount = sum(
+                tracking_items.mapped("actual_amount")
+            )
+
+    def action_view_analytic_tracking_items(self):
+        self.ensure_one()
+        return {
+            "res_model": "account.analytic.tracking.item",
+            "type": "ir.actions.act_window",
+            "name": _("%s Tracking Items") % self.name,
+            "domain": [("id", "in", self._get_tracking_items().ids)],
+            "view_mode": "tree,form",
+        }
 
     def action_confirm(self):
         """
@@ -32,9 +63,10 @@ class MRPProduction(models.Model):
         On MTO, the Analytic Account might be set after the action_confirm(),
         so the planned amount needs to be set here.
 
-        TODO: in what cases the planned amounts update shoudl be prevented?
+        TODO: in what cases the planned amounts update should be prevented?
         """
         res = super().write(vals)
+        # FIXME: adding non planned lines should create zero budget tracking items
         if "analytic_account_id" in vals:
             update_planned = any(x.state == "confirmed" for x in self)
             tracking_items = self._get_tracking_items()
@@ -47,7 +79,8 @@ class MRPProduction(models.Model):
     def button_mark_done(self):
         res = super().button_mark_done()
         mfg_done = self.filtered(lambda x: x.state == "done")
-        mfg_done._get_tracking_items().process_wip_and_variance_on_done()
+        tracking_items = mfg_done._get_tracking_items()
+        tracking_items.reverse_wip_moves()
         return res
 
     def action_cancel(self):

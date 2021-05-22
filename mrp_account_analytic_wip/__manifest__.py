@@ -11,8 +11,8 @@
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": ["account_analytic_wip", "mrp_analytic_cost"],
-    "data": [],
+    "data": ["views/mrp_production_views.xml"],
     "installable": True,
-    "maintainer": "dreispt",
+    "maintainers": ["dreispt"],
     "development_status": "Alpha",
 }
