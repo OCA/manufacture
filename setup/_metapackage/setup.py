@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-mrp_bom_location',
         'odoo14-addon-mrp_multi_level',
         'odoo14-addon-mrp_multi_level_estimate',
+        'odoo14-addon-mrp_sale_info',
         'odoo14-addon-mrp_subcontracting_purchase_link',
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
