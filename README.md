@@ -28,6 +28,7 @@ addon | version | summary
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 12.0.1.0.1 | Allows to create fixed planned orders on a grid view.
 [mrp_production_auto_post_inventory](mrp_production_auto_post_inventory/) | 12.0.1.1.0 | Production Auto Post-Inventory
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 12.0.1.0.0 | Production Grouped By Product
+[mrp_production_hierarchy](mrp_production_hierarchy/) | 12.0.1.0.0 | View the hierarchy of generated production orders
 [mrp_production_note](mrp_production_note/) | 12.0.1.0.0 | Notes in production orders
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 12.0.1.0.1 | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 12.0.1.0.0 | Production - Manual Quant Assignment
