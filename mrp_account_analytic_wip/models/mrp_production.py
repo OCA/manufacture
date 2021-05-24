@@ -80,7 +80,7 @@ class MRPProduction(models.Model):
         res = super().button_mark_done()
         mfg_done = self.filtered(lambda x: x.state == "done")
         tracking_items = mfg_done._get_tracking_items()
-        tracking_items.reverse_wip_moves()
+        tracking_items.process_wip_and_variance(close=True)
         return res
 
     def action_cancel(self):
