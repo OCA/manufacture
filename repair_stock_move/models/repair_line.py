@@ -12,6 +12,11 @@ class RepairLine(models.Model):
         inverse_name="repair_line_id",
     )
 
+    company_id = fields.Many2one(
+        related='repair_id.company_id',
+        store=True,
+    )
+
     def create_stock_move(self):
         self.ensure_one()
         move = self.env["stock.move"].create(

@@ -34,7 +34,7 @@ class TestRepairStockMove(common.SavepointCase):
 
         # Location
         cls.stock_warehouse = cls.env["stock.warehouse"].search(
-            [("company_id", "=", cls.env.company.id)], limit=1
+            [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
         cls.stock_location_14 = cls.env["stock.location"].create(
             {
@@ -80,7 +80,7 @@ class TestRepairStockMove(common.SavepointCase):
                             "price_unit": 50.0,
                             "state": "draft",
                             "type": "add",
-                            "company_id": cls.env.company.id,
+                            "company_id": cls.env.user.company_id.id,
                         },
                     )
                 ],
@@ -94,7 +94,7 @@ class TestRepairStockMove(common.SavepointCase):
                             "product_uom_qty": 1.0,
                             "product_uom": cls.env.ref("uom.product_uom_unit").id,
                             "price_unit": 50.0,
-                            "company_id": cls.env.company.id,
+                            "company_id": cls.env.user.company_id.id,
                         },
                     )
                 ],

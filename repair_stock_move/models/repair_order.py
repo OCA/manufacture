@@ -80,7 +80,8 @@ class RepairOrder(models.Model):
                 operation.write({"move_id": move.id})
             move = repair._create_repair_stock_move()
             repair.move_id = move
-        self.mapped("stock_move_ids")._action_confirm()
+        self.mapped('stock_move_ids').\
+            filtered(lambda x: x.state != 'cancel')._action_confirm()
         return res
 
     def action_assign(self):
