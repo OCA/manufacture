@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+    <field name="model">mrp.production.workcenter.line</field>
+    <field
+            name="inherit_id"
+            ref="mrp_operations.mrp_production_workcenter_tree_view_inherit"
+        />
+    <field name="arch" type="xml">
+        <field name="workcenter_id" position="after">
+            <button
+                    name="button_workcenter"
+                    string="See Workcenter details"
+                    icon="gtk-execute"
+                    type="object"
+                />
+        </field>
+    </field>
+</record>
+
+</odoo>
