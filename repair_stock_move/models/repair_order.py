@@ -101,7 +101,10 @@ class RepairOrder(models.Model):
         return res
 
     def action_force_availability(self):
-        self.write({"ignore_availability": True})
+        if self.ignore_availability:
+            self.write({"ignore_availability": False})
+        else:
+            self.write({"ignore_availability": True})
 
     def _force_qty_done_in_repair_lines(self):
         for operation in self.mapped("operations"):
