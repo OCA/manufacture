@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) All Rights Reserved 2015 Akretion
@@ -21,16 +20,16 @@
 
 
 {
-    'name': 'MRP Workcenter Workorder Link',
-    'version': '0.5',
-    'author': 'Akretion',
-    'summary': "Switch easily between Work Centers and Work Orders",
-    'maintener': 'Akretion',
-    'category': 'Manufacturing',
-    'depends': [
-        'mrp_operations',
+    "name": "MRP Workcenter Workorder Link",
+    "version": "0.5",
+    "author": "Akretion",
+    "summary": "Switch easily between Work Centers and Work Orders",
+    "maintener": "Akretion",
+    "category": "Manufacturing",
+    "depends": [
+        "mrp_operations",
     ],
-    'description': """
+    "description": """
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
@@ -93,18 +92,17 @@ To contribute to this module, please visit http://odoo-community.org.
 
 
 """,
-    'website': 'http://www.akretion.com/',
-    'data': [
-        'views/mrp_view.xml',
+    "website": "https://github.com/OCA/manufacture",
+    "data": [
+        "views/mrp_view.xml",
     ],
-    'demo': [
-    ],
-    'external_dependencies': {
-        'python': [],
+    "demo": [],
+    "external_dependencies": {
+        "python": [],
     },
-    'license': 'AGPL-3',
-    'tests': [],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "license": "AGPL-3",
+    "tests": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: David BEAL
@@ -22,58 +21,59 @@
 from openerp import api, fields, models
 
 # States than we don't want to take account
-STATIC_STATES = ['cancel', 'done']
+STATIC_STATES = ["cancel", "done"]
 
 WORKCENTER_ACTION = {
-    'res_model': 'mrp.workcenter',
-    'type': 'ir.actions.act_window',
-    'target': 'current',
+    "res_model": "mrp.workcenter",
+    "type": "ir.actions.act_window",
+    "target": "current",
 }
 
 
 class MrpWorkcenter(models.Model):
-    _inherit = 'mrp.workcenter'
+    _inherit = "mrp.workcenter"
 
     production_line_ids = fields.One2many(
-        'mrp.production.workcenter.line',
-        'workcenter_id',
-        domain=[('state', 'not in', STATIC_STATES)],
-        string='Work Orders')
+        "mrp.production.workcenter.line",
+        "workcenter_id",
+        domain=[("state", "not in", STATIC_STATES)],
+        string="Work Orders",
+    )
 
     @api.multi
     def _get_workcenter_line_domain(self):
         return [
-            ('state', 'not in', STATIC_STATES),
-            ('workcenter_id', 'in', self.ids),
-            ]
+            ("state", "not in", STATIC_STATES),
+            ("workcenter_id", "in", self.ids),
+        ]
 
     @api.multi
     def button_workcenter_line(self):
         self.ensure_one()
         domain = self._get_workcenter_line_domain()
         return {
-            'view_mode': 'tree,form',
-            'name': "'%s' Operations" % self.name,
-            'res_model': 'mrp.production.workcenter.line',
-            'type': 'ir.actions.act_window',
-            'domain': domain,
-            'target': 'current',
+            "view_mode": "tree,form",
+            "name": "'%s' Operations" % self.name,
+            "res_model": "mrp.production.workcenter.line",
+            "type": "ir.actions.act_window",
+            "domain": domain,
+            "target": "current",
         }
 
 
 class MrpProductionWorkcenterLine(models.Model):
-    _inherit = 'mrp.production.workcenter.line'
-    _order = 'sequence ASC, name ASC'
+    _inherit = "mrp.production.workcenter.line"
+    _order = "sequence ASC, name ASC"
 
     @api.multi
     def button_workcenter(self):
         self.ensure_one()
-        view = self.env.ref('mrp.mrp_workcenter_view')
+        view = self.env.ref("mrp.mrp_workcenter_view")
         action = {
-            'view_id': view.id,
-            'res_id': self.workcenter_id.id,
-            'name': "'%s' Workcenter" % self.name,
-            'view_mode': 'form',
+            "view_id": view.id,
+            "res_id": self.workcenter_id.id,
+            "name": "'%s' Workcenter" % self.name,
+            "view_mode": "form",
         }
         action.update(WORKCENTER_ACTION)
         return action
