@@ -162,17 +162,16 @@ class MrpBom(models.Model):
 
     @api.model
     def _bom_find(
-        self, product_tmpl_id=None, product_id=None, properties=None
+        self,
+        product_tmpl=None,
+        product=None,
+        picking_type=None,
+        company_id=False,
     ):
-        """ Finds BoM for particular product and product uom.
-        @param product_tmpl_id: Selected product.
-        @param product_uom: Unit of measure of a product.
-        @param properties: List of related properties.
-        @return: False or BoM id.
-        """
-        bom_id = super(MrpBom, self.with_context(state="active"))._bom_find(
-            product_tmpl_id=product_tmpl_id,
-            product_id=product_id,
-            properties=properties,
+        """ Finds BoM for particular product, picking and company """
+        return super(MrpBom, self.with_context(state="active"))._bom_find(
+            product_tmpl=product_tmpl,
+            product=product,
+            picking_type=picking_type,
+            company_id=company_id,
         )
-        return bom_id
