@@ -37,6 +37,21 @@ class RepairOrder(models.Model):
         },
     )
 
+    # This method was inserted here, but in V14 it is already native to the repair
+    # module. Another option is to include it in the base_repair module
+    def unlink(self):
+        for order in self:
+            if order.state not in ('draft', 'cancel'):
+                raise UserError(
+                    _('You can not delete a repair order once it has been confirmed. '
+                      'You must first cancel it.'))
+            if (order.state == 'cancel' and order.invoice_id and
+                    order.invoice_id.posted_before):
+                raise UserError(
+                    _('You can not delete a repair order which is linked to an '
+                      'invoice which has been posted once.'))
+        return super().unlink()
+
     @api.depends("state")
     def _compute_show_check_availability(self):
         for rec in self:
