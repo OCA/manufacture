@@ -74,12 +74,12 @@ class RepairOrder(models.Model):
         res = super().action_repair_confirm()
         for repair in self:
             moves = self.env["stock.move"]
+            move = repair._create_repair_stock_move()
+            repair.move_id = move
             for operation in repair.operations:
                 move = operation.create_stock_move()
                 moves |= move
                 operation.write({"move_id": move.id})
-            move = repair._create_repair_stock_move()
-            repair.move_id = move
         self.mapped("stock_move_ids")._action_confirm()
         return res
 
