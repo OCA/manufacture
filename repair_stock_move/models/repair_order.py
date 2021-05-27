@@ -18,7 +18,7 @@ class RepairOrder(models.Model):
         help="Technical field used to compute whether the button "
         "'Check Availability' should be displayed.",
     )
-    ignore_availability = fields.Boolean()
+    ignore_availability = fields.Boolean(copy=False)
     # Make "Parts" editable in more states.
     operations = fields.One2many(
         states={
