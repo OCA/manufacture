@@ -13,21 +13,34 @@ class StockMove(models.Model):
         ondelete="cascade",
     )
 
-    def _update_reserved_quantity(self, need, available_quantity,
-                                  location_id, lot_id=None,
-                                  package_id=None, owner_id=None,
-                                  strict=True):
+    def _update_reserved_quantity(
+        self,
+        need,
+        available_quantity,
+        location_id,
+        lot_id=None,
+        package_id=None,
+        owner_id=None,
+        strict=True,
+    ):
         if self.repair_id.lot_id and not self.repair_line_id:
             lot_id = self.repair_id.lot_id
         return super()._update_reserved_quantity(
-            need, available_quantity, location_id, lot_id=lot_id,
-            package_id=package_id, owner_id=owner_id, strict=strict)
+            need,
+            available_quantity,
+            location_id,
+            lot_id=lot_id,
+            package_id=package_id,
+            owner_id=owner_id,
+            strict=strict,
+        )
 
     def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):
         vals = super()._prepare_move_line_vals(
-            quantity=quantity, reserved_quant=reserved_quant)
+            quantity=quantity, reserved_quant=reserved_quant
+        )
         if self.repair_id.lot_id and not self.repair_line_id:
             lot = self.repair_id.lot_id
             if reserved_quant and lot:
-                vals['lot_id'] = lot.id
+                vals["lot_id"] = lot.id
         return vals
