@@ -63,24 +63,24 @@ class WizardMrpBomComparison(models.TransientModel):
             ])
 
     bom1_id = fields.Many2one(
-        'mrp.bom', u"BoM v1", required=True,
+        'mrp.bom', "BoM v1", required=True,
         domain=_func_domain_bom_id)
     bom2_id = fields.Many2one(
-        'mrp.bom', u"BoM v2", required=True,
+        'mrp.bom', "BoM v2", required=True,
         domain=_func_domain_bom_id)
     line_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', u"Differences")
+        'wizard.mrp.bom.comparison.line', 'wiz_id', "Differences")
     line_changed_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', u"Products updated",
+        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products updated",
         domain=[('state', '=', 'changed')])
     line_added_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', u"Products added",
+        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products added",
         domain=[('state', '=', 'added')])
     line_removed_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', u"Products removed",
+        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products removed",
         domain=[('state', '=', 'removed')])
     total_qty = fields.Float(
-        u"Total qty",
+        "Total qty",
         digits=dp.get_precision('Product Unit of Measure'),
         compute='_compute_total_qty')
 
@@ -164,7 +164,7 @@ class WizardMrpBomComparison(models.TransientModel):
         # from the same wizard
         self.line_ids.unlink()
         _logger.info(
-            u"BoM comparison between '%s' and '%s'...",
+            "BoM comparison between '%s' and '%s'...",
             self.bom1_id.product_tmpl_id.default_code,
             self.bom2_id.product_tmpl_id.default_code)
         comparison_line_model = self.env['wizard.mrp.bom.comparison.line']
@@ -186,7 +186,7 @@ class WizardMrpBomComparison(models.TransientModel):
                 'state': 'changed',
             }
             _logger.info(
-                u"\tProduct updated: %s (ID=%s) %s -> %s",
+                "\tProduct updated: %s (ID=%s) %s -> %s",
                 v1['product_code'], p_id,
                 v1['bom_qty'], v2['bom_qty'])
             comparison_line_model.create(vals)
@@ -201,7 +201,7 @@ class WizardMrpBomComparison(models.TransientModel):
                 'state': 'added',
             }
             _logger.info(
-                u"\tProduct added: %s (ID=%s) -> %s",
+                "\tProduct added: %s (ID=%s) -> %s",
                 v2['product_code'], p_id, vals['diff_qty'])
             comparison_line_model.create(vals)
         for p_id in diff.removed():
@@ -215,33 +215,33 @@ class WizardMrpBomComparison(models.TransientModel):
                 'state': 'removed',
             }
             _logger.info(
-                u"\tProduct removed: %s (ID=%s) -> %s",
+                "\tProduct removed: %s (ID=%s) -> %s",
                 v1['product_code'], p_id, vals['diff_qty'])
             comparison_line_model.create(vals)
         _logger.info(
-            u"BoM comparison between '%s' and '%s': printing report...",
+            "BoM comparison between '%s' and '%s': printing report...",
             self.bom1_id.product_tmpl_id.default_code,
             self.bom2_id.product_tmpl_id.default_code)
         # Return the report
-        return self.env['report'].get_action(
-            self, 'mrp_bom_comparison.report_mrp_bom_comparison')
+        return self.env.ref(
+            'mrp_bom_comparison.action_report_mrp_bom_comparison').report_action(self)
 
 
 class WizardMrpBomComparisonLine(models.TransientModel):
     _name = 'wizard.mrp.bom.comparison.line'
     _description = "BoM line difference"
 
-    wiz_id = fields.Many2one('wizard.mrp.bom.comparison', u"Wizard")
-    product_id = fields.Many2one('product.product', u"Product")
+    wiz_id = fields.Many2one('wizard.mrp.bom.comparison', "Wizard")
+    product_id = fields.Many2one('product.product', "Product")
     bom1_qty = fields.Float(
-        u"v1-Qty", digits=dp.get_precision('Product Unit of Measure'))
+        "v1-Qty", digits=dp.get_precision('Product Unit of Measure'))
     bom2_qty = fields.Float(
-        u"v2-Qty", digits=dp.get_precision('Product Unit of Measure'))
+        "v2-Qty", digits=dp.get_precision('Product Unit of Measure'))
     diff_qty = fields.Float(
-        u"Qty gap", digits=dp.get_precision('Product Unit of Measure'))
+        "Qty gap", digits=dp.get_precision('Product Unit of Measure'))
     state = fields.Selection(
-        [('changed', u"Changed"),
-         ('added', u"Added"),
-         ('removed', u"Removed"),
+        [('changed', "Changed"),
+         ('added', "Added"),
+         ('removed', "Removed"),
          ],
-        u"State")
+        "State")

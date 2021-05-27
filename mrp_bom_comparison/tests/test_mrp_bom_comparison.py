@@ -11,16 +11,16 @@ class TestMrpBomComparison(TestMrpCommon):
         super(TestMrpBomComparison, self).setUp()
         # bom_3 (product_6) -> bom_2 (product_5) -> bom_1 (product_4)
         self.wiz_model = self.env['wizard.mrp.bom.comparison']
-        self.product_1.default_code = u"P1"
-        self.product_2.default_code = u"P2"
-        self.product_3.default_code = u"P3"
-        self.product_4.default_code = u"P4-BOM_1"
-        self.product_5.default_code = u"P5-BOM_2"
-        self.product_6.default_code = u"P6-BOM_3"
+        self.product_1.default_code = "P1"
+        self.product_2.default_code = "P2"
+        self.product_3.default_code = "P3"
+        self.product_4.default_code = "P4-BOM_1"
+        self.product_5.default_code = "P5-BOM_2"
+        self.product_6.default_code = "P6-BOM_3"
 
         # Create a 'new_bom_1' from 'bom_1'
         self.new_product_4 = self.product_4.copy(
-            {'default_code': u"P4-NEW_BOM_1"})
+            {'default_code': "P4-NEW_BOM_1"})
         self.new_bom_1 = self.bom_1.copy({
             'product_id': self.new_product_4.id,
             'product_tmpl_id': self.new_product_4.product_tmpl_id.id,
@@ -32,7 +32,7 @@ class TestMrpBomComparison(TestMrpCommon):
 
         # Create a 'new_bom_2' from 'bom_2'
         self.new_product_5 = self.product_5.copy(
-            {'default_code': u"P5-NEW_BOM_2"})
+            {'default_code': "P5-NEW_BOM_2"})
         self.new_bom_2 = self.bom_2.copy({
             'product_id': self.new_product_5.id,
             'product_tmpl_id': self.new_product_5.product_tmpl_id.id,
