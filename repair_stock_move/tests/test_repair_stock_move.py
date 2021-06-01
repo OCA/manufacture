@@ -26,10 +26,7 @@ class TestRepairStockMove(common.SavepointCase):
             {"name": "Large Cabinet", "type": "product"}
         )
         cls.service = cls.env["product.product"].create(
-            {
-                "name": "Repair Services",
-                "type": "service",
-            }
+            {"name": "Repair Services", "type": "service",}
         )
 
         # Location
@@ -37,10 +34,7 @@ class TestRepairStockMove(common.SavepointCase):
             [("company_id", "=", cls.env.company.id)], limit=1
         )
         cls.stock_location_14 = cls.env["stock.location"].create(
-            {
-                "name": "Shelf 2",
-                "location_id": cls.stock_warehouse.lot_stock_id.id,
-            }
+            {"name": "Shelf 2", "location_id": cls.stock_warehouse.lot_stock_id.id,}
         )
 
         # Replenish products

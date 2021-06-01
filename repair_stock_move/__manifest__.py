@@ -11,9 +11,7 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["repair"],
-    "data": [
-        "views/repair_order_views.xml",
-    ],
+    "data": ["views/repair_order_views.xml",],
     "installable": True,
     "application": False,
 }

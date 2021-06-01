@@ -8,8 +8,7 @@ class RepairLine(models.Model):
     _inherit = "repair.line"
 
     stock_move_ids = fields.One2many(
-        comodel_name="stock.move",
-        inverse_name="repair_line_id",
+        comodel_name="stock.move", inverse_name="repair_line_id",
     )
 
     def create_stock_move(self):

@@ -8,7 +8,5 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     repair_line_id = fields.Many2one(
-        comodel_name="repair.line",
-        string="Repair Line",
-        ondelete="cascade",
+        comodel_name="repair.line", string="Repair Line", ondelete="cascade",
     )

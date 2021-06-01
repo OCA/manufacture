@@ -10,8 +10,7 @@ class RepairOrder(models.Model):
     _inherit = "repair.order"
 
     stock_move_ids = fields.One2many(
-        comodel_name="stock.move",
-        inverse_name="repair_id",
+        comodel_name="stock.move", inverse_name="repair_id",
     )
     show_check_availability = fields.Boolean(
         compute="_compute_show_check_availability",
