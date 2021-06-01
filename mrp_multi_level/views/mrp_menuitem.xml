@@ -19,14 +19,14 @@
         name="MRP Inventory"
         id="menu_mrp_inventory"
         action="mrp_inventory_action"
-        parent="mrp.menu_mrp_manufacturing"
+        parent="mrp.mrp_planning_menu_root"
         sequence="30"
     />
     <menuitem
         name="Run MRP Multi Level"
         id="menu_mrp_multi_level"
         action="action_mrp_multi_level"
-        parent="mrp.menu_mrp_manufacturing"
+        parent="mrp.mrp_planning_menu_root"
         groups="mrp_multi_level.group_mrp_multi_level_run"
         sequence="40"
     />
