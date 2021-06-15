@@ -6,25 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-06-15 04:48+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: repair_payment_term
 #: model_terms:ir.ui.view,arch_db:repair_payment_term.report_sale_payment_term
 msgid "<strong>Payment Terms:</strong>"
-msgstr ""
+msgstr "<strong>Condições de Pagamento:</strong>"
 
 #. module: repair_payment_term
 #: model:ir.model.fields,field_description:repair_payment_term.field_repair_order__payment_term_id
 msgid "Payment Term"
-msgstr ""
+msgstr "Condição de Pagamento"
 
 #. module: repair_payment_term
 #: model:ir.model,name:repair_payment_term.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Ordem de Reparo"
