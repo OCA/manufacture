@@ -90,7 +90,6 @@ class MRPProduction(models.Model):
 
     def copy(self, default=None):
         new = super().copy(default=default)
-        # Force creating of new tracking items
-        new.move_raw_ids.set_tracking_item(force=True)
-        new.workorder_ids.set_tracking_item(force=True)
+        new.move_raw_ids.set_tracking_item()
+        new.workorder_ids.set_tracking_item()
         return new
