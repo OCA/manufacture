@@ -1,23 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_request
+# 	* mrp_request
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
-# enjolras <yo@miguelrevilla.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2018-02-12 03:48+0000\n"
-"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
-"Language: es\n"
+"POT-Creation-Date: 2021-07-01 01:44+0000\n"
+"PO-Revision-Date: 2021-06-30 20:47-0500\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 3.0\n"
 
 #. module: mrp_request
 #: model_terms:ir.actions.act_window,help:mrp_request.mrp_request_action
@@ -25,11 +23,14 @@ msgid ""
 "A Manufacturing Request is an instruction to production to produce\n"
 "            a certain quantity of a given product."
 msgstr ""
+"Una solicitud de fabricación es una instrucción a la producción para "
+"producir\n"
+"            una cierta cantidad de un producto dado."
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción requerida"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_form
@@ -60,17 +61,16 @@ msgstr "Asignadas a mí"
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nº de archivos adjuntos"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__bom_id
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__bom_id
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Lista de materiales"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__bottle_neck_factor
-#, fuzzy
 msgid "Bottle Neck Factor"
 msgstr "Factor cuello de botella"
 
@@ -97,21 +97,23 @@ msgid ""
 "Check this box to generate manufacturing request instead of generating "
 "manufacturing orders from procurement."
 msgstr ""
+"Marque esta casilla para generar una solicitud de fabricación en lugar de "
+"generar órdenes de fabricación a partir de la adquisición."
 
 #. module: mrp_request
 #: model_terms:ir.actions.act_window,help:mrp_request.mrp_request_action
 msgid "Click to start a new manufacturing request process."
-msgstr ""
+msgstr "Haga clic para iniciar un nuevo proceso de solicitud de fabricación."
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__company_id
 msgid "Company"
-msgstr "Empresa"
+msgstr "Compañía"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
 msgid "Compute lines"
-msgstr ""
+msgstr "Calcular líneas"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__category_uom_id
@@ -126,18 +128,18 @@ msgstr ""
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
 msgid "Create MO"
-msgstr ""
+msgstr "Crear MO"
 
 #. module: mrp_request
 #: model:ir.actions.act_window,name:mrp_request.mrp_request_create_mo_action
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_form
 msgid "Create Manufacturing Order"
-msgstr ""
+msgstr "Crear orden de fabricación"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_stock_move__created_mrp_request_id
 msgid "Created Production Request"
-msgstr ""
+msgstr "Solicitud de producción creada"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__create_uid
@@ -157,13 +159,13 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__date_planned_finished
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__date_planned_finished
 msgid "Deadline End"
-msgstr ""
+msgstr "Fecha límite final"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__date_planned_start
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__date_planned_start
 msgid "Deadline Start"
-msgstr ""
+msgstr "Fecha límite de inicio"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__description
@@ -171,9 +173,14 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: mrp_request
+#: model:ir.model.fields,field_description:mrp_request.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__display_name
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__display_name
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__display_name
+#: model:ir.model.fields,field_description:mrp_request.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_request.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mrp_request.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:mrp_request.field_stock_warehouse_orderpoint__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -182,7 +189,7 @@ msgstr "Nombre mostrado"
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_form
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
 msgid "Done"
-msgstr "Completado"
+msgstr "Hecho"
 
 #. module: mrp_request
 #: model:ir.model.fields.selection,name:mrp_request.selection__mrp_request__state__draft
@@ -203,36 +210,41 @@ msgstr "Ubicación de productos terminados"
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores (Canales)"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Contactos)"
 
 #. module: mrp_request
+#: model:ir.model.fields,field_description:mrp_request.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__id
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__id
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__id
+#: model:ir.model.fields,field_description:mrp_request.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_request.field_stock_move__id
+#: model:ir.model.fields,field_description:mrp_request.field_stock_rule__id
+#: model:ir.model.fields,field_description:mrp_request.field_stock_warehouse_orderpoint__id
 msgid "ID"
-msgstr "ID"
+msgstr "ID (Identificador)"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_needaction
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_has_error
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__propagate
@@ -241,16 +253,24 @@ msgid ""
 "next procurement) is cancelled or split, the move generated by this move "
 "will too"
 msgstr ""
+"Si está marcado, cuando el movimiento anterior del movimiento (que fue "
+"generado por una próxima adquisición) se cancela o divide, el movimiento "
+"generado por este movimiento también lo hará"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es un seguidor"
 
 #. module: mrp_request
+#: model:ir.model.fields,field_description:mrp_request.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request____last_update
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo____last_update
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line____last_update
+#: model:ir.model.fields,field_description:mrp_request.field_product_template____last_update
+#: model:ir.model.fields,field_description:mrp_request.field_stock_move____last_update
+#: model:ir.model.fields,field_description:mrp_request.field_stock_rule____last_update
+#: model:ir.model.fields,field_description:mrp_request.field_stock_warehouse_orderpoint____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -259,35 +279,34 @@ msgstr "Última modificación el"
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__write_uid
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Ultima actualizacion por"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__write_date
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__write_date
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Ultima actualización realizada"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__location_id
-#, fuzzy
 msgid "Location"
 msgstr "ID de ubicación"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__mrp_production_count
 msgid "MO's Count"
-msgstr ""
+msgstr "Recuento de MO"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_form
 msgid "MOs"
-msgstr ""
+msgstr "OPs"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjuntos principales"
 
 #. module: mrp_request
 #: model:res.groups,name:mrp_request.group_mrp_request_manager
@@ -297,7 +316,7 @@ msgstr "Responsable"
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
 msgid "Manufacture Request status"
-msgstr ""
+msgstr "Estado de solicitud de fabricación"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
@@ -331,37 +350,33 @@ msgstr "Solicitudes de fabricación"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
-#, fuzzy
 msgid "Manufacturing Requests not done or cancelled."
-msgstr "Solicitud de fabricación creada"
+msgstr "Solicitud de fabricación creada."
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de Envío de Mensaje"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_ids
-#, fuzzy
 msgid "Messages"
 msgstr "Mensajes sin leer"
 
 #. module: mrp_request
 #: model:ir.model,name:mrp_request.model_stock_warehouse_orderpoint
 msgid "Minimum Inventory Rule"
-msgstr ""
+msgstr "Regla de inventario mínimo"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__mrp_request_id
-#, fuzzy
-msgid "Mrp Production Request"
-msgstr "Solicitud de fabricación"
+msgid "Mrp Request"
+msgstr "Solicitud de Mrp"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__mrp_request_create_mo_id
-#, fuzzy
-msgid "Mrp Production Request Create Mo"
-msgstr "Solicitud de fabricación creada"
+msgid "Mrp Request Create Mo"
+msgstr "Solicitud Mrp Crear Mo"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
@@ -376,33 +391,32 @@ msgstr "Nombre"
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de acciones"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Numero de errores"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de envío"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__message_unread_counter
-#, fuzzy
 msgid "Number of unread messages"
 msgstr "Mensajes sin leer"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "Regla de Abastecimiento"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
@@ -418,13 +432,12 @@ msgstr "Cantidad pendiente"
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__picking_type_id
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo de Picking"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__procurement_group_id
-#, fuzzy
 msgid "Procurement Group"
-msgstr "Abastecimiento"
+msgstr "Contratación"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__product_id
@@ -440,9 +453,8 @@ msgstr "Plantilla de producto"
 
 #. module: mrp_request
 #: model:ir.model,name:mrp_request.model_mrp_production
-#, fuzzy
 msgid "Production Order"
-msgstr "Pedido de abastecimiento"
+msgstr "Orden de producción"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__product_line_ids
@@ -455,16 +467,18 @@ msgstr "Productos necesarios"
 msgid ""
 "Programming error: wizard action executed without active_ids in context."
 msgstr ""
+"Error de programación: la acción del asistente no tiene ids activos en el "
+"contexto."
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__propagate
 msgid "Propagate cancel and split"
-msgstr ""
+msgstr "Propagar cancelar y dividir"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo__mo_qty
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr "Bulto por partida"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request_create_mo_line__available_qty
@@ -490,9 +504,11 @@ msgstr "Cantidad en pedidos de fabricación"
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__pending_qty
 #: model:ir.model.fields,help:mrp_request.field_mrp_request_create_mo__pending_qty
 msgid ""
-"Quantity pending to add to Manufacturing Orders to fulfill the Manufacturing "
-"Request requirement."
+"Quantity pending to add to Manufacturing Orders to fulfill the "
+"Manufacturing Request requirement."
 msgstr ""
+"Cantidad pendiente de agregar a Órdenes de Fabricación para cumplir con el "
+"requisito de Solicitud de Fabricación."
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__location_src_id
@@ -502,7 +518,7 @@ msgstr "Ubicación de materia prima"
 #. module: mrp_request
 #: model:ir.model.constraint,message:mrp_request.constraint_mrp_request_name_uniq
 msgid "Reference must be unique per Company!"
-msgstr ""
+msgstr "¡La referencia debe ser única por empresa!"
 
 #. module: mrp_request
 #: model:ir.actions.server,name:mrp_request.action_server_mrp_request_refresh
@@ -542,7 +558,7 @@ msgstr "La solicitud está pendiente de aprobación"
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
 msgid "Request with pending quantity"
-msgstr ""
+msgstr "Solicitud con cantidad pendiente"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__requested_by
@@ -566,24 +582,19 @@ msgid "Reset"
 msgstr "Restablecer"
 
 #. module: mrp_request
-#: model:ir.model.fields,field_description:mrp_request.field_mrp_request__routing_id
-msgid "Routing"
-msgstr "Ruta"
-
-#. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error de entrega del SMS"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
 msgid "Search Manufacturing Request"
-msgstr ""
+msgstr "Solicitud de búsqueda de fabricación"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
 msgid "Select event to register"
-msgstr ""
+msgstr "Seleccionar evento para registrarse"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
@@ -608,32 +619,24 @@ msgstr "Movimiento de existencias"
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__move_dest_ids
 msgid "Stock Movements of Produced Goods"
-msgstr ""
+msgstr "Movimientos de existencias de bienes producidos"
 
 #. module: mrp_request
 #: model:ir.model,name:mrp_request.model_stock_rule
-#, fuzzy
 msgid "Stock Rule"
-msgstr "Movimiento de existencias"
+msgstr "Regla de Inventario"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__manufactured_qty
 msgid "Sum of the quantities in Manufacturing Orders (in any state)."
 msgstr ""
+"Suma de las cantidades en Órdenes de Fabricación (en cualquier estado)."
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__done_qty
 msgid "Sum of the quantities in all done Manufacturing Orders."
 msgstr ""
-
-#. module: mrp_request
-#: model:ir.model.fields,help:mrp_request.field_mrp_request__routing_id
-msgid ""
-"The list of operations (list of work centers) to produce the finished "
-"product. The routing is mainly used to compute work center costs during "
-"operations and to plan future loads on work centers based on production "
-"plannification."
-msgstr ""
+"Suma de las cantidades en todas las Órdenes de Fabricación realizadas."
 
 #. module: mrp_request
 #: code:addons/mrp_request/models/stock_rule.py:0
@@ -642,6 +645,8 @@ msgid ""
 "There is no Bill of Material found for the product %s. Please define a Bill "
 "of Material for this product."
 msgstr ""
+"No se ha encontrado una lista de materiales para el producto %s. Defina una "
+"lista de materiales para este producto."
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
@@ -651,12 +656,12 @@ msgstr "A aprobar"
 #. module: mrp_request
 #: model:ir.model.fields.selection,name:mrp_request.selection__mrp_request__state__to_approve
 msgid "To Be Approved"
-msgstr ""
+msgstr "Para ser aprobado"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
 msgid "To Do"
-msgstr ""
+msgstr "Por hacer"
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.view_mrp_request_search
@@ -682,7 +687,6 @@ msgstr "Mensajes sin leer"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__message_unread_counter
-#, fuzzy
 msgid "Unread Messages Counter"
 msgstr "Mensajes sin leer"
 
@@ -698,55 +702,45 @@ msgstr "Usuario"
 
 #. module: mrp_request
 #: model:ir.model.fields,field_description:mrp_request.field_mrp_request__website_message_ids
-#, fuzzy
 msgid "Website Messages"
 msgstr "Mensajes sin leer"
 
 #. module: mrp_request
 #: model:ir.model.fields,help:mrp_request.field_mrp_request__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicaciones del sitio web"
 
 #. module: mrp_request
 #: model:ir.model,name:mrp_request.model_mrp_request_create_mo
 msgid "Wizard to create Manufacturing Orders"
-msgstr ""
+msgstr "Asistente para crear órdenes de fabricación"
 
 #. module: mrp_request
 #: model:ir.model,name:mrp_request.model_mrp_request_create_mo_line
-#, fuzzy
 msgid "Wizard to create Manufacturing Orders Line"
-msgstr "Cantidad en pedidos de fabricación"
+msgstr "Orden de fabricación"
 
 #. module: mrp_request
 #: code:addons/mrp_request/models/mrp_request.py:0
 #, python-format
 msgid ""
-"You cannot reject a manufacturing request related to done procurement orders."
+"You cannot reject a manufacturing request related to done procurement "
+"orders."
 msgstr ""
+"No puede rechazar una solicitud de fabricación relacionada con pedidos "
+"realizados."
 
 #. module: mrp_request
 #: code:addons/mrp_request/models/mrp_request.py:0
 #, python-format
 msgid ""
-"You cannot reset a manufacturing request if the related manufacturing orders "
-"are not cancelled."
+"You cannot reset a manufacturing request if the related manufacturing "
+"orders are not cancelled."
 msgstr ""
+"No puede restablecer una solicitud de fabricación si las órdenes de "
+"fabricación relacionadas no se cancelan."
 
 #. module: mrp_request
 #: model_terms:ir.ui.view,arch_db:mrp_request.mrp_request_create_mo_view
 msgid "or"
-msgstr "o"
-
-#~ msgid "Manufacturing Order"
-#~ msgstr "Pedido de fabricación"
-
-#, fuzzy
-#~ msgid "Procurement Rule"
-#~ msgstr "Abastecimiento"
-
-#~ msgid "Planned Date"
-#~ msgstr "Fecha planificada"
-
-#~ msgid "Procurement State"
-#~ msgstr "Estado de abastecimiento"
+msgstr "ó"
