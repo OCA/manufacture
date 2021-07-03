@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo12-addon-quality_control_stock',
         'odoo12-addon-quality_control_team',
         'odoo12-addon-repair_calendar_view',
+        'odoo12-addon-repair_default_terms_conditions',
         'odoo12-addon-repair_discount',
         'odoo12-addon-repair_payment_term',
         'odoo12-addon-repair_refurbish',
