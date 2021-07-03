@@ -52,6 +52,7 @@ addon | version | summary
 [quality_control_stock](quality_control_stock/) | 12.0.1.0.2 | Quality control - Stock
 [quality_control_team](quality_control_team/) | 12.0.1.1.0 | Adds quality control teams to handle different quality control workflows
 [repair_calendar_view](repair_calendar_view/) | 12.0.1.1.0 | Repair Calendar View
+[repair_default_terms_conditions](repair_default_terms_conditions/) | 12.0.1.0.0 | This module allows repair default terms & conditions
 [repair_discount](repair_discount/) | 12.0.1.0.0 | Repair Discount
 [repair_payment_term](repair_payment_term/) | 12.0.1.0.0 | This module add to Repair Orders the *Payment Term* field
 [repair_refurbish](repair_refurbish/) | 12.0.1.1.3 | Create refurbished products during repair
