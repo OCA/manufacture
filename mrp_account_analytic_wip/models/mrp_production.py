@@ -34,6 +34,10 @@ class MRPProduction(models.Model):
                 tracking_items.mapped("actual_amount")
             )
 
+    def generate_analytic_lines(self):
+        """ Generate Analytic Lines for a MO """
+        return self.mapped("move_raw_ids").generate_mrp_raw_analytic_line()
+
     def action_view_analytic_tracking_items(self):
         self.ensure_one()
         return {
