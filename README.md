@@ -21,6 +21,7 @@ addon | version | summary
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 12.0.1.0.0 | MRP BOM Component Menu
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 12.0.1.0.0 | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 12.0.1.0.2 | Adds location field to Bill of Materials and its components.
+[mrp_bom_multi_company](mrp_bom_multi_company/) | 12.0.1.0.0 | Multi Company Bill of Materials
 [mrp_bom_note](mrp_bom_note/) | 12.0.1.0.0 | Notes in Bill of Materials
 [mrp_bom_tracking](mrp_bom_tracking/) | 12.0.1.0.1 | Logs any change to a BoM in the chatter
 [mrp_multi_level](mrp_multi_level/) | 12.0.2.3.0 | Adds an MRP Scheduler
