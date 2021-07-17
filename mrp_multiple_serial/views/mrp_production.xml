@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Le Filament
+     License GPL-3.0 or later (https://www.gnu.org/licenses/gpl). -->
+<odoo>
+    <data>
+
+        <record id="mrp_production_form_view_multi" model="ir.ui.view">
+            <field name="name">mrp.production.form.multi</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty_producing']" position="attributes">
+                    <attribute
+                        name="attrs"
+                    >{'readonly': ['|', '|', ('state', '=', 'cancel'), ('create_multi', '=', True), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group/label[2]" position="attributes">
+                    <attribute
+                        name="attrs"
+                    >{'invisible': ['|', '|', '|', ('state', '=', 'draft'), ('product_tracking', 'in', ('none', False)), ('create_multi','=', True), ('generated_serials', '>', 0)]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group/div[2]" position="attributes">
+                    <attribute
+                        name="attrs"
+                    >{'invisible': ['|', '|', '|', ('state', '=', 'draft'), ('product_tracking', 'in', ('none', False)), ('create_multi','=', True), ('generated_serials', '>', 0)]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group/div[2]" position="after">
+                    <label
+                        for="create_multi"
+                        attrs="{'invisible': ['|', '|', ('state', '=', 'draft'), ('product_tracking', '!=', 'serial'), ('lot_producing_id', '!=', False)]}"
+                    />
+                    <div
+                        class="o_row"
+                        attrs="{'invisible': ['|', '|', ('state', '=', 'draft'), ('product_tracking', '!=', 'serial'), ('lot_producing_id', '!=', False)]}"
+                    >
+                        <field name="create_multi" widget="boolean_toggle" />
+                        <button
+                            name="action_generate_serials"
+                            type="object"
+                            class="btn btn-primary fa fa-plus-square-o"
+                            aria-label="Creates new serial numbers"
+                            title="Creates new serial numbers"
+                            role="img"
+                            attrs="{'invisible': ['|', '|', ('state', '=', 'draft'), ('product_tracking', '!=', 'serial'), ('create_multi','=', False)]}"
+                        />
+                    </div>
+                </xpath>
+                <xpath expr="//page[@name='components']" position="after">
+                    <page
+                        string="Serial Numbers"
+                        id="serials"
+                        attrs="{'invisible': ['|', '|', ('state', '=', 'draft'), ('product_tracking', '!=', 'serial'), ('create_multi','=', False)]}"
+                    >
+                        <field name="generated_serials" invisible="1" />
+                        <field name="generated_serials_ids" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

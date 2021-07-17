@@ -1,0 +1,1 @@
+odoo14-addon-product_lot_sequence @ git+https://github.com/OCA/product-attribute@refs/pull/886/head#subdirectory=setup/product_lot_sequence
