@@ -13,7 +13,9 @@
     ],
     "website": "https://github.com/OCA/manufacture",
     "data": [
+        "security/ir.model.access.csv",
         "views/workcenter_view.xml",
+        "wizards/switch_workcenter.xml",
     ],
     "demo": [
         "data/mrp_demo.xml",
