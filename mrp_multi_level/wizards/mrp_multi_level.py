@@ -101,7 +101,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_planned_order_data(
-        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name
+        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name, values
     ):
         return {
             "product_mrp_area_id": product_mrp_area.id,
@@ -251,7 +251,7 @@ class MultiLevelMrp(models.TransientModel):
             qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order)
             qty_to_order -= qty
             order_data = self._prepare_planned_order_data(
-                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name
+                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
             planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
