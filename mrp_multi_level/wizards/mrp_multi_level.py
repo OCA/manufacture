@@ -116,7 +116,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_mrp_move_data_bom_explosion(
-        self, product, bomline, qty, mrp_date_demand_2, bom, name
+        self, product, bomline, qty, mrp_date_demand_2, bom, name, action
     ):
         product_mrp_area = self._get_product_mrp_area_from_product_and_area(
             bomline.product_id, product.mrp_area_id
@@ -208,7 +208,7 @@ class MultiLevelMrp(models.TransientModel):
                     )
                 )
                 move_data = self._prepare_mrp_move_data_bom_explosion(
-                    product_mrp_area_id, bomline, qty, mrp_date_demand_2, bom, name
+                    product_mrp_area_id, bomline, qty, mrp_date_demand_2, bom, name, action
                 )
                 mrpmove_id2 = self.env["mrp.move"].create(move_data)
                 if hasattr(action, "mrp_move_down_ids"):
