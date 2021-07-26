@@ -110,7 +110,7 @@ class MultiLevelMrp(models.TransientModel):
             "order_release_date": mrp_action_date,
             "mrp_action": product_mrp_area.supply_method,
             "qty_released": 0.0,
-            "name": "Planned supply for: " + name,
+            "name": "Planned supply for: %s" % name,
             "fixed": False,
         }
 
