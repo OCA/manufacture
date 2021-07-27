@@ -7,9 +7,9 @@
     "version": "14.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
-    "author": "Quartile Limited, Odoo Community Association (OCA)",
+    "author": "Quartile Limited, ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp", "stock_quant_manual_assign"],
-    "data": ["views/mrp_production_views.xml"],
+    "data": ["views/mrp_production_views.xml", "wizards/assign_manual_quants_view.xml"],
     "installable": True,
 }
