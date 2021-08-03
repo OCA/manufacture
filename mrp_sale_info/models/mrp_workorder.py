@@ -20,3 +20,6 @@ class MrpWorkorder(models.Model):
         store=True,
         readonly=True,
     )
+    client_order_ref = fields.Char(
+        related="sale_id.client_order_ref", string="Customer Reference", store=True
+    )
