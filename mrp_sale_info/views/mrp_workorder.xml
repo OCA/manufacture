@@ -12,6 +12,7 @@
                 <field name="sale_id" />
                 <field name="partner_id" />
                 <field name="commitment_date" />
+                <field name="client_order_ref" />
             </field>
         </field>
     </record>
@@ -33,6 +34,7 @@
                     <field name="sale_id" />
                     <field name="partner_id" />
                     <field name="commitment_date" />
+                    <field name="client_order_ref" />
                 </page>
             </page>
         </field>

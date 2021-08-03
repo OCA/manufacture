@@ -29,3 +29,6 @@ class MrpProduction(models.Model):
     commitment_date = fields.Datetime(
         related="sale_id.commitment_date", string="Commitment Date", store=True
     )
+    client_order_ref = fields.Char(
+        related="sale_id.client_order_ref", string="Customer Reference", store=True
+    )
