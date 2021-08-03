@@ -30,6 +30,7 @@ class TestMrpSaleInfo(common.SavepointCase):
         cls.sale_order = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
+                "client_order_ref": "SO1",
                 "order_line": [
                     (
                         0,
@@ -50,3 +51,4 @@ class TestMrpSaleInfo(common.SavepointCase):
         production = self.env["mrp.production"].search([]) - prev_productions
         self.assertEqual(production.sale_id, self.sale_order)
         self.assertEqual(production.partner_id, self.partner)
+        self.assertEqual(production.client_order_ref, self.sale_order.client_order_ref)
