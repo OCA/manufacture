@@ -17,20 +17,20 @@ Odoo modules related to Manufacturing
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[base_repair](base_repair/) | 14.0.1.0.0 | This module extends the functionality of Odoo Repair module to add some basic features.
-[mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.0.1 | Track manufacturing costs in real time, using Analytic Items
-[mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 | Adds location field to Bill of Materials and its components.
-[mrp_multi_level](mrp_multi_level/) | 14.0.1.2.0 | Adds an MRP Scheduler
-[mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.0.0 | Allows to consider demand estimates using MRP multi level.
-[mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | MRP Restrict Lot
-[mrp_sale_info](mrp_sale_info/) | 14.0.1.0.0 | Adds sale information to Manufacturing models
-[mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.0 | Link Purchase Order to Subcontract Productions
-[mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | Considers the warehouse calendars in manufacturing
-[mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 | Organise Workcenters by section
-[repair_refurbish](repair_refurbish/) | 14.0.1.0.0 | Create refurbished products during repair
-[repair_stock_move](repair_stock_move/) | 14.0.1.0.0 | Ongoing Repair Stock Moves Definition in odoo
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[base_repair](base_repair/) | 14.0.1.0.0 | [![marcelsavegnago](https://github.com/marcelsavegnago.png?size=30px)](https://github.com/marcelsavegnago) | This module extends the functionality of Odoo Repair module to add some basic features.
+[mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.0.1 |  | Track manufacturing costs in real time, using Analytic Items
+[mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
+[mrp_multi_level](mrp_multi_level/) | 14.0.1.2.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
+[mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
+[mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
+[mrp_sale_info](mrp_sale_info/) | 14.0.1.0.0 |  | Adds sale information to Manufacturing models
+[mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.0 |  | Link Purchase Order to Subcontract Productions
+[mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
+[mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 |  | Organise Workcenters by section
+[repair_refurbish](repair_refurbish/) | 14.0.1.0.0 |  | Create refurbished products during repair
+[repair_stock_move](repair_stock_move/) | 14.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
 
 [//]: # (end addons)
 
