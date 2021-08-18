@@ -33,13 +33,16 @@ class MrpProduction(models.Model):
 
         :return: Odoo domain.
         """
+        if "routing_id" not in vals and "bom_id" in vals:
+            bom = self.env["mrp.bom"].browse(vals["bom_id"])
+            vals["routing_id"] = bom.routing_id.id
         domain = [
             ("product_id", "=", vals["product_id"]),
             ("picking_type_id", "=", vals["picking_type_id"]),
             ("bom_id", "=", vals.get("bom_id", False)),
             ("routing_id", "=", vals.get("routing_id", False)),
             ("company_id", "=", vals.get("company_id", False)),
-            ("state", "=", "draft"),
+            ("state", "in", ["draft", "confirmed"]),
         ]
         if not vals.get("date_planned_finished"):
             return domain
