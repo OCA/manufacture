@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2018-07-28 10:23+0000\n"
-"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
+"PO-Revision-Date: 2021-08-25 18:50+0000\n"
+"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -32,7 +32,7 @@ msgstr "Accetta"
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Richiesto intervento"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test__active
@@ -43,15 +43,13 @@ msgstr "Attivo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Attivo"
+msgstr "Attività"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__activity_state
-#, fuzzy
 msgid "Activity State"
-msgstr "Attivo"
+msgstr "Stato attività"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line__possible_ql_values
@@ -111,9 +109,8 @@ msgstr "Azienda"
 
 #. module: quality_control
 #: model:ir.ui.menu,name:quality_control.menu_qc_config
-#, fuzzy
 msgid "Configuration"
-msgstr "Conferma"
+msgstr "Configurazione"
 
 #. module: quality_control
 #: model_terms:ir.ui.view,arch_db:quality_control.qc_inspection_form_view
