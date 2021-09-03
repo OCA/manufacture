@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_raw_ids']//field[@name='reserved_availability']"
+                position="after"
+            >
+                <button
+                    name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
+                    type="action"
+                    icon="fa-tags"
+                    title="Manual Quants"
+                    options='{"warn": true}'
+                    attrs="{'invisible':[('state','not in',('confirmed','assigned','partially_available'))]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
