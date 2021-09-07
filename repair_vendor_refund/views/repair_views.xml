@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_vendor_refund"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    groups="account.group_account_user"
+                >
+                    <field
+                        name="vendor_refund_count"
+                        widget="statinfo"
+                        string="Refunds"
+                    />
+                </button>
+            </div>
+            <field name="currency_id" position="after">
+                <field name="vendor_id" />
+                <field name="vendor_refund_state" />
+            </field>
+            <xpath
+                expr="//field[@name='operations']/form//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="vendor_to_refund_qty" />
+                <field name="vendor_price_unit" />
+                <field name="vendor_refunded_qty" />
+                <field name="vendor_refund_pending_qty" />
+            </xpath>
+            <xpath
+                expr="//field[@name='operations']/tree//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="parent_state" invisible="1" />
+                <field name="vendor_to_refund_qty" />
+                <button
+                    name="%(action_repair_line_update_vendor_to_refund_qty)d"
+                    attrs="{'invisible':[('parent_state', 'in', ['cancel', 'done'])]}"
+                    type="action"
+                    icon="fa-edit"
+                />
+                <field name="vendor_price_unit" />
+                <field name="vendor_refunded_qty" />
+                <field name="vendor_refund_pending_qty" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='fees_lines']/form//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="vendor_to_refund_qty" />
+                <field name="vendor_price_unit" />
+                <field name="vendor_refunded_qty" />
+                <field name="vendor_refund_pending_qty" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='fees_lines']/tree//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="parent_state" invisible="1" />
+                <field name="vendor_to_refund_qty" />
+                <button
+                    name="%(action_repair_fee_update_vendor_to_refund_qty)d"
+                    attrs="{'invisible':[('parent_state', 'in', ['cancel', 'done'])]}"
+                    type="action"
+                    icon="fa-edit"
+                />
+                <field name="vendor_price_unit" />
+                <field name="vendor_refunded_qty" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_repair_order_form_filter" model="ir.ui.view">
+        <field name="name">repair.select</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form_filter" />
+        <field name="arch" type="xml">
+            <filter name="invoiced" position="after">
+                <separator />
+                <filter
+                    string="Awaiting Vendor Bill Refunds"
+                    name="awaiting_bill_refunds"
+                    domain="[('vendor_refund_state', '=', 'to_refund')]"
+                />
+                <filter
+                    string="Fully Refunded from Vendor"
+                    name="fully_refunded_vendor"
+                    domain="[('vendor_refund_state', '=', 'refunded')]"
+                />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
