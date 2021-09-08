@@ -1,5 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from collections import defaultdict
+
 from odoo import _, api, exceptions, fields, models
 
 
@@ -104,6 +106,39 @@ class MrpUnbuildRebuildVariant(models.Model):
                     product=record.unbuild_product_id
                 )
 
+    @api.onchange("stock_location_id", "unbuild_product_id")
+    def onchange_stock_location_id(self):
+        res = {}
+        Quant = self.env["stock.quant"]
+        if self.unbuild_product_id and self.stock_location_id:
+            lot_ids = Quant.search(
+                [
+                    ('product_id', '=', self.unbuild_product_id.id),
+                    ('location_id', '=', self.stock_location_id.id),
+                    ('quantity', '>', 0),
+                ]
+            ).mapped('lot_id').ids
+            res['domain'] = {
+                'unbuild_lot_id': [('id', 'in', lot_ids)],
+            }
+        elif self.stock_location_id and not self.unbuild_product_id:
+            quants = Quant.search([('location_id', '=', self.stock_location_id.id),
+                                   ('quantity', '>', 0)])
+            res['domain'] = {
+                'unbuild_lot_id': [('id', 'in', quants.mapped('lot_id').ids)],
+                'unbuild_product_id': [('id', 'in', quants.mapped('product_id').ids)],
+            }
+        elif not self.stock_location_id and self.unbuild_product_id:
+            quants = Quant.search([('product_id', '=', self.unbuild_product_id.id),
+                                   ('quantity', '>', 0)])
+            res['domain'] = {
+                'unbuild_lot_id': [('id', 'in', quants.mapped('lot_id').ids)],
+                'stock_location_id': [('id', 'in', quants.mapped('location_id').ids)],
+            }
+        else:
+            res['domain'] = {}
+        return res
+
     def _filter_bom_lines_for_variant(self, lines, variant):
         """
         Filter lines with no attributes or
@@ -136,10 +171,12 @@ class MrpUnbuildRebuildVariant(models.Model):
         available_bom_components = self._filter_bom_lines_for_variant(
             self.unbuild_bom_id.bom_line_ids, self.unbuild_product_id
         )
-        rebuild_product_qties_matrix = [
-            (c.product_id, c.product_qty) for c in required_bom_components
-        ]
-        for product_id, qty in rebuild_product_qties_matrix:
+
+        rebuild_product_qties_dict = defaultdict(float)
+        for line in required_bom_components:
+            rebuild_product_qties_dict[line.product_id] += line.product_qty
+
+        for product_id, qty in rebuild_product_qties_dict.items():
             available_bom_line = available_bom_components.filtered(
                 lambda l: l.product_id == product_id
             )
@@ -167,15 +204,15 @@ class MrpUnbuildRebuildVariant(models.Model):
             self.rebuild_bom_id.bom_line_ids, self.rebuild_product_id
         )
 
-        product_qty_matrix = [
-            (l.product_id, l.product_qty) for l in applicable_bom_lines
-        ]
+        product_qty_dict = defaultdict(float)
+        for line in applicable_bom_lines:
+            product_qty_dict[line.product_id] += line.product_qty
 
         errors = {}
         unbuild_bom_lines = self._filter_bom_lines_for_variant(
             self.unbuild_bom_id.bom_line_ids, self.unbuild_product_id
         )
-        for product, qty in product_qty_matrix:
+        for product, qty in product_qty_dict.items():
 
             # Check substract qty of dismantable components
             unbuild_bom_line = unbuild_bom_lines.filtered(
@@ -298,8 +335,14 @@ class MrpUnbuildRebuildVariant(models.Model):
 
     def process(self):
         self.ensure_one()
-        self._check_dismantled_contains_components()
-        self._check_availability()
+        try:
+            self._check_dismantled_contains_components()
+            self._check_availability()
+        except exceptions.UserError as excp:
+            if (_("Missing products") in excp.name or
+                    _("There's not enough") in excp.name or
+                    _("in unbuild product") in excp.name):
+                return self._manage_missing_products_or_stock_errors(excp)
 
         # Get manufacturing order for product to be unbuilt
         origin_manufacturing_order = self._get_origin_mo()
@@ -317,3 +360,6 @@ class MrpUnbuildRebuildVariant(models.Model):
                 "rebuild_order_id": rebuild_order.id,
             }
         )
+
+    def _manage_missing_products_or_stock_errors(self, excp):
+        raise exceptions.UserError(excp.name)
