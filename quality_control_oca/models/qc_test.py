@@ -16,14 +16,6 @@ class QcTest(models.Model):
     _name = "qc.test"
     _description = "Quality control test"
 
-    def object_selection_values(self):
-        return set()
-
-    @api.onchange("type")
-    def onchange_type(self):
-        if self.type == "generic":
-            self.object_id = False
-
     active = fields.Boolean("Active", default=True)
     name = fields.Char(string="Name", required=True, translate=True)
     test_lines = fields.One2many(
@@ -32,16 +24,7 @@ class QcTest(models.Model):
         string="Questions",
         copy=True,
     )
-    object_id = fields.Reference(
-        string="Reference object", selection="object_selection_values",
-    )
     fill_correct_values = fields.Boolean(string="Pre-fill with correct values")
-    type = fields.Selection(
-        [("generic", "Generic"), ("related", "Related")],
-        string="Type",
-        required=True,
-        default="generic",
-    )
     category = fields.Many2one(comodel_name="qc.test.category", string="Category")
     company_id = fields.Many2one(
         comodel_name="res.company",

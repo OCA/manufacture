@@ -3,7 +3,6 @@
     <data noupdate="1">
         <record model="qc.test" id="qc_test_1">
             <field name="name">Generic Test (demo)</field>
-            <field name="type">generic</field>
             <field name="active" eval="True" />
             <field name="category" ref="qc_test_template_category_generic" />
         </record>
