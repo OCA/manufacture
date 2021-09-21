@@ -18,11 +18,6 @@
                     </h1>
                     <group>
                         <group>
-                            <field name="type" />
-                            <field
-                                name="object_id"
-                                attrs="{'invisible': [('type','=','generic')]}"
-                            />
                             <field name="active" />
                         </group>
                         <group>
@@ -56,8 +51,6 @@
             <tree string="Tests">
                 <field name="name" />
                 <field name="category" />
-                <field name="type" />
-                <field name="object_id" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
