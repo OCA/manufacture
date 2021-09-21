@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 13.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 [product_quick_bom](product_quick_bom/) | 13.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) [![kevinkhao](https://github.com/kevinkhao.png?size=30px)](https://github.com/kevinkhao) | Create the bom directly from the product
 [quality_control_mrp_oca](quality_control_mrp_oca/) | 13.0.1.0.0 |  | MRP extension for quality control (OCA)
-[quality_control_oca](quality_control_oca/) | 13.0.1.1.0 |  | Generic infrastructure for quality tests.
+[quality_control_oca](quality_control_oca/) | 13.0.2.0.0 |  | Generic infrastructure for quality tests.
 [quality_control_stock_oca](quality_control_stock_oca/) | 13.0.1.0.1 |  | Quality control - Stock (OCA)
 [repair_calendar_view](repair_calendar_view/) | 13.0.1.0.0 |  | Repair Calendar View
 [repair_refurbish](repair_refurbish/) | 13.0.1.0.0 |  | Create refurbished products during repair
