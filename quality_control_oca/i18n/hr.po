@@ -234,7 +234,6 @@ msgid "Full name"
 msgstr "Puni naziv"
 
 #. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
 msgid "Generic"
 msgstr "Generički"
@@ -721,19 +720,9 @@ msgid "Reference"
 msgstr "Veza"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__object_id
-msgid "Reference object"
-msgstr "Referentni objekt"
-
-#. module: quality_control_oca
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_referenced
 msgid "Referenced"
 msgstr "Referencirano"
-
-#. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__related
-msgid "Related"
-msgstr "Povezano"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__user
@@ -894,7 +883,6 @@ msgid "Trigger"
 msgstr "Okidač"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
 msgstr "Tip"
@@ -1008,6 +996,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "ili"
+
+#~ msgid "Reference object"
+#~ msgstr "Referentni objekt"
+
+#~ msgid "Related"
+#~ msgstr "Povezano"
 
 #~ msgid "qc.trigger.product_category_line"
 #~ msgstr "qc.trigger.product_category_line"

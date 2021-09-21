@@ -230,7 +230,6 @@ msgid "Full name"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
 msgid "Generic"
 msgstr ""
@@ -708,18 +707,8 @@ msgid "Reference"
 msgstr "Atsauce"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__object_id
-msgid "Reference object"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_referenced
 msgid "Referenced"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__related
-msgid "Related"
 msgstr ""
 
 #. module: quality_control_oca
@@ -879,7 +868,6 @@ msgid "Trigger"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
 msgstr "Tips"
