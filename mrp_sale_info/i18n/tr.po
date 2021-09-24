@@ -6,60 +6,66 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-09-24 09:34+0000\n"
+"Last-Translator: Yiğit <yibudak@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__commitment_date
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__commitment_date
 msgid "Commitment Date"
-msgstr ""
+msgstr "Taahhüt Tarihi"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Müşteri"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Üretim Emri"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
 msgid "Sale order"
-msgstr ""
+msgstr "Sipariş"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
 msgid "Source Procurement Group"
-msgstr ""
+msgstr "Kaynak Tedarik Grubu"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Stok Kuralı"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__commitment_date
 msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
 msgstr ""
+"Bu müşteriye teslimat için taahhüt edilen tarihtir. Ayarlandığı takdirde, "
+"teslimat siparişi ürün teslim süresi yerine bu tarihe göre planlanacaktır."
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_workorder
 msgid "Work Order"
-msgstr ""
+msgstr "İş Emri"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__partner_id
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__partner_id
 msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Bir müşteriyi ismine, e-posta adresine, iç referansına ve kimlik numarasına "
+"göre bulabilirsin."
