@@ -4,7 +4,7 @@
 {
     "name": "Manufacturing Materials Analytic Costs",
     "summary": "Track manufacturing costs in real time, using Analytic Items",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "category": "Manufacturing",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
