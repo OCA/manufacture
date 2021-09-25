@@ -2,3 +2,5 @@
 
 account-analytic
 stock-logistics-warehouse
+# https://github.com/OCA/purchase-workflow/pull/1273
+purchase-workflow https://github.com/ForgeFlow/purchase-workflow 14.0-purchase_return
