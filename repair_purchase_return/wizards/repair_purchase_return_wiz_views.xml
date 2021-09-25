@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="view_repair_purchase_return_wiz" model="ir.ui.view">
+            <field name="name">Create Purchase Returns</field>
+            <field name="model">repair.purchase.return.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Create Purchase Return Order from Repair">
+                    <p class="oe_grey">
+                        Purchase Returns will be created in draft so that you
+                        can review them before validation.
+                    </p>
+                    <group>
+                        <field name="vendor_id" />
+                    </group>
+                    <footer>
+                        <button
+                        name="create_purchase_returns"
+                        id="create_purchase_return_open"
+                        string="Create and View Purchase Return"
+                        type="object"
+                        context="{'open_purchase_returns': True}"
+                        class="btn-primary"
+                    />
+                        <button
+                        name="create_purchase_returns"
+                        id="create_purchase_return"
+                        string="Create Purchase Return"
+                        type="object"
+                    />
+                        <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                    />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_repair_purchase_return_wiz" model="ir.actions.act_window">
+            <field name="name">Create Purchase Return Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">repair.purchase.return.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="repair.model_repair_order" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+</odoo>
