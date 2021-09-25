@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.order.form - repair_stock_move</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="%(repair_purchase_return.action_repair_purchase_return_wiz)d"
+                    string="Create Purchase Return"
+                    type="action"
+                    class="btn-primary"
+                />
+            </header>
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_purchase_returns"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible':[('purchase_return_count', '=', 0)]}"
+                >
+                    <field
+                        name="purchase_return_count"
+                        widget="statinfo"
+                        string="Purchase Returns"
+                    />
+                    <field name='purchase_return_ids' invisible="1" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
