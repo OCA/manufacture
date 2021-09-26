@@ -31,6 +31,7 @@ Manufacturing Orders and Work Orders:
   * Sale order
   * Customer
   * Commitment Date
+  * Customer Reference
 
 **Table of contents**
 
@@ -75,6 +76,7 @@ Contributors
   * Pedro M. Baeza
 * Rubén Bravo <rubenred18@gmail.com>
 * Kevin Khao <kevin.khao@akretion.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 ~~~~~~~~~~~
