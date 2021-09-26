@@ -26,6 +26,12 @@ msgid "Customer"
 msgstr ""
 
 #. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
+msgid "Customer Reference"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__display_name
 #: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__display_name
