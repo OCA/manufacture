@@ -9,8 +9,6 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "mrp",
-    ],
-    "data": ["views/product_template_views.xml"]
+    "depends": ["mrp"],
+    "data": ["views/product_template_views.xml"],
 }

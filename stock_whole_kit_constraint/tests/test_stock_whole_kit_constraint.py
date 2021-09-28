@@ -1,29 +1,24 @@
 # Copyright 2021 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, common
 from odoo.exceptions import ValidationError
+from odoo.tests import Form, common
 
 
 class TestStockWholeKitConstraint(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.customer = cls.env["res.partner"].create({
-            "name": "Mr. Odoo",
-        })
+        cls.customer = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         # Kit 1 that can be partially delivered
-        cls.product_kit_1 = cls.env["product.product"].create({
-            "name": "Product Kit 1",
-            "type": "consu",
-        })
-        cls.component_1_kit_1 = cls.env["product.product"].create({
-            "name": "Component 1 Kit 1",
-            "type": "product",
-        })
-        cls.component_2_kit_1 = cls.env["product.product"].create({
-            "name": "Component 2 Kit 1",
-            "type": "product",
-        })
+        cls.product_kit_1 = cls.env["product.product"].create(
+            {"name": "Product Kit 1", "type": "consu"}
+        )
+        cls.component_1_kit_1 = cls.env["product.product"].create(
+            {"name": "Component 1 Kit 1", "type": "product"}
+        )
+        cls.component_2_kit_1 = cls.env["product.product"].create(
+            {"name": "Component 2 Kit 1", "type": "product"}
+        )
         bom_form = Form(cls.env["mrp.bom"])
         bom_form.product_tmpl_id = cls.product_kit_1.product_tmpl_id
         bom_form.product_id = cls.product_kit_1
@@ -34,19 +29,19 @@ class TestStockWholeKitConstraint(common.SavepointCase):
             line.product_id = cls.component_2_kit_1
         cls.bom_kit_1 = bom_form.save()
         # Kit 2 - disallow partial deliveries
-        cls.product_kit_2 = cls.env["product.product"].create({
-            "name": "Product Kit 2",
-            "type": "consu",
-            "allow_partial_kit_delivery": False,
-        })
-        cls.component_1_kit_2 = cls.env["product.product"].create({
-            "name": "Component 1 Kit 2",
-            "type": "product",
-        })
-        cls.component_2_kit_2 = cls.env["product.product"].create({
-            "name": "Component 2 Kit 2",
-            "type": "product",
-        })
+        cls.product_kit_2 = cls.env["product.product"].create(
+            {
+                "name": "Product Kit 2",
+                "type": "consu",
+                "allow_partial_kit_delivery": False,
+            }
+        )
+        cls.component_1_kit_2 = cls.env["product.product"].create(
+            {"name": "Component 1 Kit 2", "type": "product"}
+        )
+        cls.component_2_kit_2 = cls.env["product.product"].create(
+            {"name": "Component 2 Kit 2", "type": "product"}
+        )
         bom_form = Form(cls.env["mrp.bom"])
         bom_form.product_tmpl_id = cls.product_kit_2.product_tmpl_id
         bom_form.product_id = cls.product_kit_2
@@ -57,13 +52,15 @@ class TestStockWholeKitConstraint(common.SavepointCase):
             line.product_id = cls.component_2_kit_2
         cls.bom_kit_2 = bom_form.save()
         # Manufactured product as control
-        cls.product_mrp = cls.env["product.product"].create({
-            "name": "Product Kit 2",
-            "type": "consu",
-            # Force the setting in a manufactured product.
-            # It should not affect it
-            "allow_partial_kit_delivery": False,
-        })
+        cls.product_mrp = cls.env["product.product"].create(
+            {
+                "name": "Product Kit 2",
+                "type": "consu",
+                # Force the setting in a manufactured product.
+                # It should not affect it
+                "allow_partial_kit_delivery": False,
+            }
+        )
         bom_form = Form(cls.env["mrp.bom"])
         bom_form.product_tmpl_id = cls.product_mrp.product_tmpl_id
         bom_form.product_id = cls.product_mrp
@@ -72,12 +69,14 @@ class TestStockWholeKitConstraint(common.SavepointCase):
             line.product_id = cls.component_1_kit_2
         cls.bom_mrp = bom_form.save()
         # Not a kit product as control
-        cls.regular_product = cls.env["product.product"].create({
-            "name": "Regular test product",
-            "type": "product",
-            # Force the setting in a regular product. It should not affect it
-            "allow_partial_kit_delivery": False,
-        })
+        cls.regular_product = cls.env["product.product"].create(
+            {
+                "name": "Regular test product",
+                "type": "product",
+                # Force the setting in a regular product. It should not affect it
+                "allow_partial_kit_delivery": False,
+            }
+        )
         # Delivery picking
         picking_form = Form(cls.env["stock.picking"])
         picking_form.picking_type_id = cls.env.ref("stock.picking_type_out")
@@ -105,9 +104,7 @@ class TestStockWholeKitConstraint(common.SavepointCase):
         )
         moves_allowed.write({"quantity_done": 1})
         response = self.customer_picking.button_validate()
-        self.assertEqual(
-            "stock.backorder.confirmation", response.get("res_model")
-        )
+        self.assertEqual("stock.backorder.confirmation", response.get("res_model"))
 
     def test_02_all_done_but_partial_disallow_partial_kit(self):
         """We try to deliver partially the disallowed kit"""
@@ -121,9 +118,7 @@ class TestStockWholeKitConstraint(common.SavepointCase):
         moves_disallowed.write({"quantity_done": 3})
         # We've got a backorder on the rest of the lines
         response = self.customer_picking.button_validate()
-        self.assertEqual(
-            "stock.backorder.confirmation", response.get("res_model")
-        )
+        self.assertEqual("stock.backorder.confirmation", response.get("res_model"))
 
     def test_03_all_done(self):
         """Deliver the whole picking normally"""

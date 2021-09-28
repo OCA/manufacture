@@ -20,8 +20,10 @@ class StockPicking(models.Model):
             if not sum(bom_moves.mapped("quantity_done")):
                 continue
             if bom_moves._check_backorder_moves():
-                raise ValidationError(_(
-                    "You can't make a partial delivery of components of the "
-                    "%s kit" % bom.product_tmpl_id.display_name
-                ))
+                raise ValidationError(
+                    _(
+                        "You can't make a partial delivery of components of the "
+                        "%s kit" % bom.product_tmpl_id.display_name
+                    )
+                )
         return super()._check_backorder()
