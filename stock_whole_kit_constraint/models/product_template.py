@@ -9,5 +9,5 @@ class ProductTemplate(models.Model):
     allow_partial_kit_delivery = fields.Boolean(
         default=True,
         help="If not set, and this product is delivered with a BoM of type "
-             "kit, partial deliveries of the components won't be allowed.",
+        "kit, partial deliveries of the components won't be allowed.",
     )
