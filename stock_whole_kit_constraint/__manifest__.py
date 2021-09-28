@@ -3,7 +3,7 @@
 {
     "name": "Stock whole kit constraint",
     "summary": "Avoid to deliver a kit partially",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/manufacture",
     "author": "Tecnativa, Odoo Community Association (OCA)",

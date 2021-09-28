@@ -9,7 +9,7 @@
             <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
                     <field
                     name="allow_partial_kit_delivery"
-                    attrs="{'invisible': [('bom_count', '=', 0), ('type', '!=', 'consu')]}"
+                    attrs="{'invisible': [('bom_count', '=', 0), ('type', 'not in', ['consu', 'product'])]}"
                 />
             </xpath>
         </field>
@@ -22,7 +22,7 @@
             <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
                 <field
                     name="allow_partial_kit_delivery"
-                    attrs="{'invisible': [('bom_count', '=', 0), ('type', '!=', 'consu')]}"
+                    attrs="{'invisible': [('bom_count', '=', 0), ('type', 'not in', ['consu', 'product'])]}"
                 />
             </xpath>
         </field>
