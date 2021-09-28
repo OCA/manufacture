@@ -25,13 +25,6 @@ class StockMove(models.Model):
                 move.bom_line_id.bom_id.product_tmpl_id.allow_partial_kit_delivery
             )
 
-    def _prepare_phantom_move_values(self, bom_line, quantity):
-        """TODO: Not necessary in Odoo 13 or if this PR gets merged someday:
-        https://github.com/odoo/odoo/pull/67536"""
-        vals = super()._prepare_phantom_move_values(bom_line, quantity)
-        vals["bom_line_id"] = bom_line.id
-        return vals
-
     def _check_backorder_moves(self):
         """Check if there are partial deliveries on any set of moves. The
         computing is done in the same way the main picking method does it """
