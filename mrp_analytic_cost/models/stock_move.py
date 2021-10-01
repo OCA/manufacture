@@ -20,6 +20,7 @@ class StockMove(models.Model):
             "company_id": mrp_order.company_id.id,
             "stock_move_id": move.id,
             "product_id": move.product_id.id,
+            "product_uom_id": move.product_uom.id,
             "unit_amount": move.quantity_done,
         }
 
