@@ -71,11 +71,8 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 if not ll.component_lot_id:
                     continue
                 lot_consumption.setdefault(ll.component_lot_id, 0)
-                available_quantity = self.env["stock.quant"]._get_available_quantity(
-                    ll.component_id,
-                    ll.production_id.location_src_id,
-                    lot_id=ll.component_lot_id,
-                )
+                free_qty, reserved_qty = ll._get_available_and_reserved_quantities()
+                available_quantity = free_qty + reserved_qty
                 if (
                     available_quantity - lot_consumption[ll.component_lot_id]
                     < ll.lot_qty

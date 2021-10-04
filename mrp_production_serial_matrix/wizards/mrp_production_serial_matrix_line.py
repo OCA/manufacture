@@ -36,3 +36,18 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 ]
             )
             rec.allowed_component_lot_ids = available_quants.mapped("lot_id")
+
+    def _get_available_and_reserved_quantities(self):
+        self.ensure_one()
+        available_quantity = self.env["stock.quant"]._get_available_quantity(
+            self.component_id,
+            self.production_id.location_src_id,
+            lot_id=self.component_lot_id,
+        )
+        move_lines = self.production_id.move_raw_ids.mapped("move_line_ids").filtered(
+            lambda l: l.product_id == self.component_id
+            and l.lot_id == self.component_lot_id
+            and l.state not in ["done", "cancel"]
+        )
+        specifically_reserved_quantity = sum(move_lines.mapped("product_uom_qty"))
+        return available_quantity, specifically_reserved_quantity
