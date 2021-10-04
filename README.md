@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 |  | Organise Workcenters by section
 [quality_control_oca](quality_control_oca/) | 14.0.1.1.0 |  | Generic infrastructure for quality tests.
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.0 |  | Create refurbished products during repair
-[repair_stock_move](repair_stock_move/) | 14.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
+[repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
 
 [//]: # (end addons)
 
