@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 ForgeFlow S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="product_template_form_view">
+        <field name="name">product.template.common.qc</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
+        />
+        <field name="arch" type="xml">
+            <page name="inventory" position="inside">
+                <group name="qc" string="Quality control">
+                    <field name="qc_triggers" nolabel="1">
+                        <tree string="Quality control triggers" editable="bottom">
+                            <field
+                                name="trigger"
+                                options="{'no_create': True, 'no_edit': True, 'no_open': True}"
+                            />
+                            <field name="test" />
+                            <field name="user" />
+                            <field name="partners" widget="many2many_tags" />
+                        </tree>
+                    </field>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
