@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -48,6 +48,11 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: quality_control_oca
@@ -170,6 +175,9 @@ msgid "Date"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__display_name
@@ -219,6 +227,11 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__complete_name
 msgid "Full name"
 msgstr ""
@@ -246,6 +259,9 @@ msgid "Group by..."
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__id
@@ -346,6 +362,9 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
@@ -436,6 +455,11 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__min_value
 msgid "Minimum valid value for a quantitative question."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: quality_control_oca
@@ -872,6 +896,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__trigger
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__trigger
 msgid "Trigger"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_trigger
+#: model:ir.ui.menu,name:quality_control_oca.qc_trigger_menu
+msgid "Triggers"
 msgstr ""
 
 #. module: quality_control_oca
