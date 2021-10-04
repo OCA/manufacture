@@ -52,8 +52,8 @@ class StockPicking(models.Model):
                 picking.passed_inspections + picking.failed_inspections
             )
 
-    def action_done(self):
-        res = super().action_done()
+    def _action_done(self):
+        res = super()._action_done()
         inspection_model = self.env["qc.inspection"]
         qc_trigger = self.env["qc.trigger"].search(
             [("picking_type_id", "=", self.picking_type_id.id)]
