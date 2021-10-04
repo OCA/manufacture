@@ -20,6 +20,9 @@ class TestQualityControl(TransactionCase):
         self.picking_type = self.env.ref("stock.picking_type_out")
         self.location_dest = self.env.ref("stock.stock_location_customers")
         self.group_stock_user = self.env.ref("stock.group_stock_user")
+        self.group_quality_control_user = self.env.ref(
+            "quality_control_oca.group_quality_control_user"
+        )
         self.company = self.env.ref("base.main_company")
         self.sequence = self.env["ir.sequence"].create(
             {"code": "out", "name": "outgoing_sequence"}
@@ -39,7 +42,9 @@ class TestQualityControl(TransactionCase):
             }
         )
         self.user1_id = self._create_user(
-            "user_1", [self.group_stock_user], self.company
+            "user_1",
+            [self.group_stock_user, self.group_quality_control_user],
+            self.company,
         )
         move_vals = {
             "name": self.product.name,
@@ -109,7 +114,7 @@ class TestQualityControl(TransactionCase):
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -127,7 +132,7 @@ class TestQualityControl(TransactionCase):
         self.product.product_tmpl_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -141,7 +146,7 @@ class TestQualityControl(TransactionCase):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -163,7 +168,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -185,7 +190,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -207,7 +212,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -229,7 +234,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
@@ -246,7 +251,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
@@ -263,7 +268,7 @@ class TestQualityControl(TransactionCase):
                 },
             )
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
@@ -275,7 +280,7 @@ class TestQualityControl(TransactionCase):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        self.picking1.action_done()
+        self.picking1.button_validate()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
