@@ -1,4 +1,4 @@
-# Copyright 2020 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2020-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from dateutil.rrule import MONTHLY
@@ -54,7 +54,9 @@ class TestMrpPlannedOrderMatrix(TestMrpMultiLevelCommon):
         sheets = self.env["mrp.planned.order.sheet"].search([])
         for sheet in sheets:
             self.assertEqual(
-                len(sheet.line_ids), 12, "There should be 12 lines.",
+                len(sheet.line_ids),
+                12,
+                "There should be 12 lines.",
             )
             self.assertEqual(
                 fields.Date.to_string(sheet.date_start),
@@ -92,7 +94,9 @@ class TestMrpPlannedOrderMatrix(TestMrpMultiLevelCommon):
                     "The product does not match in the estimate",
                 )
                 self.assertEqual(
-                    planned_order.product_qty, 1, "The product qty does not match",
+                    planned_order.product_qty,
+                    1,
+                    "The product qty does not match",
                 )
             mrp_planned_orders = self.env["mrp.planned.order"].search(
                 [("product_mrp_area_id", "=", self.product_mrp_area_1.id)]

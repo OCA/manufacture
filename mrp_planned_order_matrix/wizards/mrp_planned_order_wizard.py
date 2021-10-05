@@ -1,4 +1,4 @@
-# Copyright 2020 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2020-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import timedelta
@@ -17,7 +17,9 @@ class MrpPlannedOrderWizard(models.TransientModel):
     date_start = fields.Date(string="Date From", required=True)
     date_end = fields.Date(string="Date To", required=True)
     date_range_type_id = fields.Many2one(
-        string="Date Range Type", comodel_name="date.range.type", required=True,
+        string="Date Range Type",
+        comodel_name="date.range.type",
+        required=True,
     )
     product_mrp_area_ids = fields.Many2many(
         string="Product Parameters", comodel_name="product.mrp.area", required=True
@@ -67,7 +69,9 @@ class MprPlannedOrderSheet(models.TransientModel):
     date_start = fields.Date(string="Date From", readonly=True)
     date_end = fields.Date(string="Date to", readonly=True)
     date_range_type_id = fields.Many2one(
-        string="Date Range Type", comodel_name="date.range.type", readonly=True,
+        string="Date Range Type",
+        comodel_name="date.range.type",
+        readonly=True,
     )
     product_mrp_area_ids = fields.Many2many(
         string="Product Parameters", comodel_name="product.mrp.area"
@@ -218,7 +222,10 @@ class MprPlannedOrderSheetLine(models.TransientModel):
     product_mrp_area_id = fields.Many2one(
         string="Product Parameters", comodel_name="product.mrp.area"
     )
-    date_range_id = fields.Many2one(comodel_name="date.range", string="Date Range",)
+    date_range_id = fields.Many2one(
+        comodel_name="date.range",
+        string="Date Range",
+    )
     value_x = fields.Char(string="Period")
     value_y = fields.Char(string="Product")
     product_qty = fields.Float(string="Quantity", digits="Product UoM")
