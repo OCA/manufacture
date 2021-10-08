@@ -103,8 +103,16 @@ class RepairLine(models.Model):
             and "to_refurbish" in context
             and not context["to_refurbish"]
         ):
-            scrap_location_id = self.env["stock.location"].search(
-                [("usage", "=", "customer")], limit=1
+            scrap_location_id = (
+                self.env["stock.location"]
+                .search(
+                    [
+                        ("scrap_location", "=", True),
+                        ("company_id", "in", [self.repair_id.company_id.id, False]),
+                    ],
+                    limit=1,
+                )
+                .id
             )
             self.location_dest_id = scrap_location_id
         return res
