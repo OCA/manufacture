@@ -52,6 +52,12 @@
                 <field name="supply_qty" />
                 <field name="final_on_hand_qty" />
                 <field name="to_procure" />
+                <button
+                    attrs="{'invisible': [('planned_order_ids', '=', [])]}"
+                    name="action_open_planned_orders"
+                    type="object"
+                    icon="fa-list"
+                />
                 <field name="order_release_date" />
                 <button
                     title="Create Procurement"
@@ -60,6 +66,7 @@
                     type="action"
                     attrs="{'invisible':[('to_procure','&lt;=',0.0)]}"
                 />
+                <field name="planned_order_ids" invisible="1" />
                 <field name="supply_method" />
                 <field name="main_supplier_id" optional="hide" />
                 <field name="running_availability" />
