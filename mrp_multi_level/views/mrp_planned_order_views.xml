@@ -7,6 +7,7 @@
         <field name="model">mrp.planned.order</field>
         <field name="arch" type="xml">
             <tree decoration-info="fixed != True">
+                <field name="name" />
                 <field name="product_mrp_area_id" />
                 <field name="product_id" />
                 <field name="mrp_area_id" />
