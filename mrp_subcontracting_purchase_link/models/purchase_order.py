@@ -19,13 +19,13 @@ class PurchaseOrder(models.Model):
 
     def action_view_mrp(self):
         productions = self.subcontract_production_ids
-        action = self.env.ref("mrp.mrp_production_action").read()[0]
+        form_xmlid = "mrp.mrp_production_form_view"
+        action_xmlid = "mrp.mrp_production_action"
+        action = self.env["ir.actions.actions"]._for_xml_id(action_xmlid)
         if len(productions) > 1:
             action["domain"] = [("id", "in", productions.ids)]
         elif len(productions) == 1:
-            action["views"] = [
-                (self.env.ref("mrp.mrp_production_form_view").id, "form")
-            ]
+            action["views"] = [(self.env.ref(form_xmlid).id, "form")]
             action["res_id"] = productions.ids[0]
         else:
             action = {"type": "ir.actions.act_window_close"}
