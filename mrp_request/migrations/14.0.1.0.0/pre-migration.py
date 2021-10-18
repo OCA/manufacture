@@ -8,8 +8,8 @@ _field_renames = [
     (
         "product.template",
         "product_template",
-        "mrp_production_request_id",
-        "mrp_request_id",
+        "mrp_production_request",
+        "mrp_request",
     ),
     (
         "stock.move",
