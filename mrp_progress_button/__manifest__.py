@@ -10,11 +10,7 @@
     "category": "Manufacturing",
     "version": "12.0.1.0.0",
     "license": "AGPL-3",
-    "depends": [
-        "mrp"
-    ],
-    "data": [
-        "views/production.xml"
-    ],
+    "depends": ["mrp"],
+    "data": ["views/production.xml"],
     "installable": True,
 }
