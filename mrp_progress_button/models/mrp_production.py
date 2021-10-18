@@ -4,13 +4,12 @@
 
 from datetime import datetime
 
-from odoo import api, models
+from odoo import models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.multi
     def action_progress(self):
         self.write(
             {
