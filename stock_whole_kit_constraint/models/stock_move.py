@@ -7,7 +7,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     allow_partial_kit_delivery = fields.Boolean(
-        compute="_compute_allow_partial_kit_delivery", compute_sudo=True,
+        compute="_compute_allow_partial_kit_delivery",
+        compute_sudo=True,
     )
 
     @api.depends("product_id.product_tmpl_id.allow_partial_kit_delivery", "state")
@@ -27,7 +28,7 @@ class StockMove(models.Model):
 
     def _check_backorder_moves(self):
         """Check if there are partial deliveries on any set of moves. The
-        computing is done in the same way the main picking method does it """
+        computing is done in the same way the main picking method does it"""
         quantity_todo = {}
         quantity_done = {}
         for move in self:
