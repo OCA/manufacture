@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [repair_calendar_view](repair_calendar_view/) | 13.0.1.0.0 |  | Repair Calendar View
 [repair_refurbish](repair_refurbish/) | 13.0.1.0.0 |  | Create refurbished products during repair
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 13.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
+[stock_whole_kit_constraint](stock_whole_kit_constraint/) | 13.0.1.0.0 |  | Avoid to deliver a kit partially
 
 [//]: # (end addons)
 
