@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo13-addon-repair_calendar_view',
         'odoo13-addon-repair_refurbish',
         'odoo13-addon-stock_picking_product_kit_helper',
+        'odoo13-addon-stock_whole_kit_constraint',
     ],
     classifiers=[
         'Programming Language :: Python',
