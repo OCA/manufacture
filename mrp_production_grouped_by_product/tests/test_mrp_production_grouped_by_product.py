@@ -89,6 +89,9 @@ class TestProductionGroupedByProduct(common.SavepointCase):
         mo = self.MrpProduction.search([("product_id", "=", self.product1.id)])
         self.assertEqual(len(mo), 1)
         self.assertEqual(mo.product_qty, 12)
+        mto_prod = mo.move_raw_ids.search([("product_id", "=", self.product2.id)])
+        self.assertEqual(len(mto_prod), 1)
+        self.assertEqual(mto_prod[0].product_qty, 12)
         # Run again the scheduler to see if quantities are altered
         self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
         mo = self.MrpProduction.search([("product_id", "=", self.product1.id)])
