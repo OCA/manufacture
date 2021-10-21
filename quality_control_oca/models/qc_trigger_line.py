@@ -20,6 +20,7 @@ def _filter_trigger_lines(trigger_lines):
 
 class QcTriggerLine(models.AbstractModel):
     _name = "qc.trigger.line"
+    _inherit = "mail.thread"
     _description = "Abstract line for defining triggers"
 
     trigger = fields.Many2one(comodel_name="qc.trigger", required=True)
@@ -49,77 +50,3 @@ class QcTriggerLine(models.AbstractModel):
         trigger.
         """
         return set()
-
-
-class QcTriggerProductCategoryLine(models.Model):
-    _inherit = "qc.trigger.line"
-    _name = "qc.trigger.product_category_line"
-    _description = "Quality Control Trigger Product Category Line"
-
-    product_category = fields.Many2one(comodel_name="product.category")
-
-    def get_trigger_line_for_product(self, trigger, product, partner=False):
-        trigger_lines = super().get_trigger_line_for_product(
-            trigger, product, partner=partner
-        )
-        category = product.categ_id
-        while category:
-            for trigger_line in category.qc_triggers.filtered(
-                lambda r: r.trigger == trigger
-                and (
-                    not r.partners
-                    or not partner
-                    or partner.commercial_partner_id in r.partners
-                )
-            ):
-                trigger_lines.add(trigger_line)
-            category = category.parent_id
-        return trigger_lines
-
-
-class QcTriggerProductTemplateLine(models.Model):
-    _inherit = "qc.trigger.line"
-    _name = "qc.trigger.product_template_line"
-    _description = "Quality Control Trigger Product Template Line"
-
-    product_template = fields.Many2one(comodel_name="product.template")
-
-    def get_trigger_line_for_product(self, trigger, product, partner=False):
-        trigger_lines = super().get_trigger_line_for_product(
-            trigger, product, partner=partner
-        )
-        for trigger_line in product.product_tmpl_id.qc_triggers.filtered(
-            lambda r: r.trigger == trigger
-            and (
-                not r.partners
-                or not partner
-                or partner.commercial_partner_id in r.partners
-            )
-            and r.test.active
-        ):
-            trigger_lines.add(trigger_line)
-        return trigger_lines
-
-
-class QcTriggerProductLine(models.Model):
-    _inherit = "qc.trigger.line"
-    _name = "qc.trigger.product_line"
-    _description = "Quality Control Trigger Product Line"
-
-    product = fields.Many2one(comodel_name="product.product")
-
-    def get_trigger_line_for_product(self, trigger, product, partner=False):
-        trigger_lines = super().get_trigger_line_for_product(
-            trigger, product, partner=partner
-        )
-        for trigger_line in product.qc_triggers.filtered(
-            lambda r: r.trigger == trigger
-            and (
-                not r.partners
-                or not partner
-                or partner.commercial_partner_id in r.partners
-            )
-            and r.test.active
-        ):
-            trigger_lines.add(trigger_line)
-        return trigger_lines
