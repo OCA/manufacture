@@ -12,7 +12,7 @@
     "summary": "Adds an MRP Scheduler",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "depends": ["mrp", "purchase_stock", "mrp_warehouse_calendar"],
+    "depends": ["mrp", "purchase_stock", "mrp_warehouse_calendar", "robinhli"],
     "data": [
         "security/mrp_multi_level_security.xml",
         "security/ir.model.access.csv",
