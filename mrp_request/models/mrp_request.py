@@ -256,6 +256,11 @@ class MrpProductionRequest(models.Model):
             vals["name"] = self.env["ir.sequence"].next_by_code("mrp.request") or "/"
         return vals
 
+    def copy(self, default=None):
+        default = dict(default or {})
+        default['name'] = '/'
+        return super().copy(default)
+
     @api.model
     def create(self, vals):
         """Add sequence if name is not defined and subscribe to the thread
