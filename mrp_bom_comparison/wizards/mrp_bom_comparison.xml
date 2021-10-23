@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ABF OSIELL <http://osiell.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+
+<record id="view_wizard_bom_comparison_form" model="ir.ui.view">
+    <field name="name">Compare Bill of Materials</field>
+    <field name="model">wizard.mrp.bom.comparison</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <form string="Compare Bill of Materials">
+            <group col="4">
+                <field name="bom1_id"/>
+                <field name="bom2_id"/>
+            </group>
+            <footer>
+                <button name="run" type="object"
+                        string="Compare" class="btn-primary"/>
+                <button special="cancel"
+                        string="Cancel" class="btn-default"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<act_window name="Compare Bill of Materials"
+    res_model="wizard.mrp.bom.comparison"
+    src_model="mrp.bom"
+    view_mode="form"
+    target="new"
+    id="act_wizard_mrp_bom_comparison"/>
+
+</odoo>

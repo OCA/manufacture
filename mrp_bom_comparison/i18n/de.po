@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_comparison
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2018-12-13 09:58+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "<br/>Products added to BoM v2"
+msgstr "<br/>zur Stückliste V2 hinzugefügte Produkte"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "<br/>Products removed from BoM v2"
+msgstr "<br/>aus Stückliste V2 entfernte Produkte"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "<br/>Products updated"
+msgstr "<br/>Produkte aktualisiert"
+
+#. module: mrp_bom_comparison
+#: selection:wizard.mrp.bom.comparison.line,state:0
+msgid "Added"
+msgstr "Hinzugefügt"
+
+#. module: mrp_bom_comparison
+#: model:ir.actions.report.xml,name:mrp_bom_comparison.action_report_mrp_bom_comparison
+msgid "BoM Differences"
+msgstr "Stücklisten-Unterschiede"
+
+#. module: mrp_bom_comparison
+#: model:ir.model,name:mrp_bom_comparison.model_wizard_mrp_bom_comparison_line
+msgid "BoM line difference"
+msgstr "Unterschiede in Stücklistenpositionen"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_bom1_id
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "BoM v1"
+msgstr "Stückliste V1"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_bom2_id
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "BoM v2"
+msgstr "Stückliste V2"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.view_wizard_bom_comparison_form
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: mrp_bom_comparison
+#: selection:wizard.mrp.bom.comparison.line,state:0
+msgid "Changed"
+msgstr "Geändert"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.view_wizard_bom_comparison_form
+msgid "Compare"
+msgstr "Vergleichen"
+
+#. module: mrp_bom_comparison
+#: model:ir.actions.act_window,name:mrp_bom_comparison.act_wizard_mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.view_wizard_bom_comparison_form
+msgid "Compare Bill of Materials"
+msgstr "Stückliste vergleichen"
+
+#. module: mrp_bom_comparison
+#: model:ir.model,name:mrp_bom_comparison.model_wizard_mrp_bom_comparison
+msgid "Compare two BoM"
+msgstr "zwei Stücklisten vergleichen"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_create_uid
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_create_date
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "Designation"
+msgstr "Bezeichnung"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_ids
+msgid "Differences"
+msgstr "Unterschiede"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_display_name
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_id
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison___last_update
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_write_uid
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_write_date
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "NO DIFFERENCE DETECTED"
+msgstr "KEINE UNTERSCHIEDE ERKANNT"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_product_id
+msgid "Product"
+msgstr "Produkt"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_added_ids
+msgid "Products added"
+msgstr "Produkte wurden hinzugefügt"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_removed_ids
+msgid "Products removed"
+msgstr "Produkte wurden entfernt"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_changed_ids
+msgid "Products updated"
+msgstr "Produkte wurden aktualisiert"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_diff_qty
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "Qty gap"
+msgstr "Mengenunterschied"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "Ref."
+msgstr "Ref."
+
+#. module: mrp_bom_comparison
+#: selection:wizard.mrp.bom.comparison.line,state:0
+msgid "Removed"
+msgstr "Entfernt"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_state
+msgid "State"
+msgstr "Status"
+
+#. module: mrp_bom_comparison
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "TOTAL"
+msgstr "GESAMT"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_total_qty
+msgid "Total qty"
+msgstr "Gesamtmenge"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_wiz_id
+msgid "Wizard"
+msgstr "Assistent"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_bom1_qty
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "v1-Qty"
+msgstr "V1-Menge"
+
+#. module: mrp_bom_comparison
+#: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line_bom2_qty
+#: model:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
+msgid "v2-Qty"
+msgstr "V2-Menge"
