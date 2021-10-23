@@ -18,6 +18,7 @@ addon | version | maintainers | summary
 [base_repair_config](base_repair_config/) | 12.0.1.0.1 | [![marcelsavegnago](https://github.com/marcelsavegnago.png?size=30px)](https://github.com/marcelsavegnago) | Provides general settings for the Repair App
 [mrp_auto_assign](mrp_auto_assign/) | 12.0.1.0.0 |  | Make MO automatically reserve raw material moves at creation
 [mrp_auto_create_lot](mrp_auto_create_lot/) | 12.0.1.0.1 | [![ps-tubtim](https://github.com/ps-tubtim.png?size=30px)](https://github.com/ps-tubtim) | Auto create lots for work orders
+[mrp_bom_comparison](mrp_bom_comparison/) | 12.0.1.0.0 |  | Compare two Bill of Materials to view the differences
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 12.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 12.0.1.0.0 |  | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 12.0.1.0.2 |  | Adds location field to Bill of Materials and its components.
