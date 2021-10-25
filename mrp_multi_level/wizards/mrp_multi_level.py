@@ -101,7 +101,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_planned_order_data(
-        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name, values
+        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name, values=None
     ):
         return {
             "product_mrp_area_id": product_mrp_area.id,
@@ -116,7 +116,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_mrp_move_data_bom_explosion(
-        self, product, bomline, qty, mrp_date_demand_2, bom, name, action
+        self, product, bomline, qty, mrp_date_demand_2, bom, name, action=False
     ):
         product_mrp_area = self._get_product_mrp_area_from_product_and_area(
             bomline.product_id, product.mrp_area_id
