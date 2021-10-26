@@ -33,6 +33,10 @@ msgstr "Prihvati"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "Action Needed"
 msgstr "Potrebna radnja"
 
@@ -59,6 +63,11 @@ msgid "Activity State"
 msgstr "Status Aktivnosti"
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "Answers"
@@ -71,6 +80,10 @@ msgstr "Odobri"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_attachment_count
 msgid "Attachment Count"
 msgstr "Broj priloga"
 
@@ -180,6 +193,9 @@ msgid "Date"
 msgstr "Datum"
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__display_name
@@ -215,18 +231,35 @@ msgstr "Vanjske bilješke"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
 msgid "Followers"
 msgstr "Pratitelji"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Pratitelji (kanali)"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Pratitelji (Partneri)"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__complete_name
@@ -256,6 +289,9 @@ msgid "Group by..."
 msgstr "Grupiraj po..."
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__id
@@ -289,12 +325,28 @@ msgstr "Ako je nadzor auto generiran, može biti otkazan ali ne i uklonjen."
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_unread
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_unread
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -353,10 +405,17 @@ msgstr "Interne bilješke"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
@@ -404,6 +463,10 @@ msgstr "Zadnje ažuriranje"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
 
@@ -430,11 +493,19 @@ msgstr "Maksimalna valjana vrijednost za količinsko pitanje."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_ids
 msgid "Messages"
 msgstr ""
 
@@ -448,6 +519,11 @@ msgstr "Min"
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__min_value
 msgid "Minimum valid value for a quantitative question."
 msgstr "Minimalna valjana vrijednost za količinsko pitanje."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__name
@@ -482,26 +558,46 @@ msgstr "Bilješke"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of errors"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
 
@@ -753,6 +849,10 @@ msgstr "Odgovoran/na"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr ""
 
@@ -894,6 +994,12 @@ msgid "Trigger"
 msgstr "Okidač"
 
 #. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_trigger
+#: model:ir.ui.menu,name:quality_control_oca.qc_trigger_menu
+msgid "Triggers"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
@@ -906,11 +1012,19 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_unread
 msgid "Unread Messages"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
 
@@ -961,11 +1075,19 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website Messages"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website communication history"
 msgstr ""
 
