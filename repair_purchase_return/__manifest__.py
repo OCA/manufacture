@@ -15,6 +15,7 @@
         "security/ir.model.access.csv",
         "wizards/repair_purchase_return_wiz_views.xml",
         "views/repair_order_views.xml",
+        "views/purchase_return_order_views.xml",
     ],
     "installable": True,
     "application": False,

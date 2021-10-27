@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="purchase_return_order_form" model="ir.ui.view">
+        <field name="name">purchase.return.order.form</field>
+        <field name="model">purchase.return.order</field>
+        <field name="inherit_id" ref="purchase_return.purchase_return_order_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_repair_orders"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible':[('repair_order_count', '=', 0)]}"
+                >
+                    <field
+                        name="repair_order_count"
+                        widget="statinfo"
+                        string="Repair Orders"
+                    />
+                    <field name='repair_order_ids' invisible="1" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

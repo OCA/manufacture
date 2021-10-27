@@ -22,7 +22,9 @@ class RepairOrder(models.Model):
     )
 
     @api.depends(
+        "operations.purchase_return_line_ids",
         "operations.purchase_return_line_ids.order_id",
+        "fees_lines.purchase_return_line_ids",
         "fees_lines.purchase_return_line_ids.order_id",
     )
     def _compute_purchase_returns(self):
