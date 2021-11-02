@@ -37,6 +37,11 @@ msgid "Production Order"
 msgstr "Fertigungsauftrag"
 
 #. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
 msgid "Stock Rule"
 msgstr ""
