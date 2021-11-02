@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [mrp_multi_level](mrp_multi_level/) | 13.0.1.8.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 13.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 13.0.1.0.0 |  | Allows to create fixed planned orders on a grid view.
-[mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 13.0.1.0.1 |  | Production Grouped By Product
+[mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 13.0.1.0.2 |  | Production Grouped By Product
 [mrp_production_note](mrp_production_note/) | 13.0.1.0.0 |  | Notes in production orders
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 13.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_production_request](mrp_production_request/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
