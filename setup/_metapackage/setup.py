@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-mrp_bom_location',
         'odoo14-addon-mrp_multi_level',
         'odoo14-addon-mrp_multi_level_estimate',
+        'odoo14-addon-mrp_planned_order_matrix',
         'odoo14-addon-mrp_production_quant_manual_assign',
         'odoo14-addon-mrp_production_serial_matrix',
         'odoo14-addon-mrp_progress_button',
