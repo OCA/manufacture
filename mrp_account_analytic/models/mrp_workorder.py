@@ -40,7 +40,7 @@ class MrpWorkcenterProductivity(models.Model):
         return timelog
 
     def write(self, vals):
+        res = super().write(vals)
         if vals.get("date_end"):
             self.generate_mrp_work_analytic_line()
-        res = super().write(vals)
         return res
