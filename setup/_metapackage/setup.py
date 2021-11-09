@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo12-addon-mrp_bom_multi_company',
         'odoo12-addon-mrp_bom_note',
         'odoo12-addon-mrp_bom_tracking',
+        'odoo12-addon-mrp_mto_with_stock',
         'odoo12-addon-mrp_multi_level',
         'odoo12-addon-mrp_multi_level_estimate',
         'odoo12-addon-mrp_planned_order_matrix',
