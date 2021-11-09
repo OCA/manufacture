@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_mto_with_stock
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-28 03:44+0000\n"
+"PO-Revision-Date: 2017-11-28 03:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_mto_with_stock
+#: model:ir.model.fields,field_description:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
+msgid "MRP MTO with forecast stock"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
+#: model:ir.model.fields,field_description:mrp_mto_with_stock.field_product_template_mrp_mts_mto_location_ids
+msgid "Manufacturing MTO/MTS Locations"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model,name:mrp_mto_with_stock.model_product_template
+msgid "Product Template"
+msgstr "Plantilla del producte"
+
+#. module: mrp_mto_with_stock
+#: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
+#: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_product_template
+msgid "Subproduct 1"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1_1
+#: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_1_1_product_template
+msgid "Subproduct 1-1"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2
+#: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
+msgid "Subproduct 2"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_2_1
+#: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_2_1_product_template
+msgid "Subproduct 2-1"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1
+#: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1_1
+#: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1_1_1
+#: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1_2
+#: model:product.product,description:mrp_mto_with_stock.product_product_manufacture_1_2_1
+#: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_1_1_product_template
+#: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_1_product_template
+#: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_2_1_product_template
+#: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
+#: model:product.template,description:mrp_mto_with_stock.product_product_manufacture_1_product_template
+msgid "TODO"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1
+#: model:product.template,name:mrp_mto_with_stock.product_product_manufacture_1_product_template
+msgid "TOP"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model.fields,help:mrp_mto_with_stock.field_product_product_mrp_mts_mto_location_ids
+#: model:ir.model.fields,help:mrp_mto_with_stock.field_product_template_mrp_mts_mto_location_ids
+msgid ""
+"These manufacturing locations will create procurements when there is no "
+"stock availale in the source location."
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model,name:mrp_mto_with_stock.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
+
+#. module: mrp_mto_with_stock
+#: model:ir.model.fields,help:mrp_mto_with_stock.field_stock_warehouse_mrp_mto_mts_forecast_qty
+msgid ""
+"When you use Mrp_mto_with_stock, the procurement creation is based on "
+"reservable stock by default. Check this option if you prefer base it on the "
+"forecast stock. In this case, the created procurements won't be linked to "
+"the raw material moves"
+msgstr ""
