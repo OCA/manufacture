@@ -107,6 +107,14 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="bom_id" ref="mrp_bom_manuf_1_1"/>
     </record>
 
+    <record id="mrp_bom_line_manuf_1_1_2" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_manufacture_1_1_1"/>
+        <field name="product_qty">3</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="sequence">2</field>
+        <field name="bom_id" ref="mrp_bom_manuf_1_1"/>
+    </record>
+
     <record id="mrp_bom_manuf_1_2" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_manufacture_1_2_product_template"/>
         <field name="product_uom_id" ref="uom.product_uom_unit"/>

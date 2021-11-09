@@ -62,6 +62,7 @@ class MrpProduction(models.Model):
         for move in self.move_raw_ids:
             if not self._mto_with_stock_condition(move):
                 continue
+            new_move = False
             if not mto_with_no_move_dest_id:
                 # We have to split the move because we can't have
                 # a part of the move that have ancestors and not the
@@ -88,8 +89,19 @@ class MrpProduction(models.Model):
                             move.product_uom_qty - qty_to_procure,
                         'unit_factor': move.unit_factor * (1 - ratio),
                     })
-                move._action_confirm()
-                move._action_assign()
+                elif qty_to_procure > 0.0:
+                    new_move = move
+                else:
+                    # If we don't need to procure, we reserve the qty
+                    # for this move so it won't be available for others,
+                    # which would generate planning issues.
+                    move._action_confirm()
+                    move._action_assign()
+            if new_move:
+                self.run_procurement(
+                    new_move, qty_to_procure, mto_with_no_move_dest_id)
+            move._action_confirm()
+            move._action_assign()
         return res
 
     @api.multi

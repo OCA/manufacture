@@ -16,8 +16,9 @@
     "application": False,
     "installable": True,
     "depends": [
-        "stock",
+        "stock_mts_mto_rule",
         "mrp",
+        "purchase_mrp",
         "stock_available_unreserved",
     ],
     "data": [
