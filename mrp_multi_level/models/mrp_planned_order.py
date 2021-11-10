@@ -17,6 +17,7 @@ class MrpPlannedOrder(models.Model):
         string="Product MRP Area",
         index=True,
         required=True,
+        ondelete="cascade",
     )
     mrp_area_id = fields.Many2one(
         comodel_name="mrp.area",
