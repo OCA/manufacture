@@ -30,6 +30,7 @@ class MrpInventory(models.Model):
         string="Product Parameters",
         index=True,
         required=True,
+        ondelete="cascade",
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
