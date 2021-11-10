@@ -51,14 +51,20 @@ class MrpInventoryProcure(models.TransientModel):
         active_model = self.env.context["active_model"]
         if not active_ids or "item_ids" not in fields:
             return res
+        items = item_obj = self.env["mrp.inventory.procure.item"]
         if active_model == "mrp.inventory":
-            items = item_obj = self.env["mrp.inventory.procure.item"]
-            mrp_inventory_obj = self.env["mrp.inventory"]
+            mrp_inventory_obj = self.env[active_model]
             for line in mrp_inventory_obj.browse(active_ids).mapped(
                 "planned_order_ids"
             ):
                 if line.qty_released < line.mrp_qty:
                     items += item_obj.create(self._prepare_item(line))
+        elif active_model == "mrp.planned.order":
+            mrp_planned_order_obj = self.env[active_model]
+            for line in mrp_planned_order_obj.browse(active_ids):
+                if line.qty_released < line.mrp_qty:
+                    items += item_obj.create(self._prepare_item(line))
+        if items:
             res["item_ids"] = [(6, 0, items.ids)]
         return res
 
