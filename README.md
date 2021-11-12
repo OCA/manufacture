@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 14.0.1.0.0 |  | Allows to create fixed planned orders on a grid view.
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 14.0.1.0.0 |  | Production - Manual Quant Assignment
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 14.0.1.0.1 |  | MRP Production Serial Matrix
-[mrp_progress_button](mrp_progress_button/) | 14.0.1.0.0 |  | Add a button on MO to make the MO state 'In Progress'
+[mrp_progress_button](mrp_progress_button/) | 14.0.1.1.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
 [mrp_sale_info](mrp_sale_info/) | 14.0.1.1.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.0 |  | Link Purchase Order to Subcontract Productions
