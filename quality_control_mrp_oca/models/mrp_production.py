@@ -26,11 +26,11 @@ class MrpProduction(models.Model):
         compute="_compute_created_inspections", string="Created inspections"
     )
 
-    def post_inventory(self):
+    def _post_inventory(self, cancel_backorder=False):
         done_moves = self.mapped("move_finished_ids").filtered(
             lambda r: r.state == "done"
         )
-        res = super().post_inventory()
+        res = super()._post_inventory(cancel_backorder=cancel_backorder)
         inspection_model = self.env["qc.inspection"]
         new_done_moves = (
             self.mapped("move_finished_ids").filtered(lambda r: r.state == "done")
