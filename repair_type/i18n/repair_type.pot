@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_line__location_dest_id
+msgid "Dest. Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_id
+msgid "Destination Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_add_part_id
+msgid "Destination Location Add Component"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_remove_part_id
+msgid "Destination Location Remove Component"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_line__display_name
+#: model:ir.model.fields,field_description:repair_type.field_repair_order__display_name
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_line__id
+#: model:ir.model.fields,field_description:repair_type.field_repair_order__id
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_line____last_update
+#: model:ir.model.fields,field_description:repair_type.field_repair_order____last_update
+#: model:ir.model.fields,field_description:repair_type.field_repair_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_order__location_id
+msgid "Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model,name:repair_type.model_repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_order__repair_type_id
+msgid "Repair Type"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__name
+msgid "Repair Type Name"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.actions.act_window,name:repair_type.repair_type_action
+#: model:ir.ui.menu,name:repair_type.repair_type_menu
+msgid "Repair Types"
+msgstr ""
+
+#. module: repair_type
+#: model_terms:ir.ui.view,arch_db:repair_type.repair_type_view_form
+msgid "Repair types"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_line__location_id
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_id
+msgid "Source Location"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_add_part_id
+msgid "Source Location Add Component"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_remove_part_id
+msgid "Source Location Remove Component"
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_add_part_id
+#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_add_part_id
+msgid "This is the location where the part of the product to add is located."
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_remove_part_id
+#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_remove_part_id
+msgid ""
+"This is the location where the part of the product to remove is located."
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_id
+msgid "This is the location where the product repaired will be located."
+msgstr ""
+
+#. module: repair_type
+#: model:ir.model.fields,help:repair_type.field_repair_order__location_id
+#: model:ir.model.fields,help:repair_type.field_repair_type__source_location_id
+msgid "This is the location where the product to repair is located."
+msgstr ""
