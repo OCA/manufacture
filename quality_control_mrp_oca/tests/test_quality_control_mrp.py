@@ -60,14 +60,8 @@ class TestQualityControlMrp(TransactionCase):
         self.product.product_variant_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = self.production1.product_qty
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = self.production1.product_qty
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections,
             1,
@@ -78,14 +72,8 @@ class TestQualityControlMrp(TransactionCase):
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = self.production1.product_qty
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = self.production1.product_qty
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections,
             1,
@@ -96,14 +84,8 @@ class TestQualityControlMrp(TransactionCase):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = self.production1.product_qty
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = self.production1.product_qty
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections,
             1,
@@ -117,14 +99,8 @@ class TestQualityControlMrp(TransactionCase):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = self.production1.product_qty
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = self.production1.product_qty
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections,
             1,
@@ -135,27 +111,15 @@ class TestQualityControlMrp(TransactionCase):
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = 1.0
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = 1.0
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections,
             1,
             "Only one inspection must be created.",
         )
-        produce_wizard = Form(
-            self.env["mrp.product.produce"].with_context(
-                {"active_id": self.production1.id, "active_ids": self.production1.ids}
-            )
-        )
-        produce_wizard.qty_producing = 1.0
-        produce_wizard.save().do_produce()
-        self.production1.post_inventory()
+        self.production1.qty_producing = self.production1.product_qty
+        self.production1._post_inventory()
         self.assertEqual(
             self.production1.created_inspections, 2, "There must be only 2 inspections."
         )
