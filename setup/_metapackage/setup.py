@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo14-addon-quality_control_oca',
         'odoo14-addon-repair_refurbish',
         'odoo14-addon-repair_stock_move',
+        'odoo14-addon-repair_type',
     ],
     classifiers=[
         'Programming Language :: Python',
