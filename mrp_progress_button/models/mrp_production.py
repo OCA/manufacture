@@ -18,3 +18,12 @@ class MrpProduction(models.Model):
             }
         )
         return True
+
+    def action_unstart(self):
+        self.write(
+            {
+                "state": "confirmed",
+                "date_start": False,
+            }
+        )
+        return True
