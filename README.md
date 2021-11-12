@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [quality_control_oca](quality_control_oca/) | 14.0.1.2.0 |  | Generic infrastructure for quality tests.
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.0 |  | Create refurbished products during repair
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
+[repair_type](repair_type/) | 14.0.1.0.0 |  | Repair type
 
 [//]: # (end addons)
 
