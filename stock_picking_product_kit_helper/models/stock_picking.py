@@ -34,6 +34,8 @@ class StockPicking(models.Model):
                 for line in picking.move_lines.mapped("sale_line_id")
             ):
                 picking.has_product_kit = True
+            else:
+                picking.has_product_kit = False
 
     def show_product_kit(self):
         """Find move_lines with product kit to create helper line."""
