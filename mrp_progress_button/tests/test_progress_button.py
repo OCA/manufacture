@@ -30,10 +30,6 @@ class TestProgressButton(TransactionCase):
             }
         )
 
-        self._update_product_qty(
-            self.product_raw_material, self.stock_location_stock, 1
-        )
-
         self.bom = self.env["mrp.bom"].create(
             {
                 "product_id": self.product_manuf.id,
@@ -53,32 +49,6 @@ class TestProgressButton(TransactionCase):
                 ),
             }
         )
-
-    def _update_product_qty(self, product, location, quantity):
-        """Update Product quantity."""
-        inventory = self.env["stock.inventory"].create(
-            {
-                "name": "Test Inventory",
-                "product_ids": [(6, 0, product.ids)],
-                "state": "confirm",
-                "line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_qty": quantity,
-                            "location_id": location.id,
-                            "product_id": product.id,
-                            "product_uom_id": product.uom_id.id,
-                        },
-                    )
-                ],
-            }
-        )
-        inventory.action_start()
-        inventory.line_ids[0].write({"product_qty": quantity})
-        inventory.action_validate()
-        return quantity
 
     def test_manufacture_with_forecast_stock(self):
         """
