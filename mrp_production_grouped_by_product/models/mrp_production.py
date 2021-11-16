@@ -25,6 +25,18 @@ class MrpProduction(models.Model):
             self.move_finished_ids.move_dest_ids = vals["move_dest_ids"]
         self.write(new_vals)
 
+    def _get_grouping_target_vals(self):
+        return {
+            "product_id": self.product_id.id,
+            "picking_type_id": self.picking_type_id.id,
+            "bom_id": self.bom_id.id,
+            "company_id": self.company_id.id,
+            "state": self.state,
+            "date_deadline": self.date_deadline,
+        }
+
+    # NOTE: when extending this logic, remember to also adapt
+    # `_get_grouping_target_vals` accordingly.
     def _get_grouping_target_domain(self, vals):
         """Get the domain for searching manufacturing orders that can match
         with the criteria we want to use.
@@ -33,20 +45,21 @@ class MrpProduction(models.Model):
 
         :return: Odoo domain.
         """
-        if "routing_id" not in vals and "bom_id" in vals:
-            bom = self.env["mrp.bom"].browse(vals["bom_id"])
-            vals["routing_id"] = bom.routing_id.id
+        bom_has_routing = bool(self.env["mrp.bom"].browse(vals["bom_id"]).operation_ids)
         domain = [
             ("product_id", "=", vals["product_id"]),
             ("picking_type_id", "=", vals["picking_type_id"]),
             ("bom_id", "=", vals.get("bom_id", False)),
-            ("routing_id", "=", vals.get("routing_id", False)),
             ("company_id", "=", vals.get("company_id", False)),
             ("state", "in", ["draft", "confirmed"]),
         ]
-        if not vals.get("date_planned_finished"):
+        if bom_has_routing:
+            domain.append(("workorder_ids", "!=", False))
+        else:
+            domain.append(("workorder_ids", "=", False))
+        if not vals.get("date_deadline"):
             return domain
-        date = fields.Datetime.from_string(vals["date_planned_finished"])
+        date = fields.Datetime.from_string(vals["date_deadline"])
         pt = self.env["stock.picking.type"].browse(vals["picking_type_id"])
         if date.hour < pt.mo_grouping_max_hour:
             date_end = date.replace(hour=pt.mo_grouping_max_hour, minute=0, second=0)
@@ -56,8 +69,8 @@ class MrpProduction(models.Model):
             )
         date_start = date_end - relativedelta(days=pt.mo_grouping_interval)
         domain += [
-            ("date_planned_finished", ">", fields.Datetime.to_string(date_start)),
-            ("date_planned_finished", "<=", fields.Datetime.to_string(date_end)),
+            ("date_deadline", ">", fields.Datetime.to_string(date_start)),
+            ("date_deadline", "<=", fields.Datetime.to_string(date_end)),
         ]
         return domain
 
@@ -89,3 +102,20 @@ class MrpProduction(models.Model):
                 mo._post_mo_merging_adjustments(vals)
                 return mo
         return super(MrpProduction, self).create(vals)
+
+    def _create_workorder(self):
+        # We need to skip the creation of workorders during `_run_manufacture`.
+        # It is not possible to pass a context from the `_post_mo_merging_adjustments`
+        # because the create is called with sudo in `_run_manufacture` and that
+        # creates a new context that does not reach `_create_workorder` call.
+        context = self.env.context
+        to_create_wos = self
+        if context.get("group_mo_by_product") and (
+            not config["test_enable"] or context.get("test_group_mo")
+        ):
+            for rec in self:
+                vals = self._get_grouping_target_vals()
+                mo = self._find_grouping_target(vals)
+                if mo:
+                    to_create_wos -= rec
+        return super(MrpProduction, to_create_wos)._create_workorder()
