@@ -689,6 +689,7 @@ class MultiLevelMrp(models.TransientModel):
             supply_qty + demand_qty + planned_qty_by_date.get(mdt, 0.0)
         )
         mrp_inventory_data["running_availability"] = running_availability
+        mrp_inventory_data["supply_method"] = product_mrp_area.supply_method
         return mrp_inventory_data, running_availability, on_hand_qty
 
     @api.model
