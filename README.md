@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[mrp_bom_location](mrp_bom_location/) | 15.0.1.0.0 |  | Adds location field to Bill of Materials and its components.
 [mrp_progress_button](mrp_progress_button/) | 15.0.1.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 15.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 
