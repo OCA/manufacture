@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_progress_button
+#
+# Translators:
+# Bole <bole@dajmi5.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-28 03:44+0000\n"
+"PO-Revision-Date: 2017-11-28 03:44+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/"
+"hr_HR/)\n"
+"Language: hr_HR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: mrp_progress_button
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model_terms:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
+msgid "Mark As Started"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model,name:mrp_progress_button.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model_terms:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
+msgid "Unstart"
+msgstr ""
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Proizvodni nalog"

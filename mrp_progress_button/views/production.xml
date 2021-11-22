@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_progress_button_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.view.form.progress.button</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_assign" position="before">
+                <button
+                    name="action_progress"
+                    attrs="{'invisible': [('state', '!=', 'confirmed')]}"
+                    type="object"
+                    string="Mark As Started"
+                    class="oe_highlight"
+                />
+            </button>
+            <button name="action_assign" position="after">
+                <button
+                    name="action_unstart"
+                    attrs="{'invisible': [('state', '!=', 'progress')]}"
+                    type="object"
+                    string="Unstart"
+                />
+            </button>
+            <field name="company_id" position="after">
+                <field name="date_start" />
+            </field>
+        </field>
+    </record>
+</odoo>
