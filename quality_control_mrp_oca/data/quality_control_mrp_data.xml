@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018 Simone Rubino - Agile Business Group
+     Copyright 2021 Robin LI - Dashu Tech
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="qc.trigger" id="qc_trigger_mrp">
         <field name="name">Production done</field>
         <field name="company_id" />
+    </record>
+    <record model="ir.translation" id="qc_trigger_mrp_translation">
+        <field name="name">qc.trigger,name</field>
+        <field name="res_id" ref="qc_trigger_mrp"/>
+        <field name="lang">zh_CN</field>
+        <field name="type">model</field>
+        <field name="src">Production done</field>
+        <field name="value">生产完工</field>
+        <field name="state">translated</field>
+        <field name="module">quality_control_oca</field>
     </record>
 </odoo>
