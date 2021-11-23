@@ -30,6 +30,12 @@
                     <field name='purchase_return_ids' invisible="1" />
                 </button>
             </div>
+            <field name="quotation_notes" position="after">
+                <field
+                    name="purchase_return_notes"
+                    placeholder="Add purchase return notes."
+                />
+            </field>
         </field>
     </record>
 
