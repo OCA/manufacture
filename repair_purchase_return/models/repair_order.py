@@ -20,6 +20,7 @@ class RepairOrder(models.Model):
         default=0,
         store=True,
     )
+    purchase_return_notes = fields.Text("Purchase Return Notes")
 
     @api.depends(
         "operations.purchase_return_line_ids",
@@ -35,15 +36,16 @@ class RepairOrder(models.Model):
             order.purchase_return_count = len(pros)
 
     def _prepare_purchase_return_values(self, vendor):
-        invoice_vals = {
+        vals = {
             "origin": self.name,
             "partner_id": vendor.id,
             "fiscal_position_id": vendor.property_account_position_id
             and vendor.property_account_position_id.id
             or False,
             "company_id": self.company_id.id,
+            "notes": self.purchase_return_notes,
         }
-        return invoice_vals
+        return vals
 
     @api.model
     def _select_operations_to_return(self, operations):
