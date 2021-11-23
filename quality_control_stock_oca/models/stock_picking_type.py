@@ -9,14 +9,28 @@ class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
     def _create_qc_trigger(self):
+        langs = self.env['ir.translation'].search([('name', '=', 'stock.picking.type,name'),
+                                                   ('res_id', 'in', self.ids),
+                                                   ('lang', '!=', 'en_US')])
         for picking_type in self:
+            type_lang = langs.filtered(lambda x: x.res_id == picking_type.id)
             qc_trigger = {
                 "name": picking_type.name,
                 "company_id": picking_type.warehouse_id.company_id.id,
                 "picking_type_id": picking_type.id,
                 "partner_selectable": True,
             }
-            self.env["qc.trigger"].sudo().create(qc_trigger)
+            trig = self.env["qc.trigger"].sudo().create(qc_trigger)
+            for lang in type_lang:
+                qc_trigger_tran = {'name': 'qc.trigger,name',
+                                   'res_id': trig.id,
+                                   'lang': lang.lang,
+                                   'type': 'model',
+                                   'src': picking_type.name,
+                                   'value': lang.value,
+                                   'state': 'translated',
+                                   'module': 'quality_control_oca'}
+                self.env['ir.translation'].sudo().create(qc_trigger_tran)
 
     @api.model_create_multi
     def create(self, val_list):
