@@ -13,6 +13,21 @@ class MrpProductionRequest(models.Model):
     _order = "date_planned_start desc, id desc"
 
     @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        MrpProduction = self.env['mrp.production']
+        if 'picking_type_id' in fields_list and 'picking_type_id' not in res:
+            res['picking_type_id'] = MrpProduction._get_default_picking_type()
+        # pass picking_type_id for location_src_id and location_dest_id
+        MrpProduction = MrpProduction.with_context(
+            default_picking_type_id=res.get('picking_type_id', False))
+        if 'location_src_id' in fields_list and 'location_src_id' not in res:
+            res['location_src_id'] = MrpProduction._get_default_location_src_id()
+        if 'location_dest_id' in fields_list and 'location_dest_id' not in res:
+            res['location_dest_id'] = MrpProduction._get_default_location_dest_id()
+        return res
+
+    @api.model
     def _company_get(self):
         company_id = self.env['res.company']._company_default_get()
         return self.env['res.company'].browse(company_id.id)
@@ -121,18 +136,12 @@ class MrpProductionRequest(models.Model):
              "on work centers based on production plannification.")
     location_src_id = fields.Many2one(
         comodel_name='stock.location', string='Raw Materials Location',
-        default=lambda self: self.env['stock.location'].browse(
-            self.env['mrp.production']._get_default_location_src_id()),
         required=True, readonly=True, states={'draft': [('readonly', False)]})
     location_dest_id = fields.Many2one(
         comodel_name='stock.location', string='Finished Products Location',
-        default=lambda self: self.env['stock.location'].browse(
-            self.env['mrp.production']._get_default_location_dest_id()),
         required=True, readonly=True, states={'draft': [('readonly', False)]})
     picking_type_id = fields.Many2one(
         comodel_name='stock.picking.type', string='Picking Type',
-        default=lambda self: self.env['stock.picking.type'].browse(
-            self.env['mrp.production']._get_default_picking_type()),
         required=True, readonly=True, states={'draft': [('readonly', False)]})
     move_dest_ids = fields.One2many(
         comodel_name='stock.move',
