@@ -157,3 +157,22 @@ class TestMrpProductionRequest(TransactionCase):
         with self.assertRaises(UserError):
             # No Bill of Materials:
             self.procure(self.test_group, self.product_no_bom)
+
+    def test_05_dest_src_locations(self):
+        """Tests default values for location_src_id and
+         location_dest_id fields."""
+        # set manufacturing in three steps
+        self.warehouse.manufacture_steps = 'pbm_sam'
+        randon_bom_id = self.bom_model.search([], limit=1).id
+        request = self.request_model.create({
+            'assigned_to': self.test_user.id,
+            'product_id': self.product.id,
+            'product_qty': 5.0,
+            'bom_id': randon_bom_id,
+        })
+        self.assertEqual(
+            request.location_src_id, self.warehouse.pbm_loc_id,
+            "Wrong Raw Materials Location.")
+        self.assertEqual(
+            request.location_dest_id, self.warehouse.sam_loc_id,
+            "Wrong Finished Products Location.")
