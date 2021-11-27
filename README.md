@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.0 |  | Create refurbished products during repair
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 14.0.1.0.0 |  | Repair type
+[stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
 
 [//]: # (end addons)
 
