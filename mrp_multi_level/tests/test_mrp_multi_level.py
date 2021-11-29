@@ -333,6 +333,79 @@ class TestMrpMultiLevel(SavepointCase):
             cls._create_demand_estimate(
                 cls.prod_test, cls.sec_loc, dr, qty)
 
+        cls.route_manufacture = cls.env.ref('mrp.route_warehouse0_manufacture').id
+        cls.vendor12 = cls.partner_obj.create({'name': 'Vendor 12'})
+        cls.product_0 = cls.product_obj.create({
+            'name': 'T12 P0',
+            'type': 'product',
+            'list_price': 110.0,
+            'produce_delay': 7.0,
+            'route_ids': [(6, 0, [cls.route_manufacture])],
+        })
+        cls.product_1 = cls.product_obj.create({
+            'name': 'T12 P1',
+            'type': 'product',
+            'list_price': 10.0,
+            'produce_delay': 7.0,
+            'route_ids': [(6, 0, [cls.route_manufacture])],
+        })
+        cls.product_2 = cls.product_obj.create({
+            'name': 'T12 P2',
+            'type': 'product',
+            'list_price': 1.0,
+            'produce_delay': 5.0,
+            'route_ids': [(6, 0, [route_buy])],
+            'seller_ids': [(0, 0, {'name': cls.vendor12.id, 'price': 1.0})],
+        })
+        cls.BoM1 = cls.env['mrp.bom'].create({
+            'product_id': cls.product_0.id,
+            'product_tmpl_id': cls.product_0.product_tmpl_id.id,
+            'product_uom_id': cls.product_0.uom_id.id,
+            'product_qty': 1.0,
+            'type': 'normal',
+            'move_raw_ids': [
+                (0, 0, {
+                    'product_id': cls.product_1.id,
+                    'product_qty': 1,
+                }),
+                (0, 0, {
+                    'product_id': cls.product_2.id,
+                    'product_qty': 1,
+                }),
+            ]
+        })
+        # create recursive BOM
+        cls.BoM2 = cls.env['mrp.bom'].create({
+            'product_id': cls.product_1.id,
+            'product_tmpl_id': cls.product_1.product_tmpl_id.id,
+            'product_uom_id': cls.product_1.uom_id.id,
+            'product_qty': 1.0,
+            'type': 'normal',
+            'bom_line_ids': [
+                (0, 0, {
+                    'product_id': cls.product_0.id,
+                    'product_qty': 1,
+                }),
+                (0, 0, {
+                    'product_id': cls.product_2.id,
+                    'product_qty': 1,
+                }),
+            ]
+        })
+        # cls.product_mrp_area_obj.search([]).write({'mrp_exclude': True})
+        cls.product_mrp_area_obj.create({
+            'product_id': cls.product_0.id,
+            'mrp_area_id': cls.mrp_area.id,
+        })
+        cls.product_mrp_area_obj.create({
+            'product_id': cls.product_1.id,
+            'mrp_area_id': cls.mrp_area.id,
+        })
+        # Create Demand Estimates:
+        ranges = cls.env['date.range'].search(
+            [('type_id', '=', cls.dr_type.id)])
+        cls._create_demand_estimate(
+            cls.product_0, cls.stock_location, ranges[0], 7.0)
         cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
 
     @classmethod
@@ -728,3 +801,12 @@ class TestMrpMultiLevel(SavepointCase):
         )
         self.assertEqual(len(inventory), 1)
         self.assertEqual(inventory.date, no_tz_date)
+
+    def test_12_recursion(self):
+        """Multilevel should stop when recursion appears ans test should finish
+        """
+        fp_0_inventory_lines = self.mrp_inventory_obj.search(
+            [('product_mrp_area_id.product_id', '=', self.product_0.id)])
+        self.assertEqual(fp_0_inventory_lines[-1].date, self.date_3)
+        self.assertEqual(fp_0_inventory_lines[-1].demand_qty, 1.0)
+        self.assertEqual(fp_0_inventory_lines[-1].to_procure, 1.0)
