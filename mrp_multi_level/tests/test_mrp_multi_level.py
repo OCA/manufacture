@@ -728,3 +728,4 @@ class TestMrpMultiLevel(SavepointCase):
         )
         self.assertEqual(len(inventory), 1)
         self.assertEqual(inventory.date, no_tz_date)
+        self.assertEqual(1, 1)
