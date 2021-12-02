@@ -308,6 +308,7 @@ class MultiLevelMrp(models.TransientModel):
         self.env['product.product'].search([]).write({'llc': llc})
         products = self.env['product.product'].search([('llc', '=', llc)])
         classified_products = []
+        excluded_bom_lines = []
         if products:
             counter = len(products)
         log_msg = 'Low level code 0 finished - Nbr. products: %s' % counter
@@ -321,12 +322,12 @@ class MultiLevelMrp(models.TransientModel):
             bom_lines = self.env['mrp.bom.line'].search(
                 [('product_id.llc', '=', llc - 1),
                  ('bom_id.product_tmpl_id', 'in', p_templates.ids)])
-            products = bom_lines.mapped('product_id')
+            products = bom_lines.filtered(lambda b: b.id not in excluded_bom_lines).mapped('product_id')
             if products == classified_products:
                 log_msg = "Recursion found for BOMS %s" % (
                     bom_lines.mapped('bom_id.display_name'))
                 logger.warning(log_msg)
-                break
+                excluded_bom_lines.extend(bom_lines.ids)
             classified_products = products
             products.write({'llc': llc})
             products = self.env['product.product'].search([('llc', '=', llc)])
