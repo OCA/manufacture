@@ -82,7 +82,6 @@ class ProductMRPArea(models.Model):
             ("push", "Push To"),
             ("pull_push", "Pull & Push"),
         ],
-        string="Supply Method",
         compute="_compute_supply_method",
     )
     qty_available = fields.Float(
@@ -170,7 +169,7 @@ class ProductMRPArea(models.Model):
     def _compute_qty_available(self):
         for rec in self:
             rec.qty_available = rec.product_id.with_context(
-                {"location": rec.mrp_area_id.location_id.id}
+                location=rec.mrp_area_id.location_id.id
             ).qty_available
 
     def _compute_supply_method(self):
