@@ -28,7 +28,7 @@ class MultiLevelMrp(models.TransientModel):
         product_obj = self.env["product.product"]
         location_ids = product_mrp_area.mrp_area_id._get_locations()
         for location in location_ids:
-            product_l = product_obj.with_context({"location": location.id}).browse(
+            product_l = product_obj.with_context(location=location.id).browse(
                 product_mrp_area.product_id.id
             )
             qty_available += product_l.qty_available
@@ -697,7 +697,9 @@ class MultiLevelMrp(models.TransientModel):
         mrp_dates = set(moves_dates + action_dates)
         on_hand_qty = product_mrp_area.product_id.with_context(
             location=product_mrp_area.mrp_area_id.location_id.id
-        )._product_available()[product_mrp_area.product_id.id]["qty_available"]
+        )._compute_quantities_dict(False, False, False)[product_mrp_area.product_id.id][
+            "qty_available"
+        ]
         running_availability = on_hand_qty
         mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
