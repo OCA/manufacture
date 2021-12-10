@@ -5,7 +5,7 @@ from odoo import fields, models
 
 
 class MrpProduction(models.Model):
-    """ Manufacturing Orders """
+    """Manufacturing Orders"""
 
     _inherit = "mrp.production"
 
