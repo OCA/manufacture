@@ -45,21 +45,17 @@ class MrpInventory(models.Model):
     uom_id = fields.Many2one(
         comodel_name="uom.uom", string="Product UoM", compute="_compute_uom_id"
     )
-    date = fields.Date(string="Date")
+    date = fields.Date()
     demand_qty = fields.Float(string="Demand")
     supply_qty = fields.Float(string="Supply")
     initial_on_hand_qty = fields.Float(string="Starting Inventory")
     final_on_hand_qty = fields.Float(string="Forecasted Inventory")
-    to_procure = fields.Float(
-        string="To procure", compute="_compute_to_procure", store=True
-    )
+    to_procure = fields.Float(compute="_compute_to_procure", store=True)
     running_availability = fields.Float(
         string="Planned Availability",
-        help="Theoretical inventory level if all planned orders" "were released.",
+        help="Theoretical inventory level if all planned orders were released.",
     )
-    order_release_date = fields.Date(
-        string="Order Release Date", compute="_compute_order_release_date", store=True
-    )
+    order_release_date = fields.Date(compute="_compute_order_release_date", store=True)
     planned_order_ids = fields.One2many(
         comodel_name="mrp.planned.order", inverse_name="mrp_inventory_id", readonly=True
     )

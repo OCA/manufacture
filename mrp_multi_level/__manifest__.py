@@ -1,14 +1,14 @@
 # Copyright 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2016-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "MRP Multi Level",
-    "version": "14.0.1.3.0",
+    "version": "15.0.1.0.0",
     "development_status": "Production/Stable",
     "license": "LGPL-3",
     "author": "Ucamco, ForgeFlow, Odoo Community Association (OCA)",
-    "maintainers": ["JordiBForgeFlow", "LoisRForgeFlow"],
+    "maintainers": ["JordiBForgeFlow", "LoisRForgeFlow", "ChrisOForgeFlow"],
     "summary": "Adds an MRP Scheduler",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",

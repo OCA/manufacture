@@ -5,7 +5,7 @@
         <field name="model">product.mrp.area</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Product MRP Area parameters">
+            <tree>
                 <field name="mrp_area_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="product_tmpl_id" />
