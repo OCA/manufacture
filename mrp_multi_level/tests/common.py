@@ -4,10 +4,10 @@
 from datetime import datetime, timedelta
 
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestMrpMultiLevelCommon(SavepointCase):
+class TestMrpMultiLevelCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

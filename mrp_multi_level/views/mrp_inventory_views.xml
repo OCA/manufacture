@@ -41,7 +41,7 @@
         <field name="model">mrp.inventory</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="MRP Inventory" create="false">
+            <tree create="false">
                 <field name="mrp_area_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="product_id" />

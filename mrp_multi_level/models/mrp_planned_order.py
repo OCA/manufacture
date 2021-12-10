@@ -42,7 +42,6 @@ class MrpPlannedOrder(models.Model):
         string="Release Date", help="Order release date planned by MRP.", required=True
     )
     due_date = fields.Date(
-        string="Due Date",
         help="Date in which the supply must have been completed.",
         required=True,
     )
