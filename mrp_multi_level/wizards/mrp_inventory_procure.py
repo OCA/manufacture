@@ -1,4 +1,4 @@
-# Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2018-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, fields, models
@@ -34,11 +34,11 @@ class MrpInventoryProcure(models.TransientModel):
     ):
         if self.user_has_groups("mrp_multi_level.group_change_mrp_procure_qty"):
             view_id = self.env.ref(
-                "mrp_multi_level." "view_mrp_inventory_procure_wizard"
+                "mrp_multi_level.view_mrp_inventory_procure_wizard"
             ).id
         else:
             view_id = self.env.ref(
-                "mrp_multi_level." "view_mrp_inventory_procure_without_security"
+                "mrp_multi_level.view_mrp_inventory_procure_without_security"
             ).id
         return super(MrpInventoryProcure, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
@@ -122,7 +122,6 @@ class MrpInventoryProcureItem(models.TransientModel):
     warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
     location_id = fields.Many2one(string="Location", comodel_name="stock.location")
     supply_method = fields.Selection(
-        string="Supply Method",
         selection=[
             ("buy", "Buy"),
             ("none", "Undefined"),

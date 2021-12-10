@@ -23,7 +23,7 @@ MRP Multi Level
     :target: https://runbot.odoo-community.org/runbot/129/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows you to calculate, based in known inventory, demand, and
 supply, and based on parameters set at product variant level, the new
@@ -226,6 +226,7 @@ Contributors
 * Jordi Ballester <jordi.ballester@forgeflow.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Héctor Villarreal <hector.villarreal@forgeflow.com>
+* Christopher Ormaza <chris.ormaza@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -249,7 +250,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow| 
+|maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow|
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_multi_level>`_ project on GitHub.
 
