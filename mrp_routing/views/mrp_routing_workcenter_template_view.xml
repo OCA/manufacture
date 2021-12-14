@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="mrp_routing_workcenter_template_tree_view" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.template.tree</field>
+            <field name="model">mrp.routing.workcenter.template</field>
+            <field name="arch" type="xml">
+                <tree string="Template Routing Work Centers">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                    <field name="workcenter_id" />
+                    <field name="routing_ids" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_template_form_view" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.template.form</field>
+            <field name="model">mrp.routing.workcenter.template</field>
+            <field name="arch" type="xml">
+                <form string="Template Routing Work Centers">
+                    <sheet>
+                        <group>
+                            <group name="description">
+                                <field name="name" />
+                                <field
+                                    name="workcenter_id"
+                                    context="{'default_company_id': company_id}"
+                                />
+                                <field name="sequence" groups="base.group_no_one" />
+                                <field name="on_template_change" />
+                            </group><group name="workorder">
+                                <field name="time_mode" widget="radio" />
+                                <label
+                                    for="time_mode_batch"
+                                    attrs="{'invisible': [('time_mode', '=', 'manual')]}"
+                                />
+                                <div
+                                    attrs="{'invisible': [('time_mode', '=', 'manual')]}"
+                                >
+                                    last
+                                    <field name="time_mode_batch" class="oe_inline" />
+                                    work orders
+                                </div>
+                                <label
+                                    for="time_cycle_manual"
+                                    attrs="{'invisible': [('time_mode', '=', 'auto')]}"
+                                    string="Default Duration"
+                                />
+                                <div
+                                    attrs="{'invisible':  [('time_mode', '=', 'auto')]}"
+                                >
+                                    <field
+                                        name="time_cycle_manual"
+                                        widget="float_time"
+                                        class="oe_inline"
+                                    /> minutes
+                                </div>
+                                <field
+                                    name="company_id"
+                                    groups="base.group_multi_company"
+                                />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Work Sheet" name="worksheet">
+                                <group>
+                                    <field name="worksheet_type" widget="radio" />
+                                    <field
+                                        name="worksheet"
+                                        help="Upload your PDF file."
+                                        widget="pdf_viewer"
+                                        attrs="{'invisible':  [('worksheet_type', '!=', 'pdf')], 'required':  [('worksheet_type', '=', 'pdf')]}"
+                                    />
+                                    <field
+                                        name="worksheet_google_slide"
+                                        placeholder="Google Slide Link"
+                                        widget="embed_viewer"
+                                        attrs="{'invisible':  [('worksheet_type', '!=', 'google_slide')], 'required': [('worksheet_type', '=', 'google_slide')]}"
+                                    />
+                                    <field
+                                        name="note"
+                                        attrs="{'invisible':  [('worksheet_type', '!=', 'text')]}"
+                                    />
+                                </group>
+                            </page>
+                            <page string="Routings" name="routings">
+                                <field name="routing_ids" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_template_search_view" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.template.search</field>
+            <field name="model">mrp.routing.workcenter.template</field>
+            <field name="arch" type="xml">
+                <search string="Template Operations">
+                    <field name="name" />
+                    <field name="workcenter_id" />
+                    <field name="routing_ids" />
+                    <filter
+                        name="group_by_workcenter"
+                        string="Workcenter"
+                        context="{'group_by':'workcenter_id'}"
+                    />
+                </search>
+            </field>
+        </record>
+
+        <record
+            id="action_mrp_routing_workcenter_template_tree_view"
+            model="ir.actions.act_window"
+        >
+            <field name="name">Template Operations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.routing.workcenter.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="mrp_routing_workcenter_template_tree_view" />
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new template operation
+              </p><p>
+                Template Operation can be used to make template for operations related to bill of materials.
+              </p>
+            </field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            id="menu_action_mrp_routing_workcenter_template_tree_view"
+            action="action_mrp_routing_workcenter_template_tree_view"
+            parent="mrp.menu_mrp_configuration"
+            groups="mrp.group_mrp_routings"
+            sequence="100"
+        />
+
+
+    </data>
+</odoo>
