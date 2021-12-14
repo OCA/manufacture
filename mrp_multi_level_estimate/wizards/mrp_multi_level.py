@@ -61,11 +61,11 @@ class MultiLevelMrp(models.TransientModel):
         domain = self._estimates_domain(product_mrp_area)
         estimates = self.env["stock.demand.estimate"].search(domain)
         for rec in estimates:
-            start = rec.date_range_id.date_start
+            start = rec.date_from
             if start < today:
                 start = today
             mrp_date = fields.Date.from_string(start)
-            date_end = fields.Date.from_string(rec.date_range_id.date_end)
+            date_end = fields.Date.from_string(rec.date_to)
             delta = timedelta(days=product_mrp_area.group_estimate_days)
             while mrp_date <= date_end:
                 mrp_move_data = self._prepare_mrp_move_data_from_estimate(
