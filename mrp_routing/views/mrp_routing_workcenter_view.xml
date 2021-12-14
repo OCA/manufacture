@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="mrp_routing_workcenter_tree_view" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.tree</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_id']" position="before">
+                    <field name="template_id" force_save="1" />
+                    <field name="on_template_change" />
+                    <!--FIXME: Can we skip this invisible files to get correct data on onchange?-->
+                    <field name="time_mode" invisible="1" />
+                    <field name="time_mode_batch" invisible="1" />
+                    <field name="time_cycle_manual" invisible="1" />
+                    <field name="company_id" invisible="1" />
+                    <field name="worksheet" invisible="1" />
+                    <field name="worksheet_type" invisible="1" />
+                    <field name="worksheet_google_slide" invisible="1" />
+                    <field name="note" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_form_view" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.form</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="template_id" />
+                    <field
+                        name="on_template_change"
+                        attrs="{'invisible': [('template_id', '=', False)]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

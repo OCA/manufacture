@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="mrp_routing_workcenter_0" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_3" />
+            <field name="name">Manual Assembly</field>
+            <field name="time_cycle_manual">60</field>
+            <field name="sequence">5</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/assebly-worksheet.pdf"
+            />
+        </record>
+
+        <record id="mrp_routing_workcenter_1" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_3" />
+            <field name="name">Long time assembly</field>
+            <field name="time_cycle_manual">180</field>
+            <field name="sequence">15</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/cutting-worksheet.pdf"
+            />
+        </record>
+
+        <record id="mrp_routing_workcenter_3" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_3" />
+            <field name="name">Testing</field>
+            <field name="time_cycle_manual">60</field>
+            <field name="sequence">10</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/assebly-worksheet.pdf"
+            />
+        </record>
+
+        <record id="mrp_routing_workcenter_4" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_1" />
+            <field name="name">Packing</field>
+            <field name="time_cycle_manual">30</field>
+            <field name="sequence">5</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/cutting-worksheet.pdf"
+            />
+        </record>
+
+        <record id="mrp_routing_workcenter_2" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_2" />
+            <field name="time_cycle_manual">120</field>
+            <field name="sequence">5</field>
+            <field name="name">Manual Assembly</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/assebly-worksheet.pdf"
+            />
+        </record>
+
+        <record id="mrp_routing_workcenter_5" model="mrp.routing.workcenter.template">
+            <field name="workcenter_id" ref="mrp.mrp_workcenter_3" />
+            <field name="time_cycle_manual">120</field>
+            <field name="sequence">10</field>
+            <field name="name">Assembly Line 1</field>
+            <field name="worksheet_type">pdf</field>
+            <field
+                name="worksheet"
+                type="base64"
+                file="mrp/static/img/cutting-worksheet.pdf"
+            />
+        </record>
+
+       <record id="mrp_routing_0" model="mrp.routing">
+            <field name="name">Primary Assembly</field>
+           <field
+                name="operation_ids"
+                eval="[(6, 0, [ref('mrp_routing_workcenter_0')])]"
+            />
+        </record>
+
+        <record id="mrp_routing_1" model="mrp.routing">
+            <field name="name">Secondary Assembly</field>
+           <field
+                name="operation_ids"
+                eval="[(6, 0, [ref('mrp_routing_workcenter_1'), ref('mrp_routing_workcenter_3'), ref('mrp_routing_workcenter_4')])]"
+            />
+        </record>
+
+        <record id="mrp_routing_2" model="mrp.routing">
+            <field name="name">Manual Component's Assembly</field>
+           <field
+                name="operation_ids"
+                eval="[(6, 0, [ref('mrp_routing_workcenter_2')])]"
+            />
+        </record>
+
+        <record id="mrp_routing_3" model="mrp.routing">
+            <field name="name">Assemble Furniture</field>
+           <field
+                name="operation_ids"
+                eval="[(6, 0, [ref('mrp_routing_workcenter_5')])]"
+            />
+        </record>
+
+    </data>
+</odoo>
