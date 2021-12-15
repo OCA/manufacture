@@ -3,7 +3,7 @@
 
 {
     "name": "MRP BoM Tracking",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
@@ -12,4 +12,5 @@
     "data": ["views/bom_template.xml"],
     "license": "LGPL-3",
     "installable": True,
+    "development_status": "Production/Stable",
 }
