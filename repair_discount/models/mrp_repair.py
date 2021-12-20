@@ -90,7 +90,8 @@ class RepairOrder(models.Model):
 
         return res
 
-    def _calculate_line_base_price(self, line):
+    @staticmethod
+    def _calculate_line_base_price(line):
         return line.price_unit * (1 - (line.discount or 0.0) / 100.0)
 
     @api.depends('operations', 'fees_lines', 'operations.invoiced',
@@ -103,7 +104,7 @@ class RepairOrder(models.Model):
             for line in repair.operations:
                 tax_calculate = line.tax_id.compute_all(
                     self._calculate_line_base_price(line),
-                    self.pricelist_id.currency_id,
+                    repair.pricelist_id.currency_id,
                     line.product_uom_qty,
                     line.product_id,
                     repair.partner_id
@@ -115,7 +116,7 @@ class RepairOrder(models.Model):
             for line in repair.fees_lines:
                 tax_calculate = line.tax_id.compute_all(
                     self._calculate_line_base_price(line),
-                    self.pricelist_id.currency_id,
+                    repair.pricelist_id.currency_id,
                     line.product_uom_qty,
                     line.product_id,
                     repair.partner_id)
