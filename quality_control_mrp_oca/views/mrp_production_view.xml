@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="action_qc_inspection_per_production" model="ir.actions.act_window">
+        <field name="name">Quality inspections from production order</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('production_id', '=', active_id)]</field>
+        <field
+            name="context"
+        >{'default_object_id': 'mrp.production,' + str(active_id)}</field>
+    </record>
+    <record model="ir.ui.view" id="mrp_production_qc_view">
+        <field name="name">mrp.production.form.qc</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
+        />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_inline oe_stat_button"
+                    type="action"
+                    name="%(action_qc_inspection_per_production)d"
+                    icon="fa-bookmark-o"
+                >
+                    <field
+                        name="created_inspections"
+                        widget="statinfo"
+                        string="inspections"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
