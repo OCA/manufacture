@@ -1,0 +1,156 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_stock
+#
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-22 07:24+0000\n"
+"PO-Revision-Date: 2021-02-22 08:27+0100\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__created_inspections
+msgid "Created inspections"
+msgstr "Ustvarjene inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__done_inspections
+msgid "Done inspections"
+msgstr "Opravljene inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__qc_inspections_ids
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__qc_inspections_ids
+msgid "Inspections"
+msgstr "Inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__passed_inspections
+msgid "Inspections OK"
+msgstr "Uspešne inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__failed_inspections
+msgid "Inspections failed"
+msgstr "Neuspešne inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_stock_production_lot__qc_inspections_ids
+msgid "Inspections related to this lot."
+msgstr "Inšpekcije vezane na ta lot."
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_stock_picking__qc_inspections_ids
+msgid "Inspections related to this picking."
+msgstr "Inšpekcije vezane na ta zbirnik."
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__lot_id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__lot_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
+msgid "Lot"
+msgstr "Lot"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lot/serijska št."
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__picking_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
+msgid "Picking"
+msgstr "Zbirnik"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__picking_type_id
+#, fuzzy
+msgid "Picking Type"
+msgstr "Tip zbirnika"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inšpekcija nadzora kvalitete"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Inšpekcijska postavka kontrole kakovosti"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_trigger
+msgid "Quality control trigger"
+msgstr "Sprožilec kontrole kakovosti"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_done
+msgid "Quality inspection from lot done"
+msgstr "Opravljene inšpekcije kakovosti na lotu"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_passed
+msgid "Quality inspection from lot passed"
+msgstr "Izpolnjene inšpekcije kakovosti na lotu"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_done
+msgid "Quality inspection from picking done"
+msgstr "Opravljene inšpekcije kakovosti na zbirniku"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_passed
+msgid "Quality inspection from picking passed"
+msgstr "Izpolnjene inšpekcije kakovosti na zbirniku"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot
+msgid "Quality inspections from lot"
+msgstr "Inšpekcije kakovosti na lotu"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_failed
+msgid "Quality inspections from lot failed"
+msgstr "Neuspešne inšpekcije kakovosti na lotu"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking
+msgid "Quality inspections from picking"
+msgstr "Inšpekcije kakovosti na zbirniku"
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_failed
+msgid "Quality inspections from picking failed"
+msgstr "Neuspešne inšpekcije kakovosti na zbirniku"
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_lot_qc_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_picking_qc_view
+msgid "inspections"
+msgstr "inšpekcije"
