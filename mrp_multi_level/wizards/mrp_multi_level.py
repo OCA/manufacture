@@ -356,18 +356,20 @@ class MultiLevelMrp(models.TransientModel):
         in_moves = move_obj.search(in_domain)
         out_domain = product_mrp_area._out_stock_moves_domain()
         out_moves = move_obj.search(out_domain)
+        move_vals = []
         if in_moves:
             for move in in_moves:
                 move_data = self._prepare_mrp_move_data_from_stock_move(
                     product_mrp_area, move, direction="in"
                 )
-                mrp_move_obj.create(move_data)
+                move_vals.append(move_data)
         if out_moves:
             for move in out_moves:
                 move_data = self._prepare_mrp_move_data_from_stock_move(
                     product_mrp_area, move, direction="out"
                 )
-                mrp_move_obj.create(move_data)
+                move_vals.append(move_data)
+        mrp_move_obj.create(move_vals)
         return True
 
     @api.model
@@ -415,11 +417,14 @@ class MultiLevelMrp(models.TransientModel):
             ]
         )
 
+        mrp_move_vals = []
         for line in po_lines:
             mrp_move_data = self._prepare_mrp_move_data_from_purchase_order(
                 line, product_mrp_area
             )
-            self.env["mrp.move"].create(mrp_move_data)
+            mrp_move_vals.append(mrp_move_data)
+        if mrp_move_vals:
+            self.env["mrp.move"].create(mrp_move_vals)
 
     @api.model
     def _get_product_mrp_area_from_product_and_area(self, product, mrp_area):
@@ -694,6 +699,7 @@ class MultiLevelMrp(models.TransientModel):
             location=product_mrp_area.mrp_area_id.location_id.id
         )._product_available()[product_mrp_area.product_id.id]["qty_available"]
         running_availability = on_hand_qty
+        mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
             mrp_inventory_data, running_availability = self._prepare_mrp_inventory_data(
                 product_mrp_area,
@@ -704,14 +710,17 @@ class MultiLevelMrp(models.TransientModel):
                 supply_qty_by_date,
                 planned_qty_by_date,
             )
-            inv_id = self.env["mrp.inventory"].create(mrp_inventory_data)
+            mrp_inventory_vals.append(mrp_inventory_data)
+        if mrp_inventory_vals:
+            mrp_invs = self.env["mrp.inventory"].create(mrp_inventory_vals)
+            planned_orders = planned_order_obj.search(
+                [("product_mrp_area_id", "=", product_mrp_area.id)]
+            )
             # attach planned orders to inventory
-            planned_order_obj.search(
-                [
-                    ("due_date", "=", mdt),
-                    ("product_mrp_area_id", "=", product_mrp_area.id),
-                ]
-            ).write({"mrp_inventory_id": inv_id.id})
+            for po in planned_orders:
+                invs = mrp_invs.filtered(lambda i: i.date == po.due_date)
+                if invs:
+                    po.mrp_inventory_id = invs[0]
 
     @api.model
     def _mrp_final_process(self, mrp_areas):
