@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2022 Simone Rubino - Takobi
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
+<odoo>
+    <record id="view_mrp_product_produce_wizard" model="ir.ui.view">
+        <field name="name">Filter lot in production wizard</field>
+        <field name="model">mrp.product.produce</field>
+        <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='produce_line_ids']//field[@name='lot_id']" position="before">
+                <field name="production_src_location_id" invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='produce_line_ids']//field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[('product_id','=', product_id),('location_ids', 'child_of', production_src_location_id)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
