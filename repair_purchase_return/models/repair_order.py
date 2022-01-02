@@ -36,15 +36,17 @@ class RepairOrder(models.Model):
             order.purchase_return_count = len(pros)
 
     def _prepare_purchase_return_values(self, vendor):
+        fp = vendor.with_company(self.company_id).property_account_position_id
+        currency = vendor.with_company(self.company_id).property_purchase_currency_id
         vals = {
             "origin": self.name,
             "partner_id": vendor.id,
-            "fiscal_position_id": vendor.property_account_position_id
-            and vendor.property_account_position_id.id
-            or False,
+            "fiscal_position_id": fp and fp.id or False,
             "company_id": self.company_id.id,
             "notes": self.purchase_return_notes,
         }
+        if currency:
+            vals["currency_id"] = currency.id
         return vals
 
     @api.model
