@@ -1,0 +1,1 @@
+There are occasions when the registration of work orders is not completed with the correct times, this module allows you to configure a threshold percentage that assigns the projected time as fully productive time if a work time less than this percentage is detected.
