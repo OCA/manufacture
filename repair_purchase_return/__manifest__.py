@@ -17,6 +17,7 @@
         "views/repair_order_views.xml",
         "views/purchase_return_order_views.xml",
     ],
+    "maintainers": ["JordiBForgeFlow"],
     "installable": True,
     "application": False,
 }
