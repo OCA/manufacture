@@ -17,3 +17,8 @@ class ResCompany(models.Model):
         required=False,
         default=10,
     )
+    maximum_order_time_threshold = fields.Float(
+        string="Maximum order time threshold(%)",
+        required=False,
+        default=150,
+    )

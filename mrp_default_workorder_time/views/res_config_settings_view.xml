@@ -14,7 +14,7 @@
                         </div>
                         <div class="o_setting_right_pane">
                             <label
-                                string="Record minimum order time"
+                                string="Record standard projected order time"
                                 for="minimum_order_time_threshold"
                             />
                             <span
@@ -25,15 +25,23 @@
                                 groups="base.group_multi_company"
                             />
                             <div class="text-muted">
-                                If time recorded on workorder is below this percentage, projected time will be used instead
+                                If time recorded on workorder is not between this percentages, projected time will be used instead
                              </div>
                              <div
                                 class="content-group"
                                 attrs="{'invisible': [('use_projected_time_work_orders','=',False)]}"
                             >
                                 <div class="mt16">
+                                    Minimum:
                                     <field
                                         name="minimum_order_time_threshold"
+                                        class="oe_inline"
+                                    /> %
+                                </div>
+                                <div class="mt16">
+                                    Maximum:
+                                    <field
+                                        name="maximum_order_time_threshold"
                                         class="oe_inline"
                                     /> %
                                 </div>

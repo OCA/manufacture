@@ -14,3 +14,6 @@ class ResConfigSettings(models.TransientModel):
     minimum_order_time_threshold = fields.Float(
         related="company_id.minimum_order_time_threshold", readonly=False
     )
+    maximum_order_time_threshold = fields.Float(
+        related="company_id.maximum_order_time_threshold", readonly=False
+    )
