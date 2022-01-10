@@ -2,10 +2,10 @@
 # - Lois Rilo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import common
+from odoo.tests.common import TransactionCase
 
 
-class TestBomTracking(common.SavepointCase):
+class TestBomTracking(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
