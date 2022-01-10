@@ -3,7 +3,7 @@
 
 {
     "name": "MRP BoM Tracking",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
