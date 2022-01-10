@@ -33,28 +33,13 @@ class TestMrpMtoWithStock(TransactionCase):
         self._update_product_qty(self.product, self.stock_location_stock, 10.0)
 
     def _update_product_qty(self, product, location, quantity):
-        inventory = self.env["stock.inventory"].create(
+        self.env["stock.quant"].create(
             {
-                "name": "Test Inventory",
-                "product_ids": [(6, 0, product.ids)],
-                "state": "confirm",
-                "line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_qty": quantity,
-                            "location_id": location.id,
-                            "product_id": product.id,
-                            "product_uom_id": product.uom_id.id,
-                        },
-                    )
-                ],
+                "location_id": location.id,
+                "product_id": product.id,
+                "inventory_quantity": quantity,
             }
-        )
-        inventory.action_start()
-        inventory.line_ids[0].write({"product_qty": quantity})
-        inventory.action_validate()
+        ).action_apply_inventory()
         return quantity
 
     def test_01_repair_refurbish(self):
