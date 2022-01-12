@@ -3,7 +3,7 @@
 
 {
     "name": "Repair Stock Move",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "development_status": "Alpha",
     "license": "LGPL-3",
     "category": "Repair",
