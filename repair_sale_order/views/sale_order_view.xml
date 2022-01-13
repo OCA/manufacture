@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_sale_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_invoice']" position="before">
+                    <button
+                        name="action_show_repair_order"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('repair_order_count', '=', 0.0)]}"
+                    >
+                        <field
+                            name="repair_order_count"
+                            widget="statinfo"
+                            string="Repair Order(s)"
+                        />
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
