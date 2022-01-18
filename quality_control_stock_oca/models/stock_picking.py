@@ -33,11 +33,15 @@ class StockPicking(models.Model):
 
     @api.depends("qc_inspections_ids", "qc_inspections_ids.state")
     def _compute_count_inspections(self):
-        data = self.env["qc.inspection"].read_group(
-            [("id", "in", self.mapped("qc_inspections_ids").ids)],
-            ["picking_id", "state"],
-            ["picking_id", "state"],
-            lazy=False,
+        data = (
+            self.env["qc.inspection"]
+            .sudo()
+            .read_group(
+                [("id", "in", self.mapped("qc_inspections_ids").ids)],
+                ["picking_id", "state"],
+                ["picking_id", "state"],
+                lazy=False,
+            )
         )
         picking_data = {}
         for d in data:
@@ -54,9 +58,11 @@ class StockPicking(models.Model):
 
     def _action_done(self):
         res = super()._action_done()
-        inspection_model = self.env["qc.inspection"]
-        qc_trigger = self.env["qc.trigger"].search(
-            [("picking_type_id", "=", self.picking_type_id.id)]
+        inspection_model = self.env["qc.inspection"].sudo()
+        qc_trigger = (
+            self.env["qc.trigger"]
+            .sudo()
+            .search([("picking_type_id", "=", self.picking_type_id.id)])
         )
         for operation in self.move_lines:
             trigger_lines = set()
@@ -67,8 +73,10 @@ class StockPicking(models.Model):
             ]:
                 partner = self.partner_id if qc_trigger.partner_selectable else False
                 trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, operation.product_id, partner=partner
+                    self.env[model]
+                    .sudo()
+                    .get_trigger_line_for_product(
+                        qc_trigger, operation.product_id.sudo(), partner=partner
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
