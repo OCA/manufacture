@@ -30,11 +30,15 @@ class StockProductionLot(models.Model):
 
     @api.depends("qc_inspections_ids", "qc_inspections_ids.state")
     def _compute_count_inspections(self):
-        data = self.env["qc.inspection"].read_group(
-            [("id", "in", self.mapped("qc_inspections_ids").ids)],
-            ["lot_id", "state"],
-            ["lot_id", "state"],
-            lazy=False,
+        data = (
+            self.env["qc.inspection"]
+            .sudo()
+            .read_group(
+                [("id", "in", self.mapped("qc_inspections_ids").ids)],
+                ["lot_id", "state"],
+                ["lot_id", "state"],
+                lazy=False,
+            )
         )
         lot_data = {}
         for d in data:
