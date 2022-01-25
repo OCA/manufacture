@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -175,12 +175,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__display_name
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__display_name
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__display_name
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__display_name
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__display_name
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__display_name
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__display_name
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -252,12 +247,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule__id
 msgid "ID"
 msgstr ""
 
@@ -301,12 +291,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move____last_update
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level____last_update
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -375,7 +360,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "MRP Area"
 msgstr ""
@@ -414,7 +398,6 @@ msgstr ""
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_inventory
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_graph
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_pivot
 msgid "MRP Inventory"
@@ -673,7 +656,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_tree
 msgid "Product MRP Area parameters"
 msgstr ""
 
@@ -892,7 +874,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__running_availability
-msgid "Theoretical inventory level if all planned orderswere released."
+msgid "Theoretical inventory level if all planned orders were released."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -901,13 +883,9 @@ msgid "To Approve"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "To Procure"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
-msgid "To procure"
 msgstr ""
 
 #. module: mrp_multi_level
