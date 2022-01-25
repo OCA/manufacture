@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_product_fp_1" model="product.product">
+        <field name="name">FP-1</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="produce_delay">2</field>
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+    <record id="product_product_fp_2" model="product.product">
+        <field name="name">FP-2</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="produce_delay">1</field>
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+    <!-- Customizable Desk -->
+    <record id="product.product_product_4_product_template" model="product.template">
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+    <record id="product_product_sf_1" model="product.product">
+        <field name="name">SF-1</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="produce_delay">1</field>
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+    <record id="product_product_sf_2" model="product.product">
+        <field name="name">SF-2</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="produce_delay">3</field>
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+    <record id="product_product_pp_1" model="product.product">
+        <field name="name">PP-1</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+    <record id="product_product_pp_2" model="product.product">
+        <field name="name">PP-2</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+    <record id="product_product_av_11" model="product.product">
+        <field name="name">AV-11 steel</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+    <record id="product_product_av_12" model="product.product">
+        <field name="name">AV-12 aluminium</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+    <record id="product_product_av_21" model="product.product">
+        <field name="name">AV-21 white</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+    <record id="product_product_av_22" model="product.product">
+        <field name="name">AV-22 black</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+</odoo>

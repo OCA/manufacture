@@ -1,0 +1,1007 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_multi_level
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_11
+#: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
+msgid "AV-11 steel"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_12
+#: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
+msgid "AV-12 aluminium"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_21
+#: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
+msgid "AV-21 white"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_av_22
+#: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
+msgid "AV-22 black"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
+msgid "Action"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__active
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__active
+msgid "Active"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
+msgid "Archived"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__assigned
+msgid "Assigned"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_inventory_id
+msgid "Associated MRP Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__buy
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__buy
+msgid "Buy"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:res.groups,name:mrp_multi_level.group_change_mrp_procure_qty
+msgid "Change procure quantity in MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__company_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__company_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__company_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__company_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__company_id
+msgid "Company"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
+msgid "Create Procurement"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__create_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__create_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__current_date
+msgid "Current Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__current_qty
+msgid "Current Qty"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__date
+msgid "Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order__due_date
+msgid "Date in which the supply must have been completed."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "Date to Procure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__demand_qty
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_type__d
+msgid "Demand"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__name
+msgid "Description"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__due_date
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
+msgid "Due Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_exclude
+msgid "Exclude from MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
+msgid "Execute"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_fp_1
+#: model:product.template,name:mrp_multi_level.product_product_fp_1_product_template
+msgid "FP-1"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_fp_2
+#: model:product.template,name:mrp_multi_level.product_product_fp_2_product_template
+msgid "FP-2"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
+msgid "Fixed"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__fc
+msgid "Forecast"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__final_on_hand_qty
+msgid "Forecasted Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Get from main supplier"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
+msgid "Group By..."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_verified
+msgid ""
+"Identifies that this product has been verified to be valid for the MRP."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_multi_level__mrp_area_ids
+msgid "If empty, all areas will be computed."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Incoming Moves"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_inspection_delay
+msgid "Inspection Delay"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__item_ids
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
+msgid "Items"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__write_uid
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__write_date
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_lead_time
+msgid "Lead Time"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__location_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__location_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__location_id
+msgid "Location"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__llc
+msgid "Low Level Code"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_form
+msgid "MOs"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mrp
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_mrp
+msgid "MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_applicable
+msgid "MRP Applicable"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.mrp_area_action
+#: model:ir.model,name:mrp_multi_level.model_mrp_area
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__mrp_area_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_area_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_tree
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "MRP Area"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__mrp_area_count
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__mrp_area_count
+msgid "MRP Area Parameter Count"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__mrp_area_ids
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__mrp_area_ids
+msgid "MRP Area parameters"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_areas
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_template_only_form_view_mrp
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_product_product_form
+msgid "MRP Areas"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level__mrp_area_ids
+msgid "MRP Areas to run"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_date
+msgid "MRP Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.mrp_inventory_action
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_inventory
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_graph
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_pivot
+msgid "MRP Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_inventory_procure_item
+msgid "MRP Inventory procure item"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_move
+msgid "MRP Move"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_move_down_ids
+msgid "MRP Move DOWN"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "MRP Moves"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_qty
+msgid "MRP Quantity"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_inventory
+msgid "MRP inventory projections"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__main_supplier_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__main_supplier_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "Main Supplier"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_inventory_procure
+msgid "Make Procurements from MRP inventory projections"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mo
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__manufacture
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_production_ids
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__manufacturing_order_ids
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_maximum_order_qty
+msgid "Maximum Order Qty"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_order_qty
+msgid "Minimum Order Qty"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mo_count
+msgid "Mo Count"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mv
+msgid "Move"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_area_id
+msgid "Mrp Area"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__mrp_inventory_id
+msgid "Mrp Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_move_ids
+msgid "Mrp Move"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.server,name:mrp_multi_level.mrp_multi_level_cron_ir_actions_server
+#: model:ir.cron,cron_name:mrp_multi_level.mrp_multi_level_cron
+#: model:ir.cron,name:mrp_multi_level.mrp_multi_level_cron
+#: model:ir.model,name:mrp_multi_level.model_mrp_multi_level
+msgid "Multi Level MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__name
+msgid "Name"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
+msgid "Nbr. Days"
+msgstr ""
+
+#. module: mrp_multi_level
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
+#, python-format
+msgid "No MRP product found"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__none
+msgid "None"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
+msgid ""
+"Number of days to group demand for this product during the MRP run, in order"
+" to determine the quantity to order."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_order_number
+msgid "Order Number"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__order_release_date
+msgid "Order Release Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order__order_release_date
+msgid "Order release date planned by MRP."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_origin
+msgid "Origin"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Outgoing Moves"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_pp_1
+#: model:product.template,name:mrp_multi_level.product_product_pp_1_product_template
+msgid "PP-1"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_pp_2
+#: model:product.template,name:mrp_multi_level.product_product_pp_2_product_template
+msgid "PP-2"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__parent_product_id
+msgid "Parent Product"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__partially_available
+msgid "Partially Available"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__running_availability
+msgid "Planned Availability"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__date_planned
+msgid "Planned Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_planned_order
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__planned_order_ids
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__planned_order_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_production__planned_order_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__planned_order_ids
+msgid "Planned Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.mrp_planned_order_action
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_planned_order
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+msgid "Planned Orders"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__planned_order_up_ids
+msgid "Planned Orders UP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure
+#: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure_planned_order
+msgid "Procure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__location_proc_id
+msgid "Procure Location"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
+msgid "Procurement Request"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__manufacture
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__manufacture
+msgid "Produce"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_product_product
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__product_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__product_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__product_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__product_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__product_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "Product"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_product_mrp_area
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__product_mrp_area_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__product_mrp_area_id
+msgid "Product MRP Area"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.product_mrp_area_action
+#: model:ir.ui.menu,name:mrp_multi_level.menu_product_mrp_area_parameters
+msgid "Product MRP Area Parameters"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_tree
+msgid "Product MRP Area parameters"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__product_mrp_area_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
+msgid "Product Parameters"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_product_template
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__uom_id
+msgid "Product UoM"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull_push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull_push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull_push
+msgid "Pull & Push"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull
+msgid "Pull From"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__po
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__buy
+msgid "Purchase Order"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_line_id
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__purchase_order_line_ids
+msgid "Purchase Orders"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__push
+msgid "Push To"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_qty_multiple
+msgid "Qty Multiple"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__qty_released
+msgid "Qty Released"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__qty
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__qty_available
+msgid "Quantity Available"
+msgstr ""
+
+#. module: mrp_multi_level
+#: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:0
+#, python-format
+msgid "Quantity must be positive."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__ready
+msgid "Ready"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__order_release_date
+msgid "Release Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
+msgid ""
+"Requirements for a particular MRP area are combined for the purposes of "
+"procurement by the MRP."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.action_mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Run MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:res.groups,name:mrp_multi_level.group_mrp_multi_level_run
+msgid "Run MRP Manually"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "Run MRP Multi Level"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_sf_1
+#: model:product.template,name:mrp_multi_level.product_product_sf_1_product_template
+msgid "SF-1"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_sf_2
+#: model:product.template,name:mrp_multi_level.product_product_sf_2_product_template
+msgid "SF-2"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_stock
+msgid "Safety Stock"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "Selection..."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__location_proc_id
+msgid ""
+"Set this if you need to procure from a different locationthan area's "
+"location."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__initial_on_hand_qty
+msgid "Starting Inventory"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__state
+msgid "State"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__stock_move_id
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model,name:mrp_multi_level.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__main_supplierinfo_id
+msgid "Supplier Info"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__supply_qty
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_type__s
+msgid "Supply"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__supply_method
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__supply_method
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_method
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "Supply Method"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_product__purchase_order_line_ids
+msgid "Technical: used to compute quantities."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_area__company_id
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__company_id
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_move__company_id
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_planned_order__company_id
+#: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__company_id
+msgid "The company is automatically set from your user preferences."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.constraint,message:mrp_multi_level.constraint_product_mrp_area_product_mrp_area_uniq
+msgid "The product/MRP Area parameters combination must be unique."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__running_availability
+msgid "Theoretical inventory level if all planned orderswere released."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__to_approve
+msgid "To Approve"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+msgid "To Procure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
+msgid "To procure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.actions.server,name:mrp_multi_level.action_server_planned_order_toggle_fixed
+msgid "Toggle Fixed"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_transit_delay
+msgid "Transit Delay"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_type
+msgid "Type"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__none
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__none
+msgid "Undefined"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_11
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_12
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_21
+#: model:product.product,uom_name:mrp_multi_level.product_product_av_22
+#: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
+#: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
+#: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
+#: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
+#: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
+#: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_sf_1_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_sf_2_product_template
+msgid "Units"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
+msgid ""
+"Use this assistant to procure for this product and date.\n"
+"                    According to the product configuration,\n"
+"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    order or a transfer picking."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_verified
+msgid "Verified for MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__waiting
+msgid "Waiting"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__warehouse_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__wiz_id
+msgid "Wizard"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__calendar_id
+msgid "Working Hours"
+msgstr ""
+
+#. module: mrp_multi_level
+#: code:addons/mrp_multi_level/models/product_mrp_area.py:0
+#, python-format
+msgid "You cannot use a negative number."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
+msgid "or"
+msgstr ""
