@@ -748,6 +748,5 @@ class MultiLevelMrp(models.TransientModel):
         self._mrp_final_process(self.mrp_area_ids)
         # Open MRP inventory screen to show result if manually run:
         # Done as sudo to allow non-admin users to read the action.
-        action = self.env.ref("mrp_multi_level.mrp_inventory_action")
-        result = action.sudo().read()[0]
-        return result
+        xmlid = "mrp_multi_level.mrp_inventory_action"
+        return self.env["ir.actions.act_window"]._for_xml_id(xmlid)
