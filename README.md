@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 |  | Organise Workcenters by section
 [quality_control_oca](quality_control_oca/) | 14.0.1.2.0 |  | Generic infrastructure for quality tests.
+[quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.0 |  | Quality control - Stock (OCA)
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.0 |  | Create refurbished products during repair
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 14.0.1.0.0 |  | Repair type
