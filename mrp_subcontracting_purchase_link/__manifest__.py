@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Link Purchase Order to Subcontract Productions",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Manufacturing",
     "license": "LGPL-3",
     "author": "Quartile Limited, Odoo Community Association (OCA)",
