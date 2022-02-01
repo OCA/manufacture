@@ -16,9 +16,13 @@ class MrpProduction(models.Model):
             vals["location_dest_id"] = location_id.id
         mo = super(MrpProduction, self).create(vals)
         if location_id:
-            message = _(
-                "Applied Putaway strategy to finished products.\n"
-                "Finished Products Location: %s." % mo.location_dest_id.complete_name
+            message = (
+                _(
+                    "Applied Putaway strategy to finished products.\n Finished "
+                    "Products Location: %s. "
+                )
+                % mo.location_dest_id.complete_name
             )
+
             mo.message_post(body=message, message_type="comment")
         return mo
