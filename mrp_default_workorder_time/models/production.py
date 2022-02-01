@@ -58,6 +58,9 @@ class MrpProduction(models.Model):
 
     def button_mark_done(self):
         res = super(MrpProduction, self).button_mark_done()
+        if self.env.context.get("skip_backorder", False):
+            for workorder in self.workorder_ids.filtered(lambda w: w.state == "done"):
+                workorder.duration_expected = workorder._get_duration_expected()
         fully_productive_time = self.env["mrp.workcenter.productivity.loss"].search(
             [("loss_type", "=", "performance")], limit=1
         )
