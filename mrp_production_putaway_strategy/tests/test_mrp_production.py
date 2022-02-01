@@ -35,7 +35,7 @@ class MrpProductionCase(TransactionCase):
                 "location_out_id": self.bin_loc_stock.id,
             }
         )
-        self.loc_stock.putaway_strategy_id = self.putaway_strategy
+        self.loc_stock.putaway_rule_ids = self.putaway_strategy
 
     def _create_mo(
         self,
