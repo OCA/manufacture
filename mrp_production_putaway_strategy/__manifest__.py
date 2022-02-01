@@ -5,7 +5,7 @@
     "name": "MRP Production Putaway Strategy",
     "summary": "Applies putaway strategies to manufacturing orders for "
     "finished products.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "ForgeFlow, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacture",
