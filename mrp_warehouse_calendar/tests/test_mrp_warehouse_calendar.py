@@ -123,7 +123,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
             }
         )
         mo.date_planned_start = "2097-01-04 09:00:00"
-        mo.onchange_date_planned()
+        mo._onchange_date_planned_start()
         date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
         monday = fields.Date.to_date("2097-01-07 09:00:00")
         self.assertEqual(date_plan_finished, monday)
