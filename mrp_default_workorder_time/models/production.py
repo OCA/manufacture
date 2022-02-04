@@ -73,10 +73,13 @@ class MrpProduction(models.Model):
             )
         for rec in self.filtered(lambda x: x.company_id.use_projected_time_work_orders):
             for workorder in rec.workorder_ids.filtered(
-                lambda x: not x.time_ids
-                or (
-                    (100 - x.duration_percent)
-                    <= rec.company_id.minimum_order_time_threshold
+                lambda x: x.state == "done"
+                and (
+                    not x.time_ids
+                    or (
+                        (100 - x.duration_percent)
+                        <= rec.company_id.minimum_order_time_threshold
+                    )
                 )
             ):
                 self.add_time_to_work_order(fully_productive_time, workorder)
