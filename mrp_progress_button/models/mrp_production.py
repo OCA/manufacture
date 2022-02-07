@@ -20,10 +20,5 @@ class MrpProduction(models.Model):
         return True
 
     def action_unstart(self):
-        self.write(
-            {
-                "state": "confirmed",
-                "date_start": False,
-            }
-        )
+        self.write({"state": "confirmed", "date_start": False, "qty_producing": 0})
         return True
