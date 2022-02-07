@@ -5,7 +5,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <button name="action_assign" position="before">
+            <button name="button_unplan" position="before">
                 <button
                     name="action_progress"
                     attrs="{'invisible': [('state', '!=', 'confirmed')]}"
@@ -17,7 +17,7 @@
             <button name="action_assign" position="after">
                 <button
                     name="action_unstart"
-                    attrs="{'invisible': [('state', '!=', 'progress')]}"
+                    attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('qty_producing', '!=', 0)]}"
                     type="object"
                     string="Unstart"
                 />
