@@ -14,6 +14,9 @@ class TestMrpMtoWithStock(TransactionCase):
 
         self.stock_location_stock = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
+        self.scrap_location = self.env["stock.location"].search(
+            [("scrap_location", "=", True)], limit=1
+        )
         self.refurbish_loc = self.env.ref("repair_refurbish.stock_location_refurbish")
 
         self.refurbish_product = self.product_obj.create(
@@ -159,4 +162,4 @@ class TestMrpMtoWithStock(TransactionCase):
         move = self.move_obj.search(
             [("product_id", "=", self.material2.id)], order="create_date desc", limit=1
         )[0]
-        self.assertEqual(move.location_dest_id, self.customer_location)
+        self.assertEqual(move.location_dest_id, self.scrap_location)
