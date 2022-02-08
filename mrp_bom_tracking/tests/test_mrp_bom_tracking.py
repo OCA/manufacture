@@ -60,6 +60,6 @@ class TestBomTracking(common.SavepointCase):
         
     def test_03_change_bom_line_product_uom(self):
         before = self.bom.message_ids
-        self.line_3.product_uom_id = self.product_uom_obj_2.id
+        self.line_3.product_uom_id = self.product_uom_obj_2
         after = self.bom.message_ids
         self.assertEqual(len(after - before), 1)
