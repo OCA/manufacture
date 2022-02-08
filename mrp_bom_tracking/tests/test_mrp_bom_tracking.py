@@ -27,7 +27,7 @@ class TestBomTracking(common.SavepointCase):
         cls.product_1 = cls.product_obj.create({"name": "TEST 01", "type": "product"})
         cls.component_1 = cls.product_obj.create({"name": "RM 01", "type": "product"})
         cls.component_2 = cls.product_obj.create({"name": "RM 02", "type": "product"})
-        cls.component_3 = cls.product_obj.create({"name": "RM 03", "type": "product", "uom_id": })
+        cls.component_3 = cls.product_obj.create({"name": "RM 03", "type": "product", "uom_id": cls.product_uom_obj_1.id})
         cls.component_2_alt = cls.product_obj.create(
             {"name": "RM 02-B", "type": "product"}
         )
@@ -43,7 +43,7 @@ class TestBomTracking(common.SavepointCase):
             {"product_id": cls.component_2.id, "bom_id": cls.bom.id, "product_qty": 5.0}
         )
         cls.line_3 = cls.bom_line_obj.create(
-            {"product_id": cls.component_1.id, "bom_id": cls.bom.id, "product_qty": 10.0, "product_uom_id": cls.product_uom_obj_1.id}
+            {"product_id": cls.component_3.id, "bom_id": cls.bom.id, "product_qty": 10.0, "product_uom_id": cls.product_uom_obj_1.id}
         )
 
     def test_01_change_bom_line_qty(self):
