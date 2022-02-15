@@ -10,6 +10,6 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale_mrp"],
-    "data": ["security/ir.model.access.csv", "views/stock_view.xml"],
+    "data": ["security/ir.model.access.csv", "views/stock_product_lot_view.xml"],
     "maintainers": ["kittiu"],
 }

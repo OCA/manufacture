@@ -12,12 +12,12 @@
     ],
     "development_status": "Beta",
     "data": [
-        "views/stock_view.xml",
+        "views/mrp_production.xml",
         "views/stock_move_view.xml",
+        "views/stock_product_lot_view.xml",
     ],
     "depends": [
         "stock",
         "mrp",
-    ],
-    "installable": True,
+    ]
 }
