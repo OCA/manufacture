@@ -13,7 +13,6 @@
     "development_status": "Beta",
     "data": [
         "views/mrp_production.xml",
-        "views/stock_move_view.xml",
         "views/stock_product_lot_view.xml",
     ],
     "depends": [
