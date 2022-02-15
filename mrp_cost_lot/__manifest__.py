@@ -13,6 +13,7 @@
     "development_status": "Beta",
     "data": [
         "views/stock_view.xml",
+        "views/stock_move_view.xml",
     ],
     "depends": [
         "stock",
