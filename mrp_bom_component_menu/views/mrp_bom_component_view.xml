@@ -10,7 +10,8 @@
                 <field name="bom_id" />
                 <field name="product_id" />
                 <field name="product_qty" />
-                <field name="routing_id" />
+                <field name="product_uom_id" optional="hide" />
+                <field name="operation_id" optional="hide" />
             </tree>
         </field>
     </record>
@@ -53,11 +54,6 @@
                         name="uom"
                         string='Default Unit of Measure'
                         context="{'group_by' : 'product_uom_id'}"
-                    />
-                    <filter
-                        name="Routings"
-                        string="Routings"
-                        context="{'group_by':'routing_id'}"
                     />
                 </group>
             </search>
