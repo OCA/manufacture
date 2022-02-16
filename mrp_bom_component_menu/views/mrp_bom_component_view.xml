@@ -6,7 +6,7 @@
         <field name="name">mrp.bom.line.tree.view</field>
         <field name="model">mrp.bom.line</field>
         <field name="arch" type="xml">
-            <tree string="Components">
+            <tree string="Components" create="0">
                 <field name="bom_id" />
                 <field name="product_id" />
                 <field name="product_qty" />
