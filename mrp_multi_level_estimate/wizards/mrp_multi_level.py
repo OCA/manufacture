@@ -18,8 +18,23 @@ class MultiLevelMrp(models.TransientModel):
     def _prepare_mrp_move_data_from_estimate(self, estimate, product_mrp_area, date):
         mrp_type = "d"
         origin = "fc"
+        daily_qty_unrounded = estimate.daily_qty
         daily_qty = float_round(
             estimate.daily_qty,
+            precision_rounding=product_mrp_area.product_id.uom_id.rounding,
+            rounding_method="HALF-UP",
+        )
+        today = fields.Date.today()
+        days_consumed = 0
+        if product_mrp_area.group_estimate_days > 1:
+            start = estimate.date_from
+            if start < today:
+                days_consumed = (today - start).days
+        group_estimate_days = min(
+            product_mrp_area.group_estimate_days, estimate.duration - days_consumed
+        )
+        mrp_qty = float_round(
+            daily_qty_unrounded * group_estimate_days,
             precision_rounding=product_mrp_area.product_id.uom_id.rounding,
             rounding_method="HALF-UP",
         )
@@ -31,7 +46,7 @@ class MultiLevelMrp(models.TransientModel):
             "purchase_order_id": None,
             "purchase_line_id": None,
             "stock_move_id": None,
-            "mrp_qty": -daily_qty * product_mrp_area.group_estimate_days,
+            "mrp_qty": -mrp_qty,
             "current_qty": -daily_qty,
             "mrp_date": date,
             "current_date": date,
