@@ -12,8 +12,9 @@ class ProductMRPArea(models.Model):
         string="Group Days of Estimates",
         default=1,
         help="The days to group your estimates as demand for the MRP."
-        "It can be different from the lenght of the date ranges you "
-        "use in the estimates.",
+        "It can be different from the length of the date ranges you "
+        "use in the estimates but it should not be greater, in that case"
+        "only grouping until the total lenght of the date range will be done.",
     )
 
     _sql_constraints = [
