@@ -23,7 +23,7 @@ MRP Restrict Lot
     :target: https://runbot.odoo-community.org/runbot/129/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Propagate a specific lot to the Manufacturing Order (on the final product)
 
@@ -34,13 +34,6 @@ Propagate a specific lot to the Manufacturing Order (on the final product)
 
 Usage
 =====
-
-Typically used with module sale_order_lot_generator.
-- Create a sale order for a product to produce and configured with automatic lot generation.
-- Confirm the sale order
-The lot will be affected to the created manufacturing order
-
-Other module than sale_order_lot_generator could implement other uses cases for this module
 
 Bug Tracker
 ===========
@@ -58,12 +51,12 @@ Credits
 Authors
 ~~~~~~~
 
-* Akretion
+* Xtendoo
 
 Contributors
 ~~~~~~~~~~~~
 
-* Florian da Costa <florian.dacosta@akretion.com>
+* Manuel Calero <manuelcalero@xtendoo.es>
 
 Maintainers
 ~~~~~~~~~~~
@@ -77,14 +70,6 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
-
-.. |maintainer-florian-dacosta| image:: https://github.com/florian-dacosta.png?size=40px
-    :target: https://github.com/florian-dacosta
-    :alt: florian-dacosta
-
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
-
-|maintainer-florian-dacosta| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_restrict_lot>`_ project on GitHub.
 
