@@ -16,6 +16,7 @@
         "views/stock_product_lot_view.xml",
     ],
     "depends": [
+        "sale",
         "stock",
         "mrp",
     ]
