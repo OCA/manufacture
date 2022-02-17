@@ -55,5 +55,7 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_multi_level_estimate.field_product_mrp_area__group_estimate_days
 msgid ""
 "The days to group your estimates as demand for the MRP.It can be different "
-"from the lenght of the date ranges you use in the estimates."
+"from the length of the date ranges you use in the estimates but it should "
+"not be greater, in that caseonly grouping until the total lenght of the date"
+" range will be done."
 msgstr ""
