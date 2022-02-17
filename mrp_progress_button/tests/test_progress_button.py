@@ -2,6 +2,8 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import datetime
+
 from odoo.tests.common import TransactionCase
 
 
@@ -50,7 +52,7 @@ class TestProgressButton(TransactionCase):
             }
         )
 
-    def test_manufacture_with_forecast_stock(self):
+    def test_01_manufacture_with_forecast_stock(self):
         """
         Test Manufacture mto with stock based on forecast quantity
         and no link between sub assemblies MO's and Main MO raw material
@@ -65,5 +67,9 @@ class TestProgressButton(TransactionCase):
         )
         production.action_progress()
         self.assertEqual(production.state, "progress")
+        self.assertEqual(
+            production.date_start.replace(microsecond=0),
+            datetime.now().replace(microsecond=0),
+        )
         production.action_unstart()
         self.assertEqual(production.state, "confirmed")
