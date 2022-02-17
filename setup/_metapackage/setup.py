@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-mrp_subcontracting_purchase_link',
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
+        'odoo14-addon-mrp_workorder_sequence',
         'odoo14-addon-quality_control_oca',
         'odoo14-addon-quality_control_stock_oca',
         'odoo14-addon-repair_refurbish',
