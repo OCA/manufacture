@@ -1,10 +1,10 @@
-# Copyright 2019-20 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2019-22 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/Agpl.html).
 
 {
     "name": "MRP Multi Level Estimate",
-    "version": "14.0.1.0.2",
-    "development_status": "Beta",
+    "version": "15.0.1.0.0",
+    "development_status": "Production/Stable",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["LoisRForgeFlow"],
