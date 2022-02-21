@@ -178,7 +178,7 @@ class ProductMRPArea(models.Model):
             proc_loc = rec.location_proc_id or rec.mrp_area_id.location_id
             values = {
                 "warehouse_id": rec.mrp_area_id.warehouse_id,
-                "company_id": self.env.company,
+                "company_id": rec.mrp_area_id.company_id,
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
             rec.supply_method = rule.action if rule else "none"
