@@ -102,8 +102,8 @@ class MrpPlannedOrder(models.Model):
             rec.fixed = not rec.fixed
 
     def action_open_linked_mrp_production(self):
-        action = self.env.ref("mrp.mrp_production_action")
-        result = action.read()[0]
+        xmlid = "mrp.mrp_production_action"
+        result = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         result["context"] = {}
         result["domain"] = "[('id','in',%s)]" % self.mrp_production_ids.ids
         return result

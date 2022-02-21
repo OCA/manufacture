@@ -663,7 +663,7 @@ class MultiLevelMrp(models.TransientModel):
             supply_qty + demand_qty + planned_qty_by_date.get(mdt, 0.0)
         )
         mrp_inventory_data["running_availability"] = running_availability
-        return mrp_inventory_data, running_availability
+        return mrp_inventory_data, running_availability, on_hand_qty
 
     @api.model
     def _init_mrp_inventory(self, product_mrp_area):
@@ -701,7 +701,11 @@ class MultiLevelMrp(models.TransientModel):
         running_availability = on_hand_qty
         mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
-            mrp_inventory_data, running_availability = self._prepare_mrp_inventory_data(
+            (
+                mrp_inventory_data,
+                running_availability,
+                on_hand_qty,
+            ) = self._prepare_mrp_inventory_data(
                 product_mrp_area,
                 mdt,
                 on_hand_qty,
@@ -748,6 +752,5 @@ class MultiLevelMrp(models.TransientModel):
         self._mrp_final_process(self.mrp_area_ids)
         # Open MRP inventory screen to show result if manually run:
         # Done as sudo to allow non-admin users to read the action.
-        action = self.env.ref("mrp_multi_level.mrp_inventory_action")
-        result = action.sudo().read()[0]
-        return result
+        xmlid = "mrp_multi_level.mrp_inventory_action"
+        return self.env["ir.actions.act_window"]._for_xml_id(xmlid)

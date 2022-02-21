@@ -14,6 +14,8 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         super().setUpClass()
         cls.estimate_obj = cls.env["stock.demand.estimate"]
 
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+
         # Create new clean area:
         cls.estimate_loc = cls.loc_obj.create(
             {
@@ -29,7 +31,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
                 "location_id": cls.estimate_loc.id,
             }
         )
-        cls.product_mrp_area_obj.create(
+        cls.test_mrp_parameter = cls.product_mrp_area_obj.create(
             {
                 "product_id": cls.prod_test.id,
                 "mrp_area_id": cls.estimate_area.id,
@@ -113,8 +115,8 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         )
         self.assertEqual(len(inventories), 18)
 
-    def test_02_group_demand_estimates(self):
-        """Test demand grouping functionality, `nbr_days`."""
+    def test_02_demand_estimates_group_plans(self):
+        """Test requirement grouping functionality, `nbr_days`."""
         estimates = self.estimate_obj.search(
             [
                 ("product_id", "=", self.prod_test.id),
@@ -146,3 +148,82 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         self.assertIn(abs(week_2_expected), quantities)
         week_3_expected = sum(moves_from_estimates[14:].mapped("mrp_qty"))
         self.assertIn(abs(week_3_expected), quantities)
+
+    def test_03_group_demand_estimates(self):
+        """Test demand grouping functionality, `group_estimate_days`."""
+        self.test_mrp_parameter.group_estimate_days = 7
+        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        estimates = self.estimate_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("location_id", "=", self.estimate_loc.id),
+            ]
+        )
+        self.assertEqual(len(estimates), 3)
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        # 3 weekly estimates, demand from estimates grouped in batches of 7
+        # days = 3 days of estimates mrp moves:
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == "d")
+        self.assertEqual(len(moves_from_estimates), 3)
+        # 210 weekly -> 30 daily -> 30 * 4 days not consumed = 120
+        self.assertEqual(moves_from_estimates[0].mrp_qty, -120)
+        self.assertEqual(moves_from_estimates[1].mrp_qty, -280)
+        self.assertEqual(moves_from_estimates[2].mrp_qty, -350)
+        # Test group_estimate_days greater than date range, it should not
+        # generate greater demand.
+        self.test_mrp_parameter.group_estimate_days = 10
+        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == "d")
+        self.assertEqual(len(moves_from_estimates), 3)
+        self.assertEqual(moves_from_estimates[0].mrp_qty, -120)
+        self.assertEqual(moves_from_estimates[1].mrp_qty, -280)
+        self.assertEqual(moves_from_estimates[2].mrp_qty, -350)
+
+    def test_04_group_demand_estimates_rounding(self):
+        """Test demand grouping functionality, `group_estimate_days` and rounding."""
+        self.test_mrp_parameter.group_estimate_days = 7
+        self.uom_unit.rounding = 1.00
+
+        estimates = self.estimate_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("location_id", "=", self.estimate_loc.id),
+            ]
+        )
+        self.assertEqual(len(estimates), 3)
+        # Change qty of estimates to quantities that divided by 7 days return a decimal result
+        qty = 400
+        for estimate in estimates:
+            estimate.product_uom_qty = qty
+            qty += 100
+
+        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        # 3 weekly estimates, demand from estimates grouped in batches of 7
+        # days = 3 days of estimates mrp moves:
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == "d")
+        self.assertEqual(len(moves_from_estimates), 3)
+        # Rounding should be done at the end of the calculation, using the daily
+        # quantity already rounded can lead to errors.
+        # 400 weekly -> 57.41 daily -> 57.41 * 4 days not consumed = 228,57 = 229
+        self.assertEqual(moves_from_estimates[0].mrp_qty, -229)
+        # 500 weekly -> 71.42 daily -> 71,42 * 7 = 500
+        self.assertEqual(moves_from_estimates[1].mrp_qty, -500)
+        # 600 weekly -> 85.71 daily -> 85.71 * 7 = 600
+        self.assertEqual(moves_from_estimates[2].mrp_qty, -600)

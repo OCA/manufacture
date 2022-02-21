@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-03 07:04+0000\n"
-"PO-Revision-Date: 2021-02-03 04:04-0300\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2022-02-01 20:33+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatica@protonmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: base_repair
 #: model:ir.model.fields,help:base_repair.field_repair_order__date_repair
@@ -61,7 +61,7 @@ msgstr "Usuário Responsável"
 #. module: base_repair
 #: model:ir.model.fields,field_description:base_repair.field_repair_order__user_id
 msgid "User"
-msgstr ""
+msgstr "Usuário"
 
 #~ msgid "Repair Orders"
 #~ msgstr "Ordens de Reparo"

@@ -39,8 +39,8 @@ class Product(models.Model):
 
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
-        action = self.env.ref("mrp_multi_level.product_mrp_area_action")
-        result = action.read()[0]
+        xmlid = "mrp_multi_level.product_mrp_area_action"
+        result = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         ctx = ast.literal_eval(result.get("context"))
         if not ctx:
             ctx = {}

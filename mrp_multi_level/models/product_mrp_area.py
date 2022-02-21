@@ -249,7 +249,8 @@ class ProductMRPArea(models.Model):
 
     def action_view_stock_moves(self, domain):
         self.ensure_one()
-        action = self.env.ref("stock.stock_move_action").read()[0]
+        xmlid = "stock.stock_move_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action["domain"] = domain
         action["context"] = {}
         return action

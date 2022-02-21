@@ -5,16 +5,14 @@
 
 {
     "name": "Quality control - Stock (OCA)",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-    "Agile Business Group, Odoo Community Association (OCA),"
-    "frontware international",
+    "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca", "stock"],
     "data": [
-        "security/ir.model.access.csv",
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_production_lot_view.xml",
@@ -22,11 +20,4 @@
     "post_init_hook": "post_init_hook",
     "installable": True,
     "auto_install": True,
-    "description":"""
-
-change log:
-------------------------------------
-* 2021-12-24 KPO migrated to odoo14
-
-"""
 }
