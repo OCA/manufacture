@@ -14,7 +14,7 @@ class MrpProduction(models.Model):
                 work.sequence = current_sequence
                 current_sequence += 1
 
-    def _generate_workorders(self, exploded_boms):
-        res = super()._generate_workorders(exploded_boms)
+    def _create_workorder(self):
+        res = super()._create_workorder()
         self._reset_work_order_sequence()
         return res
