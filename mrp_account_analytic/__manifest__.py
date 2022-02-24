@@ -4,7 +4,7 @@
 {
     "name": "Manufacturing Analytic Items",
     "summary": "Consuming raw materials and operations generated Analytic Items",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Manufacturing",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
