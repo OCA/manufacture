@@ -28,9 +28,11 @@ class MrpWorkcenterProductivity(models.Model):
     def generate_mrp_work_analytic_line(self):
         AnalyticLine = self.env["account.analytic.line"].sudo()
         for timelog in self:
-            line_vals = timelog._prepare_mrp_workorder_analytic_item()
-            analytic_line = AnalyticLine.create(line_vals)
-            analytic_line.on_change_unit_amount()
+            # Loss time records should not generate MO Analytic Items
+            if not timelog.loss_id:
+                line_vals = timelog._prepare_mrp_workorder_analytic_item()
+                analytic_line = AnalyticLine.create(line_vals)
+                analytic_line.on_change_unit_amount()
 
     @api.model
     def create(self, vals):
