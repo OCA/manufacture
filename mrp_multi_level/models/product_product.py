@@ -37,6 +37,17 @@ class Product(models.Model):
         for rec in self:
             rec.mrp_area_count = len(rec.mrp_area_ids)
 
+    def write(self, values):
+        res = super().write(values)
+        if values.get("active") is False:
+            parameters = (
+                self.env["product.mrp.area"]
+                .sudo()
+                .search([("product_id", "in", self.ids)])
+            )
+            parameters.write({"active": False})
+        return res
+
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
         action = self.env.ref("mrp_multi_level.product_mrp_area_action")
