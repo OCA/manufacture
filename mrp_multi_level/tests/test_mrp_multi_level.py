@@ -32,6 +32,10 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(product_mrp_area.supply_method, "manufacture")
         self.assertFalse(product_mrp_area.main_supplier_id)
         self.assertFalse(product_mrp_area.main_supplierinfo_id)
+        # Archiving the product should archive parameters:
+        self.assertTrue(product_mrp_area.active)
+        self.sf_1.active = False
+        self.assertFalse(product_mrp_area.active)
 
     def test_03_mrp_moves(self):
         """Tests for mrp moves generated."""
