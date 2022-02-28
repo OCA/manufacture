@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_multi_level_estimate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_mrp_multi_level__display_name
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_product_mrp_area__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_product_mrp_area__group_estimate_days
+msgid "Group Days of Estimates"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.constraint,message:mrp_multi_level_estimate.constraint_product_mrp_area_group_estimate_days_check
+msgid "Group Days of Estimates must be greater than or equal to zero."
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_mrp_multi_level__id
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_product_mrp_area__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_mrp_multi_level____last_update
+#: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_product_mrp_area____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model,name:mrp_multi_level_estimate.model_mrp_multi_level
+msgid "Multi Level MRP"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model,name:mrp_multi_level_estimate.model_product_mrp_area
+msgid "Product MRP Area"
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields,help:mrp_multi_level_estimate.field_product_mrp_area__group_estimate_days
+msgid ""
+"The days to group your estimates as demand for the MRP.It can be different "
+"from the length of the date ranges you use in the estimates but it should "
+"not be greater, in that caseonly grouping until the total lenght of the date"
+" range will be done."
+msgstr ""
