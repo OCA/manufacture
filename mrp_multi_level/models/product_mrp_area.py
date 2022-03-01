@@ -59,6 +59,7 @@ class ProductMRPArea(models.Model):
         "to be valid for the MRP.",
     )
     mrp_lead_time = fields.Float(string="Lead Time", compute="_compute_mrp_lead_time")
+    distribution_lead_time = fields.Float()
     main_supplier_id = fields.Many2one(
         comodel_name="res.partner",
         string="Main Supplier",
@@ -160,12 +161,16 @@ class ProductMRPArea(models.Model):
     def _compute_mrp_lead_time(self):
         produced = self.filtered(lambda r: r.supply_method == "manufacture")
         purchased = self.filtered(lambda r: r.supply_method == "buy")
+        distributed = self.filtered(
+            lambda r: r.supply_method in ("pull", "push", "pull_push")
+        )
         for rec in produced:
             rec.mrp_lead_time = rec.product_id.produce_delay
         for rec in purchased:
             rec.mrp_lead_time = rec.main_supplierinfo_id.delay
-        # TODO: 'move' supply method.
-        for rec in self - produced - purchased:
+        for rec in distributed:
+            rec.mrp_lead_time = rec.distribution_lead_time
+        for rec in self - produced - purchased - distributed:
             rec.mrp_lead_time = 0
 
     def _compute_qty_available(self):

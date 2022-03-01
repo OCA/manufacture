@@ -94,8 +94,15 @@
                             <field name="mrp_maximum_order_qty" />
                             <field name="mrp_qty_multiple" />
                             <field name="supply_method" />
+                            <field
+                                name="distribution_lead_time"
+                                attrs="{'invisible': [('supply_method', 'not in', ('pull', 'push', 'pull_push'))]}"
+                            />
                             <field name="mrp_lead_time" />
-                            <field name="main_supplierinfo_id" />
+                            <field
+                                name="main_supplierinfo_id"
+                                attrs="{'invisible':[('supply_method', '!=', 'buy')]}"
+                            />
                         </group>
                     </group>
                     <notebook>
