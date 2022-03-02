@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-mrp_multi_level>=15.0dev,<15.1dev',
         'odoo-addon-mrp_multi_level_estimate>=15.0dev,<15.1dev',
         'odoo-addon-mrp_planned_order_matrix>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_production_putaway_strategy>=15.0dev,<15.1dev',
         'odoo-addon-mrp_progress_button>=15.0dev,<15.1dev',
         'odoo-addon-mrp_warehouse_calendar>=15.0dev,<15.1dev',
     ],
