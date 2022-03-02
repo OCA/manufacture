@@ -184,6 +184,11 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__distribution_lead_time
+msgid "Distribution Lead Time"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__draft
 msgid "Draft"
 msgstr "Entwurf"
@@ -366,7 +371,6 @@ msgstr "Ressourcenplanung anwendbar"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "MRP Area"
 msgstr "Bereich"
@@ -405,7 +409,6 @@ msgstr "Datum (MRP)"
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_inventory
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_graph
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_pivot
 msgid "MRP Inventory"
@@ -444,7 +447,9 @@ msgid "MRP inventory projections"
 msgstr "Bestandsvorhersagen"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__main_supplier_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__main_supplier_id
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Main Supplier"
 msgstr "Hauptlieferant"
 
@@ -668,7 +673,6 @@ msgstr "Produkt-Bereich-Parameter"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_tree
 msgid "Product MRP Area parameters"
 msgstr "Produkt-Bereich-Parameter"
 
@@ -874,6 +878,11 @@ msgid "Supply Method"
 msgstr "Liefermethode"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_product_product__purchase_order_line_ids
+msgid "Technical: used to compute quantities."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_area__company_id
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__company_id
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_move__company_id
@@ -889,10 +898,8 @@ msgstr "Die Kombination der Produkt-/Bereich-Parameter muss einzigartig sein."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__running_availability
-msgid "Theoretical inventory level if all planned orderswere released."
+msgid "Theoretical inventory level if all planned orders were released."
 msgstr ""
-"Dies ist der theoretische Lagerbestand, wenn alle geplanten Aufträge "
-"freigegeben werden."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__to_approve
@@ -900,13 +907,9 @@ msgid "To Approve"
 msgstr "Genehmigen"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "To Procure"
-msgstr "Beschaffen"
-
-#. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
-msgid "To procure"
 msgstr "Beschaffen"
 
 #. module: mrp_multi_level
@@ -1009,6 +1012,14 @@ msgstr "Es darf keine negative Zahl angegeben werden."
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr "oder"
+
+#~ msgid "Theoretical inventory level if all planned orderswere released."
+#~ msgstr ""
+#~ "Dies ist der theoretische Lagerbestand, wenn alle geplanten Aufträge "
+#~ "freigegeben werden."
+
+#~ msgid "To procure"
+#~ msgstr "Beschaffen"
 
 #~ msgid "Date to Procure (By Month)"
 #~ msgstr "Beschaffungsdatum (nach Monaten)"
