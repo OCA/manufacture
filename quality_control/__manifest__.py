@@ -33,5 +33,5 @@
     "demo": [
         "demo/quality_control_demo.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

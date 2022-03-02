@@ -24,6 +24,6 @@
         'views/qc_inspection_view.xml',
         'views/mrp_production_view.xml'
     ],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }

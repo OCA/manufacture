@@ -12,7 +12,7 @@
     "maintainers": ["lreficent"],
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": [
         "quality_control",
         "quality_control_team",

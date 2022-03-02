@@ -26,6 +26,6 @@
         "views/stock_production_lot_view.xml",
     ],
     "post_init_hook": "post_init_hook",
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }
