@@ -199,6 +199,22 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls.product_mrp_area_obj.create(
             {"product_id": cls.product_tz.id, "mrp_area_id": cls.cases_area.id}
         )
+        # Product to test special case with Purchase Uom:
+        cls.prod_uom_test = cls.product_obj.create(
+            {
+                "name": "Product Uom Test",
+                "type": "product",
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "uom_po_id": cls.env.ref("uom.product_uom_dozen").id,
+                "list_price": 150.0,
+                "produce_delay": 5.0,
+                "route_ids": [(6, 0, [route_buy])],
+                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+            }
+        )
+        cls.product_mrp_area_obj.create(
+            {"product_id": cls.prod_uom_test.id, "mrp_area_id": cls.mrp_area.id}
+        )
 
         # Create pickings for Scenario 1:
         dt_base = cls.calendar.plan_days(3 + 1, datetime.today())
@@ -341,6 +357,30 @@ class TestMrpMultiLevelCommon(SavepointCase):
                             "date_planned": date_po,
                             "product_qty": 5.0,
                             "product_uom": cls.pp_2.uom_id.id,
+                            "price_unit": 25.0,
+                        },
+                    )
+                ],
+            }
+        )
+        # Create Test PO for special case Puchase uom:
+        # Remember that prod_uom_test had a UoM of units but it is purchased in dozens.
+        # For this reason buying 1 quantity of it, means to have 12 units in stock.
+        date_po = cls.calendar.plan_days(1 + 1, datetime.today().replace(hour=0)).date()
+        cls.po_uom = cls.po_obj.create(
+            {
+                "name": "Test PO-002",
+                "partner_id": cls.vendor.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Product Uom Test line",
+                            "product_id": cls.prod_uom_test.id,
+                            "date_planned": date_po,
+                            "product_qty": 1.0,
+                            "product_uom": cls.prod_uom_test.uom_po_id.id,
                             "price_unit": 25.0,
                         },
                     )
