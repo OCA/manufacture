@@ -375,3 +375,13 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         )
         self.assertEqual(len(inventory), 1)
         self.assertEqual(inventory.date, date_move.date())
+
+    def test_15_units_case(self):
+        """When a product has a different purchase unit of measure than
+        the general unit of measure and the supply is coming from an RFQ"""
+        prod_uom_test_inventory_lines = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.prod_uom_test.id)]
+        )
+        self.assertEqual(len(prod_uom_test_inventory_lines), 1)
+        self.assertEqual(prod_uom_test_inventory_lines.supply_qty, 12.0)
+        # Supply qty has to be 12 has a dozen of units are in a RFQ.

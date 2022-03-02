@@ -20,11 +20,11 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_repair](base_repair/) | 14.0.1.0.0 | [![marcelsavegnago](https://github.com/marcelsavegnago.png?size=30px)](https://github.com/marcelsavegnago) | This module extends the functionality of Odoo Repair module to add some basic features.
-[mrp_account_analytic](mrp_account_analytic/) | 14.0.1.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Consuming raw materials and operations generated Analytic Items
+[mrp_account_analytic](mrp_account_analytic/) | 14.0.1.0.1 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Consuming raw materials and operations generated Analytic Items
 [mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.1.0 |  | Track manufacturing costs in real time, using Analytic Items
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 14.0.1.0.0 |  | Logs any change to a BoM in the chatter
-[mrp_multi_level](mrp_multi_level/) | 14.0.1.4.2 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
+[mrp_multi_level](mrp_multi_level/) | 14.0.1.4.5 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.0.2 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 14.0.1.0.0 |  | Allows to create fixed planned orders on a grid view.
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 14.0.1.0.0 |  | Production Grouped By Product
@@ -37,7 +37,7 @@ addon | version | maintainers | summary
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.1 |  | Link Purchase Order to Subcontract Productions
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 |  | Organise Workcenters by section
-[mrp_workorder_sequence](mrp_workorder_sequence/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
+[mrp_workorder_sequence](mrp_workorder_sequence/) | 14.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 [quality_control_oca](quality_control_oca/) | 14.0.1.2.0 |  | Generic infrastructure for quality tests.
 [quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.0 |  | Quality control - Stock (OCA)
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.1 |  | Create refurbished products during repair

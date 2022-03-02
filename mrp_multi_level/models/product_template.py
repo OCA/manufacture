@@ -26,7 +26,7 @@ class ProductTemplate(models.Model):
 
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
-        xmlid = self.env.ref("mrp_multi_level.product_mrp_area_action")
+        xmlid = "mrp_multi_level.product_mrp_area_action"
         result = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         ctx = ast.literal_eval(result.get("context"))
         mrp_areas = self.env["mrp.area"].search([])
