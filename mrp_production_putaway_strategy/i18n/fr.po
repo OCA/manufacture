@@ -21,14 +21,20 @@ msgstr ""
 
 #. module: mrp_production_putaway_strategy
 #: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Applied Putaway strategy to finished products.\n"
-"Finished Products Location: %s."
-msgstr "Stratégie de dépôt appliqué à l'emplacement des produits finis %s."
+" Finished Products Location: %s. "
+msgstr ""
 
 #. module: mrp_production_putaway_strategy
 #: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
 #, fuzzy
 msgid "Production Order"
 msgstr "Ordre de fabrication"
+
+#, fuzzy
+#~ msgid ""
+#~ "Applied Putaway strategy to finished products.\n"
+#~ "Finished Products Location: %s."
+#~ msgstr "Stratégie de dépôt appliqué à l'emplacement des produits finis %s."
