@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_see_attachments_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.attachments.mrp.bom.form.view</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(mrp.action_report_mrp_bom)d']"
+                position="after"
+            >
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_documents"
+                    type="object"
+                    icon="fa-files-o"
+                    string="Attachments"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
