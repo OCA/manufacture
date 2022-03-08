@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="workorder_attachments_mrp_workorder_form_view" model="ir.ui.view">
+        <field name="name">workorder.attachments.mrp.workorder.form.view</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="///button[@name='action_see_move_scrap']" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="action_see_workorder_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    string="Attachments"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="action_see_workorder_attachments" model="ir.actions.server">
+        <field name="name">Attachments</field>
+        <field name="model_id" ref="model_mrp_workorder" />
+        <field name="binding_model_id" ref="model_mrp_workorder" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_see_workorder_attachments()
+        </field>
+    </record>
+</odoo>

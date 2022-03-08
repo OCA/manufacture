@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="assets_backend"
+        name="mrp_attachment_mgmt_assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="//script[1]" position="after">
+            <script
+                type="text/javascript"
+                src="/mrp_attachment_mgmt/static/src/js/mrp_documents_controller_mixin.js"
+            />
+        </xpath>
+    </template>
+</odoo>
