@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 10:17+0000\n"
-"PO-Revision-Date: 2022-03-08 10:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,11 +45,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: mrp_attachment_mgmt
-#: model:ir.actions.act_window,name:mrp_attachment_mgmt.action_mrp_document
-msgid "Documents"
 msgstr ""
 
 #. module: mrp_attachment_mgmt
