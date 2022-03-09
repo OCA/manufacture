@@ -11,9 +11,21 @@ class TestMrpAttachmentMgmt(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.component = cls.env["product.product"].create(
+        cls.component_a = cls.env["product.product"].create(
             {
                 "name": "Test Component A",
+                "type": "product",
+            }
+        )
+        cls.component_b = cls.env["product.product"].create(
+            {
+                "name": "Test Component B",
+                "type": "product",
+            }
+        )
+        cls.component_c = cls.env["product.product"].create(
+            {
+                "name": "Test Component C",
                 "type": "product",
             }
         )
@@ -31,17 +43,25 @@ class TestMrpAttachmentMgmt(common.SavepointCase):
                 ).id,
             }
         )
-        cls.bom = cls._create_mrp_bom(cls, cls.product, [(cls.component, 1)])
-        cls.mrp_production = cls._create_mrp_production(cls)
+        cls.bom = cls._create_mrp_bom(
+            cls,
+            cls.product,
+            [(cls.component_a, 1), (cls.component_b, 1), (cls.component_c, 1)],
+        )
+        cls.mrp_production = cls._create_mrp_production(
+            cls, [(cls.component_a, 1), (cls.component_b, 1), (cls.component_c, 1)]
+        )
         cls.workorder = fields.first(cls.mrp_production.workorder_ids)
+        cls.attachment_model = cls.env["ir.attachment"]
 
-    def _create_mrp_production(self):
+    def _create_mrp_production(self, components):
         mrp_production_form = Form(self.env["mrp.production"])
         mrp_production_form.product_id = self.product
         mrp_production_form.bom_id = self.bom
-        with mrp_production_form.move_raw_ids.new() as move_form:
-            move_form.product_id = self.component
-            move_form.product_uom_qty = 1
+        for component in components:
+            with mrp_production_form.move_raw_ids.new() as move_form:
+                move_form.product_id = component[0]
+                move_form.product_uom_qty = component[1]
         mrp_production = mrp_production_form.save()
         mrp_production.action_confirm()
         return mrp_production
@@ -59,7 +79,7 @@ class TestMrpAttachmentMgmt(common.SavepointCase):
         return mrp_bom_form.save()
 
     def _create_attachment(self, product):
-        return self.env["ir.attachment"].create(
+        return self.attachment_model.create(
             {
                 "name": "Test file %s" % product.name,
                 "res_model": product._name,
@@ -69,26 +89,25 @@ class TestMrpAttachmentMgmt(common.SavepointCase):
         )
 
     def test_misc_bom_documents(self):
-        attachment = self._create_attachment(self.component)
-        document = self.env["mrp.document"].create({"ir_attachment_id": attachment.id})
+        attachment_a = self._create_attachment(self.component_a)
+        self.env["mrp.document"].create({"ir_attachment_id": attachment_a.id})
+        attachment_b = self._create_attachment(self.component_b)
         action = self.bom.action_see_bom_documents()
-        self.assertIn(
-            document.id, self.env["mrp.document"].search(action["domain"]).ids
-        )
+        attachment_bom_items = self.attachment_model.search(action["domain"])
+        self.assertEqual(len(attachment_bom_items), 2)
+        self.assertIn(attachment_a.id, attachment_bom_items.ids)
+        self.assertIn(attachment_b.id, attachment_bom_items.ids)
+        self.assertNotIn(self.component_c.id, attachment_bom_items.mapped("res_id"))
         action = self.product.action_see_bom_documents()
-        self.assertIn(
-            document.id, self.env["mrp.document"].search(action["domain"]).ids
-        )
+        attachment_product_items = self.attachment_model.search(action["domain"])
+        self.assertEqual(attachment_bom_items, attachment_product_items)
         action = self.product.product_tmpl_id.action_see_bom_documents()
-        self.assertIn(
-            document.id, self.env["mrp.document"].search(action["domain"]).ids
-        )
+        attachment_template_items = self.attachment_model.search(action["domain"])
+        self.assertEqual(attachment_template_items, attachment_product_items)
 
     def test_mrp_workorder_attachments(self):
         with self.assertRaises(UserError):
             self.workorder.action_see_workorder_attachments()
         attachment = self._create_attachment(self.product)
         action = self.workorder.action_see_workorder_attachments()
-        self.assertIn(
-            attachment.id, self.env["ir.attachment"].search(action["domain"]).ids
-        )
+        self.assertIn(attachment.id, self.attachment_model.search(action["domain"]).ids)

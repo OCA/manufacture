@@ -8,16 +8,17 @@ class MrpBom(models.Model):
 
     def _action_see_bom_documents_products(self, products):
         domain = [
+            # ("res_field", "=", False),
             "|",
             "&",
-            ("ir_attachment_id.res_model", "=", "product.product"),
-            ("ir_attachment_id.res_id", "in", products.ids),
+            ("res_model", "=", "product.product"),
+            ("res_id", "in", products.ids),
             "&",
-            ("ir_attachment_id.res_model", "=", "product.template"),
-            ("ir_attachment_id.res_id", "in", products.mapped("product_tmpl_id").ids),
+            ("res_model", "=", "product.template"),
+            ("res_id", "in", products.mapped("product_tmpl_id").ids),
         ]
-        res = self.env["mrp.bom.line"].action_see_attachments()
-        ctx = {"hide_upload": True, "edit": False, "delete": False}
+        res = self.env.ref("base.action_attachment").read()[0]
+        ctx = {"create": False, "edit": False}
         res.update({"domain": domain, "context": ctx})
         return res
 
