@@ -10,7 +10,6 @@
     "depends": ["mrp"],
     "installable": True,
     "data": [
-        "template/assets.xml",
         "views/mrp_bom_view.xml",
         "views/product_views.xml",
         "views/workorder_attachments_views.xml",
