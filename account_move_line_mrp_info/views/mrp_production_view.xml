@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <page name="miscellaneous" position="inside">
+                <group name="account_move_lines_grp" string="Journal Items" colspan="4">
+                    <field name="account_move_line_ids" readonly="1" nolabel="1" />
+                </group>
+            </page>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view" model="ir.ui.view">
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                    <field name="account_move_line_ids" readonly="1" nolabel="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
