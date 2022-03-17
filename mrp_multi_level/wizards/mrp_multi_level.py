@@ -99,12 +99,13 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_order_number": order_number,
             "parent_product_id": parent_product_id,
             "name": order_number,
+            "origin": order_number,
             "state": move.state,
         }
 
     @api.model
     def _prepare_planned_order_data(
-        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name
+        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name, values
     ):
         return {
             "product_mrp_area_id": product_mrp_area.id,
@@ -113,13 +114,14 @@ class MultiLevelMrp(models.TransientModel):
             "order_release_date": mrp_action_date,
             "mrp_action": product_mrp_area.supply_method,
             "qty_released": 0.0,
-            "name": name,
+            "name": "Planned supply for: " + name,
+            "origin": values.get("origin") or name,
             "fixed": False,
         }
 
     @api.model
     def _prepare_mrp_move_data_bom_explosion(
-        self, product, bomline, qty, mrp_date_demand_2, bom, name
+        self, product, bomline, qty, mrp_date_demand_2, bom, name, planned_order
     ):
         product_mrp_area = self._get_product_mrp_area_from_product_and_area(
             bomline.product_id, product.mrp_area_id
@@ -149,7 +151,13 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_origin": "mrp",
             "mrp_order_number": None,
             "parent_product_id": bom.product_id.id,
-            "name": name or product.product_id.default_code or product.product_id.name,
+            "name": (
+                "Demand Bom Explosion: %s"
+                % (name or product.product_id.default_code or product.product_id.name)
+            ).replace(
+                "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
+            ),
+            "origin": planned_order.origin,
         }
 
     @api.model
@@ -206,7 +214,13 @@ class MultiLevelMrp(models.TransientModel):
                     )
                 )
                 move_data = self._prepare_mrp_move_data_bom_explosion(
-                    product_mrp_area_id, bomline, qty, mrp_date_demand_2, bom, name
+                    product_mrp_area_id,
+                    bomline,
+                    qty,
+                    mrp_date_demand_2,
+                    bom,
+                    name,
+                    action,
                 )
                 mrpmove_id2 = self.env["mrp.move"].create(move_data)
                 if hasattr(action, "mrp_move_down_ids"):
@@ -249,7 +263,7 @@ class MultiLevelMrp(models.TransientModel):
             qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order)
             qty_to_order -= qty
             order_data = self._prepare_planned_order_data(
-                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name
+                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
             planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
@@ -493,19 +507,27 @@ class MultiLevelMrp(models.TransientModel):
                     or (onhand + last_qty) < product_mrp_area.mrp_minimum_stock
                 )
             ):
-                name = ",".join(demand_origin)
+                name = _(
+                    "Grouped Demand of %(product_name)s for %(delta_days)d Days"
+                ) % dict(
+                    product_name=product_mrp_area.product_id.display_name,
+                    delta_days=grouping_delta,
+                )
+                origin = ",".join(list(set(demand_origin)))
                 qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
                     mrp_qty=qtytoorder,
                     name=name,
+                    values=dict(origin=origin),
                 )
                 qty_ordered = cm.get("qty_ordered", 0.0)
                 onhand = onhand + last_qty + qty_ordered
                 last_date = None
                 last_qty = 0.00
                 nbr_create += 1
+                demand_origin = []
             if (
                 onhand + last_qty + move.mrp_qty
             ) < product_mrp_area.mrp_minimum_stock or (
@@ -519,16 +541,23 @@ class MultiLevelMrp(models.TransientModel):
             else:
                 last_date = fields.Date.from_string(move.mrp_date)
                 onhand += move.mrp_qty
-            demand_origin.append(move.name)
+            demand_origin.append(move.origin or move.name)
 
         if last_date and last_qty != 0.00:
-            name = ",".join(demand_origin)
+            name = _(
+                "Grouped Demand of %(product_name)s for %(delta_days)d Days"
+            ) % dict(
+                product_name=product_mrp_area.product_id.display_name,
+                delta_days=grouping_delta,
+            )
+            origin = ",".join(list(set(demand_origin)))
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=last_date,
                 mrp_qty=qtytoorder,
                 name=name,
+                values=dict(origin=origin),
             )
             qty_ordered = cm.get("qty_ordered", 0.0)
             onhand += qty_ordered
@@ -573,6 +602,7 @@ class MultiLevelMrp(models.TransientModel):
                                     mrp_date=move.mrp_date,
                                     mrp_qty=qtytoorder,
                                     name=move.name,
+                                    values=dict(origin=move.origin),
                                 )
                                 qty_ordered = cm["qty_ordered"]
                                 onhand += move.mrp_qty + qty_ordered
@@ -586,11 +616,13 @@ class MultiLevelMrp(models.TransientModel):
 
                     if onhand < product_mrp_area.mrp_minimum_stock and nbr_create == 0:
                         qtytoorder = product_mrp_area.mrp_minimum_stock - onhand
+                        name = _("Safety Stock")
                         cm = self.create_action(
                             product_mrp_area_id=product_mrp_area,
                             mrp_date=date.today(),
                             mrp_qty=qtytoorder,
-                            name="Minimum Stock",
+                            name=name,
+                            values=dict(origin=name),
                         )
                         qty_ordered = cm["qty_ordered"]
                         onhand += qty_ordered
