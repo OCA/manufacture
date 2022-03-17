@@ -63,6 +63,7 @@ class MrpMove(models.Model):
         selection=[("s", "Supply"), ("d", "Demand")], string="Type"
     )
     name = fields.Char(string="Description")
+    origin = fields.Char(string="Source Document")
     parent_product_id = fields.Many2one(
         comodel_name="product.product", string="Parent Product", index=True
     )

@@ -12,6 +12,7 @@ class MrpPlannedOrder(models.Model):
     _order = "due_date, id"
 
     name = fields.Char(string="Description")
+    origin = fields.Char(string="Source Document")
     product_mrp_area_id = fields.Many2one(
         comodel_name="product.mrp.area",
         string="Product MRP Area",
