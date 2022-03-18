@@ -252,6 +252,12 @@ msgid "Group By..."
 msgstr "Agrupar por..."
 
 #. module: mrp_multi_level
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
+#, python-format
+msgid "Grouped Demand of %(product_name)s for %(delta_days)d Days"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__id
@@ -616,10 +622,11 @@ msgid "Planned Order"
 msgstr "Fecha Planificada"
 
 #. module: mrp_multi_level
+#: code:addons/mrp_multi_level/models/mrp_inventory.py:0
 #: model:ir.actions.act_window,name:mrp_multi_level.mrp_planned_order_action
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_planned_order
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
-#, fuzzy
+#, fuzzy, python-format
 msgid "Planned Orders"
 msgstr "Fecha Planificada"
 
@@ -823,7 +830,9 @@ msgid "SF-2"
 msgstr "SF-2"
 
 #. module: mrp_multi_level
+#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_stock
+#, python-format
 msgid "Safety Stock"
 msgstr ""
 
@@ -842,6 +851,12 @@ msgstr "Enviado"
 msgid ""
 "Set this if you need to procure from a different locationthan area's "
 "location."
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__origin
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__origin
+msgid "Source Document"
 msgstr ""
 
 #. module: mrp_multi_level
