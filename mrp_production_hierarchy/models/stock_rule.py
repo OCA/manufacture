@@ -25,6 +25,6 @@ class StockRule(models.Model):
             parent_id = self.env.context["parent_mrp_production_id"]
             root_id = self.env.context["root_mrp_production_id"]
             res.update(
-                {"parent_id": parent_id, "root_id": root_id,}
+                {"parent_id": parent_id, "root_id": root_id}
             )
         return res

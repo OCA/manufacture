@@ -4,13 +4,13 @@
 {
     "name": "Production Orders Hierarchy",
     "summary": "View the hierarchy of generated production orders",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ABF OSIELL, Sergio Corato, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["mrp",],
-    "data": ["views/mrp_production.xml",],
+    "depends": ["mrp"],
+    "data": ["views/mrp_production.xml"],
 }

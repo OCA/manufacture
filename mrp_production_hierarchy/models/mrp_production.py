@@ -2,7 +2,7 @@
 # Copyright 2019 Sergio Corato <https://github.com/sergiocorato>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class MrpProduction(models.Model):
@@ -25,8 +25,7 @@ class MrpProduction(models.Model):
         domain=[("state", "!=", "cancel")],
     )
 
-    @api.multi
-    def _generate_moves(self):
+    def action_confirm(self):
         """Overloaded to pass the created production order ID in the context.
         It will be used by the 'stock_rule._prepare_mo_vals()' overload to
         set the parent relation between production orders.
@@ -37,10 +36,9 @@ class MrpProduction(models.Model):
                 prod = prod.with_context(root_mrp_production_id=self.id)
             # Set the parent production order ID
             prod = prod.with_context(parent_mrp_production_id=self.id)
-            super(MrpProduction, prod)._generate_moves()
+            super(MrpProduction, prod).action_confirm()
         return True
 
-    @api.multi
     def open_production_tree(self):
         self.ensure_one()
         if self.child_ids:
