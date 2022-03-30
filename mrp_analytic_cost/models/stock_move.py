@@ -42,7 +42,7 @@ class StockMove(models.Model):
                 analytic_line.on_change_unit_amount()
 
     def write(self, vals):
-        """ When material is consumed, generate Analytic Items """
+        """When material is consumed, generate Analytic Items"""
         res = super().write(vals)
         if vals.get("qty_done"):
             self.generate_mrp_raw_analytic_line()
