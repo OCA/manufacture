@@ -8,5 +8,5 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     def generate_analytic_lines(self):
-        """ Generate Analytic Lines for a MO """
+        """Generate Analytic Lines for a MO"""
         return self.mapped("move_raw_ids").generate_mrp_raw_analytic_line()
