@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 15.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_progress_button](mrp_progress_button/) | 15.0.1.1.1 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 15.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
+[mrp_workorder_sequence](mrp_workorder_sequence/) | 15.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 
 [//]: # (end addons)
 
