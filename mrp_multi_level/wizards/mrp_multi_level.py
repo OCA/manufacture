@@ -220,7 +220,6 @@ class MultiLevelMrp(models.TransientModel):
                     mrp_date_demand_2,
                     bom,
                     name,
-                    action,
                 )
                 mrpmove_id2 = self.env["mrp.move"].create(move_data)
                 if hasattr(action, "mrp_move_down_ids"):
