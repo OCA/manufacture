@@ -31,6 +31,7 @@ msgstr "Sprejem"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_needaction
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_needaction
 msgid "Action Needed"
 msgstr ""
 
@@ -66,6 +67,7 @@ msgstr "Odobritev"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
 
@@ -211,16 +213,19 @@ msgstr "Zunanje opombe"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_follower_ids
 msgid "Followers"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_channel_ids
 msgid "Followers (Channels)"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
@@ -274,16 +279,19 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_unread
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_unread
 msgid "If checked new messages require your attention."
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -342,6 +350,7 @@ msgstr "Interni zaznamki"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_is_follower
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_is_follower
 msgid "Is Follower"
 msgstr ""
 
@@ -393,6 +402,7 @@ msgstr "Zadnjič posodobljeno"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
 
@@ -419,11 +429,13 @@ msgstr "Maksimalna veljavna vrednost za kvantitativno vprašanje."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_ids
 msgid "Messages"
 msgstr ""
 
@@ -471,26 +483,31 @@ msgstr "Opombe"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_has_error_counter
 msgid "Number of error"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
 
@@ -654,14 +671,14 @@ msgid "Question"
 msgstr "Vprašanje"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:71
+#: code:addons/quality_control/models/qc_test.py:72
 #, python-format
 msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum value."
 msgstr ""
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:62
+#: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
 msgstr ""
@@ -881,11 +898,13 @@ msgstr "Tip"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_unread
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_unread
 msgid "Unread Messages"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
 
@@ -936,11 +955,13 @@ msgstr "Čakanje nadzornikove odobritve"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__website_message_ids
 msgid "Website Messages"
 msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,help:quality_control.field_qc_test__website_message_ids
 msgid "Website communication history"
 msgstr ""
 

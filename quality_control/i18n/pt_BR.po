@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
 "PO-Revision-Date: 2021-03-15 07:45+0000\n"
 "Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,6 +32,7 @@ msgstr "Aceitar"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_needaction
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_needaction
 msgid "Action Needed"
 msgstr "Ação Necessária"
 
@@ -65,6 +66,7 @@ msgstr "Aprovar"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_attachment_count
 msgid "Attachment Count"
 msgstr "Contagem de Anexos"
 
@@ -209,16 +211,19 @@ msgstr "Notas Externas"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canais)"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Parceiros)"
 
@@ -274,16 +279,19 @@ msgstr ""
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_unread
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_unread
 msgid "If checked new messages require your attention."
 msgstr "Se marcadas novas mensagens requerem sua atenção."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Se marcadas, novas mensagens requerem sua atenção."
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcadas, algumas mensagens apresentam um erro de entrega."
 
@@ -342,6 +350,7 @@ msgstr "Notas internas"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_is_follower
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_is_follower
 msgid "Is Follower"
 msgstr "É Seguidor"
 
@@ -393,6 +402,7 @@ msgstr "Última Atualização Feita em"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Anexo Principal"
 
@@ -419,11 +429,13 @@ msgstr "Valor máximo para a questão quantitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_has_error
 msgid "Message Delivery error"
 msgstr "Erro de Entrega da Mensagem"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_ids
 msgid "Messages"
 msgstr "Mensagens"
 
@@ -471,26 +483,31 @@ msgstr "Observações"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de Ações"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_has_error_counter
 msgid "Number of error"
 msgstr "Número de Erros"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensagens que requerem uma ação"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensagens com erro de entrega"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,help:quality_control.field_qc_test__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensagens não lidas"
 
@@ -654,7 +671,7 @@ msgid "Question"
 msgstr "Questão"
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:71
+#: code:addons/quality_control/models/qc_test.py:72
 #, python-format
 msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum value."
@@ -663,7 +680,7 @@ msgstr ""
 "máximo."
 
 #. module: quality_control
-#: code:addons/quality_control/models/qc_test.py:62
+#: code:addons/quality_control/models/qc_test.py:63
 #, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
 msgstr ""
@@ -887,11 +904,13 @@ msgstr "Tipo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_unread
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_unread
 msgid "Unread Messages"
 msgstr "Mensagens não lidas"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de Mensagens Não Lidas"
 
@@ -942,11 +961,13 @@ msgstr "Aguardando aprovação de um supervisor"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,field_description:quality_control.field_qc_test__website_message_ids
 msgid "Website Messages"
 msgstr "Mensagens do Site"
 
 #. module: quality_control
 #: model:ir.model.fields,help:quality_control.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,help:quality_control.field_qc_test__website_message_ids
 msgid "Website communication history"
 msgstr "Histórico de comunicação através do site"
 
