@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 12.0.1.0.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | adds sequence to production work orders.
 [product_mrp_info](product_mrp_info/) | 12.0.1.0.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | Adds smart button in product form view linking to manufacturing order list.
 [product_quick_bom](product_quick_bom/) | 12.0.1.0.0 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) [![kevinkhao](https://github.com/kevinkhao.png?size=30px)](https://github.com/kevinkhao) | Create the bom directly from the product
-[quality_control](quality_control/) | 12.0.1.4.0 |  | Generic infrastructure for quality tests.
+[quality_control](quality_control/) | 12.0.1.5.0 |  | Generic infrastructure for quality tests.
 [quality_control_issue](quality_control_issue/) | 12.0.1.0.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | Allow to manage and report Quality Control Issues.
 [quality_control_mrp](quality_control_mrp/) | 12.0.1.0.0 |  | MRP extension for quality control
 [quality_control_stock](quality_control_stock/) | 12.0.1.0.2 |  | Quality control - Stock
