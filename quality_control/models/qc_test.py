@@ -15,6 +15,7 @@ class QcTest(models.Model):
     """
     _name = 'qc.test'
     _description = 'Quality control test'
+    _inherit = ['mail.thread']
 
     @api.multi
     def object_selection_values(self):
