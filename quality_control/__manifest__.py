@@ -7,7 +7,7 @@
 
 {
     "name": "Quality control",
-    "version": "12.0.1.4.0",
+    "version": "12.0.1.5.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
