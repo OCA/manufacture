@@ -6,7 +6,7 @@
     "step to Manufacturing Orders for better manufacture "
     "planification.",
     "version": "13.0.1.0.1",
-    "development_status": "Mature",
+    "development_status": "Production/Stable",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
