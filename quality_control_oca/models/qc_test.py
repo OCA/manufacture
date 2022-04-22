@@ -15,6 +15,7 @@ class QcTest(models.Model):
 
     _name = "qc.test"
     _description = "Quality control test"
+    _inherit = "mail.thread"
 
     def object_selection_values(self):
         return set()
