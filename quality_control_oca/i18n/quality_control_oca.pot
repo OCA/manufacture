@@ -25,6 +25,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction
@@ -72,6 +73,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_attachment_count
@@ -221,6 +223,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
@@ -230,6 +233,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_channel_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_channel_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_channel_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_channel_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_channel_ids
@@ -239,6 +243,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
@@ -316,6 +321,8 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
@@ -330,6 +337,8 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
@@ -394,6 +403,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
@@ -452,6 +462,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_main_attachment_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_main_attachment_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_main_attachment_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
@@ -482,6 +493,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
@@ -491,6 +503,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
@@ -547,6 +560,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_needaction_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
@@ -556,6 +570,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_error_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
@@ -565,6 +580,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
@@ -574,6 +590,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
@@ -583,6 +600,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_unread_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
@@ -831,6 +849,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
@@ -993,6 +1012,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_unread
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread
@@ -1002,6 +1022,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_unread_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
@@ -1056,6 +1077,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__website_message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__website_message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__website_message_ids
@@ -1065,6 +1087,7 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
