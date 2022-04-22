@@ -11,6 +11,5 @@
     "category": "Manufacturing",
     "depends": ["mrp", "stock_warehouse_calendar"],
     "installable": True,
-    "development_status": "Production/Stable",
     "maintainers": ["JordiBForgeFlow"],
 }
