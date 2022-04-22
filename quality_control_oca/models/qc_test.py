@@ -15,6 +15,7 @@ class QcTest(models.Model):
 
     _name = "qc.test"
     _description = "Quality control test"
+    _inherit = ["mail.thread"]
 
     active = fields.Boolean("Active", default=True)
     name = fields.Char(string="Name", required=True, translate=True)
