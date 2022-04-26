@@ -69,7 +69,7 @@ class QcInspection(models.Model):
                 inspection.product_id = inspection.object_id.product_id
             elif inspection.object_id._name == "stock.move.line":
                 inspection.product_id = inspection.object_id.product_id
-            elif self.object_id._name == "stock.production.lot":
+            elif inspection.object_id._name == "stock.production.lot":
                 inspection.product_id = inspection.object_id.product_id
 
     @api.onchange("object_id")
