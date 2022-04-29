@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-mrp_restrict_lot',
         'odoo14-addon-mrp_sale_info',
         'odoo14-addon-mrp_subcontracting_purchase_link',
+        'odoo14-addon-mrp_tag',
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
         'odoo14-addon-mrp_workorder_sequence',
