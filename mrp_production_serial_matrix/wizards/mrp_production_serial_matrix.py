@@ -40,6 +40,11 @@ class MrpProductionSerialMatrix(models.TransientModel):
     lot_selection_warning_count = fields.Integer(
         compute="_compute_lot_selection_warning"
     )
+    include_lots = fields.Boolean(
+        string="Include Lots?",
+        help="Include products tracked by Lots in matrix. Product tracket by "
+        "serial numbers are always included.",
+    )
 
     @api.depends("line_ids", "line_ids.component_lot_id")
     def _compute_lot_selection_warning(self):
@@ -129,14 +134,26 @@ class MrpProductionSerialMatrix(models.TransientModel):
 
     def _get_matrix_lines(self, production, finished_lots):
         tracked_components = []
-        for line in production.bom_id.bom_line_ids:
-            if line.product_id.tracking == "serial":
-                # TODO: factor if parent is not 1.
-                # TODO: uom.
-                for i in range(1, int(line.product_qty) + 1):
-                    tracked_components.append((line.product_id, i, 1))
-            elif line.product_id.tracking == "lot":
-                tracked_components.append((line.product_id, 0, line.product_qty))
+        for move in production.move_raw_ids:
+            rounding = move.product_id.uom_id.rounding
+            if float_is_zero(move.product_qty, precision_rounding=rounding):
+                # Component moves cannot be deleted in in-progress MO's; however,
+                # they can be set to 0 units to consume. In such case, we ignore
+                # the move.
+                continue
+            boml = move.bom_line_id
+            # TODO: UoM (MO/BoM using different UoMs than product's defaults).
+            if boml:
+                qty_per_finished_unit = boml.product_qty / boml.bom_id.product_qty
+            else:
+                # The product could have been added for the specific MO but not
+                # be part of the BoM.
+                qty_per_finished_unit = move.product_qty / production.product_qty
+            if move.product_id.tracking == "serial":
+                for i in range(1, int(qty_per_finished_unit) + 1):
+                    tracked_components.append((move.product_id, i, 1))
+            elif move.product_id.tracking == "lot" and self.include_lots:
+                tracked_components.append((move.product_id, 0, qty_per_finished_unit))
 
         matrix_lines = []
         current_lot = False
@@ -187,7 +204,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
             )
         return res
 
-    @api.onchange("finished_lot_ids")
+    @api.onchange("finished_lot_ids", "include_lots")
     def _onchange_finished_lot_ids(self):
         for rec in self:
             matrix_lines = self._get_matrix_lines(
@@ -212,6 +229,12 @@ class MrpProductionSerialMatrix(models.TransientModel):
             current_mo.qty_producing = 1.0
             current_mo._set_qty_producing()
             for move in current_mo.move_raw_ids:
+                rounding = move.product_id.uom_id.rounding
+                if float_is_zero(move.product_qty, precision_rounding=rounding):
+                    # Component moves cannot be deleted in in-progress MO's; however,
+                    # they can be set to 0 units to consume. In such case, we ignore
+                    # the move.
+                    continue
                 if move.product_id.tracking in ["serial", "lot"]:
                     # We filter using the lot nane because the ORM sometimes
                     # is not storing correctly the finished_lot_id in the lines

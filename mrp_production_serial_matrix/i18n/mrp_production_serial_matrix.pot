@@ -111,6 +111,18 @@ msgid "ID"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__include_lots
+msgid "Include Lots?"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__include_lots
+msgid ""
+"Include products tracked by Lots in matrix. Product tracket by serial "
+"numbers are always included."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix____last_update
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line____last_update

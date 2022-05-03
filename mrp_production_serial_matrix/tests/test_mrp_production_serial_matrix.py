@@ -175,6 +175,9 @@ class TestMrpProductionSerialMatrix(SavepointCase):
                 active_id=production_1.id, active_model="mrp.production"
             )
         )
+        expected = 3 * 3  # Only SN products (1 + 2 per finish unit)
+        self.assertEqual(len(wizard_form.line_ids), expected)
+        wizard_form.include_lots = True
         expected = 3 * 4
         self.assertEqual(len(wizard_form.line_ids), expected)
         self.assertEqual(wizard_form.lot_selection_warning_count, 0)
