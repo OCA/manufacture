@@ -5,14 +5,19 @@
         <field name="model">mrp.production.serial.matrix</field>
         <field name="arch" type="xml">
             <form>
-                <group name="info">
-                    <field name="production_id" options='{"no_open": True}' />
-                    <field name="product_id" options='{"no_open": True}' />
-                    <field
-                        name="company_id"
-                        options='{"no_open": True}'
-                        invisible="1"
-                    />
+                <group>
+                    <group name="info">
+                        <field name="production_id" options='{"no_open": True}' />
+                        <field name="product_id" options='{"no_open": True}' />
+                        <field
+                            name="company_id"
+                            options='{"no_open": True}'
+                            invisible="1"
+                        />
+                    </group>
+                    <group name="settings">
+                        <field name="include_lots" widget="boolean_toggle" />
+                    </group>
                 </group>
                 <group name="finished_lots" string="Finished Product Serial Numbers">
                     <p
