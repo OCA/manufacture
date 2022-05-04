@@ -12,6 +12,6 @@ rebel_module_groups: []
 repo_description: Odoo modules related to Manufacturing
 repo_name: Odoo Manufacturing Modules
 repo_slug: manufacture
-repo_website: https://github.com/OCA/manufacture
+repo_website: https://github.com/Frontware/manufacture
 travis_apt_packages: []
 travis_apt_sources: []

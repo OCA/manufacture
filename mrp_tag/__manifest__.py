@@ -7,7 +7,7 @@
     "summary": "Allows to add multiple tags to Manufacturing Orders",
     "version": "14.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "category": "Purchases",
     "depends": ["mrp"],
     "data": [
