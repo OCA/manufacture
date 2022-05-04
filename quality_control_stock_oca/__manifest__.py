@@ -10,7 +10,7 @@
     "license": "AGPL-3",
     "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
     "Agile Business Group, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": ["quality_control_oca", "stock"],
     "data": [
         "views/qc_inspection_view.xml",

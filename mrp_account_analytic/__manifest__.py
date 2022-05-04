@@ -7,7 +7,7 @@
     "version": "14.0.1.0.1",
     "category": "Manufacturing",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "license": "AGPL-3",
     "depends": ["mrp_analytic"],
     "data": [

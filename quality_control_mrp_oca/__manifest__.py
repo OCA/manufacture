@@ -13,7 +13,7 @@
     "Agile Business Group, "
     "Odoo Community Association (OCA),"
     "frontware international",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": ["quality_control_oca", "quality_control_stock_oca", "mrp"],
     "data": [
         "data/quality_control_mrp_data.xml",

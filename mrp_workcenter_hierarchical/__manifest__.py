@@ -11,7 +11,7 @@
     "depends": [
         "mrp",
     ],
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "data": [
         "views/workcenter_view.xml",
     ],

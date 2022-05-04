@@ -7,7 +7,7 @@
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": [
         "mrp",
         "web_widget_x2many_2d_matrix",

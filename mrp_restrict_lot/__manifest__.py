@@ -5,7 +5,7 @@
     "version": "14.0.1.0.0",
     "category": "Manufacturing",
     "author": "Akretion,Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "license": "AGPL-3",
     "maintainers": ["florian-dacosta"],
     "development_status": "Beta",

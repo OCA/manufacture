@@ -5,7 +5,7 @@
     "summary": "Adds location field to Bill of Materials and its components.",
     "version": "14.0.1.0.1",
     "category": "Manufacture",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,

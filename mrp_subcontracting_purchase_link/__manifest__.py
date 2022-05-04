@@ -6,7 +6,7 @@
     "category": "Manufacturing",
     "license": "LGPL-3",
     "author": "Quartile Limited, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": ["purchase", "mrp_subcontracting"],
     "data": ["views/purchase_order_views.xml", "views/mrp_production_views.xml"],
     "installable": True,

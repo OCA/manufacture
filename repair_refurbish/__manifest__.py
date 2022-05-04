@@ -5,7 +5,7 @@
     "summary": "Create refurbished products during repair",
     "version": "14.0.1.0.1",
     "category": "Manufacturing",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,

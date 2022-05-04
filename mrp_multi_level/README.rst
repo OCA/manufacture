@@ -14,7 +14,7 @@ MRP Multi Level
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/14.0/mrp_multi_level
+    :target: https://github.com/Frontware/manufacture/tree/14.0/mrp_multi_level
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/manufacture-14-0/manufacture-14-0-mrp_multi_level
@@ -41,7 +41,7 @@ Key Features
 * Confirm the calculated MRP demand and create PO's, or MO's.
 * Able to see the products for which action is needed throught Planned Orders.
 * Integration with `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`_ system.
-  Note: You need to install `mrp_multi_level_estimate module <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level_estimate>`_.
+  Note: You need to install `mrp_multi_level_estimate module <https://github.com/Frontware/manufacture/tree/12.0/mrp_multi_level_estimate>`_.
 
 **Table of contents**
 
@@ -87,7 +87,7 @@ Changelog
 
 **Features**
 
-- Show *Run MRP Multi Level* menu only to a specific new security group *Run MRP Manually*. (`#492 <https://github.com/OCA/manufacture/issues/492>`_)
+- Show *Run MRP Multi Level* menu only to a specific new security group *Run MRP Manually*. (`#492 <https://github.com/Frontware/manufacture/issues/492>`_)
 
 
 13.0.1.4.0 (2020-03-26)
@@ -101,7 +101,7 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Minor changes"
-  (`#470 <https://github.com/OCA/manufacture/pull/470>`_).
+  (`#470 <https://github.com/Frontware/manufacture/pull/470>`_).
 
   * Planned Order release and due date become required.
   * Add button to Product MRP Area to update MOQ from Supplier Info.
@@ -114,7 +114,7 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Minor changes
-  (`#468 <https://github.com/OCA/manufacture/pull/468>`_).
+  (`#468 <https://github.com/Frontware/manufacture/pull/468>`_).
 
   * Planned Orders become fixed on manual creation by default
   * Released Quantity becomes readonly
@@ -124,14 +124,14 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Minor changes
-  (`#469 <https://github.com/OCA/manufacture/pull/469>`_).
+  (`#469 <https://github.com/Frontware/manufacture/pull/469>`_).
 
   * Fix Main supplier computation in multi company
   * Drop Triplicated field in search view
 
 
 * [IMP] Minor changes
-  (`#463 <https://github.com/OCA/manufacture/pull/463>`_).
+  (`#463 <https://github.com/Frontware/manufacture/pull/463>`_).
 
   * Show supply method on MRP Inventory
   * Allow no-MRP users to look into Products
@@ -153,27 +153,27 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [REW/IMP] Rework to include Planned Orders.
-  (`#365 <https://github.com/OCA/manufacture/pull/365>`_).
+  (`#365 <https://github.com/Frontware/manufacture/pull/365>`_).
 * [IMP] Able to procure from a different location than the area's location.
 
 11.0.2.2.0 (2019-05-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Able to run MRP only for selected areas.
-  (`#360 <https://github.com/OCA/manufacture/pull/360>`_).
+  (`#360 <https://github.com/Frontware/manufacture/pull/360>`_).
 
 11.0.2.1.0 (2019-04-02)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Implement *Nbr. Days* functionality to be able to group demand when
   generating supply proposals.
-  (`#345 <https://github.com/OCA/manufacture/pull/345>`_).
+  (`#345 <https://github.com/Frontware/manufacture/pull/345>`_).
 
 11.0.2.0.0 (2018-11-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [REW] Refactor MRP Area.
-  (`#322 <https://github.com/OCA/manufacture/pull/322>`_):
+  (`#322 <https://github.com/Frontware/manufacture/pull/322>`_):
 
   * MRP product concept dropped in favor of *Product MRP Area Parameters*.
     This allow to set different MRP parameters for the same product in
@@ -184,16 +184,16 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Consider *Qty Multiple* on product to propose the quantity to procure.
-  (`#297 <https://github.com/OCA/manufacture/pull/297>`_)
+  (`#297 <https://github.com/Frontware/manufacture/pull/297>`_)
 
 11.0.1.0.1 (2018-08-03)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] User and system locales doesn't break MRP calculation.
-  (`#290 <https://github.com/OCA/manufacture/pull/290>`_)
+  (`#290 <https://github.com/Frontware/manufacture/pull/290>`_)
 * [FIX] Working Hours are now defined only at Warehouse level and displayed
   as a related on MRP Areas.
-  (`#290 <https://github.com/OCA/manufacture/pull/290>`__)
+  (`#290 <https://github.com/Frontware/manufacture/pull/290>`__)
 
 11.0.1.0.0 (2018-07-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,10 +203,10 @@ Changelog
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Frontware/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_multi_level%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/Frontware/manufacture/issues/new?body=module:%20mrp_multi_level%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -251,6 +251,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_multi_level>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/Frontware/manufacture/tree/14.0/mrp_multi_level>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

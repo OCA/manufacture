@@ -10,7 +10,7 @@
     "author": "Ucamco, ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["JordiBForgeFlow", "LoisRForgeFlow"],
     "summary": "Adds an MRP Scheduler",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp", "purchase_stock", "mrp_warehouse_calendar"],
     "data": [

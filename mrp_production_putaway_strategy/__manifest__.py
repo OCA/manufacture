@@ -7,7 +7,7 @@
     "finished products.",
     "version": "14.0.1.0.0",
     "author": "ForgeFlow, " "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "category": "Manufacture",
     "depends": ["mrp"],
     "license": "AGPL-3",

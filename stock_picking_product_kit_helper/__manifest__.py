@@ -5,7 +5,7 @@
     "summary": "Set quanity in picking line based on product kit quantity",
     "version": "14.0.1.0.0",
     "category": "Stock",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,

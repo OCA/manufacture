@@ -8,7 +8,7 @@
     "version": "14.0.1.0.0",
     "category": "MRP",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "license": "AGPL-3",
     "depends": ["mrp"],
     "data": ["views/stock_picking_type_views.xml"],

@@ -12,7 +12,7 @@
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": ["product"],
     "data": [
         "data/quality_control_data.xml",

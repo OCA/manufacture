@@ -9,7 +9,7 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["LoisRForgeFlow"],
     "summary": "Allows to consider demand estimates using MRP multi level.",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp_multi_level", "stock_demand_estimate_matrix"],
     "data": ["views/product_mrp_area_views.xml"],

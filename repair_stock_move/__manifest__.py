@@ -9,7 +9,7 @@
     "category": "Repair",
     "summary": "Ongoing Repair Stock Moves Definition in odoo",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture",
+    "website": "https://github.com/Frontware/manufacture",
     "depends": ["repair"],
     "data": [
         "views/repair_order_views.xml",
