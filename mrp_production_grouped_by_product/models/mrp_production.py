@@ -119,3 +119,16 @@ class MrpProduction(models.Model):
                 if mo:
                     to_create_wos -= rec
         return super(MrpProduction, to_create_wos)._create_workorder()
+
+    def _get_moves_finished_values(self):
+        # We need to skip the creation of more finished moves during `_run_manufacture`.
+        new_self = self
+        if self.env.context.get("group_mo_by_product"):
+            for rec in self:
+                if not rec.move_finished_ids:
+                    continue
+                vals = self._get_grouping_target_vals()
+                mo = self._find_grouping_target(vals)
+                if mo:
+                    new_self -= rec
+        return super(MrpProduction, new_self)._get_moves_finished_values()
