@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Add fields to partner form -->
+    <record id="view_partner_form_inherit_subcontractor_type" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.subcontractor</field>
+        <field name="model">res.partner</field>
+        <field
+            name="inherit_id"
+            ref="mrp_subcontracting_partner_management.view_partner_form_inherit_subcontractor"
+        />
+        <field name="arch" type="xml">
+             <xpath
+                expr="//field[@name='is_subcontractor_partner']"
+                position="attributes"
+            >
+                <attribute name="attrs">
+                    {"invisible": True}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='is_subcontractor_partner']" position="after">
+                <field
+                    name="subcontractor_type"
+                    string="Subcontractor"
+                    attrs="{'invisible': [('is_company', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
