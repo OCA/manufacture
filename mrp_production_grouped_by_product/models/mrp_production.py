@@ -26,6 +26,7 @@ class MrpProduction(models.Model):
         self.write(new_vals)
 
     def _get_grouping_target_vals(self):
+        self.ensure_one()
         return {
             "product_id": self.product_id.id,
             "picking_type_id": self.picking_type_id.id,
@@ -114,7 +115,7 @@ class MrpProduction(models.Model):
             not config["test_enable"] or context.get("test_group_mo")
         ):
             for rec in self:
-                vals = self._get_grouping_target_vals()
+                vals = rec._get_grouping_target_vals()
                 mo = self._find_grouping_target(vals)
                 if mo:
                     to_create_wos -= rec
@@ -127,7 +128,7 @@ class MrpProduction(models.Model):
             for rec in self:
                 if not rec.move_finished_ids:
                     continue
-                vals = self._get_grouping_target_vals()
+                vals = rec._get_grouping_target_vals()
                 mo = self._find_grouping_target(vals)
                 if mo:
                     new_self -= rec
