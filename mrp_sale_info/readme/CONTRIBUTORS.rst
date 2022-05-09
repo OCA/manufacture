@@ -10,3 +10,4 @@
 * Rubén Bravo <rubenred18@gmail.com>
 * Kevin Khao <kevin.khao@akretion.com>
 * Alex Comba <alex.comba@agilebg.com>
+* Mantas Šniukas <mantas@vialaurea.lt>

@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestMrpSaleInfo(common.SavepointCase):
+class TestMrpSaleInfo(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -24,6 +24,16 @@ class TestMrpSaleInfo(common.SavepointCase):
         cls.bom = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
+                "operation_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test operation",
+                            "workcenter_id": cls.env.ref("mrp.mrp_workcenter_3").id,
+                        },
+                    )
+                ],
             }
         )
         cls.partner = cls.env["res.partner"].create({"name": "Test client"})
@@ -52,3 +62,11 @@ class TestMrpSaleInfo(common.SavepointCase):
         self.assertEqual(production.sale_id, self.sale_order)
         self.assertEqual(production.partner_id, self.partner)
         self.assertEqual(production.client_order_ref, self.sale_order.client_order_ref)
+
+    def test_mrp_workorder(self):
+        prev_workorders = self.env["mrp.workorder"].search([])
+        self.sale_order.action_confirm()
+        workorder = self.env["mrp.workorder"].search([]) - prev_workorders
+        self.assertEqual(workorder.sale_id, self.sale_order)
+        self.assertEqual(workorder.partner_id, self.partner)
+        self.assertEqual(workorder.client_order_ref, self.sale_order.client_order_ref)
