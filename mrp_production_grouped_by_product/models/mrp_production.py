@@ -26,6 +26,7 @@ class MrpProduction(models.Model):
         self.write(new_vals)
 
     def _get_grouping_target_vals(self):
+        self.ensure_one()
         return {
             "product_id": self.product_id.id,
             "picking_type_id": self.picking_type_id.id,
@@ -114,8 +115,21 @@ class MrpProduction(models.Model):
             not config["test_enable"] or context.get("test_group_mo")
         ):
             for rec in self:
-                vals = self._get_grouping_target_vals()
+                vals = rec._get_grouping_target_vals()
                 mo = self._find_grouping_target(vals)
                 if mo:
                     to_create_wos -= rec
         return super(MrpProduction, to_create_wos)._create_workorder()
+
+    def _get_moves_finished_values(self):
+        # We need to skip the creation of more finished moves during `_run_manufacture`.
+        new_self = self
+        if self.env.context.get("group_mo_by_product"):
+            for rec in self:
+                if not rec.move_finished_ids:
+                    continue
+                vals = rec._get_grouping_target_vals()
+                mo = self._find_grouping_target(vals)
+                if mo:
+                    new_self -= rec
+        return super(MrpProduction, new_self)._get_moves_finished_values()

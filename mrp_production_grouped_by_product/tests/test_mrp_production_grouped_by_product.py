@@ -65,6 +65,8 @@ class TestProductionGroupedByProduct(common.SavepointCase):
                 "date_planned_start": "2018-06-01 15:00:00",
             }
         )
+        cls.mo._onchange_move_raw()
+        cls.mo._onchange_move_finished()
         cls.warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
@@ -82,13 +84,32 @@ class TestProductionGroupedByProduct(common.SavepointCase):
                 "date": "2018-06-01 18:00:00",
             }
         )
+        cls.move_2 = cls.env["stock.move"].create(
+            {
+                "name": cls.product1.name,
+                "product_id": cls.product1.id,
+                "product_uom_qty": 5,
+                "product_uom": cls.product1.uom_id.id,
+                "location_id": cls.warehouse.lot_stock_id.id,
+                "location_dest_id": (cls.env.ref("stock.stock_location_customers").id),
+                "procure_method": "make_to_order",
+                "warehouse_id": cls.warehouse.id,
+                "date": "2018-06-01 18:00:00",
+            }
+        )
 
-    def test_mo_by_product(self):
+    def test_01_group_mo_by_product(self):
+        """Test functionality using grouping in a previous manually-created MO."""
+        self.assertEqual(self.mo.state, "draft")
+        self.assertEqual(len(self.mo.move_finished_ids), 1)
         self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
         self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
         mo = self.MrpProduction.search([("product_id", "=", self.product1.id)])
         self.assertEqual(len(mo), 1)
+        move_finished = mo.move_finished_ids
+        self.assertEqual(len(mo.move_finished_ids), 1)
         self.assertEqual(mo.product_qty, 12)
+        self.assertEqual(move_finished.product_qty, 12)
         mto_prod = mo.move_raw_ids.search([("product_id", "=", self.product2.id)])
         self.assertEqual(len(mto_prod), 1)
         self.assertEqual(mto_prod[0].product_qty, 12)
@@ -97,6 +118,50 @@ class TestProductionGroupedByProduct(common.SavepointCase):
         mo = self.MrpProduction.search([("product_id", "=", self.product1.id)])
         self.assertEqual(len(mo), 1)
         self.assertEqual(mo.product_qty, 12)
+
+    def test_02_group_mo_by_product_double_procurement(self):
+        """Test functionality using groping in a previous procurement-created MO."""
+        # Cancelling the manual MO.
+        self.mo.action_cancel()
+        self.assertEqual(self.mo.state, "cancel")
+        mo = self.MrpProduction.search(
+            [("product_id", "=", self.product1.id), ("state", "!=", "cancel")]
+        )
+        self.assertFalse(mo)
+        # First procurement
+        self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search(
+            [("product_id", "=", self.product1.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mo), 1)
+        self.assertEqual(mo.state, "confirmed")
+        move_finished = mo.move_finished_ids
+        self.assertEqual(len(move_finished), 1)
+        self.assertEqual(mo.product_qty, 10)
+        self.assertEqual(move_finished.product_qty, 10)
+        mto_prod = mo.move_raw_ids.search(
+            [("product_id", "=", self.product2.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mto_prod), 1)
+        self.assertEqual(mto_prod[0].product_qty, 10)
+        # Do a second procurement
+        self.move_2.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search(
+            [("product_id", "=", self.product1.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mo), 1)
+        self.assertEqual(mo.state, "confirmed")
+        move_finished = mo.move_finished_ids
+        self.assertEqual(len(move_finished), 1)
+        self.assertEqual(mo.product_qty, 15)
+        self.assertEqual(move_finished.product_qty, 15)
+        mto_prod = mo.move_raw_ids.search(
+            [("product_id", "=", self.product2.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mto_prod), 1)
+        self.assertEqual(mto_prod[0].product_qty, 15)
 
     def test_mo_other_date(self):
         self.move.write({"date": "2018-06-01 20:01:00"})
