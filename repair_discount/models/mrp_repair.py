@@ -1,83 +1,122 @@
 # Copyright 2015 Nicola Malcontenti - Agile Business Group
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2022 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-
-import odoo.addons.decimal_precision as dp
 
 
 class RepairFee(models.Model):
     _inherit = "repair.fee"
 
-    @api.depends("invoiced", "price_unit", "repair_id", "product_uom_qty", "product_id")
-    def _compute_price_subtotal(self):
-        for record in self:
-            taxes = self.env["account.tax"].compute_all(
-                record.price_unit,
-                record.repair_id.pricelist_id.currency_id,
-                record.product_uom_qty,
-                record.product_id,
-                record.repair_id.partner_id,
-            )
-
-            record.price_subtotal = taxes["total_excluded"] * (
-                1 - (record.discount or 0.0) / 100.0
-            )
-
     discount = fields.Float(string="Discount (%)")
-    price_subtotal = fields.Float(
-        "Subtotal",
-        compute="_compute_price_subtotal",
-        digits=dp.get_precision("Account"),
+
+    @api.depends("price_unit", "repair_id", "product_uom_qty", "product_id", "discount")
+    def _compute_price_subtotal(self):
+        for fee in self:
+            taxes = self.env["account.tax"].compute_all(
+                fee.price_unit,
+                fee.repair_id.pricelist_id.currency_id,
+                fee.product_uom_qty,
+                fee.product_id,
+                fee.repair_id.partner_id,
+            )
+            fee.price_subtotal = taxes["total_excluded"] * (
+                1 - (fee.discount or 0.0) / 100.0
+            )
+
+    @api.depends(
+        "price_unit", "repair_id", "product_uom_qty", "product_id", "tax_id", "discount"
     )
+    def _compute_price_total(self):
+        for fee in self:
+            taxes = fee.tax_id.compute_all(
+                fee.price_unit,
+                fee.repair_id.pricelist_id.currency_id,
+                fee.product_uom_qty,
+                fee.product_id,
+                fee.repair_id.partner_id,
+            )
+            fee.price_total = taxes["total_included"] * (
+                1 - (fee.discount or 0.0) / 100.0
+            )
 
 
 class RepairLine(models.Model):
     _inherit = "repair.line"
 
-    @api.depends("invoiced", "price_unit", "repair_id", "product_uom_qty", "product_id")
+    discount = fields.Float(string="Discount (%)")
+
+    @api.depends(
+        "price_unit",
+        "repair_id",
+        "product_uom_qty",
+        "product_id",
+        "repair_id.invoice_method",
+        "discount",
+    )
     def _compute_price_subtotal(self):
-        for repair_line in self:
+        for line in self:
             taxes = self.env["account.tax"].compute_all(
-                repair_line.price_unit,
-                repair_line.repair_id.pricelist_id.currency_id,
-                repair_line.product_uom_qty,
-                repair_line.product_id,
-                repair_line.repair_id.partner_id,
+                line.price_unit,
+                line.repair_id.pricelist_id.currency_id,
+                line.product_uom_qty,
+                line.product_id,
+                line.repair_id.partner_id,
             )
-            repair_line.price_subtotal = taxes["total_excluded"] * (
-                1 - (repair_line.discount or 0.0) / 100.0
+            line.price_subtotal = taxes["total_excluded"] * (
+                1 - (line.discount or 0.0) / 100.0
             )
 
-    discount = fields.Float(string="Discount (%)")
-    price_subtotal = fields.Float(
-        "Subtotal",
-        compute="_compute_price_subtotal",
-        digits=dp.get_precision("Account"),
+    @api.depends(
+        "price_unit",
+        "repair_id",
+        "product_uom_qty",
+        "product_id",
+        "tax_id",
+        "repair_id.invoice_method",
+        "discount",
     )
+    def _compute_price_total(self):
+        for line in self:
+            taxes = line.tax_id.compute_all(
+                line.price_unit,
+                line.repair_id.pricelist_id.currency_id,
+                line.product_uom_qty,
+                line.product_id,
+                line.repair_id.partner_id,
+            )
+            line.price_total = taxes["total_included"] * (
+                1 - (line.discount or 0.0) / 100.0
+            )
 
 
 class RepairOrder(models.Model):
     _inherit = "repair.order"
 
-    @api.multi
-    def action_invoice_create(self, group=False):
-        res = super(RepairOrder, self).action_invoice_create(group)
+    def _create_invoices(self, group=False):
+
+        res = super(RepairOrder, self)._create_invoices(group)
         for repair in self.filtered(lambda _repair: _repair.invoice_method != "none"):
             operations = repair.operations
             fees_lines = repair.fees_lines
-
-            for op in operations.filtered(lambda item: item.invoice_line_id):
-                op.invoice_line_id.discount = op.discount
-            if operations:
-                repair.invoice_id.compute_taxes()
-
-            for fee_lines in fees_lines.filtered(lambda item: item.invoice_line_id):
-                fee_lines.invoice_line_id.discount = fee_lines.discount
-            if fees_lines:
-                repair.invoice_id.compute_taxes()
-
+            for op in operations.filtered(
+                lambda item: item.discount and item.invoice_line_id
+            ):
+                op.invoice_line_id.with_context(check_move_validity=False).update(
+                    {"discount": op.discount}
+                )
+            for fee_lines in fees_lines.filtered(
+                lambda item: item.discount and item.invoice_line_id
+            ):
+                fee_lines.invoice_line_id.with_context(
+                    check_move_validity=False
+                ).update({"discount": fee_lines.discount})
+        self.invoice_id.with_context(
+            check_move_validity=False
+        )._recompute_dynamic_lines(
+            recompute_all_taxes=True, recompute_tax_base_amount=True
+        )
         return res
 
     def _calculate_line_base_price(self, line):
