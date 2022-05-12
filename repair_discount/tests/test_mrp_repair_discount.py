@@ -22,9 +22,6 @@ class TestMrpRepairDiscount(common.SavepointCase):
                 "list_price": 20,
             }
         )
-        # cls.partner = cls.env['res.partner'].create({
-        #     'name': 'Test partner',
-        # })
         cls.partner = cls.env.ref("base.res_partner_address_1")
         cls.location = cls.env["stock.location"].create(
             {
@@ -77,8 +74,8 @@ class TestMrpRepairDiscount(common.SavepointCase):
 
     def test_invoice_create(self):
         self.repair.state = "2binvoiced"
-        res = self.repair.action_invoice_create()
-        invoice = self.env["account.invoice"].browse(res.values())[0]
+        res = self.repair._create_invoices()
+        invoice = self.env["account.move"].browse(res.values())[0]
         invoice_line = invoice.invoice_line_ids[0]
         self.assertEqual(invoice_line.discount, 50)
         self.assertAlmostEqual(invoice_line.price_subtotal, 10)
