@@ -3,3 +3,4 @@
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Ignacio Ales López <ignacio.ales@guadaltech.es>
 * María Asunción Daza <mariaasuncion.daza@guadaltech.es>
+* Manuel Regidor <manuel.regidor@sygel.es>
