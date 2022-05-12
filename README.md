@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [mrp_account_analytic](mrp_account_analytic/) | 14.0.1.0.1 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Consuming raw materials and operations generated Analytic Items
 [mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.1.0 |  | Track manufacturing costs in real time, using Analytic Items
 [mrp_attachment_mgmt](mrp_attachment_mgmt/) | 14.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp Attachment Mgmt
+[mrp_bom_component_menu](mrp_bom_component_menu/) | 14.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 14.0.1.0.0 |  | Logs any change to a BoM in the chatter
 [mrp_multi_level](mrp_multi_level/) | 14.0.1.4.6 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
