@@ -12,6 +12,7 @@
     "depends": ["repair"],
     "data": [
         "views/mrp_repair_view.xml",
+        "report/repair_templates_repair_order.xml",
     ],
     "installable": True,
 }
