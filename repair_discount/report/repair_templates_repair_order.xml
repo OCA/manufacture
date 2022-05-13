@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="repair_discount_report_repairorder"
+        inherit_id="repair.report_repairorder"
+    >
+        <xpath
+            expr="//table[hasclass('o_main_table')]/thead/tr/t/th[1]"
+            position="after"
+        >
+            <th
+                t-if="any(o.operations.mapped('discount')) or any(o.fees_lines.mapped('discount'))"
+                class="text-center"
+            >Discount (%)</th>
+        </xpath>
+        <xpath expr="//t[@t-if='o.operations']/tr[1]/td[1]" position="attributes">
+            <attribute name="colspan">6</attribute>
+        </xpath>
+        <xpath expr="//tr[@t-as='line']/t/td[1]" position="after">
+            <td
+                t-if="any(o.operations.mapped('discount')) or any(o.fees_lines.mapped('discount'))"
+                class="text-center"
+            >
+                <span t-if="line.discount" t-esc="line.discount" />
+            </td>
+        </xpath>
+        <xpath expr="//t[@t-if='o.fees_lines']/tr[1]/td[1]" position="attributes">
+            <attribute name="colspan">6</attribute>
+        </xpath>
+        <xpath expr="//tr[@t-as='fees']/t/td[1]" position="after">
+            <td
+                t-if="any(o.operations.mapped('discount')) or any(o.fees_lines.mapped('discount'))"
+                class="text-center"
+            >
+                <span t-if="fees.discount" t-esc="fees.discount" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
