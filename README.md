@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [repair_default_terms_conditions](repair_default_terms_conditions/) | 12.0.1.0.0 | [![marcelsavegnago](https://github.com/marcelsavegnago.png?size=30px)](https://github.com/marcelsavegnago) | This module allows repair default terms & conditions
 [repair_discount](repair_discount/) | 12.0.1.0.0 |  | Repair Discount
 [repair_payment_term](repair_payment_term/) | 12.0.1.0.0 | [![mileo](https://github.com/mileo.png?size=30px)](https://github.com/mileo) | This module add to Repair Orders the *Payment Term* field
+[repair_quality_control_issue](repair_quality_control_issue/) | 12.0.1.0.0 | [![cubells](https://github.com/cubells.png?size=30px)](https://github.com/cubells) | Add the possibility to create repairs orders from quality control issues.
 [repair_refurbish](repair_refurbish/) | 12.0.1.1.3 |  | Create refurbished products during repair
 [repair_timeline](repair_timeline/) | 12.0.1.0.1 | [![marcelsavegnago](https://github.com/marcelsavegnago.png?size=30px)](https://github.com/marcelsavegnago) | Add timeline view
 [stock_mts_mto_rule_mrp](stock_mts_mto_rule_mrp/) | 12.0.1.0.0 |  | Add support for MTS+MTO route on manufacturing
