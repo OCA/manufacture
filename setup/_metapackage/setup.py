@@ -53,6 +53,7 @@ setuptools.setup(
         'odoo12-addon-repair_default_terms_conditions',
         'odoo12-addon-repair_discount',
         'odoo12-addon-repair_payment_term',
+        'odoo12-addon-repair_quality_control_issue',
         'odoo12-addon-repair_refurbish',
         'odoo12-addon-repair_timeline',
         'odoo12-addon-stock_mts_mto_rule_mrp',
