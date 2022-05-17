@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>>
+    <record id="view_qc_issue_make_repair" model="ir.ui.view">
+        <field name="model">qc.issue.make.repair</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Create Repair Order">
+                <separator
+                    string="New repair order details:"/>
+                <newline/>
+                <group>
+                    <field name="partner_id"/>
+                </group>
+                <newline/>
+                <group>
+                    <field name="item_ids" nolabel="1" colspan="2">
+                        <tree string="Details" editable="bottom" create="false">
+                            <field name="qc_issue_id" options="{'no_open': true}" force_save="1"/>
+                            <field name="product_id" force_save="1"/>
+                            <field name="location_id" groups="stock.group_stock_multi_locations" force_save="1"/>
+                            <field name="lot_id" groups="stock.group_production_lot" force_save="1"/>
+                            <field name="name"/>
+                            <field name="product_qty" force_save="1"/>
+                            <field name="product_uom_id" groups="uom.group_uom" force_save="1"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="make_repair"
+                            string="Create Repair Order"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_qc_issue_make_repair" model="ir.actions.act_window">
+        <field name="name">Create Repair Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qc.issue.make.repair</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_qc_issue_make_repair"/>
+        <field name="target">new</field>
+    </record>
+    <act_window
+            id="action_repair_order_create"
+            res_model="qc.issue.make.repair"
+            src_model="qc.issue"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            view_mode="form"
+            name="Create Repair Orders"/>
+</odoo>

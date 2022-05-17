@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="groups_id" eval="[(4, ref('quality_control.group_quality_control_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="qc_issue_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>
