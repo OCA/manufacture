@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [mrp_account_analytic](mrp_account_analytic/) | 14.0.1.0.1 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Consuming raw materials and operations generated Analytic Items
 [mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.1.0 |  | Track manufacturing costs in real time, using Analytic Items
 [mrp_attachment_mgmt](mrp_attachment_mgmt/) | 14.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp Attachment Mgmt
+[mrp_bom_component_menu](mrp_bom_component_menu/) | 14.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 14.0.1.0.0 |  | Logs any change to a BoM in the chatter
 [mrp_multi_level](mrp_multi_level/) | 14.0.1.4.6 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
@@ -45,7 +46,7 @@ addon | version | maintainers | summary
 [quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.1 |  | Quality control - Stock (OCA)
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.1 |  | Create refurbished products during repair
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
-[repair_type](repair_type/) | 14.0.1.0.0 |  | Repair type
+[repair_type](repair_type/) | 14.0.1.0.1 |  | Repair type
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
 
 [//]: # (end addons)
