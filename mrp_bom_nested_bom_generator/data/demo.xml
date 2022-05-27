@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_template_tree" model="product.template">
+        <field name="name">Tree</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">20.0</field>
+        <field name="standard_price">10.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+
+    <record id="product_template_log" model="product.template">
+        <field name="name">Log</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">23.0</field>
+        <field name="standard_price">13.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+
+    <record id="product_template_pinocchio" model="product.template">
+        <field name="name">Pinocchio</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">50.0</field>
+        <field name="standard_price">100.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="pinocchio_color" model="product.template.attribute.line">
+        <field
+            name="product_tmpl_id"
+            ref="mrp_bom_nested_bom_generator.product_template_pinocchio"
+        />
+        <field name="attribute_id" ref="product.product_attribute_2" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('product.product_attribute_value_3'), ref('product.product_attribute_value_4')])]"
+        />
+    </record>
+    <record id="mrp_nested_bom_pinocchio_log" model="mrp.nested.bom">
+        <field
+            name="parent_id"
+            ref="mrp_bom_nested_bom_generator.product_template_pinocchio"
+        />
+        <field
+            name="product_tmpl_id"
+            ref="mrp_bom_nested_bom_generator.product_template_log"
+        />
+        <field name="product_qty">3</field>
+        <field
+            name="attribute_ids"
+            eval="[(6, 0, [ref('product.product_attribute_2')])]"
+        />
+    </record>
+    <record id="mrp_nested_bom_pinocchio_undefuned" model="mrp.nested.bom">
+        <field
+            name="parent_id"
+            ref="mrp_bom_nested_bom_generator.product_template_pinocchio"
+        />
+        <field name="product_qty">2</field>
+        <field
+            name="attribute_ids"
+            eval="[(6, 0, [ref('product.product_attribute_2')])]"
+        />
+    </record>
+    <record id="mrp_nested_bom_pinocchio_tree" model="mrp.nested.bom">
+        <field
+            name="parent_id"
+            ref="mrp_bom_nested_bom_generator.product_template_pinocchio"
+        />
+        <field
+            name="product_tmpl_id"
+            ref="mrp_bom_nested_bom_generator.product_template_tree"
+        />
+        <field name="product_qty">1</field>
+    </record>
+</odoo>
