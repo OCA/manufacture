@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Set
 
 from odoo import _, api, fields, models
 
@@ -104,14 +104,18 @@ class MrpNestedBomLine(models.Model):
             raise models.ValidationError(_("Nested BOM: Product Qty must be than 0.0"))
         return super(MrpNestedBomLine, self).create(vals)
 
-    def _prepare_parent_attribute_ids(self) -> None:
+    def _prepare_parent_attribute_ids(self) -> Set[int]:
         """
         Get parent product template attribute ids
-        :return recordset
-        :rtype product.attribute()
+        :return set attributes ids Any
+        :rtype set()
         """
         self.ensure_one()
-        return self.parent_id.attribute_line_ids.mapped("attribute_id").ids
+        component_attributes_set_ids = set(self.attribute_ids.ids)
+        parent_attributes_ids = self.parent_id.attribute_line_ids.mapped(
+            "attribute_id"
+        ).ids
+        return component_attributes_set_ids.intersection(parent_attributes_ids)
 
     def _find_product_template_attributes(self, attr_ids) -> models.Model:
         """
