@@ -3,9 +3,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
-
-
+from odoo import fields, models, api
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
@@ -14,11 +12,11 @@ class MrpProduction(models.Model):
         readonly=True,
     )
     sale_id = fields.Many2one(
-        comodel_name="sale.order",
+        "sale.order",
         string="Sale order",
         readonly=True,
         store=True,
-        related="source_procurement_group_id.sale_id",
+        compute='_get_top_mrp_sale',
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
@@ -32,3 +30,16 @@ class MrpProduction(models.Model):
     client_order_ref = fields.Char(
         related="sale_id.client_order_ref", string="Customer Reference", store=True
     )
+
+    @api.depends('procurement_group_id','mrp_production_source_count')
+    @api.onchange('procurement_group_id','mrp_production_source_count')
+    def _get_top_mrp_sale(self):
+        for each in self:
+            each.sale_id = self._top_mo(each).source_procurement_group_id.sale_id
+
+    def _top_mo(self, mo):
+        if mo.mrp_production_source_count == 0:
+           return mo
+
+        for each in mo.procurement_group_id.mrp_production_ids.move_dest_ids.group_id.mrp_production_ids:
+            return self._top_mo(each)
