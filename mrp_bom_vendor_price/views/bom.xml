@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="cost_vendor_price"/>
+            </field>
+            <xpath expr="//notebook/page[1]/field[@name='bom_line_ids']/tree" position="inside">
+                <field name="cost_vendor_price"/>
+                <field name="standard_price"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

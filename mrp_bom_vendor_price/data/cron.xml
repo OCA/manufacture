@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="action_bom_vendor_price_product" model="ir.actions.server">
+        <field name="name">Compute Price with vendor prices</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">
+        if records:
+            records.action_bom_vendor_price()
+        </field>
+    </record>
+
+    <record id="action_bom_vendor_price_template" model="ir.actions.server">
+        <field name="name">Compute Price with vendor prices</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">
+        if records:
+            records.action_bom_vendor_price()
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="act_serv_cost_with_vendor_price">
+        <field name="name">BOM: auto compute price with vendor data</field>
+        <field name="state">code</field>
+        <field name="code">
+env["mrp.bom"]._computed_cost_with_vendor_price(1)
+        </field>
+        <field name="model_id" ref="model_mrp_bom"/>
+    </record>
+    <record model="ir.cron" id="compute_bom">
+        <field name="name">BOM: auto compute price with vendor data</field>
+        <field name="ir_actions_server_id" ref="act_serv_cost_with_vendor_price"/>
+        <field name="active">0</field>
+        <field name="nextcall" eval="time.strftime('%Y-%m-%d 01:00:00')"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+</odoo>
