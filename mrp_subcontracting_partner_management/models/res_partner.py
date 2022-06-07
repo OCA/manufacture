@@ -5,10 +5,20 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_subcontractor_partner = fields.Boolean(string="Subcontractor")
-    subcontracted_created_location_id = fields.Many2one("stock.location")
-    partner_picking_type_id = fields.Many2one("stock.picking.type")
-    partner_buy_rule_id = fields.Many2one("stock.rule")
-    partner_resupply_rule_id = fields.Many2one("stock.rule")
+    subcontracted_created_location_id = fields.Many2one(
+        copy=False, comodel_name="stock.location"
+    )
+    partner_picking_type_id = fields.Many2one(
+        copy=False, comodel_name="stock.picking.type"
+    )
+    partner_buy_rule_id = fields.Many2one(
+        copy=False,
+        comodel_name="stock.rule",
+    )
+    partner_resupply_rule_id = fields.Many2one(
+        copy=False,
+        comodel_name="stock.rule",
+    )
 
     def _set_subcontracting_values_active(self, active):
         self.ensure_one()
@@ -92,19 +102,18 @@ class ResPartner(models.Model):
         buy_route = self.env.ref(
             "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
         )
-        rule_vals = {
-            "name": "Subcontractor {}".format(first_name),
-            "action": "buy",
-        }
         rule = self.partner_buy_rule_id
-        if operation_type_rec:
-            rule_vals.update({"picking_type_id": operation_type_rec.id})
-        if location:
-            rule_vals.update({"location_id": location.id})
-        if buy_route:
-            rule_vals.update({"route_id": buy_route.id})
-        if not rule and rule_vals:
-            rule = self.env["stock.rule"].create(rule_vals)
+        if not rule:
+            rule = self.env["stock.rule"].create(
+                {
+                    "name": "Subcontractor {}".format(first_name),
+                    "action": "buy",
+                    "picking_type_id": operation_type_rec.id,
+                    "location_id": location.id,
+                    "route_id": buy_route.id,
+                }
+            )
+            self.partner_buy_rule_id = rule
         return rule
 
     def _create_subcontracted_resupply_rule(self, location):
@@ -118,39 +127,21 @@ class ResPartner(models.Model):
         production = self.env["ir.property"]._get(
             "property_stock_production", "product.template"
         )
-        resupply_rule_vals = {
-            "name": "Subcontractor {}".format(first_name),
-            "action": "pull",
-            "partner_address_id": self._origin.id,
-        }
         pull_rule = self.partner_resupply_rule_id
-        if delivery_type:
-            resupply_rule_vals.update(
+        if not pull_rule:
+            pull_rule = self.env["stock.rule"].create(
                 {
+                    "name": "Subcontractor {}".format(first_name),
+                    "action": "pull",
+                    "partner_address_id": self._origin.id,
                     "picking_type_id": delivery_type.id,
-                }
-            )
-        if location:
-            resupply_rule_vals.update(
-                {
-                    "location_id": location.id,
-                }
-            )
-        if production:
-            resupply_rule_vals.update(
-                {
-                    "location_src_id": production.id,
-                }
-            )
-        if resupply_on_order_route:
-            resupply_rule_vals.update(
-                {
+                    "location_id": production.id,
+                    "location_src_id": location.id,
                     "route_id": resupply_on_order_route.id,
+                    "procure_method": "mts_else_mto",
                 }
             )
-
-        if not pull_rule and resupply_rule_vals:
-            pull_rule = self.env["stock.rule"].create(resupply_rule_vals)
+            self.partner_resupply_rule_id = pull_rule
         return pull_rule
 
     def _create_subcontractor_entities(self):
