@@ -95,7 +95,7 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_date": mrp_date,
             "current_date": move.date,
             "mrp_type": mrp_type,
-            "mrp_origin": origin,
+            "mrp_origin": origin or "",
             "mrp_order_number": order_number,
             "parent_product_id": parent_product_id,
             "name": order_number,
@@ -513,7 +513,7 @@ class MultiLevelMrp(models.TransientModel):
                     product_name=product_mrp_area.product_id.display_name,
                     delta_days=grouping_delta,
                 )
-                origin = ",".join(list(set(demand_origin)))
+                origin = ",".join(list({x for x in demand_origin if x}))
                 qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
@@ -541,7 +541,7 @@ class MultiLevelMrp(models.TransientModel):
             else:
                 last_date = fields.Date.from_string(move.mrp_date)
                 onhand += move.mrp_qty
-            demand_origin.append(move.origin or move.name)
+            demand_origin.append(move.origin or move.name or "")
 
         if last_date and last_qty != 0.00:
             name = _(
@@ -550,7 +550,7 @@ class MultiLevelMrp(models.TransientModel):
                 product_name=product_mrp_area.product_id.display_name,
                 delta_days=grouping_delta,
             )
-            origin = ",".join(list(set(demand_origin)))
+            origin = ",".join(list({x for x in demand_origin if x}))
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
@@ -601,8 +601,8 @@ class MultiLevelMrp(models.TransientModel):
                                     product_mrp_area_id=product_mrp_area,
                                     mrp_date=move.mrp_date,
                                     mrp_qty=qtytoorder,
-                                    name=move.name,
-                                    values=dict(origin=move.origin),
+                                    name=move.name or "",
+                                    values=dict(origin=move.origin or ""),
                                 )
                                 qty_ordered = cm["qty_ordered"]
                                 onhand += move.mrp_qty + qty_ordered
