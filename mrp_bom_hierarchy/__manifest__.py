@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2014 Eficent (<http://www.eficent.com/>)
+#    Copyright (C) 2015 Eficent (<http://www.eficent.com/>)
 #              <contact@eficent.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -17,4 +17,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import mrp
+{
+    "name": "MRP BOM Hierarchy",
+    "version": "1.0",
+    "author": "Eficent, Odoo Community Association (OCA)",
+    "category": "Manufacturing",
+    "depends": ["mrp"],
+    "website": "https://github.com/OCA/manufacture",
+    "license": "AGPL-3",
+    "demo": [],
+    "data": [
+        "view/mrp.xml",
+    ],
+    "test": [],
+    "installable": True,
+    "auto_install": False,
+}
