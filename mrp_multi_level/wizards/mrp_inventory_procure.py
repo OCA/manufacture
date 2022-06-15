@@ -83,8 +83,8 @@ class MrpInventoryProcure(models.TransientModel):
                     item.qty,
                     item.uom_id,
                     item.location_id,
-                    "MRP: " + item.planned_order_id.name or str(self.env.user.login),
-                    "MRP: " + item.planned_order_id.origin or str(self.env.user.login),
+                    "MRP: " + (item.planned_order_id.name or self.env.user.login),
+                    "MRP: " + (item.planned_order_id.origin or self.env.user.login),
                     item.mrp_inventory_id.company_id,
                     values,
                 )
