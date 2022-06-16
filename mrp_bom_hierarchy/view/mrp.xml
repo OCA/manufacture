@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
 
         <record id="mrp_bom_form_view" model="ir.ui.view">
             <field name="name">mrp.bom.form</field>
@@ -8,17 +7,17 @@
             <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
             <field name="arch" type="xml">
                 <xpath
-                expr="//notebook/page/field[@name='bom_lines']/tree//field[@name='product_id']"
+                expr="//notebook/page/field[@name='bom_line_ids']/tree/field[@name='product_tmpl_id']"
                 position="after"
             >
-                    <field name="is_parent" invisible="1" />
-                    <field name="product_has_own_bom" />
+                    <field name="has_bom" invisible="1" />
                     <button
-                    string="View product's BOM"
-                    name="action_openProductBOMTreeView"
+                    title="View product's BoM"
+                    name="action_open_product_bom_tree_view"
                     type="object"
-                    icon="terp-folder-orange"
-                    attrs="{'invisible': [('is_parent', '=', True)]}"
+                    class="btn btn-link"
+                    icon="fa-folder-open"
+                    attrs="{'invisible': [('has_bom', '!=', True)]}"
                 />
                 </xpath>
             </field>
@@ -29,15 +28,19 @@
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="complete_bom_hierarchy_code" />
-                    <field name="complete_bom_hierarchy_name" />
-                    <field name="bom_id" />
-                    <field name="is_parent" />
+                <xpath expr="//separator[1]" position="before">
+                    <field name="has_parent" />
+                    <field name="has_child" />
+                    <separator />
                     <filter
-                    string="Parent BOM"
+                    string="Has parent BoMs"
                     name="parent_bom"
-                    domain="[('is_parent','=','True')]"
+                    domain="[('has_parent','=','True')]"
+                />
+                    <filter
+                    string="Has child BoMs"
+                    name="child_bom"
+                    domain="[('has_child','=','True')]"
                 />
                 </xpath>
             </field>
@@ -46,68 +49,40 @@
         <record id="mrp_bom_hierarchy_tree_view" model="ir.ui.view">
             <field name="name">mrp.bom.tree</field>
             <field name="model">mrp.bom</field>
-            <field name="field_parent">child_complete_ids</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
             <field name="arch" type="xml">
-                <tree string="Bill of Materials" colors="blue:method">
+                <field name="active" position="before">
                     <button
-                    string="Child BOMs"
-                    name="action_openChildTreeView"
+                    title="Parent BoMs"
+                    name="action_open_parent_tree_view"
                     type="object"
-                    icon="STOCK_GO_DOWN"
+                    class="btn btn-link"
+                    icon="fa-level-up"
+                    attrs="{'invisible': [('has_parent', '!=', True)]}"
                 />
-                    <field name="has_child" />
-                    <field name="complete_bom_hierarchy_code" />
-                    <field name="bom_hierarchy_indent" />
-                    <field name="sequence" />
-                    <field name="code" />
-                    <field name="position" />
-                    <field name="name" />
-                    <field name="bom_id" />
-                    <field name="is_parent" invisible="1" />
-                    <field
-                    name="product_id"
-                    context="{'default_supply_method':'produce'}"
-                    on_change="onchange_product_id(product_id, name)"
-                />
-                    <field name="product_has_own_bom" />
                     <button
-                    string="View product's BOM"
-                    name="action_openProductBOMTreeView"
+                    title="Child BoMs"
+                    name="action_open_child_tree_view"
                     type="object"
-                    icon="terp-folder-orange"
-                    attrs="{'invisible': [('is_parent', '=', True)]}"
+                    class="btn btn-link"
+                    icon="fa-level-down"
+                    attrs="{'invisible': [('has_child', '!=', True)]}"
                 />
-                    <field name="product_qty" />
-                    <field
-                    name="product_uom"
-                    on_change="onchange_uom(product_id, product_uom)"
-                    groups="product.group_uom"
+                    <field name="has_parent" invisible="1" />
+                    <field name="has_child" invisible="1" />
+                </field>
+                <field name="type" position="before">
+                    <field name="product_has_other_bom" invisible="1" />
+                    <button
+                    title="View product's other BoMs"
+                    name="action_open_product_other_bom_tree_view"
+                    type="object"
+                    class="btn btn-link"
+                    icon="fa-folder-open"
+                    attrs="{'invisible': [('product_has_other_bom', '!=', True)]}"
                 />
-                    <field name="type" />
-                    <field name="method" />
-                    <field name="routing_id" groups="mrp.group_mrp_routings" />
-                    <field name="date_start" />
-                    <field name="date_stop" />
-                </tree>
+                </field>
             </field>
         </record>
 
-        <record id="mrp.mrp_bom_form_action2" model="ir.actions.act_window">
-            <field name="view_id" ref="mrp_bom_hierarchy_tree_view" />
-        </record>
-
-        <record id="mrp.mrp_bom_form_action" model="ir.actions.act_window">
-            <field name="view_id" ref="mrp_bom_hierarchy_tree_view" />
-        </record>
-
-        <record id="action_mrp_bom_hierarchy_tree2" model="ir.actions.act_window">
-            <field name="name">Bill of Material Hierarchy</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">mrp.bom</field>
-            <field name="view_type">form</field>
-            <field name="view_id" ref="mrp_bom_hierarchy_tree_view" />
-            <field name="domain">[]</field>
-        </record>
-
-    </data>
 </odoo>
