@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <menuitem name="MRP" id="menu_mrp_mrp" parent="mrp.menu_mrp_root" sequence="22" />
     <menuitem
