@@ -98,15 +98,14 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_mrp_planned_order_wizard"
-        name="Create Fixed Planned Orders"
-        res_model="mrp.planned.order.wizard"
-        binding_model="mrp.planned.order.sheet"
-        binding_views="list"
-        view_mode="form"
-        target="new"
-    />
+    <record id="action_mrp_planned_order_wizard" model="ir.actions.act_window">
+        <field name="name">Create Fixed Planned Orders</field>
+        <field name="res_model">mrp.planned.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_mrp_planned_order_sheet" />
+        <field name="binding_view_types">list</field>
+    </record>
     <menuitem
         id="menu_stock_mrp_planned_order_wizard"
         parent="mrp.mrp_planning_menu_root"
