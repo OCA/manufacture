@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="view_mrp_product_product_form">
         <field name="name">view.product.mrp.area.product.form</field>
