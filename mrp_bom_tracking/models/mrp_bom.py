@@ -69,7 +69,7 @@ class MrpBomLine(models.Model):
                     product_qty = values.get("product_qty") or lines.product_qty
                     product_uom_id = values.get("product_uom_id")
                     if product_uom_id:
-                        product_uom_id = self.env["product.uom"].browse(product_uom_id)
+                        product_uom_id = self.env["uom.uom"].browse(product_uom_id)
                     product_uom_id = product_uom_id or lines.product_uom_id
                     bom.message_post_with_view(
                         "mrp_bom_tracking.track_bom_line_template",
