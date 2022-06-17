@@ -4,10 +4,10 @@
 from odoo import Command
 from odoo.tests import Form
 
-from odoo.addons.mrp.tests.test_bom import TestBoM
+from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
-class TestMrpWorkorderSequence(TestBoM):
+class TestMrpWorkorderSequence(TestMrpCommon):
     def test_mrp_workorder_sequence(self):
         self.env["mrp.bom"].create(
             {
