@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "MRP BOM Component Menu",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow," "Odoo Community Association (OCA)",
