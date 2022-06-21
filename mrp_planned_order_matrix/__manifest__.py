@@ -3,7 +3,7 @@
 {
     "name": "MRP Planned Order Matrix",
     "summary": "Allows to create fixed planned orders on a grid view.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Warehouse Management",
