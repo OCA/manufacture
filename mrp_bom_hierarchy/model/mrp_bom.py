@@ -176,9 +176,10 @@ class MrpBomLine(models.Model):
 
     @api.depends("product_id", "bom_id")
     def _compute_child_bom_id(self):
-        super()._compute_child_bom_id()
+        res = super()._compute_child_bom_id()
         for line in self:
             line.has_bom = bool(line.child_bom_id)
+        return res
 
     def action_open_product_bom_tree_view(self):
         self.ensure_one()
