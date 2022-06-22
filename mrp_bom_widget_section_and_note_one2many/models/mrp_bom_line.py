@@ -9,9 +9,8 @@ from odoo import fields, models
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
-    # To handle bom_line section & note, we have to make these fiels not required
+    # Returns mandatory for classic line thanks to _sql_constraints and view
     product_id = fields.Many2one(required=False)
-    product_qty = fields.Float(required=False)
 
     # New fields to handle section & note
     name = fields.Text(string="Description")
@@ -21,3 +20,14 @@ class MrpBomLine(models.Model):
         default=False,
         help="Technical field for UX purpose.",
     )
+
+    _sql_constraints = [
+        ('bom_required_fields',
+            "CHECK(display_type IS NOT NULL OR"
+            "(product_id IS NOT NULL AND product_qty IS NOT NULL))",
+            "Missing required fields on bom line."),
+        ('non_bom_null_fields',
+            "CHECK(display_type IS NULL OR"
+            "(product_id IS NULL AND product_qty = 1))",
+            "Forbidden values on note and section bom line"),
+    ]

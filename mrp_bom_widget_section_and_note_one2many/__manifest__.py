@@ -7,7 +7,7 @@
     "name": "MRP Widget Section and Note in BoM",
     "summary": "Add section and note in Bills of Materials",
     "version": "12.0.1.1.0",
-    "category": "GRAP - Incubator",
+    "category": "Manufacturing/Manufacturing",
     "author": "GRAP,"
               "Odoo Community Association (OCA)",
     "website": "https://github.com/grap/grap-odoo-incubator",

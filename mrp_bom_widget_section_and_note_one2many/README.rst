@@ -42,6 +42,13 @@ Usage
 
 .. figure:: https://raw.githubusercontent.com/quentinDupont/manufacture/12.0_ADD_MRP_Widget_Sectionnote/mrp_bom_widget_section_and_note_one2many/static/description/mrp_bom_widget_add_section_and_note.gif
 
+Known issues / Roadmap
+======================
+
+mrp_bom_component_menu module (and maybe more) displays bom lines and it
+display lines of sections and note, with product_id empty. It should not display
+theses lines
+
 Bug Tracker
 ===========
 
