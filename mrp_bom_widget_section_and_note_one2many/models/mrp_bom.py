@@ -10,7 +10,7 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     # Split bom_line_ids in two fields handled thanks to domain
-    # Keeping original field bom_line_ids to keep all the native functionnalities
+    # Keep original field bom_line_ids to keep all the native functionnalities
     bom_line_ids = fields.One2many(domain=[("display_type", "=", False)])
 
     bom_line_with_sectionnote_ids = fields.One2many(
