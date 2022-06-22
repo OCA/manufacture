@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-mrp_bom_location>=15.0dev,<15.1dev',
         'odoo-addon-mrp_bom_tracking>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_finished_backorder_product>=15.0dev,<15.1dev',
         'odoo-addon-mrp_multi_level>=15.0dev,<15.1dev',
         'odoo-addon-mrp_multi_level_estimate>=15.0dev,<15.1dev',
         'odoo-addon-mrp_planned_order_matrix>=15.0dev,<15.1dev',
