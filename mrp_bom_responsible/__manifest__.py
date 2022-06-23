@@ -6,14 +6,11 @@
     "summary": """
         Adds a responsible to the Bill of Materials which then will be
         forwarded to the Manufacturing Order""",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "ForgeFlow S.L.,"
-              "Odoo Community Association (OCA)",
-    "website": "https://www.github.com/OCA/manufacture",
-    "depends": [
-        "mrp"
-    ],
+    "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture",
+    "depends": ["mrp"],
     "data": [
         "views/mrp_bom_views.xml",
     ],
