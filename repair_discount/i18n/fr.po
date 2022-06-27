@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_repair_discount
+#
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-28 03:44+0000\n"
+"PO-Revision-Date: 2018-09-26 08:27+0000\n"
+"Last-Translator: William Olhasque <william.olhasque@scopea.fr>\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__discount
+msgid "Discount (%)"
+msgstr "Remise (%)"
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_fee
+#, fuzzy
+msgid "Repair Fees"
+msgstr "Ligne de frais de réparation"
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_line
+#, fuzzy
+msgid "Repair Line (parts)"
+msgstr "Ligne de réparation"
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_order
+msgid "Repair Order"
+msgstr "Ordre de réparation"
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__price_subtotal
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__price_subtotal
+msgid "Subtotal"
+msgstr ""
