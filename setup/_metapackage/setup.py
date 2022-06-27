@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-manufacture Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-account_move_line_mrp_info',
         'odoo14-addon-base_repair',
         'odoo14-addon-mrp_account_analytic',
         'odoo14-addon-mrp_analytic_cost',
