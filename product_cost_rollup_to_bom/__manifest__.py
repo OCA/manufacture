@@ -3,7 +3,7 @@
 
 {
     "name": "Product BOM Cost Rollup",
-    "version": "14.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "summary": """Update BOM costs by rolling up. Adds scheduled job for
                   unattended rollups.""",
@@ -12,10 +12,7 @@
     "maintainer": "dreispt",
     "development_status": "Alpha",
     "website": "https://github.com/OCA/manufacture",
-    "depends": [
-        "mrp_account",
-        "stock_account",
-    ],
+    "depends": ["mrp_account", "stock_account"],
     "data": [
         "views/product_views.xml",
         "views/mrp_bom.xml",
