@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,12 +34,6 @@ msgid "Child Bom"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
 msgid "Has child BoMs"
 msgstr ""
@@ -60,12 +54,6 @@ msgid "Has sub BoM"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__id
-msgid "ID"
-msgstr ""
-
-#. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
 msgid "Internal Reference"
 msgstr ""
@@ -73,12 +61,6 @@ msgstr ""
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
 msgid "Is component"
-msgstr ""
-
-#. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
