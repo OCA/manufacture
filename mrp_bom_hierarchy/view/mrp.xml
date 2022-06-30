@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+        <record id="mrp_bom_form_view" model="ir.ui.view">
+            <field name="name">mrp.bom.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+                <xpath
+                expr="//notebook/page/field[@name='bom_line_ids']/tree/field[@name='product_tmpl_id']"
+                position="after"
+            >
+                    <field name="has_bom" invisible="1" />
+                    <button
+                    title="View product's BoM"
+                    name="action_open_product_bom_tree_view"
+                    type="object"
+                    class="btn btn-link"
+                    icon="fa-folder-open"
+                    attrs="{'invisible': [('has_bom', '!=', True)]}"
+                />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_mrp_bom_filter" model="ir.ui.view">
+            <field name="name">mrp.bom.select</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//separator[1]" position="before">
+                    <field name="has_parent" />
+                    <field name="has_child" />
+                    <separator />
+                    <filter
+                    string="Has parent BoMs"
+                    name="parent_bom"
+                    domain="[('has_parent','=','True')]"
+                />
+                    <filter
+                    string="Has child BoMs"
+                    name="child_bom"
+                    domain="[('has_child','=','True')]"
+                />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_bom_hierarchy_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+            <field name="arch" type="xml">
+                <field name="active" position="before">
+                    <button
+                    title="Parent BoMs"
+                    name="action_open_parent_tree_view"
+                    type="object"
+                    class="btn btn-link"
+                    icon="fa-level-up"
+                    attrs="{'invisible': [('has_parent', '!=', True)]}"
+                />
+                    <button
+                    title="Child BoMs"
+                    name="action_open_child_tree_view"
+                    type="object"
+                    class="btn btn-link"
+                    icon="fa-level-down"
+                    attrs="{'invisible': [('has_child', '!=', True)]}"
+                />
+                    <field name="has_parent" invisible="1" />
+                    <field name="has_child" invisible="1" />
+                </field>
+                <field name="type" position="before">
+                    <field name="product_has_other_bom" invisible="1" />
+                    <button
+                    title="View product's other BoMs"
+                    name="action_open_product_other_bom_tree_view"
+                    type="object"
+                    class="btn btn-link"
+                    icon="fa-folder-open"
+                    attrs="{'invisible': [('product_has_other_bom', '!=', True)]}"
+                />
+                </field>
+            </field>
+        </record>
+
+</odoo>
