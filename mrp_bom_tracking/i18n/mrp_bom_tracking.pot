@@ -104,6 +104,14 @@ msgid "Reference"
 msgstr ""
 
 #. module: mrp_bom_tracking
+#: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid ""
 "When a procurement has a ‘produce’ route with a operation type set, it will "
