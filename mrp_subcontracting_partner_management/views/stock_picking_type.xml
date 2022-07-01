@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Add filter for subcontracting operation types -->
+    <record id="view_pickingtype_filter" model="ir.ui.view">
+        <field name="name">stock.picking.type.filter.subcontractor</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_pickingtype_filter" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <filter
+                    string="Subcontractor"
+                    name="subocont"
+                    domain="[('is_subcontractor','=',True)]"
+                />
+            </filter>
+
+        </field>
+    </record>
+</odoo>
