@@ -130,7 +130,17 @@ class TestMrpNestedBom(TestNestedBomCase):
 
     def test_prepare_parent_attribute_ids(self):
         result = self.mrp_nested_bom_wood._prepare_parent_attribute_ids()
-        self.assertEqual(result, set(), msg="Result must be equal empty set")
+        parent_attributes_ids = (
+            self.mrp_nested_bom_wood.parent_id.attribute_line_ids.mapped(
+                "attribute_id"
+            ).ids
+        )
+        self.assertEqual(
+            result,
+            set(parent_attributes_ids),
+            msg="Result must be equal set of attribute ids "
+            "from parent product.template attributes",
+        )
         self.mrp_nested_bom_wood.attribute_ids = [(4, self.product_attribute_size.id)]
         result = self.mrp_nested_bom_wood._prepare_parent_attribute_ids()
         self.assertEqual(

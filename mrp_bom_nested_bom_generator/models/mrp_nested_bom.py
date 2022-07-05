@@ -111,7 +111,7 @@ class MrpNestedBomLine(models.Model):
         :rtype set()
         """
         self.ensure_one()
-        component_attributes_set_ids = set(self.attribute_ids.ids)
+        component_attributes_set_ids = set(self.all_attribute_ids.ids)
         parent_attributes_ids = self.parent_id.attribute_line_ids.mapped(
             "attribute_id"
         ).ids
