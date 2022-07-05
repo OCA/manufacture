@@ -9,7 +9,8 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     mo_count = fields.Integer(
-        string="# Manufacturing Orders", compute="_compute_mo_count",
+        string="# Manufacturing Orders",
+        compute="_compute_mo_count",
     )
 
     def _compute_mo_count(self):
@@ -29,7 +30,9 @@ class ProductTemplate(models.Model):
 
     def action_view_mrp_productions(self):
         product_ids = self.mapped("product_variant_ids").ids
-        action = self.env.ref("mrp.act_product_mrp_production").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "mrp.act_product_mrp_production_workcenter"
+        )
         action["domain"] = [("product_id", "in", product_ids)]
         action["context"] = {}
         return action
@@ -39,7 +42,8 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     mo_count = fields.Integer(
-        string="# Manufacturing Orders", compute="_compute_mo_count",
+        string="# Manufacturing Orders",
+        compute="_compute_mo_count",
     )
 
     def _compute_mo_count(self):
@@ -54,7 +58,9 @@ class ProductProduct(models.Model):
 
     def action_view_mrp_productions(self):
         product_ids = self.ids
-        action = self.env.ref("mrp.act_product_mrp_production").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "mrp.act_product_mrp_production_workcenter"
+        )
         action["domain"] = [("product_id", "in", product_ids)]
         action["context"] = {}
         return action
