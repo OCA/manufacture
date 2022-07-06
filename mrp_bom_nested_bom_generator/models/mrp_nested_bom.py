@@ -111,7 +111,7 @@ class MrpNestedBomLine(models.Model):
         :rtype set()
         """
         self.ensure_one()
-        component_attributes_set_ids = set(self.all_attribute_ids.ids)
+        component_attributes_set_ids = set(self.attribute_ids.ids)
         parent_attributes_ids = self.parent_id.attribute_line_ids.mapped(
             "attribute_id"
         ).ids
@@ -133,20 +133,19 @@ class MrpNestedBomLine(models.Model):
         Add missing attributes to the mrp product by component
         :return None
         """
-        for index in range(1, len(self)):
-            main_product, component = self[index - 1], self[index]
-            attrs_ids = component._prepare_parent_attribute_ids()
-            if not len(attrs_ids) > 0:
+        for rec in self:
+            attr_ids = rec._prepare_parent_attribute_ids()
+            if not len(attr_ids) > 0:
                 continue
-            has_attribute = main_product._find_product_template_attributes(attrs_ids)
-            sub_ids = set(attrs_ids) - set(has_attribute.ids)
+            product_attr_ids = rec._find_product_template_attributes(attr_ids)
+            sub_ids = set(attr_ids) - set(product_attr_ids.ids)
             if len(sub_ids) == 0:
                 continue
-            pta_line_ids = main_product.parent_id.attribute_line_ids.filtered(
+            pta_line_ids = rec.parent_id.attribute_line_ids.filtered(
                 lambda l: l.attribute_id.id in sub_ids
             )
             for line in pta_line_ids:
-                line.copy(default={"product_tmpl_id": main_product.product_tmpl_id.id})
+                line.copy(default={"product_tmpl_id": rec.product_tmpl_id.id})
 
     def _prepare_bom_lines(self, main_line: models.Model) -> list:
         """
@@ -158,14 +157,14 @@ class MrpNestedBomLine(models.Model):
         self.ensure_one()
         bom_line_vals = []
         product_variant_ids = self.product_tmpl_id.product_variant_ids
+        product_attribute_value = (
+            main_line.product_tmpl_id.attribute_line_ids.product_template_value_ids
+        )
         for variant in product_variant_ids:
             attr_values_ids = variant.product_template_attribute_value_ids.mapped(
                 "product_attribute_value_id.id"
             )
-            ptav = (
-                main_line.product_tmpl_id.attribute_line_ids.product_template_value_ids
-            )
-            filter_ptav_main = ptav.filtered(
+            filter_ptav_main = product_attribute_value.filtered(
                 lambda v: v.product_attribute_value_id.id in attr_values_ids
             )
             bom_line_vals.append(

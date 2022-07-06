@@ -54,15 +54,34 @@ class ProductTemplate(models.Model):
         :return None
         """
         for product, component in self.group_by_stage():
-            self.env["mrp.bom"].create(
-                {
-                    "product_tmpl_id": product.product_tmpl_id.id,
-                    "product_uom_id": product.uom_id.id,
-                    "product_qty": product.product_qty,
-                    "type": "normal",
-                    "bom_line_ids": component._prepare_bom_lines(product),
-                }
-            )
+            bom_lines = component._prepare_bom_lines(product)
+            line_ptavs = [
+                line[2]["bom_product_template_attribute_value_ids"]
+                for line in bom_lines
+            ]
+            if all(line_ptavs) or len(bom_lines) == 1:
+                self.env["mrp.bom"].create(
+                    {
+                        "product_tmpl_id": product.product_tmpl_id.id,
+                        "product_uom_id": product.uom_id.id,
+                        "product_qty": product.product_qty,
+                        "type": "normal",
+                        "bom_line_ids": bom_lines,
+                    }
+                )
+            else:
+                for line in bom_lines:
+                    self.env["mrp.bom"].create(
+                        {
+                            "product_tmpl_id": product.product_tmpl_id.id,
+                            "product_uom_id": product.uom_id.id,
+                            "product_qty": product.product_qty,
+                            "type": "normal",
+                            "bom_line_ids": [
+                                line,
+                            ],
+                        }
+                    )
 
     def action_generate_nested_boms(self) -> None:
         """
