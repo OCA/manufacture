@@ -12,6 +12,7 @@ class ProductTemplate(models.Model):
         compute="_compute_nested_bom_count",
         string="Nested Bom Count",
     )
+    changed_nested_bom = fields.Boolean(string="Changed Nested Bom", default=False)
 
     def _compute_nested_bom_count(self) -> None:
         """
@@ -48,11 +49,32 @@ class ProductTemplate(models.Model):
         for i in range(1, len(nestings)):
             yield nestings[i - 1], nestings[i]
 
+    def unlink_existing_bom(self):
+        """
+        Unlink BOM by product.template
+        """
+        mrp_bom_ids = self.env["mrp.bom"].search(
+            [("nested_product_template_id", "=", self.id)]
+        )
+        if not len(mrp_bom_ids) > 0:
+            return
+        used_mrp_bom_ids = (
+            self.env["mrp.production"]
+            .search([("bom_id", "in", mrp_bom_ids.ids)])
+            .mapped("bom_id")
+        )
+        unused_mrp_bom_ids = mrp_bom_ids.filtered(
+            lambda bom: bom.id not in used_mrp_bom_ids.ids
+        )
+        used_mrp_bom_ids.sudo().write({"active": False})
+        unused_mrp_bom_ids.sudo().unlink()
+
     def create_boms(self) -> None:
         """
         Create BOM for stage
         :return None
         """
+        self.unlink_existing_bom()
         for product, component in self.group_by_stage():
             bom_lines = component._prepare_bom_lines(product)
             line_ptavs = [
@@ -67,6 +89,7 @@ class ProductTemplate(models.Model):
                         "product_qty": product.product_qty,
                         "type": "normal",
                         "bom_line_ids": bom_lines,
+                        "nested_product_template_id": self.id,
                     }
                 )
             else:
@@ -80,6 +103,7 @@ class ProductTemplate(models.Model):
                             "bom_line_ids": [
                                 line,
                             ],
+                            "nested_product_template_id": self.id,
                         }
                     )
 
@@ -90,8 +114,11 @@ class ProductTemplate(models.Model):
         :return None
         """
         self.ensure_one()
+        if not self.changed_nested_bom:
+            return
         if self.nested_bom_count > 0:
             self.nested_bom_ids._prepare_product_attribute()
             self.create_boms()
+            self.changed_nested_bom = False
             return
         raise models.UserError(_("Nested BOM is Empty!"))

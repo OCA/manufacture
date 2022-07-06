@@ -69,6 +69,11 @@ class MrpNestedBomLine(models.Model):
             attributes_ids = default_attributes | parent_attributes
             rec.all_attribute_ids = attributes_ids
 
+    def write(self, vals):
+        for rec in self:
+            rec.parent_id.write({"changed_nested_bom": True})
+        return super(MrpNestedBomLine, self).write(vals)
+
     @api.model
     def create_product(self, parent_product_id: int) -> int:
         """
