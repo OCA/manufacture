@@ -64,8 +64,27 @@ class TestProductTemplate(TestNestedBomCase):
             self.product_template_pinocchio.action_generate_nested_boms()
 
     def test_action_generate_nested_boms_valid(self):
-        result = self.product_template_pinocchio.action_generate_nested_boms()
-        self.assertIsNone(result, msg="Function must be return None")
+        MrpBom = self.env["mrp.bom"]
+        result = self.product_template_pinocchio_mrp.action_generate_nested_boms()
+        self.assertTrue(result, msg="Function result must be True")
+        mrp_ids = MrpBom.search(
+            [
+                (
+                    "nested_product_template_id",
+                    "=",
+                    self.product_template_pinocchio_mrp.id,
+                )
+            ]
+        )
+        self.assertEqual(len(mrp_ids), 4, msg="Mrp BOMs count must be equla 4")
+        self.assertEqual(
+            len(self.product_template_wood.bom_ids),
+            2,
+            msg="Duplicates count mrp for product template must be equal 2",
+        )
+        self.product_template_pinocchio_mrp.write({"changed_nested_bom": False})
+        result = self.product_template_pinocchio_mrp.action_generate_nested_boms()
+        self.assertFalse(result, msg="Function result must be False")
 
     def test_create_boms_valid(self):
         MrpBom = self.env["mrp.bom"]
@@ -89,3 +108,13 @@ class TestProductTemplate(TestNestedBomCase):
         self.product_template_pinocchio.create_boms()
         mrp_bom_ids = MrpBom.search([("product_tmpl_id", "in", product_tmpl_ids.ids)])
         self.assertEqual(len(mrp_bom_ids), 0, msg="MRP BOM count must be equal 0")
+
+    def test_unlink_existing_bom(self):
+        status = self.product_template_pinocchio.unlink_existing_bom()
+        self.assertFalse(status, msg="Function result must be False")
+        self.product_template_pinocchio.action_generate_nested_boms()
+        status = self.product_template_pinocchio.unlink_existing_bom()
+        self.assertTrue(status, msg="Function result must be True")
+        # mrp_bom_ids = self.env["mrp.bom"].search(
+        #     [("nested_product_template_id", "=", self.id)]
+        # )

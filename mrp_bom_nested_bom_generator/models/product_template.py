@@ -49,15 +49,16 @@ class ProductTemplate(models.Model):
         for i in range(1, len(nestings)):
             yield nestings[i - 1], nestings[i]
 
-    def unlink_existing_bom(self):
+    def unlink_existing_bom(self) -> bool:
         """
         Unlink BOM by product.template
+        :return: bool
         """
         mrp_bom_ids = self.env["mrp.bom"].search(
             [("nested_product_template_id", "=", self.id)]
         )
         if not len(mrp_bom_ids) > 0:
-            return
+            return False
         used_mrp_bom_ids = (
             self.env["mrp.production"]
             .search([("bom_id", "in", mrp_bom_ids.ids)])
@@ -68,6 +69,7 @@ class ProductTemplate(models.Model):
         )
         used_mrp_bom_ids.sudo().write({"active": False})
         unused_mrp_bom_ids.sudo().unlink()
+        return True
 
     def create_boms(self) -> None:
         """
@@ -107,18 +109,18 @@ class ProductTemplate(models.Model):
                         }
                     )
 
-    def action_generate_nested_boms(self) -> None:
+    def action_generate_nested_boms(self) -> bool:
         """
         Generate MRP BOM by nested BOM
         :raise UserError Nested BOM is Empty
-        :return None
+        :return bool
         """
         self.ensure_one()
         if not self.nested_bom_count > 0:
             raise models.UserError(_("Nested BOM is Empty!"))
         if not self.changed_nested_bom:
-            return
+            return False
         self.nested_bom_ids._prepare_product_attribute()
         self.create_boms()
         self.changed_nested_bom = False
-        return
+        return True

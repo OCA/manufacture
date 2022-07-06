@@ -73,11 +73,32 @@ class TestNestedBomCase(common.TransactionCase):
             pta.value_ids.add(self.product_attribute_size_large)
         self.product_template_pinocchio_mrp = product_template_mrp.save()
 
+        product_template_wand = Form(self.env["product.template"])
+        product_template_wand.name = "Wand"
+        with product_template_wand.attribute_line_ids.new() as pta:
+            pta.attribute_id = self.product_attribute_custom
+            pta.value_ids.add(self.product_attribute_custom_1)
+            pta.value_ids.add(self.product_attribute_custom_2)
+        self.product_template_wand = product_template_wand.save()
+
         self.mrp_nested_bom_wood = self.env["mrp.nested.bom"].create(
             {
                 "parent_id": self.product_template_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_wood.id,
                 "product_qty": 3,
+            }
+        )
+        self.mrp_nested_bom_wand = self.env["mrp.nested.bom"].create(
+            {
+                "parent_id": self.product_template_pinocchio_mrp.id,
+                "product_tmpl_id": self.product_template_wand.id,
+                "product_qty": 1,
+            }
+        )
+        self.mrp_nested_bom_pinocchio_2 = self.env["mrp.nested.bom"].create(
+            {
+                "parent_id": self.product_template_pinocchio_mrp.id,
+                "product_qty": 1,
             }
         )
 

@@ -61,12 +61,12 @@ class TestMrpNestedBom(TestNestedBomCase):
             MrpNestedBom.create_product(-1)
         parent = self.product_template_pinocchio_mrp
         result_product_template_id = MrpNestedBom.create_product(parent.id)
-        correct_name = "Pinocchio #3"
+        correct_name = "Pinocchio #5"
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
             correct_name,
-            msg="Product template name must be equal 'Pinocchio #3'",
+            msg="Product template name must be equal 'Pinocchio #5'",
         )
         result_product_template_id = MrpNestedBom.create_product(parent.id)
         product_template = self.get_product(result_product_template_id)
@@ -84,13 +84,13 @@ class TestMrpNestedBom(TestNestedBomCase):
             }
         )
 
-        correct_name = "Pinocchio #4"
+        correct_name = "Pinocchio #6"
         result_product_template_id = MrpNestedBom.create_product(parent.id)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
             correct_name,
-            msg="Product template name must be equal 'Pinocchio #4'",
+            msg="Product template name must be equal 'Pinocchio #6'",
         )
         self.env["mrp.nested.bom"].create(
             {
@@ -100,13 +100,13 @@ class TestMrpNestedBom(TestNestedBomCase):
             }
         )
 
-        correct_name = "Pinocchio #5"
+        correct_name = "Pinocchio #7"
         result_product_template_id = MrpNestedBom.create_product(parent.id)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
             correct_name,
-            msg="Product template name must be equal 'Pinocchio #5'",
+            msg="Product template name must be equal 'Pinocchio #7'",
         )
 
     def test_create_invalid(self):

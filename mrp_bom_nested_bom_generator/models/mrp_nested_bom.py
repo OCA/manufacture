@@ -144,13 +144,12 @@ class MrpNestedBomLine(models.Model):
                 continue
             product_attr_ids = rec._find_product_template_attributes(attr_ids)
             sub_ids = set(attr_ids) - set(product_attr_ids.ids)
-            if len(sub_ids) == 0:
-                continue
-            pta_line_ids = rec.parent_id.attribute_line_ids.filtered(
-                lambda l: l.attribute_id.id in sub_ids
-            )
-            for line in pta_line_ids:
-                line.copy(default={"product_tmpl_id": rec.product_tmpl_id.id})
+            if len(sub_ids) > 0:
+                pta_line_ids = rec.parent_id.attribute_line_ids.filtered(
+                    lambda l: l.attribute_id.id in sub_ids
+                )
+                for line in pta_line_ids:
+                    line.copy(default={"product_tmpl_id": rec.product_tmpl_id.id})
 
     def _prepare_bom_lines(self, main_line: models.Model) -> list:
         """
