@@ -114,11 +114,11 @@ class ProductTemplate(models.Model):
         :return None
         """
         self.ensure_one()
+        if not self.nested_bom_count > 0:
+            raise models.UserError(_("Nested BOM is Empty!"))
         if not self.changed_nested_bom:
             return
-        if self.nested_bom_count > 0:
-            self.nested_bom_ids._prepare_product_attribute()
-            self.create_boms()
-            self.changed_nested_bom = False
-            return
-        raise models.UserError(_("Nested BOM is Empty!"))
+        self.nested_bom_ids._prepare_product_attribute()
+        self.create_boms()
+        self.changed_nested_bom = False
+        return
