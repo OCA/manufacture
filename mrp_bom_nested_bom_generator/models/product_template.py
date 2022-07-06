@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
         compute="_compute_nested_bom_count",
         string="Nested Bom Count",
     )
-    changed_nested_bom = fields.Boolean(string="Changed Nested Bom", default=False)
+    changed_nested_bom = fields.Boolean(string="Changed Nested Bom", default=True)
 
     def _compute_nested_bom_count(self) -> None:
         """
