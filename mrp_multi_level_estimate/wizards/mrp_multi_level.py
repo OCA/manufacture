@@ -24,12 +24,11 @@ class MultiLevelMrp(models.TransientModel):
             precision_rounding=product_mrp_area.product_id.uom_id.rounding,
             rounding_method="HALF-UP",
         )
-        today = fields.Date.today()
         days_consumed = 0
         if product_mrp_area.group_estimate_days > 1:
             start = estimate.date_from
-            if start < today:
-                days_consumed = (today - start).days
+            if start < date:
+                days_consumed = (date - start).days
         group_estimate_days = min(
             product_mrp_area.group_estimate_days, estimate.duration - days_consumed
         )
