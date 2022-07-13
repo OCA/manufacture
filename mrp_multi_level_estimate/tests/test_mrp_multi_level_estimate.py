@@ -189,6 +189,27 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         self.assertEqual(moves_from_estimates[0].mrp_qty, -120)
         self.assertEqual(moves_from_estimates[1].mrp_qty, -280)
         self.assertEqual(moves_from_estimates[2].mrp_qty, -350)
+        # Test group_estimate_days smaller than date range, it should not
+        # generate greater demand.
+        self.test_mrp_parameter.group_estimate_days = 5
+        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        moves_from_estimates = moves.filtered(lambda m: m.mrp_type == "d")
+        self.assertEqual(len(moves_from_estimates), 5)
+        # Week 1 partially consumed, so only 4 remaining days considered.
+        # 30 daily x 4 days = 120
+        self.assertEqual(moves_from_estimates[0].mrp_qty, -120)
+        # Week 2 divided in 2 (40 daily) -> 5 days = 200, 2 days = 80
+        self.assertEqual(moves_from_estimates[1].mrp_qty, -200)
+        self.assertEqual(moves_from_estimates[2].mrp_qty, -80)
+        # Week 3 divided in 2, (50 daily) -> 5 days = 250, 2 days = 100
+        self.assertEqual(moves_from_estimates[3].mrp_qty, -250)
+        self.assertEqual(moves_from_estimates[4].mrp_qty, -100)
 
     def test_04_group_demand_estimates_rounding(self):
         """Test demand grouping functionality, `group_estimate_days` and rounding."""
