@@ -1,7 +1,7 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class PurchaseReturnOrder(models.Model):
@@ -10,16 +10,16 @@ class PurchaseReturnOrder(models.Model):
     repair_order_count = fields.Integer(
         compute="_compute_repair_orders",
         string="Repair Order Count",
-        copy=False,
-        default=0,
     )
     repair_order_ids = fields.Many2many(
         comodel_name="repair.order",
         compute="_compute_repair_orders",
-        copy=False,
-        store=True,
     )
 
+    @api.depends(
+        "order_line.repair_line_ids.repair_id",
+        "order_line.repair_fee_ids.repair_id",
+    )
     def _compute_repair_orders(self):
         for rec in self:
             repair_orders = rec.order_line.mapped("repair_line_ids.repair_id")
