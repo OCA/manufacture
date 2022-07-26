@@ -59,6 +59,11 @@ class MrpBom(models.Model):
                 ("company_id", "=", False),
             ]
         else:
+            logger.info(
+                "Impossible to guess if the product can be purchased. "
+                "Please install purchase module or override "
+                "_get_domain_to_guess_products_to_purchase() method."
+            )
             return []
 
     def _compute_cost_with_vendor_price(self):

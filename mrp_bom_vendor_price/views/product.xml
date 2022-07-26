@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="mrp.product_product_form_view_bom_button"/>
         <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='inventory']//group[@name='group_lots_and_weight']" position="after">
+            <xpath expr="//page[@name='purchase']//group[@name='purchase']" position="inside">
                 <group name="future_cost" string="Cost based on vendor prices">
                     <field name="cost_vendor_price"/>
                     <field name="vendor_price_id"/>

@@ -42,11 +42,17 @@ class ProductProduct(models.Model):
     def set_vendor_price(self):
         product_count = 0
         for product in self:
+            quantity = 0
+            if product.seller_ids:
+                # if quantity is not provided seller_ids with quantities
+                # can't be selected : fixed in v15 (testing if qty is none)
+                # here is a minimal behavior
+                quantity = product.seller_ids[0].min_qty
             # You may change vendor_info selection
             # overiding _select_seller() according to the context
             vendor_info = product.with_context(
                 self._get_ctx_vendor_price_case()
-            )._select_seller(uom_id=product.uom_id)
+            )._select_seller(uom_id=product.uom_id, quantity=quantity)
             vals = {}
             if vendor_info:
                 if vendor_info.price != product.cost_vendor_price:
