@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 12.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 12.0.1.0.1 |  | Allows to create fixed planned orders on a grid view.
 [mrp_production_auto_post_inventory](mrp_production_auto_post_inventory/) | 12.0.1.1.0 |  | Production Auto Post-Inventory
+[mrp_production_filter_lot](mrp_production_filter_lot/) | 12.0.1.0.0 |  | In production order production popup, filter lots based on their location and availability
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 12.0.1.0.0 |  | Production Grouped By Product
 [mrp_production_hierarchy](mrp_production_hierarchy/) | 12.0.1.0.0 |  | View the hierarchy of generated production orders
 [mrp_production_note](mrp_production_note/) | 12.0.1.0.0 |  | Notes in production orders
