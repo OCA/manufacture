@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo12-addon-mrp_multi_level_estimate',
         'odoo12-addon-mrp_planned_order_matrix',
         'odoo12-addon-mrp_production_auto_post_inventory',
+        'odoo12-addon-mrp_production_filter_lot',
         'odoo12-addon-mrp_production_grouped_by_product',
         'odoo12-addon-mrp_production_hierarchy',
         'odoo12-addon-mrp_production_note',
