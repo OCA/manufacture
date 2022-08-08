@@ -12,7 +12,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/product_template_views.xml",
+        "views/mrp_bom_views.xml",
         "views/mrp_nested_bom_views.xml",
     ],
     "installable": True,

@@ -9,10 +9,16 @@ class MrpNestedBomLine(models.Model):
 
     sequence = fields.Integer(string="Sequence", default=10)
 
+    bom_id = fields.Many2one(
+        comodel_name="mrp.bom",
+        string="MRP BOM",
+        required=True,
+    )
+
     parent_id = fields.Many2one(
         comodel_name="product.template",
         string="Product Template",
-        required=True,
+        related="bom_id.product_tmpl_id",
     )
 
     all_attribute_ids = fields.Many2many(
@@ -30,6 +36,7 @@ class MrpNestedBomLine(models.Model):
     )
     product_qty = fields.Float(
         string="Qty",
+        default=1,
         required=True,
     )
     uom_id = fields.Many2one(
@@ -55,7 +62,7 @@ class MrpNestedBomLine(models.Model):
             "attribute_id"
         )
 
-    @api.depends("parent_id.nested_bom_ids", "parent_id.attribute_line_ids")
+    @api.depends("bom_id.nested_bom_ids", "parent_id.attribute_line_ids")
     def _compute_all_attribute_ids(self) -> None:
         """
         Compute product attributes by parent product and component
@@ -70,8 +77,7 @@ class MrpNestedBomLine(models.Model):
             rec.all_attribute_ids = attributes_ids
 
     def write(self, vals):
-        for rec in self:
-            rec.parent_id.write({"changed_nested_bom": True})
+        self.mapped("bom_id").write({"changed_nested_bom": True})
         return super(MrpNestedBomLine, self).write(vals)
 
     @api.model
@@ -171,17 +177,12 @@ class MrpNestedBomLine(models.Model):
             filter_ptav_main = product_attribute_value.filtered(
                 lambda v: v.product_attribute_value_id.id in attr_values_ids
             )
-            bom_line_vals.append(
-                (
-                    0,
-                    0,
-                    {
-                        "product_id": variant.id,
-                        "product_qty": self.product_qty,
-                        "bom_product_template_attribute_value_ids": [
-                            (4, pid) for pid in filter_ptav_main.ids
-                        ],
-                    },
-                )
-            )
+            vals = {
+                "product_id": variant.id,
+                "product_qty": self.product_qty,
+                "bom_product_template_attribute_value_ids": [
+                    (4, pid) for pid in filter_ptav_main.ids
+                ],
+            }
+            bom_line_vals.append((0, 0, vals))
         return bom_line_vals
