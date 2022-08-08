@@ -81,16 +81,16 @@ class MrpNestedBomLine(models.Model):
         return super(MrpNestedBomLine, self).write(vals)
 
     @api.model
-    def create_product(self, parent_product_id: int) -> int:
+    def create_product(self, bom_id: int) -> int:
         """
         Create product by parent product
-        :param int parent_product_id: product.template record id
+        :param int bom_id: mrp.bom record id
         :return new product template id
         :rtype int
         """
-        product_template = self.env["product.template"].browse(parent_product_id)
+        product_template = self.env["mrp.bom"].browse(bom_id).product_tmpl_id
         nested_bom_count: int = self.search_count(
-            [("parent_id", "=", parent_product_id)]
+            [("parent_id", "=", product_template.id)]
         )
         return (
             self.env["product.template"]
@@ -102,13 +102,13 @@ class MrpNestedBomLine(models.Model):
 
     @api.model
     def create(self, vals: Dict[str, Any]):
-        parent_id = vals.get("parent_id", False)
         product_tmpl_id = vals.get("product_tmpl_id", False)
         product_qty = vals.get("product_qty", False)
+        bom_id = vals.get("bom_id", False)
 
         # Create product template if product_tmpl_id not set
         if not product_tmpl_id:
-            vals.update(product_tmpl_id=self.create_product(parent_id))
+            vals.update(product_tmpl_id=self.create_product(bom_id))
 
         # Raising Exception if product qty less or equal zero
         if product_qty <= 0.0:

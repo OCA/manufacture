@@ -115,7 +115,9 @@ class MrpBom(models.Model):
                 for line in bom_lines
             ]
             func = (
-                self._append_components if index == 1 else self._create_mrp_bom_record
+                self._append_bom_line_components
+                if index == 1
+                else self._create_mrp_bom_record
             )
             if all(line_ptavs) or len(bom_lines) == 1:
                 func(product=product, lines=bom_lines)
