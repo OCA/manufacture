@@ -4,18 +4,12 @@ from odoo.tests import Form, common
 class TestNestedBomCase(common.TransactionCase):
     def setUp(self):
         super(TestNestedBomCase, self).setUp()
+        MrpBom = self.env["mrp.bom"]
         ProductAttribute = self.env["product.attribute"]
         ProductAttributeValue = self.env["product.attribute.value"]
         ProductTemplate = self.env["product.template"]
 
-        self.product_attribute_size = ProductAttribute.create(
-            {
-                "name": "Size",
-            }
-        )
-
-        self.product_attribute_custom = ProductAttribute.create({"name": "Custom"})
-
+        self.product_attribute_size = ProductAttribute.create({"name": "Size"})
         self.product_attribute_size_medium = ProductAttributeValue.create(
             {
                 "name": "Medium",
@@ -28,6 +22,8 @@ class TestNestedBomCase(common.TransactionCase):
                 "attribute_id": self.product_attribute_size.id,
             }
         )
+
+        self.product_attribute_custom = ProductAttribute.create({"name": "Custom"})
         self.product_attribute_custom_1 = ProductAttributeValue.create(
             {
                 "name": "Custom #1",
@@ -47,23 +43,28 @@ class TestNestedBomCase(common.TransactionCase):
             }
         )
 
-        product_template = Form(self.env["product.template"])
+        product_template = Form(ProductTemplate)
         product_template.name = "Pinocchio"
         with product_template.attribute_line_ids.new() as pta:
             pta.attribute_id = self.product_attribute_size
             pta.value_ids.add(self.product_attribute_size_medium)
             pta.value_ids.add(self.product_attribute_size_large)
-        with product_template.nested_bom_ids.new() as nested:
+        self.product_template_pinocchio = product_template.save()
+
+        mrp_bom = Form(MrpBom)
+        mrp_bom.product_tmpl_id = self.product_template_pinocchio
+        mrp_bom.bom_type_nested = True
+        with mrp_bom.nested_bom_ids.new() as nested:
             nested.product_qty = 3
             nested.attribute_ids.add(self.product_attribute_size)
-        with product_template.nested_bom_ids.new() as nested:
+        with mrp_bom.nested_bom_ids.new() as nested:
             nested.product_qty = 2
             nested.attribute_ids.add(self.product_attribute_size)
 
-        with product_template.nested_bom_ids.new() as nested:
+        with mrp_bom.nested_bom_ids.new() as nested:
             nested.product_tmpl_id = self.product_template_wood
             nested.product_qty = 1
-        self.product_template_pinocchio = product_template.save()
+        self.mrp_bom_pinocchio = mrp_bom.save()
 
         product_template_mrp = Form(self.env["product.template"])
         product_template_mrp.name = "Pinocchio"
@@ -72,6 +73,13 @@ class TestNestedBomCase(common.TransactionCase):
             pta.value_ids.add(self.product_attribute_size_medium)
             pta.value_ids.add(self.product_attribute_size_large)
         self.product_template_pinocchio_mrp = product_template_mrp.save()
+
+        self.mrp_bom_pinocchio_mrp = MrpBom.create(
+            {
+                "product_tmpl_id": self.product_template_pinocchio_mrp.id,
+                "bom_type_nested": True,
+            }
+        )
 
         product_template_wand = Form(self.env["product.template"])
         product_template_wand.name = "Wand"
@@ -83,21 +91,21 @@ class TestNestedBomCase(common.TransactionCase):
 
         self.mrp_nested_bom_wood = self.env["mrp.nested.bom"].create(
             {
-                "parent_id": self.product_template_pinocchio_mrp.id,
+                "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_wood.id,
                 "product_qty": 3,
             }
         )
         self.mrp_nested_bom_wand = self.env["mrp.nested.bom"].create(
             {
-                "parent_id": self.product_template_pinocchio_mrp.id,
+                "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_wand.id,
                 "product_qty": 1,
             }
         )
         self.mrp_nested_bom_pinocchio_2 = self.env["mrp.nested.bom"].create(
             {
-                "parent_id": self.product_template_pinocchio_mrp.id,
+                "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_qty": 1,
             }
         )

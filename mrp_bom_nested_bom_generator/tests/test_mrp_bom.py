@@ -5,15 +5,13 @@ from .common import TestNestedBomCase
 
 
 @tagged("post_install", "-at_install")
-class TestProductTemplate(TestNestedBomCase):
+class TestMrpBom(TestNestedBomCase):
     def test_nested_bom_count(self):
-        nested_count = self.product_template_pinocchio.nested_bom_count
+        nested_count = self.mrp_bom_pinocchio.nested_bom_count
         self.assertEqual(nested_count, 3, msg="Nested BOM Count must be equal 3")
 
     def test_prepare_temp_nested_bom_item(self):
-        temp_nested_bom = (
-            self.product_template_pinocchio._prepare_temp_nested_bom_item()
-        )
+        temp_nested_bom = self.mrp_bom_pinocchio._prepare_temp_nested_bom_item()
         self.assertEqual(
             temp_nested_bom._name,
             "mrp.nested.bom",
@@ -43,8 +41,8 @@ class TestProductTemplate(TestNestedBomCase):
         )
 
     def test_group_by_stage(self):
-        p0, p1, p2 = list(self.product_template_pinocchio.nested_bom_ids)
-        stages = list(self.product_template_pinocchio.group_by_stage())
+        p0, p1, p2 = list(self.mrp_bom_pinocchio.nested_bom_ids)
+        stages = list(self.mrp_bom_pinocchio.group_by_stage())
         self.assertEqual(len(stages), 3, msg="Stages count must be equal 3")
         f_stage, s_stage, t_stage = stages
         self.assertEqual(
@@ -57,64 +55,53 @@ class TestProductTemplate(TestNestedBomCase):
         self.assertEqual(t_stage, (p1, p2))
 
     def test_action_generate_nested_boms_invalid(self):
-        self.product_template_pinocchio.nested_bom_ids.unlink()
+        self.mrp_bom_pinocchio.nested_bom_ids.unlink()
         with self.assertRaises(
             UserError, msg="Function must be raises exception UserError"
         ):
-            self.product_template_pinocchio.action_generate_nested_boms()
+            self.mrp_bom_pinocchio.action_generate_nested_boms()
 
     def test_action_generate_nested_boms_valid(self):
-        MrpBom = self.env["mrp.bom"]
-        result = self.product_template_pinocchio_mrp.action_generate_nested_boms()
+        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
         self.assertTrue(result, msg="Function result must be True")
-        mrp_ids = MrpBom.search(
-            [
-                (
-                    "nested_product_template_id",
-                    "=",
-                    self.product_template_pinocchio_mrp.id,
-                )
-            ]
+        child_bom_ids = self.mrp_bom_pinocchio_mrp.child_bom_ids
+        self.assertEqual(
+            len(child_bom_ids), 3, msg="Child Mrp BOMs count must be equal 3"
         )
-        self.assertEqual(len(mrp_ids), 4, msg="Mrp BOMs count must be equla 4")
         self.assertEqual(
             len(self.product_template_wood.bom_ids),
             2,
             msg="Duplicates count mrp for product template must be equal 2",
         )
-        self.product_template_pinocchio_mrp.write({"changed_nested_bom": False})
-        result = self.product_template_pinocchio_mrp.action_generate_nested_boms()
+        self.mrp_bom_pinocchio_mrp.write({"changed_nested_bom": False})
+        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
         self.assertFalse(result, msg="Function result must be False")
 
     def test_create_boms_valid(self):
         MrpBom = self.env["mrp.bom"]
-        product_tmpl_ids = self.product_template_pinocchio.nested_bom_ids.mapped(
+        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_ids.mapped(
             "product_tmpl_id"
         )
         product_tmpl_ids |= self.product_template_pinocchio
-        self.product_template_pinocchio.create_boms()
+        self.mrp_bom_pinocchio.create_boms()
         mrp_bom_ids = MrpBom.search([("product_tmpl_id", "in", product_tmpl_ids.ids)])
         self.assertEqual(len(mrp_bom_ids), 3, msg="MRP BOM count must be equal 3")
 
     def test_create_boms_invalid(self):
-        MrpBom = self.env["mrp.bom"]
-        product_tmpl_ids = self.product_template_pinocchio.nested_bom_ids.mapped(
+        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_ids.mapped(
             "product_tmpl_id"
         )
         product_tmpl_ids |= self.product_template_pinocchio
 
-        self.product_template_pinocchio.nested_bom_ids.unlink()
+        self.mrp_bom_pinocchio.nested_bom_ids.unlink()
 
-        self.product_template_pinocchio.create_boms()
-        mrp_bom_ids = MrpBom.search([("product_tmpl_id", "in", product_tmpl_ids.ids)])
+        self.mrp_bom_pinocchio.create_boms()
+        mrp_bom_ids = self.mrp_bom_pinocchio.child_bom_ids
         self.assertEqual(len(mrp_bom_ids), 0, msg="MRP BOM count must be equal 0")
 
     def test_unlink_existing_bom(self):
-        status = self.product_template_pinocchio.unlink_existing_bom()
+        status = self.mrp_bom_pinocchio.unlink_existing_bom()
         self.assertFalse(status, msg="Function result must be False")
-        self.product_template_pinocchio.action_generate_nested_boms()
-        status = self.product_template_pinocchio.unlink_existing_bom()
+        self.mrp_bom_pinocchio.action_generate_nested_boms()
+        status = self.mrp_bom_pinocchio.unlink_existing_bom()
         self.assertTrue(status, msg="Function result must be True")
-        # mrp_bom_ids = self.env["mrp.bom"].search(
-        #     [("nested_product_template_id", "=", self.id)]
-        # )

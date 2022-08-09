@@ -77,7 +77,6 @@ class MrpBom(models.Model):
         used_mrp_bom_ids.sudo().write({"active": False})
         unused_mrp_bom_ids.sudo().unlink()
         self.bom_line_ids.sudo().unlink()
-        # TODO доделать
         return True
 
     def _create_mrp_bom_record(self, product, lines):
@@ -107,7 +106,7 @@ class MrpBom(models.Model):
         :return None
         """
         self.unlink_existing_bom()
-        for index, arg in enumerate(self.group_by_stage(), start=1):
+        for index, arg in enumerate(self.group_by_stage()):
             product, component = arg
             bom_lines = component._prepare_bom_lines(product)
             line_ptavs = [
@@ -116,7 +115,7 @@ class MrpBom(models.Model):
             ]
             func = (
                 self._append_bom_line_components
-                if index == 1
+                if not bool(index)
                 else self._create_mrp_bom_record
             )
             if all(line_ptavs) or len(bom_lines) == 1:

@@ -8,6 +8,7 @@ from .common import TestNestedBomCase
 class TestMrpNestedBom(TestNestedBomCase):
     def setUp(self):
         super(TestMrpNestedBom, self).setUp()
+        MrpBom = self.env["mrp.bom"]
         ProductTemplate = self.env["product.template"]
 
         product_template = Form(ProductTemplate)
@@ -20,10 +21,13 @@ class TestMrpNestedBom(TestNestedBomCase):
 
         self.mrp_nested_bom_log = self.env["mrp.nested.bom"].create(
             {
-                "parent_id": self.product_template_pinocchio_mrp.id,
+                "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_log.id,
                 "product_qty": 4,
             }
+        )
+        self.mrp_bom_log = MrpBom.create(
+            {"product_tmpl_id": self.product_template_log.id, "bom_type_nested": True}
         )
 
     def test_onchange_product_tmpl_id(self):
@@ -59,8 +63,8 @@ class TestMrpNestedBom(TestNestedBomCase):
         MrpNestedBom = self.env["mrp.nested.bom"]
         with self.assertRaises(MissingError):
             MrpNestedBom.create_product(-1)
-        parent = self.product_template_pinocchio_mrp
-        result_product_template_id = MrpNestedBom.create_product(parent.id)
+        bom_id = self.mrp_bom_pinocchio_mrp.id
+        result_product_template_id = MrpNestedBom.create_product(bom_id)
         correct_name = "Pinocchio #5"
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
@@ -68,7 +72,7 @@ class TestMrpNestedBom(TestNestedBomCase):
             correct_name,
             msg="Product template name must be equal 'Pinocchio #5'",
         )
-        result_product_template_id = MrpNestedBom.create_product(parent.id)
+        result_product_template_id = MrpNestedBom.create_product(bom_id)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
@@ -78,14 +82,14 @@ class TestMrpNestedBom(TestNestedBomCase):
 
         self.env["mrp.nested.bom"].create(
             {
-                "parent_id": parent.id,
+                "bom_id": bom_id,
                 "product_tmpl_id": result_product_template_id,
                 "product_qty": 4,
             }
         )
 
         correct_name = "Pinocchio #6"
-        result_product_template_id = MrpNestedBom.create_product(parent.id)
+        result_product_template_id = MrpNestedBom.create_product(bom_id)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
@@ -94,14 +98,14 @@ class TestMrpNestedBom(TestNestedBomCase):
         )
         self.env["mrp.nested.bom"].create(
             {
-                "parent_id": parent.id,
+                "bom_id": bom_id,
                 "product_tmpl_id": result_product_template_id,
                 "product_qty": 5,
             }
         )
 
         correct_name = "Pinocchio #7"
-        result_product_template_id = MrpNestedBom.create_product(parent.id)
+        result_product_template_id = MrpNestedBom.create_product(bom_id)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
@@ -114,13 +118,11 @@ class TestMrpNestedBom(TestNestedBomCase):
             ValidationError,
             msg="Function create must be raises exception ValidationError",
         ):
-            self.env["mrp.nested.bom"].create(
-                {"parent_id": self.product_template_pinocchio_mrp.id}
-            )
+            self.env["mrp.nested.bom"].create({"bom_id": self.mrp_bom_log.id})
 
     def test_create_valid(self):
         result = self.env["mrp.nested.bom"].create(
-            {"parent_id": self.product_template_log.id, "product_qty": 1}
+            {"bom_id": self.mrp_bom_log.id, "product_qty": 1}
         )
         self.assertEqual(
             result.product_tmpl_id.name,
