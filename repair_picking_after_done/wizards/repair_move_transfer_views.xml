@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_repair_move_transfer_wizard" model="ir.ui.view">
+        <field name="name">Transfer Repaired Moves</field>
+        <field name="model">repair.move.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Repaired Moves">
+                <group>
+                    <field name="location_dest_id" />
+                    <field name="quantity" />
+                </group>
+                <footer>
+                    <button
+                        name="action_create_transfer"
+                        string="Create transfer"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
