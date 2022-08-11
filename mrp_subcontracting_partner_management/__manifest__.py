@@ -11,6 +11,7 @@
     "demo": [],
     "data": [
         "views/res_partner.xml",
+        "views/stock_picking_type.xml",
     ],
     "qweb": [],
     "installable": True,
