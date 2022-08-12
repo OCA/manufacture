@@ -61,22 +61,6 @@ class TestMrpBom(TestNestedBomCase):
         ):
             self.mrp_bom_pinocchio.action_generate_nested_boms()
 
-    def test_action_generate_nested_boms_valid(self):
-        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
-        self.assertTrue(result, msg="Function result must be True")
-        child_bom_ids = self.mrp_bom_pinocchio_mrp.child_bom_ids
-        self.assertEqual(
-            len(child_bom_ids), 3, msg="Child Mrp BOMs count must be equal 3"
-        )
-        self.assertEqual(
-            len(self.product_template_wood.bom_ids),
-            2,
-            msg="Duplicates count mrp for product template must be equal 2",
-        )
-        self.mrp_bom_pinocchio_mrp.write({"changed_nested_bom": False})
-        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
-        self.assertFalse(result, msg="Function result must be False")
-
     def test_create_boms_valid(self):
         MrpBom = self.env["mrp.bom"]
         product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_ids.mapped(
