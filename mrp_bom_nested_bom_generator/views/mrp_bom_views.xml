@@ -16,7 +16,7 @@
                 <field name="parent_bom_id" invisible="1" />
                 <field name="child_bom_ids" invisible="1" />
                 <button
-                    name="action_parent_bom"
+                    name="action_open_parent_bom"
                     string="Parent BOM"
                     type="object"
                     class="oe_stat_button"

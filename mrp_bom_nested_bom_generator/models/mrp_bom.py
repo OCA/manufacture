@@ -56,29 +56,31 @@ class MrpBom(models.Model):
 
     def unlink_existing_bom(self) -> bool:
         """
-        Unlink BOM by product.template
+        Unlink unused BOMs
+        Archive used BOM
+        Unlink all components in current BOM
         :return: bool
         """
         child_bom_ids = self.child_bom_ids
-        if not len(child_bom_ids) > 0:
+        if not child_bom_ids:
             return False
-        used_child_bom_ids = (
+        mrp_bom_used_ids = (
             self.env["mrp.production"]
             .search([("bom_id", "in", child_bom_ids.ids)])
             .mapped("bom_id")
         )
-        unused_child_bom_ids = child_bom_ids.filtered(
-            lambda bom: bom.id not in used_child_bom_ids.ids
+        mrp_bom_unused_ids = child_bom_ids.filtered(
+            lambda bom: bom.id not in mrp_bom_used_ids.ids
         )
-        used_child_bom_ids.sudo().write({"active": False})
-        unused_child_bom_ids.sudo().unlink()
+        mrp_bom_used_ids.sudo().write({"active": False})
+        mrp_bom_unused_ids.sudo().unlink()
         self.bom_line_ids.sudo().unlink()
         return True
 
     def _create_mrp_bom_record(self, product, lines):
         """
-        Create mrp.bom record by product record and bom lines
-        :param models.Model product: product.template record
+        Create mrp.bom record for product
+        :param models.Model product: product.product record
         :param list lines: list [(0, 0, vals), ...]
         """
         self.env["mrp.bom"].create(
@@ -92,13 +94,13 @@ class MrpBom(models.Model):
             }
         )
 
-    def _append_bom_line_components(self, lines, **kwargs):
+    def _append_bom_line_components(self, lines, **__):
         """Update record components"""
         self.write({"bom_line_ids": lines})
 
     def create_boms(self) -> None:
         """
-        Create BOM for stage
+        Create Nested BOMs and unlink/archive old BOMs
         :return None
         """
         self.unlink_existing_bom()
@@ -141,7 +143,7 @@ class MrpBom(models.Model):
         self.changed_nested_bom = False
         return True
 
-    def action_parent_bom(self):
+    def action_open_parent_bom(self):
         """Action open parent mrp bom record"""
         self.ensure_one()
         return {
