@@ -1,4 +1,4 @@
-from odoo.exceptions import MissingError, ValidationError
+from odoo.exceptions import ValidationError
 from odoo.tests import Form, tagged
 
 from .common import TestNestedBomCase
@@ -61,10 +61,10 @@ class TestMrpNestedBom(TestNestedBomCase):
 
     def test_create_product(self):
         MrpNestedBom = self.env["mrp.nested.bom"]
-        with self.assertRaises(MissingError):
-            MrpNestedBom.create_product(-1)
-        bom_id = self.mrp_bom_pinocchio_mrp.id
-        result_product_template_id = MrpNestedBom.create_product(bom_id)
+        result = MrpNestedBom.create_product(MrpNestedBom)
+        self.assertFalse(result, msg="Result must be False")
+        bom = self.mrp_bom_pinocchio_mrp
+        result_product_template_id = MrpNestedBom.create_product(bom)
         correct_name = "Pinocchio #5"
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
@@ -72,7 +72,7 @@ class TestMrpNestedBom(TestNestedBomCase):
             correct_name,
             msg="Product template name must be equal 'Pinocchio #5'",
         )
-        result_product_template_id = MrpNestedBom.create_product(bom_id)
+        result_product_template_id = MrpNestedBom.create_product(bom)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
@@ -82,14 +82,14 @@ class TestMrpNestedBom(TestNestedBomCase):
 
         self.env["mrp.nested.bom"].create(
             {
-                "bom_id": bom_id,
+                "bom_id": bom.id,
                 "product_tmpl_id": result_product_template_id,
                 "product_qty": 4,
             }
         )
 
         correct_name = "Pinocchio #6"
-        result_product_template_id = MrpNestedBom.create_product(bom_id)
+        result_product_template_id = MrpNestedBom.create_product(bom)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,
@@ -98,14 +98,14 @@ class TestMrpNestedBom(TestNestedBomCase):
         )
         self.env["mrp.nested.bom"].create(
             {
-                "bom_id": bom_id,
+                "bom_id": bom.id,
                 "product_tmpl_id": result_product_template_id,
                 "product_qty": 5,
             }
         )
 
         correct_name = "Pinocchio #7"
-        result_product_template_id = MrpNestedBom.create_product(bom_id)
+        result_product_template_id = MrpNestedBom.create_product(bom)
         product_template = self.get_product(result_product_template_id)
         self.assertEqual(
             product_template.name,

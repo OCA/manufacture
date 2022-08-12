@@ -6,10 +6,6 @@ from .common import TestNestedBomCase
 
 @tagged("post_install", "-at_install")
 class TestMrpBom(TestNestedBomCase):
-    def test_nested_bom_count(self):
-        nested_count = self.mrp_bom_pinocchio.nested_bom_count
-        self.assertEqual(nested_count, 3, msg="Nested BOM Count must be equal 3")
-
     def test_prepare_temp_nested_bom_item(self):
         temp_nested_bom = self.mrp_bom_pinocchio._prepare_temp_nested_bom_item()
         self.assertEqual(
@@ -80,8 +76,8 @@ class TestMrpBom(TestNestedBomCase):
         self.mrp_bom_pinocchio.nested_bom_ids.unlink()
 
         self.mrp_bom_pinocchio.create_boms()
-        mrp_bom_ids = self.mrp_bom_pinocchio.child_bom_ids
-        self.assertEqual(len(mrp_bom_ids), 0, msg="MRP BOM count must be equal 0")
+        child_bom_ids = self.mrp_bom_pinocchio.child_bom_ids
+        self.assertEqual(len(child_bom_ids), 0, msg="MRP BOM count must be equal 0")
 
     def test_unlink_existing_bom(self):
         status = self.mrp_bom_pinocchio.unlink_existing_bom()

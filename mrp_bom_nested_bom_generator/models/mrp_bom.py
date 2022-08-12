@@ -1,35 +1,31 @@
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     bom_type_nested = fields.Boolean(string="Type Nested BOM", default=False)
-    changed_nested_bom = fields.Boolean(string="Changed Nested Bom", default=True)
+    changed_nested_bom = fields.Boolean(
+        string="Changed Nested Bom",
+        compute="_compute_changed_nested_bom",
+        store=True,
+        default=True,
+    )
 
     nested_bom_ids = fields.One2many(
         comodel_name="mrp.nested.bom",
         inverse_name="bom_id",
     )
 
-    nested_bom_count = fields.Integer(
-        compute="_compute_nested_bom_count",
-        string="Nested Bom Count",
-    )
-
     parent_bom_id = fields.Many2one(comodel_name="mrp.bom", string="Parent MRP BOM")
 
     child_bom_ids = fields.One2many(
-        comodel_name="mrp.bom", inverse_name="parent_bom_id", string="Child MRP BOM"
+        comodel_name="mrp.bom", inverse_name="parent_bom_id", string="Child BOMs"
     )
 
-    def _compute_nested_bom_count(self) -> None:
-        """
-        Compute count nested BOM lines
-        :return None
-        """
-        for rec in self:
-            rec.nested_bom_count = len(rec.nested_bom_ids)
+    @api.depends("nested_bom_ids")
+    def _compute_changed_nested_bom(self):
+        self.write({"changed_nested_bom": True})
 
     def _prepare_temp_nested_bom_item(self) -> models.Model:
         """
@@ -63,19 +59,19 @@ class MrpBom(models.Model):
         Unlink BOM by product.template
         :return: bool
         """
-        mrp_bom_ids = self.child_bom_ids
-        if not len(mrp_bom_ids) > 0:
+        child_bom_ids = self.child_bom_ids
+        if not len(child_bom_ids) > 0:
             return False
-        used_mrp_bom_ids = (
+        used_child_bom_ids = (
             self.env["mrp.production"]
-            .search([("bom_id", "in", mrp_bom_ids.ids)])
+            .search([("bom_id", "in", child_bom_ids.ids)])
             .mapped("bom_id")
         )
-        unused_mrp_bom_ids = mrp_bom_ids.filtered(
-            lambda bom: bom.id not in used_mrp_bom_ids.ids
+        unused_child_bom_ids = child_bom_ids.filtered(
+            lambda bom: bom.id not in used_child_bom_ids.ids
         )
-        used_mrp_bom_ids.sudo().write({"active": False})
-        unused_mrp_bom_ids.sudo().unlink()
+        used_child_bom_ids.sudo().write({"active": False})
+        unused_child_bom_ids.sudo().unlink()
         self.bom_line_ids.sudo().unlink()
         return True
 
@@ -136,7 +132,7 @@ class MrpBom(models.Model):
         :return bool
         """
         self.ensure_one()
-        if not self.nested_bom_count > 0:
+        if not len(self.nested_bom_ids) > 0:
             raise models.UserError(_("Nested BOM is Empty!"))
         if not self.changed_nested_bom:
             return False

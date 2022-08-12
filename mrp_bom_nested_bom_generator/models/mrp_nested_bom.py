@@ -76,26 +76,27 @@ class MrpNestedBomLine(models.Model):
             attributes_ids = default_attributes | parent_attributes
             rec.all_attribute_ids = attributes_ids
 
-    def write(self, vals):
-        self.mapped("bom_id").write({"changed_nested_bom": True})
-        return super(MrpNestedBomLine, self).write(vals)
-
     @api.model
-    def create_product(self, bom_id: int) -> int:
+    def create_product(self, bom) -> int:
         """
         Create product by parent product
-        :param int bom_id: mrp.bom record id
+        :param bom: mrp.bom record
         :return new product template id
-        :rtype int
+        :rtype int or bool
         """
-        product_template = self.env["mrp.bom"].browse(bom_id).product_tmpl_id
+        if not bom:
+            return False
         nested_bom_count: int = self.search_count(
-            [("parent_id", "=", product_template.id)]
+            [("parent_id", "=", bom.product_tmpl_id.id)]
         )
         return (
             self.env["product.template"]
             .create(
-                {"name": "{} #{}".format(product_template.name, nested_bom_count + 1)}
+                {
+                    "name": "{} #{}".format(
+                        bom.product_tmpl_id.name, nested_bom_count + 1
+                    )
+                }
             )
             .id
         )
@@ -105,10 +106,12 @@ class MrpNestedBomLine(models.Model):
         product_tmpl_id = vals.get("product_tmpl_id", False)
         product_qty = vals.get("product_qty", False)
         bom_id = vals.get("bom_id", False)
-
+        bom = self.env["mrp.bom"].browse(bom_id)
         # Create product template if product_tmpl_id not set
         if not product_tmpl_id:
-            vals.update(product_tmpl_id=self.create_product(bom_id))
+            pt_id = self.create_product(bom)
+            if pt_id:
+                vals.update(product_tmpl_id=self.create_product(bom))
 
         # Raising Exception if product qty less or equal zero
         if product_qty <= 0.0:

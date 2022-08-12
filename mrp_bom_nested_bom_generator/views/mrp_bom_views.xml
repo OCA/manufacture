@@ -32,20 +32,6 @@
                     attrs="{'invisible': [('child_bom_ids', '=', [])]}"
                 />
             </div>
-            <sheet position="before">
-                <header>
-                    <field name="nested_bom_count" invisible="1" />
-                    <button
-                        name="action_generate_nested_boms"
-                        string="Generate Nested BOMs"
-                        type="object"
-                        class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': [('nested_bom_count', '=', 0)]}"
-                        confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
-                    />
-                </header>
-            </sheet>
-
             <field name="product_tmpl_id" position="after">
                 <field
                     name="bom_type_nested"
@@ -85,6 +71,22 @@
                             />
                         </tree>
                     </field>
+                    <field name="changed_nested_bom" invisible="1" />
+                    <button
+                        name="action_generate_nested_boms"
+                        string="Generate Nested BOMs"
+                        type="object"
+                        class="oe_highlight o_expense_submit"
+                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '=', []), ('changed_nested_bom', '=', False)]}"
+                        confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
+                    />
+                    <button
+                        name="action_generate_nested_boms"
+                        string="Generate Nested BOMs"
+                        type="object"
+                        class="oe_highlight o_expense_submit"
+                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '!=', []), ('changed_nested_bom', '=', False)]}"
+                    />
                 </page>
             </notebook>
         </field>
