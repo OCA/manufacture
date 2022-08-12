@@ -168,3 +168,16 @@ class TestSubcontractedPartner(common.SavepointCase):
         self.assertFalse(
             partner_resupply_rule.active, "Partner Resupply rule must be not active"
         )
+
+    def test_check_countof_rules(self):
+        partner_id = self.partner_obj.create(
+            {
+                "name": "Test partner",
+                "is_company": True,
+                "is_subcontractor_partner": True,
+            }
+        )
+        rules = self.env["stock.rule"].search(
+            [("name", "=", partner_id.partner_buy_rule_id.name)]
+        )
+        self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")

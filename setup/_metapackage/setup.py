@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-mrp_account_analytic',
         'odoo14-addon-mrp_analytic_cost',
         'odoo14-addon-mrp_attachment_mgmt',
+        'odoo14-addon-mrp_bom_attribute_match',
         'odoo14-addon-mrp_bom_component_menu',
         'odoo14-addon-mrp_bom_hierarchy',
         'odoo14-addon-mrp_bom_location',
