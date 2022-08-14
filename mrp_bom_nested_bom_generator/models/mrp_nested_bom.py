@@ -82,7 +82,7 @@ class MrpNestedBomLine(models.Model):
         """
         Create product by parent product
         :param bom: mrp.bom record
-        :return new product template id
+        :return: product template record id or False
         :rtype int or bool
         """
         if not bom:
@@ -107,19 +107,23 @@ class MrpNestedBomLine(models.Model):
         product_tmpl_id = vals.get("product_tmpl_id", False)
         product_qty = vals.get("product_qty", False)
         bom_id = vals.get("bom_id", False)
-        bom = self.env["mrp.bom"].browse(bom_id)
+        bom = self.env["mrp.bom"].search([("id", "=", bom_id)], limit=1)
+        if not bom:
+            raise models.MissingError(_("Nested BOM: Mrp BOM record not found!"))
         # Create product template if product_tmpl_id not set
         if not product_tmpl_id:
             pt_id = self.create_product(bom)
             if pt_id:
-                vals.update(product_tmpl_id=self.create_product(bom))
+                vals.update(product_tmpl_id=pt_id)
 
         # Raising Exception if product qty less or equal zero
         if product_qty <= 0.0:
-            raise models.ValidationError(_("Nested BOM: Product Qty must be than 0.0"))
+            raise models.ValidationError(
+                _("Nested BOM: Product Qty must be bigger than 0.0")
+            )
         return super(MrpNestedBomLine, self).create(vals)
 
-    def _prepare_parent_attribute_ids(self) -> Set[int]:
+    def _prepare_bom_product_tmpl_attribute_ids(self) -> Set[int]:
         """
         Get parent product template attribute ids
         :return set attributes ids Any
@@ -149,8 +153,8 @@ class MrpNestedBomLine(models.Model):
         :return None
         """
         for rec in self:
-            attr_ids = rec._prepare_parent_attribute_ids()
-            if not len(attr_ids) > 0:
+            attr_ids = rec._prepare_bom_product_tmpl_attribute_ids()
+            if not attr_ids:
                 continue
             product_attr_ids = rec._find_product_template_attributes(attr_ids)
             sub_ids = set(attr_ids) - set(product_attr_ids.ids)
