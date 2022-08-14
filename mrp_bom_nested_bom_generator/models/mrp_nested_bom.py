@@ -21,11 +21,11 @@ class MrpNestedBomLine(models.Model):
         related="bom_id.product_tmpl_id",
     )
 
-    all_attribute_ids = fields.Many2many(
+    attribute_aggregated_ids = fields.Many2many(
         "product.attribute",
-        "all_attribute_ids_ref",
+        "attribute_aggregated_ids_ref",
         string="Parent Product Template attribute",
-        compute="_compute_all_attribute_ids",
+        compute="_compute_attribute_aggregated_ids",
         store=True,
     )
 
@@ -63,7 +63,7 @@ class MrpNestedBomLine(models.Model):
         )
 
     @api.depends("bom_id.nested_bom_ids", "bom_product_tmpl_id.attribute_line_ids")
-    def _compute_all_attribute_ids(self) -> None:
+    def _compute_attribute_aggregated_ids(self) -> None:
         """
         Compute product attributes by parent product and component
         :return None
@@ -76,7 +76,7 @@ class MrpNestedBomLine(models.Model):
                 "attribute_id"
             )
             attributes_ids = default_attributes | parent_attributes
-            rec.all_attribute_ids = attributes_ids
+            rec.attribute_aggregated_ids = attributes_ids
 
     @api.model
     def create_product(self, bom) -> int:

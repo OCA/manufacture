@@ -58,7 +58,7 @@
                         <tree string="Nested BOMs" editable="bottom">
                             <field name="bom_id" invisible="1" />
                             <field name="bom_product_tmpl_id" invisible="1" />
-                            <field name="all_attribute_ids" invisible="1" />
+                            <field name="attribute_aggregated_ids" invisible="1" />
                             <field name="sequence" widget="handle" />
                             <field name="product_tmpl_id" />
                             <field name="product_qty" />
@@ -67,7 +67,7 @@
                                 name="attribute_ids"
                                 widget="many2many_tags"
                                 options="{'no_create': True}"
-                                domain="[('id', 'in', all_attribute_ids)]"
+                                domain="[('id', 'in', attribute_aggregated_ids)]"
                             />
                         </tree>
                     </field>

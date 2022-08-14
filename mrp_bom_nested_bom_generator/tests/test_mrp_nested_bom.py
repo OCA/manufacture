@@ -46,15 +46,15 @@ class TestMrpNestedBom(TestNestedBomCase):
             msg="Attributes count must be equal 1",
         )
 
-    def test_compute_all_attribute_ids(self):
+    def test_compute_attribute_aggregated_ids(self):
         self.assertEqual(
-            len(self.mrp_nested_bom_log.all_attribute_ids),
+            len(self.mrp_nested_bom_log.attribute_aggregated_ids),
             2,
             msg="Count elements must be equal 2",
         )
         self.product_template_pinocchio_mrp.attribute_line_ids.unlink()
         self.assertEqual(
-            len(self.mrp_nested_bom_log.all_attribute_ids),
+            len(self.mrp_nested_bom_log.attribute_aggregated_ids),
             1,
             msg="Count elements must be equal 1",
         )
