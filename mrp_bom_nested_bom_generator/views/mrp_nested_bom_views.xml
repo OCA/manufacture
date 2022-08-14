@@ -8,7 +8,7 @@
             <form string="Nested BOM">
                 <sheet>
                     <group>
-                        <field name="parent_id" invisible="1" />
+                        <field name="bom_product_tmpl_id" invisible="1" />
                         <field name="product_tmpl_id" />
                         <field name="uom_id" />
                         <field name="product_qty" />

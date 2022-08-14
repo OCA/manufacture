@@ -35,7 +35,7 @@ class MrpBom(models.Model):
         """
         return self.nested_bom_ids.new(
             {
-                "parent_id": self.product_tmpl_id.id,
+                "bom_product_tmpl_id": self.product_tmpl_id.id,
                 "product_tmpl_id": self.product_tmpl_id.id,
                 "product_qty": 1,
                 "uom_id": self.product_tmpl_id.uom_id.id,

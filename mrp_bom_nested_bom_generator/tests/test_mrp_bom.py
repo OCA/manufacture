@@ -18,7 +18,7 @@ class TestMrpBom(TestNestedBomCase):
             type(temp_nested_bom.id), int, msg="Id field type must be not equal int"
         )
         self.assertEqual(
-            temp_nested_bom.parent_id,
+            temp_nested_bom.bom_product_tmpl_id,
             self.product_template_pinocchio,
             msg="Parent product must be equal 'Pinocchio' product template",
         )

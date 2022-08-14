@@ -15,7 +15,7 @@ class MrpNestedBomLine(models.Model):
         required=True,
     )
 
-    parent_id = fields.Many2one(
+    bom_product_tmpl_id = fields.Many2one(
         comodel_name="product.template",
         string="Product Template",
         related="bom_id.product_tmpl_id",
@@ -32,7 +32,7 @@ class MrpNestedBomLine(models.Model):
     product_tmpl_id = fields.Many2one(
         comodel_name="product.template",
         string="Product",
-        domain="[('id', '!=', parent_id)]",
+        domain="[('id', '!=', bom_product_tmpl_id)]",
     )
     product_qty = fields.Float(
         string="Qty",
@@ -62,7 +62,7 @@ class MrpNestedBomLine(models.Model):
             "attribute_id"
         )
 
-    @api.depends("bom_id.nested_bom_ids", "parent_id.attribute_line_ids")
+    @api.depends("bom_id.nested_bom_ids", "bom_product_tmpl_id.attribute_line_ids")
     def _compute_all_attribute_ids(self) -> None:
         """
         Compute product attributes by parent product and component
@@ -72,7 +72,9 @@ class MrpNestedBomLine(models.Model):
             default_attributes = rec.product_tmpl_id.attribute_line_ids.mapped(
                 "attribute_id"
             )
-            parent_attributes = rec.parent_id.attribute_line_ids.mapped("attribute_id")
+            parent_attributes = rec.bom_product_tmpl_id.attribute_line_ids.mapped(
+                "attribute_id"
+            )
             attributes_ids = default_attributes | parent_attributes
             rec.all_attribute_ids = attributes_ids
 
@@ -87,7 +89,7 @@ class MrpNestedBomLine(models.Model):
         if not bom:
             return False
         nested_bom_count: int = self.search_count(
-            [("parent_id", "=", bom.product_tmpl_id.id)]
+            [("bom_product_tmpl_id", "=", bom.product_tmpl_id.id)]
         )
         return (
             self.env["product.template"]
@@ -126,7 +128,7 @@ class MrpNestedBomLine(models.Model):
         """
         self.ensure_one()
         component_attributes_set_ids = set(self.attribute_ids.ids)
-        parent_attributes_ids = self.parent_id.attribute_line_ids.mapped(
+        parent_attributes_ids = self.bom_product_tmpl_id.attribute_line_ids.mapped(
             "attribute_id"
         ).ids
         return component_attributes_set_ids.intersection(parent_attributes_ids)
@@ -154,7 +156,7 @@ class MrpNestedBomLine(models.Model):
             product_attr_ids = rec._find_product_template_attributes(attr_ids)
             sub_ids = set(attr_ids) - set(product_attr_ids.ids)
             if len(sub_ids) > 0:
-                pta_line_ids = rec.parent_id.attribute_line_ids.filtered(
+                pta_line_ids = rec.bom_product_tmpl_id.attribute_line_ids.filtered(
                     lambda l: l.attribute_id.id in sub_ids
                 )
                 for line in pta_line_ids:

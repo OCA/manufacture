@@ -57,7 +57,7 @@
                     >
                         <tree string="Nested BOMs" editable="bottom">
                             <field name="bom_id" invisible="1" />
-                            <field name="parent_id" invisible="1" />
+                            <field name="bom_product_tmpl_id" invisible="1" />
                             <field name="all_attribute_ids" invisible="1" />
                             <field name="sequence" widget="handle" />
                             <field name="product_tmpl_id" />
