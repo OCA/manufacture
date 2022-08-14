@@ -27,7 +27,7 @@ class TestMrpNestedBom(TestNestedBomCase):
             }
         )
         self.mrp_bom_log = MrpBom.create(
-            {"product_tmpl_id": self.product_template_log.id, "bom_type_nested": True}
+            {"product_tmpl_id": self.product_template_log.id, "nested_bom": True}
         )
 
     def test_onchange_product_tmpl_id(self):

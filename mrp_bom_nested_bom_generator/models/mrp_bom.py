@@ -4,7 +4,7 @@ from odoo import _, api, fields, models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    bom_type_nested = fields.Boolean(string="Type Nested BOM", default=False)
+    nested_bom = fields.Boolean(string="Nested BOM")
     nested_bom_updated = fields.Boolean(
         string="Changed Nested Bom",
         compute="_compute_nested_bom_updated",

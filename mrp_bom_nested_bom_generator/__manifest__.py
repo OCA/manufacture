@@ -1,7 +1,7 @@
 {
     "name": "Nested BOM Generator",
-    "summary": "Nested BOM Generator",
-    "author": "Cetmix, Odoo Community Association (OCA)",
+    "summary": "Generate multi lever nested BOMs",
+    "author": "Ooops404, Cetmix, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "version": "14.0.1.0.0",

@@ -53,7 +53,7 @@ class TestNestedBomCase(common.TransactionCase):
 
         mrp_bom = Form(MrpBom)
         mrp_bom.product_tmpl_id = self.product_template_pinocchio
-        mrp_bom.bom_type_nested = True
+        mrp_bom.nested_bom = True
         with mrp_bom.nested_bom_ids.new() as nested:
             nested.product_qty = 3
             nested.attribute_ids.add(self.product_attribute_size)
@@ -77,7 +77,7 @@ class TestNestedBomCase(common.TransactionCase):
         self.mrp_bom_pinocchio_mrp = MrpBom.create(
             {
                 "product_tmpl_id": self.product_template_pinocchio_mrp.id,
-                "bom_type_nested": True,
+                "nested_bom": True,
             }
         )
 
