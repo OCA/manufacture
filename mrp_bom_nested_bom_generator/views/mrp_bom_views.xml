@@ -71,13 +71,13 @@
                             />
                         </tree>
                     </field>
-                    <field name="changed_nested_bom" invisible="1" />
+                    <field name="nested_bom_updated" invisible="1" />
                     <button
                         name="action_generate_nested_boms"
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '=', []), ('changed_nested_bom', '=', False)]}"
+                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '=', []), ('nested_bom_updated', '=', False)]}"
                         confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
                     />
                     <button
@@ -85,7 +85,7 @@
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '!=', []), ('changed_nested_bom', '=', False)]}"
+                        attrs="{'invisible': ['|', '|', ('nested_bom_ids', '=', []), ('child_bom_ids', '!=', []), ('nested_bom_updated', '=', False)]}"
                     />
                 </page>
             </notebook>

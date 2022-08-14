@@ -5,9 +5,9 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     bom_type_nested = fields.Boolean(string="Type Nested BOM", default=False)
-    changed_nested_bom = fields.Boolean(
+    nested_bom_updated = fields.Boolean(
         string="Changed Nested Bom",
-        compute="_compute_changed_nested_bom",
+        compute="_compute_nested_bom_updated",
         store=True,
         default=True,
     )
@@ -24,8 +24,8 @@ class MrpBom(models.Model):
     )
 
     @api.depends("nested_bom_ids")
-    def _compute_changed_nested_bom(self):
-        self.write({"changed_nested_bom": True})
+    def _compute_nested_bom_updated(self):
+        self.write({"nested_bom_updated": True})
 
     def _prepare_temp_nested_bom_item(self) -> models.Model:
         """
@@ -136,11 +136,11 @@ class MrpBom(models.Model):
         self.ensure_one()
         if not len(self.nested_bom_ids) > 0:
             raise models.UserError(_("Nested BOM is Empty!"))
-        if not self.changed_nested_bom:
+        if not self.nested_bom_updated:
             return False
         self.nested_bom_ids._prepare_product_attribute()
         self.create_boms()
-        self.changed_nested_bom = False
+        self.nested_bom_updated = False
         return True
 
     def action_open_parent_bom(self):
