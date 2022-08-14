@@ -79,15 +79,15 @@ class MrpBom(models.Model):
         self.bom_line_ids.sudo().unlink()
         return True
 
-    def _create_mrp_bom_record(self, product, lines):
+    def _create_mrp_bom_record(self, nested_bom, lines):
         """
         Create mrp.bom record for product
-        :param models.Model product: product.product record
+        :param models.Model nested_bom: mrp.nested.bom record
         :param list lines: x2m “create” command
         :return bool: bool
         """
-        if not lines or not product:
-            return
+        if not lines or not nested_bom:
+            return False
         if not all(len(line) == 3 for line in lines):
             return False
         if not all(not bool(c) and isinstance(v, dict) and v for c, _, v in lines):
@@ -95,9 +95,9 @@ class MrpBom(models.Model):
         self.env["mrp.bom"].create(
             {
                 "parent_bom_id": self.id,
-                "product_tmpl_id": product.product_tmpl_id.id,
-                "product_uom_id": product.uom_id.id,
-                "product_qty": product.product_qty,
+                "product_tmpl_id": nested_bom.product_tmpl_id.id,
+                "product_uom_id": nested_bom.uom_id.id,
+                "product_qty": nested_bom.product_qty,
                 "type": "normal",
                 "bom_line_ids": lines,
             }
@@ -115,16 +115,16 @@ class MrpBom(models.Model):
         """
         self.unlink_existing_bom()
         for index, arg in enumerate(self.group_by_stage()):
-            product, component = arg
-            bom_lines = component._prepare_bom_lines(product)
+            nested_bom, component = arg
+            bom_lines = component._prepare_bom_lines(nested_bom)
             key = "bom_product_template_attribute_value_ids"
             line_ptavs = [val[key] for _, _, val in bom_lines]
             func = getattr(self, self.CHOICE_FUNC[bool(index)])
             if all(line_ptavs) or len(bom_lines) == 1:
-                func(product=product, lines=bom_lines)
+                func(nested_bom=nested_bom, lines=bom_lines)
                 continue
             for line in bom_lines:
-                func(product=product, lines=[line])
+                func(nested_bom=nested_bom, lines=[line])
 
     def action_generate_nested_boms(self) -> bool:
         """

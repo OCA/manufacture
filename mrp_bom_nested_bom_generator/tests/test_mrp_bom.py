@@ -119,3 +119,44 @@ class TestMrpBom(TestNestedBomCase):
             res_id,
             msg="Res id must be equal to {}".format(self.mrp_bom_pinocchio.id),
         )
+
+    def test_create_mrp_bom_record_invalid(self):
+        error_msg = "Result must be False"
+        valid_lines = [
+            (
+                0,
+                0,
+                {
+                    "product_id": self.product_template_wood.id,
+                    "product_qty": 2.0,
+                    "bom_product_template_attribute_value_ids": [],
+                },
+            )
+        ]
+        invalid_lines = []
+        product = self.mrp_bom_pinocchio.nested_bom_ids[0]
+        result = self.mrp_bom_pinocchio._create_mrp_bom_record(
+            self.env["mrp.nested.bom"], valid_lines
+        )
+        self.assertFalse(result, error_msg)
+        result = self.mrp_bom_pinocchio._create_mrp_bom_record(product, invalid_lines)
+        self.assertFalse(result, error_msg)
+        invalid_lines = [(4, "invalid")]
+        result = self.mrp_bom_pinocchio._create_mrp_bom_record(product, invalid_lines)
+        self.assertFalse(result, error_msg)
+        invalid_lines = [
+            (
+                1,
+                0,
+                {
+                    "product_id": self.product_template_wood.id,
+                    "product_qty": 2.0,
+                    "bom_product_template_attribute_value_ids": [],
+                },
+            )
+        ]
+        result = self.mrp_bom_pinocchio._create_mrp_bom_record(product, invalid_lines)
+        self.assertFalse(result, error_msg)
+        invalid_lines = [(0, 0, ("invalid", "type"))]
+        result = self.mrp_bom_pinocchio._create_mrp_bom_record(product, invalid_lines)
+        self.assertFalse(result, error_msg)
