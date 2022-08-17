@@ -66,16 +66,14 @@ class TestMrpNestedBom(TestNestedBomCase):
         bom = self.mrp_bom_pinocchio_mrp
         result_product_template_id = MrpNestedBom.create_product(bom)
         correct_name = "Pinocchio #5"
-        product_template = self.get_product(result_product_template_id)
         self.assertEqual(
-            product_template.name,
+            result_product_template_id.name,
             correct_name,
             msg="Product template name must be equal to 'Pinocchio #5'",
         )
         result_product_template_id = MrpNestedBom.create_product(bom)
-        product_template = self.get_product(result_product_template_id)
         self.assertEqual(
-            product_template.name,
+            result_product_template_id.name,
             correct_name,
             msg="Product template name must be equal to 'Pinocchio #1'",
         )
@@ -83,32 +81,30 @@ class TestMrpNestedBom(TestNestedBomCase):
         self.env["mrp.nested.bom"].create(
             {
                 "bom_id": bom.id,
-                "product_tmpl_id": result_product_template_id,
+                "product_tmpl_id": result_product_template_id.id,
                 "product_qty": 4,
             }
         )
 
         correct_name = "Pinocchio #6"
-        result_product_template_id = MrpNestedBom.create_product(bom)
-        product_template = self.get_product(result_product_template_id)
+        result_product_template = MrpNestedBom.create_product(bom)
         self.assertEqual(
-            product_template.name,
+            result_product_template.name,
             correct_name,
             msg="Product template name must be equal to 'Pinocchio #6'",
         )
         self.env["mrp.nested.bom"].create(
             {
                 "bom_id": bom.id,
-                "product_tmpl_id": result_product_template_id,
+                "product_tmpl_id": result_product_template_id.id,
                 "product_qty": 5,
             }
         )
 
         correct_name = "Pinocchio #7"
-        result_product_template_id = MrpNestedBom.create_product(bom)
-        product_template = self.get_product(result_product_template_id)
+        result_product_template = MrpNestedBom.create_product(bom)
         self.assertEqual(
-            product_template.name,
+            result_product_template.name,
             correct_name,
             msg="Product template name must be equal to 'Pinocchio #7'",
         )

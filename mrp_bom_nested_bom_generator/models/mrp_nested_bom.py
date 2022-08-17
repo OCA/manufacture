@@ -83,28 +83,19 @@ class MrpNestedBomLine(models.Model):
             rec.attribute_aggregated_ids = default_attributes | parent_attributes
 
     @api.model
-    def create_product(self, bom) -> int:
+    def create_product(self, bom):
         """
         Create product by parent product
         :param bom: mrp.bom record
-        :return: product template record id or False
-        :rtype int or bool
+        :return: product template record or False
         """
         if not bom:
             return False
         nested_bom_count: int = self.search_count(
             [("bom_product_tmpl_id", "=", bom.product_tmpl_id.id)]
         )
-        return (
-            self.env["product.template"]
-            .create(
-                {
-                    "name": "{} #{}".format(
-                        bom.product_tmpl_id.name, nested_bom_count + 1
-                    )
-                }
-            )
-            .id
+        return self.env["product.template"].create(
+            {"name": "{} #{}".format(bom.product_tmpl_id.name, nested_bom_count + 1)}
         )
 
     @api.model
@@ -117,9 +108,9 @@ class MrpNestedBomLine(models.Model):
             raise models.MissingError(_("Nested BOM: Mrp BOM record not found!"))
         # Create product template if product_tmpl_id not set
         if not product_tmpl_id:
-            pt_id = self.create_product(bom)
-            if pt_id:
-                vals.update(product_tmpl_id=pt_id)
+            product_template = self.create_product(bom)
+            if product_template:
+                vals.update(product_tmpl_id=product_template.id)
 
         # Raising Exception if product qty less or equal zero
         if product_qty <= 0.0:

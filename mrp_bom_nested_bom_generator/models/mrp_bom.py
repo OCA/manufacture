@@ -127,7 +127,7 @@ class MrpBom(models.Model):
         :return bool
         """
         self.ensure_one()
-        if not len(self.nested_bom_ids) > 0:
+        if not self.nested_bom_ids:
             raise models.UserError(_("Nested BOM is Empty!"))
         self.nested_bom_ids._prepare_product_attribute()
         self.create_boms()
