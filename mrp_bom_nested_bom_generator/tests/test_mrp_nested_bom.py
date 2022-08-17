@@ -1,4 +1,3 @@
-from odoo.exceptions import MissingError, ValidationError
 from odoo.tests import Form, tagged
 
 from .common import TestNestedBomCase
@@ -108,15 +107,6 @@ class TestMrpNestedBom(TestNestedBomCase):
             correct_name,
             msg="Product template name must be equal to 'Pinocchio #7'",
         )
-
-    def test_create_invalid(self):
-        with self.assertRaises(
-            ValidationError,
-            msg="Function create must be raises exception ValidationError",
-        ):
-            self.env["mrp.nested.bom"].create({"bom_id": self.mrp_bom_log.id})
-        with self.assertRaises(MissingError):
-            self.env["mrp.nested.bom"].create({})
 
     def test_create_valid(self):
         result = self.env["mrp.nested.bom"].create(

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Set
+from typing import Set
 
 from odoo import _, api, fields, models
 
@@ -52,6 +52,14 @@ class MrpNestedBomLine(models.Model):
         string="Attributes",
     )
 
+    @api.constrains("product_qty")
+    def _check_product_qty(self):
+        self.ensure_one()
+        if self.product_qty <= 0.0:
+            raise models.ValidationError(
+                _("Nested BOM: Product Qty must be bigger than 0.0")
+            )
+
     @api.onchange("product_tmpl_id")
     def _onchange_product_tmpl_id(self) -> None:
         """
@@ -99,24 +107,15 @@ class MrpNestedBomLine(models.Model):
         )
 
     @api.model
-    def create(self, vals: Dict[str, Any]):
+    def create(self, vals):
         product_tmpl_id = vals.get("product_tmpl_id", False)
-        product_qty = vals.get("product_qty", False)
         bom_id = vals.get("bom_id", False)
         bom = self.env["mrp.bom"].search([("id", "=", bom_id)], limit=1)
-        if not bom:
-            raise models.MissingError(_("Nested BOM: Mrp BOM record not found!"))
         # Create product template if product_tmpl_id not set
         if not product_tmpl_id:
             product_template = self.create_product(bom)
             if product_template:
                 vals.update(product_tmpl_id=product_template.id)
-
-        # Raising Exception if product qty less or equal zero
-        if product_qty <= 0.0:
-            raise models.ValidationError(
-                _("Nested BOM: Product Qty must be bigger than 0.0")
-            )
         return super(MrpNestedBomLine, self).create(vals)
 
     def _prepare_bom_product_tmpl_attribute_ids(self) -> Set[int]:
