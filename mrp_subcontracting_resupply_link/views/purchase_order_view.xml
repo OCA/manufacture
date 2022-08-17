@@ -1,0 +1,28 @@
+<odoo>
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_subcontracting_resupply"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible':[('subcontracting_resupply_ids','=',[])]}"
+                >
+                    <field
+                        name="subcontracting_resupply_count"
+                        widget="statinfo"
+                        string="Resupply(ies)"
+                    />
+                    <field name="subcontracting_resupply_ids" invisible="1" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
