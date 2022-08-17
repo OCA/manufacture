@@ -62,7 +62,12 @@ class MrpNestedBomLine(models.Model):
             "attribute_id"
         )
 
-    @api.depends("bom_id.nested_bom_ids", "bom_product_tmpl_id.attribute_line_ids")
+    @api.depends(
+        "product_tmpl_id",
+        "product_tmpl_id.attribute_line_ids",
+        "bom_product_tmpl_id",
+        "bom_product_tmpl_id.attribute_line_ids",
+    )
     def _compute_attribute_aggregated_ids(self) -> None:
         """
         Aggregate own attributes with parent product template ones

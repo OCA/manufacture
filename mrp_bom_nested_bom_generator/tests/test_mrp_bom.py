@@ -53,8 +53,6 @@ class TestMrpBom(TestNestedBomCase):
     def test_action_generate_nested_boms_invalid(self):
         result = self.mrp_bom_pinocchio.action_generate_nested_boms()
         self.assertTrue(result, msg="Result must be True")
-        result = self.mrp_bom_pinocchio.action_generate_nested_boms()
-        self.assertFalse(result, msg="Result must be False")
         self.mrp_bom_pinocchio.nested_bom_ids.unlink()
         with self.assertRaises(
             UserError, msg="Function must be raises exception UserError"
@@ -69,9 +67,8 @@ class TestMrpBom(TestNestedBomCase):
             2,
             msg="Duplicates count mrp for product template must be equal to two",
         )
-        self.mrp_bom_pinocchio_mrp.write({"nested_bom_updated": False})
         result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
-        self.assertFalse(result, msg="Function result must be False")
+        self.assertTrue(result, msg="Function result must be True")
 
     def test_create_boms_valid(self):
         MrpBom = self.env["mrp.bom"]

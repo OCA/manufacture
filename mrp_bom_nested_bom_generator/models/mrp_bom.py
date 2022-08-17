@@ -1,16 +1,10 @@
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     nested_bom = fields.Boolean(string="Nested BOM")
-    nested_bom_updated = fields.Boolean(
-        string="Changed Nested Bom",
-        compute="_compute_nested_bom_updated",
-        store=True,
-        default=True,
-    )
 
     nested_bom_ids = fields.One2many(
         comodel_name="mrp.nested.bom",
@@ -24,10 +18,6 @@ class MrpBom(models.Model):
     )
 
     CHOICE_FUNC = {True: "_create_mrp_bom_record", False: "_append_bom_line_components"}
-
-    @api.depends("nested_bom_ids")
-    def _compute_nested_bom_updated(self):
-        self.write({"nested_bom_updated": True})
 
     def _prepare_temp_nested_bom_item(self) -> models.Model:
         """
@@ -135,11 +125,8 @@ class MrpBom(models.Model):
         self.ensure_one()
         if not len(self.nested_bom_ids) > 0:
             raise models.UserError(_("Nested BOM is Empty!"))
-        if not self.nested_bom_updated:
-            return False
         self.nested_bom_ids._prepare_product_attribute()
         self.create_boms()
-        self.nested_bom_updated = False
         return True
 
     def action_open_parent_bom(self):
