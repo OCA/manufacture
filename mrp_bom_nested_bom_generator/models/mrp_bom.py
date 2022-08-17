@@ -21,8 +21,6 @@ class MrpBom(models.Model):
         comodel_name="mrp.bom", inverse_name="parent_id", string="Children BOMs"
     )
 
-    CHOICE_FUNC = {True: "_create_mrp_bom_record", False: "_append_bom_line_components"}
-
     def _prepare_temp_nested_bom_item(self) -> models.Model:
         """
         Prepare temp nested bom for current product template
@@ -98,10 +96,6 @@ class MrpBom(models.Model):
         )
         return True
 
-    def _append_bom_line_components(self, lines, **__):
-        """Update record components"""
-        self.write({"bom_line_ids": lines})
-
     def create_boms(self) -> None:
         """
         Create Nested BOMs and unlink/archive old BOMs
@@ -113,12 +107,17 @@ class MrpBom(models.Model):
             bom_lines = component._prepare_bom_lines(nested_bom)
             key = "bom_product_template_attribute_value_ids"
             line_ptavs = [val[key] for _, _, val in bom_lines]
-            func = getattr(self, self.CHOICE_FUNC[bool(index)])
             if all(line_ptavs) or len(bom_lines) == 1:
-                func(nested_bom=nested_bom, lines=bom_lines)
+                if bool(index):
+                    self._create_mrp_bom_record(nested_bom, bom_lines)
+                else:
+                    self.update({"bom_line_ids": bom_lines})
                 continue
             for line in bom_lines:
-                func(nested_bom=nested_bom, lines=[line])
+                if bool(index):
+                    self._create_mrp_bom_record(nested_bom, [line])
+                else:
+                    self.update({"bom_line_ids": [line]})
 
     def action_generate_nested_boms(self) -> bool:
         """
