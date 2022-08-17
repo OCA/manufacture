@@ -91,10 +91,8 @@ class TestMrpBom(TestNestedBomCase):
         self.mrp_bom_pinocchio.nested_bom_ids.unlink()
 
         self.mrp_bom_pinocchio.create_boms()
-        child_bom_ids = self.mrp_bom_pinocchio.child_bom_ids
-        self.assertEqual(
-            len(child_bom_ids), 0, msg="MRP BOM count must be equal to zero"
-        )
+        child_ids = self.mrp_bom_pinocchio.child_ids
+        self.assertEqual(len(child_ids), 0, msg="MRP BOM count must be equal to zero")
 
     def test_unlink_existing_bom(self):
         status = self.mrp_bom_pinocchio.unlink_existing_bom()
@@ -108,7 +106,7 @@ class TestMrpBom(TestNestedBomCase):
         mrp_bom_ids = self.mrp_bom_pinocchio | self.mrp_bom_pinocchio_mrp
         with self.assertRaises(ValueError):
             mrp_bom_ids.action_open_parent_bom()
-        first_child_bom = self.mrp_bom_pinocchio.child_bom_ids[0]
+        first_child_bom = self.mrp_bom_pinocchio.child_ids[0]
         action_dict = first_child_bom.action_open_parent_bom()
         res_id = action_dict.get("res_id", False)
         self.assertEqual(

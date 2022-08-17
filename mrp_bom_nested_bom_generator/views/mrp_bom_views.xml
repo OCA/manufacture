@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="template_open_bom" model="ir.actions.act_window">
-        <field name="domain">[('parent_bom_id', '=', active_id)]</field>
+        <field name="domain">[('parent_id', '=', active_id)]</field>
         <field name="name">Child Bill of Materials</field>
         <field name="res_model">mrp.bom</field>
     </record>
@@ -13,15 +13,15 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <div class="oe_button_box" name="button_box">
-                <field name="parent_bom_id" invisible="1" />
-                <field name="child_bom_ids" invisible="1" />
+                <field name="parent_id" invisible="1" />
+                <field name="child_ids" invisible="1" />
                 <button
                     name="action_open_parent_bom"
                     string="Parent BOM"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-arrow-left"
-                    attrs="{'invisible': [('parent_bom_id', '=', False)]}"
+                    attrs="{'invisible': [('parent_id', '=', False)]}"
                 />
                 <button
                     name="%(template_open_bom)d"
@@ -29,13 +29,13 @@
                     type="action"
                     class="oe_stat_button"
                     icon="fa-list"
-                    attrs="{'invisible': [('child_bom_ids', '=', [])]}"
+                    attrs="{'invisible': [('child_ids', '=', [])]}"
                 />
             </div>
             <field name="product_tmpl_id" position="after">
                 <field
                     name="nested_bom"
-                    attrs="{'invisible': [('parent_bom_id', '!=', False)]}"
+                    attrs="{'invisible': [('parent_id', '!=', False)]}"
                 />
             </field>
             <field name="product_id" position="attributes">
@@ -76,7 +76,7 @@
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_bom_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_ids', '=', [])]}"
                         confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
                     />
                     <button
@@ -84,7 +84,7 @@
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_bom_ids', '!=', [])]}"
+                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_ids', '!=', [])]}"
                     />
                 </page>
             </notebook>

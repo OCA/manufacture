@@ -11,10 +11,14 @@ class MrpBom(models.Model):
         inverse_name="bom_id",
     )
 
-    parent_bom_id = fields.Many2one(comodel_name="mrp.bom", string="Parent MRP BOM")
+    parent_id = fields.Many2one(
+        comodel_name="mrp.bom",
+        string="Parent MRP BOM",
+        index=True,
+    )
 
-    child_bom_ids = fields.One2many(
-        comodel_name="mrp.bom", inverse_name="parent_bom_id", string="Child BOMs"
+    child_ids = fields.One2many(
+        comodel_name="mrp.bom", inverse_name="parent_id", string="Children BOMs"
     )
 
     CHOICE_FUNC = {True: "_create_mrp_bom_record", False: "_append_bom_line_components"}
@@ -53,15 +57,15 @@ class MrpBom(models.Model):
         Unlink all components in current BOM
         :return: bool
         """
-        child_bom_ids = self.child_bom_ids
-        if not child_bom_ids:
+        child_ids = self.child_ids
+        if not child_ids:
             return False
         mrp_bom_used_ids = (
             self.env["mrp.production"]
-            .search([("bom_id", "in", child_bom_ids.ids)])
+            .search([("bom_id", "in", child_ids.ids)])
             .mapped("bom_id")
         )
-        mrp_bom_unused_ids = child_bom_ids.filtered(
+        mrp_bom_unused_ids = child_ids.filtered(
             lambda bom: bom.id not in mrp_bom_used_ids.ids
         )
         mrp_bom_used_ids.sudo().write({"active": False})
@@ -84,7 +88,7 @@ class MrpBom(models.Model):
             return False
         self.env["mrp.bom"].create(
             {
-                "parent_bom_id": self.id,
+                "parent_id": self.id,
                 "product_tmpl_id": nested_bom.product_tmpl_id.id,
                 "product_uom_id": nested_bom.uom_id.id,
                 "product_qty": nested_bom.product_qty,
@@ -134,7 +138,7 @@ class MrpBom(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "res_id": self.parent_bom_id.id,
+            "res_id": self.parent_id.id,
             "res_model": "mrp.bom",
             "target": "current",
             "views": [(False, "form")],
