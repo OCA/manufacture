@@ -7,12 +7,11 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='parent_id']" position="before">
-                <group name="is_partner_subcontractor">
-                    <field
-                        name="is_subcontractor_partner"
-                        string="Subcontractor"
-                        attrs="{'invisible': [('is_company', '=', False)]}"
-                    />
+                <group
+                    name="is_partner_subcontractor"
+                    attrs="{'invisible': [('is_company', '=', False)]}"
+                >
+                    <field name="is_subcontractor_partner" string="Subcontractor" />
                 </group>
             </xpath>
         </field>
