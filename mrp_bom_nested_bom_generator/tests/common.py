@@ -54,14 +54,14 @@ class TestNestedBomCase(common.TransactionCase):
         mrp_bom = Form(MrpBom)
         mrp_bom.product_tmpl_id = self.product_template_pinocchio
         mrp_bom.nested_bom = True
-        with mrp_bom.nested_bom_ids.new() as nested:
+        with mrp_bom.nested_bom_line_ids.new() as nested:
             nested.product_qty = 3
             nested.attribute_ids.add(self.product_attribute_size)
-        with mrp_bom.nested_bom_ids.new() as nested:
+        with mrp_bom.nested_bom_line_ids.new() as nested:
             nested.product_qty = 2
             nested.attribute_ids.add(self.product_attribute_size)
 
-        with mrp_bom.nested_bom_ids.new() as nested:
+        with mrp_bom.nested_bom_line_ids.new() as nested:
             nested.product_tmpl_id = self.product_template_wood
             nested.product_qty = 1
         self.mrp_bom_pinocchio = mrp_bom.save()

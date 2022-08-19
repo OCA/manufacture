@@ -51,7 +51,7 @@
                     attrs="{'invisible': ['|', ('product_tmpl_id', '=', False),('nested_bom', '=', False)]}"
                 >
                     <field
-                        name="nested_bom_ids"
+                        name="nested_bom_line_ids"
                         widget="one2many"
                         context="{'default_bom_id': id}"
                     >
@@ -76,7 +76,7 @@
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('nested_bom_line_ids', '=', []), ('child_ids', '=', [])]}"
                         confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
                     />
                     <button
@@ -84,7 +84,7 @@
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
-                        attrs="{'invisible': ['|', ('nested_bom_ids', '=', []), ('child_ids', '!=', [])]}"
+                        attrs="{'invisible': ['|', ('nested_bom_line_ids', '=', []), ('child_ids', '!=', [])]}"
                     />
                 </page>
             </notebook>

@@ -6,7 +6,8 @@ class MrpBom(models.Model):
 
     nested_bom = fields.Boolean(string="Nested BOM")
 
-    nested_bom_ids = fields.One2many(
+    nested_bom_line_ids = fields.One2many(
+        string="Nested BOM Lines",
         comodel_name="mrp.nested.bom.line",
         inverse_name="bom_id",
     )
@@ -27,7 +28,7 @@ class MrpBom(models.Model):
         :return temp nested bom record
         :rtype mrp.nested.bom.line()
         """
-        return self.nested_bom_ids.new(
+        return self.nested_bom_line_ids.new(
             {
                 "bom_product_tmpl_id": self.product_tmpl_id.id,
                 "product_tmpl_id": self.product_tmpl_id.id,
@@ -44,7 +45,7 @@ class MrpBom(models.Model):
         """
         nestings = [
             self._prepare_temp_nested_bom_item(),
-        ] + list(self.nested_bom_ids.sorted(lambda line: line.sequence))
+        ] + list(self.nested_bom_line_ids.sorted(lambda line: line.sequence))
         for i in range(1, len(nestings)):
             yield nestings[i - 1], nestings[i]
 
@@ -126,9 +127,9 @@ class MrpBom(models.Model):
         :return bool
         """
         self.ensure_one()
-        if not self.nested_bom_ids:
+        if not self.nested_bom_line_ids:
             raise models.UserError(_("Nested BOM is Empty!"))
-        self.nested_bom_ids._prepare_product_attribute()
+        self.nested_bom_line_ids._prepare_product_attribute()
         self.create_boms()
         return True
 

@@ -37,7 +37,7 @@ class TestMrpBom(TestNestedBomCase):
         )
 
     def test_group_by_stage(self):
-        p0, p1, p2 = list(self.mrp_bom_pinocchio.nested_bom_ids)
+        p0, p1, p2 = list(self.mrp_bom_pinocchio.nested_bom_line_ids)
         stages = list(self.mrp_bom_pinocchio.group_by_stage())
         self.assertEqual(len(stages), 3, msg="Stages count must be equal to three")
         f_stage, s_stage, t_stage = stages
@@ -53,7 +53,7 @@ class TestMrpBom(TestNestedBomCase):
     def test_action_generate_nested_boms_invalid(self):
         result = self.mrp_bom_pinocchio.action_generate_nested_boms()
         self.assertTrue(result, msg="Result must be True")
-        self.mrp_bom_pinocchio.nested_bom_ids.unlink()
+        self.mrp_bom_pinocchio.nested_bom_line_ids.unlink()
         with self.assertRaises(
             UserError, msg="Function must be raises exception UserError"
         ):
@@ -72,7 +72,7 @@ class TestMrpBom(TestNestedBomCase):
 
     def test_create_boms_valid(self):
         MrpBom = self.env["mrp.bom"]
-        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_ids.mapped(
+        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_line_ids.mapped(
             "product_tmpl_id"
         )
         product_tmpl_ids |= self.product_template_pinocchio
@@ -83,12 +83,12 @@ class TestMrpBom(TestNestedBomCase):
         )
 
     def test_create_boms_invalid(self):
-        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_ids.mapped(
+        product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_line_ids.mapped(
             "product_tmpl_id"
         )
         product_tmpl_ids |= self.product_template_pinocchio
 
-        self.mrp_bom_pinocchio.nested_bom_ids.unlink()
+        self.mrp_bom_pinocchio.nested_bom_line_ids.unlink()
 
         self.mrp_bom_pinocchio.create_boms()
         child_ids = self.mrp_bom_pinocchio.child_ids
@@ -129,7 +129,7 @@ class TestMrpBom(TestNestedBomCase):
             )
         ]
         invalid_lines = []
-        product = self.mrp_bom_pinocchio.nested_bom_ids[0]
+        product = self.mrp_bom_pinocchio.nested_bom_line_ids[0]
         result = self.mrp_bom_pinocchio._create_mrp_bom_record(
             self.env["mrp.nested.bom.line"], valid_lines
         )
