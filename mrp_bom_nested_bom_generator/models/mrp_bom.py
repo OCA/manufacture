@@ -97,9 +97,9 @@ class MrpBom(models.Model):
         )
         return True
 
-    def create_boms(self) -> None:
+    def create_child_boms(self) -> None:
         """
-        Create Nested BOMs and unlink/archive old BOMs
+        Patch components in current BOM and create child BOMs
         :return None
         """
         self.unlink_existing_bom()
@@ -120,7 +120,7 @@ class MrpBom(models.Model):
                 else:
                     self.update({"bom_line_ids": [line]})
 
-    def action_generate_nested_boms(self) -> bool:
+    def action_generate_mrp_boms(self) -> bool:
         """
         Generate MRP BOM by nested BOM
         :raise UserError Nested BOM is Empty
@@ -130,7 +130,7 @@ class MrpBom(models.Model):
         if not self.nested_bom_line_ids:
             raise models.UserError(_("Nested BOM is Empty!"))
         self.nested_bom_line_ids._prepare_product_attribute()
-        self.create_boms()
+        self.create_child_boms()
         return True
 
     def action_open_parent_bom(self):

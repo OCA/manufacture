@@ -50,39 +50,39 @@ class TestMrpBom(TestNestedBomCase):
         self.assertEqual(s_stage, (p0, p1))
         self.assertEqual(t_stage, (p1, p2))
 
-    def test_action_generate_nested_boms_invalid(self):
-        result = self.mrp_bom_pinocchio.action_generate_nested_boms()
+    def test_action_generate_mrp_boms_invalid(self):
+        result = self.mrp_bom_pinocchio.action_generate_mrp_boms()
         self.assertTrue(result, msg="Result must be True")
         self.mrp_bom_pinocchio.nested_bom_line_ids.unlink()
         with self.assertRaises(
             UserError, msg="Function must be raises exception UserError"
         ):
-            self.mrp_bom_pinocchio.action_generate_nested_boms()
+            self.mrp_bom_pinocchio.action_generate_mrp_boms()
 
-    def test_action_generate_nested_boms_valid(self):
-        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
+    def test_action_generate_mrp_boms_valid(self):
+        result = self.mrp_bom_pinocchio_mrp.action_generate_mrp_boms()
         self.assertTrue(result, msg="Function result must be True")
         self.assertEqual(
             len(self.product_template_wood.bom_ids),
             2,
             msg="Duplicates count mrp for product template must be equal to two",
         )
-        result = self.mrp_bom_pinocchio_mrp.action_generate_nested_boms()
+        result = self.mrp_bom_pinocchio_mrp.action_generate_mrp_boms()
         self.assertTrue(result, msg="Function result must be True")
 
-    def test_create_boms_valid(self):
+    def test_create_child_boms_valid(self):
         MrpBom = self.env["mrp.bom"]
         product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_line_ids.mapped(
             "product_tmpl_id"
         )
         product_tmpl_ids |= self.product_template_pinocchio
-        self.mrp_bom_pinocchio.create_boms()
+        self.mrp_bom_pinocchio.create_child_boms()
         mrp_bom_ids = MrpBom.search([("product_tmpl_id", "in", product_tmpl_ids.ids)])
         self.assertEqual(
             len(mrp_bom_ids), 3, msg="MRP BOM count must be equal to three"
         )
 
-    def test_create_boms_invalid(self):
+    def test_create_child_boms_invalid(self):
         product_tmpl_ids = self.mrp_bom_pinocchio.nested_bom_line_ids.mapped(
             "product_tmpl_id"
         )
@@ -90,19 +90,19 @@ class TestMrpBom(TestNestedBomCase):
 
         self.mrp_bom_pinocchio.nested_bom_line_ids.unlink()
 
-        self.mrp_bom_pinocchio.create_boms()
+        self.mrp_bom_pinocchio.create_child_boms()
         child_ids = self.mrp_bom_pinocchio.child_ids
         self.assertEqual(len(child_ids), 0, msg="MRP BOM count must be equal to zero")
 
     def test_unlink_existing_bom(self):
         status = self.mrp_bom_pinocchio.unlink_existing_bom()
         self.assertFalse(status, msg="Function result must be False")
-        self.mrp_bom_pinocchio.action_generate_nested_boms()
+        self.mrp_bom_pinocchio.action_generate_mrp_boms()
         status = self.mrp_bom_pinocchio.unlink_existing_bom()
         self.assertTrue(status, msg="Function result must be True")
 
     def test_action_open_parent_bom(self):
-        self.mrp_bom_pinocchio.action_generate_nested_boms()
+        self.mrp_bom_pinocchio.action_generate_mrp_boms()
         mrp_bom_ids = self.mrp_bom_pinocchio | self.mrp_bom_pinocchio_mrp
         with self.assertRaises(ValueError):
             mrp_bom_ids.action_open_parent_bom()

@@ -72,7 +72,7 @@
                         </tree>
                     </field>
                     <button
-                        name="action_generate_nested_boms"
+                        name="action_generate_mrp_boms"
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
@@ -80,7 +80,7 @@
                         confirm="Nested BOMs will be recreated. All previous date will be lost. Continue?"
                     />
                     <button
-                        name="action_generate_nested_boms"
+                        name="action_generate_mrp_boms"
                         string="Generate Nested BOMs"
                         type="object"
                         class="oe_highlight o_expense_submit"
