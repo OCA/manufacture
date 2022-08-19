@@ -89,21 +89,21 @@ class TestNestedBomCase(common.TransactionCase):
             pta.value_ids.add(self.product_attribute_custom_2)
         self.product_template_wand = product_template_wand.save()
 
-        self.mrp_nested_bom_wood = self.env["mrp.nested.bom"].create(
+        self.mrp_nested_bom_line_wood = self.env["mrp.nested.bom.line"].create(
             {
                 "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_wood.id,
                 "product_qty": 3,
             }
         )
-        self.mrp_nested_bom_wand = self.env["mrp.nested.bom"].create(
+        self.mrp_nested_bom_line_wand = self.env["mrp.nested.bom.line"].create(
             {
                 "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_tmpl_id": self.product_template_wand.id,
                 "product_qty": 1,
             }
         )
-        self.mrp_nested_bom_pinocchio_2 = self.env["mrp.nested.bom"].create(
+        self.mrp_nested_bom_line_pinocchio_2 = self.env["mrp.nested.bom.line"].create(
             {
                 "bom_id": self.mrp_bom_pinocchio_mrp.id,
                 "product_qty": 1,

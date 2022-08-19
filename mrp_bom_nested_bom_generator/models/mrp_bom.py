@@ -7,7 +7,7 @@ class MrpBom(models.Model):
     nested_bom = fields.Boolean(string="Nested BOM")
 
     nested_bom_ids = fields.One2many(
-        comodel_name="mrp.nested.bom",
+        comodel_name="mrp.nested.bom.line",
         inverse_name="bom_id",
     )
 
@@ -25,7 +25,7 @@ class MrpBom(models.Model):
         """
         Prepare temp nested bom for current product template
         :return temp nested bom record
-        :rtype mrp.nested.bom()
+        :rtype mrp.nested.bom.line()
         """
         return self.nested_bom_ids.new(
             {
@@ -74,7 +74,7 @@ class MrpBom(models.Model):
     def _create_mrp_bom_record(self, nested_bom, lines):
         """
         Create mrp.bom record for product
-        :param models.Model nested_bom: mrp.nested.bom record
+        :param models.Model nested_bom: mrp.nested.bom.line record
         :param list lines: x2m “create” command
         :return bool: bool
         """

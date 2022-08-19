@@ -13,7 +13,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/mrp_bom_views.xml",
-        "views/mrp_nested_bom_views.xml",
+        "views/mrp_nested_bom_line_views.xml",
     ],
     "installable": True,
 }

@@ -40,9 +40,9 @@
             name="product_tmpl_id"
             ref="mrp_bom_nested_bom_generator.product_template_pinocchio"
         />
-        <field name="bom_type_nested">True</field>
+        <field name="nested_bom">True</field>
     </record>
-    <record id="mrp_nested_bom_pinocchio_log" model="mrp.nested.bom">
+    <record id="mrp_nested_bom_line_pinocchio_log" model="mrp.nested.bom.line">
         <field name="bom_id" ref="mrp_bom_nested_bom_generator.mrp_bom_pinocchio" />
         <field
             name="product_tmpl_id"
@@ -54,7 +54,7 @@
             eval="[(6, 0, [ref('product.product_attribute_2')])]"
         />
     </record>
-    <record id="mrp_nested_bom_pinocchio_undefuned" model="mrp.nested.bom">
+    <record id="mrp_nested_bom_line_pinocchio_undefuned" model="mrp.nested.bom.line">
         <field name="bom_id" ref="mrp_bom_nested_bom_generator.mrp_bom_pinocchio" />
         <field name="product_qty">2</field>
         <field
@@ -62,7 +62,7 @@
             eval="[(6, 0, [ref('product.product_attribute_2')])]"
         />
     </record>
-    <record id="mrp_nested_bom_pinocchio_tree" model="mrp.nested.bom">
+    <record id="mrp_nested_bom_line_pinocchio_tree" model="mrp.nested.bom.line">
         <field name="bom_id" ref="mrp_bom_nested_bom_generator.mrp_bom_pinocchio" />
         <field
             name="product_tmpl_id"

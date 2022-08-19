@@ -10,8 +10,8 @@ class TestMrpBom(TestNestedBomCase):
         temp_nested_bom = self.mrp_bom_pinocchio._prepare_temp_nested_bom_item()
         self.assertEqual(
             temp_nested_bom._name,
-            "mrp.nested.bom",
-            msg="Model name must be equal to 'mrp.nested.bom'",
+            "mrp.nested.bom.line",
+            msg="Model name must be equal to 'mrp.nested.bom.line'",
         )
         self.assertEqual(temp_nested_bom.ids, [], msg="Ids field must be empty list")
         self.assertNotEqual(
@@ -131,7 +131,7 @@ class TestMrpBom(TestNestedBomCase):
         invalid_lines = []
         product = self.mrp_bom_pinocchio.nested_bom_ids[0]
         result = self.mrp_bom_pinocchio._create_mrp_bom_record(
-            self.env["mrp.nested.bom"], valid_lines
+            self.env["mrp.nested.bom.line"], valid_lines
         )
         self.assertFalse(result, error_msg)
         result = self.mrp_bom_pinocchio._create_mrp_bom_record(product, invalid_lines)

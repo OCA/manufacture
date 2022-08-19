@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record id="mrp_nested_bom_view_form" model="ir.ui.view">
-        <field name="name">mrp.nested.bom.view.form</field>
-        <field name="model">mrp.nested.bom</field>
+    <record id="mrp_nested_bom_line_view_form" model="ir.ui.view">
+        <field name="name">mrp.nested.bom.line.view.form</field>
+        <field name="model">mrp.nested.bom.line</field>
         <field name="arch" type="xml">
             <form string="Nested BOM">
                 <sheet>

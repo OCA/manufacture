@@ -4,7 +4,7 @@ from odoo import _, api, fields, models
 
 
 class MrpNestedBomLine(models.Model):
-    _name = "mrp.nested.bom"
+    _name = "mrp.nested.bom.line"
     _description = "MRP Nested BOM Line"
 
     sequence = fields.Integer(string="Sequence", default=10)
@@ -163,7 +163,7 @@ class MrpNestedBomLine(models.Model):
     def _prepare_bom_lines(self, main_line: models.Model) -> list:
         """
         Prepare MRP BOM lines for Nested BOM line
-        :param main_line: mrp.nested.bom record
+        :param main_line: mrp.nested.bom.line record
         :return list BOM lines
         :rtype list
         """
