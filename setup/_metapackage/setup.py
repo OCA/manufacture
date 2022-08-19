@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo14-addon-mrp_progress_button',
         'odoo14-addon-mrp_restrict_lot',
         'odoo14-addon-mrp_sale_info',
+        'odoo14-addon-mrp_subcontracting_bom_dual_use',
         'odoo14-addon-mrp_subcontracting_partner_management',
         'odoo14-addon-mrp_subcontracting_purchase_link',
         'odoo14-addon-mrp_tag',
