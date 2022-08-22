@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-08-22 14:07+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,26 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Sastavnica"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Stavka sastavnice"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_id
 msgid "Component"
-msgstr ""
+msgstr "Komponenta"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__component_template_id
 msgid "Component (product template)"
-msgstr ""
+msgstr "Komponenta (predložak)"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__display_name
@@ -41,7 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__id
@@ -49,7 +51,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom____last_update
@@ -57,34 +59,34 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__match_on_attribute_ids
 msgid "Match on Attributes"
-msgstr ""
+msgstr "Odgovarajući atributi"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
 "No match on attribute has been detected for Component (Product Template) %s"
-msgstr ""
+msgstr "Nije pronađen odgovarajući atribut za Komponentu (predložak) %s"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Product Backup"
-msgstr ""
+msgstr "Pričuvni proizvod"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Predložak proizvoda"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Nalog za proizvodnju"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
@@ -93,6 +95,8 @@ msgid ""
 "Recursion error!  A product with a Bill of Material should not have itself "
 "in its BoM or child BoMs!"
 msgstr ""
+"Greška rekurzije! Proizvodsa Sastavnicom, nesmije imati sebe u Sastavnici "
+"ili podređenim sastavnicama!"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
@@ -101,11 +105,13 @@ msgid ""
 "Some attributes of the dynamic component are not included into production "
 "product attributes."
 msgstr ""
+"Neki atributi dinamičke komponente nisu uključeni u atributima glavnog "
+"proizvoda."
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Technical field to store previous value of product_id"
-msgstr ""
+msgstr "Tehničko polje za pohranu prethodne vrijednosti polja product_id"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
