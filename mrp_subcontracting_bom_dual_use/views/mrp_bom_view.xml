@@ -10,6 +10,16 @@
                     attrs="{'invisible': [('type','!=','subcontract')]}"
                 />
             </field>
+            <page name="operations" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'subcontract'),('allow_in_regular_production','=',False)]}</attribute>
+            </page>
+            <field name="operation_ids" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'subcontract'),('allow_in_regular_production','=',False)]}</attribute>
+            </field>
         </field>
     </record>
 </odoo>
