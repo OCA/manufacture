@@ -17,6 +17,7 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
             }
         )
         cls.component_a = cls.env["product.product"].create({"name": "Test Comp A"})
+        cls.workcenter = cls.env["mrp.workcenter"].create({"name": "Test workcenter"})
         cls.mrp_production_model = cls.env["mrp.production"]
 
     def _create_bom(self, bom_type):
@@ -30,7 +31,9 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         with mrp_bom_form.bom_line_ids.new() as line_form:
             line_form.product_id = self.component_a
             line_form.product_qty = 1
-
+        with mrp_bom_form.operation_ids.new() as operation_form:
+            operation_form.name = "Test operation"
+            operation_form.workcenter_id = self.workcenter
         return mrp_bom_form.save()
 
     def test_mrp_production_misc_bom_normal(self):
@@ -66,3 +69,4 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         self._product_replenish(self.product, 1)
         item = self.mrp_production_model.search([("product_id", "=", self.product.id)])
         self.assertEqual(item.bom_id, bom)
+        self.assertIn(self.workcenter, item.workorder_ids.mapped("workcenter_id"))

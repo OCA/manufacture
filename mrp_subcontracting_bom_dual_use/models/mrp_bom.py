@@ -8,6 +8,18 @@ class MrpBom(models.Model):
 
     allow_in_regular_production = fields.Boolean(string="Allow in regular production")
 
+    @api.constrains("operation_ids", "type", "allow_in_regular_production")
+    def _check_subcontracting_no_operation(self):
+        """Prevent ValidationError if 'Allow in regular production' is checked"""
+        domain = [
+            ("type", "=", "subcontract"),
+            ("allow_in_regular_production", "=", False),
+            ("operation_ids", "!=", False),
+        ]
+        if self.filtered_domain(domain):
+            super()._check_subcontracting_no_operation()
+        return False
+
     @api.model
     def _bom_find_domain(
         self,
