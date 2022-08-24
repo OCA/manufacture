@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo14-addon-mrp_subcontracting_bom_dual_use',
         'odoo14-addon-mrp_subcontracting_partner_management',
         'odoo14-addon-mrp_subcontracting_purchase_link',
+        'odoo14-addon-mrp_subcontracting_resupply_link',
         'odoo14-addon-mrp_tag',
         'odoo14-addon-mrp_warehouse_calendar',
         'odoo14-addon-mrp_workcenter_hierarchical',
