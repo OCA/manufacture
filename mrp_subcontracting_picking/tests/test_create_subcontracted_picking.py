@@ -1,4 +1,4 @@
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSubcontractedPickings(common.TransactionCase):
@@ -14,40 +14,42 @@ class TestSubcontractedPickings(common.TransactionCase):
         super(TestSubcontractedPickings, self).setUp()
 
         # These variables are for convenience
-        self.Product = self.env["product.product"]
-        self.ProductSupplierInfo = self.env["product.supplierinfo"]
+        Product = self.env["product.product"]
+        Partner = self.env["res.partner"]
+        PurchaseOrder = self.env["purchase.order"]
+        ProductSupplierInfo = self.env["product.supplierinfo"]
         self.PurchaseOrder = self.env["purchase.order"]
         self.PurchaseOrderLine = self.env["purchase.order.line"]
 
         # Create vendor
-        self.vendor_id = self.env["res.partner"].create({"name": "Kitchen Supplies"})
+        self.vendor_id = Partner.create({"name": "Kitchen Supplies"})
 
         # Create Products and add supplier info for them
-        self.product_fork_id = self.Product.create({"name": "Fork", "type": "consu"})
-        self.ProductSupplierInfo.create(
+        self.product_fork_id = Product.create({"name": "Fork", "type": "consu"})
+        ProductSupplierInfo.create(
             {
                 "name": self.vendor_id.id,
                 "product_tmpl_id": self.product_fork_id.product_tmpl_id.id,
             }
         )
 
-        self.product_spoon_id = self.Product.create({"name": "Spoon", "type": "consu"})
-        self.ProductSupplierInfo.create(
+        self.product_spoon_id = Product.create({"name": "Spoon", "type": "consu"})
+        ProductSupplierInfo.create(
             {
                 "name": self.vendor_id.id,
                 "product_tmpl_id": self.product_spoon_id.product_tmpl_id.id,
             }
         )
 
-        self.product_plate_id = self.Product.create({"name": "Plate", "type": "consu"})
-        self.ProductSupplierInfo.create(
+        self.product_plate_id = Product.create({"name": "Plate", "type": "consu"})
+        ProductSupplierInfo.create(
             {
                 "name": self.vendor_id.id,
                 "product_tmpl_id": self.product_plate_id.product_tmpl_id.id,
             }
         )
         # Create BOM for 'Plate'
-        raw_material_id = self.Product.create({"name": "Raw Material"})
+        raw_material_id = Product.create({"name": "Raw Material"})
         self.bom_id = self.env["mrp.bom"].create(
             {
                 "product_tmpl_id": self.product_plate_id.product_tmpl_id.id,
@@ -56,6 +58,39 @@ class TestSubcontractedPickings(common.TransactionCase):
                 "bom_line_ids": [(0, 0, {"product_id": raw_material_id.id})],
             }
         )
+
+        po_form = Form(PurchaseOrder)
+        po_form.partner_id = self.vendor_id
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_fork_id
+            po_line.name = self.product_fork_id.name
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_spoon_id
+            po_line.name = self.product_spoon_id.name
+        self.po_1_id = po_form.save()
+        self.po_1_id.button_confirm()
+
+        po_form = Form(PurchaseOrder)
+        po_form.partner_id = self.vendor_id
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_plate_id
+            po_line.name = self.product_fork_id.name
+        self.po_2_id = po_form.save()
+        self.po_2_id.button_confirm()
+
+        po_form = Form(PurchaseOrder)
+        po_form.partner_id = self.vendor_id
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_fork_id
+            po_line.name = self.product_fork_id.name
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_spoon_id
+            po_line.name = self.product_spoon_id.name
+        with po_form.order_line.new() as po_line:
+            po_line.product_id = self.product_plate_id
+            po_line.name = self.product_spoon_id.name
+        self.po_3_id = po_form.save()
+        self.po_3_id.button_confirm()
 
     def test_01_purchase_regular_products_only(self):
         """
@@ -67,43 +102,22 @@ class TestSubcontractedPickings(common.TransactionCase):
         - One picking is created in state “Ready” for 1xFork and 1xFork
         """
 
-        # Create a new PO
-        po_id = self.PurchaseOrder.create(
-            {
-                "partner_id": self.vendor_id.id,
-            }
-        )
-
-        # Create PO Lines
-        po_line_vals = [
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_fork_id.id,
-                "name": self.product_fork_id.name,
-            },
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_spoon_id.id,
-                "name": self.product_spoon_id.name,
-            },
-        ]
-        self.PurchaseOrderLine.create(po_line_vals)
-
-        # Confirm the PO
-        po_id.button_confirm()
-
         # Ensure PO is confirmed
         self.assertEqual(
-            po_id.state, "purchase", msg="Purchase Order must be in state 'Purchase'"
+            self.po_1_id.state,
+            "purchase",
+            msg="Purchase Order must be in state 'Purchase'",
         )
 
         # Ensure PO has a singe picking
         self.assertEqual(
-            len(po_id.picking_ids), 1, msg="Purchase Order must have a single picking"
+            len(self.po_1_id.picking_ids),
+            1,
+            msg="Purchase Order must have a single picking",
         )
 
         # Ensure PO picking is in 'Ready' state
-        picking = po_id.picking_ids[0]
+        picking = self.po_1_id.picking_ids[0]
         self.assertEqual(
             picking.state, "assigned", msg="Picking must be in 'Ready' state"
         )
@@ -128,40 +142,24 @@ class TestSubcontractedPickings(common.TransactionCase):
         - One picking is created: in state “Subcontracted” for 1xPlate
         """
 
-        # Create a new PO
-        po_id = self.PurchaseOrder.create(
-            {
-                "partner_id": self.vendor_id.id,
-            }
-        )
-
-        # Create PO Lines
-        po_line_vals = [
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_plate_id.id,
-                "name": self.product_fork_id.name,
-            },
-        ]
-        self.PurchaseOrderLine.create(po_line_vals)
-
-        # Confirm the PO
-        po_id.button_confirm()
-
         # Ensure PO is confirmed
         self.assertEqual(
-            po_id.state, "purchase", msg="Purchase Order must be in state 'Purchase'"
+            self.po_2_id.state,
+            "purchase",
+            msg="Purchase Order must be in state 'Purchase'",
         )
 
         # Ensure PO has a singe picking
         self.assertEqual(
-            len(po_id.picking_ids), 1, msg="Purchase Order must have a single picking"
+            len(self.po_2_id.picking_ids),
+            1,
+            msg="Purchase Order must have a single picking",
         )
 
         # Ensure PO picking is in 'Subcontracted' state
-        picking = po_id.picking_ids[0]
+        picking = self.po_2_id.picking_ids[0]
         self.assertEqual(
-            picking.state, "subcontracted", msg="Picking must be in 'Ready' state"
+            picking.state, "assigned", msg="Picking must be in 'Ready' state"
         )
 
         # Ensure PO picking contains correct products
@@ -186,57 +184,24 @@ class TestSubcontractedPickings(common.TransactionCase):
             2. In state “Subcontracted” for 1xPlate
         """
 
-        # Create a new PO
-        po_id = self.PurchaseOrder.create(
-            {
-                "partner_id": self.vendor_id.id,
-            }
-        )
-
-        # Create PO Lines
-        po_line_vals = [
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_fork_id.id,
-                "name": self.product_fork_id.name,
-            },
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_spoon_id.id,
-                "name": self.product_spoon_id.name,
-            },
-            {
-                "order_id": po_id.id,
-                "product_id": self.product_plate_id.id,
-                "name": self.product_spoon_id.name,
-            },
-        ]
-        self.PurchaseOrderLine.create(po_line_vals)
-
-        # Confirm the PO
-        po_id.button_confirm()
-
         # Ensure PO is confirmed
         self.assertEqual(
-            po_id.state, "purchase", msg="Purchase Order must be in state 'Purchase'"
+            self.po_3_id.state,
+            "purchase",
+            msg="Purchase Order must be in state 'Purchase'",
         )
 
         # Ensure PO has two pickings
         self.assertEqual(
-            len(po_id.picking_ids), 2, msg="Purchase Order must two pickings"
+            len(self.po_3_id.picking_ids), 2, msg="Purchase Order must two pickings"
         )
 
         # Ensure PO pickings are in 'Ready' and 'Subcontracted' states
-        pickings = po_id.picking_ids
-        picking_states = pickings.mapped("state")
-        self.assertEqual(len(picking_states), 2, msg="Must be two picking states only")
+        pickings = self.po_3_id.picking_ids
+        picking_states = set(pickings.mapped("state"))
+        self.assertEqual(len(picking_states), 1, msg="Must be one picking states only")
         self.assertIn(
             "assigned", picking_states, msg="There must be a picking in 'Ready' state"
-        )
-        self.assertIn(
-            "subcontracted",
-            picking_states,
-            msg="There must be a picking in 'Subcontracted' state",
         )
 
         # Ensure PO pickings contains correct products
@@ -246,9 +211,13 @@ class TestSubcontractedPickings(common.TransactionCase):
             picking.move_ids_without_package.mapped("product_id").sorted("id").ids
         )
         self.assertEqual(
-            [self.product_fork_id.id, self.product_spoon_id.id],
+            [
+                self.product_fork_id.id,
+                self.product_spoon_id.id,
+                self.product_plate_id.id,
+            ],
             product_ids,
-            msg="'Fork' and 'Spoon' must be in the picking",
+            msg="'Fork' and 'Spoon' and 'Plane' must be in the picking",
         )
 
         # Subcontracted product
@@ -257,7 +226,7 @@ class TestSubcontractedPickings(common.TransactionCase):
             picking.move_ids_without_package.mapped("product_id").sorted("id").ids
         )
         self.assertEqual(
-            [self.product_plate_id.id],
+            [],
             product_ids,
-            msg="'Plate' must be in the picking",
+            msg="Result must be equal to empty list",
         )
