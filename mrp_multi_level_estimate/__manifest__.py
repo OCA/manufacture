@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Multi Level Estimate",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
