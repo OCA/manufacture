@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_partner_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-08-17 11:07+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model,name:mrp_subcontracting_partner_management.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__is_subcontractor
+msgid "Is Subcontractor"
+msgstr "Es subcontratista"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner____last_update
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_buy_rule_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_buy_rule_id
+msgid "Partner Buy Rule"
+msgstr "Regla de compra de contacto"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_picking_type_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_picking_type_id
+msgid "Partner Picking Type"
+msgstr "Tipo de operación de contacto"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_resupply_rule_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_resupply_rule_id
+msgid "Partner Resupply Rule"
+msgstr "Regla de reabastecimiento de contacto"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model,name:mrp_subcontracting_partner_management.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo de operación"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__subcontracted_created_location_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__subcontracted_created_location_id
+msgid "Subcontracted Created Location"
+msgstr "Ubicación de subcontratista creada"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_form_inherit_subcontractor
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_pickingtype_filter
+msgid "Subcontractor"
+msgstr "Subcontratista"
