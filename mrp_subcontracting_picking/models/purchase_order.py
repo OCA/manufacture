@@ -57,8 +57,6 @@ class PurchaseOrder(models.Model):
                 if is_subcontracted_bom:
                     picking.move_ids_without_package.write({"state": "draft"})
                     picking.write({"state": "subcontracted"})
-                    picking.action_confirm()
-                    picking.action_assign()
             if non_sub_lines:
                 res = po._prepare_picking()
                 picking = StockPicking.with_user(SUPERUSER_ID).create(res)

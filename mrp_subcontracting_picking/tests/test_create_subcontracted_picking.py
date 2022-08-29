@@ -159,7 +159,7 @@ class TestSubcontractedPickings(common.TransactionCase):
         # Ensure PO picking is in 'Subcontracted' state
         picking = self.po_2_id.picking_ids[0]
         self.assertEqual(
-            picking.state, "assigned", msg="Picking must be in 'Ready' state"
+            picking.state, "subcontracted", msg="Picking must be in 'Ready' state"
         )
 
         # Ensure PO picking contains correct products
@@ -199,7 +199,7 @@ class TestSubcontractedPickings(common.TransactionCase):
         # Ensure PO pickings are in 'Ready' and 'Subcontracted' states
         pickings = self.po_3_id.picking_ids
         picking_states = set(pickings.mapped("state"))
-        self.assertEqual(len(picking_states), 1, msg="Must be one picking states only")
+        self.assertEqual(len(picking_states), 2, msg="Must be two picking states only")
         self.assertIn(
             "assigned", picking_states, msg="There must be a picking in 'Ready' state"
         )
@@ -214,10 +214,9 @@ class TestSubcontractedPickings(common.TransactionCase):
             [
                 self.product_fork_id.id,
                 self.product_spoon_id.id,
-                self.product_plate_id.id,
             ],
             product_ids,
-            msg="'Fork' and 'Spoon' and 'Plane' must be in the picking",
+            msg="'Fork' and 'Spoon' must be in the picking",
         )
 
         # Subcontracted product
@@ -226,7 +225,7 @@ class TestSubcontractedPickings(common.TransactionCase):
             picking.move_ids_without_package.mapped("product_id").sorted("id").ids
         )
         self.assertEqual(
-            [],
+            self.product_plate_id.ids,
             product_ids,
             msg="Result must be equal to empty list",
         )
