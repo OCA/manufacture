@@ -80,6 +80,11 @@ msgid "Product Template"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
+msgid "Product Uom Id Domain"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
 msgid "Production Order"
 msgstr ""
