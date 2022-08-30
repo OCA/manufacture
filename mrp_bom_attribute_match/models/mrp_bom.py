@@ -1,3 +1,4 @@
+import json
 import logging
 
 from odoo import _, api, fields, models
@@ -20,6 +21,21 @@ class MrpBomLine(models.Model):
     match_on_attribute_ids = fields.Many2many(
         "product.attribute", string="Match on Attributes", readonly=True
     )
+    product_uom_id_domain = fields.Char(compute="_compute_product_uom_id_domain")
+
+    @api.depends("component_template_id", "product_id")
+    def _compute_product_uom_id_domain(self):
+        for r in self:
+            if r.component_template_id:
+                category_id = r.component_template_id.uom_id.category_id.id
+                if (
+                    r.product_uom_id.category_id.id
+                    != r.component_template_id.uom_id.category_id.id
+                ):
+                    r.product_uom_id = r.component_template_id.uom_id
+            else:
+                category_id = r.product_uom_category_id.id
+            r.product_uom_id_domain = json.dumps([("category_id", "=", category_id)])
 
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
@@ -92,6 +108,9 @@ class MrpBomLine(models.Model):
                     )
                 )
             )
+
+    def write(self, vals):
+        super(MrpBomLine, self).write(vals)
 
 
 class MrpBom(models.Model):

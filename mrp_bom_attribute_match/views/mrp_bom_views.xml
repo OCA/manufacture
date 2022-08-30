@@ -19,6 +19,13 @@
                 position="after"
             >
                 <field name="component_template_id" />
+                <field name="product_uom_id_domain" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='bom_line_ids']//field[@name='product_uom_id']"
+                position="attributes"
+            >
+                <attribute name="domain">product_uom_id_domain</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='bom_line_ids']//field[@name='product_id']"
