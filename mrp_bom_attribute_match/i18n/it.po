@@ -69,6 +69,13 @@ msgid "Match on Attributes"
 msgstr "Corrispondenza su attributi"
 
 #. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"No match on attribute has been detected for Component (Product Template) %s"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Product Backup"
 msgstr "Backup componente"
@@ -77,6 +84,11 @@ msgstr "Backup componente"
 #: model:ir.model,name:mrp_bom_attribute_match.model_product_template
 msgid "Product Template"
 msgstr "Modello Prodotto"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
+msgid "Product Uom Id Domain"
+msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
@@ -107,6 +119,17 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Technical field to store previous value of product_id"
 msgstr "Campo tecnico per preservare i valori di product_id"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"The attributes you're trying to remove is used in BoM as a match with "
+"Component (Product Template). To remove these attributes, first remove the "
+"BOM line with the matching component.\n"
+"Attributes: %s\n"
+"BoM: %s"
+msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
