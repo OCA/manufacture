@@ -52,7 +52,7 @@ Usage
 =====
 
 #. Go to *Inventory > Configuration > Routes* and edit 'Buy' rule and check 'Subcontracting inhibit'.
-#. Go to *Inventory > Products > Product* and create some product called 'Subcontract product':
+#. Go to *Inventory > Products > Product* and create some product called 'Subcontract product'.
 #. Go to *Inventory > Products > Product* and create other product called 'Component'.
 #. Go to *Manufacturing > Products > Bill of materials* and create a new one with type = "Subcontracting" related to 'Subcontract product' and set 'Component' product.
 #. Go to *Inventory > Products > Product* and edit 'Subcontract product' and set Purchase tab as follows:
