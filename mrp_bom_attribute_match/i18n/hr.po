@@ -84,6 +84,11 @@ msgid "Product Template"
 msgstr "Predložak proizvoda"
 
 #. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
+msgid "Product Uom Id Domain"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
 msgid "Production Order"
 msgstr "Nalog za proizvodnju"
@@ -117,7 +122,9 @@ msgstr "Tehničko polje za pohranu prethodne vrijednosti polja product_id"
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"The attributes you're trying to remove is used in BoM as a match with Component (Product Template). To remove these attributes, first remove the BOM line with the matching component.\n"
+"The attributes you're trying to remove is used in BoM as a match with "
+"Component (Product Template). To remove these attributes, first remove the "
+"BOM line with the matching component.\n"
 "Attributes: %s\n"
 "BoM: %s"
 msgstr ""
