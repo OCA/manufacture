@@ -42,6 +42,7 @@ addon | version | maintainers | summary
 [mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
 [mrp_sale_info](mrp_sale_info/) | 14.0.1.1.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_bom_dual_use](mrp_subcontracting_bom_dual_use/) | 14.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp subcontracting bom dual use
+[mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Inhibit subcontracting flow on demand
 [mrp_subcontracting_partner_management](mrp_subcontracting_partner_management/) | 14.0.1.1.0 |  | Subcontracting Partner Management
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.1 |  | Link Purchase Order to Subcontract Productions
 [mrp_subcontracting_resupply_link](mrp_subcontracting_resupply_link/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Links between subcontracting PO and resupply picking
