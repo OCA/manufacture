@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- UPDATE STOCK LOCATION ROUTE -->
+        <record
+            id="mrp_subcontracting.route_resupply_subcontractor_mto"
+            model="stock.location.route"
+        >
+            <field name="product_categ_selectable">True</field>
+        </record>
+        <record id="stock.route_warehouse0_mto" model="stock.location.route">
+            <field name="active">True</field>
+        </record>
+        <!-- END UPDATE STOCK LOCATION ROUTE -->
+
+        <!-- VENDORS -->
+        <record id="res_partner_customer_1" model="res.partner">
+            <field name="name">Customer 1</field>
+            <field name="company_type">company</field>
+        </record>
+        <record id="res_partner_vendor_1" model="res.partner">
+            <field name="name">Vendor 1</field>
+            <field name="company_type">company</field>
+        </record>
+        <record id="res_partner_subcontractor_1" model="res.partner">
+            <field name="name">Subcontractor 1</field>
+            <field name="company_type">company</field>
+        </record>
+        <record id="res_partner_subcontractor_2" model="res.partner">
+            <field name="name">Subcontractor 2</field>
+            <field name="company_type">company</field>
+        </record>
+        <record id="res_partner_subcontractor_3" model="res.partner">
+            <field name="name">Subcontractor 3</field>
+            <field name="company_type">company</field>
+        </record>
+        <!-- END VENDORS -->
+
+        <!-- PRODUCT -->
+        <record id="product_product_component_1" model="product.product">
+            <field name="name">Component 1</field>
+            <field name="list_price">1.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="route_ids"
+                eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy'), ref('mrp_subcontracting.route_resupply_subcontractor_mto')])]"
+            />
+        </record>
+        <record id="product_product_finished" model="product.product">
+            <field name="name">Finished</field>
+            <field name="standard_price">0.0</field>
+            <field name="list_price">100.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="route_ids"
+                eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy'), ref('mrp_subcontracting.route_resupply_subcontractor_mto')])]"
+            />
+        </record>
+        <record id="product_product_semifinished_1" model="product.product">
+            <field name="name">Semi-Finished 1</field>
+            <field name="standard_price">0.0</field>
+            <field name="list_price">1.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="route_ids"
+                eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy'), ref('mrp_subcontracting.route_resupply_subcontractor_mto')])]"
+            />
+        </record>
+        <record id="product_product_semifinished_2" model="product.product">
+            <field name="name">Semi-Finished 2</field>
+            <field name="standard_price">0.0</field>
+            <field name="list_price">1.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="route_ids"
+                eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy'), ref('mrp_subcontracting.route_resupply_subcontractor_mto')])]"
+            />
+        </record>
+        <!-- PRODUCT END -->
+
+        <!-- SUPPLIER INFO -->
+        <record id="product_supplierinfo_vendor" model="product.supplierinfo">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_component_1_product_template"
+            />
+            <field name="name" ref="res_partner_vendor_1" />
+            <field name="price">1</field>
+        </record>
+        <record id="product_supplierinfo_subcontractor_1" model="product.supplierinfo">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_finished_product_template"
+            />
+            <field name="name" ref="res_partner_subcontractor_1" />
+            <field name="is_subcontractor" eval="True" />
+            <field name="price">1</field>
+        </record>
+        <record id="product_supplierinfo_subcontractor_2" model="product.supplierinfo">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_semifinished_1_product_template"
+            />
+            <field name="name" ref="res_partner_subcontractor_2" />
+            <field name="is_subcontractor" eval="True" />
+            <field name="price">1</field>
+        </record>
+        <record id="product_supplierinfo_subcontractor_3" model="product.supplierinfo">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_semifinished_2_product_template"
+            />
+            <field name="name" ref="res_partner_subcontractor_3" />
+            <field name="is_subcontractor" eval="True" />
+            <field name="price">1</field>
+        </record>
+        <!-- END SUPPLIER INFO -->
+
+        <!-- MRP BOM -->
+        <record id="mrp_bom_finished" model="mrp.bom">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_finished_product_template"
+            />
+            <field name="product_qty">1</field>
+            <field name="type">subcontract</field>
+            <field
+                name="subcontractor_ids"
+                eval="[(6, 0, [ref('res_partner_subcontractor_1')])]"
+            />
+        </record>
+        <record id="mrp_bom_semifinished_1" model="mrp.bom">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_semifinished_1_product_template"
+            />
+            <field name="product_qty">1</field>
+            <field name="type">subcontract</field>
+            <field
+                name="subcontractor_ids"
+                eval="[(6, 0, [ref('res_partner_subcontractor_2')])]"
+            />
+        </record>
+        <record id="mrp_bom_semifinished_2" model="mrp.bom">
+            <field
+                name="product_tmpl_id"
+                ref="product_product_semifinished_2_product_template"
+            />
+            <field name="product_qty">1</field>
+            <field name="type">subcontract</field>
+            <field
+                name="subcontractor_ids"
+                eval="[(6, 0, [ref('res_partner_subcontractor_3')])]"
+            />
+        </record>
+        <!-- END MRP BOM -->
+
+        <!-- MRP BOM LINE -->
+        <record id="mrp_bom_line_finished" model="mrp.bom.line">
+            <field name="product_id" ref="product_product_semifinished_1" />
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="bom_id" ref="mrp_bom_finished" />
+        </record>
+        <record id="mrp_bom_line_semifinished_1" model="mrp.bom.line">
+            <field name="product_id" ref="product_product_semifinished_2" />
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="bom_id" ref="mrp_bom_semifinished_1" />
+        </record>
+        <record id="mrp_bom_line_semifinished_2" model="mrp.bom.line">
+            <field name="product_id" ref="product_product_component_1" />
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="bom_id" ref="mrp_bom_semifinished_2" />
+        </record>
+        <!-- END MRP BOM LINE -->
+
+        <!-- STOCK LOCATION -->
+        <function model="ir.model.data" name="_update_xmlids">
+            <value
+                model="base"
+                eval="[{
+                'xml_id': 'mrp_subcontracting_picking.stock_subcontracting_location',
+                'record': obj().env.ref('base.main_company').subcontracting_location_id,
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_subcontracting_picking.production_virtual_location',
+                'record': obj().env['stock.location'].search([('usage', '=', 'production')], limit=1),
+                'noupdate': True,
+            }, {
+                'xml_id': 'mrp_subcontracting_picking.wh_location',
+                'record': obj().env.ref('stock.stock_location_stock').location_id,
+                'noupdate': True,
+            }
+            ]"
+            />
+        </function>
+
+        <record id="stock_location_subcontractor_1" model="stock.location">
+            <field name="name">Subcontractor 1</field>
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.stock_subcontracting_location"
+            />
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_subcontractor_2" model="stock.location">
+            <field name="name">Subcontractor 2</field>
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.stock_subcontracting_location"
+            />
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_subcontractor_3" model="stock.location">
+            <field name="name">Subcontractor 3</field>
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.stock_subcontracting_location"
+            />
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_wh_pre_production" model="stock.location">
+            <field name="name">Pre-Production</field>
+            <field name="location_id" ref="mrp_subcontracting_picking.wh_location" />
+            <field name="usage">internal</field>
+        </record>
+        <!-- END STOCK LOCATION -->
+
+        <!-- IR SEQUENCE -->
+        <record id="ir_sequence_s1l" model="ir.sequence">
+            <field name="name">San Francisco Sequenza S1I</field>
+            <field name="active">True</field>
+            <field name="implementation">standard</field>
+            <field name="prefix">WH/S1I/</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">5</field>
+        </record>
+        <record id="ir_sequence_s2l" model="ir.sequence">
+            <field name="name">San Francisco Sequenza S2I</field>
+            <field name="active">True</field>
+            <field name="implementation">standard</field>
+            <field name="prefix">WH/S2I/</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">5</field>
+        </record>
+        <record id="ir_sequence_s3l" model="ir.sequence">
+            <field name="name">San Francisco Sequenza S3I</field>
+            <field name="active">True</field>
+            <field name="implementation">standard</field>
+            <field name="prefix">WH/S3I/</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">5</field>
+        </record>
+        <record id="ir_sequence_picking_before_manufactoring" model="ir.sequence">
+            <field
+                name="name"
+            >San Francisco Sequence picking before manufacturing</field>
+            <field name="active">True</field>
+            <field name="implementation">standard</field>
+            <field name="prefix">WH/PC/</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">1</field>
+        </record>
+        <!-- END IR SEQUENCE -->
+
+        <!-- STOCK PICKING -->
+        <record id="stock_picking_subcontractor_1_in" model="stock.picking.type">
+            <field name="name">Subcontractor 1: IN</field>
+            <field name="sequence_id" ref="ir_sequence_s1l" />
+            <field name="sequence_code">S1I</field>
+            <field
+                name="default_location_dest_id"
+                ref="stock_location_subcontractor_1"
+            />
+            <field name="code">incoming</field>
+            <field name="show_operations">True</field>
+            <field name="show_reserved">True</field>
+        </record>
+        <record id="stock_picking_subcontractor_2_in" model="stock.picking.type">
+            <field name="name">Subcontractor 2: IN</field>
+            <field name="sequence_id" ref="ir_sequence_s2l" />
+            <field name="sequence_code">S2I</field>
+            <field
+                name="default_location_dest_id"
+                ref="stock_location_subcontractor_2"
+            />
+            <field name="code">incoming</field>
+            <field name="show_operations">True</field>
+            <field name="show_reserved">True</field>
+        </record>
+        <record id="stock_picking_subcontractor_3_in" model="stock.picking.type">
+            <field name="name">Subcontractor 3: IN</field>
+            <field name="sequence_id" ref="ir_sequence_s3l" />
+            <field name="sequence_code">S3I</field>
+            <field
+                name="default_location_dest_id"
+                ref="stock_location_subcontractor_3"
+            />
+            <field name="code">incoming</field>
+            <field name="show_operations">True</field>
+            <field name="show_reserved">True</field>
+        </record>
+        <record id="stock_picking_pick_components" model="stock.picking.type">
+            <field name="name">Pick Components</field>
+            <field name="sequence_id" ref="ir_sequence_picking_before_manufactoring" />
+            <field name="sequence_code">PC</field>
+            <field name="default_location_src_id" ref="stock.stock_location_stock" />
+            <field
+                name="default_location_dest_id"
+                ref="stock_location_wh_pre_production"
+            />
+            <field name="code">internal</field>
+            <field name="show_operations">True</field>
+        </record>
+        <!-- END STOCK PICKING -->
+
+        <!-- STOCK RULE -->
+        <record id="stock_rule_buy_subcontractor_1" model="stock.rule">
+            <field name="route_id" ref="purchase_stock.route_warehouse0_buy" />
+            <field name="name">Subcontractor 1</field>
+            <field name="action">buy</field>
+            <field name="picking_type_id" ref="stock_picking_subcontractor_1_in" />
+            <field name="location_id" ref="stock_location_subcontractor_1" />
+            <field name="group_propagation_option">propagate</field>
+        </record>
+        <record id="stock_rule_buy_subcontractor_2" model="stock.rule">
+            <field name="route_id" ref="purchase_stock.route_warehouse0_buy" />
+            <field name="name">Subcontractor 2</field>
+            <field name="action">buy</field>
+            <field name="picking_type_id" ref="stock_picking_subcontractor_2_in" />
+            <field name="location_id" ref="stock_location_subcontractor_2" />
+            <field name="group_propagation_option">propagate</field>
+        </record>
+        <record id="stock_rule_buy_subcontractor_3" model="stock.rule">
+            <field name="route_id" ref="purchase_stock.route_warehouse0_buy" />
+            <field name="name">Subcontractor 3</field>
+            <field name="action">buy</field>
+            <field name="picking_type_id" ref="stock_picking_subcontractor_3_in" />
+            <field name="location_id" ref="stock_location_subcontractor_3" />
+            <field name="group_propagation_option">propagate</field>
+        </record>
+        <record id="stock_rule_resupply_subcontractor_1" model="stock.rule">
+            <field
+                name="route_id"
+                ref="mrp_subcontracting.route_resupply_subcontractor_mto"
+            />
+            <field name="name">Subcontractor 1</field>
+            <field name="action">pull</field>
+            <field name="picking_type_id" ref="stock.picking_type_out" />
+            <field name="location_src_id" ref="stock_location_subcontractor_1" />
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.production_virtual_location"
+            />
+            <field name="partner_address_id" ref="res_partner_subcontractor_1" />
+            <field name="delay">0</field>
+            <field name="group_propagation_option">propagate</field>
+            <field name="procure_method">mts_else_mto</field>
+        </record>
+        <record id="stock_rule_resupply_subcontractor_2" model="stock.rule">
+            <field
+                name="route_id"
+                ref="mrp_subcontracting.route_resupply_subcontractor_mto"
+            />
+            <field name="name">Subcontractor 2</field>
+            <field name="action">pull</field>
+            <field name="picking_type_id" ref="stock.picking_type_out" />
+            <field name="location_src_id" ref="stock_location_subcontractor_2" />
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.production_virtual_location"
+            />
+            <field name="partner_address_id" ref="res_partner_subcontractor_2" />
+            <field name="delay">0</field>
+            <field name="group_propagation_option">propagate</field>
+            <field name="procure_method">mts_else_mto</field>
+        </record>
+        <record id="stock_rule_resupply_subcontractor_3" model="stock.rule">
+            <field
+                name="route_id"
+                ref="mrp_subcontracting.route_resupply_subcontractor_mto"
+            />
+            <field name="name">Subcontractor 3</field>
+            <field name="action">pull</field>
+            <field name="picking_type_id" ref="stock.picking_type_out" />
+            <field name="location_src_id" ref="stock_location_subcontractor_3" />
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.production_virtual_location"
+            />
+            <field name="partner_address_id" ref="res_partner_subcontractor_3" />
+            <field name="delay">0</field>
+            <field name="group_propagation_option">propagate</field>
+            <field name="procure_method">mts_else_mto</field>
+        </record>
+        <record id="stock_rule_pre_production_mto" model="stock.rule">
+            <field name="route_id" ref="stock.route_warehouse0_mto" />
+            <field name="name">WH: Stock → Pre-Production (MTO)</field>
+            <field name="action">pull</field>
+            <field name="picking_type_id" ref="stock_picking_pick_components" />
+            <field name="location_src_id" ref="stock.stock_location_stock" />
+            <field name="location_id" ref="stock_location_wh_pre_production" />
+            <field name="group_propagation_option">propagate</field>
+            <field name="procure_method">make_to_order</field>
+            <field name="delay">0</field>
+        </record>
+        <!-- END STOCK RULE -->
+
+    </data>
+</odoo>

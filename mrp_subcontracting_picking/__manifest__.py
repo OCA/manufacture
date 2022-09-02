@@ -11,6 +11,7 @@
     "external_dependencies": {},
     "data": [
         "views/stock_picking_view.xml",
+        "data/demo.xml",
     ],
     "installable": True,
     "application": False,
