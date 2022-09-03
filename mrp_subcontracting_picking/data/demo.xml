@@ -11,6 +11,9 @@
         <record id="stock.route_warehouse0_mto" model="stock.location.route">
             <field name="active">True</field>
         </record>
+        <record id="stock.picking_type_out" model="stock.picking.type">
+            <field name="show_operations">True</field>
+        </record>
         <!-- END UPDATE STOCK LOCATION ROUTE -->
 
         <!-- VENDORS -->
@@ -200,10 +203,25 @@
                 'xml_id': 'mrp_subcontracting_picking.wh_location',
                 'record': obj().env.ref('stock.stock_location_stock').location_id,
                 'noupdate': True,
+            }, {
+                'xml_id': 'mrp_subcontracting_picking.stock_location_pbm',
+                'record': obj().env.ref('stock.warehouse0').pbm_loc_id,
+                'noupdate': True,
+            }, {
+                'xml_id': 'mrp_subcontracting_picking.stock_picking_type_pbm',
+                'record': obj().env.ref('stock.warehouse0').pbm_type_id,
+                'noupdate': True,
             }
             ]"
             />
         </function>
+
+        <record
+            id="mrp_subcontracting_picking.stock_subcontracting_location"
+            model="stock.location"
+        >
+            <field name="active">True</field>
+        </record>
 
         <record id="stock_location_subcontractor_1" model="stock.location">
             <field name="name">Subcontractor 1</field>
@@ -227,11 +245,6 @@
                 name="location_id"
                 ref="mrp_subcontracting_picking.stock_subcontracting_location"
             />
-            <field name="usage">internal</field>
-        </record>
-        <record id="stock_location_wh_pre_production" model="stock.location">
-            <field name="name">Pre-Production</field>
-            <field name="location_id" ref="mrp_subcontracting_picking.wh_location" />
             <field name="usage">internal</field>
         </record>
         <!-- END STOCK LOCATION -->
@@ -313,18 +326,6 @@
             <field name="code">incoming</field>
             <field name="show_operations">True</field>
             <field name="show_reserved">True</field>
-        </record>
-        <record id="stock_picking_pick_components" model="stock.picking.type">
-            <field name="name">Pick Components</field>
-            <field name="sequence_id" ref="ir_sequence_picking_before_manufactoring" />
-            <field name="sequence_code">PC</field>
-            <field name="default_location_src_id" ref="stock.stock_location_stock" />
-            <field
-                name="default_location_dest_id"
-                ref="stock_location_wh_pre_production"
-            />
-            <field name="code">internal</field>
-            <field name="show_operations">True</field>
         </record>
         <!-- END STOCK PICKING -->
 
@@ -411,9 +412,15 @@
             <field name="route_id" ref="stock.route_warehouse0_mto" />
             <field name="name">WH: Stock → Pre-Production (MTO)</field>
             <field name="action">pull</field>
-            <field name="picking_type_id" ref="stock_picking_pick_components" />
+            <field
+                name="picking_type_id"
+                ref="mrp_subcontracting_picking.stock_picking_type_pbm"
+            />
             <field name="location_src_id" ref="stock.stock_location_stock" />
-            <field name="location_id" ref="stock_location_wh_pre_production" />
+            <field
+                name="location_id"
+                ref="mrp_subcontracting_picking.stock_location_pbm"
+            />
             <field name="group_propagation_option">propagate</field>
             <field name="procure_method">make_to_order</field>
             <field name="delay">0</field>
