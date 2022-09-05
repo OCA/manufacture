@@ -79,6 +79,7 @@ class ProductMRPArea(models.Model):
             ("buy", "Buy"),
             ("none", "Undefined"),
             ("manufacture", "Produce"),
+            ("phantom", "Kit"),
             ("pull", "Pull From"),
             ("push", "Push To"),
             ("pull_push", "Pull & Push"),
@@ -186,7 +187,14 @@ class ProductMRPArea(models.Model):
                 "company_id": rec.mrp_area_id.company_id,
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
-            rec.supply_method = rule.action if rule else "none"
+            if (
+                rule.action == "manufacture"
+                and rec.product_id.product_tmpl_id.bom_ids
+                and rec.product_id.product_tmpl_id.bom_ids[0].type == "phantom"
+            ):
+                rec.supply_method = "phantom"
+            else:
+                rec.supply_method = rule.action if rule else "none"
 
     @api.depends(
         "mrp_area_id", "supply_method", "product_id.route_ids", "product_id.seller_ids"
@@ -268,7 +276,4 @@ class ProductMRPArea(models.Model):
 
     def _to_be_exploded(self):
         self.ensure_one()
-        if self.supply_method == "manufacture":
-            return True
-        else:
-            return False
+        return self.supply_method in ["manufacture", "phantom"]

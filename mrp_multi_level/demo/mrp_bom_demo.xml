@@ -40,8 +40,30 @@
         <field name="sequence">5</field>
         <field name="bom_id" ref="mrp_bom_fp_2" />
     </record>
-    <!-- Customizable Desk -->
-    <record id="mrp_bom_product_4" model="mrp.bom">
+
+    <!-- FP-3 -->
+     <record id="mrp_bom_fp_3" model="mrp.bom">
+        <field name="product_tmpl_id" ref="product_product_fp_3_product_template" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="sequence">5</field>
+    </record>
+    <record id="mrp_bom_fp_3_line_sf_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_sf_3" />
+        <field name="product_qty">2</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_fp_3" />
+    </record>
+    <record id="mrp_bom_fp_3_line_pp_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_pp_3" />
+        <field name="product_qty">2</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_fp_3" />
+    </record>
+
+     <!-- Customizable Desk -->
+     <record id="mrp_bom_product_4" model="mrp.bom">
         <field
             name="product_tmpl_id"
             ref="product.product_product_4_product_template"
@@ -125,5 +147,26 @@
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
         <field name="bom_id" ref="mrp_bom_sf_2" />
+    </record>
+    <!-- SF-3 -->
+     <record id="mrp_bom_sf_3" model="mrp.bom">
+        <field name="product_tmpl_id" ref="product_product_sf_3_product_template" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+         <field name="type">phantom</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="mrp_bom_sf_3_line_pp_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_pp_3" />
+        <field name="product_qty">1</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_sf_3" />
+    </record>
+    <record id="mrp_bom_sf_3_line_pp_4" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_pp_4" />
+        <field name="product_qty">3</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="sequence">5</field>
+        <field name="bom_id" ref="mrp_bom_sf_3" />
     </record>
 </odoo>
