@@ -7,6 +7,7 @@
 from odoo import api, fields, models, exceptions, _
 from datetime import date, timedelta
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -97,8 +98,8 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_planned_order_data(
-            self, product_mrp_area, qty, mrp_date_supply,
-            mrp_action_date, name
+        self, product_mrp_area, qty, mrp_date_supply,
+        mrp_action_date, name
     ):
         return {
             'product_mrp_area_id': product_mrp_area.id,
@@ -169,7 +170,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def explode_action(
-            self, product_mrp_area_id, mrp_action_date, name, qty, action
+        self, product_mrp_area_id, mrp_action_date, name, qty, action
     ):
         """Explode requirements."""
         mrp_date_demand = mrp_action_date
@@ -189,7 +190,7 @@ class MultiLevelMrp(models.TransientModel):
                         bomline.product_id.type != 'product':
                     continue
                 if self.with_context(mrp_explosion=True)._exclude_from_mrp(
-                        bomline.product_id,
+                    bomline.product_id,
                         product_mrp_area_id.mrp_area_id):
                     # Stop explosion.
                     continue
@@ -211,7 +212,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def create_action(
-            self, product_mrp_area_id, mrp_date, mrp_qty, name, values=None,
+        self, product_mrp_area_id, mrp_date, mrp_qty, name, values=None,
     ):
         if not values:
             values = {}
@@ -225,12 +226,12 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def create_planned_order(
-            self, product_mrp_area_id, mrp_qty,
-            name, mrp_date_supply, mrp_action_date, values=None,
+        self, product_mrp_area_id, mrp_qty,
+        name, mrp_date_supply, mrp_action_date, values=None,
     ):
         self = self.with_context(auditlog_disabled=True)
         if self._exclude_from_mrp(
-                product_mrp_area_id.product_id,
+            product_mrp_area_id.product_id,
                 product_mrp_area_id.mrp_area_id):
             values['qty_ordered'] = 0.0
             return values
@@ -243,7 +244,10 @@ class MultiLevelMrp(models.TransientModel):
             order_data = self._prepare_planned_order_data(
                 product_mrp_area_id, qty, mrp_date_supply, mrp_action_date,
                 name)
-            planned_order = self.env['mrp.planned.order'].create(order_data)
+            # Do not create planned order for products that are Kits
+            planned_order = False
+            if not product_mrp_area_id.supply_method == 'phantom':
+                planned_order = self.env['mrp.planned.order'].create(order_data)
             qty_ordered = qty_ordered + qty
 
             if product_mrp_area_id._to_be_exploded():
@@ -297,7 +301,7 @@ class MultiLevelMrp(models.TransientModel):
             products = bom_lines.mapped('product_id')
             products.write({'llc': llc})
             counter = self.env['product.product'].search_count([('llc', '=',
-                                                               llc)])
+                                                                 llc)])
             log_msg = 'Low level code %s finished - Nbr. products: %s' % (
                 llc, counter)
             logger.info(log_msg)
@@ -383,8 +387,7 @@ class MultiLevelMrp(models.TransientModel):
         return True
 
     @api.model
-    def _prepare_mrp_move_data_from_purchase_order(
-            self, poline, product_mrp_area):
+    def _prepare_mrp_move_data_from_purchase_order(self, poline, product_mrp_area):
         mrp_date = date.today()
         if fields.Date.from_string(poline.date_planned) > date.today():
             mrp_date = fields.Date.from_string(poline.date_planned)
@@ -484,12 +487,12 @@ class MultiLevelMrp(models.TransientModel):
             if self._exclude_move(move):
                 continue
             if last_date and (
-                    fields.Date.from_string(move.mrp_date)
-                    >= last_date + timedelta(days=grouping_delta)) and (
-                        (onhand + last_qty + move.mrp_qty)
-                        < product_mrp_area.mrp_minimum_stock
-                        or (onhand + last_qty)
-                        < product_mrp_area.mrp_minimum_stock):
+                fields.Date.from_string(move.mrp_date)
+                >= last_date + timedelta(days=grouping_delta)) and (
+                (onhand + last_qty + move.mrp_qty)
+                < product_mrp_area.mrp_minimum_stock
+                or (onhand + last_qty)
+                    < product_mrp_area.mrp_minimum_stock):
                 name = 'Grouped Demand for %d Days' % grouping_delta
                 qtytoorder = product_mrp_area.mrp_minimum_stock - \
                     onhand - last_qty
@@ -504,8 +507,8 @@ class MultiLevelMrp(models.TransientModel):
                 last_qty = 0.00
                 nbr_create += 1
             if (onhand + last_qty + move.mrp_qty) < \
-                    product_mrp_area.mrp_minimum_stock or \
-                    (onhand + last_qty) < \
+                product_mrp_area.mrp_minimum_stock or \
+                (onhand + last_qty) < \
                     product_mrp_area.mrp_minimum_stock:
                 if not last_date or last_qty == 0.0:
                     last_date = fields.Date.from_string(move.mrp_date)
@@ -720,9 +723,9 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
-            if self._exclude_from_mrp(
-                    product_mrp_area.product_id,
-                    product_mrp_area.mrp_area_id):
+            if self._exclude_from_mrp(product_mrp_area.product_id,
+                                      product_mrp_area.mrp_area_id) or \
+                    product_mrp_area.supply_method == 'phantom':
                 continue
             self._init_mrp_inventory(product_mrp_area)
         logger.info('End MRP final process')
