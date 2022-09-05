@@ -387,3 +387,42 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(len(prod_uom_test_inventory_lines), 1)
         self.assertEqual(prod_uom_test_inventory_lines.supply_qty, 12.0)
         # Supply qty has to be 12 has a dozen of units are in a RFQ.
+
+    def test_16_phantom_comp_planning(self):
+        """
+        Phantom components will not appear in MRP Inventory or Planned Orders.
+        MRP Parameter will have 'phantom' supply method.
+        """
+        # SF-3
+        sf_3_line_1 = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.sf_3.id)]
+        )
+        self.assertEqual(len(sf_3_line_1), 0)
+        sf_3_planned_order_1 = self.planned_order_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.sf_3.id)]
+        )
+        self.assertEqual(len(sf_3_planned_order_1), 0)
+        sf_3_mrp_parameter = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.sf_3.id)]
+        )
+        self.assertEqual(sf_3_mrp_parameter.supply_method, "phantom")
+        # PP-3
+        pp_3_line_1 = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_3.id)]
+        )
+        self.assertEqual(len(pp_3_line_1), 1)
+        self.assertEqual(pp_3_line_1.demand_qty, 20.0)
+        pp_3_planned_orders = self.planned_order_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_3.id)]
+        )
+        self.assertEqual(len(pp_3_planned_orders), 2)
+        # PP-4
+        pp_4_line_1 = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_4.id)]
+        )
+        self.assertEqual(len(pp_4_line_1), 1)
+        self.assertEqual(pp_4_line_1.demand_qty, 30.0)
+        pp_4_planned_orders = self.planned_order_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_4.id)]
+        )
+        self.assertEqual(len(pp_4_planned_orders), 1)

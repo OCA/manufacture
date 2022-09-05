@@ -28,10 +28,14 @@ class TestMrpMultiLevelCommon(TransactionCase):
 
         cls.fp_1 = cls.env.ref("mrp_multi_level.product_product_fp_1")
         cls.fp_2 = cls.env.ref("mrp_multi_level.product_product_fp_2")
+        cls.fp_3 = cls.env.ref("mrp_multi_level.product_product_fp_3")
         cls.sf_1 = cls.env.ref("mrp_multi_level.product_product_sf_1")
         cls.sf_2 = cls.env.ref("mrp_multi_level.product_product_sf_2")
+        cls.sf_3 = cls.env.ref("mrp_multi_level.product_product_sf_3")
         cls.pp_1 = cls.env.ref("mrp_multi_level.product_product_pp_1")
         cls.pp_2 = cls.env.ref("mrp_multi_level.product_product_pp_2")
+        cls.pp_3 = cls.env.ref("mrp_multi_level.product_product_pp_3")
+        cls.pp_4 = cls.env.ref("mrp_multi_level.product_product_pp_4")
         cls.product_4b = cls.env.ref("product.product_product_4b")
         cls.av_11 = cls.env.ref("mrp_multi_level.product_product_av_11")
         cls.av_12 = cls.env.ref("mrp_multi_level.product_product_av_12")
@@ -267,6 +271,19 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "date": date_move,
                             "product_uom": cls.fp_2.uom_id.id,
                             "product_uom_qty": 15,
+                            "location_id": cls.stock_location.id,
+                            "location_dest_id": cls.customer_location.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test move fp-3",
+                            "product_id": cls.fp_3.id,
+                            "date": date_move,
+                            "product_uom": cls.fp_3.uom_id.id,
+                            "product_uom_qty": 5,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
                         },
