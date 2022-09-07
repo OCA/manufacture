@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="mrp_production_form_view" model="ir.ui.view">
+    <field name="name">mrp.production.form.inherit</field>
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+    <field name="arch" type="xml">
+      <!-- Place new fields in the first group while being compatible with OE  -->
+      <xpath expr="//field[@name='id']/.." position="inside">
+        <field name="is_lot_number_propagated" force_save="1" />
+      </xpath>
+      <label for="lot_producing_id" position="before">
+        <field
+                    name="propagated_lot_producing"
+                    string="Lot/Serial Number"
+                    attrs="{'invisible': [('is_lot_number_propagated', '=', False)]}"
+                />
+      </label>
+    </field>
+  </record>
+
+</odoo>
