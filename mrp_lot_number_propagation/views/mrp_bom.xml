@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="mrp_bom_form_view" model="ir.ui.view">
+    <field name="name">mrp.bom.form.inherit</field>
+    <field name="model">mrp.bom</field>
+    <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+    <field name="arch" type="xml">
+      <field name="company_id" position="after">
+        <field name="display_lot_number_propagation" invisible="1" />
+        <field
+                    name="lot_number_propagation"
+                    attrs="{'invisible': [('display_lot_number_propagation', '=', False)]}"
+                />
+      </field>
+      <xpath expr="//field[@name='bom_line_ids']/tree" position="inside">
+        <field name="display_propagate_lot_number" invisible="1" />
+        <field
+                    name="propagate_lot_number"
+                    attrs="{'column_invisible': ['|', ('parent.display_lot_number_propagation', '=', False), ('parent.lot_number_propagation', '=', False)]}"
+                />
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
