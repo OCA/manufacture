@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <record id="mrp_workorder_blocking_time_tree_inherit" model="ir.ui.view">
+            <field name="name">mrp.workorder.blocking_time.tree.inherit</field>
+            <field name="model">mrp.workorder</field>
+            <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='date_finished']" position="after">
+                    <field name="blocking_stage_end" optional="show" readonly="1" />
+                </xpath>
+                <xpath expr="//field[@name='json_popover']" position="after">
+                    <field
+                    name="blocking_period_interrupted"
+                    optional="hide"
+                    readonly="1"
+                />
+                    <field name="interruption_reason" optional="hide" readonly="1" />
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+</odoo>

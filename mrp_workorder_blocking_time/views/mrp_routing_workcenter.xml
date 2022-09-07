@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_routing_workcenter_blocking_time_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.blocking_time.form.inherit</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='time_cycle']" position="after">
+                <field name="blocking_stage" />
+                <label
+                    for="recommended_blocking_time"
+                    attrs="{'invisible': [('blocking_stage', '=', False)]}"
+                    string="Rec. Blocking Time"
+                />
+                <div attrs="{'invisible': [('blocking_stage', '=', False)]}">
+                    <field
+                        name="recommended_blocking_time"
+                        widget="float_time"
+                        class="oe_inline"
+                    /> hours
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="mrp_routing_workcenter_blocking_time_tree_inherit" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.blocking_time.tree.inherit</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='time_cycle']" position="after">
+                <field name="blocking_stage" optional="show" />
+                <field
+                    name="recommended_blocking_time"
+                    widget="float_time"
+                    string="Rec. Blocking Time (hours)"
+                    width="1.5"
+                    optional="show"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record
+        id="mrp_routing_workcenter_bom_blocking_time_tree_inherit"
+        model="ir.ui.view"
+    >
+        <field name="name">mrp.routing.workcenter.bom.blocking_time.tree.inherit</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_bom_tree_view" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='time_cycle']" position="after">
+                <field name="blocking_stage" optional="show" />
+                <field
+                    name="recommended_blocking_time"
+                    widget="float_time"
+                    string="Rec. Blocking Time (hours)"
+                    width="1.5"
+                    optional="show"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
