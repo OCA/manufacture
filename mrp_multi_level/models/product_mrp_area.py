@@ -188,7 +188,9 @@ class ProductMRPArea(models.Model):
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
             rec.supply_method = rule.action if rule else "none"
 
-    @api.depends("supply_method", "product_id.route_ids", "product_id.seller_ids")
+    @api.depends(
+        "mrp_area_id", "supply_method", "product_id.route_ids", "product_id.seller_ids"
+    )
     def _compute_main_supplier(self):
         """Simplified and similar to procurement.rule logic."""
         for rec in self.filtered(lambda r: r.supply_method == "buy"):
