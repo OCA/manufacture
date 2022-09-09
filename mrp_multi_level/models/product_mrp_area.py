@@ -87,6 +87,7 @@ class ProductMRPArea(models.Model):
         selection=[('buy', 'Buy'),
                    ('none', 'Undefined'),
                    ('manufacture', 'Produce'),
+                   ('phantom', 'Kit'),
                    ('pull', 'Pull From'),
                    ('push', 'Push To'),
                    ('pull_push', 'Pull & Push')],
@@ -177,7 +178,12 @@ class ProductMRPArea(models.Model):
                 # TODO: better way to get company
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
-            rec.supply_method = rule.action if rule else 'none'
+            if rule.action == 'manufacture' and \
+                rec.product_id.product_tmpl_id.bom_ids and \
+                    rec.product_id.product_tmpl_id.bom_ids[0].type == 'phantom':
+                rec.supply_method = 'phantom'
+            else:
+                rec.supply_method = rule.action if rule else 'none'
 
     @api.multi
     @api.depends('supply_method', 'product_id.route_ids',
@@ -224,4 +230,4 @@ class ProductMRPArea(models.Model):
     @api.multi
     def _to_be_exploded(self):
         self.ensure_one()
-        return self.supply_method == 'manufacture'
+        return self.supply_method in ['manufacture', 'phantom']
