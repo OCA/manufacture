@@ -2,3 +2,4 @@
 
 account-analytic
 stock-logistics-warehouse
+web
