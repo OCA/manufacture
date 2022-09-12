@@ -10,3 +10,7 @@
 * `ForgeFlow <https://www.forgeflow.com/>`__:
 
   * Lois Rilo <lois.rilo@forgeflow.com>
+
+* `Punt Sistemes <https://www.puntsistemes.com/>`__:
+
+  * Salva Benlloch <sbenlloch@puntsistemes.es>
