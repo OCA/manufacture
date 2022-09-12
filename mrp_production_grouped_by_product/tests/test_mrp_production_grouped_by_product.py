@@ -8,7 +8,7 @@ from odoo import exceptions
 from odoo.tests import common
 
 
-class TestProductionGroupedByProduct(common.SavepointCase):
+class TestProductionGroupedByProduct(common.TransactionCase):
     at_install = False
     post_install = True
 

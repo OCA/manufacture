@@ -5,7 +5,7 @@
 
 {
     "name": "Production Grouped By Product",
-    "version": "14.0.1.0.2",
+    "version": "15.0.1.0.0",
     "category": "MRP",
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
