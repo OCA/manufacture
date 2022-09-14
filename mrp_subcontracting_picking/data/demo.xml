@@ -216,12 +216,12 @@
             />
         </function>
 
-        <record
-            id="mrp_subcontracting_picking.stock_subcontracting_location"
-            model="stock.location"
-        >
-            <field name="active">True</field>
-        </record>
+        <function name="write" model="stock.location">
+            <value
+                eval="[ref('mrp_subcontracting_picking.stock_subcontracting_location')]"
+            />
+            <value eval="{'active': True}" />
+        </function>
 
         <record id="stock_location_subcontractor_1" model="stock.location">
             <field name="name">Subcontractor 1</field>
