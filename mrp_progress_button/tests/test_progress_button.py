@@ -65,6 +65,7 @@ class TestProgressButton(TransactionCase):
                 "bom_id": self.bom.id,
             }
         )
+        production.action_confirm()
         production.action_progress()
         self.assertEqual(production.state, "progress")
         self.assertEqual(
