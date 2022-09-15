@@ -541,7 +541,8 @@ class MultiLevelMrp(models.TransientModel):
             else:
                 last_date = fields.Date.from_string(move.mrp_date)
                 onhand += move.mrp_qty
-            demand_origin.append(move.origin or move.name or "")
+            if move.mrp_type == "d":
+                demand_origin.append(move.origin or move.name)
 
         if last_date and last_qty != 0.00:
             name = _(
