@@ -4,16 +4,31 @@
 
 from datetime import datetime
 
-from odoo import models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
+    @api.depends(
+        "move_raw_ids.state",
+        "move_raw_ids.quantity_done",
+        "move_finished_ids.state",
+        "workorder_ids.state",
+        "product_qty",
+        "qty_producing",
+        "date_start",
+    )
+    def _compute_state(self):
+        res = super()._compute_state()
+        for production in self:
+            if production.state == "confirmed" and production.date_start:
+                production.state = "progress"
+        return res
+
     def action_progress(self):
         self.write(
             {
-                "state": "progress",
                 "date_start": datetime.now(),
             }
         )
