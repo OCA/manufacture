@@ -24,8 +24,7 @@ class TestMrpSubcontractingInhibit(common.SavepointCase):
                         {
                             "name": cls.supplier.id,
                             "min_qty": 1,
-                            "price": 5,
-                            "subcontracting_inhibit": True,
+                            "price": 10,
                         },
                     ),
                     (
@@ -34,7 +33,8 @@ class TestMrpSubcontractingInhibit(common.SavepointCase):
                         {
                             "name": cls.supplier.id,
                             "min_qty": 1,
-                            "price": 10,
+                            "price": 5,
+                            "subcontracting_inhibit": True,
                         },
                     ),
                 ],
@@ -100,3 +100,13 @@ class TestMrpSubcontractingInhibit(common.SavepointCase):
         self.assertEqual(order.order_line.price_unit, 5)
         order.button_confirm()
         self.assertEqual(self._get_mrp_production_total(), 0)
+
+    def test_change_purchase_order_line_subcontracting_inhibit(self):
+        order_form = Form(self.env["purchase.order"])
+        order_form.partner_id = self.supplier
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.product_qty = 1
+        self.assertEqual(line_form.price_unit, 10)
+        line_form.subcontracting_inhibit = True
+        self.assertEqual(line_form.price_unit, 5)
