@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_grouped_by_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__display_name
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_move__id
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__id
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_move____last_update
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type____last_update
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
+msgid "MO grouping interval (days)"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
+msgid "MO grouping max. hour (UTC)"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
+msgid ""
+"The maximum hour (between 0 and 23) for considering new manufacturing orders"
+" inside the same interval period, and thus being grouped on the same MO. "
+"IMPORTANT: The hour should be expressed in UTC."
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
+msgid ""
+"The number of days for grouping together on the same manufacturing order."
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
+#, python-format
+msgid "You have to enter a positive value for interval."
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
+#, python-format
+msgid "You have to enter a valid hour between 0 and 23."
+msgstr ""
