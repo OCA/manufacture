@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.1 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 14.0.1.0.1 |  | Repair type
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
+[stock_whole_kit_constraint](stock_whole_kit_constraint/) | 14.0.1.0.0 |  | Avoid to deliver a kit partially
 
 [//]: # (end addons)
 
