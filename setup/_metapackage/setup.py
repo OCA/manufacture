@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo14-addon-repair_stock_move',
         'odoo14-addon-repair_type',
         'odoo14-addon-stock_picking_product_kit_helper',
+        'odoo14-addon-stock_whole_kit_constraint',
     ],
     classifiers=[
         'Programming Language :: Python',
