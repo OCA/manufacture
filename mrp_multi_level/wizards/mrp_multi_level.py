@@ -51,22 +51,25 @@ class MultiLevelMrp(models.TransientModel):
             mrp_type = "s"
             product_qty = move.product_qty
         po = po_line = None
-        mo = origin = order_number = parent_product_id = None
+        mo = origin = order_number = order_origin = parent_product_id = None
         if move.purchase_line_id:
             po = move.purchase_line_id.order_id
-            order_number = po.origin or po.name
+            order_number = po.name
+            order_origin = po.origin
             origin = "po"
             po = move.purchase_line_id.order_id.id
             po_line = move.purchase_line_id.id
         elif move.production_id or move.raw_material_production_id:
             production = move.production_id or move.raw_material_production_id
-            order_number = production.origin or production.name
+            order_number = production.name
+            order_origin = production.origin
             origin = "mo"
             mo = production.id
         elif move.move_dest_ids:
             for move_dest_id in move.move_dest_ids.filtered("production_id"):
                 production = move_dest_id.production_id
-                order_number = production.origin or production.name
+                order_number = production.name
+                order_origin = production.origin
                 origin = "mo"
                 mo = move_dest_id.production_id.id
                 parent_product_id = (
@@ -99,7 +102,7 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_order_number": order_number,
             "parent_product_id": parent_product_id,
             "name": order_number,
-            "origin": order_number,
+            "origin": order_origin,
             "state": move.state,
         }
 
