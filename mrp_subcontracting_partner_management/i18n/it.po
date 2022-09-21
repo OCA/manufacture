@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_partner_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-09-21 19:07+0000\n"
+"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model,name:mrp_subcontracting_partner_management.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__is_subcontractor
+msgid "Is Subcontractor"
+msgstr "è un Terzista"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner____last_update
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type____last_update
+msgid "Last Modified on"
+msgstr "Ultima Modifica il"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_buy_rule_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_buy_rule_id
+msgid "Partner Buy Rule"
+msgstr "Regola di acquisto del partner"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_picking_type_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_picking_type_id
+msgid "Partner Picking Type"
+msgstr "Tipo Trasferimento del partner"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_resupply_rule_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_resupply_rule_id
+msgid "Partner Resupply Rule"
+msgstr "Rifornimento Regola Partner"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model,name:mrp_subcontracting_partner_management.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo trasferimento"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__subcontracted_created_location_id
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__subcontracted_created_location_id
+msgid "Subcontracted Created Location"
+msgstr "Ubicazione per terzista"
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_form_inherit_subcontractor
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_pickingtype_filter
+msgid "Subcontractor"
+msgstr "Terzista"
