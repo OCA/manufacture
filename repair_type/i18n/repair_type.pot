@@ -29,11 +29,6 @@ msgid "Dest. Location"
 msgstr ""
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_id
-msgid "Destination Location"
-msgstr ""
-
-#. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_add_part_id
 msgid "Destination Location Add Component"
 msgstr ""
@@ -138,11 +133,6 @@ msgstr ""
 #: model:ir.model.fields,help:repair_type.field_repair_type__source_location_remove_part_id
 msgid ""
 "This is the location where the part of the product to remove is located."
-msgstr ""
-
-#. module: repair_type
-#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_id
-msgid "This is the location where the product repaired will be located."
 msgstr ""
 
 #. module: repair_type
