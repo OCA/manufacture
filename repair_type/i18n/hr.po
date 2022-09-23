@@ -33,11 +33,6 @@ msgid "Dest. Location"
 msgstr "Odredišna lokacija"
 
 #. module: repair_type
-#: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_id
-msgid "Destination Location"
-msgstr "Odredišna lokacija"
-
-#. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__destination_location_add_part_id
 msgid "Destination Location Add Component"
 msgstr "Dodaj komponentu na odredišnu lokaciju"
@@ -145,12 +140,10 @@ msgid ""
 msgstr ""
 
 #. module: repair_type
-#: model:ir.model.fields,help:repair_type.field_repair_type__destination_location_id
-msgid "This is the location where the product repaired will be located."
-msgstr ""
-
-#. module: repair_type
 #: model:ir.model.fields,help:repair_type.field_repair_order__location_id
 #: model:ir.model.fields,help:repair_type.field_repair_type__source_location_id
 msgid "This is the location where the product to repair is located."
 msgstr ""
+
+#~ msgid "Destination Location"
+#~ msgstr "Odredišna lokacija"
