@@ -29,9 +29,6 @@ class TestRepairType(TransactionCase):
             {
                 "name": "Repairings Office 1",
                 "source_location_id": self.env.ref("stock.stock_location_stock").id,
-                "destination_location_id": self.env.ref(
-                    "stock.stock_location_customers"
-                ).id,
                 "source_location_add_part_id": self.env.ref(
                     "stock.stock_location_components"
                 ).id,
@@ -49,9 +46,6 @@ class TestRepairType(TransactionCase):
                 "name": "Repairings Office 2",
                 "source_location_id": self.env.ref(
                     "stock.stock_location_components"
-                ).id,
-                "destination_location_id": self.env.ref(
-                    "stock.stock_location_stock"
                 ).id,
                 "source_location_add_part_id": self.env.ref(
                     "stock.location_refrigerator_small"
