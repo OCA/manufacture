@@ -121,7 +121,15 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _prepare_mrp_move_data_bom_explosion(
-        self, product, bomline, qty, mrp_date_demand_2, bom, name, planned_order
+        self,
+        product,
+        bomline,
+        qty,
+        mrp_date_demand_2,
+        bom,
+        name,
+        planned_order,
+        values=None,
     ):
         product_mrp_area = self._get_product_mrp_area_from_product_and_area(
             bomline.product_id, product.mrp_area_id
@@ -157,7 +165,7 @@ class MultiLevelMrp(models.TransientModel):
             ).replace(
                 "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
             ),
-            "origin": planned_order.origin,
+            "origin": planned_order.origin if planned_order else values.get("origin"),
         }
 
     @api.model
@@ -182,7 +190,9 @@ class MultiLevelMrp(models.TransientModel):
         return mrp_action_date, mrp_date_supply
 
     @api.model
-    def explode_action(self, product_mrp_area_id, mrp_action_date, name, qty, action):
+    def explode_action(
+        self, product_mrp_area_id, mrp_action_date, name, qty, action, values=None
+    ):
         """Explode requirements."""
         mrp_date_demand = mrp_action_date
         if mrp_date_demand < date.today():
@@ -221,6 +231,7 @@ class MultiLevelMrp(models.TransientModel):
                     bom,
                     name,
                     action,
+                    values,
                 )
                 mrpmove_id2 = self.env["mrp.move"].create(move_data)
                 if hasattr(action, "mrp_move_down_ids"):
@@ -265,12 +276,20 @@ class MultiLevelMrp(models.TransientModel):
             order_data = self._prepare_planned_order_data(
                 product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
-            planned_order = self.env["mrp.planned.order"].create(order_data)
+            # Do not create planned order for products that are Kits
+            planned_order = False
+            if not product_mrp_area_id.supply_method == "phantom":
+                planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
             if product_mrp_area_id._to_be_exploded():
                 self.explode_action(
-                    product_mrp_area_id, mrp_action_date, name, qty, planned_order
+                    product_mrp_area_id,
+                    mrp_action_date,
+                    name,
+                    qty,
+                    planned_order,
+                    values,
                 )
 
         values["qty_ordered"] = qty_ordered
@@ -771,8 +790,11 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
-            if self._exclude_from_mrp(
-                product_mrp_area.product_id, product_mrp_area.mrp_area_id
+            if (
+                self._exclude_from_mrp(
+                    product_mrp_area.product_id, product_mrp_area.mrp_area_id
+                )
+                or product_mrp_area.supply_method == "phantom"
             ):
                 continue
             self._init_mrp_inventory(product_mrp_area)
