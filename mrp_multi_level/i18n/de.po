@@ -222,6 +222,12 @@ msgid "FP-2"
 msgstr "FP-2"
 
 #. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_fp_3
+#: model:product.template,name:mrp_multi_level.product_product_fp_3_product_template
+msgid "FP-3"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 msgid "Fixed"
@@ -299,6 +305,11 @@ msgstr "Lagerorte"
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
 msgid "Items"
 msgstr "Positionen"
+
+#. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__phantom
+msgid "Kit"
+msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area____last_update
@@ -589,6 +600,18 @@ msgid "PP-2"
 msgstr "PP-2"
 
 #. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_pp_3
+#: model:product.template,name:mrp_multi_level.product_product_pp_3_product_template
+msgid "PP-3"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_pp_4
+#: model:product.template,name:mrp_multi_level.product_product_pp_4_product_template
+msgid "PP-4"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__parent_product_id
 msgid "Parent Product"
 msgstr "Übergeordnetes Produkt"
@@ -823,6 +846,12 @@ msgid "SF-2"
 msgstr "SF-2"
 
 #. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_sf_3
+#: model:product.template,name:mrp_multi_level.product_product_sf_3_product_template
+msgid "SF-3"
+msgstr ""
+
+#. module: mrp_multi_level
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_stock
 #, python-format
@@ -962,20 +991,28 @@ msgstr "Mengeneinheit"
 #: model:product.product,uom_name:mrp_multi_level.product_product_av_22
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
+#: model:product.product,uom_name:mrp_multi_level.product_product_fp_3
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
+#: model:product.product,uom_name:mrp_multi_level.product_product_pp_3
+#: model:product.product,uom_name:mrp_multi_level.product_product_pp_4
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
+#: model:product.product,uom_name:mrp_multi_level.product_product_sf_3
 #: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_fp_3_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_pp_3_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_pp_4_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_sf_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_sf_2_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_sf_3_product_template
 msgid "Units"
 msgstr ""
 
