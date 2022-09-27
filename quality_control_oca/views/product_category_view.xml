@@ -10,6 +10,7 @@
         <field name="name">product.category.qc</field>
         <field name="model">product.category</field>
         <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="groups_id" eval="[(4, ref('group_quality_control_user'))]" />
         <field name="arch" type="xml">
             <group name="first" position="after">
                 <group name="qc" string="Quality control">
