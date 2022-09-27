@@ -222,7 +222,24 @@
             />
             <value eval="{'active': True}" />
         </function>
-
+        <function name="write" model="stock.location.route">
+            <value
+                eval="[ref('mrp_subcontracting.route_resupply_subcontractor_mto')]"
+            />
+            <value eval="{'sequence': 4}" />
+        </function>
+        <function name="write" model="stock.location.route">
+            <value eval="[ref('mrp.route_warehouse0_manufacture')]" />
+            <value eval="{'sequence': 6}" />
+        </function>
+        <function name="write" model="stock.location.route">
+            <value eval="[ref('stock.route_warehouse0_mto')]" />
+            <value eval="{'sequence': 7}" />
+        </function>
+        <function name="write" model="stock.location.route">
+            <value eval="[ref('stock.warehouse0').subcontracting_route_id]" />
+            <value eval="{'sequence': 9}" />
+        </function>
         <record id="stock_location_subcontractor_1" model="stock.location">
             <field name="name">Subcontractor 1</field>
             <field
