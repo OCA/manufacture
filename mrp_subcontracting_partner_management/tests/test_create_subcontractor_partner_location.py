@@ -5,22 +5,9 @@ from odoo.tests import common, tagged
 class TestSubcontractedPartner(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        """
-        - Create a Partner record “Wood Corner”
-        - Type will be Company and new boolean is_subcontractor_partner is Set True
-        """
         super().setUpClass()
         cls.partner_id = cls.env.ref("base.res_partner_12")
         cls.partner_obj = cls.env["res.partner"]
-
-    def _get_partner(self):
-        return self.partner_obj.create(
-            {
-                "name": "Test partner",
-                "is_company": True,
-                "is_subcontractor_partner": True,
-            }
-        )
 
     def test_is_subcontractor_partner_first_time(self):
         self.partner_id.update(
@@ -181,3 +168,66 @@ class TestSubcontractedPartner(common.SavepointCase):
             [("name", "=", partner_id.partner_buy_rule_id.name)]
         )
         self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
+
+    def test_change_subcontractor_location(self):
+        expected_text = "Test partner"
+        partner = self.partner_obj.create(
+            {
+                "name": "Test partner",
+                "is_company": True,
+                "is_subcontractor_partner": True,
+            }
+        )
+        location = partner.property_stock_subcontractor
+        self.assertEqual(
+            location.name,
+            expected_text,
+            msg="Location name must be equal to {}".format(expected_text),
+        )
+
+        fields = [
+            "subcontracted_created_location_id",
+            "partner_buy_rule_id",
+            "partner_resupply_rule_id",
+            "property_stock_subcontractor",
+        ]
+        expected_text = "Test partner 1"
+        partner.name = expected_text
+        for field in fields:
+            location = getattr(partner, field)
+            self.assertEqual(
+                location.name,
+                expected_text,
+                msg="Record name must be equal to {}".format(expected_text),
+            )
+
+        picking = partner.partner_picking_type_id
+        expected_text = "%s:  IN" % expected_text
+        self.assertEqual(
+            picking.name,
+            expected_text,
+            msg="Record name must be equal to '{}'".format(expected_text),
+        )
+        self.assertEqual(
+            picking.sequence_code, "Tp1I", msg="Sequence code must be equal to 'Tp1I'"
+        )
+
+    def test_action_subcontractor_location_stock(self):
+        self.partner_id.update({"is_subcontractor_partner": True})
+        action = self.partner_id.action_subcontractor_location_stock()
+        self.assertEqual(
+            action.get("domain"),
+            [
+                (
+                    "location_id",
+                    "child_of",
+                    self.partner_id.property_stock_subcontractor.ids,
+                )
+            ],
+            msg="Domains must be the same",
+        )
+        self.assertEqual(
+            action.get("res_model"),
+            "stock.quant",
+            msg="Model must be equal to 'stock.quant'",
+        )
