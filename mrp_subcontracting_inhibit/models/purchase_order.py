@@ -27,6 +27,10 @@ class PurchaseOrderLine(models.Model):
         res.update({"subcontracting_inhibit": subcontracting_inhibit_value})
         return res
 
+    @api.onchange("subcontracting_inhibit")
+    def _onchange_subcontracting_inhibit(self):
+        return self._onchange_quantity()
+
     def _onchange_quantity(self):
         """We need to inject the context to set the right price"""
         _self = self.with_context(subcontracting_inhibit=self.subcontracting_inhibit)
