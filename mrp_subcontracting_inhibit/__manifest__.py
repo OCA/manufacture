@@ -12,6 +12,7 @@
     "data": [
         "views/product_supplierinfo_view.xml",
         "views/stock_location_route_view.xml",
+        "views/purchase_order_view.xml",
     ],
     "maintainers": ["victoralmau"],
 }
