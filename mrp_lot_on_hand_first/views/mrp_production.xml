@@ -12,10 +12,11 @@
                 expr="//field[@name='move_raw_ids']//field[@name='lot_ids']"
                 position="attributes"
             >
-                <attribute name="context">{
-                    'name_search_qty_on_hand_first': parent.display_lots_on_hand_first,
-                    'default_company_id': company_id,
-                    'default_product_id': product_id,}</attribute>
+            <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="name_search_qty_on_hand_first"
+                >parent.display_lots_on_hand_first</attribute>
             </xpath>
         </field>
     </record>
