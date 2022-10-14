@@ -24,7 +24,6 @@ class RepairOrder(models.Model):
             self.payment_term_id = False
         return res
 
-    @api.multi
     def action_invoice_create(self, group=False):
         res = super().action_invoice_create(group)
         for record in self:
