@@ -6,14 +6,14 @@ from odoo import api, fields, models
 
 class RepairOrder(models.Model):
 
-    _inherit = 'repair.order'
+    _inherit = "repair.order"
 
     payment_term_id = fields.Many2one(
-        comodel_name='account.payment.term',
-        string='Payment Term',
+        comodel_name="account.payment.term",
+        string="Payment Term",
     )
 
-    @api.onchange('partner_id')
+    @api.onchange("partner_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
         if self.partner_id:
