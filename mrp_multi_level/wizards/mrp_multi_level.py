@@ -318,11 +318,31 @@ class MultiLevelMrp(models.TransientModel):
         logger.info("End MRP Cleanup")
         return True
 
+    def _domain_bom_lines_by_llc(self, llc, product_templates):
+        return [
+            ("product_id.llc", "=", llc),
+            ("bom_id.product_tmpl_id", "in", product_templates.ids),
+            ("bom_id.active", "=", True),
+        ]
+
+    def _get_bom_lines_by_llc(self, llc, product_templates):
+        return self.env["mrp.bom.line"].search(
+            self._domain_bom_lines_by_llc(llc, product_templates)
+        )
+
     @api.model
     def _low_level_code_calculation(self):
         logger.info("Start low level code calculation")
         counter = 999999
         llc = 0
+        llc_recursion_limit = (
+            int(
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("mrp_multi_level.llc_calculation_recursion_limit")
+            )
+            or 1000
+        )
         self.env["product.product"].search([]).write({"llc": llc})
         products = self.env["product.product"].search([("llc", "=", llc)])
         if products:
@@ -334,12 +354,7 @@ class MultiLevelMrp(models.TransientModel):
             llc += 1
             products = self.env["product.product"].search([("llc", "=", llc - 1)])
             p_templates = products.mapped("product_tmpl_id")
-            bom_lines = self.env["mrp.bom.line"].search(
-                [
-                    ("product_id.llc", "=", llc - 1),
-                    ("bom_id.product_tmpl_id", "in", p_templates.ids),
-                ]
-            )
+            bom_lines = self._get_bom_lines_by_llc(llc - 1, p_templates)
             products = bom_lines.mapped("product_id")
             products.write({"llc": llc})
             counter = self.env["product.product"].search_count([("llc", "=", llc)])
@@ -347,6 +362,9 @@ class MultiLevelMrp(models.TransientModel):
                 llc, counter
             )
             logger.info(log_msg)
+            if llc > llc_recursion_limit:
+                logger.error("Recursion limit reached during LLC calculation.")
+                break
 
         mrp_lowest_llc = llc
         logger.info("End low level code calculation")
