@@ -16,6 +16,7 @@
     "data": [
         "security/mrp_multi_level_security.xml",
         "security/ir.model.access.csv",
+        "data/system_parameter.xml",
         "views/mrp_area_views.xml",
         "views/product_product_views.xml",
         "views/product_template_views.xml",
