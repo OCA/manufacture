@@ -7,8 +7,9 @@ class ProductTemplate(models.Model):
 
     def write(self, vals):
         res = super(ProductTemplate, self).write(vals)
-        self.check_product_with_component_change_allowed()
-        self.check_component_change_allowed()
+        for product in self:
+            product.check_product_with_component_change_allowed()
+            product.check_component_change_allowed()
         return res
 
     def check_product_with_component_change_allowed(self):
