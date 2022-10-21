@@ -7,7 +7,7 @@
     'category': 'MRP',
     'author': 'Camptocamp, '
               'Odoo Community Association (OCA)',
-    'website': 'https://github.com/oca/manufacture',
+    'website': 'https://github.com/OCA/manufacture',
     'license': 'AGPL-3',
     'depends': [
         'mrp',

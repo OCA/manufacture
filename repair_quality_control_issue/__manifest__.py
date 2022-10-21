@@ -10,7 +10,7 @@
                "control issues.",
     "author": "Trey, Odoo Community Association (OCA)",
     "maintainers": ["cubells"],
-    "website": "https://www.github.com/OCA/manufacture",
+    "website": "https://github.com/OCA/manufacture",
     "depends": ["repair", "quality_control_issue"],
     "data": [
         "wizards/qc_issue_make_repair_views.xml",

@@ -40,7 +40,7 @@ class QcProblem(models.Model):
             search_domain, order=order, access_rights_uid=SUPERUSER_ID)
         return stages.browse(stage_ids)
 
-    @api.one
+    @api.one  # pylint: disable=api-one-deprecated
     @api.depends('issue_ids')
     def _compute_count(self):
         self.issue_count = len(self.issue_ids)

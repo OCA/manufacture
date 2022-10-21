@@ -6,7 +6,7 @@
                "filter lots based on their location and availability",
     'version': '12.0.1.0.0',
     'category': 'Manufacturing',
-    'website': "https://github.com/OCA/manufacture/tree/"
+    'website': "https://github.com/OCA/manufacture"
                "12.0/mrp_production_filter_lot",
     'author': "Takobi, "
               "Odoo Community Association (OCA)",

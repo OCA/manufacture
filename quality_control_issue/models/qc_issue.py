@@ -24,7 +24,7 @@ class QualityControlIssue(models.Model):
             'qc.issue') or ''
         return super(QualityControlIssue, self).create(vals)
 
-    @api.one
+    @api.one  # pylint: disable=api-one-deprecated
     def _get_uom(self):
         self.product_uom = self.product_id.product_tmpl_id.uom_id
 

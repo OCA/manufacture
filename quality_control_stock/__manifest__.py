@@ -13,7 +13,7 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Agile Business Group, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/12.0/"
+    "website": "https://github.com/OCA/manufacture"
                "quality_control_stock",
     "depends": [
         "quality_control",
