@@ -26,7 +26,7 @@ class RepairLine(models.Model):
                 "repair_id": self.repair_id.id,
                 "repair_line_id": self.id,
                 "origin": self.repair_id.name,
-                "company_id": self.company_id.id,
+                "company_id": self.repair_id.company_id.id,
             }
         )
         return move
