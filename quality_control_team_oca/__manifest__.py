@@ -7,7 +7,7 @@
     "version": "12.0.1.1.0",
     "development_status": "Mature",
     "category": "Quality Control",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/manufacture",
     "author": "Eficent, Odoo Community Association (OCA)",
     "maintainers": ["lreficent"],
     "license": "AGPL-3",
