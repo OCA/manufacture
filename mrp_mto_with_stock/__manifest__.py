@@ -9,7 +9,7 @@
                "zero, and then create a procurement for them.",
     "author": "John Walsh, Eficent, Odoo Community Association (OCA)",
     "maintainer": "sergiocorato",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "version": "12.0.1.0.0",
     "license": "AGPL-3",
