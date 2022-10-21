@@ -5,7 +5,7 @@
 
 from collections import defaultdict
 
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare, float_is_zero
 
@@ -43,6 +43,7 @@ class StockMove(models.Model):
             move.show_details_visible = True
         return res
 
+    @api.multi
     def copy(self, default=None):
         self.ensure_one()
         if not self.is_subcontract or 'location_id' in default:
