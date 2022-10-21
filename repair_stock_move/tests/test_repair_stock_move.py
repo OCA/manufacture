@@ -34,7 +34,7 @@ class TestRepairStockMove(common.SavepointCase):
 
         # Location
         cls.stock_warehouse = cls.env["stock.warehouse"].search(
-            [("company_id", "=", cls.env.company.id)], limit=1
+            [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
         cls.stock_location_14 = cls.env["stock.location"].create(
             {
@@ -61,7 +61,6 @@ class TestRepairStockMove(common.SavepointCase):
                 "address_id": cls.res_partner_address_1.id,
                 "guarantee_limit": "2019-01-01",
                 "invoice_method": "none",
-                "user_id": False,
                 "product_id": cls.product_1.id,
                 "product_uom": cls.env.ref("uom.product_uom_unit").id,
                 "partner_invoice_id": cls.res_partner_address_1.id,
@@ -80,7 +79,6 @@ class TestRepairStockMove(common.SavepointCase):
                             "price_unit": 50.0,
                             "state": "draft",
                             "type": "add",
-                            "company_id": cls.env.company.id,
                         },
                     )
                 ],
@@ -94,7 +92,6 @@ class TestRepairStockMove(common.SavepointCase):
                             "product_uom_qty": 1.0,
                             "product_uom": cls.env.ref("uom.product_uom_unit").id,
                             "price_unit": 50.0,
-                            "company_id": cls.env.company.id,
                         },
                     )
                 ],
@@ -163,18 +160,40 @@ class TestRepairStockMove(common.SavepointCase):
                 "repair_id": repair_id,
                 "location_id": self.stock_location_14.id,
                 "location_dest_id": product_to_add.property_stock_production.id,
-                "company_id": self.env.company.id,
+                "company_id": self.env.user.company_id.id,
             }
         )
 
-    # def _create_simple_fee(self, repair_id=False, qty=0.0, price_unit=0.0):
-    #     service = self.product_1
-    #     return self.env['repair.fee'].create({
-    #         'name': 'PC Assemble + Custom (PC on Demand)',
-    #         'product_id': service.id,
-    #         'product_uom_qty': qty,
-    #         'product_uom': service.uom_id.id,
-    #         'price_unit': price_unit,
-    #         'repair_id': repair_id,
-    #         'company_id': self.env.company.id,
-    #     })
+    def test_ui_actions(self):
+        """ Test actions users do via the UI """
+        self.repair1.action_validate()
+        with common.Form(self.repair1) as repair_form:
+            with repair_form.operations.new() as operation:
+                operation.product_id = self.product_3
+                operation.location_id = self.stock_location_14
+        self.assertEqual(
+            self.repair1.mapped('operations.move_id.state'),
+            ['confirmed', 'confirmed'],
+        )
+        self.repair1.action_repair_start()
+        with common.Form(self.repair1) as repair_form:
+            with repair_form.operations.new() as operation:
+                operation.product_id = self.product_3
+                operation.location_id = self.stock_location_14
+        self.assertEqual(
+            self.repair1.mapped('operations.move_id.state'),
+            ['assigned', 'assigned', 'confirmed'],
+        )
+        self.assertTrue(self.repair1.show_check_availability)
+        self.env["stock.quant"]._update_available_quantity(
+            self.product_3, self.stock_location_14, 1
+        )
+        self.repair1.action_assign()
+        self.assertEqual(
+            self.repair1.mapped('operations.move_id.state'),
+            ['assigned', 'assigned', 'assigned'],
+        )
+        action = self.repair1.action_open_stock_moves()
+        self.assertEqual(
+            self.repair1.stock_move_ids, self.env['stock.move'].search(action['domain'])
+        )
