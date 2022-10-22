@@ -1,7 +1,8 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, fields, models, tools
+from odoo import _, api, fields, models, tools
+from odoo.exceptions import ValidationError
 
 
 class MrpBom(models.Model):
@@ -72,3 +73,16 @@ class MrpBom(models.Model):
     def onchange_display_lot_number_propagation(self):
         if not self.display_lot_number_propagation:
             self.lot_number_propagation = False
+
+    @api.constrains("lot_number_propagation")
+    def _check_propagate_lot_number(self):
+        for bom in self:
+            if not bom.lot_number_propagation:
+                continue
+            if not bom.bom_line_ids.filtered("propagate_lot_number"):
+                raise ValidationError(
+                    _(
+                        "With 'Lot Number Propagation' enabled, a line has "
+                        "to be configured with the 'Propagate Lot Number' option."
+                    )
+                )

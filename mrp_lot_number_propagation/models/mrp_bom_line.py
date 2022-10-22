@@ -26,12 +26,7 @@ class MrpBomLine(models.Model):
                 and line.bom_id.lot_number_propagation
             )
 
-    @api.constrains(
-        "propagate_lot_number",
-        "bom_id.lot_number_propagation",
-        "product_id.tracking",
-        "bom_id.product_tmpl_id.tracking",
-    )
+    @api.constrains("propagate_lot_number")
     def _check_propagate_lot_number(self):
         """
         This function should check:
@@ -42,21 +37,22 @@ class MrpBomLine(models.Model):
           tracking type as the finished product
         """
         for line in self:
+            if not line.bom_id.lot_number_propagation:
+                continue
             lines_to_propagate = line.bom_id.bom_line_ids.filtered(
                 lambda o: o.propagate_lot_number
             )
-            if line.bom_id.lot_number_propagation:
-                if len(lines_to_propagate) > 1:
-                    raise ValidationError(
-                        _(
-                            "Only one BoM line can propagate its lot/serial number "
-                            "to the finished product."
-                        )
+            if len(lines_to_propagate) > 1:
+                raise ValidationError(
+                    _(
+                        "Only one BoM line can propagate its lot/serial number "
+                        "to the finished product."
                     )
-                if line.propagate_lot_number and line.product_id.tracking != "serial":
-                    raise ValidationError(
-                        _(
-                            "Only components tracked by serial number can propagate "
-                            "its lot/serial number to the finished product."
-                        )
+                )
+            if line.propagate_lot_number and line.product_id.tracking != "serial":
+                raise ValidationError(
+                    _(
+                        "Only components tracked by serial number can propagate "
+                        "its lot/serial number to the finished product."
                     )
+                )

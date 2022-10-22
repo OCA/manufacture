@@ -12,8 +12,12 @@ class TestMrpProduction(Common):
     def setUpClass(cls):
         super().setUpClass()
         # Configure the BoM to propagate lot number
-        cls.bom.lot_number_propagation = True
-        cls.line_tracked_by_sn.propagate_lot_number = True
+        with Form(cls.bom) as form:
+            form.lot_number_propagation = True
+            line_form = form.bom_line_ids.edit(0)  # Line tracked by SN
+            line_form.propagate_lot_number = True
+            line_form.save()
+            form.save()
         with Form(cls.env["mrp.production"]) as form:
             form.bom_id = cls.bom
             cls.order = form.save()
