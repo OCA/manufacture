@@ -2,16 +2,19 @@ from odoo.tests import common, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestSubcontractedPartner(common.TransactionCase):
-    def setUp(self):
+class TestSubcontractedPartner(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
         """
         - Create a Partner record “Wood Corner”
         - Type will be Company and new boolean is_subcontractor_partner is Set True
         """
-        super(TestSubcontractedPartner, self).setUp()
-        ResPartner = self.env["res.partner"]
-        self.partner_id = self.env.ref("base.res_partner_12")
-        self.res_partner_test_id = ResPartner.create(
+        super().setUpClass()
+        cls.partner_id = cls.env.ref("base.res_partner_12")
+        cls.partner_obj = cls.env["res.partner"]
+
+    def _get_partner(self):
+        return self.partner_obj.create(
             {
                 "name": "Test partner",
                 "is_company": True,
@@ -144,12 +147,21 @@ class TestSubcontractedPartner(common.TransactionCase):
         )
 
     def test_is_subcontractor_partner_delete(self):
-        partner_id = self.res_partner_test_id
+        partner_id = self.partner_obj.create(
+            {
+                "name": "Test partner",
+                "is_company": True,
+                "is_subcontractor_partner": True,
+            }
+        )
+
         location = partner_id.subcontracted_created_location_id
         partner_picking_type = partner_id.partner_picking_type_id
         partner_buy_rule = partner_id.partner_buy_rule_id
         partner_resupply_rule = partner_id.partner_resupply_rule_id
+
         partner_id.unlink()
+
         self.assertFalse(location.active, "Location must be not active")
         self.assertFalse(partner_picking_type.active, "Picking type must be not active")
         self.assertFalse(partner_buy_rule.active, "Partner Buy rule must be not active")
@@ -158,45 +170,14 @@ class TestSubcontractedPartner(common.TransactionCase):
         )
 
     def test_check_countof_rules(self):
-        partner_id = self.res_partner_test_id
+        partner_id = self.partner_obj.create(
+            {
+                "name": "Test partner",
+                "is_company": True,
+                "is_subcontractor_partner": True,
+            }
+        )
         rules = self.env["stock.rule"].search(
             [("name", "=", partner_id.partner_buy_rule_id.name)]
         )
         self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
-
-    def test_change_subcontractor_location(self):
-        expected_text = "Test partner"
-        partner = self.res_partner_test_id
-        location = partner.property_stock_subcontractor
-        self.assertEqual(
-            location.name,
-            expected_text,
-            msg="Location name must be equal to {}".format(expected_text),
-        )
-
-        fields = [
-            "subcontracted_created_location_id",
-            "partner_buy_rule_id",
-            "partner_resupply_rule_id",
-            "property_stock_subcontractor",
-        ]
-        expected_text = "Test partner 1"
-        partner.name = expected_text
-        for field in fields:
-            location = getattr(partner, field)
-            self.assertEqual(
-                location.name,
-                expected_text,
-                msg="Record name must be equal to {}".format(expected_text),
-            )
-
-        picking = partner.partner_picking_type_id
-        expected_text = "%s:  IN" % expected_text
-        self.assertEqual(
-            picking.name,
-            expected_text,
-            msg="Record name must be equal to '{}'".format(expected_text),
-        )
-        self.assertEqual(
-            picking.sequence_code, "Tp1I", msg="Sequence code must be equal to 'Tp1I'"
-        )
