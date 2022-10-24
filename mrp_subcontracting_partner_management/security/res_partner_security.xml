@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="group_display_inventory" model="res.groups">
+        <field name="name">Display Inventory section on Vendor</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>
