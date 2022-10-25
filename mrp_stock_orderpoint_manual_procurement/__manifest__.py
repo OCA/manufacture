@@ -5,7 +5,7 @@
     "name": "MRP Stock Orderpoint Manual Procurement",
     "summary": "Updates the value of MO Responsible and keeps track"
                "of changes regarding this field",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
