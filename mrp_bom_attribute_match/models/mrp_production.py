@@ -14,5 +14,5 @@ class MrpProduction(models.Model):
 
     def write(self, vals):
         for bl in self.bom_id.bom_line_ids.filtered("component_template_id"):
-            bl.check_component_attributes()
+            bl._check_component_attributes()
         return super().write(vals)
