@@ -37,6 +37,7 @@ the missing products. In this mode, there is no link between the procurement
 created and MO that has generated it. The procurement may be used to fulfill
 another MO.
 
+
 **Table of contents**
 
 .. contents::
