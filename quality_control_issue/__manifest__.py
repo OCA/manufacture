@@ -4,7 +4,7 @@
 {
     "name": "Quality Control Issue",
     "summary": "Allow to manage and report Quality Control Issues.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "development_status": "Production/Stable",
     "category": "Quality Control",
     "website": "https://github.com/OCA/manufacture",
