@@ -11,7 +11,7 @@
     "maintainer": "sergiocorato",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
