@@ -23,7 +23,12 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
             line_form.component_template_id = self.product_plastic
             line_form.product_qty = 1
             sword_cyan = self.sword_attrs.product_template_value_ids[0]
-            with self.assertRaises(ValidationError):
+            with self.assertRaisesRegex(
+                ValidationError,
+                r"You cannot use an attribute value for attribute\(s\) .* in the "
+                r"field “Apply on Variants” as it's the same attribute used in the "
+                r"field “Match on Attribute” related to the component .*",
+            ):
                 line_form.bom_product_template_attribute_value_ids.add(sword_cyan)
 
     def test_bom_2(self):
@@ -42,7 +47,12 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
                 "value_ids": [(4, orchid_attribute_value_id.id)],
             }
         )
-        with self.assertRaises(UserError):
+        with self.assertRaisesRegex(
+            UserError,
+            r"This product template is used as a component in the BOMs for .* and "
+            r"attribute\(s\) .* is not present in all such product\(s\), and this "
+            r"would break the BOM behavior\.",
+        ):
             vals = {
                 "attribute_id": smell_attribute.id,
                 "product_tmpl_id": self.product_plastic.id,
@@ -52,7 +62,11 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = self.product_sword
         with mrp_bom_form.bom_line_ids.new() as line_form:
-            with self.assertRaises(ValidationError):
+            with self.assertRaisesRegex(
+                UserError,
+                r"Some attributes of the dynamic component are not included into "
+                r"production product attributes\.",
+            ):
                 line_form.component_template_id = self.product_plastic
         plastic_smells_like_orchid.unlink()
 
@@ -91,8 +105,10 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         # Component skipped
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
-        with self.assertRaises(ValidationError):
-            # Some attributes of the dynamic component are not included into ...
+        with self.assertRaisesRegex(
+            ValidationError,
+            r"Some attributes of the dynamic component are not included into .+",
+        ):
             self.mo_sword = mo_form.save()
 
     def test_manufacturing_order_4(self):
@@ -154,5 +170,5 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
                 "product_qty": 1.0,
             }
         )
-        with self.assertRaises(UserError):
+        with self.assertRaisesRegex(UserError, r"Recursion error! .+"):
             test_bom_3.explode(self.product_9, 1)
