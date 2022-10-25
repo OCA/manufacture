@@ -26,11 +26,13 @@ class ProductTemplate(models.Model):
                         attr_recs = self.env["product.attribute"].browse(diff)
                         raise UserError(
                             _(
-                                "The attributes you're trying to remove is used in BoM "
-                                "as a match with Component (Product Template). To "
-                                "remove these attributes, first remove the BOM line "
-                                "with the matching component.\nAttributes: %s\nBoM: %s"
-                                % (attr_recs.mapped("name"), bom.display_name)
+                                "The attributes you're trying to remove are used in "
+                                "the BoM as a match with Component (Product Template). "
+                                "To remove these attributes, first remove the BOM line "
+                                "with the matching component.\n"
+                                "Attributes: %(attributes)s\nBoM: %(bom)s",
+                                attributes=", ".join(attr_recs.mapped("name")),
+                                bom=bom.display_name,
                             )
                         )
 
@@ -48,13 +50,11 @@ class ProductTemplate(models.Model):
                         raise UserError(
                             _(
                                 "This product template is used as a component in the "
-                                "BOMs for %s and attribute(s) %s is not present in all "
-                                "such product(s), and this would break the BOM "
-                                "behavior."
-                                % (
-                                    bom.display_name,
-                                    attr_recs.mapped("name"),
-                                )
+                                "BOMs for %(bom)s and attribute(s) %(attributes)s is "
+                                "not present in all such product(s), and this would "
+                                "break the BOM behavior.",
+                                attributes=", ".join(attr_recs.mapped("name")),
+                                bom=bom.display_name,
                             )
                         )
 
