@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_hierarchy
+# 	* mrp_production_hierarchy
 #
 msgid ""
 msgstr ""
@@ -10,51 +10,54 @@ msgstr ""
 "PO-Revision-Date: 2018-06-05 13:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: mrp_production_hierarchy
-#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production_child_ids
+#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production__child_ids
 msgid "Child orders"
 msgstr "OF générés"
 
 #. module: mrp_production_hierarchy
-#: code:addons/mrp_production_hierarchy/models/mrp_production.py:46
-#: model:ir.ui.view,arch_db:mrp_production_hierarchy.mrp_production_form_view
+#: code:addons/mrp_production_hierarchy/models/mrp_production.py:42
+#: model_terms:ir.ui.view,arch_db:mrp_production_hierarchy.mrp_production_form_view
 #, python-format
 msgid "Hierarchy"
 msgstr "Hiérarchie"
 
 #. module: mrp_production_hierarchy
-#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production_parent_left
-msgid "Left Parent"
-msgstr "Parent gauche"
-
-#. module: mrp_production_hierarchy
-#: model:ir.model,name:mrp_production_hierarchy.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Ordre de fabrication"
-
-#. module: mrp_production_hierarchy
-#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production_parent_id
-#: model:ir.ui.view,arch_db:mrp_production_hierarchy.view_mrp_production_filter
+#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production__parent_id
+#: model_terms:ir.ui.view,arch_db:mrp_production_hierarchy.view_mrp_production_filter
 msgid "Parent order"
 msgstr "OF d'origine"
 
 #. module: mrp_production_hierarchy
-#: model:ir.model,name:mrp_production_hierarchy.model_procurement_order
-msgid "Procurement"
-msgstr "Approvisionnement"
+#: model:ir.model,name:mrp_production_hierarchy.model_mrp_production
+msgid "Production Order"
+msgstr ""
 
 #. module: mrp_production_hierarchy
-#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production_parent_right
-msgid "Right Parent"
-msgstr "Parent à droite"
-
-#. module: mrp_production_hierarchy
-#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production_root_id
-#: model:ir.ui.view,arch_db:mrp_production_hierarchy.view_mrp_production_filter
+#: model:ir.model.fields,field_description:mrp_production_hierarchy.field_mrp_production__root_id
+#: model_terms:ir.ui.view,arch_db:mrp_production_hierarchy.view_mrp_production_filter
 msgid "Root order"
 msgstr "OF racine"
+
+#. module: mrp_production_hierarchy
+#: model:ir.model,name:mrp_production_hierarchy.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#~ msgid "Left Parent"
+#~ msgstr "Parent gauche"
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Ordre de fabrication"
+
+#~ msgid "Procurement"
+#~ msgstr "Approvisionnement"
+
+#~ msgid "Right Parent"
+#~ msgstr "Parent à droite"
