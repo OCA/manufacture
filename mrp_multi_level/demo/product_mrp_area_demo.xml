@@ -24,10 +24,6 @@
         <field name="product_id" ref="product.product_product_4c" />
         <field name="mrp_area_id" ref="mrp_area_stock_wh0" />
     </record>
-    <record id="product_mrp_area_product_4d" model="product.mrp.area">
-        <field name="product_id" ref="product.product_product_4d" />
-        <field name="mrp_area_id" ref="mrp_area_stock_wh0" />
-    </record>
     <record id="product_mrp_area_sf_1" model="product.mrp.area">
         <field name="product_id" ref="product_product_sf_1" />
         <field name="mrp_area_id" ref="mrp_area_stock_wh0" />
