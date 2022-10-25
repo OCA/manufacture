@@ -5,7 +5,7 @@
     'name': 'Repair Payment Term',
     'summary': """
         This module add to Repair Orders the *Payment Term* field""",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'KMEE,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/manufacture',
