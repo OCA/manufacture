@@ -39,11 +39,11 @@ class MrpBomLine(models.Model):
 
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
-        self.update_component_attributes()
+        self._update_component_attributes()
 
-    def update_component_attributes(self):
+    def _update_component_attributes(self):
         if self.component_template_id:
-            self.check_component_attributes()
+            self._check_component_attributes()
             self.product_backup_id = self.product_id.id
             self.match_on_attribute_ids = (
                 self.component_template_id.attribute_line_ids.mapped("attribute_id")
@@ -51,14 +51,14 @@ class MrpBomLine(models.Model):
                 .ids
             )
             self.product_id = False
-            self.check_variants_validity()
+            self._check_variants_validity()
         else:
             self.match_on_attribute_ids = False
             if self.product_backup_id and not self.product_id:
                 self.product_id = self.product_backup_id.id
                 self.product_backup_id = False
 
-    def check_component_attributes(self):
+    def _check_component_attributes(self):
         comp_attr_ids = (
             self.component_template_id.valid_product_template_attribute_line_ids.attribute_id.ids
         )
@@ -84,9 +84,9 @@ class MrpBomLine(models.Model):
     @api.onchange("bom_product_template_attribute_value_ids")
     def _onchange_attribute_value_ids(self):
         if self.bom_product_template_attribute_value_ids:
-            self.check_variants_validity()
+            self._check_variants_validity()
 
-    def check_variants_validity(self):
+    def _check_variants_validity(self):
         if (
             not self.bom_product_template_attribute_value_ids
             or not self.component_template_id
@@ -192,7 +192,7 @@ class MrpBom(models.Model):
                 update_product_boms()
                 product_ids.clear()
             # upd start
-            component_template_product = self.get_component_template_product(
+            component_template_product = self._get_component_template_product(
                 current_line, product, current_line.product_id
             )
             if component_template_product:
@@ -267,7 +267,9 @@ class MrpBom(models.Model):
                 )
         return boms_done, lines_done
 
-    def get_component_template_product(self, bom_line, bom_product_id, line_product_id):
+    def _get_component_template_product(
+        self, bom_line, bom_product_id, line_product_id
+    ):
         if bom_line.component_template_id:
             comp = bom_line.component_template_id
             comp_attr_ids = (
@@ -309,5 +311,5 @@ class MrpBom(models.Model):
     def write(self, vals):
         res = super().write(vals)
         for line in self.bom_line_ids:
-            line.update_component_attributes()
+            line._update_component_attributes()
         return res
