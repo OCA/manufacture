@@ -26,7 +26,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:193
+#: code:addons/mrp_subcontracting/models/stock_move.py:194
 #, python-format
 msgid ""
 "\n"
@@ -131,7 +131,7 @@ msgid "Production Order"
 msgstr "Ordine di produzione"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:102
+#: code:addons/mrp_subcontracting/models/stock_move.py:103
 #, python-format
 msgid "Raw Materials for %s"
 msgstr "Componenti per %s"
@@ -276,7 +276,7 @@ msgid "To Consume"
 msgstr "Da consumare"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:130
+#: code:addons/mrp_subcontracting/models/stock_move.py:131
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr "Da subappaltare, utilizzare un trasferimento pianificato."

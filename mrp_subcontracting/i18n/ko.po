@@ -24,7 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:193
+#: code:addons/mrp_subcontracting/models/stock_move.py:194
 #, python-format
 msgid ""
 "\n"
@@ -128,7 +128,7 @@ msgid "Production Order"
 msgstr "생산 기록"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:102
+#: code:addons/mrp_subcontracting/models/stock_move.py:103
 #, python-format
 msgid "Raw Materials for %s"
 msgstr "%s에 대한 원자재"
@@ -272,7 +272,7 @@ msgid "To Consume"
 msgstr ""
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:130
+#: code:addons/mrp_subcontracting/models/stock_move.py:131
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr "하도급을 하려면 계획된 이전을 사용하십시오."

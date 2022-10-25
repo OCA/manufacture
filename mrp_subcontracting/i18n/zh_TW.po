@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:193
+#: code:addons/mrp_subcontracting/models/stock_move.py:194
 #, python-format
 msgid ""
 "\n"
@@ -126,7 +126,7 @@ msgid "Production Order"
 msgstr "記錄生產"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:102
+#: code:addons/mrp_subcontracting/models/stock_move.py:103
 #, python-format
 msgid "Raw Materials for %s"
 msgstr "提供給%s的原材料"
@@ -268,7 +268,7 @@ msgid "To Consume"
 msgstr ""
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:130
+#: code:addons/mrp_subcontracting/models/stock_move.py:131
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr "為外包生產，使用計畫調撥"
