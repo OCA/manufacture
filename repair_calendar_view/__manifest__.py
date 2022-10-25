@@ -4,7 +4,7 @@
 
 {
     'name': 'Repair Calendar View',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'category': 'Manufacturing',
     'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/manufacture',
