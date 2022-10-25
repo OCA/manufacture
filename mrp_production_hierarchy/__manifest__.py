@@ -4,7 +4,7 @@
 {
     "name": "Production Orders Hierarchy",
     "summary": "View the hierarchy of generated production orders",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ABF OSIELL, Sergio Corato, Odoo Community Association (OCA)",
