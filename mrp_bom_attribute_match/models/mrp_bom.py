@@ -109,9 +109,6 @@ class MrpBomLine(models.Model):
                 )
             )
 
-    def write(self, vals):
-        super(MrpBomLine, self).write(vals)
-
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
@@ -149,7 +146,7 @@ class MrpBom(models.Model):
         def update_product_boms():
             products = self.env["product.product"].browse(product_ids)
             product_boms.update(
-                self._get_product2bom(
+                self._bom_find(
                     products,
                     bom_type="phantom",
                     picking_type=picking_type or self.picking_type_id,
@@ -310,7 +307,7 @@ class MrpBom(models.Model):
             return line_product_id
 
     def write(self, vals):
-        res = super(MrpBom, self).write(vals)
+        res = super().write(vals)
         for line in self.bom_line_ids:
             line.update_component_attributes()
         return res
