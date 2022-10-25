@@ -81,9 +81,7 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
         self.mo_sword = mo_form.save()
-        with self.assertRaises(UserError):
-            # Add some materials to consume before marking this MO as to do.
-            self.mo_sword.action_confirm()
+        self.mo_sword.action_confirm()
 
     def test_manufacturing_order_3(self):
         # Delete attribute from sword
