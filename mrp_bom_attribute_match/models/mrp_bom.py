@@ -69,7 +69,8 @@ class MrpBomLine(models.Model):
             raise ValidationError(
                 _(
                     "No match on attribute has been detected for Component "
-                    "(Product Template) %s" % self.component_template_id.display_name
+                    "(Product Template) %s",
+                    self.component_template_id.display_name,
                 )
             )
         if not all(item in prod_attr_ids for item in comp_attr_ids):
@@ -96,16 +97,15 @@ class MrpBomLine(models.Model):
         )
         same_attrs = set(self.match_on_attribute_ids.ids) & set(variant_attr_ids.ids)
         if len(same_attrs) > 0:
+            attr_recs = self.env["product.attribute"].browse(same_attrs)
             raise ValidationError(
                 _(
-                    "You cannot use an attribute value for attribute"
-                    " %s in the field “Apply on Variants” as it’s the"
-                    " same attribute used in field “Match on Attribute”"
-                    "related to the component %s."
-                    % (
-                        self.env["product.attribute"].browse(same_attrs),
-                        self.component_template_id.name,
-                    )
+                    "You cannot use an attribute value for attribute(s) %(attributes)s "
+                    "in the field “Apply on Variants” as it's the same attribute used "
+                    "in the field “Match on Attribute” related to the component "
+                    "%(component)s.",
+                    attributes=", ".join(attr_recs.mapped("name")),
+                    component=self.component_template_id.name,
                 )
             )
 
