@@ -4,7 +4,7 @@
 {
     "name": "MRP Work Order Sequence",
     "summary": "adds sequence to production work orders.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Manufacturing",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
