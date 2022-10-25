@@ -23,7 +23,7 @@ msgstr ""
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:193
+#: code:addons/mrp_subcontracting/models/stock_move.py:194
 #, python-format
 msgid ""
 "\n"
@@ -118,7 +118,7 @@ msgid "Production Order"
 msgstr "Záznam výroby"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:102
+#: code:addons/mrp_subcontracting/models/stock_move.py:103
 #, python-format
 msgid "Raw Materials for %s"
 msgstr ""
@@ -260,7 +260,7 @@ msgid "To Consume"
 msgstr ""
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:130
+#: code:addons/mrp_subcontracting/models/stock_move.py:131
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr ""

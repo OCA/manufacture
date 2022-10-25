@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:193
+#: code:addons/mrp_subcontracting/models/stock_move.py:194
 #, python-format
 msgid ""
 "\n"
@@ -134,7 +134,7 @@ msgid "Production Order"
 msgstr "Enregistrer la production"
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:102
+#: code:addons/mrp_subcontracting/models/stock_move.py:103
 #, python-format
 msgid "Raw Materials for %s"
 msgstr "Matières premières pour %s"
@@ -278,7 +278,7 @@ msgid "To Consume"
 msgstr ""
 
 #. module: mrp_subcontracting
-#: code:addons/mrp_subcontracting/models/stock_move.py:130
+#: code:addons/mrp_subcontracting/models/stock_move.py:131
 #, python-format
 msgid "To subcontract, use a planned transfer."
 msgstr "Pour sous-traiter, utiliser un transfert planifié."
