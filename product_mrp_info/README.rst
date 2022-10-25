@@ -27,6 +27,7 @@ Product MRP Info
 
 Adds smart button in product form view linking to manufacturing order list.
 
+
 **Table of contents**
 
 .. contents::
@@ -38,6 +39,7 @@ Usage
 Go to a product form and on the smart buttons you will se a new one, *MO's*,
 click on it to access to a list of all the manufacturing Orders for that
 product.
+
 
 Bug Tracker
 ===========

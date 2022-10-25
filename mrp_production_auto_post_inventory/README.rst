@@ -33,6 +33,7 @@ need of completing the whole manufacturing order.
 There is also to post inventory by cron job.
 This is useful when posting inventory immediatelly take long time to process.
 
+
 **Table of contents**
 
 .. contents::
@@ -70,6 +71,7 @@ Contributors
 * Adria Gil Sorribes <adria.gil@eficent.com>
 * Lorenzo Battistini <lb@takobi.online>
 * Kitti U. <kittiu@ecosoft.co.th>
+
 
 Maintainers
 ~~~~~~~~~~~
