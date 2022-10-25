@@ -19,7 +19,7 @@ msgid "Child orders"
 msgstr ""
 
 #. module: mrp_production_hierarchy
-#: code:addons/mrp_production_hierarchy/models/mrp_production.py:43
+#: code:addons/mrp_production_hierarchy/models/mrp_production.py:42
 #: model_terms:ir.ui.view,arch_db:mrp_production_hierarchy.mrp_production_form_view
 #, python-format
 msgid "Hierarchy"
