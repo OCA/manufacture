@@ -1,7 +1,7 @@
-from odoo.tests import Form, common
+from odoo.tests import Form, TransactionCase
 
 
-class TestMrpAttachmentMgmtBase(common.SavepointCase):
+class TestMrpAttachmentMgmtBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
