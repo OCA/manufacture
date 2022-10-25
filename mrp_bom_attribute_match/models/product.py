@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     def write(self, vals):
-        res = super(ProductTemplate, self).write(vals)
+        res = super().write(vals)
         self.check_product_with_component_change_allowed()
         self.check_component_change_allowed()
         return res
