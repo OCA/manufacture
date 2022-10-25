@@ -4,7 +4,7 @@
     "name": "Quality Control Team",
     "summary": "Adds quality control teams to handle different quality "
                "control workflows",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.1.1",
     "development_status": "Mature",
     "category": "Quality Control",
     "website": "https://github.com/OCA/manufacture",
