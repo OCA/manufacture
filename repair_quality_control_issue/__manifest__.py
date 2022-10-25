@@ -3,7 +3,7 @@
 
 {
     "name": "Repair Quality Control Issue",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "license": "LGPL-3",
     "category": "Quality control",
     "summary": "Add the possibility to create repairs orders from quality "
