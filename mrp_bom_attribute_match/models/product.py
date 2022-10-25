@@ -7,11 +7,13 @@ class ProductTemplate(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        self.check_product_with_component_change_allowed()
-        self.check_component_change_allowed()
+        for rec in self:
+            rec.check_product_with_component_change_allowed()
+            rec.check_component_change_allowed()
         return res
 
     def check_product_with_component_change_allowed(self):
+        self.ensure_one()
         if len(self.attribute_line_ids) > 0 and len(self.bom_ids) > 0:
             for bom in self.bom_ids:
                 for line in bom.bom_line_ids.filtered(
@@ -37,6 +39,7 @@ class ProductTemplate(models.Model):
                         )
 
     def check_component_change_allowed(self):
+        self.ensure_one()
         if len(self.attribute_line_ids) > 0:
             boms = self.get_component_boms()
             if boms:
@@ -59,6 +62,7 @@ class ProductTemplate(models.Model):
                         )
 
     def get_component_boms(self):
+        self.ensure_one()
         bom_lines = self.env["mrp.bom.line"].search(
             [("component_template_id", "=", self._origin.id)]
         )
