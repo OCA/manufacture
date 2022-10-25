@@ -42,6 +42,7 @@ class QcInspection(models.Model):
         return objects
 
     production_id = fields.Many2one(
+        # pylint: disable=method-compute
         comodel_name="mrp.production", compute="get_production", store=True)
 
 

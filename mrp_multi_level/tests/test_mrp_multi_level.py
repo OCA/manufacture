@@ -2,7 +2,7 @@
 #   (http://www.eficent.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
+from .common import TestMrpMultiLevelCommon
 from odoo import fields
 
 from datetime import date, datetime

@@ -5,3 +5,4 @@ need of completing the whole manufacturing order.
 
 There is also to post inventory by cron job.
 This is useful when posting inventory immediatelly take long time to process.
+

@@ -45,6 +45,7 @@ class QcTriggerLine(models.AbstractModel):
         return set()
 
 
+# pylint: disable=consider-merging-classes-inherited
 class QcTriggerProductCategoryLine(models.Model):
     _inherit = "qc.trigger.line"
     _name = "qc.trigger.product_category_line"

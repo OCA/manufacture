@@ -20,6 +20,7 @@ class MrpProduction(models.Model):
         comodel_name='qc.inspection', inverse_name='production_id', copy=False,
         string='Inspections', help="Inspections related to this production.")
     created_inspections = fields.Integer(
+        # pylint: disable=method-compute
         compute="_count_inspections", string="Created inspections")
 
     @api.multi
