@@ -3,7 +3,7 @@
 
 {
     'name': 'Production Show Post Inventory',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'MRP',
     'author': 'Camptocamp, '
               'Odoo Community Association (OCA)',
