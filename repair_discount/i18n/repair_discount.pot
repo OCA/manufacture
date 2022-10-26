@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__discount
+#: model_terms:ir.ui.view,arch_db:repair_discount.repair_discount_report_repairorder
+msgid "Discount (%)"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__display_name
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__display_name
+#: model:ir.model.fields,field_description:repair_discount.field_repair_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee__id
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line__id
+#: model:ir.model.fields,field_description:repair_discount.field_repair_order__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model.fields,field_description:repair_discount.field_repair_fee____last_update
+#: model:ir.model.fields,field_description:repair_discount.field_repair_line____last_update
+#: model:ir.model.fields,field_description:repair_discount.field_repair_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_fee
+msgid "Repair Fees"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: repair_discount
+#: model:ir.model,name:repair_discount.model_repair_order
+msgid "Repair Order"
+msgstr ""

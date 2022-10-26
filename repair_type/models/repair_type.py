@@ -14,11 +14,6 @@ class RepairType(models.Model):
         "Source Location",
         help="This is the location where the product to repair is located.",
     )
-    destination_location_id = fields.Many2one(
-        "stock.location",
-        "Destination Location",
-        help="This is the location where the product repaired will be located.",
-    )
     source_location_add_part_id = fields.Many2one(
         "stock.location",
         "Source Location Add Component",

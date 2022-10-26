@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_whole_kit_constraint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-19 10:39+0000\n"
+"PO-Revision-Date: 2021-03-19 11:41+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: stock_whole_kit_constraint
+#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_product_product__allow_partial_kit_delivery
+#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_product_template__allow_partial_kit_delivery
+#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_move__allow_partial_kit_delivery
+msgid "Allow Partial Kit Delivery"
+msgstr "Permitir entrega parcial de kit"
+
+#. module: stock_whole_kit_constraint
+#: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_product__allow_partial_kit_delivery
+#: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_template__allow_partial_kit_delivery
+msgid ""
+"If not set, and this product is delivered with a BoM of type kit, partial "
+"deliveries of the components won't be allowed."
+msgstr ""
+
+#. module: stock_whole_kit_constraint
+#: model:ir.model,name:stock_whole_kit_constraint.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: stock_whole_kit_constraint
+#: model:ir.model,name:stock_whole_kit_constraint.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: stock_whole_kit_constraint
+#: model:ir.model,name:stock_whole_kit_constraint.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: stock_whole_kit_constraint
+#: code:addons/stock_whole_kit_constraint/models/stock_picking.py:0
+#, python-format
+msgid "You can't make a partial delivery of components of the %s kit"
+msgstr "No puede realizar una entrega parcial de los componentes del kit %s"
+
+#~ msgid ""
+#~ "If not set when a kit product components are delivered, it won't be "
+#~ "allowed to do it partially."
+#~ msgstr ""
+#~ "No no está activo, cuando haya una entrega con un kit, no se permitirá la "
+#~ "entrega parcial de sus componentes."

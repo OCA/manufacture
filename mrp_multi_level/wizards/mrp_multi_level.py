@@ -51,27 +51,33 @@ class MultiLevelMrp(models.TransientModel):
             mrp_type = "s"
             product_qty = move.product_qty
         po = po_line = None
-        mo = origin = order_number = parent_product_id = None
+        mo = origin = order_number = order_origin = parent_product_id = None
         if move.purchase_line_id:
-            order_number = move.purchase_line_id.order_id.name
+            po = move.purchase_line_id.order_id
+            order_number = po.name
+            order_origin = po.origin
             origin = "po"
             po = move.purchase_line_id.order_id.id
             po_line = move.purchase_line_id.id
         elif move.production_id or move.raw_material_production_id:
             production = move.production_id or move.raw_material_production_id
             order_number = production.name
+            order_origin = production.origin
             origin = "mo"
             mo = production.id
         elif move.move_dest_ids:
             for move_dest_id in move.move_dest_ids.filtered("production_id"):
-                order_number = move_dest_id.production_id.name
+                production = move_dest_id.production_id
+                order_number = production.name
+                order_origin = production.origin
                 origin = "mo"
                 mo = move_dest_id.production_id.id
                 parent_product_id = (
                     move_dest_id.production_id.product_id or move_dest_id.product_id
                 ).id
         if not order_number:
-            order_number = (move.picking_id or move).name
+            source = (move.picking_id or move).origin
+            order_number = source or (move.picking_id or move).name
             origin = "mv"
         # The date to display is based on the timezone of the warehouse.
         today_tz = area._datetime_to_date_tz()
@@ -92,16 +98,17 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_date": mrp_date,
             "current_date": move.date,
             "mrp_type": mrp_type,
-            "mrp_origin": origin,
+            "mrp_origin": origin or "",
             "mrp_order_number": order_number,
             "parent_product_id": parent_product_id,
             "name": order_number,
+            "origin": order_origin,
             "state": move.state,
         }
 
     @api.model
     def _prepare_planned_order_data(
-        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name
+        self, product_mrp_area, qty, mrp_date_supply, mrp_action_date, name, values
     ):
         return {
             "product_mrp_area_id": product_mrp_area.id,
@@ -111,12 +118,21 @@ class MultiLevelMrp(models.TransientModel):
             "mrp_action": product_mrp_area.supply_method,
             "qty_released": 0.0,
             "name": "Planned supply for: " + name,
+            "origin": values.get("origin") or name,
             "fixed": False,
         }
 
     @api.model
     def _prepare_mrp_move_data_bom_explosion(
-        self, product, bomline, qty, mrp_date_demand_2, bom, name
+        self,
+        product,
+        bomline,
+        qty,
+        mrp_date_demand_2,
+        bom,
+        name,
+        planned_order,
+        values=None,
     ):
         product_mrp_area = self._get_product_mrp_area_from_product_and_area(
             bomline.product_id, product.mrp_area_id
@@ -152,6 +168,7 @@ class MultiLevelMrp(models.TransientModel):
             ).replace(
                 "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
             ),
+            "origin": planned_order.origin if planned_order else values.get("origin"),
         }
 
     @api.model
@@ -176,7 +193,9 @@ class MultiLevelMrp(models.TransientModel):
         return mrp_action_date, mrp_date_supply
 
     @api.model
-    def explode_action(self, product_mrp_area_id, mrp_action_date, name, qty, action):
+    def explode_action(
+        self, product_mrp_area_id, mrp_action_date, name, qty, action, values=None
+    ):
         """Explode requirements."""
         mrp_date_demand = mrp_action_date
         if mrp_date_demand < date.today():
@@ -208,7 +227,14 @@ class MultiLevelMrp(models.TransientModel):
                     )
                 )
                 move_data = self._prepare_mrp_move_data_bom_explosion(
-                    product_mrp_area_id, bomline, qty, mrp_date_demand_2, bom, name
+                    product_mrp_area_id,
+                    bomline,
+                    qty,
+                    mrp_date_demand_2,
+                    bom,
+                    name,
+                    action,
+                    values,
                 )
                 mrpmove_id2 = self.env["mrp.move"].create(move_data)
                 if hasattr(action, "mrp_move_down_ids"):
@@ -251,14 +277,22 @@ class MultiLevelMrp(models.TransientModel):
             qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order)
             qty_to_order -= qty
             order_data = self._prepare_planned_order_data(
-                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name
+                product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
-            planned_order = self.env["mrp.planned.order"].create(order_data)
+            # Do not create planned order for products that are Kits
+            planned_order = False
+            if not product_mrp_area_id.supply_method == "phantom":
+                planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
             if product_mrp_area_id._to_be_exploded():
                 self.explode_action(
-                    product_mrp_area_id, mrp_action_date, name, qty, planned_order
+                    product_mrp_area_id,
+                    mrp_action_date,
+                    name,
+                    qty,
+                    planned_order,
+                    values,
                 )
 
         values["qty_ordered"] = qty_ordered
@@ -479,6 +513,7 @@ class MultiLevelMrp(models.TransientModel):
         last_qty = 0.00
         onhand = product_mrp_area.qty_available
         grouping_delta = product_mrp_area.mrp_nbr_days
+        demand_origin = []
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):
                 continue
@@ -494,19 +529,27 @@ class MultiLevelMrp(models.TransientModel):
                     or (onhand + last_qty) < product_mrp_area.mrp_minimum_stock
                 )
             ):
-                name = "Grouped Demand for %d Days" % grouping_delta
+                name = _(
+                    "Grouped Demand of %(product_name)s for %(delta_days)d Days"
+                ) % dict(
+                    product_name=product_mrp_area.product_id.display_name,
+                    delta_days=grouping_delta,
+                )
+                origin = ",".join(list({x for x in demand_origin if x}))
                 qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
                     mrp_qty=qtytoorder,
                     name=name,
+                    values=dict(origin=origin),
                 )
                 qty_ordered = cm.get("qty_ordered", 0.0)
                 onhand = onhand + last_qty + qty_ordered
                 last_date = None
                 last_qty = 0.00
                 nbr_create += 1
+                demand_origin = []
             if (
                 onhand + last_qty + move.mrp_qty
             ) < product_mrp_area.mrp_minimum_stock or (
@@ -520,15 +563,24 @@ class MultiLevelMrp(models.TransientModel):
             else:
                 last_date = fields.Date.from_string(move.mrp_date)
                 onhand += move.mrp_qty
+            if move.mrp_type == "d":
+                demand_origin.append(move.origin or move.name)
 
         if last_date and last_qty != 0.00:
-            name = "Grouped Demand for %d Days" % grouping_delta
+            name = _(
+                "Grouped Demand of %(product_name)s for %(delta_days)d Days"
+            ) % dict(
+                product_name=product_mrp_area.product_id.display_name,
+                delta_days=grouping_delta,
+            )
+            origin = ",".join(list({x for x in demand_origin if x}))
             qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=last_date,
                 mrp_qty=qtytoorder,
                 name=name,
+                values=dict(origin=origin),
             )
             qty_ordered = cm.get("qty_ordered", 0.0)
             onhand += qty_ordered
@@ -572,7 +624,8 @@ class MultiLevelMrp(models.TransientModel):
                                     product_mrp_area_id=product_mrp_area,
                                     mrp_date=move.mrp_date,
                                     mrp_qty=qtytoorder,
-                                    name=move.name,
+                                    name=move.name or "",
+                                    values=dict(origin=move.origin or ""),
                                 )
                                 qty_ordered = cm["qty_ordered"]
                                 onhand += move.mrp_qty + qty_ordered
@@ -586,11 +639,13 @@ class MultiLevelMrp(models.TransientModel):
 
                     if onhand < product_mrp_area.mrp_minimum_stock and nbr_create == 0:
                         qtytoorder = product_mrp_area.mrp_minimum_stock - onhand
+                        name = _("Safety Stock")
                         cm = self.create_action(
                             product_mrp_area_id=product_mrp_area,
                             mrp_date=date.today(),
                             mrp_qty=qtytoorder,
-                            name="Minimum Stock",
+                            name=name,
+                            values=dict(origin=name),
                         )
                         qty_ordered = cm["qty_ordered"]
                         onhand += qty_ordered
@@ -736,8 +791,13 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
-            if self._exclude_from_mrp(
-                product_mrp_area.product_id, product_mrp_area.mrp_area_id
+            # Condition "supply_method == phantom" is not added in _exclude_from_mrp
+            # because this function is also used to filter the explosion.
+            if (
+                self._exclude_from_mrp(
+                    product_mrp_area.product_id, product_mrp_area.mrp_area_id
+                )
+                or product_mrp_area.supply_method == "phantom"
             ):
                 continue
             self._init_mrp_inventory(product_mrp_area)

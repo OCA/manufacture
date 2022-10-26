@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_move_view_form" model="ir.ui.view">
+        <field name="name">mrp.move.form</field>
+        <field name="model">mrp.move</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mrp_area_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="product_id" />
+                            <field name="product_mrp_area_id" />
+                            <field name="mrp_origin" />
+                            <field
+                                name="production_id"
+                                attrs="{'invisible':[('mrp_origin', '!=', 'mo')]}"
+                            />
+                            <field
+                                name="purchase_order_id"
+                                attrs="{'invisible':[('mrp_origin', '!=', 'po')]}"
+                            />
+                            <field
+                                name="purchase_line_id"
+                                attrs="{'invisible':[('mrp_origin', '!=', 'po')]}"
+                            />
+                            <field
+                                name="stock_move_id"
+                                attrs="{'invisible':[('mrp_origin', '!=', 'mv')]}"
+                            />
+                            <field name="name" />
+                            <field name="origin" />
+                        </group>
+                        <group>
+                            <field name="mrp_date" />
+                            <field
+                                name="current_date"
+                                attrs="{'invisible': [('current_date', '=', False)]}"
+                            />
+                            <field
+                                name="state"
+                                attrs="{'invisible': [('state', '=', False)]}"
+                            />
+                            <field
+                                name="mrp_order_number"
+                                attrs="{'invisible': [('mrp_order_number', '=', False)]}"
+                            />
+                            <field
+                                name="parent_product_id"
+                                attrs="{'invisible': [('parent_product_id', '=', False)]}"
+                            />
+                            <field name="mrp_qty" />
+                            <field name="current_qty" />
+                            <field name="mrp_type" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planned Orders UP" name="planned_orders_up">
+                            <field name="planned_order_up_ids" readonly="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

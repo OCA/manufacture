@@ -4,16 +4,15 @@
 
 {
     "name": "MRP extension for quality control (OCA)",
-    "version": "14.0.2.0.0",
+    "version": "14.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
     "AvanzOSC, "
     "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
     "Agile Business Group, "
-    "Odoo Community Association (OCA),"
-    "frontware international",
-    "website": "https://github.com/Frontware/manufacture",
+    "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca", "quality_control_stock_oca", "mrp"],
     "data": [
         "data/quality_control_mrp_data.xml",
@@ -22,11 +21,4 @@
     ],
     "installable": True,
     "auto_install": True,
-    "description":"""
-
-change log:
-------------------------------------
-* 2021-12-24 KPO migrated to odoo14
-
-"""
 }
