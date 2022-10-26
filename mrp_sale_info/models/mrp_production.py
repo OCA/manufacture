@@ -11,6 +11,7 @@ class MrpProduction(models.Model):
         comodel_name="procurement.group",
         readonly=True,
     )
+    sale_org = fields.Many2one('sale.order')
     sale_id = fields.Many2one(
         "sale.order",
         string="Sale order",
@@ -35,7 +36,9 @@ class MrpProduction(models.Model):
     @api.onchange('procurement_group_id','mrp_production_source_count')
     def _get_top_mrp_sale(self):
         for each in self:
-            each.sale_id = self._top_mo(each).source_procurement_group_id.sale_id
+            t = self._top_mo(each)
+            if t:
+               each.sale_id = t.source_procurement_group_id.sale_id or each.sale_org
 
     def _top_mo(self, mo):
         if mo.mrp_production_source_count == 0:
