@@ -5,12 +5,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <field name="bom_product_template_attribute_value_ids" position="before">
-                <field
-                    name="match_on_attribute_ids"
-                    readonly='1'
-                    force_save="1"
-                    widget="many2many_tags"
-                />
+                <field name="match_on_attribute_ids" widget="many2many_tags" />
                 <field name="product_backup_id" invisible="1" />
             </field>
             <xpath
