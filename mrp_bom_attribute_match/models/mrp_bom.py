@@ -18,7 +18,10 @@ class MrpBomLine(models.Model):
         "product.template", "Component (product template)"
     )
     match_on_attribute_ids = fields.Many2many(
-        "product.attribute", string="Match on Attributes", readonly=True
+        "product.attribute",
+        string="Match on Attributes",
+        compute="_compute_match_on_attribute_ids",
+        store=True,
     )
     product_uom_category_id = fields.Many2one(
         "uom.category",
@@ -56,83 +59,92 @@ class MrpBomLine(models.Model):
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
         if self.component_template_id:
+            if self.product_id:
+                self.product_backup_id = self.product_id
+                self.product_id = False
             if (
                 self.product_uom_id.category_id
                 != self.component_template_id.uom_id.category_id
             ):
                 self.product_uom_id = self.component_template_id.uom_id
         else:
+            if self.product_backup_id:
+                self.product_id = self.product_backup_id
+                self.product_backup_id = False
             if self.product_uom_id.category_id != self.product_id.uom_id.category_id:
                 self.product_uom_id = self.product_id.uom_id
-        self._update_component_attributes()
 
-    def _update_component_attributes(self):
-        if self.component_template_id:
-            self._check_component_attributes()
-            self.product_backup_id = self.product_id.id
-            self.match_on_attribute_ids = (
-                self.component_template_id.attribute_line_ids.mapped("attribute_id")
-                .filtered(lambda x: x.create_variant != "no_variant")
-                .ids
-            )
-            self.product_id = False
-            self._check_variants_validity()
-        else:
-            self.match_on_attribute_ids = False
-            if self.product_backup_id and not self.product_id:
-                self.product_id = self.product_backup_id.id
-                self.product_backup_id = False
+    @api.depends("component_template_id")
+    def _compute_match_on_attribute_ids(self):
+        for rec in self:
+            if rec.component_template_id:
+                rec.match_on_attribute_ids = (
+                    rec.component_template_id.attribute_line_ids.attribute_id.filtered(
+                        lambda x: x.create_variant != "no_variant"
+                    )
+                )
+            else:
+                rec.match_on_attribute_ids = False
 
+    @api.constrains("component_template_id")
     def _check_component_attributes(self):
-        comp_attr_ids = (
-            self.component_template_id.valid_product_template_attribute_line_ids.attribute_id.ids
-        )
-        prod_attr_ids = (
-            self.bom_id.product_tmpl_id.valid_product_template_attribute_line_ids.attribute_id.ids
-        )
-        if len(comp_attr_ids) == 0:
-            raise ValidationError(
-                _(
-                    "No match on attribute has been detected for Component "
-                    "(Product Template) %s",
-                    self.component_template_id.display_name,
-                )
+        for rec in self:
+            if not rec.component_template_id:
+                continue
+            comp_attrs = (
+                rec.component_template_id.valid_product_template_attribute_line_ids.attribute_id
             )
-        if not all(item in prod_attr_ids for item in comp_attr_ids):
-            raise ValidationError(
-                _(
-                    "Some attributes of the dynamic component are not included into "
-                    "production product attributes."
-                )
+            prod_attrs = (
+                rec.bom_id.product_tmpl_id.valid_product_template_attribute_line_ids.attribute_id
             )
+            if not comp_attrs:
+                raise ValidationError(
+                    _(
+                        "No match on attribute has been detected for Component "
+                        "(Product Template) %s",
+                        rec.component_template_id.display_name,
+                    )
+                )
+            if not all(attr in prod_attrs for attr in comp_attrs):
+                raise ValidationError(
+                    _(
+                        "Some attributes of the dynamic component are not included into "
+                        "production product attributes."
+                    )
+                )
+
+    @api.constrains("component_template_id", "bom_product_template_attribute_value_ids")
+    def _check_variants_validity(self):
+        for rec in self:
+            if (
+                not rec.bom_product_template_attribute_value_ids
+                or not rec.component_template_id
+            ):
+                continue
+            variant_attrs = rec.bom_product_template_attribute_value_ids.attribute_id
+            same_attr_ids = set(rec.match_on_attribute_ids.ids) & set(variant_attrs.ids)
+            same_attrs = self.env["product.attribute"].browse(same_attr_ids)
+            if same_attrs:
+                raise ValidationError(
+                    _(
+                        "You cannot use an attribute value for attribute(s) %(attributes)s "
+                        "in the field “Apply on Variants” as it's the same attribute used "
+                        "in the field “Match on Attribute” related to the component "
+                        "%(component)s.",
+                        attributes=", ".join(same_attrs.mapped("name")),
+                        component=rec.component_template_id.name,
+                    )
+                )
+
+    @api.onchange("match_on_attribute_ids")
+    def _onchange_match_on_attribute_ids_check_component_attributes(self):
+        if self.match_on_attribute_ids:
+            self._check_component_attributes()
 
     @api.onchange("bom_product_template_attribute_value_ids")
-    def _onchange_attribute_value_ids(self):
+    def _onchange_bom_product_template_attribute_value_ids_check_variants(self):
         if self.bom_product_template_attribute_value_ids:
             self._check_variants_validity()
-
-    def _check_variants_validity(self):
-        if (
-            not self.bom_product_template_attribute_value_ids
-            or not self.component_template_id
-        ):
-            return
-        variant_attr_ids = self.bom_product_template_attribute_value_ids.mapped(
-            "attribute_id"
-        )
-        same_attrs = set(self.match_on_attribute_ids.ids) & set(variant_attr_ids.ids)
-        if len(same_attrs) > 0:
-            attr_recs = self.env["product.attribute"].browse(same_attrs)
-            raise ValidationError(
-                _(
-                    "You cannot use an attribute value for attribute(s) %(attributes)s "
-                    "in the field “Apply on Variants” as it's the same attribute used "
-                    "in the field “Match on Attribute” related to the component "
-                    "%(component)s.",
-                    attributes=", ".join(attr_recs.mapped("name")),
-                    component=self.component_template_id.name,
-                )
-            )
 
 
 class MrpBom(models.Model):
@@ -333,8 +345,10 @@ class MrpBom(models.Model):
         else:
             return line_product_id
 
-    def write(self, vals):
-        res = super().write(vals)
-        for line in self.bom_line_ids:
-            line._update_component_attributes()
-        return res
+    @api.constrains("product_tmpl_id", "product_id")
+    def _check_component_attributes(self):
+        return self.bom_line_ids._check_component_attributes()
+
+    @api.constrains("product_tmpl_id", "product_id")
+    def _check_variants_validity(self):
+        return self.bom_line_ids._check_variants_validity()
