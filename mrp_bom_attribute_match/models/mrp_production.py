@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):
@@ -12,7 +12,6 @@ class MrpProduction(models.Model):
                 bom_line.product_id = False
         return res
 
-    def write(self, vals):
-        for bl in self.bom_id.bom_line_ids.filtered("component_template_id"):
-            bl._check_component_attributes()
-        return super().write(vals)
+    @api.constrains("bom_id")
+    def _check_component_attributes(self):
+        self.bom_id._check_component_attributes()
