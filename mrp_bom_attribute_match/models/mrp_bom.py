@@ -1,4 +1,3 @@
-import json
 import logging
 
 from odoo import _, api, fields, models
@@ -21,24 +20,50 @@ class MrpBomLine(models.Model):
     match_on_attribute_ids = fields.Many2many(
         "product.attribute", string="Match on Attributes", readonly=True
     )
-    product_uom_id_domain = fields.Char(compute="_compute_product_uom_id_domain")
+    product_uom_category_id = fields.Many2one(
+        "uom.category",
+        related=None,
+        compute="_compute_product_uom_category_id",
+    )
 
-    @api.depends("component_template_id", "product_id")
-    def _compute_product_uom_id_domain(self):
-        for r in self:
-            if r.component_template_id:
-                category_id = r.component_template_id.uom_id.category_id.id
-                if (
-                    r.product_uom_id.category_id.id
-                    != r.component_template_id.uom_id.category_id.id
-                ):
-                    r.product_uom_id = r.component_template_id.uom_id
-            else:
-                category_id = r.product_uom_category_id.id
-            r.product_uom_id_domain = json.dumps([("category_id", "=", category_id)])
+    @api.depends("product_id", "component_template_id")
+    def _compute_product_uom_category_id(self):
+        """Compute the product_uom_category_id field.
+
+        This is the product category that will be allowed to use on the product_uom_id
+        field, already covered by core module:
+        https://github.com/odoo/odoo/blob/331b9435c/addons/mrp/models/mrp_bom.py#L372
+
+        In core, though, this field is related to "product_id.uom_id.category_id".
+        Here we make it computed to choose between component_template_id and
+        product_id, depending on which one is set
+        """
+        # pylint: disable=missing-return
+        # NOTE: To play nice with other modules trying to do the same:
+        #   1) Set the field value as if it were a related field (core behaviour)
+        #   2) Call super (if it's there)
+        #   3) Update only the records we want
+        for rec in self:
+            rec.product_uom_category_id = rec.product_id.uom_id.category_id
+        if hasattr(super(), "_compute_product_uom_category_id"):
+            super()._compute_product_uom_category_id()
+        for rec in self:
+            if rec.component_template_id:
+                rec.product_uom_category_id = (
+                    rec.component_template_id.uom_id.category_id
+                )
 
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
+        if self.component_template_id:
+            if (
+                self.product_uom_id.category_id
+                != self.component_template_id.uom_id.category_id
+            ):
+                self.product_uom_id = self.component_template_id.uom_id
+        else:
+            if self.product_uom_id.category_id != self.product_id.uom_id.category_id:
+                self.product_uom_id = self.product_id.uom_id
         self._update_component_attributes()
 
     def _update_component_attributes(self):
