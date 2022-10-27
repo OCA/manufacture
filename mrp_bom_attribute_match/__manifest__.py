@@ -4,7 +4,7 @@
     "category": "Manufacturing",
     "author": "Ilyas, Ooops, Odoo Community Association (OCA)",
     "summary": "Dynamic BOM component based on product attribute",
-    "depends": ["mrp_account", "web_domain_field"],
+    "depends": ["mrp_account"],
     "license": "AGPL-3",
     "website": "https://github.com/OCA/manufacture",
     "data": [
