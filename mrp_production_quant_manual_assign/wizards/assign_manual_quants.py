@@ -19,8 +19,8 @@ class AssignManualQuants(models.TransientModel):
         return False
 
     @api.model
-    def default_get(self, fields):
-        res = super(AssignManualQuants, self).default_get(fields)
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
         move = self.env["stock.move"].browse(self.env.context["active_id"])
         res.update({"is_production_single_lot": self._is_production_single_lot(move)})
         return res
@@ -42,7 +42,7 @@ class AssignManualQuants(models.TransientModel):
         return line
 
     def assign_quants(self):
-        res = super(AssignManualQuants, self).assign_quants()
+        res = super().assign_quants()
         move = self.move_id
         if self._is_production_single_lot(move):
             precision_digits = self.env["decimal.precision"].precision_get(
@@ -53,8 +53,10 @@ class AssignManualQuants(models.TransientModel):
             ).mapped("lot_id")
             for ml in move.move_line_ids:
                 if ml.lot_id in lots_to_consume:
-                    ml.qty_done = ml.product_qty
-                elif float_is_zero(ml.product_qty, precision_digits=precision_digits):
+                    ml.qty_done = ml.reserved_uom_qty
+                elif float_is_zero(
+                    ml.reserved_uom_qty, precision_digits=precision_digits
+                ):
                     ml.unlink()
                 else:
                     ml.qty_done = 0.0
@@ -65,7 +67,4 @@ class AssignManualQuantsLines(models.TransientModel):
     _inherit = "assign.manual.quants.lines"
 
     to_consume_now = fields.Boolean()
-    qty_done = fields.Float(
-        digits="Product Unit of Measure",
-        readonly=True,
-    )
+    qty_done = fields.Float(digits="Product Unit of Measure", readonly=True)
