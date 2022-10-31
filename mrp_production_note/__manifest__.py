@@ -3,13 +3,10 @@
 
 {
     "name": "Notes in production orders",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
-    "author": "OdooMRP team, "
-    "AvanzOSC, "
-    "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-    "Odoo Community Association (OCA)",
+    "author": "OdooMRP team, AvanzOSC, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp"],
     "data": ["views/mrp_production_view.xml"],
