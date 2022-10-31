@@ -1,12 +1,24 @@
 # Copyright 2021 KMEE
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.repair.tests.test_repair import TestRepair
 from odoo.tests import tagged
+from odoo.addons.repair.tests import test_repair
 
 
 @tagged('post_install', '-at_install')
-class PaymentTestRepair(TestRepair):
+class PaymentTestRepair(test_repair.TestRepair):
+    def _create_simple_operation(self, repair_id=False, qty=0.0, price_unit=0.0):
+        """
+        Create stock to make this module's tests compatible with repair_stock_move if
+        installed
+        """
+        result = super()._create_simple_operation(
+            repair_id=repair_id, qty=qty, price_unit=price_unit,
+        )
+        self.env["stock.quant"]._update_available_quantity(
+            result.product_id, result.location_id, 2*qty,
+        )
+        return result
 
     def test_00_repair_payment_term(self):
         partner_12 = self.env.ref('base.res_partner_12')
