@@ -171,6 +171,7 @@ class TestRepairStockMove(common.SavepointCase):
             with repair_form.operations.new() as operation:
                 operation.product_id = self.product_3
                 operation.location_id = self.stock_location_14
+                operation.location_dest_id = self.product_3.property_stock_production
         self.assertEqual(
             self.repair1.mapped('operations.move_id.state'),
             ['confirmed', 'confirmed'],
@@ -180,6 +181,7 @@ class TestRepairStockMove(common.SavepointCase):
             with repair_form.operations.new() as operation:
                 operation.product_id = self.product_3
                 operation.location_id = self.stock_location_14
+                operation.location_dest_id = self.product_3.property_stock_production
         self.assertEqual(
             self.repair1.mapped('operations.move_id.state'),
             ['assigned', 'assigned', 'confirmed'],
