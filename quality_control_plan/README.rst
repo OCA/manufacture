@@ -14,13 +14,13 @@ Quality Control - Control Plan
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/11.0/quality_control_plan
+    :target: https://github.com/OCA/manufacture/tree/13.0/quality_control_plan
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-11-0/manufacture-11-0-quality_control_plan
+    :target: https://translation.odoo-community.org/projects/manufacture-13-0/manufacture-13-0-quality_control_plan
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/129/11.0
+    :target: https://runbot.odoo-community.org/runbot/129/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -30,14 +30,14 @@ These module manages the Control Plans for Quality Control, to define how many p
 It is possible to create a list of Control Plans with names and free pass flag.
 Only one Plan a time can have the free pass flagged.
 
-For each Control Plan is possible to assign different levels of control each with 
-a minimum quantity, a value to check and the type of check value: the check 
+For each Control Plan is possible to assign different levels of control each with
+a minimum quantity, a value to check and the type of check value: the check
 type can be an absolute number of pieces or a percentage.
 
 On Products, Product Category and Partner is possible to set a specific Control Plan.
 
-When Inspection is generated the Control Plan to use is selected trought Product-Partner, 
-Category-Partner, Product, Category, Partner. 
+When Inspection is generated the Control Plan to use is selected trought Product-Partner,
+Category-Partner, Product, Category, Partner.
 
 Creates a reference between Inspections and Nonconformities.
 
@@ -65,20 +65,20 @@ Steps to follow to use Control Plans:
 - define levels of control for Control Pans
 
 **Control Plan**
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Create a Control Plan with a name, description and eventually with Free Pass flag checked
 
 **Control Plan Levels**
 
 - Option A
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Select a Control Plan
     * Add rows with quantity level, value to check, type of value
 
 - Option B
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan Levels
     * Create a new element selecting the Control Plan and filling other fields
 
@@ -108,7 +108,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_plan%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_plan%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -139,6 +139,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/11.0/quality_control_plan>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/13.0/quality_control_plan>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

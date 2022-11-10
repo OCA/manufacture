@@ -10,8 +10,8 @@ class MgmtsystemMgmInspection(models.Model):
     Extends nonconformity adding related inspection
     """
 
-    _inherit = ['mgmtsystem.nonconformity']
+    _inherit = ["mgmtsystem.nonconformity"]
 
     # new field
     # inspection reference
-    inspection_id = fields.Many2one('qc.inspection', 'Inspection')
+    inspection_id = fields.Many2one("qc.inspection", "Inspection")

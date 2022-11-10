@@ -15,13 +15,12 @@ class QcTriggerPartnerLine(models.Model):
     Extend quality trigger with partner control plan
     """
 
-    _inherit = "qc.trigger.line"
-
-    # model
     _name = "qc.trigger.partner_line"
+    _inherit = "qc.trigger.line"
+    _description = "quality trigger with partner control plan"
 
     # new fields
     # reference partner
-    partner = fields.Many2one(comodel_name="res.partner")
+    partner_id = fields.Many2one("res.partner")
     # control plan to use
-    plan_id = fields.Many2one('qc.plan', 'Plan', required=True)
+    plan_id = fields.Many2one("qc.plan", "Plan", required=True)

@@ -1,40 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
 <odoo>
     <!-- adds menu voice for control plan to test menu -->
 
     <!-- manage Control Plan list -->
     <!-- action -->
-    <act_window id = "qc_plan_action"
-                name = "Control Plans"
-                res_model = "qc.plan"
-                view_mode = "tree,form" 
-                />
+    <act_window
+        id="qc_plan_action"
+        name="Control Plans"
+        res_model="qc.plan"
+        view_mode="tree,form"
+    />
     <!-- menu voice -->
-    <menuitem name = "Control Plans"
-              id = "menu_qc_plan"
-              parent = "quality_control.qc_menu_test_parent"
-              sequence = "110"
-              action = "qc_plan_action"
-              />
+    <menuitem
+        name="Control Plans"
+        id="menu_qc_plan"
+        parent="quality_control_oca.qc_menu_test_parent"
+        sequence="110"
+        action="qc_plan_action"
+    />
 
     <!-- manage Plan Levels -->
     <!-- action -->
-    <act_window id = "qc_level_action"
-                name = "Control Plan Levels"
-                res_model = "qc.level"
-                view_mode = "tree,form" 
-                />
+    <act_window
+        id="qc_level_action"
+        name="Control Plan Levels"
+        res_model="qc.level"
+        view_mode="tree,form"
+    />
     <!-- menu voice -->
-    <menuitem name = "Control Plan Levels"
-              id = "menu_qc_level"
-              parent = "quality_control.qc_menu_test_parent"
-              sequence = "120"
-              action = "qc_level_action"
-              />
+    <menuitem
+        name="Control Plan Levels"
+        id="menu_qc_level"
+        parent="quality_control_oca.qc_menu_test_parent"
+        sequence="120"
+        action="qc_level_action"
+    />
 
 </odoo>
