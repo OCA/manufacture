@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
 <odoo>
     <!-- inherits partner form view adding new quality tab -->
     <record id="view_mgmtsystem_nonconformity_partner" model="ir.ui.view">
         <field name="name">view.mgmtsystem.nonconformity.partner</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Quality">
                     <group name="qc" string="Quality control">
                     <field name="qc_triggers" nolabel="1">
                         <tree string="Quality control triggers" editable="bottom">
-                            <field name="trigger" widget="selection"/>
-                            <field name="test"/>
-                            <field name="plan_id"/>
+                            <field name="trigger" widget="selection" />
+                            <field name="test" />
+                            <field name="plan_id" />
                             <field name="user" />
                         </tree>
                     </field>

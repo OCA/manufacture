@@ -4,20 +4,20 @@ Steps to follow to use Control Plans:
 - define levels of control for Control Pans
 
 **Control Plan**
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Create a Control Plan with a name, description and eventually with Free Pass flag checked
 
 **Control Plan Levels**
 
 - Option A
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Select a Control Plan
     * Add rows with quantity level, value to check, type of value
 
 - Option B
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan Levels
     * Create a new element selecting the Control Plan and filling other fields
 
