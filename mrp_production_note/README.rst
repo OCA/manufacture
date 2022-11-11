@@ -69,6 +69,7 @@ Contributors
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Laurent Bélorgey <lb@lalieutenante.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Abir Mokaddem <amokaddem@archeti.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -83,6 +84,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/13.0/mrp_production_note>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_production_note>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
