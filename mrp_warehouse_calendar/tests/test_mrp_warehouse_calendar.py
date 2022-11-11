@@ -119,11 +119,11 @@ class TestMrpWarehouseCalendar(TransactionCase):
                 "product_qty": 1,
                 "picking_type_id": self.env[
                     "mrp.production"
-                ]._get_default_picking_type(),
+                ]._get_default_picking_type_id(self.company.id),
             }
         )
         mo.date_planned_start = "2097-01-04 09:00:00"
-        mo._onchange_date_planned_start()
+        mo._compute_date_planned_finished()
         date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
         monday = fields.Date.to_date("2097-01-07 09:00:00")
         self.assertEqual(date_plan_finished, monday)
