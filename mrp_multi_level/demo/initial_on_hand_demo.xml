@@ -30,13 +30,14 @@
             eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"
         />
     </record>
-        <function model="stock.quant" name="action_apply_inventory">
-            <function
+    <function model="stock.quant" name="action_apply_inventory">
+        <function
             eval="[[('id', 'in', (ref('stock_inventory_1'),
-                                            ref('stock_inventory_2'),
-                                            ref('stock_inventory_3'),
-                                            ))]]"
+                                        ref('stock_inventory_2'),
+                                        ref('stock_inventory_3'),
+                                        ))]]"
             model="stock.quant"
             name="search"
         />
-        </function></odoo>
+    </function>
+</odoo>

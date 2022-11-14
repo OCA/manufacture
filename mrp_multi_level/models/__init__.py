@@ -8,3 +8,4 @@ from . import mrp_inventory
 from . import product_mrp_area
 from . import stock_rule
 from . import mrp_production
+from . import stock_quant
