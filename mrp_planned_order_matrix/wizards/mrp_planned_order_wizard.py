@@ -137,9 +137,7 @@ class MprPlannedOrderSheet(models.TransientModel):
         return ranges
 
     def _get_default_sheet_line(self, d_range, product_mrp, uom_qty, item_ids):
-        name_y = "{} - {}".format(
-            product_mrp.display_name, product_mrp.product_id.uom_id.name
-        )
+        name_y = f"{product_mrp.display_name} - {product_mrp.product_id.uom_id.name}"
         values = {
             "value_x": d_range.name,
             "value_y": name_y,
