@@ -23,9 +23,8 @@
                             />
                         </group>
                     </group>
-                    <div />
-                    <group name="products" string="Products">
-                        <field name="product_mrp_area_ids" nolabel="1">
+                    <group name="products" string="Products" />
+                    <field name="product_mrp_area_ids" nolabel="1">
                             <tree>
                                 <field name="product_id" />
                                 <field name="mrp_area_id" />
@@ -33,7 +32,6 @@
                                 <field name="supply_method" />
                             </tree>
                         </field>
-                    </group>
                     <footer>
                         <button
                             name="create_sheet"
@@ -67,25 +65,23 @@
                         />
                     </group>
                 </group>
-                <div />
-                <group name="mps_quantity" string="MPS quantity">
-                    <field
-                        name="line_ids"
-                        nolabel="1"
-                        widget="x2many_2d_matrix"
-                        field_x_axis="value_x"
-                        field_y_axis="value_y"
-                        field_value="product_qty"
-                        x_axis_clickable="0"
-                        y_axis_clickable="0"
-                    >
-                        <tree editable="bottom">
-                            <field name="value_x" />
-                            <field name="value_y" />
-                            <field name="product_qty" />
-                        </tree>
-                    </field>
-                </group>
+                <group name="mps_quantity" string="MPS quantity" />
+                <field
+                    name="line_ids"
+                    nolabel="1"
+                    widget="x2many_2d_matrix"
+                    field_x_axis="value_x"
+                    field_y_axis="value_y"
+                    field_value="product_qty"
+                    x_axis_clickable="0"
+                    y_axis_clickable="0"
+                >
+                    <tree editable="bottom">
+                        <field name="value_x" />
+                        <field name="value_y" />
+                        <field name="product_qty" />
+                    </tree>
+                </field>
                 <footer>
                     <button
                         name="button_validate"
