@@ -103,7 +103,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "list_price": 150.0,
                 "produce_delay": 5.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -123,7 +123,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "type": "product",
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 10.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -142,7 +142,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "type": "product",
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 10.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -160,7 +160,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "type": "product",
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 10.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -179,7 +179,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "type": "product",
                 "list_price": 100.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -197,7 +197,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "type": "product",
                 "list_price": 100.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -213,7 +213,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "list_price": 150.0,
                 "produce_delay": 5.0,
                 "route_ids": [(6, 0, [route_buy])],
-                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 20.0})],
+                "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
         cls.product_mrp_area_obj.create(
@@ -248,7 +248,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": cls.stock_location.id,
                 "location_dest_id": cls.customer_location.id,
                 "scheduled_date": date_move,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -313,7 +313,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": cls.stock_location.id,
                 "location_dest_id": cls.customer_location.id,
                 "scheduled_date": date_move,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -439,7 +439,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": cls.sec_loc.id,
                 "location_dest_id": cls.customer_location.id,
                 "scheduled_date": date_move,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -481,7 +481,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": cls.supplier_location.id,
                 "location_dest_id": location.id,
                 "scheduled_date": date_move,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -511,7 +511,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": location.id,
                 "location_dest_id": cls.customer_location.id,
                 "scheduled_date": date_move,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,

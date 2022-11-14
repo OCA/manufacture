@@ -3,3 +3,4 @@
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Héctor Villarreal <hector.villarreal@forgeflow.com>
 * Christopher Ormaza <chris.ormaza@forgeflow.com>
+* Joan Sisquella <joan.sisquella@forgeflow.com>
