@@ -57,6 +57,7 @@
                     name="action_open_planned_orders"
                     type="object"
                     icon="fa-list"
+                    title="Details"
                 />
                 <field name="order_release_date" />
                 <button
