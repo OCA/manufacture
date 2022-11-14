@@ -211,7 +211,7 @@ class ProductMRPArea(models.Model):
                 rec.main_supplier_id = False
                 continue
             rec.main_supplierinfo_id = suppliers[0]
-            rec.main_supplier_id = suppliers[0].name
+            rec.main_supplier_id = suppliers[0].partner_id
         for rec in self.filtered(lambda r: r.supply_method != "buy"):
             rec.main_supplierinfo_id = False
             rec.main_supplier_id = False
