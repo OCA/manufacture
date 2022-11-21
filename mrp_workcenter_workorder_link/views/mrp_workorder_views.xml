@@ -6,7 +6,12 @@
     <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view" />
     <field name="arch" type="xml">
         <field name="workcenter_id" position="after">
-            <button name="button_workcenter" icon="fa-cogs" type="object" />
+            <button
+                    name="button_workcenter"
+                    icon="fa-cogs"
+                    type="object"
+                    title="Workcenter"
+                />
         </field>
     </field>
 </record>

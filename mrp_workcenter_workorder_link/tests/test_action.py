@@ -10,12 +10,21 @@ class ExecuteButton(TransactionCase):
         self.assertEqual(
             res["domain"],
             [
-                ("state", "in", ("pending", "ready", "progress")),
+                ("state", "in", ("pending", "waiting", "ready", "progress")),
                 ("workcenter_id", "in", workcenter.ids),
             ],
         )
 
     def test_button_workcenter(self):
+        # easy way to generate an operation as there are not by default
+        self.env["mrp.routing.workcenter"].with_context(active_test=False).search(
+            []
+        ).active = True
+        self.env["mrp.production"].create(
+            {
+                "product_id": self.env.ref("mrp.product_product_computer_desk_head").id,
+            }
+        )
         workorder = self.env["mrp.workorder"].search([], limit=1)
         res = workorder.button_workcenter()
         self.assertEqual(res["view_mode"], "form")

@@ -9,13 +9,13 @@ class MrpWorkcenter(models.Model):
     pending_order_ids = fields.One2many(
         "mrp.workorder",
         "workcenter_id",
-        domain=[("state", "in", ("pending", "ready", "progress"))],
+        domain=[("state", "in", ("pending", "waiting", "ready", "progress"))],
         string="Work Orders",
     )
 
     def _get_workcenter_line_domain(self):
         return [
-            ("state", "in", ("pending", "ready", "progress")),
+            ("state", "in", ("pending", "waiting", "ready", "progress")),
             ("workcenter_id", "in", self.ids),
         ]
 
