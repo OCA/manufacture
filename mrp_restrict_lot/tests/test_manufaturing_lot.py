@@ -21,7 +21,7 @@ class TestRestrictLot(SavepointCase):
         cls.out_picking_type = cls.env.ref("stock.picking_type_out")
 
     def test_manufacturing_lot(self):
-        lot = self.env["stock.production.lot"].create(
+        lot = self.env["stock.lot"].create(
             {
                 "name": "lot1",
                 "product_id": self.panel_wood_prd.id,
