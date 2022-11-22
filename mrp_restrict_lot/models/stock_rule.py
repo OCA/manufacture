@@ -11,7 +11,7 @@ class StockRule(models.Model):
         product_id,
         product_qty,
         product_uom,
-        location_id,
+        location_dest_id,
         name,
         origin,
         company_id,
@@ -22,7 +22,7 @@ class StockRule(models.Model):
             product_id,
             product_qty,
             product_uom,
-            location_id,
+            location_dest_id,
             name,
             origin,
             company_id,
@@ -32,6 +32,6 @@ class StockRule(models.Model):
         lot_id = values.get("restrict_lot_id")
         if lot_id:
             vals["lot_producing_id"] = lot_id
-            lot = self.env["stock.production.lot"].browse(lot_id)
+            lot = self.env["stock.lot"].browse(lot_id)
             vals["name"] = lot.name
         return vals
