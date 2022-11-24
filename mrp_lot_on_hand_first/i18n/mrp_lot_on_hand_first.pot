@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_lot_on_hand_first
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_lot_on_hand_first
+#: model:ir.model.fields,field_description:mrp_lot_on_hand_first.field_mrp_production__display_lots_on_hand_first
+msgid "Display Lots On Hand First"
+msgstr ""
+
+#. module: mrp_lot_on_hand_first
+#: model:ir.model,name:mrp_lot_on_hand_first.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_lot_on_hand_first
+#: model:ir.model.fields,help:mrp_lot_on_hand_first.field_mrp_production__display_lots_on_hand_first
+msgid ""
+"When marked, lots that do not have a quantity in stock will be displayed "
+"last in the selection"
+msgstr ""
