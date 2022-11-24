@@ -47,6 +47,7 @@ addon | version | maintainers | summary
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.1.0.1 |  | Link Purchase Order to Subcontract Productions
 [mrp_subcontracting_resupply_link](mrp_subcontracting_resupply_link/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Links between subcontracting PO and resupply picking
 [mrp_tag](mrp_tag/) | 14.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
+[mrp_unbuild_valuation_layer_link](mrp_unbuild_valuation_layer_link/) | 14.0.1.0.0 |  | Unbuild orders display the connected valuation layers
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 14.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_hierarchical](mrp_workcenter_hierarchical/) | 14.0.1.0.0 |  | Organise Workcenters by section
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 14.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
