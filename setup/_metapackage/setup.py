@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-manufacture Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-mrp_multi_level>=16.0dev,<16.1dev',
         'odoo-addon-mrp_warehouse_calendar>=16.0dev,<16.1dev',
     ],
     classifiers=[
