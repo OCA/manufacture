@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="mrp_bom_form_view" model="ir.ui.view">
+    <field name="name">mrp.bom.form.inherit</field>
+    <field name="model">mrp.bom</field>
+    <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+    <field name="arch" type="xml">
+      <field name="type" position="after">
+        <field
+                    name="mo_auto_validation"
+                    attrs="{'invisible': [('type', '!=', 'normal')]}"
+                />
+        <field
+                    name="mo_auto_validation_warning"
+                    nolabel="1"
+                    colspan="2"
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': ['|', ('type', '!=', 'normal'), ('mo_auto_validation', '=', False)]}"
+                />
+      </field>
+    </field>
+  </record>
+
+</odoo>

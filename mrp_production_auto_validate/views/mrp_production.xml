@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="mrp_production_form_view" model="ir.ui.view">
+    <field name="name">mrp.production.form.inherit</field>
+    <field name="model">mrp.production</field>
+    <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+    <field name="arch" type="xml">
+      <div name="button_box" position="before">
+        <field name="auto_validate" invisible="1" />
+      </div>
+    </field>
+  </record>
+
+</odoo>
