@@ -53,8 +53,8 @@ class TestUnbuild(TestMrpCommon):
             "You should access to the model stock.valuation.layer",
         )
         self.assertEqual(
-            difference_layers,
-            unbuild_valuation_layers,
+            sorted(difference_layers),
+            sorted(unbuild_valuation_layers),
             "You should have as domain the ids of the stock valuation belonging "
             "to the ids of the stock moves of produce_line and consume_line",
         )
