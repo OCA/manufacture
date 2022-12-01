@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="stock_location_route_form_view_inherit_mrp_component"
+        model="ir.ui.view"
+    >
+        <field name="name">stock.location.route.form - mrp.component</field>
+        <field name="inherit_id" ref="stock.stock_location_route_form_view" />
+        <field name="model">stock.location.route</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_selectable']" position="before">
+                <field name="mo_component_selectable" string="Component Operations" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

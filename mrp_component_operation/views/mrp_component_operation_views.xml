@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_component_operation_form" model="ir.ui.view">
+        <field name="name">view_mrp_component_operation_form</field>
+        <field name="model">mrp.component.operation</field>
+        <field name="arch" type="xml">
+            <form string="Component Operation">
+                <sheet>
+                    <h1>
+                        <field name="name" string="Reference" />
+                    </h1>
+                    <group name="operations" string="Operations">
+                        <field name="outgoing_operation" />
+                        <field name="incoming_operation" />
+                    </group>
+                    <group
+                        name="locations"
+                        string="Locations/Routes"
+                        attrs="{'invisible': [('outgoing_operation', '=', 'no'),('incoming_operation', '=', 'no')]}"
+                    >
+                        <field
+                            name="source_location_id"
+                            attrs="{'invisible': [('incoming_operation', '!=', 'replace'),('outgoing_operation', '!=', 'scrap')], 'required': ['|',('incoming_operation', '=', 'replace'),('outgoing_operation', '=', 'scrap')]}"
+                        />
+                        <field
+                            name="source_route_id"
+                            attrs="{'invisible': [('incoming_operation', '!=', 'replace')], 'required': [('incoming_operation', '=', 'replace')]}"
+                        />
+                        <field
+                            name="destination_location_id"
+                            attrs="{'invisible': [('outgoing_operation', '!=', 'move')], 'required': [('outgoing_operation', '=', 'move')]}"
+                        />
+                        <field
+                            name="destination_route_id"
+                            attrs="{'invisible': [('outgoing_operation', '!=', 'move')], 'required': [('outgoing_operation', '=', 'move')]}"
+                        />
+                        <field
+                            name="scrap_location_id"
+                            attrs="{'invisible': [('outgoing_operation', '!=', 'scrap')], 'required': [('outgoing_operation', '=', 'scrap')]}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_menu_mrp_component_operation" model="ir.actions.act_window">
+        <field name="name">Component Operation</field>
+        <field name="res_model">mrp.component.operation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_component_operation"
+        name="Component Operations"
+        action="action_menu_mrp_component_operation"
+        parent="mrp.menu_mrp_configuration"
+        sequence="6"
+    />
+
+
+</odoo>

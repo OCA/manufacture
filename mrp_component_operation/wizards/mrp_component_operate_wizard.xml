@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_component_operate_form" model="ir.ui.view">
+        <field name="name">view_mrp_component_operate_form</field>
+        <field name="model">mrp.component.operate</field>
+        <field name="arch" type="xml">
+            <form string="Component Operation">
+                <sheet>
+                    <group>
+                        <field
+                            name="product_id"
+                            options="{'no_create': True}"
+                            domain="[('id', 'in', context.get('product_ids', []))]"
+                        />
+                        <field
+                            name="lot_id"
+                            string="Lot/Serial Number"
+                            attrs="{'required': [('tracking', '!=', 'none')]}"
+                            domain="[('product_id', '=', product_id), ('id', 'in', context.get('lot_ids', []))]"
+                        />
+                        <field
+                            name="product_qty"
+                            attrs="{'readonly': ['|',('tracking', '=', 'serial'),('product_id', '=', False)]}"
+                        />
+                        <field name="operation_id" />
+                        <field name="tracking" invisible="1" />
+                    </group>
+                    <group
+                        name="operations"
+                        string="Operations"
+                        attrs="{'invisible': [('operation_id', '=', False)]}"
+                    >
+                        <field name="outgoing_operation" />
+                        <field name="incoming_operation" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_operate_component"
+                        string="Done"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+
+            </form>
+        </field>
+    </record>
+</odoo>
