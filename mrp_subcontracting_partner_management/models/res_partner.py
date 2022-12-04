@@ -95,18 +95,20 @@ class ResPartner(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        records = super(ResPartner, self).create(vals_list)
         check_data = self.get_data_struct().items()
-        for record in records.filtered(
-            lambda r: r.is_subcontractor_partner and r.is_company
+        for vals in filter(
+            lambda v: v.get("is_subcontractor_partner") and v.get("is_company"),
+            vals_list,
         ):
-            values = {}
             for key, func in check_data:
-                if not getattr(record, key) or not values.get(key):
-                    values.update(**getattr(record, func)(values) or {})
-            if values:
-                record.write(values)
-        return records
+                if not getattr(self, key) or not vals.get(key):
+                    vals.update(
+                        **getattr(
+                            self.with_context(partner_name=vals.get("name")), func
+                        )(vals)
+                        or {}
+                    )
+        return super(ResPartner, self).create(vals_list)
 
     def _update_subcontractor_entities_for_record(self, is_subcontractor_partner):
         if not is_subcontractor_partner:
@@ -139,7 +141,9 @@ class ResPartner(models.Model):
             return vals.get("partner_picking_type_id"), location_id
         if self.partner_picking_type_id:
             return self.partner_picking_type_id.id, location_id
-        operation_type_name = "%s:  IN" % self._compose_entity_name()
+        operation_type_name = "%s:  IN" % self._context.get(
+            "partner_name", self._compose_entity_name()
+        )
         operation_type_vals = {
             "name": operation_type_name,
             "code": "incoming",
@@ -160,7 +164,6 @@ class ResPartner(models.Model):
         )
 
     def _get_location_id_for_record(self, vals):
-        self.ensure_one()
         if "subcontracted_created_location_id" in vals:
             return vals.get("subcontracted_created_location_id")
         if self.subcontracted_created_location_id:
@@ -173,7 +176,9 @@ class ResPartner(models.Model):
             self.env["stock.location"]
             .create(
                 {
-                    "name": self._compose_entity_name(),
+                    "name": self._context.get(
+                        "partner_name", self._compose_entity_name()
+                    ),
                     "usage": "internal",
                     "location_id": parent_location or False,
                     "company_id": company.id,
@@ -184,7 +189,6 @@ class ResPartner(models.Model):
         )
 
     def _create_subcontracting_location_data(self, vals):
-        self.ensure_one()
         location_id = self._get_location_id_for_record(vals)
         return {
             "property_stock_subcontractor": location_id,
@@ -192,13 +196,11 @@ class ResPartner(models.Model):
         }
 
     def _create_operation_type_for_subcontracting(self, vals):
-        self.ensure_one()
         # Creating Operation Type for Subcontracting starts here
         operation_type_rec_id, _ = self._create_subcontracted_operation_type(vals)
         return {"partner_picking_type_id": operation_type_rec_id}
 
     def _create_route_rule_for_subcontracting(self, vals):
-        self.ensure_one()
         operation_type_rec_id, location_id = self._create_subcontracted_operation_type(
             vals
         )
@@ -207,7 +209,7 @@ class ResPartner(models.Model):
         )
         buy_rule = self.env["stock.rule"].create(
             {
-                "name": self._compose_entity_name(),
+                "name": self._context.get("partner_name", self._compose_entity_name()),
                 "action": "buy",
                 "picking_type_id": operation_type_rec_id,
                 "location_id": location_id,
@@ -217,7 +219,6 @@ class ResPartner(models.Model):
         return {"partner_buy_rule_id": buy_rule.id}
 
     def _create_route_rule_for_subcontracting_resupply(self, vals):
-        self.ensure_one()
         prop = self.env["ir.property"]._get(
             "property_stock_production", "product.template"
         )
@@ -228,7 +229,7 @@ class ResPartner(models.Model):
         )
         rule = self.env["stock.rule"].create(
             {
-                "name": self._compose_entity_name(),
+                "name": self._context.get("partner_name", self._compose_entity_name()),
                 "action": "pull",
                 "partner_address_id": self._origin.id,
                 "picking_type_id": picking_type.id,
