@@ -42,7 +42,10 @@ It adds a new checkbox "Subcontractor" which when enabled creates the following 
 Configuration
 =============
 
-* No configuration is required
+To see newly created rules, go to **Settings** > **Inventory** and activate "Multi step routes".
+
+It is also possible to allow a user to check inventory locations in **Sales & Purchases** tab of **Vendor** without activating dev mode.
+To do so, enable technical extra right **Display Inventory section on Vendor** in user.
 
 Usage
 =====
@@ -51,6 +54,9 @@ Usage
 * Enable the "Subcontractor" checkbox
 * New entities are created or existing are used if were created previously
 * When disabled all associated enties will be archived
+* When name of subcontractor is updated, names of entities are updated automatically.
+* It is also possible to check inventory locations using **Subcontractor Location Stock** smart button on partner.
+* When name of subcontractor is updated, names of entities (subcontracting location, operation type, rules) are updated automatically.
 
 Changelog
 =========
