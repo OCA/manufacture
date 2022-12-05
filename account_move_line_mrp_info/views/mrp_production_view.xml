@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+       <record id="action_view_journal_items" model="ir.actions.act_window">
+        <field name="name">Journal Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There's no journal item yet
+            </p>
+        </field>
+    </record>
+
     <record id="mrp_production_form_view" model="ir.ui.view">
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <page name="miscellaneous" position="inside">
-                <group name="account_move_lines_grp" string="Journal Items" colspan="4">
-                    <field name="account_move_line_ids" readonly="1" nolabel="1" />
-                </group>
-            </page>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    string="Journal Items"
+                    type="object"
+                    name="view_journal_items"
+                    class="oe_stat_button"
+                    icon="fa-th-list"
+                    groups="base.group_no_one"
+                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                />
+            </xpath>
         </field>
     </record>
 
@@ -16,9 +34,17 @@
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
         <field name="arch" type="xml">
-            <field name="location_dest_id" position="after">
-                    <field name="account_move_line_ids" readonly="1" nolabel="1" />
-            </field>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    string="Journal Items"
+                    type="object"
+                    name="view_journal_items"
+                    class="oe_stat_button"
+                    icon="fa-th-list"
+                    groups="base.group_no_one"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
