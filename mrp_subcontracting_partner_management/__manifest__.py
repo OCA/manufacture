@@ -10,8 +10,8 @@
     "external_dependencies": {},
     "demo": [],
     "data": [
-        "views/res_partner.xml",
-        "views/stock_picking_type.xml",
+        "views/res_partner_views.xml",
+        "views/stock_picking_type_views.xml",
     ],
     "qweb": [],
     "installable": True,
