@@ -37,10 +37,10 @@ class PurchaseOrder(models.Model):
                     values={"self": picking, "origin": order},
                     subtype_id=self.env.ref("mail.mt_note").id,
                 )
-                for move in picking.move_lines:
-                    if not move.is_subcontract:
-                        non_sub_lines |= move
-                        move.picking_id = False
+                non_sub_lines = picking.move_lines.filtered(
+                    lambda m: not m.is_subcontract
+                )
+                non_sub_lines.write({"picking_id": False})
                 is_subcontracted_bom = False
                 for move in picking.move_ids_without_package:
                     bom = (

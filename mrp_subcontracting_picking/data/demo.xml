@@ -211,6 +211,10 @@
                 'xml_id': 'mrp_subcontracting_picking.stock_picking_type_pbm',
                 'record': obj().env.ref('stock.warehouse0').pbm_type_id,
                 'noupdate': True,
+            }, {
+                'xml_id': 'mrp_subcontracting_picking.warehouse_subcontracting_route_id',
+                'record': obj().env.ref('stock.warehouse0').subcontracting_route_id,
+                'noupdate': True,
             }
             ]"
             />
@@ -237,7 +241,9 @@
             <value eval="{'sequence': 7}" />
         </function>
         <function name="write" model="stock.location.route">
-            <value eval="[ref('stock.warehouse0').subcontracting_route_id]" />
+            <value
+                eval="[ref('mrp_subcontracting_picking.warehouse_subcontracting_route_id')]"
+            />
             <value eval="{'sequence': 9}" />
         </function>
         <record id="stock_location_subcontractor_1" model="stock.location">
