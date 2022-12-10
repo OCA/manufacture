@@ -10,7 +10,7 @@
         <field name="name">qc.test.category.tree</field>
         <field name="model">qc.test.category</field>
         <field name="arch" type="xml">
-            <tree string="Test categories" editable="bottom">
+            <tree editable="bottom">
                 <field name="complete_name" />
                 <field name="name" />
                 <field name="parent_id" />

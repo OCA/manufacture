@@ -18,7 +18,7 @@ class QcInspectionSetTest(models.TransientModel):
     _name = "qc.inspection.set.test"
     _description = "Set test for inspection"
 
-    test = fields.Many2one(comodel_name="qc.test", string="Test")
+    test = fields.Many2one(comodel_name="qc.test")
 
     def action_create_test(self):
         inspection = self.env["qc.inspection"].browse(self.env.context["active_id"])
