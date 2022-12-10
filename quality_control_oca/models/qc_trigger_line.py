@@ -33,7 +33,6 @@ class QcTriggerLine(models.AbstractModel):
     )
     partners = fields.Many2many(
         comodel_name="res.partner",
-        string="Partners",
         help="If filled, the test will only be created when the action is done"
         " for one of the specified partners. If empty, the test will always be"
         " created.",

@@ -29,7 +29,7 @@ class QcTestTemplateCategory(models.Model):
                 _("Error! You can not create recursive categories.")
             )
 
-    name = fields.Char("Name", required=True, translate=True)
+    name = fields.Char(required=True, translate=True)
     parent_id = fields.Many2one(
         comodel_name="qc.test.category", string="Parent category"
     )
@@ -42,7 +42,6 @@ class QcTestTemplateCategory(models.Model):
         string="Child categories",
     )
     active = fields.Boolean(
-        string="Active",
         default=True,
         help="This field allows you to hide the category without removing it.",
     )

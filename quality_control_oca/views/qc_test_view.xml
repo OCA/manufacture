@@ -35,7 +35,7 @@
                         </group>
                     </group>
                     <field name="test_lines" nolabel="1">
-                        <tree string="Questions">
+                        <tree>
                             <field name="sequence" widget="handle" />
                             <field name="name" />
                             <field name="type" />
@@ -57,7 +57,7 @@
         <field name="name">qc.test.tree</field>
         <field name="model">qc.test</field>
         <field name="arch" type="xml">
-            <tree string="Tests">
+            <tree>
                 <field name="name" />
                 <field name="category" />
                 <field name="type" />
@@ -95,7 +95,7 @@
                         nolabel="1"
                         attrs="{'required': [('type','=','qualitative')]}"
                     >
-                        <tree string="Question value" editable="bottom">
+                        <tree editable="bottom">
                             <field name="name" />
                             <field name="ok" />
                         </tree>
