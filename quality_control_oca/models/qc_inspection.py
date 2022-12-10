@@ -43,7 +43,6 @@ class QcInspection(models.Model):
         copy=False,
     )
     date = fields.Datetime(
-        string="Date",
         required=True,
         readonly=True,
         copy=False,
@@ -64,17 +63,15 @@ class QcInspection(models.Model):
         help="Product associated with the inspection",
     )
     qty = fields.Float(string="Quantity", default=1.0)
-    test = fields.Many2one(comodel_name="qc.test", string="Test", readonly=True)
+    test = fields.Many2one(comodel_name="qc.test", readonly=True)
     inspection_lines = fields.One2many(
         comodel_name="qc.inspection.line",
         inverse_name="inspection_id",
-        string="Inspection lines",
         readonly=True,
         states={"ready": [("readonly", False)]},
     )
     internal_notes = fields.Text(string="Internal notes")
     external_notes = fields.Text(
-        string="External notes",
         states={"success": [("readonly", True)], "failed": [("readonly", True)]},
     )
     state = fields.Selection(
@@ -86,14 +83,12 @@ class QcInspection(models.Model):
             ("failed", "Quality failed"),
             ("canceled", "Canceled"),
         ],
-        string="State",
         readonly=True,
         default="draft",
         tracking=True,
     )
     success = fields.Boolean(
         compute="_compute_success",
-        string="Success",
         help="This field will be marked if all tests have succeeded.",
         store=True,
     )
@@ -321,7 +316,7 @@ class QcInspectionLine(models.Model):
         help="Value of the result for a qualitative question.",
         domain="[('id', 'in', possible_ql_values)]",
     )
-    notes = fields.Text(string="Notes")
+    notes = fields.Text()
     min_value = fields.Float(
         string="Min",
         digits="Quality Control",
@@ -351,7 +346,6 @@ class QcInspectionLine(models.Model):
     )
     question_type = fields.Selection(
         [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
-        string="Question type",
         readonly=True,
     )
     valid_values = fields.Char(

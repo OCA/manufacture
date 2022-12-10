@@ -25,8 +25,8 @@ class QcTest(models.Model):
         if self.type == "generic":
             self.object_id = False
 
-    active = fields.Boolean("Active", default=True)
-    name = fields.Char(string="Name", required=True, translate=True)
+    active = fields.Boolean(default=True)
+    name = fields.Char(required=True, translate=True)
     test_lines = fields.One2many(
         comodel_name="qc.test.question",
         inverse_name="test",
@@ -40,14 +40,12 @@ class QcTest(models.Model):
     fill_correct_values = fields.Boolean(string="Pre-fill with correct values")
     type = fields.Selection(
         [("generic", "Generic"), ("related", "Related")],
-        string="Type",
         required=True,
         default="generic",
     )
-    category = fields.Many2one(comodel_name="qc.test.category", string="Category")
+    category = fields.Many2one(comodel_name="qc.test.category")
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
     )
 
@@ -87,12 +85,11 @@ class QcTestQuestion(models.Model):
                     % tc.name_get()[0][1]
                 )
 
-    sequence = fields.Integer(string="Sequence", required=True, default="10")
-    test = fields.Many2one(comodel_name="qc.test", string="Test")
-    name = fields.Char(string="Name", required=True, translate=True)
+    sequence = fields.Integer(required=True, default="10")
+    test = fields.Many2one(comodel_name="qc.test")
+    name = fields.Char(required=True, translate=True)
     type = fields.Selection(
         [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
-        string="Type",
         required=True,
     )
     ql_values = fields.One2many(
@@ -101,7 +98,7 @@ class QcTestQuestion(models.Model):
         string="Qualitative values",
         copy=True,
     )
-    notes = fields.Text(string="Notes")
+    notes = fields.Text()
     min_value = fields.Float(string="Min", digits="Quality Control")
     max_value = fields.Float(string="Max", digits="Quality Control")
     uom_id = fields.Many2one(comodel_name="uom.uom", string="Uom")
@@ -112,7 +109,7 @@ class QcTestQuestionValue(models.Model):
     _description = "Possible values for qualitative questions."
 
     test_line = fields.Many2one(comodel_name="qc.test.question", string="Test question")
-    name = fields.Char(string="Name", required=True, translate=True)
+    name = fields.Char(required=True, translate=True)
     ok = fields.Boolean(
         string="Correct answer?",
         help="When this field is marked, the answer is considered correct.",

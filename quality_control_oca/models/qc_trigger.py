@@ -12,8 +12,8 @@ class QcTrigger(models.Model):
     _name = "qc.trigger"
     _description = "Quality control trigger"
 
-    name = fields.Char(string="Name", required=True, translate=True)
-    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(required=True, translate=True)
+    active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
