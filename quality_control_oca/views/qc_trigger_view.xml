@@ -26,7 +26,7 @@
         <field name="name">qc.trigger.tree</field>
         <field name="model">qc.trigger</field>
         <field name="arch" type="xml">
-            <tree string="Quality control triggers" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="partner_selectable" />
