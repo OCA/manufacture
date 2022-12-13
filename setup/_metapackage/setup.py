@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-mrp_production_grouped_by_product>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_putaway_strategy>=15.0dev,<15.1dev',
         'odoo-addon-mrp_progress_button>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_tag>=15.0dev,<15.1dev',
         'odoo-addon-mrp_warehouse_calendar>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workorder_sequence>=15.0dev,<15.1dev',
     ],
