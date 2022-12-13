@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2022 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='date_planned_start']/parent::div"
+                position="after"
+            >
+                <field name="date_planned_finished" position="move" />
+            </xpath>
+            <field name="date_planned_finished" position="attributes">
+                <attribute name="invisible" />
+                <attribute t-translation="off" name="required">1</attribute>
+                <attribute
+                    t-translation="off"
+                    name="attrs"
+                >{"readonly": [("state", "in", ["close", "cancel"])]}</attribute>
+                <attribute
+                    t-translation="off"
+                    name="decoration-warning"
+                >state not in ('done', 'cancel') and date_planned_start &lt; now</attribute>
+                <attribute
+                    t-translation="off"
+                    name="decoration-danger"
+                >state not in ('done', 'cancel') and date_planned_start &lt; current_date</attribute>
+                <attribute
+                    t-translation="off"
+                    name="decoration-bf"
+                >state not in ('done', 'cancel') and (date_planned_start &lt; current_date or date_planned_start &lt; now)</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <field name="date_planned_start" position="after">
+                <field
+                    name="date_planned_finished"
+                    readonly="1"
+                    optional="show"
+                    widget="remaining_days"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
