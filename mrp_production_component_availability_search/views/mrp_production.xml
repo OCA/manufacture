@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2022 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_mrp_production_filter" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <filter name="planning_issues" position="after">
+                <filter
+                    name="component_availability_issues"
+                    string="Component Availability Issues"
+                    domain="[('components_availability_state', '=', 'late')]"
+                />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
