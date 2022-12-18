@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-21 19:07+0000\n"
-"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"PO-Revision-Date: 2022-12-18 17:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model,name:mrp_subcontracting_partner_management.model_res_partner
@@ -36,13 +36,13 @@ msgstr "ID"
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__is_subcontractor
 msgid "Is Subcontractor"
-msgstr "è un Terzista"
+msgstr "È un terzista"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner____last_update
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type____last_update
 msgid "Last Modified on"
-msgstr "Ultima Modifica il"
+msgstr "Ultima modifica il"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_buy_rule_id
@@ -54,24 +54,24 @@ msgstr "Regola di acquisto del partner"
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_picking_type_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_picking_type_id
 msgid "Partner Picking Type"
-msgstr "Tipo Trasferimento del partner"
+msgstr "Tipo prelievo del partner"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_resupply_rule_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_resupply_rule_id
 msgid "Partner Resupply Rule"
-msgstr "Rifornimento Regola Partner"
+msgstr "Regola rifornimento del partner"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model,name:mrp_subcontracting_partner_management.model_stock_picking_type
 msgid "Picking Type"
-msgstr "Tipo trasferimento"
+msgstr "Tipo prelievo"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__subcontracted_created_location_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__subcontracted_created_location_id
 msgid "Subcontracted Created Location"
-msgstr "Ubicazione per terzista"
+msgstr "Ubicazione creata per terzista"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
@@ -83,4 +83,4 @@ msgstr "Terzista"
 #. module: mrp_subcontracting_partner_management
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_stock_form
 msgid "Subcontractor Location Stock"
-msgstr ""
+msgstr "Magazzino ubicazione terzista"
