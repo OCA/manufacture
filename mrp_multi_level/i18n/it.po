@@ -6,60 +6,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-12-19 11:12+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_11
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
 msgid "AV-11 steel"
-msgstr ""
+msgstr "AV-11 acciaio"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_12
 #: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
 msgid "AV-12 aluminium"
-msgstr ""
+msgstr "AV-12 alluminio"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_21
 #: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
 msgid "AV-21 white"
-msgstr ""
+msgstr "AV-21 bianco"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_av_22
 #: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
 msgid "AV-22 black"
-msgstr ""
+msgstr "AV-22 nero"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_action
 msgid "Action"
-msgstr ""
+msgstr "Azione"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__active
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__active
 msgid "Active"
-msgstr ""
+msgstr "Attivo"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Approvato"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
 msgid "Archived"
-msgstr ""
+msgstr "Archiviato"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__assigned
