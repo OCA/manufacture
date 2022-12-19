@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_hierarchy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Distinta base"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Riga distinta base"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "Child BoMs"
+msgstr "DiBa figlie"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__child_bom_ids
+msgid "Child Bom"
+msgstr "DiBa figlia"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
+msgid "Has child BoMs"
+msgstr "Ha DiBa figlie"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_child
+msgid "Has components"
+msgstr "Ha componenti"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
+msgid "Has parent BoMs"
+msgstr "Ha DiBa padri"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__has_bom
+msgid "Has sub BoM"
+msgstr "Ha sotto DiBa"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
+msgid "Internal Reference"
+msgstr "Riferimento interno"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
+msgid "Is component"
+msgstr "È componente"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "Parent BoMs"
+msgstr "DiBa padri"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__parent_bom_ids
+msgid "Parent Bom"
+msgstr "DiBa padre"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_has_other_bom
+msgid "Product has other BoMs"
+msgstr "Il prodotto ha altre DiBa"
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid "This operator is not supported"
+msgstr "Questo operatore non è supportato"
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid "Value should be True or False (not %s)"
+msgstr "Il valore deve essere True o False (non %s)"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_form_view
+msgid "View product's BoM"
+msgstr "Visualizza DiBa del prodotto"
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "View product's other BoMs"
+msgstr "Visualizza le altre DiBa del prodotto"
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid ""
+"You should provide either a product or a product template to search a BoM "
+"Line"
+msgstr ""
+"Bisogna fornire un prodotto o un modello di prodotto per cercare una riga di "
+"DiBa"
