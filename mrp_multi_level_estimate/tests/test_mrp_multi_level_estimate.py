@@ -1,9 +1,7 @@
-# Copyright 2018-20 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2018-22 ForgeFlow S.L. (http://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from datetime import datetime, timedelta
-
-from dateutil.rrule import WEEKLY
 
 from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 
@@ -39,44 +37,38 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
             }
         )
 
-        # Create Date Ranges:
-        cls.dr_type = cls.env["date.range.type"].create(
-            {"name": "Weeks", "company_id": False, "allow_overlap": False}
-        )
+        # Create 3 consecutive estimates of 1 week length each.
         today = datetime.today().replace(hour=0)
-        generator = cls.env["date.range.generator"].create(
-            {
-                "date_start": today - timedelta(days=3),
-                "name_prefix": "W-",
-                "type_id": cls.dr_type.id,
-                "duration_count": 1,
-                "unit_of_time": str(WEEKLY),
-                "count": 3,
-            }
-        )
-        generator.action_apply()
+        date_start_1 = today - timedelta(days=3)
+        date_end_1 = date_start_1 + timedelta(days=6)
+        date_start_2 = date_end_1 + timedelta(days=1)
+        date_end_2 = date_start_2 + timedelta(days=6)
+        date_start_3 = date_end_2 + timedelta(days=1)
+        date_end_3 = date_start_3 + timedelta(days=6)
+        start_dates = [date_start_1, date_start_2, date_start_3]
+        end_dates = [date_end_1, date_end_2, date_end_3]
+
         cls.date_within_ranges = today - timedelta(days=2)
         cls.date_without_ranges = today + timedelta(days=150)
 
-        # Create Demand Estimates:
-        ranges = cls.env["date.range"].search([("type_id", "=", cls.dr_type.id)])
         qty = 140.0
-        for dr in ranges:
+        for sd, ed in zip(start_dates, end_dates):
             qty += 70.0
-            cls._create_demand_estimate(cls.prod_test, cls.stock_location, dr, qty)
-            cls._create_demand_estimate(cls.prod_test, cls.estimate_loc, dr, qty)
+            cls._create_demand_estimate(cls.prod_test, cls.stock_location, sd, ed, qty)
+            cls._create_demand_estimate(cls.prod_test, cls.estimate_loc, sd, ed, qty)
 
         cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
 
     @classmethod
-    def _create_demand_estimate(cls, product, location, date_range, qty):
+    def _create_demand_estimate(cls, product, location, date_from, date_to, qty):
         cls.estimate_obj.create(
             {
                 "product_id": product.id,
                 "location_id": location.id,
                 "product_uom": product.uom_id.id,
                 "product_uom_qty": qty,
-                "date_range_id": date_range.id,
+                "manual_date_from": date_from,
+                "manual_date_to": date_to,
             }
         )
 
