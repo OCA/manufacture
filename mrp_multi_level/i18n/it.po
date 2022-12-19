@@ -17,25 +17,21 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_11
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
 msgid "AV-11 steel"
 msgstr "AV-11 acciaio"
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_12
 #: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
 msgid "AV-12 aluminium"
 msgstr "AV-12 alluminio"
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_21
 #: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
 msgid "AV-21 white"
 msgstr "AV-21 bianco"
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_22
 #: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
 msgid "AV-22 black"
 msgstr "AV-22 nero"
@@ -214,19 +210,16 @@ msgid "Execute"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_1
 #: model:product.template,name:mrp_multi_level.product_product_fp_1_product_template
 msgid "FP-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_2
 #: model:product.template,name:mrp_multi_level.product_product_fp_2_product_template
 msgid "FP-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_3
 #: model:product.template,name:mrp_multi_level.product_product_fp_3_product_template
 msgid "FP-3"
 msgstr ""
@@ -261,7 +254,6 @@ msgstr ""
 #. module: mrp_multi_level
 #. odoo-python
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
-#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #, python-format
 msgid "Grouped Demand of %(product_name)s for %(delta_days)d Days"
 msgstr ""
@@ -280,8 +272,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_verified
-msgid ""
-"Identifies that this product has been verified to be valid for the MRP."
+msgid "Identifies that this product has been verified to be valid for the MRP."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -528,7 +519,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.actions.server,name:mrp_multi_level.mrp_multi_level_cron_ir_actions_server
 #: model:ir.cron,cron_name:mrp_multi_level.mrp_multi_level_cron
-#: model:ir.cron,name:mrp_multi_level.mrp_multi_level_cron
 #: model:ir.model,name:mrp_multi_level.model_mrp_multi_level
 msgid "Multi Level MRP"
 msgstr ""
@@ -558,8 +548,8 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
 msgid ""
-"Number of days to group demand for this product during the MRP run, in order"
-" to determine the quantity to order."
+"Number of days to group demand for this product during the MRP run, in order "
+"to determine the quantity to order."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -588,25 +578,21 @@ msgid "Outgoing Moves"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_1
 #: model:product.template,name:mrp_multi_level.product_product_pp_1_product_template
 msgid "PP-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_2
 #: model:product.template,name:mrp_multi_level.product_product_pp_2_product_template
 msgid "PP-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_3
 #: model:product.template,name:mrp_multi_level.product_product_pp_3_product_template
 msgid "PP-3"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_4
 #: model:product.template,name:mrp_multi_level.product_product_pp_4_product_template
 msgid "PP-4"
 msgstr ""
@@ -840,19 +826,16 @@ msgid "Run MRP Multi Level"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_1
 #: model:product.template,name:mrp_multi_level.product_product_sf_1_product_template
 msgid "SF-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_2
 #: model:product.template,name:mrp_multi_level.product_product_sf_2_product_template
 msgid "SF-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_3
 #: model:product.template,name:mrp_multi_level.product_product_sf_3_product_template
 msgid "SF-3"
 msgstr ""
@@ -984,43 +967,12 @@ msgid "Unit of Measure"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_11
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_12
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_21
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_22
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_3
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_3
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_4
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_3
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_3_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_3_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_4_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_3_product_template
-msgid "Units"
-msgstr ""
-
-#. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
 msgid ""
 "Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
-"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    this may trigger a draft purchase order, a "
+"manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
 

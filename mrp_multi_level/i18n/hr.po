@@ -18,25 +18,21 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_11
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
 msgid "AV-11 steel"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_12
 #: model:product.template,name:mrp_multi_level.product_product_av_12_product_template
 msgid "AV-12 aluminium"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_21
 #: model:product.template,name:mrp_multi_level.product_product_av_21_product_template
 msgid "AV-21 white"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_av_22
 #: model:product.template,name:mrp_multi_level.product_product_av_22_product_template
 msgid "AV-22 black"
 msgstr ""
@@ -215,19 +211,16 @@ msgid "Execute"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_1
 #: model:product.template,name:mrp_multi_level.product_product_fp_1_product_template
 msgid "FP-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_2
 #: model:product.template,name:mrp_multi_level.product_product_fp_2_product_template
 msgid "FP-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_fp_3
 #: model:product.template,name:mrp_multi_level.product_product_fp_3_product_template
 msgid "FP-3"
 msgstr ""
@@ -527,7 +520,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.actions.server,name:mrp_multi_level.mrp_multi_level_cron_ir_actions_server
 #: model:ir.cron,cron_name:mrp_multi_level.mrp_multi_level_cron
-#: model:ir.cron,name:mrp_multi_level.mrp_multi_level_cron
 #: model:ir.model,name:mrp_multi_level.model_mrp_multi_level
 msgid "Multi Level MRP"
 msgstr ""
@@ -587,25 +579,21 @@ msgid "Outgoing Moves"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_1
 #: model:product.template,name:mrp_multi_level.product_product_pp_1_product_template
 msgid "PP-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_2
 #: model:product.template,name:mrp_multi_level.product_product_pp_2_product_template
 msgid "PP-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_3
 #: model:product.template,name:mrp_multi_level.product_product_pp_3_product_template
 msgid "PP-3"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_pp_4
 #: model:product.template,name:mrp_multi_level.product_product_pp_4_product_template
 msgid "PP-4"
 msgstr ""
@@ -839,19 +827,16 @@ msgid "Run MRP Multi Level"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_1
 #: model:product.template,name:mrp_multi_level.product_product_sf_1_product_template
 msgid "SF-1"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_2
 #: model:product.template,name:mrp_multi_level.product_product_sf_2_product_template
 msgid "SF-2"
 msgstr ""
 
 #. module: mrp_multi_level
-#: model:product.product,name:mrp_multi_level.product_product_sf_3
 #: model:product.template,name:mrp_multi_level.product_product_sf_3_product_template
 msgid "SF-3"
 msgstr ""
@@ -980,38 +965,6 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__uom_id
 msgid "Unit of Measure"
-msgstr ""
-
-#. module: mrp_multi_level
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_11
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_12
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_21
-#: model:product.product,uom_name:mrp_multi_level.product_product_av_22
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_fp_3
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_3
-#: model:product.product,uom_name:mrp_multi_level.product_product_pp_4
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_1
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_2
-#: model:product.product,uom_name:mrp_multi_level.product_product_sf_3
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_11_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_12_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_21_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_av_22_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_fp_3_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_3_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_pp_4_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_1_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_2_product_template
-#: model:product.template,uom_name:mrp_multi_level.product_product_sf_3_product_template
-msgid "Units"
 msgstr ""
 
 #. module: mrp_multi_level
