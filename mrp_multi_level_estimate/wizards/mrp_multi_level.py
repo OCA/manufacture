@@ -88,3 +88,42 @@ class MultiLevelMrp(models.TransientModel):
                 self.env["mrp.move"].create(mrp_move_data)
                 mrp_date += delta
         return res
+
+    def _exclude_considering_estimate_demand_and_other_sources_strat(
+        self, product_mrp_area, mrp_date
+    ):
+        estimate_strat = (
+            product_mrp_area.mrp_area_id.estimate_demand_and_other_sources_strat
+        )
+        if estimate_strat == "all":
+            return False
+
+        domain = self._estimates_domain(product_mrp_area)
+        estimates = self.env["stock.demand.estimate"].search(domain)
+        if not estimates:
+            return False
+
+        if estimate_strat == "ignore_others_if_estimates":
+            # Ignore
+            return True
+        if estimate_strat == "ignore_overlapping":
+            for estimate in estimates:
+                if mrp_date >= estimate.date_from and mrp_date <= estimate.date_to:
+                    # Ignore
+                    return True
+        return False
+
+    @api.model
+    def _prepare_mrp_move_data_from_stock_move(
+        self, product_mrp_area, move, direction="in"
+    ):
+        res = super()._prepare_mrp_move_data_from_stock_move(
+            product_mrp_area, move, direction=direction
+        )
+        if direction == "out":
+            mrp_date = res.get("mrp_date")
+            if self._exclude_considering_estimate_demand_and_other_sources_strat(
+                product_mrp_area, mrp_date
+            ):
+                return False
+        return res
