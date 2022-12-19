@@ -12,7 +12,7 @@
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp_multi_level", "stock_demand_estimate_matrix"],
-    "data": ["views/product_mrp_area_views.xml"],
+    "data": ["views/product_mrp_area_views.xml", "views/mrp_area_views.xml"],
     "installable": True,
     "application": False,
     "auto_install": True,

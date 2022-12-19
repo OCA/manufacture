@@ -55,6 +55,8 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
             }
         )
         generator.action_apply()
+        cls.date_within_ranges = today - timedelta(days=2)
+        cls.date_without_ranges = today + timedelta(days=150)
 
         # Create Demand Estimates:
         ranges = cls.env["date.range"].search([("type_id", "=", cls.dr_type.id)])
@@ -152,7 +154,9 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
     def test_03_group_demand_estimates(self):
         """Test demand grouping functionality, `group_estimate_days`."""
         self.test_mrp_parameter.group_estimate_days = 7
-        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
         estimates = self.estimate_obj.search(
             [
                 ("product_id", "=", self.prod_test.id),
@@ -177,7 +181,9 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         # Test group_estimate_days greater than date range, it should not
         # generate greater demand.
         self.test_mrp_parameter.group_estimate_days = 10
-        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
         moves = self.mrp_move_obj.search(
             [
                 ("product_id", "=", self.prod_test.id),
@@ -192,7 +198,9 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         # Test group_estimate_days smaller than date range, it should not
         # generate greater demand.
         self.test_mrp_parameter.group_estimate_days = 5
-        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
         moves = self.mrp_move_obj.search(
             [
                 ("product_id", "=", self.prod_test.id),
@@ -229,7 +237,9 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
             estimate.product_uom_qty = qty
             qty += 100
 
-        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
         moves = self.mrp_move_obj.search(
             [
                 ("product_id", "=", self.prod_test.id),
@@ -248,3 +258,86 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         self.assertEqual(moves_from_estimates[1].mrp_qty, -500)
         # 600 weekly -> 85.71 daily -> 85.71 * 7 = 600
         self.assertEqual(moves_from_estimates[2].mrp_qty, -600)
+
+    def test_05_estimate_and_other_sources_strat(self):
+        """Tests demand estimates and other sources strategies."""
+        estimates = self.estimate_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("location_id", "=", self.estimate_loc.id),
+            ]
+        )
+        self.assertEqual(len(estimates), 3)
+        self._create_picking_out(
+            self.prod_test, 25, self.date_within_ranges, location=self.estimate_loc
+        )
+        self._create_picking_out(
+            self.prod_test, 25, self.date_without_ranges, location=self.estimate_loc
+        )
+        # 1. "all"
+        self.estimate_area.estimate_demand_and_other_sources_strat = "all"
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        # 3 weeks - 3 days in the past = 18 days of valid estimates:
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 18)
+        self.assertEqual(len(demand_from_other_sources), 2)
+
+        # 2. "ignore_others_if_estimates"
+        self.estimate_area.estimate_demand_and_other_sources_strat = (
+            "ignore_others_if_estimates"
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 18)
+        self.assertEqual(len(demand_from_other_sources), 0)
+
+        # 3. "ignore_overlapping"
+        self.estimate_area.estimate_demand_and_other_sources_strat = (
+            "ignore_overlapping"
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 18)
+        self.assertEqual(len(demand_from_other_sources), 1)
+        self.assertEqual(
+            demand_from_other_sources.mrp_date, self.date_without_ranges.date()
+        )
