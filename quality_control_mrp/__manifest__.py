@@ -13,7 +13,7 @@
               "Agile Business Group, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture"
-               "quality_control_mrp",
+               "/tree/12.0/quality_control_mrp",
     "depends": [
         "quality_control",
         "quality_control_stock",
