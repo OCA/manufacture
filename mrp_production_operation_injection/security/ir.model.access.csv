@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mrp_production_operation_injection.access_mrp_workorder_injector,access_mrp_workorder_injector,mrp_production_operation_injection.model_mrp_workorder_injector,mrp.group_mrp_user,1,1,1,1

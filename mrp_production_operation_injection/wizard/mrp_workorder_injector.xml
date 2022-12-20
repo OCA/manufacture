@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_workorder_injector_view_form" model="ir.ui.view">
+        <field name="name">mrp.workorder.injector.form.view</field>
+        <field name="model">mrp.workorder.injector</field>
+        <field name="arch" type="xml">
+            <form string="Add operation to workorders">
+                <group>
+                    <field name="production_id" invisible="1" />
+                    <field name="bom_id" invisible="1" />
+                    <field name="allowed_bom_operation_ids" invisible="1" />
+                    <field name="production_workorder_ids" invisible="1" />
+                    <field
+                        name="operation_id"
+                        domain="[('id', 'in', allowed_bom_operation_ids)]"
+                        options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}"
+                    />
+                    <field
+                        name="workorder_id"
+                        domain="[('id', 'in', production_workorder_ids)]"
+                        options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True}"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_add_operation"
+                        type="object"
+                        string="Add"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_workorder_injector_action" model="ir.actions.act_window">
+        <field name="name">Inject operation</field>
+        <field name="res_model">mrp.workorder.injector</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
