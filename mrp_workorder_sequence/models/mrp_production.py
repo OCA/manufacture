@@ -9,12 +9,15 @@ class MrpProduction(models.Model):
 
     def _reset_work_order_sequence(self):
         for rec in self:
-            current_sequence = 1
-            for work in rec.workorder_ids:
-                work.sequence = current_sequence
-                current_sequence += 1
+            for current_seq, work in enumerate(rec.workorder_ids, 1):
+                work.sequence = current_seq
 
     def _create_workorder(self):
-        res = super()._create_workorder()
+        # Bypass sequence assignation on create and make sure there is no gap
+        # using _reset_work_order_sequence
+        res = super(
+            MrpProduction,
+            self.with_context(_bypass_sequence_assignation_on_create=True),
+        )._create_workorder()
         self._reset_work_order_sequence()
         return res
