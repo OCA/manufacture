@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_purchase_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-12-21 17:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_stock_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di produzione"
+
+#. module: mrp_subcontracting_purchase_link
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase_link.purchase_order_form
+msgid "Productions"
+msgstr "Produzioni"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_purchase_order
+msgid "Purchase Order"
+msgstr "Ordine di acquisto"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_count
+msgid "Subcontract Production Count"
+msgstr "Conteggio produzione terzisti"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_ids
+msgid "Subcontract Production Orders"
+msgstr "Ordini produzione terzisti"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__purchase_order_id
+msgid "Subcontract Purchase Order"
+msgstr "Ordine produzione terzisti"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_stock_picking
+msgid "Transfer"
+msgstr "trasferimento"
