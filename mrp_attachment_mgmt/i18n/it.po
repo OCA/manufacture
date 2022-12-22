@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-12-22 16:08+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_attachment_mgmt
 #: code:addons/mrp_attachment_mgmt/models/mrp_workorder.py:0
@@ -21,24 +23,26 @@ msgid ""
 "%d Product(s) without drawing:\n"
 "%s"
 msgstr ""
+"%d Prodotto(i) senza disegno:\n"
+"%s"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.workorder_attachments_mrp_workorder_form_view
 msgid "Attachments"
-msgstr ""
+msgstr "Allegati"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Distinta base"
 
 #. module: mrp_attachment_mgmt
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_template_form_view
 msgid "Bom Attachments"
-msgstr ""
+msgstr "Allegati DB"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__display_name
@@ -46,7 +50,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__id
@@ -54,7 +58,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom____last_update
@@ -62,19 +66,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_workorder
 msgid "Work Order"
-msgstr ""
+msgstr "Ordine lavoro"
