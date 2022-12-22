@@ -6,56 +6,58 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-12-22 16:08+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_stock_picking__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_purchase_order__id
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_stock_picking__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_stock_picking____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model,name:mrp_subcontracting_resupply_link.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine acquisto"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_purchase_order__subcontracting_resupply_count
 msgid "Resupply count"
-msgstr ""
+msgstr "Conteggio riforniture"
 
 #. module: mrp_subcontracting_resupply_link
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_resupply_link.purchase_order_view_form_inherit
 msgid "Resupply(ies)"
-msgstr ""
+msgstr "Rifornitura(e)"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_purchase_order__subcontracting_resupply_ids
 msgid "Resupplys"
-msgstr ""
+msgstr "Riforniture"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_link.field_stock_picking__subcontracting_purchase_order_id
 msgid "Subcontracting order"
-msgstr ""
+msgstr "Ordine terzista"
 
 #. module: mrp_subcontracting_resupply_link
 #: code:addons/mrp_subcontracting_resupply_link/models/purchase_order.py:0
@@ -64,6 +66,8 @@ msgid ""
 "The resupply picking <a href=# data-oe-model=%(model)s data-oe-"
 "id=%(id)s>%(name)s</a> has been created"
 msgstr ""
+"Il prelievo di rifornitura <a href=# data-oe-model=%(model)s data-oe-"
+"id=%(id)s>%(name)s</a> è stato creato"
 
 #. module: mrp_subcontracting_resupply_link
 #: code:addons/mrp_subcontracting_resupply_link/models/purchase_order.py:0
@@ -72,8 +76,10 @@ msgid ""
 "This is for supplying raw material for <a href=# data-oe-model=%(model)s "
 "data-oe-id=%(id)s>%(name)s</a>"
 msgstr ""
+"Questo è per fornire materiale grezzo per <a href=# data-oe-model=%(model)s "
+"data-oe-id=%(id)s>%(name)s</a>"
 
 #. module: mrp_subcontracting_resupply_link
 #: model:ir.model,name:mrp_subcontracting_resupply_link.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
