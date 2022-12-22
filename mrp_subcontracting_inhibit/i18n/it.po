@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-12-22 13:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_product_product__display_name
@@ -21,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_location_route__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_product_product__id
@@ -30,18 +32,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_location_route__id
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_purchase_order_line__subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_location_route__subcontracting_inhibit
 msgid "Inhibit subcontracting"
-msgstr ""
+msgstr "Impedisci subappalti"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model,name:mrp_subcontracting_inhibit.model_stock_location_route
 msgid "Inventory Routes"
-msgstr ""
+msgstr "Rotte di magazzino"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_product_product____last_update
@@ -50,29 +52,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_location_route____last_update
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model,name:mrp_subcontracting_inhibit.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model,name:mrp_subcontracting_inhibit.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model,name:mrp_subcontracting_inhibit.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model.fields,field_description:mrp_subcontracting_inhibit.field_product_supplierinfo__subcontracting_inhibit
 msgid "Subcontracting inhibited"
-msgstr ""
+msgstr "Subappalti bloccati"
 
 #. module: mrp_subcontracting_inhibit
 #: model:ir.model,name:mrp_subcontracting_inhibit.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Listino fornitore"
