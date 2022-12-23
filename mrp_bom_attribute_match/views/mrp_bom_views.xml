@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <field name="bom_product_template_attribute_value_ids" position="before">
+                <field name="match_on_attribute_ids" widget="many2many_tags" />
+                <field name="product_backup_id" invisible="1" />
+            </field>
+            <xpath
+                expr="//field[@name='bom_line_ids']//field[@name='product_id']"
+                position="after"
+            >
+                <field name="component_template_id" />
+            </xpath>
+            <xpath
+                expr="//field[@name='bom_line_ids']//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute name="attrs">
+                    {'readonly': [('component_template_id', '!=', False)]}
+                </attribute>
+                <attribute name="force_save">"1"</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
