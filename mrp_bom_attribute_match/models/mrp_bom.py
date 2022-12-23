@@ -200,7 +200,8 @@ class MrpBom(models.Model):
             )
             if component_template_product:
                 # need to set product_id temporary
-                current_line.product_id = component_template_product
+                if current_line.product_id != component_template_product:
+                    current_line.product_id = component_template_product
             else:
                 # component_template_id is set, but no attribute value match.
                 continue
