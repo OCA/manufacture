@@ -10,25 +10,23 @@
         <field name="name">product.template.common.qc</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
-        />
         <field name="arch" type="xml">
             <page name="inventory" position="inside">
-                <group name="qc" string="Quality control">
-                    <field name="qc_triggers" nolabel="1">
-                        <tree editable="bottom">
-                            <field
-                                name="trigger"
-                                options="{'no_create': True, 'no_edit': True, 'no_open': True}"
-                            />
-                            <field name="test" />
-                            <field name="user" />
-                            <field name="partners" widget="many2many_tags" />
-                        </tree>
-                    </field>
-                </group>
+                <t groups="quality_control_oca.group_quality_control_user">
+                    <group name="qc" string="Quality control">
+                        <field name="qc_triggers" nolabel="1">
+                            <tree editable="bottom">
+                                <field
+                                    name="trigger"
+                                    options="{'no_create': True, 'no_edit': True, 'no_open': True}"
+                                />
+                                <field name="test" />
+                                <field name="user" />
+                                <field name="partners" widget="many2many_tags" />
+                            </tree>
+                        </field>
+                    </group>
+                </t>
             </page>
         </field>
     </record>
