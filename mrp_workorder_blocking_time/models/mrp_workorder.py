@@ -3,7 +3,8 @@
 
 from datetime import timedelta
 
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class MrpWorkorder(models.Model):
@@ -12,6 +13,16 @@ class MrpWorkorder(models.Model):
     blocking_stage_end = fields.Datetime(copy=False)
     blocking_period_interrupted = fields.Boolean(copy=False)
     interruption_reason = fields.Text(copy=False)
+
+    def unlink(self):
+        for wo in self:
+            if (
+                wo.state == "progress"
+                and wo.operation_id
+                and wo.operation_id.blocking_stage is True
+            ):
+                raise UserError(_("You cannot remove a blocking operation!"))
+        return super(MrpWorkorder, self).unlink()
 
     def button_start(self):
         res = super().button_start()
@@ -35,11 +46,16 @@ class MrpWorkorder(models.Model):
         """
         This method check if the blocking stage is done
         """
-        if self.operation_id and self.operation_id.blocking_stage is True:
-            if self.blocking_stage_end:
-                if self.blocking_stage_end > fields.Datetime.now():
-                    self.blocking_period_interrupted = True
-                    return True
+        for wo in self:
+            if (
+                wo.state not in ("done", "cancel")
+                and wo.operation_id
+                and wo.operation_id.blocking_stage is True
+            ):
+                if wo.blocking_stage_end:
+                    if wo.blocking_stage_end > fields.Datetime.now():
+                        wo.blocking_period_interrupted = True
+                        return True
         return False
 
     def button_pending(self):
