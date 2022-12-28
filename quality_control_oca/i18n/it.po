@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2022-12-20 13:44+0000\n"
+"PO-Revision-Date: 2022-12-29 01:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -340,7 +340,7 @@ msgstr "Se un'ispezione è autogenerata, può essere cancellata ma non rimossa."
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_unread
 msgid "If checked, new messages require your attention."
-msgstr "Se impostato, i nuovi messaggi richiedono attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
@@ -924,8 +924,8 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Stato in base alle attività\n"
-"Scadute: la data richiesta è trascorsa\n"
+"Stati in base alle attività\n"
+"Scaduti: la data richiesta è trascorsa\n"
 "Oggi: la data attività è oggi\n"
 "Pianificate: attività future."
 
