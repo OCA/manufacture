@@ -36,7 +36,7 @@ addon | version | maintainers | summary
 [mrp_progress_button](mrp_progress_button/) | 15.0.2.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_tag](mrp_tag/) | 15.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 15.0.1.0.1 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
-[mrp_workorder_sequence](mrp_workorder_sequence/) | 15.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
+[mrp_workorder_sequence](mrp_workorder_sequence/) | 15.0.1.2.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 [quality_control_oca](quality_control_oca/) | 15.0.1.0.0 |  | Generic infrastructure for quality tests.
 
 [//]: # (end addons)
