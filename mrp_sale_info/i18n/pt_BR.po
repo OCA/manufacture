@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_sale_info
+#
+# Translators:
+# Claudio Araujo Santos <claudioaraujosantos@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-03 06:08+0000\n"
+"PO-Revision-Date: 2021-03-15 07:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-"
+"manufacture-9-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid "Commitment Date"
+msgstr "Compromisso Data"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
+msgid "Customer Reference"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_production
+msgid "Production Order"
+msgstr "Ordem de Produção"
+
+#. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
+msgid "Sale information"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
+msgid "Sale order"
+msgstr "Ordem de venda"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
+msgid "Source Procurement Group"
+msgstr "Fonte do Grupo de Aquisição"
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regra de Estoque"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+"Esta é a data de entrega prometida ao cliente. Se definido, o pedido de "
+"entrega será agendado com base nesta data, em vez de prazos de lead time do "
+"produto."
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_workorder
+msgid "Work Order"
+msgstr "Ordem de Trabalho"
+
+#~ msgid ""
+#~ "You can find a customer by its Name, TIN, Email or Internal Reference."
+#~ msgstr ""
+#~ "Você pode encontrar um cliente pelo nome, TIN, E-mail ou Referência "
+#~ "Interna."
+
+#~ msgid ""
+#~ "Date by which the products are sure to be delivered. This is a date that "
+#~ "you can promise to the customer, based on the Product Lead Times."
+#~ msgstr ""
+#~ "Data em que os produtos estão certos para serem entregues. Esta é uma "
+#~ "data que você pode prometer para o cliente, com base nos prazos de "
+#~ "entrega do produto."
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Ordem de fabricação"
+
+#~ msgid "Sale Information"
+#~ msgstr "Informações venda"
