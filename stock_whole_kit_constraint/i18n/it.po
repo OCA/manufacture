@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-22 13:44+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2022-12-29 16:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_move____last_update
 #: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_picking____last_update
 msgid "Last Modified on"
-msgstr "Utima modifica il"
+msgstr "Ultima modifica il"
 
 #. module: stock_whole_kit_constraint
 #: model:ir.model,name:stock_whole_kit_constraint.model_product_template
