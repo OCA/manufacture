@@ -15,15 +15,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-27 09:22+0000\n"
-"PO-Revision-Date: 2021-04-07 18:46+0000\n"
-"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
+"PO-Revision-Date: 2022-12-30 11:53+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_subcontracting
 #: code:addons/mrp_subcontracting/models/stock_move.py:194
@@ -102,7 +102,7 @@ msgstr "Mostra azione Registra Componenti"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
 msgid "Inventory Locations"
-msgstr "Ubicazioni di invetario"
+msgstr "Ubicazioni di inventario"
 
 #. module: mrp_subcontracting
 #: selection:mrp.bom,type:0
