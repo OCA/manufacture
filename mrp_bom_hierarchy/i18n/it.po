@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-19 14:44+0000\n"
+"PO-Revision-Date: 2023-01-01 13:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -29,17 +29,17 @@ msgstr "Riga distinta base"
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "Child BoMs"
-msgstr "DB figlie"
+msgstr "DiBa figlie"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__child_bom_ids
 msgid "Child Bom"
-msgstr "DB figlia"
+msgstr "DiBa figlia"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
 msgid "Has child BoMs"
-msgstr "Ha DB figlie"
+msgstr "Ha DiBa figlie"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_child
@@ -49,12 +49,12 @@ msgstr "Ha componenti"
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
 msgid "Has parent BoMs"
-msgstr "Ha DB padri"
+msgstr "Ha DiBa padri"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__has_bom
 msgid "Has sub BoM"
-msgstr "Ha sotto DB"
+msgstr "Ha sotto DiBa"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
@@ -69,17 +69,17 @@ msgstr "È componente"
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "Parent BoMs"
-msgstr "DB padri"
+msgstr "DiBa padri"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__parent_bom_ids
 msgid "Parent Bom"
-msgstr "DB padre"
+msgstr "DiBa padre"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_has_other_bom
 msgid "Product has other BoMs"
-msgstr "Il prodotto ha altre DB"
+msgstr "Il prodotto ha altre DiBa"
 
 #. module: mrp_bom_hierarchy
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
@@ -98,12 +98,12 @@ msgstr "Il valore deve essere True o False (non %s)"
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_form_view
 msgid "View product's BoM"
-msgstr "Visualizza DB del prodotto"
+msgstr "Visualizza DiBa del prodotto"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "View product's other BoMs"
-msgstr "Visualizza le altre DB del prodotto"
+msgstr "Visualizza le altre DiBa del prodotto"
 
 #. module: mrp_bom_hierarchy
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
@@ -113,4 +113,4 @@ msgid ""
 "Line"
 msgstr ""
 "Bisogna fornire un prodotto o un modello di prodotto per cercare una riga di "
-"DB"
+"DiBa"
