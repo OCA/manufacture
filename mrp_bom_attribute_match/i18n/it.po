@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-14 17:50+0000\n"
-"PO-Revision-Date: 2022-12-18 17:44+0000\n"
+"PO-Revision-Date: 2023-01-01 13:44+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian <http://weblate.ops404.it/projects/ooops-mrp-14-0/"
 "mrp_bom_attribute_match/it/>\n"
@@ -105,7 +105,7 @@ msgid ""
 "in its BoM or child BoMs!"
 msgstr ""
 "Errore ricorsivo! Un prodotto con una distinta base non può essere presente "
-"nella sua DB o nelle DB figlie!"
+"nella sua DiBa o nelle DiBa figlie!"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
@@ -132,11 +132,11 @@ msgid ""
 "Attributes: %s\n"
 "BoM: %s"
 msgstr ""
-"L'attributo che si sta cercando di rimuovere è utilizzato in DB come "
+"L'attributo che si sta cercando di rimuovere è utilizzato in DiBa come "
 "corrispondenza con il componente (modello prodotto). Per rimuovere questo "
-"attributo rimuovere prima la riga in DB con il componente corrispondente.\n"
+"attributo rimuovere prima la riga in DiBa con il componente corrispondente.\n"
 "Attributo: %s\n"
-"DB: %s"
+"DiBa: %s"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
@@ -146,9 +146,9 @@ msgid ""
 "attribute(s) %s is not present in all such product(s), and this would break "
 "the BOM behavior."
 msgstr ""
-"Questo modello prodotto è utilizzato come componente nella DB per %s e gli "
+"Questo modello prodotto è utilizzato come componente nella DiBa per %s e gli "
 "attributi %s non sono presenti in tutti questi prodotti; ciò può corrompere "
-"il funzionamento della DB."
+"il funzionamento della DiBa."
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
