@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-19 18:44+0000\n"
+"PO-Revision-Date: 2023-01-01 13:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -74,14 +74,14 @@ msgstr "Riga distinta base"
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__type
 msgid "BoM Type"
-msgstr "Tipo DB"
+msgstr "Tipo DiBa"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
-"Se è definita una variante di prodotto la DB è disponibile solo per questo "
+"Se è definita una variante di prodotto la DiBa è disponibile solo per questo "
 "prodotto."
 
 #. module: mrp_bom_tracking
@@ -123,8 +123,8 @@ msgid ""
 "accurate."
 msgstr ""
 "Questa dovrebbe essere la quantità minima di produzione del prodotto. Se la "
-"DB contiene operazioni, assicurarsi che la capacità del centro di lavoro si "
-"aprecisa."
+"DiBa contiene operazioni, assicurarsi che la capacità del centro di lavoro "
+"si aprecisa."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
@@ -136,9 +136,9 @@ msgid ""
 msgstr ""
 "Quando un approvvigionamento ha una rotta 'produzione' con un tipo "
 "operazione impostato, tenterà di creare un ordine di produzione per il "
-"prodotto utilizzando la DB dello stesso tipo operazione. Questo consente di "
-"definire regole di magazzino che generano differenti ordini di produzione "
-"con differenti DB."
+"prodotto utilizzando la DiBa dello stesso tipo operazione. Questo consente "
+"di definire regole di magazzino che generano differenti ordini di produzione "
+"con differenti DiBa."
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
