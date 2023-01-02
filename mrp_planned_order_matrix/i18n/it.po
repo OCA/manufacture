@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-19 18:44+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-01-02 11:47+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__write_date
 #: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__write_date
 msgid "Last Updated on"
-msgstr "Untimo aggiornamento il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_planned_order_matrix
 #: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
