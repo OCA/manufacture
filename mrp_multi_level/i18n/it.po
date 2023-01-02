@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-30 11:49+0000\n"
+"PO-Revision-Date: 2023-01-02 12:47+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -741,12 +741,12 @@ msgstr "Modello richiesta"
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__po
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__buy
 msgid "Purchase Order"
-msgstr "Ordine acquisto"
+msgstr "Ordine di acquisto"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_line_id
 msgid "Purchase Order Line"
-msgstr "Riga ordine acquisto"
+msgstr "Riga ordine di acquisto"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__purchase_order_line_ids
