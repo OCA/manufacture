@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 13.0.1.0.2 |  | Production Grouped By Product
 [mrp_production_note](mrp_production_note/) | 13.0.1.0.0 |  | Notes in production orders
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 13.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
-[mrp_production_request](mrp_production_request/) | 13.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
+[mrp_production_request](mrp_production_request/) | 13.0.1.0.2 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows you to use Manufacturing Request as a previous step to Manufacturing Orders for better manufacture planification.
 [mrp_sale_info](mrp_sale_info/) | 13.0.1.0.0 |  | Adds sale information to Manufacturing models
 [mrp_stock_orderpoint_manual_procurement](mrp_stock_orderpoint_manual_procurement/) | 13.0.1.0.0 |  | Updates the value of MO Responsible and keeps trackof changes regarding this field
 [mrp_unbuild_tracked_raw_material](mrp_unbuild_tracked_raw_material/) | 13.0.1.0.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Allow to unbuild tracked purchased products
