@@ -233,7 +233,7 @@ class MrpProductionRequest(models.Model):
         valid_states = self._get_mo_valid_states()
         for req in self:
             done_mo = req.mrp_production_ids.filtered(
-                lambda mo: mo.state in "done"
+                lambda mo: mo.state == "done"
             ).mapped("product_qty")
             req.done_qty = sum(done_mo)
             valid_mo = req.mrp_production_ids.filtered(
