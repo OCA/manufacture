@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-08 20:35+0000\n"
-"PO-Revision-Date: 2020-04-08 22:59+0200\n"
+"PO-Revision-Date: 2023-01-02 11:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
-"Last-Translator: \n"
-"Language: it\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: quality_control_plan
 #: selection:qc.level,chk_type:0
@@ -122,14 +122,14 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_write_uid
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_write_uid
 msgid "Last Updated by"
-msgstr "Aggiornato da"
+msgstr "Ultimo aggiornamento di"
 
 #. module: quality_control_plan
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_level_write_date
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_plan_write_date
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_write_date
 msgid "Last Updated on"
-msgstr "Aggiornato il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: quality_control_plan
 #: model:ir.ui.view,arch_db:quality_control_plan.view_form_plan
