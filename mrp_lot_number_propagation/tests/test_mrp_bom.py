@@ -13,17 +13,6 @@ class TestMrpBom(Common):
         self.bom.product_tmpl_id.tracking = "none"
         self.assertFalse(self.bom.display_lot_number_propagation)
 
-    def test_bom_line_check_propagate_lot_number_multi(self):
-        form = Form(self.bom)
-        form.lot_number_propagation = True
-        # Flag more than one line to propagate
-        for i in range(len(form.bom_line_ids)):
-            line_form = form.bom_line_ids.edit(i)
-            line_form.propagate_lot_number = True
-            line_form.save()
-        with self.assertRaisesRegex(ValidationError, "Only one BoM"):
-            form.save()
-
     def test_bom_line_check_propagate_lot_number_not_tracked(self):
         form = Form(self.bom)
         form.lot_number_propagation = True

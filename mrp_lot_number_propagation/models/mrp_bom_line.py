@@ -39,16 +39,6 @@ class MrpBomLine(models.Model):
         for line in self:
             if not line.bom_id.lot_number_propagation:
                 continue
-            lines_to_propagate = line.bom_id.bom_line_ids.filtered(
-                lambda o: o.propagate_lot_number
-            )
-            if len(lines_to_propagate) > 1:
-                raise ValidationError(
-                    _(
-                        "Only one BoM line can propagate its lot/serial number "
-                        "to the finished product."
-                    )
-                )
             if line.propagate_lot_number and line.product_id.tracking != "serial":
                 raise ValidationError(
                     _(
