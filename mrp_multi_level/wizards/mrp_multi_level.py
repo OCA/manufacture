@@ -414,13 +414,15 @@ class MultiLevelMrp(models.TransientModel):
                 move_data = self._prepare_mrp_move_data_from_stock_move(
                     product_mrp_area, move, direction="in"
                 )
-                move_vals.append(move_data)
+                if move_data:
+                    move_vals.append(move_data)
         if out_moves:
             for move in out_moves:
                 move_data = self._prepare_mrp_move_data_from_stock_move(
                     product_mrp_area, move, direction="out"
                 )
-                move_vals.append(move_data)
+                if move_data:
+                    move_vals.append(move_data)
         mrp_move_obj.create(move_vals)
         return True
 
