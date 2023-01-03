@@ -56,6 +56,13 @@ class TestMrpAttachmentMgmtBase(TransactionCase):
                 "route_ids": [(6, 0, [route_manufacture])],
             }
         )
+        self.p4 = self.env["product.template"].create(
+            {
+                "name": "P4",
+                "type": "product",
+                "route_ids": [(6, 0, [route_manufacture])],
+            }
+        )
         self.product_9 = self.env["product.product"].create(
             {
                 "name": "Paper",
@@ -92,10 +99,24 @@ class TestMrpAttachmentMgmtBase(TransactionCase):
 
     def _create_boms(self):
         mrp_bom_form = Form(self.env["mrp.bom"])
+
+        category = self.env["uom.category"].search([])[0]
+
+        self.env["uom.uom"].create(
+            {
+                "name": "Bigger UoM of my category",
+                "factor_inv": 42,
+                "uom_type": "bigger",
+                "rounding": 0.5,
+                "category_id": category.id,
+            }
+        )
+        mrp_bom_form.bom_line_ids.product_uom_id = self.env["uom.uom"].search([])[0].id
         mrp_bom_form.product_tmpl_id = self.product_sword
         with mrp_bom_form.bom_line_ids.new() as line_form:
             line_form.component_template_id = self.product_plastic
             line_form.product_qty = 1
+        mrp_bom_form._values["product_uom_id"] = self.env["uom.uom"].search([])[0]
         self.bom_id = mrp_bom_form.save()
 
         mrp_bom_form = Form(self.env["mrp.bom"])
@@ -129,6 +150,6 @@ class TestMrpAttachmentMgmtBase(TransactionCase):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = self.p3
         with mrp_bom_form.bom_line_ids.new() as line_form:
-            line_form.product_id = self.p1.product_variant_ids[0]
+            line_form.product_id = self.p4.product_variant_ids[0]
             line_form.product_qty = 1
         self.p3_bom_id = mrp_bom_form.save()

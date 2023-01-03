@@ -7,6 +7,7 @@ from .common import TestMrpAttachmentMgmtBase
 class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
     @classmethod
     def setUpClass(cls):
+        cls.product_id = 1
         super().setUpClass()
 
     def test_bom_1(self):
@@ -73,8 +74,8 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
     def test_manufacturing_order_1(self):
         mo_form = Form(self.env["mrp.production"])
         mo_form.product_id = self.product_sword.product_variant_ids.filtered(
-            lambda x: x.display_name == "Plastic Sword (Cyan)"
-        )
+            lambda x: x.name == "Plastic Sword"
+        )[0]
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
         self.mo_sword = mo_form.save()
@@ -90,7 +91,7 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         self.plastic_attrs.value_ids = [(3, self.plastic_attrs.value_ids[0].id, 0)]
         mo_form = Form(self.env["mrp.production"])
         mo_form.product_id = self.product_sword.product_variant_ids.filtered(
-            lambda x: x.display_name == "Plastic Sword (Cyan)"
+            lambda x: x.display_name == "Plastic Sword"
         )
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
@@ -102,6 +103,10 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         self.product_sword.attribute_line_ids = [(5, 0, 0)]
         mo_form = Form(self.env["mrp.production"])
         mo_form.product_id = self.product_sword.product_variant_ids[0]
+        # added to have product_uom_id.roundig > 0
+        product_uom_id = self.env["uom.uom"].search([])[0].id
+        for bom_line in self.bom_id.bom_line_ids:
+            bom_line.product_uom_id = product_uom_id
         # Component skipped
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1

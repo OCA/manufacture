@@ -23,6 +23,12 @@
                 </attribute>
                 <attribute name="force_save">"1"</attribute>
             </xpath>
+            <xpath
+                expr="//field[@name='bom_line_ids']//field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="product_uom_id" invisible="1" />
+            </xpath>
         </field>
     </record>
 </odoo>
