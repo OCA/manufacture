@@ -70,9 +70,31 @@ class MrpProduction(models.Model):
     def _set_lot_number_propagation_data_from_bom(self):
         """Copy information from BoM to the manufacturing order."""
         for order in self:
-            order.is_lot_number_propagated = order.bom_id.lot_number_propagation
-            for move in order.move_raw_ids:
-                move.propagate_lot_number = move.bom_line_id.propagate_lot_number
+            propagate_lot = order.bom_id.lot_number_propagation
+            if not propagate_lot:
+                continue
+            order.is_lot_number_propagated = propagate_lot
+            propagate_move = order.move_raw_ids.filtered(
+                lambda m: m.bom_line_id.propagate_lot_number
+            )
+            if not propagate_move:
+                raise UserError(
+                    _(
+                        "Bill of material is marked for lot number propagation, but "
+                        "there are no components propagating lot number. "
+                        "Please check BOM configuration."
+                    )
+                )
+            elif len(propagate_move) > 1:
+                raise UserError(
+                    _(
+                        "Bill of material is marked for lot number propagation, but "
+                        "there are multiple components propagating lot number. "
+                        "Please check BOM configuration."
+                    )
+                )
+            else:
+                propagate_move.propagate_lot_number = True
 
     def _post_inventory(self, cancel_backorder=False):
         self._create_and_assign_propagated_lot_number()

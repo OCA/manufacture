@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import UserError
+from odoo.fields import Command
 from odoo.tests.common import Form
 
 from .common import Common
@@ -12,15 +13,24 @@ class TestMrpProduction(Common):
     def setUpClass(cls):
         super().setUpClass()
         # Configure the BoM to propagate lot number
+        cls._configure_bom()
+        cls.order = cls._create_order(cls.bom_product_product, cls.bom)
+
+    @classmethod
+    def _configure_bom(cls):
         with Form(cls.bom) as form:
             form.lot_number_propagation = True
             line_form = form.bom_line_ids.edit(0)  # Line tracked by SN
             line_form.propagate_lot_number = True
             line_form.save()
             form.save()
+
+    @classmethod
+    def _create_order(cls, product, bom):
         with Form(cls.env["mrp.production"]) as form:
-            form.bom_id = cls.bom
-            cls.order = form.save()
+            form.product_id = product
+            form.bom_id = bom
+            return form.save()
 
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
@@ -46,3 +56,48 @@ class TestMrpProduction(Common):
         self._set_qty_done(self.order)
         self.order.button_mark_done()
         self.assertEqual(self.order.lot_producing_id.name, self.LOT_NAME)
+
+    def test_confirm_with_variant_ok(self):
+        self._add_color_and_legs_variants(self.bom_product_template)
+        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        new_bom = self._create_bom_with_variants()
+        self.assertTrue(new_bom.lot_number_propagation)
+        # As all variants must have a single component
+        #  where lot must be propagated, there should not be any error
+        for product in self.bom_product_template.product_variant_ids:
+            new_order = self._create_order(product, new_bom)
+            new_order.action_confirm()
+
+    def test_confirm_with_variant_multiple(self):
+        self._add_color_and_legs_variants(self.bom_product_template)
+        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        new_bom = self._create_bom_with_variants()
+        # Remove application on variant for first bom line
+        #  with this only the first variant of the product template
+        #  will have a single component where lot must be propagated
+        new_bom.bom_line_ids[0].bom_product_template_attribute_value_ids = [
+            Command.clear()
+        ]
+        for cnt, product in enumerate(self.bom_product_template.product_variant_ids):
+            new_order = self._create_order(product, new_bom)
+            if cnt == 0:
+                new_order.action_confirm()
+            else:
+                with self.assertRaisesRegex(UserError, "multiple components"):
+                    new_order.action_confirm()
+
+    def test_confirm_with_variant_no(self):
+        self._add_color_and_legs_variants(self.bom_product_template)
+        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        new_bom = self._create_bom_with_variants()
+        # Remove first bom line
+        #  with this the first variant of the product template
+        #  will not have any component where lot must be propagated
+        new_bom.bom_line_ids[0].unlink()
+        for cnt, product in enumerate(self.bom_product_template.product_variant_ids):
+            new_order = self._create_order(product, new_bom)
+            if cnt == 0:
+                with self.assertRaisesRegex(UserError, "no component"):
+                    new_order.action_confirm()
+            else:
+                new_order.action_confirm()
