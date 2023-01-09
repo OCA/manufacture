@@ -1,6 +1,5 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
 from odoo.tests import common
 
 
@@ -66,7 +65,9 @@ class TestMrpSaleInfo(common.TransactionCase):
     def test_mrp_workorder(self):
         prev_workorders = self.env["mrp.workorder"].search([])
         self.sale_order.action_confirm()
-        workorder = self.env["mrp.workorder"].search([]) - prev_workorders
+        workorder = (
+            self.env["mrp.production"].search([]).workorder_ids - prev_workorders
+        )
         self.assertEqual(workorder.sale_id, self.sale_order)
         self.assertEqual(workorder.partner_id, self.partner)
         self.assertEqual(workorder.client_order_ref, self.sale_order.client_order_ref)
