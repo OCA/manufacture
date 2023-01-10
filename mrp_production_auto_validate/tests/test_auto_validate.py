@@ -14,10 +14,33 @@ class TestManufacturingOrderAutoValidate(SavepointCase):
         # "pick components" transfer operation
         cls.wh = cls.env.ref("stock.warehouse0")
         cls.wh.manufacture_steps = "pbm"
+        # Configure the product to be replenished through manufacture route
+        cls.product_template = cls.env.ref(
+            "mrp.product_product_computer_desk_head_product_template"
+        )
+        cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
+        cls.product_template.route_ids = [(6, 0, [cls.manufacture_route.id])]
         # Configure the BoM to auto-validate manufacturing orders
         # NOTE: to ease tests we take a BoM with only one component
         cls.bom = cls.env.ref("mrp.mrp_bom_table_top")  # Tracked by S/N
         cls.bom.mo_auto_validation = True
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
+
+    @classmethod
+    def _replenish_product(cls, product, product_qty=1, product_uom=None):
+        if product_uom is None:
+            product_uom = cls.uom_unit
+        wiz = (
+            cls.env["product.replenish"]
+            .with_context(default_product_id=product.id)
+            .create(
+                {
+                    "quantity": product_qty,
+                    "product_uom_id": product_uom.id,
+                }
+            )
+        )
+        wiz.launch_replenishment()
 
     @classmethod
     def _create_manufacturing_order(cls, bom, product_qty=1):
@@ -139,3 +162,36 @@ class TestManufacturingOrderAutoValidate(SavepointCase):
         self.assertFalse(order_done)
         self.assertEqual(order.state, "confirmed")
         self.assertEqual(order.product_qty, 2)
+
+    def test_keep_qty_on_replenishment(self):
+        existing_mos = self.env["mrp.production"].search([])
+        self._replenish_product(self.product_template.product_variant_id, product_qty=1)
+        created_mos = self.env["mrp.production"].search(
+            [("id", "not in", existing_mos.ids)]
+        )
+        self.assertEqual(len(created_mos), 1)
+        self.assertEqual(created_mos.product_qty, self.bom.product_qty)
+        self.assertFalse(any("split" in m.body for m in created_mos.message_ids))
+        self.assertFalse(any("increased" in m.body for m in created_mos.message_ids))
+
+    def test_split_qty_on_replenishment(self):
+        existing_mos = self.env["mrp.production"].search([])
+        self._replenish_product(self.product_template.product_variant_id, product_qty=3)
+        created_mos = self.env["mrp.production"].search(
+            [("id", "not in", existing_mos.ids)]
+        )
+        self.assertEqual(len(created_mos), 3)
+        for mo in created_mos:
+            self.assertEqual(mo.product_qty, self.bom.product_qty)
+            self.assertTrue(any("split" in m.body for m in mo.message_ids))
+
+    def test_raise_qty_on_replenishment(self):
+        existing_mos = self.env["mrp.production"].search([])
+        self.bom.product_qty = 5
+        self._replenish_product(self.product_template.product_variant_id, product_qty=3)
+        created_mos = self.env["mrp.production"].search(
+            [("id", "not in", existing_mos.ids)]
+        )
+        self.assertEqual(len(created_mos), 1)
+        self.assertEqual(created_mos.product_qty, self.bom.product_qty)
+        self.assertTrue(any("increased" in m.body for m in created_mos.message_ids))
