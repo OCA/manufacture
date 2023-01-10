@@ -21,6 +21,7 @@ class MrpProduction(models.Model):
     @api.constrains("bom_id", "auto_validate", "product_qty")
     def check_bom_auto_validate(self):
         for mo in self:
+            # FIXME: Handle different UOM between BOM and MO
             qty_ok = (
                 tools.float_compare(
                     mo.product_qty,
@@ -91,3 +92,101 @@ class MrpProduction(models.Model):
         )
         wiz = wiz_model.create({})
         return wiz.action_backorder()
+
+    @api.model_create_multi
+    def create(self, values_list):
+        new_values_list, messages_to_post = self.adapt_values_qty_for_auto_validation(
+            values_list
+        )
+        res = super().create(new_values_list)
+        if messages_to_post:
+            for pos, msg in messages_to_post.items():
+                prod = res[pos]
+                prod.message_post(body=msg)
+        return res
+
+    @api.model
+    def adapt_values_qty_for_auto_validation(self, values_list):
+        """Adapt create values according to qty with auto validated BOM
+
+        If MOs are to be created with a BOM having auto validation, we must ensure
+        the quantity of the MO is equal to the quantity of the BOM.
+        However when MOs are created through procurements, the requested quantity
+        is based on the procurement quantity, so we should either
+          * increase the quantity to match the BOM if procurement value is lower
+          * split the values to create one MO into multiple values to create multiple
+          MOs matching the BOM quantity if procurement value is bigger
+        """
+        messages_to_post = {}
+        if not self.env.context.get("_split_create_values_for_auto_validation"):
+            return values_list, messages_to_post
+        new_values_list = []
+        for values in values_list:
+            bom_id = values.get("bom_id")
+            if not bom_id:
+                new_values_list.append(values)
+                continue
+            bom = self.env["mrp.bom"].browse(bom_id)
+            if not bom.mo_auto_validation:
+                new_values_list.append(values)
+                continue
+            create_qty = values.get("product_qty")
+            create_uom = self.env["uom.uom"].browse(values.get("product_uom_id"))
+            bom_qty = bom.product_qty
+            bom_uom = bom.product_uom_id
+            if create_uom != bom_uom:
+                create_qty = create_uom._compute_quantity(create_qty, bom_uom)
+            if (
+                tools.float_compare(
+                    create_qty, bom_qty, precision_rounding=bom_uom.rounding
+                )
+                == 0
+            ):
+                new_values_list.append(values)
+                continue
+            elif (
+                tools.float_compare(
+                    create_qty, bom_qty, precision_rounding=bom_uom.rounding
+                )
+                < 0
+            ):
+                procure_qty = values.get("product_qty")
+                values["product_qty"] = bom_qty
+                values["product_uom_id"] = bom_uom.id
+                msg = _(
+                    "Quantity in procurement (%s %s) was increased to %s %s due to auto "
+                    "validation feature preventing to create an MO with a different "
+                    "qty than defined on the BOM."
+                ) % (
+                    procure_qty,
+                    create_uom.display_name,
+                    bom_qty,
+                    bom_uom.display_name,
+                )
+                messages_to_post[len(new_values_list)] = msg
+                new_values_list.append(values)
+                continue
+            # If we get here we need to split the prepared MO values
+            #  into multiple MO values to respect BOM qty
+            while (
+                tools.float_compare(create_qty, 0, precision_rounding=bom_uom.rounding)
+                > 0
+            ):
+                new_values = values.copy()
+                new_values["product_qty"] = bom_qty
+                new_values["product_uom_id"] = bom_uom.id
+                msg = _(
+                    "Quantity in procurement (%s %s) was split to multiple production "
+                    "orders of %s %s due to auto validation feature preventing to "
+                    "set a quantity to produce different than the quantity defined "
+                    "on the Bill of Materials."
+                ) % (
+                    values.get("product_qty"),
+                    create_uom.display_name,
+                    bom_qty,
+                    bom_uom.display_name,
+                )
+                messages_to_post[len(new_values_list)] = msg
+                new_values_list.append(new_values)
+                create_qty -= bom_qty
+        return new_values_list, messages_to_post
