@@ -258,7 +258,7 @@ class MrpProductionRequest(models.Model):
 
     def copy(self, default=None):
         default = dict(default or {})
-        default['name'] = '/'
+        default["name"] = "/"
         return super().copy(default)
 
     @api.model

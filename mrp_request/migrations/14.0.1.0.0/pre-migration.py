@@ -122,6 +122,8 @@ def migrate(env, version):
     openupgrade.rename_tables(cr, _table_renames)
     openupgrade.rename_fields(env, _field_renames)
     openupgrade.rename_xmlids(cr, _xmlid_renames)
-    env.ref('mrp_request.seq_mrp_request').write({
-        'code': 'mrp.request',
-    })
+    env.ref("mrp_request.seq_mrp_request").write(
+        {
+            "code": "mrp.request",
+        }
+    )
