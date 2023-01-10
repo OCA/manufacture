@@ -141,7 +141,6 @@
             <tree
                 decoration-info="state in ('draft','to_approve')"
                 decoration-muted="state in ('cancel')"
-                string="Manufacturing Requests"
             >
                 <field name="name" />
                 <field name="product_id" />

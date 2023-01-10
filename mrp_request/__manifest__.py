@@ -5,7 +5,7 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
     "step to Manufacturing Orders for better manufacture "
     "planification.",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.0",
     "development_status": "Mature",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Manufacturing",

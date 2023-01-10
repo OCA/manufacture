@@ -42,8 +42,12 @@
                         </div>
                     </group>
                     <group name="date_planned">
-                        <field name="date_planned_start" />
-                        <field name="date_planned_finished" />
+                        <label for="date_planned_start" string="Deadline"/>
+                        <div class="o_row">
+                            <field name="date_planned_start" widget="daterange" options='{"related_end_date": "date_planned_finished"}'/>
+                            <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon" title="Arrow"/>
+                            <field name="date_planned_finished" widget="daterange" options='{"related_start_date": "date_planned_start"}'/>
+                        </div>
                     </group>
                 </group>
                 <footer>
