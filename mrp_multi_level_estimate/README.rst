@@ -10,9 +10,9 @@ MRP Multi Level Estimate
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
     :target: https://github.com/OCA/manufacture/tree/15.0/mrp_multi_level_estimate
     :alt: OCA/manufacture
@@ -23,7 +23,7 @@ MRP Multi Level Estimate
     :target: https://runbot.odoo-community.org/runbot/129/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Integration for MRP Multi Level and `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`_ system.
 
@@ -84,7 +84,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow|
+|maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_multi_level_estimate>`_ project on GitHub.
 
