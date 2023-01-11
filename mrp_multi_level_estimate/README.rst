@@ -23,7 +23,7 @@ MRP Multi Level Estimate
     :target: https://runbot.odoo-community.org/runbot/129/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Integration for MRP Multi Level and `Stock Demand Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`_ system.
 
@@ -84,7 +84,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-LoisRForgeFlow| 
+|maintainer-LoisRForgeFlow|
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_multi_level_estimate>`_ project on GitHub.
 
