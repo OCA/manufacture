@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import Form, common
 
 
-class TestStockWholeKitConstraint(common.SavepointCase):
+class TestStockWholeKitConstraint(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
