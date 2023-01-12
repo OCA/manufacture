@@ -24,20 +24,6 @@ msgid "Allow Partial Kit Delivery"
 msgstr "Consenti consegna confezione parziale"
 
 #. module: stock_whole_kit_constraint
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_product_template__display_name
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_move__display_name
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_picking__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: stock_whole_kit_constraint
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_product_template__id
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_move__id
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_picking__id
-msgid "ID"
-msgstr "ID"
-
-#. module: stock_whole_kit_constraint
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_product__allow_partial_kit_delivery
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_template__allow_partial_kit_delivery
 msgid ""
@@ -46,13 +32,6 @@ msgid ""
 msgstr ""
 "Se non impostato e il prodotto viene consegnato con una DiBa di tipo "
 "confezione, consegne parziali dei componenti non sono consentite."
-
-#. module: stock_whole_kit_constraint
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_product_template____last_update
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_move____last_update
-#: model:ir.model.fields,field_description:stock_whole_kit_constraint.field_stock_picking____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: stock_whole_kit_constraint
 #: model:ir.model,name:stock_whole_kit_constraint.model_product_template
@@ -73,4 +52,14 @@ msgstr "Trasferimento"
 #: code:addons/stock_whole_kit_constraint/models/stock_picking.py:0
 #, python-format
 msgid "You can't make a partial delivery of components of the %s kit"
-msgstr "Non si può fare una consegna parziale di componenti della confezione %s"
+msgstr ""
+"Non si può fare una consegna parziale di componenti della confezione %s"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
