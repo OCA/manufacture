@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_partial_consumption
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-13 00:26+0000\n"
+"PO-Revision-Date: 2023-01-12 18:27-0600\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: mrp_partial_consumption
+#: model_terms:ir.ui.view,arch_db:mrp_partial_consumption.mrp_production_view_form
+msgid "Partial Consumption"
+msgstr "Consumo parcial"
+
+#. module: mrp_partial_consumption
+#: model:ir.model,name:mrp_partial_consumption.model_mrp_production
+msgid "Production Order"
+msgstr "Orden de producción"
+
+#. module: mrp_partial_consumption
+#: model_terms:ir.ui.view,arch_db:mrp_partial_consumption.mrp_production_view_form
+msgid ""
+"This will consume all reserved quantities for the raw materials. Do you "
+"want to continue?"
+msgstr ""
+"Esto consumirá todas las cantidades reservadas para las materias primas. "
+"¿Quieres continuar?"
