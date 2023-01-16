@@ -61,7 +61,7 @@ class MrpBom(models.Model):
             if (
                 line.product_id.tracking == "serial"
                 and tools.float_compare(
-                    line.product_qty, 1, precision_rounding=line.product_uom_id.rounding
+                    line.product_qty, 1, precision_rounding=line.product_uom_id.rounding or line.product_id.uom_id.rounding
                 )
                 == 0
                 and line.product_uom_id == uom_unit
