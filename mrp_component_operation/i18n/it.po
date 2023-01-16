@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-16 16:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: mrp_component_operation
 #: model:ir.model,name:mrp_component_operation.model_mrp_component_operate
@@ -30,40 +32,40 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Component Operation"
-msgstr ""
+msgstr "Operazione componente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__name
 msgid "Component Operation Reference"
-msgstr ""
+msgstr "Riferimento operazione componente"
 
 #. module: mrp_component_operation
 #: model:ir.ui.menu,name:mrp_component_operation.menu_mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.stock_location_route_form_view_inherit_mrp_component
 msgid "Component Operations"
-msgstr ""
+msgstr "Operazioni componente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__create_uid
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__create_date
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__destination_location_id
 msgid "Destination Location"
-msgstr ""
+msgstr "Ubicazione di destinazione"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__destination_route_id
 msgid "Destination Route"
-msgstr ""
+msgstr "Percorso di destinazione"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__display_name
@@ -71,17 +73,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 msgid "Done"
-msgstr ""
+msgstr "Fatto"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
-msgstr ""
+msgstr "Assicura la tracciabilità di un prodotto stoccabile nel magazzino."
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__id
@@ -89,18 +91,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__incoming_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__incoming_operation
 msgid "Incoming Operation"
-msgstr ""
+msgstr "Operazione di ingresso"
 
 #. module: mrp_component_operation
 #: model:ir.model,name:mrp_component_operation.model_stock_location_route
 msgid "Inventory Routes"
-msgstr ""
+msgstr "Percorsi di magazzino"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate____last_update
@@ -108,161 +110,163 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__write_uid
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__write_date
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Locations/Routes"
-msgstr ""
+msgstr "Ubicazioni/percorsi"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__lot_id
 msgid "Lot"
-msgstr ""
+msgstr "Lotto"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "Lotto/numero di serie"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__scrap
 msgid "Make a Scrap"
-msgstr ""
+msgstr "Scarta"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__mo_id
 msgid "Mo"
-msgstr ""
+msgstr "OP"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__move
 msgid "Move to Destination Location"
-msgstr ""
+msgstr "Muovere all'ubicazione di destinazione"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__incoming_operation__no
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__no
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. module: mrp_component_operation
 #: code:addons/mrp_component_operation/wizards/mrp_component_operate.py:0
 #, python-format
 msgid "No route specified"
-msgstr ""
+msgstr "Nessun percorso specificato"
 
 #. module: mrp_component_operation
 #: code:addons/mrp_component_operation/models/mrp_production.py:0
 #, python-format
 msgid "Operate Component"
-msgstr ""
+msgstr "Lavora componente"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.mrp_production_form_view
 msgid "Operate Components"
-msgstr ""
+msgstr "Lavora componenti"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__operation_id
 msgid "Operation"
-msgstr ""
+msgstr "Operazione"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Operations"
-msgstr ""
+msgstr "Operazioni"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__outgoing_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__outgoing_operation
 msgid "Outgoing Operation"
-msgstr ""
+msgstr "Operazioni di uscita"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__incoming_operation__replace
 msgid "Pick Component from Source Route"
-msgstr ""
+msgstr "Preleva componente dal percorso sorgente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__tracking
 msgid "Product Tracking"
-msgstr ""
+msgstr "Tracciamento prodotto"
 
 #. module: mrp_component_operation
 #: model:ir.model,name:mrp_component_operation.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Reference"
-msgstr ""
+msgstr "Riferimento"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__scrap_location_id
 msgid "Scrap Location"
-msgstr ""
+msgstr "Ubicazione scarti"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route__mo_component_selectable
 msgid "Selectable on MO Components"
-msgstr ""
+msgstr "Selezionabile nei componenti dell'OP"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__source_location_id
 msgid "Source Location"
-msgstr ""
+msgstr "Ubicazione sorgente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__source_route_id
 msgid "Source Route"
-msgstr ""
+msgstr "Percorso sorgente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_location_id
 msgid "The Location where the components are going to be transferred."
-msgstr ""
+msgstr "L'ubicazione dove i componenti verranno trasferiti."
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__source_location_id
 msgid "The Location where the components are."
-msgstr ""
+msgstr "L'ubicazione dove sono i componenti."
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__source_route_id
 msgid "The Route used to pick the components."
-msgstr ""
+msgstr "Il percorso utilizzato per prelevare i componenti."
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_route_id
 msgid "The Route used to transfer the components to the destination location."
 msgstr ""
+"Il percorso utilizzato per trasferire i componenti all'ubicazione "
+"destinazione."
