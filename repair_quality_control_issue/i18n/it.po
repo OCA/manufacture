@@ -6,171 +6,173 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-01-16 22:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: repair_quality_control_issue
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.view_qc_issue_make_repair
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: repair_quality_control_issue
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.qc_issue_form
 msgid "Create Repair"
-msgstr ""
+msgstr "Crea riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.actions.act_window,name:repair_quality_control_issue.action_qc_issue_make_repair
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.view_qc_issue_make_repair
 msgid "Create Repair Order"
-msgstr ""
+msgstr "Crea ordine riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.actions.act_window,name:repair_quality_control_issue.action_repair_order_create
 msgid "Create Repair Orders"
-msgstr ""
+msgstr "Crea ordini riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__create_uid
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__create_date
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: repair_quality_control_issue
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.view_qc_issue_make_repair
 msgid "Details"
-msgstr ""
+msgstr "Dettagli"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__display_name
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: repair_quality_control_issue
 #: code:addons/repair_quality_control_issue/wizards/qc_issue_make_repair.py:50
 #, python-format
 msgid "Enter a positive quantity."
-msgstr ""
+msgstr "Inserire una quantità positiva."
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__id
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__item_ids
 msgid "Item"
-msgstr ""
+msgstr "Oggetto"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair____last_update
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__write_uid
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__write_date
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__location_id
 msgid "Location"
-msgstr ""
+msgstr "Ubicazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__lot_id
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "Lotto/numero di serie"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: repair_quality_control_issue
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.view_qc_issue_make_repair
 msgid "New repair order details:"
-msgstr ""
+msgstr "Dettagli nuovo ordine riparazione:"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: repair_quality_control_issue
 #: model:ir.model,name:repair_quality_control_issue.model_qc_issue_make_repair
 msgid "QC Issue Make Repair"
-msgstr ""
+msgstr "Segnalazione CQ crea riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model,name:repair_quality_control_issue.model_qc_issue_make_repair_item
 msgid "QC Issue Make Repair Item"
-msgstr ""
+msgstr "Segnalazione CQ crea oggetto riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model,name:repair_quality_control_issue.model_qc_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_repair_order__qc_issue_id
 msgid "Quality Control Issue"
-msgstr ""
+msgstr "Segnalazione controllo qualità"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__qc_issue_id
 msgid "Quality Issue"
-msgstr ""
+msgstr "Segnalazione qualità"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__product_qty
 msgid "Quantity to Repair"
-msgstr ""
+msgstr "Quantità da riparare"
 
 #. module: repair_quality_control_issue
 #: model:ir.model,name:repair_quality_control_issue.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Ordine riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue__repair_order_count
 msgid "Repair Order Count"
-msgstr ""
+msgstr "Conteggio ordine riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue__repair_order_ids
 #: model_terms:ir.ui.view,arch_db:repair_quality_control_issue.qc_issue_form
 msgid "Repair Orders"
-msgstr ""
+msgstr "Ordini riparazione"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__product_uom_id
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
 
 #. module: repair_quality_control_issue
 #: model:ir.model.fields,field_description:repair_quality_control_issue.field_qc_issue_make_repair_item__wiz_id
 msgid "Wizard"
-msgstr ""
+msgstr "Procedura guidata"
