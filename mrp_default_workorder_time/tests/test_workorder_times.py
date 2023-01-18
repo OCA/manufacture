@@ -56,11 +56,24 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
             )
         return mo
 
+    def finish_production(self, mo):
+        res = mo.button_mark_done()
+        if res is not True:
+            ctx = {
+                "active_id": mo.id,
+                "active_ids": mo.ids,
+                "active_model": "mrp.production",
+            }
+            ctx.update(res.get("context", {}))
+            wizard_form = Form(self.env["mrp.immediate.production"].with_context(**ctx))
+            wizard = wizard_form.save()
+            wizard.process()
+
     def test_mrp_default_workorder_time(self):
         self.stock_location = self.env.ref("stock.stock_location_stock")
         mo = self._crete_production_with_workorders(1)
         self.assertEqual(len(mo), 1, "MO should have been created")
-        mo.button_mark_done()
+        self.finish_production(mo)
         self.assertEqual(
             mo.workorder_ids[0].duration, mo.workorder_ids[0].duration_expected
         )
@@ -68,7 +81,7 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
         mo2 = self._crete_production_with_workorders(1)
         mo2.company_id.use_projected_time_work_orders = False
         self.assertEqual(len(mo2), 1, "MO should have been created")
-        mo2.button_mark_done()
+        self.finish_production(mo2)
         self.assertNotEqual(
             mo2.workorder_ids[0].duration, mo2.workorder_ids[0].duration_expected
         )
@@ -79,7 +92,7 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
         mo3.company_id.use_projected_time_work_orders = True
         mo3.company_id.minimum_order_time_threshold = 20
         self.assertEqual(len(mo3), 1, "MO should have been created")
-        mo3.button_mark_done()
+        self.finish_production(mo3)
         self.assertEqual(
             mo3.workorder_ids[0].duration, mo3.workorder_ids[0].duration_expected
         )
@@ -90,7 +103,7 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
         mo4.company_id.use_projected_time_work_orders = True
         mo4.company_id.minimum_order_time_threshold = 20
         self.assertEqual(len(mo4), 1, "MO should have been created")
-        mo4.button_mark_done()
+        self.finish_production(mo4)
         self.assertNotEqual(
             mo4.workorder_ids[0].duration, mo4.workorder_ids[0].duration_expected
         )
@@ -101,7 +114,7 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
         mo5.company_id.use_projected_time_work_orders = True
         mo5.company_id.minimum_order_time_threshold = 20
         self.assertEqual(len(mo5), 1, "MO should have been created")
-        mo5.button_mark_done()
+        self.finish_production(mo5)
         self.assertNotEqual(
             mo5.workorder_ids[0].duration, mo5.workorder_ids[0].duration_expected
         )
@@ -112,7 +125,7 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
         mo6.company_id.use_projected_time_work_orders = True
         mo6.company_id.minimum_order_time_threshold = 20
         self.assertEqual(len(mo6), 1, "MO should have been created")
-        mo6.button_mark_done()
-        self.assertEqual(
-            mo6.workorder_ids[0].duration, mo4.workorder_ids[0].duration_expected
+        self.finish_production(mo6)
+        self.assertNotEqual(
+            mo6.workorder_ids[0].duration, mo6.workorder_ids[0].duration_expected
         )
