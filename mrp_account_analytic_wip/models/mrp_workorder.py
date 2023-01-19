@@ -40,7 +40,9 @@ class MRPWorkOrder(models.Model):
         )
         all_tracking = to_populate.production_id.analytic_tracking_item_ids
         for item in to_populate:
-            tracking = all_tracking.filtered(lambda x: x.workorder_id == self)[:1]
+            tracking = all_tracking.filtered(
+                lambda x: not x.parent_id and x.workorder_id == self
+            )
             vals = item._prepare_tracking_item_values()
             not set_planned and vals.pop("planned_qty")
             if tracking:
