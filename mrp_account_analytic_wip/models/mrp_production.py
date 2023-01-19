@@ -275,15 +275,13 @@ class MRPProduction(models.Model):
         generate tracking items.
 
         On MTO, the Analytic Account might be set after the action_confirm(),
-        so the planned amount needs to be set here.
-
-        TODO: in what cases the planned amounts update should be prevented?
+        so the planned amount needs to be set here, if the MO is already confirmed.
         """
         super().write(vals)
         if "analytic_account_id" in vals:
             confirmed_mos = self.filtered(lambda x: x.state == "confirmed")
-            confirmed_mos.move_raw_ids.populate_tracking_items()
-            confirmed_mos.workorder_ids.populate_tracking_items()
+            confirmed_mos.move_raw_ids.populate_tracking_items(set_planned=True)
+            confirmed_mos.workorder_ids.populate_tracking_items(set_planned=True)
         return True
 
     def _get_move_raw_values(
