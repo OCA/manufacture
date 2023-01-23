@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgFlow S.L
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='byproduct_ids']/tree//field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="cost_share" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp.template_open_bom" model="ir.actions.act_window">
+            <field name="context">{'default_product_tmpl_id': active_id}</field>
+            <field
+            name="domain"
+        >['|', ('product_tmpl_id', '=', active_id), ('byproduct_ids.product_id.product_tmpl_id', '=', active_id)]</field>
+    </record>
+
+    <record id="mrp.product_open_bom" model="ir.actions.act_window">
+        <field name="context">{'default_product_id': active_id}</field>
+    </record>
+</odoo>

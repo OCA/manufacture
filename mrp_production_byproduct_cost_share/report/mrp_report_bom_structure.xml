@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_mrp_bom" inherit_id="mrp.report_mrp_bom">
+        <xpath
+            expr="//div[@class='container o_mrp_bom_report_page']/t"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >data.get('components') or data.get('lines') or data.get('operations')</attribute>
+        </xpath>
+        <xpath
+            expr="//tbody/tr/td[@class='o_mrp_bom_cost text-right']/span/t"
+            position="attributes"
+        >
+             <attribute name="t-esc">data['bom_cost']</attribute>
+        </xpath>
+        <xpath expr="//tfoot" position="attributes">
+             <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//tfoot" position="after">
+            <tfoot>
+                <tr
+                    t-if="data['report_structure'] != 'bom_structure'"
+                    class="o_mrp_prod_cost"
+                >
+                    <td />
+                    <td name="td_mrp_bom_f" class="text-right">
+                        <span><t
+                                t-if="data['byproducts']"
+                                t-esc="data['bom_prod_name']"
+                            /></span>
+                    </td>
+                    <td class="text-right"><span><strong>Unit Cost</strong></span></td>
+                    <td groups="uom.group_uom"><span><t
+                                t-esc="data['bom'].product_uom_id.name"
+                            /></span></td>
+                    <td class="text-right">
+                        <span><t
+                                t-esc="data['price']/data['bom_qty']"
+                                t-options='{"widget": "monetary", "display_currency": currency}'
+                            /></span>
+                    </td>
+                    <td class="text-right">
+                        <span><t
+                                t-esc="data['cost_share'] * data['total'] / data['bom_qty']"
+                                t-options='{"widget": "monetary", "display_currency": currency}'
+                            /></span>
+                    </td>
+                </tr>
+                <t
+                    t-if="data['report_structure'] != 'bom_structure'"
+                    t-foreach="data['byproducts']"
+                    t-as="byproduct"
+                >
+                    <tr class="o_mrp_bom_cost">
+                        <td />
+                        <td name="td_mrp_bom_byproducts_f" class="text-right">
+                            <span><t t-esc="byproduct['product_name']" /></span>
+                        </td>
+                        <td class="text-right"><span><strong
+                                >Unit Cost</strong></span></td>
+                        <td groups="uom.group_uom"><span><t
+                                    t-esc="byproduct['product_uom']"
+                                /></span></td>
+                        <td class="text-right">
+                            <span><t
+                                    t-esc="byproduct['product_cost'] / byproduct['product_qty']"
+                                    t-options='{"widget": "monetary", "display_currency": currency}'
+                                /></span>
+                        </td>
+                        <td class="text-right">
+                            <span><t
+                                    t-esc="byproduct['cost_share'] * data['total'] / byproduct['product_qty']"
+                                    t-options='{"widget": "monetary", "display_currency": currency}'
+                                /></span>
+                        </td>
+                    </tr>
+                </t>
+            </tfoot>
+        </xpath>
+    </template>
+
+    <template
+        id="report_mrp_bom_line_byproduct_cost"
+        inherit_id="mrp.report_mrp_bom_line"
+    >
+        <xpath expr="//td[@class='o_mrp_prod_cost']" position="attributes">
+            <attribute name="class" />
+        </xpath>
+        <xpath expr="//t[last()]" posiiton="after">
+            <t t-if="data['byproducts']">
+            <t
+                    t-set="space_td"
+                    t-value="'margin-left: '+ str(data['level'] * 20) + 'px;'"
+                />
+            <tr
+                    class="o_mrp_bom_report_line o_mrp_bom_cost"
+                    t-att-data-id="'byproduct-' + str(data['bom'].id)"
+                    t-att-data-bom-id="data['bom'].id"
+                    t-att-parent_id="data['bom'].id"
+                    t-att-data-qty="data['bom_qty']"
+                    t-att-data-level="data['level']"
+                    t-att-data-total="data['total']"
+                >
+                <td name="td_byproducts">
+                    <span t-att-style="space_td" />
+                    <span
+                            class="o_mrp_bom_unfoldable fa fa-fw fa-caret-right"
+                            t-att-data-function="'get_byproducts'"
+                            role="img"
+                            aria-label="Unfold"
+                            title="Unfold"
+                        />
+                    By-Products
+                </td>
+                <td />
+                <td class="text-right">
+                    <span t-esc="data['byproducts_total']" />
+                </td>
+                <td groups="uom.group_uom" />
+                <td />
+                <td class="text-right">
+                    <span
+                            t-esc="data['byproducts_cost']"
+                            t-options='{"widget": "monetary", "display_currency": currency}'
+                        />
+                </td>
+            </tr>
+        </t>
+        </xpath>
+    </template>
+
+    <template
+        id="report_mrp_operation_line_byproduct"
+        inherit_id="mrp.report_mrp_operation_line"
+    >
+      <xpath expr="//td[@class='o_mrp_prod_cost']" position="attributes">
+            <attribute name="class" />
+        </xpath>
+    </template>
+
+    <template id="report_mrp_byproduct_line">
+        <t t-set="currency" t-value="data['currency']" />
+        <t t-foreach="data['byproducts']" t-as="byproduct">
+            <t
+                t-set="space_td"
+                t-value="'margin-left: '+ str(byproduct['level'] * 20) + 'px;'"
+            />
+            <tr
+                class="o_mrp_bom_report_line o_mrp_bom_cost"
+                t-att-parent_id="'byproduct-' + str(data['bom_id'])"
+            >
+                <td name="td_byproduct_line">
+                    <span t-att-style="space_td" />
+                    <a
+                        href="#"
+                        t-att-data-res-id="byproduct['product_id'].id"
+                        t-att-data-model="byproduct['product_id']._name"
+                        class="o_mrp_bom_action"
+                    ><t t-esc="byproduct['product_name']" /></a>
+                </td>
+                <td />
+                <td class="text-right">
+                    <span t-esc="byproduct['product_qty']" />
+                </td>
+                <td groups="uom.group_uom"><span
+                        t-esc="byproduct['product_uom']"
+                    /></td>
+                <td class="text-right">
+                    <span
+                        t-esc="byproduct['product_cost']"
+                        t-options='{"widget": "monetary", "display_currency": currency}'
+                    />
+                </td>
+                <td class="text-right">
+                    <span
+                        t-esc="byproduct['bom_cost']"
+                        t-options='{"widget": "monetary", "display_currency": currency}'
+                    />
+                </td>
+                <td />
+            </tr>
+        </t>
+    </template>
+
+    <template
+        id="report_mrp_bom_pdf_line_byproduct_cost"
+        inherit_id="mrp.report_mrp_bom_pdf_line"
+    >
+        <xpath expr="//t[@t-as='l']/tr" position="attributes">
+          <attribute
+                name="t-if"
+            >data['report_structure'] != 'bom_structure' or l['type'] not in ['operation', 'byproduct']</attribute>
+        </xpath>
+        <xpath
+            expr="///t[@t-as='l']/tr/td[@class='text-right']/span/t[2]"
+            position="attributes"
+        >
+          <attribute name="t-if">l['type'] in ['bom', 'byproduct']</attribute>
+        </xpath>
+    </template>
+
+</odoo>

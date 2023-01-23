@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgFlow S.L
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_byproduct_ids']/tree//field[@name='product_uom']"
+                position="after"
+            >
+                <field name="cost_share" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

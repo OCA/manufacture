@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="assets_backend" name="mrp assets" inherit_id="mrp.assets_backend">
+        <xpath expr="." position="inside">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/mrp/static/src/scss/mrp_workorder_kanban.scss"
+            />
+            <script
+                type="text/javascript"
+                src="/mrp_production_byproduct_cost_share/static/src/js/mrp_bom_report.js"
+            />
+        </xpath>
+   </template>
+</odoo>
