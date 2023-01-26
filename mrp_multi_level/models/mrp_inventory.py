@@ -48,14 +48,17 @@ class MrpInventory(models.Model):
     date = fields.Date(string="Date")
     demand_qty = fields.Float(string="Demand")
     supply_qty = fields.Float(string="Supply")
-    initial_on_hand_qty = fields.Float(string="Starting Inventory")
-    final_on_hand_qty = fields.Float(string="Forecasted Inventory")
-    to_procure = fields.Float(
-        string="To procure", compute="_compute_to_procure", store=True
+    initial_on_hand_qty = fields.Float(
+        string="Starting Inventory", group_operator="avg"
     )
+    final_on_hand_qty = fields.Float(
+        string="Forecasted Inventory", group_operator="avg"
+    )
+    to_procure = fields.Float(compute="_compute_to_procure", store=True)
     running_availability = fields.Float(
         string="Planned Availability",
-        help="Theoretical inventory level if all planned orders" "were released.",
+        group_operator="avg",
+        help="Theoretical inventory level if all planned orders were released.",
     )
     order_release_date = fields.Date(
         string="Order Release Date", compute="_compute_order_release_date", store=True
