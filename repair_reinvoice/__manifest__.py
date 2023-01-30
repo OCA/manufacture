@@ -12,6 +12,8 @@
     "website": "https://github.com/OCA/manufacture",
     "depends": ["repair"],
     "data": ["views/repair_views.xml"],
+    "maintainer": "mariadforgeflow",
     "installable": True,
     "application": False,
+    "post_init_hook": "post_init_hook",
 }
