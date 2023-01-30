@@ -109,6 +109,12 @@
                     <field name="company_id" groups="base.group_multi_company" />
                 </group>
                 <separator />
+                <field name="mrp_planner_id" invisible="1" />
+                <filter
+                    string="My products"
+                    name="mrp_planner_id"
+                    domain="[('mrp_planner_id', '=', uid)]"
+                />
                 <filter
                     string="To Procure"
                     name="filter_to_procure"

@@ -97,6 +97,7 @@ class ProductMRPArea(models.Model):
         inverse_name="product_mrp_area_id",
         readonly=True,
     )
+    mrp_planner_id = fields.Many2one("res.users")
 
     _sql_constraints = [
         (
