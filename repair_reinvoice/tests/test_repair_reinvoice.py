@@ -1,5 +1,6 @@
-from odoo.tests import common
 from odoo.fields import Date
+from odoo.tests import common
+
 
 class TestMrpRepairReinvoice(common.SavepointCase):
     @classmethod
@@ -43,7 +44,7 @@ class TestMrpRepairReinvoice(common.SavepointCase):
                 "price_unit": 20,
             }
         )
-    
+
     def test_reinvoice(self):
         self.repair.action_validate()
         self.repair.action_repair_start()
@@ -53,11 +54,19 @@ class TestMrpRepairReinvoice(common.SavepointCase):
         self.assertEqual(self.repair.invoiced, True)
         self.repair.invoice_ids.action_post()
         today = Date.context_today(self.env.user)
-        refund_invoice_wiz = self.env['account.move.reversal'].with_context(active_model="account.move", active_ids=[self.repair.invoice_ids.ids[0]]).create({
-            'reason': 'Please reverse',
-            'refund_method': 'cancel',
-            'date': today,
-        })
-        refund_invoice = self.env['account.move'].browse(refund_invoice_wiz.reverse_moves()['res_id'])
+        refund_invoice_wiz = (
+            self.env["account.move.reversal"]
+            .with_context(
+                active_model="account.move", active_ids=[self.repair.invoice_ids.ids[0]]
+            )
+            .create(
+                {
+                    "reason": "Please reverse",
+                    "refund_method": "cancel",
+                    "date": today,
+                }
+            )
+        )
+        self.env["account.move"].browse(refund_invoice_wiz.reverse_moves()["res_id"])
         self.assertEqual(self.repair.invoice_count, 2)
         self.assertEqual(self.repair.invoiced, False)
