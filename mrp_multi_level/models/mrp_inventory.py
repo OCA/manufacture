@@ -71,6 +71,11 @@ class MrpInventory(models.Model):
         readonly=True,
         store=True,
     )
+    mrp_planner_id = fields.Many2one(
+        related="product_mrp_area_id.mrp_planner_id",
+        readonly=True,
+        store=True,
+    )
 
     def _compute_uom_id(self):
         for rec in self:

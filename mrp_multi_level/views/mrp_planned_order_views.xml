@@ -83,6 +83,11 @@
                 <field name="product_id" />
                 <field name="mrp_area_id" />
                 <separator />
+                <filter
+                    string="My products"
+                    name="mrp_planner_id"
+                    domain="[('mrp_planner_id', '=', uid)]"
+                />
                 <filter string="Fixed" name="fixed" domain="[('fixed','=',True)]" />
                 <group name='group_by' expand="0" string="Group By...">
                     <filter
