@@ -2,7 +2,7 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import Command, models
 
 
 class ReportBomStructure(models.AbstractModel):
@@ -30,8 +30,7 @@ class ReportBomStructure(models.AbstractModel):
                 else:
                     line.product_id = line_product
             if to_ignore_line_ids:
-                for to_ignore_line_id in to_ignore_line_ids:
-                    bom.bom_line_ids = [(3, to_ignore_line_id, 0)]
+                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
         components, total = super()._get_bom_lines(
             bom, bom_quantity, product, line_id, level
         )
