@@ -4,7 +4,7 @@ from odoo.tests import Form
 from .common import TestMrpBomAttributeMatchBase
 
 
-class TestMrpAttachmentMgmt(TestMrpBomAttributeMatchBase):
+class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
     def test_bom_1(self):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = self.product_sword
@@ -168,3 +168,18 @@ class TestMrpAttachmentMgmt(TestMrpBomAttributeMatchBase):
         )
         with self.assertRaisesRegex(UserError, r"Recursion error! .+"):
             test_bom_3.explode(self.product_9, 1)
+
+    def test_mrp_report_bom_structure(self):
+        sword_cyan = self.product_sword.product_variant_ids[0]
+        BomStructureReport = self.env["report.mrp.report_bom_structure"]
+        res = BomStructureReport._get_report_data(self.bom_id.id)
+        self.assertTrue(res["is_variant_applied"])
+        self.assertEqual(res["lines"]["product"], sword_cyan)
+        self.assertEqual(
+            res["lines"]["components"][0]["line_id"],
+            self.bom_id.bom_line_ids.id,
+        )
+        self.assertEqual(
+            res["lines"]["components"][0]["parent_id"],
+            self.bom_id.id,
+        )
