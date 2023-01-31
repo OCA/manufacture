@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_mrp_workcenter_category_search" model="ir.ui.view">
+        <field name="model">mrp.workcenter.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="ref" />
+                <field name="parent_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="view_mrp_workcenter_category_form" model="ir.ui.view">
+        <field name="model">mrp.workcenter.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. Extrusion lines" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group name="left">
+                            <field name="parent_id" />
+                            <field name="ref" />
+                        </group>
+                        <group name="right">
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mrp_workcenter_category_tree" model="ir.ui.view">
+        <field name="model">mrp.workcenter.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref" optional="hide" />
+                <field name="display_name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_mrp_workcenter_category" model="ir.actions.act_window">
+        <field name="name">Work Center Categories</field>
+        <field name="res_model">mrp.workcenter.category</field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_workcenter_category"
+        action="action_mrp_workcenter_category"
+        groups="mrp.group_mrp_routings"
+        parent="mrp.menu_mrp_configuration"
+        sequence="91"
+    />
+
+</odoo>
