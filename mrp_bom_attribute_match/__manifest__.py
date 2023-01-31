@@ -10,7 +10,4 @@
     "data": [
         "views/mrp_bom_views.xml",
     ],
-    "qweb": [],
-    "application": False,
-    "installable": True,
 }
