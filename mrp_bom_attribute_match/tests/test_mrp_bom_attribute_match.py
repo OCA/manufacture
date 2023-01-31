@@ -1,14 +1,10 @@
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 
-from .common import TestMrpAttachmentMgmtBase
+from .common import TestMrpBomAttributeMatchBase
 
 
-class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
+class TestMrpAttachmentMgmt(TestMrpBomAttributeMatchBase):
     def test_bom_1(self):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = self.product_sword
