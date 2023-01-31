@@ -2,7 +2,9 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from .common import TestMrpBomAttributeMatchBase
+from odoo.addons.mrp_bom_attribute_match.tests.common import (
+    TestMrpBomAttributeMatchBase,
+)
 
 
 class TestMrpAccount(TestMrpBomAttributeMatchBase):
