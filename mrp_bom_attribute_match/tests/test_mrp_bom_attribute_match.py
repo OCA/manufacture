@@ -67,18 +67,18 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
         plastic_smells_like_orchid.unlink()
 
     def test_manufacturing_order_1(self):
+        sword_cyan = self.product_sword.product_variant_ids[0]
+        plastic_cyan = self.product_plastic.product_variant_ids[0]
         mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = self.product_sword.product_variant_ids.filtered(
-            lambda x: x.display_name == "Plastic Sword (Cyan)"
-        )
+        mo_form.product_id = sword_cyan
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
         self.mo_sword = mo_form.save()
         self.mo_sword.action_confirm()
         # Assert correct component variant was selected automatically
         self.assertEqual(
-            self.mo_sword.move_raw_ids.product_id.display_name,
-            "Plastic Component (Cyan)",
+            self.mo_sword.move_raw_ids.product_id,
+            plastic_cyan + self.product_9,
         )
 
     def test_manufacturing_order_2(self):
@@ -177,7 +177,11 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
         self.assertEqual(res["lines"]["product"], sword_cyan)
         self.assertEqual(
             res["lines"]["components"][0]["line_id"],
-            self.bom_id.bom_line_ids.id,
+            self.bom_id.bom_line_ids[0].id,
+        )
+        self.assertEqual(
+            res["lines"]["components"][1]["line_id"],
+            self.bom_id.bom_line_ids[1].id,
         )
         self.assertEqual(
             res["lines"]["components"][0]["parent_id"],

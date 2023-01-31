@@ -97,6 +97,10 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
                     component_template_id=cls.product_plastic.id,
                     product_qty=1,
                 ),
+                dict(
+                    product_id=cls.product_9,
+                    product_qty=1,
+                ),
             ],
         )
         cls.fin_bom_id = cls._create_bom(
