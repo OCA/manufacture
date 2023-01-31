@@ -1,7 +1,7 @@
 from odoo.tests import Form, TransactionCase
 
 
-class TestMrpAttachmentMgmtBase(TransactionCase):
+class TestMrpBomAttributeMatchBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
