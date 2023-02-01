@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-09 22:45+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-02-01 16:46+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "Quantità"
 #. module: stock_picking_product_kit_helper
 #: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__sale_line_id
 msgid "Sales Order Line"
-msgstr "Riga ordine vendite"
+msgstr "Riga ordine di vendita"
 
 #. module: stock_picking_product_kit_helper
 #: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
