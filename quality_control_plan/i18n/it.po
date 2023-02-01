@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-08 20:35+0000\n"
-"PO-Revision-Date: 2023-01-02 11:45+0000\n"
+"PO-Revision-Date: 2023-02-01 19:44+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -161,7 +161,7 @@ msgstr "Non conformità"
 #. module: quality_control_plan
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_trigger_partner_line_partner
 msgid "Partner"
-msgstr "Fornitore"
+msgstr "Partner"
 
 #. module: quality_control_plan
 #: selection:qc.level,chk_type:0
