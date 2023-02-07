@@ -518,10 +518,24 @@ msgid "Mrp Move"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__mrp_planner_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_planner_id
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_planner_id
+msgid "Mrp Planner"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.actions.server,name:mrp_multi_level.mrp_multi_level_cron_ir_actions_server
 #: model:ir.cron,cron_name:mrp_multi_level.mrp_multi_level_cron
 #: model:ir.model,name:mrp_multi_level.model_mrp_multi_level
 msgid "Multi Level MRP"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
+msgid "My products"
 msgstr ""
 
 #. module: mrp_multi_level
