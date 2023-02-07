@@ -76,6 +76,11 @@ class MrpPlannedOrder(models.Model):
         "mrp.production", "planned_order_id", string="Manufacturing Orders"
     )
     mo_count = fields.Integer(compute="_compute_mrp_production_count")
+    mrp_planner_id = fields.Many2one(
+        related="product_mrp_area_id.mrp_planner_id",
+        readonly=True,
+        store=True,
+    )
 
     def _compute_mrp_production_count(self):
         for rec in self:
