@@ -29,6 +29,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.fp_1 = cls.env.ref("mrp_multi_level.product_product_fp_1")
         cls.fp_2 = cls.env.ref("mrp_multi_level.product_product_fp_2")
         cls.fp_3 = cls.env.ref("mrp_multi_level.product_product_fp_3")
+        cls.fp_4 = cls.env.ref("mrp_multi_level.product_product_fp_4")
         cls.sf_1 = cls.env.ref("mrp_multi_level.product_product_sf_1")
         cls.sf_2 = cls.env.ref("mrp_multi_level.product_product_sf_2")
         cls.sf_3 = cls.env.ref("mrp_multi_level.product_product_sf_3")
@@ -218,6 +219,22 @@ class TestMrpMultiLevelCommon(TransactionCase):
         )
         cls.product_mrp_area_obj.create(
             {"product_id": cls.prod_uom_test.id, "mrp_area_id": cls.mrp_area.id}
+        )
+        # Product MRP Parameter to test supply method computation
+        cls.env.ref("stock.route_warehouse0_mto").active = True
+        cls.env["stock.rule"].create(
+            {
+                "name": "WH2: Main Area → Secondary Area (MTO)",
+                "action": "pull",
+                "picking_type_id": cls.env.ref("stock.picking_type_in").id,
+                "location_src_id": cls.env.ref("stock.stock_location_stock").id,
+                "location_dest_id": cls.sec_loc.id,
+                "route_id": cls.env.ref("stock.route_warehouse0_mto").id,
+                "procure_method": "mts_else_mto",
+            }
+        )
+        cls.product_mrp_area_obj.create(
+            {"product_id": cls.fp_4.id, "mrp_area_id": cls.secondary_area.id}
         )
 
         # Create pickings for Scenario 1:

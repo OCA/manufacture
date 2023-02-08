@@ -188,14 +188,30 @@ class ProductMRPArea(models.Model):
                 "company_id": rec.mrp_area_id.company_id,
             }
             rule = group_obj._get_rule(rec.product_id, proc_loc, values)
-            if (
-                rule.action == "manufacture"
+            if not rule:
+                rec.supply_method = "none"
+                continue
+            # Keep getting the rule for the product and the source location until the
+            # action is "buy" or "manufacture". Or until the action is "Pull From" or
+            # "Pull & Push" and the supply method is "Take from Stock".
+            while rule.action not in ("buy", "manufacture") and rule.procure_method in (
+                "make_to_order",
+                "mts_else_mto",
+            ):
+                new_rule = group_obj._get_rule(
+                    rec.product_id, rule.location_src_id, values
+                )
+                if not new_rule:
+                    break
+                rule = new_rule
+            # Determine the supply method based on the final rule.
+            rec.supply_method = (
+                "phantom"
+                if rule.action == "manufacture"
                 and rec.product_id.product_tmpl_id.bom_ids
                 and rec.product_id.product_tmpl_id.bom_ids[0].type == "phantom"
-            ):
-                rec.supply_method = "phantom"
-            else:
-                rec.supply_method = rule.action if rule else "none"
+                else rule.action
+            )
 
     @api.depends(
         "mrp_area_id", "supply_method", "product_id.route_ids", "product_id.seller_ids"
