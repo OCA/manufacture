@@ -36,6 +36,14 @@
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
         />
     </record>
+    <record id="product_product_fp_4" model="product.product">
+        <field name="name">FP-4</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="produce_delay">2</field>
+    </record>
 
      <!-- Customizable Desk -->
     <record id="product.product_product_4_product_template" model="product.template">
