@@ -426,3 +426,22 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             [("product_mrp_area_id.product_id", "=", self.pp_4.id)]
         )
         self.assertEqual(len(pp_4_planned_orders), 1)
+
+    def test_17_supply_method(self):
+        """Test supply method computation."""
+        self.fp_4.route_ids = [(5, 0, 0)]
+        product_mrp_area = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.fp_4.id)]
+        )
+        self.assertEqual(product_mrp_area.supply_method, "none")
+        self.fp_4.route_ids = [(4, self.env.ref("stock.route_warehouse0_mto").id)]
+        product_mrp_area._compute_supply_method()
+        self.assertEqual(product_mrp_area.supply_method, "pull")
+        self.fp_4.route_ids = [(4, self.env.ref("mrp.route_warehouse0_manufacture").id)]
+        product_mrp_area._compute_supply_method()
+        self.assertEqual(product_mrp_area.supply_method, "manufacture")
+        self.fp_4.route_ids = [
+            (4, self.env.ref("purchase_stock.route_warehouse0_buy").id)
+        ]
+        product_mrp_area._compute_supply_method()
+        self.assertEqual(product_mrp_area.supply_method, "buy")
