@@ -118,6 +118,11 @@ class TestRepairStockMove(common.SavepointCase):
                 "confirmed",
                 "Generated stock move state should be confirmed",
             )
+            self.assertEqual(
+                operation.state,
+                "confirmed",
+                "Repair line state should be confirmed",
+            )
         # Start Repair
         self.repair1.action_repair_start()
         # End Repair
@@ -132,6 +137,11 @@ class TestRepairStockMove(common.SavepointCase):
                 operation.move_id.state,
                 "done",
                 "Generated stock move state should be done",
+            )
+            self.assertEqual(
+                operation.state,
+                "done",
+                "Repair line state should be done",
             )
 
     def _create_simple_repair_order(self, invoice_method):
