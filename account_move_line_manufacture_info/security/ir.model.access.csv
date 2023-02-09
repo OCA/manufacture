@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_move_line, account.move.line,account.model_account_move_line,mrp.group_mrp_manager,1,0,0,0
+access_mrp_production_account_invoice,mrp.production account invoice,mrp.model_mrp_production,account.group_account_invoice,1,0,0,0
+access_mrp_production_account_user,mrp.production account user,mrp.model_mrp_production,account.group_account_user,1,0,0,0
+access_mrp_production_account_manager,mrp.production account user,mrp.model_mrp_production,account.group_account_manager,1,0,0,0
+access_mrp_unbuild_account_invoice,mrp.unbuild account invoice,mrp.model_mrp_unbuild,account.group_account_invoice,1,0,0,0
+access_mrp_unbuild_account_user,mrp.unbuild account user,mrp.model_mrp_unbuild,account.group_account_user,1,0,0,0
+access_mrp_unbuild_account_manager,mrp.unbuild account user,mrp.model_mrp_unbuild,account.group_account_manager,1,0,0,0

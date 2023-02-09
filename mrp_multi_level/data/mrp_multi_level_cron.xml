@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="mrp_multi_level_cron" model="ir.cron">
+        <field name="name">Multi Level MRP</field>
+        <field name="model_id" ref="mrp_multi_level.model_mrp_multi_level" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="state">code</field>
+        <field name="code">model.run_mrp_multi_level()</field>
+    </record>
+</odoo>

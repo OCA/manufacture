@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    name="%(action_mrp_account_moves)d"
+                    type="action"
+                    string="Account Moves"
+                    class="oe_stat_button"
+                    icon="fa-list"
+                    groups="account.group_account_user"
+                    attrs="{'invisible': [('state', 'not in', ('progress', 'done'))]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

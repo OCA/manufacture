@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 ForgeFlow
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_line_tree_view" model="ir.ui.view">
+        <field name="name">mrp.bom.line.tree.view</field>
+        <field name="model">mrp.bom.line</field>
+        <field name="arch" type="xml">
+            <tree string="Components">
+                <field name="bom_id" />
+                <field name="product_id" />
+                <field name="product_qty" />
+                <field name="routing_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="mrp_bom_form_action2" model="ir.actions.act_window">
+        <field name="name">Bill of Material Components</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="ref('mrp_bom_line_tree_view')" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a component to a bill of material.
+            </p>
+            <p>
+                Bills of materials components are components and by-products
+                used to create master bills of materials.  Use this menu to
+                search in which BoM a specific component is used.
+            </p>
+        </field>
+    </record>
+    <record id="mrp_bom_line_view_filter" model="ir.ui.view">
+        <field name="name">mrp.bom.line.view.filter</field>
+        <field name="model">mrp.bom.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Bill Of Material Components">
+                <field name="bom_id" />
+                <field name="product_id" />
+                <group expand="0" string="Group By...">
+                    <filter
+                        name="bom"
+                        string="Bill Of Material"
+                        context="{'group_by':'bom_id'}"
+                    />
+                    <filter
+                        name="product"
+                        string="Product"
+                        context="{'group_by':'product_id'}"
+                    />
+                    <filter
+                        name="uom"
+                        string='Default Unit of Measure'
+                        context="{'group_by' : 'product_uom_id'}"
+                    />
+                    <filter
+                        name="Routings"
+                        string="Routings"
+                        context="{'group_by':'routing_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <menuitem
+        action="mrp_bom_form_action2"
+        id="menu_mrp_bom_form_action2"
+        parent="mrp.menu_mrp_bom"
+        sequence="14"
+    />
+</odoo>

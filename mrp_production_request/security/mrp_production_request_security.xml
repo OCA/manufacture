@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 ForgeFlow S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_mrp_production_request" model="ir.module.category">
+            <field name="name">Manufacturing Request</field>
+            <field name="parent_id" ref="base.module_category_manufacturing" />
+            <field name="sequence">20</field>
+        </record>
+        <record id="group_mrp_production_request_user" model="res.groups">
+            <field name="name">User</field>
+            <field eval="[(4, ref('base.group_user'))]" name="implied_ids" />
+            <field name="category_id" ref="module_category_mrp_production_request" />
+        </record>
+        <record id="group_mrp_production_request_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field
+                eval="[(4, ref('mrp_production_request.group_mrp_production_request_user'))]"
+                name="implied_ids"
+            />
+            <field
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+                name="users"
+            />
+            <field name="category_id" ref="module_category_mrp_production_request" />
+        </record>
+    </data>
+    <data noupdate="0">
+        <record id="mrp_production_request_comp_rule" model="ir.rule">
+            <field name="name">Manufacturing Request multi-company</field>
+            <field name="model_id" ref="model_mrp_production_request" />
+            <field eval="True" name="global" />
+            <field name="domain_force">['|',('company_id','=',False),
+            ('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+        <record id="mrp_production_request_followers_rule" model="ir.rule">
+            <field name="name">Follow Manufacturing Request</field>
+            <field name="model_id" ref="model_mrp_production_request" />
+            <field
+                eval="[(6,0, [ref('group_mrp_production_request_user')])]"
+                name="groups"
+            />
+            <field eval="True" name="perm_read" />
+            <field eval="False" name="perm_write" />
+            <field eval="False" name="perm_create" />
+            <field eval="False" name="perm_unlink" />
+            <field name="domain_force">['|',('requested_by','=',user.id),
+                                        ('message_partner_ids', 'in', [user.partner_id.id])]</field>
+        </record>
+        <record id="mrp_production_request_rule" model="ir.rule">
+            <field name="name">Manufacturing Request User</field>
+            <field name="model_id" ref="model_mrp_production_request" />
+            <field
+                eval="[(6,0, [ref('group_mrp_production_request_user')])]"
+                name="groups"
+            />
+            <field eval="True" name="perm_read" />
+            <field eval="True" name="perm_write" />
+            <field eval="True" name="perm_create" />
+            <field eval="True" name="perm_unlink" />
+            <field name="domain_force">[('requested_by','=',user.id)]</field>
+        </record>
+        <record id="mpr_production_request_line_manager_rule" model="ir.rule">
+            <field name="name">Manufacturing Request Line Manager</field>
+            <field name="model_id" ref="model_mrp_production_request" />
+            <field
+                eval="[(6,0, [ref('group_mrp_production_request_manager')])]"
+                name="groups"
+            />
+            <field eval="True" name="perm_read" />
+            <field eval="True" name="perm_write" />
+            <field eval="True" name="perm_create" />
+            <field eval="True" name="perm_unlink" />
+        </record>
+    </data>
+</odoo>

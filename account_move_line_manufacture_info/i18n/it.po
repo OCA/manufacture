@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_move_line_manufacture_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-01-01 13:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: account_move_line_manufacture_info
+#: model:ir.actions.act_window,name:account_move_line_manufacture_info.action_mrp_account_moves
+#: model:ir.actions.act_window,name:account_move_line_manufacture_info.action_mrp_uo_account_moves
+#: model_terms:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_production_form_view
+#: model_terms:ir.ui.view,arch_db:account_move_line_manufacture_info.mrp_unbuild_form_view
+msgid "Account Moves"
+msgstr "Movimenti contabili"
+
+#. module: account_move_line_manufacture_info
+#: model:ir.model,name:account_move_line_manufacture_info.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: account_move_line_manufacture_info
+#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line__manufacture_order_id
+msgid "Manufacture Order"
+msgstr "Ordine di produzione"
+
+#. module: account_move_line_manufacture_info
+#: model:ir.model,name:account_move_line_manufacture_info.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: account_move_line_manufacture_info
+#: model:ir.model.fields,field_description:account_move_line_manufacture_info.field_account_move_line__unbuild_order_id
+msgid "Unbuild Order"
+msgstr "Odine smontaggio"
