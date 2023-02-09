@@ -971,10 +971,8 @@ msgstr "Die Kombination der Produkt-/Bereich-Parameter muss einzigartig sein."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__running_availability
-msgid "Theoretical inventory level if all planned orderswere released."
+msgid "Theoretical inventory level if all planned orders were released."
 msgstr ""
-"Dies ist der theoretische Lagerbestand, wenn alle geplanten Aufträge "
-"freigegeben werden."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__to_approve
@@ -982,13 +980,9 @@ msgid "To Approve"
 msgstr "Genehmigen"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "To Procure"
-msgstr "Beschaffen"
-
-#. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
-msgid "To procure"
 msgstr "Beschaffen"
 
 #. module: mrp_multi_level
@@ -1099,6 +1093,14 @@ msgstr "Es darf keine negative Zahl angegeben werden."
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr "oder"
+
+#~ msgid "Theoretical inventory level if all planned orderswere released."
+#~ msgstr ""
+#~ "Dies ist der theoretische Lagerbestand, wenn alle geplanten Aufträge "
+#~ "freigegeben werden."
+
+#~ msgid "To procure"
+#~ msgstr "Beschaffen"
 
 #~ msgid "Date to Procure (By Month)"
 #~ msgstr "Beschaffungsdatum (nach Monaten)"
