@@ -1,5 +1,5 @@
 # © 2016 Ucamco - Wim Audenaert <wim.audenaert@ucamco.com>
-# Copyright 2016-19 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2016-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
 # - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
@@ -67,6 +67,15 @@ class MrpInventory(models.Model):
         related="product_mrp_area_id.supply_method",
         readonly=True,
         store=True,
+    )
+    main_supplier_id = fields.Many2one(
+        string="Main Supplier",
+        related="product_mrp_area_id.main_supplier_id",
+        readonly=True,
+        store=True,
+    )
+    mrp_planner_id = fields.Many2one(
+        related="product_mrp_area_id.mrp_planner_id", readonly=True, store=True,
     )
 
     def _compute_uom_id(self):
