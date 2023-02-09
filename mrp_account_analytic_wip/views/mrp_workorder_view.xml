@@ -28,9 +28,6 @@
             <field name="duration_expected" position="attributes">
                 <attribute name="decoration-bf">duration_expected</attribute>
             </field>
-            <field name="duration" position="after">
-                <field name="duration_planned" invisible="True" />
-            </field>
 
         </field>
     </record>
