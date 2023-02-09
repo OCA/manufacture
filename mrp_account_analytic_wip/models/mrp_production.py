@@ -297,9 +297,3 @@ class MRPProduction(models.Model):
         )
         vals.update({"qty_planned": vals.get("product_uom_qty")})
         return vals
-
-    def _create_workorder(self):
-        super()._create_workorder()
-        for production in self:
-            for workorder in production.workorder_ids:
-                workorder.duration_planned = workorder.duration_expected
