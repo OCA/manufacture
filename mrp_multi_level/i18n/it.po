@@ -941,9 +941,8 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__running_availability
-msgid "Theoretical inventory level if all planned orderswere released."
+msgid "Theoretical inventory level if all planned orders were released."
 msgstr ""
-"Livello teorico magazzino se tutti gli ordini pianificati fossero rilasciati."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__to_approve
@@ -951,13 +950,9 @@ msgid "To Approve"
 msgstr "Da approvare"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "To Procure"
-msgstr "Da approvvigionare"
-
-#. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__to_procure
-msgid "To procure"
 msgstr "Da approvvigionare"
 
 #. module: mrp_multi_level
@@ -1068,3 +1063,11 @@ msgstr "Non si può utilizzare un numero negativo."
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "Theoretical inventory level if all planned orderswere released."
+#~ msgstr ""
+#~ "Livello teorico magazzino se tutti gli ordini pianificati fossero "
+#~ "rilasciati."
+
+#~ msgid "To procure"
+#~ msgstr "Da approvvigionare"
