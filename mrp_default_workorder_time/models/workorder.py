@@ -81,6 +81,8 @@ class MrpWorkOrder(models.Model):
             )
             and x.production_id.company_id.use_projected_time_work_orders
         ):
+            # FIX ME: this is because duration expected use this field to compute
+            workorder.qty_production = workorder.qty_produced
             workorder.duration_expected = workorder._get_duration_expected()
             workorder.add_time_to_work_order(fully_productive_time)
             if (
