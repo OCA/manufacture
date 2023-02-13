@@ -14,7 +14,7 @@ class MrpWorkOrder(models.Model):
 
     def add_time_to_work_order(self, fully_productive_time):
         self.ensure_one()
-        self._compute_duration()
+        # self._compute_duration()
         date_start = self.date_planned_start
         if not date_start:
             raise UserError(
