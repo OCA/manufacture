@@ -1,10 +1,10 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestMrpLotProductionDate(SavepointCase):
+class TestMrpLotProductionDate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,7 +17,7 @@ class TestMrpLotProductionDate(SavepointCase):
             form.bom_id = bom
             form.product_qty = product_qty
             order = form.save()
-            order.invalidate_cache()
+            order.invalidate_recordset()
             return order
 
     @classmethod
