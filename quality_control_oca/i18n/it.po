@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-01-03 13:47+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-02-14 13:04+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +238,7 @@ msgstr "Note esterne"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
 msgid "Followers"
-msgstr "Iscritti"
+msgstr "Seguito da"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_channel_ids
@@ -248,7 +248,7 @@ msgstr "Iscritti"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_channel_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Iscritti (canali)"
+msgstr "Seguito da (canali)"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
@@ -258,7 +258,7 @@ msgstr "Iscritti (canali)"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Iscritti (partner)"
+msgstr "Seguito da (partner)"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
@@ -419,7 +419,7 @@ msgstr "Note interne"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
 msgid "Is Follower"
-msgstr "È iscritto"
+msgstr "Segue"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category____last_update
