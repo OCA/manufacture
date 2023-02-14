@@ -21,8 +21,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[mrp_account_bom_attribute_match](mrp_account_bom_attribute_match/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Glue module between `mrp_account` and `mrp_bom_attribute_match`
-[mrp_bom_attribute_match](mrp_bom_attribute_match/) | 15.0.1.0.0 |  | Dynamic BOM component based on product attribute
+[mrp_account_bom_attribute_match](mrp_account_bom_attribute_match/) | 15.0.1.1.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Glue module between `mrp_account` and `mrp_bom_attribute_match`
+[mrp_bom_attribute_match](mrp_bom_attribute_match/) | 15.0.1.1.0 |  | Dynamic BOM component based on product attribute
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 15.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 15.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
 [mrp_bom_location](mrp_bom_location/) | 15.0.1.0.0 |  | Adds location field to Bill of Materials and its components.
