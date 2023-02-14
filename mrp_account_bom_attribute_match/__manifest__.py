@@ -5,7 +5,7 @@
 {
     "name": "MRP Account BOM Attribute Match",
     "summary": "Glue module between `mrp_account` and `mrp_bom_attribute_match`",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["ivantodorovich"],
     "website": "https://github.com/OCA/manufacture",
