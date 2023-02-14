@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
+msgid "BOM Structure Report"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Distinta base"
@@ -38,30 +43,6 @@ msgstr "Componente"
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__component_template_id
 msgid "Component (product template)"
 msgstr "Componente (modello prodotto)"
-
-#. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__display_name
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__id
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line____last_update
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__match_on_attribute_ids
@@ -88,9 +69,9 @@ msgid "Product Template"
 msgstr "Modello Prodotto"
 
 #. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
-msgid "Product Uom Id Domain"
-msgstr "Dominio ID UdM prodotto"
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
+msgid "Product Uom Category"
+msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
@@ -126,42 +107,77 @@ msgstr "Campo tecnico per preservare i valori di product_id"
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"The attributes you're trying to remove is used in BoM as a match with "
+"The attributes you're trying to remove are used in the BoM as a match with "
 "Component (Product Template). To remove these attributes, first remove the "
 "BOM line with the matching component.\n"
-"Attributes: %s\n"
-"BoM: %s"
+"Attributes: %(attributes)s\n"
+"BoM: %(bom)s"
 msgstr ""
-"L'attributo che si sta cercando di eliminare è utilizzato nelle DiBa come "
-"corrispondenza con un componente (modello prodotto). Per rimuovere questo "
-"attributo, prima rimuovere la riga di DiBa con il componente corrispondente."
-"\n"
-"Attributo: %s\n"
-"DiBa: %s"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"This product template is used as a component in the BOMs for %s and "
-"attribute(s) %s is not present in all such product(s), and this would break "
-"the BOM behavior."
+"This product template is used as a component in the BOMs for %(bom)s and "
+"attribute(s) %(attributes)s is not present in all such product(s), and this "
+"would break the BOM behavior."
 msgstr ""
-"Questo modello prodotto è utilizzato come componente nella DiBa per i "
-"prodotti %s e gli attributi %s non sono presenti in tutti questi prodotti; "
-"ciò può corrompere il comportamento del BOM."
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
-"You cannot use an attribute value for attribute %s in the field “Apply on "
-"Variants” as it’s the same attribute used in field “Match on "
-"Attribute”related to the component %s."
+"You cannot use an attribute value for attribute(s) %(attributes)s in the "
+"field “Apply on Variants” as it's the same attribute used in the field "
+"“Match on Attribute” related to the component %(component)s."
 msgstr ""
-"Non puoi utilizzare un valore attributo dell'attributo %s nel campo “Applica "
-"alle varianti” dato che è lo stesso attributo utilizzato nel campo "
-"“Corrispondenza su attributo” relativo al componente %s."
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Product Uom Id Domain"
+#~ msgstr "Dominio ID UdM prodotto"
+
+#, python-format
+#~ msgid ""
+#~ "The attributes you're trying to remove is used in BoM as a match with "
+#~ "Component (Product Template). To remove these attributes, first remove "
+#~ "the BOM line with the matching component.\n"
+#~ "Attributes: %s\n"
+#~ "BoM: %s"
+#~ msgstr ""
+#~ "L'attributo che si sta cercando di eliminare è utilizzato nelle DiBa come "
+#~ "corrispondenza con un componente (modello prodotto). Per rimuovere questo "
+#~ "attributo, prima rimuovere la riga di DiBa con il componente "
+#~ "corrispondente.\n"
+#~ "Attributo: %s\n"
+#~ "DiBa: %s"
+
+#, python-format
+#~ msgid ""
+#~ "This product template is used as a component in the BOMs for %s and "
+#~ "attribute(s) %s is not present in all such product(s), and this would "
+#~ "break the BOM behavior."
+#~ msgstr ""
+#~ "Questo modello prodotto è utilizzato come componente nella DiBa per i "
+#~ "prodotti %s e gli attributi %s non sono presenti in tutti questi "
+#~ "prodotti; ciò può corrompere il comportamento del BOM."
+
+#, python-format
+#~ msgid ""
+#~ "You cannot use an attribute value for attribute %s in the field “Apply on "
+#~ "Variants” as it’s the same attribute used in field “Match on "
+#~ "Attribute”related to the component %s."
+#~ msgstr ""
+#~ "Non puoi utilizzare un valore attributo dell'attributo %s nel campo "
+#~ "“Applica alle varianti” dato che è lo stesso attributo utilizzato nel "
+#~ "campo “Corrispondenza su attributo” relativo al componente %s."
 
 #~ msgid "Dynamic component must have only 1 attribute"
 #~ msgstr "Il componente dinamico deve avere un solo attributo"
