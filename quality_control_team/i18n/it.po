@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-17 17:45+0000\n"
+"PO-Revision-Date: 2023-02-14 12:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -104,12 +104,12 @@ msgstr "Iscritti"
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Iscritti (canali)"
+msgstr "Seguito da (canali)"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Iscritti (partner)"
+msgstr "Seguito da (partner)"
 
 #. module: quality_control_team
 #: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_search
