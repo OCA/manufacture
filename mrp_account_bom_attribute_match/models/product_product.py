@@ -2,7 +2,7 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command, models
+from odoo import models
 
 
 class ProductProduct(models.Model):
@@ -29,6 +29,6 @@ class ProductProduct(models.Model):
                     continue
                 else:
                     line.product_id = line_product
-            if to_ignore_line_ids:
-                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
+            for to_ignore_line_id in to_ignore_line_ids:
+                bom.bom_line_ids = [(3, to_ignore_line_id, 0)]
         return super()._compute_bom_price(bom, boms_to_recompute, byproduct_bom)
