@@ -1,4 +1,3 @@
-from odoo import Command
 from odoo.models import BaseModel
 from odoo.tests import Form, TransactionCase
 
@@ -39,21 +38,21 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
             {
                 "name": "P1",
                 "type": "product",
-                "route_ids": [Command.link(cls.route_manufacture.id)],
+                "route_ids": [(6, 0, [cls.route_manufacture.id])],
             }
         )
         cls.p2 = cls.env["product.template"].create(
             {
                 "name": "P2",
                 "type": "product",
-                "route_ids": [Command.link(cls.route_manufacture.id)],
+                "route_ids": [(6, 0, [cls.route_manufacture.id])],
             }
         )
         cls.p3 = cls.env["product.template"].create(
             {
                 "name": "P3",
                 "type": "product",
-                "route_ids": [Command.link(cls.route_manufacture.id)],
+                "route_ids": [(6, 0, [cls.route_manufacture.id])],
             }
         )
         cls.product_9 = cls.env["product.product"].create(
@@ -79,14 +78,14 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
             {
                 "attribute_id": cls.product_attribute.id,
                 "product_tmpl_id": cls.product_plastic.id,
-                "value_ids": [Command.set(cls.product_attribute.value_ids.ids)],
+                "value_ids": [(6, 0, cls.product_attribute.value_ids.ids)],
             }
         )
         cls.sword_attrs = cls.env["product.template.attribute.line"].create(
             {
                 "attribute_id": cls.product_attribute.id,
                 "product_tmpl_id": cls.product_sword.id,
-                "value_ids": [Command.set(cls.product_attribute.value_ids.ids)],
+                "value_ids": [(6, 0, cls.product_attribute.value_ids.ids)],
             }
         )
         # Create boms
