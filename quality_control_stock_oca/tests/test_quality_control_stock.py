@@ -2,7 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, new_test_user
 
 
 class TestQualityControl(TransactionCase):
@@ -19,10 +19,6 @@ class TestQualityControl(TransactionCase):
         self.test = self.env.ref("quality_control_oca.qc_test_1")
         self.picking_type = self.env.ref("stock.picking_type_out")
         self.location_dest = self.env.ref("stock.stock_location_customers")
-        self.group_stock_user = self.env.ref("stock.group_stock_user")
-        self.group_quality_control_user = self.env.ref(
-            "quality_control_oca.group_quality_control_user"
-        )
         self.company = self.env.ref("base.main_company")
         self.sequence = self.env["ir.sequence"].create(
             {"code": "out", "name": "outgoing_sequence"}
@@ -41,11 +37,12 @@ class TestQualityControl(TransactionCase):
                 "company_id": self.company.id,
             }
         )
-        self.user1_id = self._create_user(
-            "user_1",
-            [self.group_stock_user, self.group_quality_control_user],
-            self.company,
-        )
+        self.user1_id = new_test_user(
+            self.env,
+            login="user_1",
+            groups="stock.group_stock_user,quality_control_oca.group_quality_control_user",
+            company_id=self.company.id,
+        ).id
         move_vals = {
             "name": self.product.name,
             "product_id": self.product.id,
@@ -93,22 +90,6 @@ class TestQualityControl(TransactionCase):
                 }
             )
             sequence += 10
-
-    def _create_user(self, login, groups, company):
-        """Create a user."""
-        group_ids = [group.id for group in groups]
-        user = self.users_model.with_context({"no_reset_password": True}).create(
-            {
-                "name": "Sale User",
-                "login": login,
-                "password": "test",
-                "email": "test@yourcompany.com",
-                "company_id": company.id,
-                "company_ids": [(4, company.id)],
-                "groups_id": [(6, 0, group_ids)],
-            }
-        )
-        return user.id
 
     def test_inspection_create_for_product(self):
         self.product.qc_triggers = [
