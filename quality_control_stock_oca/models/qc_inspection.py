@@ -63,7 +63,7 @@ class QcInspection(models.Model):
     @api.depends("object_id")
     def _compute_product_id(self):
         """Overriden for getting the product from a stock move."""
-        super()._compute_product_id()
+        res = super()._compute_product_id()
         for inspection in self.filtered("object_id"):
             if inspection.object_id._name == "stock.move":
                 inspection.product_id = inspection.object_id.product_id
@@ -71,6 +71,7 @@ class QcInspection(models.Model):
                 inspection.product_id = inspection.object_id.product_id
             elif inspection.object_id._name == "stock.production.lot":
                 inspection.product_id = inspection.object_id.product_id
+        return res
 
     @api.onchange("object_id")
     def onchange_object_id(self):
