@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo14-addon-mrp_bom_hierarchy',
         'odoo14-addon-mrp_bom_line_sequence',
         'odoo14-addon-mrp_bom_location',
+        'odoo14-addon-mrp_bom_responsible',
         'odoo14-addon-mrp_bom_tracking',
         'odoo14-addon-mrp_component_operation',
         'odoo14-addon-mrp_lot_on_hand_first',
