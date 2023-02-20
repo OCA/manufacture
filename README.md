@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 14.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 14.0.1.0.0 |  | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
+[mrp_bom_responsible](mrp_bom_responsible/) | 14.0.1.0.0 |  | Adds a responsible to the Bill of Materials which then will be forwarded to the Manufacturing Order
 [mrp_bom_tracking](mrp_bom_tracking/) | 14.0.1.1.0 |  | Logs any change to a BoM in the chatter
 [mrp_component_operation](mrp_component_operation/) | 14.0.1.0.1 |  | Allows to operate the components from a MO
 [mrp_lot_on_hand_first](mrp_lot_on_hand_first/) | 14.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Allows to display lots on hand first in M2o fields
