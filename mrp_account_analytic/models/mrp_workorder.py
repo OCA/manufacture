@@ -32,11 +32,11 @@ class MrpWorkcenterProductivity(models.Model):
             analytic_line = AnalyticLine.create(line_vals)
             analytic_line.on_change_unit_amount()
 
-    @api.model
-    def create(self, vals):
-        timelog = super().create(vals)
-        if vals.get("date_end"):
-            timelog.generate_mrp_work_analytic_line()
+    @api.model_create_multi
+    def create(self, vals_list):
+        timelog = super().create(vals_list)
+        timelog_with_date_end = timelog.filtered("date_end")
+        timelog_with_date_end.generate_mrp_work_analytic_line()
         return timelog
 
     def write(self, vals):
