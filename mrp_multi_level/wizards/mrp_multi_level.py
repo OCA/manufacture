@@ -532,7 +532,10 @@ class MultiLevelMrp(models.TransientModel):
         last_date = None
         last_qty = 0.00
         onhand = product_mrp_area.qty_available
-        grouping_delta = product_mrp_area.mrp_nbr_days
+        if product_mrp_area.mrp_nbr_days == 0:
+            grouping_delta = 0
+        else:
+            grouping_delta = product_mrp_area.mrp_nbr_days - 1
         demand_origin = []
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):

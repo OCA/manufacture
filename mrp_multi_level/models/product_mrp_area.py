@@ -48,7 +48,7 @@ class ProductMRPArea(models.Model):
     mrp_minimum_stock = fields.Float(string="Safety Stock")
     mrp_nbr_days = fields.Integer(
         string="Nbr. Days",
-        default=0,
+        default=1,
         help="Number of days to group demand for this product during the "
         "MRP run, in order to determine the quantity to order.",
     )

@@ -114,7 +114,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
             {
                 "product_id": cls.prod_test.id,
                 "mrp_area_id": cls.secondary_area.id,
-                "mrp_nbr_days": 7,
+                "mrp_nbr_days": 8,
             }
         )
         cls.prod_min = cls.product_obj.create(
@@ -186,7 +186,7 @@ class TestMrpMultiLevelCommon(SavepointCase):
             {
                 "product_id": cls.product_scenario_1.id,
                 "mrp_area_id": cls.cases_area.id,
-                "mrp_nbr_days": 7,
+                "mrp_nbr_days": 8,
                 "mrp_qty_multiple": 5.0,
             }
         )
