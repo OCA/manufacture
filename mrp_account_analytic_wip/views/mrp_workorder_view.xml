@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workorder_form_view_custom" model="ir.ui.view">
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+        <field name="arch" type="xml">
+
+            <!-- Don't allow deleting lines, to avoid wrong WIP Planned amounts -->
+            <tree position="attributes">
+                <attribute name="delete">0</attribute>
+            </tree>
+
+            <field name="duration_expected" position="before">
+                <field name="is_locked" invisible="True" />
+            </field>
+            <field name="duration_expected" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('is_locked', '=', True), ('production_state', 'not in', ['draft'])]}</attribute>
+            </field>
+            <!-- Highlight expected durations (populated from the BOM) -->
+            <field name="name" position="attributes">
+                <attribute name="decoration-bf">duration_expected</attribute>
+            </field>
+            <field name="duration_expected" position="attributes">
+                <attribute name="decoration-bf">duration_expected</attribute>
+            </field>
+            <field name="duration" position="after">
+                <field name="duration_planned" invisible="True" />
+            </field>
+
+        </field>
+    </record>
+</odoo>
