@@ -11,7 +11,12 @@ class TestMRP(common.TransactionCase):
     def setUp(self):
         super().setUp()
         # Analytic Account
-        self.analytic_1 = self.env["account.analytic.account"].create({"name": "Job 1"})
+        analytic_plan = self.env["account.analytic.plan"].create(
+            {"name": "Plan Test", "company_id": False}
+        )
+        self.analytic_1 = self.env["account.analytic.account"].create(
+            {"name": "Job 1", "plan_id": analytic_plan.id}
+        )
         # Work Center
         self.mrp_workcenter_1 = self.env["mrp.workcenter"].create(
             {
