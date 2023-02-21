@@ -33,7 +33,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
             {
                 "product_id": cls.prod_test.id,
                 "mrp_area_id": cls.estimate_area.id,
-                "mrp_nbr_days": 7,
+                "mrp_nbr_days": 8,
             }
         )
 
