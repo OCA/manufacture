@@ -38,7 +38,7 @@ class MRPProduction(models.Model):
         Now aving all raw material moves done is not enough to set the MO as done.
         Should only set as done if the finished moves are all done.
         """
-        super()._compute_state()
+        res = super()._compute_state()
         for production in self:
             all_finished_moves_done = all(
                 move.state == "done" for move in production.move_finished_ids
@@ -51,6 +51,7 @@ class MRPProduction(models.Model):
                     production.state = "to_close"
                 else:
                     production.state = "progress"
+        return res
 
     def _get_tracking_items(self):
         """
@@ -217,7 +218,7 @@ class MRPProduction(models.Model):
             [("state", "in", ["progress", "to_close"])]
         )
         items.action_post_inventory_wip()
-        super()._cron_process_wip_and_variance()
+        return super()._cron_process_wip_and_variance()
 
     def action_view_analytic_tracking_items(self):
         self.ensure_one()
@@ -301,7 +302,8 @@ class MRPProduction(models.Model):
         return vals
 
     def _create_workorder(self):
-        super()._create_workorder()
+        res = super()._create_workorder()
         for production in self:
             for workorder in production.workorder_ids:
                 workorder.duration_planned = workorder.duration_expected
+        return res

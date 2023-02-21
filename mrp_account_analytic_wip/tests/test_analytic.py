@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from odoo.tests import Form, common
+from odoo.tests import common
 
 
 class TestAnalytic(common.TransactionCase):
@@ -16,10 +16,11 @@ class TestAnalytic(common.TransactionCase):
         self.productive_time = self.browse_ref("mrp.block_reason7")
         # Create MO
         mo_job1_obj = self.env["mrp.production"]
-        vals = {'product_id': self.final_machine.id,
-            'bom_id': self.bom_final_machine.id,
-            'product_qty': 1,
-            'analytic_account_id': self.analytic_job1.id
+        vals = {
+            "product_id": self.final_machine.id,
+            "bom_id": self.bom_final_machine.id,
+            "product_qty": 1,
+            "analytic_account_id": self.analytic_job1.id,
         }
         self.mo_job1 = mo_job1_obj.create(vals)
 
@@ -44,7 +45,7 @@ class TestAnalytic(common.TransactionCase):
                 "date_start": time0,
                 "date_end": time1,
                 "duration": 2.00,
-                "production_id": self.mo_job1.id
+                "production_id": self.mo_job1.id,
             }
         )
         tracking1 = self.mo_job1.analytic_tracking_item_ids.filtered(

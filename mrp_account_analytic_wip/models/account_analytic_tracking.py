@@ -20,7 +20,7 @@ class AnalyticTrackingItem(models.Model):
 
     @api.depends("stock_move_id.product_id", "workorder_id.display_name")
     def _compute_name(self):
-        super()._compute_name()
+        res = super()._compute_name()
         for tracking in self.filtered("stock_move_id"):
             move = tracking.stock_move_id
             tracking.name = "{}{} / {}".format(
@@ -36,6 +36,7 @@ class AnalyticTrackingItem(models.Model):
                 workorder.name,
                 tracking.product_id.display_name or "",
             )
+        return res
 
     def _prepare_account_move_head(self, journal, move_lines=None, ref=None):
         """

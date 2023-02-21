@@ -48,12 +48,13 @@ class StockMove(models.Model):
         "raw_material_production_id.qty_producing", "product_uom_qty", "product_uom"
     )
     def _compute_should_consume_qty(self):
-        super()._compute_should_consume_qty()
+        res = super()._compute_should_consume_qty()
         # Components added after MO confirmation have expected qty zero
         for move in self:
             mo = move.raw_material_production_id
             if mo.state != "draft":
                 move.should_consume_qty = 0
+        return res
 
     # Copy Tracking item, so that when a move is split,
     # it still related to the same Tracking Item
