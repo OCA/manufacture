@@ -2,13 +2,13 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command, models
+from odoo import models
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def _compute_bom_price(self, bom, boms_to_recompute=False, byproduct_bom=False):
+    def _compute_bom_price(self, bom, boms_to_recompute=False):
         # OVERRIDE to fill in the `line.product_id` if a component template is used.
         # To avoid a complete override, we HACK the bom by replacing it with a virtual
         # record, and modifying it's lines on-the-fly.
@@ -30,5 +30,6 @@ class ProductProduct(models.Model):
                 else:
                     line.product_id = line_product
             if to_ignore_line_ids:
-                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
-        return super()._compute_bom_price(bom, boms_to_recompute, byproduct_bom)
+                for to_ignore_line_id in to_ignore_line_ids:
+                    bom.bom_line_ids = [(3, to_ignore_line_id, 0)]
+        return super()._compute_bom_price(bom, boms_to_recompute)

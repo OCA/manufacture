@@ -1,10 +1,14 @@
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 
-from .common import TestMrpBomAttributeMatchBase
+from .common import TestMrpAttachmentMgmtBase
 
 
-class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
+class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
     def test_bom_1(self):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = self.product_sword
@@ -53,18 +57,18 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
         plastic_smells_like_orchid.unlink()
 
     def test_manufacturing_order_1(self):
-        sword_cyan = self.product_sword.product_variant_ids[0]
-        plastic_cyan = self.product_plastic.product_variant_ids[0]
         mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = sword_cyan
+        mo_form.product_id = self.product_sword.product_variant_ids.filtered(
+            lambda x: x.display_name == "Plastic Sword (Cyan)"
+        )
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
         self.mo_sword = mo_form.save()
         self.mo_sword.action_confirm()
         # Assert correct component variant was selected automatically
         self.assertEqual(
-            self.mo_sword.move_raw_ids.product_id,
-            plastic_cyan + self.product_9,
+            self.mo_sword.move_raw_ids.product_id.display_name,
+            "Plastic Component (Cyan)",
         )
 
     def test_manufacturing_order_2(self):
@@ -154,22 +158,3 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
         )
         with self.assertRaises(UserError):
             test_bom_3.explode(self.product_9, 1)
-
-    def test_mrp_report_bom_structure(self):
-        sword_cyan = self.product_sword.product_variant_ids[0]
-        BomStructureReport = self.env["report.mrp.report_bom_structure"]
-        res = BomStructureReport._get_report_data(self.bom_id.id)
-        self.assertTrue(res["is_variant_applied"])
-        self.assertEqual(res["lines"]["product"], sword_cyan)
-        self.assertEqual(
-            res["lines"]["components"][0]["line_id"],
-            self.bom_id.bom_line_ids[0].id,
-        )
-        self.assertEqual(
-            res["lines"]["components"][1]["line_id"],
-            self.bom_id.bom_line_ids[1].id,
-        )
-        self.assertEqual(
-            res["lines"]["components"][0]["parent_id"],
-            self.bom_id.id,
-        )
