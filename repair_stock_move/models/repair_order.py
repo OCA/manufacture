@@ -172,5 +172,6 @@ class RepairOrder(models.Model):
         if self.stock_move_ids:
             # With this module this should always be the case, so this is
             # effectively overriding the method.
+            self.operations.write({"state": "done"})
             return {self.id: self.move_id.id}
         return super().action_repair_done()
