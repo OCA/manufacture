@@ -44,8 +44,8 @@ class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
                 self.assertEqual(
                     picking._prepare_subcontract_mo_vals(
                         move, move._get_subcontract_bom()
-                    )["purchase_order_id"],
-                    purchase_order.id,
+                    )["purchase_line_id"],
+                    purchase_order.order_line.id,
                 )
 
     def test_02_compute_subcontract_production_count(self):
@@ -62,7 +62,8 @@ class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
             action["views"], [(self.env.ref("mrp.mrp_production_form_view").id, "form")]
         )
         self.assertEqual(
-            action["res_id"], purchase_order1.subcontract_production_ids[0].id
+            action["res_id"],
+            purchase_order1.subcontract_production_ids[0].id,
         )
         action = purchase_order2.action_view_mrp()
         self.assertEqual(
