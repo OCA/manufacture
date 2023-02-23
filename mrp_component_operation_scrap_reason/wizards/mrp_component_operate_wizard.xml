@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_component_operate_form_scrap_reason" model="ir.ui.view">
+        <field name="name">view_mrp_component_operate_form_scrap_reason</field>
+        <field name="model">mrp.component.operate</field>
+        <field
+            name="inherit_id"
+            ref="mrp_component_operation.view_mrp_component_operate_form"
+        />
+        <field name="arch" type="xml">
+            <field name="operation_id" position="after">
+                <field
+                    name="scrap_reason_code_id"
+                    attrs="{'invisible': [('outgoing_operation', '!=', 'scrap')], 'required': [('outgoing_operation', '=', 'scrap')]}"
+                />
+            </field>
+
+        </field>
+    </record>
+</odoo>
