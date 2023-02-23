@@ -1,4 +1,7 @@
-from odoo import api
+# Copyright 2022-23 ForgeFlow S.L. (https://www.forgeflow.com)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
+from odoo import api, fields
 from odoo.tests import common
 
 
@@ -141,6 +144,16 @@ class TestComponentOperation(common.SavepointCase):
             }
         )
 
+    @classmethod
+    def _do_picking(cls, picking):
+        picking.action_assign()
+        date = fields.Datetime.now()
+        picking.action_confirm()
+        picking.move_lines.quantity_done = picking.move_lines.product_uom_qty
+        picking._action_done()
+        for move in picking.move_lines:
+            move.date = date
+
     def test_01_scrap_and_replace(self):
         nb_product_todo = 5
         serials_p2 = []
@@ -174,31 +187,40 @@ class TestComponentOperation(common.SavepointCase):
         mo._onchange_move_finished()
         mo.action_confirm()
         mo.action_assign()
-        self.assertEqual(mo.move_raw_ids[0].move_line_ids.product_uom_qty, 4)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 2)
+        move_product_2 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product2
+        )
+        raw_move_product_3 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product3
+        )
+        self.assertEqual(move_product_2.move_line_ids.product_uom_qty, 4)
+        self.assertEqual(len(raw_move_product_3.move_line_ids), 2)
+        lot = raw_move_product_3.move_line_ids[0].lot_id
         wizard = self.env["mrp.component.operate"].create(
             {
-                "product_id": mo.move_raw_ids[1].product_id.id,
-                "lot_id": mo.move_raw_ids[1].move_line_ids[0].lot_id.id,
+                "product_id": self.product3.id,
+                "lot_id": lot.id,
                 "operation_id": self.operation_scrap_replace.id,
                 "mo_id": mo.id,
             }
         )
         self.assertEqual(wizard.product_qty, 1)
-        self.assertEqual(wizard.product_id, self.product3)
-        lot = wizard.lot_id
         wizard.action_operate_component()
         self.assertEqual(len(mo.picking_ids), 1)
         self.assertEqual(mo.scrap_ids.product_id, self.product3)
         self.assertEqual(mo.scrap_ids.lot_id, lot)
         self.assertEqual(mo.scrap_ids.state, "done")
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 1)
-        self.assertEqual(len(mo.move_raw_ids[1].move_orig_ids.move_line_ids), 0)
+        self.assertEqual(len(raw_move_product_3.move_line_ids), 1)
+        self.assertEqual(len(raw_move_product_3.move_orig_ids.move_line_ids), 0)
         self.assertEqual(mo.picking_ids.product_id, self.product3)
-        mo.picking_ids.action_assign()
-        mo.picking_ids.button_validate()
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 1)
-        self.assertEqual(len(mo.move_raw_ids[1].move_orig_ids.move_line_ids), 1)
+        self._do_picking(mo.picking_ids)
+        self.assertEqual(mo.picking_ids.state, "done")
+        self.assertEqual(
+            len(raw_move_product_3.move_line_ids),
+            2,
+            "Two lines, the operated one and the other one. (2 units required)",
+        )
+        self.assertEqual(len(raw_move_product_3.move_orig_ids.move_line_ids), 1)
 
     def test_02_move_and_replace(self):
         nb_product_todo = 5
@@ -233,43 +255,65 @@ class TestComponentOperation(common.SavepointCase):
         mo._onchange_move_finished()
         mo.action_confirm()
         mo.action_assign()
-        self.assertEqual(mo.move_raw_ids[0].move_line_ids.product_uom_qty, 2)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 1)
+        self.assertEqual(len(mo.move_raw_ids), 2)
+        move_product_2 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product2
+        )
+        raw_move_product_3 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product3
+        )
+        self.assertEqual(move_product_2.move_line_ids.product_uom_qty, 2)
+        self.assertEqual(len(raw_move_product_3.move_line_ids), 1)
+        lot = raw_move_product_3.move_line_ids[0].lot_id
+        self.assertFalse(raw_move_product_3.move_orig_ids)
         wizard = self.env["mrp.component.operate"].create(
             {
-                "product_id": mo.move_raw_ids[1].product_id.id,
-                "lot_id": mo.move_raw_ids[1].move_line_ids[0].lot_id.id,
+                "product_id": self.product3.id,
+                "lot_id": lot.id,
                 "operation_id": self.operation_move_replace.id,
                 "mo_id": mo.id,
             }
         )
         self.assertEqual(wizard.product_qty, 1)
-        self.assertEqual(wizard.product_id, self.product3)
-        lot = wizard.lot_id
+        self.assertEqual(len(mo.picking_ids), 0)
         wizard.action_operate_component()
         self.assertEqual(len(mo.picking_ids), 2)
-        self.assertEqual(mo.picking_ids[1].location_dest_id, self.destination_location)
-        self.assertEqual(mo.picking_ids[1].move_lines.product_id, self.product3)
-        self.assertEqual(mo.picking_ids[0].location_dest_id, self.source_location)
-        self.assertEqual(mo.picking_ids[0].move_lines.product_id, self.product3)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 0)
-        self.assertEqual(len(mo.move_raw_ids[1].move_orig_ids.move_line_ids), 0)
-        mo.picking_ids[1].action_assign()
-        mo.picking_ids[1].button_validate()
-        self.assertEqual(
-            mo.picking_ids[1].move_line_ids.location_dest_id, self.destination_location
+        moves_for_replacement = mo.mapped("picking_ids.move_lines")
+        self.assertEqual(len(moves_for_replacement), 2)
+        for move in moves_for_replacement:
+            self.assertEqual(
+                move.product_id,
+                self.product3,
+            )
+        replacement_first_move = moves_for_replacement.filtered(
+            lambda m: m.location_dest_id == self.destination_location
         )
-        self.assertEqual(mo.picking_ids[1].move_line_ids.lot_id, lot)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 0)
-        self.assertEqual(len(mo.move_raw_ids[1].move_orig_ids.move_line_ids), 0)
-        mo.picking_ids[0].action_assign()
-        mo.picking_ids[0].button_validate()
-        self.assertEqual(
-            mo.picking_ids[0].move_line_ids.location_dest_id, self.source_location
+        self.assertTrue(replacement_first_move)
+        replacement_second_move = moves_for_replacement.filtered(
+            lambda m: m.location_dest_id == self.source_location
         )
-        self.assertEqual(mo.picking_ids[0].move_line_ids.product_id, self.product3)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 0)
-        self.assertEqual(len(mo.move_raw_ids[1].move_orig_ids.move_line_ids), 1)
+        self.assertTrue(replacement_second_move)
+        self.assertEqual(
+            len(raw_move_product_3.move_line_ids),
+            0,
+            "Reservation for product3 should have been cleared",
+        )
+        self.assertEqual(raw_move_product_3.move_orig_ids, replacement_second_move)
+        self.assertEqual(len(replacement_second_move.move_line_ids), 0)
+        self._do_picking(replacement_first_move.picking_id)
+        self.assertEqual(replacement_first_move.state, "done")
+        self.assertEqual(replacement_first_move.move_line_ids.lot_id, lot)
+        self.assertEqual(
+            len(raw_move_product_3.move_line_ids),
+            0,
+            "raw move for product 3 still not reserved.",
+        )
+        self.assertEqual(len(replacement_second_move.move_line_ids), 0)
+        self._do_picking(replacement_second_move.picking_id)
+        self.assertEqual(replacement_second_move.state, "done")
+        self.assertEqual(replacement_first_move.product_id, self.product3)
+        mo.action_assign()
+        self.assertEqual(len(raw_move_product_3.move_line_ids), 1)
 
     def test_03_nothing_and_nothing(self):
         nb_product_todo = 5
@@ -304,12 +348,18 @@ class TestComponentOperation(common.SavepointCase):
         mo._onchange_move_finished()
         mo.action_confirm()
         mo.action_assign()
-        self.assertEqual(mo.move_raw_ids[0].move_line_ids.product_uom_qty, 4)
-        self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 2)
+        move_product_2 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product2
+        )
+        raw_move_product_3 = mo.move_raw_ids.filtered(
+            lambda m: m.product_id == self.product3
+        )
+        self.assertEqual(move_product_2.move_line_ids.product_uom_qty, 4)
+        self.assertEqual(len(raw_move_product_3.move_line_ids), 2)
         wizard = self.env["mrp.component.operate"].create(
             {
-                "product_id": mo.move_raw_ids[1].product_id.id,
-                "lot_id": mo.move_raw_ids[1].move_line_ids[0].lot_id.id,
+                "product_id": self.product3.id,
+                "lot_id": raw_move_product_3.move_line_ids[0].lot_id.id,
                 "operation_id": self.operation_no.id,
                 "mo_id": mo.id,
             }
@@ -318,5 +368,5 @@ class TestComponentOperation(common.SavepointCase):
         self.assertEqual(wizard.product_id, self.product3)
         wizard.action_operate_component()
         self.assertEqual(len(mo.picking_ids), 0)
-        self.assertEqual(mo.move_raw_ids[0].move_line_ids.product_uom_qty, 4)
+        self.assertEqual(move_product_2.move_line_ids.product_uom_qty, 4)
         self.assertEqual(len(mo.move_raw_ids[1].move_line_ids), 2)
