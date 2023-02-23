@@ -7,14 +7,15 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    subcontract_production_count = fields.Integer(
+        compute="_compute_subcontract_production_count"
+    )
+
     subcontract_production_ids = fields.One2many(
         "mrp.production",
         "purchase_order_id",
         "Subcontract Production Orders",
         readonly=True,
-    )
-    subcontract_production_count = fields.Integer(
-        compute="_compute_subcontract_production_count"
     )
 
     def action_view_mrp(self):
