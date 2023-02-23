@@ -8,5 +8,13 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     purchase_order_id = fields.Many2one(
-        "purchase.order", "Subcontract Purchase Order", readonly=True
+        "purchase.order",
+        "Subcontract Purchase Order",
+        readonly=True,
+        related="purchase_line_id.order_id",
+        store=True,
+    )
+
+    purchase_line_id = fields.Many2one(
+        "purchase.order.line", "Subcontract Purchase Order Line", readonly=True
     )

@@ -10,5 +10,5 @@ class StockPicking(models.Model):
     def _prepare_subcontract_mo_vals(self, subcontract_move, bom):
         vals = super()._prepare_subcontract_mo_vals(subcontract_move, bom)
         if subcontract_move.purchase_line_id:
-            vals["purchase_order_id"] = subcontract_move.purchase_line_id.order_id.id
+            vals["purchase_line_id"] = subcontract_move.purchase_line_id.id
         return vals
