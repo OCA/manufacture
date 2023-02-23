@@ -53,9 +53,7 @@ class MrpComponentOperate(models.Model):
             filtered_pickings = self.mo_id.picking_ids.filtered(
                 lambda x: x.location_dest_id == self.operation_id.source_location_id
             )
-            move.move_orig_ids |= filtered_pickings[
-                len(filtered_pickings) - 1
-            ].move_ids_without_package
+            move.move_orig_ids |= filtered_pickings[-1].move_ids_without_package
         elif self.incoming_operation == "no":
             res = []
         return res
