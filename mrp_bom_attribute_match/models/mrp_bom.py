@@ -183,7 +183,7 @@ class MrpBom(models.Model):
         def update_product_boms():
             products = self.env["product.product"].browse(product_ids)
             product_boms.update(
-                self._bom_find(
+                self._get_product2bom(
                     products,
                     bom_type="phantom",
                     picking_type=picking_type or self.picking_type_id,
@@ -234,8 +234,7 @@ class MrpBom(models.Model):
             )
             if component_template_product:
                 # need to set product_id temporary
-                if current_line.product_id != component_template_product:
-                    current_line.product_id = component_template_product
+                current_line.product_id = component_template_product
             else:
                 # component_template_id is set, but no attribute value match.
                 continue
