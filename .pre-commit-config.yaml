@@ -41,20 +41,15 @@ repos:
         language_version: python3.6
         name: flake8 excluding __init__.py
         exclude: __init__\.py
-  - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.5.3
+  - repo: https://github.com/OCA/pylint-odoo
+    rev: 7.0.2
     hooks:
-      - id: pylint
+      - id: pylint_odoo
         name: pylint with optional checks
         args:
           - --rcfile=.pylintrc
           - --exit-zero
         verbose: true
-        additional_dependencies: &pylint_deps
-          - pylint-odoo==3.5.0
-      - id: pylint
-        name: pylint with mandatory checks
+      - id: pylint_odoo
         args:
           - --rcfile=.pylintrc-mandatory
-        additional_dependencies: *pylint_deps
-
