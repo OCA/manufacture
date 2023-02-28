@@ -105,7 +105,7 @@ class MRPProduction(models.Model):
         """
         for order in self:
             moves_all = order.move_raw_ids
-            for move in moves_all:
+            for move in moves_all.filtered(lambda m: m.quantity_done):
                 move.product_uom_qty = move.quantity_done
             # Raw Material Consumption, closely following _post_inventory()
             moves_not_to_do = order.move_raw_ids.filtered(lambda x: x.state == "done")
