@@ -8,6 +8,7 @@ import logging
 from datetime import date, timedelta
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_is_zero
 
 logger = logging.getLogger(__name__)
 
@@ -193,6 +194,17 @@ class MultiLevelMrp(models.TransientModel):
         return mrp_action_date, mrp_date_supply
 
     @api.model
+    def _get_bom_to_explode(self, product_mrp_area_id):
+        boms = self.env["mrp.bom"]
+        if product_mrp_area_id.supply_method in ["manufacture", "phantom"]:
+            boms = product_mrp_area_id.product_id.bom_ids.filtered(
+                lambda x: x.type in ["normal", "phantom"]
+            )
+        if not boms:
+            return False
+        return boms[0]
+
+    @api.model
     def explode_action(
         self, product_mrp_area_id, mrp_action_date, name, qty, action, values=None
     ):
@@ -200,45 +212,43 @@ class MultiLevelMrp(models.TransientModel):
         mrp_date_demand = mrp_action_date
         if mrp_date_demand < date.today():
             mrp_date_demand = date.today()
-        if not product_mrp_area_id.product_id.bom_ids:
+        bom = self._get_bom_to_explode(product_mrp_area_id)
+        if not bom:
             return False
-        bomcount = 0
-        for bom in product_mrp_area_id.product_id.bom_ids:
-            if not bom.active or not bom.bom_line_ids:
+        pd = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        for bomline in bom.bom_line_ids:
+            if (
+                float_is_zero(bomline.product_qty, precision_digits=pd)
+                or bomline.product_id.type != "product"
+            ):
                 continue
-            bomcount += 1
-            if bomcount != 1:
+            if self.with_context(mrp_explosion=True)._exclude_from_mrp(
+                bomline.product_id, product_mrp_area_id.mrp_area_id
+            ):
+                # Stop explosion.
                 continue
-            for bomline in bom.bom_line_ids:
-                if bomline.product_qty <= 0.00 or bomline.product_id.type != "product":
-                    continue
-                if self.with_context(mrp_explosion=True)._exclude_from_mrp(
-                    bomline.product_id, product_mrp_area_id.mrp_area_id
-                ):
-                    # Stop explosion.
-                    continue
-                if bomline._skip_bom_line(product_mrp_area_id.product_id):
-                    continue
-                # TODO: review: mrp_transit_delay, mrp_inspection_delay
-                mrp_date_demand_2 = mrp_date_demand - timedelta(
-                    days=(
-                        product_mrp_area_id.mrp_transit_delay
-                        + product_mrp_area_id.mrp_inspection_delay
-                    )
+            if bomline._skip_bom_line(product_mrp_area_id.product_id):
+                continue
+            # TODO: review: mrp_transit_delay, mrp_inspection_delay
+            mrp_date_demand_2 = mrp_date_demand - timedelta(
+                days=(
+                    product_mrp_area_id.mrp_transit_delay
+                    + product_mrp_area_id.mrp_inspection_delay
                 )
-                move_data = self._prepare_mrp_move_data_bom_explosion(
-                    product_mrp_area_id,
-                    bomline,
-                    qty,
-                    mrp_date_demand_2,
-                    bom,
-                    name,
-                    action,
-                    values,
-                )
-                mrpmove_id2 = self.env["mrp.move"].create(move_data)
-                if hasattr(action, "mrp_move_down_ids"):
-                    action.mrp_move_down_ids = [(4, mrpmove_id2.id)]
+            )
+            move_data = self._prepare_mrp_move_data_bom_explosion(
+                product_mrp_area_id,
+                bomline,
+                qty,
+                mrp_date_demand_2,
+                bom,
+                name,
+                action,
+                values,
+            )
+            mrpmove_id2 = self.env["mrp.move"].create(move_data)
+            if hasattr(action, "mrp_move_down_ids"):
+                action.mrp_move_down_ids = [(4, mrpmove_id2.id)]
         return True
 
     @api.model
