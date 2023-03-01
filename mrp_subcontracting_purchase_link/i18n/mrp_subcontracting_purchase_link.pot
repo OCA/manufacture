@@ -65,6 +65,11 @@ msgid "Subcontract Purchase Order"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__purchase_line_id
+msgid "Subcontract Purchase Order Line"
+msgstr ""
+
+#. module: mrp_subcontracting_purchase_link
 #: model:ir.model,name:mrp_subcontracting_purchase_link.model_stock_picking
 msgid "Transfer"
 msgstr ""
