@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_serial_mass_produce_wizard" position="before">
+                <button
+                    name="action_split"
+                    string="Split"
+                    type="object"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                            ('state', 'in', ('draft', 'done', 'to_close', 'cancel')),
+                            ('product_qty', '&lt;=', 1),
+                        ],
+                    }"
+                />
+            </button>
+        </field>
+    </record>
+
+</odoo>
