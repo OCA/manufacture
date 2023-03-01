@@ -75,6 +75,18 @@ class MRPProduction(models.Model):
                 mo.analytic_tracking_item_ids.mapped("actual_amount")
             )
 
+    def _cal_price(self, consumed_moves):
+        """Set a price unit on the finished move according to `consumed_moves`.
+        """
+        super(MRPProduction, self)._cal_price(consumed_moves)
+        finished_move = self.move_finished_ids.filtered(
+            lambda x: x.product_id == self.product_id and x.state not in ('done', 'cancel') and x.quantity_done > 0)
+        if finished_move and not consumed_moves:
+            consumed_moves = self.move_raw_ids.filtered(lambda x: x.state == 'done')
+            total_cost = (sum(-m.stock_valuation_layer_ids.value for m in consumed_moves.sudo()) + finished_move.price_unit)
+            finished_move.price_unit = total_cost
+        return True
+
     def _post_inventory(self, cancel_backorder=False):
         """
         Does MO closing.
@@ -148,7 +160,7 @@ class MRPProduction(models.Model):
             "account_id": account.id,
             "debit": amount if amount > 0.0 else 0.0,
             "credit": -amount if amount < 0.0 else 0.0,
-            "analytic_account_id": self.analytic_account_id.id,
+#            "analytic_account_id": self.analytic_account_id.id,
         }
 
     def clear_wip_final(self):
