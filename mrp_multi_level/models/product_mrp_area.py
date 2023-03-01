@@ -205,11 +205,12 @@ class ProductMRPArea(models.Model):
                     break
                 rule = new_rule
             # Determine the supply method based on the final rule.
+            boms = rec.product_id.product_tmpl_id.bom_ids.filtered(
+                lambda x: x.type in ["normal", "phantom"]
+            )
             rec.supply_method = (
                 "phantom"
-                if rule.action == "manufacture"
-                and rec.product_id.product_tmpl_id.bom_ids
-                and rec.product_id.product_tmpl_id.bom_ids[0].type == "phantom"
+                if rule.action == "manufacture" and boms and boms[0].type == "phantom"
                 else rule.action
             )
 
