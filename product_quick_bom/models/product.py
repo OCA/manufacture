@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.depends("bom_ids")
+    @api.depends("bom_ids", "bom_ids.active")
     def _compute_bom_id(self):
         for rec in self:
             if len(rec.bom_ids.ids) == 1:
