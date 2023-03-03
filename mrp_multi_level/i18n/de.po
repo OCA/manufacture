@@ -226,6 +226,11 @@ msgid "FP-3"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:product.template,name:mrp_multi_level.product_product_fp_4_product_template
+msgid "FP-4"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 msgid "Fixed"
