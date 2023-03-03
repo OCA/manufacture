@@ -227,6 +227,12 @@ msgid "FP-3"
 msgstr "FP-3"
 
 #. module: mrp_multi_level
+#: model:product.product,name:mrp_multi_level.product_product_fp_4
+#: model:product.template,name:mrp_multi_level.product_product_fp_4_product_template
+msgid "FP-4"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_search
 msgid "Fixed"
@@ -997,6 +1003,7 @@ msgstr "Unità di misura"
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_fp_3
+#: model:product.product,uom_name:mrp_multi_level.product_product_fp_4
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_1
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_2
 #: model:product.product,uom_name:mrp_multi_level.product_product_pp_3
@@ -1011,6 +1018,7 @@ msgstr "Unità di misura"
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_2_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_fp_3_product_template
+#: model:product.template,uom_name:mrp_multi_level.product_product_fp_4_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_1_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_2_product_template
 #: model:product.template,uom_name:mrp_multi_level.product_product_pp_3_product_template
