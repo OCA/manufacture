@@ -3,10 +3,10 @@
 
 from odoo.exceptions import UserError
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestMrpProductionSerialMatrix(SavepointCase):
+class TestMrpProductionSerialMatrix(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
