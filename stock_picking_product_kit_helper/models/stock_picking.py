@@ -16,7 +16,6 @@ class StockPicking(models.Model):
         states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
     )
     has_product_kit = fields.Boolean(
-        string="Has Product Kit",
         compute="_compute_has_product_kit",
         help="True if there is at least 1 product kit in the sales order",
     )
@@ -24,8 +23,8 @@ class StockPicking(models.Model):
     @api.model
     def _is_product_kit(self, product, company):
         BOM = self.env["mrp.bom"].sudo()
-        bom = BOM._bom_find(product=product, company_id=company.id)
-        return bom and bom.type == "phantom"
+        bom = BOM._bom_find(products=product, company_id=company.id)
+        return bom and bom.get(product).type == "phantom"
 
     def _compute_has_product_kit(self):
         for picking in self:
@@ -44,9 +43,9 @@ class StockPicking(models.Model):
         helpers = []
         for sale_line in self.move_lines.mapped("sale_line_id"):
             bom = BOM._bom_find(
-                product=sale_line.product_id, company_id=sale_line.company_id.id
+                products=sale_line.product_id, company_id=sale_line.company_id.id
             )
-            if bom and bom.type == "phantom":  # Create product kit line
+            if bom and bom.get(sale_line.product_id).type == "phantom":
                 helpers.append(
                     (
                         0,
@@ -132,8 +131,14 @@ class StockPickingProductKitHelper(models.Model):
                 continue
             if len(stock_move) != 1:
                 raise ValidationError(
-                    _("No matching detailed product %s for product kit %s")
-                    % (mock_move.product_id.display_name, self.product_id.display_name)
+                    _(
+                        "No matching detailed product %(move_display_name)s for"
+                        " product kit %(product_display_name)s"
+                    )
+                    % {
+                        "move_display_name": mock_move.product_id.display_name,
+                        "product_display_name": self.product_id.display_name,
+                    }
                 )
             stock_move.write({"quantity_done": mock_move.product_uom_qty})
         mock_processed_moves.sudo().unlink()
