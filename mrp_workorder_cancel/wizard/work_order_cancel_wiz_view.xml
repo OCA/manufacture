@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_work_order_cancel_confirm_form" model="ir.ui.view">
+        <field name="name">view.work.order.cancel.confirm.form</field>
+        <field name="model">work.order.cancel.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Select test" version="7.0">
+                <h2>
+                    <span>Are you sure want to cancel Work Order ?</span>
+                </h2>
+                <footer>
+                    <button
+                        name="action_cancel_work_order"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button special="cancel" class="oe_link" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_work_order_cancel_confirm" model="ir.actions.act_window">
+        <field name="name">Work Order Cancel</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">work.order.cancel.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

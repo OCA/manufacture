@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_workorder_cancel_tree_view_inherit" model="ir.ui.view">
+        <field name="name">mrp_production_workorder_cancel_tree_view_inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-muted">state=='cancel'</attribute>
+            </xpath>
+            <button name="button_start" position="after">
+                <button
+                    name="button_cancel"
+                    type="object"
+                    class="btn-warning"
+                    attrs="{'invisible': [('state', 'in', ('done', 'progress', 'cancel'))]}"
+                    string="Cancel"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="workorder_cancel_undo_server_action" model="ir.actions.server">
+        <field name="name">Undo Cancel Work Order</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder" />
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_manager'))]" />
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.button_workorder_cancel_undo()</field>
+    </record>
+
+</odoo>
