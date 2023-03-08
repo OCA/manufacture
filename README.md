@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 14.0.1.1.0 |  | MRP Production Serial Matrix
 [mrp_progress_button](mrp_progress_button/) | 14.0.1.1.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
-[mrp_sale_info](mrp_sale_info/) | 14.0.1.1.0 |  | Adds sale information to Manufacturing models
+[mrp_sale_info](mrp_sale_info/) | 14.0.2.0.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_bom_dual_use](mrp_subcontracting_bom_dual_use/) | 14.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp subcontracting bom dual use
 [mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 14.0.1.1.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Inhibit subcontracting flow on demand
 [mrp_subcontracting_partner_management](mrp_subcontracting_partner_management/) | 14.0.2.0.0 |  | Subcontracting Partner Management
