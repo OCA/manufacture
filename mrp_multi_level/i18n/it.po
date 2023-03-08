@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-14 15:24+0000\n"
+"PO-Revision-Date: 2023-03-08 22:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -230,7 +230,7 @@ msgstr "FP-3"
 #: model:product.product,name:mrp_multi_level.product_product_fp_4
 #: model:product.template,name:mrp_multi_level.product_product_fp_4_product_template
 msgid "FP-4"
-msgstr ""
+msgstr "FP-4"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__fixed
