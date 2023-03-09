@@ -21,5 +21,6 @@
     "data": [
         "views/mrp_production.xml",
         "views/mrp_workorder.xml",
+        "views/sale_order.xml",
     ]
 }
