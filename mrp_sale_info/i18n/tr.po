@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_sale_info
+# 	* mrp_sale_info
 #
 msgid ""
 msgstr ""
@@ -29,9 +29,25 @@ msgid "Customer"
 msgstr "Müşteri"
 
 #. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__production_ids
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_order_form
+msgid "Production"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__production_count
+msgid "Production Count"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
 msgid "Production Order"
 msgstr "Üretim Emri"
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_sale_order
+msgid "Sale Order"
+msgstr ""
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
@@ -52,7 +68,9 @@ msgstr "Stok Kuralı"
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__commitment_date
-msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
 msgstr ""
 "Bu müşteriye teslimat için taahhüt edilen tarihtir. Ayarlandığı takdirde, "
 "teslimat siparişi ürün teslim süresi yerine bu tarihe göre planlanacaktır."
