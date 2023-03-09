@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [mrp_progress_button](mrp_progress_button/) | 12.0.1.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_request_bom_structure](mrp_request_bom_structure/) | 12.0.1.0.0 |  | Shortcut between Manufacturing Request and Bom report
 [mrp_request_workcenter_cycle](mrp_request_workcenter_cycle/) | 12.0.1.0.1 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | MRP Request Workcenter Cycle
-[mrp_sale_info](mrp_sale_info/) | 12.0.1.0.1 |  | Adds sale information to Manufacturing models
+[mrp_sale_info](mrp_sale_info/) | 12.0.2.0.0 |  | Adds sale information to Manufacturing models
 [mrp_stock_orderpoint_manual_procurement](mrp_stock_orderpoint_manual_procurement/) | 12.0.1.0.1 |  | Updates the value of MO Responsible and keeps trackof changes regarding this field
 [mrp_subcontracting](mrp_subcontracting/) | 12.0.1.0.6 |  | Subcontract Productions
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 12.0.1.0.0 |  | Link Purchase Order to Subcontract Productions
