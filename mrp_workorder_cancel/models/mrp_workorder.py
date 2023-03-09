@@ -1,7 +1,7 @@
 # Copyright (C) 2023 Open Source Integrators
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, _
+from odoo import _, models
 from odoo.exceptions import UserError
 
 

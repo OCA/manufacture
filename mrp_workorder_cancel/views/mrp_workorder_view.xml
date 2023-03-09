@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="mrp_production_workorder_cancel_tree_view_inherit" model="ir.ui.view">
         <field name="name">mrp_production_workorder_cancel_tree_view_inherit</field>
@@ -12,10 +12,13 @@
                 <attribute name="decoration-muted">state=='cancel'</attribute>
             </xpath>
             <button name="button_start" position="after">
-                <button name="%(mrp_workorder_cancel.action_work_order_cancel_confirm)d"
-                    type="action" class="btn-warning"
+                <button
+                    name="%(mrp_workorder_cancel.action_work_order_cancel_confirm)d"
+                    type="action"
+                    class="btn-warning"
                     attrs="{'invisible': [('state', 'in', ('done', 'progress', 'cancel'))]}"
-                    string="Cancel" />
+                    string="Cancel"
+                />
             </button>
         </field>
     </record>
