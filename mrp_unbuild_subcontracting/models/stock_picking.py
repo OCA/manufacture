@@ -1,6 +1,7 @@
 from datetime import timedelta
 
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 from odoo.osv.expression import OR
 
 
@@ -14,6 +15,16 @@ class StockPicking(models.Model):
     def _prepare_subcontract_unbuild_vals(self, subcontract_move, bom):
         subcontract_move.ensure_one()
         product = subcontract_move.product_id
+        mos = subcontract_move.mapped("move_orig_ids.move_orig_ids.production_id")
+        if len(mos) > 1:
+            raise UserError(
+                _(
+                    "It's not possible to create the subcontracting unbuild order\n"
+                    "The subcontract move %s is linked with more than "
+                    "one manufacturing order: %s"
+                )
+                % (subcontract_move.name, ",".join(mos.mapped("name")))
+            )
         vals = {
             "company_id": subcontract_move.company_id.id,
             "product_id": product.id,
@@ -28,7 +39,7 @@ class StockPicking(models.Model):
             "product_qty": subcontract_move.product_uom_qty,
             "picking_id": self.id,
             "is_subcontracted": True,
-            "mo_id": subcontract_move.move_orig_ids.move_orig_ids.production_id.id,
+            "mo_id": mos.id,
             "lot_id": subcontract_move.move_orig_ids.lot_ids.id,
         }
         return vals
