@@ -40,7 +40,7 @@ class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
     def test_01_prepare_subcontract_mo_vals(self):
         purchase_order = self._create_sub_po(self.finished)
         for picking in purchase_order.picking_ids:
-            for move in picking.move_lines:
+            for move in picking.move_ids:
                 self.assertEqual(
                     picking._prepare_subcontract_mo_vals(
                         move, move._get_subcontract_bom()
