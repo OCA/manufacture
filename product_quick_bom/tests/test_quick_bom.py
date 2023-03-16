@@ -17,6 +17,8 @@ class TestQuickBom(TransactionCase):
         self.prd_2 = self.env.ref("mrp.product_product_computer_desk_screw")
         self.prd_3 = self.env.ref("mrp.product_product_wood_ply")
         self.tmpl_4 = self.env.ref("product.product_delivery_02_product_template")
+        if self.tmpl_4.bom_id:
+            self.tmpl_4.bom_id.unlink()
 
     def test_create_bom(self):
         self.tmpl_4.button_create_bom()
