@@ -1,5 +1,6 @@
 # Copyright 2023 ForgeFlow, S.L.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -34,7 +35,5 @@ def update_po_line_in_mrp_production(cr):
     )
 
 
-def migrate(cr, version=None):
-    if not version:
-        return
+def post_init_hook(cr, registry):
     update_po_line_in_mrp_production(cr)
