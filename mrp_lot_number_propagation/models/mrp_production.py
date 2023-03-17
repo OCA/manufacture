@@ -42,9 +42,7 @@ class MrpProduction(models.Model):
     def _compute_propagated_lot_producing(self):
         for order in self:
             order.propagated_lot_producing = False
-            move_with_lot = order.move_raw_ids.filtered(
-                lambda o: o.propagate_lot_number
-            )
+            move_with_lot = order._get_propagating_component_move()
             line_with_sn = move_with_lot.move_line_ids.filtered(
                 lambda l: (
                     l.lot_id
@@ -66,6 +64,10 @@ class MrpProduction(models.Model):
         res = super().action_confirm()
         self._set_lot_number_propagation_data_from_bom()
         return res
+
+    def _get_propagating_component_move(self):
+        self.ensure_one()
+        return self.move_raw_ids.filtered(lambda o: o.propagate_lot_number)
 
     def _set_lot_number_propagation_data_from_bom(self):
         """Copy information from BoM to the manufacturing order."""
