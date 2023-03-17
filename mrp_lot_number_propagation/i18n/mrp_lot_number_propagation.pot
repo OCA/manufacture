@@ -39,6 +39,22 @@ msgid "Bill of Material Line"
 msgstr ""
 
 #. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are "
+"multiple components propagating lot number. Please check BOM configuration."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are no "
+"components propagating lot number. Please check BOM configuration."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
 #: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom__display_lot_number_propagation
 msgid "Display Lot Number Propagation"
 msgstr ""
@@ -83,14 +99,6 @@ msgstr ""
 msgid ""
 "Only components tracked by serial number can propagate its lot/serial number"
 " to the finished product."
-msgstr ""
-
-#. module: mrp_lot_number_propagation
-#: code:addons/mrp_lot_number_propagation/models/mrp_bom_line.py:0
-#, python-format
-msgid ""
-"Only one BoM line can propagate its lot/serial number to the finished "
-"product."
 msgstr ""
 
 #. module: mrp_lot_number_propagation

@@ -20,8 +20,7 @@ msgstr ""
 #: code:addons/mrp_lot_number_propagation/models/product_template.py:0
 #, python-format
 msgid ""
-"A BoM propagating serial numbers requires this product to be tracked as "
-"such."
+"A BoM propagating serial numbers requires this product to be tracked as such."
 msgstr ""
 "Una distinta base che propaga i numeri di serie richiede che questo prodotto "
 "sia tracciato come tale."
@@ -44,6 +43,22 @@ msgstr "Distinta base"
 #: model:ir.model,name:mrp_lot_number_propagation.model_mrp_bom_line
 msgid "Bill of Material Line"
 msgstr "Riga distinta base"
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are "
+"multiple components propagating lot number. Please check BOM configuration."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are no "
+"components propagating lot number. Please check BOM configuration."
+msgstr ""
 
 #. module: mrp_lot_number_propagation
 #: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom__display_lot_number_propagation
@@ -91,21 +106,11 @@ msgstr ""
 #: code:addons/mrp_lot_number_propagation/models/mrp_bom_line.py:0
 #, python-format
 msgid ""
-"Only components tracked by serial number can propagate its lot/serial number"
-" to the finished product."
+"Only components tracked by serial number can propagate its lot/serial number "
+"to the finished product."
 msgstr ""
 "Solo i componenti tracciati da una matricola possono propagare il loro "
 "numero di lotto/matricola al prodotto finito."
-
-#. module: mrp_lot_number_propagation
-#: code:addons/mrp_lot_number_propagation/models/mrp_bom_line.py:0
-#, python-format
-msgid ""
-"Only one BoM line can propagate its lot/serial number to the finished "
-"product."
-msgstr ""
-"Solo una riga di DiBa può propagare il suo numero di lotto/matricola al "
-"prodotto finito."
 
 #. module: mrp_lot_number_propagation
 #: model:ir.model,name:mrp_lot_number_propagation.model_product_product
@@ -141,8 +146,8 @@ msgstr "Movimento di magazzino"
 #. module: mrp_lot_number_propagation
 #: model:ir.model.fields,help:mrp_lot_number_propagation.field_mrp_production__propagated_lot_producing
 msgid ""
-"The BoM used on this manufacturing order is set to propagate lot number from"
-" one of its components. The value will be computed once the corresponding "
+"The BoM used on this manufacturing order is set to propagate lot number from "
+"one of its components. The value will be computed once the corresponding "
 "component is selected."
 msgstr ""
 "La DiBa utilizzata in questo ordine di produzione è impostata per propagare "
@@ -153,8 +158,8 @@ msgstr ""
 #: code:addons/mrp_lot_number_propagation/models/product_template.py:0
 #, python-format
 msgid ""
-"This component is configured to propagate its serial number in the following"
-" Bill of Materials:{boms}'"
+"This component is configured to propagate its serial number in the following "
+"Bill of Materials:{boms}'"
 msgstr ""
 "Questo componente è configurato per propagare la sua matricola nella "
 "seguente DiBa: {boms}'"
@@ -168,3 +173,11 @@ msgid ""
 msgstr ""
 "Con 'Propagazione numero di lotto' abilitata, una riga deve essere "
 "configurata con l'opzione 'Propaga numero di lotto'."
+
+#, python-format
+#~ msgid ""
+#~ "Only one BoM line can propagate its lot/serial number to the finished "
+#~ "product."
+#~ msgstr ""
+#~ "Solo una riga di DiBa può propagare il suo numero di lotto/matricola al "
+#~ "prodotto finito."
