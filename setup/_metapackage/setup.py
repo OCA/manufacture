@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-account_move_line_mrp_info',
         'odoo14-addon-base_repair',
         'odoo14-addon-mrp_account_analytic',
+        'odoo14-addon-mrp_account_bom_attribute_match',
         'odoo14-addon-mrp_analytic_cost',
         'odoo14-addon-mrp_attachment_mgmt',
         'odoo14-addon-mrp_bom_attribute_match',
