@@ -20,6 +20,11 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
+msgid "BOM Structure Report"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Distinta base"
@@ -44,6 +49,7 @@ msgstr "Componente (modello prodotto)"
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -52,6 +58,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure__id
 msgid "ID"
 msgstr "ID"
 
@@ -60,6 +67,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template____last_update
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -88,9 +96,9 @@ msgid "Product Template"
 msgstr "Modello prodotto"
 
 #. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
-msgid "Product Uom Id Domain"
-msgstr "Dominio ID UdM prodotto"
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
+msgid "Product Uom Category"
+msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
@@ -126,41 +134,68 @@ msgstr "Campo tecnico per preservare i valori di product_id"
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"The attributes you're trying to remove is used in BoM as a match with "
+"The attributes you're trying to remove are used in the BoM as a match with "
 "Component (Product Template). To remove these attributes, first remove the "
 "BOM line with the matching component.\n"
-"Attributes: %s\n"
-"BoM: %s"
+"Attributes: %(attributes)s\n"
+"BoM: %(bom)s"
 msgstr ""
-"L'attributo che si sta cercando di rimuovere è utilizzato in DiBa come "
-"corrispondenza con il componente (modello prodotto). Per rimuovere questo "
-"attributo rimuovere prima la riga in DiBa con il componente corrispondente.\n"
-"Attributo: %s\n"
-"DiBa: %s"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"This product template is used as a component in the BOMs for %s and "
-"attribute(s) %s is not present in all such product(s), and this would break "
-"the BOM behavior."
+"This product template is used as a component in the BOMs for %(bom)s and "
+"attribute(s) %(attributes)s is not present in all such product(s), and this "
+"would break the BOM behavior."
 msgstr ""
-"Questo modello prodotto è utilizzato come componente nella DiBa per %s e gli "
-"attributi %s non sono presenti in tutti questi prodotti; ciò può corrompere "
-"il funzionamento della DiBa."
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
-"You cannot use an attribute value for attribute %s in the field “Apply on "
-"Variants” as it’s the same attribute used in field “Match on "
-"Attribute”related to the component %s."
+"You cannot use an attribute value for attribute(s) %(attributes)s in the "
+"field “Apply on Variants” as it's the same attribute used in the field "
+"“Match on Attribute” related to the component %(component)s."
 msgstr ""
-"Non puoi utilizzare un valore attributo dell'attributo %s nel campo “Applica "
-"alle varianti” dato che è lo stesso attributo utilizzato nel campo "
-"“Corrispondenza su attributo” relativo al componente %s."
+
+#~ msgid "Product Uom Id Domain"
+#~ msgstr "Dominio ID UdM prodotto"
+
+#, python-format
+#~ msgid ""
+#~ "The attributes you're trying to remove is used in BoM as a match with "
+#~ "Component (Product Template). To remove these attributes, first remove "
+#~ "the BOM line with the matching component.\n"
+#~ "Attributes: %s\n"
+#~ "BoM: %s"
+#~ msgstr ""
+#~ "L'attributo che si sta cercando di rimuovere è utilizzato in DiBa come "
+#~ "corrispondenza con il componente (modello prodotto). Per rimuovere questo "
+#~ "attributo rimuovere prima la riga in DiBa con il componente "
+#~ "corrispondente.\n"
+#~ "Attributo: %s\n"
+#~ "DiBa: %s"
+
+#, python-format
+#~ msgid ""
+#~ "This product template is used as a component in the BOMs for %s and "
+#~ "attribute(s) %s is not present in all such product(s), and this would "
+#~ "break the BOM behavior."
+#~ msgstr ""
+#~ "Questo modello prodotto è utilizzato come componente nella DiBa per %s e "
+#~ "gli attributi %s non sono presenti in tutti questi prodotti; ciò può "
+#~ "corrompere il funzionamento della DiBa."
+
+#, python-format
+#~ msgid ""
+#~ "You cannot use an attribute value for attribute %s in the field “Apply on "
+#~ "Variants” as it’s the same attribute used in field “Match on "
+#~ "Attribute”related to the component %s."
+#~ msgstr ""
+#~ "Non puoi utilizzare un valore attributo dell'attributo %s nel campo "
+#~ "“Applica alle varianti” dato che è lo stesso attributo utilizzato nel "
+#~ "campo “Corrispondenza su attributo” relativo al componente %s."
 
 #~ msgid "Dynamic component must have only 1 attribute"
 #~ msgstr "Il componente dinamico deve avere un solo attributo"
