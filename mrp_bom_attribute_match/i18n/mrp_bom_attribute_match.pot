@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
+msgid "BOM Structure Report"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
 msgid "Bill of Material"
 msgstr ""
@@ -38,6 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -46,6 +52,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure__id
 msgid "ID"
 msgstr ""
 
@@ -54,6 +61,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template____last_update
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_report_mrp_report_bom_structure____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -80,8 +88,8 @@ msgid "Product Template"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
-msgid "Product Uom Id Domain"
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
+msgid "Product Uom Category"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
@@ -114,25 +122,25 @@ msgstr ""
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"The attributes you're trying to remove is used in BoM as a match with Component (Product Template). To remove these attributes, first remove the BOM line with the matching component.\n"
-"Attributes: %s\n"
-"BoM: %s"
+"The attributes you're trying to remove are used in the BoM as a match with Component (Product Template). To remove these attributes, first remove the BOM line with the matching component.\n"
+"Attributes: %(attributes)s\n"
+"BoM: %(bom)s"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"This product template is used as a component in the BOMs for %s and "
-"attribute(s) %s is not present in all such product(s), and this would break "
-"the BOM behavior."
+"This product template is used as a component in the BOMs for %(bom)s and "
+"attribute(s) %(attributes)s is not present in all such product(s), and this "
+"would break the BOM behavior."
 msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
-"You cannot use an attribute value for attribute %s in the field “Apply on "
-"Variants” as it’s the same attribute used in field “Match on "
-"Attribute”related to the component %s."
+"You cannot use an attribute value for attribute(s) %(attributes)s in the "
+"field “Apply on Variants” as it's the same attribute used in the field "
+"“Match on Attribute” related to the component %(component)s."
 msgstr ""
