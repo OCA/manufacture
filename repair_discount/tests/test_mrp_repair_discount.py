@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestMrpRepairDiscount(common.SavepointCase):
+class TestMrpRepairDiscount(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestMrpRepairDiscount, cls).setUpClass()
