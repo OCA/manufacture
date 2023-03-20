@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-14 17:50+0000\n"
-"PO-Revision-Date: 2023-02-14 16:13+0000\n"
+"PO-Revision-Date: 2023-03-20 13:24+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian <http://weblate.ops404.it/projects/ooops-mrp-14-0/"
 "mrp_bom_attribute_match/it/>\n"
@@ -71,7 +71,7 @@ msgstr "Modello Prodotto"
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
 msgid "Product Uom Category"
-msgstr "Categoria UoM prodotto"
+msgstr "Categoria UdM prodotto"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
