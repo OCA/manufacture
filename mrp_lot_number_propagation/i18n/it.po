@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"PO-Revision-Date: 2023-03-22 16:29+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -51,6 +51,9 @@ msgid ""
 "Bill of material is marked for lot number propagation, but there are "
 "multiple components propagating lot number. Please check BOM configuration."
 msgstr ""
+"La distinta base è impostata per la propagazione del numero di lotto, ma ci "
+"sono più componenti che propagano il numero di lotto. Verificare la "
+"configurazione della DB."
 
 #. module: mrp_lot_number_propagation
 #: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
@@ -59,6 +62,9 @@ msgid ""
 "Bill of material is marked for lot number propagation, but there are no "
 "components propagating lot number. Please check BOM configuration."
 msgstr ""
+"La distinta base è impostata per la propagazione del numero di lotto, ma non "
+"ci sono componenti che propagano il numero di lotto. Verificare la "
+"configurazione della DB."
 
 #. module: mrp_lot_number_propagation
 #: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom__display_lot_number_propagation
