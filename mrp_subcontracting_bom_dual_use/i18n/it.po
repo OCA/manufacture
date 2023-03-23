@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-02 11:47+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-03-23 13:28+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_production__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: mrp_subcontracting_bom_dual_use
 #: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_bom__id
