@@ -37,6 +37,19 @@ class StockMove(models.Model):
                         "is_subcontract": True,
                     }
                 )
+                # CHECK ME: Partial receipt of subcontracting process
+                # and refund change move_orig_ids adding all
+                # subcontracting origin moves, because
+                # that we try to restore and keep consistent data structure
+                # https://github.com/odoo/odoo/blob/b57c1332251b1553f98b9ad16b45a47d4101ffb2/addons/stock/wizard/stock_picking_return.py#L151-L153  # noqa: B950
+                if (
+                    len(move.mapped("move_orig_ids.move_orig_ids.production_id")) > 1
+                    and move.origin_returned_move_id
+                    and move.origin_returned_move_id.id in move.move_orig_ids.ids
+                ):
+                    move.write(
+                        {"move_orig_ids": [(6, 0, move.origin_returned_move_id.ids)]}
+                    )
                 move_to_not_merge |= move
             for picking, subcontract_details in subcontract_details_per_picking.items():
                 picking._subcontracted_produce_unbuild(subcontract_details)
