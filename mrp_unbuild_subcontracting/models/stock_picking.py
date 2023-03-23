@@ -15,7 +15,9 @@ class StockPicking(models.Model):
     def _prepare_subcontract_unbuild_vals(self, subcontract_move, bom):
         subcontract_move.ensure_one()
         product = subcontract_move.product_id
-        mos = subcontract_move.mapped("move_orig_ids.move_orig_ids.production_id")
+        mos = subcontract_move.mapped(
+            "origin_returned_move_id.move_orig_ids.production_id"
+        )
         if len(mos) > 1:
             raise UserError(
                 _(
