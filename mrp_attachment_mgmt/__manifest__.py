@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Mrp Attachment Mgmt",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -11,6 +11,7 @@
     "installable": True,
     "data": [
         "views/mrp_bom_view.xml",
+        "views/mrp_production_views.xml",
         "views/product_views.xml",
         "views/workorder_attachments_views.xml",
     ],

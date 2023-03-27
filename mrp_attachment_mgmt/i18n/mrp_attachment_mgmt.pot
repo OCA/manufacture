@@ -23,7 +23,9 @@ msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
+#: model:ir.actions.server,name:mrp_attachment_mgmt.action_show_production_attachments
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.workorder_attachments_mrp_workorder_form_view
 msgid "Attachments"
 msgstr ""
@@ -41,6 +43,7 @@ msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__display_name
@@ -49,6 +52,7 @@ msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__id
@@ -57,6 +61,7 @@ msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template____last_update
@@ -71,6 +76,11 @@ msgstr ""
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_template
 msgid "Product Template"
+msgstr ""
+
+#. module: mrp_attachment_mgmt
+#: model:ir.model,name:mrp_attachment_mgmt.model_mrp_production
+msgid "Production Order"
 msgstr ""
 
 #. module: mrp_attachment_mgmt
