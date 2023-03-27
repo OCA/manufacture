@@ -33,3 +33,8 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         attachment = self._create_attachment(self.product)
         action = self.workorder.action_see_workorder_attachments()
         self.assertIn(attachment.id, self.attachment_model.search(action["domain"]).ids)
+
+    def test_mrp_production_attachments(self):
+        attachment = self._create_attachment(self.product)
+        action = self.mrp_production.action_show_attachments()
+        self.assertIn(attachment.id, self.attachment_model.search(action["domain"]).ids)
