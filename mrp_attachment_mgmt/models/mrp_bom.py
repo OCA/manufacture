@@ -1,26 +1,11 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, models
 
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
-
-    def _action_see_bom_documents_products(self, products):
-        domain = [
-            # ("res_field", "=", False),
-            "|",
-            "&",
-            ("res_model", "=", "product.product"),
-            ("res_id", "in", products.ids),
-            "&",
-            ("res_model", "=", "product.template"),
-            ("res_id", "in", products.mapped("product_tmpl_id").ids),
-        ]
-        res = self.env.ref("base.action_attachment").read()[0]
-        ctx = {"create": False, "edit": False}
-        res.update({"domain": domain, "context": ctx})
-        return res
 
     @api.model
     def _get_components_ids(self, product_tmpl=None, product=None, recursive=False):
@@ -40,12 +25,9 @@ class MrpBom(models.Model):
                 product_ids.extend(subcomponents)
         return product_ids
 
-    def _action_see_bom_documents(self, product_tmpl=None, product=None):
-        product_ids = self._get_components_ids(product_tmpl, product, True)
-        products = self.env["product.product"].search([("id", "in", product_ids)])
-        return self._action_see_bom_documents_products(products)
-
     def action_see_bom_documents(self):
-        return self._action_see_bom_documents(
-            product_tmpl=self.product_tmpl_id, product=self.product_id
+        product_ids = self._get_components_ids(
+            self.product_tmpl_id, self.product_id, True
         )
+        products = self.env["product.product"].search([("id", "in", product_ids)])
+        return products._action_show_attachments()
