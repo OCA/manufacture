@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_sale_info
+#
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-14 11:03+0000\n"
+"PO-Revision-Date: 2018-12-13 11:58+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-9-0/"
+"language/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid "Commitment Date"
+msgstr "Zusagedatum"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
+msgid "Customer Reference"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
+msgid "Sale information"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
+msgid "Sale order"
+msgstr "Verkaufsauftrag"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
+msgid "Source Procurement Group"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_workorder
+msgid "Work Order"
+msgstr "Arbeitsauftrag"
+
+#~ msgid ""
+#~ "Date by which the products are sure to be delivered. This is a date that "
+#~ "you can promise to the customer, based on the Product Lead Times."
+#~ msgstr ""
+#~ "Datum, zu dem die Produkte sicher geliefert werden können. Dieses Datum "
+#~ "können Sie einem Kunden, basierend auf Vorlauf- und Lieferzeiten, zusagen."
+
+#~ msgid "Manufacturing Order"
+#~ msgstr "Fertigungsauftrag"
+
+#~ msgid "Sale Information"
+#~ msgstr "Verkaufsinformation"
