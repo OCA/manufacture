@@ -29,7 +29,9 @@ msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
+#: model:ir.actions.server,name:mrp_attachment_mgmt.action_show_production_attachments
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.workorder_attachments_mrp_workorder_form_view
 msgid "Attachments"
 msgstr "Adjuntos"
@@ -47,6 +49,7 @@ msgstr "Adjuntos de Lista de Materiales"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__display_name
@@ -54,12 +57,8 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: mrp_attachment_mgmt
-#: model:ir.actions.act_window,name:mrp_attachment_mgmt.action_mrp_document
-msgid "Documents"
-msgstr "Documentos"
-
-#. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__id
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__id
@@ -68,6 +67,7 @@ msgstr "ID"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product____last_update
 #: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template____last_update
@@ -85,6 +85,14 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: mrp_attachment_mgmt
+#: model:ir.model,name:mrp_attachment_mgmt.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_workorder
 msgid "Work Order"
 msgstr "Orden de trabajo"
+
+#~ msgid "Documents"
+#~ msgstr "Documentos"
