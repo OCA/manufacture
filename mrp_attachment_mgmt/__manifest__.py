@@ -11,6 +11,7 @@
     "installable": True,
     "data": [
         "views/mrp_bom_view.xml",
+        "views/mrp_production_views.xml",
         "views/product_views.xml",
         "views/workorder_attachments_views.xml",
     ],
