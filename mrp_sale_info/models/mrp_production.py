@@ -32,3 +32,10 @@ class MrpProduction(models.Model):
     client_order_ref = fields.Char(
         related="sale_id.client_order_ref", string="Customer Reference", store=True
     )
+    sale_line_ids = fields.Many2many(
+        comodel_name="sale.order.line",
+        relation="sale_line_production_rel",
+        column1="production_id",
+        column2="line_id",
+        string="Sale order line",
+    )
