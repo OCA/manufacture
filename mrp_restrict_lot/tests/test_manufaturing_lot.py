@@ -49,3 +49,22 @@ class TestRestrictLot(TransactionCase):
         mo = move.move_orig_ids.production_id
         self.assertEqual(mo.lot_producing_id.id, lot.id)
         self.assertEqual(mo.name, lot.name)
+        group = self.env["procurement.group"].create({"name": "My test delivery 2"})
+        move = self.env["stock.move"].create(
+            {
+                "product_id": self.panel_wood_prd.id,
+                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.customer_loc.id,
+                "product_uom_qty": 1,
+                "product_uom": self.panel_wood_prd.uom_id.id,
+                "name": "test",
+                "procure_method": "make_to_order",
+                "warehouse_id": self.warehouse.id,
+                "restrict_lot_id": lot.id,
+                "picking_type_id": self.out_picking_type.id,
+                "group_id": group.id,
+            }
+        )
+        move._action_confirm()
+        mo = move.move_orig_ids.production_id
+        self.assertEqual(mo.name, "%s-%s" % (lot.name, 1))

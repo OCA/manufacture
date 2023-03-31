@@ -33,5 +33,11 @@ class StockRule(models.Model):
         if lot_id:
             vals["lot_producing_id"] = lot_id
             lot = self.env["stock.lot"].browse(lot_id)
-            vals["name"] = lot.name
+            mo_name = lot.name
+            existing_mo = self.env["mrp.production"].search(
+                [("lot_producing_id", "=", lot_id)]
+            )
+            if existing_mo:
+                mo_name = "%s-%s" % (mo_name, len(existing_mo))
+            vals["name"] = mo_name
         return vals
