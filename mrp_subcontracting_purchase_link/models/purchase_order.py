@@ -29,8 +29,6 @@ class PurchaseOrder(models.Model):
                 (self.env.ref("mrp.mrp_production_form_view").id, "form")
             ]
             action["res_id"] = productions.ids[0]
-        else:
-            action = {"type": "ir.actions.act_window_close"}
         return action
 
     def _compute_subcontract_production_count(self):
