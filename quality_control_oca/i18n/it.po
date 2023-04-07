@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-02-14 15:22+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-07 18:26+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Accetta"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_needaction
 msgid "Action Needed"
-msgstr "Richiesta un'azione"
+msgstr "Azione richiesta"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__active
@@ -362,7 +362,7 @@ msgstr "Note interne"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_is_follower
 msgid "Is Follower"
-msgstr "Segue"
+msgstr "Sta seguendo"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
