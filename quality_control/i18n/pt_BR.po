@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2021-03-15 07:45+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2023-04-17 16:37+0000\n"
+"Last-Translator: Augusto D. Lisbôa <augusto.diniz.l@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_trigger_line
@@ -542,7 +542,7 @@ msgstr "Planejado"
 #. module: quality_control
 #: model:ir.model,name:quality_control.model_qc_test_question_value
 msgid "Possible values for qualitative questions."
-msgstr "Valor possível para a questão quantitativa."
+msgstr "Valor possível para a questão qualitativa."
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test__fill_correct_values
@@ -581,17 +581,17 @@ msgstr "Produto associado a inspeção"
 #: selection:qc.inspection.line,question_type:0
 #: selection:qc.test.question,type:0
 msgid "Qualitative"
-msgstr "Quantitativo"
+msgstr "Qualitativo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection_line__qualitative_value
 msgid "Qualitative value"
-msgstr "Valor quantitativo"
+msgstr "Valor qualitativo"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_test_question__ql_values
 msgid "Qualitative values"
-msgstr "Valores quantitativos"
+msgstr "Valores qualitativos"
 
 #. module: quality_control
 #: model:ir.module.category,name:quality_control.module_category_quality_control
