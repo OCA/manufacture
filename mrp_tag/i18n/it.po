@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-22 16:08+0000\n"
+"PO-Revision-Date: 2023-04-17 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -77,7 +77,7 @@ msgstr "Nome etichetta"
 #. module: mrp_tag
 #: model:ir.model.constraint,message:mrp_tag.constraint_mrp_tag_tag_name_uniq
 msgid "Tag name already exists !"
-msgstr "Nome etichetta già presente!"
+msgstr "Il nome etichetta esiste già!"
 
 #. module: mrp_tag
 #: model:ir.actions.act_window,name:mrp_tag.mrp_tag_action
