@@ -111,13 +111,30 @@ class MrpProduction(models.Model):
                 and m.state not in ("done", "cancel")
             )
             if finish_moves and not finish_moves.quantity_done:
-                lot = self.env["stock.production.lot"].create(
-                    {
-                        "product_id": order.product_id.id,
-                        "company_id": order.company_id.id,
-                        "name": order.propagated_lot_producing,
-                    }
+                lot_model = self.env["stock.production.lot"]
+                lot = lot_model.search(
+                    [
+                        ("product_id", "=", order.product_id.id),
+                        ("company_id", "=", order.company_id.id),
+                        ("name", "=", order.propagated_lot_producing),
+                    ],
+                    limit=1,
                 )
+                if lot.quant_ids:
+                    raise UserError(
+                        _(
+                            "Lot/Serial number %s already exists and has been used. "
+                            "Unable to propagate it."
+                        )
+                    )
+                if not lot:
+                    lot = self.env["stock.production.lot"].create(
+                        {
+                            "product_id": order.product_id.id,
+                            "company_id": order.company_id.id,
+                            "name": order.propagated_lot_producing,
+                        }
+                    )
                 order.with_context(lot_propagation=True).lot_producing_id = lot
 
     def write(self, vals):

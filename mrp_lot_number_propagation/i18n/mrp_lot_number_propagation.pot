@@ -83,6 +83,14 @@ msgstr ""
 #: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
 #, python-format
 msgid ""
+"Lot/Serial number %s already exists and has been used. Unable to propagate "
+"it."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
 "Lot/Serial number is propagated from a component, you are not allowed to "
 "change it."
 msgstr ""

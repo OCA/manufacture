@@ -57,6 +57,47 @@ class TestMrpProduction(Common):
         self.order.button_mark_done()
         self.assertEqual(self.order.lot_producing_id.name, self.LOT_NAME)
 
+    def test_order_post_inventory_lot_already_exists_but_not_used(self):
+        self._update_stock_component_qty(self.order)
+        self.order.action_confirm()
+        self._set_qty_done(self.order)
+        self.assertEqual(self.order.propagated_lot_producing, self.LOT_NAME)
+        # Create a lot with the same number for the finished product
+        # without any stock/quants (so not used at all) before validating the MO
+        existing_lot = self.env["stock.production.lot"].create(
+            {
+                "product_id": self.order.product_id.id,
+                "company_id": self.order.company_id.id,
+                "name": self.order.propagated_lot_producing,
+            }
+        )
+        self.order.button_mark_done()
+        self.assertEqual(self.order.lot_producing_id, existing_lot)
+
+    def test_order_post_inventory_lot_already_exists_and_used(self):
+        self._update_stock_component_qty(self.order)
+        self.order.action_confirm()
+        self._set_qty_done(self.order)
+        self.assertEqual(self.order.propagated_lot_producing, self.LOT_NAME)
+        # Create a lot with the same number for the finished product
+        # with some stock/quants (so it is considered as used) before
+        # validating the MO
+        existing_lot = self.env["stock.production.lot"].create(
+            {
+                "product_id": self.order.product_id.id,
+                "company_id": self.order.company_id.id,
+                "name": self.order.propagated_lot_producing,
+            }
+        )
+        self._update_qty_in_location(
+            self.env.ref("stock.stock_location_stock"),
+            self.order.product_id,
+            1,
+            lot=existing_lot,
+        )
+        with self.assertRaisesRegex(UserError, "already exists and has been used"):
+            self.order.button_mark_done()
+
     def test_confirm_with_variant_ok(self):
         self._add_color_and_legs_variants(self.bom_product_template)
         self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
