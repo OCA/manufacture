@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 {
     "name": "MRP Serial Number Propagation",
-    "version": "15.0.0.2.0",
+    "version": "15.0.0.3.0",
     "development_status": "Alpha",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
