@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-22 16:29+0000\n"
+"PO-Revision-Date: 2023-04-25 21:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -98,6 +98,7 @@ msgid ""
 "Lot/Serial number %s already exists and has been used. Unable to propagate "
 "it."
 msgstr ""
+"Il lotto/seriale %s esiste ed è stato usato. Non è possibile propagarlo."
 
 #. module: mrp_lot_number_propagation
 #: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
