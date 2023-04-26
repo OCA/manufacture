@@ -83,7 +83,10 @@ class MRPProduction(models.Model):
             lambda x: x.product_id == self.product_id and x.state not in ('done', 'cancel') and x.quantity_done > 0)
         if finished_move and not consumed_moves:
             consumed_moves = self.move_raw_ids.filtered(lambda x: x.state == 'done')
+            qty_done = finished_move.product_uom._compute_quantity(
+                finished_move.quantity_done, finished_move.product_id.uom_id)
             total_cost = (sum(-m.stock_valuation_layer_ids.value for m in consumed_moves.sudo()) + finished_move.price_unit)
+            total_cost = (total_cost and qty_done and total_cost / qty_done) or 0
             finished_move.price_unit = total_cost
         return True
 
