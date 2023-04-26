@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-26 15:34+0000\n"
+"PO-Revision-Date: 2023-04-26 18:35+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -350,19 +350,19 @@ msgstr "Nuovo"
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__activity_date_deadline
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Scadenza attività successiva"
+msgstr "Scadenza prossima attività"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__activity_summary
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__activity_summary
 msgid "Next Activity Summary"
-msgstr "Riepilogo attività successiva"
+msgstr "Riepilogo prossima attività"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__activity_type_id
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_problem__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo attività successiva"
+msgstr "Tipologia prossima attività"
 
 #. module: quality_control_issue
 #: selection:qc.problem,priority:0
