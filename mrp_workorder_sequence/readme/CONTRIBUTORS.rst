@@ -2,3 +2,4 @@
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Christopher Ormaza <chris.ormaza@forgeflow.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
+* Dhara Solanki <dhara.solanki@initos.com>

@@ -12,12 +12,12 @@ class MrpProduction(models.Model):
             for current_seq, work in enumerate(rec.workorder_ids, 1):
                 work.sequence = current_seq
 
-    def _create_workorder(self):
+    def button_plan(self):
         # Bypass sequence assignation on create and make sure there is no gap
         # using _reset_work_order_sequence
         res = super(
             MrpProduction,
             self.with_context(_bypass_sequence_assignation_on_create=True),
-        )._create_workorder()
+        ).button_plan()
         self._reset_work_order_sequence()
         return res

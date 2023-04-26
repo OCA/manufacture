@@ -125,9 +125,11 @@ class TestMrpWorkorderSequence(TestMrpCommon):
         self.assertEqual(len(mrp_order.workorder_ids), 2)
         max_sequence = max(mrp_order.workorder_ids.mapped("sequence"))
         mrp_order_form = Form(mrp_order)
+        mrp_order_form._view["modifiers"]["workorder_ids"]["invisible"] = False
         with mrp_order_form.workorder_ids.new() as wo_form:
             wo_form.name = "Extra operation"
             wo_form.workcenter_id = self.workcenter_1
+            wo_form.product_uom_id = self.uom_unit
         mrp_order = mrp_order_form.save()
         self.assertEqual(len(mrp_order.workorder_ids), 3)
         last_wo = fields.first(mrp_order.workorder_ids.sorted(reverse=True))

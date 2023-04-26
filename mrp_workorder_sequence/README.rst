@@ -14,7 +14,7 @@ MRP Work Order Sequence
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/mrp_workorder_sequence
+    :target: https://github.com/OCA/manufacture/tree/16.0/mrp_workorder_sequence
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-mrp_workorder_sequence
@@ -63,6 +63,7 @@ Contributors
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Christopher Ormaza <chris.ormaza@forgeflow.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -85,6 +86,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_workorder_sequence>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/16.0/mrp_workorder_sequence>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
