@@ -14,3 +14,7 @@
 * `Punt Sistemes <https://www.puntsistemes.com/>`__:
 
   * Salva Benlloch <sbenlloch@puntsistemes.es>
+
+* `InitOS <https://www.initos.com/>`__:
+
+  * Dhara Solanki <dhara.solanki@initos.com>

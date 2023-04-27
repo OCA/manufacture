@@ -104,7 +104,8 @@ class MrpProduction(models.Model):
                 return mo
         return super(MrpProduction, self).create(vals)
 
-    def _create_workorder(self):
+    @api.depends("bom_id", "product_id", "product_qty", "product_uom_id")
+    def _compute_workorder_ids(self):
         # We need to skip the creation of workorders during `_run_manufacture`.
         # It is not possible to pass a context from the `_post_mo_merging_adjustments`
         # because the create is called with sudo in `_run_manufacture` and that
@@ -119,7 +120,7 @@ class MrpProduction(models.Model):
                 mo = self._find_grouping_target(vals)
                 if mo:
                     to_create_wos -= rec
-        return super(MrpProduction, to_create_wos)._create_workorder()
+        return super(MrpProduction, to_create_wos)._compute_workorder_ids()
 
     def _get_moves_finished_values(self):
         # We need to skip the creation of more finished moves during `_run_manufacture`.
