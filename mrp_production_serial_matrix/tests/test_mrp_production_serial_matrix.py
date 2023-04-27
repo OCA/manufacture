@@ -12,7 +12,7 @@ class TestMrpProductionSerialMatrix(SavepointCase):
         super().setUpClass()
         cls.mo_obj = cls.env["mrp.production"]
         cls.product_obj = cls.env["product.product"]
-        cls.lot_obj = cls.env["stock.production.lot"]
+        cls.lot_obj = cls.env["stock.lot"]
         cls.quant_obj = cls.env["stock.quant"]
         cls.bom_obj = cls.env["mrp.bom"]
         cls.bom_line_obj = cls.env["mrp.bom.line"]
@@ -145,7 +145,6 @@ class TestMrpProductionSerialMatrix(SavepointCase):
         production_form.product_id = cls.final_product
         production_form.bom_id = cls.bom_1
         production_form.product_qty = qty
-        production_form.product_uom_id = cls.final_product.uom_id
         production_1 = production_form.save()
         production_1.action_confirm()
         production_1.action_assign()

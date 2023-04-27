@@ -25,7 +25,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     )
     finished_lot_ids = fields.Many2many(
         string="Finished Product Serial Numbers",
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
         domain="[('product_id', '=', product_id)]",
     )
     line_ids = fields.One2many(
@@ -35,7 +35,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     )
     lot_selection_warning_msg = fields.Char(compute="_compute_lot_selection_warning")
     lot_selection_warning_ids = fields.Many2many(
-        comodel_name="stock.production.lot", compute="_compute_lot_selection_warning"
+        comodel_name="stock.lot", compute="_compute_lot_selection_warning"
     )
     lot_selection_warning_count = fields.Integer(
         compute="_compute_lot_selection_warning"
@@ -49,7 +49,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     @api.depends("line_ids", "line_ids.component_lot_id")
     def _compute_lot_selection_warning(self):
         for rec in self:
-            warning_lots = self.env["stock.production.lot"]
+            warning_lots = self.env["stock.lot"]
             warning_msgs = []
             # Serials:
             serial_lines = rec.line_ids.filtered(
@@ -117,7 +117,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 _("The finished product of this MO is not tracked by serial numbers.")
             )
 
-        finished_lots = self.env["stock.production.lot"]
+        finished_lots = self.env["stock.lot"]
         if production.lot_producing_id:
             finished_lots = production.lot_producing_id
 
@@ -333,8 +333,8 @@ class MrpProductionSerialMatrix(models.TransientModel):
                     )
                     ml.qty_done = qty
                 else:
-                    ml.qty_done = ml.product_qty
-            elif float_is_zero(ml.product_qty, precision_digits=precision_digits):
+                    ml.qty_done = ml.reserved_qty
+            elif float_is_zero(ml.reserved_qty, precision_digits=precision_digits):
                 ml.unlink()
             else:
                 ml.qty_done = 0.0

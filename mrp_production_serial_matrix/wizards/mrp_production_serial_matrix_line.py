@@ -14,14 +14,14 @@ class MrpProductionSerialMatrix(models.TransientModel):
     production_id = fields.Many2one(related="wizard_id.production_id")
     component_id = fields.Many2one(comodel_name="product.product")
     component_column_name = fields.Char()
-    finished_lot_id = fields.Many2one(comodel_name="stock.production.lot")
+    finished_lot_id = fields.Many2one(comodel_name="stock.lot")
     finished_lot_name = fields.Char()
     component_lot_id = fields.Many2one(
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
         domain="[('id', 'in', allowed_component_lot_ids)]",
     )
     allowed_component_lot_ids = fields.Many2many(
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
         compute="_compute_allowed_component_lot_ids",
     )
     lot_qty = fields.Float(digits="Product Unit of Measure")
@@ -49,5 +49,5 @@ class MrpProductionSerialMatrix(models.TransientModel):
             and l.lot_id == self.component_lot_id
             and l.state not in ["done", "cancel"]
         )
-        specifically_reserved_quantity = sum(move_lines.mapped("product_uom_qty"))
+        specifically_reserved_quantity = sum(move_lines.mapped("reserved_uom_qty"))
         return available_quantity, specifically_reserved_quantity
