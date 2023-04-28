@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="mrp_move_view_tree" model="ir.ui.view">
+        <field name="name">mrp.move.tree</field>
+        <field name="model">mrp.move</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mrp_date" />
+                <field name="current_date" />
+                <field name="mrp_origin" />
+                <field name="state" />
+                <field name="mrp_order_number" />
+                <field name="parent_product_id" />
+                <field name="name" />
+                <field name="mrp_qty" />
+                <field name="current_qty" />
+                <field name="mrp_type" />
+                <field name="planned_order_up_ids" />
+            </tree>
+        </field>
+    </record>
+
     <record id="mrp_move_view_form" model="ir.ui.view">
         <field name="name">mrp.move.form</field>
         <field name="model">mrp.move</field>
@@ -67,5 +87,12 @@
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="mrp_move_action" model="ir.actions.act_window">
+        <field name="name">MRP Moves</field>
+        <field name="res_model">mrp.move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>
