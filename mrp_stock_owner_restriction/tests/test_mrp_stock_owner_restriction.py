@@ -10,39 +10,37 @@ class TestMrpStockOwnerRestriction(TransactionCase):
         self.company = self.env.ref("base.main_company")
         self.manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
 
-        self.product = self.env["product.product"].create(
-            {
-                "name": "test product",
-                "type": "product",
-            }
+        self.finished_product = self.env["product.product"].create(
+            {"name": "test product", "type": "product"}
         )
-        self.product_2 = self.env["product.product"].create(
-            {"name": "test component", "default_code": "PRD 2", "type": "product"}
+        self.component = self.env["product.product"].create(
+            {"name": "test component", "type": "product"}
         )
         self.bom = self.env["mrp.bom"].create(
             {
-                "product_id": self.product.id,
-                "product_tmpl_id": self.product.product_tmpl_id.id,
-                "product_uom_id": self.product.uom_id.id,
+                "product_id": self.finished_product.id,
+                "product_tmpl_id": self.finished_product.product_tmpl_id.id,
+                "product_uom_id": self.finished_product.uom_id.id,
                 "product_qty": 1.0,
                 "type": "normal",
             }
         )
         self.env["mrp.bom.line"].create(
-            {"bom_id": self.bom.id, "product_id": self.product_2.id, "product_qty": 2}
+            {"bom_id": self.bom.id, "product_id": self.component.id, "product_qty": 1}
         )
         self.owner = self.env["res.partner"].create({"name": "Owner test"})
-        self.product.route_ids = [(6, 0, self.manufacture_route.ids)]
-        self.picking_type_id = self.env["stock.picking.type"].search(
+        self.finished_product.route_ids = [(6, 0, self.manufacture_route.ids)]
+        self.picking_type = self.env["stock.picking.type"].search(
             [
                 ("code", "=", "mrp_operation"),
                 ("warehouse_id.company_id", "=", self.company.id),
             ],
             limit=1,
         )
+        self.picking_type.write({"owner_restriction": "picking_partner"})
         quant_vals = {
-            "product_id": self.product_2.id,
-            "location_id": self.picking_type_id.default_location_src_id.id,
+            "product_id": self.component.id,
+            "location_id": self.picking_type.default_location_src_id.id,
             "quantity": 250.00,
         }
         # Create quants without owner
@@ -51,12 +49,17 @@ class TestMrpStockOwnerRestriction(TransactionCase):
         self.env["stock.quant"].create(dict(quant_vals, owner_id=self.owner.id))
 
     def test_mrp_quant_assign_owner(self):
+        self.assertEqual(self.component.qty_available, 250)
+        self.component.invalidate_model(["qty_available"])
+        self.assertEqual(
+            self.component.with_context(skip_restricted_owner=True).qty_available, 500
+        )
         mo = self.env["mrp.production"].create(
             {
-                "product_id": self.product.id,
+                "product_id": self.finished_product.id,
                 "bom_id": self.bom.id,
                 "product_qty": 250,
-                "picking_type_id": self.picking_type_id.id,
+                "picking_type_id": self.picking_type.id,
                 "owner_id": self.owner.id,
             }
         )
@@ -69,17 +72,22 @@ class TestMrpStockOwnerRestriction(TransactionCase):
         action = wizard.process()
 
         # Check produced product owner and qty_available
-        self.assertEqual(self.product.qty_available, 0.00)
-        self.product.invalidate_model()
+        self.assertEqual(self.finished_product.qty_available, 0.00)
+        self.finished_product.invalidate_model(["qty_available"])
         self.assertEqual(
-            self.product.with_context(skip_restricted_owner=True).qty_available, 250.00
+            self.finished_product.with_context(
+                skip_restricted_owner=True
+            ).qty_available,
+            250.00,
         )
-        quant = self.env["stock.quant"].search([("product_id", "=", self.product.id)])
+        quant = self.env["stock.quant"].search(
+            [("product_id", "=", self.finished_product.id)]
+        )
         self.assertEqual(quant.owner_id, self.owner)
 
-        # Check component product qty_available
-        self.assertEqual(self.product_2.qty_available, 0.00)
-        self.product.invalidate_model()
+        # Confirm that component inventory with owner has been consumed
+        self.assertEqual(self.component.qty_available, 250)
+        self.component.invalidate_model(["qty_available"])
         self.assertEqual(
-            self.product_2.with_context(skip_restricted_owner=True).qty_available, 0.00
+            self.component.with_context(skip_restricted_owner=True).qty_available, 250
         )

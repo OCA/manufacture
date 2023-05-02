@@ -17,7 +17,7 @@ class StockMove(models.Model):
         if self.production_id:
             return False
         # For chained origin moves for production component moves.
-        partner = self.move_dest_ids.raw_material_production_id.owner_id
-        if partner:
-            return partner
+        production = self.move_dest_ids.raw_material_production_id
+        if production:
+            return production.owner_id
         return super()._get_owner_for_assign()
