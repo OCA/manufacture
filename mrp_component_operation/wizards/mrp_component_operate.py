@@ -58,10 +58,46 @@ class MrpComponentOperate(models.Model):
             res = []
         return res
 
+    @api.model
+    def _domain_for_available_quants(self, move):
+        return [
+            ("location_id", "child_of", move.location_id.id),
+            ("product_id", "=", move.product_id.id),
+            ("quantity", ">", 0),
+        ]
+
+    @api.model
+    def _get_available_quants(self, move):
+        domain = self._domain_for_available_quants(move)
+        return self.env["stock.quant"].search(domain)
+
     def _run_outgoing_operations(self):
         res = []
         if self.outgoing_operation == "scrap":
+            move = self.mo_id.move_raw_ids.filtered(
+                lambda x: x.product_id == self.product_id
+            )
+            available_quants = self._get_available_quants(move)
+            initial_quantities = {
+                quant.lot_id: quant.quantity for quant in available_quants
+            }
             res = self._create_scrap()
+            updated_quants = self._get_available_quants(move)
+            initial_quantity = initial_quantities.get(self.lot_id)
+            updated_quant = updated_quants.filtered(lambda q: q.lot_id == self.lot_id)
+            if updated_quant:
+                updated_quant = updated_quant[0]
+                if (
+                    initial_quantity is not None
+                    and updated_quant.quantity == initial_quantity
+                ):
+                    new_quantity = initial_quantity - self.product_qty
+                    updated_quant._update_available_quantity(
+                        self.product_id.id,
+                        self.operation_id.source_location_id.id,
+                        new_quantity,
+                        lot_id=self.lot_id.id,
+                    )
         elif self.outgoing_operation == "move":
             res = self._run_procurement(
                 self.operation_id.destination_route_id,
