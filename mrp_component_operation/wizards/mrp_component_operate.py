@@ -61,7 +61,16 @@ class MrpComponentOperate(models.Model):
     def _run_outgoing_operations(self):
         res = []
         if self.outgoing_operation == "scrap":
+            move = self.mo_id.move_raw_ids.filtered(
+                lambda x: x.product_id == self.product_id
+            )
+            previous_moves = move.move_orig_ids.filtered(lambda m: m.state in ["done"])
             res = self._create_scrap()
+            if move.state == "assigned":
+                move.write({"state": "partially_available"})
+            if res and previous_moves:
+                previous_move = previous_moves[-1]
+                previous_move.move_dest_ids |= res.move_id
         elif self.outgoing_operation == "move":
             res = self._run_procurement(
                 self.operation_id.destination_route_id,
