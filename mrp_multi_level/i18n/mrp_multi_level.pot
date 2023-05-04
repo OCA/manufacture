@@ -446,6 +446,7 @@ msgid "MRP Move DOWN"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.actions.act_window,name:mrp_multi_level.mrp_move_action
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 msgid "MRP Moves"
 msgstr ""
