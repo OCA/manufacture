@@ -53,22 +53,24 @@ class RepairOrder(models.Model):
                 and not rec.ignore_availability
             )
 
+    def _prepare_repair_stock_move(self):
+        return {
+            "name": self.name,
+            "product_id": self.product_id.id,
+            "product_uom": self.product_uom.id or self.product_id.uom_id.id,
+            "product_uom_qty": self.product_qty,
+            "partner_id": self.address_id.id,
+            "location_id": self.location_id.id,
+            "location_dest_id": self.location_id.id,
+            "repair_id": self.id,
+            "origin": self.name,
+            "company_id": self.company_id.id,
+        }
+
     def _create_repair_stock_move(self):
         self.ensure_one()
-        return self.env["stock.move"].create(
-            {
-                "name": self.name,
-                "product_id": self.product_id.id,
-                "product_uom": self.product_uom.id or self.product_id.uom_id.id,
-                "product_uom_qty": self.product_qty,
-                "partner_id": self.address_id.id,
-                "location_id": self.location_id.id,
-                "location_dest_id": self.location_id.id,
-                "repair_id": self.id,
-                "origin": self.name,
-                "company_id": self.company_id.id,
-            }
-        )
+        move_dict = self._prepare_repair_stock_move()
+        return self.env["stock.move"].create(move_dict)
 
     def action_repair_confirm(self):
         res = super().action_repair_confirm()
