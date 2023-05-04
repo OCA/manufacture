@@ -28,9 +28,10 @@ class QcInspection(models.Model):
     def _compute_product_id(self):
         """Overriden for getting the product from a manufacturing order."""
         for inspection in self:
-            super()._compute_product_id()
+            res = super()._compute_product_id()
             if inspection.object_id and inspection.object_id._name == "mrp.production":
                 inspection.product_id = inspection.object_id.product_id
+        return res
 
     def object_selection_values(self):
         objects = super().object_selection_values()
