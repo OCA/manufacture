@@ -4,7 +4,7 @@
 {
     "name": "Repair Stock Move",
     "version": "14.0.1.0.2",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "license": "LGPL-3",
     "category": "Repair",
     "summary": "Ongoing Repair Stock Moves Definition in odoo",
