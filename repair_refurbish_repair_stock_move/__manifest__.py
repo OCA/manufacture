@@ -3,9 +3,9 @@
 {
     "name": "MRP Repair Refurbish & Repair Stock Move",
     "summary": "Use refurbish and repair stock moves together",
-    "version": "15.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Repair",
-    "website": "https://github.com/OCA/repair",
+    "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
