@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-08 21:23+0000\n"
+"PO-Revision-Date: 2023-05-09 13:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -203,7 +203,7 @@ msgstr "Quantità totale da estrarre dall'OP originale."
 #. module: mrp_production_split
 #: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__product_tracking
 msgid "Tracking"
-msgstr "Tracciatura"
+msgstr "Tracciamento"
 
 #. module: mrp_production_split
 #: model:ir.model.fields,help:mrp_production_split.field_mrp_production_split_wizard__split_equal_qty
