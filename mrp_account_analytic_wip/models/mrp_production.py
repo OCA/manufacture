@@ -6,6 +6,7 @@ import logging
 from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
+from odoo.tools import float_is_zero, float_round
 
 
 class MRPProduction(models.Model):
@@ -79,15 +80,29 @@ class MRPProduction(models.Model):
         """Set a price unit on the finished move according to `consumed_moves`.
         """
         super(MRPProduction, self)._cal_price(consumed_moves)
+        work_center_cost = 0
         finished_move = self.move_finished_ids.filtered(
             lambda x: x.product_id == self.product_id and x.state not in ('done', 'cancel') and x.quantity_done > 0)
-        if finished_move and not consumed_moves:
-            consumed_moves = self.move_raw_ids.filtered(lambda x: x.state == 'done')
+        if finished_move:
+            finished_move.ensure_one()
+            for work_order in self.workorder_ids:
+                time_lines = work_order.time_ids.filtered(lambda t: t.date_end and not t.cost_already_recorded)
+                work_center_cost += work_order._cal_cost(times=time_lines)
+                time_lines.write({'cost_already_recorded': True})
             qty_done = finished_move.product_uom._compute_quantity(
                 finished_move.quantity_done, finished_move.product_id.uom_id)
-            total_cost = (sum(-m.stock_valuation_layer_ids.value for m in consumed_moves.sudo()) + finished_move.price_unit)
-            total_cost = (total_cost and qty_done and total_cost / qty_done) or 0
-            finished_move.price_unit = total_cost
+            extra_cost = self.extra_cost * qty_done
+            total_cost = - sum(consumed_moves.sudo().stock_valuation_layer_ids.mapped('value')) + work_center_cost + extra_cost
+            byproduct_moves = self.move_byproduct_ids.filtered(lambda m: m.state not in ('done', 'cancel') and m.quantity_done > 0)
+            byproduct_cost_share = 0
+            for byproduct in byproduct_moves:
+                if byproduct.cost_share == 0:
+                    continue
+                byproduct_cost_share += byproduct.cost_share
+                if byproduct.product_id.cost_method in ('fifo', 'average'):
+                    byproduct.price_unit = total_cost * byproduct.cost_share / 100 / byproduct.product_uom._compute_quantity(byproduct.quantity_done, byproduct.product_id.uom_id)
+            if finished_move.product_id.cost_method in ('fifo', 'average'):
+                finished_move.price_unit = total_cost * float_round(1 - byproduct_cost_share / 100, precision_rounding=0.0001) / qty_done
         return True
 
     def _post_inventory(self, cancel_backorder=False):
