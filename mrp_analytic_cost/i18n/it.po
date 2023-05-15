@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-22 13:44+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-05-15 19:34+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "Movimenti prodotto (riga movimento magazzino)"
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_mrp_production
 msgid "Production Order"
-msgstr "Ordine produzione"
+msgstr "Ordine di produzione"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__manufacturing_order_id
