@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-19 14:44+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-05-15 19:35+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: mrp_workorder_sequence
 #: model:ir.model,name:mrp_workorder_sequence.model_mrp_production
 msgid "Production Order"
-msgstr "Ordine produzione"
+msgstr "Ordine di produzione"
 
 #. module: mrp_workorder_sequence
 #: model:ir.model.fields,field_description:mrp_workorder_sequence.field_mrp_workorder__sequence
