@@ -65,11 +65,10 @@ class TestMrp(TransactionCase):
 
     def test_workcenter_cost_theoretical(self):
         self.bom.product_tmpl_id.mrp_workcenter_cost = "theoretical"
-        # Duration will be reset on MO validation
         self.production.workorder_ids.duration = 30
         self._mrp_production_done(self.production)
-        self.assertNotEqual(self.production.workorder_ids.duration, 30)
-        self.assertEqual(
+        self.assertEqual(self.production.workorder_ids.duration, 30)
+        self.assertNotEqual(
             self.production.workorder_ids.duration,
             self.production.workorder_ids.duration_expected,
         )

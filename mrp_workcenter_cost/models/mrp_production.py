@@ -14,7 +14,15 @@ class MrpProduction(models.Model):
             self.product_id.mrp_workcenter_cost == "theoretical"
             and not any(t.cost_already_recorded for t in self.workorder_ids.time_ids)
         )
+        duration_by_workorder = {}
         if should_overwrite_duration:
-            for workorder in self.workorder_ids.filtered("duration_expected"):
+            workorders = self.workorder_ids.filtered("duration_expected")
+            for workorder in workorders:
+                duration_by_workorder[workorder.id] = workorder.duration
                 workorder.duration = workorder.duration_expected
-        return super()._cal_price(consumed_moves)
+        res = super()._cal_price(consumed_moves)
+        # Restore the durations set by users
+        if should_overwrite_duration:
+            for workorder in workorders:
+                workorder.duration = duration_by_workorder[workorder.id]
+        return res
