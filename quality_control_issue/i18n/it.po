@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-11 17:34+0000\n"
+"PO-Revision-Date: 2023-05-17 03:57+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -477,7 +477,7 @@ msgstr "Quantità prodotto"
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__product_uom
 msgid "Product Unit of Measure"
-msgstr "Unità di misura prodotto"
+msgstr "Unità di misura del prodotto"
 
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
