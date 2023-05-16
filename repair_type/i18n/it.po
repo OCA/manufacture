@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-22 13:44+0000\n"
+"PO-Revision-Date: 2023-05-17 03:52+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -113,7 +113,7 @@ msgstr "Tipi riparazione"
 #: model:ir.model.fields,field_description:repair_type.field_repair_line__location_id
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_id
 msgid "Source Location"
-msgstr "Ubicazione origine"
+msgstr "Ubicazione di origine"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__source_location_add_part_id
