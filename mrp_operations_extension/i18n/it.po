@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 11:05+0000\n"
-"PO-Revision-Date: 2023-04-18 17:34+0000\n"
+"PO-Revision-Date: 2023-05-17 12:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -61,7 +61,7 @@ msgstr "Distinta base"
 #. module: mrp_operations_extension
 #: field:mrp.production.product.line,bom_line:0
 msgid "Bom line"
-msgstr "Riga Distinta Base"
+msgstr "Riga DiBa"
 
 #. module: mrp_operations_extension
 #: field:mrp.config.settings,cycle_by_bom:0
