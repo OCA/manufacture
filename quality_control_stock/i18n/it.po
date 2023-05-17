@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2023-04-18 17:34+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-05-17 16:35+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -84,7 +84,7 @@ msgstr "Lotto/Numero di serie"
 #: view:qc.inspection.line:quality_control_stock.qc_inspection_line_search_stock_view
 #: field:qc.inspection.line,picking:0
 msgid "Picking"
-msgstr "Ordine di consegna"
+msgstr "Prelievo"
 
 #. module: quality_control_stock
 #: model:ir.model,name:quality_control_stock.model_stock_picking
