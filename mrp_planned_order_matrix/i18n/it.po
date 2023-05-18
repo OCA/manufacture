@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-11 17:22+0000\n"
+"PO-Revision-Date: 2023-05-18 16:32+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #. module: mrp_planned_order_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
@@ -185,7 +185,7 @@ msgstr "DOS TEST"
 #: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
 #, python-format
 msgid "The start date cannot be later than the end date."
-msgstr "La data partenza non può essere posteriore alla data fine."
+msgstr "La data di inizio non può essere successiva alla data di fine."
 
 #. module: mrp_planned_order_matrix
 #: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
