@@ -21,6 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
+msgid "<span> - </span>"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_line
 msgid "Abstract line for defining triggers"
 msgstr ""
@@ -195,9 +200,6 @@ msgid "Date"
 msgstr "Date"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__display_name
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__display_name
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__display_name
@@ -206,7 +208,6 @@ msgstr "Date"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__display_name
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__display_name
@@ -220,6 +221,7 @@ msgid "Draft"
 msgstr "Brouillon"
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_test_category.py:0
 #, python-format
 msgid "Error! You can not create recursive categories."
@@ -227,6 +229,10 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__external_notes
+msgid "External Notes"
+msgstr ""
+
+#. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "External notes"
 msgstr ""
@@ -239,16 +245,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_channel_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_channel_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_channel_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_channel_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_channel_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: quality_control_oca
@@ -294,9 +290,16 @@ msgid "Group by..."
 msgstr "Grouper par ..."
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__id
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__id
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__id
@@ -305,7 +308,6 @@ msgstr "Grouper par ..."
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__id
@@ -329,17 +331,11 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_unread
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -383,11 +379,13 @@ msgid "Inspection"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
+msgid "Inspection Lines"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_tree_view
 msgid "Inspection lines"
 msgstr ""
 
@@ -400,7 +398,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_tree_view
 msgid "Inspections"
 msgstr "Inspections"
 
@@ -421,9 +418,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_category____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_product____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_product_template____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
@@ -432,7 +426,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line____last_update
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line____last_update
@@ -608,16 +601,6 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_unread_counter
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_unread_counter
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_unread_counter
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:qc.test.question,name:quality_control_oca.qc_test_question_1
 msgid "Overall quality"
 msgstr ""
@@ -646,7 +629,7 @@ msgid "Pre-fill with correct values"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model,name:quality_control_oca.model_product_product
+#: model:ir.model,name:quality_control_oca.model_product_template
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__product_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__product_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__product
@@ -662,10 +645,14 @@ msgid "Product Category"
 msgstr "Catégorie d'articles"
 
 #. module: quality_control_oca
-#: model:ir.model,name:quality_control_oca.model_product_template
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__product_template
 msgid "Product Template"
 msgstr "Modèle d'article"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_product_product
+msgid "Product Variant"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__product_id
@@ -750,9 +737,6 @@ msgstr "Déclencheur de contrôle qualité"
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_tree_view
 msgid "Quality control triggers"
 msgstr ""
 
@@ -789,6 +773,7 @@ msgid "Question"
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_test.py:0
 #, python-format
 msgid ""
@@ -796,6 +781,7 @@ msgid ""
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_test.py:0
 #, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
@@ -803,18 +789,12 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__question_type
-msgid "Question type"
-msgstr ""
-
-#. module: quality_control_oca
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
-msgid "Question value"
+msgid "Question Type"
 msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
 msgid "Questions"
 msgstr ""
 
@@ -960,7 +940,6 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test_category
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_category_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_category_tree_view
 msgid "Test categories"
 msgstr ""
 
@@ -980,7 +959,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu_test_parent
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_tree_view
 msgid "Tests"
 msgstr ""
 
@@ -1022,26 +1000,6 @@ msgstr "Type"
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_unread
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_unread_counter
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_unread_counter
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_unread_counter
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_unread_counter
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_unread_counter
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: quality_control_oca
@@ -1115,30 +1073,35 @@ msgid "When this field is marked, the answer is considered correct."
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
