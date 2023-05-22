@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo14-addon-mrp_production_serial_matrix',
         'odoo14-addon-mrp_progress_button',
         'odoo14-addon-mrp_restrict_lot',
+        'odoo14-addon-mrp_routing',
         'odoo14-addon-mrp_sale_info',
         'odoo14-addon-mrp_subcontracting_bom_dual_use',
         'odoo14-addon-mrp_subcontracting_inhibit',
