@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2023-05-15 19:35+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-05-22 15:11+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,create_uid:0
@@ -108,7 +108,7 @@ msgstr "Righe tempi di lavorazione"
 #. module: mrp_operations_time_control
 #: view:mrp.production.workcenter.line:mrp_operations_time_control.operation_time_tree_view
 msgid "Pending"
-msgstr "Attesa"
+msgstr "In attesa"
 
 #. module: mrp_operations_time_control
 #: field:operation.time.line,production:0
