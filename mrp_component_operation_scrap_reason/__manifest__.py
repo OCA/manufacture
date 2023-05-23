@@ -14,5 +14,5 @@
         "wizards/mrp_component_operate_wizard.xml",
     ],
     "installable": True,
-    "auto-install": True,
+    "auto_install": True,
 }
