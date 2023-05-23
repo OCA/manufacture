@@ -13,6 +13,7 @@
                     name="scrap_reason_code_id"
                     attrs="{'invisible': [('outgoing_operation', '!=', 'scrap')], 'required': [('outgoing_operation', '=', 'scrap')]}"
                 />
+                <field name="allowed_reason_code_ids" invisible="1" />
             </field>
 
         </field>
