@@ -22,10 +22,10 @@
         <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
             <field name="date_planned_start" position="after">
-                <field name="sale_id" />
-                <field name="partner_id" />
-                <field name="commitment_date" />
-                <field name="client_order_ref" />
+                <field name="sale_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="commitment_date" optional="hide" />
+                <field name="client_order_ref" optional="hide" />
             </field>
         </field>
     </record>
