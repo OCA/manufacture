@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-15 19:34+0000\n"
+"PO-Revision-Date: 2023-05-24 19:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_multi_level
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
@@ -207,7 +207,7 @@ msgstr "Esclude da MRP"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
 msgid "Execute"
-msgstr "Esegue"
+msgstr "Esegui"
 
 #. module: mrp_multi_level
 #: model:product.template,name:mrp_multi_level.product_product_fp_1_product_template
