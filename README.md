@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [mrp_bom_responsible](mrp_bom_responsible/) | 14.0.1.0.0 |  | Adds a responsible to the Bill of Materials which then will be forwarded to the Manufacturing Order
 [mrp_bom_tracking](mrp_bom_tracking/) | 14.0.1.1.0 |  | Logs any change to a BoM in the chatter
 [mrp_component_operation](mrp_component_operation/) | 14.0.1.0.2 |  | Allows to operate the components from a MO
-[mrp_component_operation_scrap_reason](mrp_component_operation_scrap_reason/) | 14.0.1.0.1 |  | Allows to pass a reason to scrap with MRP component operation
+[mrp_component_operation_scrap_reason](mrp_component_operation_scrap_reason/) | 14.0.1.1.0 |  | Allows to pass a reason to scrap with MRP component operation
 [mrp_lot_on_hand_first](mrp_lot_on_hand_first/) | 14.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Allows to display lots on hand first in M2o fields
 [mrp_multi_level](mrp_multi_level/) | 14.0.1.13.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
