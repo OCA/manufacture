@@ -122,8 +122,11 @@ class MultiLevelMrp(models.TransientModel):
         )
         if direction == "out":
             mrp_date = res.get("mrp_date")
-            if self._exclude_considering_estimate_demand_and_other_sources_strat(
-                product_mrp_area, mrp_date
+            if (
+                self._exclude_considering_estimate_demand_and_other_sources_strat(
+                    product_mrp_area, mrp_date
+                )
+                and not res["production_id"]
             ):
                 return False
         return res

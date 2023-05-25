@@ -3,6 +3,8 @@
 
 from datetime import datetime, timedelta
 
+from odoo.tests import Form
+
 from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 
 
@@ -333,3 +335,110 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         self.assertEqual(
             demand_from_other_sources.mrp_date, self.date_without_ranges.date()
         )
+
+    def test_06_estimate_and_other_sources_strat_with_mo(self):
+        """
+        Tests demand estimates and other sources strategies with MOs.
+        Components demand from MOs is always indirect demand, so even if we
+        have estimates, we should consider that demand.
+        """
+        # Get manufactured product, component and bom
+        fp_1 = self.env.ref("mrp_multi_level.product_product_fp_1")
+        pp_1 = self.env.ref("mrp_multi_level.product_product_pp_1")
+        fp_1_bom = self.env.ref("mrp_multi_level.mrp_bom_fp_1")
+        self.product_mrp_area_obj.create(
+            {"product_id": fp_1.id, "mrp_area_id": self.estimate_area.id}
+        )
+        self.product_mrp_area_obj.create(
+            {"product_id": pp_1.id, "mrp_area_id": self.estimate_area.id}
+        )
+        # Create 1 estimate of 1 week length for the component.
+        date_start = datetime.today().replace(hour=0)
+        date_end = date_start + timedelta(days=6)
+        self._create_demand_estimate(pp_1, self.estimate_loc, date_start, date_end, 7)
+        date_mo = date_start + timedelta(days=1)
+        # Create 1 MO for fp_1 that has two pp_1 in its components
+        mo_form = Form(self.mo_obj)
+        mo_form.product_id = fp_1
+        mo_form.bom_id = fp_1_bom
+        mo_form.product_qty = 10
+        mo_form.date_planned_start = date_mo
+        mo = mo_form.save()
+        mo.location_src_id = (
+            self.estimate_loc
+        )  # writing afterward to avoid invisible-field error in Form.
+        mo.action_confirm()
+        # Create 1 picking out that represents a Delivery Order from a sale
+        self._create_picking_out(pp_1, 5, date_mo, location=self.estimate_loc)
+        # 1. "all"
+        # Expected result: Consider all sources of demand
+        self.estimate_area.estimate_demand_and_other_sources_strat = "all"
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", pp_1.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 7)
+        self.assertEqual(sum(demand_from_estimates.mapped("mrp_qty")), -7)
+        self.assertEqual(len(demand_from_other_sources), 2)
+        self.assertEqual(sum(demand_from_other_sources.mapped("mrp_qty")), -25)
+
+        # 2. "ignore_others_if_estimates"
+        # Expected result: Consider estimates and demand from MO
+        self.estimate_area.estimate_demand_and_other_sources_strat = (
+            "ignore_others_if_estimates"
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", pp_1.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 7)
+        self.assertEqual(sum(demand_from_estimates.mapped("mrp_qty")), -7)
+        self.assertEqual(len(demand_from_other_sources), 1)
+        self.assertEqual(sum(demand_from_other_sources.mapped("mrp_qty")), -20)
+
+        # 3. "ignore_overlapping"
+        # Expected result: Consider estimates and demand from MO
+        self.estimate_area.estimate_demand_and_other_sources_strat = (
+            "ignore_overlapping"
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", pp_1.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 7)
+        self.assertEqual(sum(demand_from_estimates.mapped("mrp_qty")), -7)
+        self.assertEqual(len(demand_from_other_sources), 1)
+        self.assertEqual(sum(demand_from_other_sources.mapped("mrp_qty")), -20)
