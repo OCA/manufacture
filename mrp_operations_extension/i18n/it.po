@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 11:05+0000\n"
-"PO-Revision-Date: 2023-05-18 19:34+0000\n"
+"PO-Revision-Date: 2023-05-26 13:09+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_operations_extension
 #: field:mrp.workcenter,op_number:0
@@ -619,12 +619,12 @@ msgstr "ATTENZIONE:"
 #: model:ir.model,name:mrp_operations_extension.model_mrp_workcenter
 #: model:res.request.link,name:mrp_operations_extension.req_link_mrp_workcenter
 msgid "Work Center"
-msgstr "Work Center"
+msgstr "Centro di lavoro"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_routing_workcenter
 msgid "Work Center Usage"
-msgstr "Uso Work Center"
+msgstr "Uso centro di lavoro"
 
 #. module: mrp_operations_extension
 #: model:ir.model,name:mrp_operations_extension.model_mrp_production_workcenter_line
@@ -648,7 +648,7 @@ msgstr ""
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,workcenter:0
 msgid "Workcenter"
-msgstr "Workcenter"
+msgstr "Centro di lavoro"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.operation:mrp_operations_extension.rountig_operation_form
