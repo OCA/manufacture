@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-24 13:10+0000\n"
+"PO-Revision-Date: 2023-05-26 13:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -61,7 +61,7 @@ msgstr "Crea un nuovo ciclo di produzione"
 #. module: mrp_routing
 #: model_terms:ir.actions.act_window,help:mrp_routing.action_mrp_routing_workcenter_template_tree_view
 msgid "Create a new template operation"
-msgstr ""
+msgstr "Crea un nuovo modello operazione"
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__create_uid
@@ -84,6 +84,8 @@ msgstr "Durata predefinita"
 #: model:ir.model.fields,help:mrp_routing.field_mrp_routing_workcenter_template__worksheet_type
 msgid "Defines if you want to use a PDF or a Google Slide as work sheet."
 msgstr ""
+"Definisce se vuoi usare un PDF o una Presentazione Google come foglio di "
+"lavoro."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__note
@@ -115,6 +117,8 @@ msgstr "Calcolo durata"
 msgid ""
 "Gives the sequence order when displaying a list of routing Work Centers."
 msgstr ""
+"Fornisce la sequenza di ordinamento quando viene mostrata una lista di cicli "
+"di lavorazione nei centri di lavoro."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__worksheet_google_slide
@@ -141,6 +145,8 @@ msgid ""
 "If the active field is set to False, it will allow you to hide the routing "
 "without removing it."
 msgstr ""
+"Se il campo attivo è impostato su False, ti consentirà di nascondere il "
+"ciclo di lavorazione senza rimuoverlo."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_bom____last_update
@@ -189,7 +195,7 @@ msgstr "Note"
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter__on_template_change
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__on_template_change
 msgid "On template change?"
-msgstr ""
+msgstr "Al cambio modello?"
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__name
@@ -214,16 +220,18 @@ msgid ""
 "Paste the url of your Google Slide. Make sure the access to the document is "
 "public."
 msgstr ""
+"Incolla l'url della presentazione Google. Assicurati che il documento abbia "
+"accesso pubblico."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_bom__routing_id
 msgid "Predefined Operations"
-msgstr ""
+msgstr "Operazioni predefinite"
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__code
 msgid "Reference"
-msgstr ""
+msgstr "Riferimento"
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__name
@@ -248,6 +256,11 @@ msgid ""
 "                done to realize a Manufacturing Order. Each operation from\n"
 "                a Routing is done at a specific Work Center and has a specific duration."
 msgstr ""
+"I cicli di produzione definiscono le operazioni consecutive che devono\n"
+"                essere compiute per compleate un ordine di produzione. Ogni "
+"operazione di\n"
+"                un ciclo di produzione è effettuato in uno specifico centro "
+"di lavoro con una specifica durata."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__sequence
@@ -276,6 +289,8 @@ msgid ""
 "Template Operation can be used to make template for operations related to "
 "bill of materials."
 msgstr ""
+"Il modello operazione può essere usato per creare degli standard per "
+"operazioni legati alla distinta base."
 
 #. module: mrp_routing
 #: model:ir.actions.act_window,name:mrp_routing.action_mrp_routing_workcenter_template_tree_view
@@ -288,12 +303,12 @@ msgstr "Modello operazioni"
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_tree_view
 msgid "Template Routing Work Centers"
-msgstr ""
+msgstr "Modello cicli di lavorazione dei centri di lavoro"
 
 #. module: mrp_routing
 #: model:ir.model,name:mrp_routing.model_mrp_routing_workcenter_template
 msgid "Template Work Center Usage"
-msgstr ""
+msgstr "Modello uso centri di lavoro"
 
 #. module: mrp_routing
 #: model:ir.model.fields.selection,name:mrp_routing.selection__mrp_routing_workcenter_template__worksheet_type__text
@@ -303,7 +318,7 @@ msgstr "Testo"
 #. module: mrp_routing
 #: model:ir.model.fields,help:mrp_routing.field_mrp_routing_workcenter_template__note
 msgid "Text worksheet description"
-msgstr ""
+msgstr "Descrizione testo foglio di lavoro"
 
 #. module: mrp_routing
 #: model:ir.model.fields,help:mrp_routing.field_mrp_routing_workcenter_template__time_cycle_manual
@@ -311,6 +326,8 @@ msgid ""
 "Time in minutes:- In manual mode, time used- In automatic mode, supposed "
 "first time when there aren't any work orders yet"
 msgstr ""
+"Tempo in minuti: In modalità manuale, tempo impiegato - In modalità "
+"automatica, primo tempo ipotizzato quando non ci sono ancora ordini di lavoro"
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
@@ -320,28 +337,28 @@ msgstr "Carica il file PDF."
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__workcenter_id
 msgid "Work Center"
-msgstr ""
+msgstr "Centro di lavoro"
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_form_view
 msgid "Work Center Operations"
-msgstr ""
+msgstr "Operazioni centro di lavoro"
 
 #. module: mrp_routing
 #: model:ir.model,name:mrp_routing.model_mrp_routing_workcenter
 msgid "Work Center Usage"
-msgstr ""
+msgstr "Uso centro di lavoro"
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__worksheet_type
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
 msgid "Work Sheet"
-msgstr ""
+msgstr "Foglio di lavoro"
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_search_view
 msgid "Workcenter"
-msgstr ""
+msgstr "Centro di lavoro"
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
@@ -356,4 +373,4 @@ msgstr "minuti"
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
 msgid "work orders"
-msgstr ""
+msgstr "ordini di lavoro"
