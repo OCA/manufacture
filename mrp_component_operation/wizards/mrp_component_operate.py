@@ -84,21 +84,21 @@ class MrpComponentOperate(models.Model):
             res = []
         return res
 
+    def _create_scrap_vals(self):
+        return {
+            "origin": self.mo_id.name,
+            "product_id": self.product_id.id,
+            "lot_id": self.lot_id.id,
+            "scrap_qty": self.product_qty,
+            "product_uom_id": self.product_id.product_tmpl_id.uom_id.id,
+            "location_id": self.operation_id.source_location_id.id,
+            "scrap_location_id": self.operation_id.scrap_location_id.id,
+            "company_id": self.env.company.id,
+            "production_id": self.mo_id.id,
+        }
+
     def _create_scrap(self):
-        scrap = self.env["stock.scrap"].create(
-            {
-                "origin": self.mo_id.name,
-                "product_id": self.product_id.id,
-                "lot_id": self.lot_id.id,
-                "scrap_qty": self.product_qty,
-                "product_uom_id": self.product_id.product_tmpl_id.uom_id.id,
-                "location_id": self.operation_id.source_location_id.id,
-                "scrap_location_id": self.operation_id.scrap_location_id.id,
-                "create_date": fields.Datetime.now(),
-                "company_id": self.env.company.id,
-            }
-        )
-        self.mo_id.scrap_ids |= scrap
+        scrap = self.env["stock.scrap"].create(self._create_scrap_vals())
         scrap.action_validate()
         return scrap
 
