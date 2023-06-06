@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_cost_rollup_to_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_cost_rollup_to_bom
+#: model:mail.template,body_html:product_cost_rollup_to_bom.bom_cost_rollup_email_template
+msgid ""
+"\n"
+"                    Event Scheduler for BoM Cost Rollup was completed: <br/>\n"
+"                        - Date: ${datetime.datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}<br/>\n"
+"                        - Total Product's updated: ${ctx[\"product_list_len\"]}<br/>\n"
+"                        % set line_dict = ctx.get('product_list',False)\n"
+"                        % for key, value in line_dict.items()\n"
+"                            Product ${key} Standard Cost: ${'%8.2f' % value} <br/>\n"
+"                        % endfor\n"
+"                         \n"
+"            "
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model,name:product_cost_rollup_to_bom.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.actions.server,name:product_cost_rollup_to_bom.ir_cron_scheduler_cost_rollup_ir_actions_server
+#: model:ir.cron,cron_name:product_cost_rollup_to_bom.ir_cron_scheduler_cost_rollup
+#: model:ir.cron,name:product_cost_rollup_to_bom.ir_cron_scheduler_cost_rollup
+msgid "BoM Cost Rollup: run scheduler"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model.fields,help:product_cost_rollup_to_bom.field_res_company__bom_cost_email
+#: model:ir.model.fields,help:product_cost_rollup_to_bom.field_res_config_settings__bom_cost_email
+msgid "BoM Cost rollup Email notification will be sent to this email address"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model_terms:ir.ui.view,arch_db:product_cost_rollup_to_bom.view_email_res_settings
+msgid "BoM Cost rollup Email notification will be sent to this email address."
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model_terms:ir.ui.view,arch_db:product_cost_rollup_to_bom.view_email_res_settings
+msgid ""
+"BoM Cost rollup Email notification will be sent to this email address<br/>"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model.fields,field_description:product_cost_rollup_to_bom.field_res_company__bom_cost_email
+#: model:ir.model.fields,field_description:product_cost_rollup_to_bom.field_res_config_settings__bom_cost_email
+msgid "BoM cost rollup email"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model,name:product_cost_rollup_to_bom.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model,name:product_cost_rollup_to_bom.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model_terms:ir.ui.view,arch_db:product_cost_rollup_to_bom.view_email_res_settings
+msgid "Email"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:mail.template,subject:product_cost_rollup_to_bom.bom_cost_rollup_email_template
+msgid "Event Scheduler Notification for event: BoM Cost Rollup"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model.fields,help:product_cost_rollup_to_bom.field_mrp_bom__std_cost_update_date
+msgid "Last time the standard cost was performed on this BOM."
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model.fields,help:product_cost_rollup_to_bom.field_product_product__std_cost_update_date
+msgid "Last time the standard cost was performed on this product."
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model,name:product_cost_rollup_to_bom.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: model:ir.model.fields,field_description:product_cost_rollup_to_bom.field_mrp_bom__std_cost_update_date
+#: model:ir.model.fields,field_description:product_cost_rollup_to_bom.field_product_product__std_cost_update_date
+msgid "Standard Cost Update Date"
+msgstr ""
+
+#. module: product_cost_rollup_to_bom
+#: code:addons/product_cost_rollup_to_bom/models/product.py:0
+#, python-format
+msgid ""
+"The costing method on some products %s is FIFO. The cost will be computed "
+"during manufacturing process. Use Standard Costing to update BOM cost "
+"manually."
+msgstr ""
