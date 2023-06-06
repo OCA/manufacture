@@ -28,30 +28,6 @@ msgid "Analytic Line"
 msgstr "Riga analitica"
 
 #. module: mrp_account_analytic
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity__display_name
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move__display_name
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: mrp_account_analytic
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity__id
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move__id
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_account_analytic
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity____last_update
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move____last_update
-#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: mrp_account_analytic
 #: model_terms:ir.ui.view,arch_db:mrp_account_analytic.custom_account_analytic_line_form_ext
 msgid "Manufacture"
 msgstr "Produzione"
@@ -95,3 +71,12 @@ msgstr "Ordine di lavoro"
 #: model:ir.model,name:mrp_account_analytic.model_mrp_workcenter_productivity
 msgid "Workcenter Productivity Log"
 msgstr "Registro produttività centro di lavoro"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
