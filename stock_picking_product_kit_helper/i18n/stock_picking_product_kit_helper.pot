@@ -1,0 +1,160 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_picking_product_kit_helper
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model,name:stock_picking_product_kit_helper.model_stock_picking_product_kit_helper
+msgid ""
+"\n"
+"        Product Kit Helper, allow user to specify quantity of product kit,\n"
+"        to explode as product quantity in operations tab\n"
+"    "
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Assign Operation Quantity"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Check result in Operations tab"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Click =&gt; Show Product Kit"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Click Assign Operation Quantity"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Edit and fill in required quantity"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking__has_product_kit
+msgid "Has Product Kit"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking__id
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "Kit Helper"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: code:addons/stock_picking_product_kit_helper/models/stock_picking.py:0
+#, python-format
+msgid "No matching detailed product %s for product kit %s"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__picking_id
+msgid "Picking"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__product_id
+msgid "Product"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking__product_kit_helper_ids
+msgid "Product Kit Helper Lines"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: code:addons/stock_picking_product_kit_helper/models/stock_picking.py:0
+#, python-format
+msgid "Product Kit Helper is not allowed on current state"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__product_uom_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__sale_line_id
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid ""
+"To deliver partial product kits, you can use this tab to help calculate\n"
+"                    quantity and auto fill in \"Done\" column in Operations tab.<br/>"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model,name:stock_picking_product_kit_helper.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,help:stock_picking_product_kit_helper.field_stock_picking__has_product_kit
+msgid "True if there is at least 1 product kit in the sales order"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model:ir.model.fields,field_description:stock_picking_product_kit_helper.field_stock_picking_product_kit_helper__product_uom
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: stock_picking_product_kit_helper
+#: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
+msgid "⇒ Show Product Kit"
+msgstr ""
