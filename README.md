@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [mrp_production_date_planned_finished](mrp_production_date_planned_finished/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Allows to plan production from the desired finish date
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 15.0.1.0.0 |  | Production Grouped By Product
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 15.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
+[mrp_production_serial_matrix](mrp_production_serial_matrix/) | 15.0.0.1.0 |  | MRP Production Serial Matrix
 [mrp_production_split](mrp_production_split/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Split Manufacturing Orders into smaller ones
 [mrp_progress_button](mrp_progress_button/) | 15.0.2.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_sale_info](mrp_sale_info/) | 15.0.1.0.0 |  | Adds sale information to Manufacturing models
