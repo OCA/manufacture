@@ -25,7 +25,8 @@ msgstr "(Nuovo lotto %s)"
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
 msgid ""
-"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your selection:\n"
+"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your "
+"selection:\n"
 "                            <br/>"
 msgstr ""
 "<i class=\"fa fa-info-circle\"/> C'è qualche problema nella selezione:\n"
@@ -79,7 +80,6 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: mrp_production_serial_matrix
-#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__display_name
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__display_name
 msgid "Display Name"
@@ -111,7 +111,6 @@ msgid "Finished Product Serial Numbers"
 msgstr "Numero seriali prodotti finiti"
 
 #. module: mrp_production_serial_matrix
-#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__id
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__id
 msgid "ID"
@@ -132,7 +131,6 @@ msgstr ""
 "numero seriale sono sempre inclusi."
 
 #. module: mrp_production_serial_matrix
-#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix____last_update
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line____last_update
 msgid "Last Modified on"
