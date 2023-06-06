@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_report_mrp_report_bom_structure
-msgid "BOM Structure Report"
-msgstr "Resoconto struttura DiBa"
+msgid "BOM Overview Report"
+msgstr ""
 
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_mrp_bom
@@ -43,3 +43,6 @@ msgstr "Ubicazione"
 #: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
 msgid "Location of the product"
 msgstr "Ubicazione del prodotto"
+
+#~ msgid "BOM Structure Report"
+#~ msgstr "Resoconto struttura DiBa"
