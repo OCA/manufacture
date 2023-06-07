@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2023-06-07 12:10+0000\n"
+"PO-Revision-Date: 2023-06-07 17:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -182,7 +182,7 @@ msgstr "Ultima modifica il"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,write_date:0
