@@ -6,10 +6,9 @@
         <field name="name">qc.inspection.form.view.production</field>
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
-        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" groups="mrp.group_mrp_user" />
             </field>
         </field>
     </record>
@@ -17,10 +16,9 @@
         <field name="name">qc.inspection.tree.view.production</field>
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_tree_view" />
-        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" groups="mrp.group_mrp_user" />
             </field>
         </field>
     </record>
@@ -28,10 +26,9 @@
         <field name="name">qc.inspection.search.view.production</field>
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_search_view" />
-        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" groups="mrp.group_mrp_user" />
             </field>
             <group expand="0" position="inside">
                 <filter
@@ -39,6 +36,7 @@
                     name="groupby_productions"
                     domain="[]"
                     context="{'group_by': 'production_id'}"
+                    groups="mrp.group_mrp_user"
                 />
             </group>
         </field>
@@ -50,10 +48,9 @@
             name="inherit_id"
             ref="quality_control_oca.qc_inspection_line_tree_view"
         />
-        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" groups="mrp.group_mrp_user" />
             </field>
         </field>
     </record>
@@ -64,10 +61,9 @@
             name="inherit_id"
             ref="quality_control_oca.qc_inspection_line_search_view"
         />
-        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" groups="mrp.group_mrp_user" />
             </field>
             <group expand="0" position="inside">
                 <filter
@@ -75,6 +71,7 @@
                     name="groupby_productions"
                     domain="[]"
                     context="{'group_by': 'production_id'}"
+                    groups="mrp.group_mrp_user"
                 />
             </group>
         </field>

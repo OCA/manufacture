@@ -19,17 +19,17 @@ class TestQualityControlMrp(TransactionCase):
         # Product
         product_form = Form(self.env["product.template"])
         product_form.name = "Test Product"
-        product_form.type = "product"
         self.product = product_form.save()
+        self.product.type = "product"
         # Materials
         product_form = Form(self.env["product.product"])
         product_form.name = "Part 1 Product"
-        product_form.type = "product"
         self.mat1 = product_form.save()
+        self.mat1.type = "product"
         product_form = Form(self.env["product.product"])
         product_form.name = "Part 2 Product"
-        product_form.type = "product"
         self.mat2 = product_form.save()
+        self.mat2.type = "product"
         # Bom
         bom_form = Form(self.env["mrp.bom"])
         bom_form.product_tmpl_id = self.product
