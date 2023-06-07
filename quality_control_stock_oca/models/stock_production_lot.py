@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 
 class StockProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     qc_inspections_ids = fields.One2many(
         comodel_name="qc.inspection",
