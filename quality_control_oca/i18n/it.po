@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-05-31 18:09+0000\n"
+"PO-Revision-Date: 2023-06-07 11:21+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -211,7 +211,7 @@ msgstr "Data"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__display_name
 msgid "Display Name"
-msgstr "Nome Visualizzato"
+msgstr "Nome visualizzato"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__draft
