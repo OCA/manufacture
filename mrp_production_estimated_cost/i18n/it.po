@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2023-04-18 17:34+0000\n"
+"PO-Revision-Date: 2023-06-07 12:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_estimated_cost
 #: code:addons/mrp_production_estimated_cost/models/mrp_production.py:188
@@ -119,7 +119,7 @@ msgstr "Creato il"
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: mrp_production_estimated_cost
 #: view:account.analytic.line:mrp_production_estimated_cost.estimated_cost_list_view
