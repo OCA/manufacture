@@ -33,13 +33,9 @@
         >[('lot_id', '=', active_id), ('state', '=', 'failed')]</field>
     </record>
     <record model="ir.ui.view" id="stock_lot_qc_view">
-        <field name="name">stock.production.lot.qc.view</field>
-        <field name="model">stock.production.lot</field>
+        <field name="name">stock.lot.qc.view</field>
+        <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
-        />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button
@@ -47,6 +43,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot)d"
                     icon="fa-list"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <field
                         name="created_inspections"
@@ -59,6 +56,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_done)d"
                     icon="fa-pencil"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <field name="done_inspections" widget="statinfo" />
                 </button>
@@ -67,6 +65,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_passed)d"
                     icon="fa-thumbs-o-up"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <field name="passed_inspections" widget="statinfo" />
                 </button>
@@ -75,8 +74,13 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_failed)d"
                     icon="fa-thumbs-o-down"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
-                    <field name="failed_inspections" widget="statinfo" />
+                    <field
+                        name="failed_inspections"
+                        widget="statinfo"
+                        groups="quality_control_oca.group_quality_control_user"
+                    />
                 </button>
             </div>
         </field>
