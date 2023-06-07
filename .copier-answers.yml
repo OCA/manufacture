@@ -14,8 +14,7 @@ include_wkhtmltopdf: false
 odoo_version: 16.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups:
-- quality_control_stock_oca
+rebel_module_groups: []
 repo_description: 'TODO: add repo description.'
 repo_name: manufacture
 repo_slug: manufacture

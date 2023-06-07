@@ -13,7 +13,7 @@ class QcInspection(models.Model):
         comodel_name="stock.picking", compute="_compute_picking", store=True
     )
     lot_id = fields.Many2one(
-        comodel_name="stock.production.lot", compute="_compute_lot", store=True
+        comodel_name="stock.lot", compute="_compute_lot", store=True
     )
 
     def object_selection_values(self):
@@ -22,7 +22,7 @@ class QcInspection(models.Model):
             [
                 ("stock.picking", "Picking List"),
                 ("stock.move", "Stock Move"),
-                ("stock.production.lot", "Lot/Serial Number"),
+                ("stock.lot", "Lot/Serial Number"),
             ]
         )
         return result
@@ -35,8 +35,6 @@ class QcInspection(models.Model):
                     inspection.picking_id = inspection.object_id.picking_id
                 elif inspection.object_id._name == "stock.picking":
                     inspection.picking_id = inspection.object_id
-                elif inspection.object_id._name == "stock.move.line":
-                    inspection.picking_id = inspection.object_id.picking_id
 
     @api.depends("object_id")
     def _compute_lot(self):
@@ -49,15 +47,13 @@ class QcInspection(models.Model):
 
         for inspection in self:
             if inspection.object_id:
-                if inspection.object_id._name == "stock.move.line":
-                    inspection.lot_id = inspection.object_id.lot_id
-                elif inspection.object_id._name == "stock.move":
+                if inspection.object_id._name == "stock.move":
                     inspection.lot_id = first(
                         move_lines.filtered(
                             lambda line: line.move_id == inspection.object_id
                         )
                     ).lot_id
-                elif inspection.object_id._name == "stock.production.lot":
+                elif inspection.object_id._name == "stock.lot":
                     inspection.lot_id = inspection.object_id
 
     @api.depends("object_id")
@@ -67,25 +63,18 @@ class QcInspection(models.Model):
         for inspection in self.filtered("object_id"):
             if inspection.object_id._name == "stock.move":
                 inspection.product_id = inspection.object_id.product_id
-            elif inspection.object_id._name == "stock.move.line":
-                inspection.product_id = inspection.object_id.product_id
-            elif inspection.object_id._name == "stock.production.lot":
+            elif inspection.object_id._name == "stock.lot":
                 inspection.product_id = inspection.object_id.product_id
         return res
 
     @api.onchange("object_id")
     def onchange_object_id(self):
-        if self.object_id:
-            if self.object_id._name == "stock.move":
-                self.qty = self.object_id.product_qty
-            elif self.object_id._name == "stock.move.line":
-                self.qty = self.object_id.product_qty
+        if self.object_id._name == "stock.move":
+            self.qty = self.object_id.product_qty
 
     def _prepare_inspection_header(self, object_ref, trigger_line):
         res = super()._prepare_inspection_header(object_ref, trigger_line)
         # Fill qty when coming from pack operations
-        if object_ref and object_ref._name == "stock.move.line":
-            res["qty"] = object_ref.product_qty
         if object_ref and object_ref._name == "stock.move":
             res["qty"] = object_ref.product_uom_qty
         return res
@@ -98,5 +87,5 @@ class QcInspectionLine(models.Model):
         comodel_name="stock.picking", related="inspection_id.picking_id", store=True
     )
     lot_id = fields.Many2one(
-        comodel_name="stock.production.lot", related="inspection_id.lot_id", store=True
+        comodel_name="stock.lot", related="inspection_id.lot_id", store=True
     )

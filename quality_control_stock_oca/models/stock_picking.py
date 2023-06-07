@@ -64,7 +64,7 @@ class StockPicking(models.Model):
             .sudo()
             .search([("picking_type_id", "=", self.picking_type_id.id)])
         )
-        for operation in self.move_lines:
+        for operation in self.move_ids:
             trigger_lines = set()
             for model in [
                 "qc.trigger.product_category_line",
