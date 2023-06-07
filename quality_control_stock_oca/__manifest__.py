@@ -5,7 +5,7 @@
 
 {
     "name": "Quality control - Stock (OCA)",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -16,6 +16,7 @@
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_production_lot_view.xml",
+        "views/qc_trigger_view.xml",
     ],
     "post_init_hook": "post_init_hook",
     "installable": True,
