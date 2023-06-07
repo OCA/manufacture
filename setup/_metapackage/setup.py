@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-mrp_bom_component_menu>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_location>=16.0dev,<16.1dev',
         'odoo-addon-mrp_multi_level>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_production_quant_manual_assign>=16.0dev,<16.1dev',
         'odoo-addon-mrp_sale_info>=16.0dev,<16.1dev',
         'odoo-addon-mrp_warehouse_calendar>=16.0dev,<16.1dev',
         'odoo-addon-quality_control_oca>=16.0dev,<16.1dev',
