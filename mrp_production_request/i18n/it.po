@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 03:20+0000\n"
-"PO-Revision-Date: 2023-06-07 17:08+0000\n"
+"PO-Revision-Date: 2023-06-08 12:13+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -225,7 +225,7 @@ msgstr "Ultimo aggiornamento di"
 #: field:mrp.production.request.create.mo,write_date:0
 #: field:mrp.production.request.create.mo.line,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_production_request
 #: field:mrp.production.request.create.mo.line,location_id:0
