@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-06-07 11:21+0000\n"
+"PO-Revision-Date: 2023-06-08 09:15+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -446,7 +446,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_uid
 msgid "Last Updated by"
-msgstr "Ultima modifica di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_date
@@ -461,7 +461,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_date
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_date
 msgid "Last Updated on"
-msgstr "Ultima modifica il"
+msgstr "Ultimo aggiornamento il"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
