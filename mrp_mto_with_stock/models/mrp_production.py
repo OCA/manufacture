@@ -4,7 +4,7 @@
 
 import copy
 
-from odoo import api, models
+from odoo import models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
@@ -17,7 +17,6 @@ class MrpProduction(models.Model):
         MTO/MTS method should apply."""
         return move.location_id in move.product_id.mrp_mts_mto_location_ids
 
-    @api.multi
     def action_assign(self):
         """Reserves available products to the production order but also creates
         procurements for more items if we cannot reserve enough (MTO with
@@ -54,7 +53,6 @@ class MrpProduction(models.Model):
                     )
         return res
 
-    @api.multi
     def _adjust_procure_method(self):
         """When configured as MTO/MTS manufacturing location, if there is
         stock available unreserved, use it and procure the remaining."""
@@ -103,7 +101,6 @@ class MrpProduction(models.Model):
                 move._action_assign()
         return res
 
-    @api.multi
     def run_procurement(self, move, qty, mto_with_no_move_dest_id):
         self.ensure_one()
         errors = []
@@ -130,7 +127,6 @@ class MrpProduction(models.Model):
             raise UserError("\n".join(errors))
         return True
 
-    @api.multi
     def get_mto_qty_to_procure(self, move):
         self.ensure_one()
         precision = self.env["decimal.precision"].precision_get(
