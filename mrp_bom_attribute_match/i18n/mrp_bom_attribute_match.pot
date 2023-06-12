@@ -39,6 +39,14 @@ msgid "Component (product template)"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Component template must be different from BOM product template. Please check"
+" BOM: %s BOM Line: %s"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
