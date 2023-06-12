@@ -117,7 +117,7 @@ Contributors
 
 * Ooops404 <https://ooops404.com>
 
-  * Ilyas
+  * Ilyas <irazor147@gmail.com>
 
 * `Camptocamp <https://www.camptocamp.com>`_
 
@@ -135,6 +135,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-ilyasProgrammer| image:: https://github.com/ilyasProgrammer.png?size=40px
+    :target: https://github.com/ilyasProgrammer
+    :alt: ilyasProgrammer
+.. |maintainer-ivantodorovich| image:: https://github.com/ivantodorovich.png?size=40px
+    :target: https://github.com/ivantodorovich
+    :alt: ivantodorovich
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-ilyasProgrammer| |maintainer-ivantodorovich| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_bom_attribute_match>`_ project on GitHub.
 
