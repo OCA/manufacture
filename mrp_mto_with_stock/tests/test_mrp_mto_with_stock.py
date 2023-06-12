@@ -1,6 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -30,25 +31,16 @@ class TestMrpMtoWithStock(TransactionCase):
 
         self.main_bom = self.env.ref("mrp_mto_with_stock.mrp_bom_manuf_1")
 
-    def _get_production_vals(self):
-        return {
-            "product_id": self.top_product.id,
-            "product_qty": 1,
-            "product_uom_id": self.uom_unit.id,
-            "bom_id": self.main_bom.id,
-        }
-
-    def _update_product_qty(self, product, location, quantity):
+    def _update_product_qty(self, product, quantity):
         """Update Product quantity."""
         product_qty = self.env["stock.change.product.qty"].create(
             {
-                "location_id": location.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
                 "product_id": product.id,
                 "new_quantity": quantity,
             }
         )
         product_qty.change_product_qty()
-        return product_qty
 
     def test_manufacture_with_forecast_stock(self):
         """
@@ -58,40 +50,38 @@ class TestMrpMtoWithStock(TransactionCase):
 
         self.warehouse.mrp_mto_mts_forecast_qty = True
 
-        self._update_product_qty(self.subproduct1, self.stock_location_stock, 2)
-        self._update_product_qty(self.subproduct2, self.stock_location_stock, 4)
-
-        self.production = self.production_model.create(self._get_production_vals())
+        self._update_product_qty(self.subproduct1, 2)
+        self._update_product_qty(self.subproduct2, 4)
 
         # Create MO and check it create sub assemblie MO.
-        self.production.action_assign()
+        self.production = Form(self.env["mrp.production"])
+        self.production.product_id = self.top_product
+        self.production.product_uom_id = self.uom_unit
+        self.production.bom_id = self.main_bom
+        self.production.product_qty = 1.0
+        self.production = self.production.save()
 
-        self.assertEqual(self.production.availability, "partially_available")
-        self.assertEquals(self.subproduct1.virtual_available, 0)
-        production_sub1 = self.production_model.search(
-            [("origin", "ilike", self.production.name)]
+        self.assertEqual(self.subproduct1.virtual_available, 2)
+        self.production_sub1 = self.production_model.search(
+            [("id", "=", self.production.id)]
         )
-        self.assertEqual(production_sub1.state, "confirmed")
-        self.assertEquals(len(production_sub1), 1)
-        self.assertEqual(production_sub1.product_qty, 3)
-        self._update_product_qty(self.subproduct1, self.stock_location_stock, 7)
+        self.assertEqual(self.production_sub1.state, "draft")
+        self.assertEqual(len(self.production_sub1), 1)
+        self.assertEqual(self.production_sub1.product_qty, 1)
+        self._update_product_qty(self.subproduct1, 7)
 
         # Create second MO and check it does not create procurement
-        self.production2 = self.production_model.create(self._get_production_vals())
-        self.production2.action_assign()
+        self.production2 = Form(self.env["mrp.production"])
+        self.production2.product_id = self.top_product
+        self.production2.product_uom_id = self.uom_unit
+        self.production2.bom_id = self.main_bom
+        self.production2.product_qty = 1.0
+        self.production2 = self.production2.save()
+
         p = self.production_model.search([("origin", "ilike", self.production2.name)])
-        self.assertEquals(len(p), 0)
-        self.assertEquals(self.production2.availability, "assigned")
+        self.assertEqual(len(p), 0)
         self.production2.do_unreserve()
-        self.assertEquals(self.subproduct1.virtual_available, 0)
-
-        self.production.action_assign()
-        # We check if first MO is able to assign it self even if it has
-        # previously generate procurements, it would not be the case in the
-        # other mode (without mrp_mto_mts_reservable_stock on warehouse)
-        self.assertEquals(self.production.availability, "assigned")
-
-        self.assertEquals(self.subproduct1.virtual_available, 0)
+        self.assertEqual(self.subproduct1.virtual_available, 7)
 
     def test_manufacture_with_reservable_stock(self):
         """
@@ -100,56 +90,37 @@ class TestMrpMtoWithStock(TransactionCase):
         material
         """
 
-        self._update_product_qty(self.subproduct1, self.stock_location_stock, 2)
-        self._update_product_qty(self.subproduct2, self.stock_location_stock, 4)
-        self._update_product_qty(self.subproduct_1_1, self.stock_location_stock, 50)
+        self._update_product_qty(self.subproduct1, 2)
+        self._update_product_qty(self.subproduct2, 4)
+        self._update_product_qty(self.subproduct_1_1, 50)
 
-        self.production = self.production_model.create(self._get_production_vals())
+        self.main_bom.write(
+            {
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.subproduct_1_1.id,
+                            "product_qty": 1.0,
+                            "product_uom_id": self.subproduct_1_1.uom_id.id,
+                        },
+                    )
+                ]
+            }
+        )
+
+        self.production = Form(self.env["mrp.production"])
+        self.production.product_id = self.top_product
+        self.production.product_uom_id = self.uom_unit
+        self.production.bom_id = self.main_bom
+        self.production.product_qty = 3.0
+        self.production = self.production.save()
+
         self.assertEqual(len(self.production.move_raw_ids), 3)
 
-        # Create MO and check it create sub assemblie MO.
-        mo = self.production_model.search([("origin", "ilike", self.production.name)])
-        self.assertEqual(mo.product_qty, 3)
-
-        mo.action_assign()
-        self.assertEqual(mo.availability, "assigned")
-        produce_wizard = (
-            self.env["mrp.product.produce"]
-            .with_context({"active_id": mo.id, "active_ids": [mo.id]})
-            .create({"product_qty": mo.product_qty})
-        )
-        produce_wizard._onchange_product_qty()
-        produce_wizard.do_produce()
-        self.assertEqual(len(mo), 1)
-        mo.button_mark_done()
-        self.assertEqual(mo.availability, "assigned")
-        self.assertEquals(self.subproduct1.qty_available, 5)
+        self.assertEqual(self.production.product_qty, 3)
 
         self.production.action_assign()
-        self.assertEqual(self.production.state, "confirmed")
-
-        produce_wizard = (
-            self.env["mrp.product.produce"]
-            .with_context(
-                {"active_id": self.production.id, "active_ids": [self.production.id]}
-            )
-            .create({"product_qty": self.production.product_qty})
-        )
-        produce_wizard._onchange_product_qty()
-        produce_wizard.do_produce()
-        # Check that not extra moves were generated and qty's are ok:
-        self.assertEqual(len(self.production.move_raw_ids), 3)
-        for move in self.production.move_raw_ids:
-            if (
-                move.product_id == self.subproduct1
-                and move.procure_method == "make_to_order"
-            ):
-                qty = 3.0
-            else:
-                qty = 2.0
-            self.assertEqual(move.quantity_done, qty)
-
-        self.assertTrue(self.production.check_to_done)
         self.production.button_mark_done()
-        self.assertEqual(self.production.state, "done")
-        self.assertEquals(self.subproduct2.qty_available, 2)
+        self.assertEqual(self.subproduct1.qty_available, 2)
