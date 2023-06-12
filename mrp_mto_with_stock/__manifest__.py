@@ -6,7 +6,7 @@
 {
     "name": "MRP MTO with Stock",
     "summary": "Fix Manufacturing orders to pull from stock until qty is "
-               "zero, and then create a procurement for them.",
+    "zero, and then create a procurement for them.",
     "author": "John Walsh, Eficent, Odoo Community Association (OCA)",
     "maintainer": "sergiocorato",
     "website": "https://github.com/OCA/manufacture",
@@ -21,8 +21,8 @@
         "stock_available_unreserved",
     ],
     "data": [
-        'views/product_template_view.xml',
-        'views/stock_warehouse.xml',
+        "views/product_template_view.xml",
+        "views/stock_warehouse.xml",
     ],
-    "demo": ['demo/product.xml'],
+    "demo": ["demo/product.xml"],
 }
