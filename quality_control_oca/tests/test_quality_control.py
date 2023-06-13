@@ -203,6 +203,16 @@ class TestQualityControl(TransactionCase):
             {"object_id": "%s,%d" % (self.product._name, self.product.id)}
         )
         self.assertEqual(self.inspection1.product_id, self.product)
+        self.assertEqual(self.product.created_inspections, 1)
+        action_prod = self.product._action_qc_inspection_per_product()
+        self.assertEqual(action_prod["domain"][0][2][0], self.product.id)
+        self.assertEqual(
+            action_prod["context"]["default_object_id"],
+            "product.product,%s" % self.product.id,
+        )
+        self.assertEqual(self.product.product_tmpl_id.created_inspections, 1)
+        action_tmpl = self.product.product_tmpl_id.button_qc_inspection_per_product()
+        self.assertTrue(self.product.id in action_tmpl["domain"][0][2])
 
     def test_qc_test_question_constraints(self):
         with self.assertRaises(exceptions.ValidationError):
