@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-06-08 09:15+0000\n"
+"PO-Revision-Date: 2023-06-15 10:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -350,7 +350,7 @@ msgstr "Note interne"
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection__message_is_follower
 #: model:ir.model.fields,field_description:quality_control.field_qc_test__message_is_follower
 msgid "Is Follower"
-msgstr "Sta seguendo"
+msgstr "Segue"
 
 #. module: quality_control
 #: model:ir.model.fields,field_description:quality_control.field_qc_inspection____last_update
