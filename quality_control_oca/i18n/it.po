@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-06-15 09:10+0000\n"
+"PO-Revision-Date: 2023-06-16 13:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -502,7 +502,7 @@ msgstr "Massimo valore valido per una domanda quantitativa."
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "Message Delivery error"
-msgstr "Messaggio errore consegna"
+msgstr "Errore di consegna messaggio"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
