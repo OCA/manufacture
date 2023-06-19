@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form - mrp_bom_tier_validation</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button
+                        name="button_to_approve"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        string="To Approve"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_approve"
+                        attrs="{'invisible': [('state', '!=', 'to_approve')]}"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_cancel"
+                        states="draft,to_approve,approve"
+                        string="Cancel"
+                        type="object"
+                    />
+                    <button
+                        name="button_draft"
+                        states="cancel"
+                        string="Reset to Draft"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,to_approve,approve"
+                    />
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_uom_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='operation_ids']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type','not in',('normal','phantom'))], 'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='byproduct_ids']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <field name="name">mrp.bom.tree - mrp_bom_tier_validation</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="state" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_bom_filter" model="ir.ui.view">
+        <field name="name">mrp.bom.select - mrp_bom_tier_validation</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <filter name="phantom" position="after">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['cancel', 'approve'])]"
+                    help="My BoM to review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="BoMs validated and ready to be confirmed"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
