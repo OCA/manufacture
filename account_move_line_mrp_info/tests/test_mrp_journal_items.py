@@ -1,8 +1,10 @@
 from odoo.tests import Form
 
 from odoo.addons.mrp.tests.common import TestMrpCommon
+from odoo.tests import tagged
 
 
+@tagged('post_install', '-at_install')
 class TestMrpOrder(TestMrpCommon):
     def setUp(self):
         super(TestMrpOrder, self).setUp()
@@ -12,7 +14,7 @@ class TestMrpOrder(TestMrpCommon):
         )
 
     def test_mrp_with_journal_items(self):
-        """This test creates a Manufacturing orderand then check if the
+        """This test creates a Manufacturing order and then checks if the
         Journal Items button links to the journal items of the order.
         """
         journal_items_before_production = self.env["account.move.line"].search([]).ids
@@ -77,7 +79,7 @@ class TestMrpOrder(TestMrpCommon):
             "You should have as domain the ids of the journal items",
         )
 
-
+@tagged('post_install', '-at_install')
 class TestUnbuild(TestMrpCommon):
     def setUp(self):
         super(TestUnbuild, self).setUp()
