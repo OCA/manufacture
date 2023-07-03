@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2023-06-07 17:08+0000\n"
+"PO-Revision-Date: 2023-07-03 14:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -55,7 +55,7 @@ msgstr "Attivo"
 #. module: mrp_production_estimated_cost
 #: model:ir.model,name:mrp_production_estimated_cost.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Riga Analitica"
+msgstr "Riga analitica"
 
 #. module: mrp_production_estimated_cost
 #: field:wiz.create.virtual.mo,analytic_account_id:0
