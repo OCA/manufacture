@@ -47,11 +47,6 @@ msgid "Click to add a component to a bill of material."
 msgstr "Klicken Sie hier, um eine Komponente zur Stückliste hinzuzufügen."
 
 #. module: mrp_bom_component_menu
-#: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_tree_view
-msgid "Components"
-msgstr ""
-
-#. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Default Unit of Measure"
 msgstr ""
@@ -64,11 +59,6 @@ msgstr ""
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Product"
-msgstr ""
-
-#. module: mrp_bom_component_menu
-#: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
-msgid "Routings"
 msgstr ""
 
 #. module: mrp_bom_component_menu
