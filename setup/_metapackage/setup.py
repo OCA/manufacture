@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo14-addon-mrp_multi_level_estimate',
         'odoo14-addon-mrp_planned_order_matrix',
         'odoo14-addon-mrp_production_grouped_by_product',
+        'odoo14-addon-mrp_production_note',
         'odoo14-addon-mrp_production_picking_type_from_route',
         'odoo14-addon-mrp_production_putaway_strategy',
         'odoo14-addon-mrp_production_quant_manual_assign',
