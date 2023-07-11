@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-mrp_bom_component_menu>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_location>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_bom_tracking>=16.0dev,<16.1dev',
         'odoo-addon-mrp_multi_level>=16.0dev,<16.1dev',
         'odoo-addon-mrp_production_quant_manual_assign>=16.0dev,<16.1dev',
         'odoo-addon-mrp_restrict_lot>=16.0dev,<16.1dev',
