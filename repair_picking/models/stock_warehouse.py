@@ -115,7 +115,7 @@ class StockWarehouse(models.Model):
                         "sequence_code": "RCR",
                         "warehouse_id": warehouse.id,
                         "default_location_src_id": repair_location_id,
-                        "default_location_dest_id": warehouse.lot_stock_id.id,
+                        "default_location_dest_id": warehouse.view_location_id.id,
                         "company_id": warehouse.company_id.id,
                     }
                 )
@@ -145,7 +145,7 @@ class StockWarehouse(models.Model):
                         "route_id": route.id,
                         "location_src_id": warehouse.lot_stock_id.id,
                         "location_id": warehouse.repair_location_id.id
-                        or warehouse.lot_stock_id.id,
+                        or warehouse.view_location_id.id,
                         "action": "pull",
                         "company_id": warehouse.company_id.id,
                         "warehouse_id": warehouse.id,
@@ -172,8 +172,8 @@ class StockWarehouse(models.Model):
                         "picking_type_id": warehouse.remove_c_type_id.id,
                         "route_id": warehouse.repair_route_id.id,
                         "location_src_id": warehouse.repair_location_id.id
-                        or warehouse.lot_stock_id.id,
-                        "location_id": warehouse.lot_stock_id.id,
+                        or warehouse.view_location_id.id,
+                        "location_id": warehouse.view_location_id.id,
                         "action": "pull",
                         "company_id": warehouse.company_id.id,
                         "warehouse_id": warehouse.id,

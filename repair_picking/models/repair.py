@@ -60,15 +60,15 @@ class RepairOrder(models.Model):
                 picking.action_cancel()
         return res
 
-    def _action_launch_stock_rule(self, picking_type_id, repair_lines):
+    def _action_launch_stock_rule(self, repair_lines):
         for line in repair_lines:
-            self._run_procurement_repair(line, picking_type_id)
+            self._run_procurement_repair(line)
         return True
 
-    def _run_procurement_repair(self, line, picking_type_id):
+    def _run_procurement_repair(self, line):
         procurements = []
         errors = []
-        procurement = self._prepare_procurement_repair(line, picking_type_id)
+        procurement = self._prepare_procurement_repair(line)
         procurements.append(procurement)
         try:
             self.env["procurement.group"].run(procurements)
@@ -79,7 +79,7 @@ class RepairOrder(models.Model):
         return True
 
     @api.model
-    def _get_procurement_data_repair(self, line, picking_type_id):
+    def _get_procurement_data_repair(self, line):
         warehouse = self.location_id.get_warehouse()
         if not self.procurement_group_id:
             group_id = self.env["procurement.group"].create({"name": self.name})
@@ -95,20 +95,23 @@ class RepairOrder(models.Model):
             "company_id": self.company_id,
             "warehouse_id": warehouse,
             "repair_line_id": line.id,
-            "route_ids": warehouse.repair_route_id,
         }
         if line.lot_id:
             procurement_data["lot_id"] = line.lot_id.id
+        if line.type == "remove":
+            procurement_data["source_repair_location_id"] = line.repair_id.location_id.id
         return procurement_data
 
     @api.model
-    def _prepare_procurement_repair(self, line, picking_type_id):
-        values = self._get_procurement_data_repair(line, picking_type_id)
+    def _prepare_procurement_repair(self, line):
+        values = self._get_procurement_data_repair(line)
+        warehouse = self.location_id.get_warehouse()
+        location = self.location_id if line.type == 'add' else warehouse.view_location_id
         procurement = self.env["procurement.group"].Procurement(
             line.product_id,
             line.product_uom_qty,
             line.product_uom,
-            picking_type_id.default_location_dest_id,
+            location,
             values.get("origin"),
             values.get("origin"),
             self.company_id,
@@ -166,12 +169,10 @@ class RepairOrder(models.Model):
             warehouse = repair.location_id.get_warehouse()
             if warehouse.repair_steps in ["2_steps", "3_steps"]:
                 repair._action_launch_stock_rule(
-                    warehouse.add_c_type_id,
                     repair.operations.filtered(lambda l: l.type == "add"),
                 )
             if warehouse.repair_steps == "3_steps":
                 repair._action_launch_stock_rule(
-                    warehouse.remove_c_type_id,
                     repair.operations.filtered(lambda l: l.type == "remove"),
                 )
             repair._update_stock_moves_and_picking_state()
