@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="track_bom_line_template">
+        <div>
+            <strong>The component quantities or UoMs have been updated.</strong>
+            <ul>
+                <t t-foreach="lines" t-as="line">
+                    <li><t t-esc="line.product_id.display_name" />:</li>
+                    Product Quantity: <t t-esc="line.product_qty" /><t
+                        t-if='line.product_qty != product_qty'
+                    > -&gt; <t t-esc="float(product_qty)" /></t><br />
+                    Product Unit of Measure: <t
+                        t-esc="line.product_uom_id.display_name"
+                    /><t t-if='line.product_uom_id != product_uom_id'> -&gt; <t
+                            t-esc="product_uom_id.display_name"
+                        /></t><br />
+                </t>
+            </ul>
+        </div>
+    </template>
+    <template id="track_bom_template">
+        <div>
+            <strong>The components have changed.</strong>
+            <ul>
+                <t t-foreach="lines" t-as="line">
+                    <li><t t-esc="line.product_id.display_name" />: <t
+                            t-esc="mode"
+                        /> component<br /></li>
+                    Product Quantity: <t t-esc="line.product_qty" /><br />
+                    Product Unit of Measure: <t
+                        t-esc="line.product_uom_id.display_name"
+                    /><br />
+                </t>
+            </ul>
+        </div>
+    </template>
+    <template id="track_bom_template_2">
+        <div>
+            <strong>The components have changed.</strong>
+            <ul>
+                <t t-foreach="lines" t-as="line">
+                    <li><t t-esc="line.product_id.display_name" />:
+                Removed component<br /></li>
+                    <li><t t-esc="product_id.display_name" />:
+                New component<br /></li>
+                </t>
+            </ul>
+        </div>
+    </template>
+</odoo>
