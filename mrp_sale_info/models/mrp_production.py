@@ -12,6 +12,7 @@ class MrpProduction(models.Model):
     source_procurement_group_id = fields.Many2one(
         comodel_name="procurement.group",
         readonly=True,
+        index=True,
     )
     sale_id = fields.Many2one(
         comodel_name="sale.order",
@@ -19,6 +20,7 @@ class MrpProduction(models.Model):
         readonly=True,
         store=True,
         related="source_procurement_group_id.sale_id",
+        index=True,
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
