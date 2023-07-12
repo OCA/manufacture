@@ -23,6 +23,7 @@
                             attrs="{'readonly': ['|',('tracking', '=', 'serial'),('product_id', '=', False)]}"
                         />
                         <field name="operation_id" />
+                        <field name="picking_type_id" invisible="1" />
                         <field name="tracking" invisible="1" />
                     </group>
                     <group

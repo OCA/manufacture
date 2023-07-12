@@ -6,6 +6,7 @@ from odoo import fields, models
 class MrpComponentOperation(models.Model):
     _name = "mrp.component.operation"
     _description = "Component Operation"
+    _order = "sequence,id"
 
     name = fields.Char(help="Component Operation Reference", required=True)
 
@@ -57,4 +58,15 @@ class MrpComponentOperation(models.Model):
         ],
         default="no",
         required=True,
+    )
+
+    picking_type_id = fields.Many2one(
+        "stock.picking.type",
+        "Operation Type",
+        domain="[('code', '=', 'mrp_operation')]",
+    )
+
+    sequence = fields.Integer(
+        string="Sequence",
+        help="Gives the sequence order when displaying the list of component operations",
     )
