@@ -9,6 +9,9 @@
                     <h1>
                         <field name="name" string="Reference" />
                     </h1>
+                    <group name="picking_type" string="Operation Type">
+                        <field name="picking_type_id" />
+                    </group>
                     <group name="operations" string="Operations">
                         <field name="outgoing_operation" />
                         <field name="incoming_operation" />
@@ -39,8 +42,23 @@
                             attrs="{'invisible': [('outgoing_operation', '!=', 'scrap')], 'required': [('outgoing_operation', '=', 'scrap')]}"
                         />
                     </group>
+
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_mrp_component_operation_tree" model="ir.ui.view">
+        <field name="name">view_mrp_component_operation_tree</field>
+        <field name="model">mrp.component.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" string="Reference" />
+                <field name="picking_type_id" />
+                <field name="outgoing_operation" />
+                <field name="incoming_operation" />
+            </tree>
         </field>
     </record>
 

@@ -20,6 +20,7 @@ class MrpProduction(models.Model):
                 "default_mo_id": self.id,
                 "product_ids": self.move_raw_ids.move_line_ids.product_id.mapped("id"),
                 "lot_ids": self.move_raw_ids.move_line_ids.lot_id.mapped("id"),
+                "default_picking_type_id": self.picking_type_id.id,
             },
             "target": "new",
         }

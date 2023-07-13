@@ -23,7 +23,14 @@ class MrpComponentOperate(models.Model):
 
     mo_id = fields.Many2one("mrp.production", ondelete="cascade", required=True)
 
-    operation_id = fields.Many2one("mrp.component.operation", required=True)
+    operation_id = fields.Many2one(
+        "mrp.component.operation",
+        required=True,
+        domain="["
+        "'|',"
+        "('picking_type_id', '=', picking_type_id), "
+        "('picking_type_id', '=', False)]",
+    )
 
     incoming_operation = fields.Selection(
         related="operation_id.incoming_operation",
@@ -33,6 +40,11 @@ class MrpComponentOperate(models.Model):
     outgoing_operation = fields.Selection(
         related="operation_id.outgoing_operation",
         required=True,
+    )
+
+    picking_type_id = fields.Many2one(
+        "stock.picking.type",
+        "Operation Type",
     )
 
     @api.onchange("operation_id")
