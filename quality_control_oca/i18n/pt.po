@@ -588,8 +588,8 @@ msgstr "Número de erro"
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensagens que requerem uma ação"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
@@ -1118,6 +1118,9 @@ msgstr "Deve fornecer uma resposta para as questões qualitativas."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensagens que requerem uma ação"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canais)"
