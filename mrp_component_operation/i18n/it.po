@@ -86,6 +86,12 @@ msgid "Ensure the traceability of a storable product in your warehouse."
 msgstr "Assicura la tracciabilità di un prodotto stoccabile nel magazzino."
 
 #. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__sequence
+msgid ""
+"Gives the sequence order when displaying the list of component operations"
+msgstr ""
+
+#. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__id
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__id
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_production__id
@@ -188,6 +194,13 @@ msgid "Operation"
 msgstr "Operazione"
 
 #. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__picking_type_id
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__picking_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+msgid "Operation Type"
+msgstr ""
+
+#. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Operations"
@@ -226,6 +239,7 @@ msgstr "Quantità"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_tree
 msgid "Reference"
 msgstr "Riferimento"
 
@@ -238,6 +252,11 @@ msgstr "Ubicazione scarti"
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route__mo_component_selectable
 msgid "Selectable on MO Components"
 msgstr "Selezionabile nei componenti dell'OP"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__sequence
+msgid "Sequence"
+msgstr ""
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__source_location_id
