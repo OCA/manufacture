@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-15 19:35+0000\n"
+"PO-Revision-Date: 2023-07-17 17:14+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
@@ -29,7 +29,7 @@ msgstr "Ora massima raggruppamento OP (UTC)"
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
 msgid "Picking Type"
-msgstr "Tipo prelievo"
+msgstr "Tipologia prelievo"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
