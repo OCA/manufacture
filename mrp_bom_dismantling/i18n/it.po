@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-17 03:22+0000\n"
-"PO-Revision-Date: 2023-05-25 12:12+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-07-17 17:16+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-9-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -190,7 +190,7 @@ msgstr ""
 #. module: mrp_bom_dismantling
 #: model:ir.model,name:mrp_bom_dismantling.model_product_template
 msgid "Product Template"
-msgstr "Template Prodotto"
+msgstr "Modello prodotto"
 
 #. module: mrp_bom_dismantling
 #: model:ir.model.fields,field_description:mrp_bom_dismantling.field_mrp_product_produce_move_lot_ids
