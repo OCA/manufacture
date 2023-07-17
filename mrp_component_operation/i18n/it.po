@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-17 03:52+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-07-17 08:10+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
@@ -90,6 +90,8 @@ msgstr "Assicura la tracciabilità di un prodotto stoccabile nel magazzino."
 msgid ""
 "Gives the sequence order when displaying the list of component operations"
 msgstr ""
+"Fornisce l'ordinamento quando viene visualizzata la lista operazioni "
+"componente"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__id
@@ -198,7 +200,7 @@ msgstr "Operazione"
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__picking_type_id
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
 msgid "Operation Type"
-msgstr ""
+msgstr "Tipo di operazione"
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
@@ -256,7 +258,7 @@ msgstr "Selezionabile nei componenti dell'OP"
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequenza"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__source_location_id
