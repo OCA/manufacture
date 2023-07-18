@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-01 13:44+0000\n"
+"PO-Revision-Date: 2023-07-18 14:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom
@@ -111,7 +111,7 @@ msgstr "Questo operatore non è supportato"
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #, python-format
 msgid "Value should be True or False (not %s)"
-msgstr "Valore deve essere True o False (non %s)"
+msgstr "Il valore deve essere True o False (non %s)"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_form_view
