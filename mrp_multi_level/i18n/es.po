@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-08 09:10+0000\n"
+"PO-Revision-Date: 2023-07-20 11:12+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -334,7 +334,7 @@ msgstr "Última Modificación en"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__write_uid
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__write_uid
 msgid "Last Updated by"
-msgstr "Última Modificación por"
+msgstr "Última actualización por"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__write_date
