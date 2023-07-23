@@ -49,8 +49,8 @@ msgstr "Regola di giacenza"
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
 msgid ""
-"The maximum hour (between 0 and 23) for considering new manufacturing orders"
-" inside the same interval period, and thus being grouped on the same MO. "
+"The maximum hour (between 0 and 23) for considering new manufacturing orders "
+"inside the same interval period, and thus being grouped on the same MO. "
 "IMPORTANT: The hour should be expressed in UTC."
 msgstr ""
 "L'ora massima (tra le 00 e le 23) per considerare nuovi ordini di produzione "
