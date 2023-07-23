@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-23 08:10+0000\n"
+"PO-Revision-Date: 2023-07-23 11:08+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -34,28 +34,33 @@ msgid ""
 "                used to create master bills of materials.  Use this menu to\n"
 "                search in which BoM a specific component is used."
 msgstr ""
+"Los componentes de listas de materiales son componentes y subproductos\n"
+"                                   utilizados para crear listas maestras de "
+"materiales.  Utilice este menú para\n"
+"                                   buscar en qué lista de materiales se "
+"utiliza un componente específico."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
 msgid "Click to add a component to a bill of material."
-msgstr ""
+msgstr "Haga clic para añadir un componente a una lista de materiales."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Default Unit of Measure"
-msgstr ""
+msgstr "Unidad de medida por defecto"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupado por ..."
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Search Bill Of Material Components"
-msgstr ""
+msgstr "Buscar componentes de la lista de materiales"
