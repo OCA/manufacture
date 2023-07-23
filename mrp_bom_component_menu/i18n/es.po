@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-07-23 08:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Bill Of Material"
-msgstr ""
+msgstr "Factura de material"
 
 #. module: mrp_bom_component_menu
 #: model:ir.actions.act_window,name:mrp_bom_component_menu.mrp_bom_form_action2
 #: model:ir.ui.menu,name:mrp_bom_component_menu.menu_mrp_bom_form_action2
 msgid "Bill of Material Components"
-msgstr ""
+msgstr "factura de los componentes de los materiales"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
