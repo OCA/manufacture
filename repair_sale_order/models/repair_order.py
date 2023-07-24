@@ -44,6 +44,8 @@ class RepairOrder(models.Model):
 
     def _get_sale_order_data(self):
         self.ensure_one()
+        addresses = self.partner_id.address_get(["delivery"])
+        self.address_id = addresses["delivery"]
         res = {
             "partner_id": self.partner_id.id,
             "partner_shipping_id": self.address_id.id,
@@ -62,7 +64,7 @@ class RepairOrder(models.Model):
             sale_order_data = rec._get_sale_order_data()
             sale_order = order_model.create(sale_order_data)
             orders |= sale_order
-            sale_order.onchange_partner_id()
+            self.onchange_partner_id()
             for line in rec.operations:
                 sale_order_line = order_line_model.create(
                     line._get_sale_line_data(sale_order)
