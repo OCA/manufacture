@@ -99,14 +99,20 @@ class RepairOrder(models.Model):
         if line.lot_id:
             procurement_data["lot_id"] = line.lot_id.id
         if line.type == "remove":
-            procurement_data["source_repair_location_id"] = line.repair_id.location_id.id
+            procurement_data[
+                "source_repair_location_id"
+            ] = line.repair_id.location_id.id
         return procurement_data
 
     @api.model
     def _prepare_procurement_repair(self, line):
         values = self._get_procurement_data_repair(line)
         warehouse = self.location_id.get_warehouse()
-        location = self.location_id if line.type == 'add' else warehouse.view_location_id
+        location = (
+            self.location_id
+            if line.type == "add"
+            else warehouse.remove_c_type_id.default_location_dest_id
+        )
         procurement = self.env["procurement.group"].Procurement(
             line.product_id,
             line.product_uom_qty,
@@ -121,17 +127,15 @@ class RepairOrder(models.Model):
 
     def _update_stock_moves_and_picking_state(self):
         for repair in self:
-            warehouse = repair.location_id.get_warehouse()
             for picking in repair.picking_ids:
-                if picking.picking_type_id.id == warehouse.add_c_type_id.id:
+                if picking.location_dest_id.id == self.location_id.id:
                     for move_line in picking.move_ids_without_package:
                         stock_moves = repair.stock_move_ids.filtered(
                             lambda m: m.product_id.id
                             == repair.operations.filtered(
                                 lambda l: l.type == "add"
                             ).product_id.id
-                            and m.location_id.id
-                            == warehouse.add_c_type_id.default_location_dest_id.id
+                            and m.location_id.id == self.location_id.id
                         )
                         if stock_moves:
                             stock_moves[0].write(
@@ -140,15 +144,14 @@ class RepairOrder(models.Model):
                                     "state": "waiting",
                                 }
                             )
-                if picking.picking_type_id.id == warehouse.remove_c_type_id.id:
+                if picking.location_id.id == self.location_id.id:
                     for move_line in picking.move_ids_without_package:
                         stock_moves = repair.stock_move_ids.filtered(
                             lambda m: m.product_id.id
                             == repair.operations.filtered(
                                 lambda l: l.type == "remove"
                             ).product_id.id
-                            and m.location_dest_id.id
-                            == warehouse.remove_c_type_id.default_location_src_id.id
+                            and m.location_dest_id.id == self.location_id.id
                         )
                         if stock_moves:
                             move_line.write(
@@ -222,20 +225,5 @@ class RepairLine(models.Model):
     def create(self, vals):
         line = super().create(vals)
         if line.repair_id.state in ["confirmed", "under_repair", "ready"]:
-            line.update_related_pickings()
+            line.repair_id._action_launch_stock_rule(line)
         return line
-
-    def update_related_pickings(self):
-        for line in self:
-            if line.type == "add":
-                warehouse = line.repair_id.location_id.get_warehouse()
-                picking_type_id = warehouse.add_c_type_id
-            elif line.type == "remove":
-                warehouse = line.repair_id.location_id.get_warehouse()
-                picking_type_id = (
-                    warehouse.remove_c_type_id
-                    if warehouse.repair_steps == "3_steps"
-                    else None
-                )
-            if picking_type_id:
-                line.repair_id._action_launch_stock_rule(picking_type_id, line)
