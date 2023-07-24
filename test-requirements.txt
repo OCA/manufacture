@@ -1,0 +1,1 @@
+odoo-addon-repair_type@git+https://github.com/ForgeFlow/repair.git@16.0-mig-repair_type#subdirectory=setup/repair_type
