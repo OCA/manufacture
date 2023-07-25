@@ -1,8 +1,9 @@
 from odoo.fields import Date
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
-class TestMrpRepairReinvoice(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class TestMrpRepairReinvoice(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestMrpRepairReinvoice, cls).setUpClass()

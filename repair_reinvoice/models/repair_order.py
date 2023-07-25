@@ -52,6 +52,7 @@ class RepairOrder(models.Model):
         for repair_id in repair_dict:
             repair = self.env["repair.order"].browse(repair_id)
             repair.invoice_ids += repair.invoice_id
+        return
 
     def action_created_invoices(self):
         self.ensure_one()
