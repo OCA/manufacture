@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="report_mrpbomstructure_location" inherit_id="mrp.report_mrp_bom">
-        <xpath expr="//thead/tr/th[1]" position="after">
+        <xpath expr="//thead/tr/th[last()-1]" position="after">
             <th
                 t-if="data['bom'].location_id"
                 class="o_mrp_bom_cost text-right"
                 title="Location of the product"
             >Location</th>
         </xpath>
-        <xpath expr="//tbody/tr/td[1]" position="after">
+        <xpath expr="//tbody/tr/td[last()-1]" position="after">
             <td class="text-end" t-esc="data['bom'].location_id.complete_name" />
         </xpath>
-        <xpath expr="//td[@name='td_mrp_bom_f']" position="after">
+        <xpath expr="//tbody/tr[last()]/td[last()-1]" position="after">
             <td t-if="data['bom'].location_id" />
         </xpath>
-        <xpath expr="//td[@name='td_mrp_bom_byproducts_f']" position="after">
+        <xpath expr="//tbody/t[last()]/tr/td[last()-1]" position="after">
             <td t-if="data['bom'].location_id" />
         </xpath>
     </template>
     <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
-        <xpath expr="//td[1]" position="after">
+        <xpath expr="//td[last()-1]" position="after">
             <td t-if="data['bom'].location_id" class="text-right">
                 <span t-esc="l['location_name']" />
             </td>
