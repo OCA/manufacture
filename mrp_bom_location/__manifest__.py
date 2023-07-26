@@ -11,5 +11,10 @@
     "application": False,
     "depends": ["mrp"],
     "data": ["views/mrp_view.xml", "views/report_mrpbomstructure.xml"],
+    "assets": {
+        "web.assets_backend": [
+            "mrp_bom_location/static/src/xml/mrp_bom_overview_location.xml",
+        ],
+    },
     "installable": True,
 }
