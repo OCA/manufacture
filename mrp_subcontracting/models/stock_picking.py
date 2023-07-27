@@ -51,6 +51,9 @@ class StockPicking(models.Model):
         for picking in self:
             for move in picking.move_lines:
                 production = move.move_orig_ids.mapped('production_id')
+                if len(production) > 1:
+                    production = production.filtered(
+                        lambda p: p.state not in ('done', 'cancel'))[-1:]
                 if not move.is_subcontract or production.state in ('done', 'cancel'):
                     continue
                 if move._has_tracked_subcontract_components():
