@@ -134,6 +134,7 @@ class RepairOrder(models.Model):
                             lambda m: m.product_id.id
                             == repair.operations.filtered(
                                 lambda l: l.type == "add"
+                                and l.product_id.id == m.product_id.id
                             ).product_id.id
                             and m.location_id.id == self.location_id.id
                         )
@@ -150,6 +151,7 @@ class RepairOrder(models.Model):
                             lambda m: m.product_id.id
                             == repair.operations.filtered(
                                 lambda l: l.type == "remove"
+                                and l.product_id.id == m.product_id.id
                             ).product_id.id
                             and m.location_dest_id.id == self.location_id.id
                         )
