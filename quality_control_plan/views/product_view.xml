@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
 <odoo>
     <!-- inherits product form view with control plan -->
     <record id="view_product_template_plan" model="ir.ui.view">
         <field name="name">view.product.template.plan</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='qc_triggers']/tree/field[@name='partners']"
-                   position="after">
-                <field name="plan_id"/>
+            <xpath
+                expr="//field[@name='qc_triggers']/tree/field[@name='partners']"
+                position="after"
+            >
+                <field name="plan_id" />
             </xpath>
         </field>
     </record>
@@ -22,11 +22,16 @@
     <record id="view_product_category_plan" model="ir.ui.view">
         <field name="name">view.product.category.plan</field>
         <field name="model">product.category</field>
-        <field name="inherit_id" ref="quality_control.product_category_qc_form_view"/>
+        <field
+            name="inherit_id"
+            ref="quality_control_oca.product_category_qc_form_view"
+        />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='qc_triggers']/tree/field[@name='partners']"
-                   position="after">
-                <field name="plan_id"/>
+            <xpath
+                expr="//field[@name='qc_triggers']/tree/field[@name='partners']"
+                position="after"
+            >
+                <field name="plan_id" />
             </xpath>
         </field>
     </record>

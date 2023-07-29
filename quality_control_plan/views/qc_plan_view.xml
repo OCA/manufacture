@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Marcelo Frare (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      Copyright 2019 Stefano Consolaro (Ass. PNLUG - Gruppo Odoo <http://odoo.pnlug.it>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl) -->
-     
 <odoo>
     <!-- Defines views for plan and levels -->
-    
+
     <!-- ############# PLAN #################### -->
     <!-- Plan Form view -->
     <record id="view_form_plan" model="ir.ui.view">
@@ -15,23 +13,31 @@
         <field name="arch" type="xml">
             <form string="Plan">
                 <sheet>
-                    <label for="name" class="oe_edit_only"/>
+                    <label for="name" class="oe_edit_only" />
                     <h1>
-                        <field name="name"/>
+                        <field name="name" />
                     </h1>
                     <group>
                         <group>
-                            <field name="description" style="width:40em !important"/>
-                            <field name="free_pass"/>
+                            <field name="description" style="width:40em !important" />
+                            <field name="free_pass" />
                         </group>
                         <group>
-                            
+
                         </group>
                     </group>
-                    <label string="Control Plan Levels" style="display: block;"/>
+                    <label
+                        for="plan_ids"
+                        string="Control Plan Levels"
+                        style="display: block;"
+                    />
                     <field name="plan_ids" nolabel="1" style="width: 70%">
-                        <tree string="Level lines" editable="top" delete="true" 
-                              create="true">
+                        <tree
+                            string="Level lines"
+                            editable="top"
+                            delete="true"
+                            create="true"
+                        >
                             <field name="qty_received" />
                             <field name="qty_checked" />
                             <field name="chk_type" />
@@ -52,9 +58,9 @@
         <field name="model">qc.plan</field>
         <field name="arch" type="xml">
             <tree string="QC Plan">
-                <field name="name"/>
-                <field name="description"/>
-                <field name="free_pass"/>
+                <field name="name" />
+                <field name="description" />
+                <field name="free_pass" />
             </tree>
         </field>
     </record>
@@ -68,12 +74,16 @@
             <form string="QC level">
                 <sheet>
                     <group>
-                        <field name="plan_id" style="width: 25%"/>
-                        <field name="qty_received" 
-                               style="text-align: right; width: 6em"/>
-                        <field name="qty_checked" 
-                               style="text-align: right; width: 6em"/>
-                        <field name="chk_type" style="width: 25%"/>
+                        <field name="plan_id" style="width: 25%" />
+                        <field
+                            name="qty_received"
+                            style="text-align: right; width: 6em"
+                        />
+                        <field
+                            name="qty_checked"
+                            style="text-align: right; width: 6em"
+                        />
+                        <field name="chk_type" style="width: 25%" />
                     </group>
                 </sheet>
             </form>
@@ -86,10 +96,10 @@
         <field name="model">qc.level</field>
         <field name="arch" type="xml">
             <tree string="QC level">
-                <field name="plan_id"/>
-                <field name="qty_received"/>
-                <field name="qty_checked"/>
-                <field name="chk_type"/>
+                <field name="plan_id" />
+                <field name="qty_received" />
+                <field name="qty_checked" />
+                <field name="chk_type" />
             </tree>
         </field>
     </record>

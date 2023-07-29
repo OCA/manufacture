@@ -14,13 +14,13 @@ Quality Control - Control Plan
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/11.0/quality_control_plan
+    :target: https://github.com/OCA/manufacture/tree/14.0/quality_control_plan
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-11-0/manufacture-11-0-quality_control_plan
+    :target: https://translation.odoo-community.org/projects/manufacture-14-0/manufacture-14-0-quality_control_plan
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/129/11.0
+    :target: https://runbot.odoo-community.org/runbot/129/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -62,28 +62,40 @@ Usage
 Steps to follow to use Control Plans:
 
 - create a list of Control Plans
-- define levels of control for Control Pans
+- define levels of control for Control Plans
 
 **Control Plan**
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Create a Control Plan with a name, description and eventually with Free Pass flag checked
 
 **Control Plan Levels**
 
 - Option A
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan
     * Select a Control Plan
     * Add rows with quantity level, value to check, type of value
 
 - Option B
-    * Go to Quality Control 
+    * Go to Quality Control
     * From Test menu select Control Plan Levels
     * Create a new element selecting the Control Plan and filling other fields
 
+**Set Plan for Product**
+    * Go to Product → Inventory tab
+    * On Quality Control section insert a Trigger
+
+**Set Plan for Product Category**
+    * Go to Product Category
+    * On Quality Control section insert a Trigger
+
+**Set Plan for Partner**
+    * Go to Partner or Vendor → Quality tab
+    * On Quality Control section insert a Trigger
+
 **Inspection → Nonconformity**
-    * Go to Qaulity Control
+    * Go to Quality Control
     * From Inspection menu select Inspection
     * Open or create an Inspection
     * On tab Nonconformity add a new line, or click «Add Nonconformity»
@@ -108,7 +120,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_plan%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_plan%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -139,6 +151,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/11.0/quality_control_plan>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/quality_control_plan>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

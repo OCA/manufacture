@@ -24,4 +24,4 @@ class QcTriggerPartnerLine(models.Model):
     # reference partner
     partner = fields.Many2one(comodel_name="res.partner")
     # control plan to use
-    plan_id = fields.Many2one('qc.plan', 'Plan', required=True)
+    plan_id = fields.Many2one("qc.plan", "Plan", required=True)
