@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="semi_finished_product_template_line_view_form" model="ir.ui.view">
+        <field name="name">semi.finished.product.template.line.view.form</field>
+        <field name="model">semi.finished.product.template.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_tmpl_id" readonly="1" />
+                        <field name="semi_finished_product_tmpl_id" />
+                        <field name="attribute_ids" widget="many2many_tags" />
+                        <field name="bom_type" />
+                        <field
+                            name="partner_ids"
+                            attrs="{'invisible': [('bom_type', '!=', 'subcontract')]}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

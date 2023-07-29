@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="finished_product_structure_wizard" model="ir.ui.view">
+        <field name="name">finished.product.structure.wizard.form.view</field>
+        <field name="model">finished.product.structure.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Finished Product Structure">
+                <group>
+                    <field name="finished_product_id" />
+                    <field name="attribute_ids" widget="many2many_tags" readonly="1" />
+                </group>
+                <field
+                    name="line_ids"
+                    nolabel="1"
+                    attrs="{'invisible': [('finished_product_id', '=', False)]}"
+                    context="{'default_valid_attribute_ids': attribute_ids}"
+                    widget="one2many"
+                >
+                    <tree editable="bottom">
+                        <field name="structure_id" invisible="1" />
+                        <field name="valid_attribute_ids" invisible="1" />
+                        <field name="stage_name" />
+                        <field name="product_tmpl_id" />
+                        <field name="attribute_ids" widget="many2many_tags" />
+                        <field name="bom_type" />
+                        <field
+                            name="partner_ids"
+                            widget="many2many_tags"
+                            attrs="{'readonly': [('bom_type', '!=', 'subcontract')]}"
+                        />
+                    </tree>
+                </field>
+                <footer>
+                    <field name="need_confirmation" invisible="1" />
+                    <button
+                        string="Create"
+                        name="create_product_struct"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('need_confirmation', '=', True)]}"
+                    />
+                    <button
+                        string="Create"
+                        name="create_product_struct"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('need_confirmation', '=', False)]}"
+                        confirm="Semifinished product(s) and BoM(s) have already been created for this finished product. By clicking Create, existing semifinished products and Boms will be deleted or archived, and replaced by new ones."
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_finished_product_structure" model="ir.actions.server">
+        <field name="name">Create finished product structure</field>
+        <field name="model_id" ref="product.model_product_template" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('mrp_bom_attribute_match_semifinished_product.group_create_finished_product_structure'))]"
+        />
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_finished_product_structure()
+        </field>
+    </record>
+
+</odoo>

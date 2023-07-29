@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finished_product_structure_wizard,mrp.finished.product.structure.wizard,model_finished_product_structure_wizard,mrp.group_mrp_user,1,1,1,1
+access_finished_product_structure_line,mrp.finished.product.structure.line,model_finished_product_structure_line,mrp.group_mrp_user,1,1,1,1
+access_semi_finished_product_template_line,mrp.semi.finished.product.template.line,model_semi_finished_product_template_line,mrp.group_mrp_user,1,1,1,1
