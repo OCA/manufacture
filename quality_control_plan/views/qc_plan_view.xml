@@ -28,7 +28,7 @@
                             
                         </group>
                     </group>
-                    <label string="Control Plan Levels" style="display: block;"/>
+                    <label for="plan_ids" string="Control Plan Levels" style="display: block;"/>
                     <field name="plan_ids" nolabel="1" style="width: 70%">
                         <tree string="Level lines" editable="top" delete="true" 
                               create="true">
