@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_variable_bom" model="ir.actions.report">
+        <field name="name">Variable BoM</field>
+        <field name="model">mrp.bom</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">mrp_bom_variable.bom_variable</field>
+        <field name="report_file">mrp_bom_variable.bom_variable</field>
+        <field
+            name="print_report_name"
+        >'Bom Overview - %s' % object.display_name</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom" />
+        <field name="binding_type">report</field>
+    </record>
+
+<!-- http://myproject.localhost/report/html/mrp_bom_variable.report_bom_variable/17 -->
+
+
+</odoo>
