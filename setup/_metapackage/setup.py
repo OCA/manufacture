@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-mrp_bom_attribute_match>=15.0dev,<15.1dev',
         'odoo-addon-mrp_bom_component_menu>=15.0dev,<15.1dev',
         'odoo-addon-mrp_bom_hierarchy>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_bom_line_sequence>=15.0dev,<15.1dev',
         'odoo-addon-mrp_bom_location>=15.0dev,<15.1dev',
         'odoo-addon-mrp_bom_tracking>=15.0dev,<15.1dev',
         'odoo-addon-mrp_finished_backorder_product>=15.0dev,<15.1dev',
