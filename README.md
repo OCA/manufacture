@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [mrp_bom_attribute_match](mrp_bom_attribute_match/) | 15.0.1.1.0 |  | Dynamic BOM component based on product attribute
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 15.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 15.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
+[mrp_bom_line_sequence](mrp_bom_line_sequence/) | 15.0.1.0.0 |  | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 15.0.1.0.0 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 15.0.1.1.0 |  | Logs any change to a BoM in the chatter
 [mrp_finished_backorder_product](mrp_finished_backorder_product/) | 15.0.1.0.0 |  | Be able to see the summary of the finished manufactured orders
