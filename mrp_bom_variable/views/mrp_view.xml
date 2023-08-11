@@ -24,7 +24,6 @@
         <field name="arch" type="xml">
             <field name="product_qty" position="before">
                 <field name="variable" optional="hide" />
-                <field name="condition" optional="hide" />
             </field>
         </field>
     </record>
@@ -33,8 +32,9 @@
         <field name="model">mrp.bom.line</field>
         <field name="inherit_id" ref="mrp.mrp_bom_line_view_form" />
         <field name="arch" type="xml">
-            <field name="product_id" position="before">
+            <field name="product_id" position="after">
                 <field name="domain" />
+                <field name="condition" optional="hide" />
             </field>
         </field>
     </record>
