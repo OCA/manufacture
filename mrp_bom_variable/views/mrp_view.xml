@@ -2,17 +2,30 @@
 <odoo>
 
     <record id="mrp_bom_form_view" model="ir.ui.view">
-        <field name="name">mrp.bom.form - mrp_bom_location</field>
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="variable" />
+            </field>
             <xpath
                 expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']"
                 position="after"
             >
-                <field name="condition" />
                 <field name="domain" />
+                <field name="condition" />
             </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <field name="product_qty" position="before">
+                <field name="variable" optional="hide" />
+                <field name="condition" optional="hide" />
+            </field>
         </field>
     </record>
 
@@ -25,5 +38,6 @@
             </field>
         </field>
     </record>
+
 
 </odoo>
