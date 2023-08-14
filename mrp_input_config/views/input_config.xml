@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+<record id="input_config_form" model="ir.ui.view">
+    <field name="model">input.config</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button
+                        name="configure"
+                        type="object"
+                        string="Configure"
+                        class="oe_highlight"
+                    />
+                <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,pending,confirmed"
+                    />
+            </header>
+            <sheet>
+                <h2>
+                    <field name="name" />
+                </h2>
+                <group name="main">
+                    <group>
+                        <field name="partner_id" />
+                    </group>
+                    <group>
+                        <field name="date" />
+                    </group>
+                </group>
+                <group name="config">
+                    <!-- Set custom config fields in these groups -->
+                    <group name="left" />
+                    <group name="right" />
+                </group>
+                <group>
+                    <field name="line_ids" string="Products" />
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" />
+                <field name="activity_ids" widget="mail_activity" />
+                <field name="message_ids" widget="mail_thread" />
+            </div>
+        </form>
+    </field>
+</record>
+
+<record id='input_config_tree' model='ir.ui.view'>
+    <field name='model'>input.config</field>
+    <field name='arch' type='xml'>
+        <tree>
+            <field name="name" />
+            <field name="date" />
+            <field name="partner_id" optional="show" />
+        </tree>
+    </field>
+
+</record>
+
+<record id="input_config_search" model="ir.ui.view">
+    <field name="model">input.config</field>
+    <field name="arch" type="xml">
+        <search>
+            <field
+                    name="name"
+                    string="Name"
+                    filter_domain="[('name', 'ilike', self)]"
+                />
+            <field
+                    name="partner_id"
+                    filter_domain="[('partner_id', 'child_of', self)]"
+                />
+            <group expand="0" string="Group By">
+                <filter
+                        string="Status"
+                        name="status"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                <filter
+                        string="Partner"
+                        name="partner"
+                        domain="[]"
+                        context="{'group_by': 'partner_id'}"
+                    />
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="input_config_action" model="ir.actions.act_window">
+    <field name="name">Configurator</field>
+    <field name="res_model">input.config</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="input_config_menu"
+        parent="mrp.menu_mrp_root"
+        action="input_config_action"
+    />
+
+
+</odoo>

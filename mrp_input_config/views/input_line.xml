@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+<record id='input_line_tree' model='ir.ui.view'>
+    <field name='model'>input.line</field>
+    <field name='arch' type='xml'>
+        <tree editable="bottom">
+            <field name="sequence" widget="handle" />
+            <field name="name" />
+            <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
+            <field name="bom_id" />
+            <button
+                    name="ui_configure"
+                    class="fa fa-gear"
+                    type="object"
+                    title="Configure"
+                />
+            <field name="comment" optional="hide" />
+            <field name="count" />
+            <field name="config_id" invisible="1" />
+        </tree>
+    </field>
+</record>
+
+<record id="input_line_search" model="ir.ui.view">
+    <field name="model">input.line</field>
+    <field name="arch" type="xml">
+        <search>
+            <filter name="name" />
+            <filter name="bom_id" />
+            <filter
+                    name="config_id"
+                    string="Config"
+                    domain="[]"
+                    context="{'group_by' : 'config_id'}"
+                />
+            <filter
+                    name="bom_id"
+                    string="Bom"
+                    domain="[]"
+                    context="{'group_by' : 'bom_id'}"
+                />
+        </search>
+    </field>
+</record>
+
+</odoo>
