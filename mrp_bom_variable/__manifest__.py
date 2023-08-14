@@ -18,5 +18,10 @@
         "report/report.xml",
         "report/bom_variable.xml",
     ],
+    'assets': {
+        'web.assets_backend': [
+            'mrp_bom_variable/static/src/**/*'
+        ]
+    },
     "installable": True,
 }
