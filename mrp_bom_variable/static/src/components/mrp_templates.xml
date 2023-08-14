@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="mrp_bom_variable.BomOverviewTable" t-inherit="mrp.BomOverviewTable" t-inherit-mode="extension" owl="1">
+        <xpath expr="//th[@name='th_mrp_bom_h']" position="after">
+            <th t-if="showDomain" class="text-end">Domain</th>
+        </xpath>
+    </t>
+
+    <t t-name="mrp_bom_variable.BomOverviewLine" t-inherit="mrp.BomOverviewLine" t-inherit-mode="extension" owl="1">
+        <xpath expr="//td[@name='td_mrp_bom']" position="after">
+            <td t-if="showDomain" class="text-end" t-esc="data.domain"/>
+        </xpath>
+    </t>
+
+</templates>
