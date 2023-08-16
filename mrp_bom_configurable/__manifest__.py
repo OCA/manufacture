@@ -14,9 +14,12 @@
         "bealdav",
     ],
     "data": [
+        "views/input_config.xml",
+        "views/input_line.xml",
         "views/mrp_view.xml",
         "report/report.xml",
         "report/bom_variable.xml",
+        "security/ir.model.access.csv",
     ],
     'assets': {
         'web.assets_backend': [
