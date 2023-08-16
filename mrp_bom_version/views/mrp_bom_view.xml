@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
+            <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+        </record>
+
+        <record id="mrp_bom_version_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.version.tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <field name="active" />
+                    <field name="version" />
+                    <field name="state" />
+                    <field name="historical_date"/>
+                    <button name="button_draft" type="object" string="Draft"
+                            groups="mrp_bom_version.group_mrp_bom_version"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="fa-scroll" />
+                    <button name="button_activate" type="object" string="Activate"
+                            attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                            icon="fa-check"
+                            confirm="You will now activate the BoM. Please make sure to set up a route as after activation, then you will not be allowed to do so. Are you sure you want to proceed?"/>
+                    <button name="button_new_version" type="object" string="New version"
+                            attrs="{'invisible':[('state','==','historical')]}"
+                            icon="fa-level-up"
+                            confirm="You are going to create a new version of this BoM. Are you sure you want to proceed?"/>
+                    <button name="button_historical" type="object" string="Historical"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            icon="fa-history"
+                            confirm="You are going to archive a BoM. Doing so, you will not be able to unlock it unless you make a new copy. Are you sure you want to proceed?"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_bom_version_form_view" model="ir.ui.view">
+            <field name="name">mrp.bom.version.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,historical" />
+                    </header>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button name="button_draft" type="object" string="Draft"
+                            groups="mrp_bom_version.group_mrp_bom_version"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            class="oe_stat_button"
+                            icon="fa-scroll"/>
+                    <button name="button_activate" type="object" string="Activate"
+                            attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                            class="oe_stat_button"
+                            icon="fa-check"
+                            confirm="You will now activate the BoM. Please make sure to set up a route as after activation, then you will not be allowed to do so. Are you sure you want to proceed?"/>
+                    <button name="button_new_version" type="object" string="New version"
+                            attrs="{'invisible':[('state','==','historical')]}"
+                            class="oe_stat_button"
+                            icon="fa-level-up"
+                            confirm="You are going to create a new version of this BoM. Are you sure you want to proceed?"/>
+                    <button name="button_historical" type="object" string="Historical"
+                            attrs="{'invisible':[('state','!=','active')]}"
+                            class="oe_stat_button"
+                            icon="fa-history"
+                            confirm="You are going to archive a BoM. Doing so, you will not be able to unlock it unless you make a new copy. Are you sure you want to proceed?"/>
+                </xpath>
+                <field name="company_id" position="after">
+                    <field name="version" />
+                    <field name="historical_date" attrs="{'invisible': [('state','!=','historical')]}"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Versions">
+                        <field name="old_versions" />
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="mrp_bom_version_search_view" model="ir.ui.view">
+            <field name="name">mrp.bom.version.search</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </xpath>
+                <xpath expr="//group" position="before">
+                    <filter string="Active" domain="[('active','=',True)]" name="is_active_filter"/>
+                    <filter string="Inactive" domain="[('active','=',False)]" name="is_inactive_filter"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <filter string="Active" domain="[]" context="{'group_by':'active'}" name="group_by_active"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}" name="group_by_state"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>
