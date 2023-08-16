@@ -20,6 +20,7 @@
     <record id="mrp_bom_configurable_1" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_1_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="configuration_type">variable</field>
     </record>
     <record id="mrp_bom_configurable_line_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_2" />

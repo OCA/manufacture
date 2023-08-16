@@ -21,6 +21,9 @@
         "report/bom_variable.xml",
         "security/ir.model.access.csv",
     ],
+    "demo": [
+        "demo/mrp_bom_configurable.xml",
+    ],
     'assets': {
         'web.assets_backend': [
             'mrp_bom_variable/static/src/**/*'
