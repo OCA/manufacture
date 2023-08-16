@@ -14,19 +14,19 @@ class ReportBomStructure(models.AbstractModel):
 
         return bom_report_line
 
-    @api.model
-    def _get_operation_line(self, *args, **kwargs):
-        operations = super(ReportBomStructure, self)._get_operation_line(*args, **kwargs)
-        bom = args[1]
+    # @api.model
+    # def _get_operation_line(self, *args, **kwargs):
+    #     operations = super(ReportBomStructure, self)._get_operation_line(*args, **kwargs)
+    #     bom = args[1]
 
-        index = 0
-        for operation in bom.operation_ids:
-            if not product or operation._skip_operation_line(product):
-                continue
-            operations[index]['domain'] = operation.domain
-            index += 1
+    #     index = 0
+    #     for operation in bom.operation_ids:
+    #         if not product or operation._skip_operation_line(product):
+    #             continue
+    #         operations[index]['domain'] = operation.domain
+    #         index += 1
 
-        return operations
+    #     return operations
 
     @api.model
     def _get_byproducts_lines(self, *args, **kwargs):

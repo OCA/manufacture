@@ -7,27 +7,11 @@ class InputMixin(models.AbstractModel):
 
     test_config = fields.Boolean(default=False, required=True)
 
-    def configure(self):
-        # TODO: remove
-        for rec in self:
-            for line in rec.bom_id.bom_line_ids:
-                product = line.product_id
-                if product.dia_tube and product.dia_tube != rec.dia_tube:
-                    line.unselected = True
-                else:
-                    line.unselected = False
-
-    @api.depends("manoeuvre")
-    def _compute_protocol(self):
-        for rec in self:
-            if rec.manoeuvre != "moteur":
-                rec.protocol = False
-
 class InputConfig(models.Model):
     _name = "input.config"
     _inherit = ["input.config", "input.mixin"]
 
-CONFIG_ELEMENTS = ("test_config")
+CONFIG_ELEMENTS = ["test_config"]
 
 class InputLine(models.Model):
     _name = "input.line"
@@ -38,9 +22,6 @@ class InputLine(models.Model):
         for vals in vals_list:
             if vals.get("config_id"):
                 config = self.env["input.config"].browse(vals["config_id"])
-                if not vals.get("manoeuvre"):
-                    vals["protocol"] = config.protocol
-                    vals["manoeuvre"] = config.manoeuvre
                 for element in CONFIG_ELEMENTS:
                     if not vals.get(element):
                         vals[element] = config[element]

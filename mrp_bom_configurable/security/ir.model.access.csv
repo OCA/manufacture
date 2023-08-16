@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-input_config_base,Base input config,mrp_input_config.model_input_config,base.group_user,1,1,1,1
-input_line_base,Base input line,mrp_input_config.model_input_line,base.group_user,1,1,1,1
+input_config_base,Base input config,mrp_bom_configurable.model_input_config,base.group_user,1,1,1,1
+input_line_base,Base input line,mrp_bom_configurable.model_input_line,base.group_user,1,1,1,1
