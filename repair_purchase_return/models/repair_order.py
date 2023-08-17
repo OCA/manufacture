@@ -15,12 +15,12 @@ class RepairOrder(models.Model):
     )
     purchase_return_count = fields.Integer(
         compute="_compute_purchase_returns",
-        string="Purchase Return Count",
+        string="Return Purchase Count",
         copy=False,
         default=0,
         store=True,
     )
-    purchase_return_notes = fields.Text("Purchase Return Notes")
+    purchase_return_notes = fields.Text("Return Purchase Notes")
 
     @api.depends(
         "operations.purchase_return_line_ids",

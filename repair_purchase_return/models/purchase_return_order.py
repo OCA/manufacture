@@ -9,7 +9,7 @@ class PurchaseReturnOrder(models.Model):
 
     repair_order_count = fields.Integer(
         compute="_compute_repair_orders",
-        string="Repair Order Count",
+        string="Repair Orders Count",
     )
     repair_order_ids = fields.Many2many(
         comodel_name="repair.order",
