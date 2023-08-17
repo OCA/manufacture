@@ -32,10 +32,18 @@ class TestBomVariable(TransactionCase):
         )
         cls.line_1 = cls.bom_line_obj.create(
             {
-                "product_id": cls.component_1.id,
+                "product_id": cls.component_2.id,
                 "bom_id": cls.bom.id,
                 "product_qty": 2.0,
-                "domain": "[('test_config', '==', True)]",
+                "domain": "['OR', ('test_config', '==', True), ('test_config', '==', True)]",
+            }
+        )
+        cls.line_2 = cls.bom_line_obj.create(
+            {
+                "product_id": cls.component_3.id,
+                "bom_id": cls.bom.id,
+                "product_qty": 5.0,
+                "domain": "[('test_config', '==', False)]",
             }
         )
         cls.line_2 = cls.bom_line_obj.create(
@@ -43,11 +51,16 @@ class TestBomVariable(TransactionCase):
                 "product_id": cls.component_2.id,
                 "bom_id": cls.bom.id,
                 "product_qty": 5.0,
-                "domain": "[('test_config', '==', False)]",
             }
         )
+        cls.child_bom = cls.bom_obj.create(
+            {"product_tmpl_id": cls.component_3.product_tmpl_id.id}
+        )
         cls.line_3 = cls.bom_line_obj.create(
-            {"product_id": cls.component_3.id, "bom_id": cls.bom.id, "product_qty": 5.0}
+            {"product_id": cls.component_2.id, "bom_id": cls.child_bom.id, "product_qty": 5.0}
+        )
+        cls.line_4 = cls.bom_line_obj.create(
+            {"product_id": cls.component_2.id, "bom_id": cls.child_bom.id, "product_qty": 5.0}
         )
 
         # Create config
@@ -64,9 +77,23 @@ class TestBomVariable(TransactionCase):
                 "test_config": True,
             }
         )
+        cls.input_line_2 = cls.input_config_line_obj.create(
+            {
+                "name": "test_1",
+                "bom_id": cls.bom.id,
+                "config_id": cls.input_config.id,
+                "test_config": False,
+            }
+        )
 
     def test_01_variable_bom(self):
         self.input_line.ui_configure()
+        self.input_line_2.ui_configure()
         boms = self.env["mrp.bom"].search([("configuration_type", "=", "configured")])
-        self.assertEqual(len(boms), 1)
+        self.assertEqual(len(boms), 2)
         self.assertEqual(len(boms[0].bom_line_ids), 2)
+        self.assertEqual(len(boms[1].bom_line_ids), 3)
+
+    def test_01_varable_bom_report(self):
+        report_values = self.env['mrp_bom_variable.report.mrp.report_bom_structure']._get_report_data(self.bom.id)
+        self.assertIn("domain", report_values["lines"]["components"][0])
