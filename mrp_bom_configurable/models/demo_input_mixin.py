@@ -45,6 +45,7 @@ class InputLine(models.Model):
                 "product_id": bom.product_id.id,
                 "product_qty": self.count,
                 "product_uom_id": bom.product_uom_id.id,
+                "configuration_type": "configured",
                 "bom_line_ids": [
                     (0, 0, {
                         "product_id": line.product_id.id,
