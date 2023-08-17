@@ -32,8 +32,7 @@ class InputLine(models.Model):
 
     def ui_configure(self):
         self.ensure_one()
-        # TODO
-        elements = [], [], dict()
+        elements = dict()
         for elm in CONFIG_ELEMENTS:
             if self._fields[elm].type == "many2one":
                 value = self[elm].display_name
