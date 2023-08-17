@@ -18,7 +18,9 @@
     </record>
 
     <record id="mrp.mrp_bom_form_action" model="ir.actions.act_window">
-        <field name="context">{'default_company_id': allowed_company_ids[0], 'search_default_variable': True, 'search_default_configured': False}</field>
+        <field
+            name="context"
+        >{'default_company_id': allowed_company_ids[0], 'search_default_variable': True, 'search_default_configured': False}</field>
     </record>
 
     <record id="view_mrp_bom_filter" model="ir.ui.view">
@@ -26,8 +28,16 @@
         <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
         <field name="arch" type="xml">
             <filter name="phantom" position="after">
-                <filter string="Variable" name="variable" domain="[('configuration_type', '=', 'variable')]"/>
-                <filter string="Configured" name="configured" domain="[('configuration_type', '=', 'configured')]"/>
+                <filter
+                    string="Variable"
+                    name="variable"
+                    domain="[('configuration_type', '=', 'variable')]"
+                />
+                <filter
+                    string="Configured"
+                    name="configured"
+                    domain="[('configuration_type', '=', 'configured')]"
+                />
             </filter>
         </field>
     </record>

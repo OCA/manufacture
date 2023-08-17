@@ -8,7 +8,9 @@ class Inputline(models.Model):
     name = fields.Char(required=True)
     sequence = fields.Integer()
     bom_id = fields.Many2one(
-        comodel_name="mrp.bom", required=True, domain=lambda s: s.bom_id.configuration_type == "variable"
+        comodel_name="mrp.bom",
+        required=True,
+        domain=lambda s: s.bom_id.configuration_type == "variable",
     )
     config_id = fields.Many2one(comodel_name="input.config", required=True)
     count = fields.Integer(default=1)

@@ -5,5 +5,5 @@ from . import mrp_bom_line
 
 from odoo.tools import config
 
-if not config["without_demo"]:
+if not config["without_demo"] or config["test_enable"]:
     from . import demo_input_mixin

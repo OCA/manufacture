@@ -1,4 +1,5 @@
 from odoo import fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class MrpBomLine(models.Model):
@@ -26,14 +27,16 @@ class MrpBomLine(models.Model):
         param, operator, value = element
         code = f"{repr(values[param])} {operator} {repr(value)}"
 
-        return eval(code)
+        return safe_eval(code)
 
     def execute_domain(self, domain, values):
         if not isinstance(domain, list):
             domain = [domain]
 
         if domain[0] == "OR":
-            return self.execute_domain(domain[1], values) or execute_domain(domain[2], values)
+            return self.execute_domain(domain[1], values) or self.execute_domain(
+                domain[2], values
+            )
         elif len(domain) > 1:
             return all(self.execute_domain(domain_elm, values) for domain_elm in domain)
         else:
@@ -44,6 +47,6 @@ class MrpBomLine(models.Model):
         if not self.domain:
             return True
         else:
-            domain = eval(self.domain)
+            domain = safe_eval(self.domain)
 
             return self.execute_domain(domain, values)

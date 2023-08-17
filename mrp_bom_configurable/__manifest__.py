@@ -24,10 +24,6 @@
     "demo": [
         "demo/mrp_bom_configurable.xml",
     ],
-    'assets': {
-        'web.assets_backend': [
-            'mrp_bom_variable/static/src/**/*'
-        ]
-    },
+    "assets": {"web.assets_backend": ["mrp_bom_variable/static/src/**/*"]},
     "installable": True,
 }

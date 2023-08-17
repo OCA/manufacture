@@ -4,10 +4,15 @@ from odoo import fields, models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    configuration_type = fields.Selection([
-        ('variable', 'Variable BOM'),
-        ('configured', 'BOM from variable BOM'), ('normal', 'Normal BOM')], 'Configuration Type',
-        default='normal', required=True)
+    configuration_type = fields.Selection(
+        selection=[
+            ("variable", "Variable BOM"),
+            ("configured", "BOM from variable BOM"),
+            ("normal", "Normal BOM"),
+        ],
+        default="normal",
+        required=True,
+    )
 
     def check_domain(self, values):
         result = []
