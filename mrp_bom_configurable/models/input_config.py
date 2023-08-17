@@ -19,6 +19,3 @@ class InputConfig(models.Model):
     )
     partner_id = fields.Many2one(comodel_name="res.partner")
     line_ids = fields.One2many(comodel_name="input.line", inverse_name="config_id")
-
-    def configure(self):
-        pass
