@@ -7,7 +7,7 @@ class ReportBomStructure(models.AbstractModel):
 
     @api.model
     def _get_bom_data(self, *args, **kwargs):
-        bom_report_line = super(ReportBomStructure, self)._get_bom_data(*args, **kwargs)
+        bom_report_line = super()._get_bom_data(*args, **kwargs)
         bom_line = kwargs.get("bom_line", False)
 
         bom_report_line["domain"] = bom_line.domain if bom_line else False
@@ -30,7 +30,7 @@ class ReportBomStructure(models.AbstractModel):
 
     @api.model
     def _get_byproducts_lines(self, *args, **kwargs):
-        byproducts = super(ReportBomStructure, self)._get_byproducts_lines(
+        byproducts = super()._get_byproducts_lines(
             *args, **kwargs
         )
         bom = args[1]
@@ -46,7 +46,7 @@ class ReportBomStructure(models.AbstractModel):
 
     @api.model
     def _get_component_data(self, *args, **kwargs):
-        component_data = super(ReportBomStructure, self)._get_component_data(
+        component_data = super()._get_component_data(
             *args, **kwargs
         )
         bom_line = args[2]
