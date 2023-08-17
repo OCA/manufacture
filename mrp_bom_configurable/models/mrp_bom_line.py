@@ -31,7 +31,9 @@ class MrpBomLine(models.Model):
 
     def execute_domain(self, domain, values):
         if domain[0] == "OR":
-            return any(self.execute_domain(domain_elm, values) for domain_elm in domain[1:])
+            return any(
+                self.execute_domain(domain_elm, values) for domain_elm in domain[1:]
+            )
         elif isinstance(domain, list):
             return all(self.execute_domain(domain_elm, values) for domain_elm in domain)
         else:

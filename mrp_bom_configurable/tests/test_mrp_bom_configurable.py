@@ -57,10 +57,18 @@ class TestBomVariable(TransactionCase):
             {"product_tmpl_id": cls.component_3.product_tmpl_id.id}
         )
         cls.line_3 = cls.bom_line_obj.create(
-            {"product_id": cls.component_2.id, "bom_id": cls.child_bom.id, "product_qty": 5.0}
+            {
+                "product_id": cls.component_2.id,
+                "bom_id": cls.child_bom.id,
+                "product_qty": 5.0,
+            }
         )
         cls.line_4 = cls.bom_line_obj.create(
-            {"product_id": cls.component_2.id, "bom_id": cls.child_bom.id, "product_qty": 5.0}
+            {
+                "product_id": cls.component_2.id,
+                "bom_id": cls.child_bom.id,
+                "product_qty": 5.0,
+            }
         )
 
         # Create config
@@ -95,5 +103,7 @@ class TestBomVariable(TransactionCase):
         self.assertEqual(len(boms[1].bom_line_ids), 3)
 
     def test_01_varable_bom_report(self):
-        report_values = self.env['mrp_bom_variable.report.mrp.report_bom_structure']._get_report_data(self.bom.id)
+        report_values = self.env[
+            "mrp_bom_variable.report.mrp.report_bom_structure"
+        ]._get_report_data(self.bom.id)
         self.assertIn("domain", report_values["lines"]["components"][0])
