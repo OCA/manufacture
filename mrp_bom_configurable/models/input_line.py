@@ -10,7 +10,6 @@ class Inputline(models.Model):
     bom_id = fields.Many2one(
         comodel_name="mrp.bom",
         required=True,
-        domain=lambda s: s.bom_id.configuration_type == "variable",
     )
     config_id = fields.Many2one(comodel_name="input.config", required=True)
     count = fields.Integer(default=1)

@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t
-        t-name="mrp_bom_variable.BomOverviewTable"
+        t-name="mrp_bom_configurable.BomOverviewTable"
         t-inherit="mrp.BomOverviewTable"
         t-inherit-mode="extension"
         owl="1"
@@ -13,7 +13,7 @@
     </t>
 
     <t
-        t-name="mrp_bom_variable.BomOverviewLine"
+        t-name="mrp_bom_configurable.BomOverviewLine"
         t-inherit="mrp.BomOverviewLine"
         t-inherit-mode="extension"
         owl="1"

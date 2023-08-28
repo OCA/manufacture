@@ -1,10 +1,10 @@
 from odoo import models
 
 
-class ReportBomVariable(models.AbstractModel):
+class ReportBomConfigurable(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
-    _name = "report.mrp_bom_variable.bom_variable"
-    _description = "Variable BOM Report"
+    _name = "report.mrp_bom_configurable.bom_configurable"
+    _description = "Configurable BOM Report"
 
     def _get_report_values(self, docids, data):
         model = self.env["report.mrp.report_bom_structure"]

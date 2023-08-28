@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
-    "name": "MRP Bom Variable",
+    "name": "MRP Bom Configurable",
     "summary": "Skip components lines in bom according to conditions",
     "version": "16.0.1.0.0",
     "category": "Manufacture",
@@ -18,12 +18,12 @@
         "views/input_line.xml",
         "views/mrp_view.xml",
         "report/report.xml",
-        "report/bom_variable.xml",
+        "report/bom_configurable.xml",
         "security/ir.model.access.csv",
     ],
     "demo": [
         "demo/mrp_bom_configurable.xml",
     ],
-    "assets": {"web.assets_backend": ["mrp_bom_variable/static/src/**/*"]},
+    "assets": {"web.assets_backend": ["mrp_bom_configurable/static/src/**/*"]},
     "installable": True,
 }

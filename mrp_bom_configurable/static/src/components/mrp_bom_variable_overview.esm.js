@@ -106,7 +106,7 @@ patch(BomOverviewComponent.prototype, "test patch 3", {
             ? {warehouse: this.state.currentWarehouse.id}
             : {};
         const bomData = await this.orm.call(
-            "mrp_bom_variable.report.mrp.report_bom_structure",
+            "mrp_bom_configurable.report.mrp.report_bom_structure",
             "get_html",
             args,
             {context}

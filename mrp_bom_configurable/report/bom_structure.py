@@ -2,7 +2,7 @@ from odoo import api, models
 
 
 class ReportBomStructure(models.AbstractModel):
-    _name = "mrp_bom_variable.report.mrp.report_bom_structure"
+    _name = "mrp_bom_configurable.report.mrp.report_bom_structure"
     _inherit = "report.mrp.report_bom_structure"
 
     @api.model

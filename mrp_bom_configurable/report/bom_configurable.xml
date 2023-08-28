@@ -35,7 +35,7 @@
                                 t-esc="data['uom_name']"
                             />
                         </tr>
-                        <t t-call="mrp_bom_variable.report_conditional_bom_line" />
+                        <t t-call="mrp_bom_configurable.report_conditional_bom_line" />
                     </tbody>
                  </table>
             </div>
@@ -78,12 +78,12 @@
         </t>
     </template>
 
-    <template id="bom_variable">
+    <template id="bom_configurable">
         <t t-set="data_report_landscape" t-value="True" />
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="data">
                 <div class="page">
-                    <t t-call="mrp_bom_variable.report_conditional_bom" />
+                    <t t-call="mrp_bom_configurable.report_conditional_bom" />
                 </div>
                 <p style="page-break-before:always;"> </p>
             </t>

@@ -9,7 +9,7 @@
             <field name="sequence" widget="handle" />
             <field name="name" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
-            <field name="bom_id" />
+            <field name="bom_id" domain="[('configuration_type', '=', 'variable')]" />
             <button
                     name="ui_configure"
                     class="fa fa-gear"

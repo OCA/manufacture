@@ -1,2 +1,2 @@
-from . import bom_variable
+from . import bom_configurable
 from . import bom_structure

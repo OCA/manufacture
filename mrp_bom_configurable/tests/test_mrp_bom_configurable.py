@@ -1,7 +1,7 @@
 from odoo.tests.common import TransactionCase
 
 
-class TestBomVariable(TransactionCase):
+class TestBomConfigurable(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -94,7 +94,7 @@ class TestBomVariable(TransactionCase):
             }
         )
 
-    def test_01_variable_bom(self):
+    def test_01_configurable_bom(self):
         self.input_line.ui_configure()
         self.input_line_2.ui_configure()
         boms = self.env["mrp.bom"].search([("configuration_type", "=", "configured")])
@@ -102,8 +102,8 @@ class TestBomVariable(TransactionCase):
         self.assertEqual(len(boms[0].bom_line_ids), 2)
         self.assertEqual(len(boms[1].bom_line_ids), 3)
 
-    def test_01_varable_bom_report(self):
+    def test_01_configurable_bom_report(self):
         report_values = self.env[
-            "mrp_bom_variable.report.mrp.report_bom_structure"
+            "mrp_bom_configurable.report.mrp.report_bom_structure"
         ]._get_report_data(self.bom.id)
         self.assertIn("domain", report_values["lines"]["components"][0])
