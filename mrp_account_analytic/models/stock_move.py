@@ -54,12 +54,11 @@ class StockMove(models.Model):
             self.generate_mrp_raw_analytic_line()
         return res
 
-    @api.model
-    def create(self, vals):
-        qty_done = vals.get("quantity_done")
-        res = super().create(vals)
-        if qty_done:
-            res.generate_mrp_raw_analytic_line()
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        sm_has_qty_done = res.filtered("quantity_done")
+        sm_has_qty_done.generate_mrp_raw_analytic_line()
         return res
 
 
@@ -73,10 +72,9 @@ class StockMoveLine(models.Model):
             self.mapped("move_id").generate_mrp_raw_analytic_line()
         return res
 
-    @api.model
-    def create(self, vals):
-        qty_done = vals.get("qty_done")
-        res = super().create(vals)
-        if qty_done:
-            res.mapped("move_id").generate_mrp_raw_analytic_line()
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        sml_has_qty_done = res.filtered("qty_done")
+        sml_has_qty_done.mapped("move_id").generate_mrp_raw_analytic_line()
         return res
