@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_workorder_new_line_form" model="ir.ui.view">
+        <field name="name">view_mrp_workorder_new_line_form</field>
+        <field name="model">mrp.workorder.new.line</field>
+        <field name="arch" type="xml">
+            <form string="Create New Line">
+                <sheet>
+                    <group>
+                        <field name="product_id" />
+                        <field name="lot_id" />
+                        <field name="product_qty" />
+                        <field name="company_id" invisible="1" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_validate"
+                        string="Validate"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
