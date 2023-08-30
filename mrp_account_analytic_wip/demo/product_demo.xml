@@ -1,8 +1,13 @@
 <odoo>
 
+    <record id="account_analytic_plan" model="account.analytic.plan">
+        <field name="name">Plan Test</field>
+    </record>
+
     <record id="analytic_job1" model="account.analytic.account">
         <field name="name">Manufacturing Job 1</field>
         <field name="code">JOB01</field>
+        <field name="plan_id" ref="account_analytic_plan" />
     </record>
 
     <record id="product_category_manufacture" model="product.category">

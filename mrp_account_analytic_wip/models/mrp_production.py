@@ -4,6 +4,7 @@
 import logging
 
 from odoo import _, api, fields, models
+from odoo.tools import float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -38,7 +39,7 @@ class MRPProduction(models.Model):
         Now aving all raw material moves done is not enough to set the MO as done.
         Should only set as done if the finished moves are all done.
         """
-        super()._compute_state()
+        res = super()._compute_state()
         for production in self:
             all_finished_moves_done = all(
                 move.state == "done" for move in production.move_finished_ids
@@ -51,6 +52,7 @@ class MRPProduction(models.Model):
                     production.state = "to_close"
                 else:
                     production.state = "progress"
+        return res
 
     def _get_tracking_items(self):
         """
@@ -73,6 +75,59 @@ class MRPProduction(models.Model):
             mo.analytic_tracking_item_amount = sum(
                 mo.analytic_tracking_item_ids.mapped("actual_amount")
             )
+
+    def _cal_price(self, consumed_moves):
+        """Set a price unit on the finished move according to `consumed_moves`."""
+        super(MRPProduction, self)._cal_price(consumed_moves)
+        work_center_cost = 0
+        finished_move = self.move_finished_ids.filtered(
+            lambda x: x.product_id == self.product_id
+            and x.state not in ("done", "cancel")
+            and x.quantity_done > 0
+        )
+        if finished_move:
+            finished_move.ensure_one()
+            for work_order in self.workorder_ids:
+                time_lines = work_order.time_ids.filtered(
+                    lambda t: t.date_end and not t.cost_already_recorded
+                )
+                work_center_cost += work_order._cal_cost(times=time_lines)
+                time_lines.write({"cost_already_recorded": True})
+            qty_done = finished_move.product_uom._compute_quantity(
+                finished_move.quantity_done, finished_move.product_id.uom_id
+            )
+            extra_cost = self.extra_cost * qty_done
+            total_cost = (
+                -sum(consumed_moves.sudo().stock_valuation_layer_ids.mapped("value"))
+                + work_center_cost
+                + extra_cost
+            )
+            byproduct_moves = self.move_byproduct_ids.filtered(
+                lambda m: m.state not in ("done", "cancel") and m.quantity_done > 0
+            )
+            byproduct_cost_share = 0
+            for byproduct in byproduct_moves:
+                if byproduct.cost_share == 0:
+                    continue
+                byproduct_cost_share += byproduct.cost_share
+                if byproduct.product_id.cost_method in ("fifo", "average"):
+                    byproduct.price_unit = (
+                        total_cost
+                        * byproduct.cost_share
+                        / 100
+                        / byproduct.product_uom._compute_quantity(
+                            byproduct.quantity_done, byproduct.product_id.uom_id
+                        )
+                    )
+            if finished_move.product_id.cost_method in ("fifo", "average"):
+                finished_move.price_unit = (
+                    total_cost
+                    * float_round(
+                        1 - byproduct_cost_share / 100, precision_rounding=0.0001
+                    )
+                    / qty_done
+                )
+        return True
 
     def _post_inventory(self, cancel_backorder=False):
         """
@@ -104,7 +159,7 @@ class MRPProduction(models.Model):
         """
         for order in self:
             moves_all = order.move_raw_ids
-            for move in moves_all:
+            for move in moves_all.filtered(lambda m: m.quantity_done):
                 move.product_uom_qty = move.quantity_done
             # Raw Material Consumption, closely following _post_inventory()
             moves_not_to_do = order.move_raw_ids.filtered(lambda x: x.state == "done")
@@ -147,7 +202,7 @@ class MRPProduction(models.Model):
             "account_id": account.id,
             "debit": amount if amount > 0.0 else 0.0,
             "credit": -amount if amount < 0.0 else 0.0,
-            "analytic_account_id": self.analytic_account_id.id,
+            #            "analytic_account_id": self.analytic_account_id.id,
         }
 
     def clear_wip_final(self):
@@ -217,7 +272,7 @@ class MRPProduction(models.Model):
             [("state", "in", ["progress", "to_close"])]
         )
         items.action_post_inventory_wip()
-        super()._cron_process_wip_and_variance()
+        return super()._cron_process_wip_and_variance()
 
     def action_view_analytic_tracking_items(self):
         self.ensure_one()
@@ -275,13 +330,15 @@ class MRPProduction(models.Model):
         generate tracking items.
 
         On MTO, the Analytic Account might be set after the action_confirm(),
-        so the planned amount needs to be set here, if the MO is already confirmed.
+        so the planned amount needs to be set here.
+
+        TODO: in what cases the planned amounts update should be prevented?
         """
         super().write(vals)
         if "analytic_account_id" in vals:
             confirmed_mos = self.filtered(lambda x: x.state == "confirmed")
-            confirmed_mos.move_raw_ids.populate_tracking_items(set_planned=True)
-            confirmed_mos.workorder_ids.populate_tracking_items(set_planned=True)
+            confirmed_mos.move_raw_ids.populate_tracking_items()
+            confirmed_mos.workorder_ids.populate_tracking_items()
         return True
 
     def _get_move_raw_values(
@@ -297,3 +354,10 @@ class MRPProduction(models.Model):
         )
         vals.update({"qty_planned": vals.get("product_uom_qty")})
         return vals
+
+    def _create_workorder(self):
+        res = super()._create_workorder()
+        for production in self:
+            for workorder in production.workorder_ids:
+                workorder.duration_planned = workorder.duration_expected
+        return res

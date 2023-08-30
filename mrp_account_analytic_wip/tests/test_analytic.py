@@ -1,19 +1,11 @@
 from datetime import datetime, timedelta
 
-from odoo.modules.module import get_resource_path
-from odoo.tests import Form, common
-from odoo.tools import convert_file
+from odoo.tests import common
 
 
 class TestAnalytic(common.TransactionCase):
-    def load_data(self, subdir, filename, module="mrp_account_analytic_wip"):
-        path = get_resource_path(module, subdir, filename)
-        convert_file(self.cr, module, path, {}, "init", False, "test")
-
     def setUp(self):
         super().setUp()
-        self.load_data("demo", "product_demo.xml", "account_analytic_wip")
-        self.load_data("demo", "product_demo.xml", "mrp_account_analytic_wip")
         self.analytic_job1 = self.browse_ref("mrp_account_analytic_wip.analytic_job1")
         self.final_machine = self.browse_ref("mrp_account_analytic_wip.final_machine")
         self.bom_final_machine = self.browse_ref(
@@ -23,12 +15,14 @@ class TestAnalytic(common.TransactionCase):
         self.mrp_workcenter = self.browse_ref("mrp_account_analytic_wip.mrp_workcenter")
         self.productive_time = self.browse_ref("mrp.block_reason7")
         # Create MO
-        mo_job1_form = Form(self.env["mrp.production"])
-        mo_job1_form.product_id = self.final_machine
-        mo_job1_form.bom_id = self.bom_final_machine
-        mo_job1_form.product_qty = 1
-        mo_job1_form.analytic_account_id = self.analytic_job1
-        self.mo_job1 = mo_job1_form.save()
+        mo_job1_obj = self.env["mrp.production"]
+        vals = {
+            "product_id": self.final_machine.id,
+            "bom_id": self.bom_final_machine.id,
+            "product_qty": 1,
+            "analytic_account_id": self.analytic_job1.id,
+        }
+        self.mo_job1 = mo_job1_obj.create(vals)
 
     def test_100_start_job_mo(self):
         # Click on CONFIRM button, generates Tracking Items
@@ -50,6 +44,8 @@ class TestAnalytic(common.TransactionCase):
                 "loss_id": self.productive_time.id,
                 "date_start": time0,
                 "date_end": time1,
+                "duration": 2.00,
+                "production_id": self.mo_job1.id,
             }
         )
         tracking1 = self.mo_job1.analytic_tracking_item_ids.filtered(
@@ -69,6 +65,7 @@ class TestAnalytic(common.TransactionCase):
                 "loss_id": self.productive_time.id,
                 "date_start": time0,
                 "date_end": time1,
+                "duration": 2.00,
             }
         )
         tracking2 = self.mo_job1.analytic_tracking_item_ids.filtered(
@@ -77,9 +74,9 @@ class TestAnalytic(common.TransactionCase):
         actual_amount = sum(tracking2.mapped("actual_amount"))
         self.assertEqual(actual_amount, 75.0)
         wip_amount = sum(tracking2.mapped("wip_actual_amount"))
-        self.assertEqual(wip_amount, 50.0)
+        self.assertEqual(wip_amount, 0.0)
         var_amount = sum(tracking2.mapped("variance_actual_amount"))
-        self.assertEqual(var_amount, 25.0)
+        self.assertEqual(var_amount, 75.0)
 
         # TODO: Raw Materials WIP and Variance
         # TODO: daily Post to accounting
@@ -87,8 +84,11 @@ class TestAnalytic(common.TransactionCase):
 
     def test_200_edit_mo_analytic(self):
         mo = self.mo_job1
+        analytic_plan = self.env["account.analytic.plan"].create(
+            {"name": "Plan Test", "company_id": False}
+        )
         aa_job2 = self.env["account.analytic.account"].create(
-            {"name": "New Analytic Account"}
+            {"name": "New Analytic Account", "plan_id": analytic_plan.id}
         )
         mo.analytic_account_id = aa_job2
         self.assertEqual(mo.analytic_account_id, aa_job2)

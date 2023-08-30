@@ -48,12 +48,13 @@ class StockMove(models.Model):
         "raw_material_production_id.qty_producing", "product_uom_qty", "product_uom"
     )
     def _compute_should_consume_qty(self):
-        super()._compute_should_consume_qty()
+        res = super()._compute_should_consume_qty()
         # Components added after MO confirmation have expected qty zero
         for move in self:
             mo = move.raw_material_production_id
-            if mo.state != "draft":
+            if mo.id and mo.state != "draft":
                 move.should_consume_qty = 0
+        return res
 
     # Copy Tracking item, so that when a move is split,
     # it still related to the same Tracking Item
@@ -61,8 +62,8 @@ class StockMove(models.Model):
         "account.analytic.tracking.item", string="Tracking Item", copy=True
     )
 
-    def _prepare_mrp_raw_material_analytic_line(self, qty):
-        values = super()._prepare_mrp_raw_material_analytic_line(qty=qty)
+    def _prepare_mrp_raw_material_analytic_line(self):
+        values = super()._prepare_mrp_raw_material_analytic_line()
         values["analytic_tracking_item_id"] = self.analytic_tracking_item_id.id
         return values
 

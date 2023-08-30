@@ -4,7 +4,7 @@
 {
     "name": "Manufacturing Accounting for WIP and Variances",
     "summary": "Generate WIP and Variance journal entries for mfg. consumptions",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Manufacturing",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",

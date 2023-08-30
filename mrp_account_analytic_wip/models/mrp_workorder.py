@@ -15,10 +15,11 @@ class MRPWorkOrder(models.Model):
     duration_expected = fields.Float(default=0.0)
     # Make MO lock status available for views
     is_locked = fields.Boolean(related="production_id.is_locked")
+    duration_planned = fields.Float(string="Planned Duration")
 
     def _prepare_tracking_item_values(self):
         analytic = self.production_id.analytic_account_id
-        planned_qty = self.duration_expected / 60
+        planned_qty = self.duration_planned / 60
         return analytic and {
             "analytic_id": analytic.id,
             "product_id": self.workcenter_id.analytic_product_id.id,
@@ -35,15 +36,11 @@ class MRPWorkOrder(models.Model):
         TrackingItem = self.env["account.analytic.tracking.item"]
         to_populate = self.filtered(
             lambda x: x.production_id.analytic_account_id
-            and (
-                x.production_id.state not in ("draft", "done", "cancel") or set_planned
-            )
+            and x.production_id.state not in ("draft", "done", "cancel")
         )
         all_tracking = to_populate.production_id.analytic_tracking_item_ids
         for item in to_populate:
-            tracking = all_tracking.filtered(
-                lambda x: not x.parent_id and x.workorder_id == self
-            )
+            tracking = all_tracking.filtered(lambda x: x.workorder_id == self)[:1]
             vals = item._prepare_tracking_item_values()
             not set_planned and vals.pop("planned_qty")
             if tracking:
@@ -62,7 +59,7 @@ class MRPWorkOrder(models.Model):
 class MrpWorkcenterProductivity(models.Model):
     _inherit = "mrp.workcenter.productivity"
 
-    def _prepare_mrp_workorder_analytic_item(self, duration):
-        values = super()._prepare_mrp_workorder_analytic_item(duration=duration)
+    def _prepare_mrp_workorder_analytic_item(self):
+        values = super()._prepare_mrp_workorder_analytic_item()
         values["product_id"] = self.workcenter_id.analytic_product_id.id
         return values

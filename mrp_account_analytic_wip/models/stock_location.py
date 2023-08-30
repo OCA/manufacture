@@ -11,12 +11,12 @@ class StockLocation(models.Model):
     valuation_clear_account_id = fields.Many2one(
         "account.account",
         "Manufacturing Clearing Account",
-        domain=[("internal_type", "=", "other"), ("deprecated", "=", False)],
+        domain=[("account_type", "=", "income_other"), ("deprecated", "=", False)],
         help="Used to clear the WIP accounts, the balance is posted to the variance account",
     )
     valuation_variance_account_id = fields.Many2one(
         "account.account",
         "Manufacturing Variance Account",
-        domain=[("internal_type", "=", "other"), ("deprecated", "=", False)],
+        domain=[("account_type", "=", "income_other"), ("deprecated", "=", False)],
         help="Used to post variances versus planned, when closing a Manufacturing Order",
     )
