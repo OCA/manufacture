@@ -8,11 +8,6 @@
         />
         <field name="arch" type="xml">
 
-            <!-- Don't allow deleting lines, to avoid wrong WIP Planned amounts -->
-            <tree position="attributes">
-                <attribute name="delete">0</attribute>
-            </tree>
-
             <field name="duration_expected" position="before">
                 <field name="is_locked" invisible="True" />
             </field>

@@ -31,11 +31,21 @@ class AnalyticLine(models.Model):
         Stock Moves might be split or merged by Odoo logic.
         """
         tracking = super()._get_tracking_item()
-        tracking = tracking.filtered(
-            # For Stock Move, match Tracking Item that has a related Stock Move
-            lambda x: (self.stock_move_id and x.stock_move_id)
-            # or Tracking item matching the exact Work Order
-            or (self.workorder_id and self.workorder_id == x.workorder_id)
-        )
+        production = self.manufacturing_order_id
+        stock_move = self.stock_move_id
+        workcenter = self.workorder_id.workcenter_id
+        if stock_move:
+            # For Stock Move, match Tracking Item with that Product
+            product = self.product_id
+            tracking = tracking.filtered(
+                lambda x: x.product_id == product
+                and not x.workcenter_id
+                and x.production_id == production
+            )
+        elif workcenter:
+            tracking = tracking.filtered(
+                lambda x: x.workcenter_id == workcenter
+                and x.production_id == production
+            )
         # Keep only the first match
         return tracking[:1]

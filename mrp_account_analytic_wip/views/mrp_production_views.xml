@@ -9,7 +9,7 @@
                     name="action_post_inventory_wip"
                     type="object"
                     string="Post WIP"
-                    attrs="{'invisible': [('state', 'in', ('draft', 'confirmed', 'done', 'cancel'))]}"
+                    attrs="{'invisible': [('state', 'in', ('draft', 'confirmed', 'progress', 'done', 'to_close','cancel'))]}"
                 />
             </button>
             <div name="button_box" position="inside">
@@ -53,9 +53,15 @@
                 <field name="qty_planned" invisible="1" />
             </xpath>
 
-            <!-- Don't allow deleting lines, to avoid wrong WIP Planned amounts -->
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
-                <attribute name="delete">0</attribute>
+            <xpath
+                expr="//page[@name='operations']/field[@name='workorder_ids']"
+                position="replace"
+            >
+                <field
+                    name="workorder_ids"
+                    attrs="{'readonly': ['|', '|', ('state', '=', 'cancel'), ('state', '=', 'progress'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}"
+                    context="{'tree_view_ref': 'mrp.mrp_production_workorder_tree_editable_view', 'default_product_uom_id': product_uom_id, 'from_manufacturing_order': True}"
+                />
             </xpath>
 
         </field>
