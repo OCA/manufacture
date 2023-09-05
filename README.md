@@ -38,6 +38,7 @@ addon | version | maintainers | summary
 [mrp_production_component_availability_search](mrp_production_component_availability_search/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Filter manufacturing orders by their components availability state
 [mrp_production_date_planned_finished](mrp_production_date_planned_finished/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Allows to plan production from the desired finish date
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 15.0.1.0.0 |  | Production Grouped By Product
+[mrp_production_note](mrp_production_note/) | 15.0.1.0.0 |  | Notes in production orders
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 15.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 15.0.1.0.0 |  | Production - Manual Quant Assignment
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 15.0.0.1.0 |  | MRP Production Serial Matrix
