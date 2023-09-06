@@ -5,7 +5,7 @@
 <record id='input_line_tree' model='ir.ui.view'>
     <field name='model'>input.line</field>
     <field name='arch' type='xml'>
-        <tree editable="bottom">
+        <tree editable="bottom" multi_edit="1">
             <field name="sequence" widget="handle" />
             <field name="name" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />

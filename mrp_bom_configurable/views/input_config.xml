@@ -14,6 +14,16 @@
                     />
             </header>
             <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button
+                            class="oe_stat_button"
+                            type="object"
+                            name="show_lines"
+                            icon="fa-list"
+                        >
+                        <field string="Lines" name="line_count" widget="statinfo" />
+                    </button>
+                </div>
                 <h2>
                     <field name="name" />
                 </h2>
