@@ -8,7 +8,7 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     subcontracted_unbuild_ids = fields.One2many(
-        "mrp.unbuild", "picking_id", readonly=True, string="Suncontracted unbuilds"
+        "mrp.unbuild", "picking_id", readonly=True, string="Subcontracted unbuilds"
     )
 
     def _prepare_subcontract_unbuild_vals(self, subcontract_move, bom):
@@ -59,7 +59,7 @@ class StockPicking(models.Model):
             unbuilds_to_done.with_context(
                 subcontract_move_id=True, mo_ids_to_backorder=unbuild_ids_backorder
             ).action_validate()
-            move = self.move_lines.filtered(lambda move: move.is_subcontract)
+            move = self.move_ids.filtered(lambda move: move.is_subcontract)
             finished_move = unbuilds_to_done.produce_line_ids.filtered(
                 lambda m: m.product_id == move.product_id
             )

@@ -70,7 +70,7 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
         self.assertTrue(mo)
 
         receipt = po.picking_ids
-        receipt.move_lines.quantity_done = 10
+        receipt.move_ids.quantity_done = 10
         receipt.button_validate()
 
         return_form = Form(
@@ -80,12 +80,11 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
         )
         with return_form.product_return_moves.edit(0) as line:
             line.quantity = 3
-            line.to_refund = True
         return_wizard = return_form.save()
         return_id, _ = return_wizard._create_returns()
 
         return_picking = self.env["stock.picking"].browse(return_id)
-        return_picking.move_lines.quantity_done = 3
+        return_picking.move_ids.quantity_done = 3
         subcontractor_location = self.subcontractor.property_stock_subcontractor
         unbuild = self.env["mrp.unbuild"].search([("bom_id", "=", self.bom.id)])
 
@@ -117,7 +116,7 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
             unbuild.state, "done", "The state of the unbuild should be done"
         )
 
-        move = return_picking.move_lines
+        move = return_picking.move_ids
         self.assertEqual(
             move.location_id,
             receipt.location_dest_id,
@@ -134,7 +133,7 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
         # Call the action to view the layers associated to the pickings
         result1 = return_picking.action_view_stock_valuation_layers()
         result2 = receipt.action_view_stock_valuation_layers()
-        layers1 = result1["domain"][2][2]
+        layers1 = result1["domain"][4][2]
         layers2 = result2["domain"][2][2]
         self.assertTrue(
             layers1,
@@ -240,16 +239,16 @@ class TestSubcontractingTracking(TransactionCase):
         self.env["procurement.group"].run_scheduler()
         picking = self.env["stock.picking"].search([("group_id", "=", pg1.id)])
         self.assertEqual(len(picking), 1)
-        self.assertEqual(picking.picking_type_id, wh.out_type_id)
+        self.assertEqual(picking.picking_type_id, wh.subcontracting_resupply_type_id)
 
-        lot_id = self.env["stock.production.lot"].create(
+        lot_id = self.env["stock.lot"].create(
             {
                 "name": "lot1",
                 "product_id": self.finished_product.id,
                 "company_id": self.env.company.id,
             }
         )
-        serial_id = self.env["stock.production.lot"].create(
+        serial_id = self.env["stock.lot"].create(
             {
                 "name": "lot1",
                 "product_id": self.comp1_sn.id,
@@ -268,7 +267,7 @@ class TestSubcontractingTracking(TransactionCase):
         mo.subcontracting_record_component()
 
         # We should not be able to call the 'record_components' button
-        self.assertFalse(picking_receipt.display_action_record_components)
+        self.assertEqual(picking_receipt.display_action_record_components, "hide")
 
         picking_receipt.button_validate()
         self.assertEqual(mo.state, "done")
@@ -280,12 +279,11 @@ class TestSubcontractingTracking(TransactionCase):
         )
         with return_form.product_return_moves.edit(0) as line:
             line.quantity = 1
-            line.to_refund = True
         return_wizard = return_form.save()
         return_id, _ = return_wizard._create_returns()
 
         return_picking = self.env["stock.picking"].browse(return_id)
-        return_picking.move_lines.quantity_done = 1
+        return_picking.move_ids.quantity_done = 1
         subcontractor_location = (
             self.subcontractor_partner1.property_stock_subcontractor
         )
@@ -317,7 +315,7 @@ class TestSubcontractingTracking(TransactionCase):
             unbuild.state, "done", "The state of the unbuild should be done"
         )
 
-        move = return_picking.move_lines
+        move = return_picking.move_ids
         self.assertEqual(
             move.location_id,
             picking_receipt.location_dest_id,
