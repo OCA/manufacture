@@ -5,7 +5,7 @@ class Inputline(models.Model):
     _name = "input.line"
     _description = "Input data for bom configuration"
 
-    name = fields.Char(required=True)
+    name = fields.Char()
     sequence = fields.Integer()
     bom_id = fields.Many2one(
         comodel_name="mrp.bom",

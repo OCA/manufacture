@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
     <record id="mrp_bom_form_view" model="ir.ui.view">
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
@@ -8,10 +9,16 @@
                 <field name="configuration_type" />
             </field>
             <xpath
-                expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']"
+                expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']"
                 position="after"
             >
-                <field name="domain" />
+                <field name="domain" readonly="1" />
+                <button
+                    name="ui_update_domain"
+                    type="object"
+                    class="oi oi-launch"
+                    title="Update domain"
+                />
                 <field name="condition" />
             </xpath>
         </field>
@@ -56,10 +63,20 @@
         <field name="model">mrp.bom.line</field>
         <field name="inherit_id" ref="mrp.mrp_bom_line_view_form" />
         <field name="arch" type="xml">
-            <field name="product_id" position="after">
-                <field name="domain" />
-                <field name="condition" optional="hide" />
-            </field>
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">1</attribute>
+            </xpath>
+            <xpath expr="//group" position="after">
+                <group name="domain" string="Domain">
+                    <field
+                        name="domain"
+                        widget="domain"
+                        options="{'model': 'input.line'}"
+                    />
+                    <field name="condition" />
+                </group>
+            </xpath>
         </field>
     </record>
+
 </odoo>

@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "depends": [
         "mrp",
+        "sale",
     ],
     "maintainer": [
         "bealdav",

@@ -7,15 +7,14 @@
     <field name='arch' type='xml'>
         <tree editable="bottom" multi_edit="1">
             <field name="sequence" widget="handle" />
-            <field name="name" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
-            <field name="bom_id" domain="[('configuration_type', '=', 'variable')]" />
             <button
                     name="ui_configure"
                     class="fa fa-gear"
                     type="object"
                     title="Configure"
                 />
+            <field name="name" />
             <field name="comment" optional="hide" />
             <field name="count" />
             <field name="config_id" invisible="1" />
@@ -28,7 +27,6 @@
     <field name="arch" type="xml">
         <search>
             <filter name="name" />
-            <filter name="bom_id" />
             <filter
                     name="config_id"
                     string="Config"

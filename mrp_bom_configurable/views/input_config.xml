@@ -29,15 +29,22 @@
                 </h2>
                 <group name="main">
                     <group>
-                        <field name="partner_id" />
+                        <field name="date" />
                     </group>
                     <group>
-                        <field name="date" />
+                        <field name="sale_id" />
+                        <field
+                                name="partner_id"
+                                attrs="{'invisible': [('sale_id', '=', False)]}"
+                            />
                     </group>
                 </group>
                 <group name="config">
+                    <group name="left">
+                        <field name="bom_domain" invisible="1" />
+                        <field name="bom_id" domain="bom_domain" />
+                    </group>
                     <!-- Set custom config fields in these groups -->
-                    <group name="left" />
                     <group name="right" />
                 </group>
                 <group>
