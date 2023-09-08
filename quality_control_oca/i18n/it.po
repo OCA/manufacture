@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-09-04 18:40+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-09-08 16:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -728,14 +728,14 @@ msgstr "Test di controllo qualità"
 #: model:ir.model,name:quality_control_oca.model_qc_trigger
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
 msgid "Quality control trigger"
-msgstr "Trigger di controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
 msgid "Quality control triggers"
-msgstr "Triggers di controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__failed
@@ -977,7 +977,7 @@ msgstr "Questo campo sarà contrassegnato se tutti i test sono superati."
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger__partner_selectable
 msgid "This technical field is to allow to filter by partner in triggers"
-msgstr "Questo campo permette di filtrare i trigger per partner"
+msgstr "Questo campo permette di filtrare per partner nelle attivazioni"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__trigger
@@ -985,13 +985,13 @@ msgstr "Questo campo permette di filtrare i trigger per partner"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__trigger
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__trigger
 msgid "Trigger"
-msgstr "Trigger"
+msgstr "Attivazione"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_trigger
 #: model:ir.ui.menu,name:quality_control_oca.qc_trigger_menu
 msgid "Triggers"
-msgstr "Trigger"
+msgstr "Attivazioni"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
