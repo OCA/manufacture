@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-09-04 18:40+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-10-13 12:41+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -340,17 +340,11 @@ msgstr "Se selezionato, nuovi messaggi richiedono attenzione."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -728,14 +722,14 @@ msgstr "Test di controllo qualità"
 #: model:ir.model,name:quality_control_oca.model_qc_trigger
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
 msgid "Quality control trigger"
-msgstr "Trigger di controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
 msgid "Quality control triggers"
-msgstr "Triggers di controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__failed
@@ -838,16 +832,6 @@ msgstr "Responsabile"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
@@ -977,7 +961,7 @@ msgstr "Questo campo sarà contrassegnato se tutti i test sono superati."
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger__partner_selectable
 msgid "This technical field is to allow to filter by partner in triggers"
-msgstr "Questo campo permette di filtrare i trigger per partner"
+msgstr "Questo campo permette di filtrare per partner nelle attivazioni"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__trigger
@@ -985,13 +969,13 @@ msgstr "Questo campo permette di filtrare i trigger per partner"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__trigger
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__trigger
 msgid "Trigger"
-msgstr "Trigger"
+msgstr "Attivazione"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_trigger
 #: model:ir.ui.menu,name:quality_control_oca.qc_trigger_menu
 msgid "Triggers"
-msgstr "Trigger"
+msgstr "Attivazioni"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
@@ -1022,7 +1006,7 @@ msgstr "UdM del valore dell'ispezione per una domanda quantitativa."
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__uom_id
 msgid "Uom"
-msgstr "Udm"
+msgstr "UdM"
 
 #. module: quality_control_oca
 #: model:res.groups,name:quality_control_oca.group_quality_control_user
@@ -1067,7 +1051,7 @@ msgstr "Messaggi sito web"
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website communication history"
-msgstr "Storico comunicazione sito web"
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
@@ -1114,6 +1098,9 @@ msgstr "È necessario fornire una risposta per tutte le domande quantitative."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "o"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Numero di messaggi che richiedono un'azione"
