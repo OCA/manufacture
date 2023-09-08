@@ -67,7 +67,8 @@ class TestMrpDefaultWorkorderTime(common.TestMrpCommon):
             ctx.update(res.get("context", {}))
             wizard_form = Form(self.env["mrp.immediate.production"].with_context(**ctx))
             wizard = wizard_form.save()
-            wizard.process()
+            if mo.company_id.use_projected_time_work_orders:
+                wizard.process()
 
     def test_mrp_default_workorder_time(self):
         self.stock_location = self.env.ref("stock.stock_location_stock")

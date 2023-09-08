@@ -23,7 +23,7 @@ MRP Default Workorder Time
     :target: https://runbot.odoo-community.org/runbot/129/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 There are occasions when the registration of work orders is not completed with the correct times, this module allows you to configure a threshold percentage that assigns the projected time as fully productive time if a work time less than this percentage is detected.
 
@@ -35,7 +35,7 @@ There are occasions when the registration of work orders is not completed with t
 Usage
 =====
 
-In the production module configurations, the "Record minimum order time" feature must be activated, by default the minimum percentage is ten but it can be changed as needed.
+In the production module configurations, the "Record standard projected order time" feature must be activated, by default the minimum percentage is ten but it can be changed as needed.
 
 Bug Tracker
 ===========
@@ -79,7 +79,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-ChrisOForgeFlow| 
+|maintainer-ChrisOForgeFlow|
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_default_workorder_time>`_ project on GitHub.
 
