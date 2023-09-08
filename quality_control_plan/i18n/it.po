@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-08 20:35+0000\n"
-"PO-Revision-Date: 2023-02-01 19:44+0000\n"
+"PO-Revision-Date: 2023-09-08 16:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_plan
 #: selection:qc.level,chk_type:0
@@ -219,7 +219,7 @@ msgstr "Ispezione controllo qualità"
 #: model:ir.model.fields,field_description:quality_control_plan.field_res_users_qc_triggers
 #: model:ir.ui.view,arch_db:quality_control_plan.view_mgmtsystem_nonconformity_partner
 msgid "Quality control triggers"
-msgstr "Automatismi controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_plan
 #: model:ir.model.fields,field_description:quality_control_plan.field_qc_inspection_qty_checked
