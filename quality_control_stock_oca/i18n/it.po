@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2023-07-17 14:11+0000\n"
+"PO-Revision-Date: 2023-09-08 16:39+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -104,7 +104,7 @@ msgstr "Riga ispezione controllo qualità"
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_qc_trigger
 msgid "Quality control trigger"
-msgstr "Trigger controllo qualità"
+msgstr "Attivazione controllo qualità"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_done
