@@ -10,9 +10,3 @@ class ReportBomConfigurable(models.AbstractModel):
         model = self.env["report.mrp.report_bom_structure"]
         res = model.with_context(variable=1)._get_report_values(docids, data)
         return res
-
-
-# TODO
-# see https://github.com/OCA/manufacture-reporting/pull/113/files for xlsx output
-# OR
-# https://github.com/OCA/spreadsheet

@@ -1,5 +1,6 @@
 from . import input_config
 from . import input_line
+from . import input_constraint
 from . import mrp_bom
 from . import mrp_bom_line
 

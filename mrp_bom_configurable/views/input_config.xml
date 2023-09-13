@@ -104,16 +104,17 @@
 </record>
 
 <record id="input_config_action" model="ir.actions.act_window">
-    <field name="name">Configurator</field>
+    <field name="name">Configured Products</field>
     <field name="res_model">input.config</field>
     <field name="view_mode">tree,form</field>
 </record>
 
+<menuitem id="configurator_menu" name="🔩" parent="mrp.menu_mrp_root" />
+
 <menuitem
         id="input_config_menu"
-        parent="mrp.menu_mrp_root"
+        parent="configurator_menu"
         action="input_config_action"
     />
-
 
 </odoo>

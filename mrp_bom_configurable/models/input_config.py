@@ -1,39 +1,15 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class InputConfig(models.Model):
     _name = "input.config"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "Product configuration scenari"
-
-    def _compute_bom_domain(self):
-        var_boms = self.env["mrp.bom"].search([("configuration_type", "=", "variable")])
-        var_tmpl = var_boms.mapped("product_tmpl_id")
-        products = self.env["product.product"].search(
-            [("product_tmpl_id", "in", var_tmpl.ids)]
-        )
-        compon_tmpl = (
-            self.env["mrp.bom.line"]
-            .search([("product_id", "=", products.ids)])
-            .mapped("product_id.product_tmpl_id")
-        )
-        tmpls = var_tmpl - compon_tmpl
-        boms = self.env["mrp.bom"].search(
-            [
-                ("configuration_type", "=", "variable"),
-                ("product_tmpl_id", "in", tmpls.ids),
-            ]
-        )
-        for rec in self:
-            rec.bom_domain = [("id", "in", boms.ids)]
+    _description = "Header configuration scenari"
 
     name = fields.Char(required=True)
     date = fields.Date(default=fields.Date.today())
     bom_id = fields.Many2one(
-        comodel_name="mrp.bom",
-        string="Configurable Product",
-        required=True,
-        domain=_compute_bom_domain,
+        comodel_name="mrp.bom", string="Configurable Product", required=True
     )
     bom_domain = fields.Binary(compute="_compute_bom_domain")
     state = fields.Selection(
@@ -51,6 +27,17 @@ class InputConfig(models.Model):
     )
     line_ids = fields.One2many(comodel_name="input.line", inverse_name="config_id")
     line_count = fields.Integer(string="Lines", compute="_compute_line_count")
+
+    @api.depends("bom_id")
+    def _compute_bom_domain(self):
+        domain = self.env["mrp.bom"]._get_bom_domain_for_config()
+        boms = self.env["mrp.bom"].search(domain)
+        for rec in self:
+            ids = boms and boms.ids or [False]
+            rec.bom_domain = [("id", "in", ids)]
+
+    def _get_bom_domain(self):
+        return [("configuration_type", "=", "variable")]
 
     def _compute_line_count(self):
         for rec in self:

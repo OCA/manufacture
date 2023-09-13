@@ -15,8 +15,10 @@
                     title="Configure"
                 />
             <field name="name" />
-            <field name="comment" optional="hide" />
             <field name="count" />
+            <field name="alert" optional="show" />
+            <field name="comment" optional="show" />
+            <field name="checked" optional="hide" />
             <field name="config_id" invisible="1" />
         </tree>
     </field>

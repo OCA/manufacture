@@ -17,7 +17,9 @@
     "data": [
         "views/input_config.xml",
         "views/input_line.xml",
-        "views/mrp_view.xml",
+        "views/input_constraint.xml",
+        "views/bom.xml",
+        "views/bom_line.xml",
         "report/report.xml",
         "report/bom_configurable.xml",
         "security/ir.model.access.csv",

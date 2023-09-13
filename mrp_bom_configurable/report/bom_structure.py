@@ -4,6 +4,7 @@ from odoo import api, models
 class ReportBomStructure(models.AbstractModel):
     _name = "mrp_bom_configurable.report.mrp.report_bom_structure"
     _inherit = "report.mrp.report_bom_structure"
+    _description = "Configurable BOM Structure Report"
 
     @api.model
     def _get_bom_data(self, *args, **kwargs):

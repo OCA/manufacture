@@ -23,3 +23,8 @@ class MrpBom(models.Model):
                 result.append(line)
 
         return result
+
+    @classmethod
+    def _get_bom_domain_for_config(cls):
+        "You may override me"
+        return [("configuration_type", "=", "variable")]
