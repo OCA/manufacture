@@ -11,7 +11,7 @@ class StockPickingType(models.Model):
     def _create_qc_trigger(self):
         for picking_type in self:
             qc_trigger = {
-                "name": picking_type.name,
+                "name": picking_type.display_name,
                 "company_id": picking_type.warehouse_id.company_id.id,
                 "picking_type_id": picking_type.id,
                 "partner_selectable": True,
