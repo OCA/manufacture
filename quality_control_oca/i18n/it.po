@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2023-09-08 16:36+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-09-20 17:47+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1022,7 +1022,7 @@ msgstr "UdM del valore dell'ispezione per una domanda quantitativa."
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__uom_id
 msgid "Uom"
-msgstr "Udm"
+msgstr "UdM"
 
 #. module: quality_control_oca
 #: model:res.groups,name:quality_control_oca.group_quality_control_user
