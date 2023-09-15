@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-16 03:46+0000\n"
-"PO-Revision-Date: 2023-07-17 17:14+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-09-20 17:49+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -764,7 +764,7 @@ msgstr ""
 #. module: quality_control
 #: field:qc.test.question,uom_id:0
 msgid "Uom"
-msgstr "Udm"
+msgstr "UdM"
 
 #. module: quality_control
 #: model:res.groups,name:quality_control.group_quality_control_user
