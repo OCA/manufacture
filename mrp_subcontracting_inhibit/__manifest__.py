@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Inhibit subcontracting flow on demand",
-    "version": "14.0.1.1.1",
+    "version": "16.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Tecnativa, Odoo Community Association (OCA)",

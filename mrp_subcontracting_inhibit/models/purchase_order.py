@@ -34,4 +34,6 @@ class PurchaseOrderLine(models.Model):
     def _onchange_quantity(self):
         """We need to inject the context to set the right price"""
         _self = self.with_context(subcontracting_inhibit=self.subcontracting_inhibit)
-        return super(PurchaseOrderLine, _self)._onchange_quantity()
+        return super(
+            PurchaseOrderLine, _self
+        )._compute_price_unit_and_date_planned_and_name()
