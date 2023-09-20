@@ -4,6 +4,6 @@ from odoo import fields, models
 
 
 class StockLocationRoute(models.Model):
-    _inherit = "stock.location.route"
+    _inherit = "stock.route"
 
     subcontracting_inhibit = fields.Boolean(string="Inhibit subcontracting")

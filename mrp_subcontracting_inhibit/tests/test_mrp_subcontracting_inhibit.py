@@ -3,7 +3,7 @@
 from odoo.tests import Form, common
 
 
-class TestMrpSubcontractingInhibit(common.SavepointCase):
+class TestMrpSubcontractingInhibit(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -22,7 +22,7 @@ class TestMrpSubcontractingInhibit(common.SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.supplier.id,
+                            "partner_id": cls.supplier.id,
                             "min_qty": 1,
                             "price": 10,
                         },
@@ -31,7 +31,7 @@ class TestMrpSubcontractingInhibit(common.SavepointCase):
                         0,
                         0,
                         {
-                            "name": cls.supplier.id,
+                            "partner_id": cls.supplier.id,
                             "min_qty": 1,
                             "price": 5,
                             "subcontracting_inhibit": True,
