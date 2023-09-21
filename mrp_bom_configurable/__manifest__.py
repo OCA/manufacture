@@ -10,6 +10,7 @@
     "depends": [
         "mrp",
         "sale",
+        "web"
     ],
     "maintainer": [
         "bealdav",
@@ -27,6 +28,14 @@
     "demo": [
         "demo/mrp_bom_configurable.xml",
     ],
-    "assets": {"web.assets_backend": ["mrp_bom_configurable/static/src/**/*"]},
+    "assets": {
+        "web.assets_backend": [
+            "mrp_bom_configurable/static/src/**/*",
+            ("remove", "mrp_bom_configurable/static/src/input_line_viewer/**/*")
+        ],
+        "mrp_bom_configurable.input_line": [
+            "mrp_bom_configurable/static/src/input_line_viewer/**/*"
+        ]
+    },
     "installable": True,
 }

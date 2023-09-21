@@ -1,0 +1,64 @@
+.record-select {
+    position: relative;
+    width: 100%;
+
+    .input-container {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        position:relative;
+
+        .record-select-caret {
+            position: absolute;
+            top: 2px;
+            left: auto;
+            bottom: 1px;
+            right: 14px;
+            pointer-events: none;
+
+            &::after {
+                content: "";
+                display: inline-block;
+                width: 0;
+                height: 0;
+                vertical-align: middle;
+                -moz-transform: scale(0.9999);
+                border-bottom: 0;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 4px solid var(--o-caret-color, currentColor);
+                margin-top: 4px;
+            }
+        }
+    }
+
+    input {
+        height: 100%;
+    }
+}
+
+.record-select-loading {
+    font-style-type: italic;
+}
+
+.record-select-dropdown {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px 0px;
+    position: absolute;
+    border: 1px solid var(--gray-300);
+    border-radius: 3px;
+    background: white;
+}
+
+.record-select-dropdown-item {
+    padding: 0px 5px;
+
+    &:hover {
+        background: var(--gray-200);
+    }
+}
+
+.record-select-item-id {
+    display: none;
+}

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+<record id="action_show_line_info" model="ir.actions.client">
+    <field name="name">Input line information</field>
+    <field name="tag">mrp_bom_configurable.input_line</field>
+</record>
 
 <record id='input_line_tree' model='ir.ui.view'>
     <field name='model'>input.line</field>
@@ -8,6 +12,7 @@
         <tree editable="bottom" multi_edit="1">
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
+            <button name="%(action_show_line_info)d" class="fa fa-eye" type="action" title="Info" />
             <button
                     name="ui_configure"
                     class="fa fa-gear"

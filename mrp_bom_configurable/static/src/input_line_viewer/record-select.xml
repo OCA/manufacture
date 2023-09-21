@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="input_line.record_select" owl="1">
+        <div class="record-select" t-ref="baseInput">
+            <div class="input-container">
+                <input class="o_input" type="text" t-model="state.selectedValue.display_name" />
+                <a class="record-select-caret"/>
+            </div>
+            <div class="record-select-dropdown" t-if="state.open">
+                <div class="record-select-loading" t-if="state.loading">
+                    Loading...
+                </div>
+                <RecordItem t-foreach="state.filteredValues" t-as="value" t-key="value.id" name="value.display_name" id="value.id" click="clickItem.bind(this)"/>
+            </div>
+        </div>
+    </t>
+    <t t-name="input_line.record_item" owl="1">
+        <div t-ref="item" class="record-select-dropdown-item">
+            <t t-esc="props.name"/>
+        </div>
+    </t>
+</templates>
