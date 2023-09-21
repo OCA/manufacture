@@ -26,7 +26,7 @@ class InputLine extends Component {
             },
         });
         this.display = {
-            controlPanel: { "top-right": false, "bottom-right": false },
+            controlPanel: {"top-right": false, "bottom-right": false},
         };
         this.orm = useService("orm");
 
@@ -44,11 +44,9 @@ class InputLine extends Component {
     }
 
     async getInputLineData() {
-        this.state.bomData = await this.orm.call(
-            "input.line",
-            "get_json",
-            [this.activeId]
-        );
+        this.state.bomData = await this.orm.call("input.line", "get_json", [
+            this.activeId,
+        ]);
         this.state.inputLineData = await this.orm.call(
             "input.line",
             "get_values_with_field_desc",
@@ -64,15 +62,12 @@ class InputLine extends Component {
         return this.props.action.context.active_id;
     }
 
-    async save() {
-    }
+    async save() {}
 
     async cancel() {
-        this.state.bomData = await this.orm.call(
-            "input.line",
-            "get_json",
-            [this.activeId]
-        );
+        this.state.bomData = await this.orm.call("input.line", "get_json", [
+            this.activeId,
+        ]);
         this.state.inputLineData = await this.orm.call(
             "input.line",
             "get_values_with_field_desc",

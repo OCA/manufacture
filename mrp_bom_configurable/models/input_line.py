@@ -23,7 +23,10 @@ class Inputline(models.Model):
     bom_data_preview = fields.Json()
 
     def _get_config_elements(self):
-        raise NotImplementedError("_get_config_elements must be overriden and return the specific fields in the input line")
+        raise NotImplementedError(
+            "_get_config_elements must be overriden and"
+            + " return the specific fields in the input line"
+        )
 
     def ui_clone(self):
         self.ensure_one()
@@ -45,11 +48,13 @@ class Inputline(models.Model):
 
     def get_values_with_field_desc(self):
         self.ensure_one()
-        values = [{
-            "name": "name",
-            "string": "Name",
-            "value": self.name,
-        }]
+        values = [
+            {
+                "name": "name",
+                "string": "Name",
+                "value": self.name,
+            }
+        ]
         for field in self._get_config_elements():
             field_vals = {
                 "name": field,
@@ -75,8 +80,7 @@ class Inputline(models.Model):
                 else:
                     field_vals["possible_values"] = self._fields[field].selection
 
-
-            values.append(field_vals);
+            values.append(field_vals)
 
         return values
 
@@ -86,14 +90,17 @@ class Inputline(models.Model):
         lines, conf_names = self._get_lines()
         self.bom_data_preview = {
             "config_data": [
-                {"name" : key, "display_name": conf_names[key]} for key in conf_names
+                {"name": key, "display_name": conf_names[key]} for key in conf_names
             ],
-            "data": [{
-                "id": line.id,
-                "component" : line.product_id.display_name,
-                "quantity" : line.product_qty,
-                "unit" : line.product_uom_id.display_name,
-            } for line in lines]
+            "data": [
+                {
+                    "id": line.id,
+                    "component": line.product_id.display_name,
+                    "quantity": line.product_qty,
+                    "unit": line.product_uom_id.display_name,
+                }
+                for line in lines
+            ],
         }
 
     def get_json(self):

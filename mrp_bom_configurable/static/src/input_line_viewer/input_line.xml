@@ -3,22 +3,46 @@
 <t t-name="input_line.clientaction" owl="1">
     <div class="input_line_viewer_container">
         <Layout display="display">
-            <form t-ref="inputLineForm" class="input_line_form container-fluid o_form_view mt32">
-                <div class="o_form_widget" t-foreach="state.inputLineData" t-as="value" t-key="value.name">
-                    <label t-esc="value.string"/>
+            <form
+                    t-ref="inputLineForm"
+                    class="input_line_form container-fluid o_form_view mt32"
+                >
+                <div
+                        class="o_form_widget"
+                        t-foreach="state.inputLineData"
+                        t-as="value"
+                        t-key="value.name"
+                    >
+                    <label t-esc="value.string" />
                     <t t-if="value.type == 'selection'">
-                        <InputLineSelect value="value.value" possibleVal="value.possible_values"/>
+                        <InputLineSelect
+                                value="value.value"
+                                possibleVal="value.possible_values"
+                            />
                     </t>
                     <t t-elif="value.type == 'many2one'">
-                        <RecordSelect model="value.model" value="value" domain="value.domain" notifyChange="setDataChanged.bind(this)"/>
+                        <RecordSelect
+                                model="value.model"
+                                value="value"
+                                domain="value.domain"
+                                notifyChange="setDataChanged.bind(this)"
+                            />
                     </t>
                     <t t-else="">
-                        <input class="o_input" type="text" t-model="value.value"/>
+                        <input class="o_input" type="text" t-model="value.value" />
                     </t>
                 </div>
                 <div class="button_bar">
-                    <button class="btn btn-primary" t-att-disabled="!state.dataChanged" t-on-click="save">Save</button>
-                    <button class="btn" t-att-disabled="!state.dataChanged" t-on-click="cancel">Cancel</button>
+                    <button
+                            class="btn btn-primary"
+                            t-att-disabled="!state.dataChanged"
+                            t-on-click="save"
+                        >Save</button>
+                    <button
+                            class="btn"
+                            t-att-disabled="!state.dataChanged"
+                            t-on-click="cancel"
+                        >Cancel</button>
                 </div>
             </form>
         </Layout>
@@ -34,9 +58,9 @@
                     </thead>
                     <tbody>
                         <tr t-foreach="state.bomData.data" t-as="line" t-key="line.id">
-                            <td t-esc="line.component"></td>
-                            <td t-esc="line.quantity"></td>
-                            <td t-esc="line.unit"></td>
+                            <td t-esc="line.component" />
+                            <td t-esc="line.quantity" />
+                            <td t-esc="line.unit" />
                         </tr>
                     </tbody>
                 </table>

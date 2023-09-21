@@ -12,7 +12,12 @@
         <tree editable="bottom" multi_edit="1">
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
-            <button name="%(action_show_line_info)d" class="fa fa-eye" type="action" title="Info" />
+            <button
+                    name="%(action_show_line_info)d"
+                    class="fa fa-eye"
+                    type="action"
+                    title="Info"
+                />
             <button
                     name="ui_configure"
                     class="fa fa-gear"

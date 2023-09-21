@@ -1,4 +1,3 @@
-
 /** @odoo-module **/
 
 import {registry} from "@web/core/registry";
@@ -37,9 +36,8 @@ export class RecordSelect extends Component {
         this.searchPossibleValues = debounce(this.searchPossibleValues, 200);
         this.state.selectedValue = this.props.value;
 
-        onWillUpdateProps(nextProps => {
-            if (nextProps.value != this.props.value)
-            {
+        onWillUpdateProps((nextProps) => {
+            if (nextProps.value != this.props.value) {
                 this.state.selectedValue.display_name = nextProps.value.display_name;
                 this.state.selectedValue.id = nextProps.value.value;
             }
@@ -48,8 +46,7 @@ export class RecordSelect extends Component {
         onMounted(() => {
             this.baseInput.el.addEventListener("click", async (event) => {
                 event.stopPropagation();
-                if (!this.state.open)
-                {
+                if (!this.state.open) {
                     this.state.open = true;
                     this.state.loading = true;
                     this.state.filteredValues = [];
@@ -61,8 +58,7 @@ export class RecordSelect extends Component {
             });
 
             this.baseInput.el.addEventListener("keydown", (ev) => {
-                if (ev.key === "Escape")
-                {
+                if (ev.key === "Escape") {
                     this.state.open = false;
                     ev.target.blur();
                     return;
@@ -72,7 +68,10 @@ export class RecordSelect extends Component {
             this.baseInput.el.addEventListener("input", async (ev) => {
                 const searchTerms = ev.target.value;
 
-                this.state.filteredValues = this.state.possibleValues.filter((item) => searchTerms == "" || item.display_name.includes(searchTerms));
+                this.state.filteredValues = this.state.possibleValues.filter(
+                    (item) =>
+                        searchTerms == "" || item.display_name.includes(searchTerms)
+                );
             });
 
             document.addEventListener("click", (ev) => {
@@ -85,18 +84,20 @@ export class RecordSelect extends Component {
     // so that this refers to the proper instance
     clickItem(event, id) {
         event.stopPropagation();
-        const value = this.state.filteredValues.find(item => item.id === id);
+        const value = this.state.filteredValues.find((item) => item.id === id);
         this.state.selectedValue.id = value.id;
         this.state.selectedValue.display_name = value.display_name;
         this.state.open = false;
         this.props.notifyChange();
-
     }
 
     searchPossibleValues() {
         return new Promise(async (res, rej) => {
             const ids = await this.orm.search(this.props.model, this.props.domain);
-            const values = await this.orm.read(this.props.model, ids, ["id", "display_name"]);
+            const values = await this.orm.read(this.props.model, ids, [
+                "id",
+                "display_name",
+            ]);
             res(values);
         });
     }
