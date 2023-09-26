@@ -142,6 +142,79 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
             layers2,
         )
 
+    def test_purchase_partial_receipt_and_refund(self):
+        po = self.env["purchase.order"].create(
+            {
+                "partner_id": self.subcontractor.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.finished.name,
+                            "product_id": self.finished.id,
+                            "product_uom_qty": 10,
+                            "product_qty": 10,
+                            "product_uom": self.finished.uom_id.id,
+                            "price_unit": 1,
+                        },
+                    )
+                ],
+            }
+        )
+        po.button_confirm()
+
+        mo = self.env["mrp.production"].search([("bom_id", "=", self.bom.id)])
+        self.assertTrue(mo)
+
+        receipt = po.picking_ids.filtered(lambda x: x.state != "done")
+        receipt.move_ids.quantity_done = 3
+        result_dict = receipt.button_validate()
+        self.env["stock.backorder.confirmation"].with_context(
+            **result_dict["context"]
+        ).process()
+        self.assertEqual(po.order_line.qty_received, 3)
+
+        receipt = po.picking_ids.filtered(lambda x: x.state != "done")
+        receipt.move_lines.quantity_done = 3
+        picking_to_return = receipt
+        result_dict = receipt.button_validate()
+        self.env["stock.backorder.confirmation"].with_context(
+            **result_dict["context"]
+        ).process()
+        self.assertEqual(po.order_line.qty_received, 6)
+
+        receipt = po.picking_ids.filtered(lambda x: x.state != "done")
+        receipt.move_lines.quantity_done = 3
+        result_dict = receipt.button_validate()
+        self.env["stock.backorder.confirmation"].with_context(
+            **result_dict["context"]
+        ).process()
+        self.assertEqual(po.order_line.qty_received, 9)
+
+        self.assertEqual(len(po.picking_ids), 4)
+
+        return_form = Form(
+            self.env["stock.return.picking"].with_context(
+                active_id=picking_to_return.id, active_model="stock.picking"
+            )
+        )
+        with return_form.product_return_moves.edit(0) as line:
+            line.quantity = 3
+            line.to_refund = True
+        return_wizard = return_form.save()
+        return_id, _ = return_wizard._create_returns()
+
+        return_picking = self.env["stock.picking"].browse(return_id)
+        return_picking.move_lines.quantity_done = 3
+        return_picking.button_validate()
+
+        self.assertEqual(po.order_line.qty_received, 6)
+
+        mo = picking_to_return.mapped("move_lines.move_orig_ids.production_id")
+        unbuild = self.env["mrp.unbuild"].search([("mo_id", "=", mo.id)])
+        self.assertTrue(unbuild.exists())
+
 
 class TestSubcontractingTracking(TransactionCase):
     def setUp(self):

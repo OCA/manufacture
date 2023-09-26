@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from odoo import _, models
+from odoo import _, api, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_is_zero
 
@@ -68,3 +68,23 @@ class StockMove(models.Model):
             merge=merge, merge_into=merge_into
         )
         return result
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for val in vals_list:
+            if val.get("move_dest_ids", False) and val.get("production_id", False):
+                if (
+                    self.env["mrp.production"]
+                    .browse(val.get("production_id", False))
+                    .bom_id.type
+                    == "subcontract"
+                ):
+                    # When we have partial receive move_orig_ids
+                    # keep first subcontracting manufacturing order moves link
+                    # should be avoided this situation, to refund cases
+                    self.browse(val.get("move_dest_ids", False)[0][1]).write(
+                        {
+                            "move_orig_ids": [(5, 0, 0)],
+                        }
+                    )
+        return super().create(vals_list)
