@@ -22,10 +22,10 @@ class StockPicking(models.Model):
             raise UserError(
                 _(
                     "It's not possible to create the subcontracting unbuild order\n"
-                    "The subcontract move %s is linked with more than "
-                    "one manufacturing order: %s"
+                    "The subcontract move %(smn)s is linked with more than "
+                    "one manufacturing order: %(jmm)s"
                 )
-                % (subcontract_move.name, ",".join(mos.mapped("name")))
+                % {"smn": subcontract_move.name, "jmm": ",".join(mos.mapped("name"))}
             )
         vals = {
             "company_id": subcontract_move.company_id.id,
