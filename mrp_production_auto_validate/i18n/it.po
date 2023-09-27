@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-10-09 05:31+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production__auto_validate
 msgid "Auto Validate"
-msgstr ""
+msgstr "Auto validazione"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Distinta base"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__display_name
@@ -31,7 +33,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__id
@@ -40,7 +42,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking__id
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom____last_update
@@ -49,22 +51,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation
 msgid "Order Auto Validation"
-msgstr ""
+msgstr "Validazione automatica ordine"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation_warning
 msgid "Order Auto Validation (warning)"
-msgstr ""
+msgstr "Validazine automatica ordine (avviso)"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_production_auto_validate
 #: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
@@ -74,6 +76,9 @@ msgid ""
 "validation feature preventing to create an MO with a different qty than "
 "defined on the BOM."
 msgstr ""
+"La quantità dell'approvvigionamento (%s %s) è stata incrementata a %s %s per "
+"l'opzione di validazione automatica prevenendo la creazione un OP con una "
+"quantità diversa da quella defnita nella DiBa."
 
 #. module: mrp_production_auto_validate
 #: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
@@ -83,11 +88,14 @@ msgid ""
 "%s %s due to auto validation feature preventing to set a quantity to produce"
 " different than the quantity defined on the Bill of Materials."
 msgstr ""
+"La quantità dell'approvvigionamento (%s %s) è stata divisa in più ordini di "
+"produzione da %s %s per l'opzione di validazione automatica prevenendo di "
+"impostare una quantità da produrre diversa da quanto definito nella DiBa."
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regola di giacenza"
 
 #. module: mrp_production_auto_validate
 #: code:addons/mrp_production_auto_validate/models/mrp_bom.py:0
@@ -95,6 +103,7 @@ msgstr ""
 msgid ""
 "The Quantity To Produce of an order is now restricted to the BoM Quantity."
 msgstr ""
+"La quantità da produrre di un ordine è ora limitata alla quantità della DiBa."
 
 #. module: mrp_production_auto_validate
 #: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
@@ -103,11 +112,13 @@ msgid ""
 "The quantity to produce is restricted to {qty} as the BoM is configured with"
 " the 'Order Auto Validation' option."
 msgstr ""
+"La quantità da produrre è limitata a {qty} perché la DiBa è configurata con "
+"l'opzione 'Validazione automativca ordine'."
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferisci"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,help:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation
@@ -115,8 +126,13 @@ msgid ""
 "Validate automatically the manufacturing order when the 'Pick Components' transfer is validated.\n"
 "This behavior is available only if the warehouse is configured with 2 or 3 steps."
 msgstr ""
+"Valida automaticamente l'ordine di produzione quanto il trasferimento "
+"'Preleva componenti' è validato.\n"
+"La funzionalità è disponibile solo se il magazzIno è configurato con 2 o tre "
+"fasi."
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_mrp_production_backorder
 msgid "Wizard to mark as done or create back order"
 msgstr ""
+"Procedura quidata per impostarlo come eseguito o breare un ordine residuo"
