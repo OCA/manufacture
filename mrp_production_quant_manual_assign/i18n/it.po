@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-12 09:09+0000\n"
+"PO-Revision-Date: 2023-10-09 09:10+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: mrp_production_quant_manual_assign
 #: model:ir.model,name:mrp_production_quant_manual_assign.model_assign_manual_quants
 msgid "Assign Manual Quants"
-msgstr "Assegna quanto manuale"
+msgstr "Assegna quanti manuali"
 
 #. module: mrp_production_quant_manual_assign
 #: model:ir.model,name:mrp_production_quant_manual_assign.model_assign_manual_quants_lines
