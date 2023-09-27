@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='bom_line_ids']//field[@name='manual_consumption']"
+                position="after"
+            >
+                <field name="description_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
