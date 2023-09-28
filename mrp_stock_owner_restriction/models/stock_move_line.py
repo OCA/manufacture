@@ -9,7 +9,9 @@ class StockMoveLine(models.Model):
 
     def _action_done(self):
         for line in self:
-            owner = line.move_id.production_id.owner_id
+            owner = line.move_id.production_id.owner_id or self.env.context.get(
+                "force_restricted_owner_id", None
+            )
             if owner:
                 line.move_id.write({"restrict_partner_id": owner.id})
                 line.write({"owner_id": owner.id})
