@@ -10,7 +10,7 @@
     "category": "Manufacturing/Manufacturing",
     "author": "GRAP,"
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/grap/grap-odoo-incubator",
+    "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": [
         "mrp",
