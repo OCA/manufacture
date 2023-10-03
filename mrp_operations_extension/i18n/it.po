@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 11:05+0000\n"
-"PO-Revision-Date: 2023-09-20 17:49+0000\n"
+"PO-Revision-Date: 2023-10-09 08:29+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -176,7 +176,7 @@ msgstr "Cliente"
 #. module: mrp_operations_extension
 #: field:mrp.operation.workcenter,default:0
 msgid "Default"
-msgstr "Default"
+msgstr "Predefinito"
 
 #. module: mrp_operations_extension
 #: view:mrp.routing.workcenter:mrp_operations_extension.mrp_routing_workcenter_tree_view_inh
