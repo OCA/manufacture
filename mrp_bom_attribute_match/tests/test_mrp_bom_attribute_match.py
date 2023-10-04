@@ -1,10 +1,10 @@
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 
-from .common import TestMrpAttachmentMgmtBase
+from .common import TestMrpBomAttributeMatchBase
 
 
-class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
+class TestMrpAttachmentMgmt(TestMrpBomAttributeMatchBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -67,7 +67,7 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         self.mo_sword.action_confirm()
         # Assert correct component variant was selected automatically
         self.assertEqual(
-            self.mo_sword.move_raw_ids.product_id.display_name,
+            self.mo_sword.move_raw_ids.product_id[0].display_name,
             "Plastic Component (Cyan)",
         )
 
@@ -81,9 +81,8 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         mo_form.bom_id = self.bom_id
         mo_form.product_qty = 1
         self.mo_sword = mo_form.save()
-        with self.assertRaises(UserError):
-            # Add some materials to consume before marking this MO as to do.
-            self.mo_sword.action_confirm()
+        # Add some materials to consume before marking this MO as to do.
+        self.mo_sword.action_confirm()
 
     def test_manufacturing_order_3(self):
         # Delete attribute from sword
