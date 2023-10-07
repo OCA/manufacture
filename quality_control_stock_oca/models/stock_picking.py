@@ -54,9 +54,11 @@ class StockPicking(models.Model):
 
     def action_done(self):
         res = super().action_done()
-        inspection_model = self.env["qc.inspection"]
-        qc_trigger = self.env["qc.trigger"].search(
-            [("picking_type_id", "=", self.picking_type_id.id)]
+        inspection_model = self.env["qc.inspection"].sudo()
+        qc_trigger = (
+            self.env["qc.trigger"]
+            .sudo()
+            .search([("picking_type_id", "=", self.picking_type_id.id)])
         )
         for operation in self.move_lines:
             trigger_lines = set()
@@ -67,8 +69,10 @@ class StockPicking(models.Model):
             ]:
                 partner = self.partner_id if qc_trigger.partner_selectable else False
                 trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, operation.product_id, partner=partner
+                    self.env[model]
+                    .sudo()
+                    .get_trigger_line_for_product(
+                        qc_trigger, operation.product_id.sudo(), partner=partner
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
