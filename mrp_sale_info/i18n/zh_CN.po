@@ -65,12 +65,6 @@ msgstr ""
 msgid "Work Order"
 msgstr "工单"
 
-#. module: mrp_sale_info
-#: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__partner_id
-#: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
-
 #~ msgid "Manufacturing Order"
 #~ msgstr "制造订单"
 
