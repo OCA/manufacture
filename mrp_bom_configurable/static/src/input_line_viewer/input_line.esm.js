@@ -6,8 +6,8 @@ import {Layout} from "@web/search/layout";
 import {Notebook} from "@web/core/notebook/notebook";
 import {useService} from "@web/core/utils/hooks";
 
-import {InputLineSelect} from "./select";
-import {RecordSelect} from "./record-select";
+import {InputLineSelect} from "./select.esm";
+import {RecordSelect} from "./record-select.esm";
 
 const {Component, useSubEnv, useState, onWillStart, useRef, onMounted} = owl;
 
