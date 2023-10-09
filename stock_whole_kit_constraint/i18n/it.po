@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_whole_kit_constraint
+# 	* stock_whole_kit_constraint
 #
 msgid ""
 msgstr ""
@@ -26,7 +26,9 @@ msgstr "Consente la consegna di confezioni parziali"
 #. module: stock_whole_kit_constraint
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_product__allow_partial_kit_delivery
 #: model:ir.model.fields,help:stock_whole_kit_constraint.field_product_template__allow_partial_kit_delivery
-msgid "If not set, and this product is delivered with a BoM of type kit, partial deliveries of the components won't be allowed."
+msgid ""
+"If not set, and this product is delivered with a BoM of type kit, partial "
+"deliveries of the components won't be allowed."
 msgstr ""
 "Se non impostato e questo prodotto è consegnato con una DiBa di tipo "
 "confezione, la consegna parziale dei componenti non è consentita."
