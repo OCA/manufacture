@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_auto_create_lot
+# 	* mrp_auto_create_lot
 #
 msgid ""
 msgstr ""
