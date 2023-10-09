@@ -24,7 +24,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Applied Putaway strategy to finished products.\n"
-"Finished Products Location: %s."
+" Finished Products Location: %s. "
 msgstr ""
 
 #. module: mrp_production_putaway_strategy

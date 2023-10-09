@@ -25,12 +25,18 @@ msgstr ""
 #, python-format
 msgid ""
 "Applied Putaway strategy to finished products.\n"
-"Finished Products Location: %s."
+" Finished Products Location: %s. "
 msgstr ""
-"Aplicação da estratégia de entrada em depósito em produtos acabados.\n"
-"Localização dos produtos acabados: %s."
 
 #. module: mrp_production_putaway_strategy
 #: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
 msgid "Production Order"
 msgstr "Ordem de Produção"
+
+#, python-format
+#~ msgid ""
+#~ "Applied Putaway strategy to finished products.\n"
+#~ "Finished Products Location: %s."
+#~ msgstr ""
+#~ "Aplicação da estratégia de entrada em depósito em produtos acabados.\n"
+#~ "Localização dos produtos acabados: %s."
