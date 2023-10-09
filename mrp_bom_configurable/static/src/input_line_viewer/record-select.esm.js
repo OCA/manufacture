@@ -85,7 +85,7 @@ export class RecordSelect extends Component {
     clickItem(event, id) {
         event.stopPropagation();
         const value = this.state.filteredValues.find((item) => item.id === id);
-        this.state.selectedValue.id = value.id;
+        this.state.selectedValue.value = value.id;
         this.state.selectedValue.display_name = value.display_name;
         this.state.open = false;
         this.props.notifyChange();
