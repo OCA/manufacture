@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_unbuild_tracked_raw_material
+# 	* mrp_unbuild_tracked_raw_material
 #
 msgid ""
 msgstr ""
@@ -19,7 +19,8 @@ msgstr ""
 #. module: mrp_unbuild_tracked_raw_material
 #: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:45
 #, python-format
-msgid "%s \n"
+msgid ""
+"%s \n"
 "\n"
 "%s"
 msgstr ""
@@ -36,7 +37,9 @@ msgstr "Consente di smontare l'acquistato"
 #. module: mrp_unbuild_tracked_raw_material
 #: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_product__allow_unbuild_purchased
 #: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_template__allow_unbuild_purchased
-msgid "If checked, unbuild orders doesn't assume a previous manufacturing order have built this product.\n"
+msgid ""
+"If checked, unbuild orders doesn't assume a previous manufacturing order "
+"have built this product.\n"
 "In this case it's a purchased product and you want unbuild it"
 msgstr ""
 "Se impostato, gli ordini di smontaggio non assumono che il prodotto sia "
@@ -68,7 +71,10 @@ msgstr "Smontaggio acquistato"
 #. module: mrp_unbuild_tracked_raw_material
 #: code:addons/mrp_unbuild_tracked_raw_material/models/unbuild.py:82
 #, python-format
-msgid "Unbuild of component of tracked as serial is not supported for now: contact maintainers of 'mrp_unbuild_tracked_raw_material' module if you want this feature"
+msgid ""
+"Unbuild of component of tracked as serial is not supported for now: contact "
+"maintainers of 'mrp_unbuild_tracked_raw_material' module if you want this "
+"feature"
 msgstr ""
 "Lo smontaggio di componenti tracciati come i seriali non è supportato al "
 "momento: contattare i manutentori del modulo "
