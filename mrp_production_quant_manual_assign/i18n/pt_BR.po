@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_quant_manual_assign
+# 	* mrp_production_quant_manual_assign
 #
 msgid ""
 msgstr ""
