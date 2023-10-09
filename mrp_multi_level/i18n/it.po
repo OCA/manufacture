@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_multi_level
+# 	* mrp_multi_level
 #
 msgid ""
 msgstr ""
@@ -454,8 +454,7 @@ msgstr "Effettua approvvigionamenti dalle proiezioni magazzino MRP"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: selection:mrp.move,mrp_origin:0 selection:mrp.planned.order,mrp_action:0
 msgid "Manufacturing Order"
 msgstr "Ordine di produzione"
 
@@ -531,7 +530,9 @@ msgstr "Nessuno"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
-msgid "Number of days to group demand for this product during the MRP run, in order to determine the quantity to order."
+msgid ""
+"Number of days to group demand for this product during the MRP run, in order "
+"to determine the quantity to order."
 msgstr ""
 "Numero di giorni da raggruppare per i fabbisogni di questo prodotto durante "
 "l'esecuzione dell'MRP, per determinate la quantità da ordinare."
@@ -712,8 +713,7 @@ msgstr "Richiama da"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
-#: selection:mrp.move,mrp_origin:0
-#: selection:mrp.planned.order,mrp_action:0
+#: selection:mrp.move,mrp_origin:0 selection:mrp.planned.order,mrp_action:0
 msgid "Purchase Order"
 msgstr "Ordine di acquisto"
 
@@ -773,7 +773,9 @@ msgstr "Data rilascio"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
-msgid "Requirements for a particular MRP area are combined for the purposes of procurement by the MRP."
+msgid ""
+"Requirements for a particular MRP area are combined for the purposes of "
+"procurement by the MRP."
 msgstr ""
 "Le richieste per una particolare area MRP sono combinate allo scopo di "
 "approvvigionare con l'MRP."
@@ -830,7 +832,9 @@ msgstr "Inviato"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__location_proc_id
-msgid "Set this if you need to procure from a different locationthan area's location."
+msgid ""
+"Set this if you need to procure from a different locationthan area's "
+"location."
 msgstr ""
 "Impostare se serve approvvigionare da una ubicazione diversa da quella "
 "dell'area."
@@ -969,9 +973,11 @@ msgstr "Unità"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
-msgid "Use this assistant to procure for this product and date.\n"
+msgid ""
+"Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
-"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    this may trigger a draft purchase order, a "
+"manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
 "Usa questo assistente per approvvigionare questo prodotto e data.\n"
