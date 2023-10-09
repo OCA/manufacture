@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_bom_line_sequence
+# 	* mrp_bom_line_sequence
 #
 msgid ""
 msgstr ""
