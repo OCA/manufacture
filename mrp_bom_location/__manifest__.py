@@ -10,10 +10,11 @@
     "license": "LGPL-3",
     "application": False,
     "depends": ["mrp"],
-    "data": ["views/mrp_view.xml", "views/report_mrpbomstructure.xml"],
+    "data": ["views/mrp_view.xml", "report/mrp_report_bom_structure.xml"],
     "assets": {
         "web.assets_backend": [
-            "mrp_bom_location/static/src/xml/mrp_bom_overview_location.xml",
+            "mrp_bom_location/static/src/**/*.js",
+            "mrp_bom_location/static/src/**/*.xml",
         ],
     },
     "installable": True,

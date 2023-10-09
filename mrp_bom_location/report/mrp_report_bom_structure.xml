@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_mrp_bom_inherit_mrp_bom_location"
+        inherit_id="mrp.report_mrp_bom"
+    >
+        <xpath expr="//thead/tr/th[last()]" position="after">
+            <th t-if="data['show_location']">Location</th>
+        </xpath>
+
+        <xpath expr="//tbody/tr/td[last()]" position="after">
+            <td t-if="data['show_location']">
+                <span t-esc="data['location']" />
+            </td>
+        </xpath>
+
+        <xpath expr="//tbody/tr[1]/td[last()]" position="after">
+            <td t-if="data['show_location']" />
+        </xpath>
+
+<!--        <xpath expr="//tbody/t[1]/td[last()]" position="after">-->
+<!--            <td t-if="data['show_location']"/>-->
+<!--        </xpath>-->
+    </template>
+
+    <template
+        id="report_mrp_bom_pdf_line_inherit_mrp_bom_location"
+        inherit_id="mrp.report_mrp_bom_pdf_line"
+    >
+        <xpath expr="//tr/td[last()]" position="after">
+            <td t-if="data['show_location']">
+                <span t-if="l.get('location')" t-esc="l['location']" />
+            </td>
+        </xpath>
+    </template>
+</odoo>

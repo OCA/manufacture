@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t
+        t-name="mrp_bom_location.BomOverviewLine"
+        t-inherit="mrp.BomOverviewLine"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//td[last()]" position="after">
+            <td t-if="props.showOptions.location" class="text-end">
+                <a href="#" t-on-click.prevent="goToLocation" t-esc="data.location" />
+            </td>
+        </xpath>
+    </t>
+
+</templates>

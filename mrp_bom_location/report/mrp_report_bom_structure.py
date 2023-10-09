@@ -7,6 +7,13 @@ from odoo import api, models
 class BomStructureReport(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
+    def _get_pdf_doc(self, bom_id, data, quantity, product_variant_id=None):
+        doc = super()._get_pdf_doc(bom_id, data, quantity, product_variant_id)
+        doc["show_location"] = (
+            True if data and data.get("show_location") == "true" else False
+        )
+        return doc
+
     @api.model
     def _get_bom_data(
         self,
@@ -33,12 +40,6 @@ class BomStructureReport(models.AbstractModel):
             product_info=product_info,
             ignore_stock=ignore_stock,
         )
-        line_ids = self.env["mrp.bom.line"].search([("bom_id", "=", bom.id)])
-        for line in res["components"]:
-            bom_line = line_ids.filtered(
-                lambda l: l.location_id and l.product_id.id == line["product_id"]
-            )
-            line["location_id"] = bom_line.location_id or ""
         if parent_bom and parent_bom.location_id.complete_name:
             res["location"] = parent_bom.location_id.complete_name
         else:
@@ -67,21 +68,21 @@ class BomStructureReport(models.AbstractModel):
             product_info,
             ignore_stock=ignore_stock,
         )
-        # line_ids = self.env["mrp.bom.line"].search([("bom_id", "=", parent_bom.id)])
         res["location"] = parent_bom.location_id.complete_name or ""
         return res
 
-    @api.model
-    def _get_pdf_line(
-        self, bom_id, product_id=False, qty=1, unfolded_ids=None, unfolded=False
+    def _get_bom_array_lines(
+        self, data, level, unfolded_ids, unfolded, parent_unfolded
     ):
-        res = super(BomStructureReport, self)._get_pdf_line(
-            bom_id, product_id, qty, unfolded_ids, unfolded
+        lines = super()._get_bom_array_lines(
+            data, level, unfolded_ids, unfolded, parent_unfolded
         )
-        line_ids = self.env["mrp.bom.line"].search([("bom_id", "=", bom_id)])
-        for line in res["lines"]:
-            line_id = line_ids.filtered(
-                lambda l: l.location_id and l.product_id.display_name == line["name"]
+        for component in data.get("components", []):
+            if not component["bom_id"]:
+                continue
+            bom_line = next(
+                filter(lambda l: l.get("bom_id", None) == component["bom_id"], lines)
             )
-            line["location_name"] = line_id.location_id.complete_name or ""
-        return res
+            if bom_line:
+                bom_line["location"] = component["location"]
+        return lines

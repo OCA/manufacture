@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t
+        t-name="mrp_plm.BomOverviewSpecialLine"
+        t-inherit="mrp.BomOverviewSpecialLine"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//td[last()]" position="after">
+            <td t-if="props.showOptions.location" />
+            <td t-if="props.showOptions.location" />
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t
+        t-name="mrp_plm.BomOverviewTable"
+        t-inherit="mrp.BomOverviewTable"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//thead/tr/th[last()]" position="after">
+            <th t-if="showLocation" class="text-end">Location</th>
+        </xpath>
+
+        <xpath expr="//tfoot/tr/td[last()]" position="after">
+            <td t-if="showLocation" />
+        </xpath>
+
+        <xpath expr="//tfoot/t/tr/td[last()]" position="after">
+            <td t-if="showLocation" />
+        </xpath>
+    </t>
+
+</templates>
