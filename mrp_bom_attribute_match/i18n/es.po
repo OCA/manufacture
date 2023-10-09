@@ -52,8 +52,8 @@ msgstr "Coincidencia en atributos"
 msgid ""
 "No match on attribute has been detected for Component (Product Template) %s"
 msgstr ""
-"No se ha detectado ninguna coincidencia en el atributo para Componente ("
-"Plantilla de producto) %s"
+"No se ha detectado ninguna coincidencia en el atributo para Componente "
+"(Plantilla de producto) %s"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
@@ -105,7 +105,9 @@ msgstr "Campo técnico para almacenar el valor anterior de id_producto"
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
-"The attributes you're trying to remove are used in the BoM as a match with Component (Product Template). To remove these attributes, first remove the BOM line with the matching component.\n"
+"The attributes you're trying to remove are used in the BoM as a match with "
+"Component (Product Template). To remove these attributes, first remove the "
+"BOM line with the matching component.\n"
 "Attributes: %(attributes)s\n"
 "BoM: %(bom)s"
 msgstr ""
