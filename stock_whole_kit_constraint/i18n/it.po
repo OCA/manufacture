@@ -73,4 +73,5 @@ msgstr "Trasferimento"
 #: code:addons/stock_whole_kit_constraint/models/stock_picking.py:0
 #, python-format
 msgid "You can't make a partial delivery of components of the %s kit"
-msgstr "Non si può fare una consegna parziale di componenti della confezione %s"
+msgstr ""
+"Non si può fare una consegna parziale di componenti della confezione %s"
