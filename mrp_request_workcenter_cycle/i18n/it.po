@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_request_workcenter_cycle
+# 	* mrp_request_workcenter_cycle
 #
 msgid ""
 msgstr ""
@@ -18,8 +18,10 @@ msgstr ""
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_mrp_request_workcenter__workcenter_cycle_no
-msgid "A cycle is complete ended process for the machine.\n"
-"Multiple cycles are several machines of the same kind in parallel or the same machine used several times."
+msgid ""
+"A cycle is complete ended process for the machine.\n"
+"Multiple cycles are several machines of the same kind in parallel or the "
+"same machine used several times."
 msgstr ""
 "Un ciclo e un processo completo terminato per la macchina.\n"
 "Cicli multipli sono diverse macchine dello stesso tipo in parallelo o la "
@@ -73,8 +75,9 @@ msgstr "Cicli"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_product_workcenter_quantity__workcenter_cycle_no
-msgid "Default number of cycles for the workcenter set for Manufacturing Request of this product.\n"
-""
+msgid ""
+"Default number of cycles for the workcenter set for Manufacturing Request of "
+"this product.\n"
 msgstr ""
 "Numero di cicli predefinito per il centro di lavoro impostato per la "
 "richiesta di produzione di questo prodotto.\n"
@@ -118,7 +121,8 @@ msgstr "OP già esistente"
 #. module: mrp_request_workcenter_cycle
 #: model_terms:ir.ui.view,arch_db:mrp_request_workcenter_cycle.view_mrp_production_request_form
 msgid "Manufacturing Orders'll be created according to workcenters"
-msgstr "Gli ordini di produzione verranno creati in accordo ai centri di lavoro"
+msgstr ""
+"Gli ordini di produzione verranno creati in accordo ai centri di lavoro"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model,name:mrp_request_workcenter_cycle.model_mrp_production_request

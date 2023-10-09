@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_request_workcenter_cycle
+# 	* mrp_request_workcenter_cycle
 #
 msgid ""
 msgstr ""
@@ -18,8 +18,10 @@ msgstr ""
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_mrp_request_workcenter__workcenter_cycle_no
-msgid "A cycle is complete ended process for the machine.\n"
-"Multiple cycles are several machines of the same kind in parallel or the same machine used several times."
+msgid ""
+"A cycle is complete ended process for the machine.\n"
+"Multiple cycles are several machines of the same kind in parallel or the "
+"same machine used several times."
 msgstr ""
 "Um ciclo é um processo completo para a máquina.\n"
 "Vários ciclos são várias máquinas do mesmo tipo em paralelo ou a mesma "
@@ -73,8 +75,9 @@ msgstr "Ciclos"
 
 #. module: mrp_request_workcenter_cycle
 #: model:ir.model.fields,help:mrp_request_workcenter_cycle.field_product_workcenter_quantity__workcenter_cycle_no
-msgid "Default number of cycles for the workcenter set for Manufacturing Request of this product.\n"
-""
+msgid ""
+"Default number of cycles for the workcenter set for Manufacturing Request of "
+"this product.\n"
 msgstr ""
 "Número padrão de ciclos para o centro de trabalho definido para requisição "
 "de fabricação deste produto.\n"
