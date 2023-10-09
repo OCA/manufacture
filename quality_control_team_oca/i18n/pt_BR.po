@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* quality_control_team
+# 	* quality_control_team
 #
 msgid ""
 msgstr ""
@@ -18,10 +18,12 @@ msgstr ""
 
 #. module: quality_control_team
 #: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_kanban
-msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgid ""
+"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title="
+"\"Manage\"/>"
 msgstr ""
-"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\""
-"Manage\"/>"
+"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title="
+"\"Manage\"/>"
 
 #. module: quality_control_team
 #: model:ir.model.fields,field_description:quality_control_team.field_qc_team__message_needaction
@@ -77,7 +79,8 @@ msgstr "Painel"
 
 #. module: quality_control_team
 #: model_terms:ir.actions.act_window,help:quality_control_team.qc_team_dashboard_act
-msgid "Define a new quality control teams going to <b><i>Configuration &gt;\n"
+msgid ""
+"Define a new quality control teams going to <b><i>Configuration &gt;\n"
 "                Quality Control Teams</i></b>."
 msgstr ""
 "Defina uma nova equipe de controle de qualidade indo para <b><i>Configuração "
@@ -91,7 +94,9 @@ msgstr "Exibir Nome"
 
 #. module: quality_control_team
 #: model_terms:ir.ui.view,arch_db:quality_control_team.qc_team_view_form
-msgid "Follow this QC team to automatically track the events associated to users of this team."
+msgid ""
+"Follow this QC team to automatically track the events associated to users of "
+"this team."
 msgstr ""
 "Siga esta equipe de QC para acompanhar automaticamente os eventos associados "
 "aos usuários desta equipe."
@@ -266,7 +271,9 @@ msgstr "A cor da equipe"
 
 #. module: quality_control_team
 #: model:ir.model.fields,help:quality_control_team.field_qc_team__reply_to
-msgid "The email address put in the 'Reply-To' of all emails sent by Odoo about cases in this QC team"
+msgid ""
+"The email address put in the 'Reply-To' of all emails sent by Odoo about "
+"cases in this QC team"
 msgstr ""
 "O endereço de e-mail colocado no 'Reply-To' de todos os e-mails enviados por "
 "Odoo sobre casos nesta equipe de QC"
@@ -283,7 +290,8 @@ msgstr "Contador de Mensagens Não Lidas"
 
 #. module: quality_control_team
 #: model_terms:ir.actions.act_window,help:quality_control_team.qc_team_config_action
-msgid "Use quality control team to organize your different\n"
+msgid ""
+"Use quality control team to organize your different\n"
 "                departments into separate teams. Each team will work in\n"
 "                its own list of processes, stages..."
 msgstr ""
