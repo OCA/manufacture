@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* quality_control_issue
+# 	* quality_control_issue
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
-msgid "<br/>\n"
+msgid ""
+"<br/>\n"
 "                                        Location:"
 msgstr ""
 "<br/>\n"
@@ -405,14 +406,12 @@ msgid "Number of unread messages"
 msgstr "Numero di messaggi non letti"
 
 #. module: quality_control_issue
-#: selection:qc.issue,activity_state:0
-#: selection:qc.problem,activity_state:0
+#: selection:qc.issue,activity_state:0 selection:qc.problem,activity_state:0
 msgid "Overdue"
 msgstr "Ritardo"
 
 #. module: quality_control_issue
-#: selection:qc.issue,activity_state:0
-#: selection:qc.problem,activity_state:0
+#: selection:qc.issue,activity_state:0 selection:qc.problem,activity_state:0
 msgid "Planned"
 msgstr "Pianificata"
 
@@ -623,7 +622,8 @@ msgstr "Stato"
 #. module: quality_control_issue
 #: model:ir.model.fields,help:quality_control_issue.field_qc_issue__activity_state
 #: model:ir.model.fields,help:quality_control_issue.field_qc_problem__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -641,14 +641,15 @@ msgstr "Qta. scarto magazzino"
 #. module: quality_control_issue
 #: model:ir.model.fields,help:quality_control_issue.field_qc_issue_stage__fold
 #: model:ir.model.fields,help:quality_control_issue.field_qc_stage__fold
-msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgid ""
+"This stage is folded in the kanban view when there are no records in that "
+"stage to display."
 msgstr ""
 "Questa fase è chiusa nella vista kanban quando non ci sono righe in questo "
 "stato da visualizzare."
 
 #. module: quality_control_issue
-#: selection:qc.issue,activity_state:0
-#: selection:qc.problem,activity_state:0
+#: selection:qc.issue,activity_state:0 selection:qc.problem,activity_state:0
 msgid "Today"
 msgstr "Oggi"
 
