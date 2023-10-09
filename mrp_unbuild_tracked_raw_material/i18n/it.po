@@ -38,7 +38,8 @@ msgstr "Consente smontaggio acquistato"
 #: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_product__allow_unbuild_purchased
 #: model:ir.model.fields,help:mrp_unbuild_tracked_raw_material.field_product_template__allow_unbuild_purchased
 msgid ""
-"If checked, unbuild orders doesn't assume a previous manufacturing order have built this product.\n"
+"If checked, unbuild orders doesn't assume a previous manufacturing order "
+"have built this product.\n"
 "In this case it's a purchased product and you want unbuild it"
 msgstr ""
 "Se selezionato, gli ordini di smontaggio non assumono che un precedente "
