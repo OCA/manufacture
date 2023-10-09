@@ -5,6 +5,7 @@ import {getDefaultConfig} from "@web/views/view";
 import {Layout} from "@web/search/layout";
 import {Notebook} from "@web/core/notebook/notebook";
 import {useService} from "@web/core/utils/hooks";
+import {x2ManyCommands} from "@web/core/orm_service";
 
 import {InputLineSelect} from "./select.esm";
 import {RecordSelect} from "./record-select.esm";
@@ -16,6 +17,8 @@ class InputLine extends Component {
         bomData: {data: []},
         inputLineData: [],
         dataChanged: false,
+        alert: undefined,
+        message: undefined,
     });
 
     setup() {
@@ -32,13 +35,20 @@ class InputLine extends Component {
 
         onWillStart(async () => {
             await this.getInputLineData();
+            const check = await this.orm.call(
+                "input.line",
+                "check_one_data",
+                [this.activeId]
+            );
+            this.state.alert = check[0];
+            this.state.message = check[1];
         });
 
         this.form = useRef("inputLineForm");
         this.state.dataChanged = false;
         onMounted(() => {
             this.form.el.addEventListener("change", () => {
-                this.state.dataChanged = true;
+                this.setDataChanged();
             });
         });
     }
@@ -54,7 +64,7 @@ class InputLine extends Component {
         );
     }
 
-    setDataChanged() {
+    async setDataChanged() {
         this.state.dataChanged = true;
     }
 
@@ -62,7 +72,42 @@ class InputLine extends Component {
         return this.props.action.context.active_id;
     }
 
-    async save() {}
+    async save() {
+        this.saving = true;
+        
+        const data = {};
+        this.state.inputLineData.forEach((element) => {
+            if (element.type == "many2one") {
+                data[element.name] = element.value;
+            }
+            else {
+                data[element.name] = element.value;
+            }
+        });
+
+        await this.orm.write(
+            "input.line",
+            [this.activeId],
+            data,
+        );
+        await this.orm.call(
+            "input.line",
+            "ui_configure",
+            [this.activeId]
+        );
+
+        await this.getInputLineData();
+
+        const check = await this.orm.call(
+            "input.line",
+            "check_one_data",
+            [this.activeId]
+        );
+        this.state.alert = check[0];
+        this.state.message = check[1];
+
+        this.saving = false;
+    }
 
     async cancel() {
         this.state.bomData = await this.orm.call("input.line", "get_json", [

@@ -32,15 +32,22 @@
                         <input class="o_input" type="text" t-model="value.value" />
                     </t>
                 </div>
+                <div class="input_line_alert" t-if="state.alert || state.message">
+                    <div t-esc="state.alert"></div>
+                    <div t-esc="state.message"></div>
+                </div>
                 <div class="button_bar">
                     <button
                             class="btn btn-primary"
-                            t-att-disabled="!state.dataChanged"
+                            t-att-disabled="!state.dataChanged || saving"
                             t-on-click="save"
-                        >Save</button>
+                    >
+                        <t t-if="!saving">Save</t>
+                        <t t-else="">...</t>
+                    </button>
                     <button
                             class="btn"
-                            t-att-disabled="!state.dataChanged"
+                            t-att-disabled="!state.dataChanged || saving"
                             t-on-click="cancel"
                         >Cancel</button>
                 </div>

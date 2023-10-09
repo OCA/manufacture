@@ -84,6 +84,9 @@ class Inputline(models.Model):
 
         return values
 
+    def check_one_data():
+        pass
+
     def ui_configure(self):
         # TODO
         self.ensure_one()
