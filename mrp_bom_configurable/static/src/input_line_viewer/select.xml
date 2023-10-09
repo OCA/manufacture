@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="input_line.select" owl="1">
-        <select t-model="props.value">
+        <select t-model="props.value.value">
         <option value="" />
         <option
                 t-foreach="props.possibleVal"
                 t-as="possibleVal"
-                t-att-selected="props.value == possibleVal[0]"
+                t-att-selected="props.value.value == possibleVal[0]"
                 t-key="possibleVal[0]"
                 t-att-value="possibleVal[0]"
                 t-esc="possibleVal[1]"

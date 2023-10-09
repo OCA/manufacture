@@ -16,7 +16,7 @@
                     <label t-esc="value.string" />
                     <t t-if="value.type == 'selection'">
                         <InputLineSelect
-                                value="value.value"
+                                value="value"
                                 possibleVal="value.possible_values"
                             />
                     </t>
