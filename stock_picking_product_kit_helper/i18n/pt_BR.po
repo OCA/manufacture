@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_picking_product_kit_helper
+# 	* stock_picking_product_kit_helper
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: stock_picking_product_kit_helper
 #: model:ir.model,name:stock_picking_product_kit_helper.model_stock_picking_product_kit_helper
-msgid "\n"
+msgid ""
+"\n"
 "        Product Kit Helper, allow user to specify quantity of product kit,\n"
 "        to explode as product quantity in operations tab\n"
 "    "
@@ -139,13 +140,15 @@ msgstr "Linha da Ordem de Vendas"
 
 #. module: stock_picking_product_kit_helper
 #: model_terms:ir.ui.view,arch_db:stock_picking_product_kit_helper.view_picking_form
-msgid "To deliver partial product kits, you can use this tab to help calculate\n"
-"                    quantity and auto fill in \"Done\" column in Operations tab.<br/>"
+msgid ""
+"To deliver partial product kits, you can use this tab to help calculate\n"
+"                    quantity and auto fill in \"Done\" column in Operations "
+"tab.<br/>"
 msgstr ""
 "Para entregar kits parciais de produtos, você pode usar esta guia para "
 "ajudar a calcular\n"
-"                     a quantidade e preencher automaticamente a coluna \""
-"Concluído\" na Guia de Operações.<br/>"
+"                     a quantidade e preencher automaticamente a coluna "
+"\"Concluído\" na Guia de Operações.<br/>"
 
 #. module: stock_picking_product_kit_helper
 #: model:ir.model,name:stock_picking_product_kit_helper.model_stock_picking
