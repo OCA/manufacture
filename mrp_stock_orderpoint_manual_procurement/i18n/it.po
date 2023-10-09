@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_stock_orderpoint_manual_procurement
+# 	* mrp_stock_orderpoint_manual_procurement
 #
 msgid ""
 msgstr ""
