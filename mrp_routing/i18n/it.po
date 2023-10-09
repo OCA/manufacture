@@ -180,8 +180,6 @@ msgstr "Ciclo di produzione"
 
 #. module: mrp_routing
 #: code:addons/mrp_routing/models/mrp_routing.py:0
-#: code:addons/mrp_routing/models/mrp_routing.py:0
-#: code:addons/mrp_routing/models/mrp_routing.py:0
 #, python-format
 msgid "New"
 msgstr "Nuovo"
@@ -254,7 +252,8 @@ msgstr "Cicli di produzione"
 msgid ""
 "Routings define the successive operations that need to be\n"
 "                done to realize a Manufacturing Order. Each operation from\n"
-"                a Routing is done at a specific Work Center and has a specific duration."
+"                a Routing is done at a specific Work Center and has a "
+"specific duration."
 msgstr ""
 "I cicli di produzione definiscono le operazioni consecutive che devono\n"
 "                essere compiute per compleate un ordine di produzione. Ogni "
