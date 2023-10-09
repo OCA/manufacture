@@ -2,7 +2,7 @@
 
 import {registry} from "@web/core/registry";
 
-const {Component, onWillRender, onWillUpdateProps} = owl;
+const {Component} = owl;
 
 export class InputLineSelect extends Component {}
 
