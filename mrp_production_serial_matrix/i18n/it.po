@@ -25,7 +25,8 @@ msgstr "(Nuovo lotto %s)"
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
 msgid ""
-"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your selection:\n"
+"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your "
+"selection:\n"
 "                            <br/>"
 msgstr ""
 "<i class=\"fa fa-info-circle\"/> C'è qualche problema nella selezione:\n"
