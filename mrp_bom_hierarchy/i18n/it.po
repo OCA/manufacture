@@ -101,13 +101,11 @@ msgstr "Il prodotto ha altre DiBa"
 
 #. module: mrp_bom_hierarchy
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #, python-format
 msgid "This operator is not supported"
 msgstr "Questo operatore non è supportato"
 
 #. module: mrp_bom_hierarchy
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #, python-format
 msgid "Value should be True or False (not %s)"
