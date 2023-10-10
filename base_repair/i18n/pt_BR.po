@@ -23,14 +23,24 @@ msgid "Date of the repair, this field and user_id defines the calendar"
 msgstr "Data do reparo, este campo e user_id define o calendário"
 
 #. module: base_repair
+#: model:ir.model.fields,field_description:base_repair.field_repair_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_repair
 #: model:ir.model.fields,help:base_repair.field_repair_order__duration
 msgid "Duration in hours and minutes."
 msgstr "Duração em horas e minutos."
 
 #. module: base_repair
-#: model:ir.model.fields,help:base_repair.field_repair_order__user_id
-msgid "Person in charge for the repair"
-msgstr "Responsável pelo reparo"
+#: model:ir.model.fields,field_description:base_repair.field_repair_order__id
+msgid "ID"
+msgstr ""
+
+#. module: base_repair
+#: model:ir.model.fields,field_description:base_repair.field_repair_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: base_repair
 #: model:ir.model.fields,field_description:base_repair.field_repair_order__date_repair
@@ -58,10 +68,11 @@ msgstr "Calendário de Pedidos de Reparo"
 msgid "Responsible User"
 msgstr "Usuário Responsável"
 
-#. module: base_repair
-#: model:ir.model.fields,field_description:base_repair.field_repair_order__user_id
-msgid "User"
-msgstr "Usuário"
+#~ msgid "Person in charge for the repair"
+#~ msgstr "Responsável pelo reparo"
+
+#~ msgid "User"
+#~ msgstr "Usuário"
 
 #~ msgid "Repair Orders"
 #~ msgstr "Ordens de Reparo"
