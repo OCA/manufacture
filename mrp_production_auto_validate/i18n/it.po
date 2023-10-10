@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 05:31+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-10-10 11:46+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -77,8 +77,8 @@ msgid ""
 "defined on the BOM."
 msgstr ""
 "La quantità dell'approvvigionamento (%s %s) è stata incrementata a %s %s per "
-"l'opzione di validazione automatica prevenendo la creazione un OP con una "
-"quantità diversa da quella defnita nella DiBa."
+"l'opzione di validazione automatica impedendo la creazione di un MO con una "
+"quantità diversa da quella definita nella DiBa."
 
 #. module: mrp_production_auto_validate
 #: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
@@ -89,7 +89,7 @@ msgid ""
 "different than the quantity defined on the Bill of Materials."
 msgstr ""
 "La quantità dell'approvvigionamento (%s %s) è stata divisa in più ordini di "
-"produzione da %s %s per l'opzione di validazione automatica prevenendo di "
+"produzione da %s %s per l'opzione di validazione automatica impedendo di "
 "impostare una quantità da produrre diversa da quanto definito nella DiBa."
 
 #. module: mrp_production_auto_validate
@@ -113,12 +113,12 @@ msgid ""
 "the 'Order Auto Validation' option."
 msgstr ""
 "La quantità da produrre è limitata a {qty} perché la DiBa è configurata con "
-"l'opzione 'Validazione automativca ordine'."
+"l'opzione 'Validazione automatica ordine'."
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_stock_picking
 msgid "Transfer"
-msgstr "Trasferisci"
+msgstr "Trasferimento"
 
 #. module: mrp_production_auto_validate
 #: model:ir.model.fields,help:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation
@@ -130,11 +130,10 @@ msgid ""
 msgstr ""
 "Valida automaticamente l'ordine di produzione quanto il trasferimento "
 "'Preleva componenti' è validato.\n"
-"La funzionalità è disponibile solo se il magazzIno è configurato con 2 o tre "
+"La funzionalità è disponibile solo se il magazzino è configurato con 2 o 3 "
 "fasi."
 
 #. module: mrp_production_auto_validate
 #: model:ir.model,name:mrp_production_auto_validate.model_mrp_production_backorder
 msgid "Wizard to mark as done or create back order"
-msgstr ""
-"Procedura quidata per impostarlo come eseguito o breare un ordine residuo"
+msgstr "Procedura guidata per impostare come fatto o creare un ordine residuo"
