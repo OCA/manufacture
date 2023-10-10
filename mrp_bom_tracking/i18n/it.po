@@ -47,7 +47,8 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component quantities or UoMs have been updated.</strong>"
-msgstr "<strong>La quantità componente i le UdM sono state aggiornate.</strong>"
+msgstr ""
+"<strong>La quantità componente i le UdM sono state aggiornate.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
@@ -131,8 +132,8 @@ msgstr "Riferimento"
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid ""
 "When a procurement has a ‘produce’ route with a operation type set, it will "
-"try to create a Manufacturing Order for that product using a BoM of the same"
-" operation type. That allows to define stock rules which trigger different "
+"try to create a Manufacturing Order for that product using a BoM of the same "
+"operation type. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
 "Quanto un approvvigionamento ha una rotta di 'produzione' con un tipo "
