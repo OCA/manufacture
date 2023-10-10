@@ -28,6 +28,21 @@ msgid ""
 msgstr "Stratégie de dépôt appliqué à l'emplacement des produits finis %s."
 
 #. module: mrp_production_putaway_strategy
+#: model:ir.model.fields,field_description:mrp_production_putaway_strategy.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_putaway_strategy
+#: model:ir.model.fields,field_description:mrp_production_putaway_strategy.field_mrp_production__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_putaway_strategy
+#: model:ir.model.fields,field_description:mrp_production_putaway_strategy.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_production_putaway_strategy
 #: model:ir.model,name:mrp_production_putaway_strategy.model_mrp_production
 #, fuzzy
 msgid "Production Order"
