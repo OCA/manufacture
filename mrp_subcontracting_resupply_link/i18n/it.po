@@ -63,11 +63,11 @@ msgstr "Ordine terzista"
 #: code:addons/mrp_subcontracting_resupply_link/models/purchase_order.py:0
 #, python-format
 msgid ""
-"The resupply picking <a href=# data-oe-model=%(model)s data-oe-"
-"id=%(id)s>%(name)s</a> has been created"
+"The resupply picking <a href=# data-oe-model=%(model)s data-oe-id=%(id)s>"
+"%(name)s</a> has been created"
 msgstr ""
-"Il prelievo di rifornitura <a href=# data-oe-model=%(model)s data-oe-"
-"id=%(id)s>%(name)s</a> è stato creato"
+"Il prelievo di rifornitura <a href=# data-oe-model=%(model)s data-oe-id="
+"%(id)s>%(name)s</a> è stato creato"
 
 #. module: mrp_subcontracting_resupply_link
 #: code:addons/mrp_subcontracting_resupply_link/models/purchase_order.py:0
