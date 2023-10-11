@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo-addon-mrp_warehouse_calendar>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workorder_sequence>=15.0dev,<15.1dev',
         'odoo-addon-quality_control_oca>=15.0dev,<15.1dev',
+        'odoo-addon-quality_control_stock_oca>=15.0dev,<15.1dev',
         'odoo-addon-stock_picking_product_kit_helper>=15.0dev,<15.1dev',
         'odoo-addon-stock_whole_kit_constraint>=15.0dev,<15.1dev',
     ],
