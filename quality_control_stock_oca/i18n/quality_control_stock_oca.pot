@@ -1,0 +1,177 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_stock_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__created_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__created_inspections
+msgid "Created inspections"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__display_name
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__display_name
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__display_name
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking_type__display_name
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__done_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__done_inspections
+msgid "Done inspections"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking_type__id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__id
+msgid "ID"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__qc_inspections_ids
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__qc_inspections_ids
+msgid "Inspections"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__passed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__passed_inspections
+msgid "Inspections OK"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__failed_inspections
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot__failed_inspections
+msgid "Inspections failed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_stock_production_lot__qc_inspections_ids
+msgid "Inspections related to this lot."
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_stock_picking__qc_inspections_ids
+msgid "Inspections related to this picking."
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection____last_update
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line____last_update
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger____last_update
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking_type____last_update
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_production_lot____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__lot_id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__lot_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
+msgid "Lot"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_id
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__picking_id
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
+msgid "Picking"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__picking_type_id
+msgid "Picking Type"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_inspection
+msgid "Quality control inspection"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_qc_trigger
+msgid "Quality control trigger"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_done
+msgid "Quality inspection from lot done"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_passed
+msgid "Quality inspection from lot passed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_done
+msgid "Quality inspection from picking done"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_passed
+msgid "Quality inspection from picking passed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot
+msgid "Quality inspections from lot"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_failed
+msgid "Quality inspections from lot failed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking
+msgid "Quality inspections from picking"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_failed
+msgid "Quality inspections from picking failed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_lot_qc_view
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_picking_qc_view
+msgid "inspections"
+msgstr ""
