@@ -107,7 +107,8 @@ class Inputline(models.Model):
         }
 
     def get_json(self):
-        if self.bom_data_preview is None:
+        self.ensure_one()
+        if not self.bom_data_preview:
             self.ui_configure()
         return self.bom_data_preview
 
