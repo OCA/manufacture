@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 <t t-name="input_line.clientaction" owl="1">
-    <div class="input_line_viewer_container">
+    <div class="input_line_viewer_container" t-if="state.bomData.data.length != 0">
         <Layout display="display">
             <form
                     t-ref="inputLineForm"
@@ -39,18 +39,19 @@
                 <div class="button_bar">
                     <button
                             class="btn btn-primary"
-                            t-att-disabled="!state.dataChanged || saving"
+                            t-att-disabled="!state.dataChanged || state.saving"
                             t-on-click="save"
                     >
-                        <t t-if="!saving">Save</t>
+                        <t t-if="!state.saving">Save</t>
                         <t t-else="">...</t>
                     </button>
                     <button
                             class="btn"
-                            t-att-disabled="!state.dataChanged || saving"
+                            t-att-disabled="!state.dataChanged || state.saving"
                             t-on-click="cancel"
                         >Cancel</button>
                 </div>
+                <!-- <InputLineButtonBar disabled="!state.dataChanged || state.saving" saving="state.saving" save.bind="save" cancel.bind="cancel" /> -->
             </form>
         </Layout>
         <div class="ilv_list">

@@ -13,12 +13,14 @@ import {RecordSelect} from "./record-select.esm";
 const {Component, useSubEnv, useState, onWillStart, useRef, onMounted} = owl;
 
 class InputLine extends Component {
+    version = 0;
     state = useState({
         bomData: {data: []},
         inputLineData: [],
         dataChanged: false,
         alert: undefined,
         message: undefined,
+        saving: false,
     });
 
     setup() {
@@ -73,8 +75,9 @@ class InputLine extends Component {
     }
 
     async save() {
-        this.saving = true;
-        
+        this.version++;
+        this.state.saving = true;
+
         const data = {};
         this.state.inputLineData.forEach((element) => {
             if (element.type == "many2one") {
@@ -106,7 +109,8 @@ class InputLine extends Component {
         this.state.alert = check[0];
         this.state.message = check[1];
 
-        this.saving = false;
+        this.state.saving = false;
+        this.state.dataChanged = false;
     }
 
     async cancel() {
@@ -126,3 +130,4 @@ InputLine.components = {Layout, Notebook, InputLineSelect, RecordSelect};
 InputLine.template = "input_line.clientaction";
 
 registry.category("lazy_components").add("InputLine", InputLine);
+
