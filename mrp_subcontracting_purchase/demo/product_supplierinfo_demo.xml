@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="product_supplierinfo_subcontract_1" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="demo_product_product_finished_product_template"
+        />
+        <field name="price">10</field>
+        <field name="name" ref="res_partner_subcontracting_1" />
+        <field name="currency_id" ref="base.USD" />
+    </record>
+
+    <record id="product_supplierinfo_subcontract_2" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="demo_product_product_component_product_template"
+        />
+        <field name="price">10</field>
+        <field name="name" ref="res_partner_subcontracting_2" />
+        <field name="currency_id" ref="base.USD" />
+    </record>
+
+    <record id="product_supplierinfo_subcontract_3" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="demo_product_product_element_product_template"
+        />
+        <field name="price">10</field>
+        <field name="name" ref="res_partner_subcontracting_vendor" />
+        <field name="currency_id" ref="base.USD" />
+    </record>
+</odoo>

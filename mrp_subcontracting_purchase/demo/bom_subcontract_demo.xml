@@ -1,0 +1,58 @@
+<odoo noupdate="1">
+    <record id="mrp_bom_subcontract_1" model="mrp.bom">
+        <field
+            name="product_tmpl_id"
+            ref="demo_product_product_finished_product_template"
+        />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="type">subcontract</field>
+        <field
+            name="subcontractor_ids"
+            eval="[(6, 0,[ref('res_partner_subcontracting_1')] )]"
+        />
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="mrp_bom_subcontract_2" model="mrp.bom">
+        <field
+            name="product_tmpl_id"
+            ref="demo_product_product_component_product_template"
+        />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="type">subcontract</field>
+        <field
+            name="subcontractor_ids"
+            eval="[(6, 0,[ref('res_partner_subcontracting_2')] )]"
+        />
+        <field name="sequence">1</field>
+    </record>
+
+     <record id="mrp_bom_subcontract_1_manufacture_line_1" model="mrp.bom.line">
+            <field
+            name="product_id"
+            ref="mrp_subcontracting_purchase.demo_product_product_component"
+        />
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="sequence">5</field>
+            <field
+            name="bom_id"
+            ref="mrp_subcontracting_purchase.mrp_bom_subcontract_1"
+        />
+        </record>
+
+        <record id="mrp_bom_subcontract_2_manufacture_line_1" model="mrp.bom.line">
+            <field
+            name="product_id"
+            ref="mrp_subcontracting_purchase.demo_product_product_element"
+        />
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit" />
+            <field name="sequence">5</field>
+            <field
+            name="bom_id"
+            ref="mrp_subcontracting_purchase.mrp_bom_subcontract_2"
+        />
+        </record>
+
+</odoo>

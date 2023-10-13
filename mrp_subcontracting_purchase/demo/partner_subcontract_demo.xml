@@ -1,0 +1,15 @@
+<odoo>
+    <record id="res_partner_subcontracting_1" model="res.partner">
+        <field name="name">Sub 1</field>
+        <field name="property_stock_subcontractor" ref="demo_stock_location_sub_1" />
+    </record>
+
+    <record id="res_partner_subcontracting_2" model="res.partner">
+        <field name="name">Sub 2</field>
+        <field name="property_stock_subcontractor" ref="demo_stock_location_sub_2" />
+    </record>
+
+    <record id="res_partner_subcontracting_vendor" model="res.partner">
+        <field name="name">Vendor</field>
+    </record>
+</odoo>
