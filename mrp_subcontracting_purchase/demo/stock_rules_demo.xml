@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="demo_stock_rules_1" model="stock.rule">
+        <field name="name">Vendors — Sub 1</field>
+        <field name="action">buy</field>
+        <field name="location_id" ref="demo_stock_location_sub_1" />
+        <field name="route_id" ref="route_subcontracting_dropshipping" />
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="picking_type_id"
+            model="stock.picking.type"
+            eval="obj().with_context(active_test=False).search([('name','=','Dropship'),('sequence_code','=','DS'),('company_id','=',obj().env.company.id)],limit=1)"
+        />
+    </record>
+
+    <record id="demo_stock_rules_2" model="stock.rule">
+        <field name="name">Vendors — Sub 2</field>
+        <field name="action">buy</field>
+        <field name="location_id" ref="demo_stock_location_sub_2" />
+        <field name="route_id" ref="route_subcontracting_dropshipping" />
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="picking_type_id"
+            model="stock.picking.type"
+            eval="obj().with_context(active_test=False).search([('name','=','Dropship'),('sequence_code','=','DS'),('company_id','=',obj().env.company.id)],limit=1)"
+        />
+    </record>
+
+    <record id="demo_stock_rules_3" model="stock.rule">
+        <field name="name">Sub 1 — Production</field>
+        <field name="action">pull</field>
+        <field
+            name="picking_type_id"
+            model="stock.picking.type"
+            eval="obj().with_context(active_test=False).search([('name','=','Subcontracting'),('sequence_code','=','SBC')],limit=1)"
+        />
+        <field name="location_src_id" ref="demo_stock_location_sub_1" />
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().search([('name','=','Production')],limit=1)"
+        />
+        <field name="route_id" ref="route_subcontracting_dropshipping" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field name="procure_method">make_to_order</field>
+        <field name="partner_address_id" ref="res_partner_subcontracting_1" />
+    </record>
+
+    <record id="demo_stock_rules_4" model="stock.rule">
+        <field name="name">Sub 2 — Production</field>
+        <field name="action">pull</field>
+        <field
+            name="picking_type_id"
+            model="stock.picking.type"
+            eval="obj().with_context(active_test=False).search([('name','=','Subcontracting'),('sequence_code','=','SBC')],limit=1)"
+        />
+        <field name="location_src_id" ref="demo_stock_location_sub_2" />
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().search([('name','=','Production')],limit=1)"
+        />
+        <field name="route_id" ref="route_subcontracting_dropshipping" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field name="procure_method">make_to_order</field>
+        <field name="partner_address_id" ref="res_partner_subcontracting_2" />
+    </record>
+</odoo>

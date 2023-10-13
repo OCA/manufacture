@@ -1,0 +1,5 @@
+<odoo>
+    <record id="product_category_subcontracting_product" model="product.category">
+        <field name="name">Subcontracting products</field>
+    </record>
+</odoo>

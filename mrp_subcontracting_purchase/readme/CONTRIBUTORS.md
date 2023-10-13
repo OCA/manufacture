@@ -1,0 +1,4 @@
+- Cetmix <@cetmix.com>
+- Ooops404 <https://ooops404.com>
+- Dessan Hemrayev <dessanhemrayev@gmail.com>
+- Maksim Shurupov <geomer198@gmail.com>

@@ -1,0 +1,40 @@
+<odoo>
+    <record id="demo_product_product_finished" model="product.product">
+        <field name="name">Finished</field>
+        <field name="type">product</field>
+        <field name="list_price">10</field>
+        <field name="taxes_id" eval="False" />
+        <field name="sale_ok" eval="False" />
+        <field name="categ_id" ref="product_category_subcontracting_product" />
+        <field
+            name="route_ids"
+            eval="[(6, 0,[ref('purchase_stock.route_warehouse0_buy')])]"
+        />
+    </record>
+
+    <record id="demo_product_product_component" model="product.product">
+        <field name="name">Component</field>
+        <field name="type">product</field>
+        <field name="list_price">10</field>
+        <field name="taxes_id" eval="False" />
+        <field name="sale_ok" eval="False" />
+        <field name="categ_id" ref="product_category_subcontracting_product" />
+        <field
+            name="route_ids"
+            eval="[(6, 0,[ref('route_subcontracting_dropshipping')])]"
+        />
+    </record>
+
+    <record id="demo_product_product_element" model="product.product">
+        <field name="name">Element</field>
+        <field name="type">product</field>
+        <field name="list_price">10</field>
+        <field name="taxes_id" eval="False" />
+        <field name="sale_ok" eval="False" />
+        <field name="categ_id" ref="product_category_subcontracting_product" />
+        <field
+            name="route_ids"
+            eval="[(6, 0,[ref('route_subcontracting_dropshipping')])]"
+        />
+    </record>
+</odoo>

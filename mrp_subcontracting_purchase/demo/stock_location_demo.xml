@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="demo_stock_location_sub_1" model="stock.location">
+        <field name="name">sub1</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().with_context(active_test=False).search([('name','=','Subcontracting Location'),('company_id','=',obj().env.company.id)],limit=1)"
+        />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+    <record id="demo_stock_location_sub_2" model="stock.location">
+        <field name="name">sub2</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().with_context(active_test=False).search([('name','=','Subcontracting Location'),('company_id','=',obj().env.company.id)],limit=1)"
+        />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+</odoo>
