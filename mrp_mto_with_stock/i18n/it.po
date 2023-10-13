@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2023-04-18 12:34+0000\n"
+"PO-Revision-Date: 2023-10-13 10:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model.fields,field_description:mrp_mto_with_stock.field_stock_warehouse__mrp_mto_mts_forecast_qty
@@ -38,7 +38,7 @@ msgstr "Modello prodotto"
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_mto_with_stock
 #: model:product.product,name:mrp_mto_with_stock.product_product_manufacture_1_1
@@ -106,7 +106,7 @@ msgstr ""
 #: model:product.template,uom_name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 #: model:product.template,uom_name:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "Unit(s)"
-msgstr ""
+msgstr "Unità"
 
 #. module: mrp_mto_with_stock
 #: model:ir.model,name:mrp_mto_with_stock.model_stock_warehouse
@@ -139,7 +139,7 @@ msgstr ""
 #: model:product.template,weight_uom_name:mrp_mto_with_stock.product_product_manufacture_1_2_product_template
 #: model:product.template,weight_uom_name:mrp_mto_with_stock.product_product_manufacture_1_product_template
 msgid "kg"
-msgstr ""
+msgstr "kg"
 
 #~ msgid "Manufacturing Order"
 #~ msgstr "Ordine di produzione"
