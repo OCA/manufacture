@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-02 11:36+0000\n"
-"PO-Revision-Date: 2022-12-18 17:44+0000\n"
+"PO-Revision-Date: 2023-10-13 10:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__created_inspections
@@ -30,14 +30,14 @@ msgstr "Ispezioni create"
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__display_name
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__id
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__id
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
@@ -54,7 +54,7 @@ msgstr "Ispezioni correlate a questa produzione."
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection____last_update
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
