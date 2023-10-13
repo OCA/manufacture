@@ -1,3 +1,18 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/stock_move.py:0
 #, python-format
@@ -5,8 +20,7 @@ msgid ""
 "%s\n"
 "\n"
 "Make sure you validate or adapt the related resupply picking\n"
-"                to your subcontractor in order to avoid inconsistencies in "
-"your stock.\n"
+"                to your subcontractor in order to avoid inconsistencies in your stock.\n"
 "                "
 msgstr ""
 
@@ -170,12 +184,12 @@ msgstr ""
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_3
-msgid "Sub 1  Production"
+msgid "Sub 1 — Production"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_4
-msgid "Sub 2  Production"
+msgid "Sub 2 — Production"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase
@@ -188,8 +202,7 @@ msgstr ""
 #, python-format
 msgid ""
 "There is no matching vendor price to generate the purchase order for\n"
-"                product %s (no vendor defined,  minimum quantity not "
-"reached,\n"
+"                product %s (no vendor defined,  minimum quantity not reached,\n"
 "                dates not valid, ...).\n"
 "                Go on the product form and complete the list of vendors."
 msgstr ""
@@ -217,12 +230,12 @@ msgstr ""
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_1
-msgid "Vendors  Sub 1"
+msgid "Vendors — Sub 1"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_2
-msgid "Vendors  Sub 2"
+msgid "Vendors — Sub 2"
 msgstr ""
 
 #. module: mrp_subcontracting_purchase
