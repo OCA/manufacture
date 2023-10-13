@@ -65,8 +65,9 @@ class MrpProduction(models.Model):
         if date.hour < pt.mo_grouping_max_hour:
             date_end = date.replace(hour=pt.mo_grouping_max_hour, minute=0, second=0)
         else:
-            date_end = date.replace(
-                day=date.day + 1, hour=pt.mo_grouping_max_hour, minute=0, second=0
+            date_end = date + relativedelta(days=1)
+            date_end = date_end.replace(
+                hour=pt.mo_grouping_max_hour, minute=0, second=0
             )
         date_start = date_end - relativedelta(days=pt.mo_grouping_interval)
         domain += [
