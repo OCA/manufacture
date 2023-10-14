@@ -6,7 +6,8 @@
     "license": "LGPL-3",
     "category": "Inventory",
     "website": "https://github.com/OCA/manufacture",
-    "depends": ["purchase_stock", "mrp_subcontracting", "sale_stock"],
+    "depends": ["purchase_stock", "mrp_subcontracting_purchase", "sale_stock"],
+    "maintainers": ["CetmixGitDrone", "geomer198"],
     "external_dependencies": {},
     "demo": [],
     "data": [
