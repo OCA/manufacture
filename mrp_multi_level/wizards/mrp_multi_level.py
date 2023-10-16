@@ -353,20 +353,20 @@ class MultiLevelMrp(models.TransientModel):
             )
             or 1000
         )
-        self.env["product.product"].search([]).write({"llc": llc})
-        products = self.env["product.product"].search([("llc", "=", llc)])
-        if products:
-            counter = len(products)
+        mrp_product_llc_ids = self.env["mrp.product.llc"].search([])
+        mrp_product_llc_ids.write({"llc": llc})
+        if mrp_product_llc_ids:
+            counter = len(mrp_product_llc_ids)
         log_msg = "Low level code 0 finished - Nbr. products: %s" % counter
         logger.info(log_msg)
 
         while counter:
             llc += 1
-            products = self.env["product.product"].search([("llc", "=", llc - 1)])
-            p_templates = products.mapped("product_tmpl_id")
+            mrp_product_llc_ids = self.env["mrp.product.llc"].search([("llc", "=", llc - 1)])
+            p_templates = mrp_product_llc_ids.mapped("product_id.product_tmpl_id")
             bom_lines = self._get_bom_lines_by_llc(llc - 1, p_templates)
             products = bom_lines.mapped("product_id")
-            products.write({"llc": llc})
+            products.mapped("mrp_product_llc_id").write({"llc": llc})
             counter = self.env["product.product"].search_count([("llc", "=", llc)])
             log_msg = "Low level code {} finished - Nbr. products: {}".format(
                 llc, counter

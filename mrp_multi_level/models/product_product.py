@@ -4,13 +4,14 @@
 
 import ast
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Product(models.Model):
     _inherit = "product.product"
 
-    llc = fields.Integer(string="Low Level Code", default=0, index=True)
+    llc = fields.Integer(related="mrp_product_llc_id.llc")
+    mrp_product_llc_id = fields.Many2one(comodel_name="mrp.product.llc")
     manufacturing_order_ids = fields.One2many(
         comodel_name="mrp.production",
         inverse_name="product_id",
@@ -46,6 +47,14 @@ class Product(models.Model):
                 .search([("product_id", "in", self.ids)])
             )
             parameters.write({"active": False})
+        if not values.get("mrp_product_llc_id", True):
+            mrp_product_llc = self.env["mrp.product.llc"].create(
+                {
+                    "product_id": self.id,
+                    "llc": 0
+                }
+            )
+            values.update({"mrp_product_llc_id": mrp_product_llc.id})
         return res
 
     def action_view_mrp_area_parameters(self):
