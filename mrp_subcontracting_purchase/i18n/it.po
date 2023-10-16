@@ -1,16 +1,15 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-14 15:36+0000\n"
-"PO-Revision-Date: 2023-10-14 15:36+0000\n"
+"PO-Revision-Date: 2023-10-16 10:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
@@ -25,16 +24,22 @@ msgid ""
 "your stock.\n"
 "                "
 msgstr ""
+"%s\n"
+"\n"
+"Assicurati di convalidare o adattare il prelievo di rifornimento\n"
+"                relativo al subappaltatore per evitare incongruenze nel "
+"magazzino.\n"
+"                "
 
 #. module: mrp_subcontracting_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase.po_form_mrp_subcontracting_purchase
 msgid "<span class=\"o_stat_text\">Resupply</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Rifornimento</span>"
 
 #. module: mrp_subcontracting_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase.stock_picking_form_mrp_subcontracting
 msgid "<span class=\"o_stat_text\">Source PO</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Ordine di acquisto di origine</span>"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_res_company
@@ -50,12 +55,12 @@ msgstr "Componente"
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_purchase_order__subcontracting_resupply_picking_count
 msgid "Count of Subcontracting Resupply"
-msgstr ""
+msgstr "Numero di rifornimenti in subappalto"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,help:mrp_subcontracting_purchase.field_purchase_order__subcontracting_resupply_picking_count
 msgid "Count of Subcontracting Resupply for component"
-msgstr ""
+msgstr "Numero di rifornimenti in subappalto per componente"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_mrp_production__display_name
@@ -75,34 +80,34 @@ msgstr "Nome visualizzato"
 #: model:stock.location.route,name:mrp_subcontracting_purchase.route_subcontracting_dropshipping
 #, python-format
 msgid "Dropship Subcontractor on Order"
-msgstr ""
+msgstr "Spedizione diretta a subappaltatore su ordine"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_warehouse__subcontracting_dropshipping_to_resupply
 msgid "Dropship Subcontractors"
-msgstr ""
+msgstr "Spedizione diretta a subappaltatori"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,help:mrp_subcontracting_purchase.field_stock_warehouse__subcontracting_dropshipping_to_resupply
 msgid "Dropship subcontractors with components"
-msgstr ""
+msgstr "Spedizione diretta a subappaltatori dei componenti"
 
 #. module: mrp_subcontracting_purchase
 #: model:product.product,name:mrp_subcontracting_purchase.demo_product_product_element
 #: model:product.template,name:mrp_subcontracting_purchase.demo_product_product_element_product_template
 msgid "Element"
-msgstr ""
+msgstr "Elemento"
 
 #. module: mrp_subcontracting_purchase
 #: model:product.product,name:mrp_subcontracting_purchase.demo_product_product_finished
 #: model:product.template,name:mrp_subcontracting_purchase.demo_product_product_finished_product_template
 msgid "Finished"
-msgstr ""
+msgstr "Finito"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_mrp_production__subcontracting_has_been_recorded
 msgid "Has been recorded"
-msgstr ""
+msgstr "È stato registrato"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_mrp_production__id
@@ -115,7 +120,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_rule__id
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_warehouse__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/purchase_order.py:0
@@ -124,6 +129,9 @@ msgid ""
 "It appears some components in this RFQ are not meant for subcontracting.\n"
 "                    Please create a separate order for these."
 msgstr ""
+"Sembra che alcuni componenti in questa RdP non siano pensati per il "
+"subcontracting.\n"
+"                    Prepara un altro ordine per questi prodotti."
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_mrp_production____last_update
@@ -136,68 +144,68 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_rule____last_update
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_warehouse____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_picking__subcontracting_source_purchase_count
 msgid "Number of subcontracting PO Source"
-msgstr ""
+msgstr "Numero di PO di origine subappalto"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,help:mrp_subcontracting_purchase.field_stock_picking__subcontracting_source_purchase_count
 msgid "Number of subcontracting Purchase Order Source"
-msgstr ""
+msgstr "Numero di subappalti provenienti da un ordine di acquisto"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Movimenti prodotto (riga movimento di magazzino)"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Riga ordine di acquisto"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/stock_picking.py:0
 #, python-format
 msgid "Source PO of %s"
-msgstr ""
+msgstr "PO di origine di %s"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regola di giacenza"
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_3
 msgid "Sub 1  Production"
-msgstr ""
+msgstr "Sub 1  Produzione"
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_4
 msgid "Sub 2  Production"
-msgstr ""
+msgstr "Sub 2  Produzione"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model.fields,field_description:mrp_subcontracting_purchase.field_stock_warehouse__subcontracting_dropshipping_pull_id
 msgid "Subcontracting-Dropshipping MTS Rule"
-msgstr ""
+msgstr "Regola MTS Subappalto-Consegna diretta"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/stock_rule.py:0
@@ -209,17 +217,23 @@ msgid ""
 "                dates not valid, ...).\n"
 "                Go on the product form and complete the list of vendors."
 msgstr ""
+"Nessun prezzo fornitore corrispondente per generare l'ordine di acquisto "
+"del\n"
+"                prodotto %s (nessun fornitore specificato, quantità minima "
+"non raggiunta,\n"
+"                date non valide ecc...).\n"
+"                Vai nella scheda prodotto e completa l'elenco dei fornitori."
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/mrp_production.py:0
 #, python-format
 msgid "This MO isn't related to a subcontracted move"
-msgstr ""
+msgstr "Questo MO non è legato ad un movimento di subappalto"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
 
 #. module: mrp_subcontracting_purchase
 #: model:product.product,uom_name:mrp_subcontracting_purchase.demo_product_product_component
@@ -229,34 +243,34 @@ msgstr ""
 #: model:product.template,uom_name:mrp_subcontracting_purchase.demo_product_product_element_product_template
 #: model:product.template,uom_name:mrp_subcontracting_purchase.demo_product_product_finished_product_template
 msgid "Units"
-msgstr ""
+msgstr "Unità"
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_1
 msgid "Vendors  Sub 1"
-msgstr ""
+msgstr "Fornitori  Sub 1"
 
 #. module: mrp_subcontracting_purchase
 #: model:stock.rule,name:mrp_subcontracting_purchase.demo_stock_rules_2
 msgid "Vendors  Sub 2"
-msgstr ""
+msgstr "Fornitori  Sub 2"
 
 #. module: mrp_subcontracting_purchase
 #: model:ir.model,name:mrp_subcontracting_purchase.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Magazzino"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/mrp_production.py:0
 #, python-format
 msgid "You must enter a serial number for %s"
-msgstr ""
+msgstr "Devi inserire un numero seriale per %s"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/mrp_production.py:0
 #, python-format
 msgid "You must enter a serial number for each line of %s"
-msgstr ""
+msgstr "Devi inserire un numero seriale per ogni riga di %s"
 
 #. module: mrp_subcontracting_purchase
 #: code:addons/mrp_subcontracting_purchase/models/mrp_production.py:0
@@ -265,3 +279,5 @@ msgid ""
 "You must indicate a non-zero amount\n"
 "                    consumed for at least one of your components"
 msgstr ""
+"Devi indicare una quantità consumata non pari a zero\n"
+"                    per almeno uno dei tuoi componenti"
