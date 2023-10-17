@@ -341,46 +341,6 @@ class MultiLevelMrp(models.TransientModel):
         )
 
     @api.model
-    def _low_level_code_calculation(self):
-        logger.info("Start low level code calculation")
-        counter = 999999
-        llc = 0
-        llc_recursion_limit = (
-            int(
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param("mrp_multi_level.llc_calculation_recursion_limit")
-            )
-            or 1000
-        )
-        self.env["product.product"].search([]).write({"llc": llc})
-        products = self.env["product.product"].search([("llc", "=", llc)])
-        if products:
-            counter = len(products)
-        log_msg = "Low level code 0 finished - Nbr. products: %s" % counter
-        logger.info(log_msg)
-
-        while counter:
-            llc += 1
-            products = self.env["product.product"].search([("llc", "=", llc - 1)])
-            p_templates = products.mapped("product_tmpl_id")
-            bom_lines = self._get_bom_lines_by_llc(llc - 1, p_templates)
-            products = bom_lines.mapped("product_id")
-            products.write({"llc": llc})
-            counter = self.env["product.product"].search_count([("llc", "=", llc)])
-            log_msg = "Low level code {} finished - Nbr. products: {}".format(
-                llc, counter
-            )
-            logger.info(log_msg)
-            if llc > llc_recursion_limit:
-                logger.error("Recursion limit reached during LLC calculation.")
-                break
-
-        mrp_lowest_llc = llc
-        logger.info("End low level code calculation")
-        return mrp_lowest_llc
-
-    @api.model
     def _adjust_mrp_applicable(self, mrp_areas):
         """This method is meant to modify the products that are applicable
            to MRP Multi level calculation
@@ -823,10 +783,12 @@ class MultiLevelMrp(models.TransientModel):
 
     def run_mrp_multi_level(self):
         self._mrp_cleanup(self.mrp_area_ids)
-        mrp_lowest_llc = self._low_level_code_calculation()
         self._calculate_mrp_applicable(self.mrp_area_ids)
         self._mrp_initialisation(self.mrp_area_ids)
-        self._mrp_calculation(mrp_lowest_llc, self.mrp_area_ids)
+        mrp_lowest_llc_product = self.env["product.product"].search(
+            [], order="llc desc", limit=1
+        )
+        self._mrp_calculation(mrp_lowest_llc_product.llc, self.mrp_area_ids)
         self._mrp_final_process(self.mrp_area_ids)
         # Open MRP inventory screen to show result if manually run:
         action = self.env.ref("mrp_multi_level.mrp_inventory_action")
