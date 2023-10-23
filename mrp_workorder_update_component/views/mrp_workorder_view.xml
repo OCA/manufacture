@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="mrp_production_workorder_form_view_inherit_update_components"
+        model="ir.ui.view"
+    >
+        <field name="name">mrp.workorder.form</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='raw_workorder_line_ids']/tree/field[@name='qty_done']"
+                position="after"
+            >
+                <button
+                    name="action_new_line_wizard"
+                    title="Create New Line"
+                    type="object"
+                    icon="fa-chain-broken"
+                    attrs="{'invisible': ['|', '|', ('qty_to_consume', 'in', [0, 1]), ('parent.state', 'not in', ['ready','progress']), ('lot_id', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
