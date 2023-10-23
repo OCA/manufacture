@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-mrp_bom_component_menu>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_bom_hierarchy>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_location>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_tracking>=16.0dev,<16.1dev',
         'odoo-addon-mrp_multi_level>=16.0dev,<16.1dev',
