@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo13-addon-mrp_unbuild_tracked_raw_material',
         'odoo13-addon-mrp_warehouse_calendar',
         'odoo13-addon-mrp_workorder_sequence',
+        'odoo13-addon-mrp_workorder_update_component',
         'odoo13-addon-product_cost_rollup_to_bom',
         'odoo13-addon-product_mrp_info',
         'odoo13-addon-product_quick_bom',
