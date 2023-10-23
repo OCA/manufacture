@@ -18,6 +18,7 @@ class MrpWorkorder(models.Model):
                 error.append(product.display_name)
         if error:
             raise UserError(
-                _("%d Product(s) without drawing:\n%s") % (len(error), "\n".join(error))
+                _("%(error_count)d Product(s) without drawing:\n%(error_msg)s")
+                % {"error_count": len(error), "error_msg": "\n".join(error)}
             )
         return self.product_id._action_show_attachments()
