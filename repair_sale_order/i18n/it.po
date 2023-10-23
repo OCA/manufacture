@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-10-28 15:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_sale_order
 #: model_terms:ir.ui.view,arch_db:repair_sale_order.view_repair_order_form
 msgid "Create Sales Order"
-msgstr ""
+msgstr "Crea ordine vendite"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_order__create_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_type__create_sale_order
 msgid "Create sale order?"
-msgstr ""
+msgstr "Creare ordine di vendita?"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_line__display_name
@@ -32,7 +34,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order__display_name
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_line__id
@@ -41,7 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order__id
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_line____last_update
@@ -50,72 +52,72 @@ msgstr ""
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order____last_update
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: repair_sale_order
 #: model:ir.model,name:repair_sale_order.model_repair_line
 msgid "Repair Line (parts)"
-msgstr ""
+msgstr "Riga riparazione (componenti)"
 
 #. module: repair_sale_order
 #: model:ir.model,name:repair_sale_order.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Ordine di riparazione"
 
 #. module: repair_sale_order
 #: model_terms:ir.ui.view,arch_db:repair_sale_order.view_sale_order_form
 msgid "Repair Order(s)"
-msgstr ""
+msgstr "Ordine(i) di riparazione"
 
 #. module: repair_sale_order
 #: model:ir.model,name:repair_sale_order.model_repair_type
 msgid "Repair Type"
-msgstr ""
+msgstr "Tipo riparazione"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order_line__repair_line_ids
 msgid "Repair lines"
-msgstr ""
+msgstr "Righe riparazione"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order__repair_order_ids
 msgid "Repair orders"
-msgstr ""
+msgstr "Ordini di riparazione"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_sale_order__repair_order_count
 msgid "Repair orders count"
-msgstr ""
+msgstr "Conteggio ordini riparazione"
 
 #. module: repair_sale_order
 #: model_terms:ir.ui.view,arch_db:repair_sale_order.view_repair_order_form
 msgid "Sale Order(s)"
-msgstr ""
+msgstr "Ordine(i) di vendita"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_line__sale_line_id
 msgid "Sale line"
-msgstr ""
+msgstr "Riga di vendita"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_order__sale_order_count
 msgid "Sale order count"
-msgstr ""
+msgstr "Conteggio ordine di vendita"
 
 #. module: repair_sale_order
 #: model:ir.model.fields,field_description:repair_sale_order.field_repair_order__sale_order_ids
 msgid "Sale orders"
-msgstr ""
+msgstr "Ordini di vendita"
 
 #. module: repair_sale_order
 #: model:ir.model,name:repair_sale_order.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: repair_sale_order
 #: model:ir.model,name:repair_sale_order.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: repair_sale_order
 #: code:addons/repair_sale_order/models/repair_order.py:0
@@ -124,3 +126,5 @@ msgid ""
 "You should input at least one part line to continue on create Sales Order "
 "from Repair Order"
 msgstr ""
+"Bisogna inserire almeno una riga componente per conntinuare nella creazione "
+"di un ordine di vendita dall'ordine di riparazione"
