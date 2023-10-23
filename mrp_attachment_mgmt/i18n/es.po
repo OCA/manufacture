@@ -18,14 +18,13 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: mrp_attachment_mgmt
+#. odoo-python
 #: code:addons/mrp_attachment_mgmt/models/mrp_workorder.py:0
 #, python-format
 msgid ""
-"%d Product(s) without drawing:\n"
-"%s"
+"%(error_count)d Product(s) without drawing:\n"
+"%(error_msg)s"
 msgstr ""
-"%d Producto(s) sin dibujo:\n"
-"%s"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
@@ -48,41 +47,14 @@ msgid "Bom Attachments"
 msgstr "Adjuntos de Lista de Materiales"
 
 #. module: mrp_attachment_mgmt
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__display_name
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__display_name
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: mrp_attachment_mgmt
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder__id
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product__id
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_attachment_mgmt
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_mrp_workorder____last_update
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_product____last_update
-#: model:ir.model.fields,field_description:mrp_attachment_mgmt.field_product_template____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: mrp_attachment_mgmt
-#: model:ir.model,name:mrp_attachment_mgmt.model_product_product
+#: model:ir.model,name:mrp_attachment_mgmt.model_product_template
 msgid "Product"
 msgstr "Producto"
 
 #. module: mrp_attachment_mgmt
-#: model:ir.model,name:mrp_attachment_mgmt.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
+#: model:ir.model,name:mrp_attachment_mgmt.model_product_product
+msgid "Product Variant"
+msgstr ""
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_production
@@ -93,6 +65,26 @@ msgstr ""
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_workorder
 msgid "Work Order"
 msgstr "Orden de trabajo"
+
+#, python-format
+#~ msgid ""
+#~ "%d Product(s) without drawing:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "%d Producto(s) sin dibujo:\n"
+#~ "%s"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producto"
 
 #~ msgid "Documents"
 #~ msgstr "Documentos"
