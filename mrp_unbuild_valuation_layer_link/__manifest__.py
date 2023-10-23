@@ -1,6 +1,6 @@
 {
     "name": "Valuation layers for unbuild orders",
-    "version": "14.0.1.0.1",
+    "version": "16.0.1.0.1",
     "license": "LGPL-3",
     "category": "Manufacture",
     "summary": "Unbuild orders display the connected valuation layers",
