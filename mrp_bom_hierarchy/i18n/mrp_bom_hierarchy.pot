@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_hierarchy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "Child BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__child_bom_ids
+msgid "Child Bom"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
+msgid "Has child BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_child
+msgid "Has components"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
+msgid "Has parent BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__has_bom
+msgid "Has sub BoM"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
+msgid "Is component"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "Parent BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__parent_bom_ids
+msgid "Parent Bom"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_has_other_bom
+msgid "Product has other BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid "This operator is not supported"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid "Value should be True or False (not %s)"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_form_view
+msgid "View product's BoM"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
+msgid "View product's other BoMs"
+msgstr ""
+
+#. module: mrp_bom_hierarchy
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#, python-format
+msgid ""
+"You should provide either a product or a product template to search a BoM "
+"Line"
+msgstr ""
