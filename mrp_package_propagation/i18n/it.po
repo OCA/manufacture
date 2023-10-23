@@ -6,29 +6,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-10-28 15:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,help:mrp_package_propagation.field_mrp_bom__package_propagation
 msgid ""
 "Allow to propagate the package from a component to the finished product."
-msgstr ""
+msgstr "Consente di propagare il collo da un componente al prodotto finito."
 
 #. module: mrp_package_propagation
 #: model:ir.model,name:mrp_package_propagation.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Distinta base"
 
 #. module: mrp_package_propagation
 #: model:ir.model,name:mrp_package_propagation.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Riga distinta base"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom__display_name
@@ -36,17 +38,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom__display_package_propagation
 msgid "Display Package Propagation"
-msgstr ""
+msgstr "Visualizza propagazione collo"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom_line__display_propagate_package
 msgid "Display Propagate Package"
-msgstr ""
+msgstr "Visualizza collo propagato"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom__id
@@ -54,12 +56,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_production__is_package_propagated
 msgid "Is package propagated?"
-msgstr ""
+msgstr "Il collo è propagato?"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom____last_update
@@ -67,44 +69,44 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_package_propagation
 #: code:addons/mrp_package_propagation/models/mrp_bom_line.py:0
 #, python-format
 msgid "Only one component can propagate its package to the finished product."
-msgstr ""
+msgstr "Solo un componente può propagare il suo collo al prodotto finito."
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom__package_propagation
 msgid "Package Propagation"
-msgstr ""
+msgstr "Propagazione collo"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,help:mrp_package_propagation.field_mrp_production__is_package_propagated
 msgid "Package is propagated from a component to the finished product."
-msgstr ""
+msgstr "Il collo è propagato dal componenete al prodotto finito."
 
 #. module: mrp_package_propagation
 #: model:ir.model,name:mrp_package_propagation.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_bom_line__propagate_package
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_stock_move__propagate_package
 msgid "Propagate Package"
-msgstr ""
+msgstr "Propaga collo"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,field_description:mrp_package_propagation.field_mrp_production__propagated_package_id
 msgid "Propagated package"
-msgstr ""
+msgstr "Collo propagato"
 
 #. module: mrp_package_propagation
 #: model:ir.model,name:mrp_package_propagation.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_package_propagation
 #: code:addons/mrp_package_propagation/models/mrp_production.py:0
@@ -113,6 +115,9 @@ msgid ""
 "The BoM is propagating a package from one component.\n"
 "As such, the manufacturing order is forced to produce the same quantity than the BoM: %s %s"
 msgstr ""
+"Questa DiBa sta propagando un collo da un componente.\n"
+"Pertanto, l'ordine di produzione è forzato a produrre la stessa quantità "
+"della DiBa: %s %s"
 
 #. module: mrp_package_propagation
 #: model:ir.model.fields,help:mrp_package_propagation.field_mrp_production__propagated_package_id
@@ -121,12 +126,15 @@ msgid ""
 "one of its components. The value will be computed once the corresponding "
 "component is selected."
 msgstr ""
+"La DiBa utilizzata in questo ordine di produzione è impostata per propagare "
+"il collo da uno dei suoi componenti. Il valore verrà calcolato una volta che "
+"il componente corrispondente sarà selezionato."
 
 #. module: mrp_package_propagation
 #: code:addons/mrp_package_propagation/models/mrp_bom_line.py:0
 #, python-format
 msgid "The component propagating the package must consume 1 %s."
-msgstr ""
+msgstr "Il componente che propaga il collo deve consumare un %s."
 
 #. module: mrp_package_propagation
 #: code:addons/mrp_package_propagation/models/mrp_bom.py:0
@@ -135,3 +143,5 @@ msgid ""
 "With 'Package Propagation' enabled, a line has to be configured with the "
 "'Propagate Package' option."
 msgstr ""
+"Con 'Propagazione collo' abilitata, una riga deve essere configurata con "
+"l'opzione 'Propaga collo'."
