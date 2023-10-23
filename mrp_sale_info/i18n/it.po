@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-15 16:49+0000\n"
-"PO-Revision-Date: 2017-06-15 16:51+0000\n"
-"Last-Translator: Paolo Valier\n"
+"PO-Revision-Date: 2023-10-29 08:29+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_sale_info
 #: field:mrp.production,commitment_date:0
@@ -63,7 +64,7 @@ msgstr "Informazioni di vendita"
 #: field:mrp.production,sale_line_id:0
 #: field:mrp.production.workcenter.line,sale_line_id:0
 msgid "Sale Line"
-msgstr "Riga di Vendita"
+msgstr "Riga di vendita"
 
 #. module: mrp_sale_info
 #: view:mrp.production:mrp_sale_info.mrp_production_sale_info_search_view
