@@ -8,26 +8,26 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     @api.model
-    def _get_components_ids(self, product_tmpl=None, product=None, recursive=False):
+    def _get_components_ids(self, products, recursive=False):
         """Gets an objet with the ids of the components, within two arrays:
         'product_template_ids' and 'product_product_ids'.
         Set recursive to get ids of child boms."""
         product_ids = []
-        bom = super()._bom_find(product_tmpl=product_tmpl, product=product)
-        for bom_line_id in bom.bom_line_ids:
-            product_ids.append(bom_line_id.product_id.id)
-            if recursive:
-                subcomponents = self._get_components_ids(
-                    product_tmpl=bom_line_id.product_id.product_tmpl_id,
-                    product=bom_line_id.product_id,
-                    recursive=recursive,
-                )
-                product_ids.extend(subcomponents)
+        boms_per_product = super()._bom_find(products)
+        for bom in boms_per_product.values():
+            for bom_line_id in bom.bom_line_ids:
+                product_ids.append(bom_line_id.product_id.id)
+                if recursive:
+                    subcomponents = self._get_components_ids(
+                        bom_line_id.product_id,
+                        recursive=recursive,
+                    )
+                    product_ids.extend(subcomponents)
         return product_ids
 
     def action_see_bom_documents(self):
         product_ids = self._get_components_ids(
-            self.product_tmpl_id, self.product_id, True
+            self.product_id or self.product_tmpl_id.product_variant_ids, True
         )
         products = self.env["product.product"].search([("id", "in", product_ids)])
         return products._action_show_attachments()

@@ -12,6 +12,7 @@
                     type="object"
                     icon="fa-files-o"
                     string="Bom Attachments"
+                    groups="mrp.group_mrp_user"
                     attrs="{'invisible': [('bom_count','!=',1)]}"
                 />
             </xpath>
@@ -29,6 +30,7 @@
                     type="object"
                     icon="fa-files-o"
                     string="Bom Attachments"
+                    groups="mrp.group_mrp_user"
                     attrs="{'invisible': [('bom_count','!=',1)]}"
                 />
             </xpath>

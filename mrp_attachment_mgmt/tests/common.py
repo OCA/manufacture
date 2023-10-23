@@ -6,7 +6,7 @@ from odoo import fields
 from odoo.tests import Form, common
 
 
-class TestMrpAttachmentMgmtBase(common.SavepointCase):
+class TestMrpAttachmentMgmtBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -68,14 +68,18 @@ class TestMrpAttachmentMgmtBase(common.SavepointCase):
     def _create_mrp_bom(self, product, components):
         mrp_bom_form = Form(self.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = product.product_tmpl_id
-        for component in components:
-            with mrp_bom_form.bom_line_ids.new() as line_form:
-                line_form.product_id = component[0]
-                line_form.product_qty = component[1]
-        with mrp_bom_form.operation_ids.new() as operation_form:
-            operation_form.name = "Operation 1"
-            operation_form.workcenter_id = self.workcenter
-        return mrp_bom_form.save()
+        bom_with_attachments = mrp_bom_form.save()
+        self.env.user.groups_id += self.env.ref("mrp.group_mrp_routings")
+        with Form(bom_with_attachments) as bom:
+            for component in components:
+                with bom.bom_line_ids.new() as line_form:
+                    line_form.product_id = component[0]
+                    line_form.product_qty = component[1]
+            with bom.operation_ids.new() as operation_form:
+                operation_form.name = "Operation 1"
+                operation_form.workcenter_id = self.workcenter
+                operation_form.bom_id = bom_with_attachments
+        return bom_with_attachments
 
     def _create_attachment(self, product, name=False):
         name = name if name else "Test file %s" % product.name
