@@ -11,4 +11,5 @@
     "data": [
         "views/mrp_bom_views.xml",
     ],
+    "demo": ["demo/product_product_demo.xml"],
 }
