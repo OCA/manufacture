@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- PRODUCTS -->
+
+    <record id="bam_pp_top" model="product.template">
+        <field name="name">Top Level</field>
+        <field name="type">product</field>
+        <field name="sale_ok" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+
+    <record id="bam_pp_sub_level" model="product.template">
+        <field name="name">Sub Level</field>
+        <field name="type">product</field>
+        <field name="sale_ok" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+
+    <record id="bam_pp_sub_sub" model="product.template">
+        <field name="name">Sub Sub</field>
+        <field name="type">product</field>
+        <field name="sale_ok" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+
+    <record id="bam_pp_sub_sub_2" model="product.template">
+        <field name="name">Sub Sub 2</field>
+        <field name="type">product</field>
+        <field name="sale_ok" eval="True" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+
+    <!-- ATTRIBUTES -->
+    <record id="bam_attr_1" model="product.attribute">
+        <field name="name">attr1</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="bam_attr_1_office" model="product.attribute.value">
+        <field name="name">office</field>
+        <field name="attribute_id" ref="bam_attr_1" />
+        <field name="sequence">1</field>
+    </record>
+    <record id="bam_attr_1_gaming" model="product.attribute.value">
+        <field name="name">gaming</field>
+        <field name="attribute_id" ref="bam_attr_1" />
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="bam_attr_2" model="product.attribute">
+        <field name="name">attr2</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="bam_attr_2_v1" model="product.attribute.value">
+        <field name="name">v1</field>
+        <field name="attribute_id" ref="bam_attr_2" />
+        <field name="sequence">1</field>
+    </record>
+    <record id="bam_attr_2_v2" model="product.attribute.value">
+        <field name="name">v2</field>
+        <field name="attribute_id" ref="bam_attr_2" />
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- PTALs -->
+    <record id="bam_ptal_1_1" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_top" />
+        <field name="attribute_id" ref="bam_attr_1" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_1_office'), ref('mrp_bom_attribute_match.bam_attr_1_gaming')])]"
+        />
+    </record>
+    <record id="bam_ptal_1_2" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_top" />
+        <field name="attribute_id" ref="bam_attr_2" />
+       <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_2_v1'), ref('mrp_bom_attribute_match.bam_attr_2_v2')])]"
+        />
+   </record>
+
+    <record id="bam_ptal_2_1" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_sub_level" />
+        <field name="attribute_id" ref="bam_attr_2" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_2_v1'), ref('mrp_bom_attribute_match.bam_attr_2_v2')])]"
+        />
+    </record>
+    <record id="bam_ptal_2_2" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_sub_level" />
+        <field name="attribute_id" ref="bam_attr_1" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_1_gaming'), ref('mrp_bom_attribute_match.bam_attr_1_office')])]"
+        />
+     </record>
+
+    <record id="bam_ptal_3" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_sub_sub" />
+        <field name="attribute_id" ref="bam_attr_1" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_1_office'), ref('mrp_bom_attribute_match.bam_attr_1_gaming')])]"
+        />
+    </record>
+
+    <record id="bam_ptal_4" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="bam_pp_sub_sub_2" />
+        <field name="attribute_id" ref="bam_attr_2" />
+        <field
+            name="value_ids"
+            eval="[(6, 0, [ref('mrp_bom_attribute_match.bam_attr_2_v1'), ref('mrp_bom_attribute_match.bam_attr_2_v2')])]"
+        />
+    </record>
+
+    <!-- PTAVs -->
+    <function model="ir.model.data" name="_update_xmlids">
+        <value
+            model="base"
+            eval="[{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_top_ptav_1',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_1_1').product_template_value_ids[0],
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_top_ptav_2',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_1_2').product_template_value_ids[0],
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_sub_level_ptav_1',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_2_1').product_template_value_ids[0],
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_sub_level_ptav_2',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_2_2').product_template_value_ids[0],
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_sub_sub_ptav_1',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_3').product_template_value_ids[0],
+                'noupdate': True,
+            },{
+                'xml_id': 'mrp_bom_attribute_match.bam_pp_sub_sub_2_ptav_1',
+                'record': obj().env.ref('mrp_bom_attribute_match.bam_ptal_4').product_template_value_ids[0],
+                'noupdate': True,
+            }]"
+        />
+    </function>
+
+    <!-- BOMs -->
+    <record id="bam_bom_sub_level" model="mrp.bom">
+        <field name="product_tmpl_id" ref="bam_pp_sub_level" />
+    </record>
+    <record id="bam_bom_sub_level_line_1" model="mrp.bom.line">
+        <field name="component_template_id" ref="bam_pp_sub_sub" />
+        <field name="product_qty">1</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="bam_bom_sub_level" />
+    </record>
+    <record id="bam_bom_sub_level_line_2" model="mrp.bom.line">
+        <field name="component_template_id" ref="bam_pp_sub_sub_2" />
+        <field name="product_qty">1</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="bam_bom_sub_level" />
+    </record>
+
+    <record id="bam_bom_top_level" model="mrp.bom">
+        <field name="product_tmpl_id" ref="bam_pp_top" />
+    </record>
+    <record id="bam_bom_top_level_line_1" model="mrp.bom.line">
+        <field name="component_template_id" ref="bam_pp_sub_level" />
+        <field name="product_qty">1</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="bam_bom_top_level" />
+    </record>
+
+</odoo>

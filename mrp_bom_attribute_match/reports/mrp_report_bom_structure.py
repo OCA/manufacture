@@ -32,7 +32,9 @@ class ReportBomStructure(models.AbstractModel):
             if to_ignore_line_ids:
                 for to_ignore_line_id in to_ignore_line_ids:
                     bom.bom_line_ids = [(3, to_ignore_line_id, 0)]
-            product = bom._get_component_template_product(line, product, line.product_id)
+            product = bom._get_component_template_product(
+                line, product, line.product_id
+            )
         components, total = super()._get_bom_lines(
             bom, bom_quantity, product, line_id, level
         )
@@ -74,6 +76,7 @@ class ReportBomStructure(models.AbstractModel):
             else:
                 prod_qty = line.product_qty * factor / bom.product_qty
                 company = bom.company_id or self.env.company
+                # Modification start
                 if line.component_template_id:
                     vals = product.product_template_attribute_value_ids.mapped(
                         "product_attribute_value_id"
@@ -98,6 +101,7 @@ class ReportBomStructure(models.AbstractModel):
                         price += company.currency_id.round(not_rounded_price)
                     else:
                         continue
+                    # Modification end
                 else:
                     not_rounded_price = (
                         line.product_id.uom_id._compute_price(
