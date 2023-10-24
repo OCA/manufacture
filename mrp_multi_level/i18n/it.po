@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-13 11:36+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 08:29+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -784,7 +784,7 @@ msgstr "Invia a"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_qty_multiple
 msgid "Qty Multiple"
-msgstr "Qta. multipla"
+msgstr "Multiplo qta."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__qty_released
@@ -806,7 +806,7 @@ msgstr "Quantità disponibile"
 #: code:addons/mrp_multi_level/wizards/mrp_inventory_procure.py:0
 #, python-format
 msgid "Quantity must be positive."
-msgstr "Quantità deve essere positiva."
+msgstr "La quantità deve essere positiva."
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__ready
