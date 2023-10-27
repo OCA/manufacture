@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 13:36+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 08:30+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Tipo intervallo data"
 #. module: mrp_planned_order_matrix
 #: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__date_end
 msgid "Date To"
-msgstr "Data al"
+msgstr "Alla data"
 
 #. module: mrp_planned_order_matrix
 #: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__date_end
