@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2023-05-17 04:06+0000\n"
+"PO-Revision-Date: 2023-10-29 08:29+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_form_view
@@ -66,7 +66,7 @@ msgstr "Storico"
 #. module: mrp_bom_version
 #: field:mrp.bom,historical_date:0
 msgid "Historical Date"
-msgstr "DOta storica"
+msgstr "Data storica"
 
 #. module: mrp_bom_version
 #: view:mrp.bom:mrp_bom_version.mrp_bom_version_search_view
