@@ -134,6 +134,21 @@ msgstr ""
 "del producto de producción."
 
 #. module: mrp_bom_attribute_match
+#: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_level
+msgid "Sub Level"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_sub
+msgid "Sub Sub"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_sub_2
+msgid "Sub Sub 2"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Technical field to store previous value of product_id"
 msgstr "Campo técnico para almacenar el valor anterior de product_id"
@@ -169,6 +184,19 @@ msgstr ""
 "materiales."
 
 #. module: mrp_bom_attribute_match
+#: model:product.template,name:mrp_bom_attribute_match.bam_pp_top
+msgid "Top Level"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_sub_level
+#: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_sub_sub
+#: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_sub_sub_2
+#: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_top
+msgid "Units"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
@@ -180,3 +208,39 @@ msgstr ""
 "el campo \"Aplicar en variantes\", ya que es el mismo atributo utilizado en "
 "el campo \"Coincidir con atributos\" relacionado con el componente "
 "%(component)s."
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute,name:mrp_bom_attribute_match.bam_attr_1
+msgid "attr1"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute,name:mrp_bom_attribute_match.bam_attr_2
+msgid "attr2"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_gaming
+msgid "gaming"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_office
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_level_ptav_2
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_sub_ptav_1
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_top_ptav_1
+msgid "office"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_2_v1
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_level_ptav_1
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_sub_2_ptav_1
+#: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_top_ptav_2
+msgid "v1"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
+#: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_2_v2
+msgid "v2"
+msgstr ""
