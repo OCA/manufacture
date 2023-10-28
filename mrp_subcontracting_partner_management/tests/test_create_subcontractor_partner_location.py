@@ -163,19 +163,18 @@ class TestSubcontractedPartner(common.SavepointCase):
         )
 
     def test_check_countof_rules(self):
-        if self.is_bridge_installed:
-            return
-        partner_id = self.partner_obj.create(
-            {
-                "name": "Test partner",
-                "is_company": True,
-                "is_subcontractor_partner": True,
-            }
-        )
-        rules = self.env["stock.rule"].search(
-            [("name", "=", partner_id.partner_buy_rule_id.name)]
-        )
-        self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
+        if not self.is_bridge_installed:
+            partner_id = self.partner_obj.create(
+                {
+                    "name": "Test partner",
+                    "is_company": True,
+                    "is_subcontractor_partner": True,
+                }
+            )
+            rules = self.env["stock.rule"].search(
+                [("name", "=", partner_id.partner_buy_rule_id.name)]
+            )
+            self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
 
     def test_change_subcontractor_location(self):
         expected_text = "Test partner"
