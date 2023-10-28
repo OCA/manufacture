@@ -8,7 +8,6 @@ class TestSubcontractedPartner(common.SavepointCase):
         super().setUpClass()
         cls.partner_id = cls.env.ref("base.res_partner_12")
         cls.partner_obj = cls.env["res.partner"]
-        cls.is_bridge_installed = False
 
     def test_is_subcontractor_partner_first_time(self):
         self.partner_id.update(
@@ -20,10 +19,9 @@ class TestSubcontractedPartner(common.SavepointCase):
         location = self.partner_id.subcontracted_created_location_id
         self.assertTrue(location, "Location is not created")
         self.assertTrue(location.active, "Location must be active")
-        if not self.is_bridge_installed:
-            partner_picking_type = self.partner_id.partner_picking_type_id
-            self.assertTrue(partner_picking_type, "Picking type is not created")
-            self.assertTrue(partner_picking_type.active, "Picking type must be active")
+        partner_picking_type = self.partner_id.partner_picking_type_id
+        self.assertTrue(partner_picking_type, "Picking type is not created")
+        self.assertTrue(partner_picking_type.active, "Picking type must be active")
 
         partner_buy_rule = self.partner_id.partner_buy_rule_id
         self.assertTrue(partner_buy_rule, "Partner Buy rule is not created")
@@ -46,9 +44,8 @@ class TestSubcontractedPartner(common.SavepointCase):
                 "is_subcontractor_partner": False,
             }
         )
-        if not self.is_bridge_installed:
-            location = self.partner_id.subcontracted_created_location_id
-            self.assertFalse(location.active, "Location must be not active")
+        location = self.partner_id.subcontracted_created_location_id
+        self.assertFalse(location.active, "Location must be not active")
 
         partner_picking_type = self.partner_id.partner_picking_type_id
         self.assertFalse(partner_picking_type.active, "Picking type must be not active")
@@ -67,9 +64,8 @@ class TestSubcontractedPartner(common.SavepointCase):
                 "is_subcontractor_partner": True,
             }
         )
-        if not self.is_bridge_installed:
-            location = self.partner_id.subcontracted_created_location_id
-            self.assertTrue(location.active, "Location must be active")
+        location = self.partner_id.subcontracted_created_location_id
+        self.assertTrue(location.active, "Location must be active")
 
         partner_picking_type = self.partner_id.partner_picking_type_id
         self.assertTrue(partner_picking_type.active, "Picking type must be active")
@@ -93,9 +89,8 @@ class TestSubcontractedPartner(common.SavepointCase):
                 "active": False,
             }
         )
-        if not self.is_bridge_installed:
-            location = self.partner_id.subcontracted_created_location_id
-            self.assertFalse(location.active, "Location must be not active")
+        location = self.partner_id.subcontracted_created_location_id
+        self.assertFalse(location.active, "Location must be not active")
 
         partner_picking_type = self.partner_id.partner_picking_type_id
         self.assertFalse(partner_picking_type.active, "Picking type must be not active")
@@ -119,9 +114,8 @@ class TestSubcontractedPartner(common.SavepointCase):
                 "active": True,
             }
         )
-        if not self.is_bridge_installed:
-            location = self.partner_id.subcontracted_created_location_id
-            self.assertTrue(location.active, "Location must be active")
+        location = self.partner_id.subcontracted_created_location_id
+        self.assertTrue(location.active, "Location must be active")
 
         partner_picking_type = self.partner_id.partner_picking_type_id
         self.assertTrue(partner_picking_type.active, "Picking type must be active")
@@ -142,15 +136,13 @@ class TestSubcontractedPartner(common.SavepointCase):
                 "is_subcontractor_partner": True,
             }
         )
-        if not self.is_bridge_installed:
-            location = partner_id.subcontracted_created_location_id
+        location = partner_id.subcontracted_created_location_id
         partner_picking_type = partner_id.partner_picking_type_id
         partner_buy_rule = partner_id.partner_buy_rule_id
         partner_resupply_rule = partner_id.partner_resupply_rule_id
 
         partner_id.unlink()
-        if not self.is_bridge_installed:
-            self.assertFalse(location.active, "Location must be not active")
+        self.assertFalse(location.active, "Location must be not active")
         self.assertFalse(partner_picking_type.active, "Picking type must be not active")
         self.assertFalse(partner_buy_rule.active, "Partner Buy rule must be not active")
         self.assertFalse(
@@ -158,18 +150,17 @@ class TestSubcontractedPartner(common.SavepointCase):
         )
 
     def test_check_countof_rules(self):
-        if not self.is_bridge_installed:
-            partner_id = self.partner_obj.create(
-                {
-                    "name": "Test partner",
-                    "is_company": True,
-                    "is_subcontractor_partner": True,
-                }
-            )
-            rules = self.env["stock.rule"].search(
-                [("name", "=", partner_id.partner_buy_rule_id.name)]
-            )
-            self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
+        partner_id = self.partner_obj.create(
+            {
+                "name": "Test partner",
+                "is_company": True,
+                "is_subcontractor_partner": True,
+            }
+        )
+        rules = self.env["stock.rule"].search(
+            [("name", "=", partner_id.partner_buy_rule_id.name)]
+        )
+        self.assertTrue(len(rules) == 2, "There are must be 2 subcontractor rules")
 
     def test_change_subcontractor_location(self):
         expected_text = "Test partner"
@@ -202,19 +193,18 @@ class TestSubcontractedPartner(common.SavepointCase):
                 expected_text,
                 msg="Record name must be equal to {}".format(expected_text),
             )
-        if not self.is_bridge_installed:
-            picking = partner.partner_picking_type_id
-            expected_text = "%s:  IN" % expected_text
-            self.assertEqual(
-                picking.name,
-                expected_text,
-                msg="Record name must be equal to '{}'".format(expected_text),
-            )
-            self.assertEqual(
-                picking.sequence_code,
-                "Tp1I",
-                msg="Sequence code must be equal to 'Tp1I'",
-            )
+        picking = partner.partner_picking_type_id
+        expected_text = "%s:  IN" % expected_text
+        self.assertEqual(
+            picking.name,
+            expected_text,
+            msg="Record name must be equal to '{}'".format(expected_text),
+        )
+        self.assertEqual(
+            picking.sequence_code,
+            "Tp1I",
+            msg="Sequence code must be equal to 'Tp1I'",
+        )
 
     def test_action_subcontractor_location_stock(self):
         self.partner_id.update({"is_subcontractor_partner": True})
