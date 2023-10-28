@@ -1,7 +1,8 @@
-The goal of this module is to make a partner ready for subcontracting flow (as per mrp_subcontracting_purchase features) and simplify their subcontracting management.
+The goal of this module is to simplify the management of the partner properties used in MRP Subcontracting.
 
-It adds a new checkbox "Subcontractor" in partner, which when enabled creates the following entities:
+It adds a new checkbox "Subcontractor" which when enabled creates the following entities:
 
 * A child location in the "Subcontracting" location
-* A new 'Buy' stock rule for "Dropship Subcontractor on Order" route
-* A new 'Pull from' stock rule for "Dropship Subcontractor on Order" route
+* A Stock Operation Type of type 'receipt' for this location
+* A new 'Buy' stock rule
+* A new 'Resupply Subcontractor on Order' rule

@@ -1,3 +1,5 @@
+import re
+
 from odoo import api, fields, models
 
 
@@ -7,6 +9,9 @@ class ResPartner(models.Model):
     is_subcontractor_partner = fields.Boolean(string="Subcontractor")
     subcontracted_created_location_id = fields.Many2one(
         comodel_name="stock.location", copy=False
+    )
+    partner_picking_type_id = fields.Many2one(
+        comodel_name="stock.picking.type", copy=False
     )
     partner_buy_rule_id = fields.Many2one(comodel_name="stock.rule", copy=False)
     partner_resupply_rule_id = fields.Many2one(comodel_name="stock.rule", copy=False)
@@ -26,6 +31,8 @@ class ResPartner(models.Model):
         return {
             # Updating Subcontracting Location
             "subcontracted_created_location_id": "_create_subcontracting_location_data",
+            # Updating Subcontracting operation type
+            "partner_picking_type_id": "_create_operation_type_for_subcontracting",
             # Updating Route Rule for Subcontracting buy
             "partner_buy_rule_id": "_create_route_rule_for_subcontracting",
             # Updating Route Rule for Subcontracting resupply
@@ -58,10 +65,16 @@ class ResPartner(models.Model):
         """
         partners = self.filtered(lambda p: p.is_subcontractor_partner)
         field_names = [*self.get_data_struct(), "property_stock_subcontractor"]
+        field_names.remove("partner_picking_type_id")
         for field in field_names:
             records = partners.mapped(field)
             records.write({"name": name})
             self._update_name_translation(records, name)
+        type_name = "%s:  IN" % name
+        code = "".join(re.findall(r"\b\w", type_name))
+        picks = partners.mapped("partner_picking_type_id")
+        picks.write({"name": type_name, "sequence_code": code})
+        self._update_name_translation(picks, type_name)
 
     def unlink(self):
         """This Method is override to archive all subcontracting field"""
@@ -95,12 +108,7 @@ class ResPartner(models.Model):
                         )(vals)
                         or {}
                     )
-        partners = super(ResPartner, self).create(vals_list)
-        for partner in partners.filtered(
-            lambda p: p.is_subcontractor_partner and p.is_company
-        ):
-            partner.partner_resupply_rule_id.write({"partner_address_id": partner.id})
-        return partners
+        return super(ResPartner, self).create(vals_list)
 
     def _update_subcontractor_entities_for_record(self, is_subcontractor_partner):
         if not is_subcontractor_partner:
@@ -125,6 +133,35 @@ class ResPartner(models.Model):
         :return: name (char) composed name
         """
         return self.display_name
+
+    def _create_subcontracted_operation_type(self, vals):
+        """Creating Operation Type for Subcontracting"""
+        location_id = self._get_location_id_for_record(vals)
+        if "partner_picking_type_id" in vals:
+            return vals.get("partner_picking_type_id"), location_id
+        if self.partner_picking_type_id:
+            return self.partner_picking_type_id.id, location_id
+        operation_type_name = "%s:  IN" % self._context.get(
+            "partner_name", self._compose_entity_name()
+        )
+        operation_type_vals = {
+            "name": operation_type_name,
+            "code": "incoming",
+            "sequence_code": "".join(re.findall(r"\b\w", operation_type_name)),
+            "is_subcontractor": True,
+        }
+        company = self.company_id or self.env.company
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", company.id)], limit=1
+        )
+        if warehouse:
+            operation_type_vals.update({"warehouse_id": warehouse.id})
+        if location_id:
+            operation_type_vals.update({"default_location_dest_id": location_id})
+        return (
+            self.env["stock.picking.type"].create(operation_type_vals).id,
+            location_id,
+        )
 
     def _get_location_id_for_record(self, vals):
         if "subcontracted_created_location_id" in vals:
@@ -158,36 +195,25 @@ class ResPartner(models.Model):
             "subcontracted_created_location_id": location_id,
         }
 
+    def _create_operation_type_for_subcontracting(self, vals):
+        # Creating Operation Type for Subcontracting starts here
+        operation_type_rec_id, _ = self._create_subcontracted_operation_type(vals)
+        return {"partner_picking_type_id": operation_type_rec_id}
+
     def _create_route_rule_for_subcontracting(self, vals):
-        # operation_type_rec_id, location_id = self._create_subcontracted_operation_type(
-        #     vals
-        # )
-        location_id = self._get_location_id_for_record(vals)
-        picking_type_id = (
-            self.env["stock.picking.type"]
-            .with_context(active_test=False)
-            .search(
-                [
-                    ("name", "=", "Dropship"),
-                    ("sequence_code", "=", "DS"),
-                    ("company_id", "=", self.env.company.id),
-                ],
-                limit=1,
-            )
-            .id
+        operation_type_rec_id, location_id = self._create_subcontracted_operation_type(
+            vals
         )
         route = self.env.ref(
-            "mrp_subcontracting_purchase.route_subcontracting_dropshipping",
-            raise_if_not_found=False,
+            "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
         )
         buy_rule = self.env["stock.rule"].create(
             {
-                "name": "Vendors → %s"
-                % self._context.get("partner_name", self._compose_entity_name()),
+                "name": self._context.get("partner_name", self._compose_entity_name()),
                 "action": "buy",
+                "picking_type_id": operation_type_rec_id,
                 "location_id": location_id,
                 "route_id": route.id,
-                "picking_type_id": picking_type_id,
             }
         )
         return {"partner_buy_rule_id": buy_rule.id}
@@ -196,30 +222,21 @@ class ResPartner(models.Model):
         prop = self.env["ir.property"]._get(
             "property_stock_production", "product.template"
         )
+        picking_type = self.env.ref("stock.picking_type_out", raise_if_not_found=False)
         route = self.env.ref(
-            "mrp_subcontracting_purchase.route_subcontracting_dropshipping",
+            "mrp_subcontracting.route_resupply_subcontractor_mto",
             raise_if_not_found=False,
-        )
-        picking_type_id = (
-            self.env["stock.picking.type"]
-            .with_context(active_test=False)
-            .search(
-                [("name", "=", "Subcontracting"), ("sequence_code", "=", "SBC")],
-                limit=1,
-            )
-            .id
         )
         rule = self.env["stock.rule"].create(
             {
-                "name": "%s - Production"
-                % self._context.get("partner_name", self._compose_entity_name()),
+                "name": self._context.get("partner_name", self._compose_entity_name()),
                 "action": "pull",
-                "picking_type_id": picking_type_id,
-                "location_src_id": self._get_location_id_for_record(vals),
-                "location_id": prop.id,
-                "route_id": route.id,
                 "partner_address_id": self._origin.id,
-                "procure_method": "make_to_order",
+                "picking_type_id": picking_type.id,
+                "location_id": prop.id,
+                "location_src_id": self._get_location_id_for_record(vals),
+                "route_id": route.id,
+                "procure_method": "mts_else_mto",
             }
         )
         return {"partner_resupply_rule_id": rule.id}
