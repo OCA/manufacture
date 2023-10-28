@@ -8,12 +8,7 @@ class TestSubcontractedPartner(common.SavepointCase):
         super().setUpClass()
         cls.partner_id = cls.env.ref("base.res_partner_12")
         cls.partner_obj = cls.env["res.partner"]
-        cls.is_bridge_installed = cls.env["ir.module.module"].search(
-            [
-                ("state", "=", "installed"),
-                ("name", "=", "mrp_subcontracting_purchase_partner_management"),
-            ]
-        )
+        cls.is_bridge_installed = False
 
     def test_is_subcontractor_partner_first_time(self):
         self.partner_id.update(
