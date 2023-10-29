@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-29 16:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 17:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_serial_matrix
 #: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
@@ -151,7 +151,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__lot_qty
 msgid "Lot Qty"
-msgstr "Qta. lotto"
+msgstr "Q.tà lotto"
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__lot_selection_warning_ids
