@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-13 10:39+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 17:38+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -505,7 +505,7 @@ msgstr "Squadra CQ"
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_kanban_view
 msgid "Qty:"
-msgstr "Qtà:"
+msgstr "Q.tà:"
 
 #. module: quality_control_issue
 #: model:ir.model,name:quality_control_issue.model_qc_issue
@@ -636,7 +636,7 @@ msgstr ""
 #. module: quality_control_issue
 #: model:ir.model.fields,field_description:quality_control_issue.field_qc_issue__stock_scrap_qty
 msgid "Stock Scrap Qty"
-msgstr "Qta. scarto magazzino"
+msgstr "Q.tà scarto magazzino"
 
 #. module: quality_control_issue
 #: model:ir.model.fields,help:quality_control_issue.field_qc_issue_stage__fold
