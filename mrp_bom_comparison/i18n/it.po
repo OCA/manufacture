@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-17 17:45+0000\n"
+"PO-Revision-Date: 2023-10-29 17:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_comparison
 #: model_terms:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
@@ -165,7 +165,7 @@ msgstr "Prodotti aggiornati"
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line__diff_qty
 #: model_terms:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
 msgid "Qty gap"
-msgstr "Differenza qta."
+msgstr "Differenza q.tà"
 
 #. module: mrp_bom_comparison
 #: model_terms:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
@@ -190,7 +190,7 @@ msgstr "TOTALE"
 #. module: mrp_bom_comparison
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison__total_qty
 msgid "Total qty"
-msgstr "Qta. totale"
+msgstr "Q.tà totale"
 
 #. module: mrp_bom_comparison
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line__wiz_id
@@ -201,10 +201,10 @@ msgstr "Procedura guidata"
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line__bom1_qty
 #: model_terms:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
 msgid "v1-Qty"
-msgstr "v1-qta"
+msgstr "v1-q.tà"
 
 #. module: mrp_bom_comparison
 #: model:ir.model.fields,field_description:mrp_bom_comparison.field_wizard_mrp_bom_comparison_line__bom2_qty
 #: model_terms:ir.ui.view,arch_db:mrp_bom_comparison.report_mrp_bom_comparison
 msgid "v2-Qty"
-msgstr "n2-qta"
+msgstr "v2-q.tà"
