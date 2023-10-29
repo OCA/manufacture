@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 08:30+0000\n"
+"PO-Revision-Date: 2023-10-29 17:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -139,7 +139,7 @@ msgstr "Data attuale"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__current_qty
 msgid "Current Qty"
-msgstr "Qta. attuale"
+msgstr "Q.tà attuale"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__date
@@ -467,12 +467,12 @@ msgstr "Ordini di produzione"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_maximum_order_qty
 msgid "Maximum Order Qty"
-msgstr "Qta. massima ordine"
+msgstr "Q.tà massima ordine"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_order_qty
 msgid "Minimum Order Qty"
-msgstr "Qta. minima ordine"
+msgstr "Q.tà minima ordine"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mo_count
@@ -737,12 +737,12 @@ msgstr "Invia a"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_qty_multiple
 msgid "Qty Multiple"
-msgstr "Multiplo qta."
+msgstr "Multiplo q.tà"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__qty_released
 msgid "Qty Released"
-msgstr "Qta. rilasciata"
+msgstr "Q.tà rilasciata"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__qty
