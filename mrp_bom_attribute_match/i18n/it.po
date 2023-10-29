@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-14 17:50+0000\n"
-"PO-Revision-Date: 2023-06-14 12:10+0000\n"
+"PO-Revision-Date: 2023-10-29 23:53+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian <http://weblate.ops404.it/projects/ooops-mrp-14-0/"
 "mrp_bom_attribute_match/it/>\n"
@@ -138,17 +138,17 @@ msgstr ""
 #. module: mrp_bom_attribute_match
 #: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_level
 msgid "Sub Level"
-msgstr ""
+msgstr "Sotto livello"
 
 #. module: mrp_bom_attribute_match
 #: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_sub
 msgid "Sub Sub"
-msgstr ""
+msgstr "Sotto sotto"
 
 #. module: mrp_bom_attribute_match
 #: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_sub_2
 msgid "Sub Sub 2"
-msgstr ""
+msgstr "Sotto sotto 2"
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
@@ -187,7 +187,7 @@ msgstr ""
 #. module: mrp_bom_attribute_match
 #: model:product.template,name:mrp_bom_attribute_match.bam_pp_top
 msgid "Top Level"
-msgstr ""
+msgstr "Livello max"
 
 #. module: mrp_bom_attribute_match
 #: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_sub_level
@@ -195,7 +195,7 @@ msgstr ""
 #: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_sub_sub_2
 #: model:product.template,uom_name:mrp_bom_attribute_match.bam_pp_top
 msgid "Units"
-msgstr ""
+msgstr "Unità"
 
 #. module: mrp_bom_attribute_match
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
@@ -212,17 +212,17 @@ msgstr ""
 #. module: mrp_bom_attribute_match
 #: model:product.attribute,name:mrp_bom_attribute_match.bam_attr_1
 msgid "attr1"
-msgstr ""
+msgstr "Attr1"
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute,name:mrp_bom_attribute_match.bam_attr_2
 msgid "attr2"
-msgstr ""
+msgstr "Attr2"
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_gaming
 msgid "gaming"
-msgstr ""
+msgstr "Gaming"
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_office
@@ -230,7 +230,7 @@ msgstr ""
 #: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_sub_ptav_1
 #: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_top_ptav_1
 msgid "office"
-msgstr ""
+msgstr "Ufficio"
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_2_v1
@@ -238,12 +238,12 @@ msgstr ""
 #: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_sub_sub_2_ptav_1
 #: model:product.template.attribute.value,name:mrp_bom_attribute_match.bam_pp_top_ptav_2
 msgid "v1"
-msgstr ""
+msgstr "v1"
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_2_v2
 msgid "v2"
-msgstr ""
+msgstr "v2"
 
 #~ msgid "Product Uom Id Domain"
 #~ msgstr "Dominio ID UdM prodotto"
