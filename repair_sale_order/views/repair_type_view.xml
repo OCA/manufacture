@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
 
-        <record id="view_repair_type_form" model="ir.ui.view">
-            <field name="name">repair.type.form.view</field>
-            <field name="model">repair.type</field>
-            <field name="inherit_id" ref="repair_type.repair_type_view_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='source_location_id']" position="before">
-                    <field name="create_sale_order" />
-                </xpath>
-                <xpath expr="//field[@name='source_location_id']" position="attributes">
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-                <xpath
-                    expr="//field[@name='source_location_add_part_id']"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-                <xpath
-                    expr="//field[@name='destination_location_add_part_id']"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-                <xpath
-                    expr="//field[@name='source_location_remove_part_id']"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-                <xpath
-                    expr="//field[@name='destination_location_remove_part_id']"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible': [('create_sale_order', '=', True)]}</attribute>
-                </xpath>
-            </field>
-        </record>
+    <record id="view_repair_type_form" model="ir.ui.view">
+        <field name="name">repair.type.form.view</field>
+        <field name="model">repair.type</field>
+        <field name="inherit_id" ref="repair_type.repair_type_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='source_location_id']" position="before">
+                <field name="create_sale_order" />
+            </xpath>
+            <xpath expr="//field[@name='source_location_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('create_sale_order', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='source_location_add_part_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('create_sale_order', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='destination_location_add_part_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('create_sale_order', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='source_location_remove_part_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('create_sale_order', '=', True)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='destination_location_remove_part_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('create_sale_order', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
 
-    </data>
 </odoo>

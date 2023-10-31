@@ -4,7 +4,7 @@
         <field name="name">mrp.move.tree</field>
         <field name="model">mrp.move</field>
         <field name="arch" type="xml">
-            <tree string="MRP Moves">
+            <tree>
                 <field name="mrp_date" />
                 <field name="current_date" />
                 <field name="mrp_origin" />

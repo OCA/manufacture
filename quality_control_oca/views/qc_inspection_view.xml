@@ -86,12 +86,7 @@
                     <notebook>
                         <page string="Questions">
                             <field name="inspection_lines" nolabel="1">
-                                <tree
-                                    string="Inspection lines"
-                                    editable="top"
-                                    delete="false"
-                                    create="false"
-                                >
+                                <tree editable="top" delete="false" create="false">
                                     <field name="name" />
                                     <field name="question_type" />
                                     <field name="possible_ql_values" invisible="1" />
@@ -141,7 +136,7 @@
         <field name="name">qc.inspection.tree</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
-            <tree string="Inspections">
+            <tree>
                 <field name="name" />
                 <field name="user" />
                 <field name="test" />
@@ -241,7 +236,6 @@
             <tree
                 decoration-danger="success==False"
                 decoration-info="success==True"
-                string="Inspection lines"
                 delete="false"
                 create="false"
             >
