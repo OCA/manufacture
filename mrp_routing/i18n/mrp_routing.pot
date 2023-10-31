@@ -226,7 +226,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__name
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_search_view
-#: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_tree_view
 msgid "Routing"
 msgstr ""
 
@@ -242,8 +241,8 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:mrp_routing.mrp_routing_action
 msgid ""
 "Routings define the successive operations that need to be\n"
-"                done to realize a Manufacturing Order. Each operation from\n"
-"                a Routing is done at a specific Work Center and has a specific duration."
+"            done to realize a Manufacturing Order. Each operation from\n"
+"            a Routing is done at a specific Work Center and has a specific duration."
 msgstr ""
 
 #. module: mrp_routing
@@ -283,7 +282,6 @@ msgstr ""
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
-#: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_tree_view
 msgid "Template Routing Work Centers"
 msgstr ""
 
