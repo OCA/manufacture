@@ -42,11 +42,6 @@ msgid "Click to add a component to a bill of material."
 msgstr "Kliknite za dodavanje komponente u sastavnicu."
 
 #. module: mrp_bom_component_menu
-#: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_tree_view
-msgid "Components"
-msgstr "Komponente"
-
-#. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Default Unit of Measure"
 msgstr "Zadana jedinica mjere"
@@ -65,3 +60,6 @@ msgstr "Proizvod"
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Search Bill Of Material Components"
 msgstr "Pretraži komponente sastavnica"
+
+#~ msgid "Components"
+#~ msgstr "Komponente"

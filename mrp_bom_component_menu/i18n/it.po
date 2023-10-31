@@ -46,11 +46,6 @@ msgid "Click to add a component to a bill of material."
 msgstr "Fare clic per aggiungere un componente ad una distinta base."
 
 #. module: mrp_bom_component_menu
-#: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_tree_view
-msgid "Components"
-msgstr "Componenti"
-
-#. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Default Unit of Measure"
 msgstr "Unità di misura predefinita"
@@ -69,3 +64,6 @@ msgstr "Prodotto"
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Search Bill Of Material Components"
 msgstr "Ricerca componenti distinta base"
+
+#~ msgid "Components"
+#~ msgstr "Componenti"
