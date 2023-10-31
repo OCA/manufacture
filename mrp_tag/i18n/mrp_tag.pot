@@ -81,7 +81,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_production__tag_ids
 #: model:ir.ui.menu,name:mrp_tag.menu_mrp_tag_config
 #: model_terms:ir.ui.view,arch_db:mrp_tag.mrp_tag_view_form
-#: model_terms:ir.ui.view,arch_db:mrp_tag.mrp_tag_view_tree
 msgid "Tags"
 msgstr ""
 
