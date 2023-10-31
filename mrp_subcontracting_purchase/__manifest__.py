@@ -4,7 +4,7 @@
         This bridge module adds some smart buttons between Purchase and Subcontracting
     """,
     "website": "https://github.com/OCA/manufacture",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Odoo S.A., Ooops, Cetmix, Odoo Community Association (OCA)",
     "maintainers": ["dessanhemrayev", "CetmixGitDrone", "Volodiay622", "geomer198"],
     "category": "Manufacturing/Purchase",

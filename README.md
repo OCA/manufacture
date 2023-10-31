@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [mrp_analytic_cost](mrp_analytic_cost/) | 14.0.1.1.0 |  | Track manufacturing costs in real time, using Analytic Items
 [mrp_attachment_mgmt](mrp_attachment_mgmt/) | 14.0.1.3.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp Attachment Mgmt
 [mrp_bom_attribute_match](mrp_bom_attribute_match/) | 14.0.1.2.1 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Dynamic BOM component based on product attribute
-[mrp_bom_component_menu](mrp_bom_component_menu/) | 14.0.1.1.0 |  | MRP BOM Component Menu
+[mrp_bom_component_menu](mrp_bom_component_menu/) | 14.0.1.1.1 |  | MRP BOM Component Menu
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 14.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
 [mrp_bom_line_sequence](mrp_bom_line_sequence/) | 14.0.1.0.0 |  | Manages the order of BOM lines by displaying its sequence
 [mrp_bom_location](mrp_bom_location/) | 14.0.1.0.1 |  | Adds location field to Bill of Materials and its components.
@@ -38,7 +38,7 @@ addon | version | maintainers | summary
 [mrp_component_operation](mrp_component_operation/) | 14.0.1.1.0 |  | Allows to operate the components from a MO
 [mrp_component_operation_scrap_reason](mrp_component_operation_scrap_reason/) | 14.0.1.1.0 |  | Allows to pass a reason to scrap with MRP component operation
 [mrp_lot_on_hand_first](mrp_lot_on_hand_first/) | 14.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Allows to display lots on hand first in M2o fields
-[mrp_multi_level](mrp_multi_level/) | 14.0.1.13.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
+[mrp_multi_level](mrp_multi_level/) | 14.0.1.13.1 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
 [mrp_package_propagation](mrp_package_propagation/) | 14.0.1.0.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a package from a component to a finished product
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 14.0.1.1.0 |  | Allows to create fixed planned orders on a grid view.
@@ -51,15 +51,15 @@ addon | version | maintainers | summary
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 14.0.1.1.0 |  | MRP Production Serial Matrix
 [mrp_progress_button](mrp_progress_button/) | 14.0.1.1.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
-[mrp_routing](mrp_routing/) | 14.0.1.0.0 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | MRP Routing
+[mrp_routing](mrp_routing/) | 14.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | MRP Routing
 [mrp_sale_info](mrp_sale_info/) | 14.0.2.0.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_bom_dual_use](mrp_subcontracting_bom_dual_use/) | 14.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp subcontracting bom dual use
 [mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 14.0.1.1.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Inhibit subcontracting flow on demand
 [mrp_subcontracting_partner_management](mrp_subcontracting_partner_management/) | 14.0.2.0.0 |  | Subcontracting Partner Management
-[mrp_subcontracting_purchase](mrp_subcontracting_purchase/) | 14.0.1.0.0 | [![dessanhemrayev](https://github.com/dessanhemrayev.png?size=30px)](https://github.com/dessanhemrayev) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) [![Volodiay622](https://github.com/Volodiay622.png?size=30px)](https://github.com/Volodiay622) [![geomer198](https://github.com/geomer198.png?size=30px)](https://github.com/geomer198) | This bridge module adds some smart buttons between Purchase and Subcontracting
+[mrp_subcontracting_purchase](mrp_subcontracting_purchase/) | 14.0.1.0.1 | [![dessanhemrayev](https://github.com/dessanhemrayev.png?size=30px)](https://github.com/dessanhemrayev) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) [![Volodiay622](https://github.com/Volodiay622.png?size=30px)](https://github.com/Volodiay622) [![geomer198](https://github.com/geomer198.png?size=30px)](https://github.com/geomer198) | This bridge module adds some smart buttons between Purchase and Subcontracting
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.2.1.0 |  | Link Purchase Order Line to Subcontract Productions
 [mrp_subcontracting_resupply_link](mrp_subcontracting_resupply_link/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Links between subcontracting PO and resupply picking
-[mrp_tag](mrp_tag/) | 14.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
+[mrp_tag](mrp_tag/) | 14.0.1.0.1 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_unbuild_move_link](mrp_unbuild_move_link/) | 14.0.1.0.0 |  | Link the stock moves of manufacturing orders to the respective unbuild orders
 [mrp_unbuild_subcontracting](mrp_unbuild_subcontracting/) | 14.0.1.0.0 |  | Unbuild orders are created automatically when is returned a product subcontracted
 [mrp_unbuild_valuation_layer_link](mrp_unbuild_valuation_layer_link/) | 14.0.1.0.1 |  | Unbuild orders display the connected valuation layers
@@ -68,13 +68,13 @@ addon | version | maintainers | summary
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 14.0.1.0.1 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 [product_mrp_info](product_mrp_info/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds smart button in product form view linking to manufacturing order list.
 [quality_control_mrp_oca](quality_control_mrp_oca/) | 14.0.1.0.0 |  | MRP extension for quality control (OCA)
-[quality_control_oca](quality_control_oca/) | 14.0.1.4.0 |  | Generic infrastructure for quality tests.
+[quality_control_oca](quality_control_oca/) | 14.0.1.4.1 |  | Generic infrastructure for quality tests.
 [quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.1 |  | Quality control - Stock (OCA)
 [repair_discount](repair_discount/) | 14.0.1.0.0 |  | Repair Discount
 [repair_picking_after_done](repair_picking_after_done/) | 14.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.1 |  | Create refurbished products during repair
 [repair_refurbish_repair_stock_move](repair_refurbish_repair_stock_move/) | 14.0.1.0.0 |  | Use refurbish and repair stock moves together
-[repair_sale_order](repair_sale_order/) | 14.0.1.0.0 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
+[repair_sale_order](repair_sale_order/) | 14.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.2 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 14.0.1.0.2 |  | Repair type
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
