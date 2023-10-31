@@ -404,7 +404,6 @@ msgstr "Ressourcenplanung anwendbar"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "MRP Area"
 msgstr "Bereich"
@@ -443,7 +442,6 @@ msgstr "Datum (MRP)"
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_inventory
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_graph
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_pivot
 msgid "MRP Inventory"
@@ -468,7 +466,6 @@ msgstr "nach unten verschieben"
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.mrp_move_action
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_move_view_tree
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 msgid "MRP Moves"
 msgstr "Lagerbewegungen"
@@ -739,7 +736,6 @@ msgstr "Produkt-Bereich-Parameter"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_search
-#: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_mrp_area_tree
 msgid "Product MRP Area parameters"
 msgstr "Produkt-Bereich-Parameter"
 
