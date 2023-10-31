@@ -235,7 +235,6 @@ msgstr "Riferimento"
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing__name
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_search_view
-#: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_tree_view
 msgid "Routing"
 msgstr "Instradamento"
 
@@ -251,15 +250,10 @@ msgstr "Cicli di produzione"
 #: model_terms:ir.actions.act_window,help:mrp_routing.mrp_routing_action
 msgid ""
 "Routings define the successive operations that need to be\n"
-"                done to realize a Manufacturing Order. Each operation from\n"
-"                a Routing is done at a specific Work Center and has a "
-"specific duration."
+"            done to realize a Manufacturing Order. Each operation from\n"
+"            a Routing is done at a specific Work Center and has a specific "
+"duration."
 msgstr ""
-"I cicli di produzione definiscono le operazioni consecutive che devono\n"
-"                essere compiute per compleate un ordine di produzione. Ogni "
-"operazione di\n"
-"                un ciclo di produzione è effettuato in uno specifico centro "
-"di lavoro con una specifica durata."
 
 #. module: mrp_routing
 #: model:ir.model.fields,field_description:mrp_routing.field_mrp_routing_workcenter_template__sequence
@@ -300,7 +294,6 @@ msgstr "Modello operazioni"
 
 #. module: mrp_routing
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
-#: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_tree_view
 msgid "Template Routing Work Centers"
 msgstr "Modello cicli di lavorazione dei centri di lavoro"
 
@@ -373,3 +366,16 @@ msgstr "minuti"
 #: model_terms:ir.ui.view,arch_db:mrp_routing.mrp_routing_workcenter_template_form_view
 msgid "work orders"
 msgstr "ordini di lavoro"
+
+#~ msgid ""
+#~ "Routings define the successive operations that need to be\n"
+#~ "                done to realize a Manufacturing Order. Each operation "
+#~ "from\n"
+#~ "                a Routing is done at a specific Work Center and has a "
+#~ "specific duration."
+#~ msgstr ""
+#~ "I cicli di produzione definiscono le operazioni consecutive che devono\n"
+#~ "                essere compiute per compleate un ordine di produzione. "
+#~ "Ogni operazione di\n"
+#~ "                un ciclo di produzione è effettuato in uno specifico "
+#~ "centro di lavoro con una specifica durata."
