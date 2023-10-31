@@ -344,17 +344,11 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -387,8 +381,6 @@ msgstr "Ispezione"
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_tree_view
 msgid "Inspection lines"
 msgstr "Righe di ispezione"
 
@@ -401,7 +393,6 @@ msgstr "Numero ispezione"
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_tree_view
 msgid "Inspections"
 msgstr "Ispezioni"
 
@@ -747,9 +738,6 @@ msgstr "Attivazione controllo qualità"
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_tree_view
 msgid "Quality control triggers"
 msgstr "Attivazione controllo qualità"
 
@@ -807,14 +795,8 @@ msgid "Question type"
 msgstr "Tipo di domanda"
 
 #. module: quality_control_oca
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
-msgid "Question value"
-msgstr "Valore domanda"
-
-#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
 msgid "Questions"
 msgstr "Domande"
 
@@ -858,16 +840,6 @@ msgstr "Responsabile"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
@@ -962,7 +934,6 @@ msgstr "Test UdM"
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test_category
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_category_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_category_tree_view
 msgid "Test categories"
 msgstr "Categorie dei test"
 
@@ -982,7 +953,6 @@ msgstr "Domanda del test"
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu_test_parent
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_tree_view
 msgid "Tests"
 msgstr "Test"
 
@@ -1151,6 +1121,12 @@ msgstr "È necessario fornire una risposta per tutte le domande quantitative."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "o"
+
+#~ msgid "Question value"
+#~ msgstr "Valore domanda"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "qc.trigger.product_category_line"
 #~ msgstr "qc.trigger.product_category_line"

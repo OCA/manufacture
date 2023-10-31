@@ -342,17 +342,11 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -383,8 +377,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_tree_view
 msgid "Inspection lines"
 msgstr ""
 
@@ -397,7 +389,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_tree_view
 msgid "Inspections"
 msgstr ""
 
@@ -743,9 +734,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
 #: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_tree_view
 msgid "Quality control triggers"
 msgstr ""
 
@@ -800,14 +788,8 @@ msgid "Question type"
 msgstr ""
 
 #. module: quality_control_oca
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
-msgid "Question value"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
 msgid "Questions"
 msgstr ""
 
@@ -850,16 +832,6 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: quality_control_oca
@@ -951,7 +923,6 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test_category
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_category_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_category_tree_view
 msgid "Test categories"
 msgstr ""
 
@@ -971,7 +942,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_test
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu_test_parent
 #: model:ir.ui.menu,name:quality_control_oca.qc_test_menu
-#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_tree_view
 msgid "Tests"
 msgstr ""
 
