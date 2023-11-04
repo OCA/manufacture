@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo14-addon-mrp_subcontracting_partner_management',
         'odoo14-addon-mrp_subcontracting_purchase',
         'odoo14-addon-mrp_subcontracting_purchase_link',
+        'odoo14-addon-mrp_subcontracting_purchase_partner_management',
         'odoo14-addon-mrp_subcontracting_resupply_link',
         'odoo14-addon-mrp_tag',
         'odoo14-addon-mrp_unbuild_move_link',
