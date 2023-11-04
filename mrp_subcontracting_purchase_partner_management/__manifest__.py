@@ -1,0 +1,18 @@
+{
+    "name": "Subcontracting Purchase Partner Management",
+    "version": "14.0.1.0.0",
+    "summary": "Subcontracting Purchase Partner Management",
+    "author": "Cetmix, Odoo Community Association (OCA)",
+    "license": "LGPL-3",
+    "category": "Inventory",
+    "website": "https://github.com/OCA/manufacture",
+    "depends": ["mrp_subcontracting_partner_management", "mrp_subcontracting_purchase"],
+    "maintainers": ["CetmixGitDrone", "geomer198"],
+    "external_dependencies": {},
+    "demo": [],
+    "data": [],
+    "qweb": [],
+    "installable": True,
+    "application": False,
+    "auto_install": True,
+}

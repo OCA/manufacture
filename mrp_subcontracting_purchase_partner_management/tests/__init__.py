@@ -1,0 +1,1 @@
+from . import test_create_subcontractor_partner_location
