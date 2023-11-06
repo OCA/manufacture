@@ -538,6 +538,16 @@ class MultiLevelMrp(models.TransientModel):
                 self._init_mrp_move(product_mrp_area)
         logger.info("End MRP initialisation")
 
+    def _get_qty_to_order(self, product_mrp_area, date, move_qty, onhand):
+        """Compute the qty to order at a given date, for a product MRP area, given an
+        mrp.move quantity and an onhand quantity.
+
+        This method is an extension point, allowing a new module to change the way this
+        quantity should be computed.
+        """
+        # The default rule is to resupply to rebuild the safety stock
+        return product_mrp_area.mrp_minimum_stock - onhand - move_qty
+
     @api.model
     def _init_mrp_move_grouped_demand(self, nbr_create, product_mrp_area):
         last_date = None
@@ -566,8 +576,10 @@ class MultiLevelMrp(models.TransientModel):
                     product_name=product_mrp_area.product_id.display_name,
                     delta_days=grouping_delta,
                 )
-                origin = ",".join(list(set(demand_origin)))
-                qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
+                origin = ",".join(list({x for x in demand_origin if x}))
+                qtytoorder = self._get_qty_to_order(
+                    product_mrp_area, last_date, last_qty, onhand
+                )
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
@@ -603,8 +615,10 @@ class MultiLevelMrp(models.TransientModel):
                 product_name=product_mrp_area.product_id.display_name,
                 delta_days=grouping_delta,
             )
-            origin = ",".join(list(set(demand_origin)))
-            qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
+            origin = ",".join(list({x for x in demand_origin if x}))
+            qtytoorder = self._get_qty_to_order(
+                product_mrp_area, last_date, last_qty, onhand
+            )
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=last_date,
@@ -615,6 +629,88 @@ class MultiLevelMrp(models.TransientModel):
             qty_ordered = cm.get("qty_ordered", 0.0)
             onhand += qty_ordered
             nbr_create += 1
+
+        if onhand < product_mrp_area.mrp_minimum_stock:
+            mrp_date = self._get_safety_stock_target_date(product_mrp_area)
+            qtytoorder = self._get_qty_to_order(product_mrp_area, mrp_date, 0, onhand)
+            name = _("Safety Stock")
+            cm = self.create_action(
+                product_mrp_area_id=product_mrp_area,
+                mrp_date=mrp_date,
+                mrp_qty=qtytoorder,
+                name=name,
+                values=dict(origin=name),
+            )
+            qty_ordered = cm["qty_ordered"]
+            onhand += qty_ordered
+            nbr_create += 1
+
+        return nbr_create
+
+    def _get_safety_stock_target_date(self, product_mrp_area):
+        """Get the date at which the safety stock rebuild should be targeted
+
+        This method is an extension point for modules who need to cusomize that date."""
+        return date.today()
+
+    @api.model
+    def _init_mrp_move_non_grouped_demand(self, nbr_create, product_mrp_area):
+        onhand = product_mrp_area.qty_available
+        for move in product_mrp_area.mrp_move_ids:
+            if self._exclude_move(move):
+                continue
+            if onhand < product_mrp_area.mrp_minimum_stock:
+                qtytoorder = self._get_qty_to_order(
+                    product_mrp_area,
+                    self._get_safety_stock_target_date(product_mrp_area),
+                    0,
+                    onhand,
+                )
+                name = _("Safety Stock")
+                cm = self.create_action(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=self._get_safety_stock_target_date(product_mrp_area),
+                    mrp_qty=qtytoorder,
+                    name=name,
+                    values=dict(origin=name),
+                )
+                qty_ordered = cm["qty_ordered"]
+                onhand += qty_ordered
+                nbr_create += 1
+
+            qtytoorder = self._get_qty_to_order(
+                product_mrp_area, move.mrp_date, move.mrp_qty, onhand
+            )
+            if qtytoorder > 0.0:
+                cm = self.create_action(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=move.mrp_date,
+                    mrp_qty=qtytoorder,
+                    name=move.name or "",
+                    values=dict(origin=move.origin or ""),
+                )
+                qty_ordered = cm["qty_ordered"]
+                onhand += move.mrp_qty + qty_ordered
+                nbr_create += 1
+            else:
+                onhand += move.mrp_qty
+        if onhand < product_mrp_area.mrp_minimum_stock:
+            mrp_date = self._get_safety_stock_target_date(product_mrp_area)
+            qtytoorder = self._get_qty_to_order(
+                product_mrp_area, move.mrp_date, 0, onhand
+            )
+            name = _("Safety Stock")
+            cm = self.create_action(
+                product_mrp_area_id=product_mrp_area,
+                mrp_date=mrp_date,
+                mrp_qty=qtytoorder,
+                name=name,
+                values=dict(origin=name),
+            )
+            qty_ordered = cm["qty_ordered"]
+            onhand += qty_ordered
+            nbr_create += 1
+
         return nbr_create
 
     @api.model
@@ -640,39 +736,25 @@ class MultiLevelMrp(models.TransientModel):
                 for product_mrp_area in product_mrp_areas:
                     nbr_create = 0
                     onhand = product_mrp_area.qty_available
+
                     if product_mrp_area.mrp_nbr_days == 0:
-                        for move in product_mrp_area.mrp_move_ids:
-                            if self._exclude_move(move):
-                                continue
-                            qtytoorder = (
-                                product_mrp_area.mrp_minimum_stock
-                                - onhand
-                                - move.mrp_qty
-                            )
-                            if qtytoorder > 0.0:
-                                cm = self.create_action(
-                                    product_mrp_area_id=product_mrp_area,
-                                    mrp_date=move.mrp_date,
-                                    mrp_qty=qtytoorder,
-                                    name=move.name,
-                                    values=dict(origin=move.origin),
-                                )
-                                qty_ordered = cm["qty_ordered"]
-                                onhand += move.mrp_qty + qty_ordered
-                                nbr_create += 1
-                            else:
-                                onhand += move.mrp_qty
+                        nbr_create = self._init_mrp_move_non_grouped_demand(
+                            nbr_create, product_mrp_area
+                        )
                     else:
                         nbr_create = self._init_mrp_move_grouped_demand(
                             nbr_create, product_mrp_area
                         )
 
                     if onhand < product_mrp_area.mrp_minimum_stock and nbr_create == 0:
-                        qtytoorder = product_mrp_area.mrp_minimum_stock - onhand
+                        mrp_date = date.today()
+                        qtytoorder = self._get_qty_to_order(
+                            product_mrp_area, mrp_date, 0, onhand
+                        )
                         name = _("Safety Stock")
                         cm = self.create_action(
                             product_mrp_area_id=product_mrp_area,
-                            mrp_date=date.today(),
+                            mrp_date=mrp_date,
                             mrp_qty=qtytoorder,
                             name=name,
                             values=dict(origin=name),
