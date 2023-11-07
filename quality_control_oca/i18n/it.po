@@ -345,17 +345,11 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
-#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se selezionata, alcuni messaggi hanno un errore di consegna."
 
@@ -849,16 +843,6 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Errore consegna SMS"
-
-#. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Search inspection"
 msgstr "Cerca ispezione"
@@ -1138,6 +1122,9 @@ msgstr "È necessario fornire una risposta per tutte le domande quantitative."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "o"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Errore consegna SMS"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguito da (canali)"
