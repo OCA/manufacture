@@ -35,7 +35,9 @@ class StockMove(models.Model):
         """
         AnalyticLine = self.env["account.analytic.line"].sudo()
         existing_items = AnalyticLine.search([("stock_move_id", "in", self.ids)])
-        for move in self.filtered("raw_material_production_id.analytic_account_id"):
+        for move in self:
+            if not move.raw_material_production_id.analytic_account_id:
+                continue
             line_vals = move._prepare_mrp_raw_material_analytic_line()
             if move in existing_items.mapped("stock_move_id"):
                 analytic_line = existing_items.filtered(
