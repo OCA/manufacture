@@ -3,7 +3,7 @@
 {
     "name": "MRP Serial Number Propagation",
     "version": "15.0.0.3.0",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["sebalix"],
