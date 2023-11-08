@@ -114,3 +114,17 @@ class TestMRP(common.TransactionCase):
         self.assertEqual(
             analytic_amount, -14.00, "Expected Analytic Items total amount"
         )
+
+    def test_120_no_analytic(self):
+        mo_create_form = Form(self.env["mrp.production"])
+        mo_create_form.product_id = self.product_lemonade
+        mo_create_form.bom_id = self.mrp_bom_lemonade
+        mo_create_form.product_qty = 1
+        mo_lemonade = mo_create_form.save()
+        mo_lemonade.action_confirm()
+        workorder = mo_lemonade.workorder_ids
+        workorder.button_start()
+        workorder.button_finish()
+        self.assertEqual(workorder.state, "done")
+        mo_lemonade.button_mark_done()
+        self.assertEqual(mo_lemonade.state, "done")

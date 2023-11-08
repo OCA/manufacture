@@ -28,6 +28,8 @@ class MrpWorkcenterProductivity(models.Model):
     def generate_mrp_work_analytic_line(self):
         AnalyticLine = self.env["account.analytic.line"].sudo()
         for timelog in self:
+            if not timelog.production_id.analytic_account_id:
+                continue
             line_vals = timelog._prepare_mrp_workorder_analytic_item()
             analytic_line = AnalyticLine.create(line_vals)
             analytic_line.on_change_unit_amount()
