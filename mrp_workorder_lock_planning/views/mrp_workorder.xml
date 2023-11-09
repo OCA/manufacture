@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_production_workorder_tree_editable_view_inherit">
+        <field name="name">mrp.production.work.order.tree.editable.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+        <field name="arch" type="xml">
+            <field name="date_planned_start" position="before">
+                <field name="lock_planning" invisible="1" />
+                <button
+                    name="toggle_lock_planning"
+                    type="object"
+                    class="fa fa-unlock"
+                    title="Lock planning"
+                    string="Lock"
+                    attrs="{'invisible': ['|', '|', ('lock_planning', '=', True), ('date_planned_start', '=', False),('date_planned_finished', '=', False)]}"
+                />
+                <button
+                    name="toggle_lock_planning"
+                    type="object"
+                    class="fa fa-lock text-danger"
+                    title="Unlock planning"
+                    string="Unlock"
+                    attrs="{'invisible': [('lock_planning', '=', False)]}"
+                />
+            </field>
+            <field name="date_planned_start" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="date_planned_finished" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="duration_expected" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="workcenter_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mrp_production_workorder_form_view_inherit">
+        <field name="name">mrp.production.work.order.form.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='json_popover']" position="after">
+                <field name="lock_planning" invisible="1" />
+                <button
+                    name="toggle_lock_planning"
+                    type="object"
+                    class="fa fa-unlock"
+                    title="Lock planning"
+                    string="Lock"
+                    attrs="{'invisible': ['|', '|', ('lock_planning', '=', True), ('date_planned_start', '=', False),('date_planned_finished', '=', False)]}"
+                />
+                <button
+                    name="toggle_lock_planning"
+                    type="object"
+                    class="fa fa-lock text-danger"
+                    title="Unlock planning"
+                    string="Unlock"
+                    attrs="{'invisible': [('lock_planning', '=', False)]}"
+                />
+            </xpath>
+            <field name="date_planned_start" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="date_planned_finished" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="duration_expected" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="workcenter_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('lock_planning', '=', True)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="mrp_workorder_view_gantt_inherit" model="ir.ui.view">
+        <field name="name">mrp.workorder.view.gantt.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_workorder_view_gantt" />
+        <field name="arch" type="xml">
+            <field name="json_popover" position="after">
+                <field name="lock_planning" />
+            </field>
+            <xpath expr="//ul" position="inside">
+                <li t-if="lock_planning" class="text-danger"><span
+                        class="fa fa-lock"
+                    > </span><strong>Locked planning</strong></li>
+            </xpath>
+        </field>
+    </record>
+</odoo>
