@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workorder_lock_planning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_workorder_lock_planning
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_workorder_view_gantt_inherit
+msgid "<span class=\"fa fa-lock\"> </span><strong>Locked planning</strong>"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: code:addons/mrp_workorder_lock_planning/models/mrp_workorder.py:0
+#, python-format
+msgid "Cannot lock planning of workorder if workorder is not planned"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model:ir.model.fields,help:mrp_workorder_lock_planning.field_mrp_workorder__lock_planning
+msgid "If set, any change to the planning will be restricted"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_tree_editable_view_inherit
+msgid "Lock"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model:ir.model.fields,field_description:mrp_workorder_lock_planning.field_mrp_workorder__lock_planning
+msgid "Lock Planning"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_tree_editable_view_inherit
+msgid "Lock planning"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_tree_editable_view_inherit
+msgid "Unlock"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_lock_planning.mrp_production_workorder_tree_editable_view_inherit
+msgid "Unlock planning"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: model:ir.model,name:mrp_workorder_lock_planning.model_mrp_workorder
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_workorder_lock_planning
+#: code:addons/mrp_workorder_lock_planning/models/mrp_workorder.py:0
+#, python-format
+msgid ""
+"Workorder is locked and modification of Scheduled dates, Expected duration "
+"or Workcenter is not allowed. Please unlock the planning first."
+msgstr ""
