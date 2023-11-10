@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="categ_extrusion" model="mrp.workcenter.category">
+        <field name="name">Extrusion</field>
+    </record>
+
+    <record id="categ_extrusion_pp" model="mrp.workcenter.category">
+        <field name="name">Polypropylene</field>
+        <field name="parent_id" ref="categ_extrusion" />
+    </record>
+
+    <record id="categ_extrusion_pvc" model="mrp.workcenter.category">
+        <field name="name">PVC</field>
+        <field name="parent_id" ref="categ_extrusion" />
+    </record>
+
+    <record id="categ_injection" model="mrp.workcenter.category">
+        <field name="name">Injection Molding</field>
+    </record>
+
+    <record id="categ_injection_pp" model="mrp.workcenter.category">
+        <field name="name">Polypropylene</field>
+        <field name="parent_id" ref="categ_injection" />
+    </record>
+
+</odoo>
