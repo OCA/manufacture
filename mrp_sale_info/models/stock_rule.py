@@ -34,4 +34,10 @@ class StockRule(models.Model):
         res["source_procurement_group_id"] = (
             values.get("group_id").id if values.get("group_id", False) else False
         )
+        moves = values.get("move_dest_ids")
+        line_ids = moves.sale_line_id
+        while moves.move_dest_ids:
+            moves = moves.move_dest_ids
+            line_ids |= moves.sale_line_id
+        res["sale_line_ids"] = line_ids and [(4, x.id) for x in line_ids] or False
         return res

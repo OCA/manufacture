@@ -49,6 +49,7 @@ class TestMrpSaleInfo(common.SavepointCase):
         prev_productions = self.env["mrp.production"].search([])
         self.sale_order.action_confirm()
         production = self.env["mrp.production"].search([]) - prev_productions
+        self.assertEqual(production.sale_line_ids, self.sale_order.order_line)
         self.assertEqual(production.sale_id, self.sale_order)
         self.assertEqual(production.partner_id, self.partner)
         self.assertEqual(production.client_order_ref, self.sale_order.client_order_ref)
