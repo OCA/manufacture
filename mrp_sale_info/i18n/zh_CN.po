@@ -41,6 +41,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__display_name
 #: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__display_name
 msgid "Display Name"
 msgstr ""
@@ -49,6 +50,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line__id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule__id
 msgid "ID"
 msgstr ""
@@ -57,8 +59,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder____last_update
 #: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order____last_update
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:mrp_sale_info.field_stock_rule____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line__production_ids
+msgid "Manufacturing orders"
 msgstr ""
 
 #. module: mrp_sale_info
@@ -89,8 +97,18 @@ msgid "Sale order"
 msgstr "销售订单"
 
 #. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_line_ids
+msgid "Sale order line"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: mrp_sale_info
