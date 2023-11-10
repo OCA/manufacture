@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 16.0.1.0.0 |  | Production - Manual Quant Assignment
 [mrp_restrict_lot](mrp_restrict_lot/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
 [mrp_sale_info](mrp_sale_info/) | 16.0.1.1.0 |  | Adds sale information to Manufacturing models
+[mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Inhibit subcontracting flow on demand
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 16.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [quality_control_oca](quality_control_oca/) | 16.0.1.0.0 |  | Generic infrastructure for quality tests.
 
