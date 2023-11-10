@@ -33,6 +33,7 @@ addon | version | maintainers | summary
 [mrp_bom_multi_company](mrp_bom_multi_company/) | 12.0.1.0.1 |  | Multi Company Bill of Materials
 [mrp_bom_note](mrp_bom_note/) | 12.0.1.0.0 |  | Notes in Bill of Materials
 [mrp_bom_tracking](mrp_bom_tracking/) | 12.0.1.0.1 |  | Logs any change to a BoM in the chatter
+[mrp_bom_widget_section_and_note_one2many](mrp_bom_widget_section_and_note_one2many/) | 12.0.1.1.0 |  | Add section and note in Bills of Materials
 [mrp_mto_with_stock](mrp_mto_with_stock/) | 12.0.1.0.1 |  | Fix Manufacturing orders to pull from stock until qty is zero, and then create a procurement for them.
 [mrp_multi_level](mrp_multi_level/) | 12.0.2.4.1 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 12.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
