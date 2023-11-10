@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo-addon-mrp_sale_info>=16.0dev,<16.1dev',
         'odoo-addon-mrp_subcontracting_inhibit>=16.0dev,<16.1dev',
         'odoo-addon-mrp_subcontracting_purchase_link>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_subcontracting_skip_no_negative>=16.0dev,<16.1dev',
         'odoo-addon-mrp_warehouse_calendar>=16.0dev,<16.1dev',
         'odoo-addon-quality_control_oca>=16.0dev,<16.1dev',
     ],
