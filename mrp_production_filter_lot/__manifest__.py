@@ -7,7 +7,7 @@
     'version': '12.0.1.0.1',
     'category': 'Manufacturing',
     'website': "https://github.com/OCA/manufacture"
-               "12.0/mrp_production_filter_lot",
+               "/tree/12.0/mrp_production_filter_lot",
     'author': "Takobi, "
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',

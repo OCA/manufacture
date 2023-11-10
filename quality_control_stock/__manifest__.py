@@ -14,7 +14,7 @@
               "Agile Business Group, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture"
-               "quality_control_stock",
+               "/tree/12.0/quality_control_stock",
     "depends": [
         "quality_control",
         "stock",
