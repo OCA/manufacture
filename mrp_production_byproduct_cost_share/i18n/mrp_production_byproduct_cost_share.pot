@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_byproduct_cost_share
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_byproduct_cost_share
+#: model_terms:ir.ui.view,arch_db:mrp_production_byproduct_cost_share.report_mrp_bom
+msgid "<span><strong>Unit Cost</strong></span>"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_report_mrp_report_bom_structure
+msgid "BOM Structure Report"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model_terms:ir.ui.view,arch_db:mrp_production_byproduct_cost_share.report_mrp_bom_line_byproduct_cost
+msgid "By-Products"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/models/mrp_bom.py:0
+#, python-format
+msgid "By-product %s should not be the same as BoM product."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/models/mrp_bom.py:0
+#: code:addons/mrp_production_byproduct_cost_share/models/mrp_production.py:0
+#, python-format
+msgid "By-products cost shares must be positive."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_mrp_bom_byproduct
+msgid "Byproduct"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/report/mrp_report_bom_structure.py:0
+#, python-format
+msgid "Byproducts"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom_byproduct__cost_share
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_stock_move__cost_share
+msgid "Cost Share (%)"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom_byproduct__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_product__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_report_mrp_report_bom_structure__display_name
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom_byproduct__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_product__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_report_mrp_report_bom_structure__id
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_bom_byproduct____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_product____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_product_template____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_report_mrp_report_bom_structure____last_update
+#: model:ir.model.fields,field_description:mrp_production_byproduct_cost_share.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/report/mrp_report_bom_structure.py:0
+#, python-format
+msgid "Operations"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model,name:mrp_production_byproduct_cost_share.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,help:mrp_production_byproduct_cost_share.field_mrp_bom_byproduct__cost_share
+msgid ""
+"The percentage of the final production cost for this by-product line "
+"(divided between the quantity produced).The total of all by-products' cost "
+"share must be less than or equal to 100."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model:ir.model.fields,help:mrp_production_byproduct_cost_share.field_stock_move__cost_share
+msgid ""
+"The percentage of the final production cost for this by-product. The total "
+"of all by-products' cost share must be smaller or equal to 100."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/models/mrp_bom.py:0
+#, python-format
+msgid "The total cost share for a BoM's by-products cannot exceed 100."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/models/mrp_production.py:0
+#, python-format
+msgid ""
+"The total cost share for a manufacturing order's by-products cannot exceed "
+"100."
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: model_terms:ir.ui.view,arch_db:mrp_production_byproduct_cost_share.report_mrp_bom_line_byproduct_cost
+msgid "Unfold"
+msgstr ""
+
+#. module: mrp_production_byproduct_cost_share
+#: code:addons/mrp_production_byproduct_cost_share/report/mrp_report_bom_structure.py:0
+#: code:addons/mrp_production_byproduct_cost_share/report/mrp_report_bom_structure.py:0
+#, python-format
+msgid "minutes"
+msgstr ""
