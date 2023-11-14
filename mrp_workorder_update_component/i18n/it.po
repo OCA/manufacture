@@ -6,124 +6,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-11-14 19:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_workorder_update_component
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_update_component.view_mrp_workorder_new_line_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: mrp_workorder_update_component
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_update_component.mrp_production_workorder_form_view_inherit_update_components
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_update_component.view_mrp_workorder_new_line_form
 msgid "Create New Line"
-msgstr ""
+msgstr "Crea nuova riga"
 
 #. module: mrp_workorder_update_component
 #: code:addons/mrp_workorder_update_component/models/mrp_workorder.py:0
 #, python-format
 msgid "Create new Component Line"
-msgstr ""
+msgstr "Crea nuova riga componente"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__lot_id
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "Lotto/numero di serie"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model,name:mrp_workorder_update_component.model_mrp_workorder_new_line
 msgid "MRP Work Order New Line"
-msgstr ""
+msgstr "Nuova riga ordine di lavoro MRP"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__original_line_qty
 msgid "Original Quantity"
-msgstr ""
+msgstr "Quantità originale"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: mrp_workorder_update_component
 #: code:addons/mrp_workorder_update_component/wizards/mrp_workorder_new_line.py:0
 #, python-format
 msgid "The quantity must be lower or equal than the available quantity: %s."
 msgstr ""
+"La quantità deve essere inferiore o uguale alla quantità disponibile: %s."
 
 #. module: mrp_workorder_update_component
 #: code:addons/mrp_workorder_update_component/wizards/mrp_workorder_new_line.py:0
 #, python-format
 msgid "The quantity must be lower than the original line quantity: %s."
 msgstr ""
+"La quantità deve essere inferiore alla quantità originale della riga: %s."
 
 #. module: mrp_workorder_update_component
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_update_component.view_mrp_workorder_new_line_form
 msgid "Validate"
-msgstr ""
+msgstr "Valida"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__workorder_id
 msgid "Work Order"
-msgstr ""
+msgstr "Ordine di lavoro"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__workorder_line_id
 msgid "Work Order Line"
-msgstr ""
+msgstr "Riga ordine di lavoro"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model,name:mrp_workorder_update_component.model_mrp_workorder_line
 msgid "Workorder move line"
-msgstr ""
+msgstr "Riga movimento ordine di lavoro"
