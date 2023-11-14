@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2023-07-19 17:11+0000\n"
+"PO-Revision-Date: 2023-11-14 18:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -34,11 +34,18 @@ msgid ""
 "        Planned Date: %s\n"
 "        "
 msgstr ""
+"\n"
+"        Ordine di produzione: %s\n"
+"        Prodotto da produrre: [%s]%s\n"
+"        Quantità da produrre: %s\n"
+"        Distinta base: %s\n"
+"        Data pianificata: %s\n"
+"        "
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "Analytic Account"
-msgstr ""
+msgstr "Conto analitico"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_account_analytic_line
@@ -48,7 +55,7 @@ msgstr "Riga analitica"
 #. module: mrp_project
 #: field:project.project,automatic_creation:0
 msgid "Automatic Creation"
-msgstr ""
+msgstr "Creazione automatica"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
@@ -59,19 +66,19 @@ msgstr ""
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_form_view
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "MRP Data"
-msgstr ""
+msgstr "Dati MRP"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 #: view:project.project:mrp_project.project_mrp_procurement_shortcut_form_view
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Manufacturing"
-msgstr ""
+msgstr "Produzione"
 
 #. module: mrp_project
 #: field:project.project,production_count:0
 msgid "Manufacturing Count"
-msgstr ""
+msgstr "Conteggio produzione"
 
 #. module: mrp_project
 #: field:account.analytic.line,mrp_production_id:0
@@ -84,12 +91,13 @@ msgstr "Ordine di produzione"
 #. module: mrp_project
 #: model:ir.actions.act_window,name:mrp_project.act_project_2_production_all
 msgid "Manufacturing Orders"
-msgstr ""
+msgstr "Ordini di produzione"
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
 msgid "Please go to the manufacturing order to see the products to consume."
 msgstr ""
+"Accedere all'ordine di produzione per visualizzare i prodotti da consumare."
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
@@ -108,12 +116,12 @@ msgstr "Progetto"
 #. module: mrp_project
 #: field:account.analytic.line,task_id:0 field:hr.analytic.timesheet,task_id:0
 msgid "Project Task"
-msgstr ""
+msgstr "Lavoro del progetto"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task_work
 msgid "Project Task Work"
-msgstr ""
+msgstr "Attività lavoro progetto"
 
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_form_view
@@ -124,7 +132,7 @@ msgstr "Prodotti pianificati"
 #. module: mrp_project
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Stage"
-msgstr ""
+msgstr "Fase"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
@@ -134,17 +142,17 @@ msgstr "Lavoro"
 #. module: mrp_project
 #: field:mrp.production.workcenter.line,work_ids:0
 msgid "Task works"
-msgstr ""
+msgstr "Attività lavoro"
 
 #. module: mrp_project
 #: field:mrp.production.workcenter.line,task_ids:0
 msgid "Tasks"
-msgstr ""
+msgstr "Lavori"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr ""
+msgstr "Riga foglio ore"
 
 #. module: mrp_project
 #: field:account.analytic.line,workorder:0
@@ -152,20 +160,20 @@ msgstr ""
 #: model:ir.model,name:mrp_project.model_mrp_production_workcenter_line
 #: field:project.task,workorder:0
 msgid "Work Order"
-msgstr "Ordine di lavorazione"
+msgstr "Ordine di lavoro"
 
 #. module: mrp_project
 #: field:project.task.work,workorder:0
 msgid "Work order"
-msgstr ""
+msgstr "Ordine di lavoro"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 #: view:project.task:mrp_project.project_task_mrp_inh_search_view
 msgid "Workorder"
-msgstr ""
+msgstr "Ordine di lavoro"
 
 #. module: mrp_project
 #: view:account.analytic.line:mrp_project.account_analytic_line_mrp_search_view
 msgid "group_analytic_account"
-msgstr ""
+msgstr "group_analytic_account"
