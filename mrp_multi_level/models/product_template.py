@@ -26,8 +26,9 @@ class ProductTemplate(models.Model):
 
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
-        action = self.env.ref("mrp_multi_level.product_mrp_area_action")
-        result = action.read()[0]
+        result = self.env["ir.actions.actions"]._for_xml_id(
+            "mrp_multi_level.product_mrp_area_action"
+        )
         ctx = ast.literal_eval(result.get("context"))
         mrp_areas = self.env["mrp.area"].search([])
         if "context" not in result:
