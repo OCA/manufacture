@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 16.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
 [mrp_bom_location](mrp_bom_location/) | 16.0.1.1.1 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 16.0.1.0.0 |  | Logs any change to a BoM in the chatter
-[mrp_multi_level](mrp_multi_level/) | 16.0.1.2.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Adds an MRP Scheduler
+[mrp_multi_level](mrp_multi_level/) | 16.0.1.2.1 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 16.0.1.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 16.0.1.0.0 |  | Allows to create fixed planned orders on a grid view.
 [mrp_production_note](mrp_production_note/) | 16.0.1.0.0 |  | Notes in production orders
