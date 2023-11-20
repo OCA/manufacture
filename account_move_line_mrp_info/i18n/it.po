@@ -23,20 +23,6 @@ msgid "Account Move Line"
 msgstr "Riga movimento contabile"
 
 #. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__id
-msgid "ID"
-msgstr "ID"
-
-#. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
@@ -47,13 +33,6 @@ msgstr "Movimento contabile"
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_unbuild_form_view
 msgid "Journal Items"
 msgstr "Movimenti contabili"
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__mrp_production_id
@@ -75,3 +54,12 @@ msgstr "Non ci sono ancora movimenti contabili"
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__unbuild_id
 msgid "Unbuild Order"
 msgstr "Ordine di smontaggio"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
