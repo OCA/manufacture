@@ -1,0 +1,1 @@
+odoo-addon-stock-lot-price-unit @ git+https://github.com/OCA/stock-logistics-workflow@refs/pull/1319/head#subdirectory=setup/stock_lot_price_unit
