@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-14 19:37+0000\n"
+"PO-Revision-Date: 2023-11-21 19:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -76,7 +76,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: mrp_workorder_update_component
 #: model:ir.model.fields,field_description:mrp_workorder_update_component.field_mrp_workorder_new_line__lot_id
 msgid "Lot/Serial Number"
-msgstr "Lotto/numero di serie"
+msgstr "Numero di lotto/serie"
 
 #. module: mrp_workorder_update_component
 #: model:ir.model,name:mrp_workorder_update_component.model_mrp_workorder_new_line
