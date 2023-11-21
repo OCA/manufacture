@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-21 13:36+0000\n"
+"PO-Revision-Date: 2023-11-21 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -145,7 +145,7 @@ msgstr "Lotto"
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 msgid "Lot/Serial Number"
-msgstr "Lotto/numero di serie"
+msgstr "Numero di lotto/serie"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__scrap
