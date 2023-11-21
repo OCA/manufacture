@@ -62,7 +62,12 @@ class RepairOrder(models.Model):
             sale_order_data = rec._get_sale_order_data()
             sale_order = order_model.create(sale_order_data)
             orders |= sale_order
+            partner_shipping_id = False
+            if sale_order.partner_shipping_id != sale_order.partner_id:
+                partner_shipping_id = sale_order.partner_shipping_id
             sale_order.onchange_partner_id()
+            if partner_shipping_id:
+                sale_order.partner_shipping_id = partner_shipping_id
             for line in rec.operations:
                 sale_order_line = order_line_model.create(
                     line._get_sale_line_data(sale_order)
