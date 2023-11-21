@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 17:42+0000\n"
+"PO-Revision-Date: 2023-11-21 13:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -941,7 +941,7 @@ msgstr "Fornitura"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_method
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Supply Method"
-msgstr "Metodo di fornitura"
+msgstr "Metodo fornitura"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_product__purchase_order_line_ids
