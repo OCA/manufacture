@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-17 08:10+0000\n"
+"PO-Revision-Date: 2023-11-21 13:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -248,7 +248,7 @@ msgstr "Riferimento"
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__scrap_location_id
 msgid "Scrap Location"
-msgstr "Ubicazione scarti"
+msgstr "Ubicazione scarto"
 
 #. module: mrp_component_operation
 #: model:ir.model.fields,field_description:mrp_component_operation.field_stock_location_route__mo_component_selectable
