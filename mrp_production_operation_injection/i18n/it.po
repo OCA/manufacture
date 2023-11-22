@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-16 22:39+0000\n"
+"PO-Revision-Date: 2023-11-22 07:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -84,7 +84,7 @@ msgstr "Iniezione operazione"
 #. module: mrp_production_operation_injection
 #: model:ir.model,name:mrp_production_operation_injection.model_mrp_workorder_injector
 msgid "Inject operation from BOM into workorders"
-msgstr "Iniezion operazin da DiBa nell'ordine di lavoro"
+msgstr "Iniezione operazione da DiBa nell'ordine di lavoro"
 
 #. module: mrp_production_operation_injection
 #: model:ir.model.fields,field_description:mrp_production_operation_injection.field_mrp_workorder_injector____last_update
