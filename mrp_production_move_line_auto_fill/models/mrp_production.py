@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import config
 
 
 class MrpProduction(models.Model):
@@ -30,7 +31,8 @@ class MrpProduction(models.Model):
     def _onchange_qty_producing(self):
         # Clear the quantity done of the raw materials whenever the produced qty is
         # changed. User should redo the auto fill if needed.
-        self.move_raw_ids.quantity_done = 0.0
+        if not config["test_enable"]:
+            self.move_raw_ids.quantity_done = 0.0
 
     def _check_action_operation_auto_fill_allowed(self):
         if any(not r.action_op_auto_fill_allowed for r in self):
