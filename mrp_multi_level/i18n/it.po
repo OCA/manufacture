@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-02 09:38+0000\n"
+"PO-Revision-Date: 2023-11-22 15:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -895,7 +895,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__origin
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__origin
 msgid "Source Document"
-msgstr "Documento origine"
+msgstr "Documento di origine"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__initial_on_hand_qty
