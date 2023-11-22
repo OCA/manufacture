@@ -122,7 +122,7 @@ class QcInspection(models.Model):
         for vals in val_list:
             if vals.get("name", "/") == "/":
                 vals["name"] = self.env["ir.sequence"].next_by_code("qc.inspection")
-        return super().create(vals)
+        return super().create(val_list)
 
     def unlink(self):
         for inspection in self:
