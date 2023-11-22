@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
-"PO-Revision-Date: 2023-10-29 17:36+0000\n"
+"PO-Revision-Date: 2023-11-22 17:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -474,7 +474,7 @@ msgstr "Quantità disponibile"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__done_qty
 msgid "Quantity Done"
-msgstr "Quantità eseguita"
+msgstr "Quantità completata"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request_create_mo_line__product_qty
@@ -595,7 +595,7 @@ msgstr "Sorgente"
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__origin
 msgid "Source Document"
-msgstr "Documento sorgente"
+msgstr "Documento di origine"
 
 #. module: mrp_production_request
 #: model:ir.model.fields,field_description:mrp_production_request.field_mrp_production_request__state
