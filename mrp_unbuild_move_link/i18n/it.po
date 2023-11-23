@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_move_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-12-21 17:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_mrp_unbuild__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_mrp_unbuild__id
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_mrp_unbuild____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_stock_move__origin_mrp_manufacture_move_id
+msgid "Manufacturing order stock move"
+msgstr "Movimento di magazzino ordine di produzione"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model,name:mrp_unbuild_move_link.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model.fields,help:mrp_unbuild_move_link.field_stock_move__origin_mrp_manufacture_move_id
+msgid "Stock move id of the previous manufacturing order"
+msgstr "ID movimento di magazzino ordine produzione precedente"
+
+#. module: mrp_unbuild_move_link
+#: model:ir.model,name:mrp_unbuild_move_link.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Smonta ordine"
