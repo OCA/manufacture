@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template_procurement.inherit.form.view</field>
+        <field name="model">product.template</field>
+        <field
+            name="inherit_id"
+            ref="stock.product_template_form_view_procurement_button"
+        />
+        <field name="arch" type="xml">
+            <group name="operations" position="inside">
+                <field
+                    name="finished_product"
+                    attrs="{'invisible': [('attribute_line_ids', '=', [])]}"
+                />
+            </group>
+            <notebook position="inside">
+                <page
+                    name="manufacture_page"
+                    string="Finished Product Structure"
+                    groups="base.group_no_one"
+                    attrs="{'invisible': [('finished_product', '=', False)]}"
+                >
+                    <group>
+                        <field
+                            name="semi_finished_mrp_bom_ids"
+                            widget="many2many_tags"
+                            readonly="1"
+                        />
+                    </group>
+                    <field
+                        name="semi_finished_product_tmpl_ids"
+                        widget="one2many"
+                        readonly="1"
+                    >
+                        <tree>
+                            <field name="product_tmpl_id" invisible="1" />
+                            <field name="semi_finished_product_tmpl_id" />
+                            <field name="attribute_ids" widget="many2many_tags" />
+                            <field name="bom_type" />
+                            <field name="partner_ids" widget="many2many_tags" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
