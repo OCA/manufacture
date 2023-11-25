@@ -3,6 +3,7 @@
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
+# Copyright 2023 Solvos Consultoría Informática, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
@@ -204,15 +205,7 @@ class TestQualityControl(TransactionCase):
         )
         self.assertEqual(self.inspection1.product_id, self.product)
         self.assertEqual(self.product.created_inspections, 1)
-        action_prod = self.product._action_qc_inspection_per_product()
-        self.assertEqual(action_prod["domain"][0][2][0], self.product.id)
-        self.assertEqual(
-            action_prod["context"]["default_object_id"],
-            "product.product,%s" % self.product.id,
-        )
         self.assertEqual(self.product.product_tmpl_id.created_inspections, 1)
-        action_tmpl = self.product.product_tmpl_id.button_qc_inspection_per_product()
-        self.assertTrue(self.product.id in action_tmpl["domain"][0][2])
 
     def test_qc_test_question_constraints(self):
         with self.assertRaises(exceptions.ValidationError):

@@ -3,9 +3,9 @@
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
+# Copyright 2023 Solvos Consultoría Informática, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import ast
 
 from odoo import fields, models
 
@@ -54,26 +54,3 @@ class ProductProduct(models.Model):
             product.done_inspections = (
                 product.passed_inspections + product.failed_inspections
             )
-
-    def button_qc_inspection_per_product(self):
-        return self._action_qc_inspection_per_product()
-
-    def _action_qc_inspection_per_product(self):
-        product_ids = self.ids
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "quality_control_oca.action_qc_inspection"
-        )
-        domain = [("product_id", "in", product_ids)]
-        qc_type = self.env.context.get("qc_type", "all")
-        if qc_type == "done":
-            domain.append(("state", "not in", ["draft", "waiting"]))
-        elif qc_type == "passed":
-            domain.append(("state", "=", "success"))
-        elif qc_type == "failed":
-            domain.append(("state", "=", "failed"))
-        action["domain"] = domain
-        if len(product_ids) == 1:
-            context = ast.literal_eval(action.get("context"))
-            context["default_object_id"] = "product.product,%s" % product_ids[0]
-            action["context"] = context
-        return action
