@@ -7,6 +7,6 @@ class StockMove(models.Model):
     origin_mrp_manufacture_move_id = fields.Many2one(
         "stock.move",
         string="Manufacturing order stock move",
-        checkcompany=True,
+        check_company=True,
         help="Stock move id of the previous manufacturing order",
     )
