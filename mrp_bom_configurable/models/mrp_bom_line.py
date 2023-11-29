@@ -28,6 +28,7 @@ class MrpBomLine(models.Model):
         }
 
     def execute_domain_element(self, element, values):
+        # TODO support len(element) == 1, because element can be '&' and '|'
         if len(element) != 3:
             logger.warning("Domain element %s" % element)
         param, operator, value = element
@@ -50,9 +51,11 @@ class MrpBomLine(models.Model):
         if not self.domain:
             return True
         else:
-            # TODO need to work with only one '=' here
-            domain = safe_eval(self.domain.replace("=", "=="))
-
+            # TODO clean to support '&' and '|' in domain
+            domain = self.domain.replace("=", "==")
+            domain = domain.replace('"&", ', "")
+            domain = domain.replace('"&",', "")
+            domain = safe_eval(domain.replace("!==", "!="))
             return self.execute_domain(domain, values)
 
     def ui_update_domain(self):
