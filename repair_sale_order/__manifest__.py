@@ -3,7 +3,7 @@
 
 {
     "name": "Repair To Sale Order",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "summary": "Repair To Sale Order",

@@ -78,7 +78,7 @@ addon | version | maintainers | summary
 [repair_picking_after_done](repair_picking_after_done/) | 14.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.1 |  | Create refurbished products during repair
 [repair_refurbish_repair_stock_move](repair_refurbish_repair_stock_move/) | 14.0.1.0.0 |  | Use refurbish and repair stock moves together
-[repair_sale_order](repair_sale_order/) | 14.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
+[repair_sale_order](repair_sale_order/) | 14.0.1.0.2 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Repair To Sale Order
 [repair_stock_move](repair_stock_move/) | 14.0.1.0.2 |  | Ongoing Repair Stock Moves Definition in odoo
 [repair_type](repair_type/) | 14.0.1.0.2 |  | Repair type
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
