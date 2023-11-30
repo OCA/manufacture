@@ -1,11 +1,19 @@
 # Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class Orderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
+
+    @api.depends(
+        "product_id.mrp_production_request_ids",
+        "product_id.mrp_production_request_ids.state",
+    )
+    def _compute_qty(self):
+        """Extend to add more depends values"""
+        return super()._compute_qty()
 
     def _quantity_in_progress(self):
         res = super()._quantity_in_progress()

@@ -2,8 +2,9 @@
 <!-- Copyright 2017-18 ForgeFlow S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
+
     <record id="view_mrp_production_request_form" model="ir.ui.view">
-        <field name="name">mrp.production.request.form</field>
+        <field name="name">mrp.production.request.form@mrp_production_request</field>
         <field name="model">mrp.production.request</field>
         <field name="arch" type="xml">
             <form string="Manufacturing Request">
@@ -47,9 +48,10 @@
                     <button
                         groups="mrp_production_request.group_mrp_production_request_manager"
                         name="button_cancel"
-                        states="to_approve,approved"
+                        states="draft,to_approve,approved"
                         string="Reject"
                         type="object"
+                        confirm="Are you sure you want to cancel this request? (All existing manufacturing orders will stay untouched)"
                     />
                     <field
                         name="state"
@@ -134,34 +136,168 @@
             </form>
         </field>
     </record>
+
     <record id="view_mrp_production_request_tree" model="ir.ui.view">
-        <field name="name">mrp.production.request.tree</field>
+        <field name="name">mrp.production.request.tree@mrp_production_request</field>
         <field name="model">mrp.production.request</field>
         <field name="arch" type="xml">
-            <tree
-                decoration-info="state in ('draft','to_approve')"
-                decoration-muted="state in ('cancel')"
-                string="Manufacturing Requests"
-            >
-                <field name="name" />
+            <tree>
+                <field name="name" decoration-bf="1" />
                 <field name="product_id" />
-                <field name="requested_by" />
-                <field name="assigned_to" />
+                <field name="bom_id" optional="hide" />
+                <field
+                    name="requested_by"
+                    optional="show"
+                    widget="many2one_avatar_user"
+                />
+                <field
+                    name="assigned_to"
+                    optional="show"
+                    widget="many2one_avatar_user"
+                />
                 <field name="product_qty" />
                 <field name="pending_qty" />
+                <field name="done_qty" optional="hide" />
+                <field name="product_uom_id" optional="hide" />
                 <field
-                    groups="base.group_multi_company"
                     name="company_id"
+                    groups="base.group_multi_company"
                     widget="selection"
+                    optional="show"
                 />
-                <field name="origin" />
-                <field name="date_planned_start" />
-                <field name="state" />
+                <field name="origin" optional="show" />
+                <field
+                    name="date_planned_start"
+                    widget="remaining_days"
+                    optional="show"
+                />
+                <field
+                    name="date_planned_finished"
+                    widget="remaining_days"
+                    optional="hide"
+                />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'approved'"
+                    decoration-warning="state == 'to_approve'"
+                    decoration-info="state == 'draft'"
+                    decoration-muted="state == 'cancel'"
+                />
             </tree>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="view_mrp_production_request_kanban">
+        <field name="name">mrp.production.request.kanban@mrp_production_request</field>
+        <field name="model">mrp.production.request</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name" />
+                <field name="requested_by" />
+                <field name="product_id" />
+                <field name="done_qty" />
+                <field name="product_qty" />
+                <field name="manufactured_qty" />
+                <field name="product_uom_id" />
+                <field name="state" />
+                <field name="description" />
+                <field name="bom_id" />
+                <field name="location_src_id" />
+                <field name="location_dest_id" />
+                <field name="date_planned_start" />
+                <templates>
+                    <t t-name="kanban-tooltip">
+                        <ul class="oe_kanban_tooltip">
+                            <li t-if="record.description.raw_value"><b
+                                >Description:</b> <t
+                                    t-esc="record.description.value"
+                                /></li>
+                            <li t-if="record.bom_id.raw_value"><b
+                                >Bill of Material:</b> <t
+                                    t-esc="record.bom_id.value"
+                                /></li>
+                            <li t-if="record.location_src_id.raw_value"><b
+                                >Raw Materials Location:</b> <t
+                                    t-esc="record.location_src_id.value"
+                                /></li>
+                            <li t-if="record.location_dest_id.raw_value"><b
+                                >Finished Products Location:</b> <t
+                                    t-esc="record.location_dest_id.value"
+                                /></li>
+                        </ul>
+                    </t>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div
+                                name="content"
+                                class="oe_kanban_content"
+                                tooltip="kanban-tooltip"
+                            >
+                                <div name="top" class="o_kanban_record_top mb8">
+                                    <div
+                                        name="heading"
+                                        class="o_kanban_record_headings ml-1"
+                                    >
+                                        <strong class="o_kanban_record_title"><span><t
+                                                    t-esc="record.product_id.value"
+                                                /></span></strong>
+                                    </div>
+                                    <strong>
+                                            <field
+                                            name="state"
+                                            widget="label_selection"
+                                            options="{'classes': {
+                                                'draft': 'default',
+                                                'cancel': 'danger',
+                                                'to_approve': 'warning',
+                                                'approved': 'success',
+                                                'done': 'success'}}"
+                                        />
+                                    </strong>
+                                </div>
+                                <div name="body" class="o_kanban_record_body">
+                                    <div name="qty">
+                                        <span class="font-weight-bold"><t
+                                                t-esc="record.manufactured_qty.value"
+                                            /> / <t
+                                                t-esc="record.product_qty.value"
+                                            /> <span class="small"><t
+                                                    t-esc="record.product_uom_id.value"
+                                                /></span></span>
+                                    </div>
+                                </div>
+                                <div name="bottom" class="o_kanban_record_bottom">
+                                    <div
+                                        name="bottom_left"
+                                        class="oe_kanban_bottom_left text-muted"
+                                    >
+                                        <span><t t-esc="record.name.value" /></span>
+                                    </div>
+                                    <div
+                                        name="bottom_right"
+                                        class="oe_kanban_bottom_right"
+                                    >
+                                    <field
+                                            name="date_planned_start"
+                                            widget="remaining_days"
+                                        />
+                                        <field
+                                            name="requested_by"
+                                            widget="many2one_avatar_user"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="view_mrp_production_request_search" model="ir.ui.view">
-        <field name="name">mrp.production.request.search</field>
+        <field name="name">mrp.production.request.search@mrp_production_request</field>
         <field name="model">mrp.production.request</field>
         <field name="arch" type="xml">
             <search string="Search Manufacturing Request">
@@ -267,28 +403,31 @@
             </search>
         </field>
     </record>
+
     <record id="mrp_production_request_action" model="ir.actions.act_window">
         <field name="name">Manufacturing Requests</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mrp.production.request</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="context">{&quot;search_default_todo&quot;:1}</field>
         <field name="help" type="html">
-            <p
-                class="oe_view_nocontent_create"
-            >Click to start a new manufacturing request process.
-          </p>
-            <p>A Manufacturing Request is an instruction to production to produce
-            a certain quantity of a given product.
-          </p>
+            <p class="oe_view_nocontent_create">
+                Click to start a new manufacturing request process.
+            </p>
+            <p>
+                A Manufacturing Request is an instruction to production to produce
+                a certain quantity of a given product.
+            </p>
         </field>
     </record>
+
     <menuitem
         action="mrp_production_request_action"
         id="menu_mrp_production_request_act"
         parent="mrp.menu_mrp_manufacturing"
         sequence="10"
     />
+
     <!--Sever actions-->
     <record id="action_server_mrp_production_request_refresh" model="ir.actions.server">
         <field name="name">Refresh Quantities</field>
@@ -297,4 +436,5 @@
         <field name="state">code</field>
         <field name="code">records._compute_manufactured_qty()</field>
     </record>
+
 </odoo>

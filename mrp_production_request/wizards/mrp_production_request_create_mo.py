@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_round
 
 
 class MrpProductionRequestCreateMo(models.TransientModel):
@@ -21,7 +22,7 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         # The wizard must be reloaded in order to show the new product lines
         action = self.env.ref(
             "mrp_production_request.mrp_production_request_create_mo_action"
-        )
+        ).sudo()
         res = action.read()[0]
         res["res_id"] = self.id
         return res
@@ -44,7 +45,11 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         for rec in self:
             bottle_neck = min(rec.product_line_ids.mapped("bottle_neck_factor"))
             bottle_neck = max(min(1, bottle_neck), 0)
-            rec.mo_qty = rec.pending_qty * bottle_neck
+            rec.mo_qty = float_round(
+                rec.pending_qty * bottle_neck,
+                precision_rounding=rec.product_uom_id.rounding,
+                rounding_method="DOWN",
+            )
 
     mrp_production_request_id = fields.Many2one(
         comodel_name="mrp.production.request", readonly=True
@@ -110,7 +115,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             "location_src_id": request_id.location_src_id.id,
             "location_dest_id": request_id.location_dest_id.id,
             "picking_type_id": request_id.picking_type_id.id,
-            "routing_id": request_id.routing_id.id,
             "date_planned_start": self.date_planned_start,
             "date_planned_finished": self.date_planned_finished,
             "procurement_group_id": request_id.procurement_group_id.id,
@@ -122,13 +126,11 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         self.ensure_one()
         vals = self._prepare_manufacturing_order()
         mo = self.env["mrp.production"].create(vals)
-        move = mo._get_moves_raw_values()
-        component_ids = []
-        for rec in move:
-            component_ids.append((0, 0, rec))
-        mo.write({"move_raw_ids": component_ids})
+        mo._onchange_move_raw()
+        mo._onchange_move_finished()
+        mo._onchange_workorder_ids()
         # Open resulting MO:
-        action = self.env.ref("mrp.mrp_production_action").read()[0]
+        action = self.env.ref("mrp.mrp_production_action").sudo().read()[0]
         res = self.env.ref("mrp.mrp_production_form_view")
         action.update(
             {"res_id": mo and mo.id, "views": [(res and res.id or False, "form")]}
@@ -153,6 +155,7 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
             rec.available_qty = res
 
     def _compute_bottle_neck_factor(self):
+        self.bottle_neck_factor = 0
         for rec in self:
             if rec.product_qty:
                 rec.bottle_neck_factor = rec.available_qty / rec.product_qty
