@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [mrp_subcontracting_skip_no_negative](mrp_subcontracting_skip_no_negative/) | 16.0.1.0.0 |  | MRP Subcontracting Skip No Negative
 [mrp_unbuild_move_link](mrp_unbuild_move_link/) | 16.0.1.0.0 |  | Link the stock moves of manufacturing orders to the respective unbuild orders
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 16.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
+[mrp_workorder_lot_display](mrp_workorder_lot_display/) | 16.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Display lot number on workorders kanban
 [quality_control_oca](quality_control_oca/) | 16.0.1.0.0 |  | Generic infrastructure for quality tests.
 
 [//]: # (end addons)
