@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_production_workorder_form_view_filter" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.select.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.view_mrp_production_workorder_form_view_filter"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="finished_lot_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_work_order_search" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.search.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_work_order_search" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="finished_lot_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="workcenter_line_kanban" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.kanban.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.workcenter_line_kanban" />
+        <field name="arch" type="xml">
+            <field name="operation_id" position="after">
+                <field name="finished_lot_id" />
+            </field>
+            <xpath
+                expr="//h5[hasclass('oe_kanban_bottom_left')]//t[@t-out='record.product_id.value']"
+                position="after"
+            >
+                <t
+                    t-if="record.product_id.tracking != 'none' and record.finished_lot_id.value"
+                > / <t t-out="record.finished_lot_id.value" /></t>
+            </xpath>
+        </field>
+    </record>
+</odoo>
