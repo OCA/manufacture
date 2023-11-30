@@ -46,6 +46,7 @@ class RepairOrder(models.Model):
         self.ensure_one()
         res = {
             "partner_id": self.partner_id.id,
+            "partner_invoice_id": self.partner_invoice_id.id,
             "partner_shipping_id": self.address_id.id,
             "origin": self.display_name,
             "note": self.quotation_notes,
@@ -62,7 +63,17 @@ class RepairOrder(models.Model):
             sale_order_data = rec._get_sale_order_data()
             sale_order = order_model.create(sale_order_data)
             orders |= sale_order
+            partner_shipping_id = False
+            partner_invoice_id = False
+            if sale_order.partner_shipping_id != sale_order.partner_id:
+                partner_shipping_id = sale_order.partner_shipping_id
+            if sale_order.partner_invoice_id != sale_order.partner_id:
+                partner_invoice_id = sale_order.partner_invoice_id
             sale_order.onchange_partner_id()
+            if partner_shipping_id:
+                sale_order.partner_shipping_id = partner_shipping_id
+            if partner_invoice_id:
+                sale_order.partner_invoice_id = partner_invoice_id
             for line in rec.operations:
                 sale_order_line = order_line_model.create(
                     line._get_sale_line_data(sale_order)
