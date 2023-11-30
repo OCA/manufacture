@@ -20,7 +20,7 @@ class StockRule(models.Model):
         values,
         bom,
     ):
-        data = self._prepare_mo_vals(
+        mo_data = self._prepare_mo_vals(
             product_id,
             product_qty,
             product_uom,
@@ -31,14 +31,12 @@ class StockRule(models.Model):
             values,
             bom,
         )
-        for key in [
-            "date_deadline",
-            "propagate_cancel",
-            "propagate_date",
-            "propagate_date_minimum_delta",
-            "user_id",
-        ]:
-            data.pop(key)
+        # since mo data contains fields incompatible with manufacturing request model,
+        # we need to drop all fields that don't belong to it
+        request_obj = self.env["mrp.production.request"]
+        data = {
+            key: mo_data[key] for key in list(request_obj._fields) if key in mo_data
+        }
         data["state"] = "to_approve"
         orderpoint = values.get("orderpoint_id")
         if orderpoint:
@@ -65,9 +63,7 @@ class StockRule(models.Model):
         """Trying to handle this as much similar as possible to Odoo
         production orders. See `_run_manufacture` in Odoo standard."""
         request_obj = self.env["mrp.production.request"]
-        request_obj_sudo = request_obj.sudo().with_context(
-            force_company=values["company_id"].id
-        )
+        request_obj_sudo = request_obj.sudo().with_company(company_id)
         bom = self._get_matching_bom(product_id, company_id, values)
         if not bom:
             raise UserError(

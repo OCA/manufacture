@@ -8,6 +8,7 @@
                     <group colspan="2">
                         <field
                             name="mrp_production_request_id"
+                            string="Request"
                             options='{"no_open": True}'
                         />
                         <field name="pending_qty" />
@@ -53,10 +54,9 @@
                     <button
                         name="create_mo"
                         type="object"
-                        string="Create MO"
+                        string="Create"
                         class="oe_highlight"
                     />
-                    or
                     <button special="cancel" string="Cancel" />
                 </footer>
             </form>
