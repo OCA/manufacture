@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="menu_mrp_dashboard"
+        action="mrp.mrp_workcenter_kanban_action"
+        groups="mrp.group_mrp_routings"
+        parent="mrp.menu_mrp_root"
+        name="Overview"
+        sequence="5"
+    />
+</odoo>
