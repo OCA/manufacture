@@ -8,7 +8,7 @@ import logging
 from datetime import date, timedelta
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, mute_logger
 
 logger = logging.getLogger(__name__)
 
@@ -321,10 +321,11 @@ class MultiLevelMrp(models.TransientModel):
         domain = []
         if mrp_areas:
             domain += [("mrp_area_id", "in", mrp_areas.ids)]
-        self.env["mrp.move"].search(domain).unlink()
-        self.env["mrp.inventory"].search(domain).unlink()
-        domain += [("fixed", "=", False)]
-        self.env["mrp.planned.order"].search(domain).unlink()
+        with mute_logger("odoo.models.unlink"):
+            self.env["mrp.move"].search(domain).unlink()
+            self.env["mrp.inventory"].search(domain).unlink()
+            domain += [("fixed", "=", False)]
+            self.env["mrp.planned.order"].search(domain).unlink()
         logger.info("End MRP Cleanup")
         return True
 
