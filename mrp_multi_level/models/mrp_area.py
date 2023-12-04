@@ -39,6 +39,4 @@ class MrpArea(models.Model):
 
     def _get_locations(self):
         self.ensure_one()
-        return self.env["stock.location"].search(
-            [("id", "child_of", self.location_id.id)]
-        )
+        return self.location_id
