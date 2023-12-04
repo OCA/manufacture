@@ -27,7 +27,7 @@ class MultiLevelMrp(models.TransientModel):
     def _prepare_product_mrp_area_data(self, product_mrp_area):
         qty_available = 0.0
         product_obj = self.env["product.product"]
-        location_ids = product_mrp_area.mrp_area_id._get_locations()
+        location_ids = product_mrp_area._get_locations()
         for location in location_ids:
             product_l = product_obj.with_context(location=location.id).browse(
                 product_mrp_area.product_id.id
@@ -463,9 +463,9 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_from_purchase_order(self, product_mrp_area):
-        location_ids = product_mrp_area.mrp_area_id._get_locations()
+        location_ids = product_mrp_area._get_locations()
         picking_types = self.env["stock.picking.type"].search(
-            [("default_location_dest_id", "in", location_ids.ids)]
+            [("default_location_dest_id", "child_of", location_ids.ids)]
         )
         picking_type_ids = [ptype.id for ptype in picking_types]
         orders = self.env["purchase.order"].search(
@@ -782,7 +782,7 @@ class MultiLevelMrp(models.TransientModel):
         ).mapped("due_date")
         mrp_dates = set(moves_dates + action_dates)
         on_hand_qty = product_mrp_area.product_id.with_context(
-            location=product_mrp_area.mrp_area_id.location_id.id
+            location=product_mrp_area._get_locations().ids,
         )._compute_quantities_dict(False, False, False)[product_mrp_area.product_id.id][
             "qty_available"
         ]
