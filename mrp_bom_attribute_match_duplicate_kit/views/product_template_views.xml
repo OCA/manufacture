@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_duplicate_attribute_match_kit" model="ir.actions.server">
+        <field name="name">Duplicate with attribute match kit</field>
+        <field name="model_id" ref="product.model_product_template" />
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_duplicate_with_kit()
+        </field>
+    </record>
+
+</odoo>

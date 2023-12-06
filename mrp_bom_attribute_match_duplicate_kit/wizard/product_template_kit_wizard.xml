@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="product_template_kit_wizard" model="ir.ui.view">
+        <field name="name">product.template.kit.wizard</field>
+        <field name="model">product.template.kit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Duplicate with attribute match kit">
+                <group>
+                    <field name="product_tmpl_id" invisible="1" />
+                    <field name="new_product_template_name" />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

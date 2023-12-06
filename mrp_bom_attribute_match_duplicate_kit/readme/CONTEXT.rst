@@ -1,0 +1,1 @@
+The use case is that customer sells the same product with two different names, prices, etc - but on the stock side, **Product 1 (copy)** only exists as a kit of **Product 1** (they're physically the same product)
