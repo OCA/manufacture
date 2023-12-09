@@ -2,13 +2,13 @@
 
 {
     "name": "MRP Routing",
-    "version": "14.0.1.0.1",
+    "version": "15.0.1.0.1",
     "category": "Manufacturing",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
-    "maintainers": ["ChrisOForgeFlow"],
-    "development_status": "Alpha",
+    "maintainers": ["ChrisOForgeFlow", "giarve"],
+    "development_status": "Beta",
     "depends": [
         "mrp",
     ],

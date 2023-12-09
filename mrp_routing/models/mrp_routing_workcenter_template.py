@@ -30,7 +30,6 @@ class MrpRoutingWorkcenterTemplate(models.Model):
         "mrp.workcenter", "Work Center", required=True, check_company=True
     )
     sequence = fields.Integer(
-        "Sequence",
         default=100,
         help="Gives the sequence order when displaying a list of routing Work Centers.",
     )

@@ -1,11 +1,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from ..models.mrp_routing_workcenter_template import FIELDS_TO_SYNC
 
 
-class TestRestrictLot(SavepointCase):
+class TestRestrictLot(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

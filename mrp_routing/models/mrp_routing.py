@@ -11,7 +11,6 @@ class MrpRouting(models.Model):
 
     name = fields.Char("Routing", required=True)
     active = fields.Boolean(
-        "Active",
         default=True,
         help="If the active field is set to False, "
         "it will allow you to hide the routing without removing it.",

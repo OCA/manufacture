@@ -75,7 +75,7 @@
                             <div class="o_kanban_record_top">
                                 <div class="o_kanban_record_headings mt4">
                                     <strong class="o_kanban_record_title"><span><t
-                                                t-esc="record.name.value"
+                                                t-out="record.name.value"
                                             /></span></strong>
                                 </div>
                                 <span class="badge badge-pill"><field
