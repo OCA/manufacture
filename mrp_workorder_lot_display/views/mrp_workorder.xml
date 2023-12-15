@@ -8,7 +8,7 @@
             ref="mrp.view_mrp_production_workorder_form_view_filter"
         />
         <field name="arch" type="xml">
-            <field name="product_id" position="after">
+            <field name="production_id" position="after">
                 <field name="finished_lot_id" />
             </field>
         </field>
@@ -19,7 +19,7 @@
         <field name="model">mrp.workorder</field>
         <field name="inherit_id" ref="mrp.view_mrp_production_work_order_search" />
         <field name="arch" type="xml">
-            <field name="product_id" position="after">
+            <field name="workcenter_id" position="after">
                 <field name="finished_lot_id" />
             </field>
         </field>
@@ -34,7 +34,7 @@
                 <field name="finished_lot_id" />
             </field>
             <xpath
-                expr="//h5[hasclass('oe_kanban_bottom_left')]//t[@t-out='record.product_id.value']"
+                expr="//h5[hasclass('oe_kanban_bottom_left')]//t[@t-esc='record.product_id.value']"
                 position="after"
             >
                 <t

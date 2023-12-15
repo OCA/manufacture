@@ -3,7 +3,7 @@
 {
     "name": "MRP Workorder Lot Display",
     "summary": "Display lot number on workorders kanban",
-    "version": "16.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Beta",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
