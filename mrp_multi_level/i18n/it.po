@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-02 09:37+0000\n"
+"PO-Revision-Date: 2023-12-18 09:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1009,7 +1009,7 @@ msgstr "Procedura guidata"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__calendar_id
 msgid "Working Hours"
-msgstr "Orario lavoro"
+msgstr "Orario lavorativo"
 
 #. module: mrp_multi_level
 #: code:addons/mrp_multi_level/models/product_mrp_area.py:129
