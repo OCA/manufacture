@@ -6,39 +6,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-19 12:33+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_duplicate_kit.product_template_kit_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_duplicate_kit.product_template_kit_wizard
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: code:addons/mrp_bom_attribute_match_duplicate_kit/models/product_template.py:0
@@ -47,53 +49,55 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_duplicate_kit.product_template_kit_wizard
 #, python-format
 msgid "Duplicate with attribute match kit"
-msgstr ""
+msgstr "Duplica con kit (corrispondenza attributi)"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__new_product_template_name
 msgid "New Product Template Name"
-msgstr ""
+msgstr "Nome nuovo modello prodotto"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model,name:mrp_bom_attribute_match_duplicate_kit.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_duplicate_kit.field_product_template_kit_wizard__product_tmpl_id
 msgid "Product Tmpl"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: code:addons/mrp_bom_attribute_match_duplicate_kit/wizard/product_template_kit_wizard.py:0
 #, python-format
 msgid "The name of the new product template should not be the same name"
 msgstr ""
+"Il nome del nuovo modello prodotto non può essere uguale a quello da "
+"duplicare"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
 #: code:addons/mrp_bom_attribute_match_duplicate_kit/models/product_template.py:0
 #, python-format
 msgid "This server action can be used only on products with variants"
-msgstr ""
+msgstr "Questa azione del server può essere usata solo su prodotti con varianti"
