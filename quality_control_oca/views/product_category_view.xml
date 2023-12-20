@@ -12,7 +12,7 @@
         <field name="inherit_id" ref="product.product_category_form_view" />
         <field name="arch" type="xml">
             <group name="first" position="after">
-                <t groups="group_quality_control_user">
+                <t groups="quality_control_oca.group_quality_control_user">
                     <group name="qc" string="Quality control">
                         <field name="qc_triggers" nolabel="1">
                             <tree editable="bottom">
