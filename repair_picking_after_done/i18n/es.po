@@ -6,117 +6,119 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-23 00:01+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
 msgid "<span class=\"o_stat_text\">Transfers</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Transferencias</span>"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
 msgid "Create Transfer"
-msgstr ""
+msgstr "Crear Transferencia"
 
 #. module: repair_picking_after_done
 #: model:ir.model,name:repair_picking_after_done.model_repair_move_transfer
 msgid "Create an internal transfer from repaired moves"
-msgstr ""
+msgstr "Crear una transferencia interna a partir de movimientos reparados"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Create transfer"
-msgstr ""
+msgstr "Crear Transferencia"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__location_dest_id
 msgid "Destination location"
-msgstr ""
+msgstr "Ubicación de destino"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__display_name
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__id
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer____last_update
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__quantity
 msgid "Quantity to transfer"
-msgstr ""
+msgstr "Cantidad a transferir"
 
 #. module: repair_picking_after_done
 #: code:addons/repair_picking_after_done/wizards/repair_move_transfer.py:0
 #, python-format
 msgid "Quantity to transfer must be greater than 0."
-msgstr ""
+msgstr "La cantidad a transferir debe ser superior a 0."
 
 #. module: repair_picking_after_done
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__remaining_quantity
 msgid "Remaining quantity to be transferred"
-msgstr ""
+msgstr "Cantidad restante por transferir"
 
 #. module: repair_picking_after_done
 #: model:ir.model,name:repair_picking_after_done.model_repair_order
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_move_transfer__repair_order_id
 msgid "Repair Order"
-msgstr ""
+msgstr "Orden de Reparación"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Transfer Repaired Moves"
-msgstr ""
+msgstr "Transferir Movimientos Reparados"
 
 #. module: repair_picking_after_done
 #: code:addons/repair_picking_after_done/models/repair.py:0
 #: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__picking_ids
 #, python-format
 msgid "Transfers"
-msgstr ""
+msgstr "Transferencias"
 
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "or"
-msgstr ""
+msgstr "o"
