@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-18 09:34+0000\n"
+"PO-Revision-Date: 2023-12-22 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -901,7 +901,7 @@ msgstr ""
 #. module: mrp_multi_level
 #: selection:mrp.move,state:0
 msgid "To Approve"
-msgstr "Da apptovare"
+msgstr "Da approvare"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
