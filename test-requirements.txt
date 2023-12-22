@@ -1,0 +1,1 @@
+odoo-addon-mrp_multi_level @ git+https://github.com/OCA/manufacture.git@refs/pull/1123/head#subdirectory=setup/mrp_multi_level
