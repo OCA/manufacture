@@ -6,46 +6,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-22 20:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/wizard/finished_product_structure_wizard.py:0
 #, python-format
 msgid "At least one line needs to be added to structure."
-msgstr ""
+msgstr "Es necesario añadir al menos una línea a la estructura."
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__attribute_ids
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__attribute_ids
 msgid "Attribute"
-msgstr ""
+msgstr "Atributo"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__attribute_ids
 msgid "Attribute(s)"
-msgstr ""
+msgstr "Atributo(s)"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__bom_type
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__bom_type
 msgid "Bom Type"
-msgstr ""
+msgstr "Tipo Bom"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_semifinished_product.finished_product_structure_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_semifinished_product.finished_product_structure_wizard
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/models/product_template.py:0
@@ -53,21 +55,21 @@ msgstr ""
 #: model:res.groups,name:mrp_bom_attribute_match_semifinished_product.group_create_finished_product_structure
 #, python-format
 msgid "Create finished product structure"
-msgstr ""
+msgstr "Crear la estructura del producto final"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__create_uid
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__create_uid
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__create_date
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__create_date
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__display_name
@@ -75,20 +77,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template__display_name
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__finished_product_id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_product__finished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template__finished_product
 msgid "Finished Product"
-msgstr ""
+msgstr "Producto Terminado"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_semifinished_product.finished_product_structure_wizard
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_semifinished_product.product_template_form_view_inherit
 msgid "Finished Product Structure"
-msgstr ""
+msgstr "Estructura del Producto Acabado"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/models/product_template.py:0
@@ -98,6 +100,9 @@ msgid ""
 "order to create a BOM structure for its semi-finished products based on "
 "attribute value match"
 msgstr ""
+"El producto acabado se utiliza únicamente en productos con atributos para "
+"crear una estructura de lista de materiales para sus productos semiacabados "
+"basada en la coincidencia de valores de atributos"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__id
@@ -105,13 +110,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template__id
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID (Identificación)"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__finished_product_structure_line__bom_type__phantom
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__semi_finished_product_template_line__bom_type__phantom
 msgid "Kit"
-msgstr ""
+msgstr "Paquete"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line____last_update
@@ -119,69 +124,69 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template____last_update
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__write_uid
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__write_uid
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización por"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__write_date
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__write_date
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Línea"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_product__semi_finished_mrp_bom_ids
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template__semi_finished_mrp_bom_ids
 msgid "MRP BoM"
-msgstr ""
+msgstr "Lista de Materiales MRP"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__finished_product_structure_line__bom_type__normal
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__semi_finished_product_template_line__bom_type__normal
 msgid "Manufacture this product"
-msgstr ""
+msgstr "Fabricar este producto"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_wizard__need_confirmation
 msgid "Need Confirmation"
-msgstr ""
+msgstr "Necesita Confirmación"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model,name:mrp_bom_attribute_match_semifinished_product.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla del Producto"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__product_tmpl_id
 msgid "Product Tmpl"
-msgstr ""
+msgstr "Plant de Producto"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__product_tmpl_stage_id
 msgid "Product Tmpl Stage"
-msgstr ""
+msgstr "Etapa Plnt del Producto"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_product__semi_finished_product_tmpl_ids
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_product_template__semi_finished_product_tmpl_ids
 msgid "Semi Finished Product Tmpl"
-msgstr ""
+msgstr "Plant. de Producto Semi Acabado"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__semi_finished_product_tmpl_id
 msgid "Semi-finished Product"
-msgstr ""
+msgstr "Producto semi-terminado"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_semifinished_product.finished_product_structure_wizard
@@ -190,48 +195,53 @@ msgid ""
 "finished product. By clicking Create, existing semifinished products and "
 "Boms will be deleted or archived, and replaced by new ones."
 msgstr ""
+"Ya se han creado productos semiacabados y lista de materiales para este "
+"producto acabado. Al hacer clic en Crear, los productos semiacabados y las "
+"Ldms existentes se eliminarán o archivarán, y se sustituirán por otros "
+"nuevos."
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__stage_name
 msgid "Stage Name"
-msgstr ""
+msgstr "Nombre de Etapa"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__structure_id
 msgid "Structure"
-msgstr ""
+msgstr "Estructura"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__finished_product_structure_line__bom_type__subcontract
 #: model:ir.model.fields.selection,name:mrp_bom_attribute_match_semifinished_product.selection__semi_finished_product_template_line__bom_type__subcontract
 msgid "Subcontracting"
-msgstr ""
+msgstr "Subcontratación"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__partner_ids
 msgid "Subcontractor"
-msgstr ""
+msgstr "Subcontratista"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_semi_finished_product_template_line__partner_ids
 msgid "Subcontractors"
-msgstr ""
+msgstr "Subcontratistas"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__product_tmpl_id
 msgid "Template product"
-msgstr ""
+msgstr "Plantilla de producto"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__valid_attribute_ids
 msgid "Valid Attribute"
-msgstr ""
+msgstr "Atributo Válido"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/wizard/finished_product_structure_line.py:0
 #, python-format
 msgid "You can only add products without attributes as 'Template products'."
 msgstr ""
+"Sólo puede añadir productos sin atributos como \"Productos de plantilla\"."
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/models/product_template.py:0
@@ -240,18 +250,20 @@ msgid ""
 "You can only create finished product structure for products marked as "
 "\"Finished product\"."
 msgstr ""
+"Sólo se puede crear una estructura de producto terminado para los productos "
+"marcados como \"Producto terminado\"."
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model,name:mrp_bom_attribute_match_semifinished_product.model_finished_product_structure_line
 msgid "finished.product.structure.line"
-msgstr ""
+msgstr "finished.product.structure.line"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model,name:mrp_bom_attribute_match_semifinished_product.model_finished_product_structure_wizard
 msgid "finished.product.structure.wizard"
-msgstr ""
+msgstr "finished.product.structure.wizard"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model,name:mrp_bom_attribute_match_semifinished_product.model_semi_finished_product_template_line
 msgid "semi.finished.product.template.line"
-msgstr ""
+msgstr "semi.finished.product.template.line"
