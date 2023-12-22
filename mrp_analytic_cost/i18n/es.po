@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 20:33+0000\n"
+"PO-Revision-Date: 2023-12-23 00:01+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -35,7 +35,7 @@ msgstr "Tipo de Coste"
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_mrp_workcenter__costs_hour
 msgid "Cost per hour"
-msgstr ""
+msgstr "Coste por hora"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__display_name
@@ -45,7 +45,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move__display_name
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__id
@@ -55,7 +55,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move__id
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line____last_update
@@ -65,65 +65,65 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move____last_update
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_stock_move_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: mrp_analytic_cost
 #: model_terms:ir.ui.view,arch_db:mrp_analytic_cost.custom_account_analytic_line_form_view
 msgid "Manufacture"
-msgstr ""
+msgstr "Fabricación"
 
 #. module: mrp_analytic_cost
 #: model_terms:ir.ui.view,arch_db:mrp_analytic_cost.custom_account_analytic_line_filter_view
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Orden de Manufacturación"
 
 #. module: mrp_analytic_cost
 #: model_terms:ir.ui.view,arch_db:mrp_analytic_cost.custom_mrp_production_form_view
 msgid "Material Costs"
-msgstr ""
+msgstr "Costes de Material"
 
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Movimientos de Producto (Línea de Movimiento de Existencias)"
 
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Orden de Producción"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__manufacturing_order_id
 msgid "Related Manufacturing Order"
-msgstr ""
+msgstr "Orden de fabricación relacionada"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__stock_move_id
 msgid "Related Stock Move"
-msgstr ""
+msgstr "Movimiento de existencias relacionado"
 
 #. module: mrp_analytic_cost
 #: model_terms:ir.ui.view,arch_db:mrp_analytic_cost.custom_account_analytic_line_filter_view
 msgid "Related to MO"
-msgstr ""
+msgstr "Relacionado con MO"
 
 #. module: mrp_analytic_cost
 #: model:ir.model.fields,help:mrp_analytic_cost.field_mrp_workcenter__costs_hour
 msgid "Specify cost of work center per hour."
-msgstr ""
+msgstr "Especifique el coste del puesto de trabajo por hora."
 
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de Existencias"
 
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_mrp_workcenter
 msgid "Work Center"
-msgstr ""
+msgstr "Centro de trabajo"
 
 #. module: mrp_analytic_cost
 #: model:ir.model,name:mrp_analytic_cost.model_mrp_workorder
 #: model:ir.model.fields,field_description:mrp_analytic_cost.field_account_analytic_line__workorder_id
 msgid "Work Order"
-msgstr ""
+msgstr "Orden de trabajo"
