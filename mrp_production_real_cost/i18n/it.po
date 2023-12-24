@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-17 22:50+0000\n"
-"PO-Revision-Date: 2023-11-14 18:37+0000\n"
+"PO-Revision-Date: 2023-12-24 19:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -92,7 +92,7 @@ msgstr "Movimento di magazzino"
 #: view:mrp.production:mrp_production_real_cost.mrp_production_tree_view_real_costs
 #: field:mrp.production,real_cost:0
 msgid "Total Real Cost"
-msgstr "Costo Reale Totale "
+msgstr "Costo Reale Totale"
 
 #. module: mrp_production_real_cost
 #: field:mrp.production,unit_real_cost:0
