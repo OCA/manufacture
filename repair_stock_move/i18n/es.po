@@ -6,109 +6,111 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2023-12-24 19:44+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_stock_move
 #: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
 msgid "<span class=\"o_stat_text\">Stock Moves</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Movimientos de Stock</span>"
 
 #. module: repair_stock_move
 #: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
 msgid "Check Availability"
-msgstr ""
+msgstr "Comprobar Disponibilidad"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__display_name
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__display_name
 #: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: repair_stock_move
 #: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
 msgid "Force Availability"
-msgstr ""
+msgstr "Forzar Disponibilidad"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__id
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__id
 #: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__ignore_availability
 msgid "Ignore Availability"
-msgstr ""
+msgstr "Ignorar Disponibilidad"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_line____last_update
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order____last_update
 #: model:ir.model.fields,field_description:repair_stock_move.field_stock_move____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: repair_stock_move
 #: code:addons/repair_stock_move/models/repair_order.py:0
 #, python-format
 msgid "Nothing to check the availability for."
-msgstr ""
+msgstr "No hay que comprobar la disponibilidad."
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__fees_lines
 msgid "Operations"
-msgstr ""
+msgstr "Operaciones"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__operations
 msgid "Parts"
-msgstr ""
+msgstr "Piezas"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__repair_line_id
 msgid "Repair Line"
-msgstr ""
+msgstr "Línea de Reparación"
 
 #. module: repair_stock_move
 #: model:ir.model,name:repair_stock_move.model_repair_line
 msgid "Repair Line (parts)"
-msgstr ""
+msgstr "Línea de Reparación (piezas)"
 
 #. module: repair_stock_move
 #: model:ir.model,name:repair_stock_move.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Orden de Reparación"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__show_check_availability
 msgid "Show Check Availability"
-msgstr ""
+msgstr "Mostrar Comprobar Disponibilidad"
 
 #. module: repair_stock_move
 #: code:addons/repair_stock_move/models/repair_order.py:0
 #, python-format
 msgid "Some related stock moves are not available."
-msgstr ""
+msgstr "Algunos movimientos de valores relacionados no están disponibles."
 
 #. module: repair_stock_move
 #: model:ir.model,name:repair_stock_move.model_stock_move
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__stock_move_ids
 #: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__stock_move_ids
 msgid "Stock Move"
-msgstr ""
+msgstr "movimiento de Existencias"
 
 #. module: repair_stock_move
 #: code:addons/repair_stock_move/models/repair_order.py:0
 #, python-format
 msgid "Stock Moves"
-msgstr ""
+msgstr "Movimientos de Existencias"
 
 #. module: repair_stock_move
 #: model:ir.model.fields,help:repair_stock_move.field_repair_order__show_check_availability
@@ -116,3 +118,5 @@ msgid ""
 "Technical field used to compute whether the button 'Check Availability' "
 "should be displayed."
 msgstr ""
+"Campo técnico utilizado para calcular si debe mostrarse el botón \"Comprobar "
+"disponibilidad\"."
