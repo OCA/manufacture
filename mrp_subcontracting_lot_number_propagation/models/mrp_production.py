@@ -28,8 +28,8 @@ class MrpProduction(models.Model):
     @api.depends(
         # New field dependencies to compute the propagated lot on the
         # "mrp_production_subcontracting_form_view" view.
-        "move_line_raw_ids.qty_done",
-        "move_line_raw_ids.lot_id",
+        "move_raw_ids.move_line_ids.qty_done",
+        "move_raw_ids.move_line_ids.lot_id",
     )
     def _compute_propagated_lot_producing(self):
         return super()._compute_propagated_lot_producing()
