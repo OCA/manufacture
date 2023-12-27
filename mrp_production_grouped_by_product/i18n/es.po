@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-03 23:16+0000\n"
-"PO-Revision-Date: 2018-06-03 23:16+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-12-28 00:50+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production__display_name
@@ -22,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__display_name
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a Mostrar"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production__id
@@ -30,7 +31,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__id
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_mrp_production____last_update
@@ -38,7 +39,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type____last_update
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_rule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
@@ -53,23 +54,22 @@ msgstr "Hora máx. agrupación OFs (UTC)"
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "Tipo de Recogida"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
-#, fuzzy
 msgid "Production Order"
-msgstr "Orden de fabricación"
+msgstr "Orden de Producción"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "movimiento de Existencias"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regla de Existencias"
 
 #. module: mrp_production_grouped_by_product
 #: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
