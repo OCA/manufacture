@@ -32,9 +32,6 @@ class ReportBomStructure(models.AbstractModel):
             if to_ignore_line_ids:
                 for to_ignore_line_id in to_ignore_line_ids:
                     bom.bom_line_ids = [(3, to_ignore_line_id, 0)]
-            product = bom._get_component_template_product(
-                line, product, line.product_id
-            )
         components, total = super()._get_bom_lines(
             bom, bom_quantity, product, line_id, level
         )
