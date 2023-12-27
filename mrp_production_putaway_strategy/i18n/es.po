@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 03:19+0000\n"
-"PO-Revision-Date: 2017-08-29 03:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2023-12-27 22:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_putaway_strategy
 #: code:addons/mrp_production_putaway_strategy/models/mrp_production.py:0
@@ -25,6 +26,8 @@ msgid ""
 "Applied Putaway strategy to finished products.\n"
 "Finished Products Location: %s."
 msgstr ""
+"Aplicada estrategia Putaway a productos terminados.\n"
+"Ubicación de Productos Terminados: %s."
 
 #. module: mrp_production_putaway_strategy
 #: model:ir.model.fields,field_description:mrp_production_putaway_strategy.field_mrp_production__display_name
