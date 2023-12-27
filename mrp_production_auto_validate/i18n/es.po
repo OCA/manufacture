@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_auto_validate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-27 22:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production__auto_validate
+msgid "Auto Validate"
+msgstr "Validación Automática"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model,name:mrp_production_auto_validate.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de Material"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production_backorder__display_name
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production_backorder__id
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking__id
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_production_backorder____last_update
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation
+msgid "Order Auto Validation"
+msgstr "Validación Automática de Pedidos"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,field_description:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation_warning
+msgid "Order Auto Validation (warning)"
+msgstr "Validación Automática de Pedidos (advertencia)"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model,name:mrp_production_auto_validate.model_mrp_production
+msgid "Production Order"
+msgstr "Orden producción"
+
+#. module: mrp_production_auto_validate
+#: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Quantity in procurement (%s %s) was increased to %s %s due to auto "
+"validation feature preventing to create an MO with a different qty than "
+"defined on the BOM."
+msgstr ""
+"La cantidad en el aprovisionamiento (%s %s) se ha incrementado a %s %s "
+"debido a la función de validación automática que impide crear una MO con una "
+"cantidad diferente a la definida en la LDM."
+
+#. module: mrp_production_auto_validate
+#: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Quantity in procurement (%s %s) was split to multiple production orders of "
+"%s %s due to auto validation feature preventing to set a quantity to produce"
+" different than the quantity defined on the Bill of Materials."
+msgstr ""
+"La cantidad en aprovisionamiento (%s %s) se ha dividido en varias órdenes de "
+"fabricación de %s %s debido a que la función de autovalidación impide "
+"establecer una cantidad a fabricar distinta de la cantidad definida en la "
+"Lista de Materiales."
+
+#. module: mrp_production_auto_validate
+#: model:ir.model,name:mrp_production_auto_validate.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de Abastecimiento"
+
+#. module: mrp_production_auto_validate
+#: code:addons/mrp_production_auto_validate/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"The Quantity To Produce of an order is now restricted to the BoM Quantity."
+msgstr ""
+"La cantidad a Producir de un pedido está ahora restringida a la Cantidad de "
+"la LdM."
+
+#. module: mrp_production_auto_validate
+#: code:addons/mrp_production_auto_validate/models/mrp_production.py:0
+#, python-format
+msgid ""
+"The quantity to produce is restricted to {qty} as the BoM is configured with"
+" the 'Order Auto Validation' option."
+msgstr ""
+"La cantidad a producir está restringida a {qty} ya que la LdM está "
+"configurada con la opción 'Autovalidación de pedidos'."
+
+#. module: mrp_production_auto_validate
+#: model:ir.model,name:mrp_production_auto_validate.model_stock_picking
+msgid "Transfer"
+msgstr "Transferencia"
+
+#. module: mrp_production_auto_validate
+#: model:ir.model.fields,help:mrp_production_auto_validate.field_mrp_bom__mo_auto_validation
+msgid ""
+"Validate automatically the manufacturing order when the 'Pick Components' transfer is validated.\n"
+"This behavior is available only if the warehouse is configured with 2 or 3 steps."
+msgstr ""
+"Validar automáticamente la orden de fabricación cuando se valida la "
+"transferencia de 'Recogida de componentes'.\n"
+"Este comportamiento solo está disponible si el almacén está configurado con "
+"2 o 3 pasos."
+
+#. module: mrp_production_auto_validate
+#: model:ir.model,name:mrp_production_auto_validate.model_mrp_production_backorder
+msgid "Wizard to mark as done or create back order"
+msgstr "Asistente para marcar como hecho o crear pedido pendiente"
