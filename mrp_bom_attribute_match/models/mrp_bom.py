@@ -160,6 +160,18 @@ class MrpBomLine(models.Model):
         if self.bom_product_template_attribute_value_ids:
             self._check_variants_validity()
 
+    def _skip_bom_line(self, product):
+        # Make this method compatible to work with NewIds
+        res = super()._skip_bom_line(product)
+
+        return res and (
+            len(
+                set(product.product_template_attribute_value_ids.ids)
+                & set(self.bom_product_template_attribute_value_ids.ids)
+            )
+            != len(self.bom_product_template_attribute_value_ids.attribute_id)
+        )
+
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
