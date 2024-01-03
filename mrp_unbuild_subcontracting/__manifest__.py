@@ -9,7 +9,7 @@
     "when is returned a product subcontracted",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
-    "depends": ["mrp_account", "mrp_subcontracting"],
+    "depends": ["mrp_account", "mrp_subcontracting_purchase"],
     "data": ["views/mrp_unbuild_views.xml"],
     "installable": True,
 }
