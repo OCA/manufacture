@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <template id="message_order_split">
+        <p>
+            The following <t
+                t-esc="self.env['ir.model']._get(records._name).name.lower()"
+            />(s)
+            have been created as a result of a <strong>split</strong> operation:
+        </p>
+        <ul>
+            <li t-foreach="records" t-as="o">
+                <a
+                    href="#"
+                    t-att-data-oe-model="o._name"
+                    t-att-data-oe-id="o.id"
+                    t-esc="o.display_name"
+                />
+            </li>
+        </ul>
+    </template>
+
+</odoo>

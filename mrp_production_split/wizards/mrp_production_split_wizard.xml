@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_mrp_production_split_wizard_form" model="ir.ui.view">
+        <field name="model">mrp.production.split.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="production_id" invisible="1" />
+                    <field name="product_tracking" invisible="1" />
+                    <field
+                        name="split_mode"
+                        widget="radio"
+                        attrs="{'invisible': [('product_tracking', '=', 'serial')]}"
+                    />
+                    <field
+                        name="split_qty"
+                        attrs="{'invisible': [('split_mode', 'not in', ('simple', 'equal'))]}"
+                    />
+                    <field
+                        name="split_equal_qty"
+                        string="In orders of"
+                        attrs="{'invisible': ['|', ('product_tracking', '=', 'serial'), ('split_mode', '!=', 'equal')]}"
+                    />
+                    <field
+                        name="custom_quantities"
+                        attrs="{'invisible': [('split_mode', '!=', 'custom')]}"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="apply"
+                        type="object"
+                        data-hotkey="q"
+                        string="Apply"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" data-hotkey="z" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mrp_production_split_wizard" model="ir.actions.act_window">
+        <field name="name">Split Manufacturing Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production.split.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
