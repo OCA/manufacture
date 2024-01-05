@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_lot_number_propagation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/product_template.py:0
+#, python-format
+msgid ""
+"A BoM propagating serial numbers requires this product to be tracked as "
+"such."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,help:mrp_lot_number_propagation.field_mrp_bom__lot_number_propagation
+msgid ""
+"Allow to propagate the lot/serial number from a component to the finished "
+"product."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are "
+"multiple components propagating lot number. Please check BOM configuration."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Bill of material is marked for lot number propagation, but there are no "
+"components propagating lot number. Please check BOM configuration."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom__display_lot_number_propagation
+msgid "Display Lot Number Propagation"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom_line__display_propagate_lot_number
+msgid "Display Propagate Lot Number"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_production__is_lot_number_propagated
+msgid "Is Lot Number Propagated"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom__lot_number_propagation
+msgid "Lot Number Propagation"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model_terms:ir.ui.view,arch_db:mrp_lot_number_propagation.mrp_production_form_view
+msgid "Lot/Serial Number"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Lot/Serial number %s already exists and has been used. Unable to propagate "
+"it."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
+#, python-format
+msgid ""
+"Lot/Serial number is propagated from a component, you are not allowed to "
+"change it."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,help:mrp_lot_number_propagation.field_mrp_production__is_lot_number_propagated
+msgid ""
+"Lot/serial number is propagated from a component to the finished product."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_bom_line.py:0
+#, python-format
+msgid ""
+"Only components tracked by serial number can propagate its lot/serial number"
+" to the finished product."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_bom_line__propagate_lot_number
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_stock_move__propagate_lot_number
+msgid "Propagate Lot Number"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_production__propagated_lot_producing
+msgid "Propagated Lot Producing"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model,name:mrp_lot_number_propagation.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: model:ir.model.fields,help:mrp_lot_number_propagation.field_mrp_production__propagated_lot_producing
+msgid ""
+"The BoM used on this manufacturing order is set to propagate lot number from"
+" one of its components. The value will be computed once the corresponding "
+"component is selected."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/product_template.py:0
+#, python-format
+msgid ""
+"This component is configured to propagate its serial number in the following"
+" Bill of Materials:{boms}'"
+msgstr ""
+
+#. module: mrp_lot_number_propagation
+#: code:addons/mrp_lot_number_propagation/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"With 'Lot Number Propagation' enabled, a line has to be configured with the "
+"'Propagate Lot Number' option."
+msgstr ""
