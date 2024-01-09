@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_product_template_kit_wizard,access.product.template.kit.wizard,model_product_template_kit_wizard,mrp.group_mrp_user,1,1,1,1
+access_product_template_kit_wizard,access.product.template.kit.wizard,model_product_template_kit_wizard,mrp_bom_attribute_match_duplicate_kit.group_mrp_bom_duplicate_access,1,1,1,1

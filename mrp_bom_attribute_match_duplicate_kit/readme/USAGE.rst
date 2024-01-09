@@ -1,3 +1,4 @@
+* In user, enable "Can duplicate with kit" access right
 * Open "Product 1" with variants
 * Use server action: "Duplicate with attribute match kit"
 * A wizard opens up with field "New product template name"

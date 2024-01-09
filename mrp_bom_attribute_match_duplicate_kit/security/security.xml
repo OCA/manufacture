@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_mrp_bom_duplicate_access" model="res.groups">
+        <field name="name">Can duplicate with kit</field>
+        <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user'))]" />
+    </record>
+</odoo>
