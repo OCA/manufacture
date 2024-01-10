@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">Product packaging</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_finished_ids']/tree/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="product_packaging_id"
+                    optional="show"
+                    groups="product.group_stock_packaging"
+                />
+                <field
+                    name="product_packaging_qty"
+                    optional="show"
+                    groups="product.group_stock_packaging"
+                    attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='move_raw_ids']/tree/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="product_packaging_id"
+                    optional="show"
+                    groups="product.group_stock_packaging"
+                />
+                <field
+                    name="product_packaging_qty"
+                    optional="show"
+                    groups="product.group_stock_packaging"
+                    attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</data>
