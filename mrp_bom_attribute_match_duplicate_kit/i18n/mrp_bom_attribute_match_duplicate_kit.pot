@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
+#: model:res.groups,name:mrp_bom_attribute_match_duplicate_kit.group_mrp_bom_duplicate_access
+msgid "Can duplicate with kit"
+msgstr ""
+
+#. module: mrp_bom_attribute_match_duplicate_kit
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_duplicate_kit.product_template_kit_wizard
 msgid "Cancel"
 msgstr ""
