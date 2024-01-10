@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-01 12:36+0000\n"
+"PO-Revision-Date: 2024-01-10 14:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -592,7 +592,7 @@ msgstr "Sequenza"
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_form
 msgid "Set to Done"
-msgstr "Imposta a fatto"
+msgstr "Imposta a eseguito"
 
 #. module: quality_control_issue
 #: model_terms:ir.ui.view,arch_db:quality_control_issue.qc_issue_search
