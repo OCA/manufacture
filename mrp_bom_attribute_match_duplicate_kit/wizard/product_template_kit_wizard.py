@@ -40,6 +40,7 @@ class ProductTemplateKitWizard(models.TransientModel):
                                     ).ids,
                                 )
                             ],
+                            "product_uom_id": self.product_tmpl_id.uom_id.id,
                         },
                     )
                 ],

@@ -12,8 +12,12 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/manufacture",
     "data": [
+        "security/security.xml",
         "security/ir.model.access.csv",
         "views/product_template_views.xml",
         "wizard/product_template_kit_wizard.xml",
+    ],
+    "demo": [
+        "demo/res_users_demo.xml",
     ],
 }
