@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo-addon-mrp_lot_production_date>=16.0dev,<16.1dev',
         'odoo-addon-mrp_multi_level>=16.0dev,<16.1dev',
         'odoo-addon-mrp_multi_level_estimate>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_packaging_default>=16.0dev,<16.1dev',
         'odoo-addon-mrp_planned_order_matrix>=16.0dev,<16.1dev',
         'odoo-addon-mrp_production_note>=16.0dev,<16.1dev',
         'odoo-addon-mrp_production_quant_manual_assign>=16.0dev,<16.1dev',
