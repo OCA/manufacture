@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_attribute_match_duplicate_kit
+#: model:res.groups,name:mrp_bom_attribute_match_duplicate_kit.group_mrp_bom_duplicate_access
+msgid "Can duplicate with kit"
+msgstr ""
+
+#. module: mrp_bom_attribute_match_duplicate_kit
 #: model_terms:ir.ui.view,arch_db:mrp_bom_attribute_match_duplicate_kit.product_template_kit_wizard
 msgid "Cancel"
 msgstr "Annulla"
@@ -100,4 +105,5 @@ msgstr ""
 #: code:addons/mrp_bom_attribute_match_duplicate_kit/models/product_template.py:0
 #, python-format
 msgid "This server action can be used only on products with variants"
-msgstr "Questa azione del server può essere usata solo su prodotti con varianti"
+msgstr ""
+"Questa azione del server può essere usata solo su prodotti con varianti"
