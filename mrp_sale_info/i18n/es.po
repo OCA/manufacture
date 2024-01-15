@@ -71,14 +71,8 @@ msgstr "Órdenes de manufacturación"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__production_ids
-#: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_order_form
 msgid "Production"
 msgstr "Producción"
-
-#. module: mrp_sale_info
-#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order__production_count
-msgid "Production Count"
-msgstr "Recuento de Producción"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
@@ -136,6 +130,9 @@ msgstr ""
 #: model:ir.model,name:mrp_sale_info.model_mrp_workorder
 msgid "Work Order"
 msgstr "Orden de trabajo"
+
+#~ msgid "Production Count"
+#~ msgstr "Recuento de Producción"
 
 #~ msgid ""
 #~ "Date by which the products are sure to be delivered. This is a date that "
