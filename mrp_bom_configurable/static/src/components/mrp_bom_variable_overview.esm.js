@@ -9,20 +9,20 @@ import {useService} from "@web/core/utils/hooks";
 
 const {EventBus, onWillStart, useSubEnv, useState} = owl;
 
-patch(BomOverviewTable.prototype, "test patch", {
+patch(BomOverviewTable.prototype, "Bom overview table config patch", {
     get showDomain() {
         return this.props.showOptions.domain;
     },
 });
 
-patch(BomOverviewTable.props.showOptions, "test patch 2", {
+patch(BomOverviewTable.props.showOptions, "Bom overview table option patch", {
     shape: {
         ...BomOverviewTable.props.showOptions.shape,
         domain: Boolean,
     },
 });
 
-patch(BomOverviewDisplayFilter.prototype, "test patch 2", {
+patch(BomOverviewDisplayFilter.prototype, "Bom overview display filter patch", {
     setup() {
         this.displayOptions = {
             availabilities: this.env._t("Availabilities"),
@@ -34,14 +34,18 @@ patch(BomOverviewDisplayFilter.prototype, "test patch 2", {
     },
 });
 
-patch(BomOverviewDisplayFilter.props.showOptions, "test patch 2", {
-    shape: {
-        ...BomOverviewTable.props.showOptions.shape,
-        domain: Boolean,
-    },
-});
+patch(
+    BomOverviewDisplayFilter.props.showOptions,
+    "Bom overview display filter option patch",
+    {
+        shape: {
+            ...BomOverviewTable.props.showOptions.shape,
+            domain: Boolean,
+        },
+    }
+);
 
-patch(BomOverviewLine.prototype, "test patch", {
+patch(BomOverviewLine.prototype, "Bom overview line patch", {
     get showDomain() {
         return this.props.showOptions.domain;
     },
@@ -51,14 +55,14 @@ patch(BomOverviewLine.prototype, "test patch", {
     },
 });
 
-patch(BomOverviewLine.props.showOptions, "test patch 2", {
+patch(BomOverviewLine.props.showOptions, "Bom overview line options patch", {
     shape: {
         ...BomOverviewTable.props.showOptions.shape,
         domain: Boolean,
     },
 });
 
-patch(BomOverviewComponent.prototype, "test patch 3", {
+patch(BomOverviewComponent.prototype, "Bom overview component patch", {
     setup() {
         this.orm = useService("orm");
         this.actionService = useService("action");
@@ -73,11 +77,11 @@ patch(BomOverviewComponent.prototype, "test patch 3", {
         this.state = useState({
             showOptions: {
                 uom: false,
-                domain: true,
+                domain: false,
                 availabilities: false,
                 costs: true,
-                operations: true,
-                leadTimes: true,
+                operations: false,
+                leadTimes: false,
                 attachments: false,
             },
             currentWarehouse: null,
@@ -96,6 +100,9 @@ patch(BomOverviewComponent.prototype, "test patch 3", {
             await this.initBomData();
         });
     },
+    getReportId() {
+        return "mrp_bom_configurable.report.mrp.report_bom_structure";
+    },
     async getBomData() {
         const args = [
             this.activeId,
@@ -105,12 +112,8 @@ patch(BomOverviewComponent.prototype, "test patch 3", {
         const context = this.state.currentWarehouse
             ? {warehouse: this.state.currentWarehouse.id}
             : {};
-        const bomData = await this.orm.call(
-            "mrp_bom_configurable.report.mrp.report_bom_structure",
-            "get_html",
-            args,
-            {context}
-        );
+        const reportId = this.getReportId();
+        const bomData = await this.orm.call(reportId, "get_html", args, {context});
         this.state.bomData = bomData.lines;
         this.state.showOptions.attachments = bomData.has_attachments;
         return bomData;

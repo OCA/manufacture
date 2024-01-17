@@ -10,6 +10,7 @@
     <field name='model'>input.line</field>
     <field name='arch' type='xml'>
         <tree editable="bottom" multi_edit="1">
+            <field name="configured_bom_id" invisible="1" />
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
             <button
@@ -19,10 +20,11 @@
                     title="Info"
                 />
             <button
-                    name="ui_configure"
-                    class="fa fa-gear"
+                    name="action_show_configured_bom"
+                    class="fa fa-cog"
                     type="object"
-                    title="Configure"
+                    title="Info"
+                    attrs="{'invisible': [('configured_bom_id', '=', False)]}"
                 />
             <field name="name" />
             <field name="count" />

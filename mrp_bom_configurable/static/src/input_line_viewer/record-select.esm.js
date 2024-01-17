@@ -1,10 +1,9 @@
 /** @odoo-module **/
 
-import {registry} from "@web/core/registry";
-import {useService} from "@web/core/utils/hooks";
 import {debounce} from "@web/core/utils/timing";
+import {useService} from "@web/core/utils/hooks";
 
-const {Component, useState, onMounted, useRef, onWillUpdateProps, onRendered} = owl;
+const {Component, useState, onMounted, useRef, onWillUpdateProps} = owl;
 
 class RecordItem extends Component {
     setup() {
@@ -37,7 +36,7 @@ export class RecordSelect extends Component {
         this.state.selectedValue = this.props.value;
 
         onWillUpdateProps((nextProps) => {
-            if (nextProps.value != this.props.value) {
+            if (nextProps.value !== this.props.value) {
                 this.state.selectedValue.display_name = nextProps.value.display_name;
                 this.state.selectedValue.id = nextProps.value.value;
             }
@@ -70,11 +69,11 @@ export class RecordSelect extends Component {
 
                 this.state.filteredValues = this.state.possibleValues.filter(
                     (item) =>
-                        searchTerms == "" || item.display_name.includes(searchTerms)
+                        searchTerms === "" || item.display_name.includes(searchTerms)
                 );
             });
 
-            document.addEventListener("click", (ev) => {
+            document.addEventListener("click", () => {
                 this.state.open = false;
             });
         });
@@ -96,7 +95,7 @@ export class RecordSelect extends Component {
     }
 
     searchPossibleValues() {
-        return new Promise(async (res, rej) => {
+        return new Promise(async (res) => {
             const ids = await this.orm.search(this.props.model, this.props.domain);
             const values = await this.orm.read(this.props.model, ids, [
                 "id",

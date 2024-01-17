@@ -33,15 +33,15 @@
                     </t>
                 </div>
                 <div class="input_line_alert" t-if="state.alert || state.message">
-                    <div t-esc="state.alert"></div>
-                    <div t-esc="state.message"></div>
+                    <div t-esc="state.alert" />
+                    <div t-esc="state.message" />
                 </div>
                 <div class="button_bar">
                     <button
                             class="btn btn-primary"
                             t-att-disabled="!state.dataChanged || state.saving"
                             t-on-click="save"
-                    >
+                        >
                         <t t-if="!state.saving">Save</t>
                         <t t-else="">...</t>
                     </button>
@@ -61,14 +61,14 @@
                         <tr>
                             <th>Component</th>
                             <th>Quantity</th>
-                            <th>Unit</th>
+                            <th id="unit_header">Unit</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr t-foreach="state.bomData.data" t-as="line" t-key="line.id">
                             <td t-esc="line.component" />
                             <td t-esc="line.quantity" />
-                            <td t-esc="line.unit" />
+                            <td id="unit_content" t-esc="line.unit" />
                         </tr>
                     </tbody>
                 </table>

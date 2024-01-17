@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, fields, models
+from odoo import _, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,16 @@ class MrpBomLine(models.Model):
         param, operator, value = element
         code = f"{repr(values[param])} {operator} {repr(value)}"
 
-        return safe_eval(code)
+        result = None
+
+        try:
+            result = safe_eval(code)
+        except SyntaxError:
+            raise exceptions.ValidationError(
+                f"Domain {self.domain} is incorrect on {self.product_id.name}"
+            ) from None
+
+        return result
 
     def execute_domain(self, domain, values):
         if domain[0] == "OR":
@@ -52,7 +61,8 @@ class MrpBomLine(models.Model):
             return True
         else:
             # TODO clean to support '&' and '|' in domain
-            domain = self.domain.replace("=", "==")
+            domain = self.domain.replace("'", '"')
+            domain = domain.replace('"="', '"=="')
             domain = domain.replace('"&", ', "")
             domain = domain.replace('"&",', "")
             domain = safe_eval(domain.replace("!==", "!="))

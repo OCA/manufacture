@@ -30,7 +30,7 @@ class InputLine(models.Model):
                         vals[element] = config[element]
         return super().create(vals_list)
 
-    def ui_configure(self):
+    def populate_bom_data_preview(self):
         self.ensure_one()
         elements = dict()
         for elm in CONFIG_ELEMENTS:

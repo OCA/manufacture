@@ -11,6 +11,10 @@ class Inputline(models.Model):
         comodel_name="mrp.bom",
         required=True,
     )
+    configured_bom_id = fields.Many2one(
+        comodel_name="mrp.bom",
+        string="Configured BoM",
+    )
     config_id = fields.Many2one(comodel_name="input.config", required=True)
     count = fields.Integer(default=1)
     alert = fields.Text(help="Outside limit configuration is reported here")
@@ -33,7 +37,7 @@ class Inputline(models.Model):
         vals = {"name": "%s copy" % self.name}
         self.copy(vals)
 
-    def _get_lines(self):
+    def _get_filtered_components_from_values(self):
         elements = dict()
         conf_names = dict()
         for elm in self._get_config_elements():
@@ -84,33 +88,64 @@ class Inputline(models.Model):
 
         return values
 
-    def check_one_data():
+    def check_one_data(self):
         pass
 
-    def ui_configure(self):
-        # TODO
+    def _create_report_dict_from_line(self, line):
+        return {
+            "id": line.id,
+            "component": line.product_id.display_name,
+            "quantity": line.product_qty,
+            "unit": line.product_uom_id.display_name,
+        }
+
+    def _create_bom_data_preview(self):
         self.ensure_one()
-        lines, conf_names = self._get_lines()
-        self.bom_data_preview = {
+        lines, conf_names = self._get_filtered_components_from_values()
+        return {
             "config_data": [
                 {"name": key, "display_name": conf_names[key]} for key in conf_names
             ],
-            "data": [
-                {
-                    "id": line.id,
-                    "component": line.product_id.display_name,
-                    "quantity": line.product_qty,
-                    "unit": line.product_uom_id.display_name,
-                }
-                for line in lines
-            ],
+            "data": [self._create_report_dict_from_line(line) for line in lines],
         }
+
+    def populate_bom_data_preview(self):
+        self.bom_data_preview = self._create_bom_data_preview()
 
     def get_json(self):
         self.ensure_one()
-        if not self.bom_data_preview:
-            self.ui_configure()
+        self.populate_bom_data_preview()
         return self.bom_data_preview
+
+    def create_bom_from_line(self):
+        self.ensure_one()
+        components, _ = self._get_filtered_components_from_values()
+        component_ids = [c.id for c in components]
+        new_product = self.env["product.template"].create(
+            {
+                "name": f"{self.config_id.name} - {self.name}",
+            }
+        )
+        new_bom = self.env["mrp.bom"].create(
+            {
+                "configuration_type": "configured",
+                "product_qty": self.count,
+                "product_tmpl_id": new_product.id,
+                "bom_line_ids": [(6, 0, component_ids)],
+            }
+        )
+        self.configured_bom_id = new_bom.id
+
+    def action_show_configured_bom(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "mrp.bom",
+            "view_mode": "form",
+            "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form").id,
+            "res_id": self.configured_bom_id.id,
+            "target": "new",
+        }
 
     @api.depends("bom_id", "count")
     def _compute_check(self):

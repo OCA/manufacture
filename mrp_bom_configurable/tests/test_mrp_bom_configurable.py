@@ -75,6 +75,7 @@ class TestBomConfigurable(TransactionCase):
         cls.input_config = cls.input_config_obj.create(
             {
                 "name": "Test config",
+                "bom_id": cls.bom.id,
             }
         )
         cls.input_line = cls.input_config_line_obj.create(
@@ -95,8 +96,8 @@ class TestBomConfigurable(TransactionCase):
         )
 
     def test_01_configurable_bom(self):
-        self.input_line.ui_configure()
-        self.input_line_2.ui_configure()
+        self.input_line.populate_bom_data_preview()
+        self.input_line_2.populate_bom_data_preview()
         boms = self.env["mrp.bom"].search([("configuration_type", "=", "configured")])
         self.assertEqual(len(boms), 2)
         self.assertEqual(len(boms[0].bom_line_ids), 2)

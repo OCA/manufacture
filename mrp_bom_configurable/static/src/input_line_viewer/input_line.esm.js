@@ -1,14 +1,12 @@
 /** @odoo-module **/
 
-import {registry} from "@web/core/registry";
-import {getDefaultConfig} from "@web/views/view";
+import {InputLineSelect} from "./select.esm";
 import {Layout} from "@web/search/layout";
 import {Notebook} from "@web/core/notebook/notebook";
-import {useService} from "@web/core/utils/hooks";
-import {x2ManyCommands} from "@web/core/orm_service";
-
-import {InputLineSelect} from "./select.esm";
 import {RecordSelect} from "./record-select.esm";
+import {getDefaultConfig} from "@web/views/view";
+import {registry} from "@web/core/registry";
+import {useService} from "@web/core/utils/hooks";
 
 const {Component, useSubEnv, useState, onWillStart, useRef, onMounted} = owl;
 
@@ -37,11 +35,9 @@ class InputLine extends Component {
 
         onWillStart(async () => {
             await this.getInputLineData();
-            const check = await this.orm.call(
-                "input.line",
-                "check_one_data",
-                [this.activeId]
-            );
+            const check = await this.orm.call("input.line", "check_one_data", [
+                this.activeId,
+            ]);
             this.state.alert = check[0];
             this.state.message = check[1];
         });
@@ -80,32 +76,20 @@ class InputLine extends Component {
 
         const data = {};
         this.state.inputLineData.forEach((element) => {
-            if (element.type == "many2one") {
+            if (element.type === "many2one") {
                 data[element.name] = element.value;
-            }
-            else {
+            } else {
                 data[element.name] = element.value;
             }
         });
 
-        await this.orm.write(
-            "input.line",
-            [this.activeId],
-            data,
-        );
-        await this.orm.call(
-            "input.line",
-            "ui_configure",
-            [this.activeId]
-        );
+        await this.orm.write("input.line", [this.activeId], data);
 
         await this.getInputLineData();
 
-        const check = await this.orm.call(
-            "input.line",
-            "check_one_data",
-            [this.activeId]
-        );
+        const check = await this.orm.call("input.line", "check_one_data", [
+            this.activeId,
+        ]);
         this.state.alert = check[0];
         this.state.message = check[1];
 
@@ -130,4 +114,3 @@ InputLine.components = {Layout, Notebook, InputLineSelect, RecordSelect};
 InputLine.template = "input_line.clientaction";
 
 registry.category("lazy_components").add("InputLine", InputLine);
-
