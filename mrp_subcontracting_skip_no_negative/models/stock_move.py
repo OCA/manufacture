@@ -14,11 +14,21 @@ class StockMove(models.Model):
         # For rather unlikely occassions where linked production is not in the right
         # state.
         for move in moves_with_no_check:
-            production_move = self.search([("move_dest_ids", "=", move.id)])
-            production = production_move.production_id
-            if production.reservation_state != "assigned":
-                production.action_assign()
-            if production.reservation_state == "assigned":
+            production_moves = self.search(
+                [
+                    ("move_dest_ids", "=", move.id),
+                    ("state", "not in", ("done", "cancel")),
+                ]
+            )
+            productions = production_moves.production_id
+            unassigned_productions = productions.filtered(
+                lambda p: p.reservation_state != "assigned"
+            )
+            unassigned_productions.action_assign()
+            if all(
+                state == "assigned"
+                for state in unassigned_productions.mapped("reservation_state")
+            ):
                 continue
             moves_with_no_check -= move
         res = super(StockMove, self - moves_with_no_check)._action_done(
