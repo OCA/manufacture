@@ -32,14 +32,5 @@ class StockRule(models.Model):
         )
         move_dest_ids = values.get("move_dest_ids")
         if move_dest_ids:
-            origin_move = self._find_origin_move(move_dest_ids[0])
-            if origin_move and origin_move.raw_material_production_id.owner_id:
-                vals["owner_id"] = origin_move.raw_material_production_id.owner_id.id
+            vals["owner_id"] = move_dest_ids[0].raw_material_production_id.owner_id.id
         return vals
-
-    def _find_origin_move(self, move):
-        # Recursively find the very first (origin) move using move_dest_ids
-        if move.move_dest_ids:
-            return self._find_origin_move(move.move_dest_ids[0])
-        else:
-            return move
