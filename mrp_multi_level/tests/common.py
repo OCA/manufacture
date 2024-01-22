@@ -26,6 +26,8 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls.mrp_inventory_obj = cls.env["mrp.inventory"]
         cls.mrp_move_obj = cls.env["mrp.move"]
         cls.planned_order_obj = cls.env["mrp.planned.order"]
+        cls.lot_model = cls.env["stock.production.lot"]
+        cls.quant_model = cls.env["stock.quant"]
 
         cls.fp_1 = cls.env.ref("mrp_multi_level.product_product_fp_1")
         cls.fp_2 = cls.env.ref("mrp_multi_level.product_product_fp_2")
@@ -221,6 +223,53 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls.product_mrp_area_obj.create(
             {"product_id": cls.prod_uom_test.id, "mrp_area_id": cls.mrp_area.id}
         )
+        # Product to test lots
+        cls.product_lots = cls.product_obj.create(
+            {
+                "name": "Product Tracked by Lots",
+                "type": "product",
+                "tracking": "lot",
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "list_price": 100.0,
+                "produce_delay": 5.0,
+                "route_ids": [(6, 0, [route_buy])],
+                "seller_ids": [(0, 0, {"name": vendor1.id, "price": 25.0})],
+            }
+        )
+        cls.product_mrp_area_obj.create(
+            {"product_id": cls.product_lots.id, "mrp_area_id": cls.mrp_area.id}
+        )
+        cls.lot_1 = cls.lot_model.create(
+            {
+                "product_id": cls.product_lots.id,
+                "name": "Lot 1",
+                "company_id": cls.company.id,
+            }
+        )
+        cls.lot_2 = cls.lot_model.create(
+            {
+                "product_id": cls.product_lots.id,
+                "name": "Lot 2",
+                "company_id": cls.company.id,
+            }
+        )
+        cls.quant_model.sudo().create(
+            {
+                "product_id": cls.product_lots.id,
+                "lot_id": cls.lot_1.id,
+                "quantity": 100.0,
+                "location_id": cls.stock_location.id,
+            }
+        )
+        cls.quant_model.sudo().create(
+            {
+                "product_id": cls.product_lots.id,
+                "lot_id": cls.lot_2.id,
+                "quantity": 110.0,
+                "location_id": cls.stock_location.id,
+            }
+        )
+
         # Product MRP Parameter to test supply method computation
         cls.env.ref("stock.route_warehouse0_mto").active = True
         cls.env["stock.rule"].create(
@@ -453,6 +502,9 @@ class TestMrpMultiLevelCommon(SavepointCase):
         cls.create_demand_sec_loc(cls.date_10, 70.0)
         cls.create_demand_sec_loc(cls.date_20, 46.0)
         cls.create_demand_sec_loc(cls.date_22, 33.0)
+
+        # Create pickings:
+        cls._create_picking_out(cls.product_lots, 25, today)
 
         cls.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
 
