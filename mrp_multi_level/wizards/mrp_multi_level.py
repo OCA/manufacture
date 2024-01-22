@@ -24,23 +24,6 @@ class MultiLevelMrp(models.TransientModel):
     )
 
     @api.model
-    def _prepare_product_mrp_area_data(self, product_mrp_area):
-        qty_available = 0.0
-        product_obj = self.env["product.product"]
-        location_ids = product_mrp_area._get_locations()
-        for location in location_ids:
-            product_l = product_obj.with_context({"location": location.id}).browse(
-                product_mrp_area.product_id.id
-            )
-            qty_available += product_l.qty_available
-
-        return {
-            "product_mrp_area_id": product_mrp_area.id,
-            "mrp_qty_available": qty_available,
-            "mrp_llc": product_mrp_area.product_id.llc,
-        }
-
-    @api.model
     def _prepare_mrp_move_data_from_stock_move(
         self, product_mrp_area, move, direction="in"
     ):
@@ -893,9 +876,7 @@ class MultiLevelMrp(models.TransientModel):
             [("product_mrp_area_id", "=", product_mrp_area.id)], order="due_date"
         ).mapped("due_date")
         mrp_dates = set(moves_dates + action_dates)
-        on_hand_qty = product_mrp_area.product_id.with_context(
-            location=product_mrp_area._get_locations().ids
-        )._product_available()[product_mrp_area.product_id.id]["qty_available"]
+        on_hand_qty = product_mrp_area.qty_available
         running_availability = on_hand_qty
         mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
