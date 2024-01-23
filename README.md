@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 14.0.1.0.0 |  | Production - Manual Quant Assignment
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 14.0.1.1.0 |  | MRP Production Serial Matrix
 [mrp_progress_button](mrp_progress_button/) | 14.0.1.1.0 |  | Add a button on MO to make the MO state 'In Progress'
+[mrp_repair_reuse_component](mrp_repair_reuse_component/) | 14.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Allow to reuse component in manufacturing after removal in repair
 [mrp_restrict_lot](mrp_restrict_lot/) | 14.0.1.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
 [mrp_routing](mrp_routing/) | 14.0.1.0.1 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | MRP Routing
 [mrp_sale_info](mrp_sale_info/) | 14.0.2.2.0 |  | Adds sale information to Manufacturing models

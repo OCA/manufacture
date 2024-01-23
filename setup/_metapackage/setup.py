@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo14-addon-mrp_production_quant_manual_assign',
         'odoo14-addon-mrp_production_serial_matrix',
         'odoo14-addon-mrp_progress_button',
+        'odoo14-addon-mrp_repair_reuse_component',
         'odoo14-addon-mrp_restrict_lot',
         'odoo14-addon-mrp_routing',
         'odoo14-addon-mrp_sale_info',
