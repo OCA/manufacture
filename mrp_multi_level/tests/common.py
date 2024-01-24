@@ -15,6 +15,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.po_obj = cls.env["purchase.order"]
         cls.product_obj = cls.env["product.product"]
         cls.loc_obj = cls.env["stock.location"]
+        cls.quant_obj = cls.env["stock.quant"]
         cls.mrp_area_obj = cls.env["mrp.area"]
         cls.product_mrp_area_obj = cls.env["product.mrp.area"]
         cls.partner_obj = cls.env["res.partner"]
