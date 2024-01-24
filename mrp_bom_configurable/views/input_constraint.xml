@@ -6,7 +6,7 @@
     <field name="arch" type="xml">
         <form>
             <header />
-            <sheet>
+            <sheet name="form">
                 <group name="main">
                     <group name="left">
                         <field name="bom_domain" invisible="1" />
