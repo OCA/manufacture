@@ -141,6 +141,7 @@ msgstr "Aktuelle Menge"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__date
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "Date"
 msgstr "Datum"
 
