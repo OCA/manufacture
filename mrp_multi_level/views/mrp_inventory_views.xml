@@ -143,6 +143,11 @@
                         context="{'group_by':'main_supplier_id'}"
                     />
                     <filter
+                        name="group_date"
+                        string="Date"
+                        context="{'group_by':'date'}"
+                    />
+                    <filter
                         name="group_release_date"
                         string="Date to Procure"
                         context="{'group_by':'order_release_date'}"
