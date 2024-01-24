@@ -125,8 +125,6 @@ class Inputline(models.Model):
                 "name": f"{self.config_id.name} - {self.name}",
             }
         )
-        new_bom_lines = []
-
         new_bom = self.env["mrp.bom"].create(
             {
                 "configuration_type": "configured",
@@ -135,13 +133,23 @@ class Inputline(models.Model):
             }
         )
 
+        new_bom_lines = []
+        price = 0
+
         for comp in components:
+            quantity = comp.compute_qty_from_formula(self) if comp.use_formula_compute_qty else comp.product_qty
+            quantity *= self.count
+            price += quantity * comp.product_id.lst_price
             new_bom_line = self.env["mrp.bom.line"].create({
                 "product_tmpl_id": comp.product_tmpl_id.id,
                 "product_id": comp.product_id.id,
+                "product_qty": quantity,
                 "bom_id": new_bom.id,
             })
             new_bom_lines.append(new_bom_line.id)
+
+        new_product.product_variant_id.lst_price = price
+
         self.configured_bom_id = new_bom.id
 
     def action_show_configured_bom(self):
