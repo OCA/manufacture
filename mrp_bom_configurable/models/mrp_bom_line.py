@@ -10,8 +10,12 @@ class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     domain = fields.Text(help="Odoo syntax domain only")
-    use_formula_compute_qty = fields.Boolean(string="Use formula to compute qty", default=False, required=False)
-    qty_formula = fields.Text(string="Quantity formula", help="Formula to compute", default="result = qty")
+    use_formula_compute_qty = fields.Boolean(
+        string="Use formula to compute qty", default=False, required=False
+    )
+    qty_formula = fields.Text(
+        string="Quantity formula", help="Formula to compute", default="result = qty"
+    )
     condition = fields.Text(help="Comment explaining domain if needed")
 
     def _create_context(self, input_line):
@@ -28,7 +32,6 @@ class MrpBomLine(models.Model):
 
     def _run_formula(self, eval_context):
         safe_eval(self.qty_formula.strip(), eval_context, mode="exec", nocopy=True)
-        pass
 
     @api.constrains(qty_formula)
     def _check_formula(self):

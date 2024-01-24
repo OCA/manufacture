@@ -17,7 +17,11 @@
                     />
                     <field name="condition" />
                     <field name="use_formula_compute_qty" />
-                    <field name="qty_formula"  widget="ace" attrs="{'invisible': [('use_formula_compute_qty', '=', False)]}"/>
+                    <field
+                        name="qty_formula"
+                        widget="ace"
+                        attrs="{'invisible': [('use_formula_compute_qty', '=', False)]}"
+                    />
                 </group>
             </xpath>
         </field>

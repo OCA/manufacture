@@ -50,6 +50,7 @@
     <record id="input_config_1" model="input.config">
         <field name="name">test</field>
         <field name="partner_id" ref="res_partner_1" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
     </record>
     <record id="input_config_line_1" model="input.line">
         <field name="name">test line</field>
