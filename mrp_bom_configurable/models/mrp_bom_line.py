@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 logger = logging.getLogger(__name__)
@@ -10,7 +10,34 @@ class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     domain = fields.Text(help="Odoo syntax domain only")
+    use_formula_compute_qty = fields.Boolean(string="Use formula to compute qty", default=False, required=False)
+    qty_formula = fields.Text(string="Quantity formula", help="Formula to compute", default="result = qty")
     condition = fields.Text(help="Comment explaining domain if needed")
+
+    def _create_context(self, input_line):
+        context = {
+            "qty": self.product_qty,
+        }
+        params = input_line._get_config_elements()
+
+        for param in params:
+            if not input_line._fields[param].relational:
+                context[param] = input_line[param]
+
+        return context
+
+    def _run_formula(self, eval_context):
+        safe_eval(self.qty_formula.strip(), eval_context, mode="exec", nocopy=True)
+        pass
+
+    @api.constrains(qty_formula)
+    def _check_formula(self):
+        pass
+
+    def compute_qty_from_formula(self, input_line):
+        eval_context = self._create_context(input_line)
+        self._run_formula(eval_context)
+        return eval_context.get("result", self.product_qty)
 
     def goto_configurable_bom_report(self):
         self.ensure_one()
