@@ -8,7 +8,7 @@
             ref="mrp.mrp_production_workorder_tree_editable_view"
         />
         <field name="arch" type="xml">
-            <field name="date_planned_start" position="after">
+            <field name="date_start" position="after">
                 <field name="sale_id" />
                 <field name="partner_id" />
                 <field name="commitment_date" />
