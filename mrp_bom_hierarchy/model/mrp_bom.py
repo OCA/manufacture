@@ -184,9 +184,13 @@ class MrpBomLine(models.Model):
     def action_open_product_bom_tree_view(self):
         self.ensure_one()
         res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
-        res["domain"] = (
-            "[('id', 'in', [" + ",".join(map(str, self.child_bom_id.ids)) + "])]"
-        )
+        if len(self.child_bom_id) == 1:
+            res["res_id"] = self.child_bom_id[0].id
+            res["views"] = [(False, "form")]
+        else:
+            res["domain"] = (
+                "[('id', 'in', [" + ",".join(map(str, self.child_bom_id.ids)) + "])]"
+            )
         return res
 
     @api.model
