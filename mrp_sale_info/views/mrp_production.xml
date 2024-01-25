@@ -21,7 +21,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
-            <field name="date_planned_start" position="after">
+            <field name="date_start" position="after">
                 <field name="sale_id" optional="show" />
                 <field name="partner_id" optional="show" />
                 <field name="commitment_date" optional="hide" />
