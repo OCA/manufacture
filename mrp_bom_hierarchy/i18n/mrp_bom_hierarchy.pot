@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -76,16 +76,12 @@ msgstr ""
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#, python-format
 msgid "This operator is not supported"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#, python-format
 msgid "Value should be True or False (not %s)"
 msgstr ""
 
@@ -102,7 +98,6 @@ msgstr ""
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom_line.py:0
-#, python-format
 msgid ""
 "You should provide either a product or a product template to search a BoM "
 "Line"
