@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2018-01-15 01:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2024-01-26 18:30+0000\n"
+"Last-Translator: Wesley Oliveira <wesleygabrieldeoliveira@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_line
@@ -667,17 +668,17 @@ msgstr "Produto associado a inspeção."
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection_line__question_type__qualitative
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test_question__type__qualitative
 msgid "Qualitative"
-msgstr "Quantitativo"
+msgstr "Qualitativo"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__qualitative_value
 msgid "Qualitative value"
-msgstr "Valor quantitativo"
+msgstr "Valor qualitativo"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__ql_values
 msgid "Qualitative values"
-msgstr "Valores quantitativos"
+msgstr "Valores qualitativos"
 
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu
