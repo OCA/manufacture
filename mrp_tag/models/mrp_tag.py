@@ -18,8 +18,8 @@ class MrpTag(models.Model):
 
     name = fields.Char("Tag Name", required=True, translate=True)
     color = fields.Integer(default=lambda self: self._get_default_color())
-    parent_id = fields.Many2one("purchase.tag", index=True, ondelete="cascade")
-    child_ids = fields.One2many("purchase.tag", "parent_id")
+    parent_id = fields.Many2one("mrp.tag", index=True, ondelete="cascade")
+    child_ids = fields.One2many("mrp.tag", "parent_id")
     parent_path = fields.Char(index=True)
 
     _sql_constraints = [
