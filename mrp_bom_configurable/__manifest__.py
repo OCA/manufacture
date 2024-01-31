@@ -17,6 +17,8 @@
         "views/input_constraint.xml",
         "views/bom.xml",
         "views/bom_line.xml",
+        "views/input_line_wizard.xml",
+        "views/sale_order.xml",
         "report/report.xml",
         "report/bom_configurable.xml",
         "security/ir.model.access.csv",

@@ -3,6 +3,8 @@ from . import input_line
 from . import input_constraint
 from . import mrp_bom
 from . import mrp_bom_line
+from . import input_line_wizard
+from . import sale_order
 
 from odoo.tools import config
 

@@ -120,21 +120,26 @@ class Inputline(models.Model):
     def create_bom_from_line(self):
         self.ensure_one()
         components, _ = self._get_filtered_components_from_values()
-        new_product = self.env["product.template"].create(
-            {
-                "name": f"{self.config_id.name} - {self.name}",
-            }
-        )
-        new_bom = self.env["mrp.bom"].create(
-            {
-                "configuration_type": "configured",
-                "product_qty": self.count,
-                "product_tmpl_id": new_product.id,
-            }
-        )
-
         new_bom_lines = []
         price = 0
+
+        if len(self.configured_bom_id) == 0:
+            new_product = self.env["product.template"].create(
+                {
+                    "name": f"{self.config_id.name} - {self.name}",
+                }
+            )
+            new_bom = self.env["mrp.bom"].create(
+                {
+                    "configuration_type": "configured",
+                    "product_qty": self.count,
+                    "product_tmpl_id": new_product.id,
+                }
+            )
+
+            self.configured_bom_id = new_bom.id
+        else:
+            self.configured_bom_id.bom_line_ids.unlink()
 
         for comp in components:
             quantity = (
@@ -149,14 +154,12 @@ class Inputline(models.Model):
                     "product_tmpl_id": comp.product_tmpl_id.id,
                     "product_id": comp.product_id.id,
                     "product_qty": quantity,
-                    "bom_id": new_bom.id,
+                    "bom_id": self.configured_bom_id.id,
                 }
             )
             new_bom_lines.append(new_bom_line.id)
 
-        new_product.product_variant_id.lst_price = price
-
-        self.configured_bom_id = new_bom.id
+        self.configured_bom_id.product_tmpl_id.product_variant_id.lst_price = price
 
     def action_show_configured_bom(self):
         self.ensure_one()

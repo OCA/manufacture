@@ -45,9 +45,11 @@
                     <!-- Set custom config fields in these groups -->
                     <group name="right" />
                 </group>
-                <group>
-                    <field name="line_ids" string="Products" />
-                </group>
+                <notebook>
+                    <page name="Product">
+                        <field name="line_ids" string="Products" />
+                    </page>
+                </notebook>
             </sheet>
             <div class="oe_chatter">
                 <field name="message_follower_ids" widget="mail_followers" />

@@ -48,6 +48,10 @@ class InputConfig(models.Model):
             for line in rec.line_ids:
                 line.create_bom_from_line()
 
+    def open_input_line_wizard(self):
+        self.ensure_one()
+        self.ref("mrp_bom_configurable.input_line_wizard_form_action")
+
     def show_lines(self):
         self.ensure_one()
         return {
