@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
 Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
 @author: BADEP
@@ -9,32 +9,84 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
   <record id="mrp_bom_form_view_section" model="ir.ui.view">
       <field name="model">mrp.bom</field>
-      <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+      <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
       <field name="arch" type="xml">
         <!-- Add new page -->
           <xpath expr="//page[1]" position="before">
             <page string="Components with sections and notes">
-                <field name="bom_line_with_sectionnote_ids" widget="section_and_note_one2many" context="{'default_parent_product_tmpl_id': product_tmpl_id}">
+                <field
+                        name="bom_line_with_sectionnote_ids"
+                        widget="section_and_note_one2many"
+                        context="{'default_parent_product_tmpl_id': product_tmpl_id}"
+                    >
                     <tree string="Components" editable="bottom">
                         <control>
-                            <create name="add_product_control" string="Add a product"/>
-                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
-                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                            <create name="add_product_control" string="Add a product" />
+                            <create
+                                    name="add_section_control"
+                                    string="Add a section"
+                                    context="{'default_display_type': 'line_section'}"
+                                />
+                            <create
+                                    name="add_note_control"
+                                    string="Add a note"
+                                    context="{'default_display_type': 'line_note'}"
+                                />
                         </control>
-                        <field name="sequence" widget="handle"/>
-                        <field name="display_type" invisible="1"/>
-                        <field name="product_id" context="{'default_type': 'product'}" attrs="{'required': [('display_type', '=', False)]}"/>
-                        <field name="name" widget="section_and_note_text"/>
-                        <field name="has_attachments" invisible="1"/>
-                        <button name="action_see_attachments" type="object" icon="fa-files-o" attrs="{'invisible': [('has_attachments', '=', True)]}" aria-label="No attachment" title="No attachment"/>
-                        <button name="action_see_attachments" type="object" icon="fa-file" attrs="{'invisible': [('has_attachments', '=', False)]}" aria-label="Attachments" title="Attachments"/>
-                        <field name="product_qty" attrs="{'required': [('display_type', '=', False)]}"/>
-                        <field name="parent_product_tmpl_id" invisible="1"/>
-                        <field name="valid_product_attribute_value_ids" invisible="1"/>
-                        <field name="valid_product_attribute_value_wnva_ids" invisible="1"/>
-                        <field name="product_uom_id" options="{'no_open':True,'no_create':True}" groups="uom.group_uom"/>
-                        <field name="attribute_value_ids" widget="many2many_tags" domain="[('id', 'in', valid_product_attribute_value_wnva_ids)]" options="{'no_create': True}" attrs="{'column_invisible': [('parent.product_id', '!=', False)]}" groups="product.group_product_variant"/>
-                        <field name="operation_id" groups="mrp.group_mrp_routings" domain="[('routing_id', '=', parent.routing_id)]" options="{'no_quick_create':True,'no_create_edit':True}"/>
+                        <field name="sequence" widget="handle" />
+                        <field name="display_type" invisible="1" />
+                        <field
+                                name="product_id"
+                                context="{'default_type': 'product'}"
+                                attrs="{'required': [('display_type', '=', False)]}"
+                            />
+                        <field name="name" widget="section_and_note_text" />
+                        <field name="has_attachments" invisible="1" />
+                        <button
+                                name="action_see_attachments"
+                                type="object"
+                                icon="fa-files-o"
+                                attrs="{'invisible': [('has_attachments', '=', True)]}"
+                                aria-label="No attachment"
+                                title="No attachment"
+                            />
+                        <button
+                                name="action_see_attachments"
+                                type="object"
+                                icon="fa-file"
+                                attrs="{'invisible': [('has_attachments', '=', False)]}"
+                                aria-label="Attachments"
+                                title="Attachments"
+                            />
+                        <field
+                                name="product_qty"
+                                attrs="{'required': [('display_type', '=', False)]}"
+                            />
+                        <field name="parent_product_tmpl_id" invisible="1" />
+                        <field name="valid_product_attribute_value_ids" invisible="1" />
+                        <field
+                                name="valid_product_attribute_value_wnva_ids"
+                                invisible="1"
+                            />
+                        <field
+                                name="product_uom_id"
+                                options="{'no_open':True,'no_create':True}"
+                                groups="uom.group_uom"
+                            />
+                        <field
+                                name="attribute_value_ids"
+                                widget="many2many_tags"
+                                domain="[('id', 'in', valid_product_attribute_value_wnva_ids)]"
+                                options="{'no_create': True}"
+                                attrs="{'column_invisible': [('parent.product_id', '!=', False)]}"
+                                groups="product.group_product_variant"
+                            />
+                        <field
+                                name="operation_id"
+                                groups="mrp.group_mrp_routings"
+                                domain="[('routing_id', '=', parent.routing_id)]"
+                                options="{'no_quick_create':True,'no_create_edit':True}"
+                            />
                     </tree>
                 </field>
             </page>

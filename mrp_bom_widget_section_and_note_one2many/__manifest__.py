@@ -8,8 +8,7 @@
     "summary": "Add section and note in Bills of Materials",
     "version": "12.0.1.1.0",
     "category": "Manufacturing/Manufacturing",
-    "author": "GRAP,"
-              "Odoo Community Association (OCA)",
+    "author": "GRAP," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": [
