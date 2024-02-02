@@ -22,12 +22,15 @@ class MrpBomLine(models.Model):
     )
 
     _sql_constraints = [
-        ('bom_required_fields',
+        (
+            "bom_required_fields",
             "CHECK(display_type IS NOT NULL OR"
             "(product_id IS NOT NULL AND product_qty IS NOT NULL))",
-            "Missing required fields on bom line."),
-        ('non_bom_null_fields',
-            "CHECK(display_type IS NULL OR"
-            "(product_id IS NULL AND product_qty = 1))",
-            "Forbidden values on note and section bom line"),
+            "Missing required fields on bom line.",
+        ),
+        (
+            "non_bom_null_fields",
+            "CHECK(display_type IS NULL OR" "(product_id IS NULL AND product_qty = 1))",
+            "Forbidden values on note and section bom line",
+        ),
     ]
