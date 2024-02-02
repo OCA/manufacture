@@ -14,6 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__child_ids
+msgid "Child"
+msgstr ""
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__color
+msgid "Color"
+msgstr ""
+
+#. module: mrp_tag
 #: model_terms:ir.actions.act_window,help:mrp_tag.mrp_tag_action
 msgid "Create new tags for your manufacture order"
 msgstr ""
@@ -59,13 +69,23 @@ msgid "MRP Tag"
 msgstr ""
 
 #. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_path
+msgid "Parent Path"
+msgstr ""
+
+#. module: mrp_tag
 #: model:ir.model,name:mrp_tag.model_mrp_production
 msgid "Production Order"
 msgstr ""
 
 #. module: mrp_tag
-#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__color
-msgid "Tag Color"
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_production_filter
+msgid "Tag"
 msgstr ""
 
 #. module: mrp_tag
@@ -84,4 +104,11 @@ msgstr ""
 #: model:ir.ui.menu,name:mrp_tag.menu_mrp_tag_config
 #: model_terms:ir.ui.view,arch_db:mrp_tag.mrp_tag_view_form
 msgid "Tags"
+msgstr ""
+
+#. module: mrp_tag
+#. odoo-python
+#: code:addons/mrp_tag/models/mrp_tag.py:0
+#, python-format
+msgid "Tags cannot be recursive."
 msgstr ""
