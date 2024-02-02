@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [mrp_sale_info](mrp_sale_info/) | 15.0.1.0.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_lot_number_propagation](mrp_subcontracting_lot_number_propagation/) | 15.0.0.1.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a serial number from a component to a finished product (subcontracting integration)
 [mrp_subcontracting_no_negative](mrp_subcontracting_no_negative/) | 15.0.0.1.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Disallow negative stock levels in subcontractor locations.
-[mrp_tag](mrp_tag/) | 15.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
+[mrp_tag](mrp_tag/) | 15.0.1.1.0 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 15.0.1.0.1 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [mrp_workcenter_category](mrp_workcenter_category/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Adds a category to workcenters
 [mrp_workorder_lock_planning](mrp_workorder_lock_planning/) | 15.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Lock the planning of a MRP workorder to avoid rescheduling
