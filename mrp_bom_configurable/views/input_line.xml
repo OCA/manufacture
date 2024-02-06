@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-<record id="action_show_input_line" model="ir.actions.act_window">
-    <field name="name">Input line information</field>
-    <field name="res_model">input.line</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-</record>
-
 <record id="input_line_form_window" model="ir.ui.view">
     <field name="name">input.line.form.window</field>
     <field name="model">input.line</field>
@@ -33,9 +26,9 @@
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
             <button
-                    name="%(action_show_input_line)d"
+                    name="open_form_pop_up"
                     class="fa fa-eye"
-                    type="action"
+                    type="object"
                     title="Info"
                 />
             <button

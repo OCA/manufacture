@@ -10,6 +10,12 @@
                         widget="statusbar"
                         statusbar_visible="draft,pending,confirmed"
                     />
+                <button
+                        name="open_input_line_wizard"
+                        string="Create line"
+                        type="object"
+                        class="oe_highlight"
+                    />
             </header>
             <sheet>
                 <div class="oe_button_box" name="button_box">

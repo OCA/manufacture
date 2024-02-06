@@ -117,6 +117,17 @@ class Inputline(models.Model):
         self.populate_bom_data_preview()
         return self.bom_data_preview
 
+    def open_form_pop_up(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Input line information",
+            "res_model": "input.line",
+            "view_mode": "form",
+            "target": "new",
+            "res_id": self.id,
+        }
+
     def create_bom_from_line(self):
         self.ensure_one()
         components, _ = self._get_filtered_components_from_values()
