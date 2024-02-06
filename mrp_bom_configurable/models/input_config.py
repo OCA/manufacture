@@ -1,3 +1,5 @@
+import json
+
 from odoo import api, fields, models
 
 
@@ -48,10 +50,15 @@ class InputConfig(models.Model):
             for line in rec.line_ids:
                 line.create_bom_from_line()
 
+    def _get_wizard_context(self):
+        return {
+            "active_id": self.id,
+        }
+
     def open_input_line_wizard(self):
         self.ensure_one()
         view = self.env.ref("mrp_bom_configurable.input_line_form_wizard_action")
-        view.context = f"{{'active_id': {self.id} }}"
+        view.context = json.dumps(self._get_wizard_context())
         return view.read()[0]
 
     def show_lines(self):
