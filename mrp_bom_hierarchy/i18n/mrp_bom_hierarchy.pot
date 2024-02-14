@@ -54,11 +54,6 @@ msgid "Has sub BoM"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
-msgid "Internal Reference"
-msgstr ""
-
-#. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
 msgid "Is component"
 msgstr ""

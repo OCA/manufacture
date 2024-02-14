@@ -8,7 +8,6 @@ from odoo.exceptions import UserError
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
-    _order = "sequence, code, product_default_code, id"
 
     @api.depends("bom_line_ids.bom_id", "product_id", "product_tmpl_id")
     def _compute_product_has_other_bom(self):
@@ -82,20 +81,6 @@ class MrpBom(models.Model):
                 ids.append(bom.id)
         return [("id", "in", ids)]
 
-    @api.depends(
-        "product_id",
-        "product_id.default_code",
-        "product_id.product_tmpl_id.default_code",
-        "product_tmpl_id.default_code",
-    )
-    def _compute_product_default_code(self):
-        for bom in self:
-            bom.product_default_code = (
-                bom.product_id.default_code
-                or bom.product_id.product_tmpl_id.default_code
-                or bom.product_tmpl_id.default_code
-            )
-
     child_bom_ids = fields.One2many("mrp.bom", compute="_compute_child_bom_ids")
     parent_bom_ids = fields.One2many("mrp.bom", compute="_compute_parent_bom_ids")
     has_child = fields.Boolean(
@@ -111,11 +96,6 @@ class MrpBom(models.Model):
     product_has_other_bom = fields.Boolean(
         string="Product has other BoMs",
         compute="_compute_product_has_other_bom",
-    )
-    product_default_code = fields.Char(
-        string="Internal Reference",
-        compute="_compute_product_default_code",
-        store="True",
     )
 
     def action_open_child_tree_view(self):
