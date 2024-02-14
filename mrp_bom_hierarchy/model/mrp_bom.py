@@ -88,7 +88,7 @@ class MrpBom(models.Model):
         "product_id.product_tmpl_id.default_code",
         "product_tmpl_id.default_code",
     )
-    def _compute_internal_reference(self):
+    def _compute_product_default_code(self):
         for bom in self:
             bom.product_default_code = (
                 bom.product_id.default_code
@@ -114,7 +114,7 @@ class MrpBom(models.Model):
     )
     product_default_code = fields.Char(
         string="Internal Reference",
-        compute="_compute_internal_reference",
+        compute="_compute_product_default_code",
         store="True",
     )
 
@@ -164,105 +164,3 @@ class MrpBom(models.Model):
             "[('id', 'in', [" + ",".join(map(str, product_bom_ids.ids)) + "])]"
         )
         return res
-
-
-class MrpBomLine(models.Model):
-    _inherit = "mrp.bom.line"
-
-    has_bom = fields.Boolean(
-        string="Has sub BoM",
-        compute="_compute_child_bom_id",
-    )
-
-    @api.depends("product_id", "bom_id")
-    def _compute_child_bom_id(self):
-        res = super()._compute_child_bom_id()
-        for line in self:
-            line.has_bom = bool(line.child_bom_id)
-        return res
-
-    def action_open_product_bom_tree_view(self):
-        self.ensure_one()
-        res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
-        if len(self.child_bom_id) == 1:
-            res["res_id"] = self.child_bom_id[0].id
-            res["views"] = [(False, "form")]
-        else:
-            res["domain"] = (
-                "[('id', 'in', [" + ",".join(map(str, self.child_bom_id.ids)) + "])]"
-            )
-        return res
-
-    @api.model
-    def _bom_line_find_domain(
-        self,
-        product_tmpl=None,
-        product=None,
-        picking_type=None,
-        company_id=False,
-        bom_type=False,
-    ):
-        if product:
-            if not product_tmpl:
-                product_tmpl = product.product_tmpl_id
-            domain = [
-                "|",
-                ("product_id", "=", product.id),
-                "&",
-                ("product_id", "=", False),
-                ("product_tmpl_id", "=", product_tmpl.id),
-            ]
-        elif product_tmpl:
-            domain = [("product_tmpl_id", "=", product_tmpl.id)]
-        else:
-            # neither product nor template, makes no sense to search
-            raise UserError(
-                _(
-                    "You should provide either a product or "
-                    "a product template to search a BoM Line"
-                )
-            )
-        if picking_type:
-            domain += [
-                "|",
-                ("bom_id.picking_type_id", "=", picking_type.id),
-                ("bom_id.picking_type_id", "=", False),
-            ]
-        if company_id or self.env.context.get("company_id"):
-            domain = domain + [
-                "|",
-                ("company_id", "=", False),
-                ("company_id", "=", company_id or self.env.context.get("company_id")),
-            ]
-        if bom_type:
-            domain += [("bom_id.type", "=", bom_type)]
-        # order to prioritize bom line with product_id over the one without
-        return domain
-
-    @api.model
-    def _bom_line_find(
-        self,
-        product_tmpl=None,
-        product=None,
-        picking_type=None,
-        company_id=False,
-        bom_type=False,
-    ):
-        """Finds BoM lines for particular product, picking and company"""
-        if (
-            product
-            and product.type == "service"
-            or product_tmpl
-            and product_tmpl.type == "service"
-        ):
-            return self.env["mrp.bom.line"]
-        domain = self._bom_line_find_domain(
-            product_tmpl=product_tmpl,
-            product=product,
-            picking_type=picking_type,
-            company_id=company_id,
-            bom_type=bom_type,
-        )
-        if domain is False:
-            return self.env["mrp.bom.line"]
-        return self.search(domain, order="sequence, product_id")
