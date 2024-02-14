@@ -522,7 +522,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
                     test_vals[key],
                     inv[key],
                     f"unexpected value for {key}: {inv[key]} "
-                    f"(expected {test_vals[key]} on {inv.date}",
+                    f"(expected {test_vals[key]} on {inv.date})",
                 )
 
     def test_19_on_hand_with_lots(self):
@@ -533,3 +533,237 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(len(lots_line_1), 1)
         self.assertEqual(lots_line_1.initial_on_hand_qty, 210)
         self.assertEqual(lots_line_1.final_on_hand_qty, 185)
+
+    def test_20_prioritize_safety_stock_grouped_1(self):
+        """Test grouped demand MRP but with a short nbr days.
+        Safety stock should be ordered."""
+        now = datetime.now()
+        product = self.prod_test  # has Buy route
+        product.seller_ids[0].delay = 2  # set a purchase lead time
+        self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
+        self.product_mrp_area_obj.create(
+            {
+                "product_id": product.id,
+                "mrp_area_id": self.cases_area.id,
+                "mrp_minimum_stock": 15,
+                "mrp_nbr_days": 2,
+            }
+        )
+        self._create_picking_out(
+            product, 6.0, now + timedelta(days=3), location=self.cases_loc
+        )
+        self._create_picking_in(
+            product, 10.0, now + timedelta(days=7), location=self.cases_loc
+        )
+        self._create_picking_out(
+            product, 12.0, now + timedelta(days=14), location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", product.id),
+            ]
+        )
+        expected = [
+            {
+                "date": now.date(),
+                "demand_qty": 0.0,
+                "final_on_hand_qty": 5.0,
+                "initial_on_hand_qty": 5.0,
+                "running_availability": 15.0,
+                "supply_qty": 0.0,
+                "to_procure": 10.0,
+            },
+            {
+                "date": now.date() + timedelta(days=3),
+                "demand_qty": 6.0,
+                "final_on_hand_qty": -1.0,
+                "initial_on_hand_qty": 5.0,
+                "running_availability": 15.0,
+                "supply_qty": 0.0,
+                "to_procure": 6.0,
+            },
+            {
+                "date": now.date() + timedelta(days=7),
+                "demand_qty": 0.0,
+                "final_on_hand_qty": 9.0,
+                "initial_on_hand_qty": -1.0,
+                "running_availability": 25.0,
+                "supply_qty": 10.0,
+                "to_procure": 0.0,
+            },
+            {
+                "date": now.date() + timedelta(days=14),
+                "demand_qty": 12.0,
+                "final_on_hand_qty": -3.0,
+                "initial_on_hand_qty": 9.0,
+                "running_availability": 15.0,
+                "supply_qty": 0.0,
+                "to_procure": 2.0,
+            },
+        ]
+        self.assertEqual(len(expected), len(inventory))
+        for test_vals, inv in zip(expected, inventory):
+            for key in test_vals:
+                self.assertEqual(
+                    test_vals[key],
+                    inv[key],
+                    f"unexpected value for {key}: {inv[key]} "
+                    f"(expected {test_vals[key]} on {inv.date})",
+                )
+
+    def test_21_prioritize_safety_stock_grouped_2(self):
+        """Test grouped demand MRP but with a longer nbr days.
+        Safety stock should be ordered."""
+        now = datetime.now()
+        product = self.prod_test  # has Buy route
+        product.seller_ids[0].delay = 2  # set a purchase lead time
+        self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
+        self.product_mrp_area_obj.create(
+            {
+                "product_id": product.id,
+                "mrp_area_id": self.cases_area.id,
+                "mrp_minimum_stock": 15,
+                "mrp_nbr_days": 7,
+            }
+        )
+        self._create_picking_out(
+            product, 6.0, now + timedelta(days=3), location=self.cases_loc
+        )
+        self._create_picking_in(
+            product, 10.0, now + timedelta(days=7), location=self.cases_loc
+        )
+        self._create_picking_out(
+            product, 12.0, now + timedelta(days=12), location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", product.id),
+            ]
+        )
+        expected = [
+            {
+                "date": now.date(),
+                "demand_qty": 0.0,
+                "final_on_hand_qty": 5.0,
+                "initial_on_hand_qty": 5.0,
+                "running_availability": 21.0,
+                "supply_qty": 0.0,
+                "to_procure": 16.0,
+            },
+            {
+                "date": now.date() + timedelta(days=3),
+                "demand_qty": 6.0,
+                "final_on_hand_qty": -1.0,
+                "initial_on_hand_qty": 5.0,
+                "running_availability": 15.0,
+                "supply_qty": 0.0,
+                "to_procure": 0.0,
+            },
+            {
+                "date": now.date() + timedelta(days=7),
+                "demand_qty": 0.0,
+                "final_on_hand_qty": 9.0,
+                "initial_on_hand_qty": -1.0,
+                "running_availability": 27.0,
+                "supply_qty": 10.0,
+                "to_procure": 2.0,
+            },
+            {
+                "date": now.date() + timedelta(days=12),
+                "demand_qty": 12.0,
+                "final_on_hand_qty": -3.0,
+                "initial_on_hand_qty": 9.0,
+                "running_availability": 15.0,
+                "supply_qty": 0.0,
+                "to_procure": 0.0,
+            },
+        ]
+        self.assertEqual(len(expected), len(inventory))
+        for test_vals, inv in zip(expected, inventory):
+            for key in test_vals:
+                self.assertEqual(
+                    test_vals[key],
+                    inv[key],
+                    f"unexpected value for {key}: {inv[key]} "
+                    f"(expected {test_vals[key]} on {inv.date})",
+                )
+
+    def test_22_prioritize_safety_stock_grouped_3(self):
+        """Test grouped demand MRP but with an existing incoming supply
+        Safety stock should NOT be ordered."""
+        now = datetime.now()
+        product = self.prod_test  # has Buy route
+        product.seller_ids[0].delay = 2  # set a purchase lead time
+        self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
+        self.product_mrp_area_obj.create(
+            {
+                "product_id": product.id,
+                "mrp_area_id": self.cases_area.id,
+                "mrp_minimum_stock": 15,
+                "mrp_nbr_days": 7,
+            }
+        )
+        self._create_picking_in(
+            product, 30.0, now + timedelta(days=3), location=self.cases_loc
+        )
+        self._create_picking_out(
+            product, 6.0, now + timedelta(days=7), location=self.cases_loc
+        )
+        self._create_picking_out(
+            product, 12.0, now + timedelta(days=12), location=self.cases_loc
+        )
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.cases_area.id),
+                ("product_id", "=", product.id),
+            ]
+        )
+        expected = [
+            {
+                "date": now.date() + timedelta(days=3),
+                "demand_qty": 0.0,
+                "initial_on_hand_qty": 5.0,
+                "final_on_hand_qty": 35.0,
+                "running_availability": 35.0,
+                "supply_qty": 30.0,
+                "to_procure": 0.0,
+            },
+            {
+                "date": now.date() + timedelta(days=7),
+                "demand_qty": 6.0,
+                "initial_on_hand_qty": 35.0,
+                "final_on_hand_qty": 29.0,
+                "running_availability": 29.0,
+                "supply_qty": 0.0,
+                "to_procure": 0.0,
+            },
+            {
+                "date": now.date() + timedelta(days=12),
+                "demand_qty": 12.0,
+                "initial_on_hand_qty": 29.0,
+                "final_on_hand_qty": 17.0,
+                "running_availability": 17.0,
+                "supply_qty": 0.0,
+                "to_procure": 0.0,
+            },
+        ]
+        self.assertEqual(len(expected), len(inventory))
+        for test_vals, inv in zip(expected, inventory):
+            for key in test_vals:
+                self.assertEqual(
+                    test_vals[key],
+                    inv[key],
+                    f"unexpected value for {key}: {inv[key]} "
+                    f"(expected {test_vals[key]} on {inv.date})",
+                )
