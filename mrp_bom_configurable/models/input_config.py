@@ -23,10 +23,6 @@ class InputConfig(models.Model):
         default="draft",
         ondelete={"pending": "draft", "confirmed": "draft"},
     )
-    sale_id = fields.Many2one(comodel_name="sale.order")
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", related="sale_id.partner_id.commercial_partner_id"
-    )
     line_ids = fields.One2many(comodel_name="input.line", inverse_name="config_id")
     line_count = fields.Integer(string="Lines", compute="_compute_line_count")
 

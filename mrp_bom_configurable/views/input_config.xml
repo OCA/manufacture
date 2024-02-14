@@ -35,13 +35,6 @@
                     <group>
                         <field name="date" />
                     </group>
-                    <group>
-                        <field name="sale_id" />
-                        <field
-                                name="partner_id"
-                                attrs="{'invisible': [('sale_id', '=', False)]}"
-                            />
-                    </group>
                 </group>
                 <group name="config">
                     <group name="left">
@@ -72,7 +65,6 @@
         <tree>
             <field name="name" />
             <field name="date" />
-            <field name="partner_id" optional="show" />
         </tree>
     </field>
 
@@ -87,22 +79,12 @@
                     string="Name"
                     filter_domain="[('name', 'ilike', self)]"
                 />
-            <field
-                    name="partner_id"
-                    filter_domain="[('partner_id', 'child_of', self)]"
-                />
             <group expand="0" string="Group By">
                 <filter
                         string="Status"
                         name="status"
                         domain="[]"
                         context="{'group_by': 'state'}"
-                    />
-                <filter
-                        string="Partner"
-                        name="partner"
-                        domain="[]"
-                        context="{'group_by': 'partner_id'}"
                     />
             </group>
         </search>

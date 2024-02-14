@@ -8,15 +8,9 @@ class Inputline(models.Model):
     name = fields.Char()
     sequence = fields.Integer()
     bom_id = fields.Many2one(
-        comodel_name="mrp.bom",
-        required=True,
-    )
-    configured_bom_id = fields.Many2one(
-        comodel_name="mrp.bom",
-        string="Configured BoM",
+        comodel_name="mrp.bom", required=True, related="config_id.bom_id"
     )
     config_id = fields.Many2one(comodel_name="input.config", required=True)
-    count = fields.Integer(default=1)
     alert = fields.Text(help="Outside limit configuration is reported here")
     checked = fields.Boolean(
         compute="_compute_check",
@@ -143,7 +137,7 @@ class Inputline(models.Model):
             new_bom = self.env["mrp.bom"].create(
                 {
                     "configuration_type": "configured",
-                    "product_qty": self.count,
+                    "product_qty": 1,
                     "product_tmpl_id": new_product.id,
                 }
             )
@@ -183,6 +177,6 @@ class Inputline(models.Model):
             "target": "new",
         }
 
-    @api.depends("bom_id", "count")
+    @api.depends("bom_id")
     def _compute_check(self):
         "You need to override this method in your custom config to trigger adhoc checks"

@@ -42,14 +42,8 @@
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="bom_id" ref="mrp_bom_configurable_1" />
     </record>
-    <record id="res_partner_1" model="res.partner">
-        <field name="name">Partner 1</field>
-        <field name="is_company">1</field>
-        <field name="company_id" ref="base.main_company" />
-    </record>
     <record id="input_config_1" model="input.config">
         <field name="name">test</field>
-        <field name="partner_id" ref="res_partner_1" />
         <field name="bom_id" ref="mrp_bom_configurable_1" />
     </record>
     <record id="input_config_line_1" model="input.line">

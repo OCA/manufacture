@@ -46,7 +46,7 @@ class InputLine(models.Model):
             {
                 "product_tmpl_id": bom.product_tmpl_id.id,
                 "product_id": bom.product_id.id,
-                "product_qty": self.count,
+                "product_qty": 1,
                 "product_uom_id": bom.product_uom_id.id,
                 "configuration_type": "configured",
                 "bom_line_ids": [
@@ -55,7 +55,7 @@ class InputLine(models.Model):
                         0,
                         {
                             "product_id": line.product_id.id,
-                            "product_qty": self.count * line.product_qty,
+                            "product_qty": line.product_qty,
                             "product_uom_id": line.product_uom_id.id,
                         },
                     )

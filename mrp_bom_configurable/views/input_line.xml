@@ -22,7 +22,6 @@
     <field name='model'>input.line</field>
     <field name='arch' type='xml'>
         <tree editable="bottom" multi_edit="1" class="input_line_tree">
-            <field name="configured_bom_id" invisible="1" />
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
             <button
@@ -31,15 +30,7 @@
                     type="object"
                     title="Info"
                 />
-            <button
-                    name="action_show_configured_bom"
-                    class="fa fa-cog"
-                    type="object"
-                    title="Info"
-                    attrs="{'invisible': [('configured_bom_id', '=', False)]}"
-                />
             <field name="name" />
-            <field name="count" />
             <field name="alert" optional="show" />
             <field name="comment" optional="show" />
             <field name="checked" optional="hide" />
