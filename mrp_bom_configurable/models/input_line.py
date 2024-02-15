@@ -170,10 +170,9 @@ class Inputline(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "res_model": "mrp.bom",
+            "res_model": "mrp.bom.configured",
             "view_mode": "form",
             "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form").id,
-            "res_id": self.configured_bom_id.id,
             "target": "new",
         }
 

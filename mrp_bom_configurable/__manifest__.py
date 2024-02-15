@@ -12,8 +12,6 @@
         "bealdav",
     ],
     "data": [
-        "report/report.xml",
-        "report/bom_configurable.xml",
         "security/ir.model.access.csv",
         "views/bom.xml",
         "views/bom_line.xml",
@@ -25,14 +23,5 @@
     "demo": [
         "demo/mrp_bom_configurable.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "mrp_bom_configurable/static/src/**/*",
-            ("remove", "mrp_bom_configurable/static/src/input_line_viewer/**/*"),
-        ],
-        "mrp_bom_configurable.input_line": [
-            "mrp_bom_configurable/static/src/input_line_viewer/**/*"
-        ],
-    },
     "installable": True,
 }
