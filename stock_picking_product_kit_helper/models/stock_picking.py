@@ -30,18 +30,18 @@ class StockPicking(models.Model):
         for picking in self:
             if any(
                 self._is_product_kit(line.product_id, line.company_id)
-                for line in picking.move_lines.mapped("sale_line_id")
+                for line in picking.move_ids.mapped("sale_line_id")
             ):
                 picking.has_product_kit = True
             else:
                 picking.has_product_kit = False
 
     def show_product_kit(self):
-        """Find move_lines with product kit to create helper line."""
+        """Find stock move with product kit to create helper line."""
         self.ensure_one()
         BOM = self.env["mrp.bom"].sudo()
         helpers = []
-        for sale_line in self.move_lines.mapped("sale_line_id"):
+        for sale_line in self.move_ids.mapped("sale_line_id"):
             bom = BOM._bom_find(
                 products=sale_line.product_id, company_id=sale_line.company_id.id
             )

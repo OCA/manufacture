@@ -28,7 +28,7 @@ class TestStockPickingProductKitHelper(common.TransactionCase):
         # In the picking, product line is exploded.
         picking = order.mapped("picking_ids")
         self.assertEqual(len(picking), 1)
-        stock_moves = picking.move_lines
+        stock_moves = picking.move_ids
         # 1 SO line exploded to 2 moves
         moves = [
             {"product": x.product_id.name, "qty": x.product_uom_qty}
