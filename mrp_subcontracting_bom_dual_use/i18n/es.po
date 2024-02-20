@@ -38,24 +38,15 @@ msgstr ""
 "para hacer un producto terminado."
 
 #. module: mrp_subcontracting_bom_dual_use
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: mrp_subcontracting_bom_dual_use
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_subcontracting_bom_dual_use
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_subcontracting_bom_dual_use.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: mrp_subcontracting_bom_dual_use
 #: model:ir.model,name:mrp_subcontracting_bom_dual_use.model_mrp_production
 msgid "Production Order"
 msgstr "Orden de producción"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"

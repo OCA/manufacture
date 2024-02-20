@@ -1,4 +1,4 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 
@@ -22,17 +22,11 @@ class MrpBom(models.Model):
 
     @api.model
     def _bom_find_domain(
-        self,
-        product_tmpl=None,
-        product=None,
-        picking_type=None,
-        company_id=False,
-        bom_type=False,
+        self, products, picking_type=None, company_id=False, bom_type=False
     ):
         """We need to overwrite the domain to get subcontract boms"""
         domain = super()._bom_find_domain(
-            product_tmpl=product_tmpl,
-            product=product,
+            products=products,
             picking_type=picking_type,
             company_id=company_id,
             bom_type=bom_type,

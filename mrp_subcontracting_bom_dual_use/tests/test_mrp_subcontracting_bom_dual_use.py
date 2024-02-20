@@ -1,9 +1,12 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, common
+from odoo.tests import Form, new_test_user
+from odoo.tests.common import users
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpSubcontractingBomDualUse(common.SavepointCase):
+class TestMrpSubcontractingBomDualUse(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -19,6 +22,11 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         cls.component_a = cls.env["product.product"].create({"name": "Test Comp A"})
         cls.workcenter = cls.env["mrp.workcenter"].create({"name": "Test workcenter"})
         cls.mrp_production_model = cls.env["mrp.production"]
+        new_test_user(
+            cls.env,
+            login="test_mrp_routings_user",
+            groups="mrp.group_mrp_routings,mrp.group_mrp_manager",
+        )
 
     def _create_bom(self, bom_type):
         mrp_bom_form = Form(self.env["mrp.bom"])
@@ -31,9 +39,6 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         with mrp_bom_form.bom_line_ids.new() as line_form:
             line_form.product_id = self.component_a
             line_form.product_qty = 1
-        with mrp_bom_form.operation_ids.new() as operation_form:
-            operation_form.name = "Test operation"
-            operation_form.workcenter_id = self.workcenter
         return mrp_bom_form.save()
 
     def test_mrp_production_misc_bom_normal(self):
@@ -62,10 +67,17 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         replenish = replenish_form.save()
         replenish.launch_replenishment()
 
+    @users("test_mrp_routings_user")
     def test_product_replenish(self):
         """We create a bill of materials of subcontract type. We run replenish and
         validate that the production order has been created with the correct BOM."""
         bom = self._create_bom("subcontract")
+        mrp_bom_form = Form(bom)
+        with mrp_bom_form.operation_ids.new() as operation_form:
+            operation_form.name = "Test operation"
+            operation_form.bom_id = bom
+            operation_form.workcenter_id = self.workcenter
+        bom = mrp_bom_form.save()
         self._product_replenish(self.product, 1)
         item = self.mrp_production_model.search([("product_id", "=", self.product.id)])
         self.assertEqual(item.bom_id, bom)
