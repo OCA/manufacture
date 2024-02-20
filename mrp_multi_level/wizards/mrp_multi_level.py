@@ -24,23 +24,6 @@ class MultiLevelMrp(models.TransientModel):
     )
 
     @api.model
-    def _prepare_product_mrp_area_data(self, product_mrp_area):
-        qty_available = 0.0
-        product_obj = self.env["product.product"]
-        location_ids = product_mrp_area._get_locations()
-        for location in location_ids:
-            product_l = product_obj.with_context({"location": location.id}).browse(
-                product_mrp_area.product_id.id
-            )
-            qty_available += product_l.qty_available
-
-        return {
-            "product_mrp_area_id": product_mrp_area.id,
-            "mrp_qty_available": qty_available,
-            "mrp_llc": product_mrp_area.product_id.llc,
-        }
-
-    @api.model
     def _prepare_mrp_move_data_from_stock_move(
         self, product_mrp_area, move, direction="in"
     ):
@@ -538,13 +521,53 @@ class MultiLevelMrp(models.TransientModel):
                 self._init_mrp_move(product_mrp_area)
         logger.info("End MRP initialisation")
 
+    def _get_qty_to_order(self, product_mrp_area, date, move_qty, onhand):
+        """Compute the qty to order at a given date, for a product MRP area, given an
+        mrp.move quantity and an onhand quantity.
+
+        This method is an extension point, allowing a new module to change the way this
+        quantity should be computed.
+        """
+        # The default rule is to resupply to rebuild the safety stock
+        return product_mrp_area.mrp_minimum_stock - onhand - move_qty
+
     @api.model
-    def _init_mrp_move_grouped_demand(self, nbr_create, product_mrp_area):
+    def _init_mrp_move_grouped_demand(self, product_mrp_area):
         last_date = None
         last_qty = 0.00
         onhand = product_mrp_area.qty_available
         grouping_delta = product_mrp_area.mrp_nbr_days
         demand_origin = []
+
+        if (
+            product_mrp_area.mrp_move_ids
+            and onhand < product_mrp_area.mrp_minimum_stock
+        ):
+            last_date = self._get_safety_stock_target_date(product_mrp_area)
+            demand_origin.append("Safety Stock")
+            move = fields.first(product_mrp_area.mrp_move_ids)
+            if last_date and (
+                fields.Date.from_string(move.mrp_date)
+                >= last_date + timedelta(days=grouping_delta)
+            ):
+                name = _("Safety Stock")
+                origin = ",".join(list({x for x in demand_origin if x}))
+                qtytoorder = self._get_qty_to_order(
+                    product_mrp_area, last_date, 0, onhand
+                )
+                cm = self.create_action(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=last_date,
+                    mrp_qty=qtytoorder,
+                    name=name,
+                    values=dict(origin=origin),
+                )
+                qty_ordered = cm.get("qty_ordered", 0.0)
+                onhand = onhand + qty_ordered
+                last_date = None
+                last_qty = 0.00
+                demand_origin = []
+
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):
                 continue
@@ -567,7 +590,9 @@ class MultiLevelMrp(models.TransientModel):
                     delta_days=grouping_delta,
                 )
                 origin = ",".join(list({x for x in demand_origin if x}))
-                qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
+                qtytoorder = self._get_qty_to_order(
+                    product_mrp_area, last_date, last_qty, onhand
+                )
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=last_date,
@@ -579,14 +604,13 @@ class MultiLevelMrp(models.TransientModel):
                 onhand = onhand + last_qty + qty_ordered
                 last_date = None
                 last_qty = 0.00
-                nbr_create += 1
                 demand_origin = []
             if (
                 onhand + last_qty + move.mrp_qty
             ) < product_mrp_area.mrp_minimum_stock or (
                 onhand + last_qty
             ) < product_mrp_area.mrp_minimum_stock:
-                if not last_date or last_qty == 0.0:
+                if not last_date:
                     last_date = fields.Date.from_string(move.mrp_date)
                     last_qty = move.mrp_qty
                 else:
@@ -605,7 +629,9 @@ class MultiLevelMrp(models.TransientModel):
                 delta_days=grouping_delta,
             )
             origin = ",".join(list({x for x in demand_origin if x}))
-            qtytoorder = product_mrp_area.mrp_minimum_stock - onhand - last_qty
+            qtytoorder = self._get_qty_to_order(
+                product_mrp_area, last_date, last_qty, onhand
+            )
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=last_date,
@@ -615,8 +641,82 @@ class MultiLevelMrp(models.TransientModel):
             )
             qty_ordered = cm.get("qty_ordered", 0.0)
             onhand += qty_ordered
-            nbr_create += 1
-        return nbr_create
+            last_qty -= qty_ordered
+
+        if (onhand + last_qty) < product_mrp_area.mrp_minimum_stock:
+            mrp_date = self._get_safety_stock_target_date(product_mrp_area)
+            qtytoorder = self._get_qty_to_order(product_mrp_area, mrp_date, 0, onhand)
+            name = _("Safety Stock")
+            cm = self.create_action(
+                product_mrp_area_id=product_mrp_area,
+                mrp_date=mrp_date,
+                mrp_qty=qtytoorder,
+                name=name,
+                values=dict(origin=name),
+            )
+            qty_ordered = cm["qty_ordered"]
+            onhand += qty_ordered
+
+    def _get_safety_stock_target_date(self, product_mrp_area):
+        """Get the date at which the safety stock rebuild should be targeted
+
+        This method is an extension point for modules who need to cusomize that date."""
+        return date.today()
+
+    @api.model
+    def _init_mrp_move_non_grouped_demand(self, product_mrp_area):
+        onhand = product_mrp_area.qty_available
+        for move in product_mrp_area.mrp_move_ids:
+            if self._exclude_move(move):
+                continue
+            # This works because mrp moves are ordered by:
+            # product_mrp_area_id, mrp_date, mrp_type desc, id
+            if onhand + move.mrp_qty < product_mrp_area.mrp_minimum_stock:
+                qtytoorder = self._get_qty_to_order(
+                    product_mrp_area,
+                    self._get_safety_stock_target_date(product_mrp_area),
+                    0,
+                    onhand,
+                )
+                name = _("Safety Stock")
+                cm = self.create_action(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=self._get_safety_stock_target_date(product_mrp_area),
+                    mrp_qty=qtytoorder,
+                    name=name,
+                    values=dict(origin=name),
+                )
+                qty_ordered = cm["qty_ordered"]
+                onhand += qty_ordered
+
+            qtytoorder = self._get_qty_to_order(
+                product_mrp_area, move.mrp_date, move.mrp_qty, onhand
+            )
+            if qtytoorder > 0.0:
+                cm = self.create_action(
+                    product_mrp_area_id=product_mrp_area,
+                    mrp_date=move.mrp_date,
+                    mrp_qty=qtytoorder,
+                    name=move.name or "",
+                    values=dict(origin=move.origin or ""),
+                )
+                qty_ordered = cm["qty_ordered"]
+                onhand += move.mrp_qty + qty_ordered
+            else:
+                onhand += move.mrp_qty
+        if onhand < product_mrp_area.mrp_minimum_stock:
+            mrp_date = self._get_safety_stock_target_date(product_mrp_area)
+            qtytoorder = self._get_qty_to_order(product_mrp_area, mrp_date, 0, onhand)
+            name = _("Safety Stock")
+            cm = self.create_action(
+                product_mrp_area_id=product_mrp_area,
+                mrp_date=mrp_date,
+                mrp_qty=qtytoorder,
+                name=name,
+                values=dict(origin=name),
+            )
+            qty_ordered = cm["qty_ordered"]
+            onhand += qty_ordered
 
     @api.model
     def _exclude_move(self, move):
@@ -639,47 +739,10 @@ class MultiLevelMrp(models.TransientModel):
                 llc += 1
 
                 for product_mrp_area in product_mrp_areas:
-                    nbr_create = 0
-                    onhand = product_mrp_area.qty_available
                     if product_mrp_area.mrp_nbr_days == 0:
-                        for move in product_mrp_area.mrp_move_ids:
-                            if self._exclude_move(move):
-                                continue
-                            qtytoorder = (
-                                product_mrp_area.mrp_minimum_stock
-                                - onhand
-                                - move.mrp_qty
-                            )
-                            if qtytoorder > 0.0:
-                                cm = self.create_action(
-                                    product_mrp_area_id=product_mrp_area,
-                                    mrp_date=move.mrp_date,
-                                    mrp_qty=qtytoorder,
-                                    name=move.name or "",
-                                    values=dict(origin=move.origin or ""),
-                                )
-                                qty_ordered = cm["qty_ordered"]
-                                onhand += move.mrp_qty + qty_ordered
-                                nbr_create += 1
-                            else:
-                                onhand += move.mrp_qty
+                        self._init_mrp_move_non_grouped_demand(product_mrp_area)
                     else:
-                        nbr_create = self._init_mrp_move_grouped_demand(
-                            nbr_create, product_mrp_area
-                        )
-
-                    if onhand < product_mrp_area.mrp_minimum_stock and nbr_create == 0:
-                        qtytoorder = product_mrp_area.mrp_minimum_stock - onhand
-                        name = _("Safety Stock")
-                        cm = self.create_action(
-                            product_mrp_area_id=product_mrp_area,
-                            mrp_date=date.today(),
-                            mrp_qty=qtytoorder,
-                            name=name,
-                            values=dict(origin=name),
-                        )
-                        qty_ordered = cm["qty_ordered"]
-                        onhand += qty_ordered
+                        self._init_mrp_move_grouped_demand(product_mrp_area)
                     counter += 1
 
             log_msg = "MRP Calculation LLC {} Finished - Nbr. products: {}".format(
@@ -781,9 +844,7 @@ class MultiLevelMrp(models.TransientModel):
             [("product_mrp_area_id", "=", product_mrp_area.id)], order="due_date"
         ).mapped("due_date")
         mrp_dates = set(moves_dates + action_dates)
-        on_hand_qty = product_mrp_area.product_id.with_context(
-            location=product_mrp_area._get_locations().ids
-        )._product_available()[product_mrp_area.product_id.id]["qty_available"]
+        on_hand_qty = product_mrp_area.qty_available
         running_availability = on_hand_qty
         mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
