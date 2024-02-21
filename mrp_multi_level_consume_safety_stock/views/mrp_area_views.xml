@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_area_form">
+        <field name="name">mrp area form</field>
+        <field name="model">mrp.area</field>
+        <field name="inherit_id" ref="mrp_multi_level.mrp_area_form" />
+        <field name="arch" type="xml">
+            <field name="calendar_id" position="after">
+                <field name="safety_stock_target_date" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_area_tree">
+            <field name="name">mrp area form</field>
+            <field name="model">mrp.area</field>
+            <field name="inherit_id" ref="mrp_multi_level.mrp_area_tree" />
+            <field name="arch" type="xml">
+                <field name="calendar_id" position="after">
+                    <field name="safety_stock_target_date" />
+                </field>
+            </field>
+    </record>
+</odoo>
