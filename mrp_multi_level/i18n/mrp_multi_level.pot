@@ -866,7 +866,6 @@ msgstr ""
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
-#: code:addons/mrp_multi_level/wizards/mrp_multi_level.py:0
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__mrp_minimum_stock
 #, python-format
 msgid "Safety Stock"
