@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2023 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Form -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <!-- BoM Lines -->
+            <xpath
+                expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']"
+                position="after"
+            >
+                <field name="diff_product_qty_gross_net" invisible="1" />
+                <button
+                    name="set_product_qty_gross"
+                    icon="fa-arrow-left"
+                    type="object"
+                    attrs="{'invisible': [('diff_product_qty_gross_net', '=', 0)]}"
+                    title="This will set product gross quantity with net quantity and loss percentage"
+                />
+                <field
+                    name="loss_percentage"
+                    widget="numeric_step"
+                    options="{'step': 1}"
+                />
+                <button
+                    name="set_product_qty_net"
+                    icon="fa-arrow-right"
+                    type="object"
+                    attrs="{'invisible': [('diff_product_qty_gross_net', '=', 0)]}"
+                    title="This will set product net quantity with gross quantity and loss percentage"
+                />
+                <field name="product_qty_net" />
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/tree" position="attributes">>
+                <attribute
+                    name="decoration-warning"
+                >diff_product_qty_gross_net != 0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
