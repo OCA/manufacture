@@ -69,10 +69,9 @@
                                             >
                                                 <div class="o_kanban_record_top">
                                                     <img
-                                                        t-att-src="kanban_image('res.users', 'image_small', record.id.raw_value)"
-                                                        height="40"
-                                                        width="40"
-                                                        class="oe_avatar oe_kanban_avatar_smallbox mb0"
+                                                        t-att-src="kanban_image('res.users', 'image_128', record.id.raw_value)"
+                                                        class="oe_avatar oe_kanban_avatar_smallbox o_image_40_cover mb0"
+                                                        alt="Avatar"
                                                     />
                                                     <div
                                                         class="o_kanban_record_headings ml8"
@@ -137,7 +136,6 @@
     <record id="qc_team_config_action" model="ir.actions.act_window">
         <field name="name">Quality Control Teams</field>
         <field name="res_model">qc.team</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
@@ -154,7 +152,7 @@
         name="Quality Control Teams"
         id="qc_team_config_menu"
         groups="base.group_system"
-        parent="quality_control.menu_qc_config"
+        parent="quality_control_oca.menu_qc_config"
         action="qc_team_config_action"
         sequence="10"
     />

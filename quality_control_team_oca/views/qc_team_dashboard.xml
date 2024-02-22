@@ -48,7 +48,7 @@
                                 <div
                                     t-if="widget.editable"
                                     class="o_kanban_card_manage_settings row"
-                                    groups="quality_control.group_quality_control_manager"
+                                    groups="quality_control_oca.group_quality_control_manager"
                                 >
                                     <div
                                         role="menuitem"
@@ -100,7 +100,6 @@
     <record id="qc_team_dashboard_act" model="ir.actions.act_window">
         <field name="name">Dashboard</field>
         <field name="res_model">qc.team</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,form</field>
         <field name="context">{'search_default_personal':1}</field>
         <field name="help" type="html">
@@ -114,7 +113,7 @@
         id="menu_qc_team_act"
         action="qc_team_dashboard_act"
         sequence="1"
-        parent="quality_control.qc_menu"
+        parent="quality_control_oca.qc_menu"
         name="Dashboard"
     />
 

@@ -8,8 +8,8 @@ class TestQualityControlTeam(TransactionCase):
     def setUp(self):
         super(TestQualityControlTeam, self).setUp()
         self.qc_team_obj = self.env["qc.team"]
-        self.main_qc_team = self.env.ref("quality_control_team.qc_team_main")
-        self.other_company = self.env["res.company"].create({"name": "other company",})
+        self.main_qc_team = self.env.ref("quality_control_team_oca.qc_team_main")
+        self.other_company = self.env["res.company"].create({"name": "other company"})
         self.user_test = self.env["res.users"].create(
             {
                 "name": "Test User",
@@ -18,6 +18,11 @@ class TestQualityControlTeam(TransactionCase):
                 "company_ids": [(4, self.other_company.id)],
             }
         )
+
+    def test_default_qc_team_no_user_id(self):
+        """Test that the QC team is defaulted correctly when no user_id is provided."""
+        team = self.qc_team_obj._get_default_qc_team_id()
+        self.assertIsNotNone(team)
 
     def test_default_qc_team(self):
         """Test that the QC team is defaulted correctly."""
