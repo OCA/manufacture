@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class ResUsers(models.Model):
-    _inherit = 'res.users'
+    _inherit = "res.users"
 
-    qc_team_id = fields.Many2one(
-        comodel_name='qc.team', string='Quality Control Team')
+    qc_team_id = fields.Many2one(comodel_name="qc.team", string="Quality Control Team")
