@@ -20,7 +20,7 @@ class QualityControlTeam(models.Model):
                 self.env.context.get("default_qc_team_id")
             )
         if not qc_team_id or not qc_team_id.exists():
-            company_id = self.sudo(user_id).company_id.id
+            company_id = self.env["res.users"].browse(user_id).company_id.id
             qc_team_id = (
                 self.env["qc.team"]
                 .sudo()
@@ -38,7 +38,7 @@ class QualityControlTeam(models.Model):
             )
         if not qc_team_id:
             default_team_id = self.env.ref(
-                "quality_control_team.qc_team_main", raise_if_not_found=False
+                "quality_control_team_oca.qc_team_main", raise_if_not_found=False
             )
             if default_team_id:
                 qc_team_id = default_team_id
