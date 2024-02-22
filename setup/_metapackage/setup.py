@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-account_move_line_mrp_info>=16.0dev,<16.1dev',
+        'odoo-addon-mrp_attachment_mgmt>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_component_menu>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_hierarchy>=16.0dev,<16.1dev',
         'odoo-addon-mrp_bom_location>=16.0dev,<16.1dev',
