@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-10 19:24+0000\n"
+"PO-Revision-Date: 2024-02-26 09:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_attachment_mgmt
 #. odoo-python
@@ -24,6 +24,8 @@ msgid ""
 "%(error_count)d Product(s) without drawing:\n"
 "%(error_msg)s"
 msgstr ""
+"%(error_count)d Prodotto(i) senza disegno:\n"
+"%(error_msg)s"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
@@ -53,7 +55,7 @@ msgstr "Prodotto"
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_production
