@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [account_move_line_mrp_info](account_move_line_mrp_info/) | 16.0.1.0.0 |  | Account Move Line Mrp Info
 [mrp_attachment_mgmt](mrp_attachment_mgmt/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Mrp Attachment Mgmt
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 16.0.1.0.0 |  | MRP BOM Component Menu
-[mrp_bom_hierarchy](mrp_bom_hierarchy/) | 16.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
+[mrp_bom_hierarchy](mrp_bom_hierarchy/) | 16.0.1.0.1 |  | Make it easy to navigate through BoM hierarchy.
 [mrp_bom_location](mrp_bom_location/) | 16.0.1.1.1 |  | Adds location field to Bill of Materials and its components.
 [mrp_bom_tracking](mrp_bom_tracking/) | 16.0.1.0.0 |  | Logs any change to a BoM in the chatter
 [mrp_lot_number_propagation](mrp_lot_number_propagation/) | 16.0.1.0.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a serial number from a component to a finished product
