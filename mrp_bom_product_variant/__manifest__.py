@@ -12,9 +12,6 @@
     "depends": [
         "mrp",
     ],
-    "data": [
-        "views/view_mrp_bom.xml",
-    ],
     "installable": True,
     "post_init_hook": "initialize_product_variant_field",
 }
