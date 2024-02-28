@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <template id="bom_simple_report_xml">
+        <t t-call="web.basic_layout">
+          <t t-foreach="docs" t-as="bom">
+            <!-- One page per BoM -->
+            <div class="page middle-font-size" style="page-break-before:always;">
+              <span>Bill of Material</span>
+              <h3 class="title-h3"><b><span t-esc="bom.display_name" /></b></h3>
+              <span class="bom.product_qty"><b>Quantity: </b><span
+                            t-esc="bom.product_qty"
+                        /> <span t-esc="bom.product_uom_id.name" /></span>
+              <br /><br />
+              <table class="table table-sm table-bordered">
+                  <thead>
+                      <tr class="bom_to_prepare_thead th-colored">
+                          <th
+                                    name="th_bom_line_product"
+                                    class="text-left"
+                                >Component</th>
+                          <th
+                                    name="th_bom_line_qty"
+                                    class="text-center width-qty-and-unit"
+                                >Quantity</th>
+                          <th
+                                    name="th_bom_line_uom"
+                                    class="text-left width-qty-and-unit"
+                                >UoM</th>
+                          <th
+                                    name="th_bom_line_free_comment"
+                                    class="text-center width-free-comment"
+                                >Free comment</th>
+                      </tr>
+                  </thead>
+                  <tbody class="bom_to_prepare_tbody">
+                    <t t-foreach="bom.bom_line_ids" t-as="bom_line">
+                      <tr>
+                        <td name="td_bom_line_product" class="text-left">
+                          <span t-esc="bom_line.display_name" />
+                        </td>
+                        <td
+                                        name="td_bom_line_qty"
+                                        class="text-center width-qty-and-unit"
+                                    >
+                          <span t-esc="bom_line.product_qty" />
+                        </td>
+                        <td name="td_bom_line_uom" class="text-left width-qty-and-unit">
+                          <span t-esc="bom_line.product_uom_id.name" />
+                        </td>
+                        <td
+                                        name="td_bom_line_free_comment"
+                                        class="width-free-comment"
+                                    />
+                      </tr>
+                    </t>
+                  </tbody>
+              </table>
+            </div>
+          </t>
+        </t>
+    </template>
+
+</odoo>

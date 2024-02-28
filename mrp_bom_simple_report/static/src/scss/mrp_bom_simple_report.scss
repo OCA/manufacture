@@ -1,0 +1,27 @@
+// Variables
+$bom-simple-report-font-size-small: 10px;
+$bom-simple-report-font-size-middle: 12px;
+$bom-simple-report-grey: #2a3836;
+$bom-simple-report-violet: #6c5ce7;
+
+// SCSS
+.title-h3 {
+    color: $bom-simple-report-grey;
+}
+
+.middle-font-size {
+    font-size: $bom-simple-report-font-size-middle;
+}
+
+.th-colored {
+    color: $bom-simple-report-violet;
+}
+
+.width-free-comment {
+    width: 250px;
+}
+
+.width-qty-and-unit,
+.smaller-font-size {
+    width: $bom-simple-report-font-size-small;
+}
