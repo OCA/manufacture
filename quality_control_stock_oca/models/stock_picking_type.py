@@ -8,15 +8,20 @@ from odoo import api, models
 class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
+    def _prepare_qc_trigger_vals(self):
+        self.ensure_one()
+        return {
+            "name": self.display_name,
+            "company_id": self.warehouse_id.company_id.id,
+            "picking_type_id": self.id,
+            "partner_selectable": True,
+        }
+
     def _create_qc_trigger(self):
+        values = []
         for picking_type in self:
-            qc_trigger = {
-                "name": picking_type.display_name,
-                "company_id": picking_type.warehouse_id.company_id.id,
-                "picking_type_id": picking_type.id,
-                "partner_selectable": True,
-            }
-            self.env["qc.trigger"].sudo().create(qc_trigger)
+            values.append(picking_type._prepare_qc_trigger_vals())
+        self.env["qc.trigger"].sudo().create(values)
 
     @api.model_create_multi
     def create(self, val_list):
@@ -32,5 +37,5 @@ class StockPickingType(models.Model):
                 qc_triggers = qc_trigger_model.search(
                     [("picking_type_id", "=", rec.id)]
                 )
-                qc_triggers.write({"name": rec.name})
+                qc_triggers.write({"name": rec.display_name})
         return res
