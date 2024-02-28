@@ -1,113 +1,66 @@
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo.tests import Form, new_test_user
+from odoo.tools import mute_logger
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.quality_control_oca.tests.test_quality_control import (
+    TestQualityControlOcaBase,
+)
 
 
-class TestQualityControl(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.users_model = self.env["res.users"]
-        self.picking_model = self.env["stock.picking"]
-        self.inspection_model = self.env["qc.inspection"]
-        self.qc_trigger_model = self.env["qc.trigger"]
-        self.picking_type_model = self.env["stock.picking.type"]
-        self.product = self.env.ref("product.product_product_2")
-        self.partner1 = self.env.ref("base.res_partner_2")
-        self.partner2 = self.env.ref("base.res_partner_4")
-        self.test = self.env.ref("quality_control_oca.qc_test_1")
-        self.picking_type = self.env.ref("stock.picking_type_out")
-        self.location_dest = self.env.ref("stock.stock_location_customers")
-        self.group_stock_user = self.env.ref("stock.group_stock_user")
-        self.group_quality_control_user = self.env.ref(
-            "quality_control_oca.group_quality_control_user"
+class TestQualityControlStockOca(TestQualityControlOcaBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.qc_trigger_model = cls.env["qc.trigger"]
+        cls.picking_type_model = cls.env["stock.picking.type"]
+        cls.partner1 = cls.env["res.partner"].create({"name": "Test partner 1"})
+        cls.partner2 = cls.env["res.partner"].create({"name": "Test partner 2"})
+        cls.picking_type = cls.env.ref("stock.picking_type_out")
+        cls.location = cls.picking_type.default_location_src_id
+        cls.location_dest = cls.picking_type.default_location_dest_id
+        cls.trigger = cls.qc_trigger_model.search(
+            [("picking_type_id", "=", cls.picking_type.id)]
         )
-        self.company = self.env.ref("base.main_company")
-        self.sequence = self.env["ir.sequence"].create(
-            {"code": "out", "name": "outgoing_sequence"}
-        )
-        inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
-        self.inspection1 = self.inspection_model.create(
-            {"name": "Test Inspection", "inspection_lines": inspection_lines}
-        )
-        self.trigger = self.qc_trigger_model.search(
-            [("picking_type_id", "=", self.picking_type.id)]
-        )
-        self.lot = self.env["stock.lot"].create(
+        cls.lot = cls.env["stock.lot"].create(
             {
                 "name": "Lot for tests",
-                "product_id": self.product.id,
-                "company_id": self.company.id,
+                "product_id": cls.product.id,
             }
         )
-        self.user1_id = self._create_user(
-            "user_1",
-            [self.group_stock_user, self.group_quality_control_user],
-            self.company,
-        )
-        move_vals = {
-            "name": self.product.name,
-            "product_id": self.product.id,
-            "product_uom": self.product.uom_id.id,
-            "product_uom_qty": 2.0,
-            "location_id": self.picking_type.default_location_src_id.id,
-            "location_dest_id": self.location_dest.id,
-        }
-        self.picking1 = (
-            self.picking_model.with_user(self.user1_id)
-            .with_context(default_picking_type_id=self.picking_type.id)
-            .create(
-                {
-                    "partner_id": self.partner1.id,
-                    "picking_type_id": self.picking_type.id,
-                    "move_ids": [(0, 0, move_vals)],
-                    "location_dest_id": self.location_dest.id,
-                }
-            )
-        )
-        self.picking1.action_confirm()
-        sequence = 10
-        for line in self.picking1.move_ids.filtered(
-            lambda r: r.product_id == self.product
-        ):
-            line.write(
-                {
-                    "move_line_ids": [
-                        (
-                            0,
-                            0,
-                            {
-                                "lot_id": self.lot.id,
-                                "qty_done": 1.0,
-                                "product_uom_id": line.product_uom.id,
-                                "product_id": line.product_id.id,
-                                "location_id": line.location_id.id,
-                                "location_dest_id": line.location_dest_id.id,
-                            },
-                        )
-                    ],
-                    "sequence": sequence,
-                }
-            )
-            sequence += 10
-
-    def _create_user(self, login, groups, company):
-        """Create a user."""
-        group_ids = [group.id for group in groups]
-        user = self.users_model.with_context(no_reset_password=True).create(
+        cls.product.detailed_type = "product"
+        cls.env["stock.quant"].create(
             {
-                "name": "Sale User",
-                "login": login,
-                "password": "test",
-                "email": "test@yourcompany.com",
-                "company_id": company.id,
-                "company_ids": [(4, company.id)],
-                "groups_id": [(6, 0, group_ids)],
+                "product_id": cls.product.id,
+                "location_id": cls.location.id,
+                "quantity": 1,
+                "lot_id": cls.lot.id,
             }
         )
-        return user.id
+        cls.user = new_test_user(
+            cls.env,
+            login="test_quality_control_stock_oca",
+            groups="%s,%s"
+            % (
+                "stock.group_stock_user",
+                "quality_control_oca.group_quality_control_user",
+            ),
+        )
+        picking_form = Form(
+            cls.env["stock.picking"]
+            .with_user(cls.user)
+            .with_context(default_picking_type_id=cls.picking_type.id)
+        )
+        picking_form.partner_id = cls.partner1
+        with picking_form.move_ids_without_package.new() as move_form:
+            move_form.product_id = cls.product
+            move_form.product_uom_qty = 2
+        cls.picking1 = picking_form.save()
+        cls.picking1.action_confirm()
+        cls.picking1.move_ids.move_line_ids.qty_done = 1
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product(self):
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
@@ -126,6 +79,7 @@ class TestQualityControl(TransactionCase):
         inspection.onchange_object_id()
         self.assertEqual(inspection.qty, self.picking1.move_ids.product_uom_qty)
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template(self):
         self.product.product_tmpl_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
@@ -140,6 +94,7 @@ class TestQualityControl(TransactionCase):
             "Wrong test picked when creating inspection.",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category(self):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
@@ -154,6 +109,7 @@ class TestQualityControl(TransactionCase):
             "Wrong test picked when creating inspection.",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product_partner(self):
         self.product.qc_triggers = [
             (
@@ -176,6 +132,7 @@ class TestQualityControl(TransactionCase):
             "Wrong test picked when creating inspection.",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template_partner(self):
         self.product.product_tmpl_id.qc_triggers = [
             (
@@ -198,6 +155,7 @@ class TestQualityControl(TransactionCase):
             "Wrong test picked when creating inspection.",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category_partner(self):
         self.product.categ_id.qc_triggers = [
             (
@@ -220,6 +178,7 @@ class TestQualityControl(TransactionCase):
             "Wrong test picked when creating inspection.",
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product_wrong_partner(self):
         self.product.qc_triggers = [
             (
@@ -237,6 +196,7 @@ class TestQualityControl(TransactionCase):
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template_wrong_partner(self):
         self.product.product_tmpl_id.qc_triggers = [
             (
@@ -254,6 +214,7 @@ class TestQualityControl(TransactionCase):
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category_wrong_partner(self):
         self.product.categ_id.qc_triggers = [
             (
@@ -271,6 +232,7 @@ class TestQualityControl(TransactionCase):
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_only_one(self):
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
@@ -301,8 +263,8 @@ class TestQualityControl(TransactionCase):
             {
                 "name": "Test Picking Type",
                 "code": "outgoing",
-                "sequence_code": "OUT",
-                "sequence_id": self.sequence.id,
+                "sequence_code": self.picking_type.sequence_code,
+                "sequence_id": self.picking_type.sequence_id.id,
             }
         )
         trigger = self.qc_trigger_model.search(
