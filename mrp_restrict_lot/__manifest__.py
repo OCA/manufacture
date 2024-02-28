@@ -2,7 +2,7 @@
 
 {
     "name": "MRP Restrict Lot",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Manufacturing",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
