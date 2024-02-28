@@ -6,38 +6,48 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 from ..models.qc_trigger_line import _filter_trigger_lines
 
 
-class TestQualityControl(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.inspection_model = self.env["qc.inspection"]
-        self.category_model = self.env["qc.test.category"]
-        self.question_model = self.env["qc.test.question"]
-        self.wizard_model = self.env["qc.inspection.set.test"]
-        self.qc_trigger = self.env["qc.trigger"].create(
-            {"name": "Test Trigger", "active": True}
-        )
-        self.test = self.env.ref("quality_control_oca.qc_test_1")
-        self.val_ok = self.env.ref("quality_control_oca.qc_test_question_value_1")
-        self.val_ko = self.env.ref("quality_control_oca.qc_test_question_value_2")
-        self.qn_question = self.env.ref("quality_control_oca.qc_test_question_2")
-        self.cat_generic = self.env.ref(
+class TestQualityControlOcaBase(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.inspection_model = cls.env["qc.inspection"]
+        cls.category_model = cls.env["qc.test.category"]
+        cls.question_model = cls.env["qc.test.question"]
+        cls.wizard_model = cls.env["qc.inspection.set.test"]
+        cls.qc_trigger = cls.env["qc.trigger"].create({"name": "Test Trigger"})
+        cls.test = cls.env.ref("quality_control_oca.qc_test_1")
+        cls.val_ok = cls.env.ref("quality_control_oca.qc_test_question_value_1")
+        cls.val_ko = cls.env.ref("quality_control_oca.qc_test_question_value_2")
+        cls.qn_question = cls.env.ref("quality_control_oca.qc_test_question_2")
+        cls.cat_generic = cls.env.ref(
             "quality_control_oca.qc_test_template_category_generic"
         )
-        self.product = self.env.ref("product.product_product_11")
-        inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
-        self.inspection1 = self.inspection_model.create(
-            {"name": "Test Inspection", "inspection_lines": inspection_lines}
+        cls.product = cls.env["product.product"].create({"name": "Test product"})
+        cls.inspection1 = cls.inspection_model.create(
+            {
+                "name": "Test Inspection",
+                "inspection_lines": cls.inspection_model._prepare_inspection_lines(
+                    cls.test
+                ),
+            }
         )
-        self.wizard = self.wizard_model.with_context(
-            active_id=self.inspection1.id
-        ).create({"test": self.test.id})
-        self.wizard.action_create_test()
-        self.inspection1.action_todo()
+
+
+class TestQualityControlOca(TestQualityControlOcaBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.wizard = cls.wizard_model.with_context(active_id=cls.inspection1.id).create(
+            {"test": cls.test.id}
+        )
+        cls.wizard.action_create_test()
+        cls.inspection1.action_todo()
 
     def test_inspection_correct(self):
         for line in self.inspection1.inspection_lines:
