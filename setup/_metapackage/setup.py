@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo13-addon-quality_control_mrp_oca',
         'odoo13-addon-quality_control_oca',
         'odoo13-addon-quality_control_stock_oca',
+        'odoo13-addon-quality_control_team_oca',
         'odoo13-addon-repair_refurbish',
         'odoo13-addon-stock_picking_product_kit_helper',
         'odoo13-addon-stock_whole_kit_constraint',
