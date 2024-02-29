@@ -8,6 +8,7 @@
     "version": "16.0.1.0.0",
     "category": "Manufacturing",
     "author": "GRAP, Odoo Community Association (OCA)",
+    "maintainers": ["quentinDupont"],
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": [
@@ -19,7 +20,6 @@
         ],
     },
     "data": [
-        "data/report_paperformat.xml",
         "report/report_simple_bom.xml",
         "report/ir_actions_report.xml",
     ],

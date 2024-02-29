@@ -10,7 +10,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <t t-call="web.basic_layout">
           <t t-foreach="docs" t-as="bom">
             <!-- One page per BoM -->
-            <div class="page middle-font-size" style="page-break-before:always;">
+            <div
+                    class="page bom-simple-report-page middle-font-size"
+                    style="page-break-before:always;"
+                >
               <span>Bill of Material</span>
               <h3 class="title-h3"><b><span t-esc="bom.display_name" /></b></h3>
               <span class="bom.product_qty"><b>Quantity: </b><span

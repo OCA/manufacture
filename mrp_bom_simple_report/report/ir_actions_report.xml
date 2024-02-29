@@ -16,7 +16,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="attachment_use">False</field>
             <field name="binding_model_id" ref="mrp.model_mrp_bom" />
             <field name="binding_type">report</field>
-            <field name="paperformat_id" ref="paper_format_bom_simple_report" />
+            <field name="paperformat_id" ref="product.paperformat_label_sheet" />
       </record>
 
 </odoo>

@@ -5,6 +5,10 @@ $bom-simple-report-grey: #2a3836;
 $bom-simple-report-violet: #6c5ce7;
 
 // SCSS
+.bom-simple-report-page {
+    padding: 2em;
+}
+
 .title-h3 {
     color: $bom-simple-report-grey;
 }
