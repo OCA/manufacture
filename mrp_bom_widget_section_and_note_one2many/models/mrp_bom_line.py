@@ -11,6 +11,7 @@ class MrpBomLine(models.Model):
 
     # Returns mandatory for classic line thanks to _sql_constraints and view
     product_id = fields.Many2one(required=False)
+    product_uom_id = fields.Many2one(required=False)
 
     # New fields to handle section & note
     name = fields.Text(string="Description")
@@ -23,10 +24,15 @@ class MrpBomLine(models.Model):
 
     _sql_constraints = [
         (
-            "bom_required_fields",
+            "bom_required_fields_product_qty",
             "CHECK(display_type IS NOT NULL OR"
             "(product_id IS NOT NULL AND product_qty IS NOT NULL))",
-            "Missing required fields on bom line.",
+            "Missing required fields on bom line : product and quantity.",
+        ),
+        (
+            "bom_required_field_uom",
+            "CHECK(display_type IS NOT NULL OR" "(product_uom_id IS NOT NULL))",
+            "Missing required field on bom line : uom.",
         ),
         (
             "non_bom_null_fields",

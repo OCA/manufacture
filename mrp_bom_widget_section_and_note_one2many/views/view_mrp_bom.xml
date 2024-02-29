@@ -79,6 +79,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 options="{'no_open':True,'no_create':True}"
                                 groups="uom.group_uom"
                                 attrs="{
+                                   'required': [('display_type', '=', False)],
                                    'invisible': [('display_type', '=', True)],
                                 }"
                             />
