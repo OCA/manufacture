@@ -68,8 +68,8 @@ msgstr "Composants"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Components with sections and notes"
-msgstr "Composants"
+msgid "Components and sections"
+msgstr "Composants avec sections"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__name

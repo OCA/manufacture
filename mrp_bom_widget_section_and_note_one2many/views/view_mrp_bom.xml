@@ -13,10 +13,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
       <field name="arch" type="xml">
         <!-- Add new page -->
           <xpath expr="//page[1]" position="before">
-            <page
-                    string="Components with sections and notes"
-                    name="components_w_sections_notes"
-                >
+            <page string="Components and sections" name="components_w_sections_notes">
                 <field
                         name="bom_line_with_sectionnote_ids"
                         widget="section_and_note_one2many"
