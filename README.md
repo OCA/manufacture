@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [mrp_workorder_lot_display](mrp_workorder_lot_display/) | 16.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Display lot number on workorders kanban
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 16.0.0.1.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | adds sequence to production work orders.
 [quality_control_oca](quality_control_oca/) | 16.0.1.1.0 |  | Generic infrastructure for quality tests.
+[quality_control_stock_oca](quality_control_stock_oca/) | 16.0.1.0.0 |  | Quality control - Stock (OCA)
 
 [//]: # (end addons)
 
