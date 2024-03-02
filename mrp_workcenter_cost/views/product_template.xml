@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="group_lots_and_weight" position="inside">
+                <field
+                    name="mrp_workcenter_cost"
+                    widget="radio"
+                    options="{'horizontal': True}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
