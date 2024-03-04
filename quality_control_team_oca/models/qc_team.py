@@ -49,7 +49,7 @@ class QualityControlTeam(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get("qc.team"),
+        default=lambda self: self.env.company,
     )
     user_id = fields.Many2one(comodel_name="res.users", string="Team Leader")
     member_ids = fields.One2many(

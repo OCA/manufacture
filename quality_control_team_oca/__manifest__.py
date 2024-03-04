@@ -4,7 +4,7 @@
     "name": "Quality Control Team OCA",
     "summary": "Adds quality control teams to handle different quality "
     "control workflows",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Quality Control",
     "website": "https://github.com/OCA/manufacture",
     "author": "Eficent, Odoo Community Association (OCA)",

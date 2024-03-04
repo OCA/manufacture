@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+    <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
     <record id="qc_team_view_form" model="ir.ui.view">
@@ -78,14 +78,21 @@
                                                     >
                                                         <strong
                                                             class="o_kanban_record_title"
-                                                        ><field name="name" /></strong>
+                                                        >
+                                                            <field name="name" />
+                                                        </strong>
                                                     </div>
                                                     <a
                                                         t-if="! read_only_mode"
                                                         type="delete"
                                                         class="text-danger"
                                                     >
-                                                        <i class="fa fa-times" />
+                                                        <i
+                                                            class="fa fa-times"
+                                                            aria-label="Unlink"
+                                                            role="img"
+                                                            title="Unlink"
+                                                        />
                                                     </a>
                                                 </div>
                                             </div>
@@ -125,7 +132,7 @@
         <field name="model">qc.team</field>
         <field name="field_parent">child_ids</field>
         <field name="arch" type="xml">
-            <tree string="Quality Control Team">
+            <tree>
                 <field name="name" />
                 <field name="active" invisible="1" />
                 <field name="user_id" />
@@ -140,7 +147,8 @@
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click here to define a new quality control team.
-            </p><p>
+            </p>
+            <p>
                 Use quality control team to organize your different
                 departments into separate teams. Each team will work in
                 its own list of processes, stages...
