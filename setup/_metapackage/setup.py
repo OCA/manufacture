@@ -63,6 +63,7 @@ setuptools.setup(
         'odoo14-addon-quality_control_mrp_oca',
         'odoo14-addon-quality_control_oca',
         'odoo14-addon-quality_control_stock_oca',
+        'odoo14-addon-quality_control_team_oca',
         'odoo14-addon-repair_discount',
         'odoo14-addon-repair_picking_after_done',
         'odoo14-addon-repair_refurbish',
