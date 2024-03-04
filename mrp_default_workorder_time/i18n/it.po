@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-04 15:33+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_default_workorder_time
 #: model_terms:ir.ui.view,arch_db:mrp_default_workorder_time.res_config_settings_view_form
@@ -21,16 +23,19 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" role=\"img\" aria-label=\"I valori impostati qui "
+"sono specifici per azienda.\" groups=\"base.group_multi_company\"/>"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model,name:mrp_default_workorder_time.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model,name:mrp_default_workorder_time.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: mrp_default_workorder_time
 #. odoo-python
@@ -40,6 +45,7 @@ msgid ""
 "Fully Productive Time is not configured on system, please contact with your "
 "administrator"
 msgstr ""
+"L'orario di lavoro non è configurato nel sistema, contattare l'amministratore"
 
 #. module: mrp_default_workorder_time
 #: model_terms:ir.ui.view,arch_db:mrp_default_workorder_time.res_config_settings_view_form
@@ -47,44 +53,46 @@ msgid ""
 "If time recorded on workorder is not between this percentages, projected "
 "time will be used instead"
 msgstr ""
+"Se l'orario registrato negli ordini di lavoro non è all'interno di questa "
+"percentuale, verrà utilizzato l'orario previsto"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_company__maximum_order_time_threshold
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_config_settings__maximum_order_time_threshold
 msgid "Maximum order time threshold(%)"
-msgstr ""
+msgstr "Soglia orario ordine massimo (%)"
 
 #. module: mrp_default_workorder_time
 #: model_terms:ir.ui.view,arch_db:mrp_default_workorder_time.res_config_settings_view_form
 msgid "Maximum:"
-msgstr ""
+msgstr "Massimo:"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_company__minimum_order_time_threshold
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_config_settings__minimum_order_time_threshold
 msgid "Minimum order time threshold(%)"
-msgstr ""
+msgstr "Soglia orario ordine minima (%)"
 
 #. module: mrp_default_workorder_time
 #: model_terms:ir.ui.view,arch_db:mrp_default_workorder_time.res_config_settings_view_form
 msgid "Minimum:"
-msgstr ""
+msgstr "Minimo:"
 
 #. module: mrp_default_workorder_time
 #: model_terms:ir.ui.view,arch_db:mrp_default_workorder_time.res_config_settings_view_form
 msgid "Record standard projected order time"
-msgstr ""
+msgstr "Registra orario ordine previsto standard"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_company__use_projected_time_work_orders
 #: model:ir.model.fields,field_description:mrp_default_workorder_time.field_res_config_settings__use_projected_time_work_orders
 msgid "Use projected time work orders?"
-msgstr ""
+msgstr "Usare orario previsto ordini di lavoro?"
 
 #. module: mrp_default_workorder_time
 #: model:ir.model,name:mrp_default_workorder_time.model_mrp_workorder
 msgid "Work Order"
-msgstr ""
+msgstr "Ordine di lavoro"
 
 #. module: mrp_default_workorder_time
 #. odoo-python
@@ -94,3 +102,5 @@ msgid ""
 "You should plan orders to set default production time on work orders, please"
 " check"
 msgstr ""
+"Bisogna pianiicare gli ordini per impostare l'orario di produzione "
+"predefinito negli ordini di lavoro, verificare"
