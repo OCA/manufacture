@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-26 09:41+0000\n"
+"PO-Revision-Date: 2024-03-04 15:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -65,7 +65,7 @@ msgstr "Ordine di produzione"
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_workorder
 msgid "Work Order"
-msgstr "Ordine lavoro"
+msgstr "Ordine di lavoro"
 
 #, python-format
 #~ msgid ""
