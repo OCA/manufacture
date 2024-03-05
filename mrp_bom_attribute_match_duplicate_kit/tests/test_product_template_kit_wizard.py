@@ -26,6 +26,7 @@ class TestProductTemplateKitWizard(TestProductTemplateKitCommon):
     def test_action_confirm_flow(self):
         """Test flow that run full workflow"""
         product = self.product_template_two_attributes
+        product.uom_id = self.env.ref("uom.product_uom_dozen")
         context = {
             "default_product_tmpl_id": product.id,
             "default_new_product_template_name": "{} 1".format(product.name),
@@ -60,6 +61,7 @@ class TestProductTemplateKitWizard(TestProductTemplateKitCommon):
         )
         self.assertEqual(boms.type, "phantom")
         self.assertEqual(boms.product_qty, 1, "Product Qty must be equal to 1")
+        self.assertEqual(boms.product_uom_id, product.uom_id)
         self.assertTrue(boms.bom_line_ids, "BOM must have Lines")
         self.assertEqual(len(boms.bom_line_ids), 1, msg="BOM must have one line")
 
