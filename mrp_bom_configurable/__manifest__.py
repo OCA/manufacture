@@ -14,6 +14,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/bom.xml",
+        "views/bom_configured.xml",
         "views/bom_line.xml",
         "views/input_config.xml",
         "views/input_constraint.xml",

@@ -172,8 +172,9 @@ class Inputline(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "mrp.bom.configured",
             "view_mode": "form",
-            "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form").id,
+            "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form_view").id,
             "target": "new",
+            "context": f"{{'active_id': {self.id}}}"
         }
 
     @api.depends("bom_id")

@@ -30,6 +30,12 @@
                     type="object"
                     title="Info"
                 />
+            <button
+                    name="action_show_configured_bom"
+                    class="fa fa-cog"
+                    type="object"
+                    title="Info"
+                />
             <field name="name" />
             <field name="alert" optional="show" />
             <field name="comment" optional="show" />
