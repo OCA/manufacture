@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_account_analytic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_account_analytic
+#: model:ir.actions.act_window,name:mrp_account_analytic.action_new_mrp_analytic_items
+#: model:ir.ui.menu,name:mrp_account_analytic.custom_account_analytic_line_menu
+msgid "Analytic Items"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model,name:mrp_account_analytic.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity__display_name
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity__id
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move__id
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_mrp_workcenter_productivity____last_update
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move____last_update
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_stock_move_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model_terms:ir.ui.view,arch_db:mrp_account_analytic.custom_account_analytic_line_form_ext
+msgid "Manufacture"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model_terms:ir.ui.view,arch_db:mrp_account_analytic.custom_account_analytic_line_filter_view
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model_terms:ir.ui.view,arch_db:mrp_account_analytic.custom_account_analytic_line_filter_view
+msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model,name:mrp_account_analytic.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__manufacturing_order_id
+msgid "Related Manufacturing Order"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__stock_move_id
+msgid "Related Stock Move"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model,name:mrp_account_analytic.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model.fields,field_description:mrp_account_analytic.field_account_analytic_line__workorder_id
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_account_analytic
+#: model:ir.model,name:mrp_account_analytic.model_mrp_workcenter_productivity
+msgid "Workcenter Productivity Log"
+msgstr ""
