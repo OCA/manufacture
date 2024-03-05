@@ -25,6 +25,7 @@ class ProductTemplateKitWizard(models.TransientModel):
                 "product_tmpl_id": new_product.id,
                 "type": "phantom",
                 "product_qty": 1,
+                "product_uom_id": new_product.uom_id.id,
                 "bom_line_ids": [
                     (
                         0,
