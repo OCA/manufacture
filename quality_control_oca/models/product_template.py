@@ -16,3 +16,52 @@ class ProductTemplate(models.Model):
         inverse_name="product_template",
         string="Quality control triggers",
     )
+    created_inspections = fields.Integer(
+        compute="_compute_count_inspections", string="Created inspections"
+    )
+    done_inspections = fields.Integer(
+        compute="_compute_count_inspections", string="Done inspections"
+    )
+    passed_inspections = fields.Integer(
+        compute="_compute_count_inspections", string="Inspections OK"
+    )
+    failed_inspections = fields.Integer(
+        compute="_compute_count_inspections", string="Inspections failed"
+    )
+
+    def _compute_count_inspections(self):
+        data = (
+            self.env["qc.inspection"]
+            .sudo()
+            .read_group(
+                [("product_id", "in", self.product_variant_ids.ids)],
+                ["product_id", "state"],
+                ["product_id", "state"],
+                lazy=False,
+            )
+        )
+        product_data = {}
+        for d in data:
+            product_data.setdefault(d["product_id"][0], {}).setdefault(d["state"], 0)
+            product_data[d["product_id"][0]][d["state"]] += d["__count"]
+        for template in self:
+            count_data_lst = [
+                product_data.get(product.id, {})
+                for product in template.product_variant_ids
+            ]
+            template.created_inspections = sum(
+                sum(count_data.values()) for count_data in count_data_lst
+            )
+            template.passed_inspections = sum(
+                count_data.get("success", 0) for count_data in count_data_lst
+            )
+            template.failed_inspections = sum(
+                count_data.get("failed", 0) for count_data in count_data_lst
+            )
+            template.done_inspections = (
+                template.passed_inspections + template.failed_inspections
+            )
+
+    def button_qc_inspection_per_product(self):
+        self.ensure_one()
+        return self.product_variant_ids._action_qc_inspection_per_product()

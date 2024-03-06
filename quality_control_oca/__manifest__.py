@@ -3,6 +3,7 @@
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017-2020 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
+# Copyright 2023 Solvos Consultoría Informática, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
@@ -25,6 +26,7 @@
         "views/qc_test_view.xml",
         "views/qc_trigger_view.xml",
         "views/product_template_view.xml",
+        "views/product_product_view.xml",
         "views/product_category_view.xml",
     ],
     "demo": ["demo/quality_control_demo.xml"],

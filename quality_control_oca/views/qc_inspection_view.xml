@@ -4,6 +4,7 @@
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
     Copyright 2017 ForgeFlow S.L.
     Copyright 2017 Simone Rubino - Agile Business Group
+    Copyright 2023 Solvos Consultoría Informática, S.L.
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="qc_inspection_form_view">
@@ -141,7 +142,10 @@
                 <field name="user" />
                 <field name="test" />
                 <field name="qty" />
-                <field name="product_id" />
+                <field
+                    name="product_id"
+                    invisible="context.get('hide_product', False)"
+                />
                 <field name="success" />
                 <field name="state" />
             </tree>
@@ -222,6 +226,88 @@
         <field name="name">Inspections</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">tree,form</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_qc_inspection_product_template_all"
+    >
+        <field name="name">All Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("product_id.product_tmpl_id", "=", active_id)]</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_qc_inspection_product_template_done"
+    >
+        <field name="name">Done Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id.product_tmpl_id", "=", active_id),
+            ("state", "not in", ["draft", "waiting"]),
+        ]</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_qc_inspection_product_template_passed"
+    >
+        <field name="name">Passed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id.product_tmpl_id", "=", active_id),
+            ("state", "=", "success"),
+        ]</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_qc_inspection_product_template_failed"
+    >
+        <field name="name">Failed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id.product_tmpl_id", "=", active_id),
+            ("state", "=", "failed"),
+        ]</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_product_all">
+        <field name="name">All Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("product_id", "=", active_id)]</field>
+        <field name="context">{"hide_product": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_product_done">
+        <field name="name">Done Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id", "=", active_id),
+            ("state", "not in", ["draft", "waiting"]),
+        ]</field>
+        <field name="context">{"hide_product": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_product_passed">
+        <field name="name">Passed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id", "=", active_id),
+            ("state", "=", "success"),
+        ]</field>
+        <field name="context">{"hide_product": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_product_failed">
+        <field name="name">Failed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("product_id", "=", active_id),
+            ("state", "=", "failed"),
+        ]</field>
+        <field name="context">{"hide_product": True}</field>
     </record>
     <menuitem
         name="Inspections"
