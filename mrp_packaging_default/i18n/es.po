@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_packaging_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-07 12:33+0000\n"
+"Last-Translator: Jairo Llopis <yajo.sk8@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_packaging_default
+#: model:ir.model,name:mrp_packaging_default.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Línea de lista de materiales"
+
+#. module: mrp_packaging_default
+#: model:ir.model.fields,field_description:mrp_packaging_default.field_mrp_bom_line__product_packaging_id
+msgid "Packaging"
+msgstr "Envase"
+
+#. module: mrp_packaging_default
+#: model:ir.model.fields,field_description:mrp_packaging_default.field_mrp_bom_line__product_packaging_qty
+msgid "Packaging Qty."
+msgstr "Cant. Envs."
+
+#. module: mrp_packaging_default
+#: model:ir.model,name:mrp_packaging_default.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
