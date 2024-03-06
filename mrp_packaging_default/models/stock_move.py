@@ -16,6 +16,9 @@ class StockMove(models.Model):
         except KeyError:
             # No BoM line, nothing to do
             return
+        # If bom_line_id is False in vals
+        if not bom_line:
+            return
         vals.update(
             {
                 "product_packaging_id": bom_line.product_packaging_id.id,
