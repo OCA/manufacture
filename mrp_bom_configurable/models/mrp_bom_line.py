@@ -7,6 +7,57 @@ from odoo.tools.safe_eval import safe_eval
 logger = logging.getLogger(__name__)
 
 
+def check_domain(domain, values, current_name, parent_name):
+    domain = domain.replace("'", '"')
+    domain = domain.replace('"="', '"=="')
+    domain = domain.replace('"&", ', "")
+    domain = domain.replace('"&",', "")
+    domain = safe_eval(domain.replace("!==", "!="))
+
+    return execute_domain(domain, values, current_name, parent_name)
+
+
+def execute_domain_element(element, values, current_name, parent_name):
+    # TODO support len(element) == 1, because element can be '&' and '|'
+    if len(element) != 3:
+        logger.warning("Domain element %s" % element)
+    param, operator, value = element
+    if param not in values:
+        raise UserError(
+            f"Wrong param name ({param}) for domain {current_name}"
+            + f"in {parent_name}"
+        )
+    code = f"{repr(values[param])} {operator} {repr(value)}"
+
+    result = None
+
+    result = safe_eval(code)
+
+    return result
+
+
+def execute_domain(domain, values, current_name, parent_name):
+    if len(domain) == 0:
+        return True
+    if domain[0] == "OR":
+        return any(
+            execute_domain(domain_elm, values, current_name, parent_name)
+            for domain_elm in domain[1:]
+        )
+    elif isinstance(domain, list):
+        return all(
+            execute_domain(domain_elm, values, current_name, parent_name)
+            for domain_elm in domain
+        )
+    else:
+        try:
+            return execute_domain_element(domain, values, current_name, parent_name)
+        except SyntaxError:
+            raise exceptions.ValidationError(
+                f"Domain {domain} is incorrect on {current_name}"
+            ) from None
+
+
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
@@ -58,51 +109,14 @@ class MrpBomLine(models.Model):
             "target": "new",
         }
 
-    def execute_domain_element(self, element, values):
-        # TODO support len(element) == 1, because element can be '&' and '|'
-        if len(element) != 3:
-            logger.warning("Domain element %s" % element)
-        param, operator, value = element
-        if param not in values:
-            raise UserError(
-                f"Wrong param name ({param}) in domain {self.product_tmpl_id.name}"
-                + f"in BoM {self.bom_id.product_tmpl_id.name}"
-            )
-        code = f"{repr(values[param])} {operator} {repr(value)}"
-
-        result = None
-
-        try:
-            result = safe_eval(code)
-        except SyntaxError:
-            raise exceptions.ValidationError(
-                f"Domain {self.domain} is incorrect on {self.product_id.name}"
-            ) from None
-
-        return result
-
-    def execute_domain(self, domain, values):
-        if domain[0] == "OR":
-            return any(
-                self.execute_domain(domain_elm, values) for domain_elm in domain[1:]
-            )
-        elif isinstance(domain, list):
-            return all(self.execute_domain(domain_elm, values) for domain_elm in domain)
-        else:
-            return self.execute_domain_element(domain, values)
-
     def execute(self, values):
         self.ensure_one()
         if not self.domain:
             return True
         else:
-            # TODO clean to support '&' and '|' in domain
-            domain = self.domain.replace("'", '"')
-            domain = domain.replace('"="', '"=="')
-            domain = domain.replace('"&", ', "")
-            domain = domain.replace('"&",', "")
-            domain = safe_eval(domain.replace("!==", "!="))
-            return self.execute_domain(domain, values)
+            return check_domain(
+                self.domain, values, self.product_id.name, self.bom_id.product_id.name
+            )
 
     def ui_update_domain(self):
         self.ensure_one()

@@ -31,85 +31,18 @@ class Inputline(models.Model):
         vals = {"name": "%s copy" % self.name}
         self.copy(vals)
 
-    def _get_filtered_components_from_values(self):
+    def _get_input_line_values(self):
         elements = dict()
-        conf_names = dict()
         for elm in self._get_config_elements():
             if self._fields[elm].type == "many2one":
-                value = self[elm].id
+                value = self[elm].display_name
             else:
                 value = self[elm]
             elements[elm] = value
-            conf_names[self._fields[elm].string] = value
-        lines = self.bom_id.check_domain(elements)
-        return lines, conf_names
-
-    def get_values_with_field_desc(self):
-        self.ensure_one()
-        values = [
-            {
-                "name": "name",
-                "string": "Name",
-                "value": self.name,
-            }
-        ]
-        for field in self._get_config_elements():
-            field_vals = {
-                "name": field,
-                "string": self._fields[field].string,
-                "type": self._fields[field].type,
-            }
-
-            if self._fields[field].type == "many2one":
-                fieldinfo = self._fields[field]
-                field_vals["value"] = self[field].id
-                field_vals["display_name"] = self[field].display_name
-                field_vals["model"] = fieldinfo.comodel_name
-                if isinstance(fieldinfo.domain, list) or fieldinfo.domain is None:
-                    field_vals["domain"] = fieldinfo.domain
-                else:
-                    field_vals["domain"] = fieldinfo.domain(self)
-            else:
-                field_vals["value"] = self[field]
-
-            if self._fields[field].type == "selection":
-                if self._fields[field].related:
-                    field_vals["possible_values"] = self._fields[field].selection(self)
-                else:
-                    field_vals["possible_values"] = self._fields[field].selection
-
-            values.append(field_vals)
-
-        return values
+        return elements
 
     def check_one_data(self):
         pass
-
-    def _create_report_dict_from_line(self, line):
-        return {
-            "id": line.id,
-            "component": line.product_id.display_name,
-            "quantity": line.product_qty,
-            "unit": line.product_uom_id.display_name,
-        }
-
-    def _create_bom_data_preview(self):
-        self.ensure_one()
-        lines, conf_names = self._get_filtered_components_from_values()
-        return {
-            "config_data": [
-                {"name": key, "display_name": conf_names[key]} for key in conf_names
-            ],
-            "data": [self._create_report_dict_from_line(line) for line in lines],
-        }
-
-    def populate_bom_data_preview(self):
-        self.bom_data_preview = self._create_bom_data_preview()
-
-    def get_json(self):
-        self.ensure_one()
-        self.populate_bom_data_preview()
-        return self.bom_data_preview
 
     def open_form_pop_up(self):
         self.ensure_one()
@@ -124,19 +57,14 @@ class Inputline(models.Model):
 
     def create_bom_line_data(self):
         self.ensure_one()
-        components, _ = self._get_filtered_components_from_values()
+        components = self.bom_id.get_bom_configured_data(self)
         bom_lines_data = []
 
         for comp in components:
-            quantity = (
-                comp.compute_qty_from_formula(self)
-                if comp.use_formula_compute_qty
-                else comp.product_qty
-            )
             bom_line_data = {
-                "product_tmpl_id": comp.product_tmpl_id,
-                "product_id": comp.product_id,
-                "product_qty": quantity,
+                "product_tmpl_id": comp["line"].product_tmpl_id,
+                "product_id": comp["line"].product_id,
+                "product_qty": comp["product_qty"],
             }
             bom_lines_data.append(bom_line_data)
 

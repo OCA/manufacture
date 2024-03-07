@@ -36,21 +36,18 @@ class MrpBomConfigured(models.TransientModel):
 
     def _default_line_ids(self):
         input_line_id = self.env["input.line"].browse(self.env.context.get("active_id"))
-        components, _ = input_line_id._get_filtered_components_from_values()
+        components = input_line_id.create_bom_line_data()
         lines = []
+        # TODO(franz): since quantity is tree dependent _get_filtered_components_from_values
+        # should take this into account to allow for proper quantity computation
         for comp in components:
-            quantity = (
-                comp.compute_qty_from_formula(input_line_id)
-                if comp.use_formula_compute_qty
-                else comp.product_qty
-            )
             # price += quantity * comp.product_id.lst_price
             lines.append(
                 self.env["mrp.bom.line.configured"]
                 .create(
                     {
-                        "product_id": comp.product_id.id,
-                        "product_qty": quantity,
+                        "product_id": comp["product_id"].id,
+                        "product_qty": comp["product_qty"],
                     }
                 )
                 .id
