@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_configured_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.configured.form</field>
+        <field name="model">mrp.bom.configured</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="product_id" />
+                <field name="line_ids">
+                    <tree>
+                        <field name="product_id" />
+                        <field name="product_qty" />
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+</odoo>
