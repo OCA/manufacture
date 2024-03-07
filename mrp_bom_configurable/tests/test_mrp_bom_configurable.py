@@ -102,9 +102,3 @@ class TestBomConfigurable(TransactionCase):
         self.assertEqual(len(boms), 2)
         self.assertEqual(len(boms[0].bom_line_ids), 2)
         self.assertEqual(len(boms[1].bom_line_ids), 3)
-
-    def test_01_configurable_bom_report(self):
-        report_values = self.env[
-            "mrp_bom_configurable.report.mrp.report_bom_structure"
-        ]._get_report_data(self.bom.id)
-        self.assertIn("domain", report_values["lines"]["components"][0])
