@@ -1,0 +1,193 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_attribute_match
+#
+# Francesco @ Ooops <francesco.foresti@ooops404.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-14 17:50+0000\n"
+"PO-Revision-Date: 2023-01-01 13:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian <http://weblate.ops404.it/projects/ooops-mrp-14-0/"
+"mrp_bom_attribute_match/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Distinta base"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Riga Distinta Base"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_id
+msgid "Component"
+msgstr "Componente"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__component_template_id
+msgid "Component (product template)"
+msgstr "Componente (modello prodotto)"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line____last_update
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__match_on_attribute_ids
+msgid "Match on Attributes"
+msgstr "Corrispondenza su attributi"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"No match on attribute has been detected for Component (Product Template) %s"
+msgstr ""
+"Nessuna corrispondenza trovata nell'attributo per il componente (modello "
+"prodotto) %s"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Product Backup"
+msgstr "Backup componente"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_product_template
+msgid "Product Template"
+msgstr "Modello Prodotto"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_id_domain
+msgid "Product Uom Id Domain"
+msgstr "Dominio ID UdM prodotto"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di Produzione"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Recursion error!  A product with a Bill of Material should not have itself "
+"in its BoM or child BoMs!"
+msgstr ""
+"Errore ricorsivo! Un prodotto con una distinta base non può essere presente "
+"nella sua DiBa o nelle DiBa figlie!"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Some attributes of the dynamic component are not included into production "
+"product attributes."
+msgstr ""
+"Alcuni attributi del componente non sono inclusi tra gli attributi del "
+"prodotto da produrre."
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Technical field to store previous value of product_id"
+msgstr "Campo tecnico per preservare i valori di product_id"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"The attributes you're trying to remove is used in BoM as a match with "
+"Component (Product Template). To remove these attributes, first remove the "
+"BOM line with the matching component.\n"
+"Attributes: %s\n"
+"BoM: %s"
+msgstr ""
+"L'attributo che si sta cercando di eliminare è utilizzato nelle DiBa come "
+"corrispondenza con un componente (modello prodotto). Per rimuovere questo "
+"attributo, prima rimuovere la riga di DiBa con il componente corrispondente."
+"\n"
+"Attributo: %s\n"
+"DiBa: %s"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"This product template is used as a component in the BOMs for %s and "
+"attribute(s) %s is not present in all such product(s), and this would break "
+"the BOM behavior."
+msgstr ""
+"Questo modello prodotto è utilizzato come componente nella DiBa per i "
+"prodotti %s e gli attributi %s non sono presenti in tutti questi prodotti; "
+"ciò può corrompere il comportamento del BOM."
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"You cannot use an attribute value for attribute %s in the field “Apply on "
+"Variants” as it’s the same attribute used in field “Match on "
+"Attribute”related to the component %s."
+msgstr ""
+"Non puoi utilizzare un valore attributo dell'attributo %s nel campo “Applica "
+"alle varianti” dato che è lo stesso attributo utilizzato nel campo "
+"“Corrispondenza su attributo” relativo al componente %s."
+
+#~ msgid "Dynamic component must have only 1 attribute"
+#~ msgstr "Il componente dinamico deve avere un solo attributo"
+
+#~ msgid "Match on Attribute"
+#~ msgstr "Corrispondenza su attributo"
+
+#~ msgid "Only product template with one attribute can be added to this field."
+#~ msgstr ""
+#~ "Solo i modelli prodotto con un solo attributo possono essere aggiunti a "
+#~ "questo campo."
+
+#~ msgid ""
+#~ "This product included into BOMs as dynamic component. Please remove it "
+#~ "from related BOMs to be able to have multiple attributes for it. BOM ids: "
+#~ "%s"
+#~ msgstr ""
+#~ "Questo prodotto è incluso in una distinta base come componente dinamico. "
+#~ "Per aggiungere altri attributi, devi rimuoverlo dalle seguenti DiBa: %s"
+
+#~ msgid "Attribute Value Backup"
+#~ msgstr "Backup Valori Attributo"
+
+#~ msgid "Match On Attribute"
+#~ msgstr "Corrispondenza su attributo"
+
+#~ msgid "Technical field to store previous value of attribute_value_ids"
+#~ msgstr ""
+#~ "Campo tecnico per preservare i valori precedenti di attribute_value_ids"
