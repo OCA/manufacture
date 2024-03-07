@@ -4,7 +4,7 @@
 {
     "name": "MRP Default Packaging",
     "summary": "Include packaging info in MRP by default",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Manufacturing/Manufacturing",
     "website": "https://github.com/OCA/manufacture",
