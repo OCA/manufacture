@@ -12,7 +12,7 @@ class MrpBomConfigured(models.TransientModel):
         comodel_name="mrp.bom.line.configured",
         compute="_compute_line_ids",
         inverse_name="bom_id",
-        default=lambda self: self._default_line_ids()
+        default=lambda self: self._default_line_ids(),
     )
     product_id = fields.Many2one(
         comodel_name="product.configured",
@@ -25,9 +25,7 @@ class MrpBomConfigured(models.TransientModel):
 
     @api.model
     def _default_product_id(self):
-        input_line_id = self.env["input.line"].browse(
-            self.env.context.get("active_id")
-        )
+        input_line_id = self.env["input.line"].browse(self.env.context.get("active_id"))
         config_id = input_line_id.config_id
         new_product = self.env["product.configured"].create(
             {
@@ -37,9 +35,7 @@ class MrpBomConfigured(models.TransientModel):
         return new_product.id
 
     def _default_line_ids(self):
-        input_line_id = self.env["input.line"].browse(
-            self.env.context.get("active_id")
-        )
+        input_line_id = self.env["input.line"].browse(self.env.context.get("active_id"))
         components, _ = input_line_id._get_filtered_components_from_values()
         lines = []
         for comp in components:
@@ -49,12 +45,16 @@ class MrpBomConfigured(models.TransientModel):
                 else comp.product_qty
             )
             # price += quantity * comp.product_id.lst_price
-            lines.append(self.env["mrp.bom.line.configured"].create(
-                {
-                    "product_id": comp.product_id.id,
-                    "product_qty": quantity,
-                }
-            ).id)
+            lines.append(
+                self.env["mrp.bom.line.configured"]
+                .create(
+                    {
+                        "product_id": comp.product_id.id,
+                        "product_qty": quantity,
+                    }
+                )
+                .id
+            )
 
         return lines
 

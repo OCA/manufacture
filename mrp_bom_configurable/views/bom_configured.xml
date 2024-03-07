@@ -8,8 +8,8 @@
                 <field name="product_id" />
                 <field name="line_ids">
                     <tree>
-                        <field name="product_id"/>
-                        <field name="product_qty"/>
+                        <field name="product_id" />
+                        <field name="product_qty" />
                     </tree>
                 </field>
             </form>

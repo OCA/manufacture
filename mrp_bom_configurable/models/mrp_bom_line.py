@@ -65,7 +65,8 @@ class MrpBomLine(models.Model):
         param, operator, value = element
         if param not in values:
             raise UserError(
-                f"Wrong param name ({param}) in domain {self.product_tmpl_id.name} in BoM {self.bom_id.product_tmpl_id.name}"
+                f"Wrong param name ({param}) in domain {self.product_tmpl_id.name}"
+                + f"in BoM {self.bom_id.product_tmpl_id.name}"
             )
         code = f"{repr(values[param])} {operator} {repr(value)}"
 

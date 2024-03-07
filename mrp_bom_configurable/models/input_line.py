@@ -36,7 +36,7 @@ class Inputline(models.Model):
         conf_names = dict()
         for elm in self._get_config_elements():
             if self._fields[elm].type == "many2one":
-                value = self[elm].display_name
+                value = self[elm].id
             else:
                 value = self[elm]
             elements[elm] = value
@@ -122,29 +122,10 @@ class Inputline(models.Model):
             "res_id": self.id,
         }
 
-    def create_bom_from_line(self):
+    def create_bom_line_data(self):
         self.ensure_one()
         components, _ = self._get_filtered_components_from_values()
-        new_bom_lines = []
-        price = 0
-
-        if len(self.configured_bom_id) == 0:
-            new_product = self.env["product.template"].create(
-                {
-                    "name": f"{self.config_id.name} - {self.name}",
-                }
-            )
-            new_bom = self.env["mrp.bom"].create(
-                {
-                    "configuration_type": "configured",
-                    "product_qty": 1,
-                    "product_tmpl_id": new_product.id,
-                }
-            )
-
-            self.configured_bom_id = new_bom.id
-        else:
-            self.configured_bom_id.bom_line_ids.unlink()
+        bom_lines_data = []
 
         for comp in components:
             quantity = (
@@ -152,19 +133,14 @@ class Inputline(models.Model):
                 if comp.use_formula_compute_qty
                 else comp.product_qty
             )
-            quantity *= self.count
-            price += quantity * comp.product_id.lst_price
-            new_bom_line = self.env["mrp.bom.line"].create(
-                {
-                    "product_tmpl_id": comp.product_tmpl_id.id,
-                    "product_id": comp.product_id.id,
-                    "product_qty": quantity,
-                    "bom_id": self.configured_bom_id.id,
-                }
-            )
-            new_bom_lines.append(new_bom_line.id)
+            bom_line_data = {
+                "product_tmpl_id": comp.product_tmpl_id,
+                "product_id": comp.product_id,
+                "product_qty": quantity,
+            }
+            bom_lines_data.append(bom_line_data)
 
-        self.configured_bom_id.product_tmpl_id.product_variant_id.lst_price = price
+        return bom_lines_data
 
     def action_show_configured_bom(self):
         self.ensure_one()
@@ -172,9 +148,11 @@ class Inputline(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "mrp.bom.configured",
             "view_mode": "form",
-            "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form_view").id,
+            "view_id": self.env.ref(
+                "mrp_bom_configurable.mrp_bom_configured_form_view"
+            ).id,
             "target": "new",
-            "context": f"{{'active_id': {self.id}}}"
+            "context": f"{{'active_id': {self.id}}}",
         }
 
     @api.depends("bom_id")
