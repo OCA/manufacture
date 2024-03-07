@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017 ForgeFlow
+<!-- Copyright 2017-2024 ForgeFlow
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="mrp_bom_line_tree_view" model="ir.ui.view">
         <field name="name">mrp.bom.line.tree.view</field>
         <field name="model">mrp.bom.line</field>
         <field name="arch" type="xml">
-            <tree create="0">
+            <tree create="0" delete="0">
                 <field name="bom_id" />
                 <field name="product_id" />
                 <field name="product_qty" />
