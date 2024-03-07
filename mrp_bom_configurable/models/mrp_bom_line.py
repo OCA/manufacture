@@ -1,6 +1,7 @@
 import logging
 
 from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import UserError
 from odoo.tools.safe_eval import safe_eval
 
 logger = logging.getLogger(__name__)
@@ -62,6 +63,10 @@ class MrpBomLine(models.Model):
         if len(element) != 3:
             logger.warning("Domain element %s" % element)
         param, operator, value = element
+        if param not in values:
+            raise UserError(
+                f"Wrong param name ({param}) in domain {self.product_tmpl_id.name} in BoM {self.bom_id.product_tmpl_id.name}"
+            )
         code = f"{repr(values[param])} {operator} {repr(value)}"
 
         result = None
