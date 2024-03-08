@@ -32,7 +32,7 @@ class MrpBom(models.Model):
                         subtype_id=self.env.ref("mail.mt_note").id,
                     )
                 bom_line_ids[bom.id] = bom.bom_line_ids
-        res = super(MrpBom, self).write(values)
+        res = super().write(values)
         if "bom_line_ids" in values:
             for bom in self:
                 new_lines = bom.bom_line_ids - bom_line_ids[bom.id]
@@ -51,7 +51,8 @@ class MrpBomLine(models.Model):
     def write(self, values):
         if "product_id" in values:
             for bom in self.mapped("bom_id"):
-                lines = self.filtered(lambda l: l.bom_id == bom)
+                # Bind bom variable for the current iteration to the lambda
+                lines = self.filtered(lambda x, bom=bom: x.bom_id == bom)
                 product_id = values.get("product_id")
                 if product_id:
                     product_id = self.env["product.product"].browse(product_id)
@@ -64,7 +65,8 @@ class MrpBomLine(models.Model):
                     )
         elif "product_qty" in values or "product_uom_id" in values:
             for bom in self.mapped("bom_id"):
-                lines = self.filtered(lambda l: l.bom_id == bom)
+                # Bind bom variable for the current iteration to the lambda
+                lines = self.filtered(lambda line, bom=bom: line.bom_id == bom)
                 if lines:
                     product_qty = values.get("product_qty") or lines.product_qty
                     product_uom_id = values.get("product_uom_id")
@@ -80,4 +82,4 @@ class MrpBomLine(models.Model):
                         },
                         subtype_id=self.env.ref("mail.mt_note").id,
                     )
-        return super(MrpBomLine, self).write(values)
+        return super().write(values)
