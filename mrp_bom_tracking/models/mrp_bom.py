@@ -13,8 +13,13 @@ class MrpBom(models.Model):
     product_qty = fields.Float(tracking=True)
     picking_type_id = fields.Many2one(tracking=True)
     type = fields.Selection(tracking=True)
+    ready_to_produce = fields.Selection(tracking=True)
+    consumption = fields.Selection(tracking=True)
+    produce_delay = fields.Integer(tracking=True)
+    days_to_prepare_mo = fields.Integer(tracking=True)
 
     def write(self, values):
+        template_env = self.env["ir.ui.view"]
         bom_line_ids = {}
         if "bom_line_ids" in values:
             for bom in self:
@@ -23,13 +28,15 @@ class MrpBom(models.Model):
                     if line[0] == 2:
                         del_lines.append(line[1])
                 if del_lines:
-                    bom.message_post_with_view(
+                    message_body = template_env._render_template(
                         "mrp_bom_tracking.track_bom_template",
                         values={
                             "lines": self.env["mrp.bom.line"].browse(del_lines),
                             "mode": "Removed",
                         },
-                        subtype_id=self.env.ref("mail.mt_note").id,
+                    )
+                    bom.message_post(
+                        body=message_body, subtype_id=self.env.ref("mail.mt_note").id
                     )
                 bom_line_ids[bom.id] = bom.bom_line_ids
         res = super().write(values)
@@ -37,10 +44,12 @@ class MrpBom(models.Model):
             for bom in self:
                 new_lines = bom.bom_line_ids - bom_line_ids[bom.id]
                 if new_lines:
-                    bom.message_post_with_view(
+                    message_body = template_env._render_template(
                         "mrp_bom_tracking.track_bom_template",
                         values={"lines": new_lines, "mode": "New"},
-                        subtype_id=self.env.ref("mail.mt_note").id,
+                    )
+                    bom.message_post(
+                        body=message_body, subtype_id=self.env.ref("mail.mt_note").id
                     )
         return res
 
@@ -49,37 +58,38 @@ class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     def write(self, values):
+        template_env = self.env["ir.ui.view"]
         if "product_id" in values:
-            for bom in self.mapped("bom_id"):
-                # Bind bom variable for the current iteration to the lambda
-                lines = self.filtered(lambda x, bom=bom: x.bom_id == bom)
+            for bom_line in self:
+                bom = bom_line.bom_id
                 product_id = values.get("product_id")
-                if product_id:
-                    product_id = self.env["product.product"].browse(product_id)
-                product_id = product_id or lines.product_id
-                if lines:
-                    bom.message_post_with_view(
+                product = self.env["product.product"].browse(product_id)
+                if product.exists():
+                    message_body = template_env._render_template(
                         "mrp_bom_tracking.track_bom_template_2",
-                        values={"lines": lines, "product_id": product_id},
-                        subtype_id=self.env.ref("mail.mt_note").id,
+                        values={"lines": bom_line, "product_id": product},
+                    )
+                    bom.message_post(
+                        body=message_body, subtype_id=self.env.ref("mail.mt_note").id
                     )
         elif "product_qty" in values or "product_uom_id" in values:
-            for bom in self.mapped("bom_id"):
-                # Bind bom variable for the current iteration to the lambda
-                lines = self.filtered(lambda line, bom=bom: line.bom_id == bom)
-                if lines:
-                    product_qty = values.get("product_qty") or lines.product_qty
-                    product_uom_id = values.get("product_uom_id")
-                    if product_uom_id:
-                        product_uom_id = self.env["uom.uom"].browse(product_uom_id)
-                    product_uom_id = product_uom_id or lines.product_uom_id
-                    bom.message_post_with_view(
-                        "mrp_bom_tracking.track_bom_line_template",
-                        values={
-                            "lines": lines,
-                            "product_qty": product_qty,
-                            "product_uom_id": product_uom_id,
-                        },
-                        subtype_id=self.env.ref("mail.mt_note").id,
-                    )
+            for bom_line in self:
+                bom = bom_line.bom_id
+                product_qty = values.get("product_qty") or bom_line.product_qty
+                product_uom_id = values.get("product_uom_id")
+                product_uom = None
+                if product_uom_id:
+                    product_uom = self.env["uom.uom"].browse(product_uom_id)
+                product_uom = product_uom or bom_line.product_uom_id
+                message_body = template_env._render_template(
+                    "mrp_bom_tracking.track_bom_line_template",
+                    values={
+                        "lines": bom_line,
+                        "product_qty": product_qty,
+                        "product_uom_id": product_uom,
+                    },
+                )
+                bom.message_post(
+                    body=message_body, subtype_id=self.env.ref("mail.mt_note").id
+                )
         return super().write(values)
