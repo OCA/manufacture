@@ -1,9 +1,9 @@
-# Copyright 2019 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2019-2024 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
     "name": "MRP BoM Tracking",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Logs any change to a BoM in the chatter",
     "website": "https://github.com/OCA/manufacture",
