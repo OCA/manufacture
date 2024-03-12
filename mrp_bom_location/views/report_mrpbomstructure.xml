@@ -14,7 +14,7 @@
         <xpath expr="//tbody/tr[last()]/td[last()-1]" position="after">
             <td t-if="data['bom'].location_id" />
         </xpath>
-        <xpath expr="//tbody/t[last()]/tr/td[last()-1]" position="after">
+        <xpath expr="//tbody/tr[last()]/td[last()-1]" position="after">
             <td t-if="data['bom'].location_id" />
         </xpath>
     </template>
