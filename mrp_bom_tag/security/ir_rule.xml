@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="rule_bom_tag" model="ir.rule">
+        <field name="name">Bill Of Material Tag Rule</field>
+        <field name="model_id" ref="model_mrp_bom_tag" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+                [
+                    '|',
+                    ('company_id','=',False),
+                    ('company_id', 'in', company_ids)
+                ]
+            </field>
+    </record>
+
+
+</odoo>
