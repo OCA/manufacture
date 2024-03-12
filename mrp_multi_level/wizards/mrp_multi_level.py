@@ -352,9 +352,7 @@ class MultiLevelMrp(models.TransientModel):
             products = bom_lines.mapped("product_id")
             products.write({"llc": llc})
             counter = self.env["product.product"].search_count([("llc", "=", llc)])
-            log_msg = "Low level code {} finished - Nbr. products: {}".format(
-                llc, counter
-            )
+            log_msg = f"Low level code {llc} finished - Nbr. products: {counter}"
             logger.info(log_msg)
             if llc > llc_recursion_limit:
                 logger.error("Recursion limit reached during LLC calculation.")
@@ -514,9 +512,7 @@ class MultiLevelMrp(models.TransientModel):
                 if self._exclude_from_mrp(product_mrp_area.product_id, mrp_area):
                     continue
                 init_counter += 1
-                log_msg = "MRP Init: {} - {} ".format(
-                    init_counter, product_mrp_area.display_name
-                )
+                log_msg = f"MRP Init: {init_counter} - {product_mrp_area.display_name} "
                 logger.info(log_msg)
                 self._init_mrp_move(product_mrp_area)
         logger.info("End MRP initialisation")
