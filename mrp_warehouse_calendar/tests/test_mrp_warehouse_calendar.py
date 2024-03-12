@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestMrpWarehouseCalendar(TransactionCase):
     def setUp(self):
-        super(TestMrpWarehouseCalendar, self).setUp()
+        super().setUp()
         self.move_obj = self.env["stock.move"]
         self.pg_obj = self.env["procurement.group"]
 
@@ -28,7 +28,6 @@ class TestMrpWarehouseCalendar(TransactionCase):
                 "name": "test product",
                 "default_code": "PRD",
                 "type": "product",
-                "produce_delay": 1,
             }
         )
         self.product_2 = self.env["product.product"].create(
@@ -41,6 +40,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
                 "product_uom_id": self.product.uom_id.id,
                 "product_qty": 1.0,
                 "type": "normal",
+                "produce_delay": 1,
             }
         )
         self.env["mrp.bom.line"].create(
@@ -73,7 +73,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
         mo = self.env["mrp.production"].search(
             [("product_id", "=", self.product.id)], limit=1
         )
-        date_plan_start = fields.Date.to_date(mo.date_planned_start)
+        date_plan_start = fields.Date.to_date(mo.date_start)
         # Friday 4th Jan 2097
         friday = fields.Date.to_date("2097-01-04 09:00:00")
 
@@ -105,7 +105,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
         mo = self.env["mrp.production"].search(
             [("product_id", "=", self.product.id)], limit=1
         )
-        date_plan_start = fields.Date.to_date(mo.date_planned_start)
+        date_plan_start = fields.Date.to_date(mo.date_start)
         # Friday 4th Jan 2097
         friday = fields.Date.to_date("2097-01-04 09:00:00")
 
@@ -122,8 +122,8 @@ class TestMrpWarehouseCalendar(TransactionCase):
                 ]._get_default_picking_type_id(self.company.id),
             }
         )
-        mo.date_planned_start = "2097-01-04 09:00:00"
-        mo._compute_date_planned_finished()
-        date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
+        mo.date_start = "2097-01-04 09:00:00"
+        mo._compute_date_finished()
+        date_plan_finished = fields.Date.to_date(mo.date_finished)
         monday = fields.Date.to_date("2097-01-07 09:00:00")
         self.assertEqual(date_plan_finished, monday)
