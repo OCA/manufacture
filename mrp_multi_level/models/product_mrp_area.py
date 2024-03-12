@@ -131,7 +131,7 @@ class ProductMRPArea(models.Model):
         return [
             (
                 area.id,
-                "[{}] {}".format(area.mrp_area_id.name, area.product_id.display_name),
+                f"[{area.mrp_area_id.name}] {area.product_id.display_name}",
             )
             for area in self
         ]
