@@ -23,20 +23,6 @@ msgid "Account Move Line"
 msgstr "Línea de movimiento de cuenta"
 
 #. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__display_name
-msgid "Display Name"
-msgstr "Mostrar nombre"
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_account_move_line
 msgid "Journal Item"
 msgstr "Elemento de diario"
@@ -47,13 +33,6 @@ msgstr "Elemento de diario"
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_unbuild_form_view
 msgid "Journal Items"
 msgstr "Artículos Diarios"
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__mrp_production_id
@@ -75,3 +54,12 @@ msgstr "Aún no hay ningún artículo en el diario"
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__unbuild_id
 msgid "Unbuild Order"
 msgstr "Orden de desestructuración"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"

@@ -21,20 +21,6 @@ msgid "Account Move Line"
 msgstr ""
 
 #. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__id
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__id
-msgid "ID"
-msgstr ""
-
-#. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_account_move_line
 msgid "Journal Item"
 msgstr ""
@@ -44,13 +30,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_unbuild_form_view
 msgid "Journal Items"
-msgstr ""
-
-#. module: account_move_line_mrp_info
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: account_move_line_mrp_info
