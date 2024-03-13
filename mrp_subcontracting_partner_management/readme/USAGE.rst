@@ -4,4 +4,3 @@
 * When disabled all associated enties will be archived
 * When name of subcontractor is updated, names of entities are updated automatically.
 * It is also possible to check inventory locations using **Subcontractor Location Stock** smart button on partner.
-* When name of subcontractor is updated, names of entities (subcontracting location, operation type, rules) are updated automatically.

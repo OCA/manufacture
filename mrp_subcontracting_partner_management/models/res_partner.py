@@ -44,17 +44,6 @@ class ResPartner(models.Model):
         for key in self.get_data_struct():
             self.mapped(key).write({"active": active})
 
-    @api.model
-    def _update_name_translation(self, records, name):
-        """Update name field translation for records"""
-        self.env["ir.translation"].search(
-            [
-                ("name", "=", "{},name".format(records._name)),
-                ("res_id", "in", records.ids),
-                ("value", "!=", name),
-            ]
-        ).write({"value": name})
-
     def _update_subcontractor_values_name(self, name):
         """
         Update subcontractor related records:
@@ -69,17 +58,15 @@ class ResPartner(models.Model):
         for field in field_names:
             records = partners.mapped(field)
             records.write({"name": name})
-            self._update_name_translation(records, name)
         type_name = "%s:  IN" % name
         code = "".join(re.findall(r"\b\w", type_name))
         picks = partners.mapped("partner_picking_type_id")
         picks.write({"name": type_name, "sequence_code": code})
-        self._update_name_translation(picks, type_name)
 
     def unlink(self):
         """This Method is override to archive all subcontracting field"""
         self._set_subcontracting_values_active(False)
-        return super(ResPartner, self).unlink()
+        return super().unlink()
 
     def write(self, vals):
         if "is_subcontractor_partner" in vals:
@@ -88,7 +75,7 @@ class ResPartner(models.Model):
             )
         if "active" in vals:
             self._set_subcontracting_values_active(vals.get("active"))
-        result = super(ResPartner, self).write(vals)
+        result = super().write(vals)
         if vals.get("name"):
             self._update_subcontractor_values_name(vals.get("name"))
         return result
@@ -108,7 +95,7 @@ class ResPartner(models.Model):
                         )(vals)
                         or {}
                     )
-        return super(ResPartner, self).create(vals_list)
+        return super().create(vals_list)
 
     def _update_subcontractor_entities_for_record(self, is_subcontractor_partner):
         if not is_subcontractor_partner:
@@ -197,13 +184,11 @@ class ResPartner(models.Model):
 
     def _create_operation_type_for_subcontracting(self, vals):
         # Creating Operation Type for Subcontracting starts here
-        operation_type_rec_id, _ = self._create_subcontracted_operation_type(vals)
-        return {"partner_picking_type_id": operation_type_rec_id}
+        picking_type_id, _ = self._create_subcontracted_operation_type(vals)
+        return {"partner_picking_type_id": picking_type_id}
 
     def _create_route_rule_for_subcontracting(self, vals):
-        operation_type_rec_id, location_id = self._create_subcontracted_operation_type(
-            vals
-        )
+        picking_type_id, location_id = self._create_subcontracted_operation_type(vals)
         route = self.env.ref(
             "purchase_stock.route_warehouse0_buy", raise_if_not_found=False
         )
@@ -211,8 +196,8 @@ class ResPartner(models.Model):
             {
                 "name": self._context.get("partner_name", self._compose_entity_name()),
                 "action": "buy",
-                "picking_type_id": operation_type_rec_id,
-                "location_id": location_id,
+                "picking_type_id": picking_type_id,
+                "location_dest_id": location_id,
                 "route_id": route.id,
             }
         )
@@ -233,7 +218,7 @@ class ResPartner(models.Model):
                 "action": "pull",
                 "partner_address_id": self._origin.id,
                 "picking_type_id": picking_type.id,
-                "location_id": prop.id,
+                "location_dest_id": prop.id,
                 "location_src_id": self._get_location_id_for_record(vals),
                 "route_id": route.id,
                 "procure_method": "mts_else_mto",
