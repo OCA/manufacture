@@ -4,7 +4,6 @@ from odoo import api, models
 
 
 class StockMove(models.Model):
-
     _inherit = "stock.move"
 
     @api.model_create_multi
@@ -19,7 +18,6 @@ class StockMove(models.Model):
 
 
 class StockMoveLine(models.Model):
-
     _inherit = "stock.move.line"
 
     @api.model_create_multi

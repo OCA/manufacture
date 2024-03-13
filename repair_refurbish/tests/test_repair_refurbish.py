@@ -6,17 +6,17 @@ from odoo.tests.common import TransactionCase
 
 class TestMrpMtoWithStock(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(TestMrpMtoWithStock, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.repair_obj = self.env["repair.order"]
-        self.repair_line_obj = self.env["repair.line"]
+        self.stock_move_obj = self.env["stock.move"]
         self.product_obj = self.env["product.product"]
-        self.move_obj = self.env["stock.move"]
 
         self.stock_location_stock = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.scrap_location = self.env["stock.location"].search(
             [("scrap_location", "=", True)], limit=1
         )
+        self.picking_type = self.env.ref("repair.picking_type_warehouse0_repair")
         self.refurbish_loc = self.env.ref("repair_refurbish.stock_location_refurbish")
 
         self.refurbish_product = self.product_obj.create(
@@ -36,28 +36,13 @@ class TestMrpMtoWithStock(TransactionCase):
         self._update_product_qty(self.product, self.stock_location_stock, 10.0)
 
     def _update_product_qty(self, product, location, quantity):
-        inventory = self.env["stock.inventory"].create(
+        self.env["stock.quant"].create(
             {
-                "name": "Test Inventory",
-                "product_ids": [(6, 0, product.ids)],
-                "state": "confirm",
-                "line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_qty": quantity,
-                            "location_id": location.id,
-                            "product_id": product.id,
-                            "product_uom_id": product.uom_id.id,
-                        },
-                    )
-                ],
+                "location_id": location.id,
+                "product_id": self.product.id,
+                "inventory_quantity_auto_apply": 10,
             }
         )
-        inventory.action_start()
-        inventory.line_ids[0].write({"product_qty": quantity})
-        inventory.action_validate()
         return quantity
 
     def test_01_repair_refurbish(self):
@@ -65,40 +50,43 @@ class TestMrpMtoWithStock(TransactionCase):
         refurbish, then complete repair."""
         repair = self.repair_obj.create(
             {
+                "name": self.picking_type.sequence_id.next_by_id(),
                 "product_id": self.product.id,
                 "product_qty": 3.0,
                 "product_uom": self.product.uom_id.id,
                 "location_dest_id": self.customer_location.id,
                 "location_id": self.stock_location_stock.id,
+                "picking_type_id": self.picking_type.id,
+                "to_refurbish": True,
             }
         )
-        repair.onchange_product_id()
+        repair._onchange_product_id()
         self.assertTrue(repair.to_refurbish)
         repair._onchange_to_refurbish()
         self.assertEqual(repair.refurbish_location_dest_id, self.customer_location)
         self.assertEqual(repair.location_dest_id, self.product.property_stock_refurbish)
-        line = self.repair_line_obj.with_context(
+        line = self.stock_move_obj.with_context(
             to_refurbish=repair.to_refurbish,
             refurbish_location_dest_id=repair.refurbish_location_dest_id,
         ).new(
             {
                 "name": "consume stuff to repair",
                 "repair_id": repair.id,
-                "type": "add",
+                # "selection": "add",
                 "product_id": self.material.id,
                 "product_uom": self.material.uom_id.id,
-                "product_uom_qty": 1.0,
+                "quantity": 1.0,
             }
         )
-        line.onchange_product_id()
-        line.onchange_operation_type()
+
+        line._onchange_product_id()
         self.assertEqual(line.location_id, repair.location_id)
         self.assertEqual(line.location_dest_id, self.customer_location)
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
         repair.action_repair_end()
-        moves = self.move_obj.search([("reference", "=", repair.name)])
+        moves = self.stock_move_obj.search([("reference", "=", repair.name)])
         self.assertEqual(len(moves), 2)
         for m in moves:
             self.assertEqual(m.state, "done")
@@ -128,38 +116,39 @@ class TestMrpMtoWithStock(TransactionCase):
         material"""
         repair = self.repair_obj.create(
             {
+                "name": self.picking_type.sequence_id.next_by_id(),
                 "product_id": self.product.id,
                 "product_qty": 3.0,
                 "product_uom": self.product.uom_id.id,
                 "location_dest_id": self.customer_location.id,
                 "to_refurbish": False,
                 "location_id": self.stock_location_stock.id,
+                "picking_type_id": self.picking_type.id,
             }
         )
 
-        line = self.repair_line_obj.with_context(
+        line = self.stock_move_obj.with_context(
             to_refurbish=repair.to_refurbish,
             refurbish_location_dest_id=repair.refurbish_location_dest_id,
         ).create(
             {
                 "name": "consume stuff to repair",
                 "repair_id": repair.id,
-                "type": "add",
-                "product_id": self.material2.id,
-                "product_uom": self.material2.uom_id.id,
-                "product_uom_qty": 1.0,
+                # "selection": "add",
+                "product_id": self.material.id,
+                "product_uom": self.material.uom_id.id,
+                "quantity": 1.0,
                 "price_unit": 50.0,
                 "location_id": self.stock_location_stock.id,
                 "location_dest_id": self.customer_location.id,
             }
         )
-        line.onchange_product_id()
-        line.onchange_operation_type()
+        line._onchange_product_id()
         # Complete repair:
         repair.action_validate()
         repair.action_repair_start()
         repair.action_repair_end()
-        move = self.move_obj.search(
+        move = self.stock_move_obj.search(
             [("product_id", "=", self.material2.id)], order="create_date desc", limit=1
         )[0]
         self.assertEqual(move.location_dest_id, self.scrap_location)
