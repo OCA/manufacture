@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_move_line_mrp_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-12-22 13:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__account_move_line_ids
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__account_move_line_ids
+msgid "Account Move Line"
+msgstr "Riga movimento contabile"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__id
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__id
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model,name:account_move_line_mrp_info.model_account_move_line
+msgid "Journal Item"
+msgstr "Movimento contabile"
+
+#. module: account_move_line_mrp_info
+#: model:ir.actions.act_window,name:account_move_line_mrp_info.action_view_journal_items
+#: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_production_form_view
+#: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_unbuild_form_view
+msgid "Journal Items"
+msgstr "Movimenti contabili"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__mrp_production_id
+msgid "Manufacturing Order"
+msgstr "Ordine di produzione"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model,name:account_move_line_mrp_info.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di produzione"
+
+#. module: account_move_line_mrp_info
+#: model_terms:ir.actions.act_window,help:account_move_line_mrp_info.action_view_journal_items
+msgid "There's no journal item yet"
+msgstr "Non ci sono ancora movimenti contabili"
+
+#. module: account_move_line_mrp_info
+#: model:ir.model,name:account_move_line_mrp_info.model_mrp_unbuild
+#: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__unbuild_id
+msgid "Unbuild Order"
+msgstr "Ordine di smontaggio"
