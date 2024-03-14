@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2023 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+      <record id="mrp_bom_simple_report_action" model="ir.actions.report">
+            <field name="model">mrp.bom</field>
+            <field name="name">Simple Bill of Material</field>
+            <field name="report_type">qweb-pdf</field>
+            <field
+            name="report_name"
+        >mrp_bom_simple_report.bom_simple_report_xml</field>
+            <field name="attachment_use">False</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_bom" />
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="product.paperformat_label_sheet" />
+      </record>
+
+</odoo>
