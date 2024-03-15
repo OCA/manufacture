@@ -31,7 +31,7 @@
                             name="action_open_linked_mrp_production"
                             type="object"
                             icon="fa-wrench"
-                            attrs="{'invisible':[('mo_count', '=', 0)]}"
+                            invisible="mo_count == 0"
                             class="oe_stat_button"
                         >
                             <field name="mo_count" widget="statinfo" string="MOs" />

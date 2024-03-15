@@ -127,23 +127,18 @@ class ProductMRPArea(models.Model):
             if any(v < 0 for v in rec.values()):
                 raise ValidationError(_("You cannot use a negative number."))
 
-    def name_get(self):
-        return [
-            (
-                area.id,
-                f"[{area.mrp_area_id.name}] {area.product_id.display_name}",
+    def _compute_display_name(self):
+        for area in self:
+            area.display_name = (
+                f"[{area.mrp_area_id.name}] {area.product_id.display_name}"
             )
-            for area in self
-        ]
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def _name_search(self, name, domain=None, operator="ilike", limit=None, order=None):
         if operator in ("ilike", "like", "=", "=like", "=ilike"):
-            args = expression.AND(
+            domain = expression.AND(
                 [
-                    args or [],
+                    domain or [],
                     [
                         "|",
                         "|",
@@ -153,9 +148,7 @@ class ProductMRPArea(models.Model):
                     ],
                 ]
             )
-        return super(ProductMRPArea, self)._name_search(
-            name, args=args, operator=operator, limit=limit, name_get_uid=name_get_uid
-        )
+        return super()._name_search(name, domain, operator, limit, order)
 
     def _compute_mrp_lead_time(self):
         produced = self.filtered(lambda r: r.supply_method == "manufacture")
@@ -164,7 +157,7 @@ class ProductMRPArea(models.Model):
             lambda r: r.supply_method in ("pull", "push", "pull_push")
         )
         for rec in produced:
-            rec.mrp_lead_time = rec.product_id.produce_delay
+            rec.mrp_lead_time = sum(rec.product_id.mapped("bom_ids.produce_delay"))
         for rec in purchased:
             rec.mrp_lead_time = rec.main_supplierinfo_id.delay
         for rec in distributed:
@@ -220,7 +213,7 @@ class ProductMRPArea(models.Model):
         """Simplified and similar to procurement.rule logic."""
         for rec in self.filtered(lambda r: r.supply_method == "buy"):
             suppliers = rec.product_id.seller_ids.filtered(
-                lambda r: (not r.product_id or r.product_id == rec.product_id)
+                lambda r, rec=rec: (not r.product_id or r.product_id == rec.product_id)
                 and (not r.company_id or r.company_id == rec.company_id)
             ).sorted(lambda s: (s.sequence, -s.min_qty, s.price, s.id))
             if not suppliers:

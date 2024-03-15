@@ -5,6 +5,7 @@
         <field name="product_tmpl_id" ref="product_product_fp_1_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
+        <field name="produce_delay">2</field>
     </record>
     <record id="mrp_bom_fp_1_line_pp_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_1" />
@@ -25,6 +26,7 @@
         <field name="product_tmpl_id" ref="product_product_fp_2_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
+        <field name="produce_delay">1</field>
     </record>
     <record id="mrp_bom_fp_2_line_sf_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_sf_1" />
@@ -42,10 +44,11 @@
     </record>
 
     <!-- FP-3 -->
-     <record id="mrp_bom_fp_3" model="mrp.bom">
+    <record id="mrp_bom_fp_3" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_fp_3_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
+        <field name="produce_delay">3</field>
     </record>
     <record id="mrp_bom_fp_3_line_sf_3" model="mrp.bom.line">
         <field name="product_id" ref="product_product_sf_3" />
@@ -62,8 +65,8 @@
         <field name="bom_id" ref="mrp_bom_fp_3" />
     </record>
 
-     <!-- Customizable Desk -->
-     <record id="mrp_bom_product_4" model="mrp.bom">
+    <!-- Customizable Desk -->
+    <record id="mrp_bom_product_4" model="mrp.bom">
         <field
             name="product_tmpl_id"
             ref="product.product_product_4_product_template"
@@ -120,6 +123,7 @@
         <field name="product_tmpl_id" ref="product_product_sf_1_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
+        <field name="produce_delay">1</field>
     </record>
     <record id="mrp_bom_sf_1_line_pp_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_1" />
@@ -140,6 +144,7 @@
         <field name="product_tmpl_id" ref="product_product_sf_2_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
         <field name="sequence">5</field>
+        <field name="produce_delay">3</field>
     </record>
     <record id="mrp_bom_sf_2_line_pp_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_2" />
@@ -149,11 +154,12 @@
         <field name="bom_id" ref="mrp_bom_sf_2" />
     </record>
     <!-- SF-3 -->
-     <record id="mrp_bom_sf_3" model="mrp.bom">
+    <record id="mrp_bom_sf_3" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_sf_3_product_template" />
         <field name="product_uom_id" ref="uom.product_uom_unit" />
-         <field name="type">phantom</field>
+        <field name="type">phantom</field>
         <field name="sequence">5</field>
+        <field name="produce_delay">3</field>
     </record>
     <record id="mrp_bom_sf_3_line_pp_3" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_3" />

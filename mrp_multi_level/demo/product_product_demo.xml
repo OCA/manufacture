@@ -6,7 +6,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">2</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
@@ -18,7 +17,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">1</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
@@ -30,7 +28,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">3</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
@@ -42,10 +39,9 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">2</field>
     </record>
 
-     <!-- Customizable Desk -->
+    <!-- Customizable Desk -->
     <record id="product.product_product_4_product_template" model="product.template">
         <field
             name="route_ids"
@@ -58,7 +54,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">1</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
@@ -70,7 +65,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">3</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
@@ -82,7 +76,6 @@
         <field name="type">product</field>
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
-        <field name="produce_delay">3</field>
         <field
             name="route_ids"
             eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
