@@ -51,7 +51,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <group colspan="4" col="2">
                         <group>
@@ -86,7 +86,7 @@
                                         string="Get from main supplier"
                                         type="object"
                                         name="update_min_qty_from_main_supplier"
-                                        attrs="{'invisible':[('supply_method', '!=', 'buy'), ('main_supplierinfo_id', '=', False)]}"
+                                        invisible="supply_method != 'buy' and not main_supplierinfo_id"
                                         class="oe_link pt-0 oe_inline"
                                     />
                                 </span>
@@ -96,12 +96,12 @@
                             <field name="supply_method" />
                             <field
                                 name="distribution_lead_time"
-                                attrs="{'invisible': [('supply_method', 'not in', ('pull', 'push', 'pull_push'))]}"
+                                invisible="supply_method not in ('pull', 'push', 'pull_push')"
                             />
                             <field name="mrp_lead_time" />
                             <field
                                 name="main_supplierinfo_id"
-                                attrs="{'invisible':[('supply_method', '!=', 'buy')]}"
+                                invisible="supply_method != 'buy'"
                             />
                         </group>
                     </group>
