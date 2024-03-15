@@ -39,40 +39,34 @@
                             <field name="mrp_origin" />
                             <field
                                 name="production_id"
-                                attrs="{'invisible':[('mrp_origin', '!=', 'mo')]}"
+                                invisible="mrp_origin != 'mo'"
                             />
                             <field
                                 name="purchase_order_id"
-                                attrs="{'invisible':[('mrp_origin', '!=', 'po')]}"
+                                invisible="mrp_origin != 'po'"
                             />
                             <field
                                 name="purchase_line_id"
-                                attrs="{'invisible':[('mrp_origin', '!=', 'po')]}"
+                                invisible="mrp_origin != 'po'"
                             />
                             <field
                                 name="stock_move_id"
-                                attrs="{'invisible':[('mrp_origin', '!=', 'mv')]}"
+                                invisible="mrp_origin != 'mv'"
                             />
                             <field name="name" />
                             <field name="origin" />
                         </group>
                         <group>
                             <field name="mrp_date" />
-                            <field
-                                name="current_date"
-                                attrs="{'invisible': [('current_date', '=', False)]}"
-                            />
-                            <field
-                                name="state"
-                                attrs="{'invisible': [('state', '=', False)]}"
-                            />
+                            <field name="current_date" invisible="not current_date" />
+                            <field name="state" invisible="not state" />
                             <field
                                 name="mrp_order_number"
-                                attrs="{'invisible': [('mrp_order_number', '=', False)]}"
+                                invisible="not mrp_order_number"
                             />
                             <field
                                 name="parent_product_id"
-                                attrs="{'invisible': [('parent_product_id', '=', False)]}"
+                                invisible="not parent_product_id"
                             />
                             <field name="mrp_qty" />
                             <field name="current_qty" />
