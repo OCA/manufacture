@@ -15,7 +15,7 @@
                 <group name="items" string="Items" />
                     <field name="item_ids" nolabel="1">
                         <tree nocreate="1" editable="top">
-                            <field name="mrp_inventory_id" invisible="True" />
+                            <field name="mrp_inventory_id" column_invisible="True" />
                             <field
                             name="warehouse_id"
                             groups="stock.group_stock_multi_locations"

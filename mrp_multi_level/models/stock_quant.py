@@ -12,5 +12,5 @@ class StockQuant(models.Model):
         """
         Adding field product_uom_id, inventory_quantity
         """
-        fields = super(StockQuant, self)._get_inventory_fields_write()
+        fields = super()._get_inventory_fields_write()
         return fields + ["product_uom_id", "inventory_quantity"]

@@ -223,7 +223,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         mos = self.mo_obj.search([("product_id", "=", self.fp_1.id)])
         self.assertTrue(mos)
         self.assertEqual(mos.product_qty, 100.0)
-        mo_date_start = fields.Date.to_date(mos.date_planned_start)
+        mo_date_start = fields.Date.to_date(mos.date_start)
         self.assertEqual(mo_date_start, self.date_5)
 
     def test_07_adjust_qty_to_order(self):
@@ -516,7 +516,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],
@@ -606,7 +606,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],
@@ -687,7 +687,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],
@@ -759,7 +759,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],
@@ -801,7 +801,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],
@@ -844,7 +844,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=True):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],

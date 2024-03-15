@@ -40,13 +40,13 @@ class MrpInventoryProcure(models.TransientModel):
             view_id = self.env.ref(
                 "mrp_multi_level.view_mrp_inventory_procure_without_security"
             ).id
-        return super(MrpInventoryProcure, self).fields_view_get(
+        return super().fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
         )
 
     @api.model
     def default_get(self, fields):
-        res = super(MrpInventoryProcure, self).default_get(fields)
+        res = super().default_get(fields)
         active_ids = self.env.context["active_ids"] or []
         active_model = self.env.context["active_model"]
         if not active_ids or "item_ids" not in fields:

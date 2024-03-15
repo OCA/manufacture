@@ -153,6 +153,7 @@ class MultiLevelMrp(models.TransientModel):
                 "Demand Bom Explosion: Demand Bom Explosion: ", "Demand Bom Explosion: "
             ),
             "origin": planned_order.origin if planned_order else values.get("origin"),
+            "bom_id": bom.id,
         }
 
     @api.model
@@ -382,7 +383,7 @@ class MultiLevelMrp(models.TransientModel):
         count_domain = [("mrp_applicable", "=", True)]
         if mrp_areas:
             count_domain += [("mrp_area_id", "in", mrp_areas.ids)]
-        counter = self.env["product.mrp.area"].search(count_domain, count=True)
+        counter = self.env["product.mrp.area"].search_count(count_domain)
         log_msg = "End Calculate MRP Applicable: %s" % counter
         logger.info(log_msg)
         return True
@@ -507,7 +508,7 @@ class MultiLevelMrp(models.TransientModel):
         init_counter = 0
         for mrp_area in mrp_areas:
             for product_mrp_area in product_mrp_areas.filtered(
-                lambda a: a.mrp_area_id == mrp_area
+                lambda a, mrp_area=mrp_area: a.mrp_area_id == mrp_area
             ):
                 if self._exclude_from_mrp(product_mrp_area.product_id, mrp_area):
                     continue
@@ -865,7 +866,7 @@ class MultiLevelMrp(models.TransientModel):
             )
             # attach planned orders to inventory
             for po in planned_orders:
-                invs = mrp_invs.filtered(lambda i: i.date == po.due_date)
+                invs = mrp_invs.filtered(lambda i, po=po: i.date == po.due_date)
                 if invs:
                     po.mrp_inventory_id = invs[0]
 
