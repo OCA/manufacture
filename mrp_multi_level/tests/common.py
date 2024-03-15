@@ -104,7 +104,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Test Top Seller",
                 "type": "product",
                 "list_price": 150.0,
-                "produce_delay": 5.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
@@ -214,7 +213,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_dozen").id,
                 "list_price": 150.0,
-                "produce_delay": 5.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
@@ -230,7 +228,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "tracking": "lot",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "list_price": 100.0,
-                "produce_delay": 5.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 25.0})],
             }
@@ -606,7 +603,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         mo_form.product_id = product
         mo_form.bom_id = bom
         mo_form.product_qty = qty
-        mo_form.date_planned_start = date
+        mo_form.date_start = date
         mo = mo_form.save()
         # Confirm the MO to generate stock moves:
         mo.action_confirm()

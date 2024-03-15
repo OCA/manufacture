@@ -92,3 +92,4 @@ class MrpMove(models.Model):
     stock_move_id = fields.Many2one(
         comodel_name="stock.move", string="Stock Move", index=True
     )
+    bom_id = fields.Many2one("mrp.bom")

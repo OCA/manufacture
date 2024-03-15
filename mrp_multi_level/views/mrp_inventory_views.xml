@@ -19,7 +19,7 @@
                             <field name="supply_method" />
                             <field
                                 name="main_supplier_id"
-                                attrs="{'invisible': [('supply_method', '!=', 'buy')]}"
+                                invisible="supply_method != 'buy'"
                             />
                             <field name="date" />
                         </group>
@@ -53,7 +53,7 @@
                 <field name="final_on_hand_qty" />
                 <field name="to_procure" />
                 <button
-                    attrs="{'invisible': [('planned_order_ids', '=', [])]}"
+                    invisible="not planned_order_ids"
                     name="action_open_planned_orders"
                     type="object"
                     icon="fa-list"
@@ -65,9 +65,9 @@
                     name="%(mrp_multi_level.act_mrp_inventory_procure)d"
                     icon="fa-cogs"
                     type="action"
-                    attrs="{'invisible':[('to_procure','&lt;=',0.0)]}"
+                    invisible="to_procure &lt;= 0.0"
                 />
-                <field name="planned_order_ids" invisible="1" />
+                <field name="planned_order_ids" column_invisible="True" />
                 <field name="supply_method" />
                 <field name="main_supplier_id" optional="hide" />
                 <field name="running_availability" />
