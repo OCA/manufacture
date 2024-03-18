@@ -21,6 +21,21 @@
                         string="Productions"
                     />
                 </button>
+                <button
+                    type="object"
+                    name="action_view_subcontract_picking"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible':[('subcontract_picking_count', '=', 0)]}"
+                    groups="stock.group_stock_user"
+                >
+                    <field name="subcontract_picking_ids" invisible="1" />
+                    <field
+                        name="subcontract_picking_count"
+                        widget="statinfo"
+                        string="Productions"
+                    />
+                </button>
             </xpath>
         </field>
     </record>
