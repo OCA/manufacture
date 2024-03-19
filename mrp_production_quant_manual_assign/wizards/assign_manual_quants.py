@@ -25,6 +25,14 @@ class AssignManualQuants(models.TransientModel):
         res.update({"is_production_single_lot": self._is_production_single_lot(move)})
         return res
 
+    @api.constrains("quants_lines")
+    def _check_qty(self):
+        # If the move is that of a production component, skip the check and let the
+        # standard check based on Flexible Consumption do the job.
+        if self.move_id.raw_material_production_id:
+            return
+        return super()._check_qty()
+
     @api.model
     def _prepare_wizard_line(self, move, quant):
         line = super()._prepare_wizard_line(move, quant)
