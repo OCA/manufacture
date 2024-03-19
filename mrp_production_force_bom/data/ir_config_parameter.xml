@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- System Parameter for forcing BOM -->
+    <record id="param_mrp_force_bom_enable" model="ir.config_parameter">
+        <field name="key">mrp_production_force_bom.force_bom</field>
+        <field name="value">1</field> <!-- Enable by default -->
+    </record>
+</odoo>
