@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
     semi_finished_product_tmpl_ids = fields.One2many(
         comodel_name="semi.finished.product.template.line",
         inverse_name="product_tmpl_id",
+        groups="mrp.group_mrp_user",
     )
     semi_finished_mrp_bom_ids = fields.Many2many(
         comodel_name="mrp.bom", string="MRP BoM"
