@@ -1,6 +1,8 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
+from datetime import datetime
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
@@ -129,10 +131,10 @@ class MrpInventoryProcureItem(models.TransientModel):
     )
 
     def _prepare_procurement_values(self, group=False):
+        current_time = fields.Datetime.now().time()
+        date_planned = datetime.combine(self.date_planned, current_time)
         return {
-            "date_planned": fields.Datetime.to_string(
-                fields.Date.from_string(self.date_planned)
-            ),
+            "date_planned": fields.Datetime.to_string(date_planned),
             "warehouse_id": self.warehouse_id,
             "group_id": group,
             "planned_order_id": self.planned_order_id.id,
