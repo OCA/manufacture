@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Form -->
+    <!-- ************************************************************ -->
+
+    <record
+        id="view_mrp_bom_form_glue_module_produce_delay_add_fields"
+        model="ir.ui.view"
+    >
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <label for="produce_delay_in_hour" string="Product Manuf. Lead Time" />
+                <div>
+                    <field name="produce_delay_in_hour" class="oe_inline" /> hours
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record
+        id="view_mrp_bom_form_glue_module_produce_delay_hide_fields"
+        model="ir.ui.view"
+    >
+        <field name="model">mrp.bom</field>
+        <field
+            name="inherit_id"
+            ref="mrp_bom_produce_delay.view_mrp_bom_form_produce_delay"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='produce_delay']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='produce_delay']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
