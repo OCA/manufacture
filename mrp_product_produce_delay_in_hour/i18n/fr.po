@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_product_produce_delay_in_hour
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-22 15:15+0000\n"
+"PO-Revision-Date: 2024-03-22 15:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_product_produce_delay_in_hour
+#: model:ir.model.fields,help:mrp_product_produce_delay_in_hour.field_product_product__produce_delay
+#: model:ir.model.fields,help:mrp_product_produce_delay_in_hour.field_product_template__produce_delay
+msgid ""
+"Average lead time in days to manufacture this product. In the case of multi-"
+"level BOM, the manufacturing lead times of the components will be added. In "
+"case the product is subcontracted, this can be used to determine the date at"
+" which components should be sent to the subcontractor."
+msgstr ""
+"Délai moyen en jours pour fabriquer ce produit. Dans le cas d'une "
+"nomenclature à plusieurs niveaux, les délais de fabrication des composants "
+"seront ajoutés. Dans le cas où le produit est sous-traité, cela peut être "
+"utilisé pour déterminer la date à laquelle les composants doivent être "
+"envoyés au sous-traitant."
+
+#. module: mrp_product_produce_delay_in_hour
+#: model:ir.model.fields,help:mrp_product_produce_delay_in_hour.field_product_product__produce_delay_in_hour
+#: model:ir.model.fields,help:mrp_product_produce_delay_in_hour.field_product_template__produce_delay_in_hour
+msgid "Average lead time in hours to manufacture this Product."
+msgstr "Temps de fabrication moyen pour ce Produit."
+
+#. module: mrp_product_produce_delay_in_hour
+#: model_terms:ir.ui.view,arch_db:mrp_product_produce_delay_in_hour.view_mrp_product_produce_delay_in_hour
+msgid "Manuf. Lead Time"
+msgstr "Délai de fabr."
+
+#. module: mrp_product_produce_delay_in_hour
+#: model:ir.model.fields,field_description:mrp_product_produce_delay_in_hour.field_product_product__produce_delay
+#: model:ir.model.fields,field_description:mrp_product_produce_delay_in_hour.field_product_template__produce_delay
+msgid "Manufacturing Lead Time"
+msgstr "Délai de fabrication"
+
+#. module: mrp_product_produce_delay_in_hour
+#: model:ir.model.fields,field_description:mrp_product_produce_delay_in_hour.field_product_product__produce_delay_in_hour
+#: model:ir.model.fields,field_description:mrp_product_produce_delay_in_hour.field_product_template__produce_delay_in_hour
+msgid "Produce Delay In Hour"
+msgstr "Délai de fabrication en heures"
+
+#. module: mrp_product_produce_delay_in_hour
+#: model:ir.model,name:mrp_product_produce_delay_in_hour.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: mrp_product_produce_delay_in_hour
+#: model_terms:ir.ui.view,arch_db:mrp_product_produce_delay_in_hour.view_mrp_product_produce_delay_in_hour
+msgid "hours"
+msgstr "heures"
