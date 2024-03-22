@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo noupdate="1">
+
+    <record
+        forcecreate="True"
+        id="decimal_produce_delay_days"
+        model="decimal.precision"
+    >
+        <field name="name">Produce Delay in Days</field>
+        <field name="digits">3</field>
+    </record>
+
+</odoo>
