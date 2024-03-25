@@ -18,7 +18,7 @@ class TestMrpOrder(TestMrpCommon):
             super(TestMrpCommon, cls).setUpClass()
 
     def setUp(self):
-        super(TestMrpOrder, self).setUp()
+        super().setUp()
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
@@ -124,7 +124,7 @@ class TestUnbuild(TestMrpCommon):
             super(TestMrpCommon, cls).setUpClass()
 
     def setUp(self):
-        super(TestUnbuild, self).setUp()
+        super().setUp()
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
