@@ -18,7 +18,7 @@ class TestMrpOrder(TestMrpCommon):
             super(TestMrpCommon, cls).setUpClass()
 
     def setUp(self):
-        super(TestMrpOrder, self).setUp()
+        super().setUp()
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
@@ -124,7 +124,7 @@ class TestUnbuild(TestMrpCommon):
             super(TestMrpCommon, cls).setUpClass()
 
     def setUp(self):
-        super(TestUnbuild, self).setUp()
+        super().setUp()
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
@@ -132,8 +132,9 @@ class TestUnbuild(TestMrpCommon):
         )
 
     def test_unbuild_with_journal_items(self):
-        """This test creates an Unbuild order from a Manufacturing order and then check if the
-        Journal Items button links to the journal items of the order.
+        """This test creates an Unbuild order from a Manufacturing order
+        and then check if the Journal Items button links to the
+        journal items of the order.
         """
 
         mo, bom, p_final, p1, p2 = self.generate_mo()
