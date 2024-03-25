@@ -6,49 +6,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-25 21:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_production__account_move_line_ids
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_mrp_unbuild__account_move_line_ids
 msgid "Account Move Line"
-msgstr ""
+msgstr "Línea de movimiento de cuenta"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Artículo del Diario"
 
 #. module: account_move_line_mrp_info
 #: model:ir.actions.act_window,name:account_move_line_mrp_info.action_view_journal_items
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.mrp_unbuild_form_view
 msgid "Journal Items"
-msgstr ""
+msgstr "Artículos de Diario"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__mrp_production_id
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Orden de Manufacturación"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Orden de Producción"
 
 #. module: account_move_line_mrp_info
 #: model_terms:ir.actions.act_window,help:account_move_line_mrp_info.action_view_journal_items
 msgid "There's no journal item yet"
-msgstr ""
+msgstr "Aún no hay ningún artículo en el diario"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model,name:account_move_line_mrp_info.model_mrp_unbuild
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__unbuild_id
 msgid "Unbuild Order"
-msgstr ""
+msgstr "Orden de Desestructuración"
