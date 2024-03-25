@@ -24,7 +24,7 @@
                     class="oe_stat_button"
                     icon="fa-th-list"
                     groups="base.group_no_one"
-                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                    invisible="state != 'done'"
                 />
             </xpath>
         </field>
@@ -42,7 +42,7 @@
                     class="oe_stat_button"
                     icon="fa-th-list"
                     groups="base.group_no_one"
-                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    invisible="state == 'draft'"
                 />
             </xpath>
         </field>
