@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-25 21:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_unbuild_move_link
 #: model:ir.model.fields,field_description:mrp_unbuild_move_link.field_stock_move__origin_mrp_manufacture_move_id
 msgid "Manufacturing order stock move"
-msgstr ""
+msgstr "Movimiento de existencias de órdenes de fabricación"
 
 #. module: mrp_unbuild_move_link
 #: model:ir.model,name:mrp_unbuild_move_link.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de Existencias"
 
 #. module: mrp_unbuild_move_link
 #: model:ir.model.fields,help:mrp_unbuild_move_link.field_stock_move__origin_mrp_manufacture_move_id
 msgid "Stock move id of the previous manufacturing order"
-msgstr ""
+msgstr "Id. de movimiento de existencias de la orden de producción anterior"
 
 #. module: mrp_unbuild_move_link
 #: model:ir.model,name:mrp_unbuild_move_link.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr ""
+msgstr "Orden de Desestructuración"
