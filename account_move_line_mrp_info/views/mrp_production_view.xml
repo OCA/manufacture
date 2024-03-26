@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+       <record id="action_view_journal_items" model="ir.actions.act_window">
+        <field name="name">Journal Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There's no journal item yet
+            </p>
+        </field>
+    </record>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    string="Journal Items"
+                    type="object"
+                    name="view_journal_items"
+                    class="oe_stat_button"
+                    icon="fa-th-list"
+                    groups="base.group_no_one"
+                    invisible="state != 'done'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view" model="ir.ui.view">
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    string="Journal Items"
+                    type="object"
+                    name="view_journal_items"
+                    class="oe_stat_button"
+                    icon="fa-th-list"
+                    groups="base.group_no_one"
+                    invisible="state == 'draft'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
