@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [mrp_restrict_lot](mrp_restrict_lot/) | 16.0.1.0.1 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) | MRP Restrict Lot
 [mrp_sale_info](mrp_sale_info/) | 16.0.1.1.0 |  | Adds sale information to Manufacturing models
 [mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Inhibit subcontracting flow on demand
+[mrp_subcontracting_partner_management](mrp_subcontracting_partner_management/) | 16.0.1.0.0 |  | Subcontracting Partner Management
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 16.0.1.0.0 |  | Link Purchase Order Line to Subcontract Productions
 [mrp_subcontracting_skip_no_negative](mrp_subcontracting_skip_no_negative/) | 16.0.1.0.1 |  | MRP Subcontracting Skip No Negative
 [mrp_tag](mrp_tag/) | 16.0.1.1.0 |  | Allows to add multiple tags to Manufacturing Orders
