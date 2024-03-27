@@ -6,80 +6,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-03-27 15:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_kanban
 msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
 msgstr ""
+"<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title="
+"\"Manage\"/>"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "<i class=\"fa fa-times\" aria-label=\"Unlink\" role=\"img\" title=\"Unlink\"/>"
 msgstr ""
+"<i class=\"fa fa-times\" aria-label=\"Unlink\" role=\"img\" title=\"Unlink\""
+"/>"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción Necesaria"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Contador de archivos adjuntos"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.actions.act_window,help:quality_control_team_oca.qc_team_config_action
 msgid "Click here to define a new quality control team."
-msgstr ""
+msgstr "Haga clic aquí para definir un nuevo equipo de control de calidad."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__color
 msgid "Color Index"
-msgstr ""
+msgstr "Índice de Color"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__company_id
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: quality_control_team_oca
 #: model:ir.model,name:quality_control_team_oca.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: quality_control_team_oca
 #: model:ir.actions.act_window,name:quality_control_team_oca.qc_team_dashboard_act
 #: model:ir.ui.menu,name:quality_control_team_oca.menu_qc_team_act
 msgid "Dashboard"
-msgstr ""
+msgstr "Tablero"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.actions.act_window,help:quality_control_team_oca.qc_team_dashboard_act
@@ -87,13 +93,16 @@ msgid ""
 "Define a new quality control teams going to <b><i>Configuration &gt;\n"
 "                Quality Control Teams</i></b>."
 msgstr ""
+"Defina un nuevo equipo de control de calidad yendo a <b><i>Configuración &gt;"
+"\n"
+" Equipos de control de calidad</i></b>."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__display_name
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_partner__display_name
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_users__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
@@ -101,121 +110,123 @@ msgid ""
 "Follow this QC team to automatically track the events associated to users of"
 " this team."
 msgstr ""
+"Siga a este equipo de control de calidad para realizar un seguimiento "
+"automático de los eventos asociados a los usuarios de este equipo."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores/as"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores/as (Canales)"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores/as (Socios)"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_search
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupado Por ..."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__id
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_partner__id
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_users__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_needaction
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcado, nuevos mensajes requieren su atención."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es Seguidor/a"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team____last_update
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_partner____last_update
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_users____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última Actualización realizada por"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última Actualización el"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunto Principal"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de Entrega de Mensajes"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "More Info"
-msgstr ""
+msgstr "Mas Info"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_search
 msgid "My Teams"
-msgstr ""
+msgstr "Mis Equipos"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Acciones"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de errores"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Números de mensajes que requieren una acción"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de envío"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Cantidad de mensajes sin leer"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_search
 msgid "QC teams Search"
-msgstr ""
+msgstr "Equipos de control de calidad Búsqueda"
 
 #. module: quality_control_team_oca
 #: model:ir.model,name:quality_control_team_oca.model_qc_team
@@ -224,50 +235,50 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_res_users__qc_team_id
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Quality Control Team"
-msgstr ""
+msgstr "Equipo Control de Calidad"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Quality Control Team name..."
-msgstr ""
+msgstr "Nombre del equipo de control de calidad..."
 
 #. module: quality_control_team_oca
 #: model:ir.actions.act_window,name:quality_control_team_oca.qc_team_config_action
 #: model:ir.ui.menu,name:quality_control_team_oca.qc_team_config_menu
 msgid "Quality Control Teams"
-msgstr ""
+msgstr "Equipos Control de Calidad"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Quality Control team"
-msgstr ""
+msgstr "Equipo Control de Calidad"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__reply_to
 msgid "Reply-To"
-msgstr ""
+msgstr "Responder-A"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_kanban
 msgid "Settings"
-msgstr ""
+msgstr "Configuraciones"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__user_id
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_search
 msgid "Team Leader"
-msgstr ""
+msgstr "Líder de Equipo"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__member_ids
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Team Members"
-msgstr ""
+msgstr "Miembros del Equipo"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__color
 msgid "The color of the team"
-msgstr ""
+msgstr "El color del equipo"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__reply_to
@@ -275,16 +286,18 @@ msgid ""
 "The email address put in the 'Reply-To' of all emails sent by Odoo about "
 "cases in this QC team"
 msgstr ""
+"La dirección de correo electrónico puesta en el 'Reply-To' de todos los "
+"correos electrónicos enviados por Odoo sobre los casos en este equipo QC"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Número de mensajes no leídos"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de Mensajes no Leído"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.actions.act_window,help:quality_control_team_oca.qc_team_config_action
@@ -293,18 +306,21 @@ msgid ""
 "                departments into separate teams. Each team will work in\n"
 "                its own list of processes, stages..."
 msgstr ""
+"Utilice el equipo de control de calidad para organizar\n"
+" departamentos en equipos separados. Cada equipo trabajará en\n"
+" su propia lista de procesos, etapas..."
 
 #. module: quality_control_team_oca
 #: model:ir.model,name:quality_control_team_oca.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes de Sitio Web"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,help:quality_control_team_oca.field_qc_team__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de la comunicación en el sitio web"
