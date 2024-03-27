@@ -22,27 +22,9 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: mrp_subcontracting_partner_management
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__display_name
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: mrp_subcontracting_partner_management
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__id
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__is_subcontractor
 msgid "Is Subcontractor"
 msgstr "È un terzista"
-
-#. module: mrp_subcontracting_partner_management
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner____last_update
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_buy_rule_id
@@ -84,3 +66,12 @@ msgstr "Terzista"
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_stock_form
 msgid "Subcontractor Location Stock"
 msgstr "Magazzino ubicazione terzista"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
