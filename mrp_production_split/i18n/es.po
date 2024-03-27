@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_split
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-29 08:29+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "%s is not a number."
+msgstr "%s no es un número."
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.message_order_split
+msgid ""
+"(s)\n"
+"            have been created as a result of a <strong>split</strong> operation:"
+msgstr ""
+"(s)\n"
+"            han sido creados como resultado de una operación "
+"<strong>split</strong>:"
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.view_mrp_production_split_wizard_form
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.view_mrp_production_split_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/models/mrp_production.py:0
+#, python-format
+msgid "Cannot split a manufacturing order that is in '%s' state."
+msgstr ""
+"No se puede dividir una orden de producción que se encuentra en estado '%s'."
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mrp_production_split
+#: model:ir.model.fields.selection,name:mrp_production_split.selection__mrp_production_split_wizard__split_mode__custom
+msgid "Custom"
+msgstr "Personalizar"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,help:mrp_production_split.field_mrp_production_split_wizard__product_tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "Garantice la trazabilidad de un producto almacenable en su almacén."
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__split_equal_qty
+msgid "Equal Quantity"
+msgstr "Cantidad Igual"
+
+#. module: mrp_production_split
+#: model:ir.model.fields.selection,name:mrp_production_split.selection__mrp_production_split_wizard__split_mode__simple
+msgid "Extract a quantity from the original MO"
+msgstr "Extraer una cantidad del MO original"
+
+#. module: mrp_production_split
+#: model:ir.model.fields.selection,name:mrp_production_split.selection__mrp_production_split_wizard__split_mode__equal
+msgid "Extract a quantity into several MOs with equal quantities"
+msgstr "Extraer una cantidad en varias MO con cantidades iguales"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.view_mrp_production_split_wizard_form
+msgid "In orders of"
+msgstr "En órdenes de"
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "Invalid Split Mode: '%s'"
+msgstr "Modo de División Inválido: '%s'"
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "Invalid quantities"
+msgstr "Cantidades inválidas"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación el"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización Por"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "Nothing to split."
+msgstr "No hay nada que dividir."
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "Please enter a space separated list of numbers."
+msgstr "Introduzca una lista de números separados por espacios."
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__product_uom_id
+msgid "Product Unit of Measure"
+msgstr "Unidad de Medida del Producto"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__production_id
+msgid "Production"
+msgstr "Producción"
+
+#. module: mrp_production_split
+#: model:ir.model,name:mrp_production_split.model_mrp_production
+msgid "Production Order"
+msgstr "Orden de Producción"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__split_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,help:mrp_production_split.field_mrp_production_split_wizard__custom_quantities
+msgid ""
+"Space separated list of quantities to split:\n"
+"e.g. '3 2 5' will result in 3 MOs with 3, 2 and 5 units respectively.\n"
+"If the sum of the quantities is less than the original MO's quantity, the remaining quantity will remain in the original MO."
+msgstr ""
+"Lista separada por espacios de las cantidades a dividir:\n"
+"p.ej. '3 2 5' dará como resultado 3 MOs con 3, 2 y 5 unidades "
+"respectivamente.\n"
+"Si la suma de las cantidades es inferior a la cantidad de la MO original, la "
+"cantidad restante permanecerá en la MO original."
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.mrp_production_form_view
+msgid "Split"
+msgstr "Dividir"
+
+#. module: mrp_production_split
+#: model:ir.actions.act_window,name:mrp_production_split.action_mrp_production_split_wizard
+msgid "Split Manufacturing Order"
+msgstr "Dividir la Orden de Fabricación"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__split_mode
+msgid "Split Mode"
+msgstr "Modo Dividido"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__custom_quantities
+msgid "Split Quantities"
+msgstr "Dividir Cantidades"
+
+#. module: mrp_production_split
+#: model_terms:ir.ui.view,arch_db:mrp_production_split.message_order_split
+msgid "The following"
+msgstr "Los siguientes"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,help:mrp_production_split.field_mrp_production_split_wizard__split_qty
+msgid "Total quantity to extract from the original MO."
+msgstr "Cantidad total a extraer del MO original."
+
+#. module: mrp_production_split
+#: model:ir.model.fields,field_description:mrp_production_split.field_mrp_production_split_wizard__product_tracking
+msgid "Tracking"
+msgstr "Seguimiento"
+
+#. module: mrp_production_split
+#: model:ir.model.fields,help:mrp_production_split.field_mrp_production_split_wizard__split_equal_qty
+msgid "Used to split the MO into several MOs with equal quantities."
+msgstr "Se utiliza para dividir la MO en varias MO con cantidades iguales."
+
+#. module: mrp_production_split
+#: code:addons/mrp_production_split/wizards/mrp_production_split_wizard.py:0
+#, python-format
+msgid "You can't split quantities already in production."
+msgstr "No puede dividir las cantidades que ya están en producción."
+
+#. module: mrp_production_split
+#: model:ir.model,name:mrp_production_split.model_mrp_production_split_wizard
+msgid "mrp.production.split.wizard"
+msgstr "mrp.production.split.wizard"
