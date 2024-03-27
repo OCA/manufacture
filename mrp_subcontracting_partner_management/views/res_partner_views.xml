@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Add fields to partner form -->
+    <record id="view_partner_form_inherit_subcontractor" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.subcontractor</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <field name="property_supplier_payment_term_id" position="before">
+                <field
+                    name="is_subcontractor_partner"
+                    attrs="{'invisible': [('is_company', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_stock_form" model="ir.ui.view">
+        <field name="name">res.partner.stock.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="stock.view_partner_stock_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="is_subcontractor_partner" invisible="1" />
+                <button
+                    string="Subcontractor Location Stock"
+                    name="action_subcontractor_location_stock"
+                    type="object"
+                    class="oe_stat_button"
+                    attrs="{'invisible': [('is_subcontractor_partner', '!=', True)]}"
+                    icon="fa-cubes"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
