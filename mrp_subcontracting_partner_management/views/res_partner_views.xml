@@ -11,6 +11,11 @@
                     name="is_subcontractor_partner"
                     attrs="{'invisible': [('is_company', '=', False)]}"
                 />
+                <field
+                    name="subcontractor_resupply_warehouse_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('is_subcontractor_partner', '=', False)]}"
+                />
             </field>
         </field>
     </record>

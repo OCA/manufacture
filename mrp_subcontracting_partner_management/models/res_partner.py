@@ -1,12 +1,18 @@
 import re
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_subcontractor_partner = fields.Boolean(string="Subcontractor")
+    subcontractor_resupply_warehouse_ids = fields.Many2many(
+        comodel_name="stock.warehouse", string="Resupply from warehouse(s)"
+    )
+    partner_resupply_rule_warehouse_ids = fields.One2many(
+        comodel_name="stock.rule", inverse_name="subcontracor_resuply_id", copy=False
+    )
     subcontracted_created_location_id = fields.Many2one(
         comodel_name="stock.location", copy=False
     )
@@ -15,6 +21,19 @@ class ResPartner(models.Model):
     )
     partner_buy_rule_id = fields.Many2one(comodel_name="stock.rule", copy=False)
     partner_resupply_rule_id = fields.Many2one(comodel_name="stock.rule", copy=False)
+
+    @api.constrains("subcontractor_resupply_warehouse_ids")
+    def _check_subcontractor_resupply_warehouse_ids(self):
+        for rec in self:
+            if (
+                not rec.is_subcontractor_partner
+                and rec.subcontractor_resupply_warehouse_ids
+            ):
+                raise models.UserError(
+                    _(
+                        "You can not edit 'Resupply from warehouse(s)' field, if partner is not Subcontractor"  # noqa
+                    )
+                )
 
     def action_subcontractor_location_stock(self):
         """Open subcontractor location stock list"""
@@ -38,6 +57,19 @@ class ResPartner(models.Model):
             # Updating Route Rule for Subcontracting resupply
             "partner_resupply_rule_id": "_create_route_rule_for_subcontracting_resupply",
         }
+
+    def _set_active_subcontractor_warehouse(self, active):
+        if not active:
+            self.mapped("partner_resupply_rule_warehouse_ids").write({"active": active})
+            return
+        for rec in self:
+            rec.with_context(
+                active_test=False
+            ).partner_resupply_rule_warehouse_ids.filtered(
+                lambda r: r.warehouse_id in rec.subcontractor_resupply_warehouse_ids
+            ).write(
+                {"active": active}
+            )
 
     def _set_subcontracting_values_active(self, active):
         """Set subcontracting values active/inactive by argument key"""
@@ -79,6 +111,7 @@ class ResPartner(models.Model):
     def unlink(self):
         """This Method is override to archive all subcontracting field"""
         self._set_subcontracting_values_active(False)
+        self._set_active_subcontractor_warehouse(False)
         return super(ResPartner, self).unlink()
 
     def write(self, vals):
@@ -86,8 +119,26 @@ class ResPartner(models.Model):
             self._update_subcontractor_entities_for_record(
                 vals.get("is_subcontractor_partner")
             )
+            self._set_active_subcontractor_warehouse(
+                vals.get("is_subcontractor_partner")
+            )
         if "active" in vals:
             self._set_subcontracting_values_active(vals.get("active"))
+            self._set_active_subcontractor_warehouse(vals.get("active"))
+        is_subcontract = vals.get("is_subcontractor_partner") is None
+        check_subcontract = (
+            self.is_subcontractor_partner
+            if is_subcontract
+            else vals.get("is_subcontractor_partner")
+        )
+        if "subcontractor_resupply_warehouse_ids" in vals and check_subcontract:
+            wh_ids = self.subcontractor_resupply_warehouse_ids.ids
+            vals.update(
+                self._route_rule_for_subcontracting_resupply_warehouse(
+                    vals, original_wh_ids=wh_ids
+                )
+                or {}
+            )
         result = super(ResPartner, self).write(vals)
         if vals.get("name"):
             self._update_subcontractor_values_name(vals.get("name"))
@@ -108,7 +159,18 @@ class ResPartner(models.Model):
                         )(vals)
                         or {}
                     )
-        return super(ResPartner, self).create(vals_list)
+            if "subcontractor_resupply_warehouse_ids" in vals:
+                vals.update(
+                    self._route_rule_for_subcontracting_resupply_warehouse(vals) or {}
+                )
+        records = super(ResPartner, self).create(vals_list)
+        for rec in records.filtered("partner_resupply_rule_warehouse_ids"):
+            rec.partner_resupply_rule_warehouse_ids.write(
+                {
+                    "partner_address_id": rec.id,
+                }
+            )
+        return records
 
     def _update_subcontractor_entities_for_record(self, is_subcontractor_partner):
         if not is_subcontractor_partner:
@@ -240,3 +302,73 @@ class ResPartner(models.Model):
             }
         )
         return {"partner_resupply_rule_id": rule.id}
+
+    @api.model
+    def _prepare_subcontractor_pull_from_stock_rule(
+        self, warehouse, partner_name, location_id, partner_id
+    ):
+        """
+        Prepare rule for subcontractor partner
+        :param warehouse: stock.warehouse object
+        :param partner_name: partner string name
+        :param location_id: subcontracted location
+        :param partner_id: Partner id
+        :return: prepared stock.rule values
+        """
+        return {
+            "name": "{}: Resupply {}".format(warehouse.name, partner_name),
+            "action": "pull",
+            "partner_address_id": partner_id,
+            "picking_type_id": warehouse.out_type_id.id,
+            "location_id": location_id,
+            "location_src_id": warehouse.lot_stock_id.id,
+            "route_id": warehouse.subcontracting_route_id.id,
+            "procure_method": "mts_else_mto",
+            "warehouse_id": warehouse.id,
+        }
+
+    def _route_rule_for_subcontracting_resupply_warehouse(
+        self, vals, original_wh_ids=None
+    ):
+        original_wh_ids = original_wh_ids or []
+        if "subcontractor_resupply_warehouse_ids" not in vals:
+            return False
+        record_ids = vals["subcontractor_resupply_warehouse_ids"][0][2]
+        inactive_ids = set(original_wh_ids) - set(record_ids)
+        if inactive_ids:
+            # Deactivate warehouse rules
+            self.partner_resupply_rule_warehouse_ids.filtered(
+                lambda rule: rule.warehouse_id.id in inactive_ids
+            ).write({"active": False})
+        record_ids = list(set(record_ids) - set(original_wh_ids))
+        warehouses = self.env["stock.warehouse"].browse(record_ids)
+        if not warehouses.exists():
+            return False
+        partner_name = vals.get("name", self._compose_entity_name())
+        location_id = (
+            self.subcontracted_created_location_id.id
+            if self
+            else vals["subcontracted_created_location_id"]
+        )
+        result = []
+        for warehouse in warehouses:
+            if self:
+                # Unarchive existing records
+                rules = (
+                    self.with_context(active_test=False)
+                    .mapped("partner_resupply_rule_warehouse_ids")
+                    .filtered(
+                        lambda r: r.warehouse_id.id == warehouse.id and not r.active
+                    )
+                )
+                if rules:
+                    rules.write({"active": True})
+                    continue
+            # Prepare new rule for partner
+            vals = self._prepare_subcontractor_pull_from_stock_rule(
+                warehouse, partner_name, location_id, self.id
+            )
+            result.append((0, 0, vals))
+        if not result:
+            return False
+        return {"partner_resupply_rule_warehouse_ids": result}
