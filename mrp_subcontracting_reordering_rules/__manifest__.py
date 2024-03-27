@@ -1,0 +1,15 @@
+{
+    "name": "MRP Subcontracting Reordering Rules",
+    "summary": "MRP Subcontracting Reordering Rules",
+    "website": "https://github.com/OCA/manufacture",
+    "version": "14.0.1.0.0",
+    "author": "Ooops, Cetmix, Odoo Community Association (OCA)",
+    "maintainers": ["CetmixGitDrone", "geomer198"],
+    "category": "Manufacturing/Purchase",
+    "depends": ["mrp_subcontracting", "purchase"],
+    "data": ["views/product_supplierinfo.xml"],
+    "license": "LGPL-3",
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+}

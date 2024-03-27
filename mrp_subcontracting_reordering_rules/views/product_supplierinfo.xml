@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_supplierinfo_reordering_rules" model="ir.ui.view">
+        <field name="name">product.supplierinfo.subcontractor.reordering.rules</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="before">
+                <field
+                    name="route_id"
+                    attrs="{'readonly': [('is_subcontractor', '=', False)]}"
+                    optional="show"
+                />
+                <field
+                    name="trigger"
+                    attrs="{'readonly': [('is_subcontractor', '=', False)]}"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
