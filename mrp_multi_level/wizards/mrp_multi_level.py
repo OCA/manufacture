@@ -267,7 +267,7 @@ class MultiLevelMrp(models.TransientModel):
         qty_ordered = values.get("qty_ordered", 0.0) if values else 0.0
         qty_to_order = mrp_qty
         while qty_ordered < mrp_qty:
-            qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order)
+            qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order - qty_ordered)
             qty_to_order -= qty
             order_data = self._prepare_planned_order_data(
                 product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
@@ -276,7 +276,7 @@ class MultiLevelMrp(models.TransientModel):
             planned_order = False
             if not product_mrp_area_id.supply_method == "phantom":
                 planned_order = self.env["mrp.planned.order"].create(order_data)
-            qty_ordered = qty_ordered + qty
+            qty_ordered += qty
 
             if product_mrp_area_id._to_be_exploded():
                 self.explode_action(
