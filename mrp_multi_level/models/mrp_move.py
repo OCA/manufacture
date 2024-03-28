@@ -39,6 +39,9 @@ class MrpMove(models.Model):
     current_date = fields.Date(string="Current Date")
     current_qty = fields.Float(string="Current Qty")
     mrp_date = fields.Date(string="MRP Date")
+    planned_order_id = fields.Many2one(
+        comodel_name="mrp.planned.order", string="Planned Order", index=True
+    )
     planned_order_up_ids = fields.Many2many(
         comodel_name="mrp.planned.order",
         relation="mrp_move_planned_order_rel",
@@ -54,12 +57,13 @@ class MrpMove(models.Model):
             ("mv", "Move"),
             ("fc", "Forecast"),
             ("mrp", "MRP"),
+            ("plan", "Planned Order"),
         ],
         string="Origin",
     )
     mrp_qty = fields.Float(string="MRP Quantity")
     mrp_type = fields.Selection(
-        selection=[("s", "Supply"), ("d", "Demand")], string="Type"
+        selection=[("s", "Supply"), ("d", "Demand"), ("p", "Plan")], string="Type"
     )
     name = fields.Char(string="Description")
     origin = fields.Char(string="Source Document")

@@ -8,7 +8,7 @@ import logging
 from datetime import date, timedelta
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools import float_is_zero, mute_logger
+from odoo.tools import float_compare, float_is_zero, mute_logger
 
 logger = logging.getLogger(__name__)
 
@@ -474,6 +474,66 @@ class MultiLevelMrp(models.TransientModel):
         if mrp_move_vals:
             self.env["mrp.move"].create(mrp_move_vals)
 
+    def _planned_order_domain(self, product_mrp_area):
+        return [("product_mrp_area_id", "=", product_mrp_area.id), ("fixed", "=", True)]
+
+    @api.model
+    def _prepare_mrp_move_data_from_planned_order(self, planned_order):
+        return {
+            "product_mrp_area_id": planned_order.product_mrp_area_id.id,
+            "planned_order_id": planned_order.id,
+            "mrp_qty": planned_order.mrp_qty,
+            "current_qty": planned_order.qty_released,
+            "mrp_date": planned_order.due_date,
+            "current_date": planned_order.due_date,
+            "mrp_type": "p",
+            "mrp_origin": "plan",
+            "mrp_order_number": None,
+            "parent_product_id": None,
+            "name": "Unreleased qty for %s" % planned_order.name,
+            "state": "draft",
+        }
+
+    @api.model
+    def _init_mrp_move_from_planned_order(self, product_mrp_area):
+        """Create mrp.moves for fixed planned orders."""
+        plan_obj = self.env["mrp.planned.order"]
+        mrp_move_obj = self.env["mrp.move"]
+        domain = self._planned_order_domain(product_mrp_area)
+        plans = plan_obj.search(domain)
+        # We delete planned orders that are fixed but released
+        rounding = product_mrp_area.product_id.uom_id.rounding
+        to_unlink = plans.filtered(
+            lambda x: float_compare(
+                x.mrp_qty, x.qty_released, precision_rounding=rounding
+            )
+            == 0
+        )
+        to_unlink.unlink()
+        for plan in plans - to_unlink:
+            if plan.mrp_action == "manufacture":
+                # We have a link to MO's so we recompute qty
+                plan.qty_released = sum(
+                    plan.mrp_production_ids.filtered(
+                        lambda x: x.state != "cancel"
+                    ).mapped("product_qty")
+                )
+                # otherwise we rely on qty_released. TODO: Improve
+            # Create expected supply move.
+            move_data = self._prepare_mrp_move_data_from_planned_order(plan)
+            mrp_move_obj.create(move_data)
+            # Create need for next level:
+            values = {}
+            self.explode_action(
+                product_mrp_area,
+                fields.Date.from_string(plan.order_release_date),
+                plan.name,
+                (plan.mrp_qty - plan.qty_released),
+                plan,
+                values,
+            )
+        return True
+
     @api.model
     def _get_product_mrp_area_from_product_and_area(self, product, mrp_area):
         return self.env["product.mrp.area"].search(
@@ -486,6 +546,7 @@ class MultiLevelMrp(models.TransientModel):
         self._init_mrp_move_from_forecast(product_mrp_area)
         self._init_mrp_move_from_stock_move(product_mrp_area)
         self._init_mrp_move_from_purchase_order(product_mrp_area)
+        self._init_mrp_move_from_planned_order(product_mrp_area)
 
     @api.model
     def _exclude_from_mrp(self, product, mrp_area):
