@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-17 03:52+0000\n"
+"PO-Revision-Date: 2024-04-03 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: repair_type
 #: model:ir.model.fields,field_description:repair_type.field_repair_type__create_uid
@@ -85,7 +85,7 @@ msgstr "Riga riparazione (componenti)"
 #. module: repair_type
 #: model:ir.model,name:repair_type.model_repair_order
 msgid "Repair Order"
-msgstr "Ordine riparazione"
+msgstr "Ordine di riparazione"
 
 #. module: repair_type
 #: model:ir.model,name:repair_type.model_repair_type
