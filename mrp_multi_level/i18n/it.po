@@ -189,6 +189,11 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__distribution_lead_time
+msgid "Distribution Lead Time"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__state__draft
 msgid "Draft"
 msgstr "Bozza"
