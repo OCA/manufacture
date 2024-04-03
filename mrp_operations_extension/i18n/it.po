@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-18 11:05+0000\n"
-"PO-Revision-Date: 2024-01-26 14:35+0000\n"
+"PO-Revision-Date: 2024-04-03 12:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -115,7 +115,7 @@ msgstr ""
 #: view:mrp.production:mrp_operations_extension.mrp_production_operation_buttons_form_view
 #: view:mrp.production.workcenter.line:mrp_operations_extension.workcenter_line_inh_form_view
 msgid "Check Availability"
-msgstr "Controlla Disponibilità"
+msgstr "Controllo disponibilità"
 
 #. module: mrp_operations_extension
 #: field:mrp.routing.operation,code:0
