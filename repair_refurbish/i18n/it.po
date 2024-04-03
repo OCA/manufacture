@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 08:30+0000\n"
+"PO-Revision-Date: 2024-04-03 12:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -40,39 +40,39 @@ msgstr "Modello prodotto"
 #: model_terms:ir.ui.view,arch_db:repair_refurbish.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:repair_refurbish.product_template_only_form_view
 msgid "Refurbish"
-msgstr "Rigenerato"
+msgstr "Ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_product_product__property_stock_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_product_template__property_stock_refurbish
 msgid "Refurbish Location"
-msgstr "Ubicazione rigenerato"
+msgstr "Ubicazione ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_location_dest_id
 msgid "Refurbished Delivery Location"
-msgstr "Ubicazione consegna rigenerato"
+msgstr "Ubicazione consegna ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_move_id
 msgid "Refurbished Inventory Move"
-msgstr "Movimento di magazzino del rigenerato"
+msgstr "Movimento di magazzino del ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_lot_id
 msgid "Refurbished Lot"
-msgstr "Lotto del rigenerato"
+msgstr "Lotto ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_product_product__refurbish_product_id
 #: model:ir.model.fields,field_description:repair_refurbish.field_product_template__refurbish_product_id
 msgid "Refurbished Product"
-msgstr "Prodotto rigenerato"
+msgstr "Prodotto ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__refurbish_product_id
 msgid "Refurbished product"
-msgstr "Prodotto rigenerato"
+msgstr "Prodotto ricondizionato"
 
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_repair_line
@@ -82,7 +82,7 @@ msgstr "Riga riparazione (componenti)"
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_repair_order
 msgid "Repair Order"
-msgstr "Ordine riparazione"
+msgstr "Ordine di riparazione"
 
 #. module: repair_refurbish
 #: model:ir.model,name:repair_refurbish.model_stock_move
@@ -104,4 +104,4 @@ msgstr ""
 #. module: repair_refurbish
 #: model:ir.model.fields,field_description:repair_refurbish.field_repair_order__to_refurbish
 msgid "To Refurbish"
-msgstr "Da rigenerare"
+msgstr "Da ricondizionare"
