@@ -312,22 +312,16 @@ class MultiLevelMrp(models.TransientModel):
         logger.info("End MRP Cleanup")
         return True
 
-    def _domain_bom_lines_by_llc(self, llc, product_templates):
+    def _domain_bom_lines_by_llc(self, products, templates):
         return [
-            ("product_id.llc", "=", llc),
-            ("bom_id.product_tmpl_id", "in", product_templates.ids),
+            ("product_id", "in", products.ids),
+            ("bom_id.product_tmpl_id", "in", templates.ids),
             ("bom_id.active", "=", True),
         ]
-
-    def _get_bom_lines_by_llc(self, llc, product_templates):
-        return self.env["mrp.bom.line"].search(
-            self._domain_bom_lines_by_llc(llc, product_templates)
-        )
 
     @api.model
     def _low_level_code_calculation(self):
         logger.info("Start low level code calculation")
-        counter = 999999
         llc = 0
         llc_recursion_limit = (
             int(
@@ -337,28 +331,38 @@ class MultiLevelMrp(models.TransientModel):
             )
             or 1000
         )
-        self.env["product.product"].search([]).write({"llc": llc})
-        products = self.env["product.product"].search([("llc", "=", llc)])
-        if products:
-            counter = len(products)
-        log_msg = "Low level code 0 finished - Nbr. products: %s" % counter
+        products = self.env["product.product"].search([])
+        product_llc = {product.id: 0 for product in products}
+        log_msg = "Low level code 0 finished - Nbr. products: %s" % len(products)
         logger.info(log_msg)
 
-        while counter:
+        while products:
             llc += 1
-            products = self.env["product.product"].search([("llc", "=", llc - 1)])
-            p_templates = products.mapped("product_tmpl_id")
-            bom_lines = self._get_bom_lines_by_llc(llc - 1, p_templates)
+            product_llc_ids = [
+                key for key, value in product_llc.items() if value == llc - 1
+            ]
+            products = products.filtered(lambda x: x.id in product_llc_ids)
+            templates = products.mapped("product_tmpl_id")
+            bom_lines = self.env["mrp.bom.line"].search(
+                self._domain_bom_lines_by_llc(products, templates)
+            )
             products = bom_lines.mapped("product_id")
-            products.write({"llc": llc})
-            counter = self.env["product.product"].search_count([("llc", "=", llc)])
+            for product in products:
+                product_llc[product.id] = llc
             log_msg = "Low level code {} finished - Nbr. products: {}".format(
-                llc, counter
+                llc, len(products)
             )
             logger.info(log_msg)
             if llc > llc_recursion_limit:
                 logger.error("Recursion limit reached during LLC calculation.")
                 break
+
+        # Only write records that have changed
+        for i in range(llc):
+            original_product_llc = self.env["product.product"].search([("llc", "=", i)])
+            product_llc_ids = {key for key, value in product_llc.items() if value == i}
+            to_update = product_llc_ids - set(original_product_llc.ids)
+            self.env["product.product"].browse(to_update).write({"llc": i})
 
         mrp_lowest_llc = llc
         logger.info("End low level code calculation")

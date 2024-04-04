@@ -17,6 +17,29 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(self.sf_2.llc, 1)
         self.assertEqual(self.pp_1.llc, 2)
         self.assertEqual(self.pp_2.llc, 2)
+        wizard = self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.cases_area.ids)]}
+        )
+        copy_values = self.env.ref("mrp_multi_level.mrp_bom_fp_2_line_sf_2").copy_data()
+        values_dict = copy_values[0]
+        # Test removing sf_2 from fp_2
+        self.env.ref("mrp_multi_level.mrp_bom_fp_2_line_sf_2").unlink()
+        wizard._low_level_code_calculation()
+        self.assertEqual(self.fp_1.llc, 0)
+        self.assertEqual(self.fp_2.llc, 0)
+        self.assertEqual(self.sf_1.llc, 1)
+        self.assertEqual(self.sf_2.llc, 0)
+        self.assertEqual(self.pp_1.llc, 2)
+        self.assertEqual(self.pp_2.llc, 2)
+        # Test adding sf_2 in fp_2
+        self.env["mrp.bom.line"].create(values_dict)
+        wizard._low_level_code_calculation()
+        self.assertEqual(self.fp_1.llc, 0)
+        self.assertEqual(self.fp_2.llc, 0)
+        self.assertEqual(self.sf_1.llc, 1)
+        self.assertEqual(self.sf_2.llc, 1)
+        self.assertEqual(self.pp_1.llc, 2)
+        self.assertEqual(self.pp_2.llc, 2)
 
     def test_02_product_mrp_area(self):
         """Tests that mrp products are generated correctly."""
