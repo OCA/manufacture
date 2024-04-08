@@ -3,11 +3,12 @@
 
 from datetime import datetime, timedelta
 
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 
 
+@tagged("post_install", "-at_install")
 class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
     @classmethod
     def setUpClass(cls):
