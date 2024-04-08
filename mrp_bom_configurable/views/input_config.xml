@@ -4,17 +4,12 @@
     <field name="model">input.config</field>
     <field name="arch" type="xml">
         <form>
+            <field name="id" invisible="1" />
             <header>
                 <field
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,pending,confirmed"
-                    />
-                <button
-                        name="open_input_line_wizard"
-                        string="Create line"
-                        type="object"
-                        class="oe_highlight"
                     />
             </header>
             <sheet>
@@ -46,7 +41,7 @@
                 </group>
                 <notebook>
                     <page name="Product">
-                        <field name="line_ids" string="Products" />
+                        <field name="line_ids" string="Products" context="{'config_id': id}"/>
                     </page>
                 </notebook>
             </sheet>

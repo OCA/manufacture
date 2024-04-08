@@ -21,7 +21,10 @@
 <record id='input_line_tree' model='ir.ui.view'>
     <field name='model'>input.line</field>
     <field name='arch' type='xml'>
-        <tree editable="bottom" multi_edit="1" class="input_line_tree">
+        <tree multi_edit="1" class="input_line_tree">
+            <control>
+                <button name="open_wizard" type="object" string="Add a line"/>
+            </control>
             <field name="sequence" widget="handle" />
             <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
             <button

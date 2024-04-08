@@ -48,6 +48,10 @@ class Inputline(models.Model):
     def check_one_data(self):
         pass
 
+    def open_wizard(self):
+        config_id = self.env["input.config"].browse(self.env.context.get("config_id"))
+        return config_id.open_input_line_wizard()
+
     def open_form_pop_up(self):
         self.ensure_one()
         return {
