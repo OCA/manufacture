@@ -75,7 +75,7 @@ addon | version | maintainers | summary
 [product_mrp_info](product_mrp_info/) | 14.0.1.0.0 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds smart button in product form view linking to manufacturing order list.
 [quality_control_mrp_oca](quality_control_mrp_oca/) | 14.0.1.0.0 |  | MRP extension for quality control (OCA)
 [quality_control_oca](quality_control_oca/) | 14.0.1.4.2 |  | Generic infrastructure for quality tests.
-[quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.1 |  | Quality control - Stock (OCA)
+[quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.2 |  | Quality control - Stock (OCA)
 [quality_control_team_oca](quality_control_team_oca/) | 14.0.1.0.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | Adds quality control teams to handle different quality control workflows
 [repair_discount](repair_discount/) | 14.0.1.0.0 |  | Repair Discount
 [repair_picking_after_done](repair_picking_after_done/) | 14.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
