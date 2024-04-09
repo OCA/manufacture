@@ -62,7 +62,7 @@ class MultiLevelMrp(models.TransientModel):
         locations = product_mrp_area.mrp_area_id._get_locations()
         return [
             ("product_id", "=", product_mrp_area.product_id.id),
-            ("location_id", "in", locations.ids),
+            ("location_id", "child_of", locations.ids),
             ("date_to", ">=", fields.Date.today()),
         ]
 
