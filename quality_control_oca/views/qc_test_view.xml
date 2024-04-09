@@ -93,6 +93,7 @@
                     <field
                         name="ql_values"
                         nolabel="1"
+                        colspan="2"
                         attrs="{'required': [('type','=','qualitative')]}"
                     >
                         <tree editable="bottom">
