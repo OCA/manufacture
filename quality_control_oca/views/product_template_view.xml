@@ -14,7 +14,7 @@
             <page name="inventory" position="inside">
                 <t groups="quality_control_oca.group_quality_control_user">
                     <group name="qc" string="Quality control">
-                        <field name="qc_triggers" nolabel="1">
+                        <field name="qc_triggers" nolabel="1" colspan="2">
                             <tree editable="bottom">
                                 <field
                                     name="trigger"
