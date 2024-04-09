@@ -13,6 +13,7 @@
     "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca", "stock"],
     "data": [
+        "security/ir.model.access.csv",
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_production_lot_view.xml",
