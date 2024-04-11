@@ -13,7 +13,7 @@ class MrpWorkcenter(models.Model):
     parent_id = fields.Many2one(
         comodel_name="mrp.workcenter", string="Parent", index=True
     )
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
     child_ids = fields.One2many(
         comodel_name="mrp.workcenter", inverse_name="parent_id", string="Children"
     )
