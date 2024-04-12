@@ -4,7 +4,7 @@
 
 {
     "name": "MRP Workcenter Hierarchical",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.0",
     "author": "Akretion,Odoo Community Association (OCA)",
     "summary": "Organise Workcenters by section",
     "category": "Manufacturing",
@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/workcenter_view.xml",
         "wizards/switch_workcenter.xml",
+        "wizards/res_config_settings_views.xml",
     ],
     "demo": [
         "data/mrp_demo.xml",

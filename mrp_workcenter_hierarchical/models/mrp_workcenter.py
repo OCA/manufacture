@@ -45,33 +45,36 @@ class MrpWorkcenter(models.Model):
             ids = []
         return ids
 
-    @api.depends("parent_id.parent_id.parent_id.parent_id", "child_ids")
+    @api.depends(
+        "parent_id.parent_id.parent_id",
+        "child_ids",
+        "company_id.workcenter_parent_level_empty",
+    )
     def _compute_parent_level(self):
-        def get_next_level(parent_ids, workcenter):
-            return (
+        def get_next_level(parent_ids, workcenter, exclude_ids):
+            has_parent = bool(parent_ids)
+            parent_level_id = (
                 parent_ids
                 and parent_ids.pop(0)
                 or (workcenter.child_ids and workcenter.id or workcenter.parent_id.id)
             )
+            if exclude_ids and not has_parent:
+                exclude_ids.append(workcenter.parent_id.id)
+            return parent_level_id not in exclude_ids and parent_level_id or False
 
         for workcenter in self:
             parent_ids = workcenter._get_parent_ids()
-            exclude_ids = [workcenter.id, workcenter.parent_id.id]
-            l_id = [False, False, False]
+            if workcenter.company_id.workcenter_parent_level_empty:
+                exclude_ids = [workcenter.id]
+            else:
+                exclude_ids = []
 
-            l_id[0] = get_next_level(parent_ids, workcenter)
-            workcenter.parent_level_1_id = (
-                l_id[0] if l_id[0] not in exclude_ids else False
+            workcenter.parent_level_1_id = get_next_level(
+                parent_ids, workcenter, exclude_ids
             )
-            exclude_ids.append(l_id[0])
-
-            l_id[1] = get_next_level(parent_ids, workcenter)
-            workcenter.parent_level_2_id = (
-                l_id[1] if l_id[1] not in exclude_ids else False
+            workcenter.parent_level_2_id = get_next_level(
+                parent_ids, workcenter, exclude_ids
             )
-            exclude_ids.append(l_id[1])
-
-            l_id[2] = get_next_level(parent_ids, workcenter)
-            workcenter.parent_level_3_id = (
-                l_id[2] if l_id[2] not in exclude_ids else False
+            workcenter.parent_level_3_id = get_next_level(
+                parent_ids, workcenter, exclude_ids
             )
