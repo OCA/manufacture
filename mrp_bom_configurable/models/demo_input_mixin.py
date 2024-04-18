@@ -30,18 +30,13 @@ class InputLine(models.Model):
                         vals[element] = config[element]
         return super().create(vals_list)
 
+    def _get_config_elements(self):
+        return CONFIG_ELEMENTS
+
     def populate_bom_data_preview(self):
         self.ensure_one()
-        elements = dict()
-        for elm in CONFIG_ELEMENTS:
-            if self._fields[elm].type == "many2one":
-                value = self[elm].display_name
-            else:
-                value = self[elm]
-            elements[elm] = value
-
         bom = self.bom_id
-        content = bom.check_domain(elements)
+        content = bom.get_bom_configured_data(self)
         self.env["mrp.bom"].create(
             {
                 "product_tmpl_id": bom.product_tmpl_id.id,
@@ -54,9 +49,9 @@ class InputLine(models.Model):
                         0,
                         0,
                         {
-                            "product_id": line.product_id.id,
-                            "product_qty": line.product_qty,
-                            "product_uom_id": line.product_uom_id.id,
+                            "product_id": line["product_id"].id,
+                            "product_qty": line["product_qty"],
+                            "product_uom_id": line["product_uom_id"].id,
                         },
                     )
                     for line in content

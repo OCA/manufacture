@@ -19,6 +19,7 @@ class MrpBom(models.Model):
             "product_tmpl_id": line.product_tmpl_id,
             "product_id": line.product_id,
             "product_qty": line_quantity,
+            "product_uom_id": line.product_uom_id,
         }
 
     def get_bom_configured_data(self, input_line, quantity=1.0):

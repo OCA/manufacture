@@ -35,7 +35,7 @@ class TestBomConfigurable(TransactionCase):
                 "product_id": cls.component_2.id,
                 "bom_id": cls.bom.id,
                 "product_qty": 2.0,
-                "domain": "['OR', ('test_config', '==', True), ('test_config', '==', True)]",
+                "domain": "['|', ('test_config', '==', True), ('test_config', '==', True)]",
             }
         )
         cls.line_2 = cls.bom_line_obj.create(
