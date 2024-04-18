@@ -1,61 +1,77 @@
 import logging
 
 from odoo import _, api, exceptions, fields, models
-from odoo.exceptions import UserError
 from odoo.tools.safe_eval import safe_eval
 
 logger = logging.getLogger(__name__)
 
 
 def check_domain(domain, values, current_name, parent_name):
+
+    if domain is None or not isinstance(domain, str):
+        return True
+
     domain = domain.replace("'", '"')
     domain = domain.replace('"="', '"=="')
-    domain = domain.replace('"&", ', "")
-    domain = domain.replace('"&",', "")
     domain = safe_eval(domain.replace("!==", "!="))
 
-    return execute_domain(domain, values, current_name, parent_name)
-
-
-def execute_domain_element(element, values, current_name, parent_name):
-    # TODO support len(element) == 1, because element can be '&' and '|'
-    if len(element) != 3:
-        logger.warning("Domain element %s" % element)
-    param, operator, value = element
-    if param not in values:
-        raise UserError(
-            f"Wrong param name ({param}) for domain {current_name}"
-            + f"in {parent_name}"
-        )
-    code = f"{repr(values[param])} {operator} {repr(value)}"
-
-    result = None
-
-    result = safe_eval(code)
-
-    return result
-
-
-def execute_domain(domain, values, current_name, parent_name):
     if len(domain) == 0:
         return True
-    if domain[0] == "OR":
-        return any(
-            execute_domain(domain_elm, values, current_name, parent_name)
-            for domain_elm in domain[1:]
-        )
-    elif isinstance(domain, list):
-        return all(
-            execute_domain(domain_elm, values, current_name, parent_name)
-            for domain_elm in domain
-        )
+
+    if len(domain) == 1:
+        domain.append(True)
+    if domain[0] not in ["&", "|"]:
+        domain.insert(0, "&")
+
+    # We reverse to evaluate the domain using RPN
+    rpn_domain = reversed(domain)
+
+    operand_stack = []
+
+    for token in rpn_domain:
+        if token == "&" or token == "|":
+            op_b = operand_stack.pop()
+            op_a = operand_stack.pop()
+            result = evaluate_operator(
+                token, op_b, op_a, values, current_name, parent_name
+            )
+            operand_stack.append(result)
+        else:
+            operand_stack.append(token)
+
+    return operand_stack.pop()
+
+
+def evaluate_domain_operand(domain, values, current_name, parent_name):
+    if isinstance(domain, bool):
+        return domain
     else:
+        param, operator, value = domain
+
+        # if param not in values:
+        #     raise UserError(
+        #         f"Wrong param name ({param}) for domain {current_name}"
+        #         + f"in {parent_name}"
+        #     )
+        code = f"{param} {operator} {repr(value)}"
+
         try:
-            return execute_domain_element(domain, values, current_name, parent_name)
-        except SyntaxError:
+            return safe_eval(code, values)
+        except SyntaxError as e:
             raise exceptions.ValidationError(
                 f"Domain {domain} is incorrect on {current_name}"
-            ) from None
+            ) from e
+
+
+def evaluate_operator(operator, a, b, values, current_name, parent_name):
+    if operator == "&":
+        return evaluate_domain_operand(
+            a, values, current_name, parent_name
+        ) & evaluate_domain_operand(b, values, current_name, parent_name)
+    if operator == "|":
+        return evaluate_domain_operand(
+            a, values, current_name, parent_name
+        ) | evaluate_domain_operand(b, values, current_name, parent_name)
 
 
 class MrpBomLine(models.Model):
@@ -109,7 +125,7 @@ class MrpBomLine(models.Model):
             "target": "new",
         }
 
-    def execute(self, values):
+    def check_domain(self, values):
         self.ensure_one()
         if not self.domain:
             return True

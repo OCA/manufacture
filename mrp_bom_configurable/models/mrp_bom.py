@@ -14,10 +14,17 @@ class MrpBom(models.Model):
         required=True,
     )
 
+    def _compute_data_from_line_and_quantity(self, line, line_quantity):
+        return {
+            "product_tmpl_id": line.product_tmpl_id,
+            "product_id": line.product_id,
+            "product_qty": line_quantity,
+        }
+
     def get_bom_configured_data(self, input_line, quantity=1.0):
         result = []
         values = input_line._get_input_line_values()
-        for line in self.bom_line_ids.filtered(lambda s: s.execute(values)):
+        for line in self.bom_line_ids.filtered(lambda s: s.check_domain(values)):
             line_quantity = (
                 line.compute_qty_from_formula(input_line)
                 if line.use_formula_compute_qty
@@ -29,10 +36,7 @@ class MrpBom(models.Model):
                 )
             else:
                 result.append(
-                    {
-                        "line": line,
-                        "product_qty": line_quantity,
-                    }
+                    self._compute_data_from_line_and_quantity(line, line_quantity)
                 )
 
         return result

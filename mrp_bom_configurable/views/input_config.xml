@@ -41,7 +41,11 @@
                 </group>
                 <notebook>
                     <page name="Product">
-                        <field name="line_ids" string="Products" context="{'config_id': id}"/>
+                        <field
+                                name="line_ids"
+                                string="Products"
+                                context="{'config_id': id}"
+                            />
                     </page>
                 </notebook>
             </sheet>

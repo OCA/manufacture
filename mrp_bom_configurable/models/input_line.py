@@ -38,11 +38,7 @@ class Inputline(models.Model):
     def _get_input_line_values(self):
         elements = dict()
         for elm in self._get_config_elements():
-            if self._fields[elm].type == "many2one":
-                value = self[elm].display_name
-            else:
-                value = self[elm]
-            elements[elm] = value
+            elements[elm] = self[elm]
         return elements
 
     def check_one_data(self):
@@ -63,20 +59,13 @@ class Inputline(models.Model):
             "res_id": self.id,
         }
 
+    def _get_valid_components(self):
+        return self.bom_id.get_bom_configured_data(self)
+
     def create_bom_line_data(self):
         self.ensure_one()
-        components = self.bom_id.get_bom_configured_data(self)
-        bom_lines_data = []
-
-        for comp in components:
-            bom_line_data = {
-                "product_tmpl_id": comp["line"].product_tmpl_id,
-                "product_id": comp["line"].product_id,
-                "product_qty": comp["product_qty"],
-            }
-            bom_lines_data.append(bom_line_data)
-
-        return bom_lines_data
+        components = self._get_valid_components()
+        return components
 
     def action_show_configured_bom(self):
         self.ensure_one()
