@@ -4,7 +4,7 @@
 {
     "name": "MRP Work Order Sequence",
     "summary": "adds sequence to production work orders.",
-    "version": "16.0.0.1.0",
+    "version": "17.0.1.0.0",
     "category": "Manufacturing",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "development_status": "Beta",
