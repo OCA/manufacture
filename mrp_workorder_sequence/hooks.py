@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 
-def post_init_hook(cr, registry):
-    cr.execute(
+def post_init_hook(env):
+    env.cr.execute(
         """
             UPDATE mrp_workorder
             SET sequence = n.sequence
