@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-23 12:10+0000\n"
+"PO-Revision-Date: 2024-04-24 10:38+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -69,6 +69,11 @@ msgid ""
 "case the product is subcontracted, this can be used to determine the date at "
 "which components should be sent to the subcontractor."
 msgstr ""
+"Plazo medio en días para fabricar este producto. En el caso de una lista de "
+"materiales de varios niveles, se añadirán los plazos de fabricación de los "
+"componentes. En caso de que el producto se subcontrate, puede utilizarse "
+"para determinar la fecha en la que los componentes deben enviarse al "
+"subcontratista."
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
@@ -92,11 +97,16 @@ msgid ""
 "enough time to replenish components or manufacture semi-finished products.\n"
 "Note that security lead times will also be considered when appropriate."
 msgstr ""
+"Cree y confirme las Órdenes de Fabricación con tantos días de antelación, "
+"para disponer de tiempo suficiente para reponer componentes o fabricar "
+"productos semiacabados.\n"
+"Tenga en cuenta que los plazos de seguridad también se tendrán en cuenta "
+"cuando proceda."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
 msgid "Days to prepare Manufacturing Order"
-msgstr ""
+msgstr "Días para Preparar la Orden de Fabricación"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__consumption
@@ -112,11 +122,21 @@ msgid ""
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
+"Define si se pueden consumir más o menos componentes que la cantidad "
+"definida en la lista de materiales:\n"
+"  * Permitido: permitido para todos los usuarios de fabricación.\n"
+"  * Permitido con aviso: permitido para todos los usuarios de fabricación "
+"con resumen de diferencias de consumo al cerrar la orden de fabricación.\n"
+"  Tenga en cuenta que en el caso del componente Consumo Manual, en el que el "
+"consumo se registra exclusivamente de forma manual, también se emitirán "
+"avisos de consumo cuando proceda.\n"
+"  * Bloqueado: sólo un gestor puede cerrar una orden de producción cuando no "
+"se respeta el consumo de la lista de materiales."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "Flexibilidad de Consumo"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
@@ -129,12 +149,12 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__produce_delay
 msgid "Manufacturing Lead Time"
-msgstr ""
+msgstr "Plazo de Fabricación"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "Preparación para la Fabricación"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
