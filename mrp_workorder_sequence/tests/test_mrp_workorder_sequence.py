@@ -8,15 +8,7 @@ from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
 class TestMrpWorkorderSequence(TestMrpCommon):
-    def setUp(self):
-        super().setUp()
-        self._create_bom()
-        self.env["res.config.settings"].create(
-            {
-                "group_mrp_routings": True,
-            }
-        ).execute()
-
+    @classmethod
     def _create_bom(self):
         return self.env["mrp.bom"].create(
             {
@@ -113,6 +105,16 @@ class TestMrpWorkorderSequence(TestMrpCommon):
                 ],
             }
         )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._create_bom()
+        cls.env["res.config.settings"].create(
+            {
+                "group_mrp_routings": True,
+            }
+        ).execute()
 
     def _create_order(self, product):
         mrp_order_form = Form(self.env["mrp.production"])
