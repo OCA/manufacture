@@ -56,14 +56,16 @@ class StockPicking(models.Model):
                 unbuild_ids_backorder = unbuilds_to_done.filtered(
                     lambda u: u.state == "draft"
                 ).ids
-            unbuilds_to_done.with_context(
-                subcontract_move_id=True, mo_ids_to_backorder=unbuild_ids_backorder
-            ).action_validate()
-            move = self.move_lines.filtered(lambda move: move.is_subcontract)
+            for unbuild in unbuilds_to_done:
+                unbuild.with_context(
+                    subcontract_move_id=True, mo_ids_to_backorder=unbuild_ids_backorder
+                ).action_validate()
+            moves = self.move_lines.filtered(lambda move: move.is_subcontract)
             finished_move = unbuilds_to_done.produce_line_ids.filtered(
-                lambda m: m.product_id == move.product_id
+                lambda m: m.product_id.id in moves.mapped("product_id").ids
             )
-            finished_move.write({"move_dest_ids": [(4, move.id, False)]})
+            for move in moves:
+                finished_move.write({"move_dest_ids": [(4, move.id, False)]})
             # For concistency, set the date on production move before the date
             # on picking. (Traceability report + Product Moves menu item)
             minimum_date = min(picking.move_line_ids.mapped("date"))
