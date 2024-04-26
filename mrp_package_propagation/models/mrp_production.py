@@ -28,6 +28,7 @@ class MrpProduction(models.Model):
     @api.depends(
         "move_raw_ids.propagate_package",
         "move_raw_ids.move_line_ids.qty_done",
+        "move_raw_ids.move_orig_ids.move_line_ids.result_package_id",
     )
     def _compute_propagated_package_id(self):
         for order in self:
@@ -40,6 +41,16 @@ class MrpProduction(models.Model):
             )
             if len(line_with_package) == 1:
                 order.propagated_package_id = line_with_package.package_id
+                continue
+            # Support for consumable components: as no quant is created for
+            # such products Odoo doesn't copy the destination of the ancestor
+            # move (Pre-PICK) to the current move of the component.
+            # In such case, get the package to propagate from the ancestor
+            # move(s).
+            if move_with_package and not line_with_package:
+                order.propagated_package_id = fields.first(
+                    move_with_package.move_orig_ids.move_line_ids.result_package_id
+                )
 
     @api.onchange("bom_id")
     def _onchange_bom_id_package_propagation(self):
