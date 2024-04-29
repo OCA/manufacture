@@ -73,7 +73,7 @@ class StockPicking(models.Model):
                 unbuild.with_context(
                     subcontract_move_id=True, mo_ids_to_backorder=unbuild_ids_backorder
                 ).action_validate()
-            moves = self.move_ids.filtered(lambda move: move.is_subcontract)
+            moves = picking.move_ids.filtered(lambda move: move.is_subcontract)
             finished_move = unbuilds_to_done.produce_line_ids.filtered(
                 lambda m: m.product_id.id in moves.mapped("product_id").ids
             )
