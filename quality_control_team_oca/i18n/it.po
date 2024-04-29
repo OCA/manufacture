@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-12 12:09+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-04-29 14:39+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Conteggio allegati"
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_form
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.actions.act_window,help:quality_control_team_oca.qc_team_config_action
@@ -195,7 +195,6 @@ msgstr "Numero di azioni"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_has_error_counter
-#, fuzzy
 msgid "Number of errors"
 msgstr "Numero di errori"
 
@@ -252,9 +251,8 @@ msgstr "Rispondi a"
 
 #. module: quality_control_team_oca
 #: model:ir.model.fields,field_description:quality_control_team_oca.field_qc_team__message_has_sms_error
-#, fuzzy
 msgid "SMS Delivery error"
-msgstr "Errore di consegna messaggio"
+msgstr "Errore consegna SMS"
 
 #. module: quality_control_team_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_team_oca.qc_team_view_kanban
