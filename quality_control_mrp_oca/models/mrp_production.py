@@ -12,7 +12,7 @@ class MrpProduction(models.Model):
 
     @api.depends("qc_inspections_ids")
     def _compute_created_inspections(self):
-        for production in self:
+        for production in self.sudo():
             production.created_inspections = len(production.qc_inspections_ids)
 
     qc_inspections_ids = fields.One2many(
@@ -31,25 +31,28 @@ class MrpProduction(models.Model):
             lambda r: r.state == "done"
         )
         res = super()._post_inventory(cancel_backorder=cancel_backorder)
-        inspection_model = self.env["qc.inspection"]
+        inspection_model = self.env["qc.inspection"].sudo()
         new_done_moves = (
             self.mapped("move_finished_ids").filtered(lambda r: r.state == "done")
             - done_moves
         )
         if new_done_moves:
             qc_trigger = self.env.ref("quality_control_mrp_oca.qc_trigger_mrp")
-        for move in new_done_moves:
-            trigger_lines = set()
-            for model in [
-                "qc.trigger.product_category_line",
-                "qc.trigger.product_template_line",
-                "qc.trigger.product_line",
-            ]:
-                trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, move.product_id
-                    )
-                )
-            for trigger_line in _filter_trigger_lines(trigger_lines):
-                inspection_model._make_inspection(move, trigger_line)
+            if qc_trigger:
+                for move in new_done_moves:
+                    trigger_lines = set()
+                    for model in [
+                        "qc.trigger.product_category_line",
+                        "qc.trigger.product_template_line",
+                        "qc.trigger.product_line",
+                    ]:
+                        trigger_lines = trigger_lines.union(
+                            self.env[model]
+                            .sudo()
+                            .get_trigger_line_for_product(
+                                qc_trigger, move.product_id.sudo()
+                            )
+                        )
+                    for trigger_line in _filter_trigger_lines(trigger_lines):
+                        inspection_model._make_inspection(move, trigger_line)
         return res
