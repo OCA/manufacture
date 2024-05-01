@@ -811,7 +811,9 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
                 )
 
     def test_24_prioritize_safety_stock_with_mrp_moves_today_grouped(self):
-        """Test grouped demand MRP but with moves today. Safety stock should not be ordered."""
+        """Test grouped demand MRP but with moves today. Safety stock should not be
+        ordered.
+        """
         now = datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
