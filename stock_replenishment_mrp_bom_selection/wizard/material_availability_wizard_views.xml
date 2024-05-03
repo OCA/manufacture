@@ -1,0 +1,28 @@
+<odoo>
+    <record id="material_availability_wizard_view" model="ir.ui.view">
+        <field name="name">material.availability.wizard.view</field>
+        <field name="model">material.availability.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="bom_id" invisible="1" />
+                    <field name="replenish_wizard_id" invisible="1" />
+                    <field name="product_ids" nolabel="1" colspan="2">
+                        <tree create="0" delete="0">
+                            <field name="product_id" />
+                            <field name="product_qty_available" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Close"
+                        class="btn-secondary"
+                        type="object"
+                        name="action_close"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
