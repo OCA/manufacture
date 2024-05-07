@@ -52,11 +52,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mrp_tag
-#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_uid
 msgid "Last Updated by"
 msgstr "Última Actualización por"
@@ -115,3 +110,6 @@ msgstr "Etiquetas"
 #, python-format
 msgid "Tags cannot be recursive."
 msgstr "Las etiquetas no pueden ser recursivas."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
