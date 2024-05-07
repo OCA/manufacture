@@ -26,7 +26,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
-            <field name="company_id" position="before">
+            <field name="state" position="before">
                 <field
                     name="tag_ids"
                     optional="hide"
