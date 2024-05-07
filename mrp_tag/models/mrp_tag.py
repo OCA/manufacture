@@ -26,29 +26,26 @@ class MrpTag(models.Model):
         ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
     ]
 
-    def name_get(self):
-        res = []
+    @api.depends("name", "parent_id")
+    def _compute_display_name(self):
         for tag in self:
             names = []
             current = tag
-            while current:
+            while current.name:
                 names.append(current.name)
                 current = current.parent_id
-            res.append((tag.id, " / ".join(reversed(names))))
-        return res
+            tag.display_name = " / ".join(reversed(names))
 
     @api.model
-    def _name_search(
-        self, name="", args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def _name_search(self, name, domain=None, operator="ilike", limit=None, order=None):
         if name:
-            args = [("name", operator, name.split(" / ")[-1])] + list(args or [])
+            domain = [("name", operator, name.split(" / ")[-1])] + list(domain or [])
         return super()._name_search(
             name=name,
-            args=args,
+            domain=domain,
             operator=operator,
             limit=limit,
-            name_get_uid=name_get_uid,
+            order=order,
         )
 
     @api.constrains("parent_id")
