@@ -38,22 +38,16 @@ class QcInspection(models.Model):
         string="Inspection number",
         required=True,
         default="/",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         copy=False,
     )
     date = fields.Datetime(
         required=True,
-        readonly=True,
         copy=False,
         default=fields.Datetime.now,
-        states={"draft": [("readonly", False)]},
     )
     object_id = fields.Reference(
         string="Reference",
         selection="object_selection_values",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         ondelete="set null",
     )
     product_id = fields.Many2one(
@@ -63,17 +57,13 @@ class QcInspection(models.Model):
         help="Product associated with the inspection",
     )
     qty = fields.Float(string="Quantity", default=1.0)
-    test = fields.Many2one(comodel_name="qc.test", readonly=True)
+    test = fields.Many2one(comodel_name="qc.test")
     inspection_lines = fields.One2many(
         comodel_name="qc.inspection.line",
         inverse_name="inspection_id",
-        readonly=True,
-        states={"ready": [("readonly", False)]},
     )
     internal_notes = fields.Text(string="Internal notes")
-    external_notes = fields.Text(
-        states={"success": [("readonly", True)], "failed": [("readonly", True)]},
-    )
+    external_notes = fields.Text()
     state = fields.Selection(
         [
             ("draft", "Draft"),
@@ -83,7 +73,6 @@ class QcInspection(models.Model):
             ("failed", "Quality failed"),
             ("canceled", "Canceled"),
         ],
-        readonly=True,
         default="draft",
         tracking=True,
     )
@@ -94,15 +83,12 @@ class QcInspection(models.Model):
     )
     auto_generated = fields.Boolean(
         string="Auto-generated",
-        readonly=True,
         copy=False,
         help="If an inspection is auto-generated, it can be canceled but not removed.",
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         default=lambda self: self.env.company,
     )
     user = fields.Many2one(
@@ -291,15 +277,13 @@ class QcInspectionLine(models.Model):
     inspection_id = fields.Many2one(
         comodel_name="qc.inspection", string="Inspection", ondelete="cascade"
     )
-    name = fields.Char(string="Question", readonly=True)
+    name = fields.Char(string="Question")
     product_id = fields.Many2one(
         comodel_name="product.product",
         related="inspection_id.product_id",
         store=True,
     )
-    test_line = fields.Many2one(
-        comodel_name="qc.test.question", string="Test question", readonly=True
-    )
+    test_line = fields.Many2one(comodel_name="qc.test.question", string="Test question")
     possible_ql_values = fields.Many2many(
         comodel_name="qc.test.question.value", string="Answers"
     )
@@ -318,19 +302,16 @@ class QcInspectionLine(models.Model):
     min_value = fields.Float(
         string="Min",
         digits="Quality Control",
-        readonly=True,
         help="Minimum valid value for a quantitative question.",
     )
     max_value = fields.Float(
         string="Max",
         digits="Quality Control",
-        readonly=True,
         help="Maximum valid value for a quantitative question.",
     )
     test_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Test UoM",
-        readonly=True,
         help="UoM for minimum and maximum values for a quantitative " "question.",
     )
     test_uom_category = fields.Many2one(
@@ -344,7 +325,6 @@ class QcInspectionLine(models.Model):
     )
     question_type = fields.Selection(
         [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
-        readonly=True,
     )
     valid_values = fields.Char(
         string="Valid values", store=True, compute="_compute_valid_values"
