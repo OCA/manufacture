@@ -106,6 +106,10 @@ Contributors
 
    -  Vicent Cubells
 
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
+
 Other credits
 -------------
 
