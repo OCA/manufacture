@@ -54,7 +54,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             move_form.product_uom_qty = 2
         cls.picking1 = picking_form.save()
         cls.picking1.action_confirm()
-        cls.picking1.move_ids.move_line_ids.qty_done = 1
+        cls.picking1.move_ids.move_line_ids.quantity = 1
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product(self):
