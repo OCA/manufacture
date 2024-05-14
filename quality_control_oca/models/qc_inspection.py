@@ -203,9 +203,7 @@ class QcInspection(models.Model):
         :return: List of values for creating the inspection
         """
         return {
-            "object_id": object_ref
-            and "{},{}".format(object_ref._name, object_ref.id)
-            or False,
+            "object_id": object_ref and f"{object_ref._name},{object_ref.id}" or False,
             "state": "ready",
             "test": trigger_line.test.id,
             "user": trigger_line.user.id,
