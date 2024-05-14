@@ -5,10 +5,10 @@
 
 {
     "name": "Quality control - Stock (OCA)",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
-    "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "author": "Tecnativa, AvanzOSC, "
     "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca", "stock"],
