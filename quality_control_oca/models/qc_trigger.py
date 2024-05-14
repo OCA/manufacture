@@ -22,6 +22,5 @@ class QcTrigger(models.Model):
     partner_selectable = fields.Boolean(
         string="Selectable by partner",
         default=False,
-        readonly=True,
         help="This technical field is to allow to filter by partner in triggers",
     )
