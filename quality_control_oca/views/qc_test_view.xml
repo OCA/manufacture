@@ -19,10 +19,7 @@
                     <group>
                         <group>
                             <field name="type" />
-                            <field
-                                name="object_id"
-                                attrs="{'invisible': [('type','=','generic')]}"
-                            />
+                            <field name="object_id" invisible="type == 'generic'" />
                             <field name="active" />
                         </group>
                         <group>
@@ -88,13 +85,13 @@
                     name="qualitative"
                     string="Answers"
                     colspan="4"
-                    attrs="{'invisible': [('type', '!=', 'qualitative')]}"
+                    invisible="type != 'qualitative'"
                 >
                     <field
                         name="ql_values"
                         nolabel="1"
                         colspan="2"
-                        attrs="{'required': [('type','=','qualitative')]}"
+                        required="type == 'qualitative'"
                     >
                         <tree editable="bottom">
                             <field name="name" />
@@ -105,7 +102,7 @@
                 <div
                     name="quantitative"
                     align="center"
-                    attrs="{'invisible': [('type', '!=', 'quantitative')]}"
+                    invisible="type != 'quantitative'"
                 >
                     <h1 name="quantitative-data">
                         <span name="quantitative-interval">
@@ -113,14 +110,14 @@
                                 name="min_value"
                                 class="oe_inline"
                                 nolabel="1"
-                                attrs="{'required': [('type','=', 'quantitative')]}"
+                                required="type == 'quantitative'"
                             />
                             <span> - </span>
                             <field
                                 name="max_value"
                                 class="oe_inline"
                                 nolabel="1"
-                                attrs="{'required': [('type', '=', 'quantitative')]}"
+                                required="type == 'quantitative'"
                             />
                         </span>
                         <span name="quantitative-uom">
@@ -128,7 +125,7 @@
                                 name="uom_id"
                                 class="oe_inline"
                                 nolabel="1"
-                                attrs="{'required': [('type', '=', 'quantitative')]}"
+                                required="type == 'quantitative'"
                             />
                         </span>
                     </h1>
