@@ -41,11 +41,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         cls.user = new_test_user(
             cls.env,
             login="test_quality_control_stock_oca",
-            groups="%s,%s"
-            % (
-                "stock.group_stock_user",
-                "quality_control_oca.group_quality_control_user",
-            ),
+            groups=f"{'stock.group_stock_user'},{'quality_control_oca.group_quality_control_user'}",
         )
         picking_form = Form(
             cls.env["stock.picking"]
