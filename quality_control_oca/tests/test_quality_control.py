@@ -129,7 +129,7 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         )
         self.assertEqual(
             category2.complete_name,
-            "{} / {}".format(category1.name, category2.name),
+            f"{category1.name} / {category2.name}",
             "Something went wrong when computing complete name",
         )
         with self.assertRaises(exceptions.UserError):
