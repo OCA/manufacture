@@ -6,3 +6,5 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Pedro M. Baeza
   - Carlos Roca
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>

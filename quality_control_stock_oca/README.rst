@@ -59,9 +59,8 @@ Credits
 Authors
 -------
 
-* OdooMRP team
+* Tecnativa
 * AvanzOSC
-* Serv. Tecnol. Avanzados - Pedro M. Baeza
 * Agile Business Group
 
 Contributors
@@ -76,6 +75,10 @@ Contributors
 
    -  Pedro M. Baeza
    -  Carlos Roca
+
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
