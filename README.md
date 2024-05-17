@@ -58,6 +58,7 @@ addon | version | maintainers | summary
 [quality_control_oca](quality_control_oca/) | 15.0.1.0.0 |  | Generic infrastructure for quality tests.
 [quality_control_stock_oca](quality_control_stock_oca/) | 15.0.1.0.0 |  | Quality control - Stock (OCA)
 [stock_picking_product_kit_helper](stock_picking_product_kit_helper/) | 15.0.0.1.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Set quanity in picking line based on product kit quantity
+[stock_replenishment_mrp_bom_selection](stock_replenishment_mrp_bom_selection/) | 15.0.1.0.0 |  | Stock Replenishment MRP BoM Selection
 [stock_whole_kit_constraint](stock_whole_kit_constraint/) | 15.0.1.0.0 |  | Avoid to deliver a kit partially
 
 [//]: # (end addons)
