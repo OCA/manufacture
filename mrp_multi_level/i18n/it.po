@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-29 14:36+0000\n"
+"PO-Revision-Date: 2024-05-17 12:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -207,7 +207,7 @@ msgstr "Escludi da MRP"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_inventory_procure_wizard
 msgid "Execute"
-msgstr "Esecuzione"
+msgstr "Esegui"
 
 #. module: mrp_multi_level
 #: model:product.product,name:mrp_multi_level.product_product_fp_1
