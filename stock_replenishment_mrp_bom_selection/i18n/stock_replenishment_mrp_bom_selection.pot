@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-15 07:50+0000\n"
-"PO-Revision-Date: 2024-05-15 07:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -162,6 +160,11 @@ msgstr ""
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__product_qty_available
 msgid "Quantity Available"
+msgstr ""
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__qty_remaining_to_produce
+msgid "Quantity Remaining to Produce"
 msgstr ""
 
 #. module: stock_replenishment_mrp_bom_selection
