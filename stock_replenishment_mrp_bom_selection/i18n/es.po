@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-15 07:50+0000\n"
-"PO-Revision-Date: 2024-05-15 09:53+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-05-20 12:40+0000\n"
+"Last-Translator: Pilar Vargas <pilar.vargas@tecnativa.com>\n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__bom_id
@@ -153,10 +153,8 @@ msgstr "Plantilla de producto"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__production_time
-#, fuzzy
-#| msgid "Product Template"
 msgid "Production Time"
-msgstr "Plantilla de producto"
+msgstr "Tiempo de Producción"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__product_ids
