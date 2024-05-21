@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="mrp_area_form" model="ir.ui.view">
+        <field name="name">mrp.area.form - mrp_multi_level_estimate</field>
+        <field name="model">mrp.area</field>
+        <field name="inherit_id" ref="mrp_multi_level.mrp_area_form" />
+        <field name="arch" type="xml">
+            <group name="settings" position="inside">
+                <field name="estimate_demand_and_other_sources_strat" />
+            </group>
+        </field>
+    </record>
+</odoo>
