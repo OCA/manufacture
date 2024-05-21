@@ -8,11 +8,9 @@ class InputConfig(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Header configuration scenari"
 
-    name = fields.Char(required=True)
+    name = fields.Char()
     date = fields.Date(default=fields.Date.today())
-    bom_id = fields.Many2one(
-        comodel_name="mrp.bom", string="Configurable Product", required=True
-    )
+    bom_id = fields.Many2one(comodel_name="mrp.bom", string="Configurable Product")
     bom_domain = fields.Binary(compute="_compute_bom_domain")
     state = fields.Selection(
         selection=[
