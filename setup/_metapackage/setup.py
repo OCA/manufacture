@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo14-addon-mrp_account_bom_attribute_match',
         'odoo14-addon-mrp_analytic_cost',
         'odoo14-addon-mrp_attachment_mgmt',
+        'odoo14-addon-mrp_auto_assign',
         'odoo14-addon-mrp_bom_attribute_match',
         'odoo14-addon-mrp_bom_attribute_match_duplicate_kit',
         'odoo14-addon-mrp_bom_attribute_match_semifinished_product',
