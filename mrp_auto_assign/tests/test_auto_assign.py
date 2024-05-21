@@ -2,6 +2,7 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -38,6 +39,7 @@ class TestMrpAutoAssign(TransactionCase):
             {
                 "product_id": self.product_manuf.id,
                 "product_tmpl_id": self.product_manuf.product_tmpl_id.id,
+                "type": "normal",
                 "bom_line_ids": (
                     [
                         (
@@ -56,25 +58,21 @@ class TestMrpAutoAssign(TransactionCase):
 
     def _update_product_qty(self, product, location, quantity):
         """Update Product quantity."""
-        product_qty = self.env["stock.change.product.qty"].create(
+        product_qty = self.env["stock.quant"].create(
             {
                 "location_id": location.id,
                 "product_id": product.id,
-                "new_quantity": quantity,
+                "quantity": quantity,
             }
         )
-        product_qty.change_product_qty()
         return product_qty
 
     def test_01_manufacture_auto_assign(self):
         """Test if Manufacturing order is auto-assigned."""
-
-        production = self.production_model.create(
-            {
-                "product_id": self.product_manuf.id,
-                "product_qty": 1,
-                "product_uom_id": self.uom_unit.id,
-                "bom_id": self.bom.id,
-            }
-        )
-        self.assertEqual(production.availability, "assigned")
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_manuf
+        mo_form.bom_id = self.bom
+        mo_form.product_qty = 1
+        production = mo_form.save()
+        production.action_confirm()
+        self.assertEqual(production.reservation_state, "assigned")

@@ -2,15 +2,15 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.model
-    def create(self, values):
-        production = super(MrpProduction, self).create(values)
-        if production.availability != "none":
-            production.action_assign()
-        return production
+    def action_confirm(self):
+        res = super(MrpProduction, self).action_confirm()
+        to_assign = self.filtered(lambda p: p.reservation_state)
+        if to_assign:
+            to_assign.action_assign()
+        return res
