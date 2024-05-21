@@ -68,7 +68,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_from_forecast(self, product_mrp_area):
-        res = super(MultiLevelMrp, self)._init_mrp_move_from_forecast(product_mrp_area)
+        res = super()._init_mrp_move_from_forecast(product_mrp_area)
         if not product_mrp_area.group_estimate_days:
             return False
         today = fields.Date.today()

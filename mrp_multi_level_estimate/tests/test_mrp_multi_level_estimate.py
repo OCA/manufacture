@@ -54,7 +54,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         cls.date_without_ranges = today + timedelta(days=150)
 
         qty = 140.0
-        for sd, ed in zip(start_dates, end_dates):
+        for sd, ed in zip(start_dates, end_dates, strict=True):
             qty += 70.0
             cls._create_demand_estimate(cls.prod_test, cls.stock_location, sd, ed, qty)
             cls._create_demand_estimate(cls.prod_test, cls.estimate_loc, sd, ed, qty)
@@ -225,7 +225,8 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
             ]
         )
         self.assertEqual(len(estimates), 3)
-        # Change qty of estimates to quantities that divided by 7 days return a decimal result
+        # Change qty of estimates to quantities that
+        # divided by 7 days return a decimal result
         qty = 400
         for estimate in estimates:
             estimate.product_uom_qty = qty
@@ -362,7 +363,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         mo_form.product_id = fp_1
         mo_form.bom_id = fp_1_bom
         mo_form.product_qty = 10
-        mo_form.date_planned_start = date_mo
+        mo_form.date_start = date_mo
         mo = mo_form.save()
         mo.location_src_id = (
             self.estimate_loc
