@@ -6,11 +6,11 @@ from odoo import api, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     @api.model
     def create(self, values):
         production = super(MrpProduction, self).create(values)
-        if production.availability != 'none':
+        if production.availability != "none":
             production.action_assign()
         return production
