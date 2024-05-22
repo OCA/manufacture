@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 {
     "name": "MRP Package Propagation",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "development_status": "Alpha",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",

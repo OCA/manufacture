@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [mrp_lot_production_date](mrp_lot_production_date/) | 14.0.1.0.0 |  | MRP Lot Production Date
 [mrp_multi_level](mrp_multi_level/) | 14.0.1.15.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 14.0.1.1.2 | [![LoisRForgeFlow](https://github.com/LoisRForgeFlow.png?size=30px)](https://github.com/LoisRForgeFlow) | Allows to consider demand estimates using MRP multi level.
-[mrp_package_propagation](mrp_package_propagation/) | 14.0.1.0.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a package from a component to a finished product
+[mrp_package_propagation](mrp_package_propagation/) | 14.0.1.1.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a package from a component to a finished product
 [mrp_planned_order_matrix](mrp_planned_order_matrix/) | 14.0.1.1.0 |  | Allows to create fixed planned orders on a grid view.
 [mrp_production_auto_validate](mrp_production_auto_validate/) | 14.0.1.0.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Manufacturing Order Auto-Validation when components are picked
 [mrp_production_byproduct_cost_share](mrp_production_byproduct_cost_share/) | 14.0.1.0.0 |  | Production By-Product Cost Share
