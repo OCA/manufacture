@@ -1,6 +1,7 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+from odoo import fields
 from odoo.exceptions import UserError
 from odoo.tests.common import Form
 
@@ -18,9 +19,13 @@ class TestMrpProduction(Common):
             line_form.propagate_package = True
             line_form.save()
             form.save()
+        cls.order = cls._create_manufacturing_order(cls.bom)
+
+    @classmethod
+    def _create_manufacturing_order(cls, bom):
         with Form(cls.env["mrp.production"]) as form:
-            form.bom_id = cls.bom
-            cls.order = form.save()
+            form.bom_id = bom
+            return form.save()
 
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
@@ -61,3 +66,49 @@ class TestMrpProduction(Common):
         self.order.action_generate_serial()
         self.order.button_mark_done()
         self.assertEqual(self.order.propagated_package_id.name, self.PACKAGE_NAME)
+        self.assertEqual(
+            self.order.move_finished_ids.move_line_ids.result_package_id.name,
+            self.PACKAGE_NAME,
+        )
+
+    def test_order_propagated_package_id_through_consumable_component(self):
+        """Test package propagation from a consumable component."""
+        # NOTE: we enable the manufacturing in two steps in this test to get
+        # ancestor moves (Pre-PICK transfer to validate to get components
+        # available for MO) required to find the destination package among them.
+        self.env.ref("stock.warehouse0").manufacture_steps = "pbm"
+        # Enable the package propagation on a consumable component
+        self.bom.bom_line_ids.propagate_package = False
+        consu_bom_line = fields.first(
+            self.bom.bom_line_ids.filtered(lambda o: o.product_id.type == "consu")
+        )
+        consu_bom_line.write({"product_qty": 1, "propagate_package": True})
+        # Create MO
+        order = self._create_manufacturing_order(self.bom)
+        self.assertTrue(order.is_package_propagated)
+        self._update_stock_component_qty(order)
+        order.action_confirm()
+        order.action_assign()
+        order.picking_ids.action_assign()
+        # Put a destination package in Pre-PICK for the consumable component
+        consu_move_line = order.picking_ids.move_line_ids.filtered(
+            lambda l: l.product_id == consu_bom_line.product_id
+        )
+        package = self.env["stock.quant.package"].create(
+            {"name": self.PACKAGE_NAME + "-CONSU"}
+        )
+        consu_move_line.result_package_id = package
+        # Validate the Pre-PICK: package is found by the MO
+        for line in order.picking_ids.move_line_ids:
+            line.qty_done = line.product_uom_qty
+        order.picking_ids._action_done()
+        self.assertTrue(order.is_package_propagated)
+        self.assertTrue(any(order.move_raw_ids.mapped("propagate_package")))
+        self.assertEqual(order.propagated_package_id, package)
+        # Validate MO: package is propagated to finished product
+        self._set_qty_done(order)
+        order.action_generate_serial()
+        order.button_mark_done()
+        self.assertEqual(
+            order.move_finished_ids.move_line_ids.result_package_id, package
+        )
