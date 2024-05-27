@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -332,11 +332,17 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -403,21 +409,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__write_uid
@@ -445,16 +436,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_date
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: quality_control_oca
@@ -819,6 +800,16 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_sms_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: quality_control_oca
