@@ -1,0 +1,1108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-15 01:44+0000\n"
+"PO-Revision-Date: 2018-01-15 01:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
+msgid "<span> - </span>"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_trigger_line
+msgid "Abstract line for defining triggers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
+msgid "Accept"
+msgstr "Aceitar"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__active
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__active
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__active
+msgid "Active"
+msgstr "Ativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_ids
+#, fuzzy
+msgid "Activities"
+msgstr "Ativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_state
+#, fuzzy
+msgid "Activity State"
+msgstr "Ativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
+msgid "Answers"
+msgstr "Respostas"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Approve"
+msgstr "Aprovar"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_attachment_count
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__auto_generated
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Auto-generated"
+msgstr "Gerado automaticamente"
+
+#. module: quality_control_oca
+#: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_2
+msgid "Bad"
+msgstr "Ruim"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__canceled
+msgid "Canceled"
+msgstr "Cancelada"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__test_uom_category
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__category
+msgid "Category"
+msgstr "Categoria"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__child_ids
+msgid "Child categories"
+msgstr "Sub Categorias"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__company_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__company_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: quality_control_oca
+#: model:ir.ui.menu,name:quality_control_oca.menu_qc_config
+#, fuzzy
+msgid "Configuration"
+msgstr "Confirmar"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__test_uom_category
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Correct"
+msgstr "Correto"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__ok
+msgid "Correct answer?"
+msgstr "Resposta correta?"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__create_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__create_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
+msgid "Date"
+msgstr "Data"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__display_name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__display_name
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__draft
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Draft"
+msgstr "Provisório"
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_test_category.py:0
+#, python-format
+msgid "Error! You can not create recursive categories."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__external_notes
+msgid "External Notes"
+msgstr ""
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "External notes"
+msgstr "Notas Externas"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__complete_name
+msgid "Full name"
+msgstr "Nome completo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
+#: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
+msgid "Generic"
+msgstr "Genérico"
+
+#. module: quality_control_oca
+#: model:qc.test,name:quality_control_oca.qc_test_1
+msgid "Generic Test (demo)"
+msgstr "Teste genérico (demo)"
+
+#. module: quality_control_oca
+#: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_1
+msgid "Good"
+msgstr "Bom"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Group by..."
+msgstr "Grupo por..."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__has_message
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__auto_generated
+msgid "If an inspection is auto-generated, it can be canceled but not removed."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__partners
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__partners
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__partners
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__partners
+msgid ""
+"If filled, the test will only be created when the action is done for one of "
+"the specified partners. If empty, the test will always be created."
+msgstr ""
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Incorrect"
+msgstr "Incorreto"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__inspection_id
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+msgid "Inspection"
+msgstr "Inspeção"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
+msgid "Inspection Lines"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
+#: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
+msgid "Inspection lines"
+msgstr "Linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__name
+msgid "Inspection number"
+msgstr "Número da inspeção"
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
+#: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
+#: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
+msgid "Inspections"
+msgstr "Inspeções"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Internal notes"
+msgstr "Notas internas"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line____last_update
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificação em"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_uid
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__write_date
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:res.groups,name:quality_control_oca.group_quality_control_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Mark todo"
+msgstr "Marcar a fazer."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__max_value
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__max_value
+msgid "Max"
+msgstr "Máx"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__max_value
+msgid "Maximum valid value for a quantitative question."
+msgstr "Valor máximo para a questão quantitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__min_value
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__min_value
+msgid "Min"
+msgstr "Min"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__min_value
+msgid "Minimum valid value for a quantitative question."
+msgstr "Valor mínimo para a questão quantitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__name
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__notes
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__notes
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Notes"
+msgstr "Notas"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:qc.test.question,name:quality_control_oca.qc_test_question_1
+msgid "Overall quality"
+msgstr "Qualidade geral"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__parent_id
+msgid "Parent category"
+msgstr "Sub categoria"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__partners
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__partners
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__partners
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__partners
+msgid "Partners"
+msgstr "Parceiros"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_test_question_value
+msgid "Possible values for qualitative questions."
+msgstr "Valor possível para a questão quantitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__fill_correct_values
+msgid "Pre-fill with correct values"
+msgstr "Pré preenchimento dos valores corretos"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_product_template
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__product_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__product_id
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__product
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Product"
+msgstr "Produto"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_product_category
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__product_category
+msgid "Product Category"
+msgstr "Categoria do produto"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__product_template
+msgid "Product Template"
+msgstr "Produto Modelo"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__product_id
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__product_id
+msgid "Product associated with the inspection"
+msgstr "Produto associado a inspeção."
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection_line__question_type__qualitative
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test_question__type__qualitative
+msgid "Qualitative"
+msgstr "Quantitativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__qualitative_value
+msgid "Qualitative value"
+msgstr "Valor quantitativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__ql_values
+msgid "Qualitative values"
+msgstr "Valores quantitativos"
+
+#. module: quality_control_oca
+#: model:ir.ui.menu,name:quality_control_oca.qc_menu
+#, fuzzy
+msgid "Quality Control"
+msgstr "Controle de Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_trigger_product_category_line
+#, fuzzy
+msgid "Quality Control Trigger Product Category Line"
+msgstr "Controle de qualidade em linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_trigger_product_line
+#, fuzzy
+msgid "Quality Control Trigger Product Line"
+msgstr "Controle de qualidade em linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_trigger_product_template_line
+#, fuzzy
+msgid "Quality Control Trigger Product Template Line"
+msgstr "Controle de qualidade em linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.module.category,name:quality_control_oca.module_category_quality_control
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_category_qc_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.product_template_form_view
+msgid "Quality control"
+msgstr "Controle de Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inspeção Controle de Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Controle de qualidade em linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_test_question
+msgid "Quality control question"
+msgstr "Questão de Controle de Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_test
+msgid "Quality control test"
+msgstr "Teste de Controle de Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_trigger
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
+msgid "Quality control trigger"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_category__qc_triggers
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_product__qc_triggers
+#: model:ir.model.fields,field_description:quality_control_oca.field_product_template__qc_triggers
+msgid "Quality control triggers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__failed
+msgid "Quality failed"
+msgstr "Qualidade falhou"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__success
+msgid "Quality success"
+msgstr "Sucesso na Qualidade"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection_line__question_type__quantitative
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test_question__type__quantitative
+msgid "Quantitative"
+msgstr "Quantitativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__quantitative_value
+msgid "Quantitative value"
+msgstr "Valor quantitativo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__qty
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__name
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+msgid "Question"
+msgstr "Questão"
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_test.py:0
+#, python-format
+msgid ""
+"Question '%s' is not valid: minimum value can't be higher than maximum value."
+msgstr ""
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_test.py:0
+#, python-format
+msgid "Question '%s' is not valid: you have to mark at least one value as OK."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__question_type
+msgid "Question Type"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Questions"
+msgstr "Questions"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__ready
+msgid "Ready"
+msgstr "Pronto"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__object_id
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Reference"
+msgstr "Referência"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__object_id
+msgid "Reference object"
+msgstr "Referência do objeto"
+
+#. module: quality_control_oca
+#: model:qc.test.category,name:quality_control_oca.qc_test_template_category_referenced
+msgid "Referenced"
+msgstr "Referenciado"
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__related
+msgid "Related"
+msgstr "Relacionado"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__user
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__user
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__user
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__user
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__user
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Responsible"
+msgstr "Responsável"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
+#, fuzzy
+msgid "Responsible User"
+msgstr "Responsável"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Search inspection"
+msgstr "Procurar inspeção"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+msgid "Search inspection line"
+msgstr "Procurar linha de inspeção"
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_set_test
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
+msgid "Select test"
+msgstr "Selecionar teste"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__partner_selectable
+msgid "Selectable by partner"
+msgstr "Selecionado pelo parceiro"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__sequence
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
+msgid "Set test"
+msgstr "Selecionar teste"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_inspection_set_test
+#, fuzzy
+msgid "Set test for inspection"
+msgstr "Procurar inspeção"
+
+#. module: quality_control_oca
+#: model:qc.test.question,name:quality_control_oca.qc_test_question_2
+msgid "Size"
+msgstr "Tamanho"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__state
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "State"
+msgstr "Estado"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__success
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Success"
+msgstr "Sucesso"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__success
+msgid "Success?"
+msgstr "Sucesso?"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__test
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__test
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
+msgid "Test"
+msgstr "Teste"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__test_uom_id
+msgid "Test UoM"
+msgstr "Teste UoM"
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_test_category
+#: model:ir.ui.menu,name:quality_control_oca.qc_test_category_menu
+msgid "Test categories"
+msgstr "Categorias de testes"
+
+#. module: quality_control_oca
+#: model:ir.model,name:quality_control_oca.model_qc_test_category
+msgid "Test category"
+msgstr "Categoria de teste"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__test_line
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__test_line
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
+msgid "Test question"
+msgstr "Questão do teste"
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_test
+#: model:ir.ui.menu,name:quality_control_oca.qc_menu_test_parent
+#: model:ir.ui.menu,name:quality_control_oca.qc_test_menu
+msgid "Tests"
+msgstr "Testes"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test_category__active
+msgid "This field allows you to hide the category without removing it."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__success
+msgid "This field will be marked if all tests have succeeded."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger__partner_selectable
+msgid "This technical field is to allow to filter by partner in triggers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__trigger
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__trigger
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__trigger
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__trigger
+msgid "Trigger"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.actions.act_window,name:quality_control_oca.action_qc_trigger
+#: model:ir.ui.menu,name:quality_control_oca.qc_trigger_menu
+msgid "Triggers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__uom_id
+msgid "UoM"
+msgstr "UoM"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__test_uom_id
+msgid "UoM for minimum and maximum values for a quantitative question."
+msgstr "UoM mínima e máxima para as questões quantitativas."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__uom_id
+msgid "UoM of the inspection value for a quantitative question."
+msgstr "Valor UoM para uma questão quantitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__uom_id
+msgid "Uom"
+msgstr "Uom"
+
+#. module: quality_control_oca
+#: model:res.groups,name:quality_control_oca.group_quality_control_user
+msgid "User"
+msgstr "Usuário"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__valid_values
+msgid "Valid values"
+msgstr "Valores válidos"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__qualitative_value
+msgid "Value of the result for a qualitative question."
+msgstr "Resultado para uma questão qualitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__quantitative_value
+msgid "Value of the result for a quantitative question."
+msgstr "Resultado para uma questão quantitativa."
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__waiting
+msgid "Waiting supervisor approval"
+msgstr "Aguardando aprovação de um supervisor."
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__website_message_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
+msgid "When this field is marked, the answer is considered correct."
+msgstr "Quando marcado, a resposta é considerada correta."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "You cannot remove an auto-generated inspection."
+msgstr "Você não pode remover uma inspeção gerada automaticamente."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "You cannot remove an inspection that is not in draft state."
+msgstr "Você não pode remover uma inspeção que não esteja como rascunho."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "You must first set the test to perform."
+msgstr "Primeiro, você deve definir o teste que será executado."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "You should provide a unit of measure for quantitative questions."
+msgstr "Você deve fonecer uma unidade de medida para a questão quantitativa."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "You should provide an answer for all qualitative questions."
+msgstr "Você deve fornecer uma resposta para todas as perguntas qualitativas."
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
+msgid "or"
+msgstr "ou"
+
+#~ msgid "Question type"
+#~ msgstr "Tipo da questão"
+
+#~ msgid "Question value"
+#~ msgstr "Valor da questão"
+
+#~ msgid "Product category"
+#~ msgstr "Categoria do produto"
+
+#~ msgid "Product template"
+#~ msgstr "Modelo do produto"
