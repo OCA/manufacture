@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="workc_12345" model="mrp.workcenter">
+        <field name="name">12345</field>
+    </record>
+    <record id="workc_1234" model="mrp.workcenter">
+        <field name="name">1234</field>
+        <field name="parent_id" ref="workc_12345" />
+    </record>
+    <record id="workc_123" model="mrp.workcenter">
+        <field name="name">123</field>
+        <field name="parent_id" ref="workc_1234" />
+    </record>
+    <record id="workc_12" model="mrp.workcenter">
+        <field name="name">12</field>
+        <field name="parent_id" ref="workc_123" />
+    </record>
+    <record id="workc_1" model="mrp.workcenter">
+        <field name="name">1</field>
+        <field name="parent_id" ref="workc_12" />
+    </record>
+
+
+    <record id="mrp_workcenter_tree_view_demo" model="ir.ui.view">
+        <!-- This view is only pedagocical purpose on demo -->
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_tree_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="parent_level_1_id" />
+                <field name="parent_level_2_id" />
+                <field name="parent_level_3_id" />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

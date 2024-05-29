@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath
+                expr="//div[@id='workorder_settings_dependencies']"
+                position="after"
+            >
+                    <div
+                    id="workcenter_hierarchy"
+                    class="row mt-2"
+                    attrs="{'invisible': [('group_mrp_routings','=',False)]}"
+                >
+                        <field
+                        name="workcenter_parent_level_empty"
+                        class="col flex-grow-0 ml16 mr0 pe-2"
+                    />
+                        <div class="col ps-0">
+                            <label for="workcenter_parent_level_empty" />
+                            <div class="text-muted">
+                                The parent level on workcenters will be empty if case of  there are no parent/great parent or more.
+                                On the contrary, by default, the parent level are always set, allowing a view by workorder grouped by top parent workcenter
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+</odoo>
