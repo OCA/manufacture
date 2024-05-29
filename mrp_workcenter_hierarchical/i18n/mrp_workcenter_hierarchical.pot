@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,23 +14,63 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_workcenter_hierarchical
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.view_wiz_switch_workcenter_form
+msgid "Apply"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.view_wiz_switch_workcenter_form
+msgid "Cancel"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
 #: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_mrp_workcenter__child_ids
 msgid "Children"
 msgstr ""
 
 #. module: mrp_workcenter_hierarchical
-#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_mrp_workcenter__display_name
+#: model:ir.model,name:mrp_workcenter_hierarchical.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model,name:mrp_workcenter_hierarchical.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: mrp_workcenter_hierarchical
-#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_mrp_workcenter__id
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__id
 msgid "ID"
 msgstr ""
 
 #. module: mrp_workcenter_hierarchical
-#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_mrp_workcenter____last_update
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__write_date
+msgid "Last Updated on"
 msgstr ""
 
 #. module: mrp_workcenter_hierarchical
@@ -62,6 +102,75 @@ msgid "Parent Path"
 msgstr ""
 
 #. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__parent_workcenter_id
+msgid "Parent Workcenter"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.view_wiz_switch_workcenter_form
+msgid "Replace selected workcenters by another one."
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.actions.act_window,name:mrp_workcenter_hierarchical.action_switch_workcenter
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.view_wiz_switch_workcenter_form
+msgid "Switch Workcenter"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model,name:mrp_workcenter_hierarchical.model_switch_workcenter
+msgid "Switch Workcenter onf workorders"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.res_config_settings_view_form
+msgid ""
+"The parent level on workcenters will be empty if case of  there are no parent/great parent or more.\n"
+"                                On the contrary, by default, the parent level are always set, allowing a view by workorder grouped by top parent workcenter"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#. odoo-python
+#: code:addons/mrp_workcenter_hierarchical/wizards/switch_workcenter.py:0
+#, python-format
+msgid ""
+"The present workcenter of the workorders does not belong to any group of "
+"workcenter. It can't be switched"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
 #: model:ir.model,name:mrp_workcenter_hierarchical.model_mrp_workcenter
 msgid "Work Center"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_switch_workcenter__workcenter_id
+msgid "Workcenter"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_res_company__workcenter_parent_level_empty
+#: model:ir.model.fields,field_description:mrp_workcenter_hierarchical.field_res_config_settings__workcenter_parent_level_empty
+msgid "Workcenter Parent Level Empty"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#. odoo-python
+#: code:addons/mrp_workcenter_hierarchical/wizards/switch_workcenter.py:0
+#, python-format
+msgid "You can not change the workcenter of an in progress or done operation"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#. odoo-python
+#: code:addons/mrp_workcenter_hierarchical/wizards/switch_workcenter.py:0
+#, python-format
+msgid ""
+"You can only change the workcenter of workorders belonging to the same "
+"workcenter"
+msgstr ""
+
+#. module: mrp_workcenter_hierarchical
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_hierarchical.view_wiz_switch_workcenter_form
+msgid "or"
 msgstr ""
