@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2017-11-28 03:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-05-31 09:37+0000\n"
+"Last-Translator: Wang-TKurata <takahiko.kurata@axelspace.com>\n"
 "Language-Team: Japanese (https://www.transifex.com/oca/teams/23907/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
@@ -31,7 +32,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "Accept"
-msgstr ""
+msgstr "受入可能"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction
@@ -41,19 +42,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "アクション必要"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__active
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__active
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__active
 msgid "Active"
-msgstr ""
+msgstr "アクティブ"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活動"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_decoration
@@ -63,23 +64,23 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活動ステータス"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活動タイプアイコン"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "Answers"
-msgstr ""
+msgstr "回答"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Approve"
-msgstr ""
+msgstr "承認"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
@@ -89,18 +90,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "添付数"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__auto_generated
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Auto-generated"
-msgstr ""
+msgstr "自動生成"
 
 #. module: quality_control_oca
 #: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_2
 msgid "Bad"
-msgstr ""
+msgstr "不可"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -111,7 +112,7 @@ msgstr "キャンセル"
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__canceled
 msgid "Canceled"
-msgstr ""
+msgstr "キャンセル済"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__test_uom_category
@@ -122,7 +123,7 @@ msgstr "分類"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__child_ids
 msgid "Child categories"
-msgstr ""
+msgstr "子分類"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__company_id
@@ -134,30 +135,31 @@ msgstr "会社"
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.menu_qc_config
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__test_uom_category
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
-msgstr ""
+msgstr "単位間変換は、それらが同じカテゴリに属している場合にのみ発生します。換算は比"
+"率に基づいて行われます。"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Correct"
-msgstr ""
+msgstr "正しい"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value__ok
 msgid "Correct answer?"
-msgstr ""
+msgstr "正しい回答?"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__create_uid
@@ -220,17 +222,17 @@ msgstr "ドラフト"
 #: code:addons/quality_control_oca/models/qc_test_category.py:0
 #, python-format
 msgid "Error! You can not create recursive categories."
-msgstr ""
+msgstr "エラー！再帰的な分類を作成することはできません。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__external_notes
 msgid "External Notes"
-msgstr ""
+msgstr "外部ノート"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "External notes"
-msgstr ""
+msgstr "外部ノート"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_follower_ids
@@ -240,7 +242,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "フォロワー"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
@@ -250,7 +252,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "フォロワー(パートナー)"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
@@ -260,29 +262,29 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__complete_name
 msgid "Full name"
-msgstr ""
+msgstr "名称"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
 msgid "Generic"
-msgstr ""
+msgstr "ジェネリック"
 
 #. module: quality_control_oca
 #: model:qc.test,name:quality_control_oca.qc_test_1
 msgid "Generic Test (demo)"
-msgstr ""
+msgstr "ジェネリックテスト(デモ)"
 
 #. module: quality_control_oca
 #: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_1
 msgid "Good"
-msgstr ""
+msgstr "良品"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Group by..."
-msgstr ""
+msgstr "...による分類"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__has_message
@@ -292,7 +294,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__has_message
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "メッセージ有り"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
@@ -312,17 +314,17 @@ msgstr "ID"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "アイコン"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "例外活動に対するアイコン"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__auto_generated
 msgid "If an inspection is auto-generated, it can be canceled but not removed."
-msgstr ""
+msgstr "検査が自動生成された物の場合、キャンセル可能ですが削除されません。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
@@ -332,7 +334,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "チェックをつけると、注意をひくために新しいメッセージが要求されます。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
@@ -342,7 +344,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "チェックが付いている場合、いくつかのメッセージは送信エラーとなっています。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__partners
@@ -352,49 +354,50 @@ msgstr ""
 msgid ""
 "If filled, the test will only be created when the action is done for one of "
 "the specified partners. If empty, the test will always be created."
-msgstr ""
+msgstr "入力すると、指定されたパートナーの 1 つに対してアクションが実行された場合にの"
+"みテストが作成されます。空の場合、テストは常に作成されます。"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Incorrect"
-msgstr ""
+msgstr "不正確"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__inspection_id
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 msgid "Inspection"
-msgstr ""
+msgstr "検査"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
 msgid "Inspection Lines"
-msgstr ""
+msgstr "検査明細"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
 msgid "Inspection lines"
-msgstr ""
+msgstr "検査明細"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__name
 msgid "Inspection number"
-msgstr ""
+msgstr "検査番号"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
 msgid "Inspections"
-msgstr ""
+msgstr "検査"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
-msgstr ""
+msgstr "内部ノート"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
@@ -404,7 +407,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "フォロワー"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
@@ -459,12 +462,12 @@ msgstr "最終更新日"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "メイン添付"
 
 #. module: quality_control_oca
 #: model:res.groups,name:quality_control_oca.group_quality_control_manager
 msgid "Manager"
-msgstr ""
+msgstr "マネージャー"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -475,12 +478,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__max_value
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__max_value
 msgid "Max"
-msgstr ""
+msgstr "最大"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__max_value
 msgid "Maximum valid value for a quantitative question."
-msgstr ""
+msgstr "定量的な質問に対する有効な最大値。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error
@@ -490,7 +493,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "メッセージ配信エラー"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
@@ -500,23 +503,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "メッセージ"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__min_value
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__min_value
 msgid "Min"
-msgstr ""
+msgstr "最小"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__min_value
 msgid "Minimum valid value for a quantitative question."
-msgstr ""
+msgstr "定量的な質問に対する有効な最小値。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "活動の締め切り"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__name
@@ -530,24 +533,24 @@ msgstr "名称"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "次の締め切り"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "次の活動の要約"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "次の活動の種類"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__notes
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Notes"
-msgstr ""
+msgstr "ノート"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_needaction_counter
@@ -557,7 +560,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "活動の数"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error_counter
@@ -567,7 +570,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "エラーの数"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction_counter
@@ -577,7 +580,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "アクションが必要なメッセージの数"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
@@ -587,17 +590,17 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "アクションが必要なエラーが発生したメッセージの数"
 
 #. module: quality_control_oca
 #: model:qc.test.question,name:quality_control_oca.qc_test_question_1
 msgid "Overall quality"
-msgstr ""
+msgstr "品質状況"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__parent_id
 msgid "Parent category"
-msgstr ""
+msgstr "親分類"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__partners
@@ -605,17 +608,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__partners
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__partners
 msgid "Partners"
-msgstr ""
+msgstr "パートナー"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_test_question_value
 msgid "Possible values for qualitative questions."
-msgstr ""
+msgstr "定性的な質問に対して考えられる値。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__fill_correct_values
 msgid "Pre-fill with correct values"
-msgstr ""
+msgstr "初期値"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_product_template
@@ -625,50 +628,50 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Product"
-msgstr ""
+msgstr "プロダクト"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_product_category
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__product_category
 msgid "Product Category"
-msgstr ""
+msgstr "プロダクトカテゴリ"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__product_template
 msgid "Product Template"
-msgstr ""
+msgstr "プロダクトテンプレート"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "プロダクトバリアント"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__product_id
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__product_id
 msgid "Product associated with the inspection"
-msgstr ""
+msgstr "検査に関わるプロダクト"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection_line__question_type__qualitative
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test_question__type__qualitative
 msgid "Qualitative"
-msgstr ""
+msgstr "定性的"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__qualitative_value
 msgid "Qualitative value"
-msgstr ""
+msgstr "定性値"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__ql_values
 msgid "Qualitative values"
-msgstr ""
+msgstr "定性値"
 
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu
 msgid "Quality Control"
-msgstr ""
+msgstr "品質管理"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_product_category_line
