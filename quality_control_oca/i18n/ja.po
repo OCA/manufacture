@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2024-06-03 01:37+0000\n"
+"PO-Revision-Date: 2024-06-03 03:40+0000\n"
 "Last-Translator: Wang-TKurata <takahiko.kurata@axelspace.com>\n"
 "Language-Team: Japanese (https://www.transifex.com/oca/teams/23907/ja/)\n"
 "Language: ja\n"
@@ -27,7 +27,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_line
 msgid "Abstract line for defining triggers"
-msgstr ""
+msgstr "トリガーを定義するための抽象行"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
@@ -882,6 +882,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"活動に基づくステータス\n"
+"期限超過: 期限が過ぎています\n"
+"今日: 活動日は今日です\n"
+"予定: 今後の活動。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__success
@@ -982,22 +986,22 @@ msgstr "記録上の例外アクティビティのタイプ。"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__uom_id
 msgid "UoM"
-msgstr ""
+msgstr "単位"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__test_uom_id
 msgid "UoM for minimum and maximum values for a quantitative question."
-msgstr ""
+msgstr "定量的な質問の最小値と最大値の単位。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__uom_id
 msgid "UoM of the inspection value for a quantitative question."
-msgstr ""
+msgstr "定量的な質問に対する検査値の単位。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__uom_id
 msgid "Uom"
-msgstr ""
+msgstr "単位"
 
 #. module: quality_control_oca
 #: model:res.groups,name:quality_control_oca.group_quality_control_user
@@ -1007,22 +1011,22 @@ msgstr "ユーザ"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__valid_values
 msgid "Valid values"
-msgstr ""
+msgstr "正常値"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__qualitative_value
 msgid "Value of the result for a qualitative question."
-msgstr ""
+msgstr "定性的な質問の結果値。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__quantitative_value
 msgid "Value of the result for a quantitative question."
-msgstr ""
+msgstr "定量的な質問の結果値。"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__waiting
 msgid "Waiting supervisor approval"
-msgstr ""
+msgstr "管理者による承認待ち"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__website_message_ids
@@ -1032,7 +1036,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__website_message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "ウェブサイトのメッセージ"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__website_message_ids
@@ -1042,47 +1046,47 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "ウェブサイト上でのコミュニケーション履歴"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
 msgid "When this field is marked, the answer is considered correct."
-msgstr ""
+msgstr "このフィールドにマークが付いている場合、答えは正しいとみなされます。"
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You cannot remove an auto-generated inspection."
-msgstr ""
+msgstr "自動生成された検査は削除できません。"
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You cannot remove an inspection that is not in draft state."
-msgstr ""
+msgstr "ドラフトステータスではない検査は削除できません。"
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You must first set the test to perform."
-msgstr ""
+msgstr "実施するテストを先に設定してください。"
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You should provide a unit of measure for quantitative questions."
-msgstr ""
+msgstr "定量的な質問には測定単位を提供する必要があります。"
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
 #, python-format
 msgid "You should provide an answer for all qualitative questions."
-msgstr ""
+msgstr "すべての定性的な質問に対して回答を提供する必要があります。"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
