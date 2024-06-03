@@ -1,3 +1,4 @@
+from odoo.exceptions import UserError
 from odoo.tests import Form, TransactionCase
 
 
@@ -207,17 +208,21 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
             )
         )
         return_wizard._onchange_picking_id()
-        return_id, _ = return_wizard._create_returns()
+        with self.assertRaises(UserError):
+            return_id, _ = return_wizard._create_returns()
 
-        return_picking = self.env["stock.picking"].browse(return_id)
-        return_picking.move_ids.quantity_done = 3
-        return_picking.button_validate()
-
-        self.assertEqual(po.order_line.qty_received, 6)
-
-        mo = picking_to_return.mapped("move_ids.move_orig_ids.production_id")
-        unbuild = self.env["mrp.unbuild"].search([("mo_id", "in", mo.ids)])
-        self.assertTrue(unbuild.exists())
+        # This part cannot be tested since we cannot unbuild
+        # subcontracting orders with more than one origin.
+        #
+        # return_picking = self.env["stock.picking"].browse(return_id)
+        # return_picking.move_ids.quantity_done = 3
+        # return_picking.button_validate()
+        #
+        # self.assertEqual(po.order_line.qty_received, 6)
+        #
+        # mo = picking_to_return.mapped("move_ids.move_orig_ids.production_id")
+        # unbuild = self.env["mrp.unbuild"].search([("mo_id", "in", mo.ids)])
+        # self.assertTrue(unbuild.exists())
 
 
 class TestSubcontractingTracking(TransactionCase):
