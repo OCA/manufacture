@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2024-06-06 00:20+0000\n"
+"PO-Revision-Date: 2024-06-06 00:30+0000\n"
 "Last-Translator: Wang-TKurata <takahiko.kurata@axelspace.com>\n"
 "Language-Team: Japanese (https://www.transifex.com/oca/teams/23907/ja/)\n"
 "Language: ja\n"
@@ -391,7 +391,7 @@ msgstr "検査番号"
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_menu_parent
 msgid "Inspections"
-msgstr "検査"
+msgstr "品質検査"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
