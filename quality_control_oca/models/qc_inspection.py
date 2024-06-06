@@ -5,6 +5,8 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import datetime
+
 from odoo import _, api, exceptions, fields, models
 from odoo.tools import formatLang
 
@@ -41,10 +43,12 @@ class QcInspection(models.Model):
         copy=False,
     )
     date = fields.Datetime(
+        string="Plan Date",
         required=True,
         copy=False,
         default=fields.Datetime.now,
     )
+    date_done = fields.Datetime("Completion Date")
     object_id = fields.Reference(
         string="Reference",
         selection="object_selection_values",
@@ -66,6 +70,7 @@ class QcInspection(models.Model):
     external_notes = fields.Text()
     state = fields.Selection(
         [
+            ("plan", "Plan"),
             ("draft", "Draft"),
             ("ready", "Ready"),
             ("waiting", "Waiting supervisor approval"),
@@ -104,6 +109,14 @@ class QcInspection(models.Model):
             if vals.get("name", "/") == "/":
                 vals["name"] = self.env["ir.sequence"].next_by_code("qc.inspection")
         return super().create(vals)
+
+    def write(self, vals):
+        if "state" in vals:
+            if vals["state"] in ["success", "failed"]:
+                vals["date_done"] = datetime.now()
+            elif vals["state"] == "draft":
+                vals["date_done"] = False
+        return super().write(vals)
 
     def unlink(self):
         for inspection in self:
@@ -170,7 +183,7 @@ class QcInspection(models.Model):
                 trigger_line.test, force_fill=force_fill
             )
 
-    def _make_inspection(self, object_ref, trigger_line):
+    def _make_inspection(self, object_ref, trigger_line, date=None):
         """Overridable hook method for creating inspection from test.
         :param object_ref: Object instance
         :param trigger_line: Trigger line instance
@@ -179,6 +192,8 @@ class QcInspection(models.Model):
         inspection = self.create(
             self._prepare_inspection_header(object_ref, trigger_line)
         )
+        if date:
+            inspection.date = date
         inspection.set_test(trigger_line)
         return inspection
 
@@ -190,7 +205,7 @@ class QcInspection(models.Model):
         """
         return {
             "object_id": object_ref and f"{object_ref._name},{object_ref.id}" or False,
-            "state": "ready",
+            "state": trigger_line.timing == "plan_ahead" and "plan" or "ready",
             "test": trigger_line.test.id,
             "user": trigger_line.user.id,
             "auto_generated": True,
@@ -228,6 +243,12 @@ class QcInspection(models.Model):
                 # Fill with a value inside the interval
                 data["quantitative_value"] = (line.min_value + line.max_value) * 0.5
         return data
+
+    def _get_existing_inspections(self, records):
+        reference_vals = []
+        for rec in records:
+            reference_vals.append(",".join([rec._name, str(rec.id)]))
+        return self.sudo().search([("object_id", "in", reference_vals)])
 
 
 class QcInspectionLine(models.Model):

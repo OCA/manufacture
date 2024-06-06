@@ -1,6 +1,7 @@
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo.tests import Form, new_test_user
 from odoo.tools import mute_logger
 
@@ -59,15 +60,25 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             move_form.product_id = cls.product
             move_form.product_uom_qty = 2
         cls.picking1 = picking_form.save()
-        cls.picking1.action_confirm()
-        cls.picking1.move_ids.move_line_ids.quantity = 1
+
+    def picking_confirmation(self):
+        self.picking1.action_confirm()
+        self.picking1.move_ids.move_line_ids.quantity = 1
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product(self):
+        self.picking_confirmation()
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "after"},
+            )
         ]
         self.picking1._action_done()
+        # Just so _compute_count_inspections() is triggered
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -82,11 +93,70 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.assertEqual(inspection.qty, self.picking1.move_ids.product_uom_qty)
 
     @mute_logger("odoo.models.unlink")
+    def test_inspection_create_for_product_with_before_timing(self):
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "before"},
+            )
+        ]
+        self.picking_confirmation()
+        # Just so _compute_count_inspections() is triggered
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
+        self.assertEqual(
+            self.picking1.created_inspections, 1, "Only one inspection must be created"
+        )
+        inspection = self.picking1.qc_inspections_ids[:1]
+        self.assertEqual(inspection.state, "ready")
+        self.assertEqual(inspection.qty, self.picking1.move_ids.quantity)
+        self.assertEqual(
+            inspection.test, self.test, "Wrong test picked when creating inspection."
+        )
+
+    @mute_logger("odoo.models.unlink")
+    def test_inspection_create_for_product_with_plan_ahead_timing(self):
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": self.test.id,
+                    "timing": "plan_ahead",
+                },
+            )
+        ]
+        self.picking_confirmation()
+        # Just so _compute_count_inspections() is triggered
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
+        self.assertEqual(
+            self.picking1.created_inspections, 1, "Only one inspection must be created"
+        )
+        inspection = self.picking1.qc_inspections_ids[:1]
+        self.assertEqual(inspection.state, "plan")
+        self.assertEqual(inspection.qty, self.picking1.move_ids.quantity)
+        self.assertEqual(
+            inspection.test, self.test, "Wrong test picked when creating inspection."
+        )
+        self.picking1._action_done()
+        self.assertEqual(inspection.state, "ready")
+
+    @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template(self):
+        self.picking_confirmation()
         self.product.product_tmpl_id.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "after"},
+            )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -98,10 +168,17 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category(self):
+        self.picking_confirmation()
         self.product.categ_id.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "after"},
+            )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -113,6 +190,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product_partner(self):
+        self.picking_confirmation()
         self.product.qc_triggers = [
             (
                 0,
@@ -125,6 +203,8 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -136,6 +216,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template_partner(self):
+        self.picking_confirmation()
         self.product.product_tmpl_id.qc_triggers = [
             (
                 0,
@@ -148,6 +229,8 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -159,6 +242,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category_partner(self):
+        self.picking_confirmation()
         self.product.categ_id.qc_triggers = [
             (
                 0,
@@ -171,6 +255,8 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -182,6 +268,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_product_wrong_partner(self):
+        self.picking_confirmation()
         self.product.qc_triggers = [
             (
                 0,
@@ -194,12 +281,15 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_template_wrong_partner(self):
+        self.picking_confirmation()
         self.product.product_tmpl_id.qc_triggers = [
             (
                 0,
@@ -212,12 +302,15 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_for_category_wrong_partner(self):
+        self.picking_confirmation()
         self.product.categ_id.qc_triggers = [
             (
                 0,
@@ -230,12 +323,15 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             )
         ]
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 0, "No inspection must be created"
         )
 
     @mute_logger("odoo.models.unlink")
     def test_inspection_create_only_one(self):
+        self.picking_confirmation()
         self.product.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
@@ -244,6 +340,8 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         ]
         self.product.tracking = "lot"
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
         )
@@ -296,6 +394,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.assertEqual(self.inspection1.picking_id, self.picking1)
 
     def test_qc_inspection_stock_move(self):
+        self.picking_confirmation()
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
@@ -315,13 +414,20 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
     def test_qc_inspection_lot_single(self):
         self.trigger.inspection_per_lot = False
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "after"},
+            )
         ]
+        self.picking_confirmation()
         self.product.tracking = "lot"
         self.picking1.move_line_ids[0].copy()
         self.picking1.move_line_ids[0].write({"quantity": 1, "lot_id": self.lot1.id})
         self.picking1.move_line_ids[1].write({"quantity": 1, "lot_id": self.lot2.id})
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 1, "One inspections must be created"
         )
@@ -350,13 +456,20 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
     def test_qc_inspection_lot_multiple(self):
         self.trigger.inspection_per_lot = True
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "after"},
+            )
         ]
+        self.picking_confirmation()
         self.product.tracking = "lot"
         self.picking1.move_line_ids[0].copy()
         self.picking1.move_line_ids[0].write({"quantity": 1, "lot_id": self.lot1.id})
         self.picking1.move_line_ids[1].write({"quantity": 2, "lot_id": self.lot2.id})
         self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # noqa: B018
         self.assertEqual(
             self.picking1.created_inspections, 2, "Two inspections must be created"
         )
