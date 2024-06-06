@@ -15,12 +15,13 @@ class QcTriggerProductTemplateLine(models.Model):
 
     product_template = fields.Many2one(comodel_name="product.template")
 
-    def get_trigger_line_for_product(self, trigger, product, partner=False):
+    def get_trigger_line_for_product(self, trigger, timings, product, partner=False):
         trigger_lines = super().get_trigger_line_for_product(
-            trigger, product, partner=partner
+            trigger, timings, product, partner=partner
         )
         for trigger_line in product.product_tmpl_id.qc_triggers.filtered(
             lambda r: r.trigger == trigger
+            and r.timing in timings
             and (
                 not r.partners
                 or not partner
