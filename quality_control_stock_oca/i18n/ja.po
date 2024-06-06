@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-03 03:53+0000\n"
+"PO-Revision-Date: 2024-06-06 00:30+0000\n"
 "Last-Translator: Wang-TKurata <takahiko.kurata@axelspace.com>\n"
 "Language-Team: none\n"
 "Language: ja\n"
@@ -32,7 +32,7 @@ msgstr "完了済みの検査"
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__qc_inspections_ids
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__qc_inspections_ids
 msgid "Inspections"
-msgstr "検査"
+msgstr "品質検査"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__passed_inspections
@@ -147,4 +147,4 @@ msgstr "在庫転送"
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_lot_qc_view
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_picking_qc_view
 msgid "inspections"
-msgstr "検査"
+msgstr "品質検査"
