@@ -28,6 +28,7 @@ addon | version | maintainers | summary
 [mrp_sale_info](mrp_sale_info/) | 17.0.1.1.0 |  | Adds sale information to Manufacturing models
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 17.0.1.0.0 | [![JordiBForgeFlow](https://github.com/JordiBForgeFlow.png?size=30px)](https://github.com/JordiBForgeFlow) | Considers the warehouse calendars in manufacturing
 [quality_control_oca](quality_control_oca/) | 17.0.1.0.0 |  | Generic infrastructure for quality tests.
+[quality_control_stock_oca](quality_control_stock_oca/) | 17.0.1.0.0 |  | Quality control - Stock (OCA)
 
 [//]: # (end addons)
 
