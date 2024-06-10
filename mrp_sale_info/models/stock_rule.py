@@ -41,6 +41,4 @@ class StockRule(models.Model):
                 moves = moves.move_dest_ids
                 line_ids |= moves.sale_line_id
             res["sale_line_ids"] = line_ids and [(4, x.id) for x in line_ids] or False
-            return res  # eg in case of orderpoint generating MO
-        line_ids = moves.sale_line_id
         return res

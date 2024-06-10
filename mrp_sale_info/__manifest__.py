@@ -13,8 +13,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "mrp",
-        "sale",
+        "sale_mrp",
         "sale_stock",
     ],
     "data": [
