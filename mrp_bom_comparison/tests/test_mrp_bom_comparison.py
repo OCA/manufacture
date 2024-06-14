@@ -17,7 +17,7 @@ class TestMrpBomComparison(TestMrpCommon):
         self.product_6.default_code = "P6-BOM_3"
 
         # Create a 'new_bom_1' from 'bom_1'
-        self.new_product_4 = self.product_4.copy({"default_code": "P4-NEW_BOM_1"})
+        self.new_product_4 = self.env.ref("product.product_product_27")
         self.new_bom_1 = self.bom_1.copy(
             {
                 "product_id": self.new_product_4.id,
@@ -31,7 +31,7 @@ class TestMrpBomComparison(TestMrpCommon):
         ).product_qty = 1
 
         # Create a 'new_bom_2' from 'bom_2'
-        self.new_product_5 = self.product_5.copy({"default_code": "P5-NEW_BOM_2"})
+        self.new_product_5 = self.product = self.env.ref("product.product_product_5")
         self.new_bom_2 = self.bom_2.copy(
             {
                 "product_id": self.new_product_5.id,
