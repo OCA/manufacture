@@ -3,7 +3,7 @@
 {
     "name": "Bill of Materials comparison",
     "summary": "Compare two Bill of Materials to view the differences",
-    "version": "12.0.1.0.1",
+    "version": "17.0.1.0.1",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ABF OSIELL, Odoo Community Association (OCA)",
@@ -17,5 +17,6 @@
         "wizards/mrp_bom_comparison.xml",
         "reports/mrp_bom_comparison.xml",
         "views/reports.xml",
+        "security/ir.model.access.csv",
     ],
 }

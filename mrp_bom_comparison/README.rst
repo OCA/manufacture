@@ -17,18 +17,19 @@ Bill of Materials comparison
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/12.0/mrp_bom_comparison
+    :target: https://github.com/OCA/manufacture/tree/17.0/mrp_bom_comparison
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-12-0/manufacture-12-0-mrp_bom_comparison
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-mrp_bom_comparison
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=12.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to compare two Bill of Materials to view the differences.
+This module allows you to compare two Bill of Materials to view the
+differences.
 
 **Table of contents**
 
@@ -38,22 +39,22 @@ This module allows you to compare two Bill of Materials to view the differences.
 Usage
 =====
 
-First, create two (or more) Bill of Materials on the same product.
-Then, open the first Bill of Materials, and launch the wizard with `Action / Compare Bill of Materials`.
-In the `BoM v2` field, select a BoM to compare against the current one,
-and click on `Compare`. The result of the comparaison is returned as
-a PDF report with three sections:
+First, create two (or more) Bill of Materials on the same product. Then,
+open the first Bill of Materials, and launch the wizard with Action /
+Compare Bill of Materials. In the BoM v2 field, select a BoM to compare
+against the current one, and click on Compare. The result of the
+comparaison is returned as a PDF report with three sections:
 
-- products updated
-- products added
-- products removed
+-  products updated
+-  products added
+-  products removed
 
 Development
 ===========
 
-If you want to compare two Bill of Materials not linked to the same product,
-you can override the `_domain_bom_id` method from the
-`wizard.mrp.bom.comparison` wizard.
+If you want to compare two Bill of Materials not linked to the same
+product, you can override the \_domain_bom_id method from the
+wizard.mrp.bom.comparison wizard.
 
 Bug Tracker
 ===========
@@ -61,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_comparison%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_comparison%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -69,18 +70,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ABF OSIELL
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sébastien Alix <sebastien.alix@osiell.com> (https://osiell.com)
-* Adrià Gil Sorribes <adria.gil@forgeflow.com> (https://www.forgeflow.com)
+-  Sébastien Alix <sebastien.alix@osiell.com> (https://osiell.com)
+-  Adrià Gil Sorribes <adria.gil@forgeflow.com>
+   (https://www.forgeflow.com)
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -92,6 +94,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/12.0/mrp_bom_comparison>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_bom_comparison>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

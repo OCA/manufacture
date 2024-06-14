@@ -2,19 +2,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+
 from odoo.addons import decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
 
 
-class DictDiffer(object):
+class DictDiffer:
     """Calculate the difference between two dictionaries as:
     (1) items added
     (2) items removed
     (3) keys same in both but changed values
     (4) keys same in both and unchanged values
     """
+
     def __init__(self, current_dict, past_dict):
         self.current_dict, self.past_dict = current_dict, past_dict
         self.set_current = set(current_dict.keys())
@@ -28,97 +30,101 @@ class DictDiffer(object):
         return self.set_past - self.intersect
 
     def changed(self):
-        return set(o for o in self.intersect
-                   if self.past_dict[o] != self.current_dict[o])
+        return set(
+            o for o in self.intersect if self.past_dict[o] != self.current_dict[o]
+        )
 
     def unchanged(self):
-        return set(o for o in self.intersect
-                   if self.past_dict[o] == self.current_dict[o])
+        return set(
+            o for o in self.intersect if self.past_dict[o] == self.current_dict[o]
+        )
 
 
 class WizardMrpBomComparison(models.TransientModel):
-    _name = 'wizard.mrp.bom.comparison'
+    _name = "wizard.mrp.bom.comparison"
     _description = "Compare two BoM"
 
-    @api.model
     def _func_domain_bom_id(self):
         return self._domain_bom_id()
 
-    @api.model
     def _domain_bom_id(self):
         """Returns the domain used to select the BoMs to compare."""
-        bom_id = self.env.context.get('active_id', False)
-        bom = self.env['mrp.bom'].browse(bom_id)
-        return [('product_tmpl_id', '=', bom.product_tmpl_id.id)]
+        bom_id = self.env.context.get("active_id", False)
+        bom = self.env["mrp.bom"].browse(bom_id)
+        return [("product_tmpl_id", "=", bom.product_tmpl_id.id)]
 
-    @api.multi
-    @api.depends('line_ids.diff_qty')
+    @api.depends("line_ids.diff_qty")
     def _compute_total_qty(self):
         for wiz in self:
-            wiz.total_qty = sum([
-                sum([line.diff_qty for line in wiz.line_changed_ids]),
-                sum([line.diff_qty for line in wiz.line_added_ids]),
-                sum([line.diff_qty for line in wiz.line_removed_ids]),
-            ])
+            wiz.total_qty = sum(
+                [
+                    sum([line.diff_qty for line in wiz.line_changed_ids]),
+                    sum([line.diff_qty for line in wiz.line_added_ids]),
+                    sum([line.diff_qty for line in wiz.line_removed_ids]),
+                ]
+            )
 
-    bom1_id = fields.Many2one(
-        'mrp.bom', "BoM v1", required=True,
-        domain=_func_domain_bom_id)
-    bom2_id = fields.Many2one(
-        'mrp.bom', "BoM v2", required=True,
-        domain=_func_domain_bom_id)
+    bom1_id = fields.Many2one("mrp.bom", "BoM v1", required=True)
+    bom2_id = fields.Many2one("mrp.bom", "BoM v2", required=True)
     line_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', "Differences")
+        "wizard.mrp.bom.comparison.line", "wiz_id", "Differences"
+    )
     line_changed_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products updated",
-        domain=[('state', '=', 'changed')])
+        "wizard.mrp.bom.comparison.line",
+        "wiz_id",
+        "Products updated",
+        domain=[("state", "=", "changed")],
+    )
     line_added_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products added",
-        domain=[('state', '=', 'added')])
+        "wizard.mrp.bom.comparison.line",
+        "wiz_id",
+        "Products added",
+        domain=[("state", "=", "added")],
+    )
     line_removed_ids = fields.One2many(
-        'wizard.mrp.bom.comparison.line', 'wiz_id', "Products removed",
-        domain=[('state', '=', 'removed')])
+        "wizard.mrp.bom.comparison.line",
+        "wiz_id",
+        "Products removed",
+        domain=[("state", "=", "removed")],
+    )
     total_qty = fields.Float(
         "Total qty",
-        digits=dp.get_precision('Product Unit of Measure'),
-        compute='_compute_total_qty')
+        digits=dp.get_precision("Product Unit of Measure"),
+        compute="_compute_total_qty",
+    )
 
-    @api.model
     def default_get(self, fields_list):
         """'default_get' method overridden."""
-        res = super(WizardMrpBomComparison, self).default_get(fields_list)
-        res['bom1_id'] = self.env.context.get('active_id', False)
+        res = super().default_get(fields_list)
+        res["bom1_id"] = self.env.context.get("active_id", False)
         return res
 
-    @api.model
     def _get_bom_line_data(self, root_bom, bom_line, factor=1):
         """Return a dictionary representation of the `bom_line` record.
 
         :return: a dictionary
         """
         data = {
-            'product_id': bom_line.product_id.id,
-            'product_code': bom_line.product_id.default_code or '-',
-            'product_name': bom_line.product_id.name or '-',
-            'bom_qty': (
-                bom_line.product_qty / float(bom_line.bom_id.product_qty)
-                * factor),
+            "product_id": bom_line.product_id.id,
+            "product_code": bom_line.product_id.default_code or "-",
+            "product_name": bom_line.product_id.name or "-",
+            "bom_qty": (
+                bom_line.product_qty / float(bom_line.bom_id.product_qty) * factor
+            ),
         }
         if bom_line.bom_id == root_bom:
-            data['bom_qty'] = bom_line.product_qty * factor
+            data["bom_qty"] = bom_line.product_qty * factor
         return data
 
-    @api.model
     def _merge_bom_line_data(self, bom1_line_data, bom2_line_data):
         """Merge two bom lines (dictionaries with same keys).
 
         :return: a dictionary
         """
         new_bom_line_data = bom1_line_data.copy()
-        new_bom_line_data['bom_qty'] += bom2_line_data['bom_qty']
+        new_bom_line_data["bom_qty"] += bom2_line_data["bom_qty"]
         return new_bom_line_data
 
-    @api.model
     def _get_all_data(self, root_bom):
         """Get all BoM data composing the BoM identified by `bom_id`.
 
@@ -135,15 +141,15 @@ class WizardMrpBomComparison(models.TransientModel):
                 if not bom_line.product_id:
                     continue
                 p_id = bom_line.product_id.id
-                bom_line_data = self._get_bom_line_data(
-                    root_bom, bom_line, factor)
+                bom_line_data = self._get_bom_line_data(root_bom, bom_line, factor)
                 # New product
                 if p_id not in products:
                     products[p_id] = bom_line_data
                 # Merge bom data with the existing one
                 else:
                     products[p_id] = self._merge_bom_line_data(
-                        products[p_id], bom_line_data)
+                        products[p_id], bom_line_data
+                    )
             return products
 
         recurse(root_bom, products)
@@ -152,7 +158,6 @@ class WizardMrpBomComparison(models.TransientModel):
     def _get_bom_from_product(self, product):
         return product.bom_ids[0]
 
-    @api.multi
     def run(self):
         """Make a comparison between two BoMs.
 
@@ -165,8 +170,9 @@ class WizardMrpBomComparison(models.TransientModel):
         _logger.info(
             "BoM comparison between '%s' and '%s'...",
             self.bom1_id.product_tmpl_id.default_code,
-            self.bom2_id.product_tmpl_id.default_code)
-        comparison_line_model = self.env['wizard.mrp.bom.comparison.line']
+            self.bom2_id.product_tmpl_id.default_code,
+        )
+        comparison_line_model = self.env["wizard.mrp.bom.comparison.line"]
         # Get all data for each BoM
         bom1_data = self._get_all_data(self.bom1_id)
         bom2_data = self._get_all_data(self.bom2_id)
@@ -177,70 +183,100 @@ class WizardMrpBomComparison(models.TransientModel):
             v1 = bom1_data[p_id]
             v2 = bom2_data[p_id]
             vals = {
-                'wiz_id': self.id,
-                'product_id': p_id,
-                'bom1_qty': v1['bom_qty'],
-                'bom2_qty': v2['bom_qty'],
-                'diff_qty': v2['bom_qty'] - v1['bom_qty'],
-                'state': 'changed',
+                "wiz_id": self.id,
+                "product_id": p_id,
+                "bom1_qty": v1["bom_qty"],
+                "bom2_qty": v2["bom_qty"],
+                "diff_qty": v2["bom_qty"] - v1["bom_qty"],
+                "state": "changed",
             }
             _logger.info(
                 "\tProduct updated: %s (ID=%s) %s -> %s",
-                v1['product_code'], p_id,
-                v1['bom_qty'], v2['bom_qty'])
+                v1["product_code"],
+                p_id,
+                v1["bom_qty"],
+                v2["bom_qty"],
+            )
             comparison_line_model.create(vals)
         for p_id in diff.added():
             v2 = bom2_data[p_id]
             vals = {
-                'wiz_id': self.id,
-                'product_id': p_id,
-                'bom1_qty': 0.0,
-                'bom2_qty': v2['bom_qty'],
-                'diff_qty': v2['bom_qty'],
-                'state': 'added',
+                "wiz_id": self.id,
+                "product_id": p_id,
+                "bom1_qty": 0.0,
+                "bom2_qty": v2["bom_qty"],
+                "diff_qty": v2["bom_qty"],
+                "state": "added",
             }
             _logger.info(
                 "\tProduct added: %s (ID=%s) -> %s",
-                v2['product_code'], p_id, vals['diff_qty'])
+                v2["product_code"],
+                p_id,
+                vals["diff_qty"],
+            )
             comparison_line_model.create(vals)
         for p_id in diff.removed():
             v1 = bom1_data[p_id]
             vals = {
-                'wiz_id': self.id,
-                'product_id': p_id,
-                'bom1_qty': v1['bom_qty'],
-                'bom2_qty': 0.0,
-                'diff_qty': -v1['bom_qty'],
-                'state': 'removed',
+                "wiz_id": self.id,
+                "product_id": p_id,
+                "bom1_qty": v1["bom_qty"],
+                "bom2_qty": 0.0,
+                "diff_qty": -v1["bom_qty"],
+                "state": "removed",
             }
             _logger.info(
                 "\tProduct removed: %s (ID=%s) -> %s",
-                v1['product_code'], p_id, vals['diff_qty'])
+                v1["product_code"],
+                p_id,
+                vals["diff_qty"],
+            )
             comparison_line_model.create(vals)
         _logger.info(
             "BoM comparison between '%s' and '%s': printing report...",
             self.bom1_id.product_tmpl_id.default_code,
-            self.bom2_id.product_tmpl_id.default_code)
+            self.bom2_id.product_tmpl_id.default_code,
+        )
         # Return the report
         return self.env.ref(
-            'mrp_bom_comparison.action_report_mrp_bom_comparison').report_action(self)
+            "mrp_bom_comparison.action_report_mrp_bom_comparison"
+        ).report_action(self)
 
 
 class WizardMrpBomComparisonLine(models.TransientModel):
-    _name = 'wizard.mrp.bom.comparison.line'
+    _name = "wizard.mrp.bom.comparison.line"
     _description = "BoM line difference"
 
-    wiz_id = fields.Many2one('wizard.mrp.bom.comparison', "Wizard")
-    product_id = fields.Many2one('product.product', "Product")
+    wiz_id = fields.Many2one("wizard.mrp.bom.comparison", "Wizard")
+    product_id = fields.Many2one("product.product", "Product")
     bom1_qty = fields.Float(
-        "v1-Qty", digits=dp.get_precision('Product Unit of Measure'))
+        "v1-Qty", digits=dp.get_precision("Product Unit of Measure")
+    )
     bom2_qty = fields.Float(
-        "v2-Qty", digits=dp.get_precision('Product Unit of Measure'))
+        "v2-Qty", digits=dp.get_precision("Product Unit of Measure")
+    )
     diff_qty = fields.Float(
-        "Qty gap", digits=dp.get_precision('Product Unit of Measure'))
+        "Qty gap", digits=dp.get_precision("Product Unit of Measure")
+    )
     state = fields.Selection(
-        [('changed', "Changed"),
-         ('added', "Added"),
-         ('removed', "Removed"),
-         ],
-        "State")
+        [
+            ("changed", "Changed"),
+            ("added", "Added"),
+            ("removed", "Removed"),
+        ]
+    )
+
+
+class MrpBom(models.Model):
+    _inherit = "mrp.bom"
+
+    def action_compare_bom(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Compare BoM"),
+            "res_model": "wizard.mrp.bom.comparison",
+            "target": "new",
+            "view_mode": "form",
+            "view_type": "form",
+            "context": {"bom1_id": self.id},
+        }

@@ -1,12 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018 ABF OSIELL <http://osiell.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <report id="action_report_mrp_bom_comparison"
-        name="mrp_bom_comparison.report_mrp_bom_comparison"
-        model="wizard.mrp.bom.comparison"
-        string="BoM Differences"
-        report_type="qweb-pdf"/>
+    <record id="action_report_mrp_bom_comparison" model="ir.actions.report">
+        <field name="name">BoM Differences</field>
+        <field name="model">wizard.mrp.bom.comparison</field>
+        <field
+            name="binding_model_id"
+            ref="mrp_bom_comparison.model_wizard_mrp_bom_comparison"
+        />
+        <field name="binding_type">report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_bom_comparison.report_mrp_bom_comparison</field>
+        <field name="report_file">mrp_bom_comparison.report_mrp_bom_comparison</field>
+        <field name="print_report_name">'BoM Compare'</field>
+    </record>
 
 </odoo>
