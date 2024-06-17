@@ -57,11 +57,6 @@ msgid "Has sub BoM"
 msgstr "Tiene sub LdM"
 
 #. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
-msgid "Internal Reference"
-msgstr "Referencias Internas"
-
-#. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
 msgid "Is component"
 msgstr "Es componente"
@@ -115,3 +110,6 @@ msgid ""
 msgstr ""
 "Debe proporcionar un producto o una plantilla de producto para buscar una "
 "línea de la lista de materiales"
+
+#~ msgid "Internal Reference"
+#~ msgstr "Referencias Internas"
