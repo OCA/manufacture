@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-06-17 12:37+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,17 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_menu.mrp_bom_line_view_filter
 msgid "Bill Of Material"
-msgstr ""
+msgstr "Sastavnica"
 
 #. module: mrp_bom_component_menu
 #: model:ir.actions.act_window,name:mrp_bom_component_menu.mrp_bom_form_action2
 #: model:ir.ui.menu,name:mrp_bom_component_menu.menu_mrp_bom_form_action2
 msgid "Bill of Material Components"
-msgstr ""
+msgstr "Komponente sastavnice"
 
 #. module: mrp_bom_component_menu
 #: model_terms:ir.actions.act_window,help:mrp_bom_component_menu.mrp_bom_form_action2
