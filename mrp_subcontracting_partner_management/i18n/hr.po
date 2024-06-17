@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-06-17 15:35+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,54 +15,55 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model,name:mrp_subcontracting_partner_management.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type__is_subcontractor
 msgid "Is Subcontractor"
-msgstr ""
+msgstr "Je subkontraktor"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_buy_rule_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_buy_rule_id
 msgid "Partner Buy Rule"
-msgstr ""
+msgstr "Pravilo kupnje za partnera"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_picking_type_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_picking_type_id
 msgid "Partner Picking Type"
-msgstr ""
+msgstr "Skladišno kretanje partnera"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__partner_resupply_rule_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__partner_resupply_rule_id
 msgid "Partner Resupply Rule"
-msgstr ""
+msgstr "Pravilo obnove zalihe za partnera"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model,name:mrp_subcontracting_partner_management.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "Vrsta skladišnog kretanja"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__subcontracted_created_location_id
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__subcontracted_created_location_id
 msgid "Subcontracted Created Location"
-msgstr ""
+msgstr "Kreirana lokacija podizvođača"
 
 #. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_pickingtype_filter
 msgid "Subcontractor"
-msgstr ""
+msgstr "Podizvođač"
 
 #. module: mrp_subcontracting_partner_management
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_stock_form
 msgid "Subcontractor Location Stock"
-msgstr ""
+msgstr "Skladišna lokacija podizvođača"
