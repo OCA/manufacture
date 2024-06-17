@@ -17,21 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: mrp_unbuild_valuation_layer_link
-#: model:ir.model.fields,field_description:mrp_unbuild_valuation_layer_link.field_mrp_unbuild__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: mrp_unbuild_valuation_layer_link
-#: model:ir.model.fields,field_description:mrp_unbuild_valuation_layer_link.field_mrp_unbuild__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_unbuild_valuation_layer_link
-#: model:ir.model.fields,field_description:mrp_unbuild_valuation_layer_link.field_mrp_unbuild____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: mrp_unbuild_valuation_layer_link
 #: model:ir.model,name:mrp_unbuild_valuation_layer_link.model_mrp_unbuild
 msgid "Unbuild Order"
 msgstr "Smonta ordine"
@@ -40,3 +25,12 @@ msgstr "Smonta ordine"
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_valuation_layer_link.mrp_unbuild_form_view_inherited
 msgid "Valuation"
 msgstr "Valutazione"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
