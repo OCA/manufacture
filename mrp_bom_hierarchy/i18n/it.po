@@ -57,11 +57,6 @@ msgid "Has sub BoM"
 msgstr "Ha sotto DiBa"
 
 #. module: mrp_bom_hierarchy
-#: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_default_code
-msgid "Internal Reference"
-msgstr "Riferimento interno"
-
-#. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
 msgid "Is component"
 msgstr "È componente"
@@ -115,3 +110,6 @@ msgid ""
 msgstr ""
 "Bisogna fornire un prodotto o un modello di prodotto per cercare una riga di "
 "DiBa"
+
+#~ msgid "Internal Reference"
+#~ msgstr "Riferimento interno"
