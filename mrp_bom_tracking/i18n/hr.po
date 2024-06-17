@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-06-17 13:17+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "-&gt;"
-msgstr ""
+msgstr "-&gt;"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
@@ -26,6 +28,8 @@ msgid ""
 ":\n"
 "                New component<br/>"
 msgstr ""
+":\n"
+"                Nova komponenta<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
@@ -33,6 +37,8 @@ msgid ""
 ":\n"
 "                Removed component<br/>"
 msgstr ""
+":\n"
+"                Uklonjena komponenta<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
@@ -41,69 +47,73 @@ msgid ""
 "<br/>\n"
 "                    Product Unit of Measure:"
 msgstr ""
+"<br/>\n"
+"                    Jedinica mjere proizvoda:"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component quantities or UoMs have been updated.</strong>"
-msgstr ""
+msgstr "<strong>Količine komponenata su ažurirane.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid "<strong>The components have changed.</strong>"
-msgstr ""
+msgstr "<strong>Komponente su izmjenjene.</strong>"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Sastavnica"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Stavka sastavnice"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Tip sastavnice"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
+"Ako je varijanta proizvoda definirana, sastavnica je dostupna za ovaj "
+"proizvod."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Tip operacije"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "Product Quantity:"
-msgstr ""
+msgstr "Količina proizvoda:"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Varijanta proizvoda"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Količina"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Referenca"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_qty
