@@ -1,0 +1,1 @@
+Check boolean Update Expiration Date if expiration day of production lot should be calculated based on scheduled date of production. Uncheck if lot expiration date should be calculated in the default way
