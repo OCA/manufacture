@@ -4,7 +4,7 @@
 {
     "name": "MRP BoM Hierarchy",
     "summary": "Make it easy to navigate through BoM hierarchy.",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.1.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "contributors": "Grap",
     "category": "Manufacturing",
