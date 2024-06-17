@@ -107,7 +107,7 @@ msgstr "Visualizza le altre DiBa del prodotto"
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
+#: code:addons/mrp_bom_hierarchy/model/mrp_bom_line.py:0
 #, python-format
 msgid ""
 "You should provide either a product or a product template to search a BoM "
