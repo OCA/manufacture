@@ -6,19 +6,15 @@ from odoo.tests import common
 
 class TestStockRepairOrder(common.SavepointCase):
     @classmethod
-    def setUp(cls):
-        super(TestStockRepairOrder, cls).setUpClass()
+    def setUpClass(cls):
+        super().setUpClass()
 
         cls.repair_model = cls.env["repair.order"]
         cls.repair_line_model = cls.env["repair.line"]
         cls.product_model = cls.env["product.product"]
         cls.stock_location_model = cls.env["stock.location"]
         cls.warehouse_model = cls.env["stock.warehouse"]
-        cls.company = cls.env["res.company"].create(
-            {
-                "name": "My Test Company",
-            }
-        )
+        cls.company = cls.env.ref("base.main_company")
         cls.warehouse = cls.warehouse_model.create(
             {
                 "name": "Test Warehouse",
@@ -136,6 +132,7 @@ class TestStockRepairOrder(common.SavepointCase):
             }
         )
         repair_order.action_repair_confirm()
+        repair_order._compute_picking_ids()
         self.assertEqual(repair_order.state, "confirmed")
         self.assertTrue(repair_order.picking_ids)
         self.assertEqual(len(repair_order.picking_ids), 1)
@@ -185,6 +182,7 @@ class TestStockRepairOrder(common.SavepointCase):
             }
         )
         repair_order.action_repair_confirm()
+        repair_order._compute_picking_ids()
         self.assertEqual(repair_order.state, "confirmed")
         self.assertTrue(repair_order.picking_ids)
         self.assertEqual(len(repair_order.picking_ids), 2)
@@ -225,6 +223,7 @@ class TestStockRepairOrder(common.SavepointCase):
             }
         )
         repair_order.action_repair_confirm()
+        repair_order._compute_picking_ids()
         self.assertEqual(repair_order.state, "confirmed")
         self.assertTrue(repair_order.picking_ids)
         self.assertEqual(len(repair_order.picking_ids), 1)
@@ -263,4 +262,5 @@ class TestStockRepairOrder(common.SavepointCase):
                 "location_dest_id": self.repair_location.id,
             }
         )
+        repair_order._compute_picking_ids()
         self.assertEqual(len(repair_order.picking_ids), 2)
