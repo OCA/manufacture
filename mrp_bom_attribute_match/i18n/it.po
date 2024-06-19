@@ -96,6 +96,12 @@ msgstr ""
 "%s"
 
 #. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/reports/mrp_report_bom_structure.py:0
+#, python-format
+msgid "Operations"
+msgstr ""
+
+#. module: mrp_bom_attribute_match
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
 msgid "Product Backup"
 msgstr "Backup prodotto"
@@ -223,6 +229,12 @@ msgstr "Attr2"
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_gaming
 msgid "gaming"
 msgstr "Gaming"
+
+#. module: mrp_bom_attribute_match
+#: code:addons/mrp_bom_attribute_match/reports/mrp_report_bom_structure.py:0
+#, python-format
+msgid "minutes"
+msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_1_office
