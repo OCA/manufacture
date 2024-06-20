@@ -45,7 +45,7 @@
         <menuitem 
             id="menu_manufacturing_group"
             name="MRP Group"
-            action="zb_mrp_group.mrp_group_action"
+            action="mrp_group.mrp_group_action"
             parent="mrp.menu_mrp_configuration"
             sequence="10"
         />
