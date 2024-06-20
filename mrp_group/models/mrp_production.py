@@ -11,4 +11,4 @@ class MrpProduction(models.Model):
         for rec in self:
             if rec.bom_id:
                 rec.mrp_group_ids = rec.bom_id.mrp_group_ids
-                
+
