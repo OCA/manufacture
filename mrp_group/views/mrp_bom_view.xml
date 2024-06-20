@@ -22,7 +22,11 @@
 		<field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
 		<field name="arch" type="xml">
 			<xpath expr="//field[@name='code']" position="after">
-				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+				<field
+                    name="mrp_group_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
 			</xpath>
 		</field>
 	</record>
@@ -34,7 +38,11 @@
 		<field name="arch" type="xml">
 			<xpath expr="//field[@name='bom_line_ids']" position="after">
 				<field name="mrp_group_ids" />
-				<filter string="MRP Groups" name="mrp_group_ids" context="{'group_by':'mrp_group_ids'}" />
+				<filter
+                    string="MRP Groups"
+                    name="mrp_group_ids"
+                    context="{'group_by':'mrp_group_ids'}"
+                />
 			</xpath>
 		</field>
 	</record>
