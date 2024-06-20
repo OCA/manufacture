@@ -79,6 +79,7 @@ addon | version | maintainers | summary
 [quality_control_stock_oca](quality_control_stock_oca/) | 14.0.1.0.2 |  | Quality control - Stock (OCA)
 [quality_control_team_oca](quality_control_team_oca/) | 14.0.1.0.0 | [![lreficent](https://github.com/lreficent.png?size=30px)](https://github.com/lreficent) | Adds quality control teams to handle different quality control workflows
 [repair_discount](repair_discount/) | 14.0.1.0.0 |  | Repair Discount
+[repair_picking](repair_picking/) | 14.0.1.0.0 |  | Enhanced repair order management with pickings for adding and removing components
 [repair_picking_after_done](repair_picking_after_done/) | 14.0.1.0.1 |  | Transfer repaired move to another location directly from repaire order
 [repair_refurbish](repair_refurbish/) | 14.0.1.0.1 |  | Create refurbished products during repair
 [repair_refurbish_repair_stock_move](repair_refurbish_repair_stock_move/) | 14.0.1.0.0 |  | Use refurbish and repair stock moves together
