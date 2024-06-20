@@ -1,5 +1,4 @@
 from odoo import fields, models
-
 from random import randint
 
 
@@ -14,7 +13,6 @@ class MrpGroup(models.Model):
     
     name = fields.Char(string="Name", tracking=True)
     color = fields.Integer(string="Color", default=_get_default_color)
-    
     
     _sql_constraints = [("unique_name", "unique(name)", "Group name should be unique!")]
     
