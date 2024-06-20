@@ -1,4 +1,4 @@
-from odoo import fields, models, _
+from odoo import fields, models
 from random import randint
 
 class MrpGroup(models.Model):
