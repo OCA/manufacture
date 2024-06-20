@@ -7,28 +7,20 @@
 		<field name="inherit_id" ref="mrp.mrp_bom_form_view" />
 		<field name="arch" type="xml">
 			<xpath expr="//field[@name='product_id']" position="after">
-				<field 
-					name="mrp_group_ids" 
-					widget="many2many_tags" 
-					options="{'color_field': 'color', 'no_create_edit': True}" 
-				/>
+				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
 			</xpath>
 		</field>
 	</record>
 	
 	<record id="mrp_bom_form_tree_inherit_mrp_group" model="ir.ui.view">
-			<field name="name">mrp.bom.tree.view.mrp.group</field>
-			<field name="model">mrp.bom</field>
-			<field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
-			<field name="arch" type="xml">
-					<xpath expr="//field[@name='code']" position="after">
-							<field 
-					name="mrp_group_ids" 
-					widget="many2many_tags" 
-					options="{'color_field': 'color', 'no_create_edit': True}" 
-			/>
-					</xpath>
-			</field>
+		<field name="name">mrp.bom.tree.view.mrp.group</field>
+		<field name="model">mrp.bom</field>
+		<field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='code']" position="after">
+				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+			</xpath>
+		</field>
 	</record>
 	
 	<record id="mrp_bom_search_inherit_mrp_group" model="ir.ui.view">
