@@ -9,7 +9,7 @@
 			<xpath expr="//div[@name='bom_div']" position="after">
 				<field name="mrp_group_ids"
 					   widget="many2many_tags"
-					   options="{'color_field': 'color', 'no_create_edit': True}"					
+					   options="{'color_field': 'color','no_create_edit': True}"					
 					   readonly = "state == 'done'"
 					    />
 			</xpath>
@@ -22,7 +22,7 @@
 		<field name="inherit_id" ref="mrp.mrp_production_tree_view" />
 		<field name="arch" type="xml">
 			<xpath expr="//field[@name='product_id']" position="after">
-				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color','no_create_edit': True}" />
 			</xpath>
 		</field>
 	</record>
@@ -32,7 +32,7 @@
 		<field name="model">mrp.production</field>
 		<field name="inherit_id" ref="mrp.view_mrp_production_filter" />
 		<field name="arch" type="xml">
-			<xpath expr="//filter[@name='date']"  position="after">
+			<xpath expr="//filter[@name='date']" position="after">
 				<field name="mrp_group_ids" />
 				<filter name="mrp_group_ids" string="MRP Groups" context="{'group_by':'mrp_group_ids'}" />
 			</xpath>
