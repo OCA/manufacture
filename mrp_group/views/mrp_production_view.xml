@@ -34,7 +34,7 @@
 		<field name="arch" type="xml">
 			<xpath expr="//filter[@name='date']"  position="after">
 				<field name="mrp_group_ids" />
-				<filter string="MRP Groups" name="mrp_group_ids" context="{'group_by':'mrp_group_ids'}" />
+				<filter name="mrp_group_ids" string="MRP Groups" context="{'group_by':'mrp_group_ids'}" />
 			</xpath>
 		</field>
 	</record>
