@@ -1,6 +1,6 @@
 {
     "name": "MRP Group",
-    "version": "17.0.0.0",
+    "version": "17.0.0.0.1",
     "category": "Manufacturing",
     "summary": "This module simplifies production management by organizing BOMs and MOs into groups, streamlining complex production processes. It helps identify and group multiple BOMs and MOs involved in producing a finished product, making production management more efficient.",
     "website": "https://github.com/OCA/manufacture",
