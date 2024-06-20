@@ -38,7 +38,7 @@
             <field name="view_mode">tree,form</field>
         </record>
         
-        <menuitem 
+        <menuitem
             id="menu_manufacturing_group"
             name="MRP Group"
             action="mrp_group.mrp_group_action"
