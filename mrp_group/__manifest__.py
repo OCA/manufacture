@@ -3,7 +3,7 @@
     "name": "MRP Group",
     "version": "17.0.0.0.1",
     "category": "Manufacturing",
-    "summary": "This module simplifies production management by organizing BOMs and MOs into groups",
+    "summary": "Simplifies production mgmt by organizing BOMs and MOs into groups",
     "website": "https://github.com/OCA/manufacture",
     "author": "ZestyBeanz Technologies,Odoo Community Association (OCA)",
     "maintainer": "Odoo Community Association (OCA)",
