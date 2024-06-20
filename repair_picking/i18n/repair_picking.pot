@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__add_c_type_id
+msgid "Add Component to Repair"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_procurement_group__display_name
+#: model:ir.model.fields,field_description:repair_picking.field_repair_line__display_name
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__display_name
+#: model:ir.model.fields,field_description:repair_picking.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_procurement_group__id
+#: model:ir.model.fields,field_description:repair_picking.field_repair_line__id
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__id
+#: model:ir.model.fields,field_description:repair_picking.field_stock_rule__id
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_procurement_group____last_update
+#: model:ir.model.fields,field_description:repair_picking.field_repair_line____last_update
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order____last_update
+#: model:ir.model.fields,field_description:repair_picking.field_stock_rule____last_update
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__location_id
+msgid "Location"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__2_steps
+msgid "Pick component, repair"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__3_steps
+msgid "Pick component, repair, store removed component"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_procurement_group
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__procurement_group_id
+msgid "Procurement Group"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__remove_c_type_id
+msgid "Remove component from Repair"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields.selection,name:repair_picking.selection__stock_warehouse__repair_steps__1_step
+msgid "Repair"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_location_id
+msgid "Repair Location"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_route_id
+msgid "Repair Route"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_stock_warehouse__repair_steps
+msgid "Repair Steps"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,help:repair_picking.field_repair_order__location_id
+msgid "This is the location where the product to repair is located."
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__picking_count
+#: model:ir.model.fields,field_description:repair_picking.field_repair_order__picking_ids
+#: model_terms:ir.ui.view,arch_db:repair_picking.view_repair_order_form_repair_stock_move_inherited
+msgid "Transfers"
+msgstr ""
+
+#. module: repair_picking
+#: model_terms:ir.ui.view,arch_db:repair_picking.view_repair_order_form_repair_stock_move_inherited
+msgid "Transfers associated with this repair order"
+msgstr ""
+
+#. module: repair_picking
+#: model:ir.model,name:repair_picking.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
