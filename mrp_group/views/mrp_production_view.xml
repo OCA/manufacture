@@ -22,9 +22,7 @@
 		<field name="inherit_id" ref="mrp.mrp_production_tree_view" />
 		<field name="arch" type="xml">
 			<xpath expr="//field[@name='product_id']" position="after">
-				<field name="mrp_group_ids"
-					   widget="many2many_tags"
-					   options="{'color_field': 'color', 'no_create_edit': True}" />
+				<field name="mrp_group_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
 			</xpath>
 		</field>
 	</record>
@@ -35,8 +33,8 @@
 		<field name="inherit_id" ref="mrp.view_mrp_production_filter" />
 		<field name="arch" type="xml">
 			<xpath expr="//filter[@name='date']"  position="after">
-				<field name="mrp_group_ids"/>
-				<filter string="MRP Groups" name="mrp_group_ids" context="{'group_by':'mrp_group_ids'}"/>
+				<field name="mrp_group_ids" />
+				<filter string="MRP Groups" name="mrp_group_ids" context="{'group_by':'mrp_group_ids'}" />
 			</xpath>
 		</field>
 	</record>
