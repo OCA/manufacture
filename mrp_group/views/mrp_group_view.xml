@@ -19,7 +19,6 @@
                 </form>
             </field>
         </record>
-		
 		<record id="mrp_group_view_tree" model="ir.ui.view">
             <field name="name">mrp.group.tree.view</field>
             <field name="model">mrp.group</field>
@@ -30,14 +29,12 @@
                 </tree>
             </field>
         </record>
-		
 		<record id="mrp_group_action" model="ir.actions.act_window">
             <field name="name">MRP Group</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">mrp.group</field>
             <field name="view_mode">tree,form</field>
         </record>
-        
         <menuitem
             id="menu_manufacturing_group"
             name="MRP Group"

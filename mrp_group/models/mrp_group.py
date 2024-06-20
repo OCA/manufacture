@@ -1,5 +1,7 @@
 from odoo import fields, models
 
+from random import randint
+
 
 class MrpGroup(models.Model):
     _name = "mrp.group"
@@ -14,4 +16,3 @@ class MrpGroup(models.Model):
     
     def _get_default_color(self):
         return randint(1, 11)
-    
