@@ -1,12 +1,11 @@
+
 from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
     
-    
     mrp_group_ids = fields.Many2many("mrp.group", string="MRP Group")
-    
     
     @api.onchange("bom_id")
     def _onchange_bom(self):
