@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-	<data>
 		<record id="mrp_group_view_form" model="ir.ui.view">
             <field name="name">mrp.group.form.view</field>
             <field name="model">mrp.group</field>
@@ -42,5 +41,4 @@
             parent="mrp.menu_mrp_configuration"
             sequence="10"
         />
-	</data>
 </odoo>
