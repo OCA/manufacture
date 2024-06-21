@@ -1,4 +1,5 @@
 from odoo import fields, models 
+
 from random import randint
 
 
@@ -7,7 +8,7 @@ class MrpGroup(models.Model):
     _rec_name = "name"
     _inherit = ["mail.thread"]
     _description = "Mrp Group"
-    
+
     def _get_default_color(self):
         return randint(1, 11)
 
