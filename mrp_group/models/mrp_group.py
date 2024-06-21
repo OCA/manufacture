@@ -1,6 +1,6 @@
 from odoo import fields, models
 
- 
+
 class MrpGroup(models.Model):
     _name = "mrp.group"
     _rec_name = "name"
