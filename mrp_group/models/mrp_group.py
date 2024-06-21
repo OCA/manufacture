@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models 
 from random import randint
 
 
