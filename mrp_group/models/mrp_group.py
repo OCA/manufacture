@@ -10,8 +10,8 @@ class MrpGroup(models.Model):
     
     def _get_default_color(self):
         return randint(1, 11)
-    
+
     name = fields.Char(tracking=True)
     color = fields.Integer(default=_get_default_color)
-    
+
     _sql_constraints = [("unique_name", "unique(name)", "Group name should be unique!")]
