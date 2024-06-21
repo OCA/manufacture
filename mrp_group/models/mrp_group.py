@@ -8,6 +8,6 @@ class MrpGroup(models.Model):
     _description = "Mrp Group"
 
     name = fields.Char(tracking=True)
-    color = fields.Integer(default=_get_default_color)
+    color = fields.Integer()
 
     _sql_constraints = [("unique_name", "unique(name)", "Group name should be unique!")]
