@@ -16,4 +16,3 @@ class MrpGroup(models.Model):
     color = fields.Integer(string="Color", default=_get_default_color)
     
     _sql_constraints = [("unique_name", "unique(name)", "Group name should be unique!")]
-    
