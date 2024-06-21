@@ -34,11 +34,11 @@
             <field name="res_model">mrp.group</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem
-            id="menu_manufacturing_group"
-            name="MRP Group"
-            action="mrp_group.mrp_group_action"
-            parent="mrp.menu_mrp_configuration"
+        <menuitem 
+            id="menu_manufacturing_group" 
+            name="MRP Group" 
+            action="mrp_group.mrp_group_action" 
+            parent="mrp.menu_mrp_configuration" 
             sequence="10"
         />
 </odoo>
