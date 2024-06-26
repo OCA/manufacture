@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 ForgeFlow S.L. (https://www.forgeflow.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record model="ir.ui.view" id="mrp_production_form_view_return_to_draft">
+        <field name="name">mrp.production.form - return_to_draft</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="after">
+                <button
+                    name="action_return_to_draft"
+                    type="object"
+                    class="oe_stat_button"
+                    string="Return to Draft"
+                    attrs="{'invisible': [('state', 'not in', ['confirmed', 'cancel'])]}"
+                >
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
