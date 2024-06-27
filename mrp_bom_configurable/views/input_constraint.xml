@@ -26,7 +26,7 @@
 <record id="input_constraint_tree" model="ir.ui.view">
     <field name="model">input.constraint</field>
     <field name="arch" type="xml">
-        <tree>
+        <tree multi_edit="1">
             <field name="bom_id" />
         </tree>
     </field>
