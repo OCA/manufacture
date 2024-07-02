@@ -121,10 +121,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 </field>
             </page>
           </xpath>
-          <!-- Hide the original page -->
-          <xpath expr="//page[2]" position="attributes">
-              <attribute name="groups">base.group_erp_manager</attribute>
-          </xpath>
       </field>
   </record>
 
