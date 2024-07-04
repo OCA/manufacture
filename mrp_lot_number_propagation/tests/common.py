@@ -9,7 +9,6 @@ from odoo.tests import Form, common
 
 
 class Common(common.TransactionCase):
-
     LOT_NAME = "PROPAGATED-LOT"
 
     @classmethod
