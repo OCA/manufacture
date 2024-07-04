@@ -1,2 +1,4 @@
 - Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
 - Sébastien Alix \<<sebastien.alix@camptocamp.com>\>
+- [360ERP](https://www.360erp.com):
+  - Andrea Stirpe

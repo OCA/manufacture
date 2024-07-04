@@ -1,17 +1,9 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from lxml import etree
 
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import UserError
-from odoo.osv import expression
-from odoo.tools.safe_eval import safe_eval
-
-from odoo.addons.base.models.ir_ui_view import (
-    transfer_modifiers_to_node,
-    transfer_node_to_modifiers,
-)
 
 
 class MrpProduction(models.Model):
@@ -36,7 +28,7 @@ class MrpProduction(models.Model):
 
     @api.depends(
         "move_raw_ids.propagate_lot_number",
-        "move_raw_ids.move_line_ids.qty_done",
+        "move_raw_ids.move_line_ids.quantity",
         "move_raw_ids.move_line_ids.lot_id",
     )
     def _compute_propagated_lot_producing(self):
@@ -44,11 +36,11 @@ class MrpProduction(models.Model):
             order.propagated_lot_producing = False
             move_with_lot = order._get_propagating_component_move()
             line_with_sn = move_with_lot.move_line_ids.filtered(
-                lambda l: (
-                    l.lot_id
-                    and l.product_id.tracking == "serial"
+                lambda ln: (
+                    ln.lot_id
+                    and ln.product_id.tracking == "serial"
                     and tools.float_compare(
-                        l.qty_done, 1, precision_rounding=l.product_uom_id.rounding
+                        ln.quantity, 1, precision_rounding=ln.product_uom_id.rounding
                     )
                     == 0
                 )
@@ -107,11 +99,11 @@ class MrpProduction(models.Model):
             if not order.is_lot_number_propagated or order.lot_producing_id:
                 continue
             finish_moves = order.move_finished_ids.filtered(
-                lambda m: m.product_id == order.product_id
-                and m.state not in ("done", "cancel")
+                lambda mv, mo=order: mv.product_id == mo.product_id
+                and mv.state not in ("done", "cancel")
             )
             if finish_moves and not finish_moves.quantity_done:
-                lot_model = self.env["stock.production.lot"]
+                lot_model = self.env["stock.lot"]
                 lot = lot_model.search(
                     [
                         ("product_id", "=", order.product_id.id),
@@ -128,7 +120,7 @@ class MrpProduction(models.Model):
                         )
                     )
                 if not lot:
-                    lot = self.env["stock.production.lot"].create(
+                    lot = self.env["stock.lot"].create(
                         {
                             "product_id": order.product_id.id,
                             "company_id": order.company_id.id,
@@ -141,7 +133,7 @@ class MrpProduction(models.Model):
         for order in self:
             if (
                 order.is_lot_number_propagated
-                and "lot_producing_id" in vals
+                and vals.get("lot_producing_id")
                 and not self.env.context.get("lot_propagation")
             ):
                 raise UserError(
@@ -152,42 +144,31 @@ class MrpProduction(models.Model):
                 )
         return super().write(vals)
 
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    @api.model
+    def _get_view(self, view_id=None, view_type="form", **options):
         # Override to hide the "lot_producing_id" field + "action_generate_serial"
         # button if the MO is configured to propagate a serial number
-        result = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
-        if result.get("name") in self._views_to_adapt():
-            result["arch"] = self._fields_view_get_adapt_lot_tags_attrs(result)
-        return result
+        arch, view = super()._get_view(view_id, view_type, **options)
+        if view.name in self._views_to_adapt():
+            arch = self._fields_view_get_adapt_lot_tags_attrs(arch)
+        return arch, view
 
     def _views_to_adapt(self):
         """Return the form view names bound to 'mrp.production' to adapt."""
         return ["mrp.production.form"]
 
-    def _fields_view_get_adapt_lot_tags_attrs(self, view):
+    def _fields_view_get_adapt_lot_tags_attrs(self, arch):
         """Hide elements related to lot if it is automatically propagated."""
-        doc = etree.XML(view["arch"])
-        tags = (
-            "//label[@for='lot_producing_id']",
-            "//field[@name='lot_producing_id']/..",  # parent <div>
-        )
-        for xpath_expr in tags:
-            attrs_key = "invisible"
-            nodes = doc.xpath(xpath_expr)
-            for field in nodes:
-                attrs = safe_eval(field.attrib.get("attrs", "{}"))
-                if not attrs[attrs_key]:
-                    continue
-                invisible_domain = expression.OR(
-                    [attrs[attrs_key], [("is_lot_number_propagated", "=", True)]]
+
+        for node in arch.xpath(
+            "//label[@for='lot_producing_id']"
+            "|//field[@name='lot_producing_id']/.."  # parent <div>
+        ):
+            attr_invisible = node.attrib.get("invisible", "")
+            if not attr_invisible:
+                node.attrib["invisible"] = "is_lot_number_propagated"
+            else:
+                node.attrib["invisible"] = (
+                    node.attrib["invisible"] + " or is_lot_number_propagated"
                 )
-                attrs[attrs_key] = invisible_domain
-                field.set("attrs", str(attrs))
-                modifiers = {}
-                transfer_node_to_modifiers(field, modifiers, self.env.context)
-                transfer_modifiers_to_node(modifiers, field)
-        return etree.tostring(doc, encoding="unicode")
+        return arch

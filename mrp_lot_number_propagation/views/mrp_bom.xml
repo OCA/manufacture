@@ -12,14 +12,14 @@
         <field name="display_lot_number_propagation" invisible="1" />
         <field
                     name="lot_number_propagation"
-                    attrs="{'invisible': [('display_lot_number_propagation', '=', False)]}"
+                    invisible="not display_lot_number_propagation"
                 />
       </field>
       <xpath expr="//field[@name='bom_line_ids']/tree" position="inside">
         <field name="display_propagate_lot_number" invisible="1" />
         <field
                     name="propagate_lot_number"
-                    attrs="{'column_invisible': ['|', ('parent.display_lot_number_propagation', '=', False), ('parent.lot_number_propagation', '=', False)]}"
+                    column_invisible="not parent.display_lot_number_propagation or not parent.lot_number_propagation"
                 />
       </xpath>
     </field>

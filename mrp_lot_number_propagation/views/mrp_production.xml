@@ -16,7 +16,7 @@
         <field
                     name="propagated_lot_producing"
                     string="Lot/Serial Number"
-                    attrs="{'invisible': [('is_lot_number_propagated', '=', False)]}"
+                    invisible="not is_lot_number_propagated"
                 />
       </label>
     </field>
