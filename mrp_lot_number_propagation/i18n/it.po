@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-15 19:35+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-07-09 09:58+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_lot_number_propagation
 #: code:addons/mrp_lot_number_propagation/models/product_template.py:0
@@ -89,7 +89,7 @@ msgstr "Propagazione numero di lotto"
 #. module: mrp_lot_number_propagation
 #: model_terms:ir.ui.view,arch_db:mrp_lot_number_propagation.mrp_production_form_view
 msgid "Lot/Serial Number"
-msgstr "Numero di lotto/matricola"
+msgstr "Numero di lotto/serie"
 
 #. module: mrp_lot_number_propagation
 #: code:addons/mrp_lot_number_propagation/models/mrp_production.py:0
