@@ -28,6 +28,9 @@ MRP Sale Info
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
+When a product is set with right Routes (Replenish on Order (MTO) and Manufacture), a Sale
+of this Product can trigger a Manufacturing Order if there is not enough product on stock.
+
 This module extends the functionality of Odoo for adding related fields to
 Manufacturing Orders and Work Orders:
 
@@ -35,6 +38,7 @@ Manufacturing Orders and Work Orders:
   * Customer
   * Commitment Date
   * Customer Reference
+
 
 **Table of contents**
 
@@ -44,7 +48,16 @@ Manufacturing Orders and Work Orders:
 Usage
 =====
 
-New fields are displayed in tree and in form views (Extra information tab).
+To see this module effect :
+- Unarchive `Replenish on Order (MTO)` in Inventory > Configuration > Routes
+- Create a new Product with no stock
+- Set Routes for this new Product : go to `Inventory` notebook and tick `Replenish on Order (MTO)` and `Manufacture`
+- Create a Sale with this product
+- It will trigger a new Manufacturing Order
+
+.. figure:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_sale_info/static/description/bom_purchase_printing_wizard.png
+
+.. figure:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_sale_info/static/description/sale_order_production_order_link.jpeg
 
 Bug Tracker
 ===========
