@@ -3,13 +3,13 @@
 
 
 {
-    'name': 'Repair Calendar View',
-    'version': '12.0.1.1.1',
-    'category': 'Manufacturing',
-    'author': "Agile Business Group, Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/manufacture',
-    'license': 'LGPL-3',
-    'depends': ['repair'],
-    'data': ['views/mrp_repair_view.xml'],
-    'installable': True,
+    "name": "Repair Calendar View",
+    "version": "16.0.1.0.0",
+    "category": "Manufacturing",
+    "author": "Agile Business Group, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/manufacture",
+    "license": "LGPL-3",
+    "depends": ["repair"],
+    "data": ["views/mrp_repair_view.xml"],
+    "installable": True,
 }
