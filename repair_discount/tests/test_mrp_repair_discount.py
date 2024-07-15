@@ -7,7 +7,7 @@ from odoo.tests import common
 class TestMrpRepairDiscount(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestMrpRepairDiscount, cls).setUpClass()
+        super().setUpClass()
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",

@@ -95,8 +95,7 @@ class RepairOrder(models.Model):
     _inherit = "repair.order"
 
     def _create_invoices(self, group=False):
-
-        res = super(RepairOrder, self)._create_invoices(group)
+        res = super()._create_invoices(group)
         for repair in self.filtered(lambda _repair: _repair.invoice_method != "none"):
             operations = repair.operations
             fees_lines = repair.fees_lines
@@ -112,11 +111,7 @@ class RepairOrder(models.Model):
                 fee_lines.invoice_line_id.with_context(
                     check_move_validity=False
                 ).update({"discount": fee_lines.discount})
-        self.invoice_id.with_context(
-            check_move_validity=False
-        )._recompute_dynamic_lines(
-            recompute_all_taxes=True, recompute_tax_base_amount=True
-        )
+
         return res
 
     def _calculate_line_base_price(self, line):
