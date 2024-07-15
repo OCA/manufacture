@@ -387,7 +387,6 @@ msgstr "MRP applicabile"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "MRP Area"
@@ -396,6 +395,7 @@ msgstr "Area MRP"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__mrp_area_count
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__mrp_area_count
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_count
 msgid "MRP Area Parameter Count"
 msgstr "Contegio parametri area MRP"
 
@@ -408,6 +408,7 @@ msgstr "Parametri area MRP"
 #. module: mrp_multi_level
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_areas
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_template_only_form_view_mrp
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_location_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_product_product_form
 msgid "MRP Areas"
 msgstr "Aree MRP"
@@ -825,15 +826,6 @@ msgid "Release Date"
 msgstr "Data rilascio"
 
 #. module: mrp_multi_level
-#: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
-msgid ""
-"Requirements for a particular MRP area are combined for the purposes of "
-"procurement by the MRP."
-msgstr ""
-"Richieste di una area MRP particolare sono combinate allo scopo di "
-"approvvigionamento dall'MRP."
-
-#. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.action_mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "Run MRP"
@@ -1043,3 +1035,10 @@ msgstr "Orario lavorativo"
 #, python-format
 msgid "You cannot use a negative number."
 msgstr "non si può usare un numero negativo."
+
+#~ msgid ""
+#~ "Requirements for a particular MRP area are combined for the purposes of "
+#~ "procurement by the MRP."
+#~ msgstr ""
+#~ "Richieste di una area MRP particolare sono combinate allo scopo di "
+#~ "approvvigionamento dall'MRP."
