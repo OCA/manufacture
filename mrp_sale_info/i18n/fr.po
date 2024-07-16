@@ -25,6 +25,11 @@ msgid "Commitment Date"
 msgstr ""
 
 #. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line__created_production_ids
+msgid "Created Production"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
 msgid "Customer"
@@ -53,8 +58,18 @@ msgid "Sale order"
 msgstr ""
 
 #. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
 msgid "Source Procurement Group"
+msgstr ""
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_stock_move
+msgid "Stock Move"
 msgstr ""
 
 #. module: mrp_sale_info
