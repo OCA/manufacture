@@ -70,6 +70,11 @@ msgid "Associated MRP Inventory"
 msgstr "Magazzino MRP associato"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__bom_id
+msgid "Bom"
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__buy
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__buy
 msgid "Buy"
@@ -313,18 +318,6 @@ msgid "Kit"
 msgstr "Confezione"
 
 #. module: mrp_multi_level
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_multi_level____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order____last_update
-#: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__write_uid
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__write_uid
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure__write_uid
@@ -387,7 +380,6 @@ msgstr "MRP applicabile"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__mrp_area_id
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_area_id
-#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_id
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_area_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
 msgid "MRP Area"
@@ -396,6 +388,7 @@ msgstr "Area MRP"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_product__mrp_area_count
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_template__mrp_area_count
+#: model:ir.model.fields,field_description:mrp_multi_level.field_stock_location__mrp_area_count
 msgid "MRP Area Parameter Count"
 msgstr "Contegio parametri area MRP"
 
@@ -408,6 +401,7 @@ msgstr "Parametri area MRP"
 #. module: mrp_multi_level
 #: model:ir.ui.menu,name:mrp_multi_level.menu_mrp_areas
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.product_template_only_form_view_mrp
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_location_form
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_mrp_product_product_form
 msgid "MRP Areas"
 msgstr "Aree MRP"
@@ -532,7 +526,6 @@ msgstr "Pianificatore MRP"
 
 #. module: mrp_multi_level
 #: model:ir.actions.server,name:mrp_multi_level.mrp_multi_level_cron_ir_actions_server
-#: model:ir.cron,cron_name:mrp_multi_level.mrp_multi_level_cron
 #: model:ir.model,name:mrp_multi_level.model_mrp_multi_level
 msgid "Multi Level MRP"
 msgstr "MRP multi livello"
@@ -825,15 +818,6 @@ msgid "Release Date"
 msgstr "Data rilascio"
 
 #. module: mrp_multi_level
-#: model:ir.model.fields,help:mrp_multi_level.field_stock_location__mrp_area_id
-msgid ""
-"Requirements for a particular MRP area are combined for the purposes of "
-"procurement by the MRP."
-msgstr ""
-"Richieste di una area MRP particolare sono combinate allo scopo di "
-"approvvigionamento dall'MRP."
-
-#. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.action_mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.view_run_mrp_multi_level_wizard
 msgid "Run MRP"
@@ -1043,3 +1027,13 @@ msgstr "Orario lavorativo"
 #, python-format
 msgid "You cannot use a negative number."
 msgstr "non si può usare un numero negativo."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid ""
+#~ "Requirements for a particular MRP area are combined for the purposes of "
+#~ "procurement by the MRP."
+#~ msgstr ""
+#~ "Richieste di una area MRP particolare sono combinate allo scopo di "
+#~ "approvvigionamento dall'MRP."
