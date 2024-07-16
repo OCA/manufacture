@@ -408,21 +408,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question_value____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line____last_update
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima Modificación en"
-
-#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__write_uid
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__write_uid
@@ -451,16 +436,6 @@ msgstr "Actualizado última vez por"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__write_date
 msgid "Last Updated on"
 msgstr "Ultima Actualización"
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_main_attachment_id
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
 
 #. module: quality_control_oca
 #: model:res.groups,name:quality_control_oca.group_quality_control_manager
@@ -1085,3 +1060,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "o"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima Modificación en"
