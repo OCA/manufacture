@@ -131,7 +131,7 @@ class MultiLevelMrp(models.TransientModel):
         )
         line_quantity = factor * bomline.product_qty
         return {
-            "mrp_area_id": product.mrp_area_id.id,
+            "mrp_area_id": product_mrp_area.mrp_area_id.id,
             "product_id": bomline.product_id.id,
             "product_mrp_area_id": product_mrp_area.id,
             "production_id": None,
