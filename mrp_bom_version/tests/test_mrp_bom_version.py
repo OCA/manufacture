@@ -5,22 +5,23 @@ import odoo.tests.common as common
 
 
 class TestMrpBomVersion(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.parameter_model = self.env["ir.config_parameter"]
-        self.bom_model = self.env["mrp.bom"].with_context(test_mrp_bom_version=True)
-        self.company = self.env.ref("base.main_company")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.parameter_model = cls.env["ir.config_parameter"]
+        cls.bom_model = cls.env["mrp.bom"].with_context(test_mrp_bom_version=True)
+        cls.company = cls.env.ref("base.main_company")
         vals = {
-            "company_id": self.company.id,
-            "product_tmpl_id": self.env.ref(
+            "company_id": cls.company.id,
+            "product_tmpl_id": cls.env.ref(
                 "product.product_product_11_product_template"
             ).id,
             "bom_line_ids": [
-                (0, 0, {"product_id": self.env.ref("product.product_product_5").id}),
-                (0, 0, {"product_id": self.env.ref("product.product_product_6").id}),
+                (0, 0, {"product_id": cls.env.ref("product.product_product_5").id}),
+                (0, 0, {"product_id": cls.env.ref("product.product_product_6").id}),
             ],
         }
-        self.mrp_bom = self.bom_model.create(vals)
+        cls.mrp_bom = cls.bom_model.create(vals)
 
     def test_mrp_bom(self):
         self.assertEqual(
