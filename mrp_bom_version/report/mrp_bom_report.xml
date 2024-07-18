@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+    id="external_layout_mrp_bom"
+    inherit_id="mrp_bom_report.external_layout_mrp_bom"
+  >
+        <span id="date-printing" position="before">
+
+            <span id="version">
+                <strong id="version">Version:</strong>
+                <span t-esc="doc.version" />
+                <br />
+            </span>
+        </span>
+    </template>
+</odoo>
