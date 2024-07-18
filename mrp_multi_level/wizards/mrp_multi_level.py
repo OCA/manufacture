@@ -747,7 +747,7 @@ class MultiLevelMrp(models.TransientModel):
             )
             logger.info(log_msg)
 
-        logger.info("Enb MRP calculation")
+        logger.info("End MRP calculation")
 
     @api.model
     def _get_demand_groups(self, product_mrp_area):
