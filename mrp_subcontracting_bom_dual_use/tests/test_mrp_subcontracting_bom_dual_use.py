@@ -27,7 +27,6 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         if bom_type == "subcontract":
             mrp_bom_form.subcontractor_ids.add(self.partner)
             mrp_bom_form.allow_in_regular_production = True
-        mrp_bom_form.product_tmpl_id = self.product.product_tmpl_id
         with mrp_bom_form.bom_line_ids.new() as line_form:
             line_form.product_id = self.component_a
             line_form.product_qty = 1
@@ -53,6 +52,7 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         mrp_production_form.product_id = self.product
         self.assertEqual(mrp_production_form.bom_id, bom)
         self.assertTrue(mrp_production_form.move_raw_ids)
+        self.assertTrue(mrp_production_form.workorder_ids)
 
     def _product_replenish(self, product, qty):
         replenish_form = Form(
@@ -69,4 +69,20 @@ class TestMrpSubcontractingBomDualUse(common.SavepointCase):
         self._product_replenish(self.product, 1)
         item = self.mrp_production_model.search([("product_id", "=", self.product.id)])
         self.assertEqual(item.bom_id, bom)
+        self.assertIn(self.workcenter, item.workorder_ids.mapped("workcenter_id"))
+
+    def test_picking_subcontract(self):
+        self._create_bom("subcontract")
+        picking_form = Form(
+            self.env["stock.picking"].with_context(
+                default_picking_type_id=self.env.ref("stock.picking_type_in").id,
+            )
+        )
+        picking_form.partner_id = self.partner
+        with picking_form.move_ids_without_package.new() as move_form:
+            move_form.product_id = self.product
+            move_form.product_uom_qty = 1
+        picking = picking_form.save()
+        picking.action_confirm()
+        item = self.mrp_production_model.search([("product_id", "=", self.product.id)])
         self.assertIn(self.workcenter, item.workorder_ids.mapped("workcenter_id"))
