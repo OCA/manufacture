@@ -1,1 +1,3 @@
 - Florian da Costa \<<florian.dacosta@akretion.com>\>
+- \[APSL-Nagarro\](<https://apsl.tech>):
+  - Antoni Marroig \<<amarroig@apsl.net>\>
