@@ -72,6 +72,9 @@ Contributors
 -  Ana Juaristi <anajuaristi@avanzosc.es>
 -  Laurent Bélorgey <lb@lalieutenante.com>
 -  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  [APSL-Nagarro](https://apsl.tech):
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
