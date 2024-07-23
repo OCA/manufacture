@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record model="mrp.bom.tag" id="demo_bom_tag_parent">
+        <field name="name">Handmade</field>
+        <field name="color">2</field>
+    </record>
+
+    <record model="mrp.bom.tag" id="demo_bom_tag">
+        <field name="name">Furniture</field>
+        <field name="color">9</field>
+        <field name="parent_id" ref="mrp_bom_tag.demo_bom_tag_parent" />
+        <field
+            name="bom_ids"
+            eval="[(4, ref('mrp.mrp_bom_manufacture')),(4, ref('mrp.mrp_bom_desk'))]"
+        />
+    </record>
+
+    <record model="mrp.bom.tag" id="demo_bom_tag_2">
+        <field name="name">Other</field>
+        <field name="color">1</field>
+    </record>
+
+</odoo>

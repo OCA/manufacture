@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="action_bom_tag_2_mrp_bom" model="ir.actions.act_window">
+        <field name="name">Bill of Material</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('bom_tag_ids', '=', active_id)]</field>
+    </record>
+
+    <record id="view_bom_tag_form" model="ir.ui.view">
+        <field name="model">mrp.bom.tag</field>
+        <field name="arch" type="xml">
+            <form string="BoM Tag">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="action"
+                            icon="fa-list"
+                            name="%(action_bom_tag_2_mrp_bom)d"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_value"><field
+                                        name="bom_qty"
+                                        widget="statinfo"
+                                        nolabel="1"
+                                    /></span>
+                              <span class="o_stat_text">Bills of Material</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                      <div class="oe_edit_only">
+                          <label for="name" />
+                      </div>
+                      <h1>
+                          <field name="name" />
+                      </h1>
+                    </div>
+                    <group>
+                      <group>
+                        <field name="color" widget="color_picker" />
+                        <field name="parent_id" />
+                        <field name="company_id" groups="base.group_multi_company" />
+                      </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bom_tag_tree" model="ir.ui.view">
+        <field name="model">mrp.bom.tag</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="complete_name" />
+                <field name="name" />
+                <field name="bom_qty" />
+                <field name="color" widget="color_picker" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_bom_tag" model="ir.actions.act_window">
+        <field name="name">BoM Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_bom_tag"
+        parent="mrp.menu_mrp_configuration"
+        sequence="10"
+        action="action_bom_tag"
+    />
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials Tags - Search -->
+    <!-- ************************************************************ -->
+
+    <record id="view_bom_tag_search" model="ir.ui.view">
+        <field name="model">mrp.bom.tag</field>
+        <field name="arch" type="xml">
+            <search string="Tags">
+              <field name="complete_name" />
+            </search>
+        </field>
+    </record>
+
+</odoo>
