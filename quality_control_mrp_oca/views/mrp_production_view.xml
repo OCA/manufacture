@@ -15,10 +15,6 @@
         <field name="name">mrp.production.form.qc</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
-        />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button
@@ -26,6 +22,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_production)d"
                     icon="fa-bookmark-o"
+                    groups="quality_control_oca.group_quality_control_user"
                 >
                     <field
                         name="created_inspections"
