@@ -2,57 +2,48 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from odoo.addons.quality_control_oca.tests.test_quality_control import (
+    TestQualityControlOcaBase,
+)
 
 
-class TestQualityControlMrp(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.inspection_model = self.env["qc.inspection"]
-        self.qc_trigger_model = self.env["qc.trigger"]
-        self.test = self.env.ref("quality_control_oca.qc_test_1")
-        self.trigger = self.env.ref("quality_control_mrp_oca.qc_trigger_mrp")
-        # Category
-        category_form = Form(self.env["product.category"])
-        category_form.name = "Test category"
-        self.category = category_form.save()
-        # Product
-        product_form = Form(self.env["product.template"])
-        product_form.name = "Test Product"
-        product_form.type = "product"
-        self.product = product_form.save()
+class TestQualityControlMrp(TestQualityControlOcaBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.trigger = cls.env.ref("quality_control_mrp_oca.qc_trigger_mrp")
         # Materials
-        product_form = Form(self.env["product.product"])
+        product_form = Form(cls.env["product.product"])
         product_form.name = "Part 1 Product"
-        product_form.type = "product"
-        self.mat1 = product_form.save()
-        product_form = Form(self.env["product.product"])
+        cls.mat1 = product_form.save()
+        product_form = Form(cls.env["product.product"])
         product_form.name = "Part 2 Product"
-        product_form.type = "product"
-        self.mat2 = product_form.save()
+        cls.mat2 = product_form.save()
         # Bom
-        bom_form = Form(self.env["mrp.bom"])
-        bom_form.product_tmpl_id = self.product
+        bom_form = Form(cls.env["mrp.bom"])
+        bom_form.product_tmpl_id = cls.product.product_tmpl_id
         bom_form.product_qty = 1.0
         bom_form.type = "normal"
         with bom_form.bom_line_ids.new() as material_form:
-            material_form.product_id = self.mat1
+            material_form.product_id = cls.mat1
             material_form.product_qty = 1
         with bom_form.bom_line_ids.new() as material_form:
-            material_form.product_id = self.mat2
+            material_form.product_id = cls.mat2
             material_form.product_qty = 1
-        self.bom = bom_form.save()
+        cls.bom = bom_form.save()
         # Production
-        production_form = Form(self.env["mrp.production"])
-        production_form.product_id = self.product.product_variant_id
-        production_form.bom_id = self.bom
+        production_form = Form(cls.env["mrp.production"])
+        production_form.product_id = cls.product.product_variant_id
+        production_form.bom_id = cls.bom
         production_form.product_qty = 2.0
-        self.production1 = production_form.save()
-        self.production1.action_confirm()
-        self.production1.action_assign()
+        cls.production1 = production_form.save()
+        cls.production1.action_confirm()
+        cls.production1.action_assign()
         # Inspection
-        inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
-        self.inspection1 = self.inspection_model.create(
+        inspection_lines = cls.inspection_model._prepare_inspection_lines(cls.test)
+        cls.inspection1 = cls.inspection_model.create(
             {"name": "Test Inspection", "inspection_lines": inspection_lines}
         )
 

@@ -27,20 +27,6 @@ msgid "Created inspections"
 msgstr ""
 
 #. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__id
-msgid "ID"
-msgstr ""
-
-#. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections"
 msgstr ""
@@ -48,13 +34,6 @@ msgstr ""
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,help:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections related to this production."
-msgstr ""
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: quality_control_mrp_oca
