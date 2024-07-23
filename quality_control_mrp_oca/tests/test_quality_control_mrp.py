@@ -128,4 +128,4 @@ class TestQualityControlMrp(TransactionCase):
         self.inspection1.write(
             {"object_id": "%s,%d" % (self.production1._name, self.production1.id)}
         )
-        self.assertEquals(self.inspection1.production_id, self.production1)
+        self.assertEqual(self.inspection1.production_id, self.production1)
