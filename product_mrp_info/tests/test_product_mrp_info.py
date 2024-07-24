@@ -5,26 +5,27 @@ from odoo.tests.common import TransactionCase
 
 
 class TestProductMrpInfo(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.pt_obj = self.env["product.template"]
-        self.pp_obj = self.env["product.product"]
-        self.mo_obj = self.env["mrp.production"]
-        self.bom_obj = self.env["mrp.bom"]
-        self.boml_obj = self.env["mrp.bom.line"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.pt_obj = cls.env["product.template"]
+        cls.pp_obj = cls.env["product.product"]
+        cls.mo_obj = cls.env["mrp.production"]
+        cls.bom_obj = cls.env["mrp.bom"]
+        cls.boml_obj = cls.env["mrp.bom.line"]
 
-        self.manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
+        cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
 
-        self.attribute = self.env["product.attribute"].create(
+        cls.attribute = cls.env["product.attribute"].create(
             {"name": "Test Attribute", "create_variant": "always"}
         )
-        self.value1 = self.env["product.attribute.value"].create(
-            {"name": "Value 1", "attribute_id": self.attribute.id}
+        cls.value1 = cls.env["product.attribute.value"].create(
+            {"name": "Value 1", "attribute_id": cls.attribute.id}
         )
-        self.value2 = self.env["product.attribute.value"].create(
-            {"name": "Value 2", "attribute_id": self.attribute.id}
+        cls.value2 = cls.env["product.attribute.value"].create(
+            {"name": "Value 2", "attribute_id": cls.attribute.id}
         )
-        self.product = self.pt_obj.create(
+        cls.product = cls.pt_obj.create(
             {
                 "name": "Test Template",
                 "attribute_line_ids": [
@@ -32,45 +33,45 @@ class TestProductMrpInfo(TransactionCase):
                         0,
                         0,
                         {
-                            "attribute_id": self.attribute.id,
-                            "value_ids": [(6, 0, [self.value1.id, self.value2.id])],
+                            "attribute_id": cls.attribute.id,
+                            "value_ids": [(6, 0, [cls.value1.id, cls.value2.id])],
                         },
                     )
                 ],
-                "route_ids": [(6, 0, self.manufacture_route.ids)],
+                "route_ids": [(6, 0, cls.manufacture_route.ids)],
             }
         )
-        self.variant_1 = self.product.product_variant_ids[0]
-        self.variant_2 = self.product.product_variant_ids[1]
-        self.bom = self.bom_obj.create(
-            {"product_tmpl_id": self.product.id, "product_qty": 1.0}
+        cls.variant_1 = cls.product.product_variant_ids[0]
+        cls.variant_2 = cls.product.product_variant_ids[1]
+        cls.bom = cls.bom_obj.create(
+            {"product_tmpl_id": cls.product.id, "product_qty": 1.0}
         )
         # Create 3 MO's
-        self.mo_1 = self.mo_obj.create(
+        cls.mo_1 = cls.mo_obj.create(
             {
                 "name": "MO ABC",
-                "product_id": self.variant_1.id,
-                "product_uom_id": self.variant_1.uom_id.id,
+                "product_id": cls.variant_1.id,
+                "product_uom_id": cls.variant_1.uom_id.id,
                 "product_qty": 2,
-                "bom_id": self.bom.id,
+                "bom_id": cls.bom.id,
             }
         )
-        self.mo_2 = self.mo_obj.create(
+        cls.mo_2 = cls.mo_obj.create(
             {
                 "name": "MO XYZ",
-                "product_id": self.variant_1.id,
-                "product_uom_id": self.variant_1.uom_id.id,
+                "product_id": cls.variant_1.id,
+                "product_uom_id": cls.variant_1.uom_id.id,
                 "product_qty": 3,
-                "bom_id": self.bom.id,
+                "bom_id": cls.bom.id,
             }
         )
-        self.mo_3 = self.mo_obj.create(
+        cls.mo_3 = cls.mo_obj.create(
             {
                 "name": "MO QWE",
-                "product_id": self.variant_2.id,
-                "product_uom_id": self.variant_2.uom_id.id,
+                "product_id": cls.variant_2.id,
+                "product_uom_id": cls.variant_2.uom_id.id,
                 "product_qty": 6,
-                "bom_id": self.bom.id,
+                "bom_id": cls.bom.id,
             }
         )
 
