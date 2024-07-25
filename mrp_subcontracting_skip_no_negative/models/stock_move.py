@@ -29,7 +29,7 @@ class StockMove(models.Model):
                 state == "assigned"
                 for state in unassigned_productions.filtered(
                     lambda p: p.state == "to_close"
-                ).mapped("reservation_state")                
+                ).mapped("reservation_state")
             ):
                 continue
             moves_with_no_check -= move
