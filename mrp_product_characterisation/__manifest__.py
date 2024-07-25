@@ -14,6 +14,7 @@
         "mrp",
     ],
     "data": [
+        "views/view_mrp_bom.xml",
         "views/view_product_product.xml",
         "views/view_product_template.xml",
     ],

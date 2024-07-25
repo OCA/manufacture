@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- ************************************************************ -->
+    <!-- Bill of Materials - search filters -->
+    <!-- ************************************************************ -->
+    <record id="view_mrp_bom_search" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='normal']" position="after">
+              <separator />
+              <filter
+                    string="BoM for intermediate product"
+                    name="filter_product_intermediate"
+                    domain="[('product_tmpl_id.is_intermediate', '=', True)]"
+                />
+              <filter
+                    string="BoM for finished product"
+                    name="filter_product_finished"
+                    domain="[('product_tmpl_id.sale_ok', '=', True)]"
+                />
+              <separator />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

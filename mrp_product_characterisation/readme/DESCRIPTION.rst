@@ -1,4 +1,5 @@
-Adds characterisation "Intermediate Products" and adjust Components characterisation.
+Adds characterisation "Intermediate Products" and adjust Components characterisation for Products.
+Adds BoM filter with theses characterisations.
 
 Intermediate products : contained in a BoM AND manufactured (has a BoM)
 Component products : contained in a BoM AND NOT manufactured (has no BoM)
