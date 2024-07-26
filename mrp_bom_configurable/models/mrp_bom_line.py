@@ -1,6 +1,7 @@
 import logging
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
 logger = logging.getLogger(__name__)
@@ -58,7 +59,7 @@ def evaluate_domain_operand(domain, values, current_name, parent_name):
         try:
             return safe_eval(code, values)
         except SyntaxError as e:
-            raise exceptions.ValidationError(
+            raise ValidationError(
                 f"Domain {domain} is incorrect on {current_name}"
             ) from e
 
