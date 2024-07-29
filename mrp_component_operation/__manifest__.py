@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Components Operations",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Allows to operate the components from a MO",
     "website": "https://github.com/OCA/manufacture",
