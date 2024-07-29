@@ -14,6 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__active
+msgid "Active"
+msgstr ""
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_search
+msgid "Archived"
+msgstr ""
+
+#. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
 msgid "Cancel"
 msgstr ""
@@ -236,6 +247,7 @@ msgstr ""
 
 #. module: mrp_component_operation
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_search
 #: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_tree
 msgid "Reference"
 msgstr ""
