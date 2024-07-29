@@ -11,12 +11,12 @@ class MrpBomLine(models.Model):
 
     product_qty_net = fields.Float(
         string="Net quantity",
-        help="Weight after any preparation, e.g. weight of carrots after they are grated.",
+        help="Quantity after process",
         digits="Product Unit of Measure",
     )
     loss_percentage = fields.Float(
         string="Loss %",
-        help="Percentage loss, for example, when grating carrots",
+        help="Percentage loss during process",
         digits=(16, 2),
     )
     diff_product_qty_gross_net = fields.Float(
@@ -31,11 +31,11 @@ class MrpBomLine(models.Model):
     @api.depends("product_qty", "product_qty_net", "loss_percentage")
     def _compute_diff_product_qty_gross_net(self):
         for bom_line in self:
-            _bomline_qty_net_theorical = self.calculate_qty_net_theoretical(
+            _bom_line_qty_net_theorical = self.calculate_qty_net_theoretical(
                 bom_line.product_qty, bom_line.loss_percentage
             )
             _diff_product_qty_gross_net = round(
-                (bom_line.product_qty_net - _bomline_qty_net_theorical), 2
+                (bom_line.product_qty_net - _bom_line_qty_net_theorical), 2
             )
             bom_line.diff_product_qty_gross_net = _diff_product_qty_gross_net
 
