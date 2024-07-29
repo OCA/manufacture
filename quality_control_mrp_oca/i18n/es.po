@@ -28,20 +28,6 @@ msgid "Created inspections"
 msgstr "Inspecciones creadas"
 
 #. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections"
 msgstr "Inspecciones"
@@ -50,13 +36,6 @@ msgstr "Inspecciones"
 #: model:ir.model.fields,help:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections related to this production."
 msgstr "Inspecciones relativas a esta producción."
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
@@ -99,3 +78,12 @@ msgstr "Inspecciones de calidad desde la orden de fabricación"
 #: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.mrp_production_qc_view
 msgid "inspections"
 msgstr "inspecciones"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"

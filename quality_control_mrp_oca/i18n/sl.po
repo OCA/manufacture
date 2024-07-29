@@ -20,28 +20,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__created_inspections
 msgid "Created inspections"
 msgstr "Ustvarjene inšpekcije"
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__display_name
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__id
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__id
-msgid "ID"
-msgstr ""
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
@@ -52,13 +38,6 @@ msgstr "Inšpekcije"
 #: model:ir.model.fields,help:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections related to this production."
 msgstr "Inšpekcije vezane na to proizvodnjo."
-
-#. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection____last_update
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line____last_update
-msgid "Last Modified on"
-msgstr ""
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
