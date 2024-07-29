@@ -274,7 +274,7 @@ class MultiLevelMrp(models.TransientModel):
             )
             # Do not create planned order for products that are Kits
             planned_order = False
-            if not product_mrp_area_id.supply_method == "phantom":
+            if product_mrp_area_id._should_create_planned_order():
                 planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
@@ -873,6 +873,14 @@ class MultiLevelMrp(models.TransientModel):
                 if invs:
                     po.mrp_inventory_id = invs[0]
 
+    def should_build_time_phased_inventory(self, product_mrp_area):
+        return not (
+            self._exclude_from_mrp(
+                product_mrp_area.product_id, product_mrp_area.mrp_area_id
+            )
+            or product_mrp_area.supply_method == "phantom"
+        )
+
     @api.model
     def _mrp_final_process(self, mrp_areas):
         logger.info("Start MRP final process")
@@ -883,12 +891,7 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
-            if (
-                self._exclude_from_mrp(
-                    product_mrp_area.product_id, product_mrp_area.mrp_area_id
-                )
-                or product_mrp_area.supply_method == "phantom"
-            ):
+            if not self.should_build_time_phased_inventory(product_mrp_area):
                 continue
             self._init_mrp_inventory(product_mrp_area)
         logger.info("End MRP final process")

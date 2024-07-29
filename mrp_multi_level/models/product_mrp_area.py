@@ -300,3 +300,7 @@ class ProductMRPArea(models.Model):
     def _get_locations(self):
         self.ensure_one()
         return self.mrp_area_id._get_locations()
+
+    def _should_create_planned_order(self):
+        self.ensure_one()
+        return not self.supply_method == "phantom"
