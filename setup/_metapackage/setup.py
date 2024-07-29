@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo-addon-mrp_workcenter_hierarchical>=16.0dev,<16.1dev',
         'odoo-addon-mrp_workorder_lot_display>=16.0dev,<16.1dev',
         'odoo-addon-mrp_workorder_sequence>=16.0dev,<16.1dev',
+        'odoo-addon-quality_control_mrp_oca>=16.0dev,<16.1dev',
         'odoo-addon-quality_control_oca>=16.0dev,<16.1dev',
         'odoo-addon-quality_control_stock_oca>=16.0dev,<16.1dev',
     ],
