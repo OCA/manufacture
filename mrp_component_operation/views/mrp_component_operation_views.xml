@@ -6,11 +6,18 @@
         <field name="arch" type="xml">
             <form string="Component Operation">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <h1>
                         <field name="name" string="Reference" />
                     </h1>
                     <group name="picking_type" string="Operation Type">
                         <field name="picking_type_id" />
+                        <field name="active" invisible="1" />
                     </group>
                     <group name="operations" string="Operations">
                         <field name="outgoing_operation" />
@@ -59,6 +66,23 @@
                 <field name="outgoing_operation" />
                 <field name="incoming_operation" />
             </tree>
+        </field>
+    </record>
+
+    <record id="view_mrp_component_operation_search" model="ir.ui.view">
+        <field name="name">mrp.component.operation.search</field>
+        <field name="model">mrp.component.operation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Reference" />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+                <separator />
+            </search>
         </field>
     </record>
 
