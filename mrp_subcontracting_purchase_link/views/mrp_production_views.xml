@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="purchase_order_id" groups="purchase.group_purchase_user" />
+                <field name="purchase_line_id" groups="purchase.group_purchase_user" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
