@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-mrp_sale_info>=15.0dev,<15.1dev',
         'odoo-addon-mrp_subcontracting_lot_number_propagation>=15.0dev,<15.1dev',
         'odoo-addon-mrp_subcontracting_no_negative>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_subcontracting_purchase_link>=15.0dev,<15.1dev',
         'odoo-addon-mrp_tag>=15.0dev,<15.1dev',
         'odoo-addon-mrp_warehouse_calendar>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workcenter_category>=15.0dev,<15.1dev',
