@@ -12,8 +12,8 @@ class MrpProduction(models.Model):
     # If triggered also from picking_type_id changes, it would be impossible
     # to adjust picking_type_id manually.
     @api.onchange("product_id", "company_id")
-    def onchange_product_id(self):
-        res = super().onchange_product_id()
+    def _onchange_product_id(self):
+        res = super()._onchange_product_id()
         if self.product_id:
             base_domain = [
                 ("action", "=", "manufacture"),
@@ -22,7 +22,7 @@ class MrpProduction(models.Model):
                 ("company_id", "child_of", self.company_id.id),
             ]
             res_rule = self.env["procurement.group"]._search_rule(
-                False, self.product_id, False, base_domain
+                False, False, self.product_id, False, base_domain
             )
             if res_rule:
                 self.picking_type_id = res_rule.picking_type_id
