@@ -36,8 +36,8 @@ msgstr "Délai de fabrication"
 
 #. module: mrp_bom_produce_delay
 #: model_terms:ir.ui.view,arch_db:mrp_bom_produce_delay.view_mrp_bom_form
-msgid "Product Manuf. Lead Time"
-msgstr "Délai de fabrication du produit"
+msgid "Lead Time"
+msgstr "Délai de fabrication"
 
 #. module: mrp_bom_produce_delay
 #: model_terms:ir.ui.view,arch_db:mrp_bom_produce_delay.view_mrp_bom_form
