@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 15.0.1.0.1 |  | Production Grouped By Product
 [mrp_production_note](mrp_production_note/) | 15.0.1.0.0 |  | Notes in production orders
 [mrp_production_operation_injection](mrp_production_operation_injection/) | 15.0.1.0.0 | [![grindtildeath](https://github.com/grindtildeath.png?size=30px)](https://github.com/grindtildeath) | Adds an existing operation from the Bill of Material
+[mrp_production_picking_type_from_route](mrp_production_picking_type_from_route/) | 15.0.1.0.0 |  | Updates the operation type creating MO based on the product
 [mrp_production_putaway_strategy](mrp_production_putaway_strategy/) | 15.0.1.0.0 |  | Applies putaway strategies to manufacturing orders for finished products.
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 15.0.1.0.0 |  | Production - Manual Quant Assignment
 [mrp_production_serial_matrix](mrp_production_serial_matrix/) | 15.0.0.1.0 |  | MRP Production Serial Matrix

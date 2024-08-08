@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo-addon-mrp_production_grouped_by_product>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_note>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_operation_injection>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_production_picking_type_from_route>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_putaway_strategy>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_quant_manual_assign>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_serial_matrix>=15.0dev,<15.1dev',
