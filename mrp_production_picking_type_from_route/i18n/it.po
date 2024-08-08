@@ -17,21 +17,15 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_picking_type_from_route
-#: model:ir.model.fields,field_description:mrp_production_picking_type_from_route.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: mrp_production_picking_type_from_route
-#: model:ir.model.fields,field_description:mrp_production_picking_type_from_route.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_production_picking_type_from_route
-#: model:ir.model.fields,field_description:mrp_production_picking_type_from_route.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: mrp_production_picking_type_from_route
 #: model:ir.model,name:mrp_production_picking_type_from_route.model_mrp_production
 msgid "Production Order"
 msgstr "Ordine di produzione"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
