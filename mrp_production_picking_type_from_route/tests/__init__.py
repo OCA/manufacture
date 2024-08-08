@@ -1,0 +1,1 @@
+from . import test_mrp_production_picking_type_from_route
