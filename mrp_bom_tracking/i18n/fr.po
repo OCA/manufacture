@@ -6,27 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-08-23 17:06+0000\n"
+"Last-Translator: ahmedtrigui <trigui43@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid ""
 ":\n"
 "                New component<br/>"
-msgstr ""
+msgstr "Nouveau composant<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid ""
 ":\n"
 "                Removed component<br/>"
-msgstr ""
+msgstr "Composant retiré<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
@@ -35,87 +37,93 @@ msgid ""
 "<br/>\n"
 "                    Product Unit of Measure:"
 msgstr ""
+"<br/>\n"
+"                    Unité de mesure de l'article :"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component quantities or UoMs have been updated.</strong>"
 msgstr ""
+"<strong>La quantité du composant ou l'unité de mesure a été "
+"modifiée.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid "<strong>The components have changed.</strong>"
-msgstr ""
+msgstr "<strong>Le composant a été changé.</strong>"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Nomenclature"
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Ligne de nomenclature"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Type de nomenclature"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__id
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
+"Si une variante d'article est définie, la nomenclature est disponible "
+"uniquement pour cet article."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom____last_update
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Type d'opération"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Article"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "Product Quantity:"
-msgstr ""
+msgstr "Quantité d'article:"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante d'article"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Référence"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
@@ -129,4 +137,4 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "component<br/>"
-msgstr ""
+msgstr "Composant<br/>"
