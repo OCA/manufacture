@@ -9,6 +9,7 @@
             <field name="property_supplier_payment_term_id" position="before">
                 <field
                     name="is_subcontractor_partner"
+                    string="Subcontractor"
                     attrs="{'invisible': [('is_company', '=', False)]}"
                 />
             </field>
