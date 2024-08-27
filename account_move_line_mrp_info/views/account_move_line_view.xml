@@ -12,4 +12,16 @@
         </field>
     </record>
 
+    <record id="view_account_move_line_filter" model="ir.ui.view">
+        <field name="name">account.move.line.search</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_account_move_line_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="mrp_production_id" />
+                <field name="unbuild_id" />
+            </field>
+        </field>
+    </record>
+
 </odoo>
