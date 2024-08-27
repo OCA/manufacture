@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    is_subcontractor_partner = fields.Boolean(string="Subcontractor")
+    is_subcontractor_partner = fields.Boolean(string="Subcontractor partner")
     subcontracted_created_location_id = fields.Many2one(
         comodel_name="stock.location", copy=False
     )
