@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: repair_picking_after_done
-#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
-msgid "<span class=\"o_stat_text\">Transfers</span>"
-msgstr ""
-
-#. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Cancel"
 msgstr ""
@@ -106,13 +101,6 @@ msgstr ""
 #. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Transfer Repaired Moves"
-msgstr ""
-
-#. module: repair_picking_after_done
-#: code:addons/repair_picking_after_done/models/repair.py:0
-#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__picking_ids
-#, python-format
-msgid "Transfers"
 msgstr ""
 
 #. module: repair_picking_after_done
