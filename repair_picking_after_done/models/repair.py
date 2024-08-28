@@ -1,13 +1,12 @@
 # Copyright (C) 2022 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class Repair(models.Model):
     _inherit = "repair.order"
 
-    picking_ids = fields.Many2many("stock.picking", string="Transfers")
     remaining_quantity = fields.Float(
         "Remaining quantity to be transferred", compute="_compute_remaining_quantity"
     )
@@ -38,17 +37,3 @@ class Repair(models.Model):
             },
             "target": "new",
         }
-
-    def action_open_transfers(self):
-        self.ensure_one()
-        domain = [("id", "in", self.picking_ids.ids)]
-        action = {
-            "name": _("Transfers"),
-            "view_type": "tree",
-            "view_mode": "list,form",
-            "res_model": "stock.picking",
-            "type": "ir.actions.act_window",
-            "context": self.env.context,
-            "domain": domain,
-        }
-        return action
