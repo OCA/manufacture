@@ -37,7 +37,7 @@ class AssignManualQuants(models.TransientModel):
                     and ml.package_id == quant.package_id
                 )
             )
-            line["qty_done"] = sum(move_lines.mapped("qty_done"))
+            line["qty_done"] = sum(move_lines.mapped("quantity"))
             line["to_consume_now"] = bool(line["qty_done"])
         return line
 
