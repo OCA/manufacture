@@ -12,7 +12,7 @@ class StockMove(models.Model):
     def _should_bypass_set_qty_producing(self):
         res = super()._should_bypass_set_qty_producing()
         if self.has_tracking != "none" and float_is_zero(
-            self.quantity_done, precision_rounding=self.product_uom.rounding
+            self.quantity, precision_rounding=self.product_uom.rounding
         ):
             # If some serial/lot has been selected to be consumed
             # we don't change the selection.

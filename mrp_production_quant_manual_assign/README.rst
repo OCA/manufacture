@@ -81,6 +81,10 @@ Contributors
 
    -  Lois Rilo <lois.rilo@forgeflow.com>
 
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
+
 Maintainers
 -----------
 

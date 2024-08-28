@@ -53,9 +53,9 @@ class AssignManualQuants(models.TransientModel):
             ).mapped("lot_id")
             for ml in move.move_line_ids:
                 if ml.lot_id in lots_to_consume:
-                    ml.qty_done = ml.reserved_uom_qty
+                    ml.qty_done = ml.quantity_product_uom
                 elif float_is_zero(
-                    ml.reserved_uom_qty, precision_digits=precision_digits
+                    ml.quantity_product_uom, precision_digits=precision_digits
                 ):
                     ml.unlink()
                 else:

@@ -2,3 +2,5 @@
   - Yoshi Tashiro \<<tashiro@quartile.co>\>
 - [ForgeFlow](https://www.forgeflow.com):
   - Lois Rilo \<<lois.rilo@forgeflow.com>\>
+- [APSL-Nagarro](https://apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>

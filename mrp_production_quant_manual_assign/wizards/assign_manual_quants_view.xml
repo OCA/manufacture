@@ -13,7 +13,7 @@
             <field name="selected" position="after">
                 <field
                     name="to_consume_now"
-                    attrs="{'column_invisible': [('parent.is_production_single_lot', '=', False)]}"
+                    column_invisible="not parent.is_production_single_lot"
                 />
             </field>
             <field name="move_id" position="after">
