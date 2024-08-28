@@ -17,13 +17,13 @@ Production - Manual Quant Assignment
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/16.0/mrp_production_quant_manual_assign
+    :target: https://github.com/OCA/manufacture/tree/17.0/mrp_production_quant_manual_assign
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-16-0/manufacture-16-0-mrp_production_quant_manual_assign
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-mrp_production_quant_manual_assign
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -31,7 +31,8 @@ Production - Manual Quant Assignment
 This module allows you to manually select quants for components of the
 manufacturing order.
 
-The module depends on `stock_quant_manual_assign <https://github.com/OCA/stock-logistics-warehouse/tree/14.0/stock_quant_manual_assign>`
+The module depends on stock_quant_manual_assign
+<https://github.com/OCA/stock-logistics-warehouse/tree/14.0/stock_quant_manual_assign>
 module.
 
 **Table of contents**
@@ -44,10 +45,11 @@ Usage
 
 To use this module, you need to:
 
-#. Open a manufacturing order.
-#. Click on the tag icon next to Reserved Quantity of a move line, which opens
-   a wizard for manually selecting quants.
-#. Select quants and update quantities to assign (reserve), then Confirm.
+1. Open a manufacturing order.
+2. Click on the tag icon next to Reserved Quantity of a move line, which
+   opens a wizard for manually selecting quants.
+3. Select quants and update quantities to assign (reserve), then
+   Confirm.
 
 Bug Tracker
 ===========
@@ -55,7 +57,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_quant_manual_assign%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_quant_manual_assign%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -63,24 +65,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Quartile Limited <https://www.quartile.co>`_:
+-  `Quartile Limited <https://www.quartile.co>`__:
 
-  * Yoshi Tashiro <tashiro@quartile.co>
+   -  Yoshi Tashiro <tashiro@quartile.co>
 
-* `ForgeFlow <https://www.forgeflow.com>`_:
+-  `ForgeFlow <https://www.forgeflow.com>`__:
 
-  * Lois Rilo <lois.rilo@forgeflow.com>
+   -  Lois Rilo <lois.rilo@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -92,6 +94,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/16.0/mrp_production_quant_manual_assign>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_production_quant_manual_assign>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -49,7 +49,7 @@ class AssignManualQuants(models.TransientModel):
                 "Product Unit of Measure"
             )
             lots_to_consume = self.quants_lines.filtered(
-                lambda l: l.to_consume_now
+                lambda x: x.to_consume_now
             ).mapped("lot_id")
             for ml in move.move_line_ids:
                 if ml.lot_id in lots_to_consume:
