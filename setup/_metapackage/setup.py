@@ -72,6 +72,7 @@ setuptools.setup(
         'odoo14-addon-repair_refurbish',
         'odoo14-addon-repair_refurbish_repair_stock_move',
         'odoo14-addon-repair_sale_order',
+        'odoo14-addon-repair_stock',
         'odoo14-addon-repair_stock_move',
         'odoo14-addon-repair_type',
         'odoo14-addon-stock_picking_product_kit_helper',
