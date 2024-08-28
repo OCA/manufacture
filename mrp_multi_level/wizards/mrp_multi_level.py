@@ -723,30 +723,39 @@ class MultiLevelMrp(models.TransientModel):
         """Improve extensibility being able to exclude special moves."""
         return False
 
-    @api.model
-    def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
-        logger.info("Start MRP calculation")
+    def _get_mrp_initialization_groups_of_params(self, mrp_lowest_llc, mrp_areas):
         product_mrp_area_obj = self.env["product.mrp.area"]
-        counter = 0
-        if not mrp_areas:
-            mrp_areas = self.env["mrp.area"].search([])
+        groups = {}
         for mrp_area in mrp_areas:
             llc = 0
             while mrp_lowest_llc > llc:
-                product_mrp_areas = product_mrp_area_obj.search(
+                groups[mrp_area, llc] = product_mrp_area_obj.search(
                     [("product_id.llc", "=", llc), ("mrp_area_id", "=", mrp_area.id)]
                 )
                 llc += 1
+        return groups
 
-                for product_mrp_area in product_mrp_areas:
-                    if product_mrp_area.mrp_nbr_days == 0:
-                        self._init_mrp_move_non_grouped_demand(product_mrp_area)
-                    else:
-                        self._init_mrp_move_grouped_demand(product_mrp_area)
-                    counter += 1
+    @api.model
+    def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
+        logger.info("Start MRP calculation")
+        if not mrp_areas:
+            mrp_areas = self.env["mrp.area"].search([])
+        keyed_groups = self._get_mrp_initialization_groups_of_params(
+            mrp_lowest_llc, mrp_areas
+        )
+        for (mrp_area, llc), product_mrp_areas in keyed_groups.items():
+            counter = 0
+            for product_mrp_area in product_mrp_areas:
+                if product_mrp_area.mrp_nbr_days == 0:
+                    self._init_mrp_move_non_grouped_demand(product_mrp_area)
+                else:
+                    self._init_mrp_move_grouped_demand(product_mrp_area)
+                counter += 1
 
-            log_msg = "MRP Calculation LLC {} Finished - Nbr. products: {}".format(
-                llc - 1, counter
+            log_msg = (
+                "MRP Calculation LLC {} at {} Finished - Nbr. products: {}".format(
+                    llc, mrp_area.name, counter
+                )
             )
             logger.info(log_msg)
 
