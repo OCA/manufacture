@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: repair_picking_after_done
-#: model_terms:ir.ui.view,arch_db:repair_picking_after_done.repair_type_form_inherit
-msgid "<span class=\"o_stat_text\">Transfers</span>"
-msgstr "<span class=\"o_stat_text\">Trasferimenti</span>"
-
-#. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "Cancel"
 msgstr "Annulla"
@@ -112,13 +107,13 @@ msgid "Transfer Repaired Moves"
 msgstr "Movimenti trasferimenti di riparazione"
 
 #. module: repair_picking_after_done
-#: code:addons/repair_picking_after_done/models/repair.py:0
-#: model:ir.model.fields,field_description:repair_picking_after_done.field_repair_order__picking_ids
-#, python-format
-msgid "Transfers"
-msgstr "Trasferimenti"
-
-#. module: repair_picking_after_done
 #: model_terms:ir.ui.view,arch_db:repair_picking_after_done.view_repair_move_transfer_wizard
 msgid "or"
 msgstr "o"
+
+#~ msgid "<span class=\"o_stat_text\">Transfers</span>"
+#~ msgstr "<span class=\"o_stat_text\">Trasferimenti</span>"
+
+#, python-format
+#~ msgid "Transfers"
+#~ msgstr "Trasferimenti"
