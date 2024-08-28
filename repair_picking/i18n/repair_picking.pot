@@ -112,18 +112,6 @@ msgid "This is the location where the product to repair is located."
 msgstr ""
 
 #. module: repair_picking
-#: model:ir.model.fields,field_description:repair_picking.field_repair_order__picking_count
-#: model:ir.model.fields,field_description:repair_picking.field_repair_order__picking_ids
-#: model_terms:ir.ui.view,arch_db:repair_picking.view_repair_order_form_repair_stock_move_inherited
-msgid "Transfers"
-msgstr ""
-
-#. module: repair_picking
-#: model_terms:ir.ui.view,arch_db:repair_picking.view_repair_order_form_repair_stock_move_inherited
-msgid "Transfers associated with this repair order"
-msgstr ""
-
-#. module: repair_picking
 #: model:ir.model,name:repair_picking.model_stock_warehouse
 msgid "Warehouse"
 msgstr ""
