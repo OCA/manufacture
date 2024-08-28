@@ -23,35 +23,9 @@ class RepairOrder(models.Model):
     location_id = fields.Many2one(
         default=_get_default_location_id,
     )
-
-    picking_ids = fields.Many2many(
-        comodel_name="stock.picking",
-        compute="_compute_picking_ids",
-        copy=False,
-        string="Pickings associated to this repair order",
-    )
-    picking_count = fields.Integer(
-        string="Transfers", copy=False, compute="_compute_picking_ids"
-    )
     procurement_group_id = fields.Many2one(
         "procurement.group", "Procurement Group", copy=False
     )
-
-    def action_view_pickings(self):
-        self.ensure_one()
-        action = self.env["ir.actions.actions"]._for_xml_id(
-            "stock.action_picking_tree_all"
-        )
-        action["domain"] = [("id", "in", self.picking_ids.ids)]
-        return action
-
-    def _compute_picking_ids(self):
-        for order in self:
-            moves = self.env["stock.move"].search(
-                [("repair_line_id", "in", order.operations.ids)]
-            )
-            order.picking_ids = moves.mapped("picking_id")
-            order.picking_count = len(moves.mapped("picking_id"))
 
     def action_repair_cancel(self):
         res = super().action_repair_cancel()

@@ -3,18 +3,17 @@
 
 {
     "name": "Repair Picking",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "Repair",
     "website": "https://github.com/OCA/manufacture",
     "summary": "Enhanced repair order management with pickings "
     "for adding and removing components",
-    "depends": ["repair", "stock_move_forced_lot", "repair_stock_move"],
+    "depends": ["stock_move_forced_lot", "repair_stock_move", "repair_stock"],
     "data": [
         "views/stock_warehouse_views.xml",
-        "views/repair_order_view.xml",
     ],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "installable": True,
     "auto_install": False,
 }
