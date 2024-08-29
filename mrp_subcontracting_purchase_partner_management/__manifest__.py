@@ -1,6 +1,6 @@
 {
     "name": "Subcontracting Purchase Partner Management",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "summary": "Subcontracting Purchase Partner Management",
     "author": "Cetmix, Odoo Community Association (OCA)",
     "license": "LGPL-3",
