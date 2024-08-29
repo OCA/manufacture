@@ -16,128 +16,78 @@ class TestSubcontractedPartnerPatch(TestSubcontractedPartner):
         )
 
     def test_is_subcontractor_partner_first_time(self):
-        self.partner_id.update(
-            {
-                "is_subcontractor_partner": True,
-            }
-        )
-
-        location = self.partner_id.subcontracted_created_location_id
+        self.partner.update({"is_subcontractor_partner": True})
+        location = self.partner.subcontracted_created_location_id
         self.assertTrue(location, "Location is not created")
         self.assertTrue(location.active, "Location must be active")
-
-        partner_buy_rule = self.partner_id.partner_buy_rule_id
+        partner_buy_rule = self.partner.partner_buy_rule_id
         self.assertTrue(partner_buy_rule, "Partner Buy rule is not created")
         self.assertTrue(partner_buy_rule.active, "Partner Buy rule must be active")
-
-        partner_resupply_rule = self.partner_id.partner_resupply_rule_id
+        partner_resupply_rule = self.partner.partner_resupply_rule_id
         self.assertTrue(partner_resupply_rule, "Partner Resupply rule is not created")
         self.assertTrue(
             partner_resupply_rule.active, "Partner Resupply rule must be active"
         )
 
     def test_is_subcontractor_partner_switch_off(self):
-        self.partner_id.write(
-            {
-                "is_subcontractor_partner": True,
-            }
-        )
-        self.partner_id.update(
-            {
-                "is_subcontractor_partner": False,
-            }
-        )
-
-        location = self.partner_id.subcontracted_created_location_id
+        self.partner.write({"is_subcontractor_partner": True})
+        self.partner.update({"is_subcontractor_partner": False})
+        location = self.partner.subcontracted_created_location_id
         self.assertFalse(location.active, "Location must be not active")
-
-        partner_buy_rule = self.partner_id.partner_buy_rule_id
+        partner_buy_rule = self.partner.partner_buy_rule_id
         self.assertFalse(partner_buy_rule.active, "Partner Buy rule must be not active")
-
-        partner_resupply_rule = self.partner_id.partner_resupply_rule_id
+        partner_resupply_rule = self.partner.partner_resupply_rule_id
         self.assertFalse(
             partner_resupply_rule.active, "Partner Resupply rule must be not active"
         )
 
     def test_is_subcontractor_partner_switch_on(self):
-        self.partner_id.update(
-            {
-                "is_subcontractor_partner": True,
-            }
-        )
-
-        location = self.partner_id.subcontracted_created_location_id
+        self.partner.update({"is_subcontractor_partner": True})
+        location = self.partner.subcontracted_created_location_id
         self.assertTrue(location.active, "Location must be active")
-
-        partner_buy_rule = self.partner_id.partner_buy_rule_id
+        partner_buy_rule = self.partner.partner_buy_rule_id
         self.assertTrue(partner_buy_rule.active, "Partner Buy rule must be active")
-
-        partner_resupply_rule = self.partner_id.partner_resupply_rule_id
+        partner_resupply_rule = self.partner.partner_resupply_rule_id
         self.assertTrue(
             partner_resupply_rule.active, "Partner Resupply rule must be active"
         )
 
     def test_is_subcontractor_partner_active_switch_off(self):
-        self.partner_id.write(
-            {
-                "is_subcontractor_partner": True,
-            }
-        )
-        self.partner_id.update(
-            {
-                "active": False,
-            }
-        )
-
-        location = self.partner_id.subcontracted_created_location_id
+        self.partner.write({"is_subcontractor_partner": True})
+        self.partner.update({"active": False})
+        location = self.partner.subcontracted_created_location_id
         self.assertFalse(location.active, "Location must be not active")
-
-        partner_buy_rule = self.partner_id.partner_buy_rule_id
+        partner_buy_rule = self.partner.partner_buy_rule_id
         self.assertFalse(partner_buy_rule.active, "Partner Buy rule must be not active")
-
-        partner_resupply_rule = self.partner_id.partner_resupply_rule_id
+        partner_resupply_rule = self.partner.partner_resupply_rule_id
         self.assertFalse(
             partner_resupply_rule.active, "Partner Resupply rule must be not active"
         )
 
     def test_is_subcontractor_partner_aсtive_switch_on(self):
-        self.partner_id.write(
-            {
-                "is_subcontractor_partner": True,
-            }
-        )
-        self.partner_id.write(
-            {
-                "active": True,
-            }
-        )
-
-        location = self.partner_id.subcontracted_created_location_id
+        self.partner.write({"is_subcontractor_partner": True})
+        self.partner.write({"active": True})
+        location = self.partner.subcontracted_created_location_id
         self.assertTrue(location.active, "Location must be active")
-
-        partner_buy_rule = self.partner_id.partner_buy_rule_id
+        partner_buy_rule = self.partner.partner_buy_rule_id
         self.assertTrue(partner_buy_rule.active, "Partner Buy rule must be active")
-
-        partner_resupply_rule = self.partner_id.partner_resupply_rule_id
+        partner_resupply_rule = self.partner.partner_resupply_rule_id
         self.assertTrue(
             partner_resupply_rule.active, "Partner Resupply rule must be active"
         )
 
     def test_is_subcontractor_partner_delete(self):
-        partner_id = self.partner_obj.create(
+        partner = self.partner_obj.create(
             {
                 "name": "Test partner",
                 "is_company": True,
                 "is_subcontractor_partner": True,
             }
         )
-
-        location = partner_id.subcontracted_created_location_id
-        partner_buy_rule = partner_id.partner_buy_rule_id
-        partner_resupply_rule = partner_id.partner_resupply_rule_id
-
-        partner_id.unlink()
-
+        location = partner.subcontracted_created_location_id
+        partner_buy_rule = partner.partner_buy_rule_id
+        partner_resupply_rule = partner.partner_resupply_rule_id
+        partner.unlink()
         self.assertFalse(location.active, "Location must be not active")
         self.assertFalse(partner_buy_rule.active, "Partner Buy rule must be not active")
         self.assertFalse(
