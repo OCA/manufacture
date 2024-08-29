@@ -39,6 +39,12 @@ msgid "Is Subcontractor"
 msgstr "È un terzista"
 
 #. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+msgid "Is subcontractor"
+msgstr ""
+
+#. module: mrp_subcontracting_partner_management
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner____last_update
 #: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_stock_picking_type____last_update
 msgid "Last Modified on"
@@ -74,8 +80,7 @@ msgid "Subcontracted Created Location"
 msgstr "Ubicazione creata per terzista"
 
 #. module: mrp_subcontracting_partner_management
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_form_inherit_subcontractor
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_pickingtype_filter
 msgid "Subcontractor"
 msgstr "Terzista"
