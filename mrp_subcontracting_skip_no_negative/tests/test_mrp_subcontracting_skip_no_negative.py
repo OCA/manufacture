@@ -8,6 +8,16 @@ from odoo.addons.mrp_subcontracting.tests.common import TestMrpSubcontractingCom
 
 
 class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                test_stock_no_negative=True,
+            )
+        )
+
     def test_mrp_subcontracting_skip_no_negative(self):
         picking_form = Form(self.env["stock.picking"])
         picking_form.picking_type_id = self.env.ref("stock.picking_type_in")
@@ -16,12 +26,9 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
             move.product_id = self.finished
             move.product_uom_qty = 1
         subcontracting_receipt = picking_form.save()
-        subcontracting_receipt = subcontracting_receipt.with_context(
-            test_stock_no_negative=True
-        )
         subcontracting_receipt.action_confirm()
         self.assertEqual(subcontracting_receipt.state, "assigned")
-        immediate_wizard = subcontracting_receipt.button_validate()
+        immediate_wizard = subcontracting_receipt.sudo().button_validate()
         self.assertEqual(immediate_wizard.get("res_model"), "stock.immediate.transfer")
         immediate_wizard_form = Form(
             self.env[immediate_wizard["res_model"]].with_context(
@@ -30,7 +37,6 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
         ).save()
         with self.assertRaises(ValidationError):
             immediate_wizard_form.process()
-
         # Create component stock, and subcontracting receipt should now be successful.
         self.env["stock.quant"].create(
             {
