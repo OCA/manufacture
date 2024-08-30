@@ -53,8 +53,7 @@ msgid "Subcontracted Created Location"
 msgstr ""
 
 #. module: mrp_subcontracting_partner_management
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
-#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_form_inherit_subcontractor
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_pickingtype_filter
 msgid "Subcontractor"
 msgstr ""
@@ -62,4 +61,10 @@ msgstr ""
 #. module: mrp_subcontracting_partner_management
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting_partner_management.view_partner_stock_form
 msgid "Subcontractor Location Stock"
+msgstr ""
+
+#. module: mrp_subcontracting_partner_management
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_partner__is_subcontractor_partner
+#: model:ir.model.fields,field_description:mrp_subcontracting_partner_management.field_res_users__is_subcontractor_partner
+msgid "Subcontractor partner"
 msgstr ""
