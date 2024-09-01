@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_mrp_production_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_unplan']" position="before">
+                <button
+                    name="action_create_repair_order"
+                    invisible="state != 'done' or repair_id"
+                    string="Create Repair Order"
+                    type="object"
+                    class="oe_highlight"
+                    data-hotkey="q"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_view_mo_delivery']" position="after">
+                <field name="repair_id" readonly="1" invisible="1" />
+                <button
+                    class="oe_stat_button"
+                    name="action_view_mrp_production_repair_orders"
+                    type="object"
+                    icon="fa-wrench"
+                    invisible="not repair_id"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Repair order</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
