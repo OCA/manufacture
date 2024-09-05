@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2018-12-13 11:58+0000\n"
-"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"PO-Revision-Date: 2024-09-05 09:06+0000\n"
+"Last-Translator: jans23 <jan@suhr.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
@@ -752,12 +752,12 @@ msgstr "Qualität erfolgreich"
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection_line__question_type__quantitative
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test_question__type__quantitative
 msgid "Quantitative"
-msgstr "Qualitativ"
+msgstr "Quantitativ"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__quantitative_value
 msgid "Quantitative value"
-msgstr "Qualitativer Wert"
+msgstr "Quantitativer Wert"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__qty
