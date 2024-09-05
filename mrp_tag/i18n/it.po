@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-19 14:44+0000\n"
+"PO-Revision-Date: 2024-09-05 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,17 +14,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__child_ids
 msgid "Child"
-msgstr ""
+msgstr "Figlio"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__color
 msgid "Color"
-msgstr ""
+msgstr "Colore"
 
 #. module: mrp_tag
 #: model_terms:ir.actions.act_window,help:mrp_tag.mrp_tag_action
@@ -69,12 +69,12 @@ msgstr "Etichetta MRP"
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_id
 msgid "Parent"
-msgstr ""
+msgstr "Padre"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_path
 msgid "Parent Path"
-msgstr ""
+msgstr "Percorso padre"
 
 #. module: mrp_tag
 #: model:ir.model,name:mrp_tag.model_mrp_production
@@ -84,7 +84,7 @@ msgstr "Ordine di produzione"
 #. module: mrp_tag
 #: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_production_filter
 msgid "Tag"
-msgstr ""
+msgstr "Etichetta"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__name
@@ -109,7 +109,7 @@ msgstr "Etichette"
 #: code:addons/mrp_tag/models/mrp_tag.py:0
 #, python-format
 msgid "Tags cannot be recursive."
-msgstr ""
+msgstr "Le etichette non possono essere ricorsive."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
