@@ -274,7 +274,7 @@ class MultiLevelMrp(models.TransientModel):
             )
             # Do not create planned order for products that are Kits
             planned_order = False
-            if not product_mrp_area_id.supply_method == "phantom":
+            if product_mrp_area_id._should_create_planned_order():
                 planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
@@ -723,30 +723,39 @@ class MultiLevelMrp(models.TransientModel):
         """Improve extensibility being able to exclude special moves."""
         return False
 
-    @api.model
-    def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
-        logger.info("Start MRP calculation")
+    def _get_mrp_initialization_groups_of_params(self, mrp_lowest_llc, mrp_areas):
         product_mrp_area_obj = self.env["product.mrp.area"]
-        counter = 0
-        if not mrp_areas:
-            mrp_areas = self.env["mrp.area"].search([])
+        groups = {}
         for mrp_area in mrp_areas:
             llc = 0
             while mrp_lowest_llc > llc:
-                product_mrp_areas = product_mrp_area_obj.search(
+                groups[mrp_area, llc] = product_mrp_area_obj.search(
                     [("product_id.llc", "=", llc), ("mrp_area_id", "=", mrp_area.id)]
                 )
                 llc += 1
+        return groups
 
-                for product_mrp_area in product_mrp_areas:
-                    if product_mrp_area.mrp_nbr_days == 0:
-                        self._init_mrp_move_non_grouped_demand(product_mrp_area)
-                    else:
-                        self._init_mrp_move_grouped_demand(product_mrp_area)
-                    counter += 1
+    @api.model
+    def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
+        logger.info("Start MRP calculation")
+        if not mrp_areas:
+            mrp_areas = self.env["mrp.area"].search([])
+        keyed_groups = self._get_mrp_initialization_groups_of_params(
+            mrp_lowest_llc, mrp_areas
+        )
+        for (mrp_area, llc), product_mrp_areas in keyed_groups.items():
+            counter = 0
+            for product_mrp_area in product_mrp_areas:
+                if product_mrp_area.mrp_nbr_days == 0:
+                    self._init_mrp_move_non_grouped_demand(product_mrp_area)
+                else:
+                    self._init_mrp_move_grouped_demand(product_mrp_area)
+                counter += 1
 
-            log_msg = "MRP Calculation LLC {} Finished - Nbr. products: {}".format(
-                llc - 1, counter
+            log_msg = (
+                "MRP Calculation LLC {} at {} Finished - Nbr. products: {}".format(
+                    llc, mrp_area.name, counter
+                )
             )
             logger.info(log_msg)
 
@@ -873,6 +882,14 @@ class MultiLevelMrp(models.TransientModel):
                 if invs:
                     po.mrp_inventory_id = invs[0]
 
+    def should_build_time_phased_inventory(self, product_mrp_area):
+        return not (
+            self._exclude_from_mrp(
+                product_mrp_area.product_id, product_mrp_area.mrp_area_id
+            )
+            or product_mrp_area.supply_method == "phantom"
+        )
+
     @api.model
     def _mrp_final_process(self, mrp_areas):
         logger.info("Start MRP final process")
@@ -883,12 +900,7 @@ class MultiLevelMrp(models.TransientModel):
 
         for product_mrp_area in product_mrp_area_ids:
             # Build the time-phased inventory
-            if (
-                self._exclude_from_mrp(
-                    product_mrp_area.product_id, product_mrp_area.mrp_area_id
-                )
-                or product_mrp_area.supply_method == "phantom"
-            ):
+            if not self.should_build_time_phased_inventory(product_mrp_area):
                 continue
             self._init_mrp_inventory(product_mrp_area)
         logger.info("End MRP final process")

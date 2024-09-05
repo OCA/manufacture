@@ -1,6 +1,6 @@
 {
     "name": "Subcontracting Partner Management",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "summary": "Subcontracting Partner Management",
     "author": "Ooops404, Cetmix, Odoo Community Association (OCA)",
     "license": "LGPL-3",

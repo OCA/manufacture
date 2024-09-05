@@ -178,31 +178,38 @@ class ProductMRPArea(models.Model):
                 location=rec._get_locations().ids
             ).qty_available
 
-    def _compute_supply_method(self):
+    def _get_rule(self):
+        self.ensure_one()
         group_obj = self.env["procurement.group"]
+        proc_loc = self.location_proc_id or self.location_id
+        values = {
+            "warehouse_id": self.mrp_area_id.warehouse_id,
+            "company_id": self.company_id,
+        }
+        rule = group_obj._get_rule(self.product_id, proc_loc, values)
+        if not rule:
+            return False
+        # Keep getting the rule for the product and the source location until the
+        # action is "buy" or "manufacture". Or until the action is "Pull From" or
+        # "Pull & Push" and the supply method is "Take from Stock".
+        while rule.action not in ("buy", "manufacture") and rule.procure_method in (
+            "make_to_order",
+            "mts_else_mto",
+        ):
+            new_rule = group_obj._get_rule(
+                self.product_id, rule.location_src_id, values
+            )
+            if not new_rule:
+                break
+            rule = new_rule
+        return rule
+
+    def _compute_supply_method(self):
         for rec in self:
-            proc_loc = rec.location_proc_id or rec.location_id
-            values = {
-                "warehouse_id": rec.mrp_area_id.warehouse_id,
-                "company_id": rec.company_id,
-            }
-            rule = group_obj._get_rule(rec.product_id, proc_loc, values)
+            rule = rec._get_rule()
             if not rule:
                 rec.supply_method = "none"
                 continue
-            # Keep getting the rule for the product and the source location until the
-            # action is "buy" or "manufacture". Or until the action is "Pull From" or
-            # "Pull & Push" and the supply method is "Take from Stock".
-            while rule.action not in ("buy", "manufacture") and rule.procure_method in (
-                "make_to_order",
-                "mts_else_mto",
-            ):
-                new_rule = group_obj._get_rule(
-                    rec.product_id, rule.location_src_id, values
-                )
-                if not new_rule:
-                    break
-                rule = new_rule
             # Determine the supply method based on the final rule.
             boms = rec.product_id.product_tmpl_id.bom_ids.filtered(
                 lambda x: x.type in ["normal", "phantom"]
@@ -300,3 +307,7 @@ class ProductMRPArea(models.Model):
     def _get_locations(self):
         self.ensure_one()
         return self.mrp_area_id._get_locations()
+
+    def _should_create_planned_order(self):
+        self.ensure_one()
+        return not self.supply_method == "phantom"

@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    is_subcontractor_partner = fields.Boolean(string="Subcontractor")
+    is_subcontractor_partner = fields.Boolean(string="Subcontractor partner")
     subcontracted_created_location_id = fields.Many2one(
         comodel_name="stock.location", copy=False
     )
@@ -207,7 +207,11 @@ class ResPartner(models.Model):
         prop = self.env["ir.property"]._get(
             "property_stock_production", "product.template"
         )
-        picking_type = self.env.ref("stock.picking_type_out", raise_if_not_found=False)
+        company = self.company_id or self.env.company
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", company.id)], limit=1
+        )
+        picking_type = warehouse.out_type_id
         route = self.env.ref(
             "mrp_subcontracting.route_resupply_subcontractor_mto",
             raise_if_not_found=False,
