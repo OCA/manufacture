@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="wizard_mass_mrp_production_order" model="ir.ui.view">
+        <field name="name">Mass MRP Production Order</field>
+        <field name="model">mrp.mass.production.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create MRP Prodcution Orders">
+                <group>
+                    <field name="picking_type_id" />
+                    <field name="location_src_id" />
+                    <field name="location_dest_id" />
+                    <field name="produce_all" />
+                    <field
+                        name="tag_ids"
+                        widget="many2many_tags"
+                        options="{'color_field': 'color', 'no_create_edit': True}"
+                    />
+                </group>
+                <notebook>
+                    <page string="MRP Production Orders">
+                        <field name="mrp_production_order_entries">
+
+                            <tree editable="bottom">
+                                <field name="product_id" />
+                                <field name="product_qty" />
+                                <field name="bom_id" />
+                                <field
+                                    name="mrp_production_order_entry_id"
+                                    column_invisible="1"
+                                />
+                                <field
+                                    name="product_uom_category_id"
+                                    column_invisible="1"
+                                />
+                                <field name="product_uom_id" />
+                                <field
+                                    name="tag_ids"
+                                    widget="many2many_tags"
+                                    options="{'color_field': 'color', 'no_create_edit': True}"
+                                />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        name="action_create"
+                        type="object"
+                        string="Create"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_mass_mrp_production_order_action" model="ir.actions.act_window">
+        <field name="name">Massive MRP Production Orders</field>
+        <field name="res_model">mrp.mass.production.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="wizard_mass_mrp_production_order_menu_action"
+        action="wizard_mass_mrp_production_order_action"
+        parent="mrp.menu_mrp_manufacturing"
+    />
+</odoo>
