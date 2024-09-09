@@ -74,6 +74,7 @@ Contributors
 * Agung Rachmatullah <agung.rachmatullah@ymail.com>
 * Laurent Bélorgey <lb@lalieutenante.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Mathieu Delva <mathieu.delva@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~

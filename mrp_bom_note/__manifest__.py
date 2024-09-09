@@ -12,6 +12,9 @@
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp"],
-    "data": ["views/mrp_bom_view.xml"],
+    "data": [
+        "views/mrp_bom_view.xml",
+        "views/mrp_production_templates.xml",
+    ],
     "installable": True,
 }
