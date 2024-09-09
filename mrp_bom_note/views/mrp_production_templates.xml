@@ -5,7 +5,7 @@
             expr="//t[@t-call='mrp.report_mrp_production_components']"
             position="after"
         >
-            <div class="col-3" t-if="o.bom_id">
+            <div t-if="o.bom_id">
                 <span t-field="o.bom_id.notes" />
             </div>
         </xpath>
