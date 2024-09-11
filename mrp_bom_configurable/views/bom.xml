@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="configuration_type" />
+            </field>
+            <xpath
+                expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="domain" readonly="1" />
+                <button
+                    name="ui_update_domain"
+                    type="object"
+                    class="oi oi-launch"
+                    title="Update domain"
+                />
+                <field name="condition" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_bom_filter" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <filter name="phantom" position="after">
+                <filter
+                    string="Variable"
+                    name="variable"
+                    domain="[('configuration_type', '=', 'variable')]"
+                />
+                <filter
+                    string="Configured"
+                    name="configured"
+                    domain="[('configuration_type', '=', 'configured')]"
+                />
+            </filter>
+        </field>
+    </record>
+
+
+    <record id="mrp_bom_configurable_form_action" model="ir.actions.act_window">
+        <field name="name">Configurable BoM</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="domain">[]</field> <!-- force empty -->
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="view_mrp_bom_filter" />
+        <field
+            name="context"
+        >{'default_company_id': allowed_company_ids[0], 'search_default_variable': True, 'search_default_configured': False}</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No bill of materials found. Let's create one!
+          </p><p>
+            Bills of materials allow you to define the list of required raw
+            materials used to make a finished product; through a manufacturing
+            order or a pack of products.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_bom_configurable_form_action"
+        action="mrp_bom_configurable_form_action"
+        parent="mrp.menu_mrp_bom"
+        sequence="14"
+    />
+
+    <record id="mrp_bom_tree_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <field name="product_qty" position="before">
+                <field name="configuration_type" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_bom_configured_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="mode">primary</field>
+        <field name="priority">101</field>
+        <field name="arch" type="xml">
+            <field name="bom_line_ids" position="replace">
+                <field name="bom_line_ids">
+                    <tree>
+                        <field name="product_id" />
+                        <field name="product_qty" />
+                        <field name="product_uom_id" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+</odoo>

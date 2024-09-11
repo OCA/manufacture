@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_category_mrp" model="product.category">
+        <field name="name">MRP</field>
+    </record>
+    <record id="product_product_1" model="product.product">
+        <field name="name">Product 1</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_product_2" model="product.product">
+        <field name="name">Product 2</field>
+        <field name="categ_id" ref="product_category_mrp" />
+        <field name="type">product</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="mrp_bom_configurable_1" model="mrp.bom">
+        <field name="product_tmpl_id" ref="product_product_1_product_template" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="configuration_type">variable</field>
+    </record>
+    <record id="mrp_bom_configurable_line_1" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_2" />
+        <field name="product_qty">1</field>
+        <field name="domain">[('test_config', '==', True)]</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+    </record>
+    <record id="mrp_bom_configurable_line_2" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_2" />
+        <field name="product_qty">1</field>
+        <field name="domain">[('test_config', '==', False)]</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+    </record>
+    <record id="mrp_bom_configurable_line_3" model="mrp.bom.line">
+        <field name="product_id" ref="product_product_2" />
+        <field name="product_qty">1</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+    </record>
+    <record id="input_config_1" model="input.config">
+        <field name="name">test</field>
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+    </record>
+    <record id="input_config_line_1" model="input.line">
+        <field name="name">test line</field>
+        <field name="config_id" ref="input_config_1" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+    </record>
+    <record id="input_config_line_2" model="input.line">
+        <field name="name">test line</field>
+        <field name="config_id" ref="input_config_1" />
+        <field name="bom_id" ref="mrp_bom_configurable_1" />
+        <field name="test_config">False</field>
+    </record>
+</odoo>

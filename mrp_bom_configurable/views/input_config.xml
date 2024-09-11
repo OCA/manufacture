@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="input_config_form" model="ir.ui.view">
+    <field name="model">input.config</field>
+    <field name="arch" type="xml">
+        <form>
+            <field name="id" invisible="1" />
+            <header>
+                <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,pending,confirmed"
+                    />
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button
+                            class="oe_stat_button"
+                            type="object"
+                            name="show_lines"
+                            icon="fa-list"
+                        >
+                        <field string="Lines" name="line_count" widget="statinfo" />
+                    </button>
+                </div>
+                <h2>
+                    <field name="name" />
+                </h2>
+                <group name="main">
+                    <group>
+                        <field name="date" />
+                    </group>
+                </group>
+                <group name="config">
+                    <group name="left">
+                        <field name="bom_domain" invisible="1" />
+                        <field name="bom_id" domain="bom_domain" />
+                    </group>
+                    <!-- Set custom config fields in these groups -->
+                    <group name="right" />
+                </group>
+                <notebook>
+                    <page name="Product">
+                        <field
+                                name="line_ids"
+                                string="Products"
+                                context="{'config_id': id}"
+                            />
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" />
+                <field name="activity_ids" widget="mail_activity" />
+                <field name="message_ids" widget="mail_thread" />
+            </div>
+        </form>
+    </field>
+</record>
+
+<record id='input_config_tree' model='ir.ui.view'>
+    <field name='model'>input.config</field>
+    <field name='arch' type='xml'>
+        <tree>
+            <field name="name" />
+            <field name="date" />
+        </tree>
+    </field>
+
+</record>
+
+<record id="input_config_search" model="ir.ui.view">
+    <field name="model">input.config</field>
+    <field name="arch" type="xml">
+        <search>
+            <field
+                    name="name"
+                    string="Name"
+                    filter_domain="[('name', 'ilike', self)]"
+                />
+            <group expand="0" string="Group By">
+                <filter
+                        string="Status"
+                        name="status"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="input_config_action" model="ir.actions.act_window">
+    <field name="name">Configured Products</field>
+    <field name="res_model">input.config</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="configurator_menu" name="🔩" parent="mrp.menu_mrp_root" />
+
+<menuitem
+        id="input_config_menu"
+        parent="configurator_menu"
+        action="input_config_action"
+    />
+
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="input_line_form_window" model="ir.ui.view">
+    <field name="name">input.line.form.window</field>
+    <field name="model">input.line</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h1>
+                    <field name="name" class="oe_inline" placeholder="Name" />
+                </h1>
+                <group name="main">
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id='input_line_tree' model='ir.ui.view'>
+    <field name='model'>input.line</field>
+    <field name='arch' type='xml'>
+        <tree multi_edit="1" class="input_line_tree">
+            <control>
+                <button name="open_wizard" type="object" string="Add a line" />
+            </control>
+            <field name="sequence" widget="handle" />
+            <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
+            <button
+                    name="open_form_pop_up"
+                    class="fa fa-eye"
+                    type="object"
+                    title="Info"
+                />
+            <button
+                    name="action_show_configured_bom"
+                    class="fa fa-cog"
+                    type="object"
+                    title="Info"
+                />
+            <field name="name" />
+            <field name="alert" optional="show" />
+            <field name="comment" optional="show" />
+            <field name="checked" optional="hide" />
+            <field name="config_id" invisible="1" />
+        </tree>
+    </field>
+</record>
+
+<record id="input_line_search" model="ir.ui.view">
+    <field name="model">input.line</field>
+    <field name="arch" type="xml">
+        <search>
+            <filter name="name" />
+            <filter
+                    name="config_id"
+                    string="Config"
+                    domain="[]"
+                    context="{'group_by' : 'config_id'}"
+                />
+            <filter
+                    name="bom_id"
+                    string="Bom"
+                    domain="[]"
+                    context="{'group_by' : 'bom_id'}"
+                />
+        </search>
+    </field>
+</record>
+
+</odoo>
