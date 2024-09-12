@@ -9,13 +9,14 @@
     <record model="ir.ui.view" id="product_category_qc_form_view">
         <field name="name">product.category.qc</field>
         <field name="model">product.category</field>
-        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="inherit_id" ref="product.product_category_form_view"/>
         <field name="arch" type="xml">
             <group name="first" position="after">
                 <group
                     name="qc"
                     string="Quality control"
                     groups="quality_control_oca.group_quality_control_user"
+                    colspan="2"
                 >
                     <field name="qc_triggers" nolabel="1" colspan="2">
                         <tree editable="bottom">
@@ -23,9 +24,9 @@
                                 name="trigger"
                                 options="{'no_create': True, 'no_edit': True, 'no_open': True}"
                             />
-                            <field name="test" />
-                            <field name="user" />
-                            <field name="partners" widget="many2many_tags" />
+                            <field name="test"/>
+                            <field name="user"/>
+                            <field name="partners" widget="many2many_tags"/>
                         </tree>
                     </field>
                 </group>
