@@ -1,11 +1,10 @@
 # Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2019 Andrii Skrypka
+# Copyright 2024 Quartile
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-
-from odoo.addons.quality_control_oca.models.qc_trigger_line import _filter_trigger_lines
 
 
 class StockPicking(models.Model):
@@ -56,29 +55,37 @@ class StockPicking(models.Model):
                 picking.passed_inspections + picking.failed_inspections
             )
 
+    def trigger_inspections(self, timings):
+        """Triggers the creation of or an update on inspections for attached stock moves
+
+        :param: timings: list of timings among 'before', 'after' and 'plan_ahead'
+        """
+        self.ensure_one()
+        moves_with_inspections = self.env["stock.move"]
+        existing_inspections = self.env["qc.inspection"]._get_existing_inspections(
+            self.move_ids
+        )
+        for inspection in existing_inspections:
+            inspection.onchange_object_id()
+            moves_with_inspections += inspection.object_id
+        for operation in self.move_ids - moves_with_inspections:
+            operation.trigger_inspection(timings, self.partner_id)
+
+    def action_cancel(self):
+        res = super().action_cancel()
+        self.qc_inspections_ids.filtered(lambda x: x.state == "plan").action_cancel()
+        return res
+
     def _action_done(self):
         res = super()._action_done()
-        inspection_model = self.env["qc.inspection"].sudo()
-        qc_trigger = (
-            self.env["qc.trigger"]
-            .sudo()
-            .search([("picking_type_id", "=", self.picking_type_id.id)])
-        )
-        for operation in self.move_ids:
-            trigger_lines = set()
-            for model in [
-                "qc.trigger.product_category_line",
-                "qc.trigger.product_template_line",
-                "qc.trigger.product_line",
-            ]:
-                partner = self.partner_id if qc_trigger.partner_selectable else False
-                trigger_lines = trigger_lines.union(
-                    self.env[model]
-                    .sudo()
-                    .get_trigger_line_for_product(
-                        qc_trigger, operation.product_id.sudo(), partner=partner
-                    )
-                )
-            for trigger_line in _filter_trigger_lines(trigger_lines):
-                inspection_model._make_inspection(operation, trigger_line)
+        plan_inspections = self.qc_inspections_ids.filtered(lambda x: x.state == "plan")
+        plan_inspections.write({"state": "ready", "date": fields.Datetime.now()})
+        for picking in self:
+            picking.trigger_inspections(["after"])
+        return res
+
+    def _create_backorder(self):
+        res = super()._create_backorder()
+        # To re-allocate backorder moves to the new backorder picking
+        self.qc_inspections_ids._compute_picking()
         return res

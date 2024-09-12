@@ -72,6 +72,11 @@ class QcInspection(models.Model):
         # Fill qty when coming from pack operations
         if object_ref and object_ref._name == "stock.move":
             res["qty"] = object_ref.product_uom_qty
+            if object_ref.picking_id.immediate_transfer and trigger_line.timing in [
+                "before",
+                "plan_ahead",
+            ]:
+                res["qty"] = object_ref.quantity_done
         return res
 
 

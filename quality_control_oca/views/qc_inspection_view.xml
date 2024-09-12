@@ -79,6 +79,7 @@
                         </group>
                         <group>
                             <field name="date" />
+                            <field name="date_done" />
                             <field name="success" />
                             <field name="auto_generated" />
                         </group>
@@ -142,8 +143,18 @@
                 <field name="test" />
                 <field name="qty" />
                 <field name="product_id" />
+                <field name="date" optional="show" />
+                <field name="date_done" optional="show" />
                 <field name="success" />
-                <field name="state" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'ready'"
+                    decoration-warning="state == 'waiting'"
+                    decoration-success="state == 'success'"
+                    decoration-danger="state == 'failed'"
+                    decoration-muted="state == 'canceled'"
+                />
             </tree>
         </field>
     </record>
@@ -171,6 +182,9 @@
                     domain="[('success', '=', False)]"
                 />
                 <newline />
+                <separator />
+                <filter name="plan_date" string="Plan Date" date="date" />
+                <filter name="date_done" string="Completion Date" date="date_done" />
                 <group expand="0" string="Group by...">
                     <filter
                         string="Reference"
@@ -213,6 +227,18 @@
                         name="group_by_auto_generated"
                         domain="[]"
                         context="{'group_by': 'auto_generated'}"
+                    />
+                    <filter
+                        string="Plan Date"
+                        name="groupby_date"
+                        domain="[]"
+                        context="{'group_by': 'date'}"
+                    />
+                    <filter
+                        string="Completion Date"
+                        name="groupby_date_done"
+                        domain="[]"
+                        context="{'group_by': 'date_done'}"
                     />
                 </group>
             </search>

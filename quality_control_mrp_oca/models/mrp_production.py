@@ -47,7 +47,7 @@ class MrpProduction(models.Model):
             ]:
                 trigger_lines = trigger_lines.union(
                     self.env[model].get_trigger_line_for_product(
-                        qc_trigger, move.product_id
+                        qc_trigger, ["after"], move.product_id
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):

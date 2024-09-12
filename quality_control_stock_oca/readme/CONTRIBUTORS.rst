@@ -7,3 +7,8 @@
 
   * Pedro M. Baeza
   * Carlos Roca
+
+* `Quartile <https://www.quartile.co>`_:
+
+  * Aung Ko Ko Lin
+  * Yoshi Tashiro
