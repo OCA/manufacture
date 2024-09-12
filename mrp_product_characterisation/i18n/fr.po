@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_product_characterisation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-25 15:04+0000\n"
+"PO-Revision-Date: 2024-07-25 15:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_product_characterisation
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_bom_search
+msgid "BoM for finished product"
+msgstr "Fiche technique pour produit fini"
+
+#. module: mrp_product_characterisation
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_bom_search
+msgid "BoM for intermediate product"
+msgstr "Fiche technique pour produit intermédiaire"
+
+#. module: mrp_product_characterisation
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_product_product_search
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_product_template_search
+msgid "Components Products"
+msgstr "Matières premières"
+
+#. module: mrp_product_characterisation
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_product_product_search
+#: model_terms:ir.ui.view,arch_db:mrp_product_characterisation.view_mrp_product_template_search
+msgid "Intermediates Products"
+msgstr "Produit intermédiaire"
+
+#. module: mrp_product_characterisation
+#: model:ir.model.fields,field_description:mrp_product_characterisation.field_product_product__is_component
+#: model:ir.model.fields,field_description:mrp_product_characterisation.field_product_template__is_component
+msgid "Is Component"
+msgstr "Est une matière première"
+
+#. module: mrp_product_characterisation
+#: model:ir.model.fields,field_description:mrp_product_characterisation.field_product_product__is_intermediate
+#: model:ir.model.fields,field_description:mrp_product_characterisation.field_product_template__is_intermediate
+msgid "Is Intermediate"
+msgstr "Est un produit intermédiaire"
+
+#. module: mrp_product_characterisation
+#: model:ir.model.fields,help:mrp_product_characterisation.field_product_product__is_component
+#: model:ir.model.fields,help:mrp_product_characterisation.field_product_template__is_component
+msgid ""
+"Is component a product which has no BoM based on it +              is used "
+"in a BoM line"
+msgstr ""
+"Est une matière première tout produit qui n'a pas de Fiche technique basée "
+"sur elle +              qui est utilisé dans une Fiche technique comme "
+"composant"
+
+#. module: mrp_product_characterisation
+#: model:ir.model.fields,help:mrp_product_characterisation.field_product_product__is_intermediate
+#: model:ir.model.fields,help:mrp_product_characterisation.field_product_template__is_intermediate
+msgid ""
+"Is intermediate a product which has a BoM based on it +              is used"
+" in a BoM line"
+msgstr ""
+"Est un produit intermédiaire tout produit qui a une Fiche technique basée "
+"sur elle +              qui est utilisé dans une Fiche technique comme "
+"composant"
+
+#. module: mrp_product_characterisation
+#: model:ir.model,name:mrp_product_characterisation.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: mrp_product_characterisation
+#: model:ir.model,name:mrp_product_characterisation.model_product_product
+msgid "Product Variant"
+msgstr "Variante de produit"

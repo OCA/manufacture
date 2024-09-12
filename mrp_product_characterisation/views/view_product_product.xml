@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="view_mrp_product_product_search" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="mrp.mrp_product_product_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='manufactured_products']" position="after">
+              <filter
+                    string="Intermediates Products"
+                    name="filter_is_intermediate"
+                    domain="[('is_intermediate', '=', True)]"
+                />
+            </xpath>
+            <xpath expr="//filter[@name='filter_is_intermediate']" position="after">
+              <filter
+                    string="Components Products"
+                    name="filter_is_component"
+                    domain="[('is_component', '=', True)]"
+                />
+            </xpath>
+            <xpath expr="//filter[@name='components']" position="attributes">
+              <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
