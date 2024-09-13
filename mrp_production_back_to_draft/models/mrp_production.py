@@ -20,5 +20,5 @@ class MrpProduction(models.Model):
                     % rec.name
                 )
             else:
-                rec.move_raw_ids._action_cancel()
-                rec.move_raw_ids.write({"state": "draft"})
+                (rec.move_raw_ids + rec.move_finished_ids)._action_cancel()
+                (rec.move_raw_ids + rec.move_finished_ids).write({"state": "draft"})
