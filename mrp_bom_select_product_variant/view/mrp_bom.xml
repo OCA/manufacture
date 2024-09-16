@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Form -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field
+                    name="product_tmpl_id"
+                    context="{'default_detailed_type': 'product'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Tree -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_tree" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+              <attribute name="invisible">1</attribute>
+          </xpath>
+          <!-- Hide it to avoid duplication -->
+          <xpath expr="//field[@name='product_id']" position="attributes">
+              <attribute name="invisible">1</attribute>
+          </xpath>
+          <xpath expr="//field[@name='sequence']" position="after">
+              <field name="product_tmpl_id" optional="hide" />
+              <field name="product_id" />
+          </xpath>
+        </field>
+    </record>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Search -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_search" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+          <!-- filter -->
+          <xpath expr="//field[@name='product_tmpl_id']" position="after">
+            <field name="product_id" />
+          </xpath>
+          <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+              <attribute name="invisible">1</attribute>
+          </xpath>
+          <!-- group by -->
+          <xpath expr="//filter[@name='product']" position="after">
+            <filter
+                    string="Product Variant"
+                    name="product_variant"
+                    domain="[]"
+                    context="{'group_by': 'product_id'}"
+                />
+          </xpath>
+          <xpath expr="//filter[@name='product']" position="attributes">
+              <attribute name="invisible">1</attribute>
+          </xpath>
+        </field>
+    </record>
+
+</odoo>
