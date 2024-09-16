@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Production Back to Draft",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "summary": "Allows to return to draft a confirmed or cancelled MO.",
     "website": "https://github.com/OCA/manufacture",
