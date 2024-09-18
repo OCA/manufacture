@@ -68,6 +68,7 @@ addon | version | maintainers | summary
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 14.0.2.1.0 |  | Link Purchase Order Line to Subcontract Productions
 [mrp_subcontracting_purchase_partner_management](mrp_subcontracting_purchase_partner_management/) | 14.0.1.0.1 | [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) [![geomer198](https://github.com/geomer198.png?size=30px)](https://github.com/geomer198) | Subcontracting Purchase Partner Management
 [mrp_subcontracting_resupply_link](mrp_subcontracting_resupply_link/) | 14.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Links between subcontracting PO and resupply picking
+[mrp_subcontracting_skip_no_negative](mrp_subcontracting_skip_no_negative/) | 14.0.1.0.0 |  | MRP Subcontracting Skip No Negative
 [mrp_tag](mrp_tag/) | 14.0.1.0.1 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_unbuild_move_link](mrp_unbuild_move_link/) | 14.0.1.0.0 |  | Link the stock moves of manufacturing orders to the respective unbuild orders
 [mrp_unbuild_subcontracting](mrp_unbuild_subcontracting/) | 14.0.1.0.1 |  | Unbuild orders are created automatically when is returned a product subcontracted
