@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_workorder_blocking_reason_wizard_form_view" model="ir.ui.view">
+            <field name="name">mrp.workorder.blocking.reason.wizard.form</field>
+            <field name="model">mrp.workorder.blocking.reason.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Warning">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                You are trying to pause/finish a workorder, but the blocking period is not over.
+                                Are you sure you want to continue?
+                            </h3>
+                        </div>
+                        <group colspan="4">
+                            <field name="interruption_reason" required="1" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button
+                        string="Cancel and continue WO"
+                        class="btn-default"
+                        special="cancel"
+                    />
+                        <button
+                        name="action_confirm"
+                        string="Accept and stop WO"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    <record
+        id="mrp_workorder_blocking_reason_wizard_act_window"
+        model="ir.actions.act_window"
+    >
+            <field name="name">WorkOrder Blocking Reason Popup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.workorder.blocking.reason.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+</odoo>
