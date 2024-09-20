@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo-addon-mrp_production_split>=15.0dev,<15.1dev',
         'odoo-addon-mrp_progress_button>=15.0dev,<15.1dev',
         'odoo-addon-mrp_sale_info>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_set_quantity_to_reservation>=15.0dev,<15.1dev',
         'odoo-addon-mrp_subcontracting_lot_number_propagation>=15.0dev,<15.1dev',
         'odoo-addon-mrp_subcontracting_no_negative>=15.0dev,<15.1dev',
         'odoo-addon-mrp_subcontracting_purchase_link>=15.0dev,<15.1dev',

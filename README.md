@@ -49,6 +49,7 @@ addon | version | maintainers | summary
 [mrp_production_split](mrp_production_split/) | 15.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Split Manufacturing Orders into smaller ones
 [mrp_progress_button](mrp_progress_button/) | 15.0.2.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_sale_info](mrp_sale_info/) | 15.0.1.0.1 |  | Adds sale information to Manufacturing models
+[mrp_set_quantity_to_reservation](mrp_set_quantity_to_reservation/) | 15.0.0.1.0 | [![CarlosRoca13](https://github.com/CarlosRoca13.png?size=30px)](https://github.com/CarlosRoca13) [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | MRP Set Quantity To Reservation
 [mrp_subcontracting_lot_number_propagation](mrp_subcontracting_lot_number_propagation/) | 15.0.0.1.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a serial number from a component to a finished product (subcontracting integration)
 [mrp_subcontracting_no_negative](mrp_subcontracting_no_negative/) | 15.0.0.1.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Disallow negative stock levels in subcontractor locations.
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 15.0.1.0.0 |  | Link Purchase Order Line to Subcontract Productions
