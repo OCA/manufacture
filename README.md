@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [account_move_line_mrp_info](account_move_line_mrp_info/) | 15.0.1.1.0 |  | Account Move Line Mrp Info
+[mrp_2_steps_consumed_qty_sync](mrp_2_steps_consumed_qty_sync/) | 15.0.0.1.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Update consumed quantities when in 2 steps production scope the picking is validated
 [mrp_account_analytic](mrp_account_analytic/) | 15.0.1.0.2 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Consuming raw materials and operations generated Analytic Items
 [mrp_account_bom_attribute_match](mrp_account_bom_attribute_match/) | 15.0.1.1.1 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Glue module between `mrp_account` and `mrp_bom_attribute_match`
 [mrp_bom_attribute_match](mrp_bom_attribute_match/) | 15.0.1.1.1 |  | Dynamic BOM component based on product attribute
