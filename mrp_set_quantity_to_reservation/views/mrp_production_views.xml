@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 Tecnativa - Carlos Roca
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="do_unreserve" position="after">
+                <button
+                    name="action_set_quantities_to_reservation"
+                    attrs="{'invisible': [('state', 'not in', ('confirmed', 'progress'))]}"
+                    string="Set quantities"
+                    type="object"
+                    groups="mrp.group_mrp_user"
+                    class="o_btn_validate"
+                />
+            </button>
+        </field>
+    </record>
+
+</odoo>
