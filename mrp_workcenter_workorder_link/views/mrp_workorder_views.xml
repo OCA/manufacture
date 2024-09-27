@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+    <field name="model">mrp.workorder</field>
+    <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view" />
+    <field name="arch" type="xml">
+        <field name="workcenter_id" position="after">
+            <button
+                    name="button_workcenter"
+                    icon="fa-cogs"
+                    type="object"
+                    title="Workcenter"
+                />
+        </field>
+    </field>
+</record>
+
+</odoo>
