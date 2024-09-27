@@ -1,0 +1,1 @@
+On the subcontracting bill of material, this module adds a text field called **Description for Purchase Order Lines**: if set, this description will be added to the product description on the purchase order line, so that the supplier knows which bill of materiel to use.
