@@ -7,7 +7,7 @@ from odoo.tests import common, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestMrpProductionAutovalidate(common.SavepointCase):
+class TestMrpProductionAutovalidate(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestMrpProductionAutovalidate, cls).setUpClass()
