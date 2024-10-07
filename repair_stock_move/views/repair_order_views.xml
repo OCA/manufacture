@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.order.form - repair_stock_move</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_assign"
+                    attrs="{'invisible': [('show_check_availability', '=', False)]}"
+                    string="Check Availability"
+                    type="object"
+                    class="oe_highlight"
+                    groups="base.group_user"
+                />
+                <button
+                    name="action_force_availability"
+                    attrs="{'invisible': [('show_check_availability', '=', False)]}"
+                    string="Force Availability"
+                    type="object"
+                    groups="base.group_user"
+                />
+                <field name="show_check_availability" invisible="1" />
+            </header>
+            <field name="product_qty" position="attributes">
+                <attribute name="attrs" />
+            </field>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    name="action_open_stock_moves"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    attrs="{'invisible': [('move_id', '=', False)]}"
+                >
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Stock Moves</span>
+                        </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
