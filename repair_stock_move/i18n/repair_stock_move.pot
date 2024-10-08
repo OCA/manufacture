@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_stock_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_stock_move
+#: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
+msgid "<span class=\"o_stat_text\">Stock Moves</span>"
+msgstr ""
+
+#. module: repair_stock_move
+#: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
+msgid "Check Availability"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__display_name
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__display_name
+#: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: repair_stock_move
+#: model_terms:ir.ui.view,arch_db:repair_stock_move.view_repair_order_form
+msgid "Force Availability"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__id
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__id
+#: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__ignore_availability
+msgid "Ignore Availability"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_line____last_update
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order____last_update
+#: model:ir.model.fields,field_description:repair_stock_move.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: repair_stock_move
+#: code:addons/repair_stock_move/models/repair_order.py:0
+#, python-format
+msgid "Nothing to check the availability for."
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__fees_lines
+msgid "Operations"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__operations
+msgid "Parts"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_stock_move__repair_line_id
+msgid "Repair Line"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model,name:repair_stock_move.model_repair_line
+msgid "Repair Line (parts)"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model,name:repair_stock_move.model_repair_order
+msgid "Repair Order"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__show_check_availability
+msgid "Show Check Availability"
+msgstr ""
+
+#. module: repair_stock_move
+#: code:addons/repair_stock_move/models/repair_order.py:0
+#, python-format
+msgid "Some related stock moves are not available."
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model,name:repair_stock_move.model_stock_move
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_line__stock_move_ids
+#: model:ir.model.fields,field_description:repair_stock_move.field_repair_order__stock_move_ids
+msgid "Stock Move"
+msgstr ""
+
+#. module: repair_stock_move
+#: code:addons/repair_stock_move/models/repair_order.py:0
+#, python-format
+msgid "Stock Moves"
+msgstr ""
+
+#. module: repair_stock_move
+#: model:ir.model.fields,help:repair_stock_move.field_repair_order__show_check_availability
+msgid ""
+"Technical field used to compute whether the button 'Check Availability' "
+"should be displayed."
+msgstr ""
