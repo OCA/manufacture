@@ -1,0 +1,1 @@
+This module adds a Duration field to the quality control inspection form, allowing users to specify the time taken for each inspection.

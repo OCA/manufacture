@@ -1,0 +1,1 @@
+When creating or editing a quality control inspection, in the Notes tab, you will find the Duration field, where you can enter the time taken for the inspection in hours and minutes.
