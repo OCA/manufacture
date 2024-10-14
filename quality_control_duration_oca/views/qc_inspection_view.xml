@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record
+        id="quality_control_duration_oca_qc_inspection_form_view_inherit"
+        model="ir.ui.view"
+    >
+    <field name="name">quality_control_duration_oca.qc.inspection.form.inherit</field>
+    <field name="model">qc.inspection</field>
+    <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook/page[2]" position="inside">
+        <group string="Inspection Duration" name="group_qc_duration">
+          <field
+                        name="qc_duration"
+                        string="Duration"
+                        widget="float_time"
+                        readonly="state in ['success', 'failed']"
+                    />
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+  <record
+        id="quality_control_duration_oca_qc_inspection_tree_view_inherit"
+        model="ir.ui.view"
+    >
+    <field name="name">quality_control_duration_oca.qc.inspection.tree.inherit</field>
+    <field name="model">qc.inspection</field>
+    <field name="inherit_id" ref="quality_control_oca.qc_inspection_tree_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='state']" position="after">
+        <field name="qc_duration" widget="float_time" optional="hide" />
+      </xpath>
+    </field>
+  </record>
+</odoo>
