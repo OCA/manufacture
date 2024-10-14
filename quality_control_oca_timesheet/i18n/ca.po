@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_oca_timesheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-15 11:09+0000\n"
+"PO-Revision-Date: 2024-10-15 11:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model,name:quality_control_oca_timesheet.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línia analítica"
+
+#. module: quality_control_oca_timesheet
+#: model_terms:ir.ui.view,arch_db:quality_control_oca_timesheet.qc_inspection_form_view_timesheet_inherit
+msgid "Duration (Hour(s))"
+msgstr "Durada (Hora/es)"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model,name:quality_control_oca_timesheet.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Inspecció de control de qualitat"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model.fields,field_description:quality_control_oca_timesheet.field_account_analytic_line__qc_inspection_id
+msgid "Related QC Inspection"
+msgstr "Inspecció de QC relacionada"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model.fields,help:quality_control_oca_timesheet.field_account_analytic_line__qc_inspection_id
+msgid "The quality control inspection related to this timesheet entry."
+msgstr "La inspecció de control de qualitat relacionada amb aquesta entrada de full d'hores."
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model.fields,field_description:quality_control_oca_timesheet.field_qc_inspection__timesheet_ids
+#: model_terms:ir.ui.view,arch_db:quality_control_oca_timesheet.qc_inspection_form_view_timesheet_inherit
+msgid "Timesheets"
+msgstr "Fulls d'hores"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model.fields,field_description:quality_control_oca_timesheet.field_qc_inspection__timesheet_total_hours
+#: model_terms:ir.ui.view,arch_db:quality_control_oca_timesheet.qc_inspection_form_view_timesheet_inherit
+#: model_terms:ir.ui.view,arch_db:quality_control_oca_timesheet.qc_inspection_tree_view_timesheet_inherit
+msgid "Total Hours"
+msgstr "Hores totals"
+
+#. module: quality_control_oca_timesheet
+#: model:ir.model.fields,help:quality_control_oca_timesheet.field_qc_inspection__timesheet_total_hours
+msgid "Total hours spent on this quality control inspection."
+msgstr "Hores totals dedicades a aquesta inspecció de control de qualitat."
