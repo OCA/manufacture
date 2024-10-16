@@ -762,6 +762,16 @@ msgid "Questions"
 msgstr "Întrebări"
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__rating_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__rating_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__rating_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__rating_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__rating_ids
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__ready
 msgid "Ready"
 msgstr ""
