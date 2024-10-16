@@ -1,0 +1,1 @@
+When creating or editing a quality control inspection, you will find a new Timesheets tab within the inspection form. In this tab, you can log and track the time spent on the inspection by adding timesheet entries. Each entry allows you to specify the project, task, date, and the time spent on the inspection in hours and minutes.

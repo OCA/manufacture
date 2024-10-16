@@ -1,0 +1,51 @@
+<odoo>
+  <record id="qc_inspection_form_view_timesheet_inherit" model="ir.ui.view">
+    <field name="name">qc.inspection.form.view.timesheet</field>
+    <field name="model">qc.inspection</field>
+    <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Timesheets">
+          <field name="timesheet_ids">
+            <tree editable="bottom" delete="true">
+              <field name="company_id" invisible="1" />
+              <field name="project_id" />
+              <field name="task_id" />
+              <field name="date" widget="date" />
+              <field name="user_id" required="1" />
+              <field name="name" required="0" />
+              <field
+                                name="unit_amount"
+                                string="Duration (Hour(s))"
+                                widget="float_time"
+                            />
+            </tree>
+          </field>
+          <group class="oe_subtotal_footer oe_right">
+            <field
+                            name="timesheet_total_hours"
+                            widget="float_time"
+                            string="Total Hours"
+                        />
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="qc_inspection_tree_view_timesheet_inherit" model="ir.ui.view">
+    <field name="name">qc.inspection.tree.view.timesheet.inherit</field>
+    <field name="model">qc.inspection</field>
+    <field name="inherit_id" ref="quality_control_oca.qc_inspection_tree_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='state']" position="after">
+        <field
+                    name="timesheet_total_hours"
+                    string="Total Hours"
+                    widget="timesheet_uom"
+                />
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
