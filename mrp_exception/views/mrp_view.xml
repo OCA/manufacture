@@ -1,0 +1,80 @@
+<odoo>
+    <record id="action_mrp_test_tree" model="ir.actions.act_window">
+        <field name="name">MRP Exception Rules</field>
+        <field name="res_model">exception.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_tree" />
+        <field name="domain">[('model', 'in', ['mrp.production', 'stock.move'])]</field>
+        <field
+            name="context"
+        >{'active_test': False, 'default_model' : 'mrp.production'}</field>
+    </record>
+    <menuitem
+        action="action_mrp_test_tree"
+        id="menu_mrp_test"
+        parent="mrp.menu_mrp_configuration"
+        sequence="90"
+    />
+    <record id="mrp_production_form_view_inh" model="ir.ui.view">
+        <field name="name">mrp_exception.mrp.production.form.inh</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    invisible="not exceptions_summary"
+                >
+                    <p>
+                        <strong
+                        >There are exceptions blocking this MRP Production Orders:</strong>
+                    </p>
+                    <field name="exceptions_summary" />
+                    <button
+                        name="action_ignore_exceptions"
+                        type="object"
+                        class="btn-danger"
+                        string="Ignore Exceptions"
+                        help="Click here to be able to confirm this mrp production regardless of the exceptions."
+                        groups="base_exception.group_exception_rule_manager"
+                    />
+                </div>
+            </sheet>
+            <xpath expr="//field[@name='date_deadline']/.." position="inside">
+                <field
+                    name="ignore_exception"
+                    invisible="product_id.active == False"
+                    groups='base_exception.group_exception_rule_manager'
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_production_tree_view_inh" model="ir.ui.view">
+        <field name="name">mrp.production.tree.inh</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="main_exception_id" />
+            </field>
+        </field>
+    </record>
+    <record id="view_mrp_production_filter_inh" model="ir.ui.view">
+        <field name="name">mrp.production.select.inh</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <filter name="activities_exception" position="after">
+                <separator orientation="vertical" />
+                <filter
+                    icon="fa-exclamation-circle"
+                    name="tofix"
+                    string="Blocked in Draft"
+                    domain="[('main_exception_id','!=',False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

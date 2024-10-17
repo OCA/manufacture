@@ -1,0 +1,63 @@
+<odoo noupdate="1">
+
+    <!-- Cron to check for exceptions -->
+    <record model="ir.cron" forcecreate="True" id="ir_cron_mrp_check_exceptions">
+        <field name="name">MRP: Check for Exceptions on Draft/Confirmed MO's</field>
+        <field name="model_id" ref="mrp.model_mrp_production" />
+        <field name="state">code</field>
+        <field name="code">
+mrp_orders = env['mrp.production'].search([('state', 'in', ['draft', 'confirmed'])])
+mrp_orders.detect_exceptions()
+        </field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">4</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Test MRP Exceptions Cron-->
+    <record
+        model="ir.cron"
+        forcecreate="True"
+        id="ir_cron_test_mrp_archive_finish_product"
+    >
+        <field
+            name="name"
+        >MRP: Test Archived Production Orders Finish Product Exception</field>
+        <field name="model_id" ref="mrp.model_mrp_production" />
+        <field name="state">code</field>
+        <field name="code">model.test_all_archived_finish_product()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">20</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="active" eval="False" />
+    </record>
+
+    <!-- Exception Rules looking at archived products/components -->
+    <record id="excep_mo_archived_finish_product" model="exception.rule">
+        <field name="name">Archived MO Finish Product</field>
+        <field name="description">Finish Product can't be Archived</field>
+        <field name="sequence">50</field>
+        <field name="model">mrp.production</field>
+        <field name="exception_type">by_domain</field>
+        <field name="domain">[('product_id.active', '=', False)]</field>
+        <field name="active" eval="False" />
+    </record>
+
+    <record id="sm_excep_product_component_archived" model="exception.rule">
+        <field name="name">Archived MO Components Product</field>
+        <field name="description">Components must be Unarchived</field>
+        <field name="sequence">50</field>
+        <field name="model">mrp.production</field>
+        <field
+            name="code"
+        >if any(line.product_id.active == False for line in self.move_raw_ids):
+            failed=True</field>
+        <field name="active" eval="False" />
+    </record>
+
+</odoo>
