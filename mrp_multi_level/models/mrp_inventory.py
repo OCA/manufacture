@@ -89,8 +89,11 @@ class MrpInventory(models.Model):
     @api.depends("planned_order_ids", "planned_order_ids.qty_released")
     def _compute_to_procure(self):
         for rec in self:
-            rec.to_procure = sum(rec.planned_order_ids.mapped("mrp_qty")) - sum(
-                rec.planned_order_ids.mapped("qty_released")
+            rec.to_procure = (
+                0.0
+                if rec.supply_method == "phantom"
+                else sum(rec.planned_order_ids.mapped("mrp_qty"))
+                - sum(rec.planned_order_ids.mapped("qty_released"))
             )
 
     @api.depends(
