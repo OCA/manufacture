@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">repair.order.form.inherit</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_sale_order']" position="before">
+                <field name="mrp_ids" readonly="1" invisible="1" />
+                <button
+                    class="oe_stat_button"
+                    name="action_view_repair_manufacturing_order"
+                    type="object"
+                    icon="fa-industry"
+                    invisible="not mrp_ids"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Manufacturing order</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
