@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_purchase_select_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-27 14:07+0000\n"
+"PO-Revision-Date: 2024-09-27 14:12+0000\n"
+"Last-Translator: Alexis de Lattre <alexis.delattre@akretion.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model,name:mrp_subcontracting_purchase_select_bom.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_select_bom.field_mrp_bom__subcontract_purchase_description
+msgid "Description for Purchase Order Lines"
+msgstr "Description pour les lignes de commande fournisseur"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model.fields,help:mrp_subcontracting_purchase_select_bom.field_mrp_bom__subcontract_purchase_description
+msgid ""
+"If there are several subcontract bill of materials for the same product it "
+"is very important to provide this description so that the subcontractor "
+"knows which bill of material to use."
+msgstr ""
+"S'il existe plusieurs nomenclatures de sous-traitance pour le même produit, "
+"il est très important de fournir cette description afin que le sous-traitant "
+"sache quelle nomenclature utiliser."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"On purchase order line '%(po_line)s', the selected bill of material "
+"'%(bom)s' doesn't apply on product '%(product)s.'"
+msgstr ""
+"Sur la ligne de commande fournisseur '%(po_line)s', la nomenclature sélectionnée "
+"'%(bom)s' n'est pas applicable au produit '%(product)s.'"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"On purchase order line '%(po_line)s', the selected bill of material "
+"'%(bom)s' is configured for operation '%(bom_picking_type)s' but the "
+"purchase order %(po)s is configured to deliver to '%(po_picking_type)s'."
+msgstr ""
+"Sur la ligne de commande fournisseur \"%(po_line)s\", la nomenclature sélectionnée "
+"\"%(bom)s\" est configurée pour l'opération \"%(bom_picking_type)s\", mais "
+"la commande \" %(po)s \" est configurée pour être livrée à "
+"\"%(po_picking_type)s\"."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"On purchase order line '%(po_line)s', the selected bill of material "
+"'%(bom)s' is linked to subcontractors '%(subcontractors)s', but the purchase "
+"order %(po)s is linked to supplier %(supplier)s."
+msgstr ""
+"Sur la ligne de commande fournisseur '%(po_line)s', la nomenclature sélectionnée "
+"'%(bom)s' est liée aux sous-traitants '%(subcontractors)s', mais la commande "
+"%(po)s est liée au fournisseur %(supplier)s."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"On purchase order line '%(po_line)s', the selected bill of material "
+"'%(bom)s' is not a subcontract bill of material."
+msgstr ""
+"Sur la ligne de commande fournisseur '%(po_line)s', la nomenclature sélectionnée "
+"'%(bom)s' n'est pas une nomenclature de sous-traitance."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model,name:mrp_subcontracting_purchase_select_bom.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande fournisseur"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model,name:mrp_subcontracting_purchase_select_bom.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase_select_bom.purchase_order_line_tree
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase_select_bom.purchase_order_view_form_inherit
+msgid "Subcontract BoM"
+msgstr "Nomencl. ss-trait."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_select_bom.field_purchase_order_line__bom_id
+msgid "Subcontracting Bill of Material"
+msgstr "Nomenclature de sous-traitance"
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"You cannot select a subcontracting bill of material on purchase order line "
+"'%s' which doesn't have a product."
+msgstr ""
+"Vous ne pouvez pas sélectionner une nomenclature de sous-traitance sur la "
+"ligne de commande '%s' qui n'a pas de produit."
+
+#. module: mrp_subcontracting_purchase_select_bom
+#. odoo-python
+#: code:addons/mrp_subcontracting_purchase_select_bom/models/purchase_order_line.py:0
+#, python-format
+msgid ""
+"You cannot select a subcontracting bill of material on purchase order line "
+"'%s' which is a section or note line."
+msgstr ""
+"Vous ne pouvez pas sélectionner une nomenclature de sous-traitance sur la "
+"ligne de commande '%s' qui est une ligne de section ou de note."
