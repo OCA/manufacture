@@ -1,0 +1,221 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_planned_order_matrix
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-25 21:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.actions.act_window,name:mrp_planned_order_matrix.action_mrp_planned_order_wizard
+#: model:ir.ui.menu,name:mrp_planned_order_matrix.menu_stock_mrp_planned_order_wizard
+msgid "Create Fixed Planned Orders"
+msgstr "Crear Órdenes Planificadas Fijas"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__create_uid
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__create_uid
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__create_date
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__create_date
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__date_start
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__date_start
+msgid "Date From"
+msgstr "Fecha Desde"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__date_range_id
+msgid "Date Range"
+msgstr "Rango Fechas"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__date_range_type_id
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__date_range_type_id
+msgid "Date Range Type"
+msgstr "Tipo de Rango de Fecha"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__date_end
+msgid "Date To"
+msgstr "Fecha Hasta"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__date_end
+msgid "Date to"
+msgstr "Fecha hasta"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__display_name
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__display_name
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__id
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__id
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__line_ids
+msgid "Items"
+msgstr "Artículos"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet____last_update
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line____last_update
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__write_uid
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__write_uid
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__write_date
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__write_date
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: mrp_planned_order_matrix
+#. odoo-python
+#: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
+#: model:ir.model,name:mrp_planned_order_matrix.model_mrp_planned_order_sheet
+#, python-format
+msgid "MPS Sheet"
+msgstr "Hoja MPS"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model,name:mrp_planned_order_matrix.model_mrp_planned_order_sheet_line
+msgid "MPS Sheet Line"
+msgstr "Línea Hoja MPS"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model,name:mrp_planned_order_matrix.model_mrp_planned_order_wizard
+msgid "MPS Wizard"
+msgstr "Asistente MPS"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "MPS quantity"
+msgstr "Cantidad MPS"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__mrp_planned_order_ids
+msgid "Mrp Planned Order"
+msgstr "Orden Planificada Mrp"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__value_x
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "Period"
+msgstr "Periodo"
+
+#. module: mrp_planned_order_matrix
+#. odoo-python
+#: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
+#, python-format
+msgid "Planned Orders"
+msgstr "Órdenes Planificadas"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+msgid "Prepare"
+msgstr "Preparar"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__value_y
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet__product_mrp_area_ids
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__product_mrp_area_id
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_wizard__product_mrp_area_ids
+msgid "Product Parameters"
+msgstr "Parámetros del Producto"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+msgid "Products"
+msgstr "Productos"
+
+#. module: mrp_planned_order_matrix
+#: model:ir.model.fields,field_description:mrp_planned_order_matrix.field_mrp_planned_order_sheet_line__product_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "TEST DOS"
+msgstr "PRUEBA DOS"
+
+#. module: mrp_planned_order_matrix
+#. odoo-python
+#: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
+#, python-format
+msgid "The start date cannot be later than the end date."
+msgstr "La fecha de inicio no puede ser posterior a la fecha final."
+
+#. module: mrp_planned_order_matrix
+#. odoo-python
+#: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
+#, python-format
+msgid "There are no date ranges created."
+msgstr "No se han creado intervalos de fechas."
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "Validate"
+msgstr "Validar"
+
+#. module: mrp_planned_order_matrix
+#. odoo-python
+#: code:addons/mrp_planned_order_matrix/wizards/mrp_planned_order_wizard.py:0
+#, python-format
+msgid "You must select at least one Product MRP parameter."
+msgstr "Debe seleccionar al menos un parámetro MRP Producto."
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+msgid "or"
+msgstr "o"
+
+#. module: mrp_planned_order_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.mrp_planned_order_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:mrp_planned_order_matrix.stock_mrp_planned_order_sheet_view_form
+msgid "to"
+msgstr "a"

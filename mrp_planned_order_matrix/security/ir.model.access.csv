@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_planned_order_wizard,mrp.planned.order.wizard user,model_mrp_planned_order_wizard,mrp.group_mrp_user,1,1,1,1
+access_mrp_planned_order_sheet,mrp.planned.order.sheet user,model_mrp_planned_order_sheet,mrp.group_mrp_user,1,1,1,1
+access_mrp_planned_order_sheet_line,mrp.planned.order.sheet.line user,model_mrp_planned_order_sheet_line,mrp.group_mrp_user,1,1,1,1
