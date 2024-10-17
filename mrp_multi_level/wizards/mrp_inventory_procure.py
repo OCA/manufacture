@@ -62,6 +62,8 @@ class MrpInventoryProcure(models.TransientModel):
         elif active_model == "mrp.planned.order":
             mrp_planned_order_obj = self.env[active_model]
             for line in mrp_planned_order_obj.browse(active_ids):
+                if line.mrp_action == "phantom":
+                    continue
                 if line.qty_released < line.mrp_qty:
                     items += item_obj.create(self._prepare_item(line))
         if items:

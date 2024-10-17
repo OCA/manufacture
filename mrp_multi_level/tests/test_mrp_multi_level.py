@@ -401,11 +401,8 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         sf_3_planned_order_1 = self.planned_order_obj.search(
             [("product_mrp_area_id.product_id", "=", self.sf_3.id)]
         )
-        self.assertEqual(len(sf_3_planned_order_1), 0)
-        sf_3_mrp_parameter = self.product_mrp_area_obj.search(
-            [("product_id", "=", self.sf_3.id)]
-        )
-        self.assertEqual(sf_3_mrp_parameter.supply_method, "phantom")
+        self.assertEqual(sf_3_planned_order_1.mrp_action, "phantom")
+        self.assertEqual(sf_3_planned_order_1.mrp_qty, 10.0)
         # PP-3
         pp_3_line_1 = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.pp_3.id)]
@@ -854,3 +851,53 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
                     f"unexpected value for {key}: {inv[key]} "
                     f"(expected {test_vals[key]} on {inv.date})",
                 )
+
+    def test_25_phantom_comp_on_hand(self):
+        """
+        A phantom product with positive qty_available (which is computed from the
+        availability of its components) should not satisfy demand, because this leads
+        to double counting qty_available of its component products.
+        """
+        quant = self.quant_obj.sudo().create(
+            {
+                "product_id": self.pp_3.id,
+                "inventory_quantity": 10.0,
+                "location_id": self.stock_location.id,
+            }
+        )
+        quant.action_apply_inventory()
+        quant = self.quant_obj.sudo().create(
+            {
+                "product_id": self.pp_4.id,
+                "inventory_quantity": 30.0,
+                "location_id": self.stock_location.id,
+            }
+        )
+        quant.action_apply_inventory()
+        self.assertEqual(self.sf_3.qty_available, 10.0)
+        self.mrp_multi_level_wiz.create({}).run_mrp_multi_level()
+        # PP-3
+        pp_3_line_1 = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_3.id)]
+        )
+        self.assertEqual(len(pp_3_line_1), 1)
+        self.assertEqual(pp_3_line_1.demand_qty, 20.0)
+        self.assertEqual(pp_3_line_1.to_procure, 10.0)
+        pp_3_planned_orders = self.planned_order_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_3.id)]
+        )
+        self.assertEqual(len(pp_3_planned_orders), 1)
+        self.assertEqual(pp_3_planned_orders.mrp_qty, 10)
+        sf3_planned_orders = self.env["mrp.planned.order"].search(
+            [("product_id", "=", self.sf_3.id)]
+        )
+        self.assertEqual(len(sf3_planned_orders), 1)
+        # Trying to procure a kit planned order will have no effect.
+        procure_wizard = (
+            self.env["mrp.inventory.procure"]
+            .with_context(
+                active_model="mrp.planned.order", active_ids=sf3_planned_orders.ids
+            )
+            .create({})
+        )
+        self.assertEqual(len(procure_wizard.item_ids), 0)
