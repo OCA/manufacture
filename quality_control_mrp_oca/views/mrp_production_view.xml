@@ -9,7 +9,7 @@
         <field name="domain">[('production_id', '=', active_id)]</field>
         <field
             name="context"
-        >{'default_object_id': 'mrp.production,' + str(active_id)}</field>
+        >{'default_object_id': 'mrp.production,' + active_id}</field>
     </record>
     <record model="ir.ui.view" id="mrp_production_qc_view">
         <field name="name">mrp.production.form.qc</field>
