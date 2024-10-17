@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-02 11:36+0000\n"
-"PO-Revision-Date: 2023-10-13 10:40+0000\n"
+"PO-Revision-Date: 2024-10-17 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__created_inspections
@@ -60,7 +60,7 @@ msgstr "Ordine di produzione"
 #. module: quality_control_mrp_oca
 #: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection
 msgid "Quality control inspection"
-msgstr "Ispezione controllo di qualità"
+msgstr "Ispezione controllo qualità"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection_line
