@@ -6,7 +6,10 @@
         <field name="name">mrp.planned.order.tree</field>
         <field name="model">mrp.planned.order</field>
         <field name="arch" type="xml">
-            <tree decoration-info="fixed != True">
+            <tree
+                decoration-info="fixed != True and mrp_action != 'phantom'"
+                decoration-muted="mrp_action == 'phantom'"
+            >
                 <field name="name" />
                 <field name="origin" />
                 <field name="product_mrp_area_id" />
@@ -17,6 +20,7 @@
                 <field name="qty_released" />
                 <field name="mrp_qty" />
                 <field name="fixed" />
+                <field name="mrp_action" optional="hide" />
             </tree>
         </field>
     </record>
