@@ -179,14 +179,7 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _get_bom_to_explode(self, product_mrp_area_id):
-        boms = self.env["mrp.bom"]
-        if product_mrp_area_id.supply_method in ["manufacture", "phantom"]:
-            boms = product_mrp_area_id.product_id.bom_ids.filtered(
-                lambda x: x.type in ["normal", "phantom"]
-            )
-        if not boms:
-            return False
-        return boms[0]
+        return product_mrp_area_id.supply_bom_id
 
     @api.model
     def explode_action(
