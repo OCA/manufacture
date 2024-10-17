@@ -321,25 +321,32 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             [("product_mrp_area_id.product_id", "=", self.product_4b.id)]
         )
         self.assertTrue(product_4b_demand)
-        self.assertTrue(product_4b_demand.to_procure)
-        # No demand or supply for AV-12 or AV-21
+        self.assertEqual(product_4b_demand.to_procure, 100)
+        product_4c_demand = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.product_4c.id)]
+        )
+        self.assertTrue(product_4c_demand)
+        self.assertEqual(product_4c_demand.to_procure, 1)
+        # Testing variant BOM
+        # Supply of one unit for AV-12 or AV-21
         av_12_supply = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.av_12.id)]
         )
-        self.assertFalse(av_12_supply)
+        self.assertEqual(av_12_supply.to_procure, 1.0)
         av_21_supply = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.av_21.id)]
         )
-        self.assertFalse(av_21_supply)
-        # Supply for AV-11 and AV-22
+        self.assertEqual(av_21_supply.to_procure, 1.0)
+        # Testing template BOM
+        # Supply of 150 units for AV-11 and AV-22
         av_11_supply = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.av_11.id)]
         )
-        self.assertTrue(av_11_supply)
+        self.assertEqual(av_11_supply.to_procure, 100.0)
         av_22_supply = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.av_22.id)]
         )
-        self.assertTrue(av_22_supply)
+        self.assertTrue(av_22_supply.to_procure, 100.0)
 
     def test_13_timezone_handling(self):
         self.calendar.tz = "Australia/Sydney"  # Oct-Apr/Apr-Oct: UTC+11/UTC+10
