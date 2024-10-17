@@ -11,4 +11,5 @@
     "installable": True,
     "data": ["views/stock_picking_view.xml", "views/purchase_order_view.xml"],
     "maintainers": ["victoralmau"],
+    "pre_init_hook": "pre_init_hook",
 }
