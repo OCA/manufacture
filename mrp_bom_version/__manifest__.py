@@ -5,7 +5,7 @@
 {
     "name": "MRP - BoM version",
     "summary": "BoM versioning",
-    "version": "8.0.1.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
     "AvanzOSC,"
