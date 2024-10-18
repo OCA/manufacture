@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2023 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="mrp_routing_workcenter_filter" model="ir.ui.view">
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_routing_workcenter_form_view" model="ir.ui.view">
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_routing_workcenter_tree_view" model="ir.ui.view">
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="ref" optional="show" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
