@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <openerp>
     <data>
         <record model="ir.ui.view" id="mrp_config_settings_versioning">
@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='module_mrp_repair']/.." position="after">
                     <div>
-                        <field name="group_mrp_bom_version" class="oe_inline"/>
-                        <label for="group_mrp_bom_version"/>
+                        <field name="group_mrp_bom_version" class="oe_inline" />
+                        <label for="group_mrp_bom_version" />
                     </div>
                     <div attrs="{'invisible': [('group_mrp_bom_version', '=', False)]}">
-                        <field name="active_draft" class="oe_inline"/>
-                        <label for="active_draft"/>
+                        <field name="active_draft" class="oe_inline" />
+                        <label for="active_draft" />
                     </div>
                 </xpath>
             </field>
