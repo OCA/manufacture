@@ -272,10 +272,7 @@ class MultiLevelMrp(models.TransientModel):
             order_data = self._prepare_planned_order_data(
                 product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
-            # Do not create planned order for products that are Kits
-            planned_order = False
-            if product_mrp_area_id._should_create_planned_order():
-                planned_order = self.env["mrp.planned.order"].create(order_data)
+            planned_order = self.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
             if product_mrp_area_id._to_be_exploded():
@@ -535,7 +532,11 @@ class MultiLevelMrp(models.TransientModel):
     def _init_mrp_move_grouped_demand(self, product_mrp_area):
         last_date = None
         last_qty = 0.00
-        onhand = product_mrp_area.qty_available
+        onhand = (
+            0.0
+            if product_mrp_area.supply_method == "phantom"
+            else product_mrp_area.qty_available
+        )
         grouping_delta = product_mrp_area.mrp_nbr_days
         demand_origin = []
 
@@ -665,7 +666,11 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _init_mrp_move_non_grouped_demand(self, product_mrp_area):
-        onhand = product_mrp_area.qty_available
+        onhand = (
+            0.0
+            if product_mrp_area.supply_method == "phantom"
+            else product_mrp_area.qty_available
+        )
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):
                 continue
@@ -814,7 +819,8 @@ class MultiLevelMrp(models.TransientModel):
         supply_qty = supply_qty_by_date.get(mdt, 0.0)
         mrp_inventory_data["supply_qty"] = abs(supply_qty)
         mrp_inventory_data["initial_on_hand_qty"] = on_hand_qty
-        on_hand_qty += supply_qty + demand_qty
+        if product_mrp_area.supply_method != "phantom":
+            on_hand_qty += supply_qty + demand_qty
         mrp_inventory_data["final_on_hand_qty"] = on_hand_qty
         # Consider that MRP plan is followed exactly:
         running_availability += (
@@ -853,7 +859,11 @@ class MultiLevelMrp(models.TransientModel):
             [("product_mrp_area_id", "=", product_mrp_area.id)], order="due_date"
         ).mapped("due_date")
         mrp_dates = set(moves_dates + action_dates)
-        on_hand_qty = product_mrp_area.qty_available
+        on_hand_qty = (
+            0.0
+            if product_mrp_area.supply_method == "phantom"
+            else product_mrp_area.qty_available
+        )
         running_availability = on_hand_qty
         mrp_inventory_vals = []
         for mdt in sorted(mrp_dates):
