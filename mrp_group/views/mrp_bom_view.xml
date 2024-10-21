@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id="mrp_bom_form_view_inherit_mrp_group" model="ir.ui.view">
+		<field name="name">mrp.bom.form.view.mrp.group</field>
+		<field name="model">mrp.bom</field>
+		<field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='product_id']" position="after">
+				<field
+                    name="mrp_group_ids"
+                    widget="many2many_tags"
+                    options="{'color_field':'color', 'no_create_edit':True}"
+                />
+			</xpath>
+		</field>
+	</record>
+	<record id="mrp_bom_form_tree_inherit_mrp_group" model="ir.ui.view">
+		<field name="name">mrp.bom.tree.view.mrp.group</field>
+		<field name="model">mrp.bom</field>
+		<field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='code']" position="after">
+				<field
+                    name="mrp_group_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
+			</xpath>
+		</field>
+	</record>
+	<record id="mrp_bom_search_inherit_mrp_group" model="ir.ui.view">
+		<field name="name">mrp.bom.search.inherit.mrp.group</field>
+		<field name="model">mrp.bom</field>
+		<field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='bom_line_ids']" position="after">
+				<field name="mrp_group_ids" />
+				<filter
+                    string="MRP Groups"
+                    name="mrp_group_ids"
+                    context="{'group_by':'mrp_group_ids'}"
+                />
+			</xpath>
+		</field>
+	</record>
+</odoo>
