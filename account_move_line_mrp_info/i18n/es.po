@@ -36,6 +36,7 @@ msgstr "Artículos de Diario"
 
 #. module: account_move_line_mrp_info
 #: model:ir.model.fields,field_description:account_move_line_mrp_info.field_account_move_line__mrp_production_id
+#: model_terms:ir.ui.view,arch_db:account_move_line_mrp_info.view_account_move_line_filter
 msgid "Manufacturing Order"
 msgstr "Orden de Manufacturación"
 
