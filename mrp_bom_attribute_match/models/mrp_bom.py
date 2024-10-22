@@ -89,27 +89,25 @@ class MrpBomLine(models.Model):
     @api.constrains("component_template_id")
     def _check_component_attributes(self):
         for rec in self:
-            if not rec.component_template_id:
+            cmp_tmpl = rec.component_template_id
+            if not cmp_tmpl:
                 continue
-            comp_attrs = (
-                rec.component_template_id.valid_product_template_attribute_line_ids.attribute_id
-            )
-            prod_attrs = (
-                rec.bom_id.product_tmpl_id.valid_product_template_attribute_line_ids.attribute_id
-            )
+            bom_prod = rec.bom_id.product_tmpl_id
+            comp_attrs = cmp_tmpl.valid_product_template_attribute_line_ids.attribute_id
+            prod_attrs = bom_prod.valid_product_template_attribute_line_ids.attribute_id
             if not comp_attrs:
                 raise ValidationError(
                     _(
                         "No match on attribute has been detected for Component "
                         "(Product Template) %s",
-                        rec.component_template_id.display_name,
+                        cmp_tmpl.display_name,
                     )
                 )
             if not all(attr in prod_attrs for attr in comp_attrs):
                 raise ValidationError(
                     _(
-                        "Some attributes of the dynamic component are not included into "
-                        "production product attributes."
+                        "Some attributes of the dynamic component are not included into"
+                        " production product attributes."
                     )
                 )
 
@@ -127,10 +125,10 @@ class MrpBomLine(models.Model):
             if same_attrs:
                 raise ValidationError(
                     _(
-                        "You cannot use an attribute value for attribute(s) %(attributes)s "
-                        "in the field “Apply on Variants” as it's the same attribute used "
-                        "in the field “Match on Attribute” related to the component "
-                        "%(component)s.",
+                        "You cannot use an attribute value for attribute(s) "
+                        "%(attributes)s in the field “Apply on Variants” as it's the "
+                        "same attribute used in the field “Match on Attribute” related "
+                        "to the component %(component)s.",
                         attributes=", ".join(same_attrs.mapped("name")),
                         component=rec.component_template_id.name,
                     )
@@ -312,9 +310,8 @@ class MrpBom(models.Model):
             comp_attr_ids = (
                 comp.valid_product_template_attribute_line_ids.attribute_id.ids
             )
-            prod_attr_ids = (
-                bom_product_id.valid_product_template_attribute_line_ids.attribute_id.ids
-            )
+            valid_ptal = bom_product_id.valid_product_template_attribute_line_ids
+            prod_attr_ids = valid_ptal.attribute_id.ids
             # check attributes
             if not all(item in prod_attr_ids for item in comp_attr_ids):
                 _log.info(
