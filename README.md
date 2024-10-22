@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [mrp_bom_note](mrp_bom_note/) | 16.0.1.0.0 |  | Notes in Bill of Materials
 [mrp_bom_tag](mrp_bom_tag/) | 16.0.1.0.0 |  | Add tags on your BoM to find it easily
 [mrp_bom_tracking](mrp_bom_tracking/) | 16.0.1.0.0 |  | Logs any change to a BoM in the chatter
+[mrp_bom_version](mrp_bom_version/) | 16.0.1.0.0 |  | BoM versioning
 [mrp_default_workorder_time](mrp_default_workorder_time/) | 16.0.1.0.0 | [![ChrisOForgeFlow](https://github.com/ChrisOForgeFlow.png?size=30px)](https://github.com/ChrisOForgeFlow) | Adds an MRP default workorder time
 [mrp_lot_number_propagation](mrp_lot_number_propagation/) | 16.0.1.0.0 | [![sebalix](https://github.com/sebalix.png?size=30px)](https://github.com/sebalix) | Propagate a serial number from a component to a finished product
 [mrp_lot_production_date](mrp_lot_production_date/) | 16.0.1.0.0 |  | MRP Lot Production Date
