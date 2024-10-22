@@ -17,55 +17,75 @@ BOM Attribute Match
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/mrp_bom_attribute_match
+    :target: https://github.com/OCA/manufacture/tree/17.0/mrp_bom_attribute_match
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-mrp_bom_attribute_match
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-mrp_bom_attribute_match
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module addresses the BoM case where the product to manufacture has one attribute with tens or hundreds of values (usually attribute "color", eg: "Configurable Desk" can be produced in 900 different colors).
+This module addresses the BoM case where the product to manufacture has
+one attribute with tens or hundreds of values (usually attribute
+"color", eg: "Configurable Desk" can be produced in 900 different
+colors).
 
-Creating a dynamic BoM currently requires adding one BoM line for each attribute value to match component variant with attribute value (eg: component "Desk board (Green)" to be applied to variant "Green").
+Creating a dynamic BoM currently requires adding one BoM line for each
+attribute value to match component variant with attribute value (eg:
+component "Desk board (Green)" to be applied to variant "Green").
 
 This has 3 downsides:
 
-- BoM lines proliferation (more error prone)
+-  BoM lines proliferation (more error prone)
+-  Difficult to update in case a new attribute value (new color paint)
+   is added
+-  Difficult to update in case base component changes.
 
-- Difficult to update in case a new attribute value (new color paint) is added
+This module allows to use a product template as component in BoM lines,
+automatically matching component variant to use in MO line with the
+attribute value selected for manufacture.
 
-- Difficult to update in case base component changes.
+Eg: Product template "Desk Board" is added to BoM line for product
+"Configurable Desk"; match is made on attribute "Color". In MO, if
+product to manufacture is "Configurable Desk (Steel, Pink)", MO line
+will have component "Desk Board (Pink)".
 
+Using the same BoM, if product to manufacture is "Configurable Desk
+(Steel, Yellow)", MO line will have component "Desk Board (Yellow)".
 
-This module allows to use a product template as component in BoM lines, automatically matching component variant to use in MO line with the attribute value selected for manufacture.
-
-Eg: Product template "Desk Board" is added to BoM line for product "Configurable Desk"; match is made on attribute "Color". In MO, if product to manufacture is "Configurable Desk (Steel, Pink)", MO line will have component "Desk Board (Pink)".
-
-Using the same BoM, if product to manufacture is "Configurable Desk (Steel, Yellow)", MO line will have component "Desk Board (Yellow)".
-
-
-The flow is valid also if the Component (Product Template) has more than one attribute matching the product to manufacture; in this case, on MO line the component variant will be the one matching multiple attribute values for the product to manufacture.
-
+The flow is valid also if the Component (Product Template) has more than
+one attribute matching the product to manufacture; in this case, on MO
+line the component variant will be the one matching multiple attribute
+values for the product to manufacture.
 
 Various checks are in place to make sure this flow is not disrupted:
 
-- user cannot add a product in field "Component (Product Template)" which:
+-  user cannot add a product in field "Component (Product Template)"
+   which:
 
-    does not have matching attributes with product to manufacture
+      does not have matching attributes with product to manufacture
 
-    has a different variant-generating attribute than the product to manufacture
+      has a different variant-generating attribute than the product to
+      manufacture
 
-- Adding a new variant-generating attribute to a product used as "Component (Product Template)" raises an error if the attribute is not included in all the products to manufacture where component is referenced.
+-  Adding a new variant-generating attribute to a product used as
+   "Component (Product Template)" raises an error if the attribute is
+   not included in all the products to manufacture where component is
+   referenced.
 
-- Removing an attribute used for BoM attribute matching from product to manufacture raises an error.
+-  Removing an attribute used for BoM attribute matching from product to
+   manufacture raises an error.
 
-- On a BoM line with Component (Product Template) set, an attribute value of attributes referenced in "Match on attribute" field cannot be used in field "Apply to variant".
+-  On a BoM line with Component (Product Template) set, an attribute
+   value of attributes referenced in "Match on attribute" field cannot
+   be used in field "Apply to variant".
 
-- If attribute value for matching attribute in manufactured product is not present in component (product template), the BoM line is skipped in MO.
+-  If attribute value for matching attribute in manufactured product is
+   not present in component (product template), the BoM line is skipped
+   in MO.
 
 **Table of contents**
 
@@ -75,26 +95,31 @@ Various checks are in place to make sure this flow is not disrupted:
 Usage
 =====
 
-Using this module you can have dynamic components of a BOM.
-It will allow you to have only 1 line in the BOM if you have hundreds of attribute
-values for manufacturing product and hundreds of attributes values of component (material).
+Using this module you can have dynamic components of a BOM. It will
+allow you to have only 1 line in the BOM if you have hundreds of
+attribute values for manufacturing product and hundreds of attributes
+values of component (material).
 
 How to use
 
- #. Create a product to produce e.g. Desk.
- #. Set 1 attribute (e.g. Color). And select possible values for it.
- #. Create a component product (material) e.g. Plastic.
- #. Set 1 attribute (Color). And select possible values for it.
- #. Create a BOM.
- #. Select a manufacturing product Desk.
- #. Add a BOM line. Select Component (product template) Plastic.
- #. You will see Color attribute appeared in the Apply On Attribute field.
- #. Save the BOM.
- #. Create Manufacturing Order. Select Desk with e.g. Red color to produce and BOM you created.
- #. You will see in the component list Plastic added with corresponding (red) color.
+   1.  Create a product to produce e.g. Desk.
+   2.  Set 1 attribute (e.g. Color). And select possible values for it.
+   3.  Create a component product (material) e.g. Plastic.
+   4.  Set 1 attribute (Color). And select possible values for it.
+   5.  Create a BOM.
+   6.  Select a manufacturing product Desk.
+   7.  Add a BOM line. Select Component (product template) Plastic.
+   8.  You will see Color attribute appeared in the Apply On Attribute
+       field.
+   9.  Save the BOM.
+   10. Create Manufacturing Order. Select Desk with e.g. Red color to
+       produce and BOM you created.
+   11. You will see in the component list Plastic added with
+       corresponding (red) color.
 
 Consider, that to use this feature component must have only 1 attribute.
-And a values of this attribute of a manufacturing product should be available for a component.
+And a values of this attribute of a manufacturing product should be
+available for a component.
 
 Bug Tracker
 ===========
@@ -102,7 +127,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_attribute_match%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_attribute_match%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -110,24 +135,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ilyas
 * Ooops
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Ooops404 <https://ooops404.com>
+-  Ooops404 <https://ooops404.com>
 
-  * Ilyas
+   -  Ilyas
 
-* `Camptocamp <https://www.camptocamp.com>`_
+-  `Camptocamp <https://www.camptocamp.com>`__
 
-  * Iván Todorovich <ivan.todorovich@camptocamp.com>
+   -  Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -139,6 +164,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_bom_attribute_match>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_bom_attribute_match>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
