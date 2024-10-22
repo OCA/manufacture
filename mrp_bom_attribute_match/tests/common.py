@@ -89,6 +89,7 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
                 "value_ids": [Command.set(cls.product_attribute.value_ids.ids)],
             }
         )
+        cls.env.ref("uom.group_uom").write({"users": [(Command.link(cls.env.user.id))]})
         # Create boms
         cls.bom_id = cls._create_bom(
             cls.product_sword,
@@ -162,7 +163,7 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
             for vals in line_form_vals:
                 with form.bom_line_ids.new() as line_form:
                     for key, value in vals.items():
-                        field = line_form._model._fields.get(key)
+                        field = cls.env["mrp.bom.line"]._fields.get(key)
                         if field and field.relational:  # pragma: no cover
                             if value and not isinstance(value, BaseModel):
                                 value = cls.env[field.comodel_name].browse(value)
