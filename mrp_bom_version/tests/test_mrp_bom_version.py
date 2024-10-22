@@ -68,7 +68,7 @@ class TestMrpBomVersion(common.TransactionCase):
         )
         new_boms = self.bom_model.with_context(active_test=False).search(
             [
-                ("parent_bom", "=", self.mrp_bom.id),
+                ("previous_bom_id", "=", self.mrp_bom.id),
             ]
         )
         for new_bom in new_boms:
