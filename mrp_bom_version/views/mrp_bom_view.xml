@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_version_tree_view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="decoration-muted">not active</attribute>
+            </tree>
+            <field name="code" position="after">
+                <field name="version" />
+                <field name="state" />
+                <field name="historical_date" />
+                <button
+                    name="button_draft"
+                    type="object"
+                    title="Draft"
+                    groups="mrp_bom_version.group_mrp_bom_version"
+                    attrs="{'invisible':[('state','!=','active')]}"
+                    icon="fa-plus-square"
+                />
+                <button
+                    name="button_activate"
+                    type="object"
+                    title="Activate"
+                    attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                    icon="fa-check-square"
+                    confirm="You will activate the BoM, then you won't be able to edit it after this. Are you sure you want to proceed?"
+                />
+                <button
+                    name="button_new_version"
+                    type="object"
+                    title="New version"
+                    attrs="{'invisible':[('state','==','historical')]}"
+                    icon="fa-gears"
+                    confirm="You are going to create a new version of this BoM. Are you sure?"
+                />
+                <button
+                    name="button_historical"
+                    type="object"
+                    title="Historical"
+                    attrs="{'invisible':[('state','!=','active')]}"
+                    icon="fa-history"
+                    confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_version_form_view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <button
+                        name="button_draft"
+                        type="object"
+                        string="Draft"
+                        groups="mrp_bom_version.group_mrp_bom_version"
+                        attrs="{'invisible':[('state','!=','active')]}"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="button_activate"
+                        type="object"
+                        string="Activate"
+                        attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                        class="oe_highlight"
+                        confirm="YYou will activate the BoM, then you won't be able to edit it after this. Are you sure you want to proceed?"
+                    />
+                    <button
+                        name="button_new_version"
+                        type="object"
+                        string="New version"
+                        attrs="{'invisible':[('state','=','historical')]}"
+                        class="oe_highlight"
+                        confirm="You are going to create a new version of this BoM. Are you sure?"
+                    />
+                    <button
+                        name="button_historical"
+                        type="object"
+                        string="Historical"
+                        attrs="{'invisible':[('state','!=','active')]}"
+                        class="oe_highlight"
+                        confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,active,historical"
+                    />
+                </header>
+            </sheet>
+            <field name="company_id" position="before">
+                <field name="version" />
+                <field
+                    name="historical_date"
+                    attrs="{'invisible': [('state','!=','historical')]}"
+                />
+            </field>
+            <notebook position="inside">
+                <page string="Versions">
+                    <field name="old_versions" />
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_version_search_view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <filter name="normal" position="before">
+                <field name="state" />
+            </filter>
+            <filter name="inactive" position="before">
+                <filter
+                    string="Active"
+                    domain="[('active','=',True)]"
+                    name="is_active_filter"
+                />
+            </filter>
+            <filter name="default_unit_of_measure" position="after">
+                <filter
+                    string="Active"
+                    name="group_active"
+                    domain="[]"
+                    context="{'group_by':'active'}"
+                />
+                <filter
+                    string="Status"
+                    name="group_state"
+                    domain="[]"
+                    context="{'group_by':'state'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
