@@ -10,11 +10,11 @@ class MrpBom(models.Model):
 
     def _compute_old_versions(self):
         for bom in self:
-            parent = bom.parent_bom
+            previous = bom.previous_bom_id
             old_version = self.env["mrp.bom"]
-            while parent:
-                old_version |= parent
-                parent = parent.parent_bom
+            while previous:
+                old_version |= previous
+                previous = previous.previous_bom_id
             bom.old_versions = [(6, 0, old_version.ids)]
 
     def _default_active(self):
@@ -72,8 +72,8 @@ class MrpBom(models.Model):
     version = fields.Integer(
         states={"historical": [("readonly", True)]}, copy=False, default=1
     )
-    parent_bom = fields.Many2one(
-        comodel_name="mrp.bom", string="Parent BoM", copy=False
+    previous_bom_id = fields.Many2one(
+        comodel_name="mrp.bom", string="Previous BoM", copy=False
     )
     old_versions = fields.Many2many(
         comodel_name="mrp.bom", compute="_compute_old_versions"
@@ -114,7 +114,7 @@ class MrpBom(models.Model):
             {
                 "version": self.version + 1,
                 "active": active_draft,
-                "parent_bom": self.id,
+                "previous_bom_id": self.id,
             }
         )
         return new_bom
