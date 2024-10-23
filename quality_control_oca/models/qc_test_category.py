@@ -24,7 +24,7 @@ class QcTestTemplateCategory(models.Model):
 
     @api.constrains("parent_id")
     def _check_parent_id(self):
-        if not self._check_recursion():
+        if self._has_cycle():
             raise exceptions.UserError(
                 _("Error! You can not create recursive categories.")
             )
