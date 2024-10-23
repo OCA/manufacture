@@ -12,3 +12,5 @@
   - Vicent Cubells
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
+- [Serpent Consulting Services Pvt. Ltd.](https://www.serpentcs.com)
+

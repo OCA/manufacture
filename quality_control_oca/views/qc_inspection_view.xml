@@ -95,7 +95,7 @@
                                 nolabel="1"
                                 readonly="state != 'ready'"
                             >
-                                <tree editable="top" delete="false" create="false">
+                                <list editable="top" delete="false" create="false">
                                     <field name="name" readonly="1" />
                                     <field name="question_type" readonly="1" />
                                     <field
@@ -131,7 +131,7 @@
                                     />
                                     <field name="valid_values" />
                                     <field name="success" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Notes">
@@ -148,22 +148,15 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field
-                        name="message_follower_ids"
-                        widget="mail_followers"
-                        groups="base.group_user"
-                    />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>
     <record model="ir.ui.view" id="qc_inspection_tree_view">
-        <field name="name">qc.inspection.tree</field>
+        <field name="name">qc.inspection.list</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="user" />
                 <field name="test" />
@@ -171,7 +164,7 @@
                 <field name="product_id" />
                 <field name="success" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="qc_inspection_search_view">
@@ -248,7 +241,7 @@
     <record model="ir.actions.act_window" id="action_qc_inspection">
         <field name="name">Inspections</field>
         <field name="res_model">qc.inspection</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         name="Inspections"
@@ -257,10 +250,10 @@
         action="action_qc_inspection"
     />
     <record model="ir.ui.view" id="qc_inspection_line_tree_view">
-        <field name="name">qc.inspection.line.tree</field>
+        <field name="name">qc.inspection.line.list</field>
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-danger="success==False"
                 decoration-info="success==True"
                 delete="false"
@@ -287,7 +280,7 @@
                 <field name="test_uom_category" column_invisible="1" />
                 <field name="valid_values" />
                 <field name="success" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="qc_inspection_line_search_view">
@@ -345,7 +338,7 @@
     <record model="ir.actions.act_window" id="action_qc_inspection_line">
         <field name="name">Inspection lines</field>
         <field name="res_model">qc.inspection.line</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="qc_inspection_line_tree_view" />
     </record>
     <menuitem
