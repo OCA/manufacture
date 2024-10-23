@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-17 08:10+0000\n"
+"PO-Revision-Date: 2024-10-23 09:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
@@ -81,7 +81,7 @@ msgstr "Tipo DiBa"
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
-"Se è definita una variante di prodotto la DiBa è disponibile solo per questo "
+"Se è definita una variante prodotto la DiBa è disponibile solo per questo "
 "prodotto."
 
 #. module: mrp_bom_tracking
@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 "Questa dovrebbe essere la quantità minima di produzione del prodotto. Se la "
 "DiBa contiene operazioni, assicurarsi che la capacità del centro di lavoro "
-"si aprecisa."
+"sia precisa."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
