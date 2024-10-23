@@ -39,7 +39,7 @@
             <page string="Work Orders" name="workorder">
                 <field
                         name="pending_order_ids"
-                        context="{'tree_view_ref': 'mrp.mrp_production_workorder_tree_view'}"
+                        context="{'tree_view_ref': 'mrp_workcenter_workorder_link.mrp_workcenter_mrp_workorder_tree_view'}"
                     />
             </page>
         </xpath>
