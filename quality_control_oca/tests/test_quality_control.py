@@ -67,6 +67,10 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.assertEqual(self.inspection1.state, "success")
         self.inspection1.action_approve()
         self.assertEqual(self.inspection1.state, "success")
+        self.assertTrue(bool(self.inspection1.date_done))
+        self.inspection1.action_cancel()
+        self.inspection1.action_draft()
+        self.assertFalse(self.inspection1.date_done)
 
     def test_inspection_incorrect(self):
         for line in self.inspection1.inspection_lines:
@@ -86,6 +90,7 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.assertEqual(self.inspection1.state, "waiting")
         self.inspection1.action_approve()
         self.assertEqual(self.inspection1.state, "failed")
+        self.assertTrue(bool(self.inspection1.date_done))
 
     def test_actions_errors(self):
         inspection2 = self.inspection1.copy()
@@ -166,7 +171,7 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         ]:
             trigger_lines = trigger_lines.union(
                 self.env[model].get_trigger_line_for_product(
-                    self.qc_trigger, self.product
+                    self.qc_trigger, ["after"], self.product
                 )
             )
         self.assertEqual(len(trigger_lines), 3)
