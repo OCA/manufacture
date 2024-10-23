@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+input_config_base,Base input config,model_input_config,base.group_user,1,1,1,1
+input_line_base,Base input line,model_input_line,base.group_user,1,1,1,1
+input_constraint_base,Base input constraint,model_input_constraint,base.group_user,1,1,1,1
+input_line_wizard_base,Base input input line wizard,model_input_line_wizard,base.group_user,1,1,1,1
+access_mrp_bom_configured,access_mrp_bom_configured,model_mrp_bom_configured,base.group_user,1,0,1,1
+access_mrp_bom_line_configured,access_mrp_bom_line_configured,model_mrp_bom_line_configured,base.group_user,1,0,1,1
+access_product_configured,access_product_configured,model_product_configured,base.group_user,1,0,1,1

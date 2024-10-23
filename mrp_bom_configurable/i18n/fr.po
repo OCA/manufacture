@@ -1,0 +1,237 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_configurable
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__alert
+msgid "Alert"
+msgstr "Alerte"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__configured
+msgid "BOM from variable BOM"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__bom_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__bom_id
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_search
+msgid "Bom"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__bom_domain
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__bom_domain
+msgid "Bom Domain"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__checked
+msgid "Checked"
+msgstr "Vérifié"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_tree
+msgid "Clone"
+msgstr "Dupliquer"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_mrp_bom_line__condition
+msgid "Comment explaining domain if needed"
+msgstr "Commentaire expliquant le domaine si nécessaire"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__partner_id
+msgid "Commercial Entity"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__condition
+msgid "Condition"
+msgstr "Condition"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__config_id
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_search
+msgid "Config"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.actions.report,name:mrp_bom_configurable.action_report_configurable_bom
+msgid "Configurable BoM"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__bom_id
+msgid "Configurable Product"
+msgstr "Produit configurable"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom__configuration_type
+msgid "Configuration Type"
+msgstr "Type de configuration"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_tree
+msgid "Configure"
+msgstr "Configurer"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.view_mrp_bom_filter
+msgid "Configured"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.actions.act_window,name:mrp_bom_configurable.input_config_action
+#: model:ir.ui.menu,name:mrp_bom_configurable.input_config_menu
+msgid "Configured Products"
+msgstr "Produits configurés"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__input_config__state__confirmed
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_input_constraint
+msgid "Contains input data constraints"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__count
+msgid "Count"
+msgstr "Nombre"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__input_config__state__draft
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line__checked
+msgid "If checked, the configuration have been evaluate"
+msgstr "Si coché, la configuration a été évalué correctement"
+
+#. module: mrp_bom_configurable
+#: model:ir.actions.act_window,name:mrp_bom_configurable.input_constraint_action
+#: model:ir.ui.menu,name:mrp_bom_configurable.input_constraint_menu
+msgid "Input Constraints"
+msgstr "Contraintes initiales"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__line_ids
+msgid "Line"
+msgstr "Ligne"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__line_count
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_form
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__name
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
+msgid "Name"
+msgstr "Nom"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__normal
+msgid "Normal BOM"
+msgstr "Nomenclature normal"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_mrp_bom_line__domain
+msgid "Odoo syntax domain only"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
+msgid "Partner"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__input_config__state__pending
+msgid "Pending"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
+msgid "Product"
+msgstr "Produit"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_form
+msgid "Products"
+msgstr "Produits"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
+msgid "Reference:"
+msgstr "Référence :"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__sale_id
+msgid "Sale"
+msgstr "Vente"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__state
+msgid "State"
+msgstr "Etat"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
+msgid "Status"
+msgstr "Statut"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.mrp_bom_form_view
+msgid "Update domain"
+msgstr "Mettre à jour le domaine"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__variable
+msgid "Variable BOM"
+msgstr "Nomenclature variable"

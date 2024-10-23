@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="input_line_form_wizard" model="ir.ui.view">
+    <field name="name">input.line.form.wizard</field>
+    <field name="model">input.line.wizard</field>
+    <field name="inherit_id" ref="mrp_bom_configurable.input_line_form_window" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <form>
+            <footer>
+                <button
+                        name="create_input_line_and_bom"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+            </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="input_line_form_wizard_action" model="ir.actions.act_window">
+      <field name="name">Line configurator</field>
+      <field name="res_model">input.line.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+</odoo>

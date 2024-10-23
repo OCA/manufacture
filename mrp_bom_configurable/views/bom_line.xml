@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_bom_line_view_form" model="ir.ui.view">
+        <field name="model">mrp.bom.line</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_line_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">1</attribute>
+            </xpath>
+            <xpath expr="//group" position="after">
+                <group name="domain" string="Domain">
+                    <field
+                        name="domain"
+                        widget="domain"
+                        options="{'model': 'input.line'}"
+                    />
+                    <field name="condition" />
+                    <field name="use_formula_compute_qty" />
+                    <field
+                        name="qty_formula"
+                        widget="ace"
+                        attrs="{'invisible': [('use_formula_compute_qty', '=', False)]}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
