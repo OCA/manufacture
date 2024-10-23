@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mrp_mass_production_order_wizard,mrp.mass.production.order.wizard,model_mrp_mass_production_order_wizard,mrp.group_mrp_user,1,1,1,1
+mrp_mass_production_order_entry_wizard,mrp.mass.production.order.entry.wizard,model_mrp_mass_production_order_entry_wizard,mrp.group_mrp_user,1,1,1,1
