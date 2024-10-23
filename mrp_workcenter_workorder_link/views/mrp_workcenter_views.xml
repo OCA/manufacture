@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="mrp_workcenter_tree_view" model="ir.ui.view">
+    <field name="model">mrp.workcenter</field>
+    <field name="inherit_id" ref="mrp.mrp_workcenter_tree_view" />
+    <field name="arch" type="xml">
+        <field name="name" position="before">
+            <button
+                    name="button_workcenter_line"
+                    icon="fa-cogs"
+                    type="object"
+                    title="Workorders"
+                />
+        </field>
+    </field>
+</record>
+
+
+<record id="mrp_workcenter_view" model="ir.ui.view">
+    <field name="model">mrp.workcenter</field>
+    <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+    <field name="arch" type="xml">
+        <div name="button_box" position="inside">
+            <button
+                    name="button_workcenter_line"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-cogs"
+                    title="Workorders"
+                    help="Work Orders filtered with this workcenter"
+                >
+                <div class="o_field_widget o_stat_info">
+                    <span class="o_stat_text">Workorders</span>
+                </div>
+            </button>
+        </div>
+        <xpath expr="//notebook/page[1]" position="before">
+            <page string="Work Orders" name="workorder">
+                <field
+                        name="pending_order_ids"
+                        context="{'tree_view_ref': 'mrp_workcenter_workorder_link.mrp_workcenter_mrp_workorder_tree_view'}"
+                    />
+            </page>
+        </xpath>
+    </field>
+</record>
+
+</odoo>

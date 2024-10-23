@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="mrp_production_workcenter_tree_view_inherit" model="ir.ui.view">
+    <field name="model">mrp.workorder</field>
+    <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view" />
+    <field name="arch" type="xml">
+        <field name="workcenter_id" position="after">
+            <button
+                    name="button_workcenter"
+                    icon="fa-cogs"
+                    type="object"
+                    title="Workcenter"
+                />
+        </field>
+    </field>
+</record>
+
+    <record model="ir.ui.view" id="mrp_workcenter_mrp_workorder_tree_view">
+        <field name="name">mrp.workcenter.work.order.tree</field>
+        <field name="model">mrp.workorder</field>
+        <field name="priority" eval="200" />
+        <field name="arch" type="xml">
+            <tree create="0">
+                <field name="production_state" invisible="1" />
+                <field name="is_user_working" invisible="1" />
+                <field name="name" string="operation" />
+                <field name="production_id" />
+                <field name="product_id" optional="show" />
+                <field name="qty_remaining" optional="show" string="quantity" />
+                <field name="qty_produced" optional="show" string="produced quantity" />
+                <field name="finished_lot_id" optional="hide" string="lot/serial" />
+                <field name="date_planned_start" optional="show" />
+                <field name="date_planned_finished" optional="hide" />
+                <field name="date_start" optional="hide" readonly="1" />
+                <field
+                    name="duration_expected"
+                    widget="float_time"
+                    sum="expected duration"
+                />
+                <field
+                    name="duration"
+                    widget="mrp_timer"
+                    attrs="{'invisible': [('production_state','=', 'draft')], 'readonly': [('is_user_working', '=', True)]}"
+                    sum="real duration"
+                />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-warning="state == 'progress'"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'cancel'"
+                    decoration-info="state not in ('progress', 'done', 'cancel')"
+                    attrs="{'invisible': [('production_state', '=', 'draft')]}"
+                />
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>
