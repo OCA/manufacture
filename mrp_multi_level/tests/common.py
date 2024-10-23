@@ -27,6 +27,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.mrp_move_obj = cls.env["mrp.move"]
         cls.planned_order_obj = cls.env["mrp.planned.order"]
         cls.lot_obj = cls.env["stock.lot"]
+        cls.mrp_bom_obj = cls.env["mrp.bom"]
 
         cls.fp_1 = cls.env.ref("mrp_multi_level.product_product_fp_1")
         cls.fp_2 = cls.env.ref("mrp_multi_level.product_product_fp_2")
@@ -40,6 +41,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.pp_3 = cls.env.ref("mrp_multi_level.product_product_pp_3")
         cls.pp_4 = cls.env.ref("mrp_multi_level.product_product_pp_4")
         cls.product_4b = cls.env.ref("product.product_product_4b")
+        cls.product_4c = cls.env.ref("product.product_product_4c")
         cls.av_11 = cls.env.ref("mrp_multi_level.product_product_av_11")
         cls.av_12 = cls.env.ref("mrp_multi_level.product_product_av_12")
         cls.av_21 = cls.env.ref("mrp_multi_level.product_product_av_21")
@@ -305,7 +307,38 @@ class TestMrpMultiLevelCommon(TransactionCase):
             cls.product_scenario_1, 18, dt_next_group, location=cls.cases_loc
         )
 
-        # Create test picking for FP-1, FP-2 and Desk(steel, black):
+        # product_4b will use the template bom (sequence 5)
+        # (11, 22) = ("steel", "black")
+        # create variant bom for product_4c (sequence 1)
+        # (12, 21) = ("aluminum", "white")
+        cls.mrp_bom_obj.create(
+            {
+                "product_tmpl_id": cls.product_4c.product_tmpl_id.id,
+                "product_id": cls.product_4c.id,
+                "type": "normal",
+                "sequence": 1,
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.av_12.id,
+                            "product_qty": 1.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.av_21.id,
+                            "product_qty": 1.0,
+                        },
+                    ),
+                ],
+            }
+        )
+
+        # Create test picking for FP-1, FP-2, Desk(steel, black),  Desk(aluminum, white)
         res = cls.calendar.plan_days(7 + 1, datetime.today().replace(hour=0))
         date_move = res.date()
         cls.picking_1 = cls.stock_picking_obj.create(
@@ -363,6 +396,19 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "date": date_move,
                             "product_uom": cls.product_4b.uom_id.id,
                             "product_uom_qty": 150,
+                            "location_id": cls.stock_location.id,
+                            "location_dest_id": cls.customer_location.id,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test move product-4c",
+                            "product_id": cls.product_4c.id,
+                            "date": date_move,
+                            "product_uom": cls.product_4c.uom_id.id,
+                            "product_uom_qty": 56,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
                         },

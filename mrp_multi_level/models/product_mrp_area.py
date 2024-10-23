@@ -85,6 +85,11 @@ class ProductMRPArea(models.Model):
         ],
         compute="_compute_supply_method",
     )
+    supply_bom_id = fields.Many2one(
+        comodel_name="mrp.bom",
+        string="Supply BOM",
+        compute="_compute_supply_method",
+    )
     qty_available = fields.Float(
         string="Quantity Available", compute="_compute_qty_available"
     )
@@ -209,16 +214,20 @@ class ProductMRPArea(models.Model):
             rule = rec._get_rule()
             if not rule:
                 rec.supply_method = "none"
-                continue
-            # Determine the supply method based on the final rule.
-            boms = rec.product_id.product_tmpl_id.bom_ids.filtered(
-                lambda x: x.type in ["normal", "phantom"]
-            )
-            rec.supply_method = (
-                "phantom"
-                if rule.action == "manufacture" and boms and boms[0].type == "phantom"
-                else rule.action
-            )
+            elif rule.action == "manufacture":
+                boms = self.env["mrp.bom"]
+                boms |= rec.product_id.variant_bom_ids.filtered(
+                    lambda x: x.type in ["normal", "phantom"]
+                )[:1]
+                boms |= rec.product_id.bom_ids.filtered(
+                    lambda x: not x.product_id and x.type in ["normal", "phantom"]
+                )[:1]
+                bom = boms.sorted(lambda x: x.sequence)[:1]
+                rec.supply_method = "phantom" if bom.type == "phantom" else rule.action
+                rec.supply_bom_id = bom
+            else:
+                rec.supply_method = rule.action
+                rec.supply_bom_id = False
 
     @api.depends(
         "mrp_area_id", "supply_method", "product_id.route_ids", "product_id.seller_ids"

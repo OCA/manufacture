@@ -177,17 +177,6 @@ class MultiLevelMrp(models.TransientModel):
         return mrp_action_date, mrp_date_supply
 
     @api.model
-    def _get_bom_to_explode(self, product_mrp_area_id):
-        boms = self.env["mrp.bom"]
-        if product_mrp_area_id.supply_method in ["manufacture", "phantom"]:
-            boms = product_mrp_area_id.product_id.bom_ids.filtered(
-                lambda x: x.type in ["normal", "phantom"]
-            )
-        if not boms:
-            return False
-        return boms[0]
-
-    @api.model
     def explode_action(
         self, product_mrp_area_id, mrp_action_date, name, qty, action, values=None
     ):
@@ -195,7 +184,7 @@ class MultiLevelMrp(models.TransientModel):
         mrp_date_demand = mrp_action_date
         if mrp_date_demand < date.today():
             mrp_date_demand = date.today()
-        bom = self._get_bom_to_explode(product_mrp_area_id)
+        bom = product_mrp_area_id.supply_bom_id
         if not bom:
             return False
         pd = self.env["decimal.precision"].precision_get("Product Unit of Measure")
