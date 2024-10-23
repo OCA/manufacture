@@ -1,0 +1,3 @@
+In Odoo, it is possible to have several bills of material for the same product. On a manufacturing order, Odoo will select by default the first bill of material of the product, and the user can manually select another bill of material. But, when using the official module **mrp_subcontracting**, it is not possible to manually specify the bill of material that you want to use for the subcontracted manufacturing order: Odoo will always use the first bill of material of the product.
+
+With this module, you will be able to select the subcontracting bill of material in the purchase order line. If not set, Odoo will use the first subcontracting bill of material of the product, as usual.
