@@ -306,9 +306,10 @@ class MultiLevelMrp(models.TransientModel):
             domain += [("mrp_area_id", "in", mrp_areas.ids)]
         with mute_logger("odoo.models.unlink"):
             self.env["mrp.move"].search(domain).unlink()
+            self.env["mrp.planned.order"].search(
+                domain + [("fixed", "=", False)]
+            ).unlink()
             self.env["mrp.inventory"].search(domain).unlink()
-            domain += [("fixed", "=", False)]
-            self.env["mrp.planned.order"].search(domain).unlink()
         logger.info("End MRP Cleanup")
         return True
 

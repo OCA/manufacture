@@ -9,4 +9,7 @@ class MrpProduction(models.Model):
 
     _inherit = "mrp.production"
 
-    planned_order_id = fields.Many2one(comodel_name="mrp.planned.order")
+    planned_order_id = fields.Many2one(
+        comodel_name="mrp.planned.order",
+        index=True,
+    )
