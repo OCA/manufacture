@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_mrporder" inherit_id="mrp.report_mrporder">
+        <xpath
+            expr="//t[@t-call='mrp.report_mrp_production_components']"
+            position="after"
+        >
+            <div t-if="o.bom_id">
+                <span t-field="o.bom_id.notes" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
