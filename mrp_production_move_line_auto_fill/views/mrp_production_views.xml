@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="button_mark_done" position="before">
+                <button
+                    name="action_operation_auto_fill"
+                    type="object"
+                    class="btn btn-primary"
+                    string="AutoFill"
+                    attrs="{'invisible': ['|', ('action_op_auto_fill_allowed','=', False), ('auto_fill_operation', '=', True)]}"
+                />
+                <field name="action_op_auto_fill_allowed" invisible="1" />
+                <field name="auto_fill_operation" invisible="1" />
+            </button>
+        </field>
+    </record>
+</odoo>
