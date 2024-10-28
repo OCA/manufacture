@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="stock_location_route_form_view_inherit_repair_component"
+        model="ir.ui.view"
+    >
+        <field name="name">stock.location.route.form - repair.component</field>
+        <field name="inherit_id" ref="stock.stock_location_route_form_view" />
+        <field name="model">stock.location.route</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_selectable']" position="before">
+                <field
+                    name="repair_component_selectable"
+                    string="Repair Component Operations"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_scrap_form_view2" model="ir.ui.view">
+        <field name="name">stock.scrap.view.form2 - repair_component_operation</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view2" />
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field name="repair_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+    <record id="stock_scrap_form_view" model="ir.ui.view">
+        <field name="name">stock.scrap.view.form - repair_component_operation</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view" />
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field
+                    name="repair_id"
+                    attrs="{'invisible': [('repair_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
