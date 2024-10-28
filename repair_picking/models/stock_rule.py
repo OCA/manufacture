@@ -4,16 +4,6 @@
 from odoo import api, models
 
 
-class StockRule(models.Model):
-    _inherit = "stock.rule"
-
-    def _get_custom_move_fields(self):
-        fields = super(StockRule, self)._get_custom_move_fields()
-        # Fields is added on `repair_stock_move` module.
-        fields += ["repair_line_id"]
-        return fields
-
-
 class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
