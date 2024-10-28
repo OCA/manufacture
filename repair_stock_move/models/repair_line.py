@@ -11,6 +11,8 @@ class RepairLine(models.Model):
         comodel_name="stock.move",
         inverse_name="repair_line_id",
     )
+    # Actually the lot_id does not matches the value of the related move.line
+    lot_id = fields.Many2one(compute="_compute_lot_id", readonly=False, store=True)
 
     def create_stock_move(self):
         self.ensure_one()
@@ -49,6 +51,16 @@ class RepairLine(models.Model):
     def _onchange_location(self):
         if self.state == "draft":
             self.location_id = self.repair_id.location_id
+
+    @api.depends("move_id.move_line_ids.lot_id", "move_id.move_orig_ids.state")
+    def _compute_lot_id(self):
+        for rec in self:
+            # The repair line only can contain 1 lot and the stock.move can have multiple, so
+            # if the lot id in the repair line is not present in the stock.move,
+            # it will be substituted by the first lot in the stock.move.
+            if rec.move_id.move_line_ids:
+                lots = rec.move_id.move_line_ids.mapped("lot_id")
+                rec.lot_id = lots[0] if len(lots) else False
 
     # TODO: write qty - update stock move.
     # TODO: default repair location in repair lines.

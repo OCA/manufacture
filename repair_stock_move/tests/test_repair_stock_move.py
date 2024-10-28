@@ -25,11 +25,20 @@ class TestRepairStockMove(common.SavepointCase):
         cls.product_3 = cls.env["product.product"].create(
             {"name": "Large Cabinet", "type": "product"}
         )
+        cls.product_with_lot = cls.env["product.product"].create(
+            {"name": "Product Lot", "type": "product", "tracking": "serial"}
+        )
         cls.service = cls.env["product.product"].create(
             {
                 "name": "Repair Services",
                 "type": "service",
             }
+        )
+        cls.lot1 = cls.env["stock.production.lot"].create(
+            {"product_id": cls.product_with_lot.id, "name": "1"}
+        )
+        cls.lot2 = cls.env["stock.production.lot"].create(
+            {"product_id": cls.product_with_lot.id, "name": "2"}
         )
 
         # Location
@@ -52,6 +61,12 @@ class TestRepairStockMove(common.SavepointCase):
         )
         cls.env["stock.quant"]._update_available_quantity(
             cls.product_3, cls.stock_location_14, 1
+        )
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product_with_lot, cls.stock_location_14, 1, lot_id=cls.lot1
+        )
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product_with_lot, cls.stock_location_14, 1, lot_id=cls.lot2
         )
 
         # Repair Orders
@@ -104,7 +119,7 @@ class TestRepairStockMove(common.SavepointCase):
 
         cls.env.user.groups_id |= cls.env.ref("stock.group_stock_user")
 
-    def test_stock_move_state(self):
+    def test_01_stock_move_state(self):
         # Validate Repair Order
         self.repair1.action_validate()
         self.assertEqual(
@@ -143,6 +158,91 @@ class TestRepairStockMove(common.SavepointCase):
                 "done",
                 "Repair line state should be done",
             )
+
+    def test_02_lot_assignation(self):
+        repair1 = self.env["repair.order"].create(
+            {
+                "address_id": self.res_partner_address_1.id,
+                "guarantee_limit": "2019-01-01",
+                "invoice_method": "none",
+                "user_id": False,
+                "product_id": self.product_1.id,
+                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "partner_invoice_id": self.res_partner_address_1.id,
+                "location_id": self.stock_location_14.id,
+                "operations": [
+                    (
+                        0,
+                        0,
+                        {
+                            "location_dest_id": self.product_1.property_stock_production.id,
+                            "location_id": self.stock_location_14.id,
+                            "name": self.product_1.display_name,
+                            "product_id": self.product_with_lot.id,
+                            "product_uom": self.env.ref("uom.product_uom_unit").id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot1.id,
+                            "price_unit": 50.0,
+                            "state": "draft",
+                            "type": "add",
+                            "company_id": self.env.company.id,
+                        },
+                    )
+                ],
+                "partner_id": self.res_partner_12.id,
+            }
+        )
+        repair1.action_validate()
+        repair1.action_assign()
+        self.assertEqual(repair1.operations.lot_id, self.lot1)
+        self.assertEqual(
+            repair1.operations.lot_id, repair1.operations.move_id.move_line_ids.lot_id
+        )
+        repair1.action_repair_cancel()
+        repair2 = self.env["repair.order"].create(
+            {
+                "address_id": self.res_partner_address_1.id,
+                "guarantee_limit": "2019-01-01",
+                "invoice_method": "none",
+                "user_id": False,
+                "product_id": self.product_1.id,
+                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "partner_invoice_id": self.res_partner_address_1.id,
+                "location_id": self.stock_location_14.id,
+                "operations": [
+                    (
+                        0,
+                        0,
+                        {
+                            "location_dest_id": self.product_1.property_stock_production.id,
+                            "location_id": self.stock_location_14.id,
+                            "name": self.product_1.display_name,
+                            "product_id": self.product_with_lot.id,
+                            "product_uom": self.env.ref("uom.product_uom_unit").id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot2.id,
+                            "price_unit": 50.0,
+                            "state": "draft",
+                            "type": "add",
+                            "company_id": self.env.company.id,
+                        },
+                    )
+                ],
+                "partner_id": self.res_partner_12.id,
+            }
+        )
+        repair2.action_validate()
+        repair2.action_assign()
+        self.assertEqual(repair2.operations.lot_id, self.lot2)
+        self.assertEqual(
+            repair2.operations.lot_id, repair2.operations.move_id.move_line_ids.lot_id
+        )
+        repair2.operations.move_id.move_line_ids.lot_id = self.lot1
+
+        self.assertEqual(repair2.operations.lot_id, self.lot1)
+        self.assertEqual(
+            repair2.operations.lot_id, repair2.operations.move_id.move_line_ids.lot_id
+        )
 
     def _create_simple_repair_order(self, invoice_method):
         product_to_repair = self.product_1
