@@ -2,7 +2,7 @@ import logging
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.safe_eval import safe_eval
+from odoo.tools.safe_eval import safe_eval, wrap_module
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +97,9 @@ class MrpBomLine(models.Model):
             if not input_line._fields[param].relational:
                 context[param] = input_line[param]
 
+        math_module = __import__("math")
+        math = wrap_module(math_module, [f for f in math_module.__dict__ if "__" not in f])
+        context["math"] = math
         return context
 
     def _run_formula(self, eval_context):
@@ -134,6 +137,18 @@ class MrpBomLine(models.Model):
             return check_domain(
                 self.domain, values, self.product_id.name, self.bom_id.product_id.name
             )
+
+    def _skip_bom_line(self, product):
+        self.ensure_one()
+        res = super()._skip_bom_line(product)
+
+        input_line_id = self.env.context.get("input_line_id", False)
+        if input_line_id:
+            input_line = self.env["input.line"].browse(input_line_id)
+            if input_line:
+                return not self.check_domain(input_line._get_input_line_values())
+
+        return res
 
     def ui_update_domain(self):
         self.ensure_one()
