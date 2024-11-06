@@ -5,13 +5,17 @@
         <field name="model">mrp.bom.configured</field>
         <field name="arch" type="xml">
             <form>
-                <field name="product_id" />
-                <field name="line_ids">
-                    <tree>
-                        <field name="product_id" />
-                        <field name="product_qty" />
-                    </tree>
-                </field>
+                <sheet>
+                    <field name="product_id" readonly="true" />
+                    <field name="line_ids">
+                        <tree>
+                            <field name="product_id" />
+                            <field name="product_qty" />
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                </footer>
             </form>
         </field>
     </record>
