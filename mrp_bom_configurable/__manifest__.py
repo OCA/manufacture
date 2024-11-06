@@ -22,7 +22,6 @@
         "views/input_line_wizard.xml",
     ],
     "demo": [
-        "demo/mrp_bom_configurable.xml",
     ],
     "installable": True,
 }

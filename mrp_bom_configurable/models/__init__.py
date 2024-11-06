@@ -9,6 +9,3 @@ from . import (
     mrp_bom_configured,
     mrp_bom_line,
 )
-
-if not config["without_demo"] or config["test_enable"]:
-    from . import demo_input_mixin
