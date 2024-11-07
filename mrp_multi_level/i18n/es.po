@@ -314,6 +314,7 @@ msgid "Items"
 msgstr "Artículos"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__phantom
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__phantom
 msgid "Kit"
 msgstr "Paquete"
