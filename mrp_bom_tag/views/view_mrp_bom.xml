@@ -18,7 +18,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field
                     name="bom_tag_ids"
                     widget="many2many_tags"
-                    options="{'color_field': 'color', 'no_quick_create': True}"
+                    options="{'color_field': 'color'}"
                     context="{'display_complete_name': True}"
                 />
             </xpath>
