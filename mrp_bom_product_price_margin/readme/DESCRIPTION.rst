@@ -1,1 +1,1 @@
-Help handling cost and sale price of product variant linked to bill of material.
+Help handling cost and sale price of product template linked to bill of material.

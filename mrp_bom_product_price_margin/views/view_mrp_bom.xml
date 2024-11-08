@@ -31,18 +31,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         />)</span>
                   <button
                         name="set_product_standard_price"
-                        string="⇙ Apply this cost to Product variant standard price"
+                        string="⇙ Apply this cost to Product standard price"
                         type="object"
                         class="oe_link"
-                        help="It will set product variant's standard price with this price"
+                        help="It will set Product's standard price with this price"
                     />
                   <br />
-                  Product variant cost : <b><field
+                  Product cost : <b><field
                             name="product_standard_price"
                             widget="monetary"
                         /></b>
                   <br />
-                  Product variant sale price:
+                  Product sale price:
                     <b><field
                             name="product_sale_price"
                             widget="monetary"
@@ -53,10 +53,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <div
                     class="alert alert-info"
                     role="alert"
-                    attrs="{'invisible': ['|', ('diff_product_bom_standard_price', '!=', False), ('product_id', '=', False)]}"
+                    attrs="{'invisible': ['|', ('diff_product_bom_standard_price', '!=', False), ('product_tmpl_id', '=', False)]}"
                 >
-                  Product cost is based on this Bill of Material.<br />
-                  Product variant sale price:
+                  Product cost is based on the cost of this Bill of Material (<b><field
+                            name="standard_price"
+                            widget="monetary"
+                        /></b>).<br />
+                  Product sale price:
                     <b><field
                             name="product_sale_price"
                             widget="monetary"
@@ -127,7 +130,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     name="decoration-danger"
                 >product_margin_rate_percentage &lt; 0</attribute>
             </xpath>
-            <xpath expr="//field[@name='product_id']" position="after">
+            <xpath expr="//field[@name='product_tmpl_id']" position="after">
                 <field name="currency_id" invisible="1" />
                 <field name="standard_price" widget="monetary" />
                 <button
@@ -136,7 +139,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     string="Update Product standard price"
                     type="object"
                     attrs="{'invisible': [('diff_product_bom_standard_price', '=', False)]}"
-                    help="It will set product variant's standard price with this price"
+                    help="It will set Product's standard price with this price"
                 />
                 <field name="product_standard_price" widget="monetary" />
                 <field name="product_sale_price" widget="monetary" />

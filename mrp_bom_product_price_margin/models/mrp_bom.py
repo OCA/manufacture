@@ -27,20 +27,20 @@ class MrpBom(models.Model):
 
     # Fields related to sale price
     product_sale_price = fields.Float(
-        string="Product Sale Price", related="product_id.lst_price"
+        string="Product Sale Price", related="product_tmpl_id.list_price"
     )
-    product_margin_rate = fields.Float(related="product_id.standard_margin_rate")
+    product_margin_rate = fields.Float(related="product_tmpl_id.standard_margin_rate")
     product_margin_rate_percentage = fields.Float(
         string="Product Margin", compute="_compute_product_margin_rate_percentage"
     )
 
     # Compute functions
-    @api.depends("product_id", "product_id.standard_price")
+    @api.depends("product_tmpl_id", "product_tmpl_id.standard_price")
     def _compute_product_standard_price(self):
         for bom in self:
-            bom.product_standard_price = bom.product_id.standard_price
+            bom.product_standard_price = bom.product_tmpl_id.standard_price
 
-    @api.depends("product_id", "bom_line_ids", "product_qty")
+    @api.depends("product_tmpl_id", "bom_line_ids", "product_qty")
     def _compute_standard_price(self):
         for bom in self:
             qty_to_divide = bom.product_qty if bom.product_qty != 0 else 1
@@ -48,12 +48,12 @@ class MrpBom(models.Model):
                 sum(x.standard_price_subtotal for x in bom.bom_line_ids) / qty_to_divide
             )
 
-    @api.depends("product_id.standard_price", "standard_price")
+    @api.depends("product_tmpl_id.standard_price", "standard_price")
     def _compute_diff_product_bom_standard_price(self):
         price_dp = self.env["decimal.precision"].precision_get("Product Price")
         for bom in self:
-            if bom.product_id:
-                diff = bom.product_id.standard_price - bom.standard_price
+            if bom.product_tmpl_id:
+                diff = bom.product_tmpl_id.standard_price - bom.standard_price
                 bom.diff_product_bom_standard_price = float_round(diff, price_dp)
             else:
                 bom.diff_product_bom_standard_price = False
@@ -65,5 +65,5 @@ class MrpBom(models.Model):
 
     # Functions to change product fields
     def set_product_standard_price(self):
-        for bom in self.filtered(lambda x: x.product_id):
-            bom.product_id.standard_price = bom.standard_price
+        for bom in self.filtered(lambda x: x.product_tmpl_id):
+            bom.product_tmpl_id.standard_price = bom.standard_price

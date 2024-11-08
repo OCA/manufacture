@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 15:59+0000\n"
-"PO-Revision-Date: 2024-03-11 15:59+0000\n"
+"POT-Creation-Date: 2024-11-08 13:58+0000\n"
+"PO-Revision-Date: 2024-11-08 13:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
-msgid " (for 1x"
-msgstr " (pour 1x"
+msgid "(for 1x"
+msgstr "(pour 1x"
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -33,8 +33,17 @@ msgstr "(marge :"
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid ""
+").<br/>\n"
+"                  Product sale price:"
+msgstr ""
+").<br/>\n"
+"                  Prix de vente du produit :"
+
+#. module: mrp_bom_product_price_margin
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
+msgid ""
 "<br/>\n"
-"                  Product variant cost :"
+"                  Product cost :"
 msgstr ""
 "<br/>\n"
 "                  Coût du produit :"
@@ -43,7 +52,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid ""
 "<br/>\n"
-"                  Product variant sale price:"
+"                  Product sale price:"
 msgstr ""
 "<br/>\n"
 "                  Prix de vente du produit :"
@@ -77,7 +86,7 @@ msgstr ""
 "nomenclature."
 
 #. module: mrp_bom_product_price_margin
-#: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_product_product__standard_price
+#: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_product_template__standard_price
 msgid "Cost"
 msgstr "Coût"
 
@@ -85,7 +94,7 @@ msgstr "Coût"
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__currency_id
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom_line__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_tree
@@ -98,7 +107,7 @@ msgid "Diff Product Bom Standard Price"
 msgstr ""
 
 #. module: mrp_bom_product_price_margin
-#: model:ir.model.fields,help:mrp_bom_product_price_margin.field_product_product__standard_price
+#: model:ir.model.fields,help:mrp_bom_product_price_margin.field_product_template__standard_price
 msgid ""
 "In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
 "        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
@@ -113,16 +122,31 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_tree
-msgid "It will set product variant's standard price with this price"
+msgid "It will set Product's standard price with this price"
 msgstr "Cela définira le coût du Produit avec ce total."
+
+#. module: mrp_bom_product_price_margin
+#: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate
+msgid "Margin (%)"
+msgstr "Marge théorique (%)"
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate
 msgid ""
-"Margin rate is [ Theorical Margin / sale price (Wo Tax) ] of the product "
-"form (not based on historical values).Take care of tax include and exclude.."
-" If no sale price set, will display 999.0"
+"Margin rate is [ Margin / sale price (Wo Tax) ] of the product form (not "
+"based on historical values).Take care of tax include and exclude.. If no "
+"sale price set, will display 999.0"
 msgstr ""
+
+#. module: mrp_bom_product_price_margin
+#: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__product_sale_price
+msgid "Price at which the product is sold to customers."
+msgstr ""
+
+#. module: mrp_bom_product_price_margin
+#: model:ir.model,name:mrp_bom_product_price_margin.model_product_template
+msgid "Product"
+msgstr "Produit"
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate_percentage
@@ -140,18 +164,9 @@ msgid "Product Standard Price"
 msgstr "Produit - Coût"
 
 #. module: mrp_bom_product_price_margin
-#: model:ir.model,name:mrp_bom_product_price_margin.model_product_product
-msgid "Product Variant"
-msgstr "Variante de produit"
-
-#. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
-msgid ""
-"Product cost is based on this Bill of Material.<br/>\n"
-"                  Product variant sale price:"
-msgstr ""
-"Le coût du Produit est basé sur cette Nomenclature.<br/>\n"
-"                  Prix de vente du produit :"
+msgid "Product cost is based on the cost of this Bill of Material ("
+msgstr "Le coût du Produit est basé sur le coût de cette Nomenclature ("
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -174,18 +189,6 @@ msgid "Subtotal price %"
 msgstr "Sous-total %"
 
 #. module: mrp_bom_product_price_margin
-#: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__product_sale_price
-msgid ""
-"The sale price is managed from the product template. Click on the 'Configure"
-" Variants' button to set the extra attribute prices."
-msgstr ""
-
-#. module: mrp_bom_product_price_margin
-#: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate
-msgid "Theorical Margin (%)"
-msgstr "Marge théorique (%)"
-
-#. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "Total"
 msgstr ""
@@ -202,5 +205,5 @@ msgstr "pour 1x"
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
-msgid "⇙ Apply this cost to Product variant standard price"
+msgid "⇙ Apply this cost to Product standard price"
 msgstr "⇙ Définir le coût du Produit avec ce prix."
