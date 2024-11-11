@@ -85,7 +85,11 @@ class MrpBomLine(models.Model):
             if self.product_backup_id:
                 self.product_id = self.product_backup_id
                 self.product_backup_id = False
-            if self.product_uom_id.category_id != self.product_id.uom_id.category_id:
+            if (
+                self.product_id.uom_id
+                and self.product_uom_id.category_id
+                != self.product_id.uom_id.category_id
+            ):
                 self.product_uom_id = self.product_id.uom_id
 
     @api.depends("component_template_id")
