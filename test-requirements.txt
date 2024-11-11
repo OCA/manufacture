@@ -1,0 +1,1 @@
+odoo-addon-quality_control_oca @ git+https://github.com/OCA/manufacture.git@refs/pull/1374/head#subdirectory=quality_control_oca
