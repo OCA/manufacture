@@ -76,7 +76,10 @@ class StockPicking(models.Model):
                     self.env[model]
                     .sudo()
                     .get_trigger_line_for_product(
-                        qc_trigger, operation.product_id.sudo(), partner=partner
+                        qc_trigger,
+                        ["after"],
+                        operation.product_id.sudo(),
+                        partner=partner,
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
