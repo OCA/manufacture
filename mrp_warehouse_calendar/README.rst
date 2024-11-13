@@ -17,25 +17,26 @@ MRP Warehouse Calendar
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/17.0/mrp_warehouse_calendar
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_warehouse_calendar
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-mrp_warehouse_calendar
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_warehouse_calendar
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-With this module the manufacturing orders created from procurements
-consider the calendar assigned to the warehouse of the picking type of
-the manufacturing order to determine, based on the product's
-manufacturing lead time, the planned start date of the manufacturing
-order.
+This module ensures that manufacturing orders created from procurements
+respect the calendar assigned to the warehouse associated with the
+manufacturing order's picking type. The planned start date of the
+manufacturing order is calculated based on the product's manufacturing
+lead time and the working schedules defined in the warehouse calendar.
 
-Further manual replannings of start/end date of the manufacturing order
-also consider the lead time using the warehouse calendar days.
+Additionally, any manual rescheduling of the start or end date of a
+manufacturing order will also take the lead time into account, following
+the working days defined by the warehouse calendar.
 
 **Table of contents**
 
@@ -47,11 +48,15 @@ Configuration
 
 -  This module depends on
    `stock_warehouse_calendar <https://github.com/OCA/stock-logistics-warehouse>`__
--  Go to *Settings* and activate the developer mode.
--  Go to *Settings > Technical > Resource > Working Time* and define
-   your resource calendar.
+-  Go to *Settings* and activate the developer mode. |Developer mode|
+-  Go to *Settings > Technical > Resource > Working Schedules* and
+   define your resource calendar. |Working Schedules|
 -  Go to *Inventory > Configuration > Warehouse Management > Warehouses*
-   and assign the Resource Calendar.
+   and assign the Working Schedule. |Warehouse Management|
+
+.. |Developer mode| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/developer_mode.gif
+.. |Working Schedules| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/working_schedules.gif
+.. |Warehouse Management| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/warehouse_management.gif
 
 Usage
 =====
@@ -61,9 +66,19 @@ When a manufacturing order is created out of a procurement evaluation
 computation of the planned start date of the manufacturing order.
 
 For example, if it takes 1 day to manufacture a product and it is
-required for Monday, the manufacturing order will be created with
-planned start date on the previous Friday, if the warehouse operates
-under a Mo-Fri working calendar.
+required for Monday: |Replenish|
+
+the manufacturing order will be created with planned start date on the
+previous Friday, if the warehouse operates under a Mo-Fri working
+calendar. |Manufacturing Order|
+
+Manual changes to the start or end date of a manufacturing order will
+also respect the lead time and the warehouse calendar's working days.
+|Manual change day|
+
+.. |Replenish| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/replenish.png
+.. |Manufacturing Order| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/manufacturing_order.png
+.. |Manual change day| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_warehouse_calendar/static/description/change_day.gif
 
 Bug Tracker
 ===========
@@ -71,7 +86,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_warehouse_calendar%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_warehouse_calendar%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -110,6 +125,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-JordiBForgeFlow| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_warehouse_calendar>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_warehouse_calendar>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
