@@ -27,11 +27,17 @@ class TestMrpWarehouseCalendar(TransactionCase):
             {
                 "name": "test product",
                 "default_code": "PRD",
-                "type": "product",
+                "type": "consu",
+                "is_storable": "True",
             }
         )
         self.product_2 = self.env["product.product"].create(
-            {"name": "test product 2", "default_code": "PRD 2", "type": "product"}
+            {
+                "name": "test product 2",
+                "default_code": "PRD 2",
+                "type": "consu",
+                "is_storable": "True",
+            }
         )
         self.bom = self.env["mrp.bom"].create(
             {
@@ -50,8 +56,12 @@ class TestMrpWarehouseCalendar(TransactionCase):
         self.product.route_ids = [(6, 0, self.manufacture_route.ids)]
 
     def test_procurement_with_calendar(self):
+        """Ensure that the planned start date of the manufacturing order
+        respects the warehouse calendar. The planned procurement date is
+        during a working interval, and the manufacturing lead time should
+        adjust the start date accordingly."""
         values = {
-            "date_planned": "2097-01-07 09:00:00",  # Monday
+            "date_planned": "2097-01-07 09:00:00",  # Monday inside working hours
             "warehouse_id": self.warehouse,
             "company_id": self.company,
             "rule_id": self.manufacture_route,
@@ -80,10 +90,12 @@ class TestMrpWarehouseCalendar(TransactionCase):
         self.assertEqual(date_plan_start, friday)
 
     def test_procurement_with_calendar_02(self):
-        """Test procuring at the beginning of the day, with no work intervals
-        before."""
+        """Verify that procurement respects the warehouse calendar
+        when the planned date is outside working hours. The planned
+        manufacturing order start date should be adjusted to the last
+        available working interval."""
         values = {
-            "date_planned": "2097-01-07 01:00:00",  # Monday
+            "date_planned": "2097-01-07 01:00:00",  # Monday outside working hours
             "warehouse_id": self.warehouse,
             "company_id": self.company,
             "rule_id": self.manufacture_route,
@@ -112,6 +124,10 @@ class TestMrpWarehouseCalendar(TransactionCase):
         self.assertEqual(date_plan_start, friday)
 
     def test_onchange_date_planned(self):
+        """Test the impact of changing the planned start date (`date_start`)
+        on the planned end date (`date_finished`) in a manufacturing order.
+        Verify that the system correctly computes the end date considering
+        the manufacturing lead time and the warehouse calendar."""
         mo = self.env["mrp.production"].new(
             {
                 "product_id": self.product.id,
