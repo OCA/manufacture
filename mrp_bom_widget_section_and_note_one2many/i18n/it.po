@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_bom_widget_section_and_note_one2many
+# 	* mrp_bom_widget_section_and_note_one2many
 #
 msgid ""
 msgstr ""
@@ -32,11 +32,6 @@ msgid "Add a section"
 msgstr "Aggiungi una sezione"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Attachments"
-msgstr "Allegati"
-
-#. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model,name:mrp_bom_widget_section_and_note_one2many.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Distinta base"
@@ -63,13 +58,8 @@ msgstr "Componente"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Components"
-msgstr "Componenti"
-
-#. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Components with sections and notes"
-msgstr "Componenti con sezioni e note"
+msgid "Components and sections"
+msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__name
@@ -82,27 +72,37 @@ msgid "Display Type"
 msgstr "Tipo visualizzazione"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: sql_constraint:mrp.bom.line:0
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_non_bom_null_fields
 msgid "Forbidden values on note and section bom line"
 msgstr "Valori vietati nelle note e sezioni riga DiBa"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: sql_constraint:mrp.bom.line:0
-msgid "Missing required fields on bom line."
-msgstr "Campo obbligatrio mancante nella riga DiBa."
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_field_uom
+msgid "Missing required field on bom line : uom."
+msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "No attachment"
-msgstr "Nessun allegato"
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_fields_product_qty
+msgid "Missing required fields on bom line : product and quantity."
+msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: selection:mrp.bom.line,display_type:0
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_note
 msgid "Note"
 msgstr "Nota"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: selection:mrp.bom.line,display_type:0
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Product Attachments"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_section
 msgid "Section"
 msgstr "Sezione"
 
@@ -110,3 +110,25 @@ msgstr "Sezione"
 #: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__display_type
 msgid "Technical field for UX purpose."
 msgstr "Campo tecnico per motivi di UX."
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#~ msgid "Attachments"
+#~ msgstr "Allegati"
+
+#~ msgid "Components"
+#~ msgstr "Componenti"
+
+#~ msgid "Components with sections and notes"
+#~ msgstr "Componenti con sezioni e note"
+
+#~ msgid "Missing required fields on bom line."
+#~ msgstr "Campo obbligatrio mancante nella riga DiBa."
+
+#~ msgid "No attachment"
+#~ msgstr "Nessun allegato"

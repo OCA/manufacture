@@ -32,11 +32,6 @@ msgid "Add a section"
 msgstr "Ajouter une section"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Attachments"
-msgstr "Pièces jointes"
-
-#. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model,name:mrp_bom_widget_section_and_note_one2many.model_mrp_bom
 msgid "Bill of Material"
 msgstr "Nomenclature"
@@ -63,11 +58,6 @@ msgstr "Composant"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "Components"
-msgstr "Composants"
-
-#. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
 msgid "Components and sections"
 msgstr "Composants avec sections"
 
@@ -82,27 +72,37 @@ msgid "Display Type"
 msgstr "Type d'affichage"
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: sql_constraint:mrp.bom.line:0
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_non_bom_null_fields
 msgid "Forbidden values on note and section bom line"
 msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: sql_constraint:mrp.bom.line:0
-msgid "Missing required fields on bom line."
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_field_uom
+msgid "Missing required field on bom line : uom."
 msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
-msgid "No attachment"
-msgstr "Pas de pièces jointes"
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_fields_product_qty
+msgid "Missing required fields on bom line : product and quantity."
+msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: selection:mrp.bom.line,display_type:0
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_note
 msgid "Note"
 msgstr ""
 
 #. module: mrp_bom_widget_section_and_note_one2many
-#: selection:mrp.bom.line,display_type:0
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Product Attachments"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_section
 msgid "Section"
 msgstr ""
 
@@ -110,6 +110,22 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__display_type
 msgid "Technical field for UX purpose."
 msgstr "Champ technique utilisé à des fins ergonomiques"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#~ msgid "Attachments"
+#~ msgstr "Pièces jointes"
+
+#~ msgid "Components"
+#~ msgstr "Composants"
+
+#~ msgid "No attachment"
+#~ msgstr "Pas de pièces jointes"
 
 #~ msgid "Quantity"
 #~ msgstr "Quantité"
