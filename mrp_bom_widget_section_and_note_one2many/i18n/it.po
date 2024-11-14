@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-17 12:36+0000\n"
+"PO-Revision-Date: 2024-11-14 14:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
@@ -59,7 +59,7 @@ msgstr "Componente"
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
 msgid "Components and sections"
-msgstr ""
+msgstr "Componenti e sezioni"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__name
@@ -79,12 +79,12 @@ msgstr "Valori vietati nelle note e sezioni riga DiBa"
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_field_uom
 msgid "Missing required field on bom line : uom."
-msgstr ""
+msgstr "Campo obbligatorio mancante nella riga DiBa: UdM."
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_fields_product_qty
 msgid "Missing required fields on bom line : product and quantity."
-msgstr ""
+msgstr "Campo obbligatorio mancante nella riga DiBa: prodotto e quantità."
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_note
@@ -94,12 +94,12 @@ msgstr "Nota"
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
 msgid "Product Attachments"
-msgstr ""
+msgstr "Allegati prodotto"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
 msgid "Product Unit of Measure"
-msgstr ""
+msgstr "Unità di misura del prodotto"
 
 #. module: mrp_bom_widget_section_and_note_one2many
 #: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_section
@@ -117,6 +117,8 @@ msgid ""
 "Unit of Measure (Unit of Measure) is the unit of measurement for the "
 "inventory control"
 msgstr ""
+"Unità di misura (Unità di misura) è l'unità di misura per il controllo di "
+"inventario"
 
 #~ msgid "Attachments"
 #~ msgstr "Allegati"
