@@ -74,7 +74,6 @@ class MrpBom(models.Model):
             line_data["qty"] = parent_quantity * line_data["qty"]
 
             if bom_line.use_formula_compute_qty:
-                breakpoint()
                 line_data["qty"] = (
                     line_data["qty"]
                     * bom_line.compute_qty_from_formula(input_line)
