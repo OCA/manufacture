@@ -12,7 +12,7 @@
                 expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']"
                 position="after"
             >
-                <field name="domain">
+                <field name="domain" />
                 <button
                     name="ui_update_domain"
                     type="object"

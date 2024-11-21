@@ -55,8 +55,11 @@ class MrpBom(models.Model):
         return parent_bom_data
 
     def _recompute_variable_quantity(self, quantity, input_line, boms_done, lines_done):
-        for bom, bom_data in boms_done:
-            if bom_data["parent_line"] and bom_data["parent_line"].use_formula_compute_qty:
+        for _, bom_data in boms_done:
+            if (
+                bom_data["parent_line"]
+                and bom_data["parent_line"].use_formula_compute_qty
+            ):
                 bom_data["qty"] = bom_data["original_qty"] * bom_data[
                     "parent_line"
                 ].compute_qty_from_formula(input_line)
@@ -64,19 +67,11 @@ class MrpBom(models.Model):
         for bom_line, line_data in lines_done:
             parent_line = line_data["parent_line"]
 
-            parent_quantity = 1
-            if line_data["parent_line"] and parent_line.bom_id.type == "phantom":
-                parent_bom_data = self.find_parent_bom_in_exploded(
-                    boms_done, line_data["parent_line"].bom_id
-                )
-                parent_quantity = parent_bom_data["qty"]
-
-            line_data["qty"] = parent_quantity * line_data["qty"]
+            line_data["qty"] = line_data["qty"]
 
             if bom_line.use_formula_compute_qty:
-                line_data["qty"] = (
-                    line_data["qty"]
-                    * bom_line.compute_qty_from_formula(input_line)
+                line_data["qty"] = line_data["qty"] * bom_line.compute_qty_from_formula(
+                    input_line
                 )
 
             while parent_line and parent_line.bom_id.type == "phantom":
@@ -99,4 +94,3 @@ class MrpBom(models.Model):
                 quantity, input_line, boms_done, lines_done
             )
         return boms_done, lines_done
-

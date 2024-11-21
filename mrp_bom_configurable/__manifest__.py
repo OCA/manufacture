@@ -21,7 +21,6 @@
         "views/input_line.xml",
         "views/input_line_wizard.xml",
     ],
-    "demo": [
-    ],
+    "demo": [],
     "installable": True,
 }

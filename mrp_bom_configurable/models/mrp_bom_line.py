@@ -21,6 +21,21 @@ def check_domain(domain, values, current_name, parent_name):
 
     if len(domain) == 1:
         domain.append(True)
+
+    # make domain a proper PN input
+    # a = [o, d, d, d, d, o, d, d]
+    # a = [o, d, d, d, o, d, o, d, d]
+    # a = [o, d, d, o, d, o, d, o, d, d]
+    # a = [o, d, d, o, d, o, d, o, d, d]
+    # a = [o, d, o, d, o, d, o, d, o, d, d]
+    current_index = len(domain) - 2
+    while current_index > 0:
+        if domain[current_index - 1] not in ["&", "|"]:
+            domain.insert(current_index, "&")
+            current_index += 1
+        current_index -= 2
+
+    # This check the front of the domain which should always be a operator
     if domain[0] not in ["&", "|"]:
         domain.insert(0, "&")
 
@@ -98,7 +113,9 @@ class MrpBomLine(models.Model):
                 context[param] = input_line[param]
 
         math_module = __import__("math")
-        math = wrap_module(math_module, [f for f in math_module.__dict__ if "__" not in f])
+        math = wrap_module(
+            math_module, [f for f in math_module.__dict__ if "__" not in f]
+        )
         context["math"] = math
         return context
 
