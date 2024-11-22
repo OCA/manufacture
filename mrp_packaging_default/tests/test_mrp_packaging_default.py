@@ -138,27 +138,27 @@ class MrpPackagingDefaultCase(TestMrpCommon):
                     "description_bom_line": "Sandwich - 1/3",
                     "product_id": self.tomato_product.id,
                     "product_packaging_id": self.tomato_product.packaging_ids[2].id,
-                    "product_packaging_qty": 2.0,
+                    "product_packaging_qty": 4.0,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.1,
+                    "product_uom_qty": 0.2,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[1].id,
                     "description_bom_line": "Sandwich - 2/3",
                     "product_id": self.lettuce_product.id,
                     "product_packaging_id": self.lettuce_product.packaging_ids[0].id,
-                    "product_packaging_qty": 4.0,
+                    "product_packaging_qty": 8.0,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 0.4,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[2].id,
                     "description_bom_line": "Sandwich - 3/3",
                     "product_id": self.bread_product.id,
                     "product_packaging_id": self.bread_product.packaging_ids[0].id,
-                    "product_packaging_qty": 2,
+                    "product_packaging_qty": 4.0,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 0.4,
                 },
             ],
         )
@@ -194,25 +194,109 @@ class MrpPackagingDefaultCase(TestMrpCommon):
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[0].id,
                     "product_id": self.tomato_product.id,
                     "product_packaging_id": self.tomato_product.packaging_ids[2].id,
-                    "product_packaging_qty": 2.0,
+                    "product_packaging_qty": 20,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.1,
+                    "product_uom_qty": 1.0,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[1].id,
                     "product_id": self.lettuce_product.id,
                     "product_packaging_id": self.lettuce_product.packaging_ids[0].id,
-                    "product_packaging_qty": 4.0,
+                    "product_packaging_qty": 40,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 2.0,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[2].id,
                     "product_id": self.bread_product.id,
                     "product_packaging_id": self.bread_product.packaging_ids[0].id,
-                    "product_packaging_qty": 2,
+                    "product_packaging_qty": 20,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 2.0,
+                },
+            ],
+        )
+
+    def test_manual_replenish_cooked_sandwitch(self):
+        """Manually order one cooked sandwitch."""
+        sandwich = self.create_sandwich(cooked=True)
+        # Define a reordering rule for the cooked sandwich
+        rule_f = Form(self.env["stock.warehouse.orderpoint"])
+        rule_f.product_id = sandwich
+        rule_f.product_min_qty = 4
+        rule_f.product_max_qty = 10
+        rule = rule_f.save()
+        # Ask for a one-time replenishment
+        rule.action_replenish()
+        # Check the created manufacturing order
+        mo = self.env["mrp.production"].search([("product_id", "=", sandwich.id)])
+        self.assertEqual(mo.state, "confirmed")
+        self.assertEqual(mo.qty_producing, 0)
+        self.assertEqual(mo.product_qty, 10)
+        self.assertEqual(mo.bom_id, sandwich.bom_ids)
+        self.assertRecordValues(
+            mo.move_raw_ids,
+            [
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[0].id,
+                    "product_id": self.tomato_product.id,
+                    "product_packaging_id": self.tomato_product.packaging_ids[2].id,
+                    "product_packaging_qty": 20,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 1.0,
+                },
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[1].id,
+                    "product_id": self.lettuce_product.id,
+                    "product_packaging_id": self.lettuce_product.packaging_ids[0].id,
+                    "product_packaging_qty": 40,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 2.0,
+                },
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[2].id,
+                    "product_id": self.bread_product.id,
+                    "product_packaging_id": self.bread_product.packaging_ids[0].id,
+                    "product_packaging_qty": 20,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 2.0,
+                },
+            ],
+        )
+        # Change quantity to produce
+        change_qty_f = Form(
+            self.env["change.production.qty"].with_context(default_mo_id=mo.id)
+        )
+        change_qty_f.product_qty = 7
+        change_qty_f.save().change_prod_qty()
+        # Check the updated manufacturing order
+        self.assertEqual(mo.product_qty, 7)
+        self.assertRecordValues(
+            mo.move_raw_ids,
+            [
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[0].id,
+                    "product_id": self.tomato_product.id,
+                    "product_packaging_id": self.tomato_product.packaging_ids[2].id,
+                    "product_packaging_qty": 14,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 0.7,
+                },
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[1].id,
+                    "product_id": self.lettuce_product.id,
+                    "product_packaging_id": self.lettuce_product.packaging_ids[0].id,
+                    "product_packaging_qty": 28,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 1.4,
+                },
+                {
+                    "bom_line_id": sandwich.bom_ids[0].bom_line_ids[2].id,
+                    "product_id": self.bread_product.id,
+                    "product_packaging_id": self.bread_product.packaging_ids[0].id,
+                    "product_packaging_qty": 14,
+                    "product_uom": self.env.ref("uom.product_uom_kgm").id,
+                    "product_uom_qty": 1.4,
                 },
             ],
         )
@@ -238,25 +322,25 @@ class MrpPackagingDefaultCase(TestMrpCommon):
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[0].id,
                     "product_id": self.tomato_product.id,
                     "product_packaging_id": self.tomato_product.packaging_ids[2].id,
-                    "product_packaging_qty": 2.0,
+                    "product_packaging_qty": 20,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.1,
+                    "product_uom_qty": 1.0,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[1].id,
                     "product_id": self.lettuce_product.id,
                     "product_packaging_id": self.lettuce_product.packaging_ids[0].id,
-                    "product_packaging_qty": 4.0,
+                    "product_packaging_qty": 40,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 2.0,
                 },
                 {
                     "bom_line_id": sandwich.bom_ids[0].bom_line_ids[2].id,
                     "product_id": self.bread_product.id,
                     "product_packaging_id": self.bread_product.packaging_ids[0].id,
-                    "product_packaging_qty": 2,
+                    "product_packaging_qty": 20,
                     "product_uom": self.env.ref("uom.product_uom_kgm").id,
-                    "product_uom_qty": 0.2,
+                    "product_uom_qty": 2.0,
                 },
             ],
         )

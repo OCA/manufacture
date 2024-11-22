@@ -22,7 +22,6 @@ class StockMove(models.Model):
         vals.update(
             {
                 "product_packaging_id": bom_line.product_packaging_id.id,
-                "product_packaging_qty": bom_line.product_packaging_qty,
             }
         )
 
