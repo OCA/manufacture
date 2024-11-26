@@ -18,10 +18,13 @@ msgstr ""
 
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_mrp_production
-msgid "Production Order"
-msgstr "Ordine di produzione"
+msgid "Manufacturing Order"
+msgstr ""
 
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_stock_rule
 msgid "Stock Rule"
 msgstr "Regola di giacenza"
+
+#~ msgid "Production Order"
+#~ msgstr "Ordine di produzione"
