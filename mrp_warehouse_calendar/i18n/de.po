@@ -18,14 +18,17 @@ msgstr ""
 
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_mrp_production
-#, fuzzy
-msgid "Production Order"
-msgstr "Fertigungsauftrag"
+msgid "Manufacturing Order"
+msgstr ""
 
 #. module: mrp_warehouse_calendar
 #: model:ir.model,name:mrp_warehouse_calendar.model_stock_rule
 msgid "Stock Rule"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Production Order"
+#~ msgstr "Fertigungsauftrag"
 
 #~ msgid "Procurement Rule"
 #~ msgstr "Beschaffungsregel"
