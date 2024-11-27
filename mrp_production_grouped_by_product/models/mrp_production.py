@@ -65,9 +65,9 @@ class MrpProduction(models.Model):
         if date.hour < pt.mo_grouping_max_hour:
             date_end = date.replace(hour=pt.mo_grouping_max_hour, minute=0, second=0)
         else:
-            date_end = date + relativedelta(days=1)
+            date_end = fields.Datetime.add(date, days=1)
             date_end = date_end.replace(
-                hour=pt.mo_grouping_max_hour, minute=0, second=0
+                day=date.day + 1, hour=pt.mo_grouping_max_hour, minute=0, second=0
             )
         date_start = date_end - relativedelta(days=pt.mo_grouping_interval)
         domain += [
@@ -87,25 +87,27 @@ class MrpProduction(models.Model):
             self._get_grouping_target_domain(vals), limit=1
         )
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         context = self.env.context
         if context.get("group_mo_by_product") and (
             not config["test_enable"] or context.get("test_group_mo")
         ):
-            mo = self._find_grouping_target(vals)
-            if mo:
-                self.env["change.production.qty"].create(
-                    {
-                        "mo_id": mo.id,
-                        "product_qty": mo.product_qty + vals["product_qty"],
-                    }
-                ).change_prod_qty()
-                mo._post_mo_merging_adjustments(vals)
-                return mo
-        return super(MrpProduction, self).create(vals)
+            for vals in vals_list:
+                mo = self._find_grouping_target(vals)
+                if mo:
+                    self.env["change.production.qty"].create(
+                        {
+                            "mo_id": mo.id,
+                            "product_qty": mo.product_qty + vals["product_qty"],
+                        }
+                    ).change_prod_qty()
+                    mo._post_mo_merging_adjustments(vals)
+                    return mo
+        return super(MrpProduction, self).create(vals_list)
 
-    def _create_workorder(self):
+    @api.depends("bom_id", "product_id", "product_qty", "product_uom_id")
+    def _compute_workorder_ids(self):
         # We need to skip the creation of workorders during `_run_manufacture`.
         # It is not possible to pass a context from the `_post_mo_merging_adjustments`
         # because the create is called with sudo in `_run_manufacture` and that
@@ -120,7 +122,7 @@ class MrpProduction(models.Model):
                 mo = self._find_grouping_target(vals)
                 if mo:
                     to_create_wos -= rec
-        return super(MrpProduction, to_create_wos)._create_workorder()
+        return super(MrpProduction, to_create_wos)._compute_workorder_ids()
 
     def _get_moves_finished_values(self):
         # We need to skip the creation of more finished moves during `_run_manufacture`.
