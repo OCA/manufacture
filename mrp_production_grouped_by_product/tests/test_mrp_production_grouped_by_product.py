@@ -5,13 +5,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
-from odoo.tests import common
+from odoo.tests import common, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestProductionGroupedByProduct(common.TransactionCase):
-    at_install = False
-    post_install = True
-
     @classmethod
     def setUpClass(cls):
         super(TestProductionGroupedByProduct, cls).setUpClass()
@@ -65,8 +63,8 @@ class TestProductionGroupedByProduct(common.TransactionCase):
                 "date_planned_start": "2018-06-01 15:00:00",
             }
         )
-        cls.mo._onchange_move_raw()
-        cls.mo._onchange_move_finished()
+        cls.mo._compute_move_raw_ids()
+        cls.mo._compute_move_finished_ids()
         cls.warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )

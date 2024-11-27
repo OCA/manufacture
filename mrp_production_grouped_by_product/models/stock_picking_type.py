@@ -24,14 +24,19 @@ class StockPickingType(models.Model):
 
     @api.constrains("mo_grouping_max_hour")
     def _check_mo_grouping_max_hour(self):
-        if self.mo_grouping_max_hour < 0 or self.mo_grouping_max_hour > 23:
-            raise exceptions.ValidationError(
-                _("You have to enter a valid hour between 0 and 23.")
-            )
+        for picking_type in self:
+            if (
+                picking_type.mo_grouping_max_hour < 0
+                or picking_type.mo_grouping_max_hour > 23
+            ):
+                raise exceptions.ValidationError(
+                    _("You have to enter a valid hour between 0 and 23.")
+                )
 
     @api.constrains("mo_grouping_interval")
     def _check_mo_grouping_interval(self):
-        if self.mo_grouping_interval < 0:
-            raise exceptions.ValidationError(
-                _("You have to enter a positive value for interval.")
-            )
+        for picking_type in self:
+            if picking_type.mo_grouping_interval < 0:
+                raise exceptions.ValidationError(
+                    _("You have to enter a positive value for interval.")
+                )
