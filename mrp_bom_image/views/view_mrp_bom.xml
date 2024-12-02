@@ -33,7 +33,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_kanban_view" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@class='o_kanban_record_top']" position="before">
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="before">
               <div class="o_kanban_image">
                   <img
                         class="o_image_64_contain"
@@ -42,7 +42,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     />
               </div>
             </xpath>
-            <xpath expr="//div[@class='o_kanban_record_top']" position="attributes">
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="attributes">
                 <attribute name="class">oe_kanban_details</attribute>
             </xpath>
         </field>
