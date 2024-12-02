@@ -29,6 +29,11 @@ msgid "Packaging Qty."
 msgstr ""
 
 #. module: mrp_packaging_default
+#: model:ir.model,name:mrp_packaging_default.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_packaging_default
 #: model:ir.model,name:mrp_packaging_default.model_stock_move
 msgid "Stock Move"
 msgstr ""
