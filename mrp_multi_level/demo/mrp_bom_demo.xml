@@ -82,7 +82,7 @@
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
             name="bom_product_template_attribute_value_ids"
-            eval="[(6, 0, [ref('product.product_attribute_value_1')])]"
+            eval="[(6, 0, [ref('product.product_4_attribute_1_value_1')])]"
         />
     </record>
     <record id="mrp_bom_product_4_line_av_12" model="mrp.bom.line">
@@ -93,7 +93,7 @@
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
             name="bom_product_template_attribute_value_ids"
-            eval="[(6, 0, [ref('product.product_attribute_value_2')])]"
+            eval="[(6, 0, [ref('product.product_4_attribute_1_value_2')])]"
         />
     </record>
     <record id="mrp_bom_product_4_line_av_21" model="mrp.bom.line">
@@ -104,7 +104,7 @@
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
             name="bom_product_template_attribute_value_ids"
-            eval="[(6, 0, [ref('product.product_attribute_value_3')])]"
+            eval="[(6, 0, [ref('product.product_4_attribute_2_value_1')])]"
         />
     </record>
     <record id="mrp_bom_product_4_line_av_22" model="mrp.bom.line">
@@ -115,7 +115,7 @@
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
             name="bom_product_template_attribute_value_ids"
-            eval="[(6, 0, [ref('product.product_attribute_value_4')])]"
+            eval="[(6, 0, [ref('product.product_4_attribute_2_value_2')])]"
         />
     </record>
     <!-- SF-1 -->

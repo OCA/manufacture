@@ -196,7 +196,7 @@ class MultiLevelMrp(models.TransientModel):
         for bomline in bom.bom_line_ids:
             if (
                 float_is_zero(bomline.product_qty, precision_digits=pd)
-                or bomline.product_id.type != "product"
+                or bomline.product_id.type != "consu"
             ):
                 continue
             if self.with_context(mrp_explosion=True)._exclude_from_mrp(
@@ -335,7 +335,7 @@ class MultiLevelMrp(models.TransientModel):
         products = self.env["product.product"].search([("llc", "=", llc)])
         if products:
             counter = len(products)
-        log_msg = "Low level code 0 finished - Nbr. products: %s" % counter
+        log_msg = f"Low level code 0 finished - Nbr. products: {counter}"
         logger.info(log_msg)
 
         while counter:
@@ -370,14 +370,17 @@ class MultiLevelMrp(models.TransientModel):
         if mrp_areas:
             domain += [("mrp_area_id", "in", mrp_areas.ids)]
         self.env["product.mrp.area"].search(domain).write({"mrp_applicable": False})
-        domain += [("product_id.type", "=", "product")]
+        domain += [
+            ("product_id.type", "=", "consu"),
+            ("product_id.is_storable", "=", True),
+        ]
         self.env["product.mrp.area"].search(domain).write({"mrp_applicable": True})
         self._adjust_mrp_applicable(mrp_areas)
         count_domain = [("mrp_applicable", "=", True)]
         if mrp_areas:
             count_domain += [("mrp_area_id", "in", mrp_areas.ids)]
         counter = self.env["product.mrp.area"].search_count(count_domain)
-        log_msg = "End Calculate MRP Applicable: %s" % counter
+        log_msg = f"End Calculate MRP Applicable: {counter}"
         logger.info(log_msg)
         return True
 
@@ -750,7 +753,10 @@ class MultiLevelMrp(models.TransientModel):
                     self._init_mrp_move_grouped_demand(product_mrp_area)
                 counter += 1
 
-            log_msg = f"MRP Calculation LLC {llc} at {mrp_area.name} Finished - Nbr. products: {counter}"
+            log_msg = (
+                f"MRP Calculation LLC {llc} at {mrp_area.name} Finished "
+                "- Nbr. products: {counter}"
+            )
             logger.info(log_msg)
 
         logger.info("End MRP calculation")
