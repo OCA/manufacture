@@ -8,11 +8,10 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
-Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +274,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: gray; } /* line numbers */
+pre.code .ln { color: grey; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +300,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic, pre.problematic {
+span.problematic {
   color: red }
 
 span.section-subtitle {
@@ -464,7 +463,8 @@ recomputed</li>
 <li>Link Manufacturing Orders with Planned Orders.</li>
 <li>Allow Mrp Inventory Procure Wizard to be used from other models.</li>
 <li>Make MRP Inventory creation more extensible.</li>
-<li>Main Supplier computation (v13 requires explicit False definitions)</li>
+<li>Main Supplier computation (v13 requires explicit False
+definitions)</li>
 </ul>
 </li>
 </ul>
@@ -545,8 +545,8 @@ when generating supply proposals.
 <li>[REW] Refactor MRP Area.
 (<a class="reference external" href="https://github.com/OCA/manufacture/pull/322">#322</a>):<ul>
 <li>MRP product concept dropped in favor of <em>Product MRP Area
-Parameters</em>. This allow to set different MRP parameters for the same
-product in different areas.</li>
+Parameters</em>. This allow to set different MRP parameters for the
+same product in different areas.</li>
 <li>Menu items reordering.</li>
 </ul>
 </li>
@@ -608,14 +608,12 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h1>Maintainers</h1>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org">
-<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
-</a>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
-<p><a class="reference external image-reference" href="https://github.com/JordiBForgeFlow"><img alt="JordiBForgeFlow" src="https://github.com/JordiBForgeFlow.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/LoisRForgeFlow"><img alt="LoisRForgeFlow" src="https://github.com/LoisRForgeFlow.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/ChrisOForgeFlow"><img alt="ChrisOForgeFlow" src="https://github.com/ChrisOForgeFlow.png?size=40px" /></a></p>
+<p><a class="reference external image-reference" href="https://github.com/JordiBForgeFlow"><img alt="JordiBForgeFlow" src="https://github.com/JordiBForgeFlow.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/LoisRForgeFlow"><img alt="LoisRForgeFlow" src="https://github.com/LoisRForgeFlow.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/17.0/mrp_multi_level">OCA/manufacture</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>

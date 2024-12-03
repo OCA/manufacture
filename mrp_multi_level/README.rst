@@ -38,16 +38,16 @@ and explodes this down to the lowest level.
 Key Features
 ------------
 
-- MRP parameters set by product variant MRP area pairs.
-- Cron job to calculate the MRP demand.
-- Manually calculate the MRP demand.
-- Confirm the calculated MRP demand and create PO's, or MO's.
-- Able to see the products for which action is needed throught Planned
-  Orders.
-- Integration with `Stock Demand
-  Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`__
-  system. Note: You need to install `mrp_multi_level_estimate
-  module <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level_estimate>`__.
+-  MRP parameters set by product variant MRP area pairs.
+-  Cron job to calculate the MRP demand.
+-  Manually calculate the MRP demand.
+-  Confirm the calculated MRP demand and create PO's, or MO's.
+-  Able to see the products for which action is needed throught Planned
+   Orders.
+-  Integration with `Stock Demand
+   Estimates <https://github.com/OCA/stock-logistics-warehouse/tree/12.0/stock_demand_estimate>`__
+   system. Note: You need to install `mrp_multi_level_estimate
+   module <https://github.com/OCA/manufacture/tree/12.0/mrp_multi_level_estimate>`__.
 
 **Table of contents**
 
@@ -60,14 +60,14 @@ Configuration
 MRP Areas
 ---------
 
-- Go to *Manufacturing > Configuration > MRP Areas* and define or edit
-  any existing area. You can specify the working hours for every area.
+-  Go to *Manufacturing > Configuration > MRP Areas* and define or edit
+   any existing area. You can specify the working hours for every area.
 
 Product MRP Area Parameters
 ---------------------------
 
-- Go to *Manufacturing > Master Data > Product MRP Area Parameters* and
-  set the MRP parameters for a given product and area.
+-  Go to *Manufacturing > Master Data > Product MRP Area Parameters* and
+   set the MRP parameters for a given product and area.
 
 Usage
 =====
@@ -93,123 +93,124 @@ Changelog
 
 **Features**
 
-- Show *Run MRP Multi Level* menu only to a specific new security group
-  *Run MRP Manually*.
-  (`#492 <https://github.com/OCA/manufacture/issues/492>`__)
+-  Show *Run MRP Multi Level* menu only to a specific new security group
+   *Run MRP Manually*.
+   (`#492 <https://github.com/OCA/manufacture/issues/492>`__)
 
 13.0.1.4.0 (2020-03-26)
 -----------------------
 
-   - Add menu entry for planned orders
-   - Add button to navigate from planned orders to linked manufacturing
-     orders
-   - Add action to convert planned orders to fixed
-   - When changing the due date in a planned order the release date is
-     recomputed
+   -  Add menu entry for planned orders
+   -  Add button to navigate from planned orders to linked manufacturing
+      orders
+   -  Add action to convert planned orders to fixed
+   -  When changing the due date in a planned order the release date is
+      recomputed
 
 13.0.1.3.0 (2020-03-02)
 -----------------------
 
-- [IMP] Minor changes"
-  (`#470 <https://github.com/OCA/manufacture/pull/470>`__).
+-  [IMP] Minor changes"
+   (`#470 <https://github.com/OCA/manufacture/pull/470>`__).
 
-  - Planned Order release and due date become required.
-  - Add button to Product MRP Area to update MOQ from Supplier Info.
-  - Link Manufacturing Orders with Planned Orders.
-  - Allow Mrp Inventory Procure Wizard to be used from other models.
-  - Make MRP Inventory creation more extensible.
-  - Main Supplier computation (v13 requires explicit False definitions)
+   -  Planned Order release and due date become required.
+   -  Add button to Product MRP Area to update MOQ from Supplier Info.
+   -  Link Manufacturing Orders with Planned Orders.
+   -  Allow Mrp Inventory Procure Wizard to be used from other models.
+   -  Make MRP Inventory creation more extensible.
+   -  Main Supplier computation (v13 requires explicit False
+      definitions)
 
 13.0.1.2.0 (2020-02-20)
 -----------------------
 
-- [IMP] Minor changes
-  (`#468 <https://github.com/OCA/manufacture/pull/468>`__).
+-  [IMP] Minor changes
+   (`#468 <https://github.com/OCA/manufacture/pull/468>`__).
 
-  - Planned Orders become fixed on manual creation by default
-  - Released Quantity becomes readonly
-  - Add product reference if Planned Order name is not defined on bom
-    explosion
+   -  Planned Orders become fixed on manual creation by default
+   -  Released Quantity becomes readonly
+   -  Add product reference if Planned Order name is not defined on bom
+      explosion
 
 13.0.1.1.0 (2020-02-21)
 -----------------------
 
-- [FIX] Minor changes
-  (`#469 <https://github.com/OCA/manufacture/pull/469>`__).
+-  [FIX] Minor changes
+   (`#469 <https://github.com/OCA/manufacture/pull/469>`__).
 
-  - Fix Main supplier computation in multi company
-  - Drop Triplicated field in search view
+   -  Fix Main supplier computation in multi company
+   -  Drop Triplicated field in search view
 
-- [IMP] Minor changes
-  (`#463 <https://github.com/OCA/manufacture/pull/463>`__).
+-  [IMP] Minor changes
+   (`#463 <https://github.com/OCA/manufacture/pull/463>`__).
 
-  - Show supply method on MRP Inventory
-  - Allow no-MRP users to look into Products
+   -  Show supply method on MRP Inventory
+   -  Allow no-MRP users to look into Products
 
 13.0.1.0.0 (2019-12-18)
 -----------------------
 
-- [MIG] Migration to v13.
+-  [MIG] Migration to v13.
 
 12.0.1.0.0 (2019-08-05)
 -----------------------
 
-- [MIG] Migration to v12:
+-  [MIG] Migration to v12:
 
-  - Estimates as a forecasting mechanism is moved to a new module
-    (mrp_multi_level_estimate).
+   -  Estimates as a forecasting mechanism is moved to a new module
+      (mrp_multi_level_estimate).
 
 11.0.3.0.0 (2019-05-22)
 -----------------------
 
-- [REW/IMP] Rework to include Planned Orders.
-  (`#365 <https://github.com/OCA/manufacture/pull/365>`__).
-- [IMP] Able to procure from a different location than the area's
-  location.
+-  [REW/IMP] Rework to include Planned Orders.
+   (`#365 <https://github.com/OCA/manufacture/pull/365>`__).
+-  [IMP] Able to procure from a different location than the area's
+   location.
 
 11.0.2.2.0 (2019-05-02)
 -----------------------
 
-- [IMP] Able to run MRP only for selected areas.
-  (`#360 <https://github.com/OCA/manufacture/pull/360>`__).
+-  [IMP] Able to run MRP only for selected areas.
+   (`#360 <https://github.com/OCA/manufacture/pull/360>`__).
 
 11.0.2.1.0 (2019-04-02)
 -----------------------
 
-- [IMP] Implement *Nbr. Days* functionality to be able to group demand
-  when generating supply proposals.
-  (`#345 <https://github.com/OCA/manufacture/pull/345>`__).
+-  [IMP] Implement *Nbr. Days* functionality to be able to group demand
+   when generating supply proposals.
+   (`#345 <https://github.com/OCA/manufacture/pull/345>`__).
 
 11.0.2.0.0 (2018-11-20)
 -----------------------
 
-- [REW] Refactor MRP Area.
-  (`#322 <https://github.com/OCA/manufacture/pull/322>`__):
+-  [REW] Refactor MRP Area.
+   (`#322 <https://github.com/OCA/manufacture/pull/322>`__):
 
-  - MRP product concept dropped in favor of *Product MRP Area
-    Parameters*. This allow to set different MRP parameters for the same
-    product in different areas.
-  - Menu items reordering.
+   -  MRP product concept dropped in favor of *Product MRP Area
+      Parameters*. This allow to set different MRP parameters for the
+      same product in different areas.
+   -  Menu items reordering.
 
 11.0.1.1.0 (2018-08-30)
 -----------------------
 
-- [FIX] Consider *Qty Multiple* on product to propose the quantity to
-  procure. (`#297 <https://github.com/OCA/manufacture/pull/297>`__)
+-  [FIX] Consider *Qty Multiple* on product to propose the quantity to
+   procure. (`#297 <https://github.com/OCA/manufacture/pull/297>`__)
 
 11.0.1.0.1 (2018-08-03)
 -----------------------
 
-- [FIX] User and system locales doesn't break MRP calculation.
-  (`#290 <https://github.com/OCA/manufacture/pull/290>`__)
-- [FIX] Working Hours are now defined only at Warehouse level and
-  displayed as a related on MRP Areas.
-  (`#290 <https://github.com/OCA/manufacture/pull/290>`__)
+-  [FIX] User and system locales doesn't break MRP calculation.
+   (`#290 <https://github.com/OCA/manufacture/pull/290>`__)
+-  [FIX] Working Hours are now defined only at Warehouse level and
+   displayed as a related on MRP Areas.
+   (`#290 <https://github.com/OCA/manufacture/pull/290>`__)
 
 11.0.1.0.0 (2018-07-09)
 -----------------------
 
-- Start of the history.
+-  Start of the history.
 
 Bug Tracker
 ===========
@@ -233,13 +234,13 @@ Authors
 Contributors
 ------------
 
-- Wim Audenaert <wim.audenaert@ucamco.com>
-- Jordi Ballester <jordi.ballester@forgeflow.com>
-- Lois Rilo <lois.rilo@forgeflow.com>
-- Héctor Villarreal <hector.villarreal@forgeflow.com>
-- Christopher Ormaza <chris.ormaza@forgeflow.com>
-- Joan Sisquella <joan.sisquella@forgeflow.com>
-- Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+-  Wim Audenaert <wim.audenaert@ucamco.com>
+-  Jordi Ballester <jordi.ballester@forgeflow.com>
+-  Lois Rilo <lois.rilo@forgeflow.com>
+-  Héctor Villarreal <hector.villarreal@forgeflow.com>
+-  Christopher Ormaza <chris.ormaza@forgeflow.com>
+-  Joan Sisquella <joan.sisquella@forgeflow.com>
+-  Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 
 Maintainers
 -----------
@@ -260,13 +261,10 @@ promote its widespread use.
 .. |maintainer-LoisRForgeFlow| image:: https://github.com/LoisRForgeFlow.png?size=40px
     :target: https://github.com/LoisRForgeFlow
     :alt: LoisRForgeFlow
-.. |maintainer-ChrisOForgeFlow| image:: https://github.com/ChrisOForgeFlow.png?size=40px
-    :target: https://github.com/ChrisOForgeFlow
-    :alt: ChrisOForgeFlow
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow| |maintainer-ChrisOForgeFlow| 
+|maintainer-JordiBForgeFlow| |maintainer-LoisRForgeFlow| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_multi_level>`_ project on GitHub.
 
