@@ -111,5 +111,5 @@ class MrpPlannedOrder(models.Model):
         action = self.env.ref("mrp.mrp_production_action")
         result = action.read()[0]
         result["context"] = {}
-        result["domain"] = "[('id','in',%s)]" % self.mrp_production_ids.ids
+        result["domain"] = f"[('id','in',{self.mrp_production_ids.ids})]"
         return result

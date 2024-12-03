@@ -36,12 +36,12 @@
             </form>
         </field>
     </record>
-    <record id="mrp_inventory_tree" model="ir.ui.view">
-        <field name="name">mrp.inventory.tree</field>
+    <record id="mrp_inventory_list" model="ir.ui.view">
+        <field name="name">mrp.inventory.list</field>
         <field name="model">mrp.inventory</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="mrp_area_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="product_id" />
@@ -71,7 +71,7 @@
                 <field name="supply_method" />
                 <field name="main_supplier_id" optional="hide" />
                 <field name="running_availability" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_mrp_inventory_pivot" model="ir.ui.view">
@@ -160,8 +160,8 @@
         <field name="name">MRP Inventory</field>
         <field name="res_model">mrp.inventory</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
-        <field name="view_id" ref="mrp_inventory_tree" />
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="mrp_inventory_list" />
         <field name="search_view_id" ref="mrp_inventory_search" />
     </record>
 </odoo>

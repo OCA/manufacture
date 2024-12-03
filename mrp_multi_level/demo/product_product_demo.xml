@@ -3,7 +3,7 @@
     <record id="product_product_fp_1" model="product.product">
         <field name="name">FP-1</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -14,7 +14,7 @@
     <record id="product_product_fp_2" model="product.product">
         <field name="name">FP-2</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -25,7 +25,7 @@
     <record id="product_product_fp_3" model="product.product">
         <field name="name">FP-3</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -36,7 +36,7 @@
     <record id="product_product_fp_4" model="product.product">
         <field name="name">FP-4</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
     </record>
@@ -51,7 +51,7 @@
     <record id="product_product_sf_1" model="product.product">
         <field name="name">SF-1</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -62,7 +62,7 @@
     <record id="product_product_sf_2" model="product.product">
         <field name="name">SF-2</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -73,7 +73,7 @@
     <record id="product_product_sf_3" model="product.product">
         <field name="name">SF-3</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -85,7 +85,7 @@
     <record id="product_product_pp_1" model="product.product">
         <field name="name">PP-1</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -96,7 +96,7 @@
     <record id="product_product_pp_2" model="product.product">
         <field name="name">PP-2</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -108,7 +108,7 @@
     <record id="product_product_pp_3" model="product.product">
         <field name="name">PP-3</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -120,7 +120,7 @@
     <record id="product_product_pp_4" model="product.product">
         <field name="name">PP-4</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -132,7 +132,7 @@
     <record id="product_product_av_11" model="product.product">
         <field name="name">AV-11 steel</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -143,7 +143,7 @@
     <record id="product_product_av_12" model="product.product">
         <field name="name">AV-12 aluminium</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -154,7 +154,7 @@
     <record id="product_product_av_21" model="product.product">
         <field name="name">AV-21 white</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field
@@ -165,7 +165,7 @@
     <record id="product_product_av_22" model="product.product">
         <field name="name">AV-22 black</field>
         <field name="categ_id" ref="product_category_mrp" />
-        <field name="type">product</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field

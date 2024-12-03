@@ -2,11 +2,11 @@
 <!-- Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
      Part of ForgeFlow. See LICENSE file for full copyright and licensing details. -->
 <odoo>
-    <record id="mrp_planned_order_view_tree" model="ir.ui.view">
-        <field name="name">mrp.planned.order.tree</field>
+    <record id="mrp_planned_order_view_list" model="ir.ui.view">
+        <field name="name">mrp.planned.order.list</field>
         <field name="model">mrp.planned.order</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="fixed != True and mrp_action != 'phantom'"
                 decoration-muted="mrp_action == 'phantom'"
             >
@@ -21,7 +21,7 @@
                 <field name="mrp_qty" />
                 <field name="fixed" />
                 <field name="mrp_action" optional="hide" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="mrp_planned_order_view_form" model="ir.ui.view">
@@ -112,7 +112,7 @@
         <field name="name">Planned Orders</field>
         <field name="res_model">mrp.planned.order</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_mode">list,form,pivot</field>
         <field name="context">{'search_default_fixed': 1}</field>
     </record>
     <menuitem

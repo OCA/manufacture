@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="mrp_move_view_tree" model="ir.ui.view">
-        <field name="name">mrp.move.tree</field>
+    <record id="mrp_move_view_list" model="ir.ui.view">
+        <field name="name">mrp.move.list</field>
         <field name="model">mrp.move</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="mrp_date" />
                 <field name="current_date" />
                 <field name="mrp_origin" />
@@ -16,7 +16,7 @@
                 <field name="current_qty" />
                 <field name="mrp_type" />
                 <field name="planned_order_up_ids" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -87,6 +87,6 @@
         <field name="name">MRP Moves</field>
         <field name="res_model">mrp.move</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
