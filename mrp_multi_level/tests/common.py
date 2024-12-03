@@ -104,7 +104,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.prod_test = cls.product_obj.create(
             {
                 "name": "Test Top Seller",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 150.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
@@ -124,7 +124,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.prod_min = cls.product_obj.create(
             {
                 "name": "Product with minimum order qty",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
@@ -143,7 +143,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.prod_max = cls.product_obj.create(
             {
                 "name": "Product with maximum order qty",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
@@ -161,7 +161,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.prod_multiple = cls.product_obj.create(
             {
                 "name": "Product with qty multiple",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 50.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
@@ -180,7 +180,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.product_scenario_1 = cls.product_obj.create(
             {
                 "name": "Product Special Scenario 1",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 100.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
@@ -198,7 +198,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.product_tz = cls.product_obj.create(
             {
                 "name": "Product Timezone",
-                "type": "product",
+                "is_storable": True,
                 "list_price": 100.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
@@ -211,7 +211,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.prod_uom_test = cls.product_obj.create(
             {
                 "name": "Product Uom Test",
-                "type": "product",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_dozen").id,
                 "list_price": 150.0,
@@ -226,7 +226,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.product_lots = cls.product_obj.create(
             {
                 "name": "Product Tracked by Lots",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "lot",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "list_price": 100.0,

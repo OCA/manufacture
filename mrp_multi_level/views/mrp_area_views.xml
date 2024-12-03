@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="mrp_area_tree">
-        <field name="name">mrp.area.tree</field>
+    <record model="ir.ui.view" id="mrp_area_list">
+        <field name="name">mrp.area.list</field>
         <field name="model">mrp.area</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="warehouse_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="location_id" />
                 <field name="calendar_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="mrp_area_form">
@@ -54,7 +54,7 @@
         <field name="name">MRP Area</field>
         <field name="res_model">mrp.area</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="mrp_area_tree" />
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="mrp_area_list" />
     </record>
 </odoo>
