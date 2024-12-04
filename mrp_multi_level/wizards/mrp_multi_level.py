@@ -750,11 +750,7 @@ class MultiLevelMrp(models.TransientModel):
                     self._init_mrp_move_grouped_demand(product_mrp_area)
                 counter += 1
 
-            log_msg = (
-                "MRP Calculation LLC {} at {} Finished - Nbr. products: {}".format(
-                    llc, mrp_area.name, counter
-                )
-            )
+            log_msg = f"MRP Calculation LLC {llc} at {mrp_area.name} Finished - Nbr. products: {counter}"
             logger.info(log_msg)
 
         logger.info("End MRP calculation")
