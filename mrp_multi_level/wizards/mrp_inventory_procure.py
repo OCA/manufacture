@@ -97,7 +97,7 @@ class MrpInventoryProcure(models.TransientModel):
             for item in self.item_ids:
                 item.planned_order_id.qty_released += item.qty
         except UserError as error:
-            errors.append(error.name)
+            errors.append(str(error))
         if errors:
             raise UserError("\n".join(errors))
         return {"type": "ir.actions.act_window_close"}
