@@ -15,33 +15,47 @@ class TestBomTracking(TransactionCase):
         cls.bom_line_obj = cls.env["mrp.bom.line"]
 
         # Create products:
-        cls.product_1 = cls.product_obj.create({"name": "TEST 01", "type": "product"})
-        cls.component_1 = cls.product_obj.create({"name": "RM 01", "type": "product"})
-        cls.component_2 = cls.product_obj.create({"name": "RM 02", "type": "product"})
+        cls.product_1 = cls.product_obj.create([{"name": "TEST 01", "type": "consu"}])
+        cls.component_1 = cls.product_obj.create([{"name": "RM 01", "type": "consu"}])
+        cls.component_2 = cls.product_obj.create([{"name": "RM 02", "type": "consu"}])
         # cls.uom_1 = cls.env['uom.uom'].create({"name": "RM UOM", "category_id": 1})
         cls.component_2_alt = cls.product_obj.create(
-            {"name": "RM 02-B", "type": "product"}
+            [{"name": "RM 02-B", "type": "consu"}]
         )
 
         # Create Bills of Materials:
         cls.bom = cls.bom_obj.create(
-            {"product_tmpl_id": cls.product_1.product_tmpl_id.id}
+            [{"product_tmpl_id": cls.product_1.product_tmpl_id.id}]
         )
         cls.line_1 = cls.bom_line_obj.create(
-            {"product_id": cls.component_1.id, "bom_id": cls.bom.id, "product_qty": 2.0}
+            [
+                {
+                    "product_id": cls.component_1.id,
+                    "bom_id": cls.bom.id,
+                    "product_qty": 2.0,
+                }
+            ]
         )
         cls.line_2 = cls.bom_line_obj.create(
-            {"product_id": cls.component_2.id, "bom_id": cls.bom.id, "product_qty": 5.0}
+            [
+                {
+                    "product_id": cls.component_2.id,
+                    "bom_id": cls.bom.id,
+                    "product_qty": 5.0,
+                }
+            ]
         )
 
     def test_01_change_bom_lines(self):
-        self.component_3 = self.product_obj.create({"name": "RM 03", "type": "product"})
+        self.component_3 = self.product_obj.create([{"name": "RM 03", "type": "consu"}])
         bom_line_ids = self.bom_line_obj.create(
-            {
-                "product_id": self.component_3.id,
-                "product_qty": 2.0,
-                "bom_id": self.bom.id,
-            }
+            [
+                {
+                    "product_id": self.component_3.id,
+                    "product_qty": 2.0,
+                    "bom_id": self.bom.id,
+                }
+            ]
         )
         self.bom.write({"bom_line_ids": [(6, 0, bom_line_ids.ids)]})
 
