@@ -10,7 +10,7 @@ from odoo.tests import common, tagged
 class TestMrpProductionAutovalidate(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestMrpProductionAutovalidate, cls).setUpClass()
+        super().setUpClass()
         cls.user_admin = cls.env.ref("base.user_admin")
         cls.env = api.Environment(cls.cr, cls.user_admin.id, {})
         cls.env.user.tz = False  # Make sure there's no timezone in user
