@@ -3,7 +3,7 @@
 {
     "name": "MRP Repair Order",
     "summary": "Create repair order from manufacturing order",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Antoni Marroig, Odoo Community Association (OCA)",
