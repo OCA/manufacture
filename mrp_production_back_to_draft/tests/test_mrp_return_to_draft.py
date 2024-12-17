@@ -7,13 +7,12 @@ from odoo.tests import common, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestMrpProductionAutovalidate(common.SavepointCase):
+class TestMrpProductionAutovalidate(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.user_admin = cls.env.ref("base.user_admin")
         cls.env = api.Environment(cls.cr, cls.user_admin.id, {})
-        cls.env.user.tz = False  # Make sure there's no timezone in user
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.location = cls.env.ref("stock.stock_location_stock")
         cls.env.user.write(
@@ -68,19 +67,19 @@ class TestMrpProductionAutovalidate(common.SavepointCase):
             self.prod_ti1, self.location, 2
         )
         self.assertEqual(self.mo_1.state, "draft")
-        self.mo_1._onchange_move_raw()
+        self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.assertEqual(self.mo_1.state, "confirmed")
         self.mo_1.action_return_to_draft()
         self.assertEqual(self.mo_1.state, "draft")
-        self.mo_1._onchange_move_raw()
+        self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.assertEqual(self.mo_1.state, "confirmed")
         self.mo_1.action_cancel()
         self.assertEqual(self.mo_1.state, "cancel")
         self.mo_1.action_return_to_draft()
         self.assertEqual(self.mo_1.state, "draft")
-        self.mo_1._onchange_move_raw()
+        self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.mo_1.qty_producing = 2
         self.assertEqual(self.mo_1.state, "to_close")

@@ -15,7 +15,7 @@
                     type="object"
                     class="oe_stat_button"
                     string="Return to Draft"
-                    attrs="{'invisible': [('state', 'not in', ['confirmed', 'cancel'])]}"
+                    invisible="state not in ['confirmed', 'cancel']"
                 >
                 </button>
             </button>
