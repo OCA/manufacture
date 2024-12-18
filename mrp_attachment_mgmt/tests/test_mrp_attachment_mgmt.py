@@ -1,4 +1,4 @@
-# Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.exceptions import UserError
 
@@ -6,10 +6,6 @@ from .common import TestMrpAttachmentMgmtBase
 
 
 class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
     def test_misc_bom_documents(self):
         attachment_a = self._create_attachment(self.component_a)
         self.env["mrp.document"].create({"ir_attachment_id": attachment_a.id})
