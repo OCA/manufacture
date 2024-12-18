@@ -66,23 +66,3 @@ msgstr "Ordine di produzione"
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_workorder
 msgid "Work Order"
 msgstr "Ordine di lavoro"
-
-#, python-format
-#~ msgid ""
-#~ "%d Product(s) without drawing:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "%d Prodotto(i) senza disegno:\n"
-#~ "%s"
-
-#~ msgid "Display Name"
-#~ msgstr "Nome visualizzato"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
-
-#~ msgid "Product Template"
-#~ msgstr "Modello prodotto"
