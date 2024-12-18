@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,18 +14,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_production_back_to_draft
-#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: mrp_production_back_to_draft
-#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production__id
-msgid "ID"
-msgstr ""
-
-#. module: mrp_production_back_to_draft
-#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production____last_update
-msgid "Last Modified on"
+#. odoo-python
+#: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
+#, python-format
+msgid "Could not set the production order back to draft"
 msgstr ""
 
 #. module: mrp_production_back_to_draft
@@ -39,6 +31,7 @@ msgid "Return to Draft"
 msgstr ""
 
 #. module: mrp_production_back_to_draft
+#. odoo-python
 #: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
 #, python-format
 msgid ""
