@@ -7,18 +7,18 @@
             <field name="consumption" position="after">
                 <field
                     name="allow_in_regular_production"
-                    attrs="{'invisible': [('type','!=','subcontract')]}"
+                    invisible="type!='subcontract'"
                 />
             </field>
             <page name="operations" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('type', '=', 'subcontract'),('allow_in_regular_production','=',False)]}</attribute>
+                    name="invisible"
+                >type!='subcontract' and not allow_in_regular_production</attribute>
             </page>
             <field name="operation_ids" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('type', '=', 'subcontract'),('allow_in_regular_production','=',False)]}</attribute>
+                    name="invisible"
+                >type=='subcontract' and not allow_in_regular_production</attribute>
             </field>
         </field>
     </record>

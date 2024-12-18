@@ -28,16 +28,17 @@ class TestMrpSubcontractingBomDualUse(BaseCommon):
             groups="mrp.group_mrp_routings,mrp.group_mrp_manager",
         )
 
-    def _create_bom(self, bom_type):
-        mrp_bom_form = Form(self.env["mrp.bom"])
-        mrp_bom_form.product_tmpl_id = self.product.product_tmpl_id
+    @classmethod
+    def _create_bom(cls, bom_type):
+        mrp_bom_form = Form(cls.env["mrp.bom"])
+        mrp_bom_form.product_tmpl_id = cls.product.product_tmpl_id
         mrp_bom_form.type = bom_type
         if bom_type == "subcontract":
-            mrp_bom_form.subcontractor_ids.add(self.partner)
+            mrp_bom_form.subcontractor_ids.add(cls.partner)
             mrp_bom_form.allow_in_regular_production = True
-        mrp_bom_form.product_tmpl_id = self.product.product_tmpl_id
+        mrp_bom_form.product_tmpl_id = cls.product.product_tmpl_id
         with mrp_bom_form.bom_line_ids.new() as line_form:
-            line_form.product_id = self.component_a
+            line_form.product_id = cls.component_a
             line_form.product_qty = 1
         return mrp_bom_form.save()
 
@@ -59,9 +60,10 @@ class TestMrpSubcontractingBomDualUse(BaseCommon):
         self.assertEqual(mrp_production_form.bom_id, bom)
         self.assertTrue(mrp_production_form.move_raw_ids)
 
-    def _product_replenish(self, product, qty):
+    @classmethod
+    def _product_replenish(cls, product, qty):
         replenish_form = Form(
-            self.env["product.replenish"].with_context(default_product_id=product.id)
+            cls.env["product.replenish"].with_context(default_product_id=product.id)
         )
         replenish_form.quantity = qty
         replenish = replenish_form.save()
@@ -75,7 +77,6 @@ class TestMrpSubcontractingBomDualUse(BaseCommon):
         mrp_bom_form = Form(bom)
         with mrp_bom_form.operation_ids.new() as operation_form:
             operation_form.name = "Test operation"
-            operation_form.bom_id = bom
             operation_form.workcenter_id = self.workcenter
         bom = mrp_bom_form.save()
         self._product_replenish(self.product, 1)

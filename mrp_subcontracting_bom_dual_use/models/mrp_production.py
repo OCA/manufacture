@@ -22,6 +22,8 @@ class MrpProduction(models.Model):
                         ('product_id','=',False),
         '|',
             ('type', '=', 'normal'),
-            '&', ('type', '=', 'subcontract'), ('allow_in_regular_production', '=', True)
+            '&',
+                ('type', '=', 'subcontract'),
+                ('allow_in_regular_production', '=', True)
         ]""",
     )
