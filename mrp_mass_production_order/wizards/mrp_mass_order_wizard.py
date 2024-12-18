@@ -149,7 +149,6 @@ class MassMrpProductionOrderWizard(models.TransientModel):
         "stock.picking.type",
         "Operation Type",
         default=_get_default_picking_type_id,
-        precompute=True,
         domain="[('code', '=', 'mrp_operation')]",
         required=True,
     )
