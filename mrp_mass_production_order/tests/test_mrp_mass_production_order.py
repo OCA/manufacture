@@ -2,15 +2,23 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import Command
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMRPMassProductionOrder(TransactionCase):
+class TestMRPMassProductionOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.product_delivery_01 = cls.env.ref("product.product_delivery_01")
-        cls.product_delivery_02 = cls.env.ref("product.product_delivery_02")
+        cls.product_delivery_01 = cls.env["product.product"].create(
+            {"name": "Test product 1"}
+        )
+        cls.product_delivery_02 = cls.env["product.product"].create(
+            {"name": "Test product 2"}
+        )
+        cls.component_1 = cls.env["product.product"].create({"name": "Test comp 1"})
+        cls.component_2 = cls.env["product.product"].create({"name": "Test comp 2"})
         cls.tag = cls.env["mrp.tag"].create({"name": "With_bom"})
         cls.tag2 = cls.env["mrp.tag"].create({"name": "Without_bom"})
         cls.bom = cls.env["mrp.bom"].create(
@@ -21,13 +29,13 @@ class TestMRPMassProductionOrder(TransactionCase):
                 "bom_line_ids": [
                     Command.create(
                         {
-                            "product_id": cls.env.ref("product.product_order_01").id,
+                            "product_id": cls.component_1.id,
                             "product_qty": 2,
                         }
                     ),
                     Command.create(
                         {
-                            "product_id": cls.env.ref("product.product_product_3").id,
+                            "product_id": cls.component_2.id,
                             "product_qty": 2,
                         }
                     ),
