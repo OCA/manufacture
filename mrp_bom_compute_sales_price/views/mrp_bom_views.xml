@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="view_mrp_bom_form_inherit_compute_sale_price" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.compute.sale.price</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/div" position="after">
+                <field name="display_product_sale_price" />
+                <button
+                    name="action_calculate_product_sale_price"
+                    string="Calculate Sales Price"
+                    type="object"
+                />
+                <button
+                    name="action_set_product_sale_price"
+                    string="Set Product Sales Price"
+                    type="object"
+                />
+            </xpath>
+            <xpath expr="(//field[@name='product_uom_id'])[2]" position="after">
+                <field name="display_component_unit_sale_price" />
+                <field name="component_total_sale_price" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
