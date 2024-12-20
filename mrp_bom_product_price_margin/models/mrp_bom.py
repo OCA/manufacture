@@ -21,8 +21,9 @@ class MrpBom(models.Model):
         help="Calculated with raw components cost divided by the BoM quantity.",
     )
     diff_product_bom_standard_price = fields.Boolean(
-        default=False,
         compute="_compute_diff_product_bom_standard_price",
+        help="Technical field used to display or hide button 'Apply this cost "
+        "to Product standard price' in the form view",
     )
 
     # Fields related to sale price
@@ -30,9 +31,6 @@ class MrpBom(models.Model):
         string="Product Sale Price", related="product_tmpl_id.list_price"
     )
     product_margin_rate = fields.Float(related="product_tmpl_id.standard_margin_rate")
-    product_margin_rate_percentage = fields.Float(
-        string="Product Margin", compute="_compute_product_margin_rate_percentage"
-    )
 
     # Compute functions
     @api.depends("product_tmpl_id", "product_tmpl_id.standard_price")
@@ -57,11 +55,6 @@ class MrpBom(models.Model):
                 bom.diff_product_bom_standard_price = float_round(diff, price_dp)
             else:
                 bom.diff_product_bom_standard_price = False
-
-    @api.depends("product_margin_rate")
-    def _compute_product_margin_rate_percentage(self):
-        for bom in self:
-            bom.product_margin_rate_percentage = bom.product_margin_rate / 100
 
     # Functions to change product fields
     def set_product_standard_price(self):

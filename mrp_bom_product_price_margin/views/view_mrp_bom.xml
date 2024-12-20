@@ -128,7 +128,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <xpath expr="//tree" position="attributes">
                 <attribute
                     name="decoration-danger"
-                >product_margin_rate_percentage &lt; 0</attribute>
+                >product_margin_rate &lt; 0</attribute>
             </xpath>
             <xpath expr="//field[@name='product_tmpl_id']" position="after">
                 <field name="currency_id" invisible="1" />
@@ -142,8 +142,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     help="It will set Product's standard price with this price"
                 />
                 <field name="product_standard_price" widget="monetary" />
-                <field name="product_sale_price" widget="monetary" />
-                <field name="product_margin_rate_percentage" widget="percentage" />
+                <field name="product_sale_price" widget="monetary" optional="hide" />
+                <field name="product_margin_rate" optional="hide" />
             </xpath>
         </field>
     </record>
