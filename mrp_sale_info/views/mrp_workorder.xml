@@ -31,10 +31,12 @@
                     name="sale_info"
                     groups="mrp.group_mrp_manager"
                 >
-                    <field name="sale_id" />
-                    <field name="partner_id" />
-                    <field name="commitment_date" />
-                    <field name="client_order_ref" />
+                    <group>
+                        <field name="sale_id" />
+                        <field name="partner_id" />
+                        <field name="commitment_date" />
+                        <field name="client_order_ref" />
+                    </group>
                 </page>
             </page>
         </field>
