@@ -9,3 +9,4 @@
 - Kevin Khao \<<kevin.khao@akretion.com>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
 - Mantas Šniukas \<<mantas@vialaurea.lt>\>
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
