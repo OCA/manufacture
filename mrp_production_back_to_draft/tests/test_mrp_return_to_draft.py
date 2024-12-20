@@ -61,27 +61,48 @@ class TestMrpProductionAutovalidate(common.TransactionCase):
                 "bom_id": cls.test_bom_1.id,
             }
         )
+        cls.workcenter_id = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Workcenter 01",
+            }
+        )
+        cls.test_workorder_1 = cls.env["mrp.workorder"].create(
+            {
+                "name": "Workorder Test",
+                "product_uom_id": cls.prod_tp1.uom_id.id,
+                "production_id": cls.mo_1.id,
+                "workcenter_id": cls.workcenter_id.id,
+                "qty_remaining": 1,
+                "qty_produced": 0,
+            }
+        )
 
     def test_01_mrp_return_to_draft(self):
         self.env["stock.quant"]._update_available_quantity(
             self.prod_ti1, self.location, 2
         )
         self.assertEqual(self.mo_1.state, "draft")
+        self.assertEqual(self.mo_1.workorder_ids.state, "waiting")
         self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.assertEqual(self.mo_1.state, "confirmed")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
         self.mo_1.action_return_to_draft()
         self.assertEqual(self.mo_1.state, "draft")
+        self.assertEqual(self.mo_1.workorder_ids.state, "waiting")
         self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.assertEqual(self.mo_1.state, "confirmed")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
         self.mo_1.action_cancel()
         self.assertEqual(self.mo_1.state, "cancel")
+        self.assertEqual(self.mo_1.workorder_ids.state, "cancel")
         self.mo_1.action_return_to_draft()
         self.assertEqual(self.mo_1.state, "draft")
+        self.assertNotIn(self.mo_1.workorder_ids.state, ["cancel"])
         self.mo_1._compute_move_raw_ids()
         self.mo_1.action_confirm()
         self.mo_1.qty_producing = 2
-        self.assertEqual(self.mo_1.state, "to_close")
+        self.mo_1.workorder_ids.action_mark_as_done()
         with self.assertRaises(UserError):
             self.mo_1.action_return_to_draft()
