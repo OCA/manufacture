@@ -22,6 +22,7 @@ class MrpProduction(models.Model):
             else:
                 (rec.move_raw_ids + rec.move_finished_ids)._action_cancel()
                 (rec.move_raw_ids + rec.move_finished_ids).write({"state": "draft"})
+                rec.workorder_ids.write({"state": "waiting"})
                 if rec.state != "draft":
                     raise UserError(
                         _("Could not set the production order back to draft")
