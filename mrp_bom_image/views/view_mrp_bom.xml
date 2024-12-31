@@ -5,7 +5,6 @@ Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
-
     <!-- ************************************************************ -->
     <!-- MRP Bill of Materials - Form -->
     <!-- ************************************************************ -->
@@ -15,7 +14,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//widget[@name='web_ribbon']" position="after">
-              <field
+                <field
                     name="image_1024"
                     widget="image"
                     class="oe_avatar"
@@ -34,18 +33,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="mrp.mrp_bom_kanban_view" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('o_kanban_record_top')]" position="before">
-              <div class="o_kanban_image">
-                  <img
+                <div class="o_kanban_image">
+                    <img
                         class="o_image_64_contain"
                         t-att-src="kanban_image('mrp.bom', 'image_128', record.product_tmpl_id.raw_value)"
                         alt="Bill of Material Image"
                     />
-              </div>
+                </div>
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_record_top')]" position="attributes">
                 <attribute name="class">oe_kanban_details</attribute>
             </xpath>
         </field>
     </record>
-
 </odoo>
