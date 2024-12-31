@@ -32,17 +32,24 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_kanban_view" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="before">
-                <div class="o_kanban_image">
-                    <img
-                        class="o_image_64_contain"
-                        t-att-src="kanban_image('mrp.bom', 'image_128', record.product_tmpl_id.raw_value)"
-                        alt="Bill of Material Image"
-                    />
+            <xpath expr="//t[@t-name='card']" position="inside">
+                <div class="d-flex align-items-start">
+                    <div class="o_kanban_image me-2">
+                        <field
+                            class="o_image_64_contain"
+                            name="image_128"
+                            widget="image"
+                            alt="Bill of Material Image"
+                        />
+                    </div>
+                    <div>
+                        <div class="content" />
+                    </div>
                 </div>
             </xpath>
-            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="attributes">
-                <attribute name="class">oe_kanban_details</attribute>
+            <xpath expr="//div[hasclass('content')]" position="inside">
+                <xpath expr="//div" position="move" />
+                <xpath expr="//footer" position="move" />
             </xpath>
         </field>
     </record>
