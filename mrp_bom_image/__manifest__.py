@@ -5,7 +5,7 @@
 {
     "name": "MRP BoM Image",
     "summary": "Add product Images to BoM",
-    "version": "16.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Manufacture",
     "author": "GRAP, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
