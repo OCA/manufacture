@@ -6,3 +6,4 @@
 - Laurent Bélorgey \<<lb@lalieutenante.com>\>
 - Pimolnat Suntian \<<pimolnats@ecosoft.co.th>\>
 - Mathieu Delva \<<mathieu.delva@akretion.com>\>
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
