@@ -7,7 +7,7 @@ import odoo.tests as common
 class TestMrpBomVersion(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestMrpBomVersion, cls).setUpClass()
+        super().setUpClass()
         cls.parameter_model = cls.env["ir.config_parameter"].sudo()
         cls.bom_model = cls.env["mrp.bom"].with_context(test_mrp_bom_version=True)
         cls.company = cls.env.ref("base.main_company")
