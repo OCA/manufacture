@@ -1,10 +1,12 @@
 # (c) 2015 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import odoo.tests as common
+from odoo import Command
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpBomVersion(common.TransactionCase):
+class TestMrpBomVersion(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,8 +19,12 @@ class TestMrpBomVersion(common.TransactionCase):
                 "product.product_product_11_product_template"
             ).id,
             "bom_line_ids": [
-                (0, 0, {"product_id": cls.env.ref("product.product_product_5").id}),
-                (0, 0, {"product_id": cls.env.ref("product.product_product_6").id}),
+                Command.create(
+                    {"product_id": cls.env.ref("product.product_product_5").id}
+                ),
+                Command.create(
+                    {"product_id": cls.env.ref("product.product_product_6").id}
+                ),
             ],
         }
         cls.mrp_bom = cls.bom_model.create(vals)

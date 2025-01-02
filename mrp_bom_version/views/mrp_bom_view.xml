@@ -2,15 +2,16 @@
 <odoo>
     <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
         <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+        <field name="context">{'active_test': False}</field>
     </record>
 
     <record model="ir.ui.view" id="mrp_bom_version_tree_view">
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="decoration-muted">not active</attribute>
-            </tree>
+            </list>
             <field name="code" position="after">
                 <field name="version" />
                 <field name="state" />
@@ -20,14 +21,14 @@
                     type="object"
                     title="Draft"
                     groups="mrp_bom_version.group_mrp_bom_version"
-                    attrs="{'invisible':[('state','!=','active')]}"
+                    invisible="state != 'active'"
                     icon="fa-plus-square"
                 />
                 <button
                     name="button_activate"
                     type="object"
                     title="Activate"
-                    attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                    invisible="state not in (False, 'draft')"
                     icon="fa-check-square"
                     confirm="You will activate the BoM, then you won't be able to edit it after this. Are you sure you want to proceed?"
                 />
@@ -35,7 +36,7 @@
                     name="button_new_version"
                     type="object"
                     title="New version"
-                    attrs="{'invisible':[('state','==','historical')]}"
+                    invisible="state == 'historical'"
                     icon="fa-gears"
                     confirm="You are going to create a new version of this BoM. Are you sure?"
                 />
@@ -43,7 +44,7 @@
                     name="button_historical"
                     type="object"
                     title="Historical"
-                    attrs="{'invisible':[('state','!=','active')]}"
+                    invisible="state != 'active'"
                     icon="fa-history"
                     confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"
                 />
@@ -57,27 +58,28 @@
         <field name="arch" type="xml">
             <sheet position="before">
                 <header>
+                    <field name="sequence" invisible="1" />
                     <button
                         name="button_draft"
                         type="object"
                         string="Draft"
                         groups="mrp_bom_version.group_mrp_bom_version"
-                        attrs="{'invisible':[('state','!=','active')]}"
+                        invisible="state != 'active'"
                         class="oe_highlight"
                     />
                     <button
                         name="button_activate"
                         type="object"
                         string="Activate"
-                        attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                        invisible="state not in (False, 'draft')"
                         class="oe_highlight"
-                        confirm="YYou will activate the BoM, then you won't be able to edit it after this. Are you sure you want to proceed?"
+                        confirm="You will activate the BoM, then you won't be able to edit it after this. Are you sure you want to proceed?"
                     />
                     <button
                         name="button_new_version"
                         type="object"
                         string="New version"
-                        attrs="{'invisible':[('state','=','historical')]}"
+                        invisible="state == 'historical'"
                         class="oe_highlight"
                         confirm="You are going to create a new version of this BoM. Are you sure?"
                     />
@@ -85,7 +87,7 @@
                         name="button_historical"
                         type="object"
                         string="Historical"
-                        attrs="{'invisible':[('state','!=','active')]}"
+                        invisible="state != 'active'"
                         class="oe_highlight"
                         confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"
                     />
@@ -97,17 +99,59 @@
                 </header>
             </sheet>
             <field name="company_id" position="before">
-                <field name="version" />
-                <field
-                    name="historical_date"
-                    attrs="{'invisible': [('state','!=','historical')]}"
-                />
+                <field name="version" readonly="state == 'historical'" />
+                <field name="historical_date" invisible="state != 'historical'" />
             </field>
             <notebook position="inside">
                 <page string="Versions">
                     <field name="old_versions" />
                 </page>
             </notebook>
+            <xpath
+                expr="//group/group[2]/field[@name='company_id']"
+                position="attributes"
+            >
+                <attribute name="readonly">state == 'historical'</attribute>
+            </xpath>
+            <field name="product_tmpl_id" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="product_id" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="product_qty" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="code" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="type" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="product_uom_id" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="bom_line_ids" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="byproduct_ids" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="sequence" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="operation_ids" position="attributes">
+                <attribute name="readonly">state != 'draft'</attribute>
+            </field>
+            <field name="ready_to_produce" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="picking_type_id" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
+            <field name="consumption" position="attributes">
+                <attribute name="readonly">state == 'historical'</attribute>
+            </field>
         </field>
     </record>
 

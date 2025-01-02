@@ -4,7 +4,7 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <div id="mrp_reception_report" position="after">
+            <setting id="mrp_reception_report" position="after">
                 <div class="col-12 col-lg-6 o_setting_box" id="mrp_bom_version">
                     <div class="o_setting_left_pane">
                         <field name="group_mrp_bom_version" />
@@ -14,10 +14,7 @@
                         <div class="text-muted">
                             Allow to re-edit BoMs
                         </div>
-                        <div
-                            class="row mt-2"
-                            attrs="{'invisible': [('group_mrp_bom_version','=',False)]}"
-                        >
+                        <div class="row mt-2" invisible="not group_mrp_bom_version">
                             <field
                                 name="active_draft"
                                 class="col flex-grow-0 ml16 mr0 pe-2"
@@ -31,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </setting>
         </field>
     </record>
 </odoo>
