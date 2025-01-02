@@ -111,7 +111,7 @@ class MrpProduction(models.Model):
                 and m.state not in ("done", "cancel")
             )
             if finish_moves and not finish_moves.quantity_done:
-                lot_model = self.env["stock.production.lot"]
+                lot_model = self.env["stock.lot"]
                 lot = lot_model.search(
                     [
                         ("product_id", "=", order.product_id.id),
@@ -128,7 +128,7 @@ class MrpProduction(models.Model):
                         )
                     )
                 if not lot:
-                    lot = self.env["stock.production.lot"].create(
+                    lot = self.env["stock.lot"].create(
                         {
                             "product_id": order.product_id.id,
                             "company_id": order.company_id.id,

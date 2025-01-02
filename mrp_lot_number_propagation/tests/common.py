@@ -81,7 +81,7 @@ class Common(common.TransactionCase):
                     "company_id": line.company_id.id,
                     "name": lot_name,
                 }
-                lot = cls.env["stock.production.lot"].create(vals)
+                lot = cls.env["stock.lot"].create(vals)
             cls._update_qty_in_location(
                 location,
                 line.product_id,

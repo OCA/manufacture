@@ -34,7 +34,7 @@ class TestMrpProduction(Common):
 
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
-            line.qty_done = line.product_uom_qty
+            line.qty_done = line.reserved_uom_qty
         order.qty_producing = order.product_qty
 
     def test_order_propagated_lot_producing(self):
@@ -64,7 +64,7 @@ class TestMrpProduction(Common):
         self.assertEqual(self.order.propagated_lot_producing, self.LOT_NAME)
         # Create a lot with the same number for the finished product
         # without any stock/quants (so not used at all) before validating the MO
-        existing_lot = self.env["stock.production.lot"].create(
+        existing_lot = self.env["stock.lot"].create(
             {
                 "product_id": self.order.product_id.id,
                 "company_id": self.order.company_id.id,
@@ -82,7 +82,7 @@ class TestMrpProduction(Common):
         # Create a lot with the same number for the finished product
         # with some stock/quants (so it is considered as used) before
         # validating the MO
-        existing_lot = self.env["stock.production.lot"].create(
+        existing_lot = self.env["stock.lot"].create(
             {
                 "product_id": self.order.product_id.id,
                 "company_id": self.order.company_id.id,
