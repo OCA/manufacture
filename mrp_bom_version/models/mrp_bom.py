@@ -31,9 +31,7 @@ class MrpBom(models.Model):
             res = "active"
         return res
 
-    active = fields.Boolean(
-        default=_default_active, readonly=True, states={"draft": [("readonly", False)]}
-    )
+    active = fields.Boolean(default=_default_active, readonly=True)
     historical_date = fields.Date(readonly=True, copy=False)
     state = fields.Selection(
         selection=[
@@ -47,31 +45,21 @@ class MrpBom(models.Model):
         default=_default_state,
         copy=False,
     )
-    product_tmpl_id = fields.Many2one(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
-    product_id = fields.Many2one(readonly=True, states={"draft": [("readonly", False)]})
-    product_qty = fields.Float(readonly=True, states={"draft": [("readonly", False)]})
-    code = fields.Char(states={"historical": [("readonly", True)]})
-    type = fields.Selection(states={"historical": [("readonly", True)]})
-    company_id = fields.Many2one(states={"historical": [("readonly", True)]})
-    product_uom_id = fields.Many2one(states={"historical": [("readonly", True)]})
-    bom_line_ids = fields.One2many(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
-    byproduct_ids = fields.One2many(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
-    sequence = fields.Integer(states={"historical": [("readonly", True)]})
-    operation_ids = fields.One2many(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
-    ready_to_produce = fields.Selection(states={"historical": [("readonly", True)]})
-    picking_type_id = fields.Many2one(states={"historical": [("readonly", True)]})
-    consumption = fields.Selection(states={"historical": [("readonly", True)]})
-    version = fields.Integer(
-        states={"historical": [("readonly", True)]}, copy=False, default=1
-    )
+    product_tmpl_id = fields.Many2one()
+    product_id = fields.Many2one()
+    product_qty = fields.Float()
+    code = fields.Char()
+    type = fields.Selection()
+    company_id = fields.Many2one()
+    product_uom_id = fields.Many2one()
+    bom_line_ids = fields.One2many()
+    byproduct_ids = fields.One2many()
+    sequence = fields.Integer()
+    operation_ids = fields.One2many()
+    ready_to_produce = fields.Selection()
+    picking_type_id = fields.Many2one()
+    consumption = fields.Selection()
+    version = fields.Integer(copy=False, default=1)
     previous_bom_id = fields.Many2one(
         comodel_name="mrp.bom", string="Previous BoM", copy=False
     )
@@ -132,7 +120,7 @@ class MrpBom(models.Model):
         )
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    def search(self, args, offset=0, limit=None, order=None):
         """Add search argument for field type if the context says so. This
         should be in old API because context argument is not the last one.
         """
@@ -144,7 +132,6 @@ class MrpBom(models.Model):
             offset=offset,
             limit=limit,
             order=order,
-            count=count,
         )
 
     @api.model
