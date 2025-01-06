@@ -1,7 +1,7 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
             for bom in product.bom_ids:
                 if bom.lot_number_propagation:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "A BoM propagating serial numbers requires "
                             "this product to be tracked as such."
                         )
@@ -35,8 +35,9 @@ class ProductTemplate(models.Model):
                 boms = "\n- ".join(bom_lines.mapped("bom_id.display_name"))
                 boms = "\n- " + boms
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "This component is configured to propagate its "
-                        "serial number in the following Bill of Materials:{boms}'"
-                    ).format(boms=boms)
+                        "serial number in the following Bill of Materials: %s",
+                        boms,
+                    )
                 )

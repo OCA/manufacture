@@ -3,7 +3,7 @@
 
 from odoo.exceptions import UserError
 from odoo.fields import Command
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from .common import Common
 
@@ -34,7 +34,8 @@ class TestMrpProduction(Common):
 
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
-            line.qty_done = line.reserved_uom_qty
+            line.quantity = line.quantity_product_uom
+            line.picked = True
         order.qty_producing = order.product_qty
 
     def test_order_propagated_lot_producing(self):
@@ -48,7 +49,7 @@ class TestMrpProduction(Common):
 
     def test_order_write_lot_producing_id_not_allowed(self):
         with self.assertRaisesRegex(UserError, "not allowed"):
-            self.order.write({"lot_producing_id": False})
+            self.order.write({"lot_producing_id": "test"})
 
     def test_order_post_inventory(self):
         self._update_stock_component_qty(self.order)

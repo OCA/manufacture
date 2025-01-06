@@ -9,9 +9,6 @@ from odoo.tests import Form, common
 
 
 class Common(common.TransactionCase):
-
-    LOT_NAME = "PROPAGATED-LOT"
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -30,6 +27,7 @@ class Common(common.TransactionCase):
         cls.product_template_tracked_by_sn = cls.env.ref(
             "mrp.product_product_computer_desk_head_product_template"
         )
+        cls.LOT_NAME = cls.env.ref("mrp.lot_product_product_computer_desk_head_1").name
         cls.line_tracked_by_lot = cls.bom.bom_line_ids.filtered(
             lambda o: o.product_id == cls.product_tracked_by_lot
         )
@@ -52,7 +50,7 @@ class Common(common.TransactionCase):
         cls.env["stock.quant"]._update_available_quantity(
             product,
             location,
-            quantity,
+            quantity=quantity,
             package_id=package,
             lot_id=lot,
             in_date=in_date,
@@ -74,8 +72,6 @@ class Common(common.TransactionCase):
                 lot_name = "".join(
                     random.choice(string.ascii_lowercase) for i in range(10)
                 )
-                if line.propagate_lot_number:
-                    lot_name = cls.LOT_NAME
                 vals = {
                     "product_id": line.product_id.id,
                     "company_id": line.company_id.id,
@@ -147,9 +143,9 @@ class Common(common.TransactionCase):
                 att_values_commands.append(
                     fields.Command.link(attribute_values_dict[att_value.name])
                 )
-            create_values[
-                "bom_product_template_attribute_value_ids"
-            ] = att_values_commands
+            create_values["bom_product_template_attribute_value_ids"] = (
+                att_values_commands
+            )
             bom_line_create_values.append(create_values)
         cls.env["mrp.bom.line"].create(bom_line_create_values)
         new_bom_form = Form(new_bom)

@@ -1,7 +1,7 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -41,7 +41,7 @@ class MrpBomLine(models.Model):
                 continue
             if line.propagate_lot_number and line.product_id.tracking != "serial":
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Only components tracked by serial number can propagate "
                         "its lot/serial number to the finished product."
                     )
