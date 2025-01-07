@@ -14,6 +14,7 @@ class StockMove(models.Model):
         if self.has_tracking != "none" and float_is_zero(
             self.quantity_done, precision_rounding=self.product_uom.rounding
         ):
-            # If some serial/lot has been selected to be consumed we don't change the selection.
+            # If some serial/lot has been selected to be consumed
+            # we don't change the selection.
             return False
         return res
