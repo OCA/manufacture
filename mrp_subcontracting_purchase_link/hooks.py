@@ -35,5 +35,5 @@ def update_po_line_in_mrp_production(cr):
     )
 
 
-def post_init_hook(cr, registry):
-    update_po_line_in_mrp_production(cr)
+def post_init_hook(env):
+    update_po_line_in_mrp_production(env.cr)

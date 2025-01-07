@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Link Purchase Order Line to Subcontract Productions",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Manufacturing",
     "license": "LGPL-3",
     "author": "Quartile Limited, ForgeFlow, Odoo Community Association (OCA)",
