@@ -6,11 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-20 13:38+0000\n"
-"PO-Revision-Date: 2024-12-20 13:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,17 +16,17 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "(for 1x"
-msgstr "(pour 1x"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "(margin"
-msgstr "(marge"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "(margin:"
-msgstr "(marge :"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -37,8 +34,6 @@ msgid ""
 ").<br/>\n"
 "                  Product sale price:"
 msgstr ""
-").<br/>\n"
-"                  Prix de vente du produit :"
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -46,8 +41,6 @@ msgid ""
 "<br/>\n"
 "                  Product cost :"
 msgstr ""
-"<br/>\n"
-"                  Coût du produit :"
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -55,47 +48,43 @@ msgid ""
 "<br/>\n"
 "                  Product sale price:"
 msgstr ""
-"<br/>\n"
-"                  Prix de vente du produit :"
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model,name:mrp_bom_product_price_margin.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Nomenclature"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model,name:mrp_bom_product_price_margin.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr "Ligne de nomenclature"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "Bill of Material cost:"
-msgstr "Coût de la nomenclature :"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__standard_price
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "BoM Unit Cost"
-msgstr "Coût unitaire"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__standard_price
 msgid "Calculated with raw components cost divided by the BoM quantity."
 msgstr ""
-"Calculé à partir du coût des composants divisé par la quantité de la "
-"nomenclature."
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_product_template__standard_price
 msgid "Cost"
-msgstr "Coût"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__currency_id
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom_line__currency_id
 msgid "Currency"
-msgstr "Devise"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_tree
@@ -110,32 +99,22 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,help:mrp_bom_product_price_margin.field_product_template__standard_price
 msgid ""
-"In Standard Price & AVCO: value of the product (automatically computed in "
-"AVCO).\n"
-"        In FIFO: value of the next unit that will leave the stock "
-"(automatically computed).\n"
-"        Used to value the product when the purchase cost is not known (e.g. "
-"inventory adjustment).\n"
+"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
 "        Used to compute margins on sale orders."
 msgstr ""
-"En prix standard en en coût moyen : valeur du produit (calculée "
-"automatiquement en coût moyen).\n"
-"       En FIFO : valeur de l'unité suivante qui quittera le stock (calculée "
-"automatiquement).\n"
-"        Utilisé pour évaluer le produit lorsque le coût d'achat n'est pas "
-"connu (par ex. ajustement de stock).\n"
-"        Utilisé pour calculer les marges sur les commandes."
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_tree
 msgid "It will set Product's standard price with this price"
-msgstr "Cela définira le coût du Produit avec ce total."
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate
 msgid "Margin (%)"
-msgstr "Taux de marque (%)"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__product_margin_rate
@@ -153,22 +132,22 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model:ir.model,name:mrp_bom_product_price_margin.model_product_template
 msgid "Product"
-msgstr "Produit"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_sale_price
 msgid "Product Sale Price"
-msgstr "Produit - Prix de vente"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom__product_standard_price
 msgid "Product Standard Price"
-msgstr "Produit - Coût"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "Product cost is based on the cost of this Bill of Material ("
-msgstr "Le coût du Produit est basé sur le coût de cette Nomenclature ("
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -178,17 +157,17 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom_line__standard_price_unit
 msgid "Standard Price Unit"
-msgstr "Prix unitaire"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom_line__standard_price_subtotal
 msgid "Subtotal price"
-msgstr "Sous-total"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,field_description:mrp_bom_product_price_margin.field_mrp_bom_line__standard_price_subtotal_percentage
 msgid "Subtotal price %"
-msgstr "Sous-total %"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model:ir.model.fields,help:mrp_bom_product_price_margin.field_mrp_bom__diff_product_bom_standard_price
@@ -196,8 +175,6 @@ msgid ""
 "Technical field used to display or hide button 'Apply this cost to Product "
 "standard price' in the form view"
 msgstr ""
-"Champ technique utilisé pour afficher ou cacher le bouton 'Définir le coût "
-"du Produit avec ce prix.' dans la vue formulaire."
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
@@ -207,14 +184,14 @@ msgstr ""
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_tree
 msgid "Update Product standard price"
-msgstr "Mettre à jour le coût du Produit"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "for 1x"
-msgstr "pour 1x"
+msgstr ""
 
 #. module: mrp_bom_product_price_margin
 #: model_terms:ir.ui.view,arch_db:mrp_bom_product_price_margin.view_mrp_bom_sale_product_margin_form
 msgid "⇙ Apply this cost to Product standard price"
-msgstr "⇙ Définir le coût du Produit avec ce prix."
+msgstr ""
