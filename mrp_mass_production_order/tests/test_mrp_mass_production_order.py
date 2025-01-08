@@ -53,7 +53,12 @@ class TestMRPMassProductionOrder(TransactionCase):
                     "product_id",
                     "in",
                     [cls.product_delivery_01.id, cls.product_delivery_02.id],
-                )
+                ),
+                (
+                    "tag_ids",
+                    "in",
+                    [cls.tag.id],
+                ),
             ]
         )
 
