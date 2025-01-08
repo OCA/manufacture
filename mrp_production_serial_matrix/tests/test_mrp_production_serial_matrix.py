@@ -1,4 +1,4 @@
-# Copyright 2021 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2021-24 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.exceptions import UserError
@@ -12,7 +12,7 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         super().setUpClass()
         cls.mo_obj = cls.env["mrp.production"]
         cls.product_obj = cls.env["product.product"]
-        cls.lot_obj = cls.env["stock.production.lot"]
+        cls.lot_obj = cls.env["stock.lot"]
         cls.quant_obj = cls.env["stock.quant"]
         cls.bom_obj = cls.env["mrp.bom"]
         cls.bom_line_obj = cls.env["mrp.bom.line"]
@@ -145,7 +145,6 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         production_form.product_id = cls.final_product
         production_form.bom_id = cls.bom_1
         production_form.product_qty = qty
-        production_form.product_uom_id = cls.final_product.uom_id
         production_1 = production_form.save()
         production_1.action_confirm()
         production_1.action_assign()
@@ -172,20 +171,54 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         # Start matrix:
         wizard_form = Form(
             self.wiz_obj.with_context(
-                active_id=production_1.id, active_model="mrp.production"
-            )
+                active_id=production_1.id,
+                active_model="mrp.production",
+            ),
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_initial_form",
         )
         expected = 3 * 3  # Only SN products (1 + 2 per finish unit)
+        wizard = wizard_form.save()
+        wizard_form = Form(
+            wizard,
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_final_form",
+        )
         self.assertEqual(len(wizard_form.line_ids), expected)
+
+        wizard_form = Form(
+            self.wiz_obj.with_context(
+                active_id=production_1.id,
+                active_model="mrp.production",
+            ),
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_initial_form",
+        )
         wizard_form.include_lots = True
+        wizard = wizard_form.save()
+        wizard._onchange_finished_lot_ids()
+        wizard_form = Form(
+            wizard,
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_final_form",
+        )
         expected = 3 * 4
         self.assertEqual(len(wizard_form.line_ids), expected)
         self.assertEqual(wizard_form.lot_selection_warning_count, 0)
+        wizard_form = Form(
+            self.wiz_obj.with_context(
+                active_id=production_1.id,
+                active_model="mrp.production",
+            ),
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_initial_form",
+        )
+        wizard_form.include_lots = True
         serial_fp_1 = self._create_serial_number(self.final_product, "ABC101", qty=0)
         serial_fp_2 = self._create_serial_number(self.final_product, "ABC102", qty=0)
         wizard_form.finished_lot_ids.add(serial_fp_1)
-        self.assertEqual(wizard_form.lot_selection_warning_count, 1)
         wizard_form.finished_lot_ids.add(serial_fp_2)
+        wizard = wizard_form.save()
+        wizard._onchange_finished_lot_ids()
+        wizard_form = Form(
+            wizard,
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_final_form",
+        )
         self.assertEqual(wizard_form.lot_selection_warning_count, 2)
         wizard = wizard_form.save()
         lines = wizard.line_ids
@@ -249,35 +282,35 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         mo_1 = mos.filtered(lambda mo: mo.lot_producing_id == serial_fp_1)
         self.assertEqual(mo_1.state, "done")
         ml_c1 = self._find_move_lines(mo_1, self.component_1_serial)
-        self.assertEqual(ml_c1.qty_done, 1.0)
+        self.assertEqual(ml_c1.quantity, 1.0)
         self.assertEqual(ml_c1.lot_id, self.serial_1_001)
         ml_c2 = self._find_move_lines(mo_1, self.component_2_serial)
         self.assertEqual(len(ml_c2), 2)
         for ml in ml_c2:
-            self.assertEqual(ml.qty_done, 1.0)
+            self.assertEqual(ml.quantity, 1.0)
         self.assertEqual(ml_c2.mapped("lot_id"), self.serial_2_001 + self.serial_2_002)
         ml_c3 = self._find_move_lines(mo_1, self.component_3_lot)
-        self.assertEqual(ml_c3.qty_done, 4.0)
+        self.assertEqual(ml_c3.quantity, 4.0)
         self.assertEqual(ml_c3.lot_id, self.lot_3_003)
         ml_c4 = self._find_move_lines(mo_1, self.component_4_no_track)
-        self.assertEqual(ml_c4.qty_done, 1.0)
+        self.assertEqual(ml_c4.quantity, 1.0)
         self.assertFalse(ml_c4.lot_id)
 
         mo_2 = mos.filtered(lambda mo: mo.lot_producing_id == serial_fp_2)
         self.assertEqual(mo_2.state, "done")
         ml_c1 = self._find_move_lines(mo_2, self.component_1_serial)
-        self.assertEqual(ml_c1.qty_done, 1.0)
+        self.assertEqual(ml_c1.quantity, 1.0)
         self.assertEqual(ml_c1.lot_id, self.serial_1_003)
         ml_c2 = self._find_move_lines(mo_2, self.component_2_serial)
         self.assertEqual(len(ml_c2), 2)
         for ml in ml_c2:
-            self.assertEqual(ml.qty_done, 1.0)
+            self.assertEqual(ml.quantity, 1.0)
         self.assertEqual(ml_c2.mapped("lot_id"), self.serial_2_005 + self.serial_2_004)
         ml_c3 = self._find_move_lines(mo_2, self.component_3_lot)
-        self.assertEqual(ml_c3.qty_done, 4.0)
+        self.assertEqual(ml_c3.quantity, 4.0)
         self.assertEqual(ml_c3.lot_id, self.lot_3_002)
         ml_c4 = self._find_move_lines(mo_2, self.component_4_no_track)
-        self.assertEqual(ml_c4.qty_done, 1.0)
+        self.assertEqual(ml_c4.quantity, 1.0)
         self.assertFalse(ml_c4.lot_id)
 
         # MO holding the remaining qty

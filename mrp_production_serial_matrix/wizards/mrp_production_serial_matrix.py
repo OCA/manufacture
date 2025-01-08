@@ -1,4 +1,4 @@
-# Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2021-24 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -25,7 +25,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     )
     finished_lot_ids = fields.Many2many(
         string="Finished Product Serial Numbers",
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
         domain="[('product_id', '=', product_id)]",
     )
     line_ids = fields.One2many(
@@ -35,7 +35,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     )
     lot_selection_warning_msg = fields.Char(compute="_compute_lot_selection_warning")
     lot_selection_warning_ids = fields.Many2many(
-        comodel_name="stock.production.lot", compute="_compute_lot_selection_warning"
+        comodel_name="stock.lot", compute="_compute_lot_selection_warning"
     )
     lot_selection_warning_count = fields.Integer(
         compute="_compute_lot_selection_warning"
@@ -49,7 +49,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
     @api.depends("line_ids", "line_ids.component_lot_id")
     def _compute_lot_selection_warning(self):
         for rec in self:
-            warning_lots = self.env["stock.production.lot"]
+            warning_lots = self.env["stock.lot"]
             warning_msgs = []
             # Serials:
             serial_lines = rec.line_ids.filtered(
@@ -117,7 +117,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 _("The finished product of this MO is not tracked by serial numbers.")
             )
 
-        finished_lots = self.env["stock.production.lot"]
+        finished_lots = self.env["stock.lot"]
         if production.lot_producing_id:
             finished_lots = production.lot_producing_id
 
@@ -331,13 +331,12 @@ class MrpProductionSerialMatrix(models.TransientModel):
                             lambda line: line.component_lot_id == ml.lot_id  # noqa: B023
                         ).mapped("lot_qty")
                     )
-                    ml.qty_done = qty
-                else:
-                    ml.qty_done = ml.product_qty
-            elif float_is_zero(ml.product_qty, precision_digits=precision_digits):
+                    ml.quantity = qty
+            elif float_is_zero(ml.quantity, precision_digits=precision_digits):
                 ml.unlink()
             else:
-                ml.qty_done = 0.0
+                ml.quantity = 0.0
+            ml.picked = True
 
     def _reserve_lot_in_move(self, move, lot, qty):
         precision_digits = self.env["decimal.precision"].precision_get(
@@ -357,8 +356,19 @@ class MrpProductionSerialMatrix(models.TransientModel):
             )
         move._update_reserved_quantity(
             qty,
-            available_quantity,
             move.location_id,
             lot_id=lot,
             strict=True,
         )
+
+    def button_next(self):
+        self._onchange_finished_lot_ids()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "mrp_production_serial_matrix.action_mrp_production_serial_matrix"
+        )
+        action["view_id"] = self.env.ref(
+            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_final_form"
+        ).id
+        action["views"] = [(action["view_id"], "form")]
+        action["res_id"] = self.id
+        return action

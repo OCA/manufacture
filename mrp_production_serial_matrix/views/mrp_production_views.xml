@@ -12,7 +12,7 @@
                     type="action"
                     class="oe_highlight"
                     string="Serial Numbers Matrix"
-                    attrs="{'invisible':['|', ('show_serial_matrix', '=', False), ('state','in',('draft', 'cancel', 'done'))]}"
+                    invisible="not show_serial_matrix or state in ['draft', 'cancel', 'done']"
                 />
             </button>
         </field>
