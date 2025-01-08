@@ -191,13 +191,13 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         lines = wizard.line_ids
         # Fill first row:
         cell_1_1 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_1
-            and l.component_id == self.component_1_serial
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_1_serial
         )
         cell_1_1.component_lot_id = self.serial_1_001
         cell_1_2and3 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_1
-            and l.component_id == self.component_2_serial
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_2_serial
         )
         self.assertEqual(len(cell_1_2and3), 2)
         for n, cell in enumerate(cell_1_2and3):
@@ -206,21 +206,21 @@ class TestMrpProductionSerialMatrix(TransactionCase):
             elif n == 1:
                 cell.component_lot_id = self.serial_2_002
         cell_1_4 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_1
-            and l.component_id == self.component_3_lot
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_3_lot
         )
         cell_1_4.component_lot_id = self.lot_3_003
 
         # Fill second row:
         cell_2_1 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_2
-            and l.component_id == self.component_1_serial
+            lambda line: line.finished_lot_id == serial_fp_2
+            and line.component_id == self.component_1_serial
         )
         # Simulate a mistake and select the same lot than before:
         cell_2_1.component_lot_id = self.serial_1_001
         cell_2_2and3 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_2
-            and l.component_id == self.component_2_serial
+            lambda line: line.finished_lot_id == serial_fp_2
+            and line.component_id == self.component_2_serial
         )
         self.assertEqual(len(cell_2_2and3), 2)
         for n, cell in enumerate(cell_2_2and3):
@@ -229,8 +229,8 @@ class TestMrpProductionSerialMatrix(TransactionCase):
             elif n == 1:
                 cell.component_lot_id = self.serial_2_004
         cell_2_4 = lines.filtered(
-            lambda l: l.finished_lot_id == serial_fp_2
-            and l.component_id == self.component_3_lot
+            lambda line: line.finished_lot_id == serial_fp_2
+            and line.component_id == self.component_3_lot
         )
         cell_2_4.component_lot_id = self.lot_3_002
 

@@ -53,7 +53,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
             warning_msgs = []
             # Serials:
             serial_lines = rec.line_ids.filtered(
-                lambda l: l.component_id.tracking == "serial"
+                lambda line: line.component_id.tracking == "serial"
             )
             serial_counter = {}
             for sl in serial_lines:
@@ -69,7 +69,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
                     )
             # Lots
             lot_lines = rec.line_ids.filtered(
-                lambda l: l.component_id.tracking == "lot"
+                lambda line: line.component_id.tracking == "lot"
             )
             lot_consumption = {}
             for ll in lot_lines:
@@ -84,20 +84,20 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 ):
                     warning_lots += ll.component_lot_id
                     warning_msgs.append(
-                        "Lot %s not available at the needed qty (%s/%s)"
-                        % (ll.component_lot_id.name, available_quantity, ll.lot_qty)
+                        f"Lot {ll.component_lot_id.name} not available at the "
+                        f"needed qty ({available_quantity}/{ll.lot_qty})"
                     )
                 lot_consumption[ll.component_lot_id] += ll.lot_qty
 
             not_filled_lines = rec.line_ids.filtered(
-                lambda l: l.finished_lot_id and not l.component_lot_id
+                lambda line: line.finished_lot_id and not line.component_lot_id
             )
             if not_filled_lines:
                 not_filled_finshed_lots = not_filled_lines.mapped("finished_lot_id")
                 warning_lots += not_filled_finshed_lots
                 warning_msgs.append(
-                    "Some cells are not filled for some finished serial number (%s)"
-                    % ", ".join(not_filled_finshed_lots.mapped("name"))
+                    f"Some cells are not filled for some finished serial number "
+                    f"({', '.join(not_filled_finshed_lots.mapped('name'))})"
                 )
             rec.lot_selection_warning_msg = ", ".join(warning_msgs)
             rec.lot_selection_warning_ids = warning_lots
@@ -241,11 +241,11 @@ class MrpProductionSerialMatrix(models.TransientModel):
                     # after passing through the `_onchange_finished_lot_ids`
                     # method.
                     matrix_lines = self.line_ids.filtered(
-                        lambda l: (
-                            l.finished_lot_id == fp_lot
-                            or l.finished_lot_name == fp_lot.name
+                        lambda line: (
+                            line.finished_lot_id == fp_lot  # noqa: B023
+                            or line.finished_lot_name == fp_lot.name  # noqa: B023
                         )
-                        and l.component_id == move.product_id
+                        and line.component_id == move.product_id  # noqa: B023
                     )
                     if matrix_lines:
                         self._amend_reservations(move, matrix_lines)
@@ -302,13 +302,13 @@ class MrpProductionSerialMatrix(models.TransientModel):
         if lots_to_reserve:
             to_unreserve_lots = lots_in_move - lots_to_consume
             move.move_line_ids.filtered(
-                lambda l: l.lot_id in to_unreserve_lots
+                lambda line: line.lot_id in to_unreserve_lots
             ).unlink()
             for lot in lots_to_reserve:
                 if move.product_id.tracking == "lot":
                     qty = sum(
                         matrix_lines.filtered(
-                            lambda l: l.component_lot_id == lot
+                            lambda line: line.component_lot_id == lot  # noqa: B023
                         ).mapped("lot_qty")
                     )
                     qty = qty
@@ -328,7 +328,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 if move.product_id.tracking == "lot":
                     qty = sum(
                         matrix_lines.filtered(
-                            lambda l: l.component_lot_id == ml.lot_id
+                            lambda line: line.component_lot_id == ml.lot_id  # noqa: B023
                         ).mapped("lot_qty")
                     )
                     ml.qty_done = qty

@@ -45,9 +45,9 @@ class MrpProductionSerialMatrix(models.TransientModel):
             lot_id=self.component_lot_id,
         )
         move_lines = self.production_id.move_raw_ids.mapped("move_line_ids").filtered(
-            lambda l: l.product_id == self.component_id
-            and l.lot_id == self.component_lot_id
-            and l.state not in ["done", "cancel"]
+            lambda line: line.product_id == self.component_id
+            and line.lot_id == self.component_lot_id
+            and line.state not in ["done", "cancel"]
         )
         specifically_reserved_quantity = sum(move_lines.mapped("product_uom_qty"))
         return available_quantity, specifically_reserved_quantity
