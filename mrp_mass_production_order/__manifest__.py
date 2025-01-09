@@ -3,7 +3,7 @@
 {
     "name": "MRP Mass Production Order",
     "summary": "Create multiple manufacturing orders in one step",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "Antoni Marroig, APSL-Nagarro, Odoo Community Association (OCA)",
