@@ -220,11 +220,18 @@ class ProductMRPArea(models.Model):
                 rec.supply_bom_id = False
 
     @api.depends(
-        "mrp_area_id", "supply_method", "product_id.route_ids", "product_id.seller_ids"
+        "mrp_area_id",
+        "product_id.route_ids",
+        "product_id.seller_ids",
+        "location_proc_id",
     )
     def _compute_main_supplier(self):
         """Simplified and similar to procurement.rule logic."""
-        for rec in self.filtered(lambda r: r.supply_method == "buy"):
+        for rec in self:
+            if rec.supply_method != "buy":
+                rec.main_supplierinfo_id = False
+                rec.main_supplier_id = False
+                continue
             suppliers = rec.product_id.seller_ids.filtered(
                 lambda r, rec=rec: (not r.product_id or r.product_id == rec.product_id)
                 and (not r.company_id or r.company_id == rec.company_id)
@@ -235,9 +242,6 @@ class ProductMRPArea(models.Model):
                 continue
             rec.main_supplierinfo_id = suppliers[0]
             rec.main_supplier_id = suppliers[0].partner_id
-        for rec in self.filtered(lambda r: r.supply_method != "buy"):
-            rec.main_supplierinfo_id = False
-            rec.main_supplier_id = False
 
     def _adjust_qty_to_order(self, qty_to_order):
         self.ensure_one()
