@@ -78,9 +78,7 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
         self.assertEqual(self.subcontracting_receipt.state, "done")
 
     def test_mrp_subcontracting_skip_no_negative_04(self):
-        self.subcontractor_partner1.property_stock_subcontractor.allow_negative_stock = (
-            True
-        )
+        self.subcontractor_partner1.property_stock_subcontractor.allow_negative_stock = True
         self.subcontracting_receipt.action_confirm()
         self.assertEqual(self.subcontracting_receipt.state, "assigned")
         immediate_wizard = self.subcontracting_receipt.sudo().button_validate()

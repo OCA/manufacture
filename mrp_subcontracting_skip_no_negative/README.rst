@@ -17,32 +17,34 @@ MRP Subcontracting Skip No Negative
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/16.0/mrp_subcontracting_skip_no_negative
+    :target: https://github.com/OCA/manufacture/tree/17.0/mrp_subcontracting_skip_no_negative
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-16-0/manufacture-16-0-mrp_subcontracting_skip_no_negative
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-mrp_subcontracting_skip_no_negative
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module skips the negative quantity check, provided by stock_no_negative, for
-subcontracting receipts.
+This module skips the negative quantity check, provided by
+stock_no_negative, for subcontracting receipts.
 
 Background:
-~~~~~~~~~~~
+-----------
 
 Odoo processes subcontracting receipt in the order of:
 
-1. Transfer of the subcontracted product from the subcontractor location to the internal
-location.
-2. Production of the subcontracted product in the subcontractor location.
+1. Transfer of the subcontracted product from the subcontractor location
+to the internal location. 2. Production of the subcontracted product in
+the subcontractor location.
 
-This sequence does not represent the reality where production is done before transfer, and therefore
-the above Step 1 would fail with negative stock in the subcontractor location, when stock_no_negative
-is installed, unless the product/location is configured to allow negative stock.
+This sequence does not represent the reality where production is done
+before transfer, and therefore the above Step 1 would fail with negative
+stock in the subcontractor location, when stock_no_negative is
+installed, unless the product/location is configured to allow negative
+stock.
 
 ref. https://github.com/odoo/odoo/pull/75065
 
@@ -57,7 +59,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_subcontracting_skip_no_negative%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_subcontracting_skip_no_negative%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -65,23 +67,23 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Quartile <https://www.quartile.co>`__:
+- `Quartile <https://www.quartile.co>`__:
 
-  * Aung Ko Ko Lin
+  - Aung Ko Ko Lin
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Víctor Martínez
+  - Víctor Martínez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -93,6 +95,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/16.0/mrp_subcontracting_skip_no_negative>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/mrp_subcontracting_skip_no_negative>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
