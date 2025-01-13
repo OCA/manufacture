@@ -17,6 +17,8 @@ class StockMove(models.Model):
         # For rather unlikely occassions where linked production is not in the right
         # state.
         for move in moves_with_no_check:
+            if not move.picked:
+                continue
             production_moves = self.search(
                 [
                     ("move_dest_ids", "=", move.id),
@@ -59,8 +61,8 @@ class StockMove(models.Model):
                     raise ValidationError(
                         _(
                             "You cannot validate this stock operation because the "
-                            "stock level of the component product '{name}' would become "
-                            "negative ({qty}) on the stock location '{location}' and "
+                            "stock level of the component product '{name}' would become"
+                            " negative ({qty}) on the stock location '{location}' and "
                             "negative stock is not allowed for this product and/or "
                             "location."
                         ).format(
