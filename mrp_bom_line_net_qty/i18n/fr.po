@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2024-02-26 16:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -42,8 +43,14 @@ msgstr "Qté nette"
 
 #. module: mrp_bom_line_net_qty
 #: model:ir.model.fields,help:mrp_bom_line_net_qty.field_mrp_bom_line__loss_percentage
-msgid "Percentage loss, for example, when grating carrots"
+#, fuzzy
+msgid "Percentage loss during process"
 msgstr "Pourcentage de perte, après avoir râper des carottes par exemple."
+
+#. module: mrp_bom_line_net_qty
+#: model:ir.model.fields,help:mrp_bom_line_net_qty.field_mrp_bom_line__product_qty_net
+msgid "Quantity after process"
+msgstr ""
 
 #. module: mrp_bom_line_net_qty
 #. odoo-python
@@ -72,9 +79,9 @@ msgstr ""
 "Cela définira la quantité net de produits grâce à la quantité brute et le "
 "pourcentage de perte."
 
-#. module: mrp_bom_line_net_qty
-#: model:ir.model.fields,help:mrp_bom_line_net_qty.field_mrp_bom_line__product_qty_net
-msgid ""
-"Weight after any preparation, e.g. weight of carrots after they are grated."
-msgstr ""
-"Poids net après une préparation, après avoir râper des carottes par exemple."
+#~ msgid ""
+#~ "Weight after any preparation, e.g. weight of carrots after they are "
+#~ "grated."
+#~ msgstr ""
+#~ "Poids net après une préparation, après avoir râper des carottes par "
+#~ "exemple."
