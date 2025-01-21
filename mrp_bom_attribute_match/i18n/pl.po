@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_attribute_match
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-24 14:51+0000\n"
+"PO-Revision-Date: 2024-11-24 14:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr "Raport z przeglądu BOM"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Zestawienie materiałowe"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Pozycja zestawienia materiałów"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_id
+msgid "Component"
+msgstr "Komponent"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__component_template_id
+msgid "Component (product template)"
+msgstr "Komponent (szablon produktu)"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__match_on_attribute_ids
+msgid "Match on Attributes"
+msgstr "Dopasowanie atrybutów"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"No match on attribute has been detected for Component (Product Template) %s"
+msgstr ""
+"Nie wykryto dopasowania atrybutów dla komponentu (szablonu produktu) %s"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_product_template
+msgid "Product"
+msgstr "Produkt"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Product Backup"
+msgstr "Kopia zapasowa produktu"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
+msgid "Product Uom Category"
+msgstr "Kategoria"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
+msgid "Production Order"
+msgstr "Zamówienie produkcji"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Recursion error!  A product with a Bill of Material should not have itself "
+"in its BoM or child BoMs!"
+msgstr ""
+"Błąd rekursji! Produkt z listą materiałową nie powinien mieć siebie w swojej"
+" liście materiałowej ani w listach materiałowych potomków!"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Some attributes of the dynamic component are not included into production "
+"product attributes."
+msgstr ""
+"Niektóre atrybuty dynamicznego komponentu nie zostały uwzględnione w "
+"atrybutach produktu produkcyjnego."
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Technical field to store previous value of product_id"
+msgstr "Pole techniczne do przechowywania poprzedniej wartości product_id"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"The attributes you're trying to remove are used in the BoM as a match with Component (Product Template). To remove these attributes, first remove the BOM line with the matching component.\n"
+"Attributes: %s\n"
+"BoM: %s"
+msgstr ""
+"Atrybuty, które próbujesz usunąć, są używane w BOM jako dopasowanie do komponentu (szablonu produktu). Aby usunąć te atrybuty, najpierw usuń linię BOM z dopasowanym komponentem.\n"
+"Atrybuty: %s\n"
+"BOM: %s"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"This product template is used as a component in the BOMs for %s and "
+"attribute(s) %s are not present in all such product(s), and this would break"
+" the BOM behavior."
+msgstr ""
+"Ten szablon produktu jest używany jako komponent w BOM dla %s, a atrybut(y) %s "
+"nie są obecne we wszystkich takich produktach, co spowodowałoby naruszenie "
+"działania BOM."
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"You cannot use an attribute value for attribute(s) %s in the field “Apply on"
+" Variants” as it's the same attribute used in the field “Match on Attribute”"
+" related to the component %s."
+msgstr ""
+"Nie można użyć wartości atrybutu dla atrybutu(ów) %s w polu „Zastosuj dla wariantów”, "
+"ponieważ jest to ten sam atrybut, który jest używany w polu „Dopasowanie do atrybutów” "
+"związanym z komponentem %s."

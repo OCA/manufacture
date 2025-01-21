@@ -1,0 +1,14 @@
+{
+    "name": "BOM Attribute Match",
+    "version": "16.0.1.1.1",
+    "category": "Manufacturing",
+    "author": "Ilyas, Ooops, Odoo Community Association (OCA), Trilab",
+    "summary": "Dynamic BOM component based on product attribute",
+    "depends": ["mrp"],
+    "license": "AGPL-3",
+    "website": "https://github.com/OCA/manufacture",
+    "data": [
+        "views/mrp_bom_views.xml",
+    ],
+    "installable": True,
+}
