@@ -76,6 +76,15 @@ Contributors
 -  Mykhailo Panarin <m.panarin@mobilunity.com>
 -  Saran Limpajitkutaporn <saranl@ecosoft.co.th>
 -  Sudhir Arya <sudhir@erpharbor.com>
+-  Khoi (Kien Kim) <khoikk@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 16.0 to 18.0 was financially supported
+by:
+
+-  Camptocamp.
 
 Maintainers
 -----------

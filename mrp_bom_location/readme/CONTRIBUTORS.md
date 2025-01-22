@@ -2,3 +2,4 @@
 - Mykhailo Panarin \<<m.panarin@mobilunity.com>\>
 - Saran Limpajitkutaporn \<<saranl@ecosoft.co.th>\>
 - Sudhir Arya \<<sudhir@erpharbor.com>\>
+- Khoi (Kien Kim) \<<khoikk@trobz.com>\>
