@@ -7,12 +7,19 @@ from odoo import api, fields, models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    location_id = fields.Many2one(string="Location", comodel_name="stock.location")
+    location_id = fields.Many2one(
+        string="Location",
+        comodel_name="stock.location",
+        compute="_compute_location_id",
+        store=True,
+        readonly=False,
+    )
 
-    @api.onchange("picking_type_id")
-    def _onchange_picking_type_id(self):
-        if self.picking_type_id and self.picking_type_id.default_location_src_id:
-            self.location_id = self.picking_type_id.default_location_src_id
+    @api.depends("picking_type_id")
+    def _compute_location_id(self):
+        for record in self:
+            if record.picking_type_id.default_location_src_id:
+                record.location_id = record.picking_type_id.default_location_src_id
 
 
 class MrpBomLine(models.Model):
