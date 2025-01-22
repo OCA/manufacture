@@ -1,1 +1,2 @@
 - Sébastien Alix \<<sebastien.alix@camptocamp.com>\>
+- Nhan Tran \<<nhant@trobz.com>\>
