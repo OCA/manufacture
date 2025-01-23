@@ -1,0 +1,1 @@
+odoo-addon-stock_lot_production_date @ git+https://github.com/LucasTran380381/stock-logistics-workflow.git@refs/pull/1/head#subdirectory=stock_lot_production_date
