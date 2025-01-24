@@ -96,11 +96,18 @@
     <field name="view_mode">tree,form</field>
 </record>
 
-<menuitem id="configurator_menu" name="🔩" parent="mrp.menu_mrp_root" />
+<menuitem id="configurator_menu" name="Configurateur" parent="mrp.menu_mrp_root" />
+
+<menuitem
+        id="input_config_menu_configurations"
+        parent="configurator_menu"
+        name="Configurations"
+        sequence="10"
+    />
 
 <menuitem
         id="input_config_menu"
-        parent="configurator_menu"
+        parent="input_config_menu_configurations"
         action="input_config_action"
     />
 

@@ -51,9 +51,16 @@
 </record>
 
 <menuitem
+        id="input_config_menu_options"
+        parent="configurator_menu"
+        name="Configurator options"
+        sequence="20"
+    />
+
+<menuitem
         id="input_constraint_menu"
-        sequence="15"
-        parent="mrp_bom_configurable.configurator_menu"
+        sequence="10"
+        parent="mrp_bom_configurable.input_config_menu_options"
         action="input_constraint_action"
     />
 

@@ -13,13 +13,14 @@ class Inputline(models.Model):
     config_id = fields.Many2one(
         comodel_name="input.config", required=True, ondelete="cascade"
     )
-    alert = fields.Text(help="Outside limit configuration is reported here")
-    checked = fields.Boolean(
-        compute="_compute_check",
-        store=True,
-        help="If checked, the configuration have been evaluate",
+    alert = fields.Text(
+        help="Outside limit configuration is reported here", compute="_compute_alert"
     )
-    comment = fields.Text()
+    satisfies_constraint = fields.Boolean(
+        store=True,
+        help="True if the input line satisfies the constraints",
+    )
+    constraint_suggestions = fields.Text()
     bom_data_preview = fields.Json()
 
     def _get_config_elements(self):
@@ -83,5 +84,5 @@ class Inputline(models.Model):
         }
 
     @api.depends("bom_id")
-    def _compute_check(self):
+    def _compute_alert(self):
         "You need to override this method in your custom config to trigger adhoc checks"
