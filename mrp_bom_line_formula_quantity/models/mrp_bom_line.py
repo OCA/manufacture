@@ -80,7 +80,13 @@ class MRPBomLine(models.Model):
                 mode="exec",
                 nocopy=True,
             )
-            quantity = values.get("quantity", 0)
+            formula_quantity = values.get("quantity", 0)
+            product_uom_qty = values.get("product_uom_qty", 0)
+            quantity = (
+                formula_quantity * product_uom_qty
+                if formula_quantity and product_uom_qty
+                else 0
+            )
         else:
             quantity = None
         return quantity

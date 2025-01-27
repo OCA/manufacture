@@ -15,6 +15,7 @@ class TestMRPProduction(TestMrpCommon):
         formula_quantity = 10
         bom = self.bom_1.copy()
         formula_bom_line = first(bom.bom_line_ids)
+        formula_bom_line.product_qty = 1
         formula_bom_line["quantity_formula"] = "quantity = %s" % formula_quantity
         # pre-condition
         self.assertNotEqual(formula_bom_line.product_qty, formula_quantity)
@@ -23,6 +24,7 @@ class TestMRPProduction(TestMrpCommon):
         order = self.env["mrp.production"].create(
             {
                 "bom_id": bom.id,
+                "product_qty": bom.product_qty,
             }
         )
 
