@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-       <record id="action_view_journal_items" model="ir.actions.act_window">
+    <record id="action_view_journal_items" model="ir.actions.act_window">
         <field name="name">Journal Items</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">account.move.line</field>
