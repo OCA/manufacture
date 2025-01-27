@@ -19,14 +19,24 @@ class AccountMoveLine(models.Model):
         compute="_compute_mrp_unbuild",
         store=True,
     )
+    # O2M from the Odoo standard M2O
+    mrp_workcenter_productivity_ids = fields.One2many(
+        comodel_name="mrp.workcenter.productivity",
+        inverse_name="account_move_line_id",
+    )
 
-    @api.depends("stock_move_id")
+    @api.depends("stock_move_id", "move_id.line_ids.mrp_workcenter_productivity_ids")
     def _compute_mrp_production(self):
         for rec in self:
             if rec.stock_move_id.production_id:
                 rec.mrp_production_id = rec.stock_move_id.production_id.id
             elif rec.stock_move_id.raw_material_production_id:
                 rec.mrp_production_id = rec.stock_move_id.raw_material_production_id.id
+            elif rec.move_id.line_ids.mapped("mrp_workcenter_productivity_ids"):
+                # Related to labor cost posting
+                rec.mrp_production_id = rec.move_id.line_ids.mapped(
+                    "mrp_workcenter_productivity_ids"
+                )[0].production_id.id
             else:
                 rec.mrp_production_id = False
 
