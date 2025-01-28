@@ -56,9 +56,13 @@ Authors
 Contributors
 ------------
 
--  `Camptocamp <https://www.camptocamp.com>`__
+- `Camptocamp <https://www.camptocamp.com>`__
 
-   -  Iván Todorovich <ivan.todorovich@camptocamp.com>
+  - Iván Todorovich <ivan.todorovich@camptocamp.com>
+
+- `Studio73 <https://www.studio73.es/>`__
+
+  - Arantxa Gandía <arantxa@studio73.es>
 
 Maintainers
 -----------

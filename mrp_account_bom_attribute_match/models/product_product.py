@@ -27,8 +27,7 @@ class ProductProduct(models.Model):
                 if not line_product:
                     to_ignore_line_ids.append(line.id)
                     continue
-                else:
-                    line.product_id = line_product
+                line.product_id = line_product
             if to_ignore_line_ids:
                 bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
         return super()._compute_bom_price(bom, boms_to_recompute, byproduct_bom)

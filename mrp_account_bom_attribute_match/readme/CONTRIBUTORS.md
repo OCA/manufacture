@@ -1,2 +1,4 @@
 - [Camptocamp](https://www.camptocamp.com)
   - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
+- [Studio73](https://www.studio73.es/)
+  - Arantxa Gandía \<<arantxa@studio73.es>\>
