@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="qc_test_form_view">
+        <field name="name">qc.test.form.inherit.quality_control_attachment_oca</field>
+        <field name="model">qc.test</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_test_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="is_required_attachment" widget="boolean_toggle" />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
