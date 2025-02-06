@@ -6,7 +6,12 @@
         <field name="inherit_id" ref="quality_control_oca.qc_test_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='active']" position="after">
-                <field name="is_required_attachment" widget="boolean_toggle" />
+                <field name="enable_image" widget="boolean_toggle" />
+                <field
+                    name="is_required_image"
+                    widget="boolean_toggle"
+                    attrs="{'invisible': [('enable_image', '=', False)]}"
+                />
             </xpath>
 
         </field>

@@ -2,11 +2,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Quality Control Attachment OCA",
+    "name": "Quality Control Images OCA",
     "version": "16.0.1.0.0",
     "category": "Quality Control",
     "license": "AGPL-3",
-    "summary": "This module allows you to add attachments to quality control inspections.",
+    "summary": "Allows you to add images to questions in quality control inspections.",
     "author": "Binhexteam, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca"],
