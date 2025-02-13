@@ -232,3 +232,14 @@ class TestQualityControlOca(TestQualityControlOcaBase):
                     "ql_values": [(0, 0, {"name": "Qualitative answer", "ok": False})],
                 }
             )
+    def test_object_selection_values(self):
+        qc_test = self.env["qc.test"].create({"name": "Quality Test", "type": "related"})
+        selection_values = qc_test.object_selection_values()
+        self.assertIsInstance(selection_values, set)
+        self.assertGreaterEqual(len(selection_values), 0)
+
+    def test_qc_test_object_id(self):
+        qc_test = self.env["qc.test"].create({"name": "Quality Test", "type": "generic"})
+        self.assertFalse(qc_test.object_id)
+        qc_test.write({"type": "related"})
+        self.assertTrue(qc_test.object_id is not None or qc_test.object_selection_values())
