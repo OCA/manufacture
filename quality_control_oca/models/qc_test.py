@@ -18,7 +18,7 @@ class QcTest(models.Model):
     _inherit = "mail.thread"
 
     def object_selection_values(self):
-        return set()
+        return super().object_selection_values()
 
     @api.onchange("type")
     def onchange_type(self):
