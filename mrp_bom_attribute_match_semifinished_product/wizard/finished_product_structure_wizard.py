@@ -80,6 +80,7 @@ class FinishedProductStructureWizard(models.TransientModel):
                         {
                             "component_template_id": line.product_tmpl_stage_id.id,
                             "match_on_attribute_ids": [(6, 0, line.attribute_ids.ids)],
+                            "product_uom_id": line.product_tmpl_stage_id.uom_id.id,
                         },
                     )
                 ],
