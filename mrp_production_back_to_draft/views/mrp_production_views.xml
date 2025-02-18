@@ -16,8 +16,7 @@
                     class="oe_stat_button"
                     string="Return to Draft"
                     invisible="state not in ['confirmed', 'cancel']"
-                >
-                </button>
+                />
             </button>
         </field>
     </record>
