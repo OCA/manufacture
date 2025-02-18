@@ -23,7 +23,6 @@
     <field name='arch' type='xml'>
         <tree multi_edit="1" class="input_line_tree">
             <field name="sequence" widget="handle" />
-            <button name="ui_clone" class="fa fa-clone" type="object" title="Clone" />
             <button
                     name="open_form_pop_up"
                     class="fa fa-eye"
