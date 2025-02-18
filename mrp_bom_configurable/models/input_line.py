@@ -29,15 +29,6 @@ class Inputline(models.Model):
             + " return the specific fields in the input line"
         )
 
-    def _create_vals_for_copy(self):
-        vals = {"name": "%s copy" % self.name}
-        return vals
-
-    def ui_clone(self):
-        self.ensure_one()
-        vals = self._create_vals_for_copy()
-        self.copy(vals)
-
     def _get_input_line_values(self):
         elements = dict()
         for elm in self._get_config_elements():
