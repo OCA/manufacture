@@ -26,13 +26,14 @@ class TestMrpProductionAutovalidate(common.TransactionCase):
         cls.prod_tp1 = cls.env["product.product"].create(
             {
                 "name": "Test Product 1",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.prod_ti1 = cls.env["product.product"].create(
             {
                 "name": "Test Product Intermediate 1",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         # Create BoMs:
