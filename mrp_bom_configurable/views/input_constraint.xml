@@ -64,4 +64,11 @@
         action="input_constraint_action"
     />
 
+<menuitem
+        id="input_constraint_values_menu"
+        sequence="30"
+        parent="configurator_menu"
+        name="Configurator values"
+    />
+
 </odoo>
