@@ -1,7 +1,7 @@
 # Copyright 2024 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -13,7 +13,7 @@ class MrpProduction(models.Model):
         for rec in self:
             if rec.state not in ["confirmed", "cancel"]:
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot return to draft the following MO: %s. "
                         "Only confirmed or cancelled MO can be returned to draft."
                     )
@@ -25,7 +25,7 @@ class MrpProduction(models.Model):
                 rec.workorder_ids.write({"state": "waiting"})
                 if rec.state != "draft":
                     raise UserError(
-                        _("Could not set the production order back to draft")
+                        self.env._("Could not set the production order back to draft")
                     )
 
     @api.depends("move_raw_ids.state", "move_finished_ids.state")
