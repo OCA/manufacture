@@ -1,15 +1,17 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpLotProductionDate(TransactionCase):
+class TestMrpLotProductionDate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.bom = cls.env.ref("mrp.mrp_bom_table_top")  # Tracked by S/N
+        # BoM of a product tracked by S/N with flexible consumption
+        cls.bom = cls.env.ref("mrp.mrp_bom_desk")
 
     @classmethod
     def _create_manufacturing_order(cls, bom, product_qty=1):
