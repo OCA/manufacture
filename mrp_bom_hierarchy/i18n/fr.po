@@ -79,14 +79,12 @@ msgstr ""
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #, python-format
 msgid "This operator is not supported"
 msgstr ""
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
-#: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 #, python-format
 msgid "Value should be True or False (not %s)"
