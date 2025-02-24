@@ -121,16 +121,13 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-geomer198| image:: https://github.com/geomer198.png?size=40px
-    :target: https://github.com/geomer198
-    :alt: geomer198
-.. |maintainer-CetmixGitDrone| image:: https://github.com/CetmixGitDrone.png?size=40px
-    :target: https://github.com/CetmixGitDrone
-    :alt: CetmixGitDrone
+.. |maintainer-GSLabIt| image:: https://github.com/GSLabIt.png?size=40px
+    :target: https://github.com/GSLabIt
+    :alt: GSLabIt
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-geomer198| |maintainer-CetmixGitDrone| 
+|maintainer-GSLabIt| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_bom_attribute_match_semifinished_product>`_ project on GitHub.
 
