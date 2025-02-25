@@ -37,8 +37,7 @@ class AssignManualQuants(models.TransientModel):
                     and ml.package_id == quant.package_id
                 )
             )
-            line["qty_done"] = sum(move_lines.mapped("qty_done"))
-            line["to_consume_now"] = bool(line["qty_done"])
+            line["to_consume_now"] = bool(any(move_lines.mapped("picked")))
         return line
 
     def assign_quants(self):
@@ -52,14 +51,14 @@ class AssignManualQuants(models.TransientModel):
                 lambda quant_line: quant_line.to_consume_now
             ).mapped("lot_id")
             for ml in move.move_line_ids:
-                if ml.lot_id in lots_to_consume:
-                    ml.qty_done = ml.reserved_uom_qty
-                elif float_is_zero(
-                    ml.reserved_uom_qty, precision_digits=precision_digits
-                ):
+                if ml.lot_id in lots_to_consume or ml.product_id.tracking == "none":
+                    quants = self.quants_lines.filtered(
+                        lambda quant_line: quant_line.lot_id == ml.lot_id and quant_line.selected
+                    )
+                    ml.picked = all([quant.to_consume_now for quant in quants])
+                    ml.quantity = sum([quant.qty for quant in quants])
+                elif float_is_zero(ml.quantity, precision_digits=precision_digits):
                     ml.unlink()
-                else:
-                    ml.qty_done = 0.0
         return res
 
 
@@ -67,4 +66,3 @@ class AssignManualQuantsLines(models.TransientModel):
     _inherit = "assign.manual.quants.lines"
 
     to_consume_now = fields.Boolean()
-    qty_done = fields.Float(digits="Product Unit of Measure", readonly=True)
