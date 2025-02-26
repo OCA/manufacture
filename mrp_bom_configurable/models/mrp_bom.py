@@ -24,8 +24,9 @@ class MrpBom(models.Model):
 
     def get_bom_configured_data(self, input_line, quantity=1.0):
         result = []
-        values = input_line._get_input_line_values()
-        for line in self.bom_line_ids.filtered(lambda s: s.check_domain(values)):
+        for line in self.bom_line_ids.filtered(
+            lambda s: not s._should_not_be_included_in_bom(input_line)
+        ):
             line_quantity = (
                 line.compute_qty_from_formula(input_line)
                 if line.use_formula_compute_qty
