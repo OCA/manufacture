@@ -73,6 +73,7 @@ class FinishedProductStructureWizard(models.TransientModel):
             vals = {
                 "product_tmpl_id": bom.product_tmpl_stage_id.id,
                 "type": line.bom_type,
+                "product_uom_id": self.finished_product_id.uom_id.id,
                 "bom_line_ids": [
                     (
                         0,
