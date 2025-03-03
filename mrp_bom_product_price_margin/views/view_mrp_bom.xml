@@ -77,6 +77,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                   for 1x <field
                         name="product_uom_id"
                         readonly="1"
+                        force_save="1"
                         style="pointer-events:none;"
                     />
               </div>
