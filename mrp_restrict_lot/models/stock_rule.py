@@ -35,7 +35,7 @@ class StockRule(models.Model):
             lot = self.env["stock.production.lot"].browse(lot_id)
             mo_name = lot.name
             existing_mo = self.env["mrp.production"].search(
-                [("lot_producing_id", "=", lot_id)]
+                [("lot_producing_id", "=", lot_id), ("name", "=", mo_name)], limit=1
             )
             if existing_mo:
                 mo_name = "%s-%s" % (mo_name, len(existing_mo))
