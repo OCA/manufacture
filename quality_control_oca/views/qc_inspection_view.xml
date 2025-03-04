@@ -136,13 +136,14 @@
                         </page>
                         <page string="Notes">
                             <group string="Internal notes">
-                                <field name="internal_notes" nolabel="1" />
+                                <field name="internal_notes" nolabel="1" colspan="2" />
                             </group>
                             <group string="External notes">
                                 <field
                                     name="external_notes"
                                     nolabel="1"
                                     readonly="state in ['success', 'failed']"
+                                    colspan="2"
                                 />
                             </group>
                         </page>
