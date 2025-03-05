@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [mrp_auto_assign](mrp_auto_assign/) | 14.0.1.0.0 |  | Make MO automatically reserve raw material moves at creation
 [mrp_bom_attribute_match](mrp_bom_attribute_match/) | 14.0.1.2.5 | [![ilyasProgrammer](https://github.com/ilyasProgrammer.png?size=30px)](https://github.com/ilyasProgrammer) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Dynamic BOM component based on product attribute
 [mrp_bom_attribute_match_duplicate_kit](mrp_bom_attribute_match_duplicate_kit/) | 14.0.1.1.1 | [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) | BOM Attribute Match Duplicate Kit
-[mrp_bom_attribute_match_semifinished_product](mrp_bom_attribute_match_semifinished_product/) | 14.0.1.0.2 | [![GSLabIt](https://github.com/GSLabIt.png?size=30px)](https://github.com/GSLabIt) | BOM Attribute Match Semifinished Products
+[mrp_bom_attribute_match_semifinished_product](mrp_bom_attribute_match_semifinished_product/) | 14.0.1.0.3 | [![GSLabIt](https://github.com/GSLabIt.png?size=30px)](https://github.com/GSLabIt) | BOM Attribute Match Semifinished Products
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 14.0.1.1.1 |  | MRP BOM Component Menu
 [mrp_bom_find_ignore](mrp_bom_find_ignore/) | 14.0.1.0.0 | [![mt-software-de](https://github.com/mt-software-de.png?size=30px)](https://github.com/mt-software-de) | Adding 'ignore_bom_find' to the context will let '_bom_find' return an empty record set
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 14.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
