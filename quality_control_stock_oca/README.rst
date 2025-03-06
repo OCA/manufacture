@@ -38,10 +38,21 @@ It also adds some shortcuts on picking and lots to these inspections.
 .. contents::
    :local:
 
+Configuration
+=============
+
+To create a quality inspection for each lot/serial number used in a
+stock move you need to:
+
+- Go to Quality Control> Configuration > Triggers.
+- Activate the "Inspection Per Lot" option in those triggers which need
+  to force a different inspection for each lot/serial number used in a
+  stock picking.
+
 Known issues / Roadmap
 ======================
 
--  Put trigger in all languages.
+- Put trigger in all languages.
 
 Bug Tracker
 ===========
@@ -66,19 +77,23 @@ Authors
 Contributors
 ------------
 
--  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
--  Simone Rubino <simone.rubino@agilebg.com>
--  Andrii Skrypka <andrijskrypa@ukr.net>
--  Ignacio José Alés <ignacio.ales@guadaltech.es>
--  Pimolnat Suntian <pimolnats@ecosoft.co.th>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+- Simone Rubino <simone.rubino@agilebg.com>
+- Andrii Skrypka <andrijskrypa@ukr.net>
+- Ignacio José Alés <ignacio.ales@guadaltech.es>
+- Pimolnat Suntian <pimolnats@ecosoft.co.th>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
-   -  Carlos Roca
+  - Pedro M. Baeza
+  - Carlos Roca
 
--  `APSL-Nagarro <https://www.apsl.tech>`__:
+- `APSL-Nagarro <https://www.apsl.tech>`__:
 
-   -  Antoni Marroig <amarroig@apsl.net>
+  - Antoni Marroig <amarroig@apsl.net>
+
+- `Sygel <https://www.sygel.es>`__:
+
+  - Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
 -----------

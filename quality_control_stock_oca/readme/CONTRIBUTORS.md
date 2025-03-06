@@ -8,3 +8,5 @@
   - Carlos Roca
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
+- [Sygel](https://www.sygel.es):
+  - Manuel Regidor \<<manuel.regidor@sygel.es>\>

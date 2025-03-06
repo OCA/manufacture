@@ -80,5 +80,20 @@ class StockPicking(models.Model):
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
-                inspection_model._make_inspection(operation, trigger_line)
+                inspection = inspection_model._make_inspection(operation, trigger_line)
+                if operation.product_id.tracking != "none":
+                    move_line = operation.move_line_ids[0]
+                    if trigger_line.trigger.inspection_per_lot:
+                        move_lines = operation.move_line_ids
+                        for move_line in move_lines:
+                            inspection.write(
+                                {
+                                    "lot_id": move_line.lot_id and move_line.lot_id.id,
+                                    "qty": move_line.quantity,
+                                }
+                            )
+                            if move_line != move_lines[-1]:
+                                inspection = inspection.copy()
+                                inspection.set_test(trigger_line)
+                                inspection.action_todo()
         return res

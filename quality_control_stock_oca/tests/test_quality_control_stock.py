@@ -23,9 +23,15 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         cls.trigger = cls.qc_trigger_model.search(
             [("picking_type_id", "=", cls.picking_type.id)]
         )
-        cls.lot = cls.env["stock.lot"].create(
+        cls.lot1 = cls.env["stock.lot"].create(
             {
-                "name": "Lot for tests",
+                "name": "Lot for tests-1",
+                "product_id": cls.product.id,
+            }
+        )
+        cls.lot2 = cls.env["stock.lot"].create(
+            {
+                "name": "Lot for tests-2",
                 "product_id": cls.product.id,
             }
         )
@@ -35,7 +41,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
                 "product_id": cls.product.id,
                 "location_id": cls.location.id,
                 "quantity": 1,
-                "lot_id": cls.lot.id,
+                "lot_id": cls.lot1.id,
             }
         )
         cls.user = new_test_user(
@@ -236,6 +242,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.product.categ_id.qc_triggers = [
             (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
         ]
+        self.product.tracking = "lot"
         self.picking1._action_done()
         self.assertEqual(
             self.picking1.created_inspections, 1, "Only one inspection must be created"
@@ -246,10 +253,10 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             "Wrong test picked when creating inspection.",
         )
         self.assertEqual(
-            self.lot.created_inspections, 1, "Only one inspection must be created"
+            self.lot1.created_inspections, 1, "Only one inspection must be created"
         )
         self.assertEqual(
-            self.lot.qc_inspections_ids[:1].test,
+            self.lot1.qc_inspections_ids[:1].test,
             self.test,
             "Wrong test picked when creating inspection.",
         )
@@ -298,7 +305,6 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         )
         self.inspection1.onchange_object_id()
         self.assertEqual(self.inspection1.picking_id, self.picking1)
-        self.assertEqual(self.inspection1.lot_id, self.lot)
         self.assertEqual(
             self.inspection1.product_id, self.picking1.move_ids[:1].product_id
         )
@@ -306,13 +312,75 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             self.inspection1.qty, self.picking1.move_ids[:1].product_uom_qty
         )
 
-    def test_qc_inspection_lot(self):
-        self.inspection1.write(
-            {
-                "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": "%s,%d" % (self.lot._name, self.lot.id),
-            }
+    def test_qc_inspection_lot_single(self):
+        self.trigger.inspection_per_lot = False
+        self.product.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        self.product.tracking = "lot"
+        self.picking1.move_line_ids[0].copy()
+        self.picking1.move_line_ids[0].write({"quantity": 1, "lot_id": self.lot1.id})
+        self.picking1.move_line_ids[1].write({"quantity": 1, "lot_id": self.lot2.id})
+        self.picking1._action_done()
+        self.assertEqual(
+            self.picking1.created_inspections, 1, "One inspections must be created"
         )
-        self.inspection1.onchange_object_id()
-        self.assertEqual(self.inspection1.lot_id, self.lot)
-        self.assertEqual(self.inspection1.product_id, self.lot.product_id)
+        lot1_inspection = self.picking1.qc_inspections_ids.filtered(
+            lambda inspection: inspection.lot_id == self.lot1
+        )
+        self.assertTrue(lot1_inspection, "An inspection with lot1 must be created")
+        self.assertEqual(
+            lot1_inspection.qty, 2, "Quantity for lot1 must be equal to 2."
+        )
+        self.assertEqual(
+            self.lot1.created_inspections,
+            1,
+            "Created inspections for lot1 must be equal to 1.",
+        )
+        lot2_inspection = self.picking1.qc_inspections_ids.filtered(
+            lambda inspection: inspection.lot_id == self.lot2
+        )
+        self.assertFalse(lot2_inspection, "No inspections with lot2 must be created")
+        self.assertEqual(
+            self.lot2.created_inspections,
+            0,
+            "Created inspections for lot2 must be equal to 0.",
+        )
+
+    def test_qc_inspection_lot_multiple(self):
+        self.trigger.inspection_per_lot = True
+        self.product.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        self.product.tracking = "lot"
+        self.picking1.move_line_ids[0].copy()
+        self.picking1.move_line_ids[0].write({"quantity": 1, "lot_id": self.lot1.id})
+        self.picking1.move_line_ids[1].write({"quantity": 2, "lot_id": self.lot2.id})
+        self.picking1._action_done()
+        self.assertEqual(
+            self.picking1.created_inspections, 2, "Two inspections must be created"
+        )
+        lot1_inspection = self.picking1.qc_inspections_ids.filtered(
+            lambda inspection: inspection.lot_id == self.lot1
+        )
+        self.assertTrue(lot1_inspection, "An inspection with lot1 must be created")
+        self.assertEqual(
+            lot1_inspection.qty, 1, "Quantity for lot1 must be equal to 1."
+        )
+        self.assertEqual(
+            self.lot1.created_inspections,
+            1,
+            "Created inspections for lot1 must be equal to 1.",
+        )
+        lot2_inspection = self.picking1.qc_inspections_ids.filtered(
+            lambda inspection: inspection.lot_id == self.lot2
+        )
+        self.assertTrue(lot2_inspection, "An inspection with lot2 must be created")
+        self.assertEqual(
+            lot2_inspection.qty, 2, "Quantity for lot1 must be equal to 2."
+        )
+        self.assertEqual(
+            self.lot2.created_inspections,
+            1,
+            "Created inspections for lot2 must be equal to 1.",
+        )

@@ -47,8 +47,7 @@ class QcInspection(models.Model):
             if inspection.object_id._name == "stock.move":
                 inspection.lot_id = first(
                     move_lines.filtered(
-                        lambda x, inspection=inspection: x.move_id
-                        == inspection.object_id
+                        lambda x, ins=inspection: x.move_id == ins.object_id
                     )
                 ).lot_id
             elif inspection.object_id._name == "stock.lot":

@@ -11,3 +11,7 @@ class QcTrigger(models.Model):
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type", ondelete="cascade"
     )
+    inspection_per_lot = fields.Boolean(
+        help="If checked, an inspection per used lot/serial number "
+        "will be created in stock pickings."
+    )
