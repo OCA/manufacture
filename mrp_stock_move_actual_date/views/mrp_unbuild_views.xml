@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_unbuild_search_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.search</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view" />
+        <field name="arch" type="xml">
+            <filter name="done" position="after">
+                <filter
+                    name="actual_date"
+                    date="actual_date"
+                    default_period="this_month"
+                />
+            </filter>
+            <filter name="mogroup" position="after">
+                <filter
+                    string="Actual Date"
+                    name="by_actual_date"
+                    domain="[]"
+                    context="{'group_by': 'actual_date'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="mrp_unbuild_tree_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.tree</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="actual_date" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_unbuild_form_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mo_id']" position="after">
+                <field name="is_editable_actual_date" invisible="1" />
+                <field
+                    name="actual_date"
+                    attrs="{'readonly': [('is_editable_actual_date', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_unbuild_form_view_simplified" model="ir.ui.view">
+        <field name="name">mrp.unbuild.simplified.form</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view_simplified" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mo_id']" position="after">
+                <field name="actual_date" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

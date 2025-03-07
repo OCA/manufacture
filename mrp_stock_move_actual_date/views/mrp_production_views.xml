@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_production_filter" model="ir.ui.view">
+        <field name="name">mrp.production.search</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <filter name="filter_plan_date" position="after">
+                <filter
+                    name="actual_date"
+                    date="actual_date"
+                    default_period="this_month"
+                />
+            </filter>
+            <filter name="scheduled_date" position="after">
+                <filter
+                    string="Actual Date"
+                    name="by_actual_date"
+                    domain="[]"
+                    context="{'group_by': 'actual_date'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='date_planned_start']" position="before">
+                <field name="is_editable_actual_date" invisible="1" />
+                <field
+                    name="actual_date"
+                    attrs="{'readonly': [('is_editable_actual_date', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_planned_start']" position="before">
+                <field name="actual_date" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
