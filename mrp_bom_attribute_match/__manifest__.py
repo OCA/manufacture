@@ -2,7 +2,7 @@
     "name": "BOM Attribute Match",
     "version": "18.0.1.0.1",
     "category": "Manufacturing",
-    "author": "Ilyas, Ooops, Thang Nguyem Odoo Community Association (OCA)",
+    "author": "Ilyas, Ooops, Thang Nguyen, Odoo Community Association (OCA)",
     "summary": "Dynamic BOM component based on product attribute",
     "depends": ["mrp"],
     "license": "AGPL-3",

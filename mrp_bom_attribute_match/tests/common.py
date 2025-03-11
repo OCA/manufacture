@@ -14,45 +14,45 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
         cls.product_sword = cls.env["product.template"].create(
             {
                 "name": "Plastic Sword",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.product_surf = cls.env["product.template"].create(
             {
                 "name": "Surf",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.product_fin = cls.env["product.template"].create(
             {
                 "name": "Surf Fin",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.product_plastic = cls.env["product.template"].create(
             {
                 "name": "Plastic Component",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.p1 = cls.env["product.template"].create(
             {
                 "name": "P1",
-                "type": "product",
+                "type": "consu",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p2 = cls.env["product.template"].create(
             {
                 "name": "P2",
-                "type": "product",
+                "type": "consu",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p3 = cls.env["product.template"].create(
             {
                 "name": "P3",
-                "type": "product",
+                "type": "consu",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
