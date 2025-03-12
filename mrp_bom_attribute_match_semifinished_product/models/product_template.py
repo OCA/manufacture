@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
         groups="mrp.group_mrp_user",
     )
     semi_finished_mrp_bom_ids = fields.Many2many(
-        comodel_name="mrp.bom", string="MRP BoM"
+        comodel_name="mrp.bom", string="MRP BoM", copy=False
     )
 
     @api.constrains("finished_product", "attribute_line_ids")
