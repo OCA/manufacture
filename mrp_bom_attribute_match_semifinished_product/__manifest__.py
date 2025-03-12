@@ -1,6 +1,6 @@
 {
     "name": "BOM Attribute Match Semifinished Products",
-    "version": "14.0.1.0.3",
+    "version": "14.0.1.0.4",
     "category": "Manufacturing",
     "author": "Cetmix, Ooops, Odoo Community Association (OCA)",
     "summary": "BOM Attribute Match Semifinished Products",
