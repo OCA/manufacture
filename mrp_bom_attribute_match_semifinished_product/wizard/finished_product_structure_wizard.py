@@ -110,23 +110,13 @@ class FinishedProductStructureWizard(models.TransientModel):
     def remove_old_struct(self):
         boms = self.finished_product_id.semi_finished_mrp_bom_ids
         if boms:
-            archive_bom_ids = (
-                self.env["mrp.production"]
-                .search(
-                    [
-                        ("bom_id", "in", boms.ids),
-                        ("state", "not in", ["done", "cancel"]),
-                    ]
-                )
-                .mapped("bom_id")
-            )
-            (boms - archive_bom_ids).unlink()
-            archive_bom_ids.write({"active": False})
+            boms.write({"active": False})
+
         lines = self.finished_product_id.semi_finished_product_tmpl_ids
         if lines:
             products = lines.mapped("semi_finished_product_tmpl_id")
             lines.unlink()
-            products.unlink()
+            products.toggle_active()
 
     def create_product_struct(self):
         if not self.line_ids:

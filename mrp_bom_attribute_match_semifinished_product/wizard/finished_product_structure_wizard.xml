@@ -46,7 +46,7 @@
                         type="object"
                         class="btn-primary"
                         attrs="{'invisible': [('need_confirmation', '=', False)]}"
-                        confirm="Semifinished product(s) and BoM(s) have already been created for this finished product. By clicking Create, existing semifinished products and Boms will be deleted or archived, and replaced by new ones."
+                        confirm="Semifinished product(s) and BoM(s) have already been created for this finished product. By clicking Create, existing semifinished products and Boms will be archived and replaced by new ones."
                     />
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
