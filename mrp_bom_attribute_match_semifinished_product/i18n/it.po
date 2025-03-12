@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-27 11:39+0000\n"
+"PO-Revision-Date: 2025-03-12 19:06+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: code:addons/mrp_bom_attribute_match_semifinished_product/wizard/finished_product_structure_wizard.py:0
@@ -195,6 +195,9 @@ msgid ""
 "finished product. By clicking Create, existing semifinished products and "
 "Boms will be archived and replaced by new ones."
 msgstr ""
+"Semilavorati e DiBa sono già stati creati per questo prodotto finito. "
+"Cliccando OK, semilavorati e DiBa creati in precedenza con questo flusso "
+"verranno archiviati e ne verranno creati di nuovi."
 
 #. module: mrp_bom_attribute_match_semifinished_product
 #: model:ir.model.fields,field_description:mrp_bom_attribute_match_semifinished_product.field_finished_product_structure_line__stage_name
