@@ -47,9 +47,12 @@ To use this module, you need to:
    products location.
 3. Check the produce all checkbox if the productions are already
    produced, otherwise the production will be confirmed
-4. Set the production tags if you want
-5. Select the products that will be produced with the quantity
-6. The manufacturing order will be created
+4. Check the with bom checkbox if the lines use BoMs for the consumed
+   products, otherwise you can select the product for each line to
+   consumed
+5. Set the production tags if you want
+6. Select the products that will be produced with the quantity
+7. The manufacturing order will be created
 
 Bug Tracker
 ===========
@@ -73,9 +76,9 @@ Authors
 Contributors
 ------------
 
-- [APSL-Nagarro](https://apsl.tech):
+-  [APSL-Nagarro](https://apsl.tech):
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------

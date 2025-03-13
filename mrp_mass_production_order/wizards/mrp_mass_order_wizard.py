@@ -11,12 +11,15 @@ class MassMrpProductionOrderEntryWizard(models.TransientModel):
 
     product_id = fields.Many2one(
         "product.product",
-        "Product",
+        "Manufactured Product",
         domain="[('type', 'in', ['product', 'consu'])]",
         required=True,
     )
     product_qty = fields.Float(
-        "Quantity", digits="Product Unit of Measure", required=True, default=1
+        "Manufactured Quantity",
+        digits="Product Unit of Measure",
+        required=True,
+        default=1,
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
@@ -57,6 +60,14 @@ class MassMrpProductionOrderEntryWizard(models.TransientModel):
         readonly=False,
         store=True,
         string="Tags",
+    )
+    product_consumed_id = fields.Many2one(
+        "product.product",
+        "Consumed Product",
+        domain="[('type', 'in', ['product', 'consu']), ('id', '!=', product_id)]",
+    )
+    quantity = fields.Float(
+        "Consumed Quantity", digits="Product Unit of Measure", default=1
     )
 
     @api.depends("bom_id", "product_id")
@@ -150,6 +161,11 @@ class MassMrpProductionOrderWizard(models.TransientModel):
         help="Check it if all orders have been produced "
         "otherwise they will be confirmed",
     )
+    with_bom = fields.Boolean(
+        default=True,
+        help="Check this if you want to assign a bill of materials, "
+        "otherwise products by line.",
+    )
     tag_ids = fields.Many2many(
         "mrp.tag",
         string="Tags",
@@ -183,6 +199,19 @@ class MassMrpProductionOrderWizard(models.TransientModel):
                 or fallback_loc.id
             )
 
+    def get_production_location(self, product_id):
+        if not self.company_id:
+            return
+        location_by_company = self.env["stock.location"]._read_group(
+            [("company_id", "in", self.company_id.ids), ("usage", "=", "production")],
+            ["company_id"],
+            ["id:array_agg"],
+        )
+        location_by_company = {company.id: ids for company, ids in location_by_company}
+        prod_loc = product_id.with_company(self.company_id).property_stock_production
+        comp_locs = location_by_company.get(self.company_id.id)
+        return prod_loc or (comp_locs and comp_locs[0])
+
     def action_create(self):
         mrp_ids = []
         for entry in self.mrp_production_order_entries:
@@ -194,10 +223,41 @@ class MassMrpProductionOrderWizard(models.TransientModel):
                     "location_src_id": self.location_src_id.id,
                     "location_dest_id": self.location_dest_id.id,
                     "product_uom_id": entry.product_uom_id.id,
-                    "bom_id": entry.bom_id.id,
                     "tag_ids": entry.tag_ids,
+                    "bom_id": entry.bom_id.id if self.with_bom else False,
                 }
             )
+            if not self.with_bom and entry.product_consumed_id:
+                mrp.move_raw_ids = [
+                    (
+                        0,
+                        0,
+                        {
+                            "location_id": self.location_src_id.id,
+                            "location_dest_id": self.get_production_location(
+                                entry.product_consumed_id
+                            ).id,
+                            "product_id": entry.product_consumed_id.id,
+                            "picked": True,
+                            "product_uom_qty": entry.quantity,
+                            "name": (
+                                "Transfer to Production/"
+                                f"{entry.product_consumed_id.name}"
+                            ),
+                            "move_line_ids": [
+                                (
+                                    0,
+                                    0,
+                                    {
+                                        "company_id": self.company_id.id,
+                                        "product_id": entry.product_consumed_id.id,
+                                        "quantity": entry.quantity,
+                                    },
+                                )
+                            ],
+                        },
+                    )
+                ]
             mrp.button_mark_done() if self.produce_all else mrp.action_confirm()
             mrp_ids.append(mrp.id)
         return {
