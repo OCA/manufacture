@@ -6,21 +6,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2025-03-13 11:53+0000\n"
+"PO-Revision-Date: 2025-03-13 11:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_needaction
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__alert
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__alert
 msgid "Alert"
 msgstr "Alerte"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_attachment_count
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__configured
@@ -35,14 +66,28 @@ msgstr "Nomenclature"
 #. module: mrp_bom_configurable
 #: model:ir.model,name:mrp_bom_configurable.model_mrp_bom_line
 msgid "Bill of Material Line"
+msgstr "Ligne de nomenclature"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.actions.act_window,help:mrp_bom_configurable.mrp_bom_configurable_form_action
+msgid ""
+"Bills of materials allow you to define the list of required raw\n"
+"            materials used to make a finished product; through a manufacturing\n"
+"            order or a pack of products."
 msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__bom_id
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__bom_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__bom_id
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_search
 msgid "Bom"
 msgstr "Nomenclature"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__bom_data_preview
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__bom_data_preview
+msgid "Bom Data Preview"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__bom_domain
@@ -51,45 +96,33 @@ msgid "Bom Domain"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__checked
-msgid "Checked"
-msgstr "Vérifié"
-
-#. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_tree
-msgid "Clone"
-msgstr "Dupliquer"
-
-#. module: mrp_bom_configurable
 #: model:ir.model.fields,help:mrp_bom_configurable.field_mrp_bom_line__condition
 msgid "Comment explaining domain if needed"
 msgstr "Commentaire expliquant le domaine si nécessaire"
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__partner_id
-msgid "Commercial Entity"
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__condition
+msgid "Condition"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__condition
-msgid "Condition"
-msgstr "Condition"
-
-#. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__config_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__config_id
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_search
 msgid "Config"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model:ir.actions.report,name:mrp_bom_configurable.action_report_configurable_bom
-msgid "Configurable BoM"
-msgstr ""
-
-#. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__bom_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__bom_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__bom_id
 msgid "Configurable Product"
 msgstr "Produit configurable"
+
+#. module: mrp_bom_configurable
+#: model:ir.ui.menu,name:mrp_bom_configurable.configurator_menu
+msgid "Configurateur"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom__configuration_type
@@ -97,9 +130,19 @@ msgid "Configuration Type"
 msgstr "Type de configuration"
 
 #. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_tree
-msgid "Configure"
-msgstr "Configurer"
+#: model:ir.ui.menu,name:mrp_bom_configurable.input_config_menu_configurations
+msgid "Configurations"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.ui.menu,name:mrp_bom_configurable.input_config_menu_options
+msgid "Configurator options"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.ui.menu,name:mrp_bom_configurable.input_constraint_values_menu
+msgid "Configurator values"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.view_mrp_bom_filter
@@ -113,6 +156,11 @@ msgid "Configured Products"
 msgstr "Produits configurés"
 
 #. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_form_wizard
+msgid "Confirm"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__input_config__state__confirmed
 msgid "Confirmed"
 msgstr "Confirmé"
@@ -123,9 +171,48 @@ msgid "Contains input data constraints"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__count
-msgid "Count"
-msgstr "Nombre"
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__create_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__create_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__date
+msgid "Date"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__display_name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__domain
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.mrp_bom_line_view_form
+msgid "Domain"
+msgstr "Domaine"
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__input_config__state__draft
@@ -133,14 +220,83 @@ msgid "Draft"
 msgstr "Brouillon"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_follower_ids
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_partner_ids
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line__checked
-msgid "If checked, the configuration have been evaluate"
-msgstr "Si coché, la configuration a été évalué correctement"
+#: model:ir.model.fields,help:mrp_bom_configurable.field_mrp_bom_line__qty_formula
+msgid "Formula to compute"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_constraint_search
+msgid "Group By"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__has_message
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_input_config
+msgid "Header configuration scenari"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__message_needaction
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__message_has_error
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__message_has_sms_error
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__message_has_error
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_tree
+msgid "Info"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.actions.act_window,name:mrp_bom_configurable.input_constraint_action
@@ -149,9 +305,64 @@ msgid "Input Constraints"
 msgstr "Contraintes initiales"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__input_line_id
+msgid "Input Line"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_is_follower
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured____last_update
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__write_uid
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__write_date
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__line_ids
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__line_ids
 msgid "Line"
 msgstr "Ligne"
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_input_line
+msgid "Line configuration scenari"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.actions.act_window,name:mrp_bom_configurable.input_line_form_wizard_action
+msgid "Line configurator"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__line_count
@@ -160,11 +371,57 @@ msgid "Lines"
 msgstr "Lignes"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_main_attachment_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_has_error
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_ids
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__name
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__name
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_product_configured__name
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_line_form_window
 msgid "Name"
 msgstr "Nom"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.actions.act_window,help:mrp_bom_configurable.mrp_bom_configurable_form_action
+msgid "No bill of materials found. Let's create one!"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__normal
@@ -172,13 +429,38 @@ msgid "Normal BOM"
 msgstr "Nomenclature normal"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_needaction_counter
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_has_error_counter
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__message_needaction_counter
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__message_has_error_counter
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields,help:mrp_bom_configurable.field_mrp_bom_line__domain
 msgid "Odoo syntax domain only"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_search
-msgid "Partner"
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line__alert
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line_wizard__alert
+msgid "Outside limit configuration is reported here"
 msgstr ""
 
 #. module: mrp_bom_configurable
@@ -187,9 +469,15 @@ msgid "Pending"
 msgstr ""
 
 #. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_configured__product_id
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__product_id
 msgid "Product"
-msgstr "Produit"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_product_configured
+msgid "Product stub for the configured bom"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.input_config_form
@@ -197,22 +485,45 @@ msgid "Products"
 msgstr "Produits"
 
 #. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line_configured__product_qty
 msgid "Quantity"
 msgstr "Quantité"
 
 #. module: mrp_bom_configurable
-#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.report_conditional_bom
-msgid "Reference:"
-msgstr "Référence :"
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__qty_formula
+msgid "Quantity formula"
+msgstr "Formule quantité"
 
 #. module: mrp_bom_configurable
-#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__sale_id
-msgid "Sale"
-msgstr "Vente"
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_mrp_bom_configured
+msgid "Resulting BoM from an input line"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_mrp_bom_line_configured
+msgid "Resulting BoM line from an input line"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__message_has_sms_error
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__satisfies_constraint
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__satisfies_constraint
+msgid "Satisfies Constraint"
+msgstr ""
 
 #. module: mrp_bom_configurable
 #: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__sequence
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__sequence
 msgid "Sequence"
 msgstr ""
 
@@ -227,11 +538,70 @@ msgid "Status"
 msgstr "Statut"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.actions.act_window,name:mrp_bom_configurable.mrp_bom_configurable_form_action
+#: model:ir.ui.menu,name:mrp_bom_configurable.menu_mrp_bom_configurable_form_action
+msgid "Store"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line__constraint_suggestions
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_line_wizard__constraint_suggestions
+msgid "Suggestions"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line__satisfies_constraint
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_line_wizard__satisfies_constraint
+msgid "True if the input line satisfies the constraints"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.mrp_bom_form_view
 msgid "Update domain"
 msgstr "Mettre à jour le domaine"
 
 #. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_mrp_bom_line__use_formula_compute_qty
+msgid "Use formula to compute qty"
+msgstr "Utilise une formule"
+
+#. module: mrp_bom_configurable
+#: model_terms:ir.ui.view,arch_db:mrp_bom_configurable.view_mrp_bom_filter
+msgid "Variable"
+msgstr ""
+
+#. module: mrp_bom_configurable
 #: model:ir.model.fields.selection,name:mrp_bom_configurable.selection__mrp_bom__configuration_type__variable
 msgid "Variable BOM"
 msgstr "Nomenclature variable"
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_config__website_message_ids
+#: model:ir.model.fields,field_description:mrp_bom_configurable.field_input_constraint__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_config__website_message_ids
+#: model:ir.model.fields,help:mrp_bom_configurable.field_input_constraint__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: mrp_bom_configurable
+#: model:ir.model,name:mrp_bom_configurable.model_input_line_wizard
+msgid "Wizard model for input line"
+msgstr ""

@@ -19,7 +19,7 @@
                     class="oi oi-launch"
                     title="Update domain"
                 />
-                <field name="condition" />
+                <field name="condition" optional="hide" />
             </xpath>
         </field>
     </record>
