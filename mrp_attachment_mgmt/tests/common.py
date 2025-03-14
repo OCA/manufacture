@@ -94,3 +94,14 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
                 "datas": base64.b64encode(b"\xff data"),
             }
         )
+
+    def _create_bom_attachment(self, bom, name=False):
+        name = name if name else "Test file %s" % bom.display_name
+        return self.attachment_model.create(
+            {
+                "name": name,
+                "res_model": "mrp.bom",
+                "res_id": bom.id,
+                "datas": base64.b64encode(b"\xff data"),
+            }
+        )
