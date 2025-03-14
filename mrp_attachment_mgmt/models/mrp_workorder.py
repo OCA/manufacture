@@ -22,3 +22,6 @@ class MrpWorkorder(models.Model):
                 % {"error_count": len(error), "error_msg": "\n".join(error)}
             )
         return self.product_id._action_show_attachments()
+
+    def action_see_workorder_bom_attachments(self):
+        return self.production_id.bom_id._action_show_attachments()

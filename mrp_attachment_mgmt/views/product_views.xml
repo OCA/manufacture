@@ -11,10 +11,25 @@
                     name="action_see_bom_documents"
                     type="object"
                     icon="fa-files-o"
-                    string="Bom Attachments"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count!=1"
-                />
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Components<br />Attachments</span>
+                    </div>
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count==0"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">BoMs<br />Attachments</span>
+                    </div>
+                </button>
             </xpath>
         </field>
     </record>
@@ -29,10 +44,25 @@
                     name="action_see_bom_documents"
                     type="object"
                     icon="fa-files-o"
-                    string="Bom Attachments"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count!=1"
-                />
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Components<br />Attachments</span>
+                    </div>
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count==0"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">BoMs<br />Attachments</span>
+                    </div>
+                </button>
             </xpath>
         </field>
     </record>

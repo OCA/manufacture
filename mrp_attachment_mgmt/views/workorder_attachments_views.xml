@@ -11,13 +11,26 @@
                     name="action_see_workorder_attachments"
                     type="object"
                     icon="fa-files-o"
-                    string="Attachments"
-                />
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Product<br />Attachments</span>
+                    </div>
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="action_see_workorder_bom_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">BoM<br />Attachments</span>
+                    </div>
+                </button>
             </xpath>
         </field>
     </record>
     <record id="action_see_workorder_attachments" model="ir.actions.server">
-        <field name="name">Attachments</field>
+        <field name="name">Product Attachments</field>
         <field name="model_id" ref="model_mrp_workorder" />
         <field name="binding_model_id" ref="model_mrp_workorder" />
         <field name="binding_view_types">list</field>
@@ -25,6 +38,17 @@
         <field name="code">
             if records:
                 action = records.action_see_workorder_attachments()
+        </field>
+    </record>
+    <record id="action_see_workorder_bom_attachments" model="ir.actions.server">
+        <field name="name">BoM Attachments</field>
+        <field name="model_id" ref="model_mrp_workorder" />
+        <field name="binding_model_id" ref="model_mrp_workorder" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_see_workorder_bom_attachments()
         </field>
     </record>
 </odoo>

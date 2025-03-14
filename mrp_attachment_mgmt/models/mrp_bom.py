@@ -2,6 +2,7 @@
 # Copyright 2023 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class MrpBom(models.Model):
@@ -31,3 +32,22 @@ class MrpBom(models.Model):
         )
         products = self.env["product.product"].search([("id", "in", product_ids)])
         return products._action_show_attachments()
+
+    def action_show_product_attachments(self):
+        if self.product_id:
+            return self.product_id._action_show_attachments()
+        return self.product_tmpl_id._action_show_attachments()
+
+    def _action_show_attachments(self):
+        """Returns the action to show the attachments linked to the bom record."""
+        domain = [
+            ("res_model", "=", "mrp.bom"),
+            ("res_id", "in", self.ids),
+        ]
+        action = self.env["ir.actions.actions"]._for_xml_id("base.action_attachment")
+        context = action.get("context", "{}")
+        context = safe_eval(context)
+        context["create"] = False
+        context["edit"] = False
+        action.update({"domain": domain, "context": context})
+        return action

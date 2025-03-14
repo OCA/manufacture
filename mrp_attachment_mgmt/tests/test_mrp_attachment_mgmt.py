@@ -30,7 +30,33 @@ class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
         action = self.workorder.action_see_workorder_attachments()
         self.assertIn(attachment.id, self.attachment_model.search(action["domain"]).ids)
 
+        bom_attachment = self._create_bom_attachment(self.bom)
+        action = self.workorder.action_see_workorder_bom_attachments()
+        self.assertIn(
+            bom_attachment.id, self.attachment_model.search(action["domain"]).ids
+        )
+
     def test_mrp_production_attachments(self):
         attachment = self._create_attachment(self.product)
         action = self.mrp_production.action_show_attachments()
         self.assertIn(attachment.id, self.attachment_model.search(action["domain"]).ids)
+
+        bom_attachment = self._create_bom_attachment(self.bom)
+        action = self.mrp_production.action_show_bom_attachments()
+        self.assertIn(
+            bom_attachment.id, self.attachment_model.search(action["domain"]).ids
+        )
+
+    def test_mrp_bom_attachments(self):
+        product_attachment = self._create_attachment(self.product.product_tmpl_id)
+        action = self.bom.action_show_product_attachments()
+        self.assertIn(
+            product_attachment.id, self.attachment_model.search(action["domain"]).ids
+        )
+
+    def test_product_attachments(self):
+        bom_attachment = self._create_bom_attachment(self.bom)
+        action = self.product.action_see_bom_attachments()
+        self.assertIn(
+            bom_attachment.id, self.attachment_model.search(action["domain"]).ids
+        )
