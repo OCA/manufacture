@@ -223,6 +223,16 @@ class MrpProductionSerialMatrix(models.TransientModel):
             )
         mos = self.env["mrp.production"]
         current_mo = self.production_id
+        matrix_dict = {}
+        for line in self.line_ids:
+            key = (
+                line.component_id.id,
+                line.finished_lot_id.id or line.finished_lot_name,
+            )
+            if not matrix_dict.get(key, False):
+                matrix_dict[key] = line
+            else:
+                matrix_dict[key] += line
         for fp_lot in self.finished_lot_ids:
             # Apply selected lots in matrix and set the qty producing
             current_mo.lot_producing_id = fp_lot
@@ -236,17 +246,13 @@ class MrpProductionSerialMatrix(models.TransientModel):
                     # the move.
                     continue
                 if move.product_id.tracking in ["serial", "lot"]:
-                    # We filter using the lot nane because the ORM sometimes
+                    # We filter using the lot name because the ORM sometimes
                     # is not storing correctly the finished_lot_id in the lines
                     # after passing through the `_onchange_finished_lot_ids`
                     # method.
-                    matrix_lines = self.line_ids.filtered(
-                        lambda l: (
-                            l.finished_lot_id == fp_lot
-                            or l.finished_lot_name == fp_lot.name
-                        )
-                        and l.component_id == move.product_id
-                    )
+                    matrix_lines = matrix_dict.get(
+                        (move.product_id.id, fp_lot.id), False
+                    ) or matrix_dict.get((move.product_id.id, fp_lot.name), False)
                     if matrix_lines:
                         self._amend_reservations(move, matrix_lines)
                         self._consume_selected_lots(move, matrix_lines)
