@@ -10,7 +10,16 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line_from_procurement(
-        self, product_id, product_qty, product_uom, company_id, values, po
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_dest_id,
+        name,
+        origin,
+        company_id,
+        values,
+        po,
     ):
         """We need to inject the context to set the right price"""
         subcontracting_inhibit_value = False
@@ -22,18 +31,25 @@ class PurchaseOrderLine(models.Model):
                 subcontracting_inhibit=subcontracting_inhibit_value
             )
         res = super()._prepare_purchase_order_line_from_procurement(
-            product_id, product_qty, product_uom, company_id, values, po
+            product_id=product_id,
+            product_qty=product_qty,
+            product_uom=product_uom,
+            location_dest_id=location_dest_id,
+            name=name,
+            origin=origin,
+            company_id=company_id,
+            values=values,
+            po=po,
         )
         res.update({"subcontracting_inhibit": subcontracting_inhibit_value})
         return res
 
     @api.onchange("subcontracting_inhibit")
     def _onchange_subcontracting_inhibit(self):
-        return self._onchange_quantity()
+        self._onchange_quantity()
 
     def _onchange_quantity(self):
         """We need to inject the context to set the right price"""
-        _self = self.with_context(subcontracting_inhibit=self.subcontracting_inhibit)
-        return super(
-            PurchaseOrderLine, _self
+        self.with_context(
+            subcontracting_inhibit=self.subcontracting_inhibit
         )._compute_price_unit_and_date_planned_and_name()

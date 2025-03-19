@@ -16,7 +16,7 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",
-                "type": "product",
+                "type": "consu",
                 "seller_ids": [
                     (
                         0,
@@ -63,7 +63,7 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
             self.env["product.replenish"].with_context(default_product_id=product.id)
         )
         replenish_form.quantity = qty
-        replenish_form.route_ids.add(route_id)
+        replenish_form.route_id = route_id
         replenish = replenish_form.save()
         replenish.launch_replenishment()
 
