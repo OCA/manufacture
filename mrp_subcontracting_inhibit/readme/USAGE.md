@@ -1,12 +1,12 @@
-1.  Go to *Inventory \> Configuration \> Routes* and edit 'Buy' rule and
-    check 'Subcontracting inhibit'.
+1.  Go to *Inventory \> Configuration \> Warehouses \> click on smart button Routes*
+    and edit 'Buy' rule and check 'Subcontracting inhibit'.
 2.  Go to *Inventory \> Products \> Product* and create some product
     called 'Subcontract product'.
 3.  Go to *Inventory \> Products \> Product* and create other product
     called 'Component'.
 4.  Go to *Manufacturing \> Products \> Bill of materials* and create a
     new one with type = "Subcontracting" related to 'Subcontract
-    product' and set 'Component' product.
+    product' then set 'Component' product and add Azure Interior in Subcontractors field.
 5.  Go to *Inventory \> Products \> Product* and edit 'Subcontract
     product' and set Purchase tab as follows:
 6.  \[Vendor line 1\] Vendor: Azure Interior, Subcontracting inhibited:

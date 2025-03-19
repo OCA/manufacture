@@ -8,10 +8,7 @@
         />
         <field name="arch" type="xml">
             <field name="is_subcontractor" position="after">
-                <field
-                    name="subcontracting_inhibit"
-                    attrs="{'readonly': [('is_subcontractor', '=', False)]}"
-                />
+                <field name="subcontracting_inhibit" readonly="not is_subcontractor" />
             </field>
         </field>
     </record>

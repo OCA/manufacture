@@ -6,8 +6,8 @@ from odoo import models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def _prepare_sellers(self, params):
-        res = super()._prepare_sellers(params)
+    def _prepare_sellers(self, params=False):
+        res = super()._prepare_sellers(params=params)
         return res.filtered(
             lambda x: x.subcontracting_inhibit
             == bool(self.env.context.get("subcontracting_inhibit"))
