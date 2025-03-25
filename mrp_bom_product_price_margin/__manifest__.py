@@ -5,7 +5,7 @@
 {
     "name": "MRP BoM Product Price Margin",
     "summary": "Handle Product Standard, Sale Price and Margin with its BoM cost",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "GRAP - Custom",
     "author": "GRAP, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
