@@ -42,6 +42,13 @@ msgid ""
 msgstr ""
 
 #. module: mrp_mass_production_order
+#: model:ir.model.fields,help:mrp_mass_production_order.field_mrp_mass_production_order_wizard__with_bom
+msgid ""
+"Check this if you want to assign a bill of materials, otherwise products by "
+"line."
+msgstr ""
+
+#. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__company_id
 msgid "Company"
 msgstr ""
@@ -49,6 +56,16 @@ msgstr ""
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__location_src_id
 msgid "Components Location"
+msgstr ""
+
+#. module: mrp_mass_production_order
+#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_consumed_id
+msgid "Consumed Product"
+msgstr ""
+
+#. module: mrp_mass_production_order
+#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__quantity
+msgid "Consumed Quantity"
 msgstr ""
 
 #. module: mrp_mass_production_order
@@ -143,6 +160,16 @@ msgid "MRP production order entry"
 msgstr ""
 
 #. module: mrp_mass_production_order
+#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_id
+msgid "Manufactured Product"
+msgstr ""
+
+#. module: mrp_mass_production_order
+#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_qty
+msgid "Manufactured Quantity"
+msgstr ""
+
+#. module: mrp_mass_production_order
 #: model:ir.actions.act_window,name:mrp_mass_production_order.wizard_mass_mrp_production_order_action
 #: model:ir.ui.menu,name:mrp_mass_production_order.wizard_mass_mrp_production_order_menu_action
 msgid "Massive MRP Production Orders"
@@ -164,22 +191,17 @@ msgid "Produce All"
 msgstr ""
 
 #. module: mrp_mass_production_order
-#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_id
-msgid "Product"
-msgstr ""
-
-#. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_uom_id
 msgid "Product Unit of Measure"
-msgstr ""
-
-#. module: mrp_mass_production_order
-#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_qty
-msgid "Quantity"
 msgstr ""
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__tag_ids
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__tag_ids
 msgid "Tags"
+msgstr ""
+
+#. module: mrp_mass_production_order
+#: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__with_bom
+msgid "With Bom"
 msgstr ""
