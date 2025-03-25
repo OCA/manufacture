@@ -5,7 +5,7 @@
 {
     "name": "MRP BoM Tag",
     "summary": "Add tags on your BoM to find it easily",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.2.0",
     "category": "Manufacture",
     "author": "GRAP, , Odoo Community Association (OCA)",
     "maintainers": ["quentinDupont"],
