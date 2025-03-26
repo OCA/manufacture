@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-29 13:06+0000\n"
+"PO-Revision-Date: 2025-03-26 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__bom_id
@@ -54,6 +54,7 @@ msgid ""
 "Check this if you want to assign a bill of materials, otherwise products by "
 "line."
 msgstr ""
+"Selezionare se si vuole assegnare una distinta, altrimenti prodotti per riga."
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__company_id
@@ -68,12 +69,12 @@ msgstr "Ubicazione componenti"
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_consumed_id
 msgid "Consumed Product"
-msgstr ""
+msgstr "Prodotto consumato"
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__quantity
 msgid "Consumed Quantity"
-msgstr ""
+msgstr "Quantità consumata"
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,help:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_uom_category_id
@@ -172,12 +173,12 @@ msgstr "Inserimento ordine di produzione MRP"
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_id
 msgid "Manufactured Product"
-msgstr ""
+msgstr "Prodotto lavorato"
 
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_entry_wizard__product_qty
 msgid "Manufactured Quantity"
-msgstr ""
+msgstr "Quantità lavorata"
 
 #. module: mrp_mass_production_order
 #: model:ir.actions.act_window,name:mrp_mass_production_order.wizard_mass_mrp_production_order_action
@@ -214,7 +215,7 @@ msgstr "Etichette"
 #. module: mrp_mass_production_order
 #: model:ir.model.fields,field_description:mrp_mass_production_order.field_mrp_mass_production_order_wizard__with_bom
 msgid "With Bom"
-msgstr ""
+msgstr "Con DiBa"
 
 #~ msgid "Product"
 #~ msgstr "Prodotto"
