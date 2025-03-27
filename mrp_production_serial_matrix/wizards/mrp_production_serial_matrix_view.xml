@@ -91,7 +91,7 @@
                         options='{"no_create": True, "no_open": True}'
                         colspan="2"
                     >
-                        <tree editable="True" nolabel="1" create="false">
+                        <tree editable="True" nolabel="1" create="false" limit="1000">
                             <field name="component_column_name" />
                             <field name="finished_lot_name" />
                             <field name="component_lot_id" />
