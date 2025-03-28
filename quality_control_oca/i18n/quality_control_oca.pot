@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__timing
+msgid ""
+"* Before: An executable inspection is generated before the record related to the trigger is completed (e.g. when picking is confirmed).\n"
+"* After: An executable inspection is generated when the record related to the trigger is completed (e.g. when picking is done).\n"
+"* Plan Ahead: A non-executable inspection is generated before the record related to the trigger is completed (e.g. when picking is confirmed), and the inspection becomes executable when the record related to the trigger is completed (e.g. when picking is done)."
+msgstr ""
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
@@ -66,6 +77,14 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__after
+msgid "After"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "Answers"
@@ -98,6 +117,14 @@ msgid "Bad"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__before
+msgid "Before"
+msgstr ""
+
+#. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "Cancel"
@@ -124,6 +151,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__company_id
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__company_id
 msgid "Company"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date_done
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Completion Date"
 msgstr ""
 
 #. module: quality_control_oca
@@ -185,11 +218,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
-msgid "Date"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__display_name
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_set_test__display_name
@@ -213,7 +241,6 @@ msgstr ""
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_test_category.py:0
-#, python-format
 msgid "Error! You can not create recursive categories."
 msgstr ""
 
@@ -225,6 +252,12 @@ msgstr ""
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "External notes"
+msgstr ""
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_kanban_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_kanban_view
+msgid "Failed"
 msgstr ""
 
 #. module: quality_control_oca
@@ -579,6 +612,25 @@ msgid "Partners"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__plan
+msgid "Plan"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__plan_ahead
+msgid "Plan Ahead"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Plan Date"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_test_question_value
 msgid "Possible values for qualitative questions."
 msgstr ""
@@ -731,7 +783,6 @@ msgstr ""
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_test.py:0
-#, python-format
 msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum "
 "value."
@@ -740,7 +791,6 @@ msgstr ""
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_test.py:0
-#, python-format
 msgid "Question '%s' is not valid: you have to mark at least one value as OK."
 msgstr ""
 
@@ -753,16 +803,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Questions"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__rating_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__rating_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__rating_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__rating_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__rating_ids
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__rating_ids
-msgid "Ratings"
 msgstr ""
 
 #. module: quality_control_oca
@@ -864,6 +904,8 @@ msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__success
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_kanban_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_kanban_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Success"
@@ -930,6 +972,14 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger__partner_selectable
 msgid "This technical field is to allow to filter by partner in triggers"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__timing
+msgid "Timing"
 msgstr ""
 
 #. module: quality_control_oca
@@ -1030,35 +1080,30 @@ msgstr ""
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
 msgid "You cannot remove an auto-generated inspection."
 msgstr ""
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
 msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
 msgid "You must first set the test to perform."
 msgstr ""
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
 msgid "You should provide a unit of measure for quantitative questions."
 msgstr ""
 
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
 msgid "You should provide an answer for all qualitative questions."
 msgstr ""
 
