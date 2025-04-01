@@ -11,13 +11,10 @@
         />
         <field name="arch" type="xml">
             <field name="selected" position="after">
-                <field
-                    name="to_consume_now"
-                    column_invisible="not parent.is_production_single_lot"
-                />
+                <field name="to_consume_now" column_invisible="not parent.mo_id" />
             </field>
             <field name="move_id" position="after">
-                <field name="is_production_single_lot" invisible="1" />
+                <field name="mo_id" invisible="1" />
             </field>
         </field>
     </record>
