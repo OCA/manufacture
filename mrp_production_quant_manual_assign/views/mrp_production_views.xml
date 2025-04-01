@@ -9,6 +9,7 @@
                 expr="//field[@name='move_raw_ids']//field[@name='lot_ids']"
                 position="after"
             >
+                <field name="product_type" column_invisible="True" />
                 <button
                     name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
                     type="action"
