@@ -250,6 +250,8 @@ class MrpProductionSerialMatrix(models.TransientModel):
                     if matrix_lines:
                         self._amend_reservations(move, matrix_lines)
                         self._consume_selected_lots(move, matrix_lines)
+                elif move.quantity > 0:
+                    move.picked = True
 
             # Complete MO and create backorder if needed.
             mos += current_mo
