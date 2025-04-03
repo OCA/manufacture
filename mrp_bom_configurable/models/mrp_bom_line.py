@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 def check_domain(domain, values, current_name, parent_name):
-
     if domain is None or not isinstance(domain, str):
         return True
 
@@ -62,6 +61,8 @@ def evaluate_domain_operand(domain, values, current_name, parent_name):
     if isinstance(domain, bool):
         return domain
     else:
+        values["line_data"] = {"name": current_name}
+
         param, operator, value = domain
 
         # if param not in values:
