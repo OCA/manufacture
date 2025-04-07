@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,8 +27,8 @@ msgstr ""
 #. module: mrp_subcontracting_bom_dual_use
 #: model:ir.model.fields,help:mrp_subcontracting_bom_dual_use.field_mrp_production__bom_id
 msgid ""
-"Bill of Materials allow you to define the list of required components to "
-"make a finished product."
+"Bills of Materials, also called recipes, are used to autocomplete components"
+" and work order instructions."
 msgstr ""
 
 #. module: mrp_subcontracting_bom_dual_use
