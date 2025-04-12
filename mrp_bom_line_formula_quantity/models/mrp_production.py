@@ -9,14 +9,14 @@ class MRPProduction(models.Model):
 
     def _get_move_raw_values(
         self,
-        product_id,
+        product,
         product_uom_qty,
         product_uom,
         operation_id=False,
         bom_line=False,
     ):
         values = super()._get_move_raw_values(
-            product_id,
+            product,
             product_uom_qty,
             product_uom,
             operation_id=operation_id,
@@ -24,7 +24,7 @@ class MRPProduction(models.Model):
         )
         if bom_line:
             computed_quantity = bom_line._eval_quantity_formula(
-                product_id,
+                product,
                 product_uom,
                 product_uom_qty,
                 self,
