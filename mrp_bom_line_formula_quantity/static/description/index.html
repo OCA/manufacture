@@ -8,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -274,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -300,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -368,8 +369,9 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:7cfb3a88e42e13f128328dd4a63d5bfccdef0769822be4828842019e65c5b98e
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/16.0/mrp_bom_line_formula_quantity"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-16-0/manufacture-16-0-mrp_bom_line_formula_quantity"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Compute the quantity of a Production Line using a formula defined in the BoM Line.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/18.0/mrp_bom_line_formula_quantity"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_bom_line_formula_quantity"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Compute the quantity of a Production Line using a formula defined in the
+BoM Line.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -385,32 +387,36 @@ ul.auto-toc {
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>In any BoM line, fill the <cite>Quantity Formula</cite> field.</p>
+<p>In any BoM line, fill the Quantity Formula field.</p>
 <p>The following values are available:</p>
 <ul class="simple">
-<li><cite>bom_line</cite>: the current BoM line,</li>
-<li><cite>production</cite>: the production order being created,</li>
-<li><cite>product</cite>: the Product of current BoM line,</li>
-<li><cite>product_uom_qty</cite>: the quantity of the production order line,</li>
-<li><cite>product_uom</cite>: the UoM of the Product of current BoM line,</li>
-<li><cite>operation</cite>: the operation where the components are consumed for current BoM line,</li>
+<li>`bom_line`: the current BoM line,</li>
+<li>`production`: the production order being created,</li>
+<li>`product`: the Product of current BoM line,</li>
+<li>`product_uom_qty`: the quantity of the production order line,</li>
+<li>`product_uom`: the UoM of the Product of current BoM line,</li>
+<li>`operation`: the operation where the components are consumed for
+current BoM line,</li>
 </ul>
-<p>The computed quantity must be assigned to the <cite>quantity</cite> variable.</p>
+<p>The computed quantity must be assigned to the quantity variable.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
-<p>This module can be used to customize the quantity of a component based on a custom attribute value selected on the product.
-The following configuration works when the <cite>website_sale</cite> module is installed.</p>
+<p>This module can be used to customize the quantity of a component based
+on a custom attribute value selected on the product. The following
+configuration works when the website_sale module is installed.</p>
 <p>In order to do that, configure as follows:</p>
 <ol class="arabic">
 <li><p class="first">Create an attribute “Component quantity” with a custom value</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_attribute.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_attribute.png" />
+<p><img alt="image" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_attribute.png" /></p>
 </li>
-<li><p class="first">Create and publish a Product having the configured custom value, and the MTO route (archived by default)</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_tab_attributes.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_tab_attributes.png" />
+<li><p class="first">Create and publish a Product having the configured custom value, and
+the MTO route (archived by default)</p>
+<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_tab_attributes.png" /></p>
 </li>
-<li><p class="first">Add a BoM to the product, where one Component has the following formula for the quantity:</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/bom.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/bom.png" />
+<li><p class="first">Add a BoM to the product, where one Component has the following
+formula for the quantity:</p>
+<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/bom.png" /></p>
 <pre class="code python literal-block">
 <span class="n">sale_lines</span> <span class="o">=</span> <span class="n">production</span><span class="o">.</span><span class="n">move_dest_ids</span><span class="o">.</span><span class="n">sale_line_id</span><span class="w">
 </span><span class="n">produced_template</span> <span class="o">=</span> <span class="n">production</span><span class="o">.</span><span class="n">product_tmpl_id</span><span class="w">
@@ -423,22 +429,23 @@ The following configuration works when the <cite>website_sale</cite> module is i
 </span><span class="n">quantity</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">component_quantity</span><span class="p">)</span>
 </pre>
 </li>
-<li><p class="first">In the e-commerce, select a quantity for the custom value and buy the product</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/website_sale_product.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/website_sale_product.png" />
+<li><p class="first">In the e-commerce, select a quantity for the custom value and buy the
+product</p>
+<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/website_sale_product.png" /></p>
 </li>
 <li><p class="first">Confirm the sale order</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/sale_order.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/sale_order.png" />
+<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/sale_order.png" /></p>
 </li>
 </ol>
 <p>a Production order with the selected value of Component will be created</p>
-<img alt="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/production_order.png" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/production_order.png" />
+<p><img alt="image5" src="https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/production_order.png" /></p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/manufacture/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_line_formula_quantity%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_line_formula_quantity%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -452,13 +459,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/SirAionTech"><img alt="SirAionTech" src="https://github.com/SirAionTech.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/16.0/mrp_bom_line_formula_quantity">OCA/manufacture</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/18.0/mrp_bom_line_formula_quantity">OCA/manufacture</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

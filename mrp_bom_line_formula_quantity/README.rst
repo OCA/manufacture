@@ -17,18 +17,19 @@ MRP BoM Line formula for quantity
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/16.0/mrp_bom_line_formula_quantity
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_bom_line_formula_quantity
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-16-0/manufacture-16-0-mrp_bom_line_formula_quantity
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_bom_line_formula_quantity
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Compute the quantity of a Production Line using a formula defined in the BoM Line.
+Compute the quantity of a Production Line using a formula defined in the
+BoM Line.
 
 **Table of contents**
 
@@ -38,39 +39,44 @@ Compute the quantity of a Production Line using a formula defined in the BoM Lin
 Configuration
 =============
 
-In any BoM line, fill the `Quantity Formula` field.
+In any BoM line, fill the Quantity Formula field.
 
 The following values are available:
 
-- `bom_line`: the current BoM line,
-- `production`: the production order being created,
-- `product`: the Product of current BoM line,
-- `product_uom_qty`: the quantity of the production order line,
-- `product_uom`: the UoM of the Product of current BoM line,
-- `operation`: the operation where the components are consumed for current BoM line,
+-  \`bom_line\`: the current BoM line,
+-  \`production\`: the production order being created,
+-  \`product\`: the Product of current BoM line,
+-  \`product_uom_qty\`: the quantity of the production order line,
+-  \`product_uom\`: the UoM of the Product of current BoM line,
+-  \`operation\`: the operation where the components are consumed for
+   current BoM line,
 
-The computed quantity must be assigned to the `quantity` variable.
+The computed quantity must be assigned to the quantity variable.
 
 Usage
 =====
 
-This module can be used to customize the quantity of a component based on a custom attribute value selected on the product.
-The following configuration works when the `website_sale` module is installed.
+This module can be used to customize the quantity of a component based
+on a custom attribute value selected on the product. The following
+configuration works when the website_sale module is installed.
 
 In order to do that, configure as follows:
 
-#. Create an attribute "Component quantity" with a custom value
+1. Create an attribute "Component quantity" with a custom value
 
-   .. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_attribute.png
+   |image|
 
-#. Create and publish a Product having the configured custom value, and the MTO route (archived by default)
+2. Create and publish a Product having the configured custom value, and
+   the MTO route (archived by default)
 
-   .. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_tab_attributes.png
-#. Add a BoM to the product, where one Component has the following formula for the quantity:
+   |image1|
 
-   .. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/bom.png
+3. Add a BoM to the product, where one Component has the following
+   formula for the quantity:
 
-   .. code-block:: python
+   |image2|
+
+   .. code:: python
 
       sale_lines = production.move_dest_ids.sale_line_id
       produced_template = production.product_tmpl_id
@@ -82,17 +88,25 @@ In order to do that, configure as follows:
       component_quantity = component_quantity_attribute_value.custom_value
       quantity = int(component_quantity)
 
-#. In the e-commerce, select a quantity for the custom value and buy the product
+4. In the e-commerce, select a quantity for the custom value and buy the
+   product
 
-   .. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/website_sale_product.png
+   |image3|
 
-#. Confirm the sale order
+5. Confirm the sale order
 
-   .. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/sale_order.png
+   |image4|
 
 a Production order with the selected value of Component will be created
 
-.. image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/production_order.png
+|image5|
+
+.. |image| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_attribute.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/product_tab_attributes.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/bom.png
+.. |image3| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/website_sale_product.png
+.. |image4| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/sale_order.png
+.. |image5| image:: https://raw.githubusercontent.com/OCA/manufacture/16.0/mrp_bom_line_formula_quantity/static/description/images/production_order.png
 
 Bug Tracker
 ===========
@@ -100,7 +114,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_line_formula_quantity%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_bom_line_formula_quantity%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -108,12 +122,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Aion Tech
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -133,6 +147,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-SirAionTech| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/16.0/mrp_bom_line_formula_quantity>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_bom_line_formula_quantity>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
