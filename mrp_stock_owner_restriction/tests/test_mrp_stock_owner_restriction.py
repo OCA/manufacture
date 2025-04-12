@@ -1,6 +1,6 @@
 # Copyright 2023 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, tagged
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
@@ -13,10 +13,10 @@ class TestMrpStockOwnerRestriction(TransactionCase):
         cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
 
         cls.finished_product = cls.env["product.product"].create(
-            {"name": "test product", "type": "product"}
+            {"name": "test product", "type": "consu", "is_storable": True}
         )
         cls.component = cls.env["product.product"].create(
-            {"name": "test component", "type": "product"}
+            {"name": "test component", "type": "consu", "is_storable": True}
         )
         cls.bom = cls.env["mrp.bom"].create(
             {
@@ -66,12 +66,7 @@ class TestMrpStockOwnerRestriction(TransactionCase):
             }
         )
         mo.action_confirm()
-        action = mo.button_mark_done()
-        self.assertEqual(action.get("res_model"), "mrp.immediate.production")
-        wizard = Form(
-            self.env[action["res_model"]].with_context(**action["context"])
-        ).save()
-        action = wizard.process()
+        mo.button_mark_done()
 
         # Check produced product owner and qty_available
         self.assertEqual(self.finished_product.qty_available, 0.00)
