@@ -1,7 +1,7 @@
 # Copyright 2023 Quartile
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -11,11 +11,23 @@ class MrpProduction(models.Model):
         "res.partner",
         "Assign Owner",
         readonly=True,
-        states={"draft": [("readonly", False)], "confirmed": [("readonly", False)]},
         check_company=True,
         help="Produced products will be assigned to this owner.",
     )
     owner_restriction = fields.Selection(related="picking_type_id.owner_restriction")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Override create to ensure owner_id is set correctly."""
+        records = super().create(vals_list)
+        for record in records:
+            if (
+                record.picking_type_id
+                and record.picking_type_id.owner_restriction == "unassigned_owner"
+                and not record.owner_id
+            ):
+                record.owner_id = self.env.company.partner_id
+        return records
 
     def write(self, vals):
         if "owner_id" in vals:
