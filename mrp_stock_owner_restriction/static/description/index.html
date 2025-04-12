@@ -387,8 +387,15 @@ manufacturing order.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-1">Known issues / Roadmap</a></h1>
-<p>An unbuild order not linked to a manufacturing order will not utilize
-the functionality of the stock_owner_restriction module.</p>
+<ul class="simple">
+<li>An unbuild order not linked to a manufacturing order will not utilize
+the functionality of the stock_owner_restriction module.</li>
+<li>In case there are products with and without an owner assigned.
+Unbuilding a manufacturing order with an owner assigned will lead to
+a stock adjustment on the product without an assigned owner. While we
+actually expect that the product from the MO will be unbuild. (The
+one with the asisgned owner).</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
