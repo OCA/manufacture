@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: quality_control_stock_oca
@@ -32,6 +32,18 @@ msgstr "Ustvarjene inšpekcije"
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_picking__done_inspections
 msgid "Done inspections"
 msgstr "Opravljene inšpekcije"
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_qc_trigger__inspection_per_lot
+msgid ""
+"If checked, an inspection per used lot/serial number will be created in "
+"stock pickings."
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__inspection_per_lot
+msgid "Inspection Per Lot"
+msgstr ""
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__qc_inspections_ids
