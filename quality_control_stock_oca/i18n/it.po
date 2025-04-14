@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2024-10-17 09:06+0000\n"
+"PO-Revision-Date: 2025-04-14 11:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__created_inspections
@@ -42,11 +42,13 @@ msgid ""
 "If checked, an inspection per used lot/serial number will be created in "
 "stock pickings."
 msgstr ""
+"Se selezionata, verrà creata sul prelievo una ispezione per numero di lotto/"
+"serie."
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__inspection_per_lot
 msgid "Inspection Per Lot"
-msgstr ""
+msgstr "Ispezione per lotto"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__qc_inspections_ids
