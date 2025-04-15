@@ -46,6 +46,8 @@ class TestStockReplenishmentMrpBomSelection(TransactionCase):
             order.action_replenish()
         # If the defined route is manufacturing it will open the wizard.
         order.route_id = self.manufacturing_route_id
+        # Make sure that the qty is not recomputed
+        order.qty_to_order = 500
         action = order.action_replenish()
         wizard = self.env[action["res_model"]].browse(action["res_id"])
         self.assertEqual(wizard.orderpoint_id, order)

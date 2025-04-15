@@ -52,11 +52,12 @@ allowing to select discrete quantities to produce for each combination.
 Usage
 =====
 
-# Go to "Inventory / Operations / Replenishment" # Create or use a
-registry that has the manufacturing route defined # Click on "Order
-once", the wizard should open # Set the quantity and the list with which
-you want to produce this quantity of product. # On confirmation, the
-relevant production orders will be created.
+1. Go to "Inventory / Operations / Replenishment"
+2. Create or use a registry that has the manufacturing route defined
+3. Click on "Order once", the wizard should open
+4. Set the quantity and the list with which you want to produce this
+   quantity of product.
+5. On confirmation, the relevant production orders will be created.
 
 Bug Tracker
 ===========
@@ -83,6 +84,7 @@ Contributors
 
    -  Pedro Baeza
    -  Pilar Vargas
+   -  Carlos Roca
 
 Maintainers
 -----------
