@@ -5,11 +5,16 @@
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='mo_id']" position="after">
+            <xpath expr="//field[@name='location_dest_id']" position="before">
                 <field
                     name="restore_rm_stock_in_origin_loc"
                     attrs="{'invisible': [('mo_id', '=', False)]}"
                 />
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('restore_rm_stock_in_origin_loc', '=', True)]}</attribute>
             </xpath>
         </field>
     </record>
@@ -18,11 +23,16 @@
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view_simplified" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='mo_id']" position="after">
+            <xpath expr="//field[@name='location_dest_id']" position="before">
                 <field
                     name="restore_rm_stock_in_origin_loc"
                     attrs="{'invisible': [('mo_id', '=', False)]}"
                 />
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('restore_rm_stock_in_origin_loc', '=', True)]}</attribute>
             </xpath>
         </field>
     </record>

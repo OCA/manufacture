@@ -8,9 +8,9 @@ class MrpUnbuild(models.Model):
     _inherit = "mrp.unbuild"
 
     restore_rm_stock_in_origin_loc = fields.Boolean(
-        string="Restore Raw Materials to Consumed Location",
-        help="If enabled, the source location of the component stock move lines will be used"
-        " as the destination location for the unbuild move lines.",
+        string="Return Components to Original Location",
+        help="If selected, components will be returned to the same location"
+        " they were taken from during manufacturing.",
     )
 
     def action_unbuild(self):
