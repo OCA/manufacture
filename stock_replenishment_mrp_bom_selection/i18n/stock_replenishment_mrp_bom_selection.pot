@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model_terms:ir.ui.view,arch_db:stock_replenishment_mrp_bom_selection.stock_warehouse_orderpoint_replenish_wizard_view_form
+msgid "Availability of raw materials"
+msgstr ""
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__bom_id
@@ -77,14 +82,6 @@ msgid "ID"
 msgstr ""
 
 #. module: stock_replenishment_mrp_bom_selection
-#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard____last_update
-#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard____last_update
-#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line____last_update
-#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__write_uid
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__write_uid
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__write_uid
@@ -126,6 +123,7 @@ msgid "Minimum Inventory Rule"
 msgstr ""
 
 #. module: stock_replenishment_mrp_bom_selection
+#. odoo-python
 #: code:addons/stock_replenishment_mrp_bom_selection/wizard/stock_warehouse_orderpoint_replenish_wizard.py:0
 #, python-format
 msgid "Nothing to produce."

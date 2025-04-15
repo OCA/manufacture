@@ -26,6 +26,7 @@
                                 name="action_material_availability_popup"
                                 type="object"
                                 icon="fa-info-circle"
+                                title="Availability of raw materials"
                             />
                             <field name="qty_to_produce" />
                         </tree>
