@@ -17,20 +17,21 @@ Stock Replenishment MRP BoM Selection
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/stock_replenishment_mrp_bom_selection
+    :target: https://github.com/OCA/manufacture/tree/17.0/stock_replenishment_mrp_bom_selection
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-stock_replenishment_mrp_bom_selection
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-stock_replenishment_mrp_bom_selection
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a wizard for replenishment cases that have the product manufacturing route
-marked as a route. This wizard allows to establish which quantity to create and with which
-bill of materials to manufacture it.
+This module adds a wizard for replenishment cases that have the product
+manufacturing route marked as a route. This wizard allows to establish
+which quantity to create and with which bill of materials to manufacture
+it.
 
 **Table of contents**
 
@@ -40,21 +41,22 @@ bill of materials to manufacture it.
 Use Cases / Context
 ===================
 
-You may have several ways to manufacture a product, using different raw materials, and
-for deciding which one to choose, you need to have all the information available in
-the same screen (raw material availability, production times, etc).
+You may have several ways to manufacture a product, using different raw
+materials, and for deciding which one to choose, you need to have all
+the information available in the same screen (raw material availability,
+production times, etc).
 
-This module eases this through a wizard displaying the information and allowing to select
-discrete quantities to produce for each combination.
+This module eases this through a wizard displaying the information and
+allowing to select discrete quantities to produce for each combination.
 
 Usage
 =====
 
-# Go to "Inventory / Operations / Replenishment"
-# Create or use a registry that has the manufacturing route defined
-# Click on "Order once", the wizard should open
-# Set the quantity and the list with which you want to produce this quantity of product.
-# On confirmation, the relevant production orders will be created.
+# Go to "Inventory / Operations / Replenishment" # Create or use a
+registry that has the manufacturing route defined # Click on "Order
+once", the wizard should open # Set the quantity and the list with which
+you want to produce this quantity of product. # On confirmation, the
+relevant production orders will be created.
 
 Bug Tracker
 ===========
@@ -62,7 +64,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20stock_replenishment_mrp_bom_selection%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20stock_replenishment_mrp_bom_selection%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -70,20 +72,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pedro Baeza
-  * Pilar Vargas
+   -  Pedro Baeza
+   -  Pilar Vargas
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -95,6 +97,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/stock_replenishment_mrp_bom_selection>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/stock_replenishment_mrp_bom_selection>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
