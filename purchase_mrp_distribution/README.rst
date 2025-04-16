@@ -17,19 +17,20 @@ Purchase MRP Distribution
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/purchase_mrp_distribution
+    :target: https://github.com/OCA/manufacture/tree/17.0/purchase_mrp_distribution
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-purchase_mrp_distribution
+    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-purchase_mrp_distribution
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to buy a product that will be divided into others without 
-knowing the exact quantity of the others. That quantity will be filled in the picking.
+This module allows you to buy a product that will be divided into others
+without knowing the exact quantity of the others. That quantity will be
+filled in the picking.
 
 **Table of contents**
 
@@ -39,15 +40,17 @@ knowing the exact quantity of the others. That quantity will be filled in the pi
 Configuration
 =============
 
-To use this module, we will need to configure n different distribution-type Bills of 
-Materials (BoM) for n products. To do this, we will follow these steps:
+To use this module, we will need to configure n different
+distribution-type Bills of Materials (BoM) for n products. To do this,
+we will follow these steps:
 
-#. Go to Manufacturing > Products > Bills of Materials
-#. Click on Create
-#. Select the product to be distributed in the receptions
-#. Select the BoM type "Distribution"
-#. In the components, add the products that can be filled in the reception (it is not 
-   necessary to mark the quantity as it will default to 0)
+1. Go to Manufacturing > Products > Bills of Materials
+2. Click on Create
+3. Select the product to be distributed in the receptions
+4. Select the BoM type "Distribution"
+5. In the components, add the products that can be filled in the
+   reception (it is not necessary to mark the quantity as it will
+   default to 0)
 
 Usage
 =====
@@ -58,35 +61,39 @@ To see the module's functionality:
 2. Add the product for which the BoM has been created
 3. Confirm the order
 4. Go to the created delivery order
-5. You will see a new button in the move that contains the product, click on it
-6. A wizard will open to define the quantity of each product to distribute
-7. By clicking on Distribute, the move lines will be added with the products from the 
-   BoM
+5. You will see a new button in the move that contains the product,
+   click on it
+6. A wizard will open to define the quantity of each product to
+   distribute
+7. By clicking on Distribute, the move lines will be added with the
+   products from the BoM
 
 Known issues / Roadmap
 ======================
 
-#. The current module is not designed to handle multi-step receipts. It operates on a 
-   single-step process, making it unsuitable for more complex inventory management 
-   scenarios.
-#. The current module is not designed to handle multiple lots for a product.
-#. The current module is not designed to handle multiple packages for a product.
+1. The current module is not designed to handle multi-step receipts. It
+   operates on a single-step process, making it unsuitable for more
+   complex inventory management scenarios.
+2. The current module is not designed to handle multiple lots for a
+   product.
+3. The current module is not designed to handle multiple packages for a
+   product.
 
 Changelog
 =========
 
-This module aims to address the need to receive a generic product, but until the 
-moment of reception, we do not know the quantity that we might receive of its 
-specific products.
+This module aims to address the need to receive a generic product, but
+until the moment of reception, we do not know the quantity that we might
+receive of its specific products.
 
-Using kits was not suitable for us, because to account for a unit of the kit product, 
-the quantity specified in the BoM must be received. Therefore, we opted to define a 
-new type of BoM called distribution.
+Using kits was not suitable for us, because to account for a unit of the
+kit product, the quantity specified in the BoM must be received.
+Therefore, we opted to define a new type of BoM called distribution.
 
-In this way, upon receiving a unit of any product added to the BoM, it will be 
-accounted for as a unit of the generic product and will be reflected in the svls as 
-separate products, but they will be accounted for in the purchase line as part of the 
-product.
+In this way, upon receiving a unit of any product added to the BoM, it
+will be accounted for as a unit of the generic product and will be
+reflected in the svls as separate products, but they will be accounted
+for in the purchase line as part of the product.
 
 Bug Tracker
 ===========
@@ -94,7 +101,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20purchase_mrp_distribution%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20purchase_mrp_distribution%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -102,20 +109,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnaiva
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pedro M. Baeza
-  * Carlos Roca
+   -  Pedro M. Baeza
+   -  Carlos Roca
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -127,6 +134,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/purchase_mrp_distribution>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/purchase_mrp_distribution>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
