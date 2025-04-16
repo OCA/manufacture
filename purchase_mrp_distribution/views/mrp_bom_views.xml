@@ -8,7 +8,7 @@
                 <p
                     colspan="2"
                     class="oe_grey oe_edit_only"
-                    attrs="{'invisible': [('type','!=','distribution')]}"
+                    invisible="type != 'distribution'"
                 >
                 A BoM of type distribution is used to select the quantities of components.
                 <ul>

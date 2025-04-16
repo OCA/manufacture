@@ -40,6 +40,9 @@ class StockMove(models.Model):
                         "location_dest_id": sml.location_dest_id.id,
                         "price_unit": move.price_unit,
                         "move_line_ids": [(4, sml.id)],
+                        # Set picked to True to be able to validate the picking
+                        # with this new lines
+                        "picked": True,
                     }
                 )
                 cancel_move = True
