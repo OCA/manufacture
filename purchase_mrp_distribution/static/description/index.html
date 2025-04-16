@@ -369,9 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:4bbd083070a56bbf9b77fa865d58eb3a5bed9e94afe89bace12e0c24f17a3619
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/15.0/purchase_mrp_distribution"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-purchase_mrp_distribution"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows you to buy a product that will be divided into others without
-knowing the exact quantity of the others. That quantity will be filled in the picking.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/17.0/purchase_mrp_distribution"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-purchase_mrp_distribution"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module allows you to buy a product that will be divided into others
+without knowing the exact quantity of the others. That quantity will be
+filled in the picking.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -390,15 +391,17 @@ knowing the exact quantity of the others. That quantity will be filled in the pi
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>To use this module, we will need to configure n different distribution-type Bills of
-Materials (BoM) for n products. To do this, we will follow these steps:</p>
+<p>To use this module, we will need to configure n different
+distribution-type Bills of Materials (BoM) for n products. To do this,
+we will follow these steps:</p>
 <ol class="arabic simple">
 <li>Go to Manufacturing &gt; Products &gt; Bills of Materials</li>
 <li>Click on Create</li>
 <li>Select the product to be distributed in the receptions</li>
 <li>Select the BoM type “Distribution”</li>
-<li>In the components, add the products that can be filled in the reception (it is not
-necessary to mark the quantity as it will default to 0)</li>
+<li>In the components, add the products that can be filled in the
+reception (it is not necessary to mark the quantity as it will
+default to 0)</li>
 </ol>
 </div>
 <div class="section" id="usage">
@@ -409,41 +412,45 @@ necessary to mark the quantity as it will default to 0)</li>
 <li>Add the product for which the BoM has been created</li>
 <li>Confirm the order</li>
 <li>Go to the created delivery order</li>
-<li>You will see a new button in the move that contains the product, click on it</li>
-<li>A wizard will open to define the quantity of each product to distribute</li>
-<li>By clicking on Distribute, the move lines will be added with the products from the
-BoM</li>
+<li>You will see a new button in the move that contains the product,
+click on it</li>
+<li>A wizard will open to define the quantity of each product to
+distribute</li>
+<li>By clicking on Distribute, the move lines will be added with the
+products from the BoM</li>
 </ol>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <ol class="arabic simple">
-<li>The current module is not designed to handle multi-step receipts. It operates on a
-single-step process, making it unsuitable for more complex inventory management
-scenarios.</li>
-<li>The current module is not designed to handle multiple lots for a product.</li>
-<li>The current module is not designed to handle multiple packages for a product.</li>
+<li>The current module is not designed to handle multi-step receipts. It
+operates on a single-step process, making it unsuitable for more
+complex inventory management scenarios.</li>
+<li>The current module is not designed to handle multiple lots for a
+product.</li>
+<li>The current module is not designed to handle multiple packages for a
+product.</li>
 </ol>
 </div>
 <div class="section" id="changelog">
 <h1><a class="toc-backref" href="#toc-entry-4">Changelog</a></h1>
-<p>This module aims to address the need to receive a generic product, but until the
-moment of reception, we do not know the quantity that we might receive of its
-specific products.</p>
-<p>Using kits was not suitable for us, because to account for a unit of the kit product,
-the quantity specified in the BoM must be received. Therefore, we opted to define a
-new type of BoM called distribution.</p>
-<p>In this way, upon receiving a unit of any product added to the BoM, it will be
-accounted for as a unit of the generic product and will be reflected in the svls as
-separate products, but they will be accounted for in the purchase line as part of the
-product.</p>
+<p>This module aims to address the need to receive a generic product, but
+until the moment of reception, we do not know the quantity that we might
+receive of its specific products.</p>
+<p>Using kits was not suitable for us, because to account for a unit of the
+kit product, the quantity specified in the BoM must be received.
+Therefore, we opted to define a new type of BoM called distribution.</p>
+<p>In this way, upon receiving a unit of any product added to the BoM, it
+will be accounted for as a unit of the generic product and will be
+reflected in the svls as separate products, but they will be accounted
+for in the purchase line as part of the product.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-5">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/manufacture/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/manufacture/issues/new?body=module:%20purchase_mrp_distribution%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/manufacture/issues/new?body=module:%20purchase_mrp_distribution%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -473,7 +480,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/15.0/purchase_mrp_distribution">OCA/manufacture</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/17.0/purchase_mrp_distribution">OCA/manufacture</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
