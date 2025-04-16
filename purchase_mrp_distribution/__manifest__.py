@@ -3,7 +3,7 @@
 
 {
     "name": "Purchase MRP Distribution",
-    "version": "15.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Tecnaiva, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",

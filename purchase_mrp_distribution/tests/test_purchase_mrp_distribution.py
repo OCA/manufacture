@@ -73,7 +73,7 @@ class TestPurchaseMrpDistribution(TransactionCase):
 
     def test_distribute_process(self):
         purchase, picking = self._create_po_picking()
-        wiz_action = picking.move_lines.action_open_distribution_wizard()
+        wiz_action = picking.move_ids.action_open_distribution_wizard()
         wiz = (
             self.env["stock.move.distribution.wiz"]
             .with_context(**wiz_action["context"])
@@ -83,20 +83,16 @@ class TestPurchaseMrpDistribution(TransactionCase):
         self.assertIn(self.subproduct_2.product_variant_id, wiz.line_ids.product_id)
         wiz.line_ids.quantity = 3
         wiz.button_distribute_qty()
-        self.assertEqual(len(picking.move_lines), 1)
-        self.assertEqual(len(picking.move_lines.move_line_ids), 2)
-        for sml in picking.move_lines.move_line_ids:
-            self.assertEqual(sml.qty_done, 3)
-        original_move = picking.move_lines
+        self.assertEqual(len(picking.move_ids), 1)
+        self.assertEqual(len(picking.move_ids.move_line_ids), 2)
+        for sml in picking.move_ids.move_line_ids:
+            self.assertEqual(sml.quantity, 3)
+        original_move = picking.move_ids
         picking.button_validate()
-        self.assertEqual(len(picking.move_lines), 3)
+        self.assertEqual(len(picking.move_ids), 3)
         self.assertEqual(original_move.state, "cancel")
-        self.assertIn(
-            self.subproduct_1.product_variant_id, picking.move_lines.product_id
-        )
-        self.assertIn(
-            self.subproduct_2.product_variant_id, picking.move_lines.product_id
-        )
+        self.assertIn(self.subproduct_1.product_variant_id, picking.move_ids.product_id)
+        self.assertIn(self.subproduct_2.product_variant_id, picking.move_ids.product_id)
         self.assertEqual(purchase.order_line.qty_received, 6)
         svl_action = picking.action_view_stock_valuation_layers()
         svls = self.env["stock.valuation.layer"].search(svl_action["domain"])

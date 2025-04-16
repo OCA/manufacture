@@ -26,7 +26,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                                 0,
                                 {
                                     "product_id": bom_line.product_id.id,
-                                    "quantity": sml.qty_done,
+                                    "quantity": sml.quantity,
                                     "uom_id": bom_line.product_uom_id.id,
                                     "lot_id": sml.lot_id.id,
                                     "package_id": sml.result_package_id.id,
@@ -71,7 +71,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                     {
                         "move_id": self.move_id.id,
                         "product_id": line.product_id.id,
-                        "qty_done": line.quantity,
+                        "quantity": line.quantity,
                         "product_uom_id": line.uom_id.id,
                         "location_id": self.move_id.location_id.id,
                         "location_dest_id": self.move_id.location_dest_id.id,
@@ -93,6 +93,6 @@ class StockMoveDistributionWizLine(models.TransientModel):
     product_id = fields.Many2one("product.product")
     quantity = fields.Float(digits="Product Unit of Measure")
     uom_id = fields.Many2one("uom.uom")
-    lot_id = fields.Many2one("stock.production.lot")
-    package_id = fields.Many2one("stock.production.lot")
+    lot_id = fields.Many2one("stock.lot")
+    package_id = fields.Many2one("stock.quant.package")
     company_id = fields.Many2one("res.company")
