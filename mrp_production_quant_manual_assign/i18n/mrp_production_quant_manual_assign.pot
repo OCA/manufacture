@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,8 +24,18 @@ msgid "Assign Manual Quants Lines"
 msgstr ""
 
 #. module: mrp_production_quant_manual_assign
-#: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_assign_manual_quants__is_production_single_lot
-msgid "Is Production Single Lot"
+#: model:ir.model,name:mrp_production_quant_manual_assign.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_production_quant_manual_assign
+#: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_mrp_bom_line__manual_consumption
+msgid "Manual Consumption"
+msgstr ""
+
+#. module: mrp_production_quant_manual_assign
+#: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_mrp_bom_line__manual_consumption_readonly
+msgid "Manual Consumption Readonly"
 msgstr ""
 
 #. module: mrp_production_quant_manual_assign
@@ -34,8 +44,8 @@ msgid "Manual Quants"
 msgstr ""
 
 #. module: mrp_production_quant_manual_assign
-#: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_assign_manual_quants_lines__qty_done
-msgid "Qty Done"
+#: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_assign_manual_quants__mo_id
+msgid "Production Order for components"
 msgstr ""
 
 #. module: mrp_production_quant_manual_assign
@@ -46,4 +56,11 @@ msgstr ""
 #. module: mrp_production_quant_manual_assign
 #: model:ir.model.fields,field_description:mrp_production_quant_manual_assign.field_assign_manual_quants_lines__to_consume_now
 msgid "To Consume Now"
+msgstr ""
+
+#. module: mrp_production_quant_manual_assign
+#: model:ir.model.fields,help:mrp_production_quant_manual_assign.field_mrp_bom_line__manual_consumption
+msgid ""
+"When activated, then the registration of consumption for that component is recorded manually exclusively.\n"
+"If not activated, and any of the components consumption is edited manually on the manufacturing order, Odoo assumes manual consumption also."
 msgstr ""
