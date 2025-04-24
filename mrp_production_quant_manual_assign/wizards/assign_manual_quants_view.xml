@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="assign_manual_quants_form_view">
+        <field
+            name="name"
+        >assign.manual.quants.form - mrp_production_quant_manual_assign</field>
+        <field name="model">assign.manual.quants</field>
+        <field
+            name="inherit_id"
+            ref="stock_quant_manual_assign.assign_manual_quants_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="selected" position="after">
+                <field name="to_consume_now" column_invisible="not parent.mo_id" />
+            </field>
+            <field name="move_id" position="after">
+                <field name="mo_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

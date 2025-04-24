@@ -1,0 +1,4 @@
+- [Quartile Limited](https://www.quartile.co):
+  - Yoshi Tashiro \<<tashiro@quartile.co>\>
+- [ForgeFlow](https://www.forgeflow.com):
+  - Lois Rilo \<<lois.rilo@forgeflow.com>\>
