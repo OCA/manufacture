@@ -1,0 +1,203 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_replenishment_mrp_bom_selection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-15 07:50+0000\n"
+"PO-Revision-Date: 2024-12-24 18:06+0000\n"
+"Last-Translator: Isneyler Mosquera Preciado <isneyler@gmail.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__bom_id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__bom_id
+msgid "Bill of Materials"
+msgstr "Lista de materiales"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__bom_line_ids
+msgid "Bom Line"
+msgstr "Línea de lista de materiales"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model_terms:ir.ui.view,arch_db:stock_replenishment_mrp_bom_selection.material_availability_wizard_view
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model_terms:ir.ui.view,arch_db:stock_replenishment_mrp_bom_selection.stock_warehouse_orderpoint_replenish_wizard_view_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__create_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__create_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__create_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__create_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__create_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__create_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,help:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__product_uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr "Unidad de medida por defecto utilizada para todas las operaciones de stock."
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model_terms:ir.ui.view,arch_db:stock_replenishment_mrp_bom_selection.stock_warehouse_orderpoint_replenish_wizard_view_form
+msgid "Discard"
+msgstr "Descartar"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__display_name
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__display_name
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__display_name
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard____last_update
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard____last_update
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line____last_update
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__write_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__write_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__write_uid
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__write_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__write_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__write_date
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model,name:stock_replenishment_mrp_bom_selection.model_bom_line_wizard
+msgid "Manufacture BOM line"
+msgstr "Linea de fabricación de la lista de materiales"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model,name:stock_replenishment_mrp_bom_selection.model_material_availability_wizard
+msgid "Material Availability Wizard"
+msgstr "Asistente de disponibilidad de material"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model,name:stock_replenishment_mrp_bom_selection.model_material_availability_wizard_line
+msgid "Material Availability Wizard Line"
+msgstr "Línea del Asistente de Disponibilidad de Material"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__max_production_qty
+msgid "Maximum Production Quantity"
+msgstr "Máxima Cantidad de Producción"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model,name:stock_replenishment_mrp_bom_selection.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr "Regla de inventario mínimo"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: code:addons/stock_replenishment_mrp_bom_selection/wizard/stock_warehouse_orderpoint_replenish_wizard.py:0
+#, python-format
+msgid "Nothing to produce."
+msgstr "Nada para producir."
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__orderpoint_id
+msgid "Orderpoint"
+msgstr "Punto de pedido"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__product_id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__product_tmpl_id
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__production_time
+msgid "Production Time"
+msgstr "Tiempo de Producción"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__product_ids
+msgid "Products"
+msgstr "Productos"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__product_qty_available
+msgid "Quantity Available"
+msgstr "Cantidad disponible"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__qty_to_produce
+msgid "Quantity to produce"
+msgstr "Cantidad a producir"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__replenish_wizard_id
+msgid "Replenish Wizard"
+msgstr "Asistente de Reposición"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model,name:stock_replenishment_mrp_bom_selection.model_stock_warehouse_orderpoint_replenish_wizard
+msgid "Stock warehouse orderpoint replenish wizard"
+msgstr "Asistente de reposición de pedidos de almacén"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__qty_to_order
+msgid "To Order"
+msgstr "A producir"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__total_qty_to_produce
+msgid "Total Quantity to Produce"
+msgstr "Cantidad total a producir"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: stock_replenishment_mrp_bom_selection
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__wizard_id
+#: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"

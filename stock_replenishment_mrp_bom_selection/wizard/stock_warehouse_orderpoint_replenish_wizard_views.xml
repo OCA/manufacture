@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record
+        id="stock_warehouse_orderpoint_replenish_wizard_view_form"
+        model="ir.ui.view"
+    >
+        <field name="name">stock.warehouse.orderpoint.replenish.wizard.view.form</field>
+        <field name="model">stock.warehouse.orderpoint.replenish.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="qty_to_order" readonly="1" />
+                    </group>
+                    <field name="orderpoint_id" invisible="1" />
+                    <field name="product_id" invisible="1" />
+                    <field name="product_tmpl_id" invisible="1" />
+                    <field name="total_qty_to_produce" invisible="1" />
+                    <field name="bom_line_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="bom_id" readonly="1" />
+                            <field name="max_production_qty" />
+                            <field name="product_uom_id" nolabel="1" />
+                            <field name="production_time" widget="float_time" />
+                            <button
+                                name="action_material_availability_popup"
+                                type="object"
+                                icon="fa-info-circle"
+                                title="Availability of raw materials"
+                            />
+                            <field name="qty_to_produce" />
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="qty_remaining_to_produce" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        type="object"
+                        name="action_confirm"
+                        string="Confirm"
+                        class="btn btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        special="cancel"
+                        string="Discard"
+                        class="btn btn-secondary"
+                        data-hotkey="z"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
