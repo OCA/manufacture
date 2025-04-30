@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-manufacture"
-version = "17.0.20250424.0"
+version = "17.0.20250430.0"
 dependencies = [
     "odoo-addon-account_move_line_mrp_info>=17.0dev,<17.1dev",
     "odoo-addon-mrp_attachment_mgmt>=17.0dev,<17.1dev",
@@ -30,6 +30,7 @@ dependencies = [
     "odoo-addon-quality_control_oca>=17.0dev,<17.1dev",
     "odoo-addon-quality_control_oca_timesheet>=17.0dev,<17.1dev",
     "odoo-addon-quality_control_stock_oca>=17.0dev,<17.1dev",
+    "odoo-addon-stock_replenishment_mrp_bom_selection>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",

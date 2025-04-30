@@ -49,6 +49,7 @@ addon | version | maintainers | summary
 [quality_control_oca](quality_control_oca/) | 17.0.1.1.0 |  | Generic infrastructure for quality tests.
 [quality_control_oca_timesheet](quality_control_oca_timesheet/) | 17.0.1.0.0 | [![ppyczko](https://github.com/ppyczko.png?size=30px)](https://github.com/ppyczko) | Quality Control - Timesheet (OCA)
 [quality_control_stock_oca](quality_control_stock_oca/) | 17.0.2.0.0 |  | Quality control - Stock (OCA)
+[stock_replenishment_mrp_bom_selection](stock_replenishment_mrp_bom_selection/) | 17.0.1.0.0 |  | Stock Replenishment MRP BoM Selection
 
 [//]: # (end addons)
 
