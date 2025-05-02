@@ -5,7 +5,7 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import formatLang
 
 
@@ -109,12 +109,15 @@ class QcInspection(models.Model):
         for inspection in self:
             if inspection.auto_generated:
                 raise exceptions.UserError(
-                    _("You cannot remove an auto-generated inspection.")
+                    self.env._("You cannot remove an auto-generated inspection.")
                 )
             if inspection.state != "draft":
                 raise exceptions.UserError(
-                    _("You cannot remove an inspection that is not in draft state.")
+                    self.env._(
+                        "You cannot remove an inspection that is not in draft state."
+                    )
                 )
+
         return super().unlink()
 
     def action_draft(self):
@@ -123,7 +126,10 @@ class QcInspection(models.Model):
     def action_todo(self):
         for inspection in self:
             if not inspection.test:
-                raise exceptions.UserError(_("You must first set the test to perform."))
+                raise exceptions.UserError(
+                    self.env._("You must first set the test to perform.")
+                )
+
         self.write({"state": "ready"})
 
     def action_confirm(self):
@@ -131,14 +137,14 @@ class QcInspection(models.Model):
             for line in inspection.inspection_lines:
                 if line.question_type == "qualitative" and not line.qualitative_value:
                     raise exceptions.UserError(
-                        _(
+                        self.env._(
                             "You should provide an answer for all "
                             "qualitative questions."
                         )
                     )
                 elif line.question_type != "qualitative" and not line.uom_id:
                     raise exceptions.UserError(
-                        _(
+                        self.env._(
                             "You should provide a unit of measure for "
                             "quantitative questions."
                         )
@@ -267,12 +273,10 @@ class QcInspectionLine(models.Model):
                     [x.name for x in insp_line.possible_ql_values if x.ok]
                 )
             else:
-                insp_line.valid_values = "{} ~ {}".format(
-                    formatLang(self.env, insp_line.min_value),
-                    formatLang(self.env, insp_line.max_value),
-                )
                 if self.env.ref("uom.group_uom") in self.env.user.groups_id:
-                    insp_line.valid_values += " %s" % insp_line.test_uom_id.name
+                    min_val = formatLang(self.env, insp_line.min_value)
+                    max_val = formatLang(self.env, insp_line.max_value)
+                    insp_line.valid_values = f"{min_val} ~ {max_val}"
 
     inspection_id = fields.Many2one(
         comodel_name="qc.inspection", string="Inspection", ondelete="cascade"

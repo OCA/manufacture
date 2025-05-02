@@ -58,12 +58,14 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.inspection1.action_confirm()
         for line in self.inspection1.inspection_lines:
             self.assertTrue(
-                line.success, "Incorrect state in inspection line %s" % line.name
+                line.success, f"Incorrect state in inspection line {line.name}"
             )
+
         self.assertTrue(
             self.inspection1.success,
-            "Incorrect state in inspection %s" % self.inspection1.name,
+            f"Incorrect state in inspection {self.inspection1.name}",
         )
+
         self.assertEqual(self.inspection1.state, "success")
         self.inspection1.action_approve()
         self.assertEqual(self.inspection1.state, "success")
@@ -77,12 +79,13 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.inspection1.action_confirm()
         for line in self.inspection1.inspection_lines:
             self.assertFalse(
-                line.success, "Incorrect state in inspection line %s" % line.name
+                line.success, f"Incorrect state in inspection line {line.name}"
             )
         self.assertFalse(
             self.inspection1.success,
-            "Incorrect state in inspection %s" % self.inspection1.name,
+            f"Incorrect state in inspection {self.inspection1.name}",
         )
+
         self.assertEqual(self.inspection1.state, "waiting")
         self.inspection1.action_approve()
         self.assertEqual(self.inspection1.state, "failed")

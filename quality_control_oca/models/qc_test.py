@@ -5,7 +5,7 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class QcTest(models.Model):
@@ -66,7 +66,7 @@ class QcTestQuestion(models.Model):
                 and not tc.ql_values.filtered("ok")
             ):
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "Question '%s' is not valid: "
                         "you have to mark at least one value as OK."
                     )
@@ -78,7 +78,7 @@ class QcTestQuestion(models.Model):
         for tc in self:
             if tc.type == "quantitative" and tc.min_value > tc.max_value:
                 raise exceptions.ValidationError(
-                    _(
+                    self.env._(
                         "Question '%s' is not valid: "
                         "minimum value can't be higher than maximum value."
                     )
