@@ -5,7 +5,7 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class QcTestTemplateCategory(models.Model):
@@ -26,7 +26,7 @@ class QcTestTemplateCategory(models.Model):
     def _check_parent_id(self):
         if self._has_cycle():
             raise exceptions.UserError(
-                _("Error! You can not create recursive categories.")
+                self.env._("Error! You can not create recursive categories.")
             )
 
     name = fields.Char(required=True, translate=True)
