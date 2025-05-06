@@ -5,7 +5,7 @@ from odoo.addons.mrp.tests.common import TestMrpCommon
 
 class TestUnbuild(TestMrpCommon):
     def setUp(self):
-        super(TestUnbuild, self).setUp()
+        super().setUp()
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.env.ref("base.group_user").write(
             {"implied_ids": [(4, self.env.ref("stock.group_production_lot").id)]}
