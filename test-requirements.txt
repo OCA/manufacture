@@ -1,1 +1,4 @@
 odoo-test-helper
+odoo-addon-base_iso7010 @ git+https://github.com/OCA/community-data-files.git@refs/pull/236/head#subdirectory=base_iso7010
+odoo-addon-base_iso7010_data_mandatory @ git+https://github.com/OCA/community-data-files.git@refs/pull/237/head#subdirectory=base_iso7010_data_mandatory
+odoo-addon-mrp_workcenter_safety_symbol @ git+https://github.com/OCA/manufacture.git@refs/pull/1525/head#subdirectory=mrp_workcenter_safety_symbol
