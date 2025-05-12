@@ -275,7 +275,9 @@ class ProductMRPArea(models.Model):
             ("product_qty", ">", 0.00),
             "!",
             ("location_id", "child_of", locations.ids),
+            "|",
             ("location_dest_id", "child_of", locations.ids),
+            ("location_final_id", "child_of", locations.ids),
         ]
 
     def _out_stock_moves_domain(self):
@@ -286,8 +288,11 @@ class ProductMRPArea(models.Model):
             ("state", "not in", ["done", "cancel"]),
             ("product_qty", ">", 0.00),
             ("location_id", "child_of", locations.ids),
+            "|",
             "!",
             ("location_dest_id", "child_of", locations.ids),
+            "!",
+            ("location_final_id", "child_of", locations.ids),
         ]
 
     def action_view_stock_moves(self, domain):

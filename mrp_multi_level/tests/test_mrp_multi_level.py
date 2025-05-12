@@ -918,3 +918,67 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             .create({})
         )
         self.assertEqual(len(procure_wizard.item_ids), 0)
+
+    def test_25_multi_step_routes(self):
+        """Test that deliveries and receipts in several steps are
+        correctly considered."""
+        # Enable 3 step routes
+        self.wh.write(
+            {
+                "delivery_steps": "pick_pack_ship",
+                "reception_steps": "three_steps",
+            }
+        )
+        # Create delivery first step
+        self._run_procurement(self.product_routes)
+        move = self.env["stock.move"].search(
+            [("product_id", "=", self.product_routes.id)]
+        )
+        self.assertEqual(len(move), 1)
+        self.assertEqual(move.location_dest_id, self.wh.wh_pack_stock_loc_id)
+        self.assertEqual(move.location_final_id, self.customer_location)
+        # create incoming first step
+        self._run_procurement(self.product_routes, location=self.wh.lot_stock_id)
+        pol = self.env["purchase.order.line"].search(
+            [("product_id", "=", self.product_routes.id)]
+        )
+        pol.order_id.button_confirm()
+        move = self.env["stock.move"].search(
+            [
+                ("product_id", "=", self.product_routes.id),
+                ("location_id.usage", "!=", "internal"),
+            ]
+        )
+        self.assertEqual(len(move), 1)
+        self.assertEqual(move.location_dest_id, self.wh.wh_input_stock_loc_id)
+        self.assertEqual(move.location_final_id, self.wh.lot_stock_id)
+        # Execute MRP and check result
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.mrp_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.mrp_area.id),
+                ("product_id", "=", self.product_routes.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.demand_qty, 10.0)
+        self.assertEqual(inventory.supply_qty, 10.0)
+        # Change area location to include intermediate locations.
+        # A planned operation from WH/stock to WH/Packing Zone should
+        # still be considered demand if the final destination is out of
+        # the area (case of standard deliver in 3-step route).
+        self.mrp_area.location_id = self.wh.view_location_id
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.mrp_area.ids)]}
+        ).run_mrp_multi_level()
+        inventory = self.mrp_inventory_obj.search(
+            [
+                ("mrp_area_id", "=", self.mrp_area.id),
+                ("product_id", "=", self.product_routes.id),
+            ]
+        )
+        self.assertEqual(len(inventory), 1)
+        self.assertEqual(inventory.demand_qty, 10.0)
+        self.assertEqual(inventory.supply_qty, 10.0)
