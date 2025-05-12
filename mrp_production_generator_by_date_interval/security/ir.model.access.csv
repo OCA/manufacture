@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_production_generator_date_interval_wizard,access_mrp_production_generator_date_interval_wizard,model_mrp_production_generator_date_interval_wizard,mrp.group_mrp_user,1,1,1,1
