@@ -22,6 +22,7 @@ class ReportBomStructure(models.AbstractModel):
         index=0,
         product_info=False,
         ignore_stock=False,
+        simulated_leaves_per_workcenter=False,
     ):
         # OVERRIDE to fill in the `line.product_id` if a component template is used.
         # To avoid a complete override, we HACK the bom by replacing it with a virtual
@@ -57,6 +58,7 @@ class ReportBomStructure(models.AbstractModel):
             index=index,
             product_info=product_info,
             ignore_stock=ignore_stock,
+            simulated_leaves_per_workcenter=simulated_leaves_per_workcenter,
         )
         # Replace any NewId value by the real record id
         # Otherwise it's evaluated as False in some situations, and it may cause issues
