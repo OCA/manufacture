@@ -1,9 +1,11 @@
 from odoo import Command
 from odoo.models import BaseModel
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpBomAttributeMatchBase(TransactionCase):
+class TestMrpBomAttributeMatchBase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,45 +16,45 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
         cls.product_sword = cls.env["product.template"].create(
             {
                 "name": "Plastic Sword",
-                "type": "product",
+                "is_storable": True,
             }
         )
         cls.product_surf = cls.env["product.template"].create(
             {
                 "name": "Surf",
-                "type": "product",
+                "is_storable": True,
             }
         )
         cls.product_fin = cls.env["product.template"].create(
             {
                 "name": "Surf Fin",
-                "type": "product",
+                "is_storable": True,
             }
         )
         cls.product_plastic = cls.env["product.template"].create(
             {
                 "name": "Plastic Component",
-                "type": "product",
+                "is_storable": True,
             }
         )
         cls.p1 = cls.env["product.template"].create(
             {
                 "name": "P1",
-                "type": "product",
+                "is_storable": True,
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p2 = cls.env["product.template"].create(
             {
                 "name": "P2",
-                "type": "product",
+                "is_storable": True,
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p3 = cls.env["product.template"].create(
             {
                 "name": "P3",
-                "type": "product",
+                "is_storable": True,
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
