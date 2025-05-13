@@ -149,7 +149,9 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     # flake8: noqa: C901
-    def explode(self, product, quantity, picking_type=False):
+    def explode(
+        self, product, quantity, picking_type=False, never_attribute_values=False
+    ):
         # Had to replace this method
         """
         Explodes the BoM and creates two lists with all the information you need:
@@ -219,7 +221,7 @@ class MrpBom(models.Model):
             current_line, current_product, current_qty, parent_line = bom_lines[0]
             bom_lines = bom_lines[1:]
 
-            if current_line._skip_bom_line(current_product):
+            if current_line._skip_bom_line(current_product, never_attribute_values):
                 continue
 
             line_quantity = current_qty * current_line.product_qty
