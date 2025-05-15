@@ -36,14 +36,14 @@ class MrpProduction(models.Model):
                 ]
         return res
 
-    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
-        mo = super().copy(default=default)
-        dt_planned = mo.date_start
-        warehouse = mo.picking_type_id.warehouse_id
-        if warehouse.calendar_id and mo.bom_id.produce_delay:
-            date_expected = warehouse.calendar_id.plan_days(
-                +1 * self.bom_id.produce_delay + 1, dt_planned
-            )
-            mo.date_finished = date_expected
-        return mo
+        mos = super().copy(default=default)
+        for mo in mos:
+            dt_planned = mo.date_start
+            warehouse = mo.picking_type_id.warehouse_id
+            if warehouse.calendar_id and mo.bom_id.produce_delay:
+                date_expected = warehouse.calendar_id.plan_days(
+                    +1 * self.bom_id.produce_delay + 1, dt_planned
+                )
+                mo.date_finished = date_expected
+        return mos
