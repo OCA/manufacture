@@ -71,3 +71,10 @@ class TestBomTracking(TransactionCase):
         after = self.bom.message_ids
         self.assertEqual(len(after - before), 1)
         self.line_2.write({"product_uom_id": 2})
+
+    def test_03_change_bom_line_qty_rounding(self):
+        self.line_2.write({"product_qty": 2})
+        before = self.bom.message_ids
+        self.line_2.write({"product_qty": 2.0000000000001})
+        after = self.bom.message_ids
+        self.assertEqual(len(after - before), 0)
