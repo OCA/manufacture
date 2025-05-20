@@ -15,7 +15,8 @@ class TestMrpSubcontractingBomDualUse(BaseCommon):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "route_ids": [(6, 0, [cls.manufacture_route.id])],
             }
         )
