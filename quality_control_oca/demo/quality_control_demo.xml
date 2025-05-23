@@ -29,4 +29,9 @@
         <field name="max_value" eval="10.0" />
         <field name="uom_id" ref="uom.product_uom_unit" />
     </record>
+    <record model="qc.test.question" id="qc_test_question_3">
+        <field name="name">Image</field>
+        <field name="test" ref="qc_test_1" />
+        <field name="type">image</field>
+    </record>
 </odoo>

@@ -1196,3 +1196,68 @@ msgstr "o"
 
 #~ msgid "Product template"
 #~ msgstr "Plantilla de producto"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__is_required_image
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__is_required_image
+msgid ""
+"\n"
+"                Allows the obligation to attach an image in\n"
+"                the questions defined in the inspection.\n"
+"            "
+msgstr ""
+"\n"
+" Permite la obligación de adjuntar una imagen en las preguntas definidas en la inspección.\n"
+" "
+
+#. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__enable_image
+#: model:ir.model.fields,help:quality_control_oca.field_qc_test__enable_image
+msgid ""
+"\n"
+"            Allows the possibility of attaching an image\n"
+"            to the questions defined in the inspection.\n"
+"            "
+msgstr ""
+"\n"
+"Permite la posibilidad de adjuntar una imagen\n"
+" a las preguntas definidas en la inspección.\n"
+" "
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__enable_image
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__enable_image
+msgid "Enable Image"
+msgstr "Habilitar imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__image_1920
+msgid "Image"
+msgstr "Imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__image_1024
+msgid "Image 1024"
+msgstr "Imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__image_128
+msgid "Image 128"
+msgstr "Imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__image_256
+msgid "Image 256"
+msgstr "Imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__image_512
+msgid "Image 512"
+msgstr "Imagen"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__is_required_image
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__is_required_image
+msgid "Required image"
+msgstr "Imagen requerida"
+

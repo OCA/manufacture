@@ -5,6 +5,7 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+
 from odoo import exceptions
 from odoo.tests import new_test_user
 
@@ -18,6 +19,7 @@ class TestQualityControlOcaBase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.QcTest = cls.env["qc.test"]
         cls.inspection_model = cls.env["qc.inspection"]
         cls.category_model = cls.env["qc.test.category"]
         cls.question_model = cls.env["qc.test.question"]
@@ -50,11 +52,40 @@ class TestQualityControlOca(TestQualityControlOcaBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.qc_test_id = cls.test.copy(
+            {
+                "test_lines": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test question image",
+                            "type": "image",
+                            "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                        },
+                    )
+                ]
+            }
+        )
+        cls.inspection_image = cls.inspection_model.create(
+            {
+                "name": "Test Inspection Image",
+                "inspection_lines": cls.inspection_model._prepare_inspection_lines(
+                    cls.qc_test_id
+                ),
+            }
+        )
+
         cls.wizard = cls.wizard_model.with_context(active_id=cls.inspection1.id).create(
             {"test": cls.test.id}
         )
         cls.wizard.action_create_test()
         cls.inspection1.action_todo()
+        cls.value_image = (
+            b"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAAC"
+            b"Qd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVA"
+            b"AAAAElFTkSuQmCC"
+        )
 
     def test_inspection_correct(self):
         for line in self.inspection1.inspection_lines:
@@ -62,6 +93,8 @@ class TestQualityControlOca(TestQualityControlOcaBase):
                 line.qualitative_value = self.val_ok
             if line.question_type == "quantitative":
                 line.quantitative_value = 5.0
+            if line.question_type == "image":
+                line.image_1920 = self.value_image
         self.inspection1.action_confirm()
         for line in self.inspection1.inspection_lines:
             self.assertTrue(
@@ -79,14 +112,22 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.inspection1.action_draft()
         self.assertFalse(self.inspection1.date_done)
 
-    def test_inspection_incorrect(self):
+    def inspection_incorrect(self):
         for line in self.inspection1.inspection_lines:
             if line.question_type == "qualitative":
                 line.qualitative_value = self.val_ko
             if line.question_type == "quantitative":
                 line.quantitative_value = 15.0
+            if line.question_type == "image":
+                line.image_1920 = self.value_image
+
+    def test_inspection_incorrect(self):
+        self.inspection_incorrect()
         self.inspection1.action_confirm()
-        for line in self.inspection1.inspection_lines:
+
+        for line in self.inspection1.inspection_lines.filtered(
+            lambda l: l.question_type != "image"
+        ):
             self.assertFalse(
                 line.success, "Incorrect state in inspection line %s" % line.name
             )
@@ -98,6 +139,9 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.inspection1.action_approve()
         self.assertEqual(self.inspection1.state, "failed")
         self.assertTrue(bool(self.inspection1.date_done))
+
+        with self.assertRaises(exceptions.UserError):
+            self.inspection_image.action_confirm()
 
     def test_actions_errors(self):
         inspection2 = self.inspection1.copy()

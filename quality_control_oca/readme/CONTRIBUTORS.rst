@@ -13,3 +13,7 @@
 * `Trey Kilobytes de Soluciones SL <https://www.trey.es>`__:
 
   * Vicent Cubells
+
+* `Binhex Cloud <https://www.binhex.cloud/>`_:
+
+  * Edilio Escalona Almira <e.escalona@binhex.cloud>

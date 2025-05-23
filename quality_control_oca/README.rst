@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Quality Control OCA
 ===================
@@ -17,7 +13,7 @@ Quality Control OCA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
@@ -71,6 +67,38 @@ The complete inspection workflow is:
                 |
                 | -> Failure (Pending approval) -> Approved
 
+Usage
+=====
+
+Setting up images for tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#. Go to *Quality Control > Tests > Tests*.
+#. Add a new test.
+#. Add a new line.
+#. Select the *Image* type.
+
+  .. image:: https://raw.githubusercontent.com/quality_control_oca/static/img/type_image_test.png
+     :height: 100
+     :width: 200
+     :alt: Type image
+
+#. Fill in the other fields.
+#. Relate the test to the inspection.
+
+Add images to inspections
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Go to *Quality Control > Inspections > Inspections*.
+#. Add a new inspection.
+#. Add a new test, using the smart button *Set test*.
+
+  .. image:: https://raw.githubusercontent.com/quality_control_oca/static/src/img/add_test.png
+     :height: 100
+     :width: 200
+     :alt: Add test
+
+#. Please note that if the type is Image, the field of the same name must be filled in.
+
 Known issues / Roadmap
 ======================
 
@@ -113,6 +141,10 @@ Contributors
 * `Trey Kilobytes de Soluciones SL <https://www.trey.es>`__:
 
   * Vicent Cubells
+
+* `Binhex Cloud <https://www.binhex.cloud/>`_:
+
+  * Edilio Escalona Almira <e.escalona@binhex.cloud>
 
 Other credits
 ~~~~~~~~~~~~~

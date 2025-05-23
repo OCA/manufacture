@@ -18,8 +18,8 @@ class QcInspection(models.Model):
 
     @api.depends("inspection_lines", "inspection_lines.success")
     def _compute_success(self):
-        for i in self:
-            i.success = all([x.success for x in i.inspection_lines])
+        for inspection in self:
+            inspection.success = all([x.success for x in inspection.inspection_lines])
 
     def object_selection_values(self):
         """
@@ -97,6 +97,7 @@ class QcInspection(models.Model):
         help="This field will be marked if all tests have succeeded.",
         store=True,
     )
+
     auto_generated = fields.Boolean(
         string="Auto-generated",
         readonly=True,
@@ -155,6 +156,12 @@ class QcInspection(models.Model):
     def action_confirm(self):
         for inspection in self:
             for line in inspection.inspection_lines:
+                if line.question_type == "image" and not line.image_1920:
+                    raise exceptions.UserError(
+                        _(
+                            "Lines marked with image type cannot have the Image field empty."
+                        )
+                    )
                 if line.question_type == "qualitative" and not line.qualitative_value:
                     raise exceptions.UserError(
                         _(
@@ -162,7 +169,10 @@ class QcInspection(models.Model):
                             "qualitative questions."
                         )
                     )
-                if line.question_type != "qualitative" and not line.uom_id:
+                elif (
+                    line.question_type not in ("qualitative", "image")
+                    and not line.uom_id
+                ):
                     raise exceptions.UserError(
                         _(
                             "You should provide a unit of measure for "
@@ -268,10 +278,12 @@ class QcInspection(models.Model):
 
 class QcInspectionLine(models.Model):
     _name = "qc.inspection.line"
+    _inherit = "image.mixin"
     _description = "Quality control inspection line"
 
     @api.depends(
         "question_type",
+        "image_1920",
         "uom_id",
         "test_uom_id",
         "max_value",
@@ -282,7 +294,9 @@ class QcInspectionLine(models.Model):
     )
     def _compute_quality_test_check(self):
         for insp_line in self:
-            if insp_line.question_type == "qualitative":
+            if insp_line.question_type == "image":
+                insp_line.success = bool(insp_line.image_1920)
+            elif insp_line.question_type == "qualitative":
                 insp_line.success = insp_line.qualitative_value.ok
             else:
                 if insp_line.uom_id.id == insp_line.test_uom_id.id:
@@ -365,7 +379,11 @@ class QcInspectionLine(models.Model):
         help="UoM of the inspection value for a quantitative question.",
     )
     question_type = fields.Selection(
-        [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
+        [
+            ("qualitative", "Qualitative"),
+            ("quantitative", "Quantitative"),
+            ("image", "Image"),
+        ],
         readonly=True,
     )
     valid_values = fields.Char(
@@ -374,3 +392,4 @@ class QcInspectionLine(models.Model):
     success = fields.Boolean(
         compute="_compute_quality_test_check", string="Success?", store=True
     )
+    object_id = fields.Reference(related="inspection_id.object_id")

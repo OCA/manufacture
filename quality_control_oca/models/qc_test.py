@@ -102,7 +102,11 @@ class QcTestQuestion(models.Model):
     test = fields.Many2one(comodel_name="qc.test")
     name = fields.Char(required=True, translate=True)
     type = fields.Selection(
-        [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
+        [
+            ("qualitative", "Qualitative"),
+            ("quantitative", "Quantitative"),
+            ("image", "Image"),
+        ],
         required=True,
     )
     ql_values = fields.One2many(
