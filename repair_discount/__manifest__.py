@@ -10,9 +10,6 @@
     "author": "Agile Business Group, " "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["repair"],
-    "data": [
-        "views/mrp_repair_view.xml",
-        "report/repair_templates_repair_order.xml",
-    ],
+    "data": ["views/mrp_repair_view.xml", "report/repair_templates_repair_order.xml",],
     "installable": True,
 }
