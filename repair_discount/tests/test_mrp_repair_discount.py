@@ -9,13 +9,13 @@ class TestMrpRepairDiscount(common.SavepointCase):
     def setUpClass(cls):
         super(TestMrpRepairDiscount, cls).setUpClass()
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "standard_price": 10, "list_price": 20,}
+            {"name": "Test product", "standard_price": 10, "list_price": 20}
         )
         cls.product_service = cls.env["product.product"].create(
-            {"name": "Test product service", "standard_price": 10, "list_price": 20,}
+            {"name": "Test product service", "standard_price": 10, "list_price": 20}
         )
         cls.partner = cls.env.ref("base.res_partner_address_1")
-        cls.location = cls.env["stock.location"].create({"name": "Test location",})
+        cls.location = cls.env["stock.location"].create({"name": "Test location"})
         cls.repair = cls.env["repair.order"].create(
             {
                 "product_id": cls.product.id,
