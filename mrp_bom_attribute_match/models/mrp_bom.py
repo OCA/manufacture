@@ -123,11 +123,13 @@ class MrpBomLine(models.Model):
                         rec.component_template_id.display_name,
                     )
                 )
-            if not all(attr in prod_attrs for attr in comp_attrs):
+            missing_attrs = comp_attrs - prod_attrs
+            if missing_attrs:
                 raise ValidationError(
                     _(
                         "Some attributes of the dynamic component are not included into "
-                        "production product attributes."
+                        "production product attributes. Missing attributes: %s",
+                        ", ".join(missing_attrs.mapped("name")),
                     )
                 )
 
