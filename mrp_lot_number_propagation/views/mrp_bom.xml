@@ -8,13 +8,16 @@
     <field name="model">mrp.bom</field>
     <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
     <field name="arch" type="xml">
-      <field name="company_id" position="after">
-        <field name="display_lot_number_propagation" invisible="1" />
-        <field
+        <xpath
+                expr="//field[@name='company_id' and not(@invisible='1')]"
+                position="after"
+            >
+            <field name="display_lot_number_propagation" invisible="1" />
+            <field
                     name="lot_number_propagation"
                     invisible="not display_lot_number_propagation"
                 />
-      </field>
+        </xpath>
       <xpath expr="//field[@name='bom_line_ids']/tree" position="inside">
         <field name="display_propagate_lot_number" invisible="1" />
         <field
