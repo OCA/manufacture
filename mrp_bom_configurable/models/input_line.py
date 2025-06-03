@@ -68,6 +68,10 @@ class Inputline(models.Model):
             "context": f"{{'active_id': {self.id}}}",
         }
 
+    def _check_constraint(self):
+        self.ensure_one()
+        return []
+
     @api.depends("bom_id")
     def _compute_alert(self):
         "You need to override this method in your custom config to trigger adhoc checks"
