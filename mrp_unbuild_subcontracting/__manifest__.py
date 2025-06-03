@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Unbuild orders with return subcontracting",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "license": "LGPL-3",
     "category": "Manufacture",
     "summary": "Unbuild orders are created automatically "
