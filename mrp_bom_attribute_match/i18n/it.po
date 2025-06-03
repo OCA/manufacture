@@ -136,10 +136,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Some attributes of the dynamic component are not included into production "
-"product attributes."
+"product attributes. Missing attributes: %s"
 msgstr ""
-"Alcuni attributi del componente non sono inclusi tra gli attributi del "
-"prodotto da produrre."
 
 #. module: mrp_bom_attribute_match
 #: model:product.template,name:mrp_bom_attribute_match.bam_pp_sub_level
@@ -256,6 +254,14 @@ msgstr "v1"
 #: model:product.attribute.value,name:mrp_bom_attribute_match.bam_attr_2_v2
 msgid "v2"
 msgstr "v2"
+
+#, python-format
+#~ msgid ""
+#~ "Some attributes of the dynamic component are not included into production "
+#~ "product attributes."
+#~ msgstr ""
+#~ "Alcuni attributi del componente non sono inclusi tra gli attributi del "
+#~ "prodotto da produrre."
 
 #~ msgid "Product Uom Id Domain"
 #~ msgstr "Dominio ID UdM prodotto"
