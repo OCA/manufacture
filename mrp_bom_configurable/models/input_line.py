@@ -7,13 +7,9 @@ class Inputline(models.Model):
 
     name = fields.Char()
     sequence = fields.Integer()
-    bom_id = fields.Many2one(
-        comodel_name="mrp.bom", required=True, related="config_id.bom_id"
-    )
-    config_id = fields.Many2one(
-        comodel_name="input.config", required=True, ondelete="cascade"
-    )
-    alert = fields.Text(
+    bom_id = fields.Many2one(comodel_name="mrp.bom", required=True, related="config_id.bom_id")
+    config_id = fields.Many2one(comodel_name="input.config", required=True, ondelete="cascade")
+    alert = fields.Html(
         help="Outside limit configuration is reported here", compute="_compute_alert"
     )
     satisfies_constraint = fields.Boolean(
@@ -67,9 +63,7 @@ class Inputline(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "mrp.bom.configured",
             "view_mode": "form",
-            "view_id": self.env.ref(
-                "mrp_bom_configurable.mrp_bom_configured_form_view"
-            ).id,
+            "view_id": self.env.ref("mrp_bom_configurable.mrp_bom_configured_form_view").id,
             "target": "new",
             "context": f"{{'active_id': {self.id}}}",
         }
