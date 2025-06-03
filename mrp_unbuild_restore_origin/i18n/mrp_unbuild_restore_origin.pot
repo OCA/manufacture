@@ -16,13 +16,13 @@ msgstr ""
 #. module: mrp_unbuild_restore_origin
 #: model:ir.model.fields,help:mrp_unbuild_restore_origin.field_mrp_unbuild__restore_rm_stock_in_origin_loc
 msgid ""
-"If enabled, the source location of the component stock move lines will be "
-"used as the destination location for the unbuild move lines."
+"If selected, components will be returned to the same location they were "
+"taken from during manufacturing."
 msgstr ""
 
 #. module: mrp_unbuild_restore_origin
 #: model:ir.model.fields,field_description:mrp_unbuild_restore_origin.field_mrp_unbuild__restore_rm_stock_in_origin_loc
-msgid "Restore Raw Materials to Consumed Location"
+msgid "Return Components to Original Location"
 msgstr ""
 
 #. module: mrp_unbuild_restore_origin
