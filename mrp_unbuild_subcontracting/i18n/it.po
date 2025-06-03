@@ -45,6 +45,14 @@ msgid "Is Subcontracted"
 msgstr "In conto lavoro"
 
 #. module: mrp_unbuild_subcontracting
+#: code:addons/mrp_unbuild_subcontracting/models/stock_picking.py:0
+#, python-format
+msgid ""
+"It's not possible to create the subcontracting unbuild order\n"
+"The subcontract move %s is linked with more than one manufacturing order: %s"
+msgstr ""
+
+#. module: mrp_unbuild_subcontracting
 #: model:ir.model.fields,field_description:mrp_unbuild_subcontracting.field_mrp_unbuild____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_subcontracting.field_stock_move____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_subcontracting.field_stock_picking____last_update
