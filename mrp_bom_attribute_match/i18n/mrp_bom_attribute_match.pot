@@ -124,7 +124,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Some attributes of the dynamic component are not included into production "
-"product attributes."
+"product attributes. Missing attributes: %s"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
