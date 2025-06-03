@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: mrp_bom_attribute_match
 #: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
-msgid "BOM Structure Report"
+msgid "BOM Overview Report"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
@@ -44,6 +44,7 @@ msgid "Match on Attributes"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
@@ -51,13 +52,13 @@ msgid ""
 msgstr ""
 
 #. module: mrp_bom_attribute_match
-#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
-msgid "Product Backup"
+#: model:ir.model,name:mrp_bom_attribute_match.model_product_template
+msgid "Product"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
-#: model:ir.model,name:mrp_bom_attribute_match.model_product_template
-msgid "Product Template"
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Product Backup"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
@@ -71,6 +72,7 @@ msgid "Production Order"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
@@ -79,6 +81,7 @@ msgid ""
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
@@ -92,6 +95,7 @@ msgid "Technical field to store previous value of product_id"
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
@@ -101,6 +105,7 @@ msgid ""
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/product.py:0
 #, python-format
 msgid ""
@@ -110,6 +115,7 @@ msgid ""
 msgstr ""
 
 #. module: mrp_bom_attribute_match
+#. odoo-python
 #: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
 #, python-format
 msgid ""
