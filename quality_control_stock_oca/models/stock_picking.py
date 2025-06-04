@@ -73,12 +73,16 @@ class StockPicking(models.Model):
 
     def action_cancel(self):
         res = super().action_cancel()
-        self.qc_inspections_ids.filtered(lambda x: x.state == "plan").action_cancel()
+        self.sudo().qc_inspections_ids.filtered(
+            lambda x: x.state == "plan"
+        ).action_cancel()
         return res
 
     def _action_done(self):
         res = super()._action_done()
-        plan_inspections = self.qc_inspections_ids.filtered(lambda x: x.state == "plan")
+        plan_inspections = self.sudo().qc_inspections_ids.filtered(
+            lambda x: x.state == "plan"
+        )
         plan_inspections.write({"state": "ready", "date": fields.Datetime.now()})
         for picking in self:
             picking.trigger_inspections(["after"])
@@ -87,5 +91,5 @@ class StockPicking(models.Model):
     def _create_backorder(self):
         res = super()._create_backorder()
         # To re-allocate backorder moves to the new backorder picking
-        self.qc_inspections_ids._compute_picking()
+        self.sudo().qc_inspections_ids._compute_picking()
         return res
