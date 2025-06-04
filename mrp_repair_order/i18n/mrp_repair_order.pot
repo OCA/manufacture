@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,7 +27,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp_repair_order/models/mrp.py:0
 #: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_mrp_production_form_inherit
-#, python-format
 msgid "Create Repair Order"
 msgstr ""
 
@@ -38,7 +37,7 @@ msgstr ""
 
 #. module: mrp_repair_order
 #: model:ir.model,name:mrp_repair_order.model_mrp_production
-msgid "Production Order"
+msgid "Manufacturing Order"
 msgstr ""
 
 #. module: mrp_repair_order
