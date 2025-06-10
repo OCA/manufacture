@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//notebook/page/field[@name='bom_line_ids']/tree/field[@name='product_tmpl_id']"
+                expr="//notebook/page/field[@name='bom_line_ids']/list/field[@name='product_tmpl_id']"
                 position="after"
             >
                 <field name="has_bom" column_invisible="1" />
