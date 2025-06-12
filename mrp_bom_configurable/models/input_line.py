@@ -10,7 +10,7 @@ class Inputline(models.Model):
     bom_id = fields.Many2one(comodel_name="mrp.bom", required=True, related="config_id.bom_id")
     config_id = fields.Many2one(comodel_name="input.config", required=True, ondelete="cascade")
     alert = fields.Html(
-        help="Outside limit configuration is reported here", compute="_compute_alert"
+        help="Outside limit configuration is reported here", compute="_compute_alert", store=True
     )
     satisfies_constraint = fields.Boolean(
         store=True,
