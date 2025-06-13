@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-02 11:36+0000\n"
-"PO-Revision-Date: 2021-03-02 12:37+0100\n"
-"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"PO-Revision-Date: 2025-06-13 14:26+0000\n"
+"Last-Translator: Ömer KÜLAK <omer.kulak@kitayazilim.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/tr/)\n"
 "Language: tr\n"
@@ -17,62 +17,61 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__created_inspections
 msgid "Created inspections"
-msgstr ""
+msgstr "Oluşturulan denetimler"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections"
-msgstr ""
+msgstr "Denetimler"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,help:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
 msgid "Inspections related to this production."
-msgstr ""
+msgstr "Bu üretim ile ilişkili denetimler."
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
 #: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_search_view_production
 msgid "Production"
-msgstr ""
+msgstr "Üretim"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model,name:quality_control_mrp_oca.model_mrp_production
-#, fuzzy
 msgid "Production Order"
-msgstr "Üretim emri"
+msgstr "Üretim Emri"
 
 #. module: quality_control_mrp_oca
 #: model:qc.trigger,name:quality_control_mrp_oca.qc_trigger_mrp
 msgid "Production done"
-msgstr ""
+msgstr "Üretim yapıldı"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__production_id
 #: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_line_search_production_view
 msgid "Production order"
-msgstr ""
+msgstr "Üretim emri"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection
 msgid "Quality control inspection"
-msgstr ""
+msgstr "Kalite kontrol denetimi"
 
 #. module: quality_control_mrp_oca
 #: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection_line
 msgid "Quality control inspection line"
-msgstr ""
+msgstr "Kalite kontrol denetim satırı"
 
 #. module: quality_control_mrp_oca
 #: model:ir.actions.act_window,name:quality_control_mrp_oca.action_qc_inspection_per_production
 msgid "Quality inspections from production order"
-msgstr ""
+msgstr "Üretim emrinden kalite denetimleri"
 
 #. module: quality_control_mrp_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.mrp_production_qc_view
 msgid "inspections"
-msgstr ""
+msgstr "Denetimler"
