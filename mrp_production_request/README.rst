@@ -17,27 +17,28 @@ MRP Production Request
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/14.0/mrp_production_request
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_production_request
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-14-0/manufacture-14-0-mrp_production_request
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_production_request
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of Manufacturing to allow you to use
-Manufacturing Request (MR) as a previous step to Manufacturing Orders (MO).
+This module extends the functionality of Manufacturing to allow you to
+use Manufacturing Request (MR) as a previous step to Manufacturing
+Orders (MO).
 
 Some of the benefits you can obtain are:
 
-* Allow managers to review what is going to be manufactured.
-* Better control of manufacturing calendar.
-* Manage big requirements splitting them in batches.
-* Know your bottleneck component in advance and only schedule what you really
-  can build.
+- Allow managers to review what is going to be manufactured.
+- Better control of manufacturing calendar.
+- Manage big requirements splitting them in batches.
+- Know your bottleneck component in advance and only schedule what you
+  really can build.
 
 **Table of contents**
 
@@ -51,61 +52,63 @@ To configure a product to automatically generate Manufacturing Requests
 from procurements instead of directly create manufacturing orders you
 need to:
 
-#. Go to the products that you want them to trigger manufacturing requests.
-#. Go to the *Inventory* tab.
-#. Check the box of a *manufacture* route and the box of
-   *Manufacturing Request*.
+1. Go to the products that you want them to trigger manufacturing
+   requests.
+2. Go to the *Inventory* tab.
+3. Check the box of a *manufacture* route and the box of *Manufacturing
+   Request*.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to *Manufacturing > Manufacturing Requests*.
-#. Create a manufacturing request or open a existing one (assigned to you or
-   created from a procurement).
-#. If you click on *Request approval* button the user assigned as approver
-   will be added to the thread.
-#. If you are the approver you can either click on *Approve* or *Reject*
+1. Go to *Manufacturing > Manufacturing Requests*.
+2. Create a manufacturing request or open a existing one (assigned to
+   you or created from a procurement).
+3. If you click on *Request approval* button the user assigned as
+   approver will be added to the thread.
+4. If you are the approver you can either click on *Approve* or *Reject*
    buttons.
-#. Rejecting a MR will cancel it and propagate this cancellation to
+5. Rejecting a MR will cancel it and propagate this cancellation to
    destination moves.
-#. Approving a MR will allow you to create manufacturing orders.
-#. You can manually set to done a request by clicking in the button *Done*.
+6. Approving a MR will allow you to create manufacturing orders.
+7. You can manually set to done a request by clicking in the button
+   *Done*.
 
 To create MOs from MRs you have to:
 
-#. Go to approved manufacturing request.
-#. Click on the button *Create Manufacturing Order*.
-#. In the opened wizard, click on *Compute lines* so you will have a
-   quantity proposed for creating a MO. This quantity is the maximum quantity
-   you can produce with the current stock available for the components needed
-   in the source location.
-#. Use the proposed quantity or change it and click on *Create MO* at the
-   bottom of the wizard.
+1. Go to approved manufacturing request.
+2. Click on the button *Create Manufacturing Order*.
+3. In the opened wizard, click on *Compute lines* so you will have a
+   quantity proposed for creating a MO. This quantity is the maximum
+   quantity you can produce with the current stock available for the
+   components needed in the source location.
+4. Use the proposed quantity or change it and click on *Create MO* at
+   the bottom of the wizard.
 
-**NOTE:** This module does not restrict the quantity that can be converted
-from a MR to MOs. It is in hands of the user to decide when a MR is ended and
-to set it to *Done* state.
+**NOTE:** This module does not restrict the quantity that can be
+converted from a MR to MOs. It is in hands of the user to decide when a
+MR is ended and to set it to *Done* state.
 
 Known issues / Roadmap
 ======================
 
-* Take into account workstations.
-* Take into account consumable products.
+- Take into account workstations.
+- Take into account consumable products.
 
 Changelog
 =========
 
 12.0.1.0.0 (2019-09-13)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-* [MIG] Migration to v12.
+- [MIG] Migration to v12.
 
 11.0.1.0.0 (2018-09-13)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-* [MIG] Migration to v11. Start of the history.
+- [MIG] Migration to v11. Start of the history.
 
 Bug Tracker
 ===========
@@ -113,7 +116,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_request%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_request%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -121,19 +124,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lois Rilo Antelo <lois.rilo@forgeflow.com>
-* Jordi Ballester <jordi.ballester@forgeflow.com>
-* Chandresh Thakkar <chandresh.thakkar.serpentcs@gmail.com>
+- Lois Rilo Antelo <lois.rilo@forgeflow.com>
+- Jordi Ballester <jordi.ballester@forgeflow.com>
+- Chandresh Thakkar <chandresh.thakkar.serpentcs@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -153,6 +156,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-LoisRForgeFlow| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_production_request>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_production_request>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

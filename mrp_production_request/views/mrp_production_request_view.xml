@@ -2,7 +2,6 @@
 <!-- Copyright 2017-18 ForgeFlow S.L.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
-
     <record id="view_mrp_production_request_form" model="ir.ui.view">
         <field name="name">mrp.production.request.form@mrp_production_request</field>
         <field name="model">mrp.production.request</field>
@@ -209,22 +208,22 @@
                 <templates>
                     <t t-name="kanban-tooltip">
                         <ul class="oe_kanban_tooltip">
-                            <li t-if="record.description.raw_value"><b
-                                >Description:</b> <t
-                                    t-esc="record.description.value"
-                                /></li>
-                            <li t-if="record.bom_id.raw_value"><b
-                                >Bill of Material:</b> <t
-                                    t-esc="record.bom_id.value"
-                                /></li>
-                            <li t-if="record.location_src_id.raw_value"><b
-                                >Raw Materials Location:</b> <t
-                                    t-esc="record.location_src_id.value"
-                                /></li>
-                            <li t-if="record.location_dest_id.raw_value"><b
-                                >Finished Products Location:</b> <t
-                                    t-esc="record.location_dest_id.value"
-                                /></li>
+                            <li t-if="record.description.raw_value">
+                                <b>Description:</b>
+                                <t t-esc="record.description.value" />
+                            </li>
+                            <li t-if="record.bom_id.raw_value">
+                                <b>Bill of Material:</b>
+                                <t t-esc="record.bom_id.value" />
+                            </li>
+                            <li t-if="record.location_src_id.raw_value">
+                                <b>Raw Materials Location:</b>
+                                <t t-esc="record.location_src_id.value" />
+                            </li>
+                            <li t-if="record.location_dest_id.raw_value">
+                                <b>Finished Products Location:</b>
+                                <t t-esc="record.location_dest_id.value" />
+                            </li>
                         </ul>
                     </t>
                     <t t-name="kanban-box">
@@ -239,12 +238,14 @@
                                         name="heading"
                                         class="o_kanban_record_headings ml-1"
                                     >
-                                        <strong class="o_kanban_record_title"><span><t
-                                                    t-esc="record.product_id.value"
-                                                /></span></strong>
+                                        <strong class="o_kanban_record_title">
+                                            <span>
+                                                <t t-esc="record.product_id.value" />
+                                            </span>
+                                        </strong>
                                     </div>
                                     <strong>
-                                            <field
+                                        <field
                                             name="state"
                                             widget="label_selection"
                                             options="{'classes': {
@@ -259,12 +260,12 @@
                                 <div name="body" class="o_kanban_record_body">
                                     <div name="qty">
                                         <span class="font-weight-bold"><t
-                                                t-esc="record.manufactured_qty.value"
-                                            /> / <t
-                                                t-esc="record.product_qty.value"
-                                            /> <span class="small"><t
-                                                    t-esc="record.product_uom_id.value"
-                                                /></span></span>
+                                            t-esc="record.manufactured_qty.value"
+                                        /> / <t
+                                            t-esc="record.product_qty.value"
+                                        /> <span class="small">
+                                            <t t-esc="record.product_uom_id.value" />
+                                        </span></span>
                                     </div>
                                 </div>
                                 <div name="bottom" class="o_kanban_record_bottom">
@@ -272,13 +273,15 @@
                                         name="bottom_left"
                                         class="oe_kanban_bottom_left text-muted"
                                     >
-                                        <span><t t-esc="record.name.value" /></span>
+                                        <span>
+                                            <t t-esc="record.name.value" />
+                                        </span>
                                     </div>
                                     <div
                                         name="bottom_right"
                                         class="oe_kanban_bottom_right"
                                     >
-                                    <field
+                                        <field
                                             name="date_planned_start"
                                             widget="remaining_days"
                                         />
@@ -436,5 +439,4 @@
         <field name="state">code</field>
         <field name="code">records._compute_manufactured_qty()</field>
     </record>
-
 </odoo>
