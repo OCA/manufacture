@@ -248,10 +248,10 @@ class MrpProductionRequest(models.Model):
         if self.product_id:
             self.product_uom_id = self.product_id.uom_id
             self.bom_id = self.env["mrp.bom"]._bom_find(
-                product=self.product_id,
+                self.product_id,
                 company_id=self.company_id.id,
                 picking_type=self.picking_type_id,
-            )
+            )[self.product_id]
 
     def _subscribe_assigned_user(self, vals):
         self.ensure_one()

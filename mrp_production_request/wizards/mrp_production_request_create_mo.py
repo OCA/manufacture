@@ -126,9 +126,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         self.ensure_one()
         vals = self._prepare_manufacturing_order()
         mo = self.env["mrp.production"].create(vals)
-        mo._onchange_move_raw()
-        mo._onchange_move_finished()
-        mo._onchange_workorder_ids()
         # Open resulting MO:
         action = self.env.ref("mrp.mrp_production_action").sudo().read()[0]
         res = self.env.ref("mrp.mrp_production_form_view")
@@ -144,13 +141,8 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
 
     def _compute_available_qty(self):
         for rec in self:
-            product_available = rec.product_id.with_context(
-                location=rec.location_id.id
-            )._compute_product_available_not_res_dict()[rec.product_id.id][
-                "qty_available_not_res"
-            ]
             res = rec.product_id.product_tmpl_id.uom_id._compute_quantity(
-                product_available, rec.product_uom_id
+                rec.product_id.free_qty, rec.product_uom_id
             )
             rec.available_qty = res
 

@@ -96,15 +96,15 @@ class StockRule(models.Model):
         )
         orderpoint = values.get("orderpoint_id")
         if orderpoint:
-            request.message_post_with_view(
+            request.message_post_with_source(
                 "mail.message_origin_link",
-                values={"self": request, "origin": orderpoint},
+                render_values={"self": request, "origin": orderpoint},
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
         if origin_production:
-            request.message_post_with_view(
+            request.message_post_with_source(
                 "mail.message_origin_link",
-                values={"self": request, "origin": origin_production},
+                render_values={"self": request, "origin": origin_production},
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
         return True

@@ -5,7 +5,7 @@
     "summary": "Allows you to use Manufacturing Request as a previous "
     "step to Manufacturing Orders for better manufacture "
     "planification.",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Production/Stable",
     "maintainers": ["LoisRForgeFlow"],
     "category": "Manufacturing",
@@ -14,7 +14,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["mrp", "stock_available_unreserved"],
+    "depends": ["mrp"],
     "data": [
         "security/mrp_production_request_security.xml",
         "security/ir.model.access.csv",

@@ -1,7 +1,7 @@
 # Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import Command, fields, models
 
 
 class MrpProduction(models.Model):
@@ -21,6 +21,7 @@ class MrpProduction(models.Model):
         product_uom,
         operation_id=False,
         byproduct_id=False,
+        cost_share=0,
     ):
         """`move_dest_ids` is a One2many fields in mrp.production, thus we cannot
         indicate the same destination move in several MOs (which most probably would be
@@ -33,8 +34,11 @@ class MrpProduction(models.Model):
             product_uom,
             operation_id=operation_id,
             byproduct_id=byproduct_id,
+            cost_share=cost_share,
         )
         request = self.mrp_production_request_id
         if request and request.move_dest_ids:
-            values.update({"move_dest_ids": [(4, x.id) for x in request.move_dest_ids]})
+            values.update(
+                {"move_dest_ids": [Command.link(x.id) for x in request.move_dest_ids]}
+            )
         return values
