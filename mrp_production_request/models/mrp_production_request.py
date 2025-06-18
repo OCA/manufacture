@@ -18,11 +18,11 @@ class MrpProductionRequest(models.Model):
     name = fields.Char(
         default="/",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     origin = fields.Char(
-        string="Source Document", readonly=True, states={"draft": [("readonly", False)]}
+        string="Source Document",
+        readonly=False,
     )
     requested_by = fields.Many2one(
         comodel_name="res.users",
@@ -30,40 +30,36 @@ class MrpProductionRequest(models.Model):
         default=lambda self: self._get_default_requested_by(),
         required=True,
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     assigned_to = fields.Many2one(
         comodel_name="res.users",
         string="Approver",
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
         domain=lambda self: [
             (
                 "groups_id",
                 "in",
                 self.env.ref(
-                    "mrp_production_request." "group_mrp_production_request_manager"
+                    "mrp_production_request.group_mrp_production_request_manager"
                 ).id,
             )
         ],
     )
-    description = fields.Text("Description")
+    description = fields.Text()
     date_planned_start = fields.Datetime(
         string="Deadline Start",
         copy=False,
         default=fields.Datetime.now,
         index=True,
         required=True,
-        states={"confirmed": [("readonly", False)]},
     )
     date_planned_finished = fields.Datetime(
         string="Deadline End",
         copy=False,
         default=fields.Datetime.now,
         index=True,
-        states={"confirmed": [("readonly", False)]},
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -109,8 +105,7 @@ class MrpProductionRequest(models.Model):
         required=True,
         domain=[("type", "in", ["product", "consu"])],
         tracking=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     product_tmpl_id = fields.Many2one(
         comodel_name="product.template",
@@ -123,14 +118,12 @@ class MrpProductionRequest(models.Model):
         tracking=True,
         digits="Product Unit of Measure",
         default=1.0,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Unit of Measure",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
         domain="[('category_id', '=', category_uom_id)]",
     )
     category_uom_id = fields.Many2one(
@@ -165,8 +158,7 @@ class MrpProductionRequest(models.Model):
         comodel_name="mrp.bom",
         string="Bill of Materials",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     location_src_id = fields.Many2one(
         comodel_name="stock.location",
@@ -175,8 +167,7 @@ class MrpProductionRequest(models.Model):
             self.env["mrp.production"]._get_default_location_src_id()
         ),
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     location_dest_id = fields.Many2one(
         comodel_name="stock.location",
@@ -185,8 +176,7 @@ class MrpProductionRequest(models.Model):
             self.env["mrp.production"]._get_default_location_dest_id()
         ),
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",
@@ -195,8 +185,7 @@ class MrpProductionRequest(models.Model):
             self.env["mrp.production"]._get_default_picking_type()
         ),
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
     )
     move_dest_ids = fields.One2many(
         comodel_name="stock.move",

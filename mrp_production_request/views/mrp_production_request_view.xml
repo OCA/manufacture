@@ -11,14 +11,14 @@
                     <button
                         groups="mrp_production_request.group_mrp_production_request_manager"
                         name="button_draft"
-                        states="to_approve,approved,cancel,done"
+                        invisible="state not in ('to_approve','approved','cancel','done')"
                         string="Reset"
                         type="object"
                     />
                     <button
                         class="oe_highlight"
                         name="button_to_approve"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Request approval"
                         type="object"
                     />
@@ -26,13 +26,13 @@
                         class="oe_highlight"
                         groups="mrp_production_request.group_mrp_production_request_manager"
                         name="button_approved"
-                        states="to_approve"
+                        invisible="state != 'to_approve'"
                         string="Approve"
                         type="object"
                     />
                     <button
                         name="%(mrp_production_request_create_mo_action)d"
-                        states="approved"
+                        invisible="state != 'approved'"
                         string="Create Manufacturing Order"
                         type="action"
                     />
@@ -40,14 +40,14 @@
                         class="oe_highlight"
                         groups="mrp_production_request.group_mrp_production_request_manager"
                         name="button_done"
-                        states="approved"
+                        invisible="state != 'approved'"
                         string="Done"
                         type="object"
                     />
                     <button
                         groups="mrp_production_request.group_mrp_production_request_manager"
                         name="button_cancel"
-                        states="draft,to_approve,approved"
+                        invisible="state not in ('draft','to_approve','approved')"
                         string="Reject"
                         type="object"
                         confirm="Are you sure you want to cancel this request? (All existing manufacturing orders will stay untouched)"
@@ -61,7 +61,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
-                            attrs="{'invisible': [('mrp_production_count', '=', 0)]}"
+                            invisible="mrp_production_count == 0"
                             class="oe_stat_button"
                             icon="fa-wrench"
                             name="action_view_mrp_productions"
@@ -76,37 +76,49 @@
                     </div>
                     <label for="name" string="Manufacturing Request" />
                     <h1>
-                        <field name="name" />
+                        <field name="name" readonly="state != 'draft'" />
                     </h1>
                     <group name="request">
                         <group>
                             <field
-                                domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]"
                                 name="product_id"
+                                readonly="state != 'draft'"
+                                domain="[('bom_ids','!=',False),('bom_ids.type','!=','phantom')]"
                             />
                             <field invisible="1" name="product_tmpl_id" />
                             <field
-                                domain="['&amp;', '|', ('product_id','=',product_id),                                '&amp;', ('product_tmpl_id.product_variant_ids','=',product_id),                                ('product_id','=',False), ('type', '=', 'normal')]"
                                 name="bom_id"
+                                readonly="state != 'draft'"
+                                domain="['&amp;', '|', ('product_id','=',product_id),                                '&amp;', ('product_tmpl_id.product_variant_ids','=',product_id),                                ('product_id','=',False), ('type', '=', 'normal')]"
                             />
                         </group>
                         <group>
-                            <field name="product_qty" />
+                            <field name="product_qty" readonly="state != 'draft'" />
                             <field name="done_qty" />
                             <field name="manufactured_qty" />
                             <field name="pending_qty" />
-                            <field groups="uom.group_uom" name="product_uom_id" />
+                            <field
+                                name="product_uom_id"
+                                groups="uom.group_uom"
+                                readonly="state != 'draft'"
+                            />
                             <field invisible="1" name="category_uom_id" />
                         </group>
                     </group>
                     <group>
                         <group name="users">
-                            <field name="requested_by" />
-                            <field name="assigned_to" />
+                            <field name="requested_by" readonly="state != 'draft'" />
+                            <field name="assigned_to" readonly="state != 'draft'" />
                         </group>
                         <group name="dates">
-                            <field name="date_planned_start" />
-                            <field name="date_planned_finished" />
+                            <field
+                                name="date_planned_start"
+                                readonly="state == 'confirmed'"
+                            />
+                            <field
+                                name="date_planned_finished"
+                                readonly="state == 'confirmed'"
+                            />
                         </group>
                     </group>
                     <notebook>
@@ -116,19 +128,28 @@
                         <page name="extra" string="Extra information">
                             <group>
                                 <group>
-                                    <field name="location_src_id" />
-                                    <field name="location_dest_id" />
-                                    <field name="picking_type_id" />
+                                    <field
+                                        name="location_src_id"
+                                        readonly="state != 'draft'"
+                                    />
+                                    <field
+                                        name="location_dest_id"
+                                        readonly="state != 'draft'"
+                                    />
+                                    <field
+                                        name="picking_type_id"
+                                        readonly="state != 'draft'"
+                                    />
                                 </group>
                                 <group>
-                                    <field name="origin" />
+                                    <field name="origin" readonly="state != 'draft'" />
                                     <field name="description" />
                                 </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
-                <chatter/>
+                <chatter />
             </form>
         </field>
     </record>
