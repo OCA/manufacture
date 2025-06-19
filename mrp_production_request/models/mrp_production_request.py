@@ -162,30 +162,39 @@ class MrpProductionRequest(models.Model):
     )
     location_src_id = fields.Many2one(
         comodel_name="stock.location",
-        string="Raw Materials Location",
-        default=lambda self: self.env["stock.location"].browse(
-            self.env["mrp.production"]._get_default_location_src_id()
-        ),
-        required=True,
+        string="Components Location",
+        compute="_compute_locations",
+        store=True,
+        check_company=True,
         readonly=False,
+        required=True,
+        precompute=True,
+        domain="[('usage','=','internal')]",
+        help="Location where the system will look for components.",
     )
     location_dest_id = fields.Many2one(
         comodel_name="stock.location",
         string="Finished Products Location",
-        default=lambda self: self.env["stock.location"].browse(
-            self.env["mrp.production"]._get_default_location_dest_id()
-        ),
-        required=True,
+        compute="_compute_locations",
+        store=True,
+        check_company=True,
         readonly=False,
+        required=True,
+        precompute=True,
+        domain="[('usage','=','internal')]",
+        help="Location where the system will stock the finished products.",
     )
     picking_type_id = fields.Many2one(
         comodel_name="stock.picking.type",
-        string="Picking Type",
-        default=lambda self: self.env["stock.picking.type"].browse(
-            self.env["mrp.production"]._get_default_picking_type()
-        ),
-        required=True,
+        string="Operation Type",
+        compute="_compute_picking_type_id",
+        store=True,
+        check_company=True,
         readonly=False,
+        required=True,
+        precompute=True,
+        domain="[('code', '=', 'mrp_operation')]",
+        index=True,
     )
     move_dest_ids = fields.One2many(
         comodel_name="stock.move",
@@ -231,6 +240,66 @@ class MrpProductionRequest(models.Model):
     def _compute_mrp_production_count(self):
         for rec in self:
             rec.mrp_production_count = len(rec.mrp_production_ids)
+
+    @api.depends("company_id", "bom_id")
+    def _compute_picking_type_id(self):
+        """Implementation is a direct copy of
+        `mrp.production._compute_picking_type_id()`"""
+        domain = [
+            ("code", "=", "mrp_operation"),
+            ("warehouse_id.company_id", "in", self.company_id.ids),
+        ]
+        picking_types = self.env["stock.picking.type"].search_read(
+            domain, ["company_id"], load=False, limit=1
+        )
+        picking_type_by_company = {pt["company_id"]: pt["id"] for pt in picking_types}
+        default_picking_type_id = self._context.get("default_picking_type_id")
+        default_picking_type = default_picking_type_id and self.env[
+            "stock.picking.type"
+        ].browse(default_picking_type_id)
+        for rec in self:
+            if (
+                default_picking_type
+                and default_picking_type.company_id == rec.company_id
+            ):
+                rec.picking_type_id = default_picking_type_id
+                continue
+            if rec.bom_id and rec.bom_id.picking_type_id:
+                rec.picking_type_id = rec.bom_id.picking_type_id
+                continue
+            if rec.picking_type_id and rec.picking_type_id.company_id == rec.company_id:
+                continue
+            rec.picking_type_id = picking_type_by_company.get(rec.company_id.id, False)
+            company_warehouse = self.env["stock.warehouse"].search(
+                [("company_id", "=", rec.company_id.id)], limit=1
+            )
+            if not company_warehouse:
+                self.env["stock.warehouse"]._warehouse_redirect_warning()
+
+    @api.depends("picking_type_id")
+    def _compute_locations(self):
+        """Implementation is a direct copy of `mrp.production._compute_locations()`"""
+        for rec in self:
+            if (
+                not rec.picking_type_id.default_location_src_id
+                or not rec.picking_type_id.default_location_dest_id
+            ):
+                company_id = (
+                    rec.company_id.id
+                    if (rec.company_id and rec.company_id in self.env.companies)
+                    else self.env.company.id
+                )
+                fallback_loc = (
+                    self.env["stock.warehouse"]
+                    .search([("company_id", "=", company_id)], limit=1)
+                    .lot_stock_id
+                )
+            rec.location_src_id = (
+                rec.picking_type_id.default_location_src_id.id or fallback_loc.id
+            )
+            rec.location_dest_id = (
+                rec.picking_type_id.default_location_dest_id.id or fallback_loc.id
+            )
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
