@@ -111,12 +111,9 @@
                             <field name="assigned_to" readonly="state != 'draft'" />
                         </group>
                         <group name="dates">
+                            <field name="date_start" readonly="state == 'confirmed'" />
                             <field
-                                name="date_planned_start"
-                                readonly="state == 'confirmed'"
-                            />
-                            <field
-                                name="date_planned_finished"
+                                name="date_finished"
                                 readonly="state == 'confirmed'"
                             />
                         </group>
@@ -183,16 +180,8 @@
                     optional="show"
                 />
                 <field name="origin" optional="show" />
-                <field
-                    name="date_planned_start"
-                    widget="remaining_days"
-                    optional="show"
-                />
-                <field
-                    name="date_planned_finished"
-                    widget="remaining_days"
-                    optional="hide"
-                />
+                <field name="date_start" widget="remaining_days" optional="show" />
+                <field name="date_finished" widget="remaining_days" optional="hide" />
                 <field
                     name="state"
                     widget="badge"
@@ -222,7 +211,7 @@
                 <field name="bom_id" />
                 <field name="location_src_id" />
                 <field name="location_dest_id" />
-                <field name="date_planned_start" />
+                <field name="date_start" />
                 <templates>
                     <t t-name="kanban-tooltip">
                         <ul class="oe_kanban_tooltip">
@@ -300,7 +289,7 @@
                                         class="oe_kanban_bottom_right"
                                     >
                                         <field
-                                            name="date_planned_start"
+                                            name="date_start"
                                             widget="remaining_days"
                                         />
                                         <field

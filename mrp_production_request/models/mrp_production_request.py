@@ -9,7 +9,7 @@ class MrpProductionRequest(models.Model):
     _name = "mrp.production.request"
     _description = "Manufacturing Request"
     _inherit = "mail.thread"
-    _order = "date_planned_start desc, id desc"
+    _order = "date_start desc, id desc"
 
     @api.model
     def _get_default_requested_by(self):
@@ -48,15 +48,15 @@ class MrpProductionRequest(models.Model):
         ],
     )
     description = fields.Text()
-    date_planned_start = fields.Datetime(
-        string="Deadline Start",
+    date_start = fields.Datetime(
+        string="Start",
         copy=False,
         default=fields.Datetime.now,
         index=True,
         required=True,
     )
-    date_planned_finished = fields.Datetime(
-        string="Deadline End",
+    date_finished = fields.Datetime(
+        string="End",
         copy=False,
         default=fields.Datetime.now,
         index=True,

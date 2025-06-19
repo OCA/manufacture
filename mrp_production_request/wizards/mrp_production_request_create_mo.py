@@ -67,8 +67,8 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         inverse_name="mrp_production_request_create_mo_id",
         readonly=True,
     )
-    date_planned_start = fields.Datetime(string="Deadline Start", required=True)
-    date_planned_finished = fields.Datetime(string="Deadline End", required=True)
+    date_start = fields.Datetime(string="Start", required=True)
+    date_finished = fields.Datetime(string="End", required=True)
 
     @api.model
     def default_get(self, fields):
@@ -86,8 +86,8 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         rec.update(
             {
                 "mrp_production_request_id": active_ids[0],
-                "date_planned_start": request[0].date_planned_start,
-                "date_planned_finished": request[0].date_planned_finished,
+                "date_start": request[0].date_start,
+                "date_finished": request[0].date_finished,
             }
         )
         return rec
@@ -115,8 +115,8 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             "location_src_id": request_id.location_src_id.id,
             "location_dest_id": request_id.location_dest_id.id,
             "picking_type_id": request_id.picking_type_id.id,
-            "date_planned_start": self.date_planned_start,
-            "date_planned_finished": self.date_planned_finished,
+            "date_start": self.date_start,
+            "date_finished": self.date_finished,
             "procurement_group_id": request_id.procurement_group_id.id,
             "propagate_cancel": request_id.propagate,
             "company_id": request_id.company_id.id,
