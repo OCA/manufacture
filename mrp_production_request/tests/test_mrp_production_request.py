@@ -92,7 +92,7 @@ class TestMrpProductionRequest(TransactionCase):
         self.workcenter_1 = self.env["mrp.workcenter"].create(
             {
                 "name": "Workcenter #1",
-                "capacity": 1,
+                "default_capacity": 1,
                 "time_start": 8,
                 "time_stop": 16,
                 "time_efficiency": 80,
@@ -135,7 +135,7 @@ class TestMrpProductionRequest(TransactionCase):
         return True
 
     def _create_move(self, product, src_location, dst_location, **values):
-        """Copy/paste of the function defined in odoo/addons/stock/tests/common2.py"""
+        """Copy/paste of the function defined in odoo/addons/stock/tests/common.py"""
         Move = self.env["stock.move"].with_user(self.user_stock_manager)
         # simulate create + onchange
         move = Move.new(
@@ -145,7 +145,7 @@ class TestMrpProductionRequest(TransactionCase):
                 "location_dest_id": dst_location.id,
             }
         )
-        move.onchange_product_id()
+        move._onchange_product_id()
         move_values = move._convert_to_write(move._cache)
         move_values.update(**values)
         return Move.create(move_values)
@@ -156,7 +156,7 @@ class TestMrpProductionRequest(TransactionCase):
             "active_ids": request.ids,
             "active_model": request._name,
         }
-        wizard_id = self.wiz_model.with_context(ctx).create({})
+        wizard_id = self.wiz_model.with_context(**ctx).create({})
         wizard_id.compute_product_line_ids()
         wizard_id.mo_qty = qty
         action = wizard_id.create_mo()
@@ -212,14 +212,14 @@ class TestMrpProductionRequest(TransactionCase):
             "active_model": request._name,
         }
         with self.assertRaises(AccessError):
-            self.wiz_model.with_user(self.test_user).with_context(ctx).create({})
+            self.wiz_model.with_user(self.test_user).with_context(**ctx).create({})
         # give request_user rights on our test user and retry
         self.test_user.groups_id = [
             (4, self.ref("mrp_production_request.group_mrp_production_request_user"))
         ]
-        self.test_user.invalidate_cache()
+        self.test_user.invalidate_recordset()
         wizard_id = (
-            self.wiz_model.with_user(self.test_user).with_context(ctx).create({})
+            self.wiz_model.with_user(self.test_user).with_context(**ctx).create({})
         )
         self.assertTrue(wizard_id)
 
@@ -350,7 +350,7 @@ class TestMrpProductionRequest(TransactionCase):
         self.assertIn("res_id", action_single)
         # check action for multiple records
         action_multiple = _test_action_view(request_ids)
-        self.assertIn("tree", action_multiple["view_mode"])
+        self.assertIn("list", action_multiple["view_mode"])
         self.assertIn("domain", action_multiple)
         self.assertIn("views", action_multiple)
 
