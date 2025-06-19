@@ -111,9 +111,9 @@ class StockRule(models.Model):
 
     def _run_manufacture(self, procurements):
         no_mr_procs = []
-        for procurement, _rule in procurements:
-            if self._need_production_request(procurement.product_id):
-                self._run_production_request(
+        for procurement, rule in procurements:
+            if rule._need_production_request(procurement.product_id):
+                rule._run_production_request(
                     procurement.product_id,
                     procurement.product_qty,
                     procurement.product_uom,
@@ -124,6 +124,6 @@ class StockRule(models.Model):
                     procurement.company_id,
                 )
             else:
-                no_mr_procs.append((procurement, _rule))
+                no_mr_procs.append((procurement, rule))
 
         return super()._run_manufacture(no_mr_procs)
