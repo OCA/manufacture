@@ -1,6 +1,9 @@
 # Copyright 2017-19 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+
+from collections import defaultdict
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -103,7 +106,12 @@ class MrpProductionRequest(models.Model):
         comodel_name="product.product",
         string="Product",
         required=True,
-        domain=[("type", "in", ["product", "consu"])],
+        domain=[("type", "=", "consu")],
+        compute="_compute_product_id",
+        store=True,
+        copy=True,
+        precompute=True,
+        check_company=True,
         tracking=True,
         readonly=False,
     )
@@ -124,6 +132,11 @@ class MrpProductionRequest(models.Model):
         comodel_name="uom.uom",
         string="Unit of Measure",
         readonly=False,
+        required=True,
+        compute="_compute_uom_id",
+        store=True,
+        copy=True,
+        precompute=True,
         domain="[('category_id', '=', category_uom_id)]",
     )
     category_uom_id = fields.Many2one(
@@ -159,6 +172,24 @@ class MrpProductionRequest(models.Model):
         string="Bill of Materials",
         required=True,
         readonly=False,
+        domain="""[
+        '&',
+            '|',
+                ('company_id', '=', False),
+                ('company_id', '=', company_id),
+            '&',
+                '|',
+                    ('product_id','=',product_id),
+                    '&',
+                        ('product_tmpl_id.product_variant_ids','=',product_id),
+                        ('product_id','=',False),
+        ('type', '=', 'normal')]""",
+        check_company=True,
+        compute="_compute_bom_id",
+        store=True,
+        precompute=True,
+        help="Bills of Materials, also called recipes, are used to autocomplete "
+        "components and work order instructions.",
     )
     location_src_id = fields.Many2one(
         comodel_name="stock.location",
@@ -301,15 +332,71 @@ class MrpProductionRequest(models.Model):
                 rec.picking_type_id.default_location_dest_id.id or fallback_loc.id
             )
 
-    @api.onchange("product_id")
-    def _onchange_product_id(self):
-        if self.product_id:
-            self.product_uom_id = self.product_id.uom_id
-            self.bom_id = self.env["mrp.bom"]._bom_find(
-                self.product_id,
-                company_id=self.company_id.id,
-                picking_type=self.picking_type_id,
-            )[self.product_id]
+    @api.depends("bom_id", "product_id")
+    def _compute_uom_id(self):
+        """Implementation is a direct copy of `mrp.production._compute_uom_id()`"""
+        for rec in self:
+            if rec.state != "draft":
+                continue
+            if rec.bom_id and rec._origin.bom_id != rec.bom_id:
+                rec.product_uom_id = rec.bom_id.product_uom_id
+            elif rec.product_id:
+                rec.product_uom_id = rec.product_id.uom_id
+            else:
+                rec.product_uom_id = False
+
+    @api.depends("bom_id")
+    def _compute_product_id(self):
+        """Implementation is a direct copy of `mrp.production._compute_product_id()`"""
+        for rec in self:
+            bom = rec.bom_id
+            if bom and (
+                not rec.product_id
+                or bom.product_tmpl_id != rec.product_id.product_tmpl_id
+                or bom.product_id
+                and bom.product_id != rec.product_id
+            ):
+                rec.product_id = (
+                    bom.product_id or bom.product_tmpl_id.product_variant_id
+                )
+
+    @api.depends("product_id")
+    def _compute_bom_id(self):
+        """Implementation is a direct copy of `mrp.production._compute_bom_id()`"""
+        mr_by_company_id = defaultdict(lambda: self.env["mrp.production.request"])
+        for rec in self:
+            if not rec.product_id and not rec.bom_id:
+                rec.bom_id = False
+                continue
+            mr_by_company_id[rec.company_id.id] |= rec
+
+        picking_type_id = self._context.get("default_picking_type_id")
+        picking_type = picking_type_id and self.env["stock.picking.type"].browse(
+            picking_type_id
+        )
+        for company_id, requests in mr_by_company_id.items():
+            boms_by_product = (
+                self.env["mrp.bom"]
+                .with_context(active_test=True)
+                ._bom_find(
+                    requests.product_id,
+                    picking_type=picking_type,
+                    company_id=company_id,
+                    bom_type="normal",
+                )
+            )
+            for request in requests:
+                if (
+                    not request.bom_id
+                    or request.bom_id.product_tmpl_id != request.product_tmpl_id
+                    or (
+                        request.bom_id.product_id
+                        and request.bom_id.product_id != request.product_id
+                    )
+                ):
+                    bom = boms_by_product[request.product_id]
+                    request.bom_id = bom.id or False
+                    self.env.add_to_compute(request._fields["picking_type_id"], request)
 
     def _subscribe_assigned_user(self, vals):
         self.ensure_one()

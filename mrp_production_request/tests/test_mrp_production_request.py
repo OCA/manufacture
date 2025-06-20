@@ -234,7 +234,6 @@ class TestMrpProductionRequest(TransactionCase):
                 "bom_id": random_bom_id,
             }
         )
-        request._onchange_product_id()
         self.assertEqual(
             request.bom_id.product_tmpl_id,
             self.product.product_tmpl_id,
