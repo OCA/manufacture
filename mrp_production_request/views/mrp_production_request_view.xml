@@ -69,7 +69,7 @@
                         >
                             <field
                                 name="mrp_production_count"
-                                string="MOs"
+                                string="Manufacturing"
                                 widget="statinfo"
                             />
                         </button>

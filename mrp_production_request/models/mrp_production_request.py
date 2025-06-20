@@ -77,7 +77,7 @@ class MrpProductionRequest(models.Model):
         readonly=True,
     )
     mrp_production_count = fields.Integer(
-        compute="_compute_mrp_production_count", string="MO's Count"
+        compute="_compute_mrp_production_count", string="Count of MO generated"
     )
     state = fields.Selection(
         selection=[
