@@ -202,104 +202,104 @@
                 <field name="name" />
                 <field name="requested_by" />
                 <field name="product_id" />
-                <field name="done_qty" />
                 <field name="product_qty" />
                 <field name="manufactured_qty" />
                 <field name="product_uom_id" />
                 <field name="state" />
-                <field name="description" />
-                <field name="bom_id" />
-                <field name="location_src_id" />
-                <field name="location_dest_id" />
                 <field name="date_start" />
                 <templates>
-                    <t t-name="kanban-tooltip">
-                        <ul class="oe_kanban_tooltip">
-                            <li t-if="record.description.raw_value">
-                                <b>Description:</b>
-                                <t t-esc="record.description.value" />
-                            </li>
-                            <li t-if="record.bom_id.raw_value">
-                                <b>Bill of Material:</b>
-                                <t t-esc="record.bom_id.value" />
-                            </li>
-                            <li t-if="record.location_src_id.raw_value">
-                                <b>Raw Materials Location:</b>
-                                <t t-esc="record.location_src_id.value" />
-                            </li>
-                            <li t-if="record.location_dest_id.raw_value">
-                                <b>Finished Products Location:</b>
-                                <t t-esc="record.location_dest_id.value" />
-                            </li>
-                        </ul>
+                    <t
+                        t-name="menu"
+                        t-if="state != 'cancel'"
+                        groups="mrp_production_request.group_mrp_production_request_manager"
+                    >
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="button_draft"
+                            string="Reset"
+                            invisible="state != 'cancel'"
+                            class="dropdown-item"
+                        />
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="button_to_approve"
+                            string="Request approval"
+                            invisible="state != 'draft'"
+                            class="dropdown-item"
+                        />
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="button_approved"
+                            string="Approve"
+                            invisible="state != 'to_approve'"
+                            class="dropdown-item"
+                        />
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="button_cancel"
+                            string="Reject"
+                            invisible="state not in ('draft','to_approve','approved')"
+                            confirm="Are you sure you want to cancel this request? (All existing manufacturing orders will stay untouched)"
+                            class="dropdown-item"
+                        />
                     </t>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
-                            <div
-                                name="content"
-                                class="oe_kanban_content"
-                                tooltip="kanban-tooltip"
-                            >
-                                <div name="top" class="o_kanban_record_top mb8">
-                                    <div
-                                        name="heading"
-                                        class="o_kanban_record_headings ml-1"
-                                    >
-                                        <strong class="o_kanban_record_title">
-                                            <span>
-                                                <t t-esc="record.product_id.value" />
-                                            </span>
-                                        </strong>
-                                    </div>
-                                    <strong>
-                                        <field
-                                            name="state"
-                                            widget="label_selection"
-                                            options="{'classes': {
-                                                'draft': 'default',
-                                                'cancel': 'danger',
-                                                'to_approve': 'warning',
-                                                'approved': 'success',
-                                                'done': 'success'}}"
-                                        />
-                                    </strong>
-                                </div>
-                                <div name="body" class="o_kanban_record_body">
-                                    <div name="qty">
-                                        <span class="font-weight-bold"><t
-                                            t-esc="record.manufactured_qty.value"
-                                        /> / <t
-                                            t-esc="record.product_qty.value"
-                                        /> <span class="small">
-                                            <t t-esc="record.product_uom_id.value" />
-                                        </span></span>
-                                    </div>
-                                </div>
-                                <div name="bottom" class="o_kanban_record_bottom">
-                                    <div
-                                        name="bottom_left"
-                                        class="oe_kanban_bottom_left text-muted"
-                                    >
-                                        <span>
-                                            <t t-esc="record.name.value" />
-                                        </span>
-                                    </div>
-                                    <div
-                                        name="bottom_right"
-                                        class="oe_kanban_bottom_right"
-                                    >
-                                        <field
-                                            name="date_start"
-                                            widget="remaining_days"
-                                        />
-                                        <field
-                                            name="requested_by"
-                                            widget="many2one_avatar_user"
-                                        />
-                                    </div>
+                    <t t-name="card">
+                        <div name="primary" class="d-flex gap-1">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <field name="product_id" class="fw-bolder mb-1" />
+                                <span class="text-muted">
+                                    <field name="name" />
+                                </span>
+                                <field name="date_start" widget="remaining_days" />
+                                <div name="qty" class="mt-1">
+                                    <span class="font-weight-bold">
+                                        <field name="manufactured_qty" /> / <field
+                                        name="product_qty"
+                                    /> <span>
+                                        <field name="product_uom_id" />
+                                    </span>
+                                    </span>
                                 </div>
                             </div>
+                            <div class="d-flex flex-column min-w-0 lh-sm">
+                                <field
+                                    name="product_id"
+                                    widget="image"
+                                    options="{'preview_image': 'image_128'}"
+                                />
+                            </div>
+                            <widget
+                                name="web_ribbon"
+                                title="Done"
+                                invisible="state != 'done'"
+                            />
                         </div>
+                        <div name="secondary" />
+                        <footer class="pt-1">
+                            <strong>
+                                <field
+                                    name="state"
+                                    widget="label_selection"
+                                    options="{'classes': {
+                                        'draft': 'default',
+                                        'cancel': 'danger',
+                                        'to_approve': 'warning',
+                                        'approved': 'success',
+                                        'done': 'success'}
+                                    }"
+                                />
+                            </strong>
+                            <field
+                                name="requested_by"
+                                widget="many2one_avatar_user"
+                                domain="[('share', '=', False)]"
+                                class="ms-auto"
+                            />
+                        </footer>
                     </t>
                 </templates>
             </kanban>
