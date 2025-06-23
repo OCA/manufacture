@@ -413,14 +413,16 @@ class MrpProductionRequest(models.Model):
             )
         return vals
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Add sequence if name is not defined and subscribe to the thread
         the user assigned to the request."""
-        vals = self._create_sequence(vals)
-        res = super().create(vals)
-        res._subscribe_assigned_user(vals)
-        return res
+        for vals in vals_list:
+            self._create_sequence(vals)
+        requests = super().create(vals_list)
+        for request in requests:
+            request._subscribe_assigned_user(vals)
+        return requests
 
     def write(self, vals):
         res = super().write(vals)
