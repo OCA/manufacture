@@ -3,6 +3,7 @@
 
 from odoo import fields
 from odoo.exceptions import AccessError, UserError
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
@@ -25,10 +26,17 @@ class TestMrpProductionRequest(TransactionCase):
         self.stock_loc = self.env.ref("stock.stock_location_stock")
         route_manuf = self.env.ref("mrp.route_warehouse0_manufacture")
 
-        # Prepare Products:
-        self.product = self.env.ref("product.product_product_3")
-        self.product.mrp_production_request = True
-        self.product.route_ids = [(4, route_manuf.id, 0)]
+        # [FURN_7800] Desk Combination
+        self.product_desk = self.env.ref("product.product_product_3")
+        self.product_desk.mrp_production_request = True
+        self.product_desk.route_ids = [(4, route_manuf.id, 0)]
+        self.product_desk_bom = self.product_desk.bom_ids[0]
+
+        # [FURN_9666] Table
+        self.product_table = self.env.ref("mrp.product_product_computer_desk")
+        self.product_table.mrp_production_request = True
+        self.product_table.route_ids = [(4, route_manuf.id, 0)]
+        self.product_table_bom = self.product_table.bom_ids[0]
 
         self.product_no_bom = self.product_model.create(
             {
@@ -175,10 +183,11 @@ class TestMrpProductionRequest(TransactionCase):
 
     def test_02_manufacture_request(self):
         """Tests manufacture request workflow."""
-        self.procure(self.test_group, self.product)
+        self.assertEqual(self.product_desk.mrp_production_request_count, 0)
+        self.procure(self.test_group, self.product_desk)
         request = self.request_model.search(
             [
-                ("product_id", "=", self.product.id),
+                ("product_id", "=", self.product_desk.id),
                 ("procurement_group_id", "=", self.test_group.id),
             ]
         )
@@ -195,14 +204,14 @@ class TestMrpProductionRequest(TransactionCase):
         )
         self.assertTrue(mo, "No MO created.")
         self.assertEqual(request.pending_qty, 0.0)
-        self.assertEqual(self.product.mrp_production_request_count, 1.0)
+        self.assertEqual(self.product_desk.mrp_production_request_count, 1.0)
         request.button_done()
 
     def test_03_wizard_access(self):
-        self.procure(self.test_group, self.product)
+        self.procure(self.test_group, self.product_desk)
         request = self.request_model.search(
             [
-                ("product_id", "=", self.product.id),
+                ("product_id", "=", self.product_desk.id),
                 ("procurement_group_id", "=", self.test_group.id),
             ]
         )
@@ -222,6 +231,14 @@ class TestMrpProductionRequest(TransactionCase):
             self.wiz_model.with_user(self.test_user).with_context(**ctx).create({})
         )
         self.assertTrue(wizard_id)
+        # check exception if no active_ids in context
+        msg = (
+            r"Programming error: wizard action executed without active_ids in context."
+        )
+        with self.assertRaisesRegex(UserError, msg):
+            self.wiz_model.with_user(self.test_user).with_context(
+                active_model=request._name
+            ).create({})
 
     def test_04_assignation(self):
         """Tests assignation of manufacturing requests."""
@@ -229,14 +246,14 @@ class TestMrpProductionRequest(TransactionCase):
         request = self.request_model.create(
             {
                 "assigned_to": self.test_user.id,
-                "product_id": self.product.id,
+                "product_id": self.product_desk.id,
                 "product_qty": 5.0,
                 "bom_id": random_bom_id,
             }
         )
         self.assertEqual(
             request.bom_id.product_tmpl_id,
-            self.product.product_tmpl_id,
+            self.product_desk.product_tmpl_id,
             "Wrong Bill of Materials.",
         )
         request.write({"assigned_to": self.uid})
@@ -270,10 +287,10 @@ class TestMrpProductionRequest(TransactionCase):
     def test_07_manufacture_request_duplicate(self):
         """Ensure that the unique constraint « Reference must be unique per Company! »
         is not raised on duplicate."""
-        self.procure(self.test_group, self.product)
+        self.procure(self.test_group, self.product_desk)
         request = self.request_model.search(
             [
-                ("product_id", "=", self.product.id),
+                ("product_id", "=", self.product_desk.id),
                 ("procurement_group_id", "=", self.test_group.id),
             ]
         )
@@ -329,8 +346,8 @@ class TestMrpProductionRequest(TransactionCase):
     def test_09_action_view(self):
         """Test for single or multiple records"""
         existing_request_ids = self.request_model.search([])
-        self.procure(self.test_group, self.product, 1.0)
-        self.procure(self.test_group, self.product, 1.0)
+        self.procure(self.test_group, self.product_desk, 1.0)
+        self.procure(self.test_group, self.product_desk, 1.0)
         request_ids = self.request_model.search([]) - existing_request_ids
         self.assertEqual(len(request_ids), 2)
         self._create_mo_using_wizard(request_ids[0], request_ids[0].product_qty)
@@ -368,7 +385,7 @@ class TestMrpProductionRequest(TransactionCase):
         )
         qty = 1.0
         customer_move = self._create_move(
-            product=self.product,
+            product=self.product_desk,
             src_location=location_id,
             dst_location=location_dest_id,
             product_uom_qty=qty,
@@ -376,7 +393,7 @@ class TestMrpProductionRequest(TransactionCase):
             procure_method="make_to_order",
         )
         picking_out.action_confirm()
-        request = self.request_model.search([("product_id", "=", self.product.id)])
+        request = self.request_model.search([("product_id", "=", self.product_desk.id)])
         self.assertEqual(len(request), 1)
         self._create_mo_using_wizard(request, qty)
         # check that only one manufacturing order has been created
@@ -385,3 +402,60 @@ class TestMrpProductionRequest(TransactionCase):
         self.assertEqual(
             request.mrp_production_ids.move_finished_ids.move_dest_ids, customer_move
         )
+
+    def test_11_product_bom_computation(self):
+        """Test the computation of the product's BoM"""
+        # try to set the product first
+        request_form1 = Form(self.request_model)
+        request_form1.product_id = self.product_desk
+        self.assertEqual(
+            request_form1.bom_id,
+            self.product_desk_bom,
+            "BoM should be computed from the product",
+        )
+        # select a different product
+        request_form1.product_id = self.product_table
+        self.assertEqual(
+            request_form1.bom_id,
+            self.product_table_bom,
+            "BoM should have changed with the product",
+        )
+        # try to set the BoM first
+        request_form2 = Form(self.request_model)
+        request_form2.bom_id = self.product_desk_bom
+        self.assertEqual(
+            request_form2.product_id,
+            self.product_desk,
+            "Product should be computed from the BoM",
+        )
+        # clear the product
+        request_form2.product_id = self.product_model
+        self.assertFalse(
+            request_form2.bom_id,
+            "BoM should be cleared with its product",
+        )
+
+    def test_12_uom_computation(self):
+        """Test the computation of the product's UoM"""
+        # ensure the user has the group to use UoM, otherwise the Form will not work
+        self.env.user.groups_id += self.env.ref("uom.group_uom")
+        # try to set a different unit of measure
+        request_form1 = Form(self.request_model)
+        request_form1.product_id = self.product_desk
+        self.assertEqual(
+            request_form1.product_uom_id,
+            self.product_desk.uom_id,
+            "UoM should be computed from the product",
+        )
+        # set a different unit of the same category
+        request_form1.product_uom_id = self.env.ref("uom.product_uom_dozen")
+        request1 = request_form1.save()
+        request1.button_to_approve()
+        # set another product (only possible from RPC)
+        request1.product_id = self.product_table
+        self.assertEqual(request1.product_uom_id, self.env.ref("uom.product_uom_dozen"))
+        request1.product_id = self.product_desk
+        # retry but go back to draft state
+        request1.button_draft()
+        request1.product_id = self.product_table
+        self.assertEqual(request1.product_uom_id, self.env.ref("uom.product_uom_unit"))

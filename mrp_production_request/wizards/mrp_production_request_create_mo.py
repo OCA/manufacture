@@ -148,9 +148,8 @@ class MrpProductionRequestCreateMoLine(models.TransientModel):
 
     def _compute_bottle_neck_factor(self):
         self.bottle_neck_factor = 0
-        for rec in self:
-            if rec.product_qty:
-                rec.bottle_neck_factor = rec.available_qty / rec.product_qty
+        for rec in self.filtered(lambda r: r.product_qty > 0):
+            rec.bottle_neck_factor = rec.available_qty / rec.product_qty
 
     product_id = fields.Many2one(
         comodel_name="product.product", string="Product", required=True
