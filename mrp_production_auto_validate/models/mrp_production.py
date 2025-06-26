@@ -12,7 +12,6 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     auto_validate = fields.Boolean(
-        string="Auto Validate",
         compute="_compute_auto_validate",
         store=True,
         states={"draft": [("readonly", False)]},
@@ -154,14 +153,15 @@ class MrpProduction(models.Model):
                 values["product_qty"] = bom_qty
                 values["product_uom_id"] = bom_uom.id
                 msg = _(
-                    "Quantity in procurement (%s %s) was increased to %s %s due to auto "
+                    "Quantity in procurement ({procure_qty} {uom_name}) was increased"
+                    " to {bom_qty} {bom_name} due to auto "
                     "validation feature preventing to create an MO with a different "
                     "qty than defined on the BOM."
-                ) % (
-                    procure_qty,
-                    create_uom.display_name,
-                    bom_qty,
-                    bom_uom.display_name,
+                ).format(
+                    procure_qty=procure_qty,
+                    uom_name=create_uom.display_name,
+                    bom_qty=bom_qty,
+                    bom_name=bom_uom.display_name,
                 )
                 messages_to_post[len(new_values_list)] = msg
                 new_values_list.append(values)
@@ -176,15 +176,16 @@ class MrpProduction(models.Model):
                 new_values["product_qty"] = bom_qty
                 new_values["product_uom_id"] = bom_uom.id
                 msg = _(
-                    "Quantity in procurement (%s %s) was split to multiple production "
-                    "orders of %s %s due to auto validation feature preventing to "
-                    "set a quantity to produce different than the quantity defined "
-                    "on the Bill of Materials."
-                ) % (
-                    values.get("product_qty"),
-                    create_uom.display_name,
-                    bom_qty,
-                    bom_uom.display_name,
+                    "Quantity in procurement ({product_qty} {uom_name})"
+                    " was split to multiple production "
+                    "orders of {bom_qty} {bom_name} due to auto validation "
+                    "feature preventing to set a quantity to produce different "
+                    "than the quantity defined on the Bill of Materials."
+                ).format(
+                    product_qty=values.get("product_qty"),
+                    uom_name=create_uom.display_name,
+                    bom_qty=bom_qty,
+                    bom_name=bom_uom.display_name,
                 )
                 messages_to_post[len(new_values_list)] = msg
                 new_values_list.append(new_values)

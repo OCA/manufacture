@@ -11,7 +11,7 @@ class StockPicking(models.Model):
         self.ensure_one()
         if states is None:
             states = ("confirmed", "progress")
-        return self.move_lines.move_dest_ids.raw_material_production_id.filtered(
+        return self.move_ids.move_dest_ids.raw_material_production_id.filtered(
             lambda o: o.state in states
         )
 

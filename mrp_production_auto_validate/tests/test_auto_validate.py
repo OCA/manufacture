@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestManufacturingOrderAutoValidate(SavepointCase):
+class TestManufacturingOrderAutoValidate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -60,7 +60,7 @@ class TestManufacturingOrderAutoValidate(SavepointCase):
         """
         if moves is None:
             moves = []
-        for move in picking.move_lines:
+        for move in picking.move_ids:
             # Try to match a move to set a given qty
             for move2, qty_done in moves:
                 if move == move2:
@@ -154,9 +154,9 @@ class TestManufacturingOrderAutoValidate(SavepointCase):
         picking = order.picking_ids
         picking.action_assign()
         self.assertEqual(picking.state, "assigned")
-        self._validate_picking(picking, moves=[(picking.move_lines, 1)])
+        self._validate_picking(picking, moves=[(picking.move_ids, 1)])
         self.assertEqual(picking.state, "done")
-        self.assertEqual(picking.backorder_ids.move_lines.product_uom_qty, 3)
+        self.assertEqual(picking.backorder_ids.move_ids.product_uom_qty, 3)
         # Check that no MO gets validated in the process
         order_done = picking._get_manufacturing_orders(states=("done",))
         self.assertFalse(order_done)
