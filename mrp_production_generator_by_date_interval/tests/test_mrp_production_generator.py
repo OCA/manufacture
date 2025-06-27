@@ -1,10 +1,12 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpProductionInjectOperation(TransactionCase):
+class TestMrpProductionInjectOperation(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -60,9 +62,7 @@ class TestMrpProductionInjectOperation(TransactionCase):
             all([production.bom_id == self.bom for production in productions])
         )
         self.assertTrue(
-            all(
-                [production.date_planned_start.hour == 17 for production in productions]
-            )
+            all([production.date_start.hour == 17 for production in productions])
         )
         self.assertTrue(
             all(
