@@ -39,10 +39,13 @@ class MrpBomLine(models.Model):
         for line in self:
             if not line.bom_id.lot_number_propagation:
                 continue
-            if line.propagate_lot_number and line.product_id.tracking != "serial":
+            if line.propagate_lot_number and line.product_id.tracking not in [
+                "serial",
+                "lot",
+            ]:
                 raise ValidationError(
                     _(
-                        "Only components tracked by serial number can propagate "
+                        "Only components tracked by lot or serial number can propagate "
                         "its lot/serial number to the finished product."
                     )
                 )

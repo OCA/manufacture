@@ -12,14 +12,14 @@ class ProductTemplate(models.Model):
     def _check_bom_propagate_lot_number(self):
         """Block tracking type updates if the product is used by a BoM."""
         for product in self:
-            if product.tracking == "serial":
+            if product.tracking in ["serial", "lot"]:
                 continue
             # Check BoMs
             for bom in product.bom_ids:
                 if bom.lot_number_propagation:
                     raise ValidationError(
                         _(
-                            "A BoM propagating serial numbers requires "
+                            "A BoM propagating lot/serial numbers requires "
                             "this product to be tracked as such."
                         )
                     )

@@ -159,7 +159,7 @@ msgstr "Propagar el Número de Lote"
 #. module: mrp_lot_number_propagation
 #: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_production__propagated_lot_producing
 msgid "Propagated Lot Producing"
-msgstr "Producción de Lotes Propagados"
+msgstr "Número de lote/serie a propagar en el producto final"
 
 #. module: mrp_lot_number_propagation
 #: model:ir.model,name:mrp_lot_number_propagation.model_stock_move

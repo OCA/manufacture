@@ -26,12 +26,15 @@ class TestMrpBom(Common):
     def test_bom_line_check_propagate_lot_number_tracked_by_lot(self):
         form = Form(self.bom)
         form.lot_number_propagation = True
-        # Flag a line tracked by lot (not SN) which is not supported
+        # Flag a line tracked by lot - now this IS supported
         line_form = form.bom_line_ids.edit(1)
         line_form.propagate_lot_number = True
         line_form.save()
-        with self.assertRaisesRegex(ValidationError, "Only components tracked"):
-            form.save()
+        # This should work fine now (no ValidationError expected)
+        form.save()
+        # Verify it was configured correctly
+        self.assertTrue(self.bom.lot_number_propagation)
+        self.assertTrue(self.line_tracked_by_lot.propagate_lot_number)
 
     def test_bom_line_check_propagate_lot_number_same_tracking(self):
         form = Form(self.bom)
