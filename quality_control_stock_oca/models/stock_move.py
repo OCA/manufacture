@@ -36,24 +36,25 @@ class StockMove(models.Model):
 
         self.ensure_one()
         inspection_model = self.env["qc.inspection"].sudo()
-        qc_trigger = get_qc_trigger(self.picking_type_id)
-        if qc_trigger.partner_selectable:
-            partner = partner or self._get_partner_for_trigger_line()
-        else:
-            partner = False
         trigger_lines = set()
-        for model in [
-            "qc.trigger.product_category_line",
-            "qc.trigger.product_template_line",
-            "qc.trigger.product_line",
-        ]:
-            trigger_lines = trigger_lines.union(
-                self.env[model]
-                .sudo()
-                .get_trigger_line_for_product(
-                    qc_trigger, timings, self.product_id.sudo(), partner=partner
+        qc_triggers = get_qc_trigger(self.picking_type_id)
+        for qc_trigger in qc_triggers:
+            if qc_trigger.partner_selectable:
+                partner = partner or self._get_partner_for_trigger_line()
+            else:
+                partner = False
+            for model in [
+                "qc.trigger.product_category_line",
+                "qc.trigger.product_template_line",
+                "qc.trigger.product_line",
+            ]:
+                trigger_lines = trigger_lines.union(
+                    self.env[model]
+                    .sudo()
+                    .get_trigger_line_for_product(
+                        qc_trigger, timings, self.product_id.sudo(), partner=partner
+                    )
                 )
-            )
         for trigger_line in _filter_trigger_lines(trigger_lines):
             date = False
             if trigger_line.timing in ["before", "plan_ahead"]:
