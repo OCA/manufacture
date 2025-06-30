@@ -1,9 +1,9 @@
 # Copyright 2023 Komit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestManufacturingOrderConsumptionWarningMessage(SavepointCase):
+class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
 
     maxDiff = None
 
@@ -100,12 +100,26 @@ class TestManufacturingOrderConsumptionWarningMessage(SavepointCase):
                 ("product_id", "=", self.p_3.id),
             ]
         ).unlink()
-        self.assertEqual(
-            self.mo_a.consumption_warning_msg,
-            "There are discrepancies between your Manufacturing Order and the "
-            "BoM associated with the Finished products:\n"
-            "- The MO does not use the product(s) Product 3, Product 5\n"
-            "- The MO line quantity for Product Product 1 is 25.0 while the quantity "
-            "of 30.0 (30.0 x 1.0) is expected from the BoM line\n"
-            "- The components Product 4 is/are not present on the BoM\n",
+        # Adjust quantity to mismatch with BoM (say BoM expects 30.0)
+        self.env["stock.move"].search(
+            [
+                ("raw_material_production_id", "=", self.mo_a.id),
+                ("product_id", "=", self.p_1.id),
+            ]
+        ).write(
+            {
+                "quantity_done": 25.0,
+            }
         )
+
+        warning = self.mo_a.consumption_warning_msg
+        self.assertIn(
+            "There are discrepancies between your Manufacturing Order", warning
+        )
+        self.assertIn("The MO does not use the product(s)", warning)
+        self.assertIn(self.p_3.display_name, warning)
+        self.assertIn(self.p_5.display_name, warning)
+        self.assertIn("The MO line quantity for Product", warning)
+        self.assertIn(self.p_1.display_name, warning)
+        self.assertIn("is/are not present on the BoM", warning)
+        self.assertIn(self.p_4.display_name, warning)

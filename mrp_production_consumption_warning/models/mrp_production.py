@@ -22,68 +22,74 @@ class MrpProduction(models.Model):
     )
     def _compute_consumption_warning_msg(self):
         for rec in self:
-            rec.consumption_warning_msg = ""
-            if not rec.bom_id or not rec.bom_id.bom_line_ids:
+            rec.consumption_warning_msg = rec._get_consumption_warning_msg()
+
+    def _get_consumption_warning_msg(self):
+        self.ensure_one()
+        if not self.bom_id or not self.bom_id.bom_line_ids:
+            return ""
+
+        expected_qty_by_product = self._get_expected_qty_by_product()
+        actual_qty_by_product = self._get_actual_qty_by_product()
+
+        unused_products = self.env["product.product"]
+        unpresent_products = self.env["product.product"]
+        wrong_quantity_msg = ""
+
+        for product, expected_qty in expected_qty_by_product.items():
+            actual_qty = actual_qty_by_product.get(product)
+            if actual_qty is None:
+                unused_products |= product
                 continue
 
-            unused_products = self.env["product.product"]
-            wrong_quantity_msg = ""
-            unpresent_products = self.env["product.product"]
-
-            expected_move_values = rec._get_moves_raw_values()
-            expected_qty_by_product = defaultdict(float)
-            for move_values in expected_move_values:
-                move_product = self.env["product.product"].browse(
-                    move_values["product_id"]
+            rounding = product.uom_id.rounding
+            if (
+                float_compare(expected_qty, actual_qty, precision_rounding=rounding)
+                != 0
+            ):
+                wrong_quantity_msg += _(
+                    "- The MO line quantity for Product %(product)s is %(w_qty)s "
+                    "while the quantity of %(r_qty)s (%(qty_per_1)s x %(product_qty)s) "
+                    "is expected from the BoM line\n",
+                    product=product.display_name,
+                    w_qty=actual_qty,
+                    r_qty=expected_qty,
+                    qty_per_1=expected_qty / self.product_qty,
+                    product_qty=self.product_qty,
                 )
-                expected_qty_by_product[move_product] += move_values["product_uom_qty"]
 
-            actual_qty_by_product = defaultdict(float)
-            for move in rec.move_raw_ids:
-                actual_qty_by_product[move.product_id] += move.product_uom_qty
+        for product in actual_qty_by_product:
+            if product not in expected_qty_by_product:
+                unpresent_products |= product
 
-            for product, qty in expected_qty_by_product.items():
-                if not actual_qty_by_product.get(product):
-                    unused_products |= product
-                    continue
-                rounding = product.uom_id.rounding
-                if (
-                    float_compare(
-                        qty,
-                        actual_qty_by_product.get(product),
-                        precision_rounding=rounding,
-                    )
-                    != 0
-                ):
-                    wrong_quantity_msg += _(
-                        "- The MO line quantity for Product %(product)s is %(w_qty)s "
-                        "while the quantity of %(r_qty)s (%(qty_per_1)s x %(product_qty)s) "
-                        "is expected from the BoM line\n",
-                        product=", ".join(product.mapped(lambda x: x.display_name)),
-                        w_qty=actual_qty_by_product.get(product),
-                        r_qty=qty,
-                        qty_per_1=qty / rec.product_qty,
-                        product_qty=rec.product_qty,
-                    )
+        message = ""
+        if unused_products:
+            message += _(
+                "- The MO does not use the product(s) %(names)s\n",
+                names=", ".join(unused_products.mapped("display_name")),
+            )
+        message += wrong_quantity_msg
+        if unpresent_products:
+            message += _(
+                "- The components %(names)s is/are not present on the BoM\n",
+                names=", ".join(unpresent_products.mapped("display_name")),
+            )
+        if message:
+            message = (
+                "There are discrepancies between your Manufacturing Order and "
+                "the BoM associated with the Finished products:\n" + message
+            )
+        return message
 
-            for product in actual_qty_by_product:
-                if not expected_qty_by_product.get(product):
-                    unpresent_products |= product
+    def _get_expected_qty_by_product(self):
+        qty_by_product = defaultdict(float)
+        for move_values in self._get_moves_raw_values():
+            product = self.env["product.product"].browse(move_values["product_id"])
+            qty_by_product[product] += move_values["product_uom_qty"]
+        return qty_by_product
 
-            if unused_products:
-                rec.consumption_warning_msg += _(
-                    "- The MO does not use the product(s) %(names)s\n",
-                    names=", ".join(unused_products.mapped(lambda x: x.display_name)),
-                )
-            rec.consumption_warning_msg += wrong_quantity_msg
-            if unpresent_products:
-                rec.consumption_warning_msg += _(
-                    "- The components %(names)s is/are not present on the BoM\n",
-                    names=", ".join(product.mapped(lambda x: x.display_name)),
-                )
-            if rec.consumption_warning_msg != "":
-                rec.consumption_warning_msg = (
-                    "There are discrepancies between your Manufacturing Order and "
-                    "the BoM associated with the Finished products:\n"
-                    + rec.consumption_warning_msg
-                )
+    def _get_actual_qty_by_product(self):
+        qty_by_product = defaultdict(float)
+        for move in self.move_raw_ids:
+            qty_by_product[move.product_id] += move.product_uom_qty
+        return qty_by_product

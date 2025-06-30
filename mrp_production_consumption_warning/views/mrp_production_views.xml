@@ -10,8 +10,8 @@
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    attrs="{'invisible': [('consumption_warning_msg', '=', '')]}"
                     name="consumption_warning_msg"
+                    attrs="{'invisible': [('consumption_warning_msg', '=', '')]}"
                 >
                     <field name="consumption_warning_msg" />
                 </div>
