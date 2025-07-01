@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form_resupply_status" model="ir.ui.view">
+        <field name="name">purchase.order.form.resupply.status</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <field name="receipt_status" position="before">
+                <field
+                    name="resupply_status"
+                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    groups="stock.group_stock_user"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_view_tree_resupply_status" model="ir.ui.view">
+        <field name="name">purchase.order.tree.resupply.status</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_tree_inherit"
+        />
+        <field name="arch" type="xml">
+            <field name="receipt_status" position="before">
+                <field
+                    name="resupply_status"
+                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    optional="show"
+                    groups="stock.group_stock_user"
+                />
+                <field name="subcontracting_resupply_picking_count" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
