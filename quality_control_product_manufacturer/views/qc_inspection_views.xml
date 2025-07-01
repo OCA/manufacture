@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="qc_inspection_form_view_product_manufacturer">
+        <field name="name">qc.inspection.form.view.product.manufacturer</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='notes']" position="after">
+                <page
+                    name="Manufacturer"
+                    string="Manufacturer"
+                    attrs="{'invisible': ['|', ('object_id', '=', False), ('product_id', '=', False)]}"
+                >
+                    <group>
+                        <field name="manufacturer" />
+                        <field name="manufacturer_code" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_inspection_search_view_product_manufacturer">
+        <field name="name">qc.inspection.search.product.manufacturer</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_search_view" />
+        <field name="arch" type="xml">
+           <field name="test" position="after">
+                 <field name="manufacturer" />
+                 <field name="manufacturer_code" />
+           </field>
+        </field>
+    </record>
+</odoo>
