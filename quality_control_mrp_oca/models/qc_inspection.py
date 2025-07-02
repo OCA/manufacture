@@ -34,9 +34,12 @@ class QcInspection(models.Model):
         return res
 
     def object_selection_values(self):
-        objects = super().object_selection_values()
-        objects.append(("mrp.production", "Manufacturing Order"))
-        return objects
+        result = super().object_selection_values()
+        models_obj = [
+            self.sudo().env.ref("mrp.model_mrp_production"),
+        ]
+        result.extend([(x.model, x.name) for x in models_obj])
+        return result
 
     production_id = fields.Many2one(
         comodel_name="mrp.production", compute="_compute_production_id", store=True
