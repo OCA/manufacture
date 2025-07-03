@@ -46,7 +46,7 @@
             <field name="date_planned_start" position="after">
                 <field
                     name="date_planned_finished"
-                    readonly="1"
+                    attrs="{'readonly': [('state', 'in', ['close', 'cancel'])]}"
                     optional="show"
                     widget="remaining_days"
                 />

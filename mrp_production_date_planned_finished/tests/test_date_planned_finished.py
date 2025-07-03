@@ -34,7 +34,7 @@ class TestDatePlannedFinished(TransactionCase):
         As this might change if odoo updates their code, or during migrations,
         this test case will track any mismatches and fail.
         """
-        res = self.env["mrp.production"].fields_view_get(view_type="form")
+        res = self.env["mrp.production"].get_view(view_type="form")
         doc = etree.XML(res["arch"])
         date_planned_start = doc.xpath("//field[@name='date_planned_start']")[0]
         date_planned_finished = doc.xpath("//field[@name='date_planned_finished']")[0]
