@@ -168,3 +168,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_picking_qc_view
 msgid "inspections"
 msgstr ""
+
+#. module: quality_control_stock_oca
+#. odoo-python
+#: code:addons/quality_control_stock_oca/models/stock_picking.py:0
+#, python-format
+msgid "Control quality is required to validate this Transfert."
+msgstr "La qualité doit être contrôlée pour valider ce transfert."
+

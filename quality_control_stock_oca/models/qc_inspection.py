@@ -16,6 +16,32 @@ class QcInspection(models.Model):
         comodel_name="stock.lot", compute="_compute_lot", store=True
     )
 
+    is_mandatory_to_validate = fields.Boolean(
+        compute="_compute_is_mandatory_to_validate",
+    )
+
+    @api.depends("picking_id")
+    def _compute_is_mandatory_to_validate(self):
+        for inspection in self:
+            if inspection.picking_id:
+                inspection.is_mandatory_to_validate = bool(
+                    self.env["qc.trigger"]
+                    .sudo()
+                    .search(
+                        [
+                            (
+                                "picking_type_id",
+                                "=",
+                                inspection.picking_id.picking_type_id.id,
+                            ),
+                            ("is_mandatory_to_validate", "=", True),
+                        ],
+                        limit=1,
+                    )
+                )
+            else:
+                inspection.is_mandatory_to_validate = False
+
     def object_selection_values(self):
         result = super().object_selection_values()
         result.extend(
@@ -45,11 +71,14 @@ class QcInspection(models.Model):
         )
         for inspection in self.filtered("object_id"):
             if inspection.object_id._name == "stock.move":
-                inspection.lot_id = first(
+                lot = first(
                     move_lines.filtered(
                         lambda x, ins=inspection: x.move_id == ins.object_id
                     )
                 ).lot_id
+                if not lot and "restrict_lot_id" in inspection.object_id._fields:
+                    lot = inspection.object_id and inspection.object_id.restrict_lot_id
+                inspection.lot_id = lot
             elif inspection.object_id._name == "stock.lot":
                 inspection.lot_id = inspection.object_id
 
