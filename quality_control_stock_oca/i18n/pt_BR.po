@@ -164,6 +164,11 @@ msgid "Quality inspections from picking failed"
 msgstr ""
 
 #. module: quality_control_stock_oca
+#: model:ir.model,name:quality_control_stock_oca.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking
 msgid "Transfer"
 msgstr ""
