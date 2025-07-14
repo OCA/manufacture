@@ -10,3 +10,6 @@
   - Antoni Marroig \<<amarroig@apsl.net>\>
 - [Sygel](https://www.sygel.es):
   - Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- [Quartile](https://www.quartile.co):
+  - Aung Ko Ko Lin
+  - Yoshi Tashiro
