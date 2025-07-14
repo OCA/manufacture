@@ -19,6 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: quality_control_oca
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__timing
+#: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__timing
+msgid ""
+"* Before: An executable inspection is generated before the record related to "
+"the trigger is completed (e.g. when picking is confirmed).\n"
+"* After: An executable inspection is generated when the record related to "
+"the trigger is completed (e.g. when picking is done).\n"
+"* Plan Ahead: A non-executable inspection is generated before the record "
+"related to the trigger is completed (e.g. when picking is confirmed), and "
+"the inspection becomes executable when the record related to the trigger is "
+"completed (e.g. when picking is done)."
+msgstr ""
+
+#. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "<span> - </span>"
 msgstr ""
@@ -71,6 +87,14 @@ msgid "Activity Type Icon"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__after
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__after
+msgid "After"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "Answers"
@@ -103,6 +127,14 @@ msgid "Bad"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__before
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__before
+msgid "Before"
+msgstr ""
+
+#. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "Cancel"
@@ -130,6 +162,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger__company_id
 msgid "Company"
 msgstr "Компани"
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date_done
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Completion Date"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.menu_qc_config
@@ -188,11 +226,6 @@ msgstr "Үүсгэгч"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__create_date
 msgid "Created on"
 msgstr "Үүсгэсэн"
-
-#. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
-msgid "Date"
-msgstr "Огноо"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__display_name
@@ -583,6 +616,25 @@ msgid "Partners"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__plan
+msgid "Plan"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_category_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__plan_ahead
+#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__plan_ahead
+msgid "Plan Ahead"
+msgstr ""
+
+#. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
+msgid "Plan Date"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_test_question_value
 msgid "Possible values for qualitative questions."
 msgstr ""
@@ -936,6 +988,14 @@ msgid "This technical field is to allow to filter by partner in triggers"
 msgstr ""
 
 #. module: quality_control_oca
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__timing
+#: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__timing
+msgid "Timing"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__trigger
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_category_line__trigger
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__trigger
@@ -1069,6 +1129,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "эсвэл"
+
+#~ msgid "Date"
+#~ msgstr "Огноо"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Сүүлийн засвар хийсэн огноо"
