@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2021-02-22 08:28+0100\n"
-"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"PO-Revision-Date: 2025-07-15 12:25+0000\n"
+"Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__created_inspections
@@ -43,11 +43,13 @@ msgid ""
 "If checked, an inspection per used lot/serial number will be created in "
 "stock pickings."
 msgstr ""
+"Si coché, une inspection par lot / numéro de série sera créée dans les "
+"transferts de stock."
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__inspection_per_lot
 msgid "Inspection Per Lot"
-msgstr ""
+msgstr "Inspection par lot"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__qc_inspections_ids
@@ -101,9 +103,8 @@ msgstr "Bons"
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__picking_type_id
-#, fuzzy
 msgid "Picking Type"
-msgstr "Type de bons"
+msgstr "Type de transfert"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_qc_inspection
@@ -128,47 +129,47 @@ msgstr "Inspections de la qualité à partir de lot terminés"
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_passed
 msgid "Quality inspection from lot passed"
-msgstr ""
+msgstr "Inspection qualité par lot réussie"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_done
 msgid "Quality inspection from picking done"
-msgstr ""
+msgstr "Inspection qualité liée au transfert terminée"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_passed
 msgid "Quality inspection from picking passed"
-msgstr ""
+msgstr "Inspection qualité liée au transfert réussie"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot
 msgid "Quality inspections from lot"
-msgstr ""
+msgstr "Inspections qualités liées au lot"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_lot_failed
 msgid "Quality inspections from lot failed"
-msgstr ""
+msgstr "Inspections qualité liées au lot échouées"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking
 msgid "Quality inspections from picking"
-msgstr ""
+msgstr "Inspections qualité liées au transfert"
 
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_failed
 msgid "Quality inspections from picking failed"
-msgstr ""
+msgstr "Inspections qualités liées au transfert échouées"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Mouvement de stock"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transfert"
 
 #. module: quality_control_stock_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.stock_lot_qc_view
