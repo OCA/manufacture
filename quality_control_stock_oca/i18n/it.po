@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2025-04-14 11:24+0000\n"
+"PO-Revision-Date: 2025-07-15 12:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -163,7 +163,7 @@ msgstr "Ispezioni di qualità da prelievo fallite"
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking
