@@ -17,9 +17,11 @@ class BomStructureReport(models.AbstractModel):
         bom_line=False,
         level=0,
         parent_bom=False,
+        parent_product=False,
         index=0,
         product_info=False,
         ignore_stock=False,
+        simulated_leaves_per_workcenter=False,
     ):
         res = super()._get_bom_data(
             bom,
@@ -29,9 +31,11 @@ class BomStructureReport(models.AbstractModel):
             bom_line=bom_line,
             level=level,
             parent_bom=parent_bom,
+            parent_product=parent_product,
             index=index,
             product_info=product_info,
             ignore_stock=ignore_stock,
+            simulated_leaves_per_workcenter=simulated_leaves_per_workcenter,
         )
         line_ids = bom.bom_line_ids
         for line in res["components"]:
