@@ -19,7 +19,6 @@ class TestQualityControlOcaBase(BaseCommon):
         cls.inspection_model = cls.env["qc.inspection"]
         cls.category_model = cls.env["qc.test.category"]
         cls.question_model = cls.env["qc.test.question"]
-        cls.wizard_model = cls.env["qc.inspection.set.test"]
         cls.qc_trigger = cls.env["qc.trigger"].create({"name": "Test Trigger"})
         cls.test = cls.env.ref("quality_control_oca.qc_test_1")
         cls.val_ok = cls.env.ref("quality_control_oca.qc_test_question_value_1")
@@ -32,21 +31,17 @@ class TestQualityControlOcaBase(BaseCommon):
         cls.inspection1 = cls.inspection_model.create(
             {
                 "name": "Test Inspection",
-                "inspection_lines": cls.inspection_model._prepare_inspection_lines(
-                    cls.test
-                ),
+                "test": cls.test.id,
             }
         )
+        # Force compute, otherwise inspection_lines are not computed
+        cls.inspection1.flush_recordset()
 
 
 class TestQualityControlOca(TestQualityControlOcaBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.wizard = cls.wizard_model.with_context(active_id=cls.inspection1.id).create(
-            {"test": cls.test.id}
-        )
-        cls.wizard.action_create_test()
         cls.inspection1.action_todo()
 
     def test_inspection_correct(self):

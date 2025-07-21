@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Quality Control OCA
 ===================
@@ -17,7 +13,7 @@ Quality Control OCA
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
@@ -44,12 +40,12 @@ production lots or any other area of the company.
 Configuration
 =============
 
-- Question: The thing to be checked. We have two types of questions:
-- Qualitative: The result is a description, color, yes, no...
-- Quantitative: The result must be within a range.
-- Possible values: The values chosen in qualitative questions.
-- Test: The set of questions to be used in inspections.
-- Once these values are set, we define the inspection.
+-  Question: The thing to be checked. We have two types of questions:
+-  Qualitative: The result is a description, color, yes, no...
+-  Quantitative: The result must be within a range.
+-  Possible values: The values chosen in qualitative questions.
+-  Test: The set of questions to be used in inspections.
+-  Once these values are set, we define the inspection.
 
 We have a *generic* test that can be applied to any model: shipments,
 invoices or product, or a *test related*, making it specific to a
@@ -70,7 +66,7 @@ The complete inspection workflow is:
 Known issues / Roadmap
 ======================
 
-- Make translatable the trigger name.
+-  Make translatable the trigger name.
 
 Bug Tracker
 ===========
@@ -94,32 +90,32 @@ Authors
 Contributors
 ------------
 
-- Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-- Ana Juaristi <anajuaristi@avanzosc.es>
-- Lois Rilo <lois.rilo@forgeflow.com>
-- Simone Rubino <simone.rubino@agilebg.com>
-- Juan Humanes <juan.humanes@guadaltech.es>
-- Ignacio José Alés López <ignacio.ales@guadaltech.es>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+-  Ana Juaristi <anajuaristi@avanzosc.es>
+-  Lois Rilo <lois.rilo@forgeflow.com>
+-  Simone Rubino <simone.rubino@agilebg.com>
+-  Juan Humanes <juan.humanes@guadaltech.es>
+-  Ignacio José Alés López <ignacio.ales@guadaltech.es>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Carlos Roca
+   -  Pedro M. Baeza
+   -  Carlos Roca
 
-- `Trey Kilobytes de Soluciones SL <https://www.trey.es>`__:
+-  `Trey Kilobytes de Soluciones SL <https://www.trey.es>`__:
 
-  - Vicent Cubells
+   -  Vicent Cubells
 
-- `APSL-Nagarro <https://www.apsl.tech>`__:
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Other credits
 -------------
 
-- Originally based on the old
-  `nan_quality_control <https://github.com/NaN-tic/nan_quality_control>`__
-  modules from NaN·tic.
+-  Originally based on the old
+   `nan_quality_control <https://github.com/NaN-tic/nan_quality_control>`__
+   modules from NaN·tic.
 
 Maintainers
 -----------
