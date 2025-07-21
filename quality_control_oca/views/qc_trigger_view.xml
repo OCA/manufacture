@@ -11,9 +11,15 @@
         <field name="model">qc.trigger</field>
         <field name="arch" type="xml">
             <form string="Quality control trigger">
+	        <field name="active" invisible="1" />
+                <widget
+                    name="web_ribbon"
+                    title="Archived"
+                    bg_color="text-bg-danger"
+                    invisible="active"
+                />
                 <group>
                     <field name="name" />
-                    <field name="active" />
                     <field name="partner_selectable" readonly="1" />
                 </group>
                 <group>
