@@ -12,6 +12,13 @@
         <field name="arch" type="xml">
             <form string="Test">
                 <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
                     <label for="name" class="oe_edit_only" />
                     <h1>
                         <field name="name" class="oe_inline" />
@@ -20,7 +27,6 @@
                         <group>
                             <field name="type" />
                             <field name="object_id" invisible="type == 'generic'" />
-                            <field name="active" />
                         </group>
                         <group>
                             <field name="category" />
