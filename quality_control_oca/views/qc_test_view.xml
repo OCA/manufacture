@@ -42,10 +42,13 @@
                             <field name="sequence" widget="handle" />
                             <field name="name" />
                             <field name="type" />
-                            <field name="min_value" />
-                            <field name="max_value" />
-                            <field name="uom_id" />
-                            <field name="ql_values" />
+                            <field name="min_value" invisible="type == 'qualitative'" />
+                            <field name="max_value" invisible="type == 'qualitative'" />
+                            <field name="uom_id" invisible="type == 'qualitative'" />
+                            <field
+                                name="ql_values"
+                                invisible="type == 'quantitative'"
+                            />
                         </list>
                     </field>
                 </sheet>
