@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2025-07-15 12:25+0000\n"
+"PO-Revision-Date: 2025-07-21 18:25+0000\n"
 "Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/fr/)\n"
@@ -98,7 +98,7 @@ msgstr "Lot/n° de série"
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
 msgid "Picking"
-msgstr "Bons"
+msgstr "Transfert"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
