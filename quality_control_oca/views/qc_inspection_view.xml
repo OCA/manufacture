@@ -109,16 +109,16 @@
                                     />
                                     <field
                                         name="qualitative_value"
-                                        readonly="question_type == 'quantitative'"
+                                        invisible="question_type == 'quantitative'"
                                     />
                                     <field
                                         name="quantitative_value"
-                                        readonly="question_type == 'qualitative'"
+                                        invisible="question_type == 'qualitative'"
                                     />
                                     <field
                                         name="uom_id"
                                         groups="uom.group_uom"
-                                        readonly="question_type == 'qualitative'"
+                                        invisible="question_type == 'qualitative'"
                                     />
                                     <field
                                         name="test_uom_category"
