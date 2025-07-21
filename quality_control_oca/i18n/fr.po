@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-28 03:44+0000\n"
-"PO-Revision-Date: 2025-07-15 12:25+0000\n"
+"PO-Revision-Date: 2025-07-21 14:28+0000\n"
 "Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -317,12 +317,12 @@ msgstr "Générique"
 #. module: quality_control_oca
 #: model:qc.test,name:quality_control_oca.qc_test_1
 msgid "Generic Test (demo)"
-msgstr ""
+msgstr "Test générique (démo)"
 
 #. module: quality_control_oca
 #: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_1
 msgid "Good"
-msgstr ""
+msgstr "Bon"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
@@ -338,7 +338,7 @@ msgstr "Grouper par ..."
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__has_message
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "A un messsage"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
@@ -358,17 +358,19 @@ msgstr "Id."
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icône pour indiquer une activité d'exception."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__auto_generated
 msgid "If an inspection is auto-generated, it can be canceled but not removed."
 msgstr ""
+"Si une inspection est générée automatiquement, elle peut-être annulée mais "
+"pas supprimée."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction
@@ -379,6 +381,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr ""
+"Si cette case est cochée, de nouveaux messages requièrent votre attention."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
@@ -388,7 +391,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si coché, certains messages ont une erreur de livraison."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__partners
@@ -399,35 +402,37 @@ msgid ""
 "If filled, the test will only be created when the action is done for one of "
 "the specified partners. If empty, the test will always be created."
 msgstr ""
+"Si ce champ est rempli, le test sera créé au moment où l'action est exécutée "
+"pour un des partenaires spécifiés. Sinon, le test sera toujours créé."
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Incorrect"
-msgstr ""
+msgstr "Incorrecte"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__inspection_id
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_search_view
 msgid "Inspection"
-msgstr ""
+msgstr "Inspection"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
 msgid "Inspection Lines"
-msgstr ""
+msgstr "Lignes d'inspection"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
 #: model:ir.ui.menu,name:quality_control_oca.qc_inspection_lines_menu
 msgid "Inspection lines"
-msgstr ""
+msgstr "Lignes d'inspection"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__name
 msgid "Inspection number"
-msgstr ""
+msgstr "Numéro d'inspection"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection
@@ -440,7 +445,7 @@ msgstr "Inspections"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
-msgstr ""
+msgstr "Notes internes"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_is_follower
@@ -450,7 +455,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Est un abonné"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
@@ -490,18 +495,18 @@ msgstr "Responsable"
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Mark todo"
-msgstr ""
+msgstr "Marquer comme à faire"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__max_value
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__max_value
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__max_value
 msgid "Maximum valid value for a quantitative question."
-msgstr ""
+msgstr "Plus grande valeur valide pour une question quantitative."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error
@@ -511,7 +516,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erreur d'envoi du message"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
@@ -521,23 +526,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__min_value
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__min_value
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection_line__min_value
 msgid "Minimum valid value for a quantitative question."
-msgstr ""
+msgstr "Plus petite valeur valide pour une question quantitative."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Date limite de mon activité"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__name
@@ -551,12 +556,12 @@ msgstr "Nom"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Date limite de l'activité à venir"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Résumé de l'activité suivante"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_id
@@ -902,7 +907,7 @@ msgstr "Sélectionnable par contact"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__sequence
 msgid "Sequence"
-msgstr "Sequence"
+msgstr "Séquence"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -1014,7 +1019,7 @@ msgstr "Ce champ permet de filtrer les déclencheurs par contact lié"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__timing
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__timing
 msgid "Timing"
-msgstr ""
+msgstr "Échéance"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__trigger
