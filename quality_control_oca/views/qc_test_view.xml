@@ -25,10 +25,6 @@
                     </h1>
                     <group>
                         <group>
-                            <field name="type" />
-                            <field name="object_id" invisible="type == 'generic'" />
-                        </group>
-                        <group>
                             <field name="category" />
                             <field name="fill_correct_values" />
                             <field
@@ -66,8 +62,6 @@
             <tree>
                 <field name="name" />
                 <field name="category" />
-                <field name="type" />
-                <field name="object_id" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
