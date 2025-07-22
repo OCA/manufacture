@@ -6,25 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-07-22 14:19+0000\n"
+"Last-Translator: Metin GÜLSOY <metin.gulsoy@kitayazilim.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_component_operation_scrap_reason
 #: model:ir.model.fields,field_description:mrp_component_operation_scrap_reason.field_mrp_component_operate__allowed_reason_code_ids
 msgid "Allowed Reason Code"
-msgstr ""
+msgstr "Kabul Edilen Sebep Kodu"
 
 #. module: mrp_component_operation_scrap_reason
 #: model:ir.model,name:mrp_component_operation_scrap_reason.model_mrp_component_operate
 msgid "Component Operate"
-msgstr ""
+msgstr "Bileşenin işletilmesi"
 
 #. module: mrp_component_operation_scrap_reason
 #: model:ir.model.fields,field_description:mrp_component_operation_scrap_reason.field_mrp_component_operate__scrap_reason_code_id
 msgid "Scrap Reason Code"
-msgstr ""
+msgstr "Hurda Neden Kodu"
