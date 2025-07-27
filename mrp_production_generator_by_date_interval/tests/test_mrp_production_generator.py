@@ -1,31 +1,25 @@
 # Copyright 2025 Tecnativa - Carlos Roca
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpProductionInjectOperation(TransactionCase):
+class TestMrpProductionInjectOperation(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env.user.tz = "UTC"
         cls.product_produce = cls.env["product.product"].create(
-            {
-                "name": "Product to Produce",
-                "type": "product",
-            }
+            {"name": "Product to Produce", "type": "product"}
         )
         cls.product_comp_1 = cls.env["product.product"].create(
-            {
-                "name": "Product Component 1",
-                "type": "product",
-            }
+            {"name": "Product Component 1", "type": "product"}
         )
         cls.product_comp_2 = cls.env["product.product"].create(
-            {
-                "name": "Product Component 2",
-                "type": "product",
-            }
+            {"name": "Product Component 2", "type": "product"}
         )
         bom_form = Form(cls.env["mrp.bom"])
         bom_form.product_id = cls.product_produce
@@ -60,9 +54,7 @@ class TestMrpProductionInjectOperation(TransactionCase):
             all([production.bom_id == self.bom for production in productions])
         )
         self.assertTrue(
-            all(
-                [production.date_planned_start.hour == 17 for production in productions]
-            )
+            all([production.date_start.hour == 17 for production in productions])
         )
         self.assertTrue(
             all(

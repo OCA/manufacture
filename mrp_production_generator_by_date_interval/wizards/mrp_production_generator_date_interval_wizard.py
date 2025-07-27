@@ -1,4 +1,5 @@
 # Copyright 2025 Tecnativa - Carlos Roca
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, time
@@ -87,7 +88,7 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
             planned_datetime = localized_datetime.astimezone(pytz.utc)
             mrp_production = self.env["mrp.production"].create(
                 {
-                    "date_planned_start": fields.Datetime.to_string(planned_datetime),
+                    "date_start": fields.Datetime.to_string(planned_datetime),
                     "product_id": self.product_id.id,
                     "bom_id": self.bom_id.id,
                     "product_uom_id": self.product_id.uom_id.id,
@@ -95,15 +96,6 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
                     "company_id": self.company_id.id,
                 }
             )
-            # onchange_helper is not used because there is a problem with
-            # move_raw_ids and move_finished_ids for being one2many
-            mrp_production._onchange_product_id()
-            mrp_production._onchange_bom_id()
-            mrp_production._onchange_move_raw()
-            mrp_production._onchange_move_finished()
-            mrp_production._onchange_location()
-            mrp_production._onchange_location_dest()
-            mrp_production._onchange_workorder_ids()
             res_ids.append(mrp_production.id)
             current_date += relativedelta(days=1)
         action = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_production_action")

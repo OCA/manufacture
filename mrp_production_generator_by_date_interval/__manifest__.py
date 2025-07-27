@@ -1,9 +1,10 @@
 # Copyright 2025 Tecnativa - Carlos Roca
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "MRP Production Generator By Date Interval",
-    "version": "15.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
