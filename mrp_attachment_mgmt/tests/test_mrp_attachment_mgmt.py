@@ -8,7 +8,7 @@ from .common import TestMrpAttachmentMgmtBase
 class TestMrpAttachmentMgmt(TestMrpAttachmentMgmtBase):
     def test_misc_bom_documents(self):
         attachment_a = self._create_attachment(self.component_a)
-        self.env["mrp.document"].create({"ir_attachment_id": attachment_a.id})
+        self.env["product.document"].create({"ir_attachment_id": attachment_a.id})
         attachment_b = self._create_attachment(self.component_b)
         action = self.bom.action_see_bom_documents()
         attachment_bom_items = self.attachment_model.search(action["domain"])
