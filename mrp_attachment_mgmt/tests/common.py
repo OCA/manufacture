@@ -15,25 +15,29 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
         cls.component_a = cls.env["product.product"].create(
             {
                 "name": "Test Component A",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.component_b = cls.env["product.product"].create(
             {
                 "name": "Test Component B",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.component_c = cls.env["product.product"].create(
             {
                 "name": "Test Component C",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.workcenter = cls.env["mrp.workcenter"].create(
@@ -85,7 +89,7 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
 
     @classmethod
     def _create_attachment(cls, product, name=False):
-        name = name if name else "Test file %s" % product.name
+        name = name if name else f"Test file {product.name}"
         return cls.attachment_model.create(
             {
                 "name": name,
@@ -96,7 +100,7 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
         )
 
     def _create_bom_attachment(self, bom, name=False):
-        name = name if name else "Test file %s" % bom.display_name
+        name = name if name else f"Test file {bom.display_name}"
         return self.attachment_model.create(
             {
                 "name": name,
