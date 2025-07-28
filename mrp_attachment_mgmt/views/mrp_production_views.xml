@@ -40,7 +40,7 @@
                 action = records.action_show_attachments()
         </field>
     </record>
-     <record id="action_show_production_bom_attachments" model="ir.actions.server">
+    <record id="action_show_production_bom_attachments" model="ir.actions.server">
         <field name="name">BoM Attachments</field>
         <field name="model_id" ref="mrp.model_mrp_production" />
         <field name="binding_model_id" ref="mrp.model_mrp_production" />
