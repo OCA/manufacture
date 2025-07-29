@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-04 15:33+0000\n"
+"PO-Revision-Date: 2025-07-29 07:26+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_attachment_mgmt
 #. odoo-python
@@ -31,27 +31,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.workorder_attachments_mrp_workorder_form_view
 msgid "<span class=\"o_stat_text\">BoM<br/>Attachments</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">DiBa<br/>Allegati</span>"
 
 #. module: mrp_attachment_mgmt
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_template_form_view
 msgid "<span class=\"o_stat_text\">BoMs<br/>Attachments</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">DiBa<br/>Allegati</span>"
 
 #. module: mrp_attachment_mgmt
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_product_template_form_view
 msgid "<span class=\"o_stat_text\">Components<br/>Attachments</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Componenti<br/>Allegati</span>"
 
 #. module: mrp_attachment_mgmt
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_bom_see_attachments_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_attachment_mgmt.workorder_attachments_mrp_workorder_form_view
 msgid "<span class=\"o_stat_text\">Product<br/>Attachments</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Prodotto<br/>Allegati</span>"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_mrp_bom
@@ -62,7 +62,7 @@ msgstr "Distinta base"
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_bom_attachments
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_show_production_bom_attachments
 msgid "BoM Attachments"
-msgstr ""
+msgstr "Allegati DiBa"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_template
@@ -73,7 +73,7 @@ msgstr "Prodotto"
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_see_workorder_attachments
 #: model:ir.actions.server,name:mrp_attachment_mgmt.action_show_production_attachments
 msgid "Product Attachments"
-msgstr ""
+msgstr "Allegati prodotto"
 
 #. module: mrp_attachment_mgmt
 #: model:ir.model,name:mrp_attachment_mgmt.model_product_product
