@@ -17,22 +17,23 @@ MRP Stock Rule Propagate BOM Line
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/14.0/mrp_stock_rule_propagate_bom_line
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_stock_rule_propagate_bom_line
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-14-0/manufacture-14-0-mrp_stock_rule_propagate_bom_line
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_stock_rule_propagate_bom_line
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a `Propagate BOM Line` checkbox on stock rule.
+This module adds a Propagate BOM Line checkbox on stock rule.
 
-When this checkbox is marked and pull rules are applied for kit products,
-it will avoid grouping the stock moves of the same product if these stock
-moves are originating from different kits (ie different BOM lines).
+When this checkbox is marked and pull rules are applied for kit
+products, it will avoid grouping the stock moves of the same product if
+these stock moves are originating from different kits (ie different BOM
+lines).
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -47,11 +48,12 @@ moves are originating from different kits (ie different BOM lines).
 Known issues / Roadmap
 ======================
 
-Since version 15.0, Odoo propagates `bom_line_id` from the move to the procurement
-in any case.
+Since version 15.0, Odoo propagates bom_line_id from the move to the
+procurement in any case.
 
-Therefore, if this module is to be migrated, it must provide the checkbox on the stock
-rule to remove the propagation and allow merging of the moves.
+Therefore, if this module is to be migrated, it must provide the
+checkbox on the stock rule to remove the propagation and allow merging
+of the moves.
 
 Bug Tracker
 ===========
@@ -59,7 +61,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_stock_rule_propagate_bom_line%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_stock_rule_propagate_bom_line%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -67,17 +69,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camptocamp
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Akim Juillerat <akim.juillerat@camptocamp.com>
+- Akim Juillerat <akim.juillerat@camptocamp.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -97,6 +99,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-grindtildeath| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/14.0/mrp_stock_rule_propagate_bom_line>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_stock_rule_propagate_bom_line>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
