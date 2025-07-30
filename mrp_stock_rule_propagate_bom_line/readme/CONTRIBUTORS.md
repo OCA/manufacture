@@ -1,1 +1,2 @@
 - Akim Juillerat \<akim.juillerat@camptocamp.com\>
+- Maksym Yankin \<maksym.yankin@camptocamp.com\>

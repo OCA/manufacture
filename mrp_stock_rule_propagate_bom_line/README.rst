@@ -28,12 +28,17 @@ MRP Stock Rule Propagate BOM Line
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a Propagate BOM Line checkbox on stock rule.
+This module adds a Propagate BOM Line checkbox on stock rule. It
+provides granular control over how components for kit products are
+grouped within chained stock moves.
 
-When this checkbox is marked and pull rules are applied for kit
-products, it will avoid grouping the stock moves of the same product if
-these stock moves are originating from different kits (ie different BOM
-lines).
+This checkbox is checked by default to align with Odoo's standard
+behavior. Component moves are kept separate, preserving the link to
+their original Bill of Materials (BOM) line.
+
+When the checkbox is unchecked Odoo allows to group the stock moves of
+the same product if these stock moves are originating from different
+kits (ie different BOM lines).
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -48,12 +53,7 @@ lines).
 Known issues / Roadmap
 ======================
 
-Since version 15.0, Odoo propagates bom_line_id from the move to the
-procurement in any case.
 
-Therefore, if this module is to be migrated, it must provide the
-checkbox on the stock rule to remove the propagation and allow merging
-of the moves.
 
 Bug Tracker
 ===========
@@ -77,6 +77,7 @@ Contributors
 ------------
 
 - Akim Juillerat <akim.juillerat@camptocamp.com>
+- Maksym Yankin <maksym.yankin@camptocamp.com>
 
 Maintainers
 -----------

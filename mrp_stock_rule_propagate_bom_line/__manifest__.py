@@ -3,7 +3,7 @@
 {
     "name": "MRP Stock Rule Propagate BOM Line",
     "summary": "Avoid grouping line of different kit in picking operations",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "development_status": "Alpha",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",

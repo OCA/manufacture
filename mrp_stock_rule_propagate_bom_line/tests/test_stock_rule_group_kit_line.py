@@ -1,25 +1,20 @@
 # Copyright 2025 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestStockMoveBomLinePropagate(SavepointCase):
+class TestStockMoveBomLinePropagate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-
         cls.partner = cls.env["res.partner"].create({"name": "customer"})
 
         # Set WH for multi step delivery
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.warehouse.delivery_steps = "pick_pack_ship"
-
-        # Set "WH: Output → Customers" to propagate BOM line
-        for rule in cls.warehouse.delivery_route_id.rule_ids:
-            if rule.location_src_id == cls.warehouse.wh_output_stock_loc_id:
-                rule.propagate_bom_line = True
 
         # Create products and BOMs
         cls.kit_product_1 = cls._create_product("kit product 1")
@@ -78,7 +73,7 @@ class TestStockMoveBomLinePropagate(SavepointCase):
                         "group_id": procurement_group,
                         "date_planned": fields.Datetime.now(),
                         "date_deadline": fields.Datetime.now(),
-                        "route_ids": cls.env["stock.location.route"].browse(),
+                        "route_ids": cls.env["stock.route"].browse(),
                         "warehouse_id": cls.warehouse or False,
                         "partner_id": cls.partner.id,
                         "product_description_variants": "",
@@ -88,19 +83,42 @@ class TestStockMoveBomLinePropagate(SavepointCase):
             )
         cls.env["procurement.group"].run(procurements)
 
-    def test_delivery_propagate_bom_line(self):
+    def test_00_delivery_propagate_bom_line(self):
+        # This is an Odoo standard flow
+        # Component moves are kept separate,
+        # preserving the link to their original BoM line
         self._procure_for_delivery(
             [(self.kit_product_1, 2.0), (self.kit_product_2, 2.0)]
         )
         delivery_order = self.env["stock.picking"].search(
             [("picking_type_code", "=", "outgoing")], order="id desc", limit=1
         )
-        self.assertEqual(len(delivery_order.move_lines), 4)
+        self.assertEqual(len(delivery_order.move_ids), 4)
         # Since the flag is set on "WH: Output → Customers", the moves generated
         #  from Packing zone to Output are not grouped
-        pack_order = delivery_order.move_lines.move_orig_ids.picking_id
-        self.assertEqual(len(pack_order.move_lines), 4)
+        pack_order = delivery_order.move_ids.move_orig_ids.picking_id
+        self.assertEqual(len(pack_order.move_ids), 4)
         # Since the flag is not set on "WH: Packing zone → Output", the moves generated
         #  from Stock to Packing zone are grouped
-        pick_order = pack_order.move_lines.move_orig_ids.picking_id
-        self.assertEqual(len(pick_order.move_lines), 3)
+        pick_order = pack_order.move_ids.move_orig_ids.picking_id
+        self.assertEqual(len(pick_order.move_ids), 3)
+
+    def test_01_delivery_moves_grouped(self):
+        # This is a custom flow that forces Odoo to group the stock moves
+        # for identical components, even if they originate from different BoM lines
+
+        # Set "WH: Output → Customers" to group the stock moves
+        for rule in self.warehouse.delivery_route_id.rule_ids:
+            if rule.location_src_id == self.warehouse.wh_output_stock_loc_id:
+                rule.propagate_bom_line = False
+        self._procure_for_delivery(
+            [(self.kit_product_1, 2.0), (self.kit_product_2, 2.0)]
+        )
+        delivery_order = self.env["stock.picking"].search(
+            [("picking_type_code", "=", "outgoing")], order="id desc", limit=1
+        )
+        self.assertEqual(len(delivery_order.move_ids), 2)
+        # Since the flag is set on "WH: Output → Customers", the moves generated
+        #  from Packing zone to Output are grouped
+        pack_order = delivery_order.move_ids.move_orig_ids.picking_id
+        self.assertEqual(len(pack_order.move_ids), 2)
