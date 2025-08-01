@@ -49,6 +49,7 @@ setuptools.setup(
         'odoo14-addon-mrp_restrict_lot',
         'odoo14-addon-mrp_routing',
         'odoo14-addon-mrp_sale_info',
+        'odoo14-addon-mrp_stock_rule_propagate_bom_line',
         'odoo14-addon-mrp_subcontracting_bom_dual_use',
         'odoo14-addon-mrp_subcontracting_inhibit',
         'odoo14-addon-mrp_subcontracting_partner_management',
