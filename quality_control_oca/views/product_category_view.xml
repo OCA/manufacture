@@ -18,7 +18,7 @@
                     groups="quality_control_oca.group_quality_control_user"
                 >
                     <field name="qc_triggers" nolabel="1" colspan="2">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field
                                 name="trigger"
                                 options="{'no_create': True, 'no_edit': True, 'no_open': True}"
@@ -26,7 +26,7 @@
                             <field name="test" />
                             <field name="user" />
                             <field name="partners" widget="many2many_tags" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
             </group>

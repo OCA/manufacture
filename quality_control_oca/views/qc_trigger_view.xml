@@ -26,11 +26,11 @@
         <field name="name">qc.trigger.tree</field>
         <field name="model">qc.trigger</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="partner_selectable" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_qc_trigger">
