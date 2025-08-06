@@ -32,7 +32,7 @@
                         </group>
                     </group>
                     <field name="test_lines" nolabel="1">
-                        <tree>
+                        <list>
                             <field name="sequence" widget="handle" />
                             <field name="name" />
                             <field name="type" />
@@ -40,7 +40,7 @@
                             <field name="max_value" />
                             <field name="uom_id" />
                             <field name="ql_values" />
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
                 <div class="oe_chatter">
@@ -54,13 +54,13 @@
         <field name="name">qc.test.tree</field>
         <field name="model">qc.test</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="category" />
                 <field name="type" />
                 <field name="object_id" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_qc_test">
@@ -93,10 +93,10 @@
                         colspan="2"
                         required="type == 'qualitative'"
                     >
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="name" />
                             <field name="ok" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <div

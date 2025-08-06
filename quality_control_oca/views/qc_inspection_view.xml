@@ -99,7 +99,7 @@
                                 nolabel="1"
                                 readonly="state != 'ready'"
                             >
-                                <tree editable="top" delete="false" create="false">
+                                <list editable="top" delete="false" create="false">
                                     <field name="name" readonly="1" />
                                     <field name="question_type" readonly="1" />
                                     <field
@@ -135,7 +135,7 @@
                                     />
                                     <field name="valid_values" />
                                     <field name="success" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Notes">
@@ -168,7 +168,7 @@
         <field name="name">qc.inspection.tree</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="user" />
                 <field name="test" />
@@ -186,7 +186,7 @@
                     decoration-danger="state == 'failed'"
                     decoration-muted="state == 'canceled'"
                 />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="qc_inspection_search_view">
@@ -290,7 +290,7 @@
         <field name="name">qc.inspection.line.tree</field>
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-danger="success==False"
                 decoration-info="success==True"
                 delete="false"
@@ -317,7 +317,7 @@
                 <field name="test_uom_category" column_invisible="1" />
                 <field name="valid_values" />
                 <field name="success" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="qc_inspection_line_search_view">

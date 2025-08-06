@@ -288,9 +288,11 @@ class QcInspectionLine(models.Model):
                     [x.name for x in insp_line.possible_ql_values if x.ok]
                 )
             else:
-                insp_line.valid_values = f"{formatLang(self.env, insp_line.min_value)} ~ {formatLang(self.env, insp_line.max_value)}"
+                valid_values_str = f"{formatLang(self.env, insp_line.min_value)} ~ " \
+                                   f"{formatLang(self.env, insp_line.max_value)}"
+                insp_line.valid_values = valid_values_str                
                 if self.env.ref("uom.group_uom") in self.env.user.groups_id:
-                    insp_line.valid_values += " %s" % insp_line.test_uom_id.name
+                    insp_line.valid_values += f" {insp_line.test_uom_id.name}"
 
     inspection_id = fields.Many2one(
         comodel_name="qc.inspection", string="Inspection", ondelete="cascade"
