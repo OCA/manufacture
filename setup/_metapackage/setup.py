@@ -29,6 +29,7 @@ setuptools.setup(
         'odoo-addon-mrp_production_date_planned_finished_calendar>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_generator_by_date_interval>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_grouped_by_product>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_production_location_picking_type>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_note>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_operation_injection>=15.0dev,<15.1dev',
         'odoo-addon-mrp_production_picking_type_from_route>=15.0dev,<15.1dev',

@@ -42,6 +42,7 @@ addon | version | maintainers | summary
 [mrp_production_date_planned_finished_calendar](mrp_production_date_planned_finished_calendar/) | 15.0.1.0.1 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allows to plan production from the desired finish date
 [mrp_production_generator_by_date_interval](mrp_production_generator_by_date_interval/) | 15.0.1.0.0 |  | MRP Production Generator By Date Interval
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 15.0.1.0.1 |  | Production Grouped By Product
+[mrp_production_location_picking_type](mrp_production_location_picking_type/) | 15.0.1.0.0 |  | Add production location field to picking types for MRP operations.
 [mrp_production_note](mrp_production_note/) | 15.0.1.0.0 |  | Notes in production orders
 [mrp_production_operation_injection](mrp_production_operation_injection/) | 15.0.1.0.0 | <a href='https://github.com/grindtildeath'><img src='https://github.com/grindtildeath.png' width='32' height='32' style='border-radius:50%;' alt='grindtildeath'/></a> | Adds an existing operation from the Bill of Material
 [mrp_production_picking_type_from_route](mrp_production_picking_type_from_route/) | 15.0.1.0.0 |  | Updates the operation type creating MO based on the product
