@@ -27,7 +27,24 @@ class MrpBomLine(models.Model):
         "uom.category",
         related=None,
         compute="_compute_product_uom_category_id",
+        compute_sudo=True,
     )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for values in vals_list:
+            if (
+                not values.get("product_id")
+                and "product_uom_id" not in values
+                and "component_template_id" in values
+                and values["component_template_id"]
+            ):
+                values["product_uom_id"] = (
+                    self.env["product.template"]
+                    .browse(values["component_template_id"])
+                    .uom_id.id
+                )
+        return super().create(vals_list)
 
     @api.depends("product_id", "component_template_id")
     def _compute_product_uom_category_id(self):
