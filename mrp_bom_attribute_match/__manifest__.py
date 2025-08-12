@@ -1,6 +1,6 @@
 {
     "name": "BOM Attribute Match",
-    "version": "18.0.1.0.1",
+    "version": "18.0.1.0.2",
     "category": "Manufacturing",
     "author": "Ilyas, Ooops, Odoo Community Association (OCA)",
     "summary": "Dynamic BOM component based on product attribute",
