@@ -10,6 +10,7 @@ class MrpWorkorder(models.Model):
     last_worker_id = fields.Many2one(
         comodel_name="res.users",
         compute="_compute_last_worker_id",
+        store=True,
     )
 
     @api.depends("time_ids.date_start", "time_ids.user_id")
