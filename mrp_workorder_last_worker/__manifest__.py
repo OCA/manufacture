@@ -4,7 +4,7 @@
 {
     "name": "MRP Workorder Last Worker",
     "summary": "See the last user who worked on a workorder",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
