@@ -12,6 +12,7 @@ class MrpBomLine(models.Model):
     has_bom = fields.Boolean(
         string="Has sub BoM",
         compute="_compute_has_bom",
+        compute_sudo=True,
     )
 
     @api.depends("product_id", "bom_id")
