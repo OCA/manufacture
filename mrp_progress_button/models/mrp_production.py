@@ -2,9 +2,7 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -12,7 +10,7 @@ class MrpProduction(models.Model):
 
     @api.depends(
         "move_raw_ids.state",
-        "move_raw_ids.quantity_done",
+        "move_raw_ids.quantity",
         "move_finished_ids.state",
         "workorder_ids.state",
         "product_qty",
@@ -29,7 +27,7 @@ class MrpProduction(models.Model):
     def action_progress(self):
         self.write(
             {
-                "date_start": datetime.now(),
+                "date_start": fields.Datetime.now(),
             }
         )
         return True

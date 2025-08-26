@@ -8,7 +8,7 @@
             <button name="button_unplan" position="before">
                 <button
                     name="action_progress"
-                    attrs="{'invisible': [('state', '!=', 'confirmed')]}"
+                    invisible="state != 'confirmed'"
                     type="object"
                     string="Mark As Started"
                     class="oe_highlight"
@@ -17,7 +17,7 @@
             <button name="action_assign" position="after">
                 <button
                     name="action_unstart"
-                    attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('qty_producing', '!=', 0)]}"
+                    invisible="state != 'progress' or qty_producing != 0"
                     type="object"
                     string="Unstart"
                 />

@@ -2,8 +2,7 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -70,7 +69,7 @@ class TestProgressButton(TransactionCase):
         self.assertEqual(production.state, "progress")
         self.assertEqual(
             production.date_start.replace(microsecond=0),
-            datetime.now().replace(microsecond=0),
+            fields.Datetime.now().replace(microsecond=0),
         )
         production.action_unstart()
         self.assertEqual(production.state, "confirmed")
