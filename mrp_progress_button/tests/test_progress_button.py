@@ -18,7 +18,7 @@ class TestProgressButton(TransactionCase):
         self.product_manuf = self.env["product.product"].create(
             {
                 "name": "Manuf",
-                "type": "product",
+                "type": "consu",
                 "uom_id": self.uom_unit.id,
                 "route_ids": [(4, self.manufacture_route.id)],
             }
@@ -26,7 +26,7 @@ class TestProgressButton(TransactionCase):
         self.product_raw_material = self.env["product.product"].create(
             {
                 "name": "Raw Material",
-                "type": "product",
+                "type": "consu",
                 "uom_id": self.uom_unit.id,
             }
         )
