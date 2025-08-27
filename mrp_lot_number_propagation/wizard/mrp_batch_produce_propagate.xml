@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_batch_produce_propagate_form" model="ir.ui.view">
+        <field name="name">mrp.batch.produce.propagate.form</field>
+        <field name="model">mrp.batch.produce.propagate</field>
+        <field name="arch" type="xml">
+            <form string="Mass Produce">
+                <p
+                >You're about to mass produce manufacturing order with propagation of lot number.</p>
+                <footer>
+                    <button
+                        name="action_prepare"
+                        string="Prepare MOs"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_done"
+                        string="Produce"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Discard" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mrp_batch_produce_propagate" model="ir.actions.act_window">
+        <field name="name">Batch Production with propagation</field>
+        <field name="res_model">mrp.batch.produce.propagate</field>
+        <field name="view_id" ref="view_mrp_batch_produce_propagate_form" />
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
