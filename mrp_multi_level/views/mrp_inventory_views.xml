@@ -27,6 +27,7 @@
                             <field name="initial_on_hand_qty" />
                             <field name="demand_qty" />
                             <field name="supply_qty" />
+                            <field name="rfq_qty" />
                             <field name="final_on_hand_qty" />
                             <field name="to_procure" />
                             <field name="uom_id" groups="uom.group_uom" />
@@ -50,6 +51,14 @@
                 <field name="initial_on_hand_qty" />
                 <field name="demand_qty" />
                 <field name="supply_qty" />
+                <field name="rfq_qty" optional="hide" />
+                <button
+                    invisible="rfq_qty &lt;= 0.0"
+                    name="action_open_rfqs"
+                    type="object"
+                    icon="fa-credit-card"
+                    title="Requests for Quotation"
+                />
                 <field name="final_on_hand_qty" />
                 <field name="to_procure" />
                 <button
