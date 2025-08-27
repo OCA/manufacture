@@ -786,6 +786,19 @@ class MultiLevelMrp(models.TransientModel):
         return query, params
 
     @api.model
+    def _get_rfq_supply_groups(self, product_mrp_area):
+        query = """
+                SELECT mrp_date, sum(mrp_qty)
+                FROM mrp_move
+                WHERE product_mrp_area_id = %(mrp_product)s
+                AND mrp_type = 's' AND mrp_origin = 'po'
+                AND state in ('draft', 'sent', 'to approve')
+                GROUP BY mrp_date
+            """
+        params = {"mrp_product": product_mrp_area.id}
+        return query, params
+
+    @api.model
     def _get_planned_order_groups(self, product_mrp_area):
         query = """
             SELECT due_date, sum(mrp_qty)
@@ -806,6 +819,7 @@ class MultiLevelMrp(models.TransientModel):
         demand_qty_by_date,
         supply_qty_by_date,
         planned_qty_by_date,
+        rfq_supply_qty_by_date,
     ):
         """Return dict to create mrp.inventory records on MRP Multi Level Scheduler"""
         mrp_inventory_data = {"product_mrp_area_id": product_mrp_area.id, "date": mdt}
@@ -813,6 +827,8 @@ class MultiLevelMrp(models.TransientModel):
         mrp_inventory_data["demand_qty"] = abs(demand_qty)
         supply_qty = supply_qty_by_date.get(mdt, 0.0)
         mrp_inventory_data["supply_qty"] = abs(supply_qty)
+        rfq_supply_qty = rfq_supply_qty_by_date.get(mdt, 0.0)
+        mrp_inventory_data["rfq_qty"] = abs(rfq_supply_qty)
         mrp_inventory_data["initial_on_hand_qty"] = on_hand_qty
         if product_mrp_area.supply_method != "phantom":
             on_hand_qty += supply_qty + demand_qty
@@ -840,6 +856,12 @@ class MultiLevelMrp(models.TransientModel):
         self.env.cr.execute(query, params)
         for mrp_date, qty in self.env.cr.fetchall():
             supply_qty_by_date[mrp_date] = qty
+        # Read RFQ Supply:
+        rfq_supply_qty_by_date = {}
+        query, params = self._get_rfq_supply_groups(product_mrp_area)
+        self.env.cr.execute(query, params)
+        for mrp_date, qty in self.env.cr.fetchall():
+            rfq_supply_qty_by_date[mrp_date] = qty
         # Read planned orders:
         planned_qty_by_date = {}
         query, params = self._get_planned_order_groups(product_mrp_area)
@@ -874,6 +896,7 @@ class MultiLevelMrp(models.TransientModel):
                 demand_qty_by_date,
                 supply_qty_by_date,
                 planned_qty_by_date,
+                rfq_supply_qty_by_date,
             )
             mrp_inventory_vals.append(mrp_inventory_data)
         if mrp_inventory_vals:
