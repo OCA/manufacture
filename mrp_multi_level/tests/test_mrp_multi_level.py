@@ -393,7 +393,11 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         )
         self.assertEqual(len(prod_uom_test_inventory_lines), 1)
         self.assertEqual(prod_uom_test_inventory_lines.supply_qty, 12.0)
-        # Supply qty has to be 12 has a dozen of units are in a RFQ.
+        # Supply qty has to be 12, a dozen of units are in a RFQ.
+        self.assertEqual(prod_uom_test_inventory_lines.rfq_qty, 12.0)
+        # check that the action opens the correct RfQ:
+        res = prod_uom_test_inventory_lines.action_open_rfqs()
+        self.assertEqual(res["res_id"], self.po_uom.id)
 
     def test_15_phantom_comp_planning(self):
         """
