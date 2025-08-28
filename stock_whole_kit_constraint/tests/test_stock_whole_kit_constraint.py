@@ -77,6 +77,18 @@ class TestStockWholeKitConstraint(common.TransactionCase):
                 "allow_partial_kit_delivery": False,
             }
         )
+        # Add stock for components to allow pickings to be 'done'
+        components = (
+            cls.component_1_kit_1
+            + cls.component_2_kit_1
+            + cls.component_1_kit_2
+            + cls.component_2_kit_2
+            + cls.regular_product
+        )
+        for component in components:
+            cls.env["stock.quant"]._update_available_quantity(
+                component, cls.env.ref("stock.stock_location_stock"), 100
+            )
         # Delivery picking
         picking_form = Form(cls.env["stock.picking"])
         picking_form.picking_type_id = cls.env.ref("stock.picking_type_out")
@@ -99,47 +111,53 @@ class TestStockWholeKitConstraint(common.TransactionCase):
     def test_01_all_partially_done_but_the_disallow_partial_kit(self):
         """No quantity is done for the kit disallowed and only partially for the
         others so the backorder wizard raises."""
-        moves_allowed = self.customer_picking.move_lines.filtered(
+        self.customer_picking.move_ids.move_line_ids.quantity = 0
+        moves_allowed = self.customer_picking.move_ids.filtered(
             lambda x: x.bom_line_id.bom_id != self.bom_kit_2
         )
-        moves_allowed.write({"quantity_done": 1})
+        moves_allowed.move_line_ids.quantity = 1
         response = self.customer_picking.button_validate()
         self.assertEqual("stock.backorder.confirmation", response.get("res_model"))
 
     def test_02_all_done_but_partial_disallow_partial_kit(self):
         """We try to deliver partially the disallowed kit"""
-        moves_disallowed = self.customer_picking.move_lines.filtered(
+        self.customer_picking.move_ids.move_line_ids.quantity = 0
+        moves_disallowed = self.customer_picking.move_ids.filtered(
             lambda x: x.bom_line_id.bom_id == self.bom_kit_2
         )
-        moves_disallowed.write({"quantity_done": 1})
+        moves_disallowed.move_line_ids.quantity = 1
         with self.assertRaises(ValidationError):
             self.customer_picking.button_validate()
         # We can split the picking if the whole kit components are delivered
-        moves_disallowed.write({"quantity_done": 3})
+        moves_disallowed.move_line_ids.quantity = 3
         # We've got a backorder on the rest of the lines
         response = self.customer_picking.button_validate()
         self.assertEqual("stock.backorder.confirmation", response.get("res_model"))
 
     def test_03_all_done(self):
         """Deliver the whole picking normally"""
-        self.customer_picking.move_lines.write({"quantity_done": 3})
+        for move in self.customer_picking.move_ids:
+            move.move_line_ids.quantity = move.product_uom_qty
         self.customer_picking.button_validate()
         self.assertEqual("done", self.customer_picking.state)
 
     def test_04_manual_move_lines(self):
         """If a user adds manual operations, we should consider it as well"""
-        # We need to enable detaild operations to test this case
-        self.customer_picking.picking_type_id.show_operations = True
-        picking_form = Form(self.customer_picking)
+        self.customer_picking.move_ids.move_line_ids.quantity = 0
         for product in (self.bom_kit_1 + self.bom_kit_2).mapped(
             "bom_line_ids.product_id"
         ):
-            with picking_form.move_line_ids_without_package.new() as line:
-                line.product_id = product
-                line.qty_done = 3
-        picking_form.save()
-        self.customer_picking.move_lines.filtered(
+            self.env["stock.move.line"].create(
+                {
+                    "picking_id": self.customer_picking.id,
+                    "product_id": product.id,
+                    "quantity": 3,
+                    "location_id": self.customer_picking.location_id.id,
+                    "location_dest_id": self.customer_picking.location_dest_id.id,
+                }
+            )
+        self.customer_picking.move_ids.filtered(
             lambda x: x.product_id in (self.product_mrp, self.regular_product)
-        ).write({"quantity_done": 3})
+        ).move_line_ids.quantity = 3
         self.customer_picking.button_validate()
         self.assertEqual("done", self.customer_picking.state)

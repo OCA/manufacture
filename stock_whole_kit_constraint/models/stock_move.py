@@ -35,18 +35,18 @@ class StockMove(models.Model):
             quantity_todo.setdefault(move.product_id.id, 0)
             quantity_done.setdefault(move.product_id.id, 0)
             quantity_todo[move.product_id.id] += move.product_uom_qty
-            quantity_done[move.product_id.id] += move.quantity_done
+            quantity_done[move.product_id.id] += move.quantity
         for ops in self.mapped("move_line_ids").filtered(
             lambda x: x.package_id and not x.product_id and not x.move_id
         ):
             for quant in ops.package_id.quant_ids:
                 quantity_done.setdefault(quant.product_id.id, 0)
-                quantity_done[quant.product_id.id] += quant.qty
+                quantity_done[quant.product_id.id] += quant.quantity
         for pack in self.mapped("move_line_ids").filtered(
             lambda x: x.product_id and not x.move_id
         ):
             quantity_done.setdefault(pack.product_id.id, 0)
             quantity_done[pack.product_id.id] += pack.product_uom_id._compute_quantity(
-                pack.qty_done, pack.product_id.uom_id
+                pack.quantity, pack.product_id.uom_id
             )
         return any(quantity_done[x] < quantity_todo.get(x, 0) for x in quantity_done)

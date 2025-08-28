@@ -10,14 +10,14 @@ class StockPicking(models.Model):
     def _check_backorder(self):
         """On the moment of the picking validation, we'll check wether there
         are kits that can't be partially delivered or not"""
-        moves = self.mapped("move_lines").filtered(
+        moves = self.mapped("move_ids").filtered(
             lambda x: not x.allow_partial_kit_delivery and x.bom_line_id
         )
         boms = moves.mapped("bom_line_id.bom_id")
         for bom in boms:
-            bom_moves = moves.filtered(lambda x: x.bom_line_id.bom_id == bom)
+            bom_moves = moves.filtered(lambda x, bm=bom: x.bom_line_id.bom_id == bm)
             # We can put it in backorder if the whole kit goes
-            if not sum(bom_moves.mapped("quantity_done")):
+            if not sum(bom_moves.mapped("quantity")):
                 continue
             if bom_moves._check_backorder_moves():
                 raise ValidationError(

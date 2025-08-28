@@ -4,12 +4,13 @@
     <record model="ir.ui.view" id="product_template_form_view_bom_button">
         <field name="model">product.template</field>
         <field name="inherit_id" ref="mrp.product_template_form_view_bom_button" />
-        <field name="groups_id" eval="[(4, ref('stock.group_stock_manager'))]" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
-                    <field
+                <field name="display_allow_partial_kit_delivery" invisible="1" />
+                <field
                     name="allow_partial_kit_delivery"
-                    attrs="{'invisible': [('bom_count', '=', 0), ('type', 'not in', ['consu', 'product'])]}"
+                    groups="stock.group_stock_manager"
+                    invisible="not display_allow_partial_kit_delivery"
                 />
             </xpath>
         </field>
@@ -17,12 +18,13 @@
     <record id="product_product_form_view_bom_button" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="inherit_id" ref="mrp.product_product_form_view_bom_button" />
-        <field name="groups_id" eval="[(4, ref('stock.group_stock_manager'))]" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
+                <field name="display_allow_partial_kit_delivery" invisible="1" />
                 <field
                     name="allow_partial_kit_delivery"
-                    attrs="{'invisible': [('bom_count', '=', 0), ('type', 'not in', ['consu', 'product'])]}"
+                    groups="stock.group_stock_manager"
+                    invisible="not display_allow_partial_kit_delivery"
                 />
             </xpath>
         </field>
