@@ -796,6 +796,13 @@ msgid "Quantity must be positive."
 msgstr "La quantità deve essere positiva."
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__rfq_qty
+msgid ""
+"Quantity on Request for Quotation.\n"
+"This quantity is included in the supply quantity but it is not confirmed yet."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_quant
 msgid "Quants"
 msgstr "Quanti"
@@ -809,6 +816,16 @@ msgstr "Pronto"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__order_release_date
 msgid "Release Date"
 msgstr "Data rilascio"
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_list
+msgid "Requests for Quotation"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__rfq_qty
+msgid "RfQ"
+msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.action_mrp_multi_level
