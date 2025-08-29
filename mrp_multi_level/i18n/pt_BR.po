@@ -280,8 +280,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_verified
-msgid ""
-"Identifies that this product has been verified to be valid for the MRP."
+msgid "Identifies that this product has been verified to be valid for the MRP."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -561,8 +560,8 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
 msgid ""
-"Number of days to group demand for this product during the MRP run, in order"
-" to determine the quantity to order."
+"Number of days to group demand for this product during the MRP run, in order "
+"to determine the quantity to order."
 msgstr ""
 
 #. module: mrp_multi_level
@@ -793,6 +792,13 @@ msgid "Quantity must be positive."
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory__rfq_qty
+msgid ""
+"Quantity on Request for Quotation.\n"
+"This quantity is included in the supply quantity but it is not confirmed yet."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_quant
 msgid "Quants"
 msgstr ""
@@ -805,6 +811,16 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__order_release_date
 msgid "Release Date"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_list
+msgid "Requests for Quotation"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__rfq_qty
+msgid "RfQ"
 msgstr ""
 
 #. module: mrp_multi_level
@@ -974,7 +990,8 @@ msgstr ""
 msgid ""
 "Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
-"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    this may trigger a draft purchase order, a "
+"manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
 
