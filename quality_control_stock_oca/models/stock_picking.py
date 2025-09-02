@@ -124,7 +124,12 @@ class StockPicking(models.Model):
     def button_validate(self):
         if self._needs_inspections_wizard():
             return self._show_inspections_wizard()
-        return super().button_validate()
+
+        res = super().button_validate()
+
+        self.create_scraps()
+
+        return res
 
     def _needs_inspections_wizard(self):
         if (
@@ -144,3 +149,24 @@ class StockPicking(models.Model):
         )
         action["context"] = ctx
         return action
+
+    def create_scraps(self):
+        for inspection in self.qc_inspections_ids.filtered(
+            lambda x: x.state == "failed" and x.product_id.auto_scrap
+        ):
+            vals = {
+                "picking_id": self.id,
+                "product_id": inspection.product_id.id,
+                "product_uom_id": inspection.product_id.uom_id.id,
+                "location_id": self.location_dest_id.id,
+                "scrap_qty": inspection.qty,
+                "lot_id": inspection.lot_id.id,
+            }
+
+            if inspection.object_id._name == "stock.move":
+                vals.update(
+                    {
+                        "move_id": inspection.object_id.id,
+                    }
+                )
+            self.env["stock.scrap"].create(vals).action_validate()

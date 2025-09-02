@@ -10,3 +10,8 @@ class ProductTemplate(models.Model):
         string="Remind Quality Control",
         help="If selected, notify to perform Quality Control on this product when scheduled",
     )
+
+    auto_scrap = fields.Boolean(
+        string="Scrap Automatically",
+        help="If selected, automatically scraps this product when inspections fail",
+    )
