@@ -15,3 +15,5 @@
   - Yoshi Tashiro
 - [Solvos](https://www.solvos.es):
   - Dante Pereyra \<<dante.pereyra@solvos.es>\>
+- [PyTech] (<https://www.pytech.it>`):
+  - Quirino Leone \<<quirino.leone@pytech.it>\>
