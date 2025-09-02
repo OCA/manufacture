@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='qc_triggers']" position="before">
                 <field name="remind_qc" />
+                <field name="auto_scrap" />
             </xpath>
         </field>
     </record>
