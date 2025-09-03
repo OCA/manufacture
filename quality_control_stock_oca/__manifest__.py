@@ -5,7 +5,7 @@
 
 {
     "name": "Quality control - Stock (OCA)",
-    "version": "17.0.2.1.0",
+    "version": "18.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "Tecnativa, AvanzOSC, "

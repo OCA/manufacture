@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Quality control - Stock (OCA)
 =============================
@@ -17,17 +13,17 @@ Quality control - Stock (OCA)
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/17.0/quality_control_stock_oca
+    :target: https://github.com/OCA/manufacture/tree/18.0/quality_control_stock_oca
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-17-0/manufacture-17-0-quality_control_stock_oca
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-quality_control_stock_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -48,31 +44,31 @@ Configuration
 Configure a QC trigger in the product, product template, or product
 category to define the conditions for creating inspections:
 
-- Trigger: Choose the trigger to activate the inspection process.
-- Test: Define a group of questions with valid values for the
-  inspection.
-- Responsible: Assign a user responsible for the QC inspection.
-- Partner: Optionally specify partners to limit the test to actions
-  involving them.
-- Timing: Determine when inspections are generated:
+-  Trigger: Choose the trigger to activate the inspection process.
+-  Test: Define a group of questions with valid values for the
+   inspection.
+-  Responsible: Assign a user responsible for the QC inspection.
+-  Partner: Optionally specify partners to limit the test to actions
+   involving them.
+-  Timing: Determine when inspections are generated:
 
-  - Before: On picking confirmation.
-  - After: On picking completion.
-  - Plan Ahead: On picking confirmation, generating a non-editable plan
-    inspection that becomes executable post-picking completion.
+   -  Before: On picking confirmation.
+   -  After: On picking completion.
+   -  Plan Ahead: On picking confirmation, generating a non-editable
+      plan inspection that becomes executable post-picking completion.
 
 To create a quality inspection for each lot/serial number used in a
 stock move you need to:
 
-- Go to Quality Control> Configuration > Triggers.
-- Activate the "Inspection Per Lot" option in those triggers which need
-  to force a different inspection for each lot/serial number used in a
-  stock picking.
+-  Go to Quality Control> Configuration > Triggers.
+-  Activate the "Inspection Per Lot" option in those triggers which need
+   to force a different inspection for each lot/serial number used in a
+   stock picking.
 
 Known issues / Roadmap
 ======================
 
-- Put trigger in all languages.
+-  Put trigger in all languages.
 
 Bug Tracker
 ===========
@@ -80,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_stock_oca%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20quality_control_stock_oca%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -97,28 +93,28 @@ Authors
 Contributors
 ------------
 
-- Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-- Simone Rubino <simone.rubino@agilebg.com>
-- Andrii Skrypka <andrijskrypa@ukr.net>
-- Ignacio José Alés <ignacio.ales@guadaltech.es>
-- Pimolnat Suntian <pimolnats@ecosoft.co.th>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+-  Simone Rubino <simone.rubino@agilebg.com>
+-  Andrii Skrypka <andrijskrypa@ukr.net>
+-  Ignacio José Alés <ignacio.ales@guadaltech.es>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pedro M. Baeza
-  - Carlos Roca
+   -  Pedro M. Baeza
+   -  Carlos Roca
 
-- `APSL-Nagarro <https://www.apsl.tech>`__:
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
-- `Sygel <https://www.sygel.es>`__:
+-  `Sygel <https://www.sygel.es>`__:
 
-  - Manuel Regidor <manuel.regidor@sygel.es>
+   -  Manuel Regidor <manuel.regidor@sygel.es>
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
 
 Maintainers
 -----------
@@ -133,6 +129,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/17.0/quality_control_stock_oca>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/quality_control_stock_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

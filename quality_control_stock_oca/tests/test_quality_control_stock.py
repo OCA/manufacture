@@ -36,7 +36,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
                 "product_id": cls.product.id,
             }
         )
-        cls.product.detailed_type = "product"
+        cls.product.is_storable = True
         cls.env["stock.quant"].create(
             {
                 "product_id": cls.product.id,
