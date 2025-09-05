@@ -154,9 +154,9 @@ class StockPicking(models.Model):
                     )
                     # Check if we need to advance the order date for the new line
                     date_planned = procurement.values["date_planned"]
-                    order_date_planned = date_planned - relativedelta(
-                        days=procurement.values["supplier"].delay
-                    )
+                    order_date_planned = fields.Datetime.from_string(
+                        date_planned
+                    ) - relativedelta(days=procurement.values["supplier"].delay)
                     if fields.Date.to_date(order_date_planned) < fields.Date.to_date(
                         po.date_order
                     ):
