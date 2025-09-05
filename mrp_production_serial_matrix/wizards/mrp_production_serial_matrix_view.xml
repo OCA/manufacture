@@ -88,13 +88,16 @@
                         field_x_axis="component_column_name"
                         field_y_axis="finished_lot_name"
                         field_value="component_lot_id"
-                        options='{"no_create": True, "no_open": True}'
                         colspan="2"
                     >
                         <tree editable="True" nolabel="1" create="false" limit="1000">
                             <field name="component_column_name" />
                             <field name="finished_lot_name" />
-                            <field name="component_lot_id" />
+                            <field
+                                name="component_lot_id"
+                                options='{"no_create": True, "no_open": True}'
+                                domain="[('id','in', allowed_component_lot_ids)]"
+                            />
                             <field name="component_id" invisible="1" />
                             <field name="lot_qty" invisible="1" />
                             <field name="finished_lot_id" invisible="1" />
