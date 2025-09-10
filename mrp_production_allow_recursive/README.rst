@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==============================
 MRP Production Allow Recursive
 ==============================
@@ -17,17 +13,17 @@ MRP Production Allow Recursive
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/16.0/mrp_production_allow_recursive
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_production_allow_recursive
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-16-0/manufacture-16-0-mrp_production_allow_recursive
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_production_allow_recursive
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -63,7 +59,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_allow_recursive%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_allow_recursive%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,9 +74,9 @@ Authors
 Contributors
 ------------
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
+   -  Aung Ko Ko Lin
 
 Maintainers
 -----------
@@ -95,6 +91,17 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/16.0/mrp_production_allow_recursive>`_ project on GitHub.
+.. |maintainer-yostashiro| image:: https://github.com/yostashiro.png?size=40px
+    :target: https://github.com/yostashiro
+    :alt: yostashiro
+.. |maintainer-aungkokolin1997| image:: https://github.com/aungkokolin1997.png?size=40px
+    :target: https://github.com/aungkokolin1997
+    :alt: aungkokolin1997
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-yostashiro| |maintainer-aungkokolin1997| 
+
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_production_allow_recursive>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

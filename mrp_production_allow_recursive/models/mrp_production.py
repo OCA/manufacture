@@ -7,7 +7,9 @@ from odoo import api, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.onchange("product_id", "move_raw_ids")
+    @api.onchange(
+        "product_id", "move_raw_ids", "never_product_template_attribute_value_ids"
+    )
     def _onchange_product_id(self):
         if self.company_id.allow_same_product_component_finish:
             return

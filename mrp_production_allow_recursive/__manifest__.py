@@ -3,14 +3,16 @@
 
 {
     "name": "MRP Production Allow Recursive",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "MRP",
     "license": "AGPL-3",
     "author": "Quartile, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp"],
     "data": [
+        "views/mrp_production_views.xml",
         "views/res_config_settings_views.xml",
     ],
+    "maintainers": ["yostashiro", "aungkokolin1997"],
     "installable": True,
 }
