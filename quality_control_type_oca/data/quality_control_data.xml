@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="qc_type_generic" model="qc.inspection.type">
+        <field name="name">Generic</field>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="qc_inspection_form_view" model="ir.ui.view">
+        <field name="name">qc.inspection.form</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='test']" position="before">
+                <field name="type_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="qc_inspection_tree_view" model="ir.ui.view">
+        <field name="name">qc.inspection.list</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='test']" position="before">
+                <field name="type_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="qc_inspection_kanban_view" model="ir.ui.view">
+        <field name="name">qc.inspection.kanban</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_kanban_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='test']" position="before">
+                <field name="type_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="qc_inspection_search_view" model="ir.ui.view">
+        <field name="name">qc.inspection.search</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='test']" position="before">
+                <field name="type_id" />
+            </xpath>
+            <xpath expr="//filter[@name='group_by_test']" position="before">
+                <filter
+                    string="Type"
+                    name="group_by_type_id"
+                    domain="[]"
+                    context="{'group_by': 'type_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

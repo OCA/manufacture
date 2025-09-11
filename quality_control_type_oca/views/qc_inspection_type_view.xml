@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="qc_inspection_type_form_view" model="ir.ui.view">
+        <field name="name">qc.inspection.type.form</field>
+        <field name="model">qc.inspection.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="sequence_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="qc_inspection_type_list_view" model="ir.ui.view">
+        <field name="name">qc.inspection.type.list</field>
+        <field name="model">qc.inspection.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="sequence_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_qc_inspection_type" model="ir.actions.act_window">
+        <field name="name">Quality Control Type</field>
+        <field name="res_model">qc.inspection.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        name="Quality Control Type"
+        id="menu_qc_type_config"
+        parent="quality_control_oca.menu_qc_config"
+        action="action_qc_inspection_type"
+        sequence="50"
+    />
+</odoo>
