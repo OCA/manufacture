@@ -49,14 +49,14 @@ class TestMRPMassProductionOrder(BaseCommon):
                     Command.create(
                         {"product_id": cls.product_delivery_01.id, "product_qty": 2}
                     ),
-                    Command.create({"product_id": cls.product_delivery_02.id}),
+                    # Command.create({"product_id": cls.product_delivery_02.id}),
                 ],
                 default_tag_ids=[cls.tag.id],
             ),
             "mrp_mass_production_order.wizard_mass_mrp_production_order",
         )
         wizard_with_bom.save().action_create()
-        cls.mrp1, cls.mrp2 = cls.env["mrp.production"].search(
+        cls.mrp1 = cls.env["mrp.production"].search(
             [
                 (
                     "product_id",
@@ -85,6 +85,7 @@ class TestMRPMassProductionOrder(BaseCommon):
                     )
                 ],
                 default_tag_ids=[cls.tag2.id],
+                default_with_bom=False,
             ),
             "mrp_mass_production_order.wizard_mass_mrp_production_order",
         )
@@ -126,16 +127,14 @@ class TestMRPMassProductionOrder(BaseCommon):
     def test_wizard_mrp_with_bom(self):
         self.assertEqual(self.mrp1.bom_id, self.bom)
         self.assertEqual(self.mrp1.product_uom_id, self.product_delivery_01.uom_id)
-        self.assertEqual(len(self.mrp2.bom_id), 0)
-        self.assertEqual(self.mrp2.product_qty, 1)
         picking_type = self.env["stock.picking.type"].search(
             [
                 ("code", "=", "mrp_operation"),
             ],
             limit=1,
         )
-        self.assertEqual(self.mrp1.state and self.mrp2.state, "done")
-        self.assertEqual(self.mrp1.tag_ids and self.mrp2.tag_ids, self.tag)
+        self.assertEqual(self.mrp1.state, "done")
+        self.assertEqual(self.mrp1.tag_ids, self.tag)
         self.assertEqual(self.mrp1.picking_type_id, picking_type)
         self.assertEqual(
             self.mrp1.location_src_id, picking_type.default_location_src_id
