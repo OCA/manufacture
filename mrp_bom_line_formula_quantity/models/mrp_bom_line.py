@@ -1,9 +1,11 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import math
+
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.safe_eval import safe_eval, test_python_expr
+from odoo.tools.safe_eval import safe_eval, test_python_expr, wrap_module
 
 
 class MRPBomLine(models.Model):
@@ -55,6 +57,7 @@ class MRPBomLine(models.Model):
             "product_uom": product_uom,
             "product_uom_qty": product_uom_qty,
             "production": production,
+            "math": wrap_module(math, ["ceil", "floor"]),
         }
 
     def _eval_quantity_formula(
