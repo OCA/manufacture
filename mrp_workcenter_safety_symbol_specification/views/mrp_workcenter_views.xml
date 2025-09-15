@@ -112,43 +112,45 @@
                         <field name="symbol_code" />
                         <field name="specification_notes" />
                         <templates>
-                            <t t-name="kanban-box">
-                                <div
-                                    class="oe_kanban_global_click"
-                                    style="width: 130px; height: 190px; /* Fixed size */
+                            <t t-name="kanban-card">
+                                <div class="oe_kanban_card">
+                                    <div
+                                        class="oe_kanban_global_click"
+                                        style="width: 130px; height: 190px; /* Fixed size */
                                              padding: 5px; display: flex; flex-direction: column;
                                              align-items: center; justify-content: flex-start; /* Align top */
                                              border: 1px solid #dee2e6; margin: 2px; border-radius: 3px;"
-                                >
-                                    <div class="mb-1">
-                                        <field
-                                            name="symbol_image"
-                                            widget="image"
-                                            options="{'size': [80, 80]}"
-                                        />
-                                    </div>
-
-                                    <div
-                                        style="font-size: 0.85em; line-height: 1.2; text-align: center; width: 100%; overflow: hidden;"
                                     >
-                                        <strong>
-                                            <field name="symbol_code" />
-                                        </strong>
-                                        <div class="text-muted mb-1">
+                                        <div class="mb-1">
                                             <field
-                                                name="iso_symbol_id"
-                                                options="{'no_open': True}"
+                                                name="symbol_image"
+                                                widget="image"
+                                                options="{'size': [80, 80]}"
                                             />
                                         </div>
+
                                         <div
-                                            class="text-muted"
-                                            t-att-title="record.specification_notes.raw_value"
-                                            style="max-height: 3.6em; /* Approx 3 lines */
+                                            style="font-size: 0.85em; line-height: 1.2; text-align: center; width: 100%; overflow: hidden;"
+                                        >
+                                            <strong>
+                                                <field name="symbol_code" />
+                                            </strong>
+                                            <div class="text-muted mb-1">
+                                                <field
+                                                    name="iso_symbol_id"
+                                                    options="{'no_open': True}"
+                                                />
+                                            </div>
+                                            <div
+                                                class="text-muted"
+                                                t-att-title="record.specification_notes.raw_value"
+                                                style="max-height: 3.6em; /* Approx 3 lines */
                                                      overflow: hidden; text-overflow: ellipsis;
                                                      display: -webkit-box; -webkit-line-clamp: 3;
                                                      -webkit-box-orient: vertical; font-style: italic;"
-                                        >
-                                            <field name="specification_notes" />
+                                            >
+                                                <field name="specification_notes" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
