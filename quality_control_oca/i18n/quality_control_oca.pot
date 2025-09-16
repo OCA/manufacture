@@ -784,6 +784,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_test.py:0
 msgid ""
+"Question '%(line_name)s' is not valid: you have to define at least one "
+"possible value."
+msgstr ""
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_test.py:0
+msgid ""
 "Question '%s' is not valid: minimum value can't be higher than maximum "
 "value."
 msgstr ""
