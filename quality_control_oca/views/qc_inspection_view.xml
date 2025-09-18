@@ -134,9 +134,12 @@
                                         column_invisible="1"
                                         readonly="1"
                                     />
-                                    <field name="test_uom_category" invisible="1" />
-                                    <field name="min_value" invisible="1" />
-                                    <field name="max_value" invisible="1" />
+                                    <field
+                                        name="test_uom_category"
+                                        column_invisible="1"
+                                    />
+                                    <field name="min_value" column_invisible="1" />
+                                    <field name="max_value" column_invisible="1" />
                                     <field name="valid_values" optional="show" />
                                     <field name="success" />
                                 </list>
