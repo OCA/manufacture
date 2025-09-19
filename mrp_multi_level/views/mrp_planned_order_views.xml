@@ -112,6 +112,7 @@
         <field name="name">Planned Orders</field>
         <field name="res_model">mrp.planned.order</field>
         <field name="type">ir.actions.act_window</field>
+        <field name="path">planned-orders</field>
         <field name="view_mode">list,form,pivot</field>
         <field name="context">{'search_default_fixed': 1}</field>
     </record>
