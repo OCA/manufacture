@@ -168,6 +168,7 @@
     <record id="mrp_inventory_action" model="ir.actions.act_window">
         <field name="name">MRP Inventory</field>
         <field name="res_model">mrp.inventory</field>
+        <field name="path">mrp-inventory</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">list,form,pivot,graph</field>
         <field name="view_id" ref="mrp_inventory_list" />
