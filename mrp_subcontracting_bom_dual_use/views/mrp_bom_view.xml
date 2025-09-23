@@ -13,7 +13,7 @@
             <page name="operations" position="attributes">
                 <attribute
                     name="invisible"
-                >type!='subcontract' and not allow_in_regular_production</attribute>
+                >type=='subcontract' and not allow_in_regular_production</attribute>
             </page>
             <field name="operation_ids" position="attributes">
                 <attribute
