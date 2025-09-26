@@ -9,27 +9,27 @@
                 <header>
                     <button
                         name="button_to_approve"
-                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        invisible="state != 'draft'"
                         string="To Approve"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="button_approve"
-                        attrs="{'invisible': [('state', '!=', 'to_approve')]}"
+                        invisible="state != 'to_approve'"
                         string="Approve"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="button_cancel"
-                        states="draft,to_approve,approve"
+                        invisible="state not in ('draft','to_approve','approve')"
                         string="Cancel"
                         type="object"
                     />
                     <button
                         name="button_draft"
-                        states="cancel"
+                        invisible="state not in ('cancel',)"
                         string="Reset to Draft"
                         type="object"
                     />
@@ -41,44 +41,29 @@
                 </header>
             </xpath>
             <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='product_id']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='product_qty']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='product_uom_id']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='type']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='bom_line_ids']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='operation_ids']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('type','not in',('normal','phantom'))], 'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="invisible">type not in ('normal','phantom')</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
             <xpath expr="//field[@name='byproduct_ids']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="readonly">state != 'draft'</attribute>
             </xpath>
         </field>
     </record>

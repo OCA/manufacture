@@ -4,7 +4,7 @@
     "name": "MRP BOM Tier Validation",
     "summary": "Extends the functionality of Bill of Material to "
     "support a tier validation process.",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Manufacture",
     "website": "https://github.com/OCA/manufacture",
     "author": "Ecosoft, Odoo Community Association (OCA)",
