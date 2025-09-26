@@ -6,7 +6,7 @@ from odoo.tests import common
 
 class TestMrpBom(common.TransactionCase):
     def setUp(self):
-        super(TestMrpBom, self).setUp()
+        super().setUp()
 
         # common models
         self.mrp_bom = self.env["mrp.bom"]
