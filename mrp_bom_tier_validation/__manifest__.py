@@ -11,6 +11,7 @@
     "license": "AGPL-3",
     "depends": ["mrp", "base_tier_validation"],
     "data": [
+        "data/tier_definition.xml",
         "views/mrp_bom_views.xml",
         "views/mrp_production_views.xml",
     ],
