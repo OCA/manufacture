@@ -6,29 +6,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-09-29 13:42+0000\n"
+"Last-Translator: Eugenio Micó Serrano <eugenio@studio73.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_production_back_to_draft
 #. odoo-python
 #: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
 msgid "Could not set the production order back to draft"
-msgstr ""
+msgstr "No se pudo revertir la orden de producción a borrador"
 
 #. module: mrp_production_back_to_draft
 #: model:ir.model,name:mrp_production_back_to_draft.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Orden de fabricación"
 
 #. module: mrp_production_back_to_draft
 #: model_terms:ir.ui.view,arch_db:mrp_production_back_to_draft.mrp_production_form_view_return_to_draft
 msgid "Return to Draft"
-msgstr ""
+msgstr "Volver a borrador"
 
 #. module: mrp_production_back_to_draft
 #. odoo-python
@@ -37,3 +39,5 @@ msgid ""
 "You cannot return to draft the following MO: %s. Only confirmed or cancelled"
 " MO can be returned to draft."
 msgstr ""
+"No puedes devolver a borrador el siguiente MO: %s. Solo los MO confirmados o "
+"cancelados pueden devolverse a borrador."
