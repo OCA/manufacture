@@ -4,7 +4,7 @@
 
 from random import randint
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -22,9 +22,7 @@ class MrpTag(models.Model):
     child_ids = fields.One2many("mrp.tag", "parent_id")
     parent_path = fields.Char(index=True)
 
-    _sql_constraints = [
-        ("tag_name_uniq", "unique (name)", "Tag name already exists !"),
-    ]
+    _tag_name_uniq = models.Constraint("unique (name)", "Tag name already exists !")
 
     @api.depends("name", "parent_id")
     def _compute_display_name(self):
@@ -46,4 +44,4 @@ class MrpTag(models.Model):
     @api.constrains("parent_id")
     def _check_parent_recursion(self):
         if self._has_cycle("parent_id"):
-            raise ValidationError(_("Tags cannot be recursive."))
+            raise ValidationError(self.env._("Tags cannot be recursive."))
