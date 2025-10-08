@@ -9,8 +9,8 @@ from odoo import fields, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    source_procurement_group_id = fields.Many2one(
-        comodel_name="procurement.group",
+    reference_ids = fields.Many2many(
+        comodel_name="stock.reference",
         readonly=True,
     )
     sale_id = fields.Many2one(
@@ -18,7 +18,7 @@ class MrpProduction(models.Model):
         string="Sale order",
         readonly=True,
         store=True,
-        related="source_procurement_group_id.sale_id",
+        related="sale_line_id.order_id",
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
