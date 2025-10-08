@@ -22,6 +22,14 @@ class TestMrpSaleInfo(common.TransactionCase):
                 }
             ]
         )
+        cls.mrp_workcenter = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Assembly Line 1",
+                "resource_calendar_id": cls.env.ref(
+                    "resource.resource_calendar_std"
+                ).id,
+            }
+        )
         cls.bom = cls.env["mrp.bom"].create(
             [
                 {
@@ -32,7 +40,7 @@ class TestMrpSaleInfo(common.TransactionCase):
                             0,
                             {
                                 "name": "Test operation",
-                                "workcenter_id": cls.env.ref("mrp.mrp_workcenter_3").id,
+                                "workcenter_id": cls.mrp_workcenter.id,
                             },
                         )
                     ],
