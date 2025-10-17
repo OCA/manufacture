@@ -101,6 +101,11 @@ class QcInspection(models.Model):
         tracking=True,
         default=lambda self: self.env.user,
     )
+    image_ids = fields.One2many(
+        "qc.inspection.image",
+        "inspection_id",
+        string="Inspection Images",
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -252,6 +257,20 @@ class QcInspection(models.Model):
         for rec in records:
             reference_vals.append(",".join([rec._name, str(rec.id)]))
         return self.sudo().search([("object_id", "in", reference_vals)])
+
+
+class QcInspectionImage(models.Model):
+    _name = "qc.inspection.image"
+    _inherit = ["image.mixin"]
+    _description = "QC Inspection Image"
+    _order = "sequence, id"
+
+    inspection_id = fields.Many2one(
+        "qc.inspection", required=True, ondelete="cascade", index=True
+    )
+    sequence = fields.Integer(default=10)
+    name = fields.Char("Image Title/Label")
+    description = fields.Text("Notes")
 
 
 class QcInspectionLine(models.Model):

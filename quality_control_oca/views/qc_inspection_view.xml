@@ -158,6 +158,20 @@
                                 />
                             </group>
                         </page>
+                        <page string="Images">
+                            <field name="image_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="name" />
+                                    <field
+                                        name="image_1920"
+                                        widget="image"
+                                        options="{'preview_image': 'image_128'}"
+                                    />
+                                    <field name="description" />
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
                 <chatter />

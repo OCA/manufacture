@@ -18,6 +18,7 @@
         "data/quality_control_data.xml",
         "security/quality_control_security.xml",
         "security/ir.model.access.csv",
+        "reports/qc_inspection_report.xml",
         "wizard/qc_test_wizard_view.xml",
         "views/qc_menus.xml",
         "views/qc_inspection_view.xml",

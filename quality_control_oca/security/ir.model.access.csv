@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_user_qc_inspection,qc_inspection,model_qc_inspection,group_quality_control_user,1,1,1,1
+access_user_qc_inspection_image,qc_inspection_image,model_qc_inspection_image,group_quality_control_user,1,1,1,1
 access_user_qc_inspection_line,qc_inspection_line,model_qc_inspection_line,group_quality_control_user,1,1,1,1
 access_user_qc_test,qc_test user,model_qc_test,group_quality_control_user,1,0,0,0
 access_manager_qc_test,qc_test manager,model_qc_test,group_quality_control_manager,1,1,1,1

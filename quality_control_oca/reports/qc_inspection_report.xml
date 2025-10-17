@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="qc_inspection_report_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Quality Inspection</h2>
+
+                        <!-- A. Inspection -->
+                        <table class="table table-sm o_main_table mt8">
+                            <tbody>
+                                <tr>
+                                    <th class="w-25">Inspection</th>
+                                    <td>
+                                        <span t-out="o.name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>State</th>
+                                    <td>
+                                        <span t-out="o.state" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Plan Date</th>
+                                    <td>
+                                        <span t-out="o.date" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Completion Date</th>
+                                    <td>
+                                        <span t-out="o.date_done or ''" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Responsible</th>
+                                    <td>
+                                        <span
+                                            t-out="o.user and o.user.display_name or ''"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Auto-generated</th>
+                                    <td>
+                                        <span
+                                            t-out="o.auto_generated and 'Yes' or 'No'"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Test</th>
+                                    <td>
+                                        <span
+                                            t-out="o.test and o.test.display_name or ''"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Reference</th>
+                                    <td>
+                                        <t t-if="o.object_id">
+                                            <span t-out="o.object_id.display_name" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Product</th>
+                                    <td>
+                                        <span
+                                            t-out="o.product_id and o.product_id.display_name or ''"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Quantity</th>
+                                    <td>
+                                        <span t-out="o.qty" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Overall Result</th>
+                                    <td>
+                                        <span
+                                            t-out="o.success and 'Passed' or 'Failed'"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- B. Inspection Lines (Questions & Results) -->
+                        <h3 class="mt32">Inspection Lines</h3>
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-end">#</th>
+                                    <th>Question / Test</th>
+                                    <th>Type</th>
+                                    <th>Measured</th>
+                                    <th class="text-end">Spec (Min)</th>
+                                    <th class="text-end">Spec (Max)</th>
+                                    <th>UoM</th>
+                                    <th>Result</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t
+                                    t-foreach="o.inspection_lines"
+                                    t-as="line"
+                                    t-key="line_index"
+                                >
+                                    <tr>
+                                        <td class="text-end">
+                                            <span t-out="line_index + 1" />
+                                        </td>
+                                        <td>
+                                            <span
+                                                t-out="line.name or (line.test_line and line.test_line.name) or ''"
+                                            />
+                                        </td>
+                                        <td>
+                                            <span
+                                                t-out="dict(line.fields_get()['question_type']['selection'])[line.question_type]"
+                                            />
+                                        </td>
+
+                                        <td>
+                                            <t
+                                                t-if="line.question_type == 'quantitative'"
+                                            >
+                                                <span t-out="line.quantitative_value" />
+                                            </t>
+                                            <t
+                                                t-elif="line.question_type == 'qualitative'"
+                                            >
+                                                <span
+                                                    t-out="line.qualitative_value and line.qualitative_value.display_name or ''"
+                                                />
+                                            </t>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <span t-out="line.min_value" />
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-out="line.max_value" />
+                                        </td>
+                                        <td>
+                                            <span
+                                                t-out="line.uom_id and line.uom_id.name or ''"
+                                            />
+                                        </td>
+                                        <td>
+                                            <span
+                                                t-out="line.success and 'OK' or 'NOK'"
+                                            />
+                                        </td>
+                                        <td>
+                                            <span t-out="line.notes or ''" />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- C. Notes -->
+                        <t t-if="o.internal_notes or o.external_notes">
+                            <h3 class="mt32">Notes</h3>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <t t-if="o.internal_notes">
+                                        <tr>
+                                            <th class="w-25">Internal Notes</th>
+                                            <td>
+                                                <span t-out="o.internal_notes" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="o.external_notes">
+                                        <tr>
+                                            <th>External Notes</th>
+                                            <td>
+                                                <span t-out="o.external_notes" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <div class="page-break" />
+
+                        <!-- D. Attached Images -->
+                        <t t-if="o.image_ids">
+                            <div style="page-break-before: always;" />
+                            <h3 class="mt32">Attached Images</h3>
+                            <div class="row">
+                                <t t-foreach="o.image_ids" t-as="img">
+                                    <div class="col-6 mb-3">
+                                        <div>
+                                            <t t-if="img.name">
+                                <strong t-out="img_index + 1" />. <span
+                                                t-out="img.name"
+                                            />
+                                </t>
+                                        </div>
+                                        <div class="border border-secondary-subtle p-2">
+                                            <img
+                                                t-att-src="image_data_uri(img.image_1920)"
+                                                class="mw-100 h-auto"
+                                            />
+                                        </div>
+                                        <t t-if="img.description">
+                                            <div class="small mt-1">
+                                                <em t-out="img.description" />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+                <div class="page-break" />
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_qc_inspection" model="report.paperformat">
+        <field name="name">QC Inspection A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+    </record>
+
+    <record id="action_report_qc_inspection" model="ir.actions.report">
+        <field name="name">QC Inspection Report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="model">qc.inspection</field>
+
+        <field
+            name="report_name"
+        >quality_control_oca.qc_inspection_report_document</field>
+        <field
+            name="report_file"
+        >quality_control_oca.qc_inspection_report_document</field>
+
+        <field
+            name="print_report_name"
+        >'QC_Inspection_%s' % (object.name or object.id)</field>
+
+        <field name="binding_model_id" ref="quality_control_oca.model_qc_inspection" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
