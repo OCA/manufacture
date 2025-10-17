@@ -31,7 +31,9 @@ class MrpComponentOperate(models.Model):
                 )
             rec.allowed_reason_code_ids = codes
 
-    def _create_scrap(self):
-        scrap = super()._create_scrap()
-        scrap.reason_code_id = self.scrap_reason_code_id
-        return scrap
+    def _create_scrap_vals(self):
+        return {
+            **super()._create_scrap_vals(),
+            # As scrap reason is required, we do not need to check if it is set
+            **{"reason_code_id": self.scrap_reason_code_id.id},
+        }
