@@ -1,6 +1,4 @@
-In a similar way to invoices, this module adds the possibility to add
-sections ands notes in Bills of Materials. It adds a page in BoM form
-view and hide the orignal page (you can see it as admin in debug mode)
+In a similar way to invoices, this module adds the possibility to include sections and notes in Bills of Materials.
+It adds a new page in the BoM form view that includes both components and sections.
 
-Depends on account module since widget 'section_and_note' is defined on
-section_and_note_fields_backend.js in account module.
+This module depends on the account module, since the widget section_and_note is defined in section_and_note_fields_backend.js within the account module.
