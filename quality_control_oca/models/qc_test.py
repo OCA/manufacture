@@ -18,7 +18,11 @@ class QcTest(models.Model):
     _inherit = "mail.thread"
 
     def object_selection_values(self):
-        return set()
+        """
+        Overridable method for adding more object models to a test.
+        :return: A list with the selection's possible values.
+        """
+        return [("product.product", "Product")]
 
     @api.onchange("type")
     def onchange_type(self):
