@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_widget_section_and_note_one2many
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-10 15:01+0000\n"
+"PO-Revision-Date: 2022-05-10 15:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Add a product"
+msgstr "Ajouter un produit"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Add a section"
+msgstr "Ajouter une section"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model,name:mrp_bom_widget_section_and_note_one2many.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model,name:mrp_bom_widget_section_and_note_one2many.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Ligne de nomenclature"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom__bom_line_ids
+msgid "BoM Lines"
+msgstr "Lignes de nomenclature"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom__bom_line_with_sectionnote_ids
+msgid "BoM Lines With Sections & Notes"
+msgstr "Lignes de nomenclature avec Sections & Notes"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_id
+msgid "Component"
+msgstr "Composant"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Components and sections"
+msgstr "Composants avec sections"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__name
+msgid "Description"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__display_type
+msgid "Display Type"
+msgstr "Type d'affichage"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_non_bom_null_fields
+msgid "Forbidden values on note and section bom line"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_field_uom
+msgid "Missing required field on bom line : uom."
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.constraint,message:mrp_bom_widget_section_and_note_one2many.constraint_mrp_bom_line_bom_required_fields_product_qty
+msgid "Missing required fields on bom line : product and quantity."
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_note
+msgid "Note"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model_terms:ir.ui.view,arch_db:mrp_bom_widget_section_and_note_one2many.mrp_bom_form_view_section
+msgid "Product Attachments"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,field_description:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields.selection,name:mrp_bom_widget_section_and_note_one2many.selection__mrp_bom_line__display_type__line_section
+msgid "Section"
+msgstr ""
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__display_type
+msgid "Technical field for UX purpose."
+msgstr "Champ technique utilisé à des fins ergonomiques"
+
+#. module: mrp_bom_widget_section_and_note_one2many
+#: model:ir.model.fields,help:mrp_bom_widget_section_and_note_one2many.field_mrp_bom_line__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#~ msgid "Attachments"
+#~ msgstr "Pièces jointes"
+
+#~ msgid "Components"
+#~ msgstr "Composants"
+
+#~ msgid "No attachment"
+#~ msgstr "Pas de pièces jointes"
+
+#~ msgid "Quantity"
+#~ msgstr "Quantité"
