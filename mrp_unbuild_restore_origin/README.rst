@@ -32,14 +32,14 @@ Mrp Unbuild Restore Origin
   retaining
 | information from the original move lines.
 
-- | **Owner Retention:** The owner from the original move lines is
-    always retained
-  | automatically when unbuilding a Manufacturing Order.
+-  | **Owner Retention:** The owner from the original move lines is
+     always retained
+   | automatically when unbuilding a Manufacturing Order.
 
-- | **Location Retention (Optional):** A boolean field is available to
-    retain the original
-  | source and destination locations of the move lines during the
-    unbuild process, if needed.
+-  | **Location Retention (Optional):** A boolean field is available to
+     retain the original
+   | source and destination locations of the move lines during the
+     unbuild process, if needed.
 
 **Table of contents**
 
@@ -81,10 +81,11 @@ Authors
 Contributors
 ------------
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
-  - Yoshi Tashiro
+   -  Aung Ko Ko Lin
+   -  Yoshi Tashiro
+   -  Toshikimi Shigenobu
 
 Maintainers
 -----------
