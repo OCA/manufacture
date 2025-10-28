@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,8 +26,8 @@ msgstr ""
 #. module: mrp_production_allow_recursive
 #: model_terms:ir.ui.view,arch_db:mrp_production_allow_recursive.view_stock_config_settings
 msgid ""
-"Allow the same product to be used as both a component and a finished product\n"
-"                            in manufacturing orders."
+"Allow the same product to be used as both a component and a finished product"
+" in manufacturing orders."
 msgstr ""
 
 #. module: mrp_production_allow_recursive
@@ -42,5 +42,5 @@ msgstr ""
 
 #. module: mrp_production_allow_recursive
 #: model:ir.model,name:mrp_production_allow_recursive.model_mrp_production
-msgid "Production Order"
+msgid "Manufacturing Order"
 msgstr ""
