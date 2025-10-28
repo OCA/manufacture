@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-manufacture"
+version = "19.0.20251028.0"
+dependencies = [
+    "odoo-addon-mrp_bom_image==19.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 19.0",
+]
