@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Copyright 2022 ForgeFlow S.L.-->
+<!--(http://www.forgeflow.com)-->
+<!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='miscellaneous']//field[@name='origin']"
+                position="after"
+            >
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field
+                    name="tag_ids"
+                    optional="hide"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_filter" model="ir.ui.view">
+        <field name="name">mrp.production.search</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="/search/field[@name='origin']" position="after">
+                <field
+                    name="tag_ids"
+                    string="Tag"
+                    filter_domain="[('tag_ids', 'child_of', self)]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
