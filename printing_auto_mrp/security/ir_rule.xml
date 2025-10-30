@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_rule_user" model="ir.rule">
+        <field name="name">mrp production auto print</field>
+        <field name="model_id" ref="printing_auto_base.model_printing_auto" />
+        <field name="domain_force">[("model", "=", "mrp.production")]</field>
+        <field name="groups" eval="[(4, ref('stock.group_stock_user'))]" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+        <field name="perm_read" eval="1" />
+    </record>
+</odoo>

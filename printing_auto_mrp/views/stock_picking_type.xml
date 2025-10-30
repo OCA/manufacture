@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_picking_type_form_inherit" model="ir.ui.view">
+        <field name="name">printing.auto.stock.picking</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <page name="mrp_hardware" position="inside">
+                <separator string="Auto Printing Configuration" colspan="4" />
+                <field
+                    name="auto_printing_ids"
+                    domain="[('model', '=', 'mrp.production')]"
+                    context="{'default_model': 'mrp.production'}"
+                />
+            </page>
+        </field>
+    </record>
+</odoo>

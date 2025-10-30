@@ -8,7 +8,9 @@
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "data": [
+        "security/ir_rule.xml",
         "views/mrp_production.xml",
+        "views/stock_picking_type.xml",
     ],
     "depends": [
         "printing_auto_stock_picking",
