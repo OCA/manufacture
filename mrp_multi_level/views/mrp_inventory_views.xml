@@ -109,10 +109,9 @@
     <record id="mrp_inventory_search" model="ir.ui.view">
         <field name="name">mrp.inventory.search</field>
         <field name="model">mrp.inventory</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="MRP Inventory">
-                <group name="select" expand="0" string="Selection...">
+                <group name="select">
                     <field name="product_id" />
                     <field name="mrp_area_id" />
                     <field name="company_id" groups="base.group_multi_company" />
@@ -130,35 +129,41 @@
                     domain="[['to_procure','>',0.0]]"
                 />
                 <separator />
-                <group expand="0" string="Group By...">
+                <group>
                     <filter
                         name="group_product"
                         string="Product"
+                        domain="[]"
                         context="{'group_by':'product_mrp_area_id'}"
                     />
                     <filter
                         name="group_mrp_area"
                         string="MRP Area"
+                        domain="[]"
                         context="{'group_by':'mrp_area_id'}"
                     />
                     <filter
                         name="group_supply_method"
                         string="Supply Method"
+                        domain="[]"
                         context="{'group_by':'supply_method'}"
                     />
                     <filter
                         name="group_main_supplier_id"
                         string="Main Supplier"
+                        domain="[]"
                         context="{'group_by':'main_supplier_id'}"
                     />
                     <filter
                         name="group_date"
                         string="Date"
+                        domain="[]"
                         context="{'group_by':'date'}"
                     />
                     <filter
                         name="group_release_date"
                         string="Date to Procure"
+                        domain="[]"
                         context="{'group_by':'order_release_date'}"
                     />
                 </group>
