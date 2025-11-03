@@ -93,15 +93,17 @@
                     domain="[('mrp_planner_id', '=', uid)]"
                 />
                 <filter string="Fixed" name="fixed" domain="[('fixed','=',True)]" />
-                <group name='group_by' expand="0" string="Group By...">
+                <group name='group_by'>
                     <filter
                         name='product_parameters'
                         string="Product Parameters"
+                        domain="[]"
                         context="{'group_by':'product_mrp_area_id'}"
                     />
                     <filter
                         name='due_date'
                         string="Due Date"
+                        domain="[]"
                         context="{'group_by':'due_date'}"
                     />
                 </group>

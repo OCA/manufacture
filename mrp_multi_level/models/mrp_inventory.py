@@ -6,7 +6,7 @@
 
 from datetime import date, timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MrpInventory(models.Model):
@@ -133,7 +133,7 @@ class MrpInventory(models.Model):
         domain = [("id", "in", planned_order_ids)]
 
         return {
-            "name": _("Planned Orders"),
+            "name": self.env._("Planned Orders"),
             "type": "ir.actions.act_window",
             "res_model": "mrp.planned.order",
             "view_mode": "list,form",

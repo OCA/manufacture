@@ -30,7 +30,7 @@ class ProductTemplate(models.Model):
             "mrp_multi_level.product_mrp_area_action"
         )
         ctx = ast.literal_eval(result.get("context"))
-        mrp_areas = self.env["mrp.area"].search([])
+        mrp_areas = self.env["mrp.area"].search([])  # pylint: disable=W8163
         if "context" not in result:
             result["context"] = {}
         if len(mrp_areas) == 1:

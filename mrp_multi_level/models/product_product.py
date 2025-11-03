@@ -56,7 +56,7 @@ class Product(models.Model):
         ctx = ast.literal_eval(result.get("context"))
         if not ctx:
             ctx = {}
-        mrp_areas = self.env["mrp.area"].search([])
+        mrp_areas = self.env["mrp.area"].search([])  # pylint: disable=W8163
         if len(mrp_areas) == 1:
             ctx.update({"default_mrp_area_id": mrp_areas[0].id})
         area_ids = self.mrp_area_ids.ids

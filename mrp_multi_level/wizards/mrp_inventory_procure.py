@@ -1,7 +1,7 @@
 # Copyright 2018-21 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -29,9 +29,7 @@ class MrpInventoryProcure(models.TransientModel):
         }
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         if self.env.user.has_group("mrp_multi_level.group_change_mrp_procure_qty"):
             view_id = self.env.ref(
                 "mrp_multi_level.view_mrp_inventory_procure_wizard"
@@ -40,9 +38,7 @@ class MrpInventoryProcure(models.TransientModel):
             view_id = self.env.ref(
                 "mrp_multi_level.view_mrp_inventory_procure_without_security"
             ).id
-        return super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+        return super().get_view(view_id, view_type, **options)
 
     @api.model
     def default_get(self, fields):
@@ -73,14 +69,14 @@ class MrpInventoryProcure(models.TransientModel):
     def make_procurement(self):
         self.ensure_one()
         errors = []
-        pg = self.env["procurement.group"]
+        StockRule = self.env["stock.rule"]
         procurements = []
         for item in self.item_ids:
             if not item.qty:
-                raise ValidationError(_("Quantity must be positive."))
+                raise ValidationError(self.env._("Quantity must be positive."))
             values = item._prepare_procurement_values()
             procurements.append(
-                pg.Procurement(
+                StockRule.Procurement(
                     item.product_id,
                     item.qty,
                     item.uom_id,
@@ -93,8 +89,8 @@ class MrpInventoryProcure(models.TransientModel):
             )
         # Run procurements
         try:
-            pg.run(procurements)
-            for item in self.item_ids:
+            StockRule.run(procurements)
+            for item in self.item_ids.sudo():
                 item.planned_order_id.qty_released += item.qty
         except UserError as error:
             errors.append(str(error))

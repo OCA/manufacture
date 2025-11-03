@@ -7,7 +7,7 @@
 import logging
 from datetime import date, timedelta
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import float_is_zero, mute_logger
 
 logger = logging.getLogger(__name__)
@@ -122,7 +122,7 @@ class MultiLevelMrp(models.TransientModel):
             bomline.product_id, product.mrp_area_id
         )
         if not product_mrp_area:
-            raise exceptions.Warning(_("No MRP product found"))
+            raise exceptions.Warning(self.env._("No MRP product found"))
         factor = (
             product.product_id.uom_id._compute_quantity(
                 qty, bomline.bom_id.product_uom_id
@@ -294,6 +294,7 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _mrp_cleanup(self, mrp_areas):
         logger.info("Start MRP Cleanup")
+        # pylint: disable=W8163
         domain = []
         if mrp_areas:
             domain += [("mrp_area_id", "in", mrp_areas.ids)]
@@ -331,7 +332,7 @@ class MultiLevelMrp(models.TransientModel):
             )
             or 1000
         )
-        self.env["product.product"].search([]).write({"llc": llc})
+        self.env["product.product"].search([]).write({"llc": llc})  # pylint: disable=W8163
         products = self.env["product.product"].search([("llc", "=", llc)])
         if products:
             counter = len(products)
@@ -366,6 +367,7 @@ class MultiLevelMrp(models.TransientModel):
     @api.model
     def _calculate_mrp_applicable(self, mrp_areas):
         logger.info("Start Calculate MRP Applicable")
+        # pylint: disable=W8163
         domain = []
         if mrp_areas:
             domain += [("mrp_area_id", "in", mrp_areas.ids)]
@@ -497,7 +499,7 @@ class MultiLevelMrp(models.TransientModel):
     def _mrp_initialisation(self, mrp_areas):
         logger.info("Start MRP initialisation")
         if not mrp_areas:
-            mrp_areas = self.env["mrp.area"].search([])
+            mrp_areas = self.env["mrp.area"].search([])  # pylint: disable=W8163
         product_mrp_areas = self.env["product.mrp.area"].search(
             [("mrp_area_id", "in", mrp_areas.ids), ("mrp_applicable", "=", True)]
         )
@@ -547,7 +549,7 @@ class MultiLevelMrp(models.TransientModel):
                 fields.Date.from_string(move.mrp_date)
                 >= last_date + timedelta(days=grouping_delta)
             ):
-                name = _("Safety Stock")
+                name = self.env._("Safety Stock")
                 origin = ",".join(list({x for x in demand_origin if x}))
                 qtytoorder = self._get_qty_to_order(
                     product_mrp_area, last_date, 0, onhand
@@ -580,9 +582,8 @@ class MultiLevelMrp(models.TransientModel):
                     or (onhand + last_qty) < product_mrp_area.mrp_minimum_stock
                 )
             ):
-                name = _(
-                    "Grouped Demand of %(product_name)s for %(delta_days)d Days"
-                ) % dict(
+                name = self.env._(
+                    "Grouped Demand of %(product_name)s for %(delta_days)d Days",
                     product_name=product_mrp_area.product_id.display_name,
                     delta_days=grouping_delta,
                 )
@@ -619,9 +620,8 @@ class MultiLevelMrp(models.TransientModel):
                 demand_origin.append(move.origin or move.name)
 
         if last_date and last_qty != 0.00:
-            name = _(
-                "Grouped Demand of %(product_name)s for %(delta_days)d Days"
-            ) % dict(
+            name = self.env._(
+                "Grouped Demand of %(product_name)s for %(delta_days)d Days",
                 product_name=product_mrp_area.product_id.display_name,
                 delta_days=grouping_delta,
             )
@@ -643,7 +643,7 @@ class MultiLevelMrp(models.TransientModel):
         if (onhand + last_qty) < product_mrp_area.mrp_minimum_stock:
             mrp_date = self._get_safety_stock_target_date(product_mrp_area)
             qtytoorder = self._get_qty_to_order(product_mrp_area, mrp_date, 0, onhand)
-            name = _("Safety Stock")
+            name = self.env._("Safety Stock")
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=mrp_date,
@@ -679,7 +679,7 @@ class MultiLevelMrp(models.TransientModel):
                     0,
                     onhand,
                 )
-                name = _("Safety Stock")
+                name = self.env._("Safety Stock")
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
                     mrp_date=self._get_safety_stock_target_date(product_mrp_area),
@@ -708,7 +708,7 @@ class MultiLevelMrp(models.TransientModel):
         if onhand < product_mrp_area.mrp_minimum_stock:
             mrp_date = self._get_safety_stock_target_date(product_mrp_area)
             qtytoorder = self._get_qty_to_order(product_mrp_area, mrp_date, 0, onhand)
-            name = _("Safety Stock")
+            name = self.env._("Safety Stock")
             cm = self.create_action(
                 product_mrp_area_id=product_mrp_area,
                 mrp_date=mrp_date,
@@ -740,7 +740,7 @@ class MultiLevelMrp(models.TransientModel):
     def _mrp_calculation(self, mrp_lowest_llc, mrp_areas):
         logger.info("Start MRP calculation")
         if not mrp_areas:
-            mrp_areas = self.env["mrp.area"].search([])
+            mrp_areas = self.env["mrp.area"].search([])  # pylint: disable=W8163
         keyed_groups = self._get_mrp_initialization_groups_of_params(
             mrp_lowest_llc, mrp_areas
         )
