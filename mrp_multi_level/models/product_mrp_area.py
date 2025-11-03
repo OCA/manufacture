@@ -5,7 +5,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from math import ceil
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -104,13 +104,10 @@ class ProductMRPArea(models.Model):
     )
     mrp_planner_id = fields.Many2one("res.users")
 
-    _sql_constraints = [
-        (
-            "product_mrp_area_uniq",
-            "unique(product_id, mrp_area_id)",
-            "The product/MRP Area parameters combination must be unique.",
-        )
-    ]
+    _product_mrp_area_uniq = models.Constraint(
+        "unique(product_id, mrp_area_id)",
+        "The product/MRP Area parameters combination must be unique.",
+    )
 
     @api.constrains(
         "mrp_minimum_order_qty",
@@ -131,7 +128,7 @@ class ProductMRPArea(models.Model):
         )
         for rec in values:
             if any(v < 0 for v in rec.values()):
-                raise ValidationError(_("You cannot use a negative number."))
+                raise ValidationError(self.env._("You cannot use a negative number."))
 
     def _compute_display_name(self):
         for area in self:
@@ -176,13 +173,13 @@ class ProductMRPArea(models.Model):
 
     def _get_rule(self):
         self.ensure_one()
-        group_obj = self.env["procurement.group"]
+        rule_obj = self.env["stock.rule"]
         proc_loc = self.location_proc_id or self.location_id
         values = {
             "warehouse_id": self.mrp_area_id.warehouse_id,
             "company_id": self.company_id,
         }
-        rule = group_obj._get_rule(self.product_id, proc_loc, values)
+        rule = rule_obj._get_rule(self.product_id, proc_loc, values)
         if not rule:
             return False
         # Keep getting the rule for the product and the source location until the
@@ -192,9 +189,7 @@ class ProductMRPArea(models.Model):
             "make_to_order",
             "mts_else_mto",
         ):
-            new_rule = group_obj._get_rule(
-                self.product_id, rule.location_src_id, values
-            )
+            new_rule = rule_obj._get_rule(self.product_id, rule.location_src_id, values)
             if not new_rule:
                 break
             rule = new_rule

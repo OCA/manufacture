@@ -592,7 +592,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "password": "demo",
                 "email": "example@yourcompany.com",
                 "company_id": company.id,
-                "groups_id": [(6, 0, [group.id for group in groups])],
+                "group_ids": [(6, 0, [group.id for group in groups])],
             }
         )
         return user
@@ -678,9 +678,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
         values = {"warehouse_id": cls.wh}
         if extra_values and isinstance(extra_values, dict):
             values.update(extra_values)
-        return cls.env["procurement.group"].run(
+        return cls.env["stock.rule"].run(
             [
-                cls.env["procurement.group"].Procurement(
+                cls.env["stock.rule"].Procurement(
                     product,
                     product_qty,
                     product.uom_id,
