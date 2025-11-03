@@ -57,8 +57,7 @@ class ProductMRPArea(models.Model):
     mrp_transit_delay = fields.Integer(string="Transit Delay", default=0)
     mrp_verified = fields.Boolean(
         string="Verified for MRP",
-        help="Identifies that this product has been verified "
-        "to be valid for the MRP.",
+        help="Identifies that this product has been verified to be valid for the MRP.",
     )
     mrp_lead_time = fields.Float(string="Lead Time", compute="_compute_mrp_lead_time")
     distribution_lead_time = fields.Float()
