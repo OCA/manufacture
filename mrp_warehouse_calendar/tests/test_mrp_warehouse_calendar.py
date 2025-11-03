@@ -9,7 +9,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
     def setUp(self):
         super().setUp()
         self.move_obj = self.env["stock.move"]
-        self.pg_obj = self.env["procurement.group"]
+        self.rule_obj = self.env["stock.rule"]
 
         self.company = self.env.ref("base.main_company")
         self.warehouse = self.env.ref("stock.warehouse0")
@@ -66,9 +66,9 @@ class TestMrpWarehouseCalendar(TransactionCase):
             "company_id": self.company,
             "rule_id": self.manufacture_route,
         }
-        self.pg_obj.run(
+        self.rule_obj.run(
             [
-                self.pg_obj.Procurement(
+                self.rule_obj.Procurement(
                     self.product,
                     100,
                     self.product.uom_id,
@@ -100,9 +100,9 @@ class TestMrpWarehouseCalendar(TransactionCase):
             "company_id": self.company,
             "rule_id": self.manufacture_route,
         }
-        self.pg_obj.run(
+        self.rule_obj.run(
             [
-                self.pg_obj.Procurement(
+                self.rule_obj.Procurement(
                     self.product,
                     100,
                     self.product.uom_id,

@@ -18,17 +18,12 @@ class MrpProduction(models.Model):
         res = super()._compute_date_finished()
         productions = self.filtered(lambda p: p.date_start and not p.is_planned)
         for production in productions:
-            warehouse = self.picking_type_id.warehouse_id
+            warehouse = production.picking_type_id.warehouse_id
             if warehouse.calendar_id:
                 if production.bom_id.produce_delay:
                     production.date_finished = warehouse.calendar_id.plan_days(
                         +1 * production.bom_id.produce_delay + 1,
                         production.date_start,
-                    )
-                if production.company_id.manufacturing_lead:
-                    production.date_finished = warehouse.calendar_id.plan_days(
-                        +1 * production.company_id.manufacturing_lead + 1,
-                        production.date_finished,
                     )
                 production.move_finished_ids = [
                     (1, m.id, {"date": production.date_finished})
