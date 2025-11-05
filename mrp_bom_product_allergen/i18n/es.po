@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_product_allergen
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-05 14:58+0000\n"
+"PO-Revision-Date: 2025-11-05 15:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: mrp_bom_product_allergen
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_allergen.report_mrp_bom
+msgid "Allergens"
+msgstr "Alérgenos"
+
+#. module: mrp_bom_product_allergen
+#: model:ir.model,name:mrp_bom_product_allergen.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr "LdM Informe General"
+
+#. module: mrp_bom_product_allergen
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_allergen.product_template_form_view_allergens
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_allergen.product_variant_form_view_allergens
+msgid "Compute Allergens from BoM"
+msgstr "Calcular los alérgenos con la lista de materiales"
+
+#. module: mrp_bom_product_allergen
+#: model:ir.actions.server,name:mrp_bom_product_allergen.action_compute_allergens_bom_product
+#: model:ir.actions.server,name:mrp_bom_product_allergen.action_compute_allergens_bom_template
+msgid "Compute allergens from BoM"
+msgstr "Calcular los alérgenos con la lista de materiales"
+
+#. module: mrp_bom_product_allergen
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_allergen.product_template_form_view_allergens
+#: model_terms:ir.ui.view,arch_db:mrp_bom_product_allergen.product_variant_form_view_allergens
+msgid ""
+"Compute the allergens of the product using products and operations of "
+"related bill of materials, for manufactured products only."
+msgstr ""
+"Calcular los alérgenos del producto utilizando los productos y "
+"operaciones de la lista de materiales relacionada, solo para "
+"productos manufacturados."
+
+#. module: mrp_bom_product_allergen
+#: model:ir.model,name:mrp_bom_product_allergen.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_bom_product_allergen
+#: model:ir.model,name:mrp_bom_product_allergen.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
