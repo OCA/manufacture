@@ -3,7 +3,7 @@
 
 {
     "name": "Quality Control - Timesheet (OCA)",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Quality Control",
     "website": "https://github.com/OCA/manufacture",
     "author": "APSL-Nagarro, Odoo Community Association (OCA)",
