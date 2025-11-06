@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="qc_test_question_form_view_formula" model="ir.ui.view">
+        <field name="name">qc.test.question.form.auto.compute</field>
+        <field name="model">qc.test.question</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_test_question_form_view" />
+        <field name="arch" type="xml">
+            <group position="inside">
+                <field
+                    name="auto_compute_formula"
+                    readonly="type not in ('qualitative','quantitative')"
+                />
+                <field
+                    name="formula_code"
+                    widget="ace"
+                    options="{'mode': 'python'}"
+                    string="Formula"
+                    placeholder="result = inspection.qty"
+                    invisible="not auto_compute_formula"
+                    required="auto_compute_formula"
+                    class="o_full_width"
+                    nolabel="1"
+                    colspan="4"
+                />
+            </group>
+        </field>
+    </record>
+    <record id="qc_inspection_form_view_formula_fields" model="ir.ui.view">
+        <field name="name">qc.inspection.form.formula.fields</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+        <field name="arch" type="xml">
+            <field name="qualitative_value" position="attributes">
+                <attribute name="readonly">question_type == 'quantitative'</attribute>
+            </field>
+            <field name="quantitative_value" position="attributes">
+                <attribute name="readonly">question_type == 'qualitative'</attribute>
+            </field>
+            <xpath
+                expr="//field[@name='inspection_lines']/tree/field[@name='question_type']"
+                position="after"
+            >
+                <field name="auto_compute_formula" column_invisible="1" />
+                <field name="manual_override" column_invisible="1" />
+            </xpath>
+            <header position="inside">
+                <field name="has_auto_compute_formula_lines" invisible="1" />
+                <button
+                    name="action_recompute_formula_lines"
+                    type="object"
+                    string="Recompute Manually Adjusted Lines"
+                    class="btn-secondary"
+                    invisible="not has_auto_compute_formula_lines or state != 'ready'"
+                />
+            </header>
+        </field>
+    </record>
+</odoo>

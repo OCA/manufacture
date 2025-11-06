@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record model="qc.test" id="qc_test_formula_demo">
+        <field name="name">Formula Test (demo)</field>
+        <field name="type">generic</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record model="qc.test.question" id="qc_test_question_formula_1">
+        <field name="name">Inspection Qty. in range</field>
+        <field name="test" ref="qc_test_formula_demo" />
+        <field name="type">quantitative</field>
+        <field name="min_value" eval="5.0" />
+        <field name="max_value" eval="15.0" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="auto_compute_formula" eval="True" />
+        <field name="formula_code">
+# Quantitative formulas must assign a numeric value to `result`.
+# In this example we simply mirror the inspection quantity so the
+# success criteria reuses the standard min/max thresholds.
+result = inspection.qty or 0.0
+        </field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record model="qc.test.question" id="qc_test_question_formula_2">
+        <field name="name">Inspection Qty. is even</field>
+        <field name="test" ref="qc_test_formula_demo" />
+        <field name="type">qualitative</field>
+        <field name="auto_compute_formula" eval="True" />
+        <field name="formula_code">
+# Qualitative formulas may return the answer name (preferred) or a boolean
+# that matches the answer's OK flag. Here we spell out the answer name so it is
+# easy to read in the UI without memorising IDs.
+result = 'Even' if (inspection.qty or 0) % 2 == 0 else 'Odd'
+        </field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record model="qc.test.question.value" id="qc_test_question_formula_2_even">
+        <field name="name">Even</field>
+        <field name="ok" eval="True" />
+        <field name="test_line" ref="qc_test_question_formula_2" />
+    </record>
+    <record model="qc.test.question.value" id="qc_test_question_formula_2_odd">
+        <field name="name">Odd</field>
+        <field name="ok" eval="False" />
+        <field name="test_line" ref="qc_test_question_formula_2" />
+    </record>
+
+    <record model="qc.test.question" id="qc_test_question_formula_3">
+        <field name="name">Qty. greater than 8?</field>
+        <field name="test" ref="qc_test_formula_demo" />
+        <field name="type">qualitative</field>
+        <field name="auto_compute_formula" eval="True" />
+        <field name="formula_code">
+# When a qualitative formula returns True/False it maps to the first answer
+# with ok=True / ok=False respectively. This example flags quantities above 8.
+result = (inspection.qty or 0) &gt; 8
+        </field>
+        <field name="sequence">45</field>
+    </record>
+    <record model="qc.test.question.value" id="qc_test_question_formula_3_yes">
+        <field name="name">Greater than eight</field>
+        <field name="ok" eval="True" />
+        <field name="test_line" ref="qc_test_question_formula_3" />
+    </record>
+    <record model="qc.test.question.value" id="qc_test_question_formula_3_no">
+        <field name="name">Equal or below eight</field>
+        <field name="ok" eval="False" />
+        <field name="test_line" ref="qc_test_question_formula_3" />
+    </record>
+
+</odoo>
