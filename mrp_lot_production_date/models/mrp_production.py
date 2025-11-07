@@ -10,5 +10,5 @@ class MrpProduction(models.Model):
     def _post_inventory(self, cancel_backorder=False):
         res = super()._post_inventory(cancel_backorder=cancel_backorder)
         for order in self:
-            order.lot_producing_id.production_date = fields.Datetime.now()
+            order.lot_producing_ids.write({"production_date": fields.Datetime.now()})
         return res
