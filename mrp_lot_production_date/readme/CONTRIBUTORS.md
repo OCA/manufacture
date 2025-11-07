@@ -1,0 +1,3 @@
+- Sébastien Alix \<<sebastien.alix@camptocamp.com>\>
+- Nhan Tran \<<nhant@trobz.com>\>
+- Evan Soh \<<evan.soh@omnisoftsolution.com>\>
