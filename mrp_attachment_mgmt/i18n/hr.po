@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-17 15:35+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>\n"
+"PO-Revision-Date: 2025-11-10 09:37+0000\n"
+"Last-Translator: vladimiruvid <vladimir@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_attachment_mgmt
 #. odoo-python
@@ -25,7 +25,7 @@ msgid ""
 "%(error_count)d Product(s) without drawing:\n"
 "%(error_msg)s"
 msgstr ""
-"%(error_count)d Proizvod(i) bez crteža:\n"
+"%(error_count)d Proizvod(i) bez nacrta:\n"
 "%(error_msg)s"
 
 #. module: mrp_attachment_mgmt
