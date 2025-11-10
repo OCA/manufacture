@@ -14,15 +14,15 @@ class MrpProduction(models.Model):
             if rec.state not in ["confirmed", "cancel"]:
                 raise UserError(
                     self.env._(
-                        "You cannot return to draft the following MO: %s. "
-                        "Only confirmed or cancelled MO can be returned to draft."
+                        "You cannot return to draft the following MO: %(mo_name)s. "
+                        "Only confirmed or cancelled MO can be returned to draft.",
+                        mo_name=rec.name,
                     )
-                    % rec.name
                 )
             else:
                 (rec.move_raw_ids + rec.move_finished_ids)._action_cancel()
                 (rec.move_raw_ids + rec.move_finished_ids).write({"state": "draft"})
-                rec.workorder_ids.write({"state": "waiting"})
+                rec.workorder_ids.write({"state": "ready"})
                 if rec.state != "draft":
                     raise UserError(
                         self.env._("Could not set the production order back to draft")
