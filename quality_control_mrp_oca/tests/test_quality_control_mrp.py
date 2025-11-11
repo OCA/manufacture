@@ -2,7 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from odoo.addons.quality_control_oca.tests.test_quality_control import (
     TestQualityControlOcaBase,
