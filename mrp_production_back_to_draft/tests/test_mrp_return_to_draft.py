@@ -1,0 +1,111 @@
+# Copyright 2024 ForgeFlow S.L. (https://www.forgeflow.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import Command, api
+from odoo.exceptions import UserError
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+@tagged("post_install", "-at_install")
+class TestMrpProductionAutovalidate(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user_admin = cls.env.ref("base.user_admin")
+        cls.env = api.Environment(cls.cr, cls.user_admin.id, {})
+        cls.warehouse = cls.env.ref("stock.warehouse0")
+        cls.location = cls.env.ref("stock.stock_location_stock")
+        cls.env.user.write(
+            {
+                "group_ids": [
+                    Command.set(cls.env.user.group_ids.ids),
+                    Command.link(cls.env.ref("stock.group_stock_manager").id),
+                ],
+            }
+        )
+        cls.prod_tp1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 1",
+                "type": "consu",
+            }
+        )
+        cls.prod_ti1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product Intermediate 1",
+                "type": "consu",
+                "is_storable": True,
+            }
+        )
+        # Create BoMs:
+        cls.test_bom_1 = cls.env["mrp.bom"].create(
+            {
+                "product_id": cls.prod_tp1.id,
+                "product_tmpl_id": cls.prod_tp1.product_tmpl_id.id,
+                "product_uom_id": cls.prod_tp1.uom_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "bom_id": cls.test_bom_1.id,
+                "product_id": cls.prod_ti1.id,
+                "product_qty": 1.0,
+            }
+        )
+        cls.mo_1 = cls.env["mrp.production"].create(
+            {
+                "name": "MO ABC",
+                "product_id": cls.prod_tp1.id,
+                "product_uom_id": cls.prod_tp1.uom_id.id,
+                "product_qty": 2,
+                "bom_id": cls.test_bom_1.id,
+            }
+        )
+        cls.workcenter_id = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Workcenter 01",
+            }
+        )
+        cls.test_workorder_1 = cls.env["mrp.workorder"].create(
+            {
+                "name": "Workorder Test",
+                "product_uom_id": cls.prod_tp1.uom_id.id,
+                "production_id": cls.mo_1.id,
+                "workcenter_id": cls.workcenter_id.id,
+                "qty_remaining": 1,
+                "qty_produced": 0,
+            }
+        )
+
+    def test_01_mrp_return_to_draft(self):
+        self.env["stock.quant"]._update_available_quantity(
+            self.prod_ti1, self.location, 2
+        )
+        self.assertEqual(self.mo_1.state, "draft")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
+        self.mo_1._compute_move_raw_ids()
+        self.mo_1.action_confirm()
+        self.assertEqual(self.mo_1.state, "confirmed")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
+        self.mo_1.action_return_to_draft()
+        self.assertEqual(self.mo_1.state, "draft")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
+        self.mo_1._compute_move_raw_ids()
+        self.mo_1.action_confirm()
+        self.assertEqual(self.mo_1.state, "confirmed")
+        self.assertEqual(self.mo_1.workorder_ids.state, "ready")
+        self.mo_1.action_cancel()
+        self.assertEqual(self.mo_1.state, "cancel")
+        self.assertEqual(self.mo_1.workorder_ids.state, "cancel")
+        self.mo_1.action_return_to_draft()
+        self.assertEqual(self.mo_1.state, "draft")
+        self.assertNotIn(self.mo_1.workorder_ids.state, ["cancel"])
+        self.mo_1._compute_move_raw_ids()
+        self.mo_1.action_confirm()
+        self.mo_1.qty_producing = 2
+        self.mo_1.workorder_ids.action_mark_as_done()
+        with self.assertRaises(UserError):
+            self.mo_1.action_return_to_draft()
