@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-manufacture"
-version = "19.0.20251028.1"
+version = "19.0.20251111.0"
 dependencies = [
     "odoo-addon-mrp_bom_image==19.0.*",
+    "odoo-addon-mrp_production_back_to_draft==19.0.*",
     "odoo-addon-mrp_tag==19.0.*",
 ]
 classifiers=[
