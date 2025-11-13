@@ -71,7 +71,7 @@ class MrpInventoryProcure(models.TransientModel):
         errors = []
         StockRule = self.env["stock.rule"]
         procurements = []
-        for item in self.item_ids:
+        for item in self.item_ids.sudo():
             if not item.qty:
                 raise ValidationError(self.env._("Quantity must be positive."))
             values = item._prepare_procurement_values()
