@@ -11,9 +11,9 @@
                     <group name="dates">
                         <label for="date_start" string="Period" />
                         <div><field name="date_start" class="oe_inline" /> to <field
-                                name="date_end"
-                                class="oe_inline"
-                            /></div>
+                            name="date_end"
+                            class="oe_inline"
+                        /></div>
                     </group>
                     <group>
                         <group name="attributes">
@@ -25,20 +25,20 @@
                     </group>
                     <group name="products" string="Products" />
                     <field name="product_mrp_area_ids" nolabel="1">
-                            <tree>
-                                <field name="product_id" />
-                                <field name="mrp_area_id" />
-                                <field name="location_id" />
-                                <field name="supply_method" />
-                            </tree>
-                        </field>
+                        <tree>
+                            <field name="product_id" />
+                            <field name="mrp_area_id" />
+                            <field name="location_id" />
+                            <field name="supply_method" />
+                        </tree>
+                    </field>
                     <footer>
                         <button
-                            name="create_sheet"
-                            string="Prepare"
-                            type="object"
-                            class="oe_highlight"
-                        /> or
+                        name="create_sheet"
+                        string="Prepare"
+                        type="object"
+                        class="oe_highlight"
+                    /> or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
                 </sheet>
@@ -53,9 +53,9 @@
                 <group name="dates">
                     <label for="date_start" string="Period" />
                     <div><field name="date_start" class="oe_inline" /> to <field
-                            name="date_end"
-                            class="oe_inline"
-                        /></div>
+                        name="date_end"
+                        class="oe_inline"
+                    /></div>
                 </group>
                 <group>
                     <group name="attributes" colspan="2">
