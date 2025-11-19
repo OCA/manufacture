@@ -109,3 +109,27 @@ class TestMrpProductionAutovalidate(BaseCommon):
         self.mo_1.workorder_ids.action_mark_as_done()
         with self.assertRaises(UserError):
             self.mo_1.action_return_to_draft()
+
+    def test_02_mrp_return_to_draft_no_raw_moves(self):
+        self.test_bom_2 = self.env["mrp.bom"].create(
+            {
+                "product_id": self.prod_tp1.id,
+                "product_tmpl_id": self.prod_tp1.product_tmpl_id.id,
+                "product_uom_id": self.prod_tp1.uom_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+            }
+        )
+        self.mo_2 = self.env["mrp.production"].create(
+            {
+                "name": "MO ABCD",
+                "product_id": self.prod_tp1.id,
+                "product_uom_id": self.prod_tp1.uom_id.id,
+                "product_qty": 2,
+                "bom_id": self.test_bom_2.id,
+            }
+        )
+        self.mo_2.action_confirm()
+        self.assertEqual(self.mo_2.state, "confirmed")
+        self.mo_2.action_return_to_draft()
+        self.assertEqual(self.mo_2.state, "draft")
