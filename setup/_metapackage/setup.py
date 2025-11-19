@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-mrp_tag>=15.0dev,<15.1dev',
         'odoo-addon-mrp_warehouse_calendar>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workcenter_category>=15.0dev,<15.1dev',
+        'odoo-addon-mrp_workcenter_dashboard>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workorder_blocking_time>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workorder_lock_planning>=15.0dev,<15.1dev',
         'odoo-addon-mrp_workorder_lot_display>=15.0dev,<15.1dev',
