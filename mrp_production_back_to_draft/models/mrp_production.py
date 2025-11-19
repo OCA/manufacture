@@ -38,4 +38,11 @@ class MrpProduction(models.Model):
                 and all(m.state == "draft" for m in production.move_finished_ids)
             ):
                 production.state = "draft"
+            elif (
+                production.state == "confirmed"
+                and not production.move_raw_ids
+                and production.move_finished_ids
+                and all(m.state == "draft" for m in production.move_finished_ids)
+            ):
+                production.state = "draft"
         return
