@@ -547,3 +547,49 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
         scraps = self.env["stock.scrap"].search([("picking_id", "=", self.picking1.id)])
         self.assertTrue(all(scrap.state == "done" for scrap in scraps))
+
+    def test_no_create_nonconformity(self):
+        """
+        Test Nonconformity creation when inspection fails
+        if relative flag is off
+        """
+        self.picking1.move_ids[:1].quantity_done = 2
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d"
+                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "state": "failed",
+                "qty": 2,
+            }
+        )
+        self.inspection1.action_approve()
+
+        nc = self.env["mgmtsystem.nonconformity"].search(
+            [("qc_inspection_id", "=", self.inspection1.id)]
+        )
+        self.assertFalse(nc)
+
+    def test_create_nonconformity(self):
+        """
+        Test Nonconformity doesn't create when inspection fails
+        if relative flag is on
+        """
+        self.product.create_nonconformity = True
+        self.picking1.move_ids[:1].quantity_done = 2
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d"
+                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "state": "failed",
+                "qty": 2,
+            }
+        )
+        self.inspection1.action_approve()
+
+        nc = self.env["mgmtsystem.nonconformity"].search(
+            [("qc_inspection_id", "=", self.inspection1.id)]
+        )
+        self.assertEqual(len(nc), 1)
+        self.assertEqual(self.inspection1.id, nc.qc_inspection_id.id)

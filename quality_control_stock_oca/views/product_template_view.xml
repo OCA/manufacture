@@ -7,8 +7,13 @@
         <field name="inherit_id" ref="quality_control_oca.product_template_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='qc_triggers']" position="before">
-                <field name="remind_qc" />
-                <field name="auto_scrap" />
+                <group>
+                    <field name="remind_qc" />
+                    <field name="auto_scrap" />
+                </group>
+                <group>
+                    <field name="create_nonconformity" />
+                </group>
             </xpath>
         </field>
     </record>

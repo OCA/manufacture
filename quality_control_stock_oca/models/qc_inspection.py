@@ -110,6 +110,10 @@ class QcInspection(models.Model):
 
     def action_approve(self):
         res = super().action_approve()
+
+        if self.state == "failed" and self.product_id.create_nonconformity:
+            self.create_nonconformity()
+
         if self._check_validate_picking():
             self.picking_id.button_validate()
 
@@ -120,6 +124,19 @@ class QcInspection(models.Model):
             self.picking_id
             and self.picking_id.created_inspections == self.picking_id.done_inspections
             and all(m.product_id.auto_scrap for m in self.picking_id.move_ids)
+        )
+
+    def create_nonconformity(self):
+        self.env["mgmtsystem.nonconformity"].create(
+            {
+                "name": self.name,
+                "partner_id": self.user.id,
+                "origin_ids": self.env.ref("mgmtsystem_nonconformity.nc_origin_qc"),
+                "responsible_user_id": self.user.id,
+                "manager_user_id": self.user.id,
+                "description": "Automatically created due to failure of the linked inspection.",
+                "qc_inspection_id": self.id,
+            }
         )
 
 

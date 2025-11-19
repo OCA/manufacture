@@ -11,7 +11,11 @@
     "author": "OdooMRP team, AvanzOSC, Serv. Tecnol. Avanzados - Pedro M. Baeza, "
     "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
-    "depends": ["quality_control_oca", "stock"],
+    "depends": [
+        "quality_control_oca",
+        "stock",
+        "mgmtsystem_nonconformity_quality_control_oca",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/product_template_view.xml",

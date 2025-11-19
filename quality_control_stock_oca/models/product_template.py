@@ -15,3 +15,8 @@ class ProductTemplate(models.Model):
         string="Scrap Automatically",
         help="If selected, automatically scraps this product when inspections fail",
     )
+
+    create_nonconformity = fields.Boolean(
+        string="Create Non-Conformity",
+        help="If selected, automatically creates Nonconformity when inspections fail",
+    )
