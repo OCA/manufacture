@@ -130,6 +130,13 @@ class MultiLevelMrp(models.TransientModel):
             / bomline.bom_id.product_qty
         )
         line_quantity = factor * bomline.product_qty
+        
+        # Convert from BOM line UoM to the component product’s UoM
+        line_uom = bomline.product_uom_id or bomline.product_id.uom_id
+        line_quantity_in_product_uom = line_uom._compute_quantity(
+            line_quantity,
+            bomline.product_id.uom_id,
+            
         return {
             "mrp_area_id": product_mrp_area.mrp_area_id.id,
             "product_id": bomline.product_id.id,
@@ -138,7 +145,7 @@ class MultiLevelMrp(models.TransientModel):
             "purchase_order_id": None,
             "purchase_line_id": None,
             "stock_move_id": None,
-            "mrp_qty": -line_quantity,  # TODO: review with UoM
+            "mrp_qty": -line_quantity_in_product_uom,
             "current_qty": None,
             "mrp_date": mrp_date_demand_2,
             "current_date": None,
