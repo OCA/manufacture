@@ -3,7 +3,7 @@
 
 from dateutil.rrule import MONTHLY
 
-from odoo import fields
+from odoo import Command, fields
 
 from odoo.addons.mrp_multi_level.tests.common import TestMrpMultiLevelCommon
 
@@ -32,7 +32,12 @@ class TestMrpPlannedOrderMatrix(TestMrpMultiLevelCommon):
 
         # Create a product:
         cls.product_1 = cls.product_obj.create(
-            {"name": "Test Product 1", "type": "product", "default_code": "PROD1"}
+            {
+                "name": "Test Product 1",
+                "type": "consu",
+                "is_storable": True,
+                "default_code": "PROD1",
+            }
         )
         # Create a product mrp area:
         cls.product_mrp_area_1 = cls.product_mrp_area_obj.create(
@@ -47,7 +52,7 @@ class TestMrpPlannedOrderMatrix(TestMrpMultiLevelCommon):
                 "date_start": "1943-01-01",
                 "date_end": "1943-12-31",
                 "date_range_type_id": self.drt_monthly.id,
-                "product_mrp_area_ids": [(6, 0, [self.product_mrp_area_1.id])],
+                "product_mrp_area_ids": [Command.set([self.product_mrp_area_1.id])],
             }
         )
         wiz.create_sheet()

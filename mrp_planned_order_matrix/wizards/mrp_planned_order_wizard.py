@@ -4,7 +4,7 @@
 from datetime import timedelta
 from itertools import zip_longest
 
-from odoo import _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv import expression
 from odoo.tools.float_utils import float_compare
@@ -30,14 +30,14 @@ class MrpPlannedOrderWizard(models.TransientModel):
         self.ensure_one()
         if self.date_start > self.date_end:
             raise ValidationError(
-                _("The start date cannot be later than the end date.")
+                self.env._("The start date cannot be later than the end date.")
             )
 
     def create_sheet(self):
         self.ensure_one()
         if not self.product_mrp_area_ids:
             raise ValidationError(
-                _("You must select at least one Product MRP parameter.")
+                self.env._("You must select at least one Product MRP parameter.")
             )
 
         # 2d matrix widget need real records to work
@@ -46,12 +46,12 @@ class MrpPlannedOrderWizard(models.TransientModel):
                 "date_start": self.date_start,
                 "date_end": self.date_end,
                 "date_range_type_id": self.date_range_type_id.id,
-                "product_mrp_area_ids": [(6, 0, self.product_mrp_area_ids.ids)],
+                "product_mrp_area_ids": [Command.set(self.product_mrp_area_ids.ids)],
             }
         )
         sheet._onchange_dates()
         res = {
-            "name": _("MPS Sheet"),
+            "name": self.env._("MPS Sheet"),
             "src_model": "mrp.planned.order.wizard",
             "view_mode": "form",
             "target": "new",
@@ -86,7 +86,7 @@ class MprPlannedOrderSheet(models.TransientModel):
             return
         ranges = self._get_ranges()
         if not ranges:
-            raise UserError(_("There are no date ranges created."))
+            raise UserError(self.env._("There are no date ranges created."))
         lines = []
         for rec in self.product_mrp_area_ids:
             for d_range in ranges:
@@ -144,7 +144,7 @@ class MprPlannedOrderSheet(models.TransientModel):
             "date_range_id": d_range.id,
             "product_mrp_area_id": product_mrp.id,
             "product_qty": uom_qty,
-            "mrp_planned_order_ids": [(6, 0, item_ids)],
+            "mrp_planned_order_ids": [Command.set(item_ids)],
         }
         return values
 
@@ -155,13 +155,13 @@ class MprPlannedOrderSheet(models.TransientModel):
         lt = line.product_mrp_area_id.mrp_lead_time
         due_date_dt = fields.Datetime.from_string(due_date)
         if calendar:
-            res = calendar.plan_days(-1 * lt - 1, due_date_dt)
+            res = calendar.plan_days(-(lt + 1), due_date_dt)
             release_date = res.date()
         else:
             release_date = due_date_dt - timedelta(days=lt)
         return {
-            "name": "Planned Order for %s"
-            % line.product_mrp_area_id.product_id.display_name,
+            "name": f"Planned Order for "
+            f"{line.product_mrp_area_id.product_id.display_name}",
             "order_release_date": release_date,
             "due_date": due_date,
             "product_mrp_area_id": line.product_mrp_area_id.id,
@@ -203,9 +203,9 @@ class MprPlannedOrderSheet(models.TransientModel):
 
         res = {
             "domain": [("id", "in", res_ids)],
-            "name": _("Planned Orders"),
+            "name": self.env._("Planned Orders"),
             "src_model": "mrp.planned.order.wizard",
-            "view_mode": "tree,form,pivot",
+            "view_mode": "list,form,pivot",
             "res_model": "mrp.planned.order",
             "type": "ir.actions.act_window",
         }
