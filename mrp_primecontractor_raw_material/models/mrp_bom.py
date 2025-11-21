@@ -8,7 +8,6 @@ class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     primecontractor_raw_material = fields.Boolean(
-        "Primecontractor Raw Material",
         help="Define if this material comes from the prime contractor",
         default=False,
     )

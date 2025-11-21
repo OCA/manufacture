@@ -8,7 +8,6 @@ class Warehouse(models.Model):
     _inherit = "stock.warehouse"
 
     primecontractor_raw_material = fields.Boolean(
-        "Primecontractor Raw Material",
         help="Define if the warehouse handles prime contractor raw material",
         default=False,
     )
@@ -38,7 +37,7 @@ class Warehouse(models.Model):
         res.update(
             {
                 "primecontractor_view_location_id": {
-                    "name": "%s/PRM" % code,
+                    "name": f"{code}/PRM",
                     "active": vals.get("primecontractor_raw_material", False),
                     "usage": "view",
                     "barcode": self._valid_barcode(code + "-PRM", company_id),
@@ -82,7 +81,9 @@ class Warehouse(models.Model):
         data.update(
             {
                 "primecontractor_in_type_id": {
-                    "default_location_dest_id": self.primecontractor_view_location_id.id,
+                    "default_location_dest_id": (
+                        self.primecontractor_view_location_id.id
+                    ),
                     "barcode": self.code.replace(" ", "").upper() + "-PRM",
                 },
             }

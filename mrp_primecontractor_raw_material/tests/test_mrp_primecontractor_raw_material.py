@@ -1,6 +1,7 @@
 # Copyright 2023 Akretion (http://www.akretion.com).
 # @author Florian Mounier <florian.mounier@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo.exceptions import UserError
 from odoo.tests import common
 
 
@@ -146,7 +147,7 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
 
     def test_mrp_primecontractor_raw_material_no_primecontractor_location(self):
         self.warehouse.write({"primecontractor_raw_material": True})
-        with self.assertRaises(Exception):
+        with self.assertRaises(UserError):
             self.sale_order.action_confirm()
 
     def test_mrp_primecontractor_raw_material_order_manufactured_product(self):
