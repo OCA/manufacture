@@ -8,13 +8,13 @@
             <xpath expr="//field[@name='location_dest_id']" position="before">
                 <field
                     name="restore_rm_stock_in_origin_loc"
-                    attrs="{'invisible': [('mo_id', '=', False)]}"
+                    invisible="mo_id == False"
                 />
             </xpath>
             <xpath expr="//field[@name='location_dest_id']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('restore_rm_stock_in_origin_loc', '=', True)]}</attribute>
+                    name="invisible"
+                >restore_rm_stock_in_origin_loc == True</attribute>
             </xpath>
         </field>
     </record>
@@ -26,13 +26,13 @@
             <xpath expr="//field[@name='location_dest_id']" position="before">
                 <field
                     name="restore_rm_stock_in_origin_loc"
-                    attrs="{'invisible': [('mo_id', '=', False)]}"
+                    invisible="mo_id == False"
                 />
             </xpath>
             <xpath expr="//field[@name='location_dest_id']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': [('restore_rm_stock_in_origin_loc', '=', True)]}</attribute>
+                    name="invisible"
+                >restore_rm_stock_in_origin_loc == True</attribute>
             </xpath>
         </field>
     </record>
