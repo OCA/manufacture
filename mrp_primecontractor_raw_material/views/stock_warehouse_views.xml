@@ -21,12 +21,12 @@
                 <field
                     name="primecontractor_view_location_id"
                     readonly="1"
-                    attrs="{'invisible': [('primecontractor_raw_material', '=', False)]}"
+                    invisible="not primecontractor_raw_material"
                 />
                 <field
                     name="wh_primecontractor_stock_loc_ids"
                     readonly="1"
-                    attrs="{'invisible': [('primecontractor_raw_material', '=', False)]}"
+                    invisible="not primecontractor_raw_material"
                     widget="many2many_tags"
                 />
             </xpath>
@@ -34,7 +34,7 @@
                 <field
                     name="primecontractor_in_type_id"
                     readonly="1"
-                    attrs="{'invisible': [('primecontractor_raw_material', '=', False)]}"
+                    invisible="not primecontractor_raw_material"
                 />
             </xpath>
         </field>

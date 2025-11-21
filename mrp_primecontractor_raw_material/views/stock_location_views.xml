@@ -13,7 +13,8 @@
                 <field name="primecontractor_raw_material_location" invisible="1" />
                 <field
                     name="primecontractor_id"
-                    attrs="{'invisible': [('primecontractor_raw_material_location', '=', False)], 'required': [('primecontractor_raw_material_location', '=', True)]}"
+                    invisible="not primecontractor_raw_material_location"
+                    required="primecontractor_raw_material_location"
                 />
             </xpath>
         </field>

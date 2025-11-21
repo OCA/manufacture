@@ -5,7 +5,7 @@ from odoo.exceptions import UserError
 from odoo.tests import common
 
 
-class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
+class TestMrpPrimecontractorRawMaterial(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,7 +14,7 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Manufactured product",
-                "type": "product",
+                "type": "consu",
                 "route_ids": [
                     (4, cls.env.ref("mrp.route_warehouse0_manufacture").id),
                     (4, mto_route.id),
@@ -24,13 +24,13 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
         cls.primecontractor_product = cls.env["product.product"].create(
             {
                 "name": "Raw material product from prime contractor",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.normalproduct = cls.env["product.product"].create(
             {
                 "name": "Raw material product from stock",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.partner = cls.env["res.partner"].create({"name": "Prime Contractor"})
@@ -107,11 +107,15 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
         self.assertFalse(self.warehouse.primecontractor_pull_id.active)
 
     def test_mrp_primecontractor_raw_material_create_with(self):
+        mto_route = self.env.ref("stock.route_warehouse0_mto")
         warehouse = self.env["stock.warehouse"].create(
             {
                 "name": "Test Warehouse",
                 "code": "TEST",
                 "primecontractor_raw_material": True,
+                "route_ids": [
+                    (4, mto_route.id),
+                ],
             }
         )
 
@@ -162,8 +166,8 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
         )
 
         self.sale_order.action_confirm()
-        self.assertEqual(self.sale_order.production_count, 1)
-        production = self.sale_order.production_ids
+        self.assertEqual(self.sale_order.mrp_production_count, 1)
+        production = self.sale_order.mrp_production_ids
         primecontractor_product_move = production.move_raw_ids.filtered(
             lambda m: m.product_id == self.primecontractor_product
         )
@@ -212,12 +216,14 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
             other_procurement_group.partner_id,
             self.other_partner,
         )
-        orderpoint_form = common.Form(self.env["stock.warehouse.orderpoint"])
-        orderpoint_form.product_id = self.primecontractor_product
-        orderpoint_form.location_id = primecontractor_location
-        orderpoint_form.product_min_qty = 0.0
-        orderpoint_form.product_max_qty = 4.0
-        orderpoint = orderpoint_form.save()
+        orderpoint = self.env["stock.warehouse.orderpoint"].create(
+            {
+                "product_id": self.primecontractor_product.id,
+                "location_id": primecontractor_location.id,
+                "product_min_qty": 0.0,
+                "product_max_qty": 4.0,
+            }
+        )
         self.assertEqual(
             orderpoint.group_id,
             primecontractor_location.primecontractor_procurement_group_id,
@@ -261,7 +267,7 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
             prm_picking.group_id,
             primecontractor_location.primecontractor_procurement_group_id,
         )
-        self.assertEqual(len(prm_picking.move_lines), 1)
+        self.assertEqual(len(prm_picking.move_ids), 1)
 
     def test_mrp_primecontractor_raw_material_restock_on_order_manufactured(
         self,
@@ -286,13 +292,14 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
             }
         )
 
-        # Create orderpoint to restock prime contractor location
-        orderpoint_form = common.Form(self.env["stock.warehouse.orderpoint"])
-        orderpoint_form.product_id = self.primecontractor_product
-        orderpoint_form.location_id = primecontractor_location
-        orderpoint_form.product_min_qty = 0.0
-        orderpoint_form.product_max_qty = 10.0
-        orderpoint_form.save()
+        self.env["stock.warehouse.orderpoint"].create(
+            {
+                "product_id": self.primecontractor_product.id,
+                "location_id": primecontractor_location.id,
+                "product_min_qty": 0.0,
+                "product_max_qty": 10.0,
+            }
+        )
 
         self.assertFalse(
             self.env["stock.picking"].search(
@@ -328,15 +335,13 @@ class TestMrpPrimecontractorRawMaterial(common.SavepointCase):
             prm_picking.group_id,
             primecontractor_location.primecontractor_procurement_group_id,
         )
-        self.assertEqual(len(prm_picking.move_lines), 1)
+        self.assertEqual(len(prm_picking.move_ids), 1)
+        self.assertEqual(prm_picking.move_ids.product_id, self.primecontractor_product)
+        self.assertEqual(prm_picking.move_ids.product_uom_qty, 11.0)
         self.assertEqual(
-            prm_picking.move_lines.product_id, self.primecontractor_product
-        )
-        self.assertEqual(prm_picking.move_lines.product_uom_qty, 11.0)
-        self.assertEqual(
-            prm_picking.move_lines.location_id,
+            prm_picking.move_ids.location_id,
             self.env.ref("stock.stock_location_suppliers"),
         )
         self.assertEqual(
-            prm_picking.move_lines.location_dest_id, primecontractor_location
+            prm_picking.move_ids.location_dest_id, primecontractor_location
         )

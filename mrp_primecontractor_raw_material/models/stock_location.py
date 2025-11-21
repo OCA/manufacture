@@ -47,15 +47,16 @@ class Location(models.Model):
             "move_type": "direct",
         }
 
-    @api.model
-    def create(self, values):
-        if values.get("primecontractor_id"):
-            if not values.get("primecontractor_procurement_group_id"):
-                procurement_group_vals = (
-                    self._prepare_primecontractor_procurement_group_vals(values)
-                )
-                values["primecontractor_procurement_group_id"] = (
-                    self.env["procurement.group"].create(procurement_group_vals).id
-                )
+    @api.model_create_multi
+    def create(self, values_list):
+        for data in values_list:
+            if data.get("primecontractor_id"):
+                if not data.get("primecontractor_procurement_group_id"):
+                    procurement_group_vals = (
+                        self._prepare_primecontractor_procurement_group_vals(data)
+                    )
+                    data["primecontractor_procurement_group_id"] = (
+                        self.env["procurement.group"].create(procurement_group_vals).id
+                    )
 
-        return super().create(values)
+        return super().create(values_list)

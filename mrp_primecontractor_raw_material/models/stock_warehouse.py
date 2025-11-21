@@ -115,7 +115,7 @@ class Warehouse(models.Model):
                         "action": "pull",
                         "auto": "manual",
                         "route_id": self.reception_route_id.id,
-                        "location_id": self.primecontractor_view_location_id.id,
+                        "location_dest_id": self.primecontractor_view_location_id.id,
                         "location_src_id": supplier_loc.id,
                     },
                     "update_values": {

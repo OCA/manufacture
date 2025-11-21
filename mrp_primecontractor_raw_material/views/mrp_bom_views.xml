@@ -10,7 +10,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='bom_line_ids']/tree/field[@name='operation_id']"
+                expr="//field[@name='bom_line_ids']/list/field[@name='operation_id']"
                 position="after"
             >
                 <field name="primecontractor_raw_material" />
