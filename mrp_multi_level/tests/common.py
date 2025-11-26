@@ -29,26 +29,42 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.lot_obj = cls.env["stock.lot"]
         cls.mrp_bom_obj = cls.env["mrp.bom"]
 
-        cls.fp_1 = cls.env.ref("mrp_multi_level.product_product_fp_1")
-        cls.fp_2 = cls.env.ref("mrp_multi_level.product_product_fp_2")
-        cls.fp_3 = cls.env.ref("mrp_multi_level.product_product_fp_3")
-        cls.fp_4 = cls.env.ref("mrp_multi_level.product_product_fp_4")
-        cls.sf_1 = cls.env.ref("mrp_multi_level.product_product_sf_1")
-        cls.sf_2 = cls.env.ref("mrp_multi_level.product_product_sf_2")
-        cls.sf_3 = cls.env.ref("mrp_multi_level.product_product_sf_3")
-        cls.pp_1 = cls.env.ref("mrp_multi_level.product_product_pp_1")
-        cls.pp_2 = cls.env.ref("mrp_multi_level.product_product_pp_2")
-        cls.pp_3 = cls.env.ref("mrp_multi_level.product_product_pp_3")
-        cls.pp_4 = cls.env.ref("mrp_multi_level.product_product_pp_4")
-        cls.product_4b = cls.env.ref("product.product_product_4b")
-        cls.product_4c = cls.env.ref("product.product_product_4c")
-        cls.av_11 = cls.env.ref("mrp_multi_level.product_product_av_11")
-        cls.av_12 = cls.env.ref("mrp_multi_level.product_product_av_12")
-        cls.av_21 = cls.env.ref("mrp_multi_level.product_product_av_21")
-        cls.av_22 = cls.env.ref("mrp_multi_level.product_product_av_22")
+        cls._create_demo_data()
+
+        cls.fp_1 = cls.env["product.product"].search([("name", "=", "FP-1")], limit=1)
+        cls.fp_2 = cls.env["product.product"].search([("name", "=", "FP-2")], limit=1)
+        cls.fp_3 = cls.env["product.product"].search([("name", "=", "FP-3")], limit=1)
+        cls.fp_4 = cls.env["product.product"].search([("name", "=", "FP-4")], limit=1)
+        cls.sf_1 = cls.env["product.product"].search([("name", "=", "SF-1")], limit=1)
+        cls.sf_2 = cls.env["product.product"].search([("name", "=", "SF-2")], limit=1)
+        cls.sf_3 = cls.env["product.product"].search([("name", "=", "SF-3")], limit=1)
+        cls.pp_1 = cls.env["product.product"].search([("name", "=", "PP-1")], limit=1)
+        cls.pp_2 = cls.env["product.product"].search([("name", "=", "PP-2")], limit=1)
+        cls.pp_3 = cls.env["product.product"].search([("name", "=", "PP-3")], limit=1)
+        cls.pp_4 = cls.env["product.product"].search([("name", "=", "PP-4")], limit=1)
+        cls.product_4b = cls.env["product.product"].search(
+            [("default_code", "=", "product.product_product_4b")], limit=1
+        )
+        cls.product_4c = cls.env["product.product"].search(
+            [("default_code", "=", "product.product_product_4c")], limit=1
+        )
+        cls.av_11 = cls.env["product.product"].search(
+            [("name", "=", "AV-11 steel")], limit=1
+        )
+        cls.av_12 = cls.env["product.product"].search(
+            [("name", "=", "AV-12 aluminium")], limit=1
+        )
+        cls.av_21 = cls.env["product.product"].search(
+            [("name", "=", "AV-21 white")], limit=1
+        )
+        cls.av_22 = cls.env["product.product"].search(
+            [("name", "=", "AV-22 black")], limit=1
+        )
         cls.company = cls.env.ref("base.main_company")
-        cls.mrp_area = cls.env.ref("mrp_multi_level.mrp_area_stock_wh0")
-        cls.vendor = cls.env.ref("mrp_multi_level.res_partner_lazer_tech")
+        cls.mrp_area = cls.mrp_area_obj.search([("name", "=", "Test Area")], limit=1)
+        cls.vendor = cls.env["res.partner"].search(
+            [("name", "=", "Lazer Tech")], limit=1
+        )
         cls.wh = cls.env.ref("stock.warehouse0")
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
@@ -64,9 +80,10 @@ class TestMrpMultiLevelCommon(TransactionCase):
         group_mrp_manager = cls.env.ref("mrp.group_mrp_manager")
         group_user = cls.env.ref("base.group_user")
         group_stock_manager = cls.env.ref("stock.group_stock_manager")
+        group_product_manager = cls.env.ref("product.group_product_manager")
         cls.mrp_manager = cls._create_user(
             "Test User",
-            [group_mrp_manager, group_user, group_stock_manager],
+            [group_mrp_manager, group_user, group_stock_manager, group_product_manager],
             cls.company,
         )
 
@@ -213,7 +230,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product Uom Test",
                 "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_dozen").id,
                 "list_price": 150.0,
                 "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
@@ -363,7 +379,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move fp-1",
                             "product_id": cls.fp_1.id,
                             "date": date_move,
                             "product_uom": cls.fp_1.uom_id.id,
@@ -376,7 +391,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move fp-2",
                             "product_id": cls.fp_2.id,
                             "date": date_move,
                             "product_uom": cls.fp_2.uom_id.id,
@@ -389,7 +403,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move fp-3",
                             "product_id": cls.fp_3.id,
                             "date": date_move,
                             "product_uom": cls.fp_3.uom_id.id,
@@ -402,7 +415,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move product-4b",
                             "product_id": cls.product_4b.id,
                             "date": date_move,
                             "product_uom": cls.product_4b.uom_id.id,
@@ -415,7 +427,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move product-4c",
                             "product_id": cls.product_4c.id,
                             "date": date_move,
                             "product_uom": cls.product_4c.uom_id.id,
@@ -441,7 +452,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move prod_min",
                             "product_id": cls.prod_min.id,
                             "date": date_move,
                             "product_uom": cls.prod_min.uom_id.id,
@@ -454,7 +464,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move prod_max",
                             "product_id": cls.prod_max.id,
                             "date": date_move,
                             "product_uom": cls.prod_max.uom_id.id,
@@ -467,7 +476,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move prod_multiple",
                             "product_id": cls.prod_multiple.id,
                             "date": date_move,
                             "product_uom": cls.prod_multiple.uom_id.id,
@@ -496,7 +504,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "product_id": cls.pp_2.id,
                             "date_planned": date_po,
                             "product_qty": 5.0,
-                            "product_uom": cls.pp_2.uom_id.id,
+                            "product_uom_id": cls.pp_2.uom_id.id,
                             "price_unit": 25.0,
                         },
                     )
@@ -520,7 +528,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "product_id": cls.prod_uom_test.id,
                             "date_planned": date_po,
                             "product_qty": 1.0,
-                            "product_uom": cls.prod_uom_test.uom_po_id.id,
+                            "product_uom_id": cls.env.ref("uom.product_uom_dozen").id,
                             "price_unit": 25.0,
                         },
                     )
@@ -530,7 +538,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
 
         # Create test MO:
         date_mo = cls.calendar.plan_days(9 + 1, datetime.today().replace(hour=0)).date()
-        bom_fp_2 = cls.env.ref("mrp_multi_level.mrp_bom_fp_2")
+        bom_fp_2 = cls.env["mrp.bom"].search(
+            [("product_tmpl_id", "=", cls.fp_2.product_tmpl_id.id)], limit=1
+        )
         cls.mo = cls._create_mo(cls.fp_2, bom_fp_2, date_mo, qty=12.0)
 
         # Dates:
@@ -570,7 +580,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test move",
                             "product_id": cls.prod_test.id,
                             "date": date_move,
                             "product_uom": cls.prod_test.uom_id.id,
@@ -612,7 +621,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test Move",
                             "product_id": product.id,
                             "date": date_move,
                             "product_uom": product.uom_id.id,
@@ -642,7 +650,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": "Test Move",
                             "product_id": product.id,
                             "date": date_move,
                             "product_uom": product.uom_id.id,
@@ -692,3 +699,452 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 )
             ]
         )
+
+    @classmethod
+    def _create_demo_data(cls):
+        # Create Partner
+        cls.env["res.partner"].create({"name": "Lazer Tech", "is_company": True})
+
+        # Create MRP Area
+        cls.env["mrp.area"].create(
+            {
+                "name": "Test Area",
+                "warehouse_id": cls.env.ref("stock.warehouse0").id,
+                "location_id": cls.env.ref("stock.warehouse0").lot_stock_id.id,
+            }
+        )
+
+        # Create Category
+        categ_mrp = cls.env["product.category"].create({"name": "MRP"})
+
+        # Create Products
+        route_manufacture = cls.env.ref("mrp.route_warehouse0_manufacture")
+        route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy")
+        uom_unit = cls.env.ref("uom.product_uom_unit")
+        products_data = [
+            ("FP-1", route_manufacture),
+            ("FP-2", route_manufacture),
+            ("FP-3", route_manufacture),
+            ("FP-4", route_manufacture),
+            ("SF-1", route_manufacture),
+            ("SF-2", route_manufacture),
+            ("SF-3", route_manufacture),
+            ("PP-1", route_buy),
+            ("PP-2", route_buy),
+            ("PP-3", route_buy),
+            ("PP-4", route_buy),
+            ("AV-11 steel", route_buy),
+            ("AV-12 aluminium", route_buy),
+            ("AV-21 white", route_buy),
+            ("AV-22 black", route_buy),
+        ]
+        for name, route in products_data:
+            cls.env["product.product"].create(
+                {
+                    "name": name,
+                    "categ_id": categ_mrp.id,
+                    "is_storable": True,
+                    "uom_id": uom_unit.id,
+                    "route_ids": [(6, 0, [route.id])],
+                }
+            )
+
+        # Create Product with variants
+        attr1 = cls.env["product.attribute"].create({"name": "Material"})
+        attr2 = cls.env["product.attribute"].create({"name": "Color"})
+        attr1_v1 = cls.env["product.attribute.value"].create(
+            [
+                {
+                    "name": "Steel",
+                    "attribute_id": attr1.id,
+                }
+            ]
+        )
+        attr1_v2 = cls.env["product.attribute.value"].create(
+            [
+                {
+                    "name": "Aluminium",
+                    "attribute_id": attr1.id,
+                }
+            ]
+        )
+        attr2_v1 = cls.env["product.attribute.value"].create(
+            [
+                {
+                    "name": "White",
+                    "attribute_id": attr2.id,
+                }
+            ]
+        )
+        attr2_v2 = cls.env["product.attribute.value"].create(
+            [
+                {
+                    "name": "Black",
+                    "attribute_id": attr2.id,
+                }
+            ]
+        )
+        product_4 = cls.env["product.template"].create(
+            {
+                "name": "product.product_product_4",
+                "categ_id": categ_mrp.id,
+                "is_storable": True,
+                "uom_id": uom_unit.id,
+                "route_ids": [(6, 0, [route_manufacture.id])],
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": attr1.id,
+                            "value_ids": [(6, 0, [attr1_v1.id, attr1_v2.id])],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": attr2.id,
+                            "value_ids": [(6, 0, [attr2_v1.id, attr2_v2.id])],
+                        },
+                    ),
+                ],
+            }
+        )
+        product_4b = product_4.product_variant_ids.filtered(
+            lambda p: p.product_template_variant_value_ids.mapped("name")
+            == ["Steel", "Black"]
+        )
+        product_4c = product_4.product_variant_ids.filtered(
+            lambda p: p.product_template_variant_value_ids.mapped("name")
+            == ["Aluminium", "White"]
+        )
+        product_4b.default_code = "product.product_product_4b"
+        product_4c.default_code = "product.product_product_4c"
+
+        # Create MRP Areas for products
+        products_to_area = [
+            "FP-1",
+            "FP-2",
+            "FP-3",
+            "SF-1",
+            "SF-2",
+            "SF-3",
+            "PP-1",
+            "PP-2",
+            "PP-3",
+            "PP-4",
+            "AV-11 steel",
+            "AV-12 aluminium",
+            "AV-21 white",
+            "AV-22 black",
+            "product.product_product_4",
+        ]
+        mrp_area = cls.env["mrp.area"].search([("name", "=", "Test Area")], limit=1)
+        for name in products_to_area:
+            product = cls.env["product.template"].search([("name", "=", name)], limit=1)
+            for variant in product.product_variant_ids:
+                cls.env["product.mrp.area"].create(
+                    {"product_id": variant.id, "mrp_area_id": mrp_area.id}
+                )
+
+        # Create Supplier Info
+        partner = cls.env["res.partner"].search([("name", "=", "Lazer Tech")], limit=1)
+        supplier_info_data = [
+            ("AV-11 steel", 4, 100),
+            ("AV-12 aluminium", 4, 100),
+            ("AV-21 white", 4, 100),
+            ("AV-22 black", 4, 100),
+            ("PP-1", 4, 100),
+            ("PP-2", 2, 100),
+            ("PP-3", 2, 10),
+            ("PP-4", 3, 80),
+        ]
+        for name, delay, price in supplier_info_data:
+            product = cls.env["product.product"].search([("name", "=", name)], limit=1)
+            cls.env["product.supplierinfo"].create(
+                {
+                    "product_tmpl_id": product.product_tmpl_id.id,
+                    "partner_id": partner.id,
+                    "delay": delay,
+                    "min_qty": 0,
+                    "price": price,
+                }
+            )
+
+        # Create BOMs
+        # FP-1
+        fp1 = cls.env["product.product"].search([("name", "=", "FP-1")], limit=1)
+        pp1 = cls.env["product.product"].search([("name", "=", "PP-1")], limit=1)
+        pp2 = cls.env["product.product"].search([("name", "=", "PP-2")], limit=1)
+        bom_fp1 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": fp1.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "produce_delay": 2,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp1.id,
+                "product_qty": 2,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp1.id,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp2.id,
+                "product_qty": 3,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp1.id,
+            }
+        )
+
+        # FP-2
+        fp2 = cls.env["product.product"].search([("name", "=", "FP-2")], limit=1)
+        sf1 = cls.env["product.product"].search([("name", "=", "SF-1")], limit=1)
+        sf2 = cls.env["product.product"].search([("name", "=", "SF-2")], limit=1)
+        bom_fp2 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": fp2.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "produce_delay": 1,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": sf1.id,
+                "product_qty": 2,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp2.id,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": sf2.id,
+                "product_qty": 3,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp2.id,
+            }
+        )
+
+        # FP-3
+        fp3 = cls.env["product.product"].search([("name", "=", "FP-3")], limit=1)
+        sf3 = cls.env["product.product"].search([("name", "=", "SF-3")], limit=1)
+        pp3 = cls.env["product.product"].search([("name", "=", "PP-3")], limit=1)
+        bom_fp3 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": fp3.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "produce_delay": 3,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": sf3.id,
+                "product_qty": 2,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp3.id,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp3.id,
+                "product_qty": 2,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_fp3.id,
+            }
+        )
+
+        # SF-1
+        bom_sf1 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": sf1.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "produce_delay": 1,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp1.id,
+                "product_qty": 3,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_sf1.id,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp2.id,
+                "product_qty": 2,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_sf1.id,
+            }
+        )
+
+        # SF-2
+        bom_sf2 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": sf2.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "produce_delay": 3,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp2.id,
+                "product_qty": 3,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_sf2.id,
+            }
+        )
+
+        # SF-3
+        pp4 = cls.env["product.product"].search([("name", "=", "PP-4")], limit=1)
+        bom_sf3 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": sf3.product_tmpl_id.id,
+                "product_uom_id": uom_unit.id,
+                "type": "phantom",
+                "sequence": 5,
+                "produce_delay": 3,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp3.id,
+                "product_qty": 1,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_sf3.id,
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": pp4.id,
+                "product_qty": 3,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+                "bom_id": bom_sf3.id,
+            }
+        )
+
+        # Customizable Desk (Product 4)
+        av11 = cls.env["product.product"].search(
+            [("name", "=", "AV-11 steel")], limit=1
+        )
+        av12 = cls.env["product.product"].search(
+            [("name", "=", "AV-12 aluminium")], limit=1
+        )
+        av21 = cls.env["product.product"].search(
+            [("name", "=", "AV-21 white")], limit=1
+        )
+        av22 = cls.env["product.product"].search(
+            [("name", "=", "AV-22 black")], limit=1
+        )
+
+        bom_p4 = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": product_4.id,
+                "product_uom_id": uom_unit.id,
+                "sequence": 5,
+            }
+        )
+
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": av11.id,
+                "product_qty": 1,
+                "product_uom_id": uom_unit.id,
+                "sequence": 1,
+                "bom_id": bom_p4.id,
+                "bom_product_template_attribute_value_ids": [(6, 0, [attr1_v1.id])],
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": av12.id,
+                "product_qty": 1,
+                "product_uom_id": uom_unit.id,
+                "sequence": 2,
+                "bom_id": bom_p4.id,
+                "bom_product_template_attribute_value_ids": [(6, 0, [attr1_v2.id])],
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": av21.id,
+                "product_qty": 1,
+                "product_uom_id": uom_unit.id,
+                "sequence": 3,
+                "bom_id": bom_p4.id,
+                "bom_product_template_attribute_value_ids": [(6, 0, [attr2_v1.id])],
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            {
+                "product_id": av22.id,
+                "product_qty": 1,
+                "product_uom_id": uom_unit.id,
+                "sequence": 4,
+                "bom_id": bom_p4.id,
+                "bom_product_template_attribute_value_ids": [(6, 0, [attr2_v2.id])],
+            }
+        )
+
+        # Initial Inventory
+        location_stock = cls.env.ref("stock.warehouse0").lot_stock_id
+        cls.env["stock.quant"].create(
+            {
+                "product_id": pp1.id,
+                "product_uom_id": uom_unit.id,
+                "inventory_quantity": 10,
+                "location_id": location_stock.id,
+            }
+        ).action_apply_inventory()
+        cls.env["stock.quant"].create(
+            {
+                "product_id": pp2.id,
+                "product_uom_id": uom_unit.id,
+                "inventory_quantity": 20,
+                "location_id": location_stock.id,
+            }
+        ).action_apply_inventory()
+        cls.env["stock.quant"].create(
+            {
+                "product_id": sf2.id,
+                "product_uom_id": uom_unit.id,
+                "inventory_quantity": 15,
+                "location_id": location_stock.id,
+            }
+        ).action_apply_inventory()
+        cls.env["stock.quant"].create(
+            {
+                "product_id": product_4b.id,
+                "product_uom_id": uom_unit.id,
+                "inventory_quantity": 50,
+                "location_id": location_stock.id,
+            }
+        ).action_apply_inventory()
+        cls.env["stock.quant"].create(
+            {
+                "product_id": product_4c.id,
+                "product_uom_id": uom_unit.id,
+                "inventory_quantity": 55,
+                "location_id": location_stock.id,
+            }
+        ).action_apply_inventory()

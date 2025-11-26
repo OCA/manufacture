@@ -321,11 +321,13 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             [("product_mrp_area_id.product_id", "=", self.product_4b.id)]
         )
         self.assertTrue(product_4b_demand)
+        # 50 in stock and demand of 150 -> to procure 100
         self.assertEqual(product_4b_demand.to_procure, 100)
         product_4c_demand = self.mrp_inventory_obj.search(
             [("product_mrp_area_id.product_id", "=", self.product_4c.id)]
         )
         self.assertTrue(product_4c_demand)
+        # 55 in stock and demand of 56 -> to procure 1
         self.assertEqual(product_4c_demand.to_procure, 1)
         # Testing variant BoM
         # Supply of one unit for AV-12 or AV-21
@@ -445,14 +447,15 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.fp_4.route_ids = [(4, self.env.ref("stock.route_warehouse0_mto").id)]
         product_mrp_area._compute_supply_method()
         self.assertEqual(product_mrp_area.supply_method, "pull")
-        self.fp_4.route_ids = [(4, self.env.ref("mrp.route_warehouse0_manufacture").id)]
-        product_mrp_area._compute_supply_method()
-        self.assertEqual(product_mrp_area.supply_method, "manufacture")
+        # Buy route has higher sequence than manufacture route
         self.fp_4.route_ids = [
             (4, self.env.ref("purchase_stock.route_warehouse0_buy").id)
         ]
         product_mrp_area._compute_supply_method()
         self.assertEqual(product_mrp_area.supply_method, "buy")
+        self.fp_4.route_ids = [(4, self.env.ref("mrp.route_warehouse0_manufacture").id)]
+        product_mrp_area._compute_supply_method()
+        self.assertEqual(product_mrp_area.supply_method, "manufacture")
         kit_bom = self.mrp_bom_obj.create(
             {
                 "product_tmpl_id": self.fp_4.product_tmpl_id.id,
