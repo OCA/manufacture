@@ -544,7 +544,8 @@ class MultiLevelMrp(models.TransientModel):
         ):
             last_date = self._get_safety_stock_target_date(product_mrp_area)
             demand_origin.append("Safety Stock")
-            move = fields.first(product_mrp_area.mrp_move_ids)
+            mrp_moves = product_mrp_area.mrp_move_ids
+            move = next(iter(mrp_moves), mrp_moves)
             if last_date and (
                 fields.Date.from_string(move.mrp_date)
                 >= last_date + timedelta(days=grouping_delta)
@@ -755,7 +756,7 @@ class MultiLevelMrp(models.TransientModel):
 
             log_msg = (
                 f"MRP Calculation LLC {llc} at {mrp_area.name} Finished "
-                "- Nbr. products: {counter}"
+                f"- Nbr. products: {counter}"
             )
             logger.info(log_msg)
 
