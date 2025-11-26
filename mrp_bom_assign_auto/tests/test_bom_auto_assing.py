@@ -1,10 +1,10 @@
 # Copyright 2025 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpBomFind(TransactionCase):
+class TestMrpBomFind(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,21 +16,24 @@ class TestMrpBomFind(TransactionCase):
         cls.product_a = Product.create(
             {
                 "name": "Product A",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "standard_price": 10,
             }
         )
         cls.product_b = Product.create(
             {
                 "name": "Product B",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "standard_price": 5,
             }
         )
         cls.product_c = Product.create(
             {
                 "name": "Product B",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "standard_price": 5,
             }
         )
