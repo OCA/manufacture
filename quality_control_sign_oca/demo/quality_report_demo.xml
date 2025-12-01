@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_quality_inspection_demo">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Quality Inspection Report</h2>
+
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Inspection Number:</strong>
+                                <p t-field="o.name" />
+                            </div>
+                            <div class="col-6">
+                                <strong>Date:</strong>
+                                <p t-field="o.create_date" />
+                            </div>
+                        </div>
+
+                        <div class="row mb32">
+                            <div class="col-6">
+                                <strong>Test:</strong>
+                                <p t-field="o.test.name" />
+                            </div>
+                            <div class="col-6">
+                                <strong>Inspector:</strong>
+                                <p t-field="o.user.name" />
+                            </div>
+                        </div>
+
+                        <div class="row mb32">
+                            <div class="col-12">
+                                <strong>Status:</strong>
+                                <p>
+                                    <span
+                                        t-if="o.state == 'success'"
+                                        class="badge badge-success"
+                                    >Success</span>
+                                    <span
+                                        t-if="o.state == 'failed'"
+                                        class="badge badge-danger"
+                                    >Failed</span>
+                                    <span
+                                        t-if="o.state == 'draft'"
+                                        class="badge badge-secondary"
+                                    >Draft</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h4>Inspection Lines</h4>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Result</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.inspection_lines" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.test_line.name" /></td>
+                                        <td><span
+                                                t-field="line.qualitative_value"
+                                            /></td>
+                                        <td><span
+                                                t-field="line.quantitative_value"
+                                            /></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div class="row mt32">
+                            <div class="col-12">
+                                <strong>Notes:</strong>
+                                <p t-field="o.external_notes" />
+                            </div>
+                        </div>
+
+                        <!-- Signature placeholder -->
+                        <div class="row mt64">
+                            <div class="col-6">
+                                <p>
+                                    <strong>Inspector Signature:</strong>
+                                </p>
+                                <p>_______________________</p>
+                            </div>
+                            <div class="col-6">
+                                <p>
+                                    <strong>Approved By:</strong>
+                                </p>
+                                <p>_______________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="quality_inspection_report_demo" model="ir.actions.report">
+        <field name="name">Quality Inspection Report (Demo)</field>
+        <field name="model">qc.inspection</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >quality_control_sign_oca.report_quality_inspection_demo</field>
+        <field
+            name="report_file"
+        >quality_control_sign_oca.report_quality_inspection_demo</field>
+        <field name="binding_model_id" ref="quality_control_oca.model_qc_inspection" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="base.paperformat_euro" />
+    </record>
+</odoo>

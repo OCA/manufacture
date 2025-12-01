@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_qc_sign_template_item_view" model="ir.ui.view">
+        <field name="name">qc.sign.template.item.tree</field>
+        <field name="model">qc.sign.template.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_id" />
+                <field name="report_id" />
+                <field name="role_id" />
+                <field name="page" />
+                <field name="position_x" />
+                <field name="position_y" />
+                <field name="width" />
+                <field name="height" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_qc_sign_template_item_form" model="ir.ui.view">
+        <field name="name">qc.sign.template.item.form</field>
+        <field name="model">qc.sign.template.item</field>
+        <field name="arch" type="xml">
+            <form string="Quality Control Sign Template Item">
+                <sheet>
+                    <group>
+                        <field name="company_id" />
+                        <field name="report_id" required="1" />
+                        <field name="role_id" required="1" />
+                    </group>
+                    <group string="Position on PDF">
+                        <field name="page" />
+                        <field name="position_x" />
+                        <field name="position_y" />
+                        <field name="width" />
+                        <field name="height" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_qc_sign_template_item" model="ir.actions.act_window">
+        <field name="name">Quality Control Signature Template Item</field>
+        <field name="res_model">qc.sign.template.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create signature template item that define where each signer will sign on the PDF report.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_qc_sign_template_item_config"
+        name="Quanlity Control Signature Template Items"
+        parent="quality_control_oca.menu_qc_config"
+        action="action_qc_sign_template_item"
+        sequence="80"
+    />
+</odoo>
