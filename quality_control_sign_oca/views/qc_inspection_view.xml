@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="qc_inspection_form_view_inherit_sign" model="ir.ui.view">
+        <field name="name">qc.inspection.form</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_confirm'][1]" position="before">
+                <button
+                    name="action_view_sign_requests"
+                    type="object"
+                    class="oe_stat_button"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="sign_request_count" />
+                        </span>
+                        <span class="o_stat_text">
+                            Sign Requests
+                        </span>
+                    </div>
+                </button>
+
+                <button
+                    name="action_sign_inspection"
+                    type="object"
+                    string="Sign New Inspection"
+                    class="btn-primary"
+                    invisible="state not in ['success', 'failed']"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

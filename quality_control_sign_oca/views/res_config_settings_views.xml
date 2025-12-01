@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.rental.sign</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    name="quality_control_oca"
+                    data-string="Quality Control Oca"
+                    string="Quality Control Oca"
+                    groups="quality_control_oca.group_quality_control_manager"
+                >
+                    <block title="Quality Control Sign" name="quality_control_sign_oca">
+                        <setting
+                            id="rental_delivery_report_setting"
+                            help="Select the PDF report that will be exported and sent for quality control signature"
+                        >
+                            <field name="quality_inspection_report_id" />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_quality_sign_settings" model="ir.actions.act_window">
+        <field name="name">General Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'quality_control_oca'}</field>
+    </record>
+
+    <menuitem
+        id="menu_quality_sign_settings"
+        name="General settings"
+        parent="quality_control_oca.menu_qc_config"
+        action="action_quality_sign_settings"
+        sequence="1"
+    />
+</odoo>
