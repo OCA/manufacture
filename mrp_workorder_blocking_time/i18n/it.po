@@ -6,121 +6,125 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-12-03 11:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_workorder_blocking_reason_wizard_form_view
 msgid "Accept and stop WO"
-msgstr ""
+msgstr "Accetta e ferma OL"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder__blocking_period_interrupted
 msgid "Blocking Period Interrupted"
-msgstr ""
+msgstr "Periodo di blocco interrotto"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_routing_workcenter__blocking_stage
 msgid "Blocking Stage"
-msgstr ""
+msgstr "Fase di blocco"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder__blocking_stage_end
 msgid "Blocking Stage End"
-msgstr ""
+msgstr "Fine fase di blocco"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_workorder_blocking_reason_wizard_form_view
 msgid "Cancel and continue WO"
-msgstr ""
+msgstr "Annulla e continua OL"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder__interruption_reason
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__interruption_reason
 msgid "Interruption Reason"
-msgstr ""
+msgstr "Motivo interruzione"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_workorder_blocking_reason_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_workorder_blocking_time
 #. odoo-python
 #: code:addons/mrp_workorder_blocking_time/wizards/wizard_open_blocking_popup.py:0
 msgid "No action to do"
-msgstr ""
+msgstr "Nessuna azione da eseguire"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_routing_workcenter_blocking_time_form_inherit
 msgid "Rec. Blocking Time"
-msgstr ""
+msgstr "Reg. tempo di blocco"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_routing_workcenter_blocking_time_tree_inherit
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_routing_workcenter_bom_blocking_time_tree_inherit
 msgid "Rec. Blocking Time (hours)"
-msgstr ""
+msgstr "Reg. tempo blocco (ore)"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model.fields,field_description:mrp_workorder_blocking_time.field_mrp_routing_workcenter__recommended_blocking_time
 msgid "Recommended Blocking Time"
-msgstr ""
+msgstr "Tempo di blocco raccomandato"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_workorder_blocking_reason_wizard_form_view
 msgid "Warning"
-msgstr ""
+msgstr "Attenzione"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model,name:mrp_workorder_blocking_time.model_mrp_workorder_blocking_reason_wizard
 msgid "Wizard to open a blocking reason popup for a workorder"
 msgstr ""
+"Procedura guidata per aprire un popup con il motivo di blocco per un ordine "
+"di lavoro"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model,name:mrp_workorder_blocking_time.model_mrp_routing_workcenter
 msgid "Work Center Usage"
-msgstr ""
+msgstr "Uso centro di lavoro"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.model,name:mrp_workorder_blocking_time.model_mrp_workorder
 msgid "Work Order"
-msgstr ""
+msgstr "Ordine di lavoro"
 
 #. module: mrp_workorder_blocking_time
 #: model:ir.actions.act_window,name:mrp_workorder_blocking_time.mrp_workorder_blocking_reason_wizard_act_window
 msgid "WorkOrder Blocking Reason Popup"
-msgstr ""
+msgstr "Popup motivo blocco ordine di lavoro"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_workorder_blocking_reason_wizard_form_view
@@ -128,14 +132,17 @@ msgid ""
 "You are trying to pause/finish a workorder, but the blocking period is not over.\n"
 "                                Are you sure you want to continue?"
 msgstr ""
+"Si sta tentando di sospendere/completare un ordine di lavoro, ma il periodo "
+"di blocco non è finito.\n"
+"                                Si è sicuri di continuare?"
 
 #. module: mrp_workorder_blocking_time
 #. odoo-python
 #: code:addons/mrp_workorder_blocking_time/models/mrp_workorder.py:0
 msgid "You cannot remove a blocking operation!"
-msgstr ""
+msgstr "Non si può rimuovere una operazione di blocco!"
 
 #. module: mrp_workorder_blocking_time
 #: model_terms:ir.ui.view,arch_db:mrp_workorder_blocking_time.mrp_routing_workcenter_blocking_time_form_inherit
 msgid "hours"
-msgstr ""
+msgstr "Ore"
