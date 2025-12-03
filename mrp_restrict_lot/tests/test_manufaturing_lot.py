@@ -28,9 +28,16 @@ class TestRestrictLot(TransactionCase):
                 "company_id": self.warehouse.company_id.id,
             }
         )
+        lot2 = self.env["stock.lot"].create(
+            {
+                "name": "lot2",
+                "product_id": self.panel_wood_prd.id,
+                "company_id": self.warehouse.company_id.id,
+            }
+        )
 
         group = self.env["procurement.group"].create({"name": "My test delivery"})
-        move = self.env["stock.move"].create(
+        move1 = self.env["stock.move"].create(
             {
                 "product_id": self.panel_wood_prd.id,
                 "location_id": self.warehouse.lot_stock_id.id,
@@ -45,12 +52,12 @@ class TestRestrictLot(TransactionCase):
                 "group_id": group.id,
             }
         )
-        move._action_confirm()
-        mo = move.move_orig_ids.production_id
-        self.assertEqual(mo.lot_producing_id.id, lot.id)
-        self.assertEqual(mo.name, lot.name)
-        group = self.env["procurement.group"].create({"name": "My test delivery 2"})
-        move = self.env["stock.move"].create(
+        move1._action_confirm()
+        mo1 = move1.move_orig_ids.production_id
+        self.assertEqual(mo1.lot_producing_id.id, lot.id)
+        self.assertEqual(mo1.name, lot.name)
+        group2 = self.env["procurement.group"].create({"name": "My test delivery 2"})
+        move2 = self.env["stock.move"].create(
             {
                 "product_id": self.panel_wood_prd.id,
                 "location_id": self.warehouse.lot_stock_id.id,
@@ -62,9 +69,38 @@ class TestRestrictLot(TransactionCase):
                 "warehouse_id": self.warehouse.id,
                 "restrict_lot_id": lot.id,
                 "picking_type_id": self.out_picking_type.id,
-                "group_id": group.id,
+                "group_id": group2.id,
             }
         )
-        move._action_confirm()
-        mo = move.move_orig_ids.production_id
-        self.assertEqual(mo.name, f"{lot.name}-1")
+        move2._action_confirm()
+        mo2 = move2.move_orig_ids.production_id
+        self.assertEqual(mo2.name, f"{lot.name}-1")
+        self.assertEqual(
+            mo2.move_finished_ids.restrict_lot_id,
+            lot,
+            "ensure propagation of the restricted lot to the finished move",
+        )
+
+        mo2.button_mark_done()
+        self.assertEqual(mo2.state, "done")
+        self.assertEqual(mo2.lot_producing_id.id, lot.id)
+        self.assertEqual(
+            mo2.move_finished_ids.restrict_lot_id,
+            lot,
+            "ensure propagation of the restricted lot to the finished move after prod",
+        )
+
+        # change lot on MO 1 and ensure it's propagated
+        mo1.lot_producing_id = lot2
+        mo1.button_mark_done()
+        self.assertEqual(mo1.state, "done")
+        self.assertEqual(
+            mo1.lot_producing_id.id,
+            lot2.id,
+            "lot_producing_id should propagate to move line",
+        )
+        self.assertEqual(
+            mo1.move_finished_ids.restrict_lot_id,
+            lot2,
+            "ensure propagation of the restricted lot to the finished move after prod",
+        )
