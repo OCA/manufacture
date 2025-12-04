@@ -1,4 +1,4 @@
-# Copyright 2023 Quartile Limited
+# Copyright 2023 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import models

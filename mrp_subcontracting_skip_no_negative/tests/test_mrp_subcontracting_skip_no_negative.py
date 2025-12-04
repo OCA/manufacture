@@ -1,4 +1,4 @@
-# Copyright 2023 Quartile Limited
+# Copyright 2023 Quartile (https://www.quartile.co)
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
@@ -25,7 +25,6 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
         cls.env.user.groups_id += cls.env.ref("stock.group_reception_report")
         with picking_form.move_ids_without_package.new() as move:
             move.product_id = cls.finished
-            move.product_id.type = "product"
             move.product_uom_qty = 1
         cls.subcontracting_receipt = picking_form.save()
         type_id = picking_form.picking_type_id
