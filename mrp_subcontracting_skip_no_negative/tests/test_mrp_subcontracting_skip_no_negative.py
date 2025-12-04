@@ -12,12 +12,6 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                test_stock_no_negative=True,
-            )
-        )
         picking_form = Form(cls.env["stock.picking"])
         picking_form.picking_type_id = cls.env.ref("stock.picking_type_in")
         picking_form.partner_id = cls.subcontractor_partner1
