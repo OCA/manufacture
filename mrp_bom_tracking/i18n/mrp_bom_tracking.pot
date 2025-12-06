@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -78,8 +78,8 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
 msgid ""
-"Create and confirm Manufacturing Orders this many days in advance, to have enough time to replenish components or manufacture semi-finished products.\n"
-"Note that security lead times will also be considered when appropriate."
+"Create and confirm Manufacturing Orders this many days in advance, to have "
+"enough time to replenish components or manufacture semi-finished products."
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -98,8 +98,20 @@ msgid ""
 msgstr ""
 
 #. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
 msgid "Flexible Consumption"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__id
+msgid "ID"
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -162,7 +174,8 @@ msgstr ""
 msgid ""
 "When a procurement has a ‘produce’ route with a operation type set, it will "
 "try to create a Manufacturing Order for that product using a BoM of the same"
-" operation type. That allows to define stock rules which trigger different "
+" operation type.If not,the operation type is not taken into account in the "
+"BoM search. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
 
