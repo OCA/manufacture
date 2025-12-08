@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-12-08 10:42+0000\n"
+"Last-Translator: Ana Matulin <ana@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,22 +15,23 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_production_back_to_draft
 #. odoo-python
 #: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
 msgid "Could not set the production order back to draft"
-msgstr ""
+msgstr "Nije moguće vratiti radni nalog u nacrt"
 
 #. module: mrp_production_back_to_draft
 #: model:ir.model,name:mrp_production_back_to_draft.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Proizvodni nalog"
 
 #. module: mrp_production_back_to_draft
 #: model_terms:ir.ui.view,arch_db:mrp_production_back_to_draft.mrp_production_form_view_return_to_draft
 msgid "Return to Draft"
-msgstr ""
+msgstr "Vrati u nacrt"
 
 #. module: mrp_production_back_to_draft
 #. odoo-python
@@ -38,3 +40,5 @@ msgid ""
 "You cannot return to draft the following MO: %s. Only confirmed or cancelled"
 " MO can be returned to draft."
 msgstr ""
+"Ne možete vratiti u nacrt sljedeći proizvodni nalog: %s. Samo potvrđeni ili "
+"otkazani proizvodni nalozi mogu se vratiti u nacrt."
