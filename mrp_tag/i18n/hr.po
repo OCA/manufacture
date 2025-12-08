@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-12-08 13:02+0000\n"
+"Last-Translator: Ana Matulin <ana@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__child_ids
@@ -28,47 +30,47 @@ msgstr ""
 #. module: mrp_tag
 #: model_terms:ir.actions.act_window,help:mrp_tag.mrp_tag_action
 msgid "Create new tags for your manufacture order"
-msgstr ""
+msgstr "Stvorite nove oznake za vaš proizvodni nalog"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazano ime"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnju izmjenu izvršio/la"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnja izmjena dana"
 
 #. module: mrp_tag
 #: model:ir.model,name:mrp_tag.model_mrp_tag
 msgid "MRP Tag"
-msgstr ""
+msgstr "Oznaka MRP-a"
 
 #. module: mrp_tag
 #: model:ir.model,name:mrp_tag.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Proizvodni nalog"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_id
@@ -83,17 +85,17 @@ msgstr ""
 #. module: mrp_tag
 #: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_production_filter
 msgid "Tag"
-msgstr ""
+msgstr "Oznaka"
 
 #. module: mrp_tag
 #: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__name
 msgid "Tag Name"
-msgstr ""
+msgstr "Naziv oznake"
 
 #. module: mrp_tag
 #: model:ir.model.constraint,message:mrp_tag.constraint_mrp_tag_tag_name_uniq
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "Naziv oznake već postoji!"
 
 #. module: mrp_tag
 #: model:ir.actions.act_window,name:mrp_tag.mrp_tag_action
@@ -101,10 +103,10 @@ msgstr ""
 #: model:ir.ui.menu,name:mrp_tag.menu_mrp_tag_config
 #: model_terms:ir.ui.view,arch_db:mrp_tag.mrp_tag_view_form
 msgid "Tags"
-msgstr ""
+msgstr "Oznake"
 
 #. module: mrp_tag
 #. odoo-python
 #: code:addons/mrp_tag/models/mrp_tag.py:0
 msgid "Tags cannot be recursive."
-msgstr ""
+msgstr "Oznake ne mogu biti rekurzivne."
