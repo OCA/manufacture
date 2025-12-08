@@ -18,7 +18,7 @@ class MrpPackagingDefaultCase(TestMrpCommon):
         cls.tomato_product = cls.env["product.product"].create(
             {
                 "name": "Tomato",
-                "type": "product",
+                "type": "consu",
                 "list_price": 5.0,
                 "categ_id": cls.product_category.id,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
@@ -33,7 +33,7 @@ class MrpPackagingDefaultCase(TestMrpCommon):
         cls.lettuce_product = cls.env["product.product"].create(
             {
                 "name": "Lettuce",
-                "type": "product",
+                "type": "consu",
                 "list_price": 1.0,
                 "categ_id": cls.product_category.id,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
@@ -46,7 +46,7 @@ class MrpPackagingDefaultCase(TestMrpCommon):
         cls.bread_product = cls.env["product.product"].create(
             {
                 "name": "Bread",
-                "type": "product",
+                "type": "consu",
                 "list_price": 3.0,
                 "categ_id": cls.product_category.id,
                 "uom_id": cls.env.ref("uom.product_uom_kgm").id,
@@ -68,7 +68,8 @@ class MrpPackagingDefaultCase(TestMrpCommon):
         sandwich = self.env["product.product"].create(
             {
                 "name": "Sandwich",
-                "type": "product" if cooked else "consu",
+                "type": "consu",
+                "is_storable": True if cooked else False
                 "list_price": 10.0 if cooked else 7.0,
                 "categ_id": self.product_category.id,
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
