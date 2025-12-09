@@ -1,6 +1,7 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 
@@ -194,3 +195,42 @@ class TestManufacturingOrderAutoValidate(BaseCommon):
         self.assertEqual(len(created_mos), 1)
         self.assertEqual(created_mos.product_qty, self.bom.product_qty)
         self.assertTrue(any("increased" in m.body for m in created_mos.message_ids))
+
+    def test_double_procurement_same_group(self):
+        """Check multiple procurements with same group.
+
+        When running multiple procurements with the same group the system
+        will try to add to existing procurements (cf. `_run_manufacture`)
+        The check on auto validate will not allow that.
+        A new mo should be created.
+        """
+        existing_mos = self.env["mrp.production"].search([])
+        self.bom.product_qty = 1
+        self._replenish_product(self.product_template.product_variant_id, product_qty=1)
+        created_mos_1 = self.env["mrp.production"].search(
+            [("id", "not in", existing_mos.ids)]
+        )
+        self.assertTrue(created_mos_1)
+        self.env["procurement.group"].run(
+            [
+                self.env["procurement.group"].Procurement(
+                    self.product_template.product_variant_id,
+                    1,
+                    self.uom_unit,
+                    self.wh.lot_stock_id,
+                    "Manual Replenishment",
+                    "Manual Replenishment",
+                    self.wh.company_id,
+                    {
+                        "warehouse_id": self.wh,
+                        "route_ids": self.manufacture_route,
+                        "date_planned": fields.Datetime.now(),
+                        "group_id": created_mos_1.procurement_group_id,
+                    },
+                )
+            ]
+        )
+        created_mos_2 = self.env["mrp.production"].search(
+            [("id", "not in", (existing_mos | created_mos_1).ids)]
+        )
+        self.assertTrue(created_mos_1 != created_mos_2)
