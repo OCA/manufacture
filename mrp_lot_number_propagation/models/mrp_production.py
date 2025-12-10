@@ -186,7 +186,11 @@ class MrpProduction(models.Model):
 
     def _create_and_assign_propagated_lot_number(self):
         for order in self:
-            if not order.is_lot_number_propagated or order.lot_producing_id:
+            if (
+                not order.is_lot_number_propagated
+                or order.lot_producing_id
+                and order.lot_producing_id.name == order.propagated_lot_producing
+            ):
                 continue
             finish_moves = order.move_finished_ids.filtered(
                 lambda mv, mo=order: mv.product_id == mo.product_id

@@ -74,6 +74,14 @@ msgid ""
 msgstr ""
 
 #. module: mrp_lot_number_propagation
+#. odoo-python
+#: code:addons/mrp_lot_number_propagation/wizard/mrp_batch_produce_propagate.py:0
+msgid ""
+"Cannot mass produce without any propagating component line having serial "
+"number defined."
+msgstr ""
+
+#. module: mrp_lot_number_propagation
 #: model:ir.model.fields,field_description:mrp_lot_number_propagation.field_mrp_batch_produce_propagate__create_uid
 msgid "Created by"
 msgstr ""
