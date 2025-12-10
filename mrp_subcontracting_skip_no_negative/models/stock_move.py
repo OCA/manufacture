@@ -12,10 +12,10 @@ class StockMove(models.Model):
         moves_with_no_check = self.filtered(lambda x: x.is_subcontract).with_context(
             skip_negative_qty_check=True
         )
-        res = super(StockMove, self - moves_with_no_check)._action_done(
+        res = super(StockMove, moves_with_no_check)._action_done(
             cancel_backorder=cancel_backorder
         )
-        res += super(StockMove, moves_with_no_check)._action_done(
+        res += super(StockMove, self - moves_with_no_check)._action_done(
             cancel_backorder=cancel_backorder
         )
         return res
