@@ -20,3 +20,25 @@ class StockPicking(models.Model):
             ]
         )
         quants.check_negative_qty()
+
+    def _get_moves_to_backorder(self):
+        self.ensure_one()
+        moves = super()._get_moves_to_backorder()
+        if self.env.context.get("skip_negative_qty_check"):
+            return moves.filtered(lambda x: x.is_subcontract)
+        return moves
+
+    def _create_backorder_picking(self):
+        self.ensure_one()
+        existing_backorder_picking = self.env["stock.picking"].search(
+            [("backorder_id", "=", self.id)]
+        )
+        existing_subcontract_moves = existing_backorder_picking.move_ids.filtered(
+            lambda x: x.is_subcontract
+        )
+        if (
+            self.move_ids.filtered(lambda x: x.state == "done" and x.is_subcontract)
+            and existing_subcontract_moves
+        ):
+            return existing_backorder_picking
+        return super()._create_backorder_picking()
