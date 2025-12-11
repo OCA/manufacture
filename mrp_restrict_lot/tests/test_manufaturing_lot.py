@@ -104,3 +104,94 @@ class TestRestrictLot(TransactionCase):
             lot2,
             "ensure propagation of the restricted lot to the finished move after prod",
         )
+
+    def test_dont_mix_manufacturing_lot(self):
+        # test _make_mo_get_domain
+        # ensure lots are not mixed
+        lot1 = self.env["stock.lot"].create(
+            {
+                "name": "lot1",
+                "product_id": self.panel_wood_prd.id,
+                "company_id": self.warehouse.company_id.id,
+            }
+        )
+
+        group1 = self.env["procurement.group"].Procurement(
+            self.panel_wood_prd,
+            4,
+            self.panel_wood_prd.uom_id,
+            self.warehouse.lot_stock_id,
+            "name",
+            "origin",
+            self.warehouse.company_id,
+            {"restrict_lot_id": lot1.id},
+        )
+
+        lot2 = self.env["stock.lot"].create(
+            {
+                "name": "lot2",
+                "product_id": self.panel_wood_prd.id,
+                "company_id": self.warehouse.company_id.id,
+            }
+        )
+
+        group2 = self.env["procurement.group"].Procurement(
+            self.panel_wood_prd,
+            4,
+            self.panel_wood_prd.uom_id,
+            self.warehouse.lot_stock_id,
+            "name",
+            "origin",
+            self.warehouse.company_id,
+            {"restrict_lot_id": lot2.id},
+        )
+
+        group3 = self.env["procurement.group"].Procurement(
+            self.panel_wood_prd,
+            4,
+            self.panel_wood_prd.uom_id,
+            self.warehouse.lot_stock_id,
+            "name",
+            "origin",
+            self.warehouse.company_id,
+            {"restrict_lot_id": lot1.id},
+        )
+
+        rule = self.env.ref("mrp.route_warehouse0_manufacture").rule_ids.filtered(
+            lambda r: r.warehouse_id.id == self.warehouse.id
+        )
+        bom = self.env["mrp.bom"].search(
+            [["product_tmpl_id", "=", self.panel_wood_prd.product_tmpl_id.id]]
+        )
+        domain1 = rule._make_mo_get_domain(group1, bom)
+        mo_before = self.env["mrp.production"].search(domain1, limit=1)
+        self.assertFalse(mo_before, "MO not created yet")
+
+        # create first mo
+        self.env["procurement.group"].run([group1])
+
+        mo = self.env["mrp.production"].search([["name", "=", lot1.name]])
+        self.assertEqual(mo.lot_producing_id.id, lot1.id)
+
+        mo_after = self.env["mrp.production"].search(domain1, limit=1)
+        self.assertEqual(mo.id, mo_after.id)
+
+        # create the second MO
+        self.env["procurement.group"].run([group2])
+        domain2 = rule._make_mo_get_domain(group2, bom)
+
+        # test with limit to mimic _run_manufacture()
+        dont_mix_mo1 = self.env["mrp.production"].search(domain1, limit=1)
+        dont_mix_mo2 = self.env["mrp.production"].search(domain2, limit=1)
+        self.assertEqual(dont_mix_mo2.lot_producing_id.id, lot2.id)
+        self.assertFalse(
+            dont_mix_mo1.id == dont_mix_mo2.id, "It should not return the same MO"
+        )
+
+        # run the third procurement, ensure the mix for MO 1 (lot 1)
+        self.env["procurement.group"].run([group3])
+        domain3 = rule._make_mo_get_domain(group3, bom)
+        mix_mo1 = self.env["mrp.production"].search(domain1, limit=1)
+        mix_mo3 = self.env["mrp.production"].search(domain3, limit=1)
+        self.assertEqual(mix_mo1.id, mix_mo3.id, "It should mix MO with same lot")
+        self.assertEqual(mix_mo1.lot_producing_id.id, lot1.id)
