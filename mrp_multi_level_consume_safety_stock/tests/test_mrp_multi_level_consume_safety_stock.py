@@ -80,7 +80,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             },
         ]
         self.assertEqual(len(expected), len(inventory))
-        for test_vals, inv in zip(expected, inventory):
+        for test_vals, inv in zip(expected, inventory, strict=False):
             for key in test_vals:
                 self.assertEqual(
                     test_vals[key],

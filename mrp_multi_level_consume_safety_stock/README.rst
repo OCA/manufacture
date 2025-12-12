@@ -17,27 +17,28 @@ MRP Multi Level Consume Safety Stock
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/mrp_multi_level_consume_safety_stock
+    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_multi_level_consume_safety_stock
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-mrp_multi_level_consume_safety_stock
+    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_multi_level_consume_safety_stock
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module complements the `mrp_multi_level` module by allowing to set a date 
-on the mrp.area records until which no attempt to rebuild safety stock will be 
-attempted: the safety stock will be used, if the running stock get below zero, 
-then a resupply will be created to bring back the stock to zero. 
+This module complements the mrp_multi_level module by allowing to set a
+date on the mrp.area records until which no attempt to rebuild safety
+stock will be attempted: the safety stock will be used, if the running
+stock get below zero, then a resupply will be created to bring back the
+stock to zero.
 
 The idea is that your area may be under tension at a given moment (maybe
 some workers are off, maybe there is high demand from customers) and you
-can barely keep up with the demand. In this case, you can set
-Safety stock rebuild lead date to a date in the future at
-which you anticipate that the situation will have been fixed.
+can barely keep up with the demand. In this case, you can set Safety
+stock rebuild lead date to a date in the future at which you anticipate
+that the situation will have been fixed.
 
 **Table of contents**
 
@@ -47,13 +48,14 @@ which you anticipate that the situation will have been fixed.
 Usage
 =====
 
-When this module is installed, you get an additional parameter on the mrp.area records:
+When this module is installed, you get an additional parameter on the
+mrp.area records:
 
-* Safety stock lead date
+- Safety stock lead date
 
-Until that date, the MRP Multi Level planner
-will consume the safety stock without attempting to rebuild it, and only
-resupply if the forecasted stock goes below zero. 
+Until that date, the MRP Multi Level planner will consume the safety
+stock without attempting to rebuild it, and only resupply if the
+forecasted stock goes below zero.
 
 If the date is in the paste, nothing special happens.
 
@@ -63,7 +65,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_multi_level_consume_safety_stock%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_multi_level_consume_safety_stock%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -71,12 +73,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camptocamp
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -96,6 +98,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-gurneyalex| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_multi_level_consume_safety_stock>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_multi_level_consume_safety_stock>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
