@@ -5,11 +5,11 @@
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='notes']" position="after">
+            <xpath expr="//notebook" position="inside">
                 <page
                     name="Manufacturer"
                     string="Manufacturer"
-                    attrs="{'invisible': ['|', ('object_id', '=', False), ('product_id', '=', False)]}"
+                    invisible="not object_id or not product_id"
                 >
                     <group>
                         <field name="manufacturer" />
