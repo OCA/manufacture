@@ -24,10 +24,10 @@
         <field name="model">qc.inspection</field>
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_search_view" />
         <field name="arch" type="xml">
-           <field name="test" position="after">
-                 <field name="manufacturer" />
-                 <field name="manufacturer_code" />
-           </field>
+            <field name="test" position="after">
+                <field name="manufacturer" />
+                <field name="manufacturer_code" />
+            </field>
         </field>
     </record>
 </odoo>
