@@ -64,6 +64,23 @@ class TestMrpProduction(Common):
         form.product_qty = qty
         return form.save()
 
+    def _init_inventory(cls, product, location, qty=1, lot_name=None):
+        lot = None
+        if lot_name:
+            lot = cls.env["stock.lot"].search(
+                [("product_id", "=", product.id), ("name", "=", lot_name)]
+            )
+            if not lot:
+                lot = cls.env["stock.lot"].create(
+                    {"name": lot_name, "product_id": product.id}
+                )
+        cls.env["stock.quant"]._update_available_quantity(
+            product,
+            location,
+            quantity=qty,
+            lot_id=lot,
+        )
+
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
             line.quantity = line.quantity_product_uom
@@ -233,18 +250,11 @@ class TestMrpProduction(Common):
             self.finished_propagated_product, self.propagate_bom, qty=5
         )
         # Init component stock
-        for i in range(5):
-            lot = self.env["stock.lot"].create(
-                {
-                    "name": "SN-000%d" % i,
-                    "product_id": self.component_propagated_product.id,
-                }
-            )
-            self.env["stock.quant"]._update_available_quantity(
+        for i in range(1, 6):
+            self._init_inventory(
                 self.component_propagated_product,
                 self.stock_location,
-                quantity=1.0,
-                lot_id=lot,
+                lot_name="SN-000%d" % i,
             )
         order.action_confirm()
         components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(
@@ -265,3 +275,89 @@ class TestMrpProduction(Common):
                 backorder.lot_producing_id.name,
                 propagating_move.move_line_ids.lot_id.name,
             )
+
+    def test_clean_serial_after_mass_produce_split(self):
+        order = self._create_order(
+            self.finished_propagated_product, self.propagate_bom, qty=5
+        )
+        # Init component stock
+        for i in range(1, 11):
+            self._init_inventory(
+                self.component_propagated_product,
+                self.stock_location,
+                lot_name="SN-000%d" % i,
+            )
+        order.action_confirm()
+        components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(
+            "move_line_ids.lot_id"
+        )
+        self.assertEqual(len(components_serials), 5)
+        self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 1)
+        batch_propagate_action = order.button_mark_done()
+        self.assertEqual(
+            batch_propagate_action["res_model"], "mrp.batch.produce.propagate"
+        )
+        wiz = (
+            self.env[batch_propagate_action["res_model"]]
+            .with_context(**batch_propagate_action["context"])
+            .create({})
+        )
+        wiz.action_prepare()
+        self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 5)
+        for mo in order.procurement_group_id.mrp_production_ids:
+            self.assertEqual(mo.state, "confirmed")
+            self.assertTrue(mo.lot_producing_id)
+            self.assertEqual(
+                mo.lot_producing_id.name, mo.move_raw_ids.move_line_ids.lot_id.name
+            )
+
+        # Scrap propagating component should reset lot_producing_id
+        old_lot_name = order.move_raw_ids.move_line_ids.lot_id.name
+        scrap_form = Form(self.env["stock.scrap"])
+        scrap_form.product_id = order.move_raw_ids.product_id
+        scrap_form.lot_id = order.move_raw_ids.move_line_ids.lot_id
+        scrap = scrap_form.save()
+        scrap.action_validate()
+
+        self.assertTrue(order.move_raw_ids.move_line_ids.lot_id)
+        self.assertNotEqual(order.move_raw_ids.move_line_ids.lot_id.name, old_lot_name)
+
+        self.assertFalse(order.lot_producing_id)
+        self.assertFalse(
+            self.env["stock.lot"].search(
+                [
+                    ("product_id", "=", self.finished_propagated_product.id),
+                    ("name", "=", old_lot_name),
+                ]
+            )
+        )
+
+        next_order = order.procurement_group_id.mrp_production_ids.filtered(
+            lambda prod: prod.id != order.id
+        )[:1]
+        next_order_component_serial = next_order.move_raw_ids.move_line_ids.lot_id
+        next_order_finished_serial_name = next_order.lot_producing_id.name
+        self.assertEqual(
+            next_order_component_serial.name, next_order_finished_serial_name
+        )
+        next_order.do_unreserve()
+
+        # Remove existing component serial to avoid reserving the same we did just
+        #  unreserve
+        self.env["stock.quant"]._update_available_quantity(
+            self.component_propagated_product,
+            self.stock_location,
+            quantity=-1,
+            lot_id=next_order_component_serial,
+        )
+        # Assignation of new serial must delete outdated finished serial number
+        next_order.action_assign()
+        self.assertFalse(next_order.lot_producing_id)
+        self.assertFalse(
+            self.env["stock.lot"].search(
+                [
+                    ("product_id", "=", self.finished_propagated_product.id),
+                    ("name", "=", next_order_finished_serial_name),
+                ]
+            )
+        )
