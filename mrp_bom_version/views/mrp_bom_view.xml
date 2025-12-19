@@ -9,9 +9,9 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
-            <list position="attributes">
+            <xpath expr="/*[self::tree or self::list]" position="attributes">
                 <attribute name="decoration-muted">not active</attribute>
-            </list>
+            </xpath>
             <field name="code" position="after">
                 <field name="version" />
                 <field name="state" />
