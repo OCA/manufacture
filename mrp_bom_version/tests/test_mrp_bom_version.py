@@ -13,21 +13,27 @@ class TestMrpBomVersion(BaseCommon):
         cls.parameter_model = cls.env["ir.config_parameter"].sudo()
         cls.bom_model = cls.env["mrp.bom"].with_context(test_mrp_bom_version=True)
         cls.company = cls.env.ref("base.main_company")
+        cls.component_product_5 = cls.env.ref("product.product_product_5")
+        cls.component_product_6 = cls.env.ref("product.product_product_6")
         vals = {
             "company_id": cls.company.id,
             "product_tmpl_id": cls.env.ref(
                 "product.product_product_11_product_template"
             ).id,
             "bom_line_ids": [
-                Command.create(
-                    {"product_id": cls.env.ref("product.product_product_5").id}
-                ),
-                Command.create(
-                    {"product_id": cls.env.ref("product.product_product_6").id}
-                ),
+                Command.create({"product_id": cls.component_product_5.id}),
+                Command.create({"product_id": cls.component_product_6.id}),
             ],
         }
         cls.mrp_bom = cls.bom_model.create(vals)
+
+        stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.component_product_5, stock_location, 10
+        )
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.component_product_6, stock_location, 10
+        )
 
     def test_mrp_bom(self):
         self.assertEqual(
@@ -105,16 +111,16 @@ class TestMrpBomVersion(BaseCommon):
             }
         )
         bom_line_5 = self.mrp_bom.bom_line_ids.filtered(
-            lambda l: l.product_id == self.env.ref("product.product_product_5")
+            lambda line: line.product_id == self.component_product_5
         )
         bom_line_6 = self.mrp_bom.bom_line_ids.filtered(
-            lambda l: l.product_id == self.env.ref("product.product_product_6")
+            lambda line: line.product_id == self.component_product_6
         )
 
         self.env["stock.move"].create(
             {
                 "name": "Kit Move – compo 5",
-                "product_id": self.env.ref("product.product_product_5").id,
+                "product_id": self.component_product_5.id,
                 "product_uom_qty": 1,
                 "product_uom": kit_product.uom_id.id,
                 "picking_id": picking.id,
@@ -126,7 +132,7 @@ class TestMrpBomVersion(BaseCommon):
         self.env["stock.move"].create(
             {
                 "name": "Kit Move – compo 6",
-                "product_id": self.env.ref("product.product_product_6").id,
+                "product_id": self.component_product_6.id,
                 "product_uom_qty": 1,
                 "product_uom": kit_product.uom_id.id,
                 "picking_id": picking.id,
