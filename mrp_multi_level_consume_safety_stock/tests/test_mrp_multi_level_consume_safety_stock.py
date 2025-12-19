@@ -86,5 +86,5 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
                     test_vals[key],
                     inv[key],
                     f"unexpected value for {key}: {inv[key]} "
-                    f"(expected {test_vals[key]} on {inv.date}",
+                    f"(expected {test_vals[key]} on {inv.date})",
                 )
