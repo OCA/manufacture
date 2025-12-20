@@ -48,27 +48,27 @@ msgstr "Nomenclature"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__bom_line_ids
 msgid "BoM Lines"
-msgstr ""
+msgstr "Lignes de nomenclature"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Type de nomenclature"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__byproduct_ids
 msgid "By-products"
-msgstr ""
+msgstr "Produits secondaires"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Paramètres de configuration"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__consumption
@@ -83,7 +83,11 @@ msgid ""
 "issued when appropriate also.\n"
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
-msgstr ""
+msgstr "Définit si vous pouvez consommer plus ou moins de composants que la quantité définie sur la nomenclature :\n"
+"  * Autorisé : autorisé pour tous les utilisateurs de la production.\n"
+"  * Autorisé avec avertissement : autorisé pour tous les utilisateurs de la production avec un résumé des différences de consommation lors de la fermeture de la commande de fabrication.\n"
+"  Note que dans le cas de composant Consommation manuelle, où la consommation est enregistrée exclusivement manuellement, les avertissements de consommation seront toujours émis lorsque nécessaire également.\n"
+"  * Bloqué : seul un gestionnaire peut fermer une commande de fabrication lorsque la consommation de la nomenclature n'est pas respectée."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__draft
@@ -95,7 +99,7 @@ msgstr "Brouillon"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "Consommation flexible"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__historical
@@ -113,7 +117,7 @@ msgstr "Date de l'historique"
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_id
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
-msgstr ""
+msgstr "Si une variante de produit est définie, la nomenclature est disponible uniquement pour ce produit."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__active_draft
@@ -135,7 +139,7 @@ msgstr "Version de la nomenclature"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "Disponibilité de fabrication"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -151,48 +155,48 @@ msgstr "Anciennes versions"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Type d'opération"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__operation_ids
 msgid "Operations"
-msgstr ""
+msgstr "Opérations"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__previous_bom_id
 msgid "Previous BoM"
-msgstr ""
+msgstr "Nomenclature précédente"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Produit"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante de produit"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Référence"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__state
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
 msgid "Status"
-msgstr ""
+msgstr "Statut"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
@@ -206,6 +210,9 @@ msgid ""
 "If the BOM contains operations, make sure the work center capacity is "
 "accurate."
 msgstr ""
+"Cette quantité devrait être la plus petite quantité que ce produit peut être produit. "
+"Si la nomenclature contient des opérations, assurez-vous que la capacité du centre de travail est "
+"exacte."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__active_draft
@@ -219,7 +226,7 @@ msgstr ""
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unité de mesure"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_uom_id
@@ -227,6 +234,7 @@ msgid ""
 "Unit of Measure (Unit of Measure) is the unit of measurement for the "
 "inventory control"
 msgstr ""
+"Unité de mesure (Unité de mesure) est l'unité de mesure pour le contrôle de l'inventaire"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__version
@@ -246,6 +254,11 @@ msgid ""
 "operation type. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
+"Lorsqu'un approvisionnement a une route 'produire' avec un type d'opération "
+"défini, il essaiera de créer un ordre de fabrication pour ce produit en "
+"utilisant une nomenclature du même type d'opération. Cela permet de définir "
+"des règles de stock qui déclenchent différents ordres de fabrication avec "
+"différentes nomenclatures."
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -253,6 +266,8 @@ msgid ""
 "YYou will activate the BoM, then you won't be able to edit it after this. "
 "Are you sure you want to proceed?"
 msgstr ""
+"Vous allez activer la nomenclature, alors vous ne pourrez plus l'éditer après ce moment. "
+"Êtes-vous sûr de vouloir continuer?"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -278,6 +293,8 @@ msgid ""
 "You will activate the BoM, then you won't be able to edit it after this. Are "
 "you sure you want to proceed?"
 msgstr ""
+"Vous allez activer la nomenclature, alors vous ne pourrez plus l'éditer après ce moment. "
+"Êtes-vous sûr de vouloir continuer?"
 
 #~ msgid "Group By..."
 #~ msgstr "Grouper par"
