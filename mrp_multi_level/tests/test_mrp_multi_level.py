@@ -2,8 +2,12 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from datetime import date, datetime, timedelta
+from unittest.mock import patch
 
 from odoo import fields
+from odoo.exceptions import ValidationError
+
+from odoo.addons.purchase_stock.models import stock_rule as purchase_stock_rule
 
 from .common import TestMrpMultiLevelCommon
 
@@ -920,3 +924,728 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             .create({})
         )
         self.assertEqual(len(procure_wizard.item_ids), 0)
+
+    def test_26_procure_wizard_mrp_action_override_to_buy(self):
+        """Test override to 'buy' creates PO with correct data and
+        updates planned_order."""
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv, "No MRP inventory found for FP-1")
+
+        # Get planned order and save initial qty_released
+        planned_order = mrp_inv.planned_order_ids.filtered(
+            lambda x: x.qty_released < x.mrp_qty
+        )[:1]
+        self.assertTrue(planned_order, "No planned order with pending qty")
+        qty_released_before = planned_order.qty_released
+
+        self.fp_1.write(
+            {
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.vendor.id,
+                            "min_qty": 0.0,
+                            "price": 10.0,
+                            "delay": 1,
+                        },
+                    )
+                ]
+            }
+        )
+
+        self.mo_obj.search([("product_id", "=", self.fp_1.id)]).unlink()
+        before_po_count = self.po_obj.search_count(
+            [("company_id", "=", self.company.id)]
+        )
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+
+        item = wiz.item_ids[0]
+        item_qty = item.qty
+
+        item.write({"mrp_action": "buy"})
+        wiz.make_procurement()
+
+        mos = self.mo_obj.search([("product_id", "=", self.fp_1.id)])
+        self.assertFalse(mos, "No MO should be created for 'buy' action")
+
+        after_po_count = self.po_obj.search_count(
+            [("company_id", "=", self.company.id)]
+        )
+        self.assertGreater(after_po_count, before_po_count, "PO should be created")
+
+        po = self.po_obj.search(
+            [
+                ("partner_id", "=", self.vendor.id),
+                ("order_line.product_id", "=", self.fp_1.id),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        self.assertTrue(po, "PO with correct vendor and product should exist")
+
+        po_line = po.order_line.filtered(lambda l: l.product_id == self.fp_1)
+        self.assertTrue(po_line, "PO should have line for FP-1")
+        self.assertEqual(
+            po_line.product_qty, item_qty, f"PO line qty should be {item_qty}"
+        )
+        self.assertEqual(
+            po_line.product_uom, self.fp_1.uom_id, "PO line should use product UoM"
+        )
+
+        self.assertEqual(
+            planned_order.qty_released,
+            qty_released_before + item_qty,
+            "qty_released MUST increase - order must be marked as released",
+        )
+
+    def test_27_procure_wizard_onchange_sets_vendor_currency(self):
+        """Onchange purchase defaults should set supplier and currency."""
+        planned = self.planned_order_obj.search(
+            [("product_id", "=", self.pp_1.id)], limit=1
+        )
+        self.assertTrue(planned)
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.planned.order",
+            active_ids=planned.ids,
+            active_id=planned.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+
+        item.mrp_action = "buy"
+        item._onchange_purchase_defaults()
+
+        self.assertEqual(item.mrp_action, "buy")
+        self.assertTrue(item.supplier_id)
+        self.assertTrue(item.currency_id)
+
+    def test_28_stock_rule_make_po_domain_and_prepare_po_currency(self):
+        usd = self.env.ref("base.USD")
+        rule = self.env["stock.rule"].search([], limit=1)
+        self.assertTrue(rule)
+
+        dom = rule._make_po_get_domain(
+            self.company, {"currency_id": usd.id}, self.vendor
+        )
+        self.assertIsInstance(dom, tuple)
+        self.assertIn(("currency_id", "=", usd.id), dom)
+        supplierinfo = self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.vendor.id,
+                "product_tmpl_id": self.pp_1.product_tmpl_id.id,
+                "min_qty": 0.0,
+                "price": 10.0,
+                "delay": 1,
+            }
+        )
+        po_vals = rule._prepare_purchase_order(
+            self.company,
+            ["MRP: TEST"],
+            [
+                {
+                    "currency_id": usd.id,
+                    "date_planned": fields.Datetime.now(),
+                    "supplier": supplierinfo,
+                }
+            ],
+        )
+        self.assertEqual(po_vals.get("currency_id"), usd.id)
+
+    def test_29_procure_item_onchange_uom_planned_order(self):
+        """Onchange UoM: when source is a planned order, restore the original qty."""
+        planned = self.planned_order_obj.search(
+            [("product_id", "=", self.pp_1.id)], limit=1
+        )
+        self.assertTrue(planned)
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.planned.order",
+            active_ids=planned.ids,
+            active_id=planned.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+
+        item.write(
+            {
+                "source_context": "planned_order",
+                "original_qty": 5.0,
+                "qty": 0.0,
+                "uom_id": self.ref("uom.product_uom_unit"),
+            }
+        )
+        item.onchange_uom_id()
+        self.assertEqual(item.qty, 5.0)
+
+    def test_30_procure_item_onchange_uom_inventory_to_procure(self):
+        """Onchange UoM: when source is inventory, default qty from `to_procure`."""
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv)
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+
+        item.write(
+            {
+                "source_context": "inventory",
+                "original_qty": 0.0,
+                "qty": 0.0,
+                "uom_id": self.ref("uom.product_uom_unit"),
+            }
+        )
+        mrp_inv.write({"to_procure": 3.0})
+
+        item.onchange_uom_id()
+        self.assertEqual(item.qty, 3.0)
+
+    def test_31_get_rule_respects_mrp_action(self):
+        """Test that _get_rule returns rule matching mrp_action when provided."""
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv)
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+        route = self.env["stock.route"].create(
+            {
+                "name": "Test route (mrp_multi_level)",
+                "product_selectable": False,
+                "warehouse_selectable": False,
+                "company_id": self.company.id,
+            }
+        )
+        picking_type = item.warehouse_id.in_type_id
+        pull_rule = self.env["stock.rule"].create(
+            {
+                "name": "Test pull rule (mrp_multi_level)",
+                "route_id": route.id,
+                "action": "pull",
+                "location_src_id": self.supplier_location.id,
+                "location_dest_id": item.location_id.id,
+                "picking_type_id": picking_type.id,
+                "company_id": self.company.id,
+            }
+        )
+        # Veriffy  _get_rule returns pull rule when mrp_action='pull'
+        pg = self.env["procurement.group"]
+        values = {
+            "mrp_action": "pull",
+            "company_id": self.company,
+            "warehouse_id": item.warehouse_id,
+        }
+        found_rule = pg._get_rule(item.product_id, item.location_id, values)
+        self.assertEqual(found_rule.id, pull_rule.id)
+        self.assertEqual(found_rule.action, "pull")
+
+    def test_32_procure_item_onchange_uom_fallback_original_qty(self):
+        """Onchange UoM: when no context, fallback to original qty."""
+        planned = self.planned_order_obj.search(
+            [("product_id", "=", self.pp_1.id)], limit=1
+        )
+        self.assertTrue(planned)
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.planned.order",
+            active_ids=planned.ids,
+            active_id=planned.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+
+        item.write(
+            {
+                "source_context": "inventory",
+                "mrp_inventory_id": False,
+                "original_qty": 7.0,
+                "qty": 0.0,
+                "uom_id": self.ref("uom.product_uom_unit"),
+            }
+        )
+        item.onchange_uom_id()
+        self.assertEqual(item.qty, 7.0)
+
+    def test_33_procure_wizard_mrp_action_override_to_manufacture(self):
+        """Test override to 'manufacture' creates MO with correct data and
+        updates planned_order."""
+        # Use PP-1 which has supply_method='buy' but we will override to manufacture
+        # First we need to create a BOM for PP-1
+        bom = self.mrp_bom_obj.create(
+            {
+                "product_tmpl_id": self.pp_1.product_tmpl_id.id,
+                "product_id": self.pp_1.id,
+                "type": "normal",
+                "product_qty": 1.0,
+            }
+        )
+        self.assertTrue(bom)
+        self.assertEqual(bom.product_id, self.pp_1)
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.pp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv, "No MRP inventory found for PP-1")
+
+        planned_order = mrp_inv.planned_order_ids.filtered(
+            lambda x: x.qty_released < x.mrp_qty
+        )[:1]
+        self.assertTrue(planned_order, "No planned order with pending qty")
+        qty_released_before = planned_order.qty_released
+
+        before_mo_count = self.mo_obj.search_count([("product_id", "=", self.pp_1.id)])
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+
+        item = wiz.item_ids[0]
+        item_qty = item.qty
+
+        # Override to manufacture (PP-1 normally uses 'buy')
+        item.write({"mrp_action": "manufacture"})
+        wiz.make_procurement()
+
+        after_mo_count = self.mo_obj.search_count([("product_id", "=", self.pp_1.id)])
+        self.assertGreater(
+            after_mo_count,
+            before_mo_count,
+            "A Manufacturing Order should have been created",
+        )
+
+        mo = self.mo_obj.search(
+            [
+                ("product_id", "=", self.pp_1.id),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        self.assertTrue(mo, "Manufacturing Order should exist")
+        self.assertEqual(mo.product_id, self.pp_1, "MO should have correct product")
+        self.assertEqual(mo.product_qty, item_qty, f"MO qty should be {item_qty}")
+        self.assertEqual(mo.bom_id, bom, "MO should use created BOM")
+        self.assertEqual(
+            mo.product_uom_id, self.pp_1.uom_id, "MO should use product UoM"
+        )
+
+        self.assertEqual(
+            planned_order.qty_released,
+            qty_released_before + item_qty,
+            "qty_released MUST increase - order must be marked as released",
+        )
+
+    def test_34_procure_wizard_mrp_action_override_to_pull(self):
+        """Test override to 'pull' creates picking with correct data and
+        updates planned_order."""
+        # Use FP-1 which has supply_method='manufacture' but we will override to pull
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv, "No MRP inventory found for FP-1")
+
+        # Get planned order and save initial qty_released
+        planned_order = mrp_inv.planned_order_ids.filtered(
+            lambda x: x.qty_released < x.mrp_qty
+        )[:1]
+        self.assertTrue(planned_order, "No planned order with pending qty")
+        qty_released_before = planned_order.qty_released
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+        item_qty = item.qty
+
+        # Create a pull rule for this location
+        route = self.env["stock.route"].create(
+            {
+                "name": "Test route for pull (test_34)",
+                "product_selectable": False,
+                "warehouse_selectable": False,
+                "company_id": self.company.id,
+            }
+        )
+        picking_type = item.warehouse_id.int_type_id
+        pull_rule = self.env["stock.rule"].create(
+            {
+                "name": "Test pull rule (test_34)",
+                "route_id": route.id,
+                "action": "pull",
+                "location_src_id": self.supplier_location.id,
+                "location_dest_id": item.location_id.id,
+                "picking_type_id": picking_type.id,
+                "company_id": self.company.id,
+                "procure_method": "make_to_stock",
+            }
+        )
+        self.assertTrue(pull_rule)
+        self.assertEqual(pull_rule.action, "pull")
+        # Count existing pickings and MOs for this product
+        before_picking_count = self.stock_picking_obj.search_count(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ]
+        )
+        # Clear any existing MOs for FP-1 to avoid confusion
+        self.mo_obj.search([("product_id", "=", self.fp_1.id)]).unlink()
+        before_mo_count = self.mo_obj.search_count([("product_id", "=", self.fp_1.id)])
+        # Override to pull (FP-1 normally uses 'manufacture')
+        item.write({"mrp_action": "pull"})
+        wiz.make_procurement()
+        # Verify picking was created (not MO)
+        after_picking_count = self.stock_picking_obj.search_count(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ]
+        )
+        after_mo_count = self.mo_obj.search_count([("product_id", "=", self.fp_1.id)])
+        self.assertGreater(
+            after_picking_count,
+            before_picking_count,
+            "A stock picking should have been created for pull action",
+        )
+        self.assertEqual(
+            after_mo_count,
+            before_mo_count,
+            "No new Manufacturing Order should have been created",
+        )
+
+        picking = self.stock_picking_obj.search(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        self.assertTrue(picking, "Stock picking should exist")
+
+        move = picking.move_ids.filtered(lambda m: m.product_id == self.fp_1)
+        self.assertTrue(move, "Picking should have move for FP-1")
+        self.assertEqual(
+            move.product_uom_qty, item_qty, f"Move qty should be {item_qty}"
+        )
+        self.assertEqual(
+            move.location_id,
+            self.supplier_location,
+            "Move should come from supplier location",
+        )
+        self.assertEqual(
+            move.location_dest_id, item.location_id, "Move should go to item location"
+        )
+
+        self.assertEqual(
+            planned_order.qty_released,
+            qty_released_before + item_qty,
+            "qty_released MUST increase - order must be marked as released",
+        )
+
+    def test_35_procure_wizard_mrp_action_override_to_pull_push(self):
+        """Test override to 'pull_push' creates picking with correct data and
+        updates planned_order."""
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)], limit=1
+        )
+        self.assertTrue(mrp_inv, "No MRP inventory found for FP-1")
+
+        planned_order = mrp_inv.planned_order_ids.filtered(
+            lambda x: x.qty_released < x.mrp_qty
+        )[:1]
+        self.assertTrue(planned_order, "No planned order with pending qty")
+        qty_released_before = planned_order.qty_released
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+        item_qty = item.qty
+
+        # Create a pull_push rule for this location
+        route = self.env["stock.route"].create(
+            {
+                "name": "Test route for pull_push (test_35)",
+                "product_selectable": False,
+                "warehouse_selectable": False,
+                "company_id": self.company.id,
+            }
+        )
+        picking_type = item.warehouse_id.int_type_id
+        pull_push_rule = self.env["stock.rule"].create(
+            {
+                "name": "Test pull_push rule (test_35)",
+                "route_id": route.id,
+                "action": "pull_push",
+                "location_src_id": self.supplier_location.id,
+                "location_dest_id": item.location_id.id,
+                "picking_type_id": picking_type.id,
+                "company_id": self.company.id,
+                "procure_method": "make_to_stock",
+                "auto": "manual",
+            }
+        )
+        self.assertTrue(pull_push_rule)
+        self.assertEqual(pull_push_rule.action, "pull_push")
+        # Count existing pickings and MOs for this product
+        before_picking_count = self.stock_picking_obj.search_count(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ]
+        )
+        self.mo_obj.search([("product_id", "=", self.fp_1.id)]).unlink()
+        before_mo_count = self.mo_obj.search_count([("product_id", "=", self.fp_1.id)])
+        # Override to pull_push (FP-1 normally uses 'manufacture')
+        item.write({"mrp_action": "pull_push"})
+        wiz.make_procurement()
+        # Verify picking was created (not MO)
+        after_picking_count = self.stock_picking_obj.search_count(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ]
+        )
+        after_mo_count = self.mo_obj.search_count([("product_id", "=", self.fp_1.id)])
+        self.assertGreater(
+            after_picking_count,
+            before_picking_count,
+            "A stock picking should have been created for pull_push action",
+        )
+        self.assertEqual(
+            after_mo_count,
+            before_mo_count,
+            "No new Manufacturing Order should have been created",
+        )
+
+        picking = self.stock_picking_obj.search(
+            [
+                ("move_ids.product_id", "=", self.fp_1.id),
+                ("picking_type_id", "=", picking_type.id),
+            ],
+            order="id desc",
+            limit=1,
+        )
+        self.assertTrue(picking, "Stock picking should exist")
+
+        move = picking.move_ids.filtered(lambda m: m.product_id == self.fp_1)
+        self.assertTrue(move, "Picking should have move for FP-1")
+        self.assertEqual(
+            move.product_uom_qty, item_qty, f"Move qty should be {item_qty}"
+        )
+
+        self.assertEqual(
+            planned_order.qty_released,
+            qty_released_before + item_qty,
+            "qty_released MUST increase - order must be marked as released",
+        )
+
+    # NOTE: Test for 'push' action is not included because push rules work
+    # differently in Odoo - they are triggered automatically when stock enters
+    # a location, not through manual procurement calls. The _run_push method
+    # expects self to be a singleton rule.
+
+    def test_36_stock_rule_currency_domain_coverage(self):
+        """Cover list->tuple domain conversion and values dict/list parsing."""
+        rule = self.env["stock.rule"].search([], limit=1)
+        self.assertTrue(rule, "Expected at least one stock.rule record")
+
+        partner = self.env["res.partner"].create({"name": "Test Vendor"})
+        currency_id = self.env.company.currency_id.id
+
+        # 1) domain returned by super as list must be converted to tuple
+        with patch.object(
+            purchase_stock_rule.StockRule,
+            "_make_po_get_domain",
+            return_value=[("dummy", "=", 1)],
+        ):
+            domain = rule._make_po_get_domain(
+                self.env.company, {"currency_id": currency_id}, partner
+            )
+        self.assertIsInstance(domain, tuple)
+        self.assertIn(("currency_id", "=", currency_id), domain)
+
+        # 2) values is dict -> currency_id picked from values.get("currency_id")
+        with patch.object(
+            purchase_stock_rule.StockRule,
+            "_prepare_purchase_order",
+            return_value={},
+        ):
+            res = rule._prepare_purchase_order(
+                self.env.company,
+                origins=["TEST"],
+                values={"currency_id": currency_id},
+            )
+        self.assertEqual(res.get("currency_id"), currency_id)
+
+        # 3) values is tuple/list -> currency_id picked from first dict having it
+        values = (
+            {"currency_id": False},
+            {"currency_id": currency_id},
+        )
+        with patch.object(
+            purchase_stock_rule.StockRule,
+            "_prepare_purchase_order",
+            return_value={},
+        ):
+            res = rule._prepare_purchase_order(self.env.company, ["TEST"], values)
+        self.assertEqual(res.get("currency_id"), currency_id)
+
+    def test_37_procure_wizard_onchange_and_make_procurement_validations(self):
+        planned = self.planned_order_obj.search(
+            [("product_id", "=", self.pp_1.id)], limit=1
+        )
+        self.assertTrue(planned)
+
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.planned.order",
+            active_ids=planned.ids,
+            active_id=planned.id,
+        ).create({})
+        self.assertTrue(wiz.item_ids)
+        item = wiz.item_ids[0]
+
+        # Cover branch: if not buy/product/warehouse -> supplier/currency reset
+        item.mrp_action = "buy"
+        item._onchange_purchase_defaults()
+        self.assertTrue(item.supplier_id)
+        self.assertTrue(item.currency_id)
+
+        item.mrp_action = "manufacture"
+        item._onchange_purchase_defaults()
+        self.assertFalse(item.supplier_id)
+        self.assertFalse(item.currency_id)
+
+        # Cover validation: qty must be positive
+        item.qty = 0.0
+        with self.assertRaises(ValidationError) as exc:
+            wiz.make_procurement()
+        self.assertIn("Quantity must be positive", str(exc.exception))
+
+    def test_38_grouped_procurement_multiple_actions(self):
+        """Test grouped procurement with multiple items and different actions.
+        Verifies that multiple planned orders create wizard with multiple items,
+        executing correctly handles all items with their respective actions
+        (buy, manufacture, pull) and updates all qty_released values.
+        """
+        # Arrange: Find multiple planned orders that will create wizard items
+        # Criteria: not phantom, not fully released
+        planned_orders = self.planned_order_obj.search(
+            [
+                ("mrp_action", "!=", "phantom"),
+                ("qty_released", "<", 100000),
+            ],
+            limit=5,
+        )
+        self.assertGreaterEqual(
+            len(planned_orders), 3, "Expected at least 3 valid planned orders"
+        )
+
+        # Ensure they have unreleased quantities
+        for p in planned_orders[:3]:
+            if p.qty_released >= p.mrp_qty:
+                p.qty_released = 0.0
+
+        planned_orders = planned_orders[:3]
+
+        planned_1 = planned_orders[0]
+        planned_2 = planned_orders[1]
+        planned_3 = planned_orders[2]
+
+        qty_released_1_before = planned_1.qty_released
+        qty_released_2_before = planned_2.qty_released
+        qty_released_3_before = planned_3.qty_released
+
+        # Create wizard with multiple planned orders selected
+        wiz = self.mrp_inventory_procure_wiz.with_context(
+            active_model="mrp.planned.order",
+            active_ids=planned_orders.ids,
+            active_id=planned_1.id,
+        ).create({})
+
+        self.assertEqual(
+            len(wiz.item_ids),
+            3,
+            "Expected wizard to have 3 items (one per planned order)",
+        )
+
+        # Force different actions on items to test grouped procurement
+        item_1 = wiz.item_ids[0]
+        item_2 = wiz.item_ids[1]
+        item_3 = wiz.item_ids[2]
+
+        # Force mrp_action to test different procurement paths
+        # Only override if the product supports it (has BOM for manufacture, etc)
+        if item_1.product_id.bom_ids:
+            item_1.mrp_action = "manufacture"
+        else:
+            item_1.mrp_action = "buy"
+
+        # Second item: always buy (safest option, works for all products)
+        item_2.mrp_action = "buy"
+
+        # Third item: try pull if possible, otherwise buy
+        pull_rule = self.env["stock.rule"].search([("action", "=", "pull")], limit=1)
+        if pull_rule:
+            item_3.mrp_action = "pull"
+        else:
+            item_3.mrp_action = "buy"
+
+        qty_1 = item_1.qty
+        qty_2 = item_2.qty
+        qty_3 = item_3.qty
+
+        wiz.make_procurement()
+
+        # Verify qty_released updated for ALL planned orders
+        planned_1.invalidate_recordset()
+        planned_2.invalidate_recordset()
+        planned_3.invalidate_recordset()
+
+        self.assertEqual(
+            planned_1.qty_released,
+            qty_released_1_before + qty_1,
+            f"Expected planned_1.qty_released to be {qty_released_1_before + qty_1}, "
+            f"got {planned_1.qty_released}",
+        )
+        self.assertEqual(
+            planned_2.qty_released,
+            qty_released_2_before + qty_2,
+            f"Expected planned_2.qty_released to be {qty_released_2_before + qty_2}, "
+            f"got {planned_2.qty_released}",
+        )
+        self.assertEqual(
+            planned_3.qty_released,
+            qty_released_3_before + qty_3,
+            f"Expected planned_3.qty_released to be {qty_released_3_before + qty_3}, "
+            f"got {planned_3.qty_released}",
+        )

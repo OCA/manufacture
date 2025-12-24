@@ -42,6 +42,16 @@ msgid "Action"
 msgstr "Acción"
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__mrp_action
+msgid "Procurement Method"
+msgstr "Método de aprovisionamiento"
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory_procure_item__mrp_action
+msgid "Method to use for procurement. Can be modified before executing."
+msgstr "Método que se usará para el aprovisionamiento. Puede modificarse antes de ejecutar."
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__active
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__active
 msgid "Active"
@@ -102,6 +112,7 @@ msgstr "Confirmado"
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_form
 msgid "Create Procurement"
 msgstr "Crear Aprovisionamiento"
 
@@ -482,8 +493,9 @@ msgstr "Crear Aprovisionamiento desde Proyecciones de Stock MRP"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mo
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__manufacture
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__manufacture
 msgid "Manufacturing Order"
-msgstr "Order de Fabricación"
+msgstr "Orden de Fabricación"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_planned_order__mrp_production_ids
@@ -566,6 +578,7 @@ msgstr "No se encontró producto MRP"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__none
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__none
 msgid "None"
 msgstr "Ninguno/a"
 
@@ -749,6 +762,7 @@ msgstr "Orden de producción"
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull_push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull_push
 msgid "Pull & Push"
 msgstr "Tira y Empuja"
@@ -756,6 +770,7 @@ msgstr "Tira y Empuja"
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull
 msgid "Pull From"
 msgstr "Tirar desde"
@@ -764,6 +779,7 @@ msgstr "Tirar desde"
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__po
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__buy
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__buy
 msgid "Purchase Order"
 msgstr "Orden de Compra"
 
@@ -780,6 +796,7 @@ msgstr "Órdenes de Compra"
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__push
 msgid "Push To"
 msgstr "Empujar a"
@@ -950,8 +967,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__supply_method
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_method
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Supply Method"
-msgstr "Método de Suministro"
+msgid "Default Supply Method"
+msgstr "Método de Suministro por defecto"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_mrp_area__company_id

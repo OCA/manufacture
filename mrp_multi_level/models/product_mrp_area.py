@@ -87,6 +87,12 @@ class ProductMRPArea(models.Model):
             ("pull_push", "Pull & Push"),
         ],
         compute="_compute_supply_method",
+        string="Default Supply Method",
+        help=(
+            "Supply method derived from routes/stock rules. "
+            "This default strategy is used to create procurements from MRP when the "
+            "procurement method is not explicitly specified."
+        ),
     )
     supply_bom_id = fields.Many2one(
         comodel_name="mrp.bom",

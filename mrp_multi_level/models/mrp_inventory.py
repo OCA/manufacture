@@ -71,10 +71,15 @@ class MrpInventory(models.Model):
         comodel_name="mrp.planned.order", inverse_name="mrp_inventory_id", readonly=True
     )
     supply_method = fields.Selection(
-        string="Supply Method",
+        string="Default Supply Method",
         related="product_mrp_area_id.supply_method",
         readonly=True,
         store=True,
+        help=(
+            "Supply method derived from routes/stock rules. "
+            "Used as default when procuring from MRP projections if the procurement "
+            "method is not explicitly specified."
+        ),
     )
     main_supplier_id = fields.Many2one(
         string="Main Supplier",

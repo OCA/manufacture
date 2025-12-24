@@ -20,7 +20,13 @@
                 <field name="qty_released" />
                 <field name="mrp_qty" />
                 <field name="fixed" />
-                <field name="mrp_action" optional="hide" />
+                <field
+                    name="mrp_action"
+                    widget="badge"
+                    decoration-info="mrp_action == 'buy'"
+                    decoration-success="mrp_action == 'manufacture'"
+                    decoration-warning="mrp_action in ('pull', 'push', 'pull_push')"
+                />
             </tree>
         </field>
     </record>
@@ -29,6 +35,15 @@
         <field name="model">mrp.planned.order</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button
+                        name="%(mrp_multi_level.act_mrp_inventory_procure)d"
+                        string="Create Procurement"
+                        type="action"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('qty_released', '&gt;=', 'mrp_qty'), ('mrp_action', '=', 'phantom')]}"
+                    />
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button

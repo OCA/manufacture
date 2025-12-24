@@ -39,6 +39,16 @@ msgid "Action"
 msgstr ""
 
 #. module: mrp_multi_level
+#: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__mrp_action
+msgid "Procurement Method"
+msgstr ""
+
+#. module: mrp_multi_level
+#: model:ir.model.fields,help:mrp_multi_level.field_mrp_inventory_procure_item__mrp_action
+msgid "Method to use for procurement. Can be modified before executing."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_area__active
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__active
 msgid "Active"
@@ -99,6 +109,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_tree
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_planned_order_view_form
 msgid "Create Procurement"
 msgstr ""
 
@@ -480,6 +491,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__production_id
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__mo
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__manufacture
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__manufacture
 msgid "Manufacturing Order"
 msgstr ""
 
@@ -564,6 +576,7 @@ msgstr ""
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__none
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__none
 msgid "None"
 msgstr ""
 
@@ -745,6 +758,7 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull_push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__pull_push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull_push
 msgid "Pull & Push"
 msgstr ""
@@ -752,6 +766,7 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__pull
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__pull
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__pull
 msgid "Pull From"
 msgstr ""
@@ -760,6 +775,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__purchase_order_id
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_move__mrp_origin__po
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__buy
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__buy
 msgid "Purchase Order"
 msgstr ""
 
@@ -776,6 +792,7 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_planned_order__mrp_action__push
+#: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__mrp_action__push
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__product_mrp_area__supply_method__push
 msgid "Push To"
 msgstr ""
@@ -947,7 +964,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory_procure_item__supply_method
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_method
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_search
-msgid "Supply Method"
+msgid "Default Supply Method"
 msgstr ""
 
 #. module: mrp_multi_level
