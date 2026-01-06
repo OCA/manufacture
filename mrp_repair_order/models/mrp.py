@@ -1,7 +1,7 @@
 # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class MRPProduction(models.Model):
@@ -17,7 +17,7 @@ class MRPProduction(models.Model):
         action["view_mode"] = "form"
         action["views"] = [(False, "form")]
         action["target"] = "new"
-        action["name"] = _("Create Repair Order")
+        action["name"] = self.env._("Create Repair Order")
 
         action["context"] = {
             "default_product_id": self.product_id.id,
