@@ -2,15 +2,16 @@
 # Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class MrpWorkorder(models.Model):
     _inherit = "mrp.workorder"
 
-    @api.depends('production_id.sale_id', 'production_id.partner_id', 
+    @api.depends('production_id.sale_id', 'production_id.partner_id',
                  'production_id.commitment_date', 'production_id.client_order_ref',
-                 'production_id.sale_id.partner_id', 'production_id.sale_id.commitment_date',
+                 'production_id.sale_id.partner_id', 
+                 'production_id.sale_id.commitment_date',
                  'production_id.sale_id.client_order_ref')
     def _compute_sale_info(self):
         """Compute sale information from manufacturing order.
@@ -25,7 +26,6 @@ class MrpWorkorder(models.Model):
 
     sale_id = fields.Many2one(
         comodel_name="sale.order",
-        string="Sale order", 
         readonly=True, 
         store=True,
         compute='_compute_sale_info'
@@ -33,18 +33,15 @@ class MrpWorkorder(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         readonly=True, 
-        string="Customer", 
         store=True,
         compute='_compute_sale_info'
     )
     commitment_date = fields.Datetime(
-        string="Commitment Date",
         store=True,
         readonly=True,
         compute='_compute_sale_info'
     )
     client_order_ref = fields.Char(
-        string="Customer Reference", 
         store=True,
         compute='_compute_sale_info'
     )

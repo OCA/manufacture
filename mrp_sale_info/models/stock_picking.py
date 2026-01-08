@@ -35,6 +35,7 @@ class StockPicking(models.Model):
         
         if name:
             # Search by customer reference
-            domain = ['|', ('name', operator, name), ('client_order_ref', operator, name)] + domain
+            domain = ['|', ('name', operator, name), 
+                     ('client_order_ref', operator, name)] + domain
             
         return super()._name_search("", domain, operator, limit, order)
