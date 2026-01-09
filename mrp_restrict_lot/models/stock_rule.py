@@ -41,3 +41,15 @@ class StockRule(models.Model):
                 mo_name = f"{mo_name}-{len(existing_mo)}"
             vals["name"] = mo_name
         return vals
+
+    def _make_mo_get_domain(self, procurement, bom):
+        # (mrp). stock_rule._run_manufacture
+        # calls _make_mo_get_domain then search for an MO
+        # in order to increment its quantity
+        # we don't want to mix MO with different lot_producing_id
+        domain = super()._make_mo_get_domain(procurement, bom)
+        restricted_lot = procurement.values.get("restrict_lot_id")
+        if restricted_lot:
+            # mind the last ,
+            domain += (("lot_producing_id", "=", restricted_lot),)
+        return domain
