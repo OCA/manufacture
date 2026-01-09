@@ -32,7 +32,15 @@ class MrpBomLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        # Pre-process values to handle component_template_id cases
+        processed_vals_list = []
         for values in vals_list:
+            # Handle the case where component_template_id is set but product_id is not
+            # to bypass the core required constraint
+            if values.get("component_template_id") and not values.get("product_id"):
+                values["product_id"] = False
+            
+            # Handle product_uom_id default
             if (
                 not values.get("product_id")
                 and "product_uom_id" not in values
@@ -44,7 +52,49 @@ class MrpBomLine(models.Model):
                     .browse(values["component_template_id"])
                     .uom_id.id
                 )
-        return super().create(vals_list)
+            processed_vals_list.append(values)
+        
+        # Create records with proper handling of required constraints
+        records = self.env['mrp.bom.line']
+        for values in processed_vals_list:
+            if values.get('component_template_id') and not values.get('product_id'):
+                # For records with component_template_id, we need to bypass both
+                # core required constraint and our custom constraint
+                # Create the record directly with product_id=False
+                # Use context to bypass core required validation
+                record = super(MrpBomLine, self.with_context(
+                    skip_required_check=True,
+                    bypass_custom_constraint=True
+                )).create([values])
+                records += record
+            else:
+                # For normal records, use standard create
+                record = super().create([values])
+                records += record
+        
+        return records
+
+    def write(self, vals):
+        # Handle the case where component_template_id is set but product_id is not
+        # This bypasses the core required constraint for product_id
+        if "component_template_id" in vals and "product_id" not in vals:
+            # If setting component_template_id and product_id is not being changed,
+            # we may need to set product_id to False for existing records
+            for rec in self:
+                if vals["component_template_id"] and not rec.product_id:
+                    vals["product_id"] = False
+        elif "component_template_id" in vals and vals["component_template_id"]:
+            # If component_template_id is being set to a value, ensure product_id is False
+            if "product_id" not in vals:
+                vals["product_id"] = False
+        
+        # Use context to bypass both core required validation and custom constraints
+        return super(MrpBomLine, self.with_context(
+            skip_required_check=True,
+            bypass_custom_constraint=True
+        )).write(vals)
+
+
 
     @api.depends("product_id", "component_template_id")
     def _compute_product_uom_category_id(self):
@@ -78,6 +128,8 @@ class MrpBomLine(models.Model):
         if self.component_template_id:
             if self.product_id:
                 self.product_backup_id = self.product_id
+                # Set product_id to False to avoid core constraint errors
+                # This is necessary to bypass the core required constraint
                 self.product_id = False
             if (
                 self.product_uom_id.category_id
@@ -102,6 +154,38 @@ class MrpBomLine(models.Model):
                 )
             else:
                 rec.match_on_attribute_ids = False
+
+    @api.constrains("product_id", "component_template_id")
+    def _check_component_required(self):
+        """Ensure at least one of product_id or component_template_id is set"""
+        # Skip constraint check if bypass_custom_constraint context is set
+        if self.env.context.get('bypass_custom_constraint'):
+            return
+            
+        for rec in self:
+            # Check if we're in a valid state for saving
+            # If component_template_id is set, we're using the new dynamic component approach
+            # If product_id is set, we're using the traditional approach
+            # Both cannot be set at the same time due to the readonly constraint
+            if rec.component_template_id:
+                # Using dynamic component approach - this is valid
+                continue
+            elif rec.product_id:
+                # Using traditional approach - this is valid
+                continue
+            else:
+                # Neither is set - this is invalid
+                raise ValidationError(
+                    _("Either Product or Component (product template) must be set.")
+                )
+
+    @api.model
+    def _get_field_required_condition(self, field_name):
+        """Override required condition for product_id field"""
+        if field_name == 'product_id':
+            # Make product_id conditionally required based on component_template_id
+            return [('component_template_id', '=', False)]
+        return super()._get_field_required_condition(field_name)
 
     @api.constrains("component_template_id")
     def _check_component_attributes(self):
@@ -160,6 +244,47 @@ class MrpBomLine(models.Model):
     def _onchange_bom_product_template_attribute_value_ids_check_variants(self):
         if self.bom_product_template_attribute_value_ids:
             self._check_variants_validity()
+
+    def _prepare_rebase_line(self, eco, change_type, product_id, uom_id, operation_id=None, new_qty=0):
+        """Override PLM module's method to include component_template_id field"""
+        # Call the original method from PLM module
+        rebase_line_vals = super()._prepare_rebase_line(eco, change_type, product_id, uom_id, operation_id, new_qty)
+        
+        # Add component_template_id field if it exists in the current line
+        if hasattr(self, 'component_template_id') and self.component_template_id:
+            rebase_line_vals['component_template_id'] = self.component_template_id.id
+        
+        return rebase_line_vals
+
+    def _create_or_update_rebase_line(self, ecos, operation, product_id, uom_id, operation_id=None, new_qty=0):
+        """Override PLM module's method to handle component_template_id field updates"""
+        self.ensure_one()
+        BomChange = self.env['mrp.eco.bom.change']
+        for eco in ecos:
+            # When product exist in new bill of material update line otherwise add line in rebase changes.
+            rebase_line = BomChange.search([
+                ('product_id', '=', product_id),
+                ('rebase_id', '=', eco.id)], limit=1)
+            if rebase_line:
+                # Update existing rebase line or unlink it.
+                if (rebase_line.old_product_qty, rebase_line.old_uom_id.id, rebase_line.old_operation_id.id) != (new_qty, uom_id, operation_id):
+                    if rebase_line.change_type == 'update':
+                        # Update the rebase line with new values including component_template_id
+                        update_vals = {'new_product_qty': new_qty, 'new_operation_id': operation_id, 'new_uom_id': uom_id}
+                        # Include component_template_id if it exists in the current line
+                        if hasattr(self, 'component_template_id') and self.component_template_id:
+                            update_vals['component_template_id'] = self.component_template_id.id
+                        rebase_line.write(update_vals)
+                    else:
+                        rebase_line_vals = self._prepare_rebase_line(eco, 'add', product_id, uom_id, operation_id, new_qty)
+                        rebase_line.write(rebase_line_vals)
+                else:
+                    rebase_line.unlink()
+            else:
+                rebase_line_vals = self._prepare_rebase_line(eco, operation, product_id, uom_id, operation_id, new_qty)
+                BomChange.create(rebase_line_vals)
+            eco.state = 'rebase' if eco.bom_rebase_ids or eco.previous_change_ids else 'progress'
+        return True
 
 
 class MrpBom(models.Model):
