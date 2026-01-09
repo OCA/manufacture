@@ -63,6 +63,15 @@ class MrpProduction(models.Model):
         self.ensure_one()
         return self.move_raw_ids.filtered(lambda o: o.propagate_lot_number)
 
+    def _get_move_raw_values(self, product_id, product_uom_qty, product_uom, operation_id=False, bom_line=False):
+        """Override to propagate the propagate_lot_number field from bom_line to move"""
+        move_vals = super()._get_move_raw_values(product_id, product_uom_qty, product_uom, operation_id, bom_line)
+        
+        if bom_line and hasattr(bom_line, 'propagate_lot_number'):
+            move_vals['propagate_lot_number'] = bom_line.propagate_lot_number
+        
+        return move_vals
+
     def _set_lot_number_propagation_data_from_bom(self):
         """Copy information from BoM to the manufacturing order."""
         for order in self:

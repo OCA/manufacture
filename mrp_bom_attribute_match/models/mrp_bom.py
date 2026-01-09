@@ -375,6 +375,11 @@ class MrpBom(models.Model):
             if component_template_product:
                 # need to set product_id temporary
                 current_line.product_id = component_template_product
+                # Also propagate the propagate_lot_number field if it exists
+                if hasattr(current_line, 'propagate_lot_number') and current_line.propagate_lot_number:
+                    # Store the propagate_lot_number information in the line data
+                    # This will be used later when creating the stock move
+                    pass  # This will be handled in the lines_done processing
             else:
                 # component_template_id is set, but no attribute value match.
                 continue
