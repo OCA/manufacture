@@ -2,3 +2,4 @@
 
 from . import account_move_line
 from . import mrp_production
+from . import stock_move

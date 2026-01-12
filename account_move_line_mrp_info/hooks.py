@@ -1,52 +1,72 @@
+# Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import logging
 
-from psycopg2 import sql
+_logger = logging.getLogger(__name__)
 
 
-def pre_init_hook(env):
-    """Precreate move_type and fill with appropriate values to prevent
-    a MemoryError when the ORM attempts to call its compute method on a large
-    amount of preexisting moves. Note that the order of the mapping is
-    important as one move can have move lines on accounts of multiple types
-    and the move type is set in the order of precedence."""
-    logger = logging.getLogger(__name__)
-    logger.info("Add mrp_info")
+def post_init_hook(env):
+    """Link the existing journal items to their manufacturing / unbuild order.
+
+    A journal entry can hold the valuation lines of several stock moves, so
+    each line is matched to the moves of its entry by product and reference
+    (see stock.move._get_account_move_line_vals), and only linked when that
+    match points to a single order.
+    """
+    _logger.info("Linking existing journal items to manufacturing orders")
     env.cr.execute(
-        "ALTER TABLE account_move_line "
-        "ADD COLUMN IF NOT EXISTS mrp_production_id INTEGER"
-    )
-    query = sql.SQL(
         """
-        with q2 as (
-        select aml.id as account_move_id,
-        coalesce(sm.production_id,sm.raw_material_production_id) as mrp_id
-        from account_move_line aml
-        inner join stock_move sm
-        on sm.id=aml.stock_move_id
-        where coalesce(sm.production_id,sm.raw_material_production_id) is not null)
-        update account_move_line
-        set mrp_production_id = q2.mrp_id
-        from q2
-        where q2.account_move_id=account_move_line.id;
+        UPDATE account_move_line aml
+        SET mrp_production_id = q.mrp_id
+        FROM (
+            SELECT aml.id AS aml_id,
+                MIN(COALESCE(sm.production_id, sm.raw_material_production_id))
+                    AS mrp_id
+            FROM account_move_line aml
+            JOIN stock_move sm
+                ON sm.account_move_id = aml.move_id
+                AND sm.product_id = aml.product_id
+                AND LEFT(aml.name, LENGTH(sm.reference) + 3) = sm.reference || ' - '
+            WHERE COALESCE(sm.production_id, sm.raw_material_production_id)
+                IS NOT NULL
+            GROUP BY aml.id
+            HAVING COUNT(DISTINCT COALESCE(
+                sm.production_id, sm.raw_material_production_id)) = 1
+        ) q
+        WHERE q.aml_id = aml.id
         """
     )
-    env.cr.execute(query)
+    # Labour cost entries are created per manufacturing order
     env.cr.execute(
-        "ALTER TABLE account_move_line ADD COLUMN IF NOT EXISTS unbuild_id INTEGER"
-    )
-    query = sql.SQL(
         """
-        with q2 as (
-        select aml.id as account_move_id,
-        sm.unbuild_id as unb_id
-        from account_move_line aml
-        inner join stock_move sm
-        on sm.id=aml.stock_move_id
-        where sm.unbuild_id is not null)
-        update account_move_line
-        set unbuild_id = q2.unb_id
-        from q2
-        where q2.account_move_id=account_move_line.id;
+        UPDATE account_move_line aml
+        SET mrp_production_id = q.mrp_id
+        FROM (
+            SELECT DISTINCT labour_aml.move_id, wo.production_id AS mrp_id
+            FROM mrp_workcenter_productivity wcp
+            JOIN mrp_workorder wo ON wo.id = wcp.workorder_id
+            JOIN account_move_line labour_aml
+                ON labour_aml.id = wcp.account_move_line_id
+        ) q
+        WHERE q.move_id = aml.move_id AND aml.mrp_production_id IS NULL
         """
     )
-    env.cr.execute(query)
+    _logger.info("Linking existing journal items to unbuild orders")
+    env.cr.execute(
+        """
+        UPDATE account_move_line aml
+        SET unbuild_id = q.unbuild_id
+        FROM (
+            SELECT aml.id AS aml_id, MIN(sm.unbuild_id) AS unbuild_id
+            FROM account_move_line aml
+            JOIN stock_move sm
+                ON sm.account_move_id = aml.move_id
+                AND sm.product_id = aml.product_id
+                AND LEFT(aml.name, LENGTH(sm.reference) + 3) = sm.reference || ' - '
+            WHERE sm.unbuild_id IS NOT NULL
+            GROUP BY aml.id
+            HAVING COUNT(DISTINCT sm.unbuild_id) = 1
+        ) q
+        WHERE q.aml_id = aml.id
+        """
+    )
