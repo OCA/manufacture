@@ -12,7 +12,7 @@ class TestMrpOrder(TestMrpCommon):
             pass
 
         with patch(
-            "odoo.addons.stock.models.stock_warehouse.Warehouse._check_multiwarehouse_group",
+            "odoo.addons.stock.models.stock_warehouse.StockWarehouse._check_multiwarehouse_group",
             new=_check_multiwarehouse_group,
         ):
             super(TestMrpCommon, cls).setUpClass()
@@ -40,8 +40,7 @@ class TestMrpOrder(TestMrpCommon):
             }
         )
         location = self.env["stock.location"].search([("usage", "=", "production")])
-        location.valuation_in_account_id = account.id
-        location.valuation_out_account_id = account.id
+        location.valuation_account_id = account.id
         pc = self.env["product.category"].create(
             {
                 "name": "Category test",
@@ -118,7 +117,7 @@ class TestUnbuild(TestMrpCommon):
             pass
 
         with patch(
-            "odoo.addons.stock.models.stock_warehouse.Warehouse._check_multiwarehouse_group",
+            "odoo.addons.stock.models.stock_warehouse.StockWarehouse._check_multiwarehouse_group",
             new=_check_multiwarehouse_group,
         ):
             super(TestMrpCommon, cls).setUpClass()
@@ -146,8 +145,7 @@ class TestUnbuild(TestMrpCommon):
             }
         )
         location = self.env["stock.location"].search([("usage", "=", "production")])
-        location.valuation_in_account_id = account.id
-        location.valuation_out_account_id = account.id
+        location.valuation_account_id = account.id
         pc = self.env["product.category"].create(
             {
                 "name": "Category test",
