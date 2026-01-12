@@ -12,6 +12,15 @@ class MrpProduction(models.Model):
         comodel_name="account.move.line", inverse_name="mrp_production_id", copy=False
     )
 
+    def _post_labour(self):
+        res = super()._post_labour()
+        for mo in self:
+            labour_moves = mo.sudo().workorder_ids.time_ids.account_move_line_id.move_id
+            labour_moves.line_ids.filtered(
+                lambda line: not line.mrp_production_id
+            ).mrp_production_id = mo
+        return res
+
     def view_journal_items(self):
         self.ensure_one()
         domain = [
