@@ -72,6 +72,7 @@ Contributors
 - Lois Rilo <lois.rilo@forgeflow.com>
 - Juany Davila <juany.davila@forgeflow.com>
 - Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>
+- Eugenio Micó <eugenio@studio73.es>
 
 Maintainers
 -----------
