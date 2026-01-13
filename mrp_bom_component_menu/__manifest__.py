@@ -7,7 +7,7 @@
     "version": "18.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/OCA/manufacture",
-    "author": "ForgeFlow," "Odoo Community Association (OCA)",
+    "author": "ForgeFlow,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["mrp"],
