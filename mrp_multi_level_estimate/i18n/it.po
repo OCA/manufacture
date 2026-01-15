@@ -32,17 +32,9 @@ msgid ""
 "sources of demand are ignored for those products.\n"
 "* Ignore other sources during periods with estimates: When you create demand "
 "estimates for a period and product, other sources of demand will be ignored "
-"during that period for those products."
+"during that period for those products.\n"
+"* Ignore estimates: Completely ignore demand estimates."
 msgstr ""
-"Definisce la strategia da seguire con l'MRP multi livello quando c'è la "
-"coesistenza di domanda dalle stime e altre fonti.\n"
-"* Considera sempre tutte le fonti: niente è escluso o ignorato.\n"
-"* Ignora altre fonti quando ci sono stime: quando ci sono stime per il "
-"prodotto e sono per periodi presenti o futuri, tutte le altre fonti di "
-"richieste vengono ignorate per il prodotto.\n"
-"* Ignora altre fonti nel periodo delle stime: quando si crea una richiesta "
-"da stime per un periodo e prodotto, altre fonti di richiesta verranno "
-"ignorate per il periodo di quel prodotto."
 
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_mrp_area__estimate_demand_and_other_sources_strat
@@ -58,6 +50,11 @@ msgstr "Gruppo giorni delle stime"
 #: model:ir.model.constraint,message:mrp_multi_level_estimate.constraint_product_mrp_area_group_estimate_days_check
 msgid "Group Days of Estimates must be greater than or equal to zero."
 msgstr "Il gruppo dei gironi delle stime deve essere maggiore o uguale a zero."
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__ignore_estimates
+msgid "Ignore estimates"
+msgstr ""
 
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__ignore_overlapping
@@ -96,6 +93,27 @@ msgstr ""
 "dalla lunghezza del periodo delle date utilizzate nelle stime ma non "
 "dovrebbe essere maggiore, in tal caso verrà eseguito solo il raggruppamento "
 "fino alla lunghezza totale dell'intervallo di date."
+
+#~ msgid ""
+#~ "Define the strategy to follow in MRP multi level when there is "
+#~ "acoexistence of demand from demand estimates and other sources.\n"
+#~ "* Always consider all sources: nothing is excluded or ignored.\n"
+#~ "* Ignore other sources for products with estimates: When there are "
+#~ "estimates entered for product and they are in a present or future period, "
+#~ "all other sources of demand are ignored for those products.\n"
+#~ "* Ignore other sources during periods with estimates: When you create "
+#~ "demand estimates for a period and product, other sources of demand will "
+#~ "be ignored during that period for those products."
+#~ msgstr ""
+#~ "Definisce la strategia da seguire con l'MRP multi livello quando c'è la "
+#~ "coesistenza di domanda dalle stime e altre fonti.\n"
+#~ "* Considera sempre tutte le fonti: niente è escluso o ignorato.\n"
+#~ "* Ignora altre fonti quando ci sono stime: quando ci sono stime per il "
+#~ "prodotto e sono per periodi presenti o futuri, tutte le altre fonti di "
+#~ "richieste vengono ignorate per il prodotto.\n"
+#~ "* Ignora altre fonti nel periodo delle stime: quando si crea una "
+#~ "richiesta da stime per un periodo e prodotto, altre fonti di richiesta "
+#~ "verranno ignorate per il periodo di quel prodotto."
 
 #~ msgid ""
 #~ "The days to group your estimates as demand for the MRP.It can be "
