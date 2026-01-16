@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_purchase_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-06-29 16:47+0000\n"
+"Last-Translator: mde-spring <79934758+mde-spring@users.noreply.github.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_subcontracting_purchase_link
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting_purchase_link.purchase_order_form
+msgid "Productions"
+msgstr "Ordres de fabrication"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_count
+msgid "Subcontract Production Count"
+msgstr "Nombre d'ordre de fabrication de sous-traitance"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_purchase_order__subcontract_production_ids
+msgid "Subcontract Production Orders"
+msgstr "Ordres de fabrication de sous-traitance"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__purchase_order_id
+msgid "Subcontract Purchase Order"
+msgstr "Bon de commande de sous-traitance"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model.fields,field_description:mrp_subcontracting_purchase_link.field_mrp_production__purchase_line_id
+msgid "Subcontract Purchase Order Line"
+msgstr "Ligne de bon de commande de sous-traitance"
+
+#. module: mrp_subcontracting_purchase_link
+#: model:ir.model,name:mrp_subcontracting_purchase_link.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
