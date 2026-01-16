@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [mrp_bom_tracking](mrp_bom_tracking/) | 19.0.1.0.0 |  | Logs any change to a BoM in the chatter
 [mrp_production_back_to_draft](mrp_production_back_to_draft/) | 19.0.1.0.1 |  | Allows to return to draft a confirmed or cancelled MO.
 [mrp_sale_info](mrp_sale_info/) | 19.0.1.0.0 |  | Adds sale information to Manufacturing models
+[mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 19.0.1.0.0 |  | Link Purchase Order Line to Subcontract Productions
 [mrp_tag](mrp_tag/) | 19.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 19.0.1.0.0 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Considers the warehouse calendars in manufacturing
 
