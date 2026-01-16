@@ -373,19 +373,18 @@ class MrpBom(models.Model):
                 current_line, product, current_line.product_id
             )
             if component_template_product:
-                # 使用临时变量而不是直接修改记录字段，避免权限问题
-                temp_product_id = component_template_product
-                # 创建BOM行数据的副本，避免修改原始记录
-                line_data = {
-                    'product_id': temp_product_id,
-                    'propagate_lot_number': hasattr(current_line, 'propagate_lot_number') and current_line.propagate_lot_number
-                }
+                # need to set product_id temporary
+                current_line.product_id = component_template_product
+                # Also propagate the propagate_lot_number field if it exists
+                if hasattr(current_line, 'propagate_lot_number') and current_line.propagate_lot_number:
+                    # Store the propagate_lot_number information in the line data
+                    # This will be used later when creating the stock move
+                    pass  # This will be handled in the lines_done processing
             else:
                 # component_template_id is set, but no attribute value match.
                 continue
-
             # upd end
-            bom = product_boms.get(temp_product_id if component_template_product else current_line.product_id)
+            bom = product_boms.get(current_line.product_id)
             if bom:
                 converted_line_quantity = current_line.product_uom_id._compute_quantity(
                     line_quantity / bom.product_qty, bom.product_uom_id
