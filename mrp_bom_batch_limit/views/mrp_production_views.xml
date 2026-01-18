@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view_inherit_batch_limit" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.batch_limit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="batch_limit_warning" invisible="1" />
+                <field name="batch_limit_message" invisible="1" />
+            </xpath>
+            <xpath expr="//header" position="before">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not batch_limit_warning"
+                    style="margin-bottom: 15px;"
+                >
+                    <strong>Warning!</strong>
+                    <field name="batch_limit_message" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

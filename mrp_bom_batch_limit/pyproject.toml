@@ -1,0 +1,8 @@
+[tool.odoo]
+addons = [
+    "mrp_bom_batch_limit",
+]
+
+[build-system]
+requires = ["whool"]
+build-backend = "whool.buildapi"
