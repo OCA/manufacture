@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view_inherit_batch_limit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.batch_limit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='consumption']" position="after">
+                <label for="enable_batch_limit" invisible="type != 'normal'" />
+                <div class="o_row" invisible="type != 'normal'">
+                    <field name="enable_batch_limit" />
+                    <field
+                        name="min_batch_qty"
+                        class="w-50"
+                        invisible="not enable_batch_limit"
+                        decoration-danger="min_batch_qty &lt; 0.0"
+                    />
+                    <span invisible="not enable_batch_limit">to</span>
+                    <field
+                        name="max_batch_qty"
+                        class="w-50"
+                        invisible="not enable_batch_limit"
+                        decoration-danger="min_batch_qty &gt; max_batch_qty"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
