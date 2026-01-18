@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <!-- Extend production split wizard to show batch size -->
+        <record
+        id="view_mrp_production_split_form_inherit_batch_size"
+        model="ir.ui.view"
+    >
+            <field name="name">mrp.production.split.form.inherit.batch_size</field>
+            <field name="model">mrp.production.split</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_split_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='counter']" position="before">
+                    <field name="enable_batch_size" invisible="1" />
+                    <label for="max_batch_size" invisible="not enable_batch_size" />
+                    <div class="d-flex" invisible="not enable_batch_size">
+                        <field name="max_batch_size" class="w-50" />
+                        <field name="product_uom_id" groups="uom.group_uom" />
+                    </div>
+                    <field
+                    name="num_splits"
+                    readonly="1"
+                    invisible="not enable_batch_size"
+                />
+                </xpath>
+                <xpath expr="//field[@name='counter']" position="attributes">
+                    <attribute name="invisible">enable_batch_size</attribute>
+                </xpath>
+            </field>
+        </record>
+</odoo>

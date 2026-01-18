@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_batch_size
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-18 14:54+0000\n"
+"PO-Revision-Date: 2026-01-18 14:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,field_description:mrp_bom_batch_size.field_mrp_production_split__num_splits
+msgid "# Splits"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,help:mrp_bom_batch_size.field_mrp_bom__batch_size
+msgid ""
+"All automatically generated manufacturing orders for this product will be of"
+" this size."
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,field_description:mrp_bom_batch_size.field_mrp_bom__batch_size
+msgid "Batch Size"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model,name:mrp_bom_batch_size.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,field_description:mrp_bom_batch_size.field_mrp_bom__enable_batch_size
+#: model:ir.model.fields,field_description:mrp_bom_batch_size.field_mrp_production_split__enable_batch_size
+msgid "Enable Batch Size"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,help:mrp_bom_batch_size.field_mrp_bom__enable_batch_size
+#: model:ir.model.fields,help:mrp_bom_batch_size.field_mrp_production_split__enable_batch_size
+msgid "Enable batch size for automatic manufacturing orders"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,field_description:mrp_bom_batch_size.field_mrp_production_split__max_batch_size
+msgid "Max Batch Size"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model.fields,help:mrp_bom_batch_size.field_mrp_production_split__max_batch_size
+msgid "Maximum batch size based on BoM configuration"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model,name:mrp_bom_batch_size.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model,name:mrp_bom_batch_size.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#. odoo-python
+#: code:addons/mrp_bom_batch_size/models/mrp_bom.py:0
+#, python-format
+msgid "The batch size must be positive!"
+msgstr ""
+
+#. module: mrp_bom_batch_size
+#: model:ir.model,name:mrp_bom_batch_size.model_mrp_production_split
+msgid "Wizard to Split a Production"
+msgstr ""
