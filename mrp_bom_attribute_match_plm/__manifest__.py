@@ -1,6 +1,6 @@
 {
     "name": "BOM Attribute Match - PLM Integration",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Manufacturing",
     "author": "Custom Development",
     "summary": "PLM integration for BOM Attribute Match module",

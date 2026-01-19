@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mrp_bom_user,mrp.bom,mrp.model_mrp_bom,mrp.group_mrp_user,1,1,1,0
-access_mrp_bom_line_user,mrp.bom.line,mrp.model_mrp_bom_line,mrp.group_mrp_user,1,1,1,0
+access_mrp_bom_user,mrp.bom,mrp.model_mrp_bom,mrp.group_mrp_user,1,0,0,0
+access_mrp_bom_line_user,mrp.bom.line,mrp.model_mrp_bom_line,mrp.group_mrp_user,1,0,0,0
 access_mrp_bom_plm_user,mrp.bom.plm.user,mrp.model_mrp_bom,mrp_plm.group_plm_user,1,0,0,0
 access_mrp_bom_line_plm_user,mrp.bom.line.plm.user,mrp.model_mrp_bom_line,mrp_plm.group_plm_user,1,0,0,0
 access_mrp_eco_bom_change_user,mrp.eco.bom.change.user,model_mrp_eco_bom_change,mrp_plm.group_plm_user,1,1,1,0
