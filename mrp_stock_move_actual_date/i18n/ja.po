@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-01-22 07:50+0000\n"
+"Last-Translator: \"Toshikimi Shigenobu (Quartile)\" <nobu@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_stock_move_actual_date
 #: model:ir.model.fields,field_description:mrp_stock_move_actual_date.field_mrp_production__actual_date
@@ -20,27 +22,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_stock_move_actual_date.mrp_unbuild_search_view
 #: model_terms:ir.ui.view,arch_db:mrp_stock_move_actual_date.view_mrp_production_filter
 msgid "Actual Date"
-msgstr ""
+msgstr "実績日"
 
 #. module: mrp_stock_move_actual_date
 #: model:ir.model.fields,help:mrp_stock_move_actual_date.field_mrp_production__actual_date
 #: model:ir.model.fields,help:mrp_stock_move_actual_date.field_mrp_unbuild__actual_date
 msgid ""
 "If set, the value is propagated to the related journal entries as the date."
-msgstr ""
+msgstr "設定されている場合、この値は関連する仕訳の日付に反映されます。"
 
 #. module: mrp_stock_move_actual_date
 #: model:ir.model.fields,field_description:mrp_stock_move_actual_date.field_mrp_production__is_editable_actual_date
 #: model:ir.model.fields,field_description:mrp_stock_move_actual_date.field_mrp_unbuild__is_editable_actual_date
 msgid "Is Editable"
-msgstr ""
+msgstr "変更可能"
 
 #. module: mrp_stock_move_actual_date
 #: model:ir.model,name:mrp_stock_move_actual_date.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "製造オーダ"
 
 #. module: mrp_stock_move_actual_date
 #: model:ir.model,name:mrp_stock_move_actual_date.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr ""
+msgstr "解体オーダ"
