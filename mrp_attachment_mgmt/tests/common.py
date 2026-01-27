@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
-from odoo import fields
+from odoo import Command
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -55,7 +55,7 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
         cls.mrp_production = cls._create_mrp_production(
             [(cls.component_a, 1), (cls.component_b, 1), (cls.component_c, 1)]
         )
-        cls.workorder = fields.first(cls.mrp_production.workorder_ids)
+        cls.workorder = next(iter(cls.mrp_production.workorder_ids))
         cls.attachment_model = cls.env["ir.attachment"]
 
     @classmethod
@@ -76,15 +76,24 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
         mrp_bom_form = Form(cls.env["mrp.bom"])
         mrp_bom_form.product_tmpl_id = product.product_tmpl_id
         bom_with_attachments = mrp_bom_form.save()
-        cls.env.user.groups_id += cls.env.ref("mrp.group_mrp_routings")
+        cls.env.user.group_ids += cls.env.ref("mrp.group_mrp_routings")
         with Form(bom_with_attachments) as bom:
             for component in components:
                 with bom.bom_line_ids.new() as line_form:
                     line_form.product_id = component[0]
                     line_form.product_qty = component[1]
-            with bom.operation_ids.new() as operation_form:
-                operation_form.name = "Operation 1"
-                operation_form.workcenter_id = cls.workcenter
+        bom_with_attachments.write(
+            {
+                "operation_ids": [
+                    Command.create(
+                        {
+                            "name": "Operation 1",
+                            "workcenter_id": cls.workcenter.id,
+                        }
+                    ),
+                ]
+            }
+        )
         return bom_with_attachments
 
     @classmethod
