@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[mrp_attachment_mgmt](mrp_attachment_mgmt/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Mrp Attachment Mgmt
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 19.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_image](mrp_bom_image/) | 19.0.1.0.0 |  | Add product Images to BoM
 [mrp_bom_note](mrp_bom_note/) | 19.0.1.0.0 |  | Notes in Bill of Materials
