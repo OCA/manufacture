@@ -4,11 +4,11 @@
 from odoo import fields, models
 
 
-class MrpProductProduceLine (models.TransientModel):
+class MrpProductProduceLine(models.TransientModel):
     _inherit = "mrp.product.produce.line"
 
     production_src_location_id = fields.Many2one(
         string="Production source location",
-        related='product_produce_id.production_id.location_src_id',
+        related="product_produce_id.production_id.location_src_id",
         readonly=True,
     )
