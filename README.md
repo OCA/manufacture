@@ -51,6 +51,7 @@ addon | version | maintainers | summary
 [mrp_repair_order](mrp_repair_order/) | 18.0.1.0.0 | <a href='https://github.com/peluko00'><img src='https://github.com/peluko00.png' width='32' height='32' style='border-radius:50%;' alt='peluko00'/></a> | Create repair order from manufacturing order
 [mrp_restrict_lot](mrp_restrict_lot/) | 18.0.1.0.3 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> | MRP Restrict Lot
 [mrp_sale_info](mrp_sale_info/) | 18.0.1.1.0 |  | Adds sale information to Manufacturing models
+[mrp_stock_move_line_qty_picked](mrp_stock_move_line_qty_picked/) | 18.0.1.0.0 |  | Adapt functionality of stock_move_line_qty_picked into MRP
 [mrp_subcontracting_inhibit](mrp_subcontracting_inhibit/) | 18.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Inhibit subcontracting flow on demand
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 18.0.1.0.0 |  | Link Purchase Order Line to Subcontract Productions
 [mrp_tag](mrp_tag/) | 18.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
