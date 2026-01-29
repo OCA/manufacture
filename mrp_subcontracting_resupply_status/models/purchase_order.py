@@ -16,15 +16,11 @@ class PurchaseOrder(models.Model):
         store=True,
     )
 
-    @api.depends("order_line.move_ids.move_orig_ids.production_id.picking_ids.state")
+    @api.depends("order_line.move_ids.move_orig_ids.production_id.production_group_id")
     def _compute_resupply_status(self):
         for order in self:
-            resupplies = order._get_subcontracting_resupplies()
-            if not resupplies or all(r.state == "cancel" for r in resupplies):
-                order.resupply_status = False
-            elif all(r.state in ["done", "cancel"] for r in resupplies):
-                order.resupply_status = "full"
-            elif any(r.state == "done" for r in resupplies):
-                order.resupply_status = "partial"
-            else:
-                order.resupply_status = "pending"
+            order.resupply_status = (
+                self.env["stock.picking"]
+                ._get_resupplies_of_subcontract_moves(order.order_line.move_ids)
+                ._get_resupply_status()
+            )

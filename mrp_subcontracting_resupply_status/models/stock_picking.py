@@ -29,19 +29,38 @@ class StockPicking(models.Model):
                 picking._get_subcontracting_resupplies()
             )
 
-    @api.depends("move_ids", "move_ids.move_orig_ids.production_id.picking_ids.state")
+    @api.depends(
+        "move_ids.is_subcontract",
+        "move_ids.move_orig_ids.production_id.production_group_id",
+    )
     def _compute_resupply_status(self):
         for picking in self:
-            resupplies = picking._get_subcontracting_resupplies()
-            if not resupplies or all(r.state == "cancel" for r in resupplies):
-                picking.resupply_status = False
-            elif all(r.state in ["done", "cancel"] for r in resupplies):
-                picking.resupply_status = "full"
-            elif any(r.state == "done" for r in resupplies):
-                picking.resupply_status = "partial"
-            else:
-                picking.resupply_status = "pending"
+            picking.resupply_status = (
+                picking._get_subcontracting_resupplies()._get_resupply_status()
+            )
 
     def _get_subcontracting_resupplies(self):
-        moves_subcontracted = self.move_ids.filtered(lambda m: m.is_subcontract)
-        return moves_subcontracted.move_orig_ids.production_id.picking_ids
+        """Get the resupply pickings of the subcontract moves of this receipt."""
+        return self._get_resupplies_of_subcontract_moves(self.move_ids)
+
+    @api.model
+    def _get_resupplies_of_subcontract_moves(self, moves):
+        groups = moves.filtered(
+            "is_subcontract"
+        ).move_orig_ids.production_id.production_group_id
+        if not groups:
+            return self.browse()
+        pickings = self.search([("move_ids.production_group_id", "in", groups.ids)])
+        return pickings.filtered(
+            lambda p: any(m.location_dest_id.is_subcontract() for m in p.move_ids)
+        )
+
+    def _get_resupply_status(self):
+        """Resupply status of the resupply pickings in self."""
+        if all(r.state == "cancel" for r in self):
+            return False
+        if all(r.state in ["done", "cancel"] for r in self):
+            return "full"
+        if any(r.state == "done" for r in self):
+            return "partial"
+        return "pending"
