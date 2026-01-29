@@ -7,109 +7,56 @@ from ...mrp_subcontracting.tests.common import TestMrpSubcontractingCommon
 
 
 class TestMrpSubcontractingResupplyStatus(TestMrpSubcontractingCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        resupply_route = cls.env.ref(
-            "mrp_subcontracting.route_resupply_subcontractor_mto"
-        )
-        cls.comp1.route_ids = [(6, 0, [resupply_route.id])]
-        cls.comp2.route_ids = [(6, 0, [resupply_route.id])]
-        cls.po = cls._create_subcontracting_po()
-
-    @classmethod
-    def _create_subcontracting_po(cls):
-        po_form = Form(cls.env["purchase.order"])
-        po_form.partner_id = cls.subcontractor_partner1
+    def _create_subcontracting_po(self):
+        po_form = Form(self.env["purchase.order"])
+        po_form.partner_id = self.subcontractor_partner1
         with po_form.order_line.new() as line:
-            line.product_id = cls.finished
+            line.product_id = self.finished
             line.product_qty = 1
-            line.product_uom = cls.finished.uom_id
             line.price_unit = 100.0
         po = po_form.save()
         po.button_confirm()
         return po
 
-    def test_purchase_order_resupply_status(self):
-        po = self.po
+    def _validate(self, moves):
+        for move in moves:
+            move.quantity = move.product_uom_qty
+            move.picked = True
+        res = moves.picking_id.button_validate()
+        if isinstance(res, dict):
+            Form.from_action(self.env, res).save().process()
 
-        resupply = po._get_subcontracting_resupplies()
-        self.assertTrue(resupply)
-        # Force to have two resupplies
-        resupply.copy()
-        resupplies = po._get_subcontracting_resupplies()
-        self.assertEqual(len(resupplies), 2)
+    def _assert_status(self, status, *records):
+        for record in records:
+            self.assertEqual(record.resupply_status, status, record.display_name)
 
-        po._compute_resupply_status()
-        self.assertEqual(po.resupply_status, "pending")
-
-        partial = resupplies[:1]
-        for picking in partial:
-            picking.action_confirm()
-            for move in picking.move_ids:
-                move.quantity_done = move.product_uom_qty
-            picking.button_validate()
-
-        po._compute_resupply_status()
-        self.assertEqual(po.resupply_status, "partial")
-
-        for picking in resupplies:
-            if picking.state != "done":
-                picking.action_confirm()
-                for move in picking.move_ids:
-                    move.quantity_done = move.product_uom_qty
-                picking.button_validate()
-
-        po._compute_resupply_status()
-        self.assertEqual(po.resupply_status, "full")
-
-    def test_stock_picking_resupply_status(self):
-        receipt = self.po.picking_ids.filtered(
-            lambda p: p.picking_type_id.code == "incoming"
-        )
-        self.assertTrue(receipt)
-        receipt = receipt[0]
-
+    def test_resupply_status(self):
+        po = self._create_subcontracting_po()
+        other_po = self._create_subcontracting_po()
+        receipt = po.picking_ids
         resupply = receipt._get_subcontracting_resupplies()
-        self.assertTrue(resupply)
+        self.assertEqual(len(resupply), 1)
+        self.assertEqual(len(resupply.move_ids), 2)
+        self._assert_status("pending", po, receipt, other_po, other_po.picking_ids)
 
-        # Force to have two resupplies
-        resupply.copy()
-        resupplies = receipt._get_subcontracting_resupplies()
-        self.assertEqual(len(resupplies), 2)
+        self._validate(resupply.move_ids[0])
+        backorder = resupply.backorder_ids
+        self.assertTrue(backorder)
+        self.assertEqual(receipt._get_subcontracting_resupplies(), resupply + backorder)
+        self._assert_status("partial", po, receipt)
+        self._assert_status("pending", other_po, other_po.picking_ids)
 
-        receipt._compute_resupply_status()
-        self.assertEqual(receipt.resupply_status, "pending")
+        self._validate(backorder.move_ids)
+        self._assert_status("full", po, receipt)
+        self._assert_status("pending", other_po, other_po.picking_ids)
 
-        partial = resupplies[:1]
-        for picking in partial:
-            picking.action_confirm()
-            for move in picking.move_ids:
-                move.quantity_done = move.product_uom_qty
-            picking.button_validate()
-
-        receipt._compute_resupply_status()
-        self.assertEqual(receipt.resupply_status, "partial")
-
-        for picking in resupplies:
-            if picking.state != "done":
-                picking.action_confirm()
-                for move in picking.move_ids:
-                    move.quantity_done = move.product_uom_qty
-                picking.button_validate()
-
-        receipt._compute_resupply_status()
-        self.assertEqual(receipt.resupply_status, "full")
+    def test_resupply_status_cancelled(self):
+        po = self._create_subcontracting_po()
+        po.picking_ids._get_subcontracting_resupplies().action_cancel()
+        self._assert_status(False, po, po.picking_ids)
 
     def test_resupply_status_no_resupply(self):
-        self.comp1.route_ids = [(6, 0, [])]
-        self.comp2.route_ids = [(6, 0, [])]
+        self.env.ref("stock.warehouse0").subcontracting_to_resupply = False
         po = self._create_subcontracting_po()
-        po._compute_resupply_status()
-        self.assertEqual(po.resupply_status, False)
-
-        receipt = po.picking_ids.filtered(
-            lambda p: p.picking_type_id.code == "incoming"
-        )
-        receipt._compute_resupply_status()
-        self.assertEqual(receipt.resupply_status, False)
+        self.assertFalse(po.picking_ids._get_subcontracting_resupplies())
+        self._assert_status(False, po, po.picking_ids)
