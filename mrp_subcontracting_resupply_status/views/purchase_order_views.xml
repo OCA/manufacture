@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="purchase_order_form_resupply_status" model="ir.ui.view">
         <field name="name">purchase.order.form.resupply.status</field>
@@ -11,7 +11,7 @@
             <field name="receipt_status" position="before">
                 <field
                     name="resupply_status"
-                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    invisible="subcontracting_resupply_picking_count == 0"
                     groups="stock.group_stock_user"
                 />
             </field>
@@ -28,7 +28,7 @@
             <field name="receipt_status" position="before">
                 <field
                     name="resupply_status"
-                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    invisible="subcontracting_resupply_picking_count == 0"
                     optional="show"
                     groups="stock.group_stock_user"
                 />

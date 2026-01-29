@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="vpicktree_resupply_status" model="ir.ui.view">
         <field name="name">stock.picking.tree.resupply.status</field>
@@ -8,7 +8,7 @@
             <field name="state" position="after">
                 <field
                     name="resupply_status"
-                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    invisible="subcontracting_resupply_picking_count == 0"
                     optional="show"
                     groups="stock.group_stock_user"
                 />
@@ -24,7 +24,7 @@
             <group name="other_infos" position="inside">
                 <field
                     name="resupply_status"
-                    attrs="{'invisible': [('subcontracting_resupply_picking_count', '=', 0)]}"
+                    invisible="subcontracting_resupply_picking_count == 0"
                     groups="stock.group_stock_user"
                 />
                 <field name="subcontracting_resupply_picking_count" invisible="1" />
