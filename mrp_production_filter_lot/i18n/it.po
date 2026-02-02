@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_filter_lot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-01 15:55+0000\n"
+"PO-Revision-Date: 2023-01-09 22:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: mrp_production_filter_lot
+#: model:ir.model.fields,help:mrp_production_filter_lot.field_mrp_product_produce_line__production_src_location_id
+msgid "Location where the system will look for components."
+msgstr "Ubicazione dove il sistema cercherà i componenti."
+
+#. module: mrp_production_filter_lot
+#: model:ir.model.fields,field_description:mrp_production_filter_lot.field_mrp_product_produce_line__production_src_location_id
+msgid "Production source location"
+msgstr "Ubicazione di origine dell'ordine di produzione"
+
+#. module: mrp_production_filter_lot
+#: model:ir.model,name:mrp_production_filter_lot.model_mrp_product_produce_line
+msgid "Record Production Line"
+msgstr "Record delle linee di produzione"
