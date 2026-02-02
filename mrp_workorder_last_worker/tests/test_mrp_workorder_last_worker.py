@@ -1,6 +1,7 @@
 # Copyright 2025 ForgeFlow, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests import Form, tagged
 from odoo.tests.common import TransactionCase
 
@@ -11,10 +12,90 @@ class TestMrpWorkorderLastWorker(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env["res.config.settings"].create({"group_mrp_routings": True}).execute()
-        cls.bom_rout = cls.env.ref("mrp.mrp_bom_drawer_rout")
-        cls.product_rout = cls.bom_rout.product_tmpl_id.product_variant_id
-        cls.user_1 = cls.env.ref("base.user_admin")
-        cls.user_2 = cls.env.ref("base.user_demo")
+
+        # Create users
+        cls.user_1 = cls.env["res.users"].create(
+            {
+                "name": "Test User 1",
+                "login": "test_user_1",
+            }
+        )
+        cls.user_2 = cls.env["res.users"].create(
+            {
+                "name": "Test User 2",
+                "login": "test_user_2",
+            }
+        )
+
+        # Create a product
+        cls.product_rout = cls.env["product.product"].create(
+            {
+                "name": "Drawer Product",
+            }
+        )
+
+        cls.component_1 = cls.env["product.product"].create(
+            {
+                "name": "Component 1",
+            }
+        )
+
+        # Create workcenters
+        cls.workcenter_1 = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Workcenter 1",
+            }
+        )
+        cls.workcenter_2 = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Workcenter 2",
+            }
+        )
+        cls.workcenter_3 = cls.env["mrp.workcenter"].create(
+            {
+                "name": "Workcenter 3",
+            }
+        )
+
+        # Create a BOM
+        cls.bom_rout = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": cls.product_rout.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "bom_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": cls.component_1.id,
+                            "product_qty": 1.0,
+                        }
+                    ),
+                ],
+                "operation_ids": [
+                    Command.create(
+                        {
+                            "name": "Operation 1",
+                            "workcenter_id": cls.workcenter_1.id,
+                            "time_cycle": 1.0,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Operation 2",
+                            "workcenter_id": cls.workcenter_2.id,
+                            "time_cycle": 1.0,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Operation 3",
+                            "workcenter_id": cls.workcenter_3.id,
+                            "time_cycle": 1.0,
+                        }
+                    ),
+                ],
+            }
+        )
 
     @classmethod
     def _create_manufacturing_order(cls, qty=1.0):

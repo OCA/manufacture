@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
     <record id="mrp_production_workorder_tree_editable_view" model="ir.ui.view">
         <field name="name">mrp.production.work.order.tree.editable</field>
@@ -13,7 +13,8 @@
                     name="last_worker_id"
                     widget="many2one_avatar_user"
                     optional="hide"
-                    attrs="{'invisible': [('production_state', '=', 'draft')], 'column_invisible': [('parent.state', '=', 'draft')]}"
+                    invisible="production_state == 'draft'"
+                    column_invisible="parent.state == 'draft'"
                 />
             </xpath>
         </field>
