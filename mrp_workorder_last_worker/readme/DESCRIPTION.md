@@ -1,2 +1,1 @@
-This module adds a new field to the workorder to store the last worker
-who worked on it, no matter if they are currently working on it or not.
+This module adds a new field to the workorder to store the last user who worked on it, regardless of whether they are currently working on it or not.

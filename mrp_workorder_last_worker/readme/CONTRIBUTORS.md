@@ -1,1 +1,2 @@
 - Laura Cazorla \<laura.cazorla@forgeflow.com\>
+- Jasmin Solanki \<jasmin.solanki@forgeflow.com\>
