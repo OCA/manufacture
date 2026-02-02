@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo14-addon-mrp_production_auto_validate',
         'odoo14-addon-mrp_production_back_to_draft',
         'odoo14-addon-mrp_production_byproduct_cost_share',
+        'odoo14-addon-mrp_production_filter_lot',
         'odoo14-addon-mrp_production_grouped_by_product',
         'odoo14-addon-mrp_production_note',
         'odoo14-addon-mrp_production_picking_type_from_route',

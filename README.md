@@ -51,6 +51,7 @@ addon | version | maintainers | summary
 [mrp_production_auto_validate](mrp_production_auto_validate/) | 14.0.1.0.0 | <a href='https://github.com/sebalix'><img src='https://github.com/sebalix.png' width='32' height='32' style='border-radius:50%;' alt='sebalix'/></a> | Manufacturing Order Auto-Validation when components are picked
 [mrp_production_back_to_draft](mrp_production_back_to_draft/) | 14.0.1.0.1 |  | Allows to return to draft a confirmed or cancelled MO.
 [mrp_production_byproduct_cost_share](mrp_production_byproduct_cost_share/) | 14.0.1.0.0 |  | Production By-Product Cost Share
+[mrp_production_filter_lot](mrp_production_filter_lot/) | 14.0.1.0.0 |  | In production order line lots popup, filter lots based on their location and availability
 [mrp_production_grouped_by_product](mrp_production_grouped_by_product/) | 14.0.1.0.2 |  | Production Grouped By Product
 [mrp_production_note](mrp_production_note/) | 14.0.1.0.0 |  | Notes in production orders
 [mrp_production_picking_type_from_route](mrp_production_picking_type_from_route/) | 14.0.1.0.0 |  | Updates the operation type creating MO based on the product
