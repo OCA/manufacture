@@ -1,79 +1,40 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
 class TestMrpAutoCreateLot(TransactionCase):
-    def setUp(self, *args, **kwargs):
-        super(TestMrpAutoCreateLot, self).setUp(*args, **kwargs)
-        self.production_model = self.env["mrp.production"]
-        self.bom_model = self.env["mrp.bom"]
-        self.picking_model = self.env["stock.picking"]
-        self.stock_location_stock = self.env.ref("stock.stock_location_stock")
-        self.manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
-        self.uom_unit = self.env.ref("uom.product_uom_unit")
+    @classmethod
+    def setUpClass(cls):
+        super(TestMrpAutoCreateLot, cls).setUpClass()
+        cls.production_model = cls.env["mrp.production"]
+        cls.bom_model = cls.env["mrp.bom"]
+        cls.picking_model = cls.env["stock.picking"]
+        cls.stock_location_stock = cls.env.ref("stock.stock_location_stock")
+        cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
 
-        self.workcenter = self.env["mrp.workcenter"].create(
-            {
-                "costs_hour": 10,
-                "name": "Workcenter",
-            }
+        cls.manufacture_picking_type = cls.env["stock.picking.type"].search(
+            [("code", "=", "mrp_operation")], limit=1
         )
-        self.routing_id = self.env["mrp.routing"].create(
-            {
-                "name": "Routing",
-            }
-        )
-        self.operation = self.env["mrp.routing.workcenter"].create(
-            {
-                "name": "operation",
-                "workcenter_id": self.workcenter.id,
-                "routing_id": self.routing_id.id,
-                "time_mode": "manual",
-                "time_cycle_manual": 20,
-                "batch": "no",
-                "sequence": 1,
-            }
-        )
-
-        self.product_manuf = self.env["product.product"].create(
+        cls.manufacture_picking_type.auto_create_lot = True
+        cls.product_manuf = cls.env["product.product"].create(
             {
                 "name": "Manuf",
                 "type": "product",
-                "uom_id": self.uom_unit.id,
-                "route_ids": [(6, 0, self.manufacture_route.ids)],
+                "uom_id": cls.uom_unit.id,
+                "route_ids": [(6, 0, cls.manufacture_route.ids)],
                 "tracking": "lot",
                 "auto_create_lot": True,
             }
         )
-        self.product_raw_material = self.env["product.product"].create(
-            {
-                "name": "Raw Material",
-                "type": "product",
-                "uom_id": self.uom_unit.id,
-            }
-        )
 
-        self.bom = self.env["mrp.bom"].create(
+        cls.bom = cls.env["mrp.bom"].create(
             {
-                "product_id": self.product_manuf.id,
-                "product_tmpl_id": self.product_manuf.product_tmpl_id.id,
+                "product_id": cls.product_manuf.id,
+                "product_tmpl_id": cls.product_manuf.product_tmpl_id.id,
                 "type": "normal",
-                "routing_id": self.routing_id.id,
-                "bom_line_ids": (
-                    [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": self.product_raw_material.id,
-                                "product_qty": 1,
-                                "product_uom_id": self.uom_unit.id,
-                            },
-                        ),
-                    ]
-                ),
             }
         )
 
@@ -86,11 +47,92 @@ class TestMrpAutoCreateLot(TransactionCase):
                 "bom_id": self.bom.id,
             }
         )
-        production.button_plan()
-        self.assertEqual(production.workorder_count, 1)
+        production.action_confirm()
+        production.qty_producing = 1
+        production.button_mark_done()
+        self.assertTrue(production.lot_producing_id)
 
-        workorders = production.workorder_ids
-        for workorder in workorders:
-            workorder.button_start()
-            workorder.record_production()
-            self.assertEqual(workorder.state, "done")
+    def test_02_manufacture_auto_create_lot_existing_lot(self):
+        """If a lot has already been assigned, it should not be changed"""
+        production = self.production_model.create(
+            {
+                "product_id": self.product_manuf.id,
+                "product_qty": 1,
+                "product_uom_id": self.uom_unit.id,
+                "bom_id": self.bom.id,
+            }
+        )
+        production.action_confirm()
+        production.lot_producing_id = self.env["stock.lot"].create(
+            {"product_id": self.product_manuf.id, "name": "TEST"}
+        )
+        production.qty_producing = 1
+        production.button_mark_done()
+        self.assertEqual(production.lot_producing_id.name, "TEST")
+
+    def test_03_manufacture_auto_create_lot_no_auto_create(self):
+        """If the product has auto create lot set to False, no lot
+        should be auto created"""
+        self.product_manuf.auto_create_lot = False
+        production = self.production_model.create(
+            {
+                "product_id": self.product_manuf.id,
+                "product_qty": 1,
+                "product_uom_id": self.uom_unit.id,
+                "bom_id": self.bom.id,
+            }
+        )
+        production.action_confirm()
+        production.qty_producing = 1
+        with self.assertRaises(UserError):
+            production.button_mark_done()
+        self.assertFalse(production.lot_producing_id.name)
+
+    def test_04_manufacture_auto_create_lot_no_qty(self):
+        """If no quantities have been produced, a lot should not be
+        automatically created"""
+        production = self.production_model.create(
+            {
+                "product_id": self.product_manuf.id,
+                "product_qty": 1,
+                "product_uom_id": self.uom_unit.id,
+                "bom_id": self.bom.id,
+            }
+        )
+        production.action_confirm()
+        production.button_mark_done()
+        self.assertFalse(production.lot_producing_id.name)
+
+    def test_05_manufacture_auto_create_lot_no_tracking(self):
+        """If the product is not tracked, the lot should not be automatically created"""
+        self.product_manuf.tracking = "none"
+        production = self.production_model.create(
+            {
+                "product_id": self.product_manuf.id,
+                "product_qty": 1,
+                "product_uom_id": self.uom_unit.id,
+                "bom_id": self.bom.id,
+            }
+        )
+        production.action_confirm()
+        production.qty_producing = 1
+        production.button_mark_done()
+        self.assertFalse(production.lot_producing_id.name)
+
+    def test_06_manufacture_auto_create_lot_no_auto_create_in_operation(self):
+        """If the operation type has "Auto Create Lot" to false,
+        the lot should not be automatically created"""
+        self.manufacture_picking_type.auto_create_lot = False
+        production = self.production_model.create(
+            {
+                "product_id": self.product_manuf.id,
+                "product_qty": 1,
+                "product_uom_id": self.uom_unit.id,
+                "bom_id": self.bom.id,
+            }
+        )
+        production.action_confirm()
+        production.qty_producing = 1
+        with self.assertRaises(UserError):
+            production.button_mark_done()
+        self.assertFalse(production.lot_producing_id.name)
