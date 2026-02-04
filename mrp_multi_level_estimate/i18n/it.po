@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-13 18:44+0000\n"
+"PO-Revision-Date: 2026-02-04 10:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__all
@@ -35,6 +35,16 @@ msgid ""
 "during that period for those products.\n"
 "* Ignore estimates: Completely ignore demand estimates."
 msgstr ""
+"Definire la strategia da seguire in un MRP multilivello quando coesistono "
+"domanda proveniente da stime della domanda e altre fonti.\n"
+"* Considerare sempre tutte le fonti: nulla viene escluso o ignorato.\n"
+"* Ignorare altre fonti per prodotti con stime: quando sono inserite stime "
+"per un prodotto e si riferiscono a un periodo presente o futuro, tutte le "
+"altre fonti di domanda vengono ignorate per quei prodotti.\n"
+"* Ignorare altre fonti durante i periodi con stime: quando si creano stime "
+"della domanda per un periodo e un prodotto, le altre fonti di domanda "
+"verranno ignorate durante quel periodo per quei prodotti.\n"
+"* Ignorare stime: ignorare completamente le stime della domanda."
 
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields,field_description:mrp_multi_level_estimate.field_mrp_area__estimate_demand_and_other_sources_strat
@@ -54,7 +64,7 @@ msgstr "Il gruppo dei gironi delle stime deve essere maggiore o uguale a zero."
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__ignore_estimates
 msgid "Ignore estimates"
-msgstr ""
+msgstr "Ignora stime"
 
 #. module: mrp_multi_level_estimate
 #: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__ignore_overlapping
