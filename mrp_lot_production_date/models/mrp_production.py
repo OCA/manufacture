@@ -10,6 +10,10 @@ class MrpProduction(models.Model):
     def _post_inventory(self, cancel_backorder=False):
         res = super()._post_inventory(cancel_backorder=cancel_backorder)
         for order in self:
-            if order.lot_producing_id and not order.lot_producing_id.production_date:
-                order.lot_producing_id.production_date = fields.Datetime.now()
+            if order.lot_producing_id:
+                # Set production date if not already set
+                if not order.lot_producing_id.production_date:
+                    order.lot_producing_id.production_date = fields.Datetime.now()
+                # Set MO and BOM references for traceability
+                order.lot_producing_id.production_id = order.id
         return res

@@ -70,14 +70,15 @@ Authors
 Contributors
 ------------
 
-- Sébastien Alix <sebastien.alix@camptocamp.com>
+-  Sébastien Alix <sebastien.alix@camptocamp.com>
+-  Daniel Reis <dreis@opensourceintegrators.com>
 
 Other credits
 -------------
 
 **Financial support**
 
-- Cosanum
+-  Cosanum
 
 Maintainers
 -----------

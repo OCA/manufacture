@@ -16,4 +16,7 @@
     "installable": True,
     "auto_install": True,
     "license": "AGPL-3",
+    "data": [
+        "views/stock_lot_views.xml",
+    ],
 }

@@ -1,0 +1,33 @@
+<odoo>
+
+    <!-- Add MO and BOM references to lot form view -->
+    <record id="view_lot_form_inherit_mrp_references" model="ir.ui.view">
+        <field name="name">stock.lot.form.mrp.references</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Manufacturing" name="manufacturing">
+                    <group string="Production Information">
+                        <field name="production_id" />
+                        <field name="bom_id" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Add MO and BOM references to lot list view -->
+    <record id="view_lot_tree_inherit_mrp_references" model="ir.ui.view">
+        <field name="name">stock.lot.tree.mrp.references</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_tree" />
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="production_id" optional="hide" />
+                <field name="bom_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

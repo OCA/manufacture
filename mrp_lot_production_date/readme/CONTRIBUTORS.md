@@ -1,1 +1,2 @@
 - Sébastien Alix \<<sebastien.alix@camptocamp.com>\>
+- Daniel Reis \<<dreis@opensourceintegrators.com>\>
