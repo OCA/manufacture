@@ -35,7 +35,7 @@ class StockMove(models.Model):
             quantity_todo.setdefault(move.product_id.id, 0)
             quantity_done.setdefault(move.product_id.id, 0)
             quantity_todo[move.product_id.id] += move.product_uom_qty
-            quantity_done[move.product_id.id] += move.quantity_done
+            quantity_done[move.product_id.id] += move.quantity
         for ops in self.mapped("move_line_ids").filtered(
             lambda x: x.package_id and not x.product_id and not x.move_id
         ):
