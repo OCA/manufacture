@@ -82,10 +82,14 @@ Contributors
 ------------
 
 - Tecnativa
-  <`https://www.tecnativa.com\\>\\\_\\ <https://www.tecnativa.com\>\_\>`__\ \_
+  <`https://www.tecnativa.com\\> <https://www.tecnativa.com\>>`__
 
   - David Vidal
   - Pilar Vargas
+
+- `NuoBiT <https://www.nuobit.com>`__:
+
+  - Deniz Gallo dgallo@nuobit.com
 
 Maintainers
 -----------
