@@ -33,7 +33,17 @@ MRP Lot Production Date
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module automatically set a production date on lots/SN produced
-through the validation of manufacturing orders.
+through the validation of manufacturing orders and automatically
+calculates expiration dates based on the production date.
+
+When a production date is set on a lot, the module automatically
+computes:
+
+-  Expiration date based on product's expiration time
+-  Use date, removal date, and alert date based on product configuration
+
+This ensures accurate expiration tracking based on when goods were
+actually produced.
 
 **Table of contents**
 
@@ -48,6 +58,11 @@ configure your products to be tracked by lots or serial numbers.
 
 Then at the validation of a manufacturing order the production date will
 be set automatically on the produced lot.
+
+When a production date is set on a lot (either automatically through MRP
+or manually), the system automatically calculates all expiration-related
+dates. This feature ensures accurate expiration tracking based on actual
+production dates rather than lot creation dates.
 
 Bug Tracker
 ===========
@@ -70,14 +85,14 @@ Authors
 Contributors
 ------------
 
-- Sébastien Alix <sebastien.alix@camptocamp.com>
+-  Sébastien Alix <sebastien.alix@camptocamp.com>
 
 Other credits
 -------------
 
 **Financial support**
 
-- Cosanum
+-  Cosanum
 
 Maintainers
 -----------
