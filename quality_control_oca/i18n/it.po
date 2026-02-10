@@ -35,8 +35,8 @@ msgid ""
 "completed (e.g. when picking is done)."
 msgstr ""
 "* Prima: un'ispezione eseguibile viene generata prima che il record relativo "
-"al trigger venga completato (ad esempio quando il prelievo viene confermato)."
-"\n"
+"al trigger venga completato (ad esempio quando il prelievo viene "
+"confermato).\n"
 "* Dopo: un'ispezione eseguibile viene generata quando il record relativo al "
 "trigger è completato (ad es. quando viene eseguito il prelievo).\n"
 "* Pianifica in anticipo: un'ispezione non eseguibile viene generata prima "
@@ -115,6 +115,12 @@ msgstr "Risposte"
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Approve"
 msgstr "Approva"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
+msgid "Archived"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
