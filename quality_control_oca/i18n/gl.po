@@ -108,6 +108,12 @@ msgid "Approve"
 msgstr "Aprobar"
 
 #. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
+msgid "Archived"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_line__message_attachment_count
