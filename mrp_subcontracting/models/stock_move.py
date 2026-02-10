@@ -76,7 +76,7 @@ class StockMove(models.Model):
             production = self.move_orig_ids.mapped("production_id")
             if self._has_tracked_subcontract_components() and\
                     float_compare(production.qty_produced,
-                                  production.product_uom_qty,
+                                  production.product_qty,
                                   precision_rounding=rounding) < 0 and\
                     float_compare(self.quantity_done, self.product_uom_qty,
                                   precision_rounding=rounding) < 0:
@@ -111,7 +111,13 @@ class StockMove(models.Model):
     def _action_cancel(self):
         for move in self:
             if move.is_subcontract:
-                move.move_orig_ids.mapped("production_id").action_cancel()
+                productions = move.move_orig_ids.mapped("production_id")
+                productions.mapped(
+                    'move_raw_ids.move_orig_ids'
+                ).filtered(
+                    lambda m: m.state not in ('done', 'cancel')
+                )._action_cancel()
+                productions.action_cancel()
         return super()._action_cancel()
 
     def _action_confirm(self, merge=True, merge_into=False):
@@ -125,9 +131,9 @@ class StockMove(models.Model):
             bom = move._get_subcontract_bom()
             if not bom:
                 continue
-            if float_is_zero(move.product_qty,
-                             precision_rounding=move.product_uom.rounding) and\
-                    move.picking_id.immediate_transfer is True:
+            if float_is_zero(
+                    move.product_qty,
+                    precision_rounding=move.product_uom.rounding):
                 raise UserError(_("To subcontract, use a planned transfer."))
             subcontract_details_per_picking[move.picking_id].append(
                 (move, bom))
@@ -160,6 +166,14 @@ class StockMove(models.Model):
         super(StockMove, subcontract_moves.with_context(
             mrp_subcontracting_bypass_reservation=True))._action_assign()
         return res
+
+    def _prepare_procurement_values(self):
+        values = super()._prepare_procurement_values()
+        if not values.get('warehouse_id') and self.raw_material_production_id:
+            values['warehouse_id'] = (
+                self.raw_material_production_id.picking_type_id.warehouse_id
+            )
+        return values
 
     def _action_record_components(self):
         action = self.env.ref('mrp.act_mrp_product_produce').read()[0]
@@ -232,5 +246,5 @@ operations.""") % ('\n'.join(overprocessed_moves.mapped(
             if production:
                 self.env['change.production.qty'].create({
                     'mo_id': production.id,
-                    'product_qty': production.product_uom_qty + quantity_change
+                    'product_qty': production.product_qty + quantity_change
                 }).change_prod_qty()

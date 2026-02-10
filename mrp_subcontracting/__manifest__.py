@@ -5,7 +5,7 @@
 
 {
     'name': "Subcontract Productions",
-    'version': '12.0.1.0.6',
+    'version': '11.0.1.0.0',
     "author": "Odoo S.A., Tecnativa, Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/manufacture',
     'category': 'Manufacturing Orders & BOMs',
@@ -22,6 +22,7 @@
     'demo': [
         'data/mrp_subcontracting_demo.xml',
     ],
+    "post_init_hook": "post_init_hook",
     "uninstall_hook": "uninstall_hook",
     "license": "LGPL-3",
 }

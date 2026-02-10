@@ -6,11 +6,12 @@
 from odoo import models
 
 
-class StockRule(models.Model):
-    _inherit = "stock.rule"
+class StockLocationPath(models.Model):
+    _inherit = "stock.location.path"
 
-    def _push_prepare_move_copy_values(self, move_to_copy, new_date):
-        new_move_vals = super(StockRule, self)._push_prepare_move_copy_values(
-            move_to_copy, new_date)
+    def _prepare_move_copy_values(self, move_to_copy, new_date):
+        new_move_vals = super(
+            StockLocationPath, self
+        )._prepare_move_copy_values(move_to_copy, new_date)
         new_move_vals["is_subcontract"] = False
         return new_move_vals

@@ -17,8 +17,10 @@ class SupplierInfo(models.Model):
     @api.depends('name', 'product_id', 'product_tmpl_id')
     def _compute_is_subcontractor(self):
         for supplier in self:
-            boms = supplier.product_id.variant_bom_ids
-            boms |= supplier.product_tmpl_id.bom_ids.filtered(
-                lambda b: not b.product_id)
+            boms = supplier.product_tmpl_id.bom_ids.filtered(
+                lambda b: (
+                    not b.product_id
+                    or b.product_id == supplier.product_id
+                ))
             supplier.is_subcontractor = (
                 supplier.name in boms.mapped('subcontractor_ids'))
