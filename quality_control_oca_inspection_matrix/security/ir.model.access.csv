@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_multi_quality_edit_wizard,access_multi_quality_edit_wizard,model_multi_quality_edit_wizard,quality_control_oca.group_quality_control_user,1,1,1,1
+access_multi_quality_edit_line_wizard,access_multi_quality_edit_line_wizard,model_multi_quality_edit_line,quality_control_oca.group_quality_control_user,1,1,1,1

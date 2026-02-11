@@ -1,0 +1,86 @@
+<odoo>
+    <record id="view_multi_quality_edit_wizard_form" model="ir.ui.view">
+        <field name="name">multi.quality.edit.wizard.form</field>
+        <field name="model">multi.quality.edit.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="row">
+                    <field
+                        name="quantitative_line_ids"
+                        widget="x2many_2d_matrix"
+                        field_x_axis="column_name"
+                        field_y_axis="question_name"
+                        field_value="quantitative_response"
+                        show_row_totals="false"
+                        show_column_totals="false"
+                        invisible="not quantitative_line_ids"
+                    >
+                        <list>
+                            <field name="inspection_id" />
+                            <field name="inspection_line_id" invisible="1" />
+                            <field name="column_name" />
+                            <field name="question_name" />
+                            <field name="quantitative_response" />
+                        </list>
+                    </field>
+                </div>
+
+                <div class="row">
+                    <field
+                        name="qualitative_line_ids"
+                        widget="x2many_2d_matrix"
+                        field_x_axis="column_name"
+                        field_y_axis="question_name"
+                        field_value="qualitative_response"
+                        x_axis_clickable="false"
+                        y_axis_clickable="false"
+                        invisible="not qualitative_line_ids"
+                        nolabel="1"
+                    >
+                        <list>
+                            <field name="inspection_id" />
+                            <field name="inspection_line_id" invisible="1" />
+                            <field name="column_name" />
+                            <field name="question_name" />
+                            <field name="qualitative_domain" invisible="1" />
+                            <field
+                                name="qualitative_response"
+                                domain="qualitative_domain"
+                                options="{'no_open': True, 'no_create_edit': True, 'no_create': True, 'no_edit': True}"
+                            />
+                        </list>
+                    </field>
+                </div>
+                <footer>
+                    <button
+                        name="action_save"
+                        type="object"
+                        string="Save"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_multi_quality_edit_wizard" model="ir.actions.act_window">
+        <field name="name">Inspection matrix</field>
+        <field name="res_model">multi.quality.edit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'dialog_size': 'extra-large'}</field>
+    </record>
+
+    <record id="action_binding_multi_quality_edit_wizard" model="ir.actions.server">
+        <field name="name">Inspection Matrix</field>
+
+        <field name="model_id" ref="quality_control_oca.model_qc_inspection" />
+        <field name="binding_model_id" ref="quality_control_oca.model_qc_inspection" />
+
+        <field name="state">code</field>
+        <field name="code">
+                action = model.env.ref('quality_control_oca_inspection_matrix.action_multi_quality_edit_wizard').read()[0]
+            </field>
+    </record>
+</odoo>
