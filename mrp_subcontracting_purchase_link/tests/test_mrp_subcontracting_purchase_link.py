@@ -2,12 +2,10 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields
-from odoo.tests import tagged
 
 from ...mrp_subcontracting.tests.common import TestMrpSubcontractingCommon
 
 
-@tagged("post_install", "-at_install")
 class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
     @classmethod
     def setUpClass(cls):
