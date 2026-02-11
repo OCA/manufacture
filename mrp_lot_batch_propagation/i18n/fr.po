@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_lot_batch_propagation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-11 13:34+0000\n"
+"PO-Revision-Date: 2026-02-11 13:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_stock_lot__batch_bom_id
+msgid "BOM used to produce this batch"
+msgstr "Nomenclature utilisée pour produire ce lot"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_mrp_production__batch_bom_ids
+msgid "BOMs used for the batches being consumed in this production"
+msgstr "Nomenclatures utilisées pour les lots consommés dans cette production"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_mrp_production__batch_bom_ids
+msgid "Batch BOMs"
+msgstr "Nomenclatures de lot"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_stock_lot__batch_production_id
+msgid "Batch Production"
+msgstr "Production de lot"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_mrp_production__batch_production_ids
+msgid "Batch Productions"
+msgstr "Productions de lot"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_stock_lot__batch_bom_id
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_product_product__mrp_batch_propagate_computed
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_product_template__mrp_batch_propagate_computed
+msgid "Computed MRP batch propagate setting from template or category"
+msgstr "Paramètre de propagation de lot MRP calculé à partir du modèle ou de la catégorie"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model,name:mrp_lot_batch_propagation.model_stock_lot
+msgid "Lot/Serial"
+msgstr "Lot/N° de série"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_product_category__mrp_batch_propagate
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_product_product__mrp_batch_propagate
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_product_template__mrp_batch_propagate
+msgid "MRP Batch Propagate"
+msgstr "Propagation de lot MRP"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_product_product__mrp_batch_propagate_computed
+#: model:ir.model.fields,field_description:mrp_lot_batch_propagation.field_product_template__mrp_batch_propagate_computed
+msgid "MRP Batch Propagate (Computed)"
+msgstr "Propagation de lot MRP (Calculée)"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model,name:mrp_lot_batch_propagation.model_product_template
+msgid "Product"
+msgstr "Article"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model,name:mrp_lot_batch_propagation.model_product_category
+msgid "Product Category"
+msgstr "Catégorie d'article"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model,name:mrp_lot_batch_propagation.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de production"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_stock_lot__batch_production_id
+msgid "Production order that created this batch"
+msgstr "Ordre de production qui a créé ce lot"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_mrp_production__batch_production_ids
+msgid ""
+"Production orders that created the batches being consumed in this production"
+msgstr ""
+"Ordres de production qui ont créé les lots consommés dans cette production"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_product_category__mrp_batch_propagate
+msgid ""
+"Products in this category will propagate BOM information through "
+"manufacturing batches"
+msgstr ""
+"Les articles de cette catégorie propageront les informations de nomenclature "
+"à travers les lots de fabrication"
+
+#. module: mrp_lot_batch_propagation
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_product_product__mrp_batch_propagate
+#: model:ir.model.fields,help:mrp_lot_batch_propagation.field_product_template__mrp_batch_propagate
+msgid ""
+"This product will propagate BOM information through manufacturing batches"
+msgstr ""
+"Cet article propagera les informations de nomenclature à travers les lots de "
+"fabrication"
