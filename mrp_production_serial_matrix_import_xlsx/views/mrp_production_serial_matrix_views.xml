@@ -1,0 +1,40 @@
+<odoo>
+    <record id="mrp_production_serial_matrix_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >mrp.production.serial.matrix.initial.form- import_xlsx</field>
+        <field name="model">mrp.production.serial.matrix</field>
+        <field
+            name="inherit_id"
+            ref="mrp_production_serial_matrix.mrp_production_serial_matrix_view_form"
+        />
+        <field name="arch" type="xml">
+            <button name="button_validate" position="after">
+                <button
+                    string="Import from XLSX"
+                    name="action_import_template"
+                    type="object"
+                    class="btn-primary"
+                    invisible="not import_file or state in ['in_progress', 'done']"
+                    icon="fa-upload"
+                />
+                <button
+                    string="Download Template"
+                    name="action_download_template"
+                    type="object"
+                    class="btn-secondary"
+                    icon="fa-download"
+                />
+            </button>
+            <group name="settings" position="after">
+                <field
+                    name="import_file"
+                    readonly="state in ['in_progress', 'done']"
+                    filename="import_filename"
+                    widget="binary"
+                />
+                <field name="import_filename" invisible="1" />
+            </group>
+        </field>
+    </record>
+</odoo>
