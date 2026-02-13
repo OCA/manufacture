@@ -1,19 +1,38 @@
 # Copyright 2021-24 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from collections import defaultdict
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_is_zero
 
 
-class MrpProductionSerialMatrix(models.TransientModel):
+class MrpProductionSerialMatrix(models.Model):
     _name = "mrp.production.serial.matrix"
+    _inherit = "mail.thread"
     _description = "Mrp Production Serial Matrix"
+    _rec_name = "production_id"
 
+    state = fields.Selection(
+        selection=[
+            ("draft", "Draft"),
+            ("in_progress", "In Progress"),
+            ("exception", "Exception"),
+            ("done", "Done"),
+        ],
+        string="Status",
+        required=True,
+        readonly=True,
+        copy=False,
+        tracking=True,
+        default="draft",
+    )
     production_id = fields.Many2one(
         comodel_name="mrp.production",
         string="Manufacturing Order",
         readonly=True,
+        ondelete="cascade",
     )
     product_id = fields.Many2one(
         related="production_id.product_id",
@@ -45,6 +64,14 @@ class MrpProductionSerialMatrix(models.TransientModel):
         help="Include products tracked by Lots in matrix. Product tracket by "
         "serial numbers are always included.",
     )
+
+    def unlink(self):
+        for matrix in self:
+            if matrix.state in ["done", "in_progress"]:
+                raise UserError(
+                    _("You cannot delete a serial matrix that is in progress or done.")
+                )
+        return super().unlink()
 
     @api.depends("line_ids", "line_ids.component_lot_id")
     def _compute_lot_selection_warning(self):
@@ -103,34 +130,35 @@ class MrpProductionSerialMatrix(models.TransientModel):
             rec.lot_selection_warning_ids = warning_lots
             rec.lot_selection_warning_count = len(warning_lots)
 
-    @api.model
-    def default_get(self, fields):
-        res = super().default_get(fields)
-        production_id = self.env.context["active_id"]
-        active_model = self.env.context["active_model"]
-        if not production_id:
-            return res
-        assert active_model == "mrp.production", "Bad context propagation"
-        production = self.env["mrp.production"].browse(production_id)
-        if not production.show_serial_matrix:
-            raise UserError(
-                _("The finished product of this MO is not tracked by serial numbers.")
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            production_id = vals.get("production_id", False)
+            if not production_id:
+                raise UserError(
+                    _("Context propagation: The production order was not propagated.")
+                )
+            production = self.env["mrp.production"].browse(production_id)
+            if not production.show_serial_matrix:
+                raise UserError(
+                    _(
+                        "The finished product of this MO is not "
+                        "tracked by serial numbers."
+                    )
+                )
+            finished_lots = self.env["stock.lot"]
+            if production.lot_producing_id:
+                finished_lots = production.lot_producing_id
+            matrix_lines = self._get_matrix_lines(production, finished_lots)
+            vals.update(
+                {
+                    "line_ids": [(0, 0, x) for x in matrix_lines],
+                    "finished_lot_ids": [
+                        (4, lot_id, 0) for lot_id in finished_lots.ids
+                    ],
+                }
             )
-
-        finished_lots = self.env["stock.lot"]
-        if production.lot_producing_id:
-            finished_lots = production.lot_producing_id
-
-        matrix_lines = self._get_matrix_lines(production, finished_lots)
-
-        res.update(
-            {
-                "line_ids": [(0, 0, x) for x in matrix_lines],
-                "production_id": production_id,
-                "finished_lot_ids": [(4, lot_id, 0) for lot_id in finished_lots.ids],
-            }
-        )
-        return res
+        return super().create(vals_list)
 
     def _get_matrix_lines(self, production, finished_lots):
         tracked_components = []
@@ -221,122 +249,128 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 _("Some issues has been detected in your selection: %s")
                 % self.lot_selection_warning_msg
             )
+        if self.production_id.state == "done":
+            self.state = "exception"
+            raise UserError(_("The MO (%s) is already done.") % self.production_id.name)
+        self.state = "in_progress"
+        self._process_serial_matrix()
+
+    def _get_matrix_lines_map(self):
+        mapping = defaultdict(lambda: self.env["mrp.production.serial.matrix.line"])
+        for line in self.line_ids:
+            fp_key = line.finished_lot_id.id or line.finished_lot_name
+            comp_key = line.component_id.id
+            mapping[(fp_key, comp_key)] += line
+        return mapping
+
+    def call_next_process_serial_matrix_lot(
+        self, mos, lots_to_process=None, current_mo=False
+    ):
+        self._process_serial_matrix_lot(
+            mos, lots_to_process=lots_to_process, current_mo=current_mo
+        )
+
+    def _process_serial_matrix_lot(self, mos, lots_to_process=None, current_mo=False):
+        matrix_map = self._get_matrix_lines_map()
+        fp_lot = lots_to_process[0] if len(lots_to_process) > 1 else lots_to_process
+        if not fp_lot:
+            self.state = "done"
+            self.message_post(body=_("The serial matrix finished successfully"))
+            return mos
+        try:
+            self._prepare_mo_for_serial(current_mo, fp_lot)
+            self._process_component_moves(current_mo, fp_lot, matrix_map)
+            mos += current_mo
+            current_mo = self._validate_and_get_backorder(current_mo)
+            if current_mo:
+                return self.call_next_process_serial_matrix_lot(
+                    mos, lots_to_process=lots_to_process - fp_lot, current_mo=current_mo
+                )
+            self.state = "done"
+            self.message_post(body=_("The serial matrix finished successfully"))
+        except UserError as e:
+            self.state = "exception"
+            self.message_post(body=_(f"Error during the processing: {str(e)}"))
+        return mos
+
+    def _process_serial_matrix(self):
         mos = self.env["mrp.production"]
         current_mo = self.production_id
-        for fp_lot in self.finished_lot_ids:
-            # Apply selected lots in matrix and set the qty producing
-            current_mo.lot_producing_id = fp_lot
-            current_mo.qty_producing = 1.0
-            current_mo._set_qty_producing()
-            for move in current_mo.move_raw_ids:
-                rounding = move.product_id.uom_id.rounding
-                if float_is_zero(move.product_qty, precision_rounding=rounding):
-                    # Component moves cannot be deleted in in-progress MO's; however,
-                    # they can be set to 0 units to consume. In such case, we ignore
-                    # the move.
-                    continue
-                if move.product_id.tracking in ["serial", "lot"]:
-                    # We filter using the lot nane because the ORM sometimes
-                    # is not storing correctly the finished_lot_id in the lines
-                    # after passing through the `_onchange_finished_lot_ids`
-                    # method.
-                    matrix_lines = self.line_ids.filtered(
-                        lambda line: (
-                            line.finished_lot_id == fp_lot  # noqa: B023
-                            or line.finished_lot_name == fp_lot.name  # noqa: B023
-                        )
-                        and line.component_id == move.product_id  # noqa: B023
-                    )
-                    if matrix_lines:
-                        self._amend_reservations(move, matrix_lines)
-                        self._consume_selected_lots(move, matrix_lines)
+        mos = self._process_serial_matrix_lot(
+            mos, lots_to_process=self.finished_lot_ids, current_mo=current_mo
+        )
+        return mos
 
-            # Complete MO and create backorder if needed.
-            mos += current_mo
-            res = current_mo.button_mark_done()
-            backorder_wizard = self.env["mrp.production.backorder"]
-            if isinstance(res, dict) and res.get("res_model") == backorder_wizard._name:
-                # create backorders...
-                lines = res.get("context", {}).get(
-                    "default_mrp_production_backorder_line_ids"
-                )
-                wizard = backorder_wizard.create(
-                    {
-                        "mrp_production_ids": current_mo.ids,
-                        "mrp_production_backorder_line_ids": lines,
-                    }
-                )
-                wizard.action_backorder()
+    def _prepare_mo_for_serial(self, mo, fp_lot):
+        mo.lot_producing_id = fp_lot
+        mo.qty_producing = 1.0
+        mo._set_qty_producing()
 
-                backorder_ids = (
-                    current_mo.procurement_group_id.mrp_production_ids.filtered(
-                        lambda mo: mo.state not in ["done", "cancel"]
-                    )
-                )
-                current_mo = backorder_ids[0] if backorder_ids else False
-                if not current_mo:
-                    break
-            else:
-                break
+    def _process_component_moves(self, mo, fp_lot, matrix_map):
+        for move in mo.move_raw_ids:
+            if float_is_zero(
+                move.product_qty, precision_rounding=move.product_uom.rounding
+            ):
+                continue
+            if move.product_id.tracking in ["serial", "lot"]:
+                lines = matrix_map.get((fp_lot.id, move.product_id.id))
+                if not lines and fp_lot.name:
+                    pass
+                if lines:
+                    self._amend_reservations(move, lines)
+                    self._consume_selected_lots(move, lines)
+                elif move.product_id.tracking == "lot" and not self.include_lots:
+                    move.picked = True
 
-        # TODO: not specified lots: auto create lots?
-        if not mos:
-            mos = self.production_id
-        res = {
-            "domain": [("id", "in", mos.ids)],
-            "name": _("Manufacturing Orders"),
-            "src_model": "mrp.production.serial.matrix",
-            "view_type": "form",
-            "view_mode": "tree,form",
-            "view_id": False,
-            "views": False,
-            "res_model": "mrp.production",
-            "type": "ir.actions.act_window",
-        }
-        return res
+    def _validate_and_get_backorder(self, mo):
+        res = mo.button_mark_done()
+        backorder_wizard_model = self.env["mrp.production.backorder"]
+        if (
+            isinstance(res, dict)
+            and res.get("res_model") == backorder_wizard_model._name
+        ):
+            context = res.get("context", {})
+            wizard = backorder_wizard_model.with_context(**context).create({})
+            wizard.action_backorder()
+            pending_mos = mo.procurement_group_id.mrp_production_ids.filtered(
+                lambda m: m.state not in ["done", "cancel"]
+            )
+            return pending_mos[0] if pending_mos else False
+        if isinstance(res, dict):
+            raise UserError(
+                f"Something went wrong and the MO could not be validated. {res}"
+            )
+        return False
 
     def _amend_reservations(self, move, matrix_lines):
-        lots_to_consume = matrix_lines.mapped("component_lot_id")
-        lots_in_move = move.move_line_ids.mapped("lot_id")
-        lots_to_reserve = lots_to_consume - lots_in_move
-        if lots_to_reserve:
-            to_unreserve_lots = lots_in_move - lots_to_consume
-            move.move_line_ids.filtered(
-                lambda line: line.lot_id in to_unreserve_lots
-            ).unlink()
-            for lot in lots_to_reserve:
-                if move.product_id.tracking == "lot":
-                    qty = sum(
-                        matrix_lines.filtered(
-                            lambda line: line.component_lot_id == lot  # noqa: B023
-                        ).mapped("lot_qty")
-                    )
-                    qty = qty
-                else:
-                    qty = 1.0
-                self._reserve_lot_in_move(move, lot, qty=qty)
-
+        lots_desired = matrix_lines.mapped("component_lot_id")
+        current_lines = move.move_line_ids.filtered(lambda ml: ml.lot_id)
+        lots_current = current_lines.mapped("lot_id")
+        to_remove = lots_current - lots_desired
+        if to_remove:
+            current_lines.filtered(lambda ml: ml.lot_id in to_remove).unlink()
+        to_add = lots_desired - lots_current
+        for lot in to_add:
+            if move.product_id.tracking == "serial":
+                qty_needed = 1.0
+            else:
+                qty_needed = sum(matrix_lines.mapped("lot_qty"))
+            self._reserve_lot_in_move(move, lot, qty=qty_needed)
         return True
 
     def _consume_selected_lots(self, move, matrix_lines):
-        lots_to_consume = matrix_lines.mapped("component_lot_id")
-        precision_digits = self.env["decimal.precision"].precision_get(
+        lots_in_matrix = matrix_lines.mapped("component_lot_id")
+        precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
         for ml in move.move_line_ids:
-            if ml.lot_id in lots_to_consume:
-                if move.product_id.tracking == "lot":
-                    qty = sum(
-                        matrix_lines.filtered(
-                            lambda line: line.component_lot_id == ml.lot_id  # noqa: B023
-                        ).mapped("lot_qty")
-                    )
-                    ml.quantity = qty
-            elif float_is_zero(ml.quantity, precision_digits=precision_digits):
+            if ml.lot_id in lots_in_matrix:
+                ml.picked = True
+            elif float_is_zero(ml.quantity, precision_digits=precision):
                 ml.unlink()
             else:
-                ml.quantity = 0.0
-            ml.picked = True
+                ml.lot_id = lots_in_matrix[0] if len(lots_in_matrix) > 1 else False
+                ml.picked = True
 
     def _reserve_lot_in_move(self, move, lot, qty):
         precision_digits = self.env["decimal.precision"].precision_get(
@@ -360,15 +394,3 @@ class MrpProductionSerialMatrix(models.TransientModel):
             lot_id=lot,
             strict=True,
         )
-
-    def button_next(self):
-        self._onchange_finished_lot_ids()
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "mrp_production_serial_matrix.action_mrp_production_serial_matrix"
-        )
-        action["view_id"] = self.env.ref(
-            "mrp_production_serial_matrix.mrp_production_serial_matrix_view_final_form"
-        ).id
-        action["views"] = [(action["view_id"], "form")]
-        action["res_id"] = self.id
-        return action

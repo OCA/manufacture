@@ -1,4 +1,4 @@
-# Copyright 2021-24 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2021-26 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
@@ -14,7 +14,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "wizards/mrp_production_serial_matrix_view.xml",
+        "views/mrp_production_serial_matrix_view.xml",
         "views/mrp_production_views.xml",
     ],
     "installable": True,

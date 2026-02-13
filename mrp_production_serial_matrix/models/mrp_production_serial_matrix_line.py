@@ -4,7 +4,7 @@
 from odoo import fields, models
 
 
-class MrpProductionSerialMatrix(models.TransientModel):
+class MrpProductionSerialMatrixLine(models.Model):
     _name = "mrp.production.serial.matrix.line"
     _description = "Mrp Production Serial Matrix Line"
 
@@ -25,6 +25,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
         compute="_compute_allowed_component_lot_ids",
     )
     lot_qty = fields.Float(digits="Product Unit of Measure")
+    state = fields.Selection(related="wizard_id.state")
 
     def _compute_allowed_component_lot_ids(self):
         for rec in self:
