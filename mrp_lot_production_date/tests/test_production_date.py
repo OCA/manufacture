@@ -12,8 +12,42 @@ class TestMrpLotProductionDate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # BoM of a product tracked by S/N with flexible consumption
-        cls.bom = cls.env.ref("mrp.mrp_bom_desk")
+
+        # Create a product for BOM
+        cls.bom_product = cls.env["product.product"].create(
+            {
+                "name": "Test BOM Product",
+                "tracking": "lot",
+            }
+        )
+
+        # Create a component for BOM
+        cls.component = cls.env["product.product"].create(
+            {
+                "name": "Test Component",
+                "tracking": "lot",
+            }
+        )
+
+        # Create BOM
+        cls.bom = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": cls.bom_product.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.component.id,
+                            "product_qty": 1.0,
+                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
+                        },
+                    )
+                ],
+            }
+        )
 
         # Create a product with expiration tracking
         cls.product_expiring = cls.env["product.product"].create(

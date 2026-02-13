@@ -32,7 +32,7 @@ class StockLot(models.Model):
         return lots
 
     def write(self, vals):
-        super().write(vals)
+        result = super().write(vals)
         if "production_date" in vals:
             self._set_expiration_date_from_production()
-        return True
+        return result
