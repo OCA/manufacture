@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="mrp_production_workorder_tree_view_inherit" model="ir.ui.view">
-        <field name="name">mrp.workorder.tree</field>
+        <field name="name">mrp.workorder.list</field>
         <field name="model">mrp.workorder</field>
         <field
             name="inherit_id"
