@@ -2,9 +2,8 @@
 # @author Florian DA COSTA <florian.dacosta@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
-from odoo import api, models
+from odoo import api, fields, models
+from odoo.tools import float_is_zero
 
 
 class MrpProduction(models.Model):
@@ -12,7 +11,7 @@ class MrpProduction(models.Model):
 
     @api.depends(
         "move_raw_ids.state",
-        "move_raw_ids.quantity_done",
+        "move_raw_ids.quantity",
         "move_finished_ids.state",
         "workorder_ids.state",
         "product_qty",
@@ -20,20 +19,31 @@ class MrpProduction(models.Model):
         "date_start",
     )
     def _compute_state(self):
-        res = super()._compute_state()
+        super()._compute_state()
         for production in self:
-            if production.state == "confirmed" and production.date_start:
+            ctx = dict(production.env.context)
+            if ctx.get("previous_state") == "confirmed" and production.date_start:
                 production.state = "progress"
-        return res
+            elif (
+                ctx.get("previous_state") == "progress"
+                and production.product_uom_id
+                and float_is_zero(
+                    production.qty_producing,
+                    precision_rounding=production.product_uom_id.rounding,
+                )
+            ):
+                production.state = "confirmed"
+        return
 
-    def action_progress(self):
+    def action_start(self):
+        super().action_start()
         self.write(
             {
-                "date_start": datetime.now(),
+                "date_start": fields.Datetime.now(),
             }
         )
-        return True
+        return
 
     def action_unstart(self):
-        self.write({"state": "confirmed", "date_start": False, "qty_producing": 0})
+        self.with_context(previous_state=self.state).qty_producing = 0
         return True
