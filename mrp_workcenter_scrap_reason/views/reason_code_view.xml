@@ -1,0 +1,28 @@
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_scrap_reason_code_form_inherited" model="ir.ui.view">
+        <field name="name">scrap.reason.code.form - Workcenter</field>
+        <field name="model">scrap.reason.code</field>
+        <field name="inherit_id" ref="scrap_reason_code.view_scrap_reason_code_form" />
+        <field name="arch" type="xml">
+            <field name="product_category_ids" position="after">
+                <field
+                    name="mrp_workcenter_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_scrap_reason_code_list_inherited" model="ir.ui.view">
+        <field name="name">scrap.reason.code.list - Workcenter</field>
+        <field name="model">scrap.reason.code</field>
+        <field name="inherit_id" ref="scrap_reason_code.view_scrap_reason_code_list" />
+        <field name="arch" type="xml">
+            <field name="product_category_ids" position="after">
+                <field name="mrp_workcenter_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
