@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Alberto Martínez <alberto.martinez@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_form_view_warn_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.warn.inherit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="warning" string="Warning">
+                    <group colspan="2" col="2">
+                        <field
+                            name="production_warn"
+                            nolabel="1"
+                            readonly="True"
+                            groups="!mrp_bom_warn_message_oca.group_warning_mrp_bom"
+                        />
+                        <field
+                            name="production_warn"
+                            nolabel="1"
+                            readonly="False"
+                            groups="mrp_bom_warn_message_oca.group_warning_mrp_bom"
+                        />
+                        <field
+                            name="production_warn_msg"
+                            colspan="3"
+                            nolabel="1"
+                            readonly="True"
+                            required="production_warn == 'warning'"
+                            invisible="production_warn in [False, 'no-message']"
+                            placeholder="Write your warn message..."
+                            groups="!mrp_bom_warn_message_oca.group_warning_mrp_bom"
+                        />
+                        <field
+                            name="production_warn_msg"
+                            colspan="3"
+                            nolabel="1"
+                            readonly="False"
+                            required="production_warn == 'warning'"
+                            invisible="production_warn in [False, 'no-message']"
+                            placeholder="Write your warn message..."
+                            groups="mrp_bom_warn_message_oca.group_warning_mrp_bom"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

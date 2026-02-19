@@ -1,0 +1,1 @@
+- The module name has the _oca suffix because somebody took the  mrp_bom_warn_message name in pypi 
