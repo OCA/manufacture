@@ -7,7 +7,7 @@ from datetime import date
 from freezegun import freeze_time
 
 from odoo import Command
-from odoo.tests import Form, common
+from odoo.tests import common
 
 
 class TestMrpStockActualDate(common.TransactionCase):
@@ -20,17 +20,17 @@ class TestMrpStockActualDate(common.TransactionCase):
         cls.product_finished = cls.env["product.product"].create(
             {
                 "name": "Finished Product",
-                "type": "product",
                 "categ_id": cls.category.id,
                 "standard_price": 100.0,
+                "is_storable": True,
             }
         )
         cls.product_component = cls.env["product.product"].create(
             {
                 "name": "Component Product",
-                "type": "product",
                 "categ_id": cls.category.id,
                 "standard_price": 100.0,
+                "is_storable": True,
             }
         )
         cls.bom = cls.env["mrp.bom"].create(
@@ -55,13 +55,7 @@ class TestMrpStockActualDate(common.TransactionCase):
             }
         )
         mo.action_confirm()
-        mark_done_action = mo.button_mark_done()
-        immediate_production_wizard = Form(
-            self.env["mrp.immediate.production"].with_context(
-                **mark_done_action["context"]
-            )
-        ).save()
-        immediate_production_wizard.process()
+        mo.button_mark_done()
         return mo
 
     def create_scrap(self, mo, actual_date=False):
@@ -101,11 +95,11 @@ class TestMrpStockActualDate(common.TransactionCase):
         self.assertEqual(mo.move_finished_ids.actual_date, date(2025, 2, 1))
         self.assertEqual(mo.move_finished_ids.account_move_ids.date, date(2025, 2, 1))
         scrap = self.create_scrap(mo, date(2025, 3, 10))
-        self.assertEqual(scrap.move_id.actual_date, date(2025, 3, 10))
-        self.assertEqual(scrap.move_id.account_move_ids.date, date(2025, 3, 10))
+        self.assertEqual(scrap.move_ids.actual_date, date(2025, 3, 10))
+        self.assertEqual(scrap.move_ids.account_move_ids.date, date(2025, 3, 10))
         scrap.actual_date = date(2025, 2, 1)
-        self.assertEqual(scrap.move_id.actual_date, date(2025, 2, 1))
-        self.assertEqual(scrap.move_id.account_move_ids.date, date(2025, 2, 1))
+        self.assertEqual(scrap.move_ids.actual_date, date(2025, 2, 1))
+        self.assertEqual(scrap.move_ids.account_move_ids.date, date(2025, 2, 1))
         unbuild_order = self.create_unbuild_order(mo, date(2025, 3, 10))
         self.assertEqual(
             unbuild_order.produce_line_ids[0].actual_date, date(2025, 3, 10)
@@ -130,8 +124,8 @@ class TestMrpStockActualDate(common.TransactionCase):
         self.assertEqual(mo.move_finished_ids.actual_date, date(2025, 3, 7))
         self.assertEqual(mo.move_finished_ids.account_move_ids.date, date(2025, 3, 7))
         scrap = self.create_scrap(mo)
-        self.assertEqual(scrap.move_id.actual_date, date(2025, 3, 7))
-        self.assertEqual(scrap.move_id.account_move_ids.date, date(2025, 3, 7))
+        self.assertEqual(scrap.move_ids.actual_date, date(2025, 3, 7))
+        self.assertEqual(scrap.move_ids.account_move_ids.date, date(2025, 3, 7))
         unbuild_order = self.create_unbuild_order(mo)
         self.assertEqual(
             unbuild_order.produce_line_ids[0].actual_date, date(2025, 3, 7)
