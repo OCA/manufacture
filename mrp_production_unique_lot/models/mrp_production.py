@@ -1,7 +1,7 @@
 # Copyright 2025 ForgeFlow, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -28,7 +28,8 @@ class MrpProduction(models.Model):
             )
             if record.force_lot_uniqueness and record.product_id.tracking == "lot":
                 allowed_lots = lot_ids.filtered(
-                    lambda lot: not record._is_finished_lot_already_produced(lot)
+                    lambda lot,
+                    record=record: not record._is_finished_lot_already_produced(lot)
                 )
                 record.allowed_lot_producing_ids = allowed_lots
             else:
@@ -44,16 +45,16 @@ class MrpProduction(models.Model):
         """Alert the user if the lot number has already been produced.
         This method is based on the odoo code for serial numbers in _check_sn_uniqueness
         """
-        if not self.force_lot_uniqueness or not self.lot_producing_id:
+        if not self.force_lot_uniqueness or not self.lot_producing_ids:
             return
 
         if (
             self.product_tracking == "lot"
-            and self.lot_producing_id
-            and self._is_finished_lot_already_produced(self.lot_producing_id)
+            and self.lot_producing_ids
+            and self._is_finished_lot_already_produced(self.lot_producing_ids)
         ):
             raise UserError(
-                _(
+                self.env._(
                     "This lot number for product %s has already been produced",
                     self.product_id.name,
                 )
@@ -67,9 +68,9 @@ class MrpProduction(models.Model):
                     move_line.lot_id, excluded_sml=move_line
                 ):
                     raise UserError(
-                        _(
-                            "The lot number %(number)s used for byproduct %(product_name)s"
-                            " has already been produced",
+                        self.env._(
+                            "The lot number %(number)s used for byproduct "
+                            "%(product_name)s has already been produced",
                             number=move_line.lot_id.name,
                             product_name=move_line.product_id.name,
                         )
@@ -113,8 +114,8 @@ class MrpProduction(models.Model):
             moved_to_scrap_count = self.env["stock.move.line"].search_count(
                 base_domain
                 + [
-                    ("location_id.scrap_location", "=", False),
-                    ("location_dest_id.scrap_location", "=", True),
+                    ("location_id.usage", "!=", "inventory"),
+                    ("location_dest_id.usage", "=", "inventory"),
                 ]
             )
 
@@ -123,8 +124,8 @@ class MrpProduction(models.Model):
                 [
                     ("lot_id", "=", lot.id),
                     ("state", "=", "done"),
-                    ("location_id.scrap_location", "=", True),
-                    ("location_dest_id.scrap_location", "=", False),
+                    ("location_id.usage", "=", "inventory"),
+                    ("location_dest_id.usage", "!=", "inventory"),
                 ]
             )
 
@@ -142,7 +143,7 @@ class MrpProduction(models.Model):
         # Check duplicates in current production, excluding specified move lines if any
         current_move_lines = self.move_finished_ids.move_line_ids - excluded_move_lines
         duplicates_in_current = current_move_lines.filtered(
-            lambda ml: ml.qty_done and ml.lot_id == lot
+            lambda ml: ml.quantity and ml.lot_id == lot
         )
 
         return bool(duplicates_in_current)

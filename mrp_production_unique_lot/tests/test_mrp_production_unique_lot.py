@@ -23,8 +23,8 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
 
         mo_form = Form(cls.mo)
         mo_form.qty_producing = 5
-        mo_form.lot_producing_id = cls.lot
         mo = mo_form.save()
+        mo.lot_producing_ids = cls.lot
         mo.button_mark_done()
 
     def test_unique_lot_validation(self):
@@ -41,7 +41,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         # Try to assign the same lot
         mo_form = Form(mo2)
         mo_form.qty_producing = 10
-        mo_form.lot_producing_id = self.lot
+        mo_form.lot_producing_ids = self.lot
         mo = mo_form.save()
         with self.assertRaises(UserError):
             mo.button_mark_done()
@@ -50,9 +50,10 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         lot2 = self.env["stock.lot"].create(
             {"name": "LOT-002", "product_id": self.final_product.id}
         )
+        mo2.action_clear_lot_producing_ids()
         mo_form = Form(mo2)
         mo_form.qty_producing = 10
-        mo_form.lot_producing_id = lot2
+        mo_form.lot_producing_ids = lot2
         mo = mo_form.save()
         mo.button_mark_done()
 
@@ -60,6 +61,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         x = Form(self.env["mrp.unbuild"])
         x.product_id = self.final_product
         x.mo_id = self.mo
+        x.lot_id = self.lot
         x.product_qty = self.mo.product_qty
         x.save().action_unbuild()
 
@@ -76,7 +78,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         # Try to assign the same lot, it should not raise
         mo_form = Form(mo2)
         mo_form.qty_producing = 10
-        mo_form.lot_producing_id = self.lot
+        mo_form.lot_producing_ids = self.lot
         mo = mo_form.save()
         mo.button_mark_done()
 
@@ -109,6 +111,6 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         # Try to assign the same lot, it should not raise
         mo_form = Form(mo2)
         mo_form.qty_producing = 10
-        mo_form.lot_producing_id = self.lot
+        mo_form.lot_producing_ids = self.lot
         mo = mo_form.save()
         mo.button_mark_done()

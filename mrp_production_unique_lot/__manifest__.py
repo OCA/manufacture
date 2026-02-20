@@ -4,7 +4,7 @@
     "name": "MRP Production Unique Lot",
     "Summary": "Ensures that production lot numbers are unique and cannot be reused "
     "in another manufacturing order.",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/manufacture",
