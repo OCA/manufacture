@@ -3,7 +3,6 @@
 
 from odoo import Command
 from odoo.models import BaseModel
-from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -165,20 +164,30 @@ class TestMrpBomAttributeMatchBase(BaseCommon):
     def _create_bom(cls, product, line_form_vals):
         if product._name == "product.template":
             template = product
-            product = cls.env["product.product"]
+            product_variant = product.product_variant_id
         else:
             template = product.product_tmpl_id
-        with Form(cls.env["mrp.bom"]) as form:
-            form.product_tmpl_id = template
-            form.product_id = product
-            for vals in line_form_vals:
-                with form.bom_line_ids.new() as line_form:
-                    for key, value in vals.items():
-                        field = cls.env["mrp.bom.line"]._fields.get(key)
-                        if field and field.relational:  # pragma: no cover
-                            if value and not isinstance(value, BaseModel):
-                                value = cls.env[field.comodel_name].browse(value)
-                            elif not value:
-                                value = cls.env[field.comodel_name]
-                        setattr(line_form, key, value)
-        return form.save()
+            product_variant = product
+        bom_vals = {
+            "product_tmpl_id": template.id,
+            "product_id": product_variant.id,
+            "product_qty": 1.0,
+            "type": "normal",
+            "bom_line_ids": [],
+        }
+        for vals in line_form_vals:
+            line_vals = {}
+            for key, value in vals.items():
+                field = cls.env["mrp.bom.line"]._fields.get(key)
+                if field and field.relational:
+                    if value and not isinstance(value, BaseModel):
+                        value = cls.env[field.comodel_name].browse(value)
+                    if value:
+                        value = value.id
+                    else:
+                        value = False
+                line_vals[key] = value
+
+            bom_vals["bom_line_ids"].append((0, 0, line_vals))
+
+        return cls.env["mrp.bom"].create(bom_vals)
