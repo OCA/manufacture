@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_round
 
@@ -49,8 +49,6 @@ class MrpBomLine(models.Model):
             if self.product_id:
                 self.product_backup_id = self.product_id
                 self.product_id = False
-            # if (self.product_uom_id.category_id != self.component_template_id.uom_id.category_id):
-            #     self.product_uom_id = self.component_template_id.uom_id
         else:
             if self.product_backup_id:
                 self.product_id = self.product_backup_id
@@ -79,7 +77,7 @@ class MrpBomLine(models.Model):
             prod_attrs = bom_prod.valid_product_template_attribute_line_ids.attribute_id
             if not comp_attrs:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "No match on attribute has been detected for Component "
                         "(Product Template) %s",
                         cmp_tmpl.display_name,
@@ -87,7 +85,7 @@ class MrpBomLine(models.Model):
                 )
             if not all(attr in prod_attrs for attr in comp_attrs):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Some attributes of the dynamic component are not included into"
                         " production product attributes."
                     )
@@ -106,7 +104,7 @@ class MrpBomLine(models.Model):
             same_attrs = self.env["product.attribute"].browse(same_attr_ids)
             if same_attrs:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You cannot use an attribute value for attribute(s) "
                         "%(attributes)s in the field “Apply on Variants” as it's the "
                         "same attribute used in the field “Match on Attribute” related "
@@ -246,7 +244,7 @@ class MrpBom(models.Model):
                         graph,
                     ):
                         raise UserError(
-                            _(
+                            self.env._(
                                 "Recursion error!  A product with a Bill of Material "
                                 "should not have itself in its BoM or child BoMs!"
                             )
@@ -333,4 +331,3 @@ class MrpBom(models.Model):
     @api.constrains("product_tmpl_id", "product_id")
     def _check_variants_validity(self):
         return self.bom_line_ids._check_variants_validity()
-
