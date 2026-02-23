@@ -1,0 +1,16 @@
+[MASTER]
+# Load pylint Odoo plugin
+load-plugins=pylint_odoo
+
+[MESSAGES CONTROL]
+# Disable overly strict checks that are common in Odoo
+disable=
+    missing-docstring,
+    invalid-name,
+    too-many-arguments,
+    no-member,
+    too-few-public-methods
+
+[REPORTS]
+# Minimal output for CI readability
+reports=no
