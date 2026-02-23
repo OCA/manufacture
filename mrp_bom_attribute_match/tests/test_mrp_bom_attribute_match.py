@@ -224,7 +224,7 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
         component = self.env["product.template"].create(
             {
                 "name": "Test Component",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
 

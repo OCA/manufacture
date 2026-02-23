@@ -14,62 +14,62 @@ class TestMrpBomAttributeMatchBase(TransactionCase):
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.route_manufacture = cls.warehouse.manufacture_pull_id.route_id
 
-        # Create products - Odoo 19 uses 'detailed_type' instead of 'type'
+        # Create products
         cls.product_sword = cls.env["product.template"].create(
             {
                 "name": "Plastic Sword",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.product_surf = cls.env["product.template"].create(
             {
                 "name": "Surf",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.product_fin = cls.env["product.template"].create(
             {
                 "name": "Surf Fin",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.product_plastic = cls.env["product.template"].create(
             {
                 "name": "Plastic Component",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.p1 = cls.env["product.template"].create(
             {
                 "name": "P1",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p2 = cls.env["product.template"].create(
             {
                 "name": "P2",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p3 = cls.env["product.template"].create(
             {
                 "name": "P3",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.product_9 = cls.env["product.product"].create(
             {
                 "name": "Paper",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.product_10 = cls.env["product.product"].create(
             {
                 "name": "Stone",
-                "detailed_type": "product",  # Changed for Odoo 19
+                "type": "product",
             }
         )
         cls.product_attribute = cls.env["product.attribute"].create(
