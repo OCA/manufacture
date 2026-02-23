@@ -3,69 +3,50 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command, api, models
+from odoo import api, models
 
 
 class ReportBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
+    def _get_report_data(self, bom_id, *args, **kwargs):
+        res = super()._get_report_data(bom_id, *args, **kwargs)
+        if isinstance(res, dict):
+            components = res.get("components", [])
+            if any(
+                c.get("is_variant_applied") for c in components if isinstance(c, dict)
+            ):
+                res["is_variant_applied"] = True
+        return res
+
     @api.model
-    def _get_bom_data(
-        self,
-        bom,
-        warehouse,
-        product=False,
-        line_qty=False,
-        bom_line=False,
-        level=0,
-        parent_bom=False,
-        parent_product=False,
-        index=0,
-        product_info=False,
-        ignore_stock=False,
-        simulated_leaves_per_workcenter=False,
-    ):
-        # OVERRIDE to fill in the `line.product_id` if a component template is used.
-        # To avoid a complete override, we HACK the bom by replacing it with a virtual
-        # record, and modifying it's lines on-the-fly.
-        has_template_lines = any(
-            line.component_template_id for line in bom.bom_line_ids
-        )
-        if has_template_lines:
-            bom = bom.new(origin=bom)
-            to_ignore_line_ids = []
-            for line in bom.bom_line_ids:
-                if line._skip_bom_line(product) or not line.component_template_id:
-                    continue
-                line_product = bom._get_component_template_product(
-                    line, product, line.product_id
-                )
-                if not line_product:
-                    to_ignore_line_ids.append(line.id)
-                    continue
-                else:
-                    line.product_id = line_product
-            if to_ignore_line_ids:
-                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
-        data = super()._get_bom_data(
-            bom,
-            warehouse,
-            product=product,
-            line_qty=line_qty,
-            bom_line=bom_line,
-            level=level,
-            parent_bom=parent_bom,
-            parent_product=parent_product,
-            index=index,
-            product_info=product_info,
-            ignore_stock=ignore_stock,
-            simulated_leaves_per_workcenter=simulated_leaves_per_workcenter,
-        )
-        # Replace any NewId value by the real record id
-        # Otherwise it's evaluated as False in some situations, and it may cause issues
-        if has_template_lines:
-            for component in data.get("components", []):
+    def _get_bom_data(self, bom, warehouse, product=False, **kwargs):
+        variant_matched = False
+        if product:
+            has_templates = any(line.component_template_id for line in bom.bom_line_ids)
+            if has_templates:
+                bom = bom.new(origin=bom)
+                for line in bom.bom_line_ids:
+                    if not line.component_template_id:
+                        continue
+                    line_product = bom._get_component_template_product(
+                        line, product, line.product_id
+                    )
+                    if line_product:
+                        line.product_id = line_product
+                        variant_matched = True
+
+        data = super()._get_bom_data(bom, warehouse, product=product, **kwargs)
+
+        if variant_matched:
+            data["is_variant_applied"] = True
+
+        components = data.get("components", [])
+        for component in components:
+            if isinstance(component, dict):
+                if component.get("is_variant_applied"):
+                    data["is_variant_applied"] = True
                 for key, value in component.items():
-                    if isinstance(value, models.NewId):
+                    if hasattr(value, "origin"):
                         component[key] = value.origin
         return data

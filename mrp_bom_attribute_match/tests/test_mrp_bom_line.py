@@ -13,11 +13,10 @@ class TestMrpBomLine(TestMrpBomAttributeMatchBase):
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.uom_dozen = cls.env.ref("uom.product_uom_dozen")
 
-        # Updated for Odoo 19 - uom_po_id is now purchase_uom_id
         cls.product_plastic.write(
             {
+                "type": "consu",
                 "uom_id": cls.uom_dozen.id,
-                "purchase_uom_id": cls.uom_dozen.id,  # Changed for Odoo 19
             }
         )
 
