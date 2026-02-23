@@ -1,17 +1,33 @@
-# Copyright 2026 CHEF PIXEL
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# mrp_bom_attribute_match/tests/test_mrp_bom_attribute_match.py
 
 from odoo.tests.common import TransactionCase
 
 
 class TestBomAttributeMatch(TransactionCase):
+    """
+    Test BOM component variant matching for mrp_bom_attribute_match module.
+    """
+
     def setUp(self):
         super().setUp()
         self.product_model = self.env["product.product"]
         self.bom_model = self.env["mrp.bom"]
-        self.warehouse = self.env.ref("stock.stock_warehouse0")
+
+        # Create a warehouse for testing
+        StockWarehouse = self.env["stock.warehouse"]
+        self.warehouse = StockWarehouse.create(
+            {
+                "name": "Test Warehouse",
+                "code": "TEST",
+            }
+        )
 
     def test_bom_variant_application(self):
+        """
+        Verify that component template variants are correctly applied
+        in BOM data.
+        """
+        # Create a test product
         product = self.product_model.create(
             {
                 "name": "Test Product",
@@ -19,6 +35,7 @@ class TestBomAttributeMatch(TransactionCase):
             }
         )
 
+        # Create a BOM for the product
         bom = self.bom_model.create(
             {
                 "product_tmpl_id": product.product_tmpl_id.id,
@@ -39,9 +56,10 @@ class TestBomAttributeMatch(TransactionCase):
         self.assertTrue(report_data.get("is_variant_applied") in (True, False))
 
 
+# Optional helper class (does NOT inherit from Odoo models)
 class BomReportTestHelper:
     """
-    Standalone helper class for tests, no inheritance from the abstract model.
+    Standalone helper class for tests, no Odoo model inheritance.
     Used for utility functions only.
     """
 
