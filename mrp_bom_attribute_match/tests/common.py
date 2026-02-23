@@ -3,71 +3,73 @@
 
 from odoo import Command
 from odoo.models import BaseModel
+from odoo.tests.common import TransactionCase
 
-from odoo.addons.base.tests.common import BaseCommon
 
-
-class TestMrpBomAttributeMatchBase(BaseCommon):
+class TestMrpBomAttributeMatchBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.route_manufacture = cls.warehouse.manufacture_pull_id.route_id
-        # Create products
+
+        # Create products - Odoo 19 uses 'detailed_type' instead of 'type'
         cls.product_sword = cls.env["product.template"].create(
             {
                 "name": "Plastic Sword",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.product_surf = cls.env["product.template"].create(
             {
                 "name": "Surf",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.product_fin = cls.env["product.template"].create(
             {
                 "name": "Surf Fin",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.product_plastic = cls.env["product.template"].create(
             {
                 "name": "Plastic Component",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.p1 = cls.env["product.template"].create(
             {
                 "name": "P1",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p2 = cls.env["product.template"].create(
             {
                 "name": "P2",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.p3 = cls.env["product.template"].create(
             {
                 "name": "P3",
-                "is_storable": True,
+                "detailed_type": "product",  # Changed for Odoo 19
                 "route_ids": [Command.link(cls.route_manufacture.id)],
             }
         )
         cls.product_9 = cls.env["product.product"].create(
             {
                 "name": "Paper",
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.product_10 = cls.env["product.product"].create(
             {
                 "name": "Stone",
+                "detailed_type": "product",  # Changed for Odoo 19
             }
         )
         cls.product_attribute = cls.env["product.attribute"].create(
