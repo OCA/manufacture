@@ -102,37 +102,39 @@
                         </list>
                     </field>
                 </group>
-                <div
+                <group
                     name="quantitative"
-                    align="center"
+                    colspan="4"
                     invisible="type != 'quantitative'"
                 >
-                    <h1 name="quantitative-data">
-                        <span name="quantitative-interval">
-                            <field
-                                name="min_value"
-                                class="oe_inline"
-                                nolabel="1"
-                                required="type == 'quantitative'"
-                            />
-                            <span> - </span>
-                            <field
-                                name="max_value"
-                                class="oe_inline"
-                                nolabel="1"
-                                required="type == 'quantitative'"
-                            />
-                        </span>
-                        <span name="quantitative-uom">
-                            <field
-                                name="uom_id"
-                                class="oe_inline"
-                                nolabel="1"
-                                required="type == 'quantitative'"
-                            />
-                        </span>
-                    </h1>
-                </div>
+                    <div align="center">
+                        <h1 name="quantitative-data">
+                            <span name="quantitative-interval">
+                                <field
+                                    name="min_value"
+                                    class="oe_inline"
+                                    nolabel="1"
+                                    required="type == 'quantitative'"
+                                />
+                                <span> - </span>
+                                <field
+                                    name="max_value"
+                                    class="oe_inline"
+                                    nolabel="1"
+                                    required="type == 'quantitative'"
+                                />
+                            </span>
+                            <span name="quantitative-uom">
+                                <field
+                                    name="uom_id"
+                                    class="oe_inline"
+                                    nolabel="1"
+                                    required="type == 'quantitative'"
+                                />
+                            </span>
+                        </h1>
+                    </div>
+                </group>
                 <field name="notes" />
             </form>
         </field>
