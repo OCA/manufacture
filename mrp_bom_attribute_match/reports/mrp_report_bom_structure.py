@@ -9,8 +9,20 @@ from odoo import api, models
 class ReportBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
-    def _get_report_data(self, bom_id, *args, **kwargs):
-        res = super()._get_report_data(bom_id, *args, **kwargs)
+    def _get_report_data(
+        self,
+        bom_id,
+        search_qty=0,
+        search_variant=False,
+        **kwargs,
+    ):
+        res = super()._get_report_data(
+            bom_id,
+            search_qty=search_qty,
+            search_variant=search_variant,
+            **kwargs,
+        )
+
         if isinstance(res, dict):
             components = res.get("components", [])
             if any(
@@ -30,23 +42,34 @@ class ReportBomStructure(models.AbstractModel):
                     if not line.component_template_id:
                         continue
                     line_product = bom._get_component_template_product(
-                        line, product, line.product_id
+                        line,
+                        product,
+                        line.product_id,
                     )
                     if line_product:
                         line.product_id = line_product
                         variant_matched = True
 
-        data = super()._get_bom_data(bom, warehouse, product=product, **kwargs)
+        data = super()._get_bom_data(
+            bom,
+            warehouse,
+            product=product,
+            **kwargs,
+        )
 
         if variant_matched:
             data["is_variant_applied"] = True
 
         components = data.get("components", [])
         for component in components:
-            if isinstance(component, dict):
-                if component.get("is_variant_applied"):
-                    data["is_variant_applied"] = True
-                for key, value in component.items():
-                    if hasattr(value, "origin"):
-                        component[key] = value.origin
+            if not isinstance(component, dict):
+                continue
+
+            if component.get("is_variant_applied"):
+                data["is_variant_applied"] = True
+
+            for key, value in component.items():
+                if hasattr(value, "origin"):
+                    component[key] = value.origin
+
         return data
