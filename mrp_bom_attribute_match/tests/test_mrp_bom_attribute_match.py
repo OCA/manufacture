@@ -31,7 +31,7 @@ class TestBomAttributeMatch(TransactionCase):
         product = self.product_model.create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
             }
         )
 
