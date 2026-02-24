@@ -118,13 +118,19 @@ class TestMrpBomAttributeMatch(TransactionCase):
         report = self.env["report.mrp.report_bom_structure"]
         warehouse = self.env["stock.warehouse"].search([], limit=1)
         if not warehouse:
+            stock_location = self.env["stock.location"].create(
+                {
+                    "name": "WH1/Stock",
+                    "usage": "internal",
+                }
+            )
             warehouse = self.env["stock.warehouse"].create(
                 {
                     "name": "Test Warehouse",
                     "code": "WH1",
+                    "lot_stock_id": stock_location.id,
                 }
             )
-
         data = report._get_bom_data(
             self.bom, warehouse=warehouse, product=self.product_variant
         )
