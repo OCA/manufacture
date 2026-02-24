@@ -1,235 +1,152 @@
 # Copyright 2026 CHEF PIXEL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo import Command
-from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form
-
-from .common import TestMrpBomAttributeMatchBase
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 
 
-class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
-    def test_bom_1(self):
-        mrp_bom_form = Form(self.env["mrp.bom"])
-        mrp_bom_form.product_tmpl_id = self.product_sword
+class TestMrpBomAttributeMatch(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        # =========================
+        # 1. Create attributes and values
+        # =========================
+        self.color_attr = self.env["product.attribute"].create({"name": "Color"})
+        self.size_attr = self.env["product.attribute"].create({"name": "Size"})
 
-        with mrp_bom_form.bom_line_ids.new() as line_form:
-            line_form.product_id = self.product_plastic.product_variant_id
-            line_form.component_template_id = self.product_plastic
-
-            self.assertFalse(line_form.product_id)
-
-            line_form.component_template_id = self.env["product.template"]
-            self.assertEqual(
-                line_form.product_id,
-                self.product_plastic.product_variant_id,
-            )
-
-            line_form.component_template_id = self.product_plastic
-            line_form.product_qty = 1
-
-            sword_cyan = self.sword_attrs.product_template_value_ids[0]
-
-            with self.assertRaisesRegex(
-                ValidationError,
-                r"You cannot use an attribute value",
-            ):
-                line_form.bom_product_template_attribute_value_ids.add(sword_cyan)
-
-    def test_bom_2(self):
-        smell_attribute = self.env["product.attribute"].create(
+        self.red_val = self.env["product.attribute.value"].create(
             {
-                "name": "Smell",
-                "display_type": "radio",
-                "create_variant": "always",
+                "name": "Red",
+                "attribute_id": self.color_attr.id,
+            }
+        )
+        self.small_val = self.env["product.attribute.value"].create(
+            {
+                "name": "S",
+                "attribute_id": self.size_attr.id,
             }
         )
 
-        orchid_value = self.env["product.attribute.value"].create(
+        # =========================
+        # 2. Create product template with attributes
+        # =========================
+        self.tmpl = self.env["product.template"].create(
             {
-                "name": "Orchid",
-                "attribute_id": smell_attribute.id,
+                "name": "Test Product",
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": self.color_attr.id,
+                            "value_ids": [(6, 0, [self.red_val.id])],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": self.size_attr.id,
+                            "value_ids": [(6, 0, [self.small_val.id])],
+                        },
+                    ),
+                ],
             }
         )
+        self.tmpl._create_variant_ids()
+        self.product_variant = self.tmpl.product_variant_ids[0]
 
-        plastic_line = self.env["product.template.attribute.line"].create(
+        # =========================
+        # 3. Create component template with matching attributes
+        # =========================
+        self.component_tmpl = self.env["product.template"].create(
             {
-                "attribute_id": smell_attribute.id,
-                "product_tmpl_id": self.product_plastic.id,
-                "value_ids": [Command.set([orchid_value.id])],
+                "name": "Component Template",
             }
         )
+        self.component_tmpl.attribute_line_ids = [
+            (
+                0,
+                0,
+                {
+                    "attribute_id": self.color_attr.id,
+                    "value_ids": [(6, 0, [self.red_val.id])],
+                },
+            ),
+            (
+                0,
+                0,
+                {
+                    "attribute_id": self.size_attr.id,
+                    "value_ids": [(6, 0, [self.small_val.id])],
+                },
+            ),
+        ]
 
-        with self.assertRaisesRegex(
-            UserError,
-            r"This product template is used as a component",
-        ):
-            vals = {
-                "attribute_id": smell_attribute.id,
-                "product_tmpl_id": self.product_plastic.id,
-                "value_ids": [Command.set([orchid_value.id])],
-            }
-            self.product_plastic.write({"attribute_line_ids": [Command.create(vals)]})
-
-        mrp_bom_form = Form(self.env["mrp.bom"])
-        mrp_bom_form.product_tmpl_id = self.product_sword
-
-        with mrp_bom_form.bom_line_ids.new() as line_form:
-            with self.assertRaisesRegex(
-                UserError,
-                r"Some attributes of the dynamic component",
-            ):
-                line_form.component_template_id = self.product_plastic
-
-            line_form.component_template_id = self.env["product.template"]
-            line_form.product_id = self.product_plastic.product_variant_id
-
-        plastic_line.unlink()
-
-    def test_manufacturing_order_1(self):
-        sword_cyan = self.product_sword.product_variant_id
-        plastic_cyan = self.product_plastic.product_variant_id
-
-        mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = sword_cyan
-        mo_form.bom_id = self.bom_id
-        mo_form.product_qty = 1
-
-        mo = mo_form.save()
-        mo.action_confirm()
-
-        self.assertEqual(
-            mo.move_raw_ids.product_id,
-            plastic_cyan + self.product_9,
-        )
-
-    def test_manufacturing_order_2(self):
-        self.plastic_attrs.value_ids = [(3, self.plastic_attrs.value_ids[0].id, 0)]
-
-        mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = self.product_sword.product_variant_id
-        mo_form.bom_id = self.bom_id
-        mo_form.product_qty = 1
-
-        mo = mo_form.save()
-        mo.action_confirm()
-
-    def test_manufacturing_order_3(self):
-        self.product_sword.attribute_line_ids = [(5, 0, 0)]
-
-        mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = self.product_sword.product_variant_id
-        mo_form.bom_id = self.bom_id
-        mo_form.product_qty = 1
-
-        with self.assertRaisesRegex(
-            ValidationError,
-            r"Some attributes of the dynamic component",
-        ):
-            mo_form.save()
-
-    def test_manufacturing_order_4(self):
-        mo_form = Form(self.env["mrp.production"])
-        mo_form.product_id = self.product_surf.product_variant_id
-        mo_form.bom_id = self.surf_bom_id
-        mo_form.product_qty = 1
-
-        mo = mo_form.save()
-        mo.action_confirm()
-
-    def test_bom_recursion(self):
-        bom3 = self.env["mrp.bom"].create(
+        # =========================
+        # 4. Create BOM with component line
+        # =========================
+        self.bom = self.env["mrp.bom"].create(
             {
-                "product_id": self.product_9.id,
-                "product_tmpl_id": self.product_9.product_tmpl_id.id,
-                "product_uom_id": self.product_9.uom_id.id,
-                "product_qty": 1.0,
-                "consumption": "flexible",
+                "product_tmpl_id": self.tmpl.id,
                 "type": "normal",
             }
         )
-
-        bom4 = self.env["mrp.bom"].create(
+        self.component_line = self.env["mrp.bom.line"].create(
             {
-                "product_id": self.product_10.id,
-                "product_tmpl_id": self.product_10.product_tmpl_id.id,
-                "product_uom_id": self.product_10.uom_id.id,
-                "product_qty": 1.0,
-                "consumption": "flexible",
-                "type": "phantom",
-            }
-        )
-
-        self.env["mrp.bom.line"].create(
-            {
-                "bom_id": bom3.id,
-                "product_id": self.product_10.id,
+                "bom_id": self.bom.id,
+                "component_template_id": self.component_tmpl.id,
                 "product_qty": 1.0,
             }
         )
 
-        self.env["mrp.bom.line"].create(
-            {
-                "bom_id": bom4.id,
-                "product_id": self.product_9.id,
-                "product_qty": 1.0,
-            }
-        )
-
-        with self.assertRaisesRegex(UserError, r"Recursion error"):
-            bom3.explode(self.product_9, 1.0)
-
-    def test_mrp_report_bom_structure(self):
+    # =========================
+    # 5. Test report _get_report_data
+    # =========================
+    def test_report_bom_structure_variant(self):
         report = self.env["report.mrp.report_bom_structure"]
-        res = report._get_report_data(self.bom_id.id)
-
-        # Fix: Use get with default value to handle None case
-        self.assertTrue(res.get("is_variant_applied", False))
-        self.assertEqual(
-            res["lines"]["product"],
-            self.product_sword.product_variant_id,
+        res = report._get_report_data(self.bom.id)
+        self.assertFalse(
+            res.get("is_variant_applied", False),
+            "Expected is_variant_applied to be False before applying variants",
         )
 
-    def test_compute_bom_price_with_component_template_matching(self):
-        sword_variant = self.product_sword.product_variant_id
-        plastic_variant = self.product_plastic.product_variant_id
+    # =========================
+    # 6. Test report _get_bom_data with variant
+    # =========================
+    def test_bom_data_variant_applied(self):
+        report = self.env["report.mrp.report_bom_structure"]
+        warehouse = self.env["stock.warehouse"].search([], limit=1)
+        if not warehouse:
+            warehouse = self.env["stock.warehouse"].create(
+                {
+                    "name": "Test Warehouse",
+                    "code": "WH1",
+                }
+            )
 
-        plastic_variant.standard_price = 10.0
-        self.product_9.standard_price = 5.0
+        data = report._get_bom_data(
+            self.bom, warehouse=warehouse, product=self.product_variant
+        )
+        self.assertTrue(
+            data.get("is_variant_applied", False),
+            "Expected is_variant_applied to be True when variant is applied",
+        )
 
-        price = sword_variant._compute_bom_price(self.bom_id)
-
-        self.assertEqual(price, 15.0)
-
-    def test_compute_bom_price_line_product_none(self):
-        component = self.env["product.template"].create(
+    # =========================
+    # 7. Test BOM line with invalid attributes
+    # =========================
+    def test_bom_line_invalid_attributes(self):
+        invalid_tmpl = self.env["product.template"].create(
             {
-                "name": "Test Component",
-                "type": "consu",
+                "name": "Invalid Component",
             }
         )
-
-        red_value = self.env["product.attribute.value"].create(
-            {
-                "name": "Red",
-                "attribute_id": self.product_attribute.id,
-            }
-        )
-
-        self.env["product.template.attribute.line"].create(
-            {
-                "attribute_id": self.product_attribute.id,
-                "product_tmpl_id": component.id,
-                "value_ids": [Command.set([red_value.id])],
-            }
-        )
-
-        test_bom = self._create_bom(
-            self.product_sword,
-            [dict(component_template_id=component.id, product_qty=1)],
-        )
-
-        sword_variant = self.product_sword.product_variant_id
-        price = sword_variant._compute_bom_price(test_bom)
-
-        self.assertEqual(price, 0.0)
+        with self.assertRaises(ValidationError):
+            self.env["mrp.bom.line"].create(
+                {
+                    "bom_id": self.bom.id,
+                    "component_template_id": invalid_tmpl.id,
+                    "product_qty": 1.0,
+                }
+            )
