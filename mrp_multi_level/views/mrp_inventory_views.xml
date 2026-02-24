@@ -43,6 +43,13 @@
         <field name="type">list</field>
         <field name="arch" type="xml">
             <list create="false">
+                <header>
+                    <button
+                        name="%(mrp_multi_level.act_mrp_inventory_procure)d"
+                        type="action"
+                        string="Procure"
+                    />
+                </header>
                 <field name="mrp_area_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="product_id" />
