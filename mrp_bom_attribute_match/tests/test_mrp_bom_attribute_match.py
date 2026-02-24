@@ -1,68 +1,235 @@
-# mrp_bom_attribute_match/tests/test_mrp_bom_attribute_match.py
+# Copyright 2026 CHEF PIXEL
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo.tests.common import TransactionCase
+from odoo import Command
+from odoo.exceptions import UserError, ValidationError
+from odoo.tests import Form
+
+from .common import TestMrpBomAttributeMatchBase
 
 
-class TestBomAttributeMatch(TransactionCase):
-    """
-    Test BOM component variant matching for mrp_bom_attribute_match module.
-    """
+class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
+    def test_bom_1(self):
+        mrp_bom_form = Form(self.env["mrp.bom"])
+        mrp_bom_form.product_tmpl_id = self.product_sword
 
-    def setUp(self):
-        super().setUp()
-        self.product_model = self.env["product.product"]
-        self.bom_model = self.env["mrp.bom"]
+        with mrp_bom_form.bom_line_ids.new() as line_form:
+            line_form.product_id = self.product_plastic.product_variant_id
+            line_form.component_template_id = self.product_plastic
 
-        # Create a warehouse for testing
-        StockWarehouse = self.env["stock.warehouse"]
-        self.warehouse = StockWarehouse.create(
+            self.assertFalse(line_form.product_id)
+
+            line_form.component_template_id = self.env["product.template"]
+            self.assertEqual(
+                line_form.product_id,
+                self.product_plastic.product_variant_id,
+            )
+
+            line_form.component_template_id = self.product_plastic
+            line_form.product_qty = 1
+
+            sword_cyan = self.sword_attrs.product_template_value_ids[0]
+
+            with self.assertRaisesRegex(
+                ValidationError,
+                r"You cannot use an attribute value",
+            ):
+                line_form.bom_product_template_attribute_value_ids.add(sword_cyan)
+
+    def test_bom_2(self):
+        smell_attribute = self.env["product.attribute"].create(
             {
-                "name": "Test Warehouse",
-                "code": "TEST",
+                "name": "Smell",
+                "display_type": "radio",
+                "create_variant": "always",
             }
         )
 
-    def test_bom_variant_application(self):
-        """
-        Verify that component template variants are correctly applied
-        in BOM data.
-        """
-        # Create a test product
-        product = self.product_model.create(
+        orchid_value = self.env["product.attribute.value"].create(
             {
-                "name": "Test Product",
-                "type": "consu",
+                "name": "Orchid",
+                "attribute_id": smell_attribute.id,
             }
         )
 
-        # Create a BOM for the product
-        bom = self.bom_model.create(
+        plastic_line = self.env["product.template.attribute.line"].create(
             {
-                "product_tmpl_id": product.product_tmpl_id.id,
+                "attribute_id": smell_attribute.id,
+                "product_tmpl_id": self.product_plastic.id,
+                "value_ids": [Command.set([orchid_value.id])],
+            }
+        )
+
+        with self.assertRaisesRegex(
+            UserError,
+            r"This product template is used as a component",
+        ):
+            vals = {
+                "attribute_id": smell_attribute.id,
+                "product_tmpl_id": self.product_plastic.id,
+                "value_ids": [Command.set([orchid_value.id])],
+            }
+            self.product_plastic.write({"attribute_line_ids": [Command.create(vals)]})
+
+        mrp_bom_form = Form(self.env["mrp.bom"])
+        mrp_bom_form.product_tmpl_id = self.product_sword
+
+        with mrp_bom_form.bom_line_ids.new() as line_form:
+            with self.assertRaisesRegex(
+                UserError,
+                r"Some attributes of the dynamic component",
+            ):
+                line_form.component_template_id = self.product_plastic
+
+            line_form.component_template_id = self.env["product.template"]
+            line_form.product_id = self.product_plastic.product_variant_id
+
+        plastic_line.unlink()
+
+    def test_manufacturing_order_1(self):
+        sword_cyan = self.product_sword.product_variant_id
+        plastic_cyan = self.product_plastic.product_variant_id
+
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = sword_cyan
+        mo_form.bom_id = self.bom_id
+        mo_form.product_qty = 1
+
+        mo = mo_form.save()
+        mo.action_confirm()
+
+        self.assertEqual(
+            mo.move_raw_ids.product_id,
+            plastic_cyan + self.product_9,
+        )
+
+    def test_manufacturing_order_2(self):
+        self.plastic_attrs.value_ids = [(3, self.plastic_attrs.value_ids[0].id, 0)]
+
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_sword.product_variant_id
+        mo_form.bom_id = self.bom_id
+        mo_form.product_qty = 1
+
+        mo = mo_form.save()
+        mo.action_confirm()
+
+    def test_manufacturing_order_3(self):
+        self.product_sword.attribute_line_ids = [(5, 0, 0)]
+
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_sword.product_variant_id
+        mo_form.bom_id = self.bom_id
+        mo_form.product_qty = 1
+
+        with self.assertRaisesRegex(
+            ValidationError,
+            r"Some attributes of the dynamic component",
+        ):
+            mo_form.save()
+
+    def test_manufacturing_order_4(self):
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_surf.product_variant_id
+        mo_form.bom_id = self.surf_bom_id
+        mo_form.product_qty = 1
+
+        mo = mo_form.save()
+        mo.action_confirm()
+
+    def test_bom_recursion(self):
+        bom3 = self.env["mrp.bom"].create(
+            {
+                "product_id": self.product_9.id,
+                "product_tmpl_id": self.product_9.product_tmpl_id.id,
+                "product_uom_id": self.product_9.uom_id.id,
+                "product_qty": 1.0,
+                "consumption": "flexible",
+                "type": "normal",
+            }
+        )
+
+        bom4 = self.env["mrp.bom"].create(
+            {
+                "product_id": self.product_10.id,
+                "product_tmpl_id": self.product_10.product_tmpl_id.id,
+                "product_uom_id": self.product_10.uom_id.id,
+                "product_qty": 1.0,
+                "consumption": "flexible",
+                "type": "phantom",
+            }
+        )
+
+        self.env["mrp.bom.line"].create(
+            {
+                "bom_id": bom3.id,
+                "product_id": self.product_10.id,
                 "product_qty": 1.0,
             }
         )
 
-        # Fetch BOM data using the main module class
-        report_data = self.env["report.mrp.report_bom_structure"]._get_bom_data(
-            bom,
-            self.warehouse,
-            product=product,
+        self.env["mrp.bom.line"].create(
+            {
+                "bom_id": bom4.id,
+                "product_id": self.product_9.id,
+                "product_qty": 1.0,
+            }
         )
 
-        # Assertions to ensure variants are applied correctly
-        self.assertIn("components", report_data)
-        self.assertIsInstance(report_data["components"], list)
-        self.assertTrue(report_data.get("is_variant_applied") in (True, False))
+        with self.assertRaisesRegex(UserError, r"Recursion error"):
+            bom3.explode(self.product_9, 1.0)
 
+    def test_mrp_report_bom_structure(self):
+        report = self.env["report.mrp.report_bom_structure"]
+        res = report._get_report_data(self.bom_id.id)
 
-# Optional helper class (does NOT inherit from Odoo models)
-class BomReportTestHelper:
-    """
-    Standalone helper class for tests, no Odoo model inheritance.
-    Used for utility functions only.
-    """
+        # Fix: Use get with default value to handle None case
+        self.assertTrue(res.get("is_variant_applied", False))
+        self.assertEqual(
+            res["lines"]["product"],
+            self.product_sword.product_variant_id,
+        )
 
-    @staticmethod
-    def example_helper_method():
-        return "helper works"
+    def test_compute_bom_price_with_component_template_matching(self):
+        sword_variant = self.product_sword.product_variant_id
+        plastic_variant = self.product_plastic.product_variant_id
+
+        plastic_variant.standard_price = 10.0
+        self.product_9.standard_price = 5.0
+
+        price = sword_variant._compute_bom_price(self.bom_id)
+
+        self.assertEqual(price, 15.0)
+
+    def test_compute_bom_price_line_product_none(self):
+        component = self.env["product.template"].create(
+            {
+                "name": "Test Component",
+                "type": "consu",
+            }
+        )
+
+        red_value = self.env["product.attribute.value"].create(
+            {
+                "name": "Red",
+                "attribute_id": self.product_attribute.id,
+            }
+        )
+
+        self.env["product.template.attribute.line"].create(
+            {
+                "attribute_id": self.product_attribute.id,
+                "product_tmpl_id": component.id,
+                "value_ids": [Command.set([red_value.id])],
+            }
+        )
+
+        test_bom = self._create_bom(
+            self.product_sword,
+            [dict(component_template_id=component.id, product_qty=1)],
+        )
+
+        sword_variant = self.product_sword.product_variant_id
+        price = sword_variant._compute_bom_price(test_bom)
+
+        self.assertEqual(price, 0.0)
