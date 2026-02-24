@@ -23,8 +23,11 @@ class ReportBomStructure(models.AbstractModel):
             if any(
                 c.get("is_variant_applied") for c in components if isinstance(c, dict)
             ):
-                res["is_variant_applied"] = True
-
+                res["is_variant_applied"] = any(
+                    c.get("is_variant_applied")
+                    for c in components
+                    if isinstance(c, dict)
+                )
         return res
 
     @api.model
@@ -40,8 +43,6 @@ class ReportBomStructure(models.AbstractModel):
                 # Create a safe copy of BOM to modify
                 bom = bom.new(origin=bom)
                 for line in bom.bom_line_ids:
-                    if not line.component_template_id:
-                        continue
                     line_product = bom._get_component_template_product(
                         line,
                         product,
@@ -59,10 +60,12 @@ class ReportBomStructure(models.AbstractModel):
         # Ensure any component record objects are serialized properly
         components = data.get("components", [])
         for component in components:
-            if not isinstance(component, dict):
-                continue
             if component.get("is_variant_applied"):
-                data["is_variant_applied"] = True
+                data["is_variant_applied"] = variant_matched or any(
+                    c.get("is_variant_applied")
+                    for c in components
+                    if isinstance(c, dict)
+                )
             for key, value in component.items():
                 if hasattr(value, "origin"):
                     component[key] = value.origin
