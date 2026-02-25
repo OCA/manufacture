@@ -659,6 +659,7 @@ msgstr ""
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure
 #: model:ir.actions.act_window,name:mrp_multi_level.act_mrp_inventory_procure_planned_order
+#: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_list
 msgid "Procure"
 msgstr ""
 
