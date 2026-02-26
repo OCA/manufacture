@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-manufacture"
-version = "18.0.20260225.0"
+version = "18.0.20260226.0"
 dependencies = [
     "odoo-addon-account_move_line_mrp_info==18.0.*",
     "odoo-addon-mrp_attachment_mgmt==18.0.*",
@@ -32,6 +32,7 @@ dependencies = [
     "odoo-addon-mrp_repair_order==18.0.*",
     "odoo-addon-mrp_restrict_lot==18.0.*",
     "odoo-addon-mrp_sale_info==18.0.*",
+    "odoo-addon-mrp_stock_move_actual_date==18.0.*",
     "odoo-addon-mrp_stock_move_line_qty_picked==18.0.*",
     "odoo-addon-mrp_subcontracting_inhibit==18.0.*",
     "odoo-addon-mrp_subcontracting_purchase_link==18.0.*",
