@@ -2,8 +2,7 @@ Go to a Manufacturing Order with the characteristics described above,
 then proceed as follows:
 
 1.  Click on the button "Serial Numbers Matrix".
-2.  Fill the *Finished Product Serials Numbers*. As you fill them you
-    will see how the matrix below is updated.
+2.  Fill the *Finished Product Serials Numbers* and click "Next".
 3.  Fill the matrix. The matrix is composed of one row per final serial
     number and one column per component serial number or lot needed to
     complete the production.

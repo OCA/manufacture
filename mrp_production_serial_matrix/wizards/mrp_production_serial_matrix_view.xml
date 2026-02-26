@@ -9,11 +9,6 @@
                     <group name="info">
                         <field name="production_id" options='{"no_open": True}' />
                         <field name="product_id" options='{"no_open": True}' />
-                        <field
-                            name="company_id"
-                            options='{"no_open": True}'
-                            invisible="1"
-                        />
                     </group>
                     <group name="settings">
                         <field name="include_lots" widget="boolean_toggle" />
@@ -54,22 +49,6 @@
                     <group name="info">
                         <field name="production_id" options='{"no_open": True}' />
                         <field name="product_id" options='{"no_open": True}' />
-                        <field
-                            name="finished_lot_ids"
-                            widget="many2many_tags"
-                            invisible="1"
-                            colspan="2"
-                        />
-                        <field
-                            name="company_id"
-                            options='{"no_open": True}'
-                            invisible="1"
-                        />
-                        <field
-                            name="include_lots"
-                            widget="boolean_toggle"
-                            invisible="1"
-                        />
                     </group>
                 </group>
                 <group
@@ -90,7 +69,7 @@
                         field_value="component_lot_id"
                         colspan="2"
                     >
-                        <tree editable="True" nolabel="1" create="false" limit="1000">
+                        <list editable="top" nolabel="1" create="false" limit="1000">
                             <field name="component_column_name" />
                             <field name="finished_lot_name" />
                             <field
@@ -98,11 +77,7 @@
                                 options='{"no_create": True, "no_open": True}'
                                 domain="[('id','in', allowed_component_lot_ids)]"
                             />
-                            <field name="component_id" invisible="1" />
-                            <field name="lot_qty" invisible="1" />
-                            <field name="finished_lot_id" invisible="1" />
-                            <field name="allowed_component_lot_ids" invisible="1" />
-                        </tree>
+                        </list>
                     </field>
                     <div
                         class="alert alert-warning text-center"
@@ -116,7 +91,6 @@
                         /> Some issues has been detected in your selection:
                             <br />
                             <field name="lot_selection_warning_msg" nolabel="1" />
-                            <field name="lot_selection_warning_count" invisible="1" />
                         </p>
                     </div>
                 </group>

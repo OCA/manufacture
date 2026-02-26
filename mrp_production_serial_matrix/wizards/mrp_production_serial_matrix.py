@@ -1,7 +1,7 @@
 # Copyright 2021-24 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_is_zero
 
@@ -65,7 +65,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 if counter > 1:
                     warning_lots += lot
                     warning_msgs.append(
-                        "Serial number %s selected several times" % lot.name
+                        f"Serial number {lot.name} selected several times"
                     )
             # Lots
             lot_lines = rec.line_ids.filtered(
@@ -114,7 +114,9 @@ class MrpProductionSerialMatrix(models.TransientModel):
         production = self.env["mrp.production"].browse(production_id)
         if not production.show_serial_matrix:
             raise UserError(
-                _("The finished product of this MO is not tracked by serial numbers.")
+                self.env._(
+                    "The finished product of this MO is not tracked by serial numbers."
+                )
             )
 
         finished_lots = self.env["stock.lot"]
@@ -177,7 +179,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
         component, lot_no, lot_qty = component_tuple
         column_name = component.display_name
         if lot_no > 0:
-            column_name += " (%s)" % lot_no
+            column_name += f" ({lot_no})"
         res = {
             "component_id": component.id,
             "component_column_name": column_name,
@@ -199,7 +201,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
         elif isinstance(number, int):
             res.update(
                 {
-                    "finished_lot_name": _("(New Lot %s)") % number,
+                    "finished_lot_name": self.env._("(New Lot %s)") % number,
                 }
             )
         return res
@@ -218,7 +220,7 @@ class MrpProductionSerialMatrix(models.TransientModel):
         self.ensure_one()
         if self.lot_selection_warning_count > 0:
             raise UserError(
-                _("Some issues has been detected in your selection: %s")
+                self.env._("Some issues has been detected in your selection: %s")
                 % self.lot_selection_warning_msg
             )
         mos = self.env["mrp.production"]
@@ -284,10 +286,10 @@ class MrpProductionSerialMatrix(models.TransientModel):
             mos = self.production_id
         res = {
             "domain": [("id", "in", mos.ids)],
-            "name": _("Manufacturing Orders"),
+            "name": self.env._("Manufacturing Orders"),
             "src_model": "mrp.production.serial.matrix",
             "view_type": "form",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "view_id": False,
             "views": False,
             "res_model": "mrp.production",
@@ -352,7 +354,8 @@ class MrpProductionSerialMatrix(models.TransientModel):
             <= 0
         ):
             raise ValidationError(
-                _("Serial/Lot number '%s' not available at source location.") % lot.name
+                self.env._("Serial/Lot number '%s' not available at source location.")
+                % lot.name
             )
         move._update_reserved_quantity(
             qty,

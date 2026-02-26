@@ -26,14 +26,14 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         cls.final_product = cls.product_obj.create(
             {
                 "name": "Finished Product tracked by Serial Numbers",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "serial",
             }
         )
         cls.component_1_serial = cls.product_obj.create(
             {
                 "name": "Component 1 tracked by Serial Numbers",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "serial",
             }
         )
@@ -43,7 +43,7 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         cls.component_2_serial = cls.product_obj.create(
             {
                 "name": "Component 2 tracked by Serial Numbers",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "serial",
             }
         )
@@ -56,7 +56,7 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         cls.component_3_lot = cls.product_obj.create(
             {
                 "name": "Component 3 tracked by Lots",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "lot",
             }
         )
@@ -70,7 +70,7 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         cls.component_4_no_track = cls.product_obj.create(
             {
                 "name": "Component 4 Not tracked",
-                "type": "product",
+                "is_storable": True,
                 "tracking": "none",
             }
         )

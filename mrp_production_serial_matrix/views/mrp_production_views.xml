@@ -6,7 +6,6 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <button name="action_confirm" position="after">
-                <field name="show_serial_matrix" invisible="1" />
                 <button
                     name="%(mrp_production_serial_matrix.action_mrp_production_serial_matrix)d"
                     type="action"
