@@ -112,8 +112,8 @@
                         style="margin-bottom:0px;"
                     >
                         <p><i
-                                class="fa fa-info-circle"
-                            /> Some issues has been detected in your selection:
+                            class="fa fa-info-circle"
+                        /> Some issues has been detected in your selection:
                             <br />
                             <field name="lot_selection_warning_msg" nolabel="1" />
                             <field name="lot_selection_warning_count" invisible="1" />
@@ -141,5 +141,4 @@
         <field name="target">new</field>
         <field name="view_id" ref="mrp_production_serial_matrix_view_initial_form" />
     </record>
-
 </odoo>
