@@ -52,7 +52,7 @@ addon | version | maintainers | summary
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 17.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | adds sequence to production work orders.
 [purchase_mrp_distribution](purchase_mrp_distribution/) | 17.0.1.0.0 |  | Purchase MRP Distribution
 [quality_control_mrp_oca](quality_control_mrp_oca/) | 17.0.1.1.0 |  | MRP extension for quality control (OCA)
-[quality_control_oca](quality_control_oca/) | 17.0.1.3.0 |  | Generic infrastructure for quality tests.
+[quality_control_oca](quality_control_oca/) | 17.0.1.4.0 |  | Generic infrastructure for quality tests.
 [quality_control_oca_timesheet](quality_control_oca_timesheet/) | 17.0.1.0.0 | <a href='https://github.com/ppyczko'><img src='https://github.com/ppyczko.png' width='32' height='32' style='border-radius:50%;' alt='ppyczko'/></a> | Quality Control - Timesheet (OCA)
 [quality_control_stock_oca](quality_control_stock_oca/) | 17.0.2.1.0 |  | Quality control - Stock (OCA)
 [stock_replenishment_mrp_bom_selection](stock_replenishment_mrp_bom_selection/) | 17.0.1.0.0 |  | Stock Replenishment MRP BoM Selection
