@@ -1,10 +1,8 @@
-# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "MRP extension for quality control (OCA)",
-    "version": "17.0.1.1.0",
+    "version": "18.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
@@ -21,4 +19,5 @@
     ],
     "installable": True,
     "auto_install": True,
+    "application": False,
 }

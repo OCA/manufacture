@@ -1,5 +1,3 @@
-# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -9,11 +7,6 @@ from odoo.addons.quality_control_oca.models.qc_trigger_line import _filter_trigg
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
-
-    @api.depends("qc_inspections_ids")
-    def _compute_created_inspections(self):
-        for production in self:
-            production.created_inspections = len(production.qc_inspections_ids)
 
     qc_inspections_ids = fields.One2many(
         comodel_name="qc.inspection",
@@ -26,12 +19,16 @@ class MrpProduction(models.Model):
         compute="_compute_created_inspections", string="Created inspections"
     )
 
+    @api.depends("qc_inspections_ids")
+    def _compute_created_inspections(self):
+        for production in self:
+            production.created_inspections = len(production.qc_inspections_ids)
+
     def _post_inventory(self, cancel_backorder=False):
         done_moves = self.mapped("move_finished_ids").filtered(
             lambda r: r.state == "done"
         )
         res = super()._post_inventory(cancel_backorder=cancel_backorder)
-        inspection_model = self.env["qc.inspection"]
         new_done_moves = (
             self.mapped("move_finished_ids").filtered(lambda r: r.state == "done")
             - done_moves
@@ -51,5 +48,5 @@ class MrpProduction(models.Model):
                     )
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
-                inspection_model._make_inspection(move, trigger_line)
+                self.env["qc.inspection"]._make_inspection(move, trigger_line)
         return res

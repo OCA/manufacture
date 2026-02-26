@@ -1,5 +1,3 @@
-# Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
-# Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -8,12 +6,21 @@ from odoo import api, fields, models
 class QcInspection(models.Model):
     _inherit = "qc.inspection"
 
+    production_id = fields.Many2one(
+        comodel_name="mrp.production", compute="_compute_production_id", store=True
+    )
+
     def _prepare_inspection_header(self, object_ref, trigger_line):
         res = super()._prepare_inspection_header(object_ref, trigger_line)
         # Fill qty when coming from pack operations
         if object_ref and object_ref._name == "mrp.production":
             res["qty"] = object_ref.product_qty
         return res
+
+    def object_selection_values(self):
+        objects = super().object_selection_values()
+        objects.append(("mrp.production", "Manufacturing Order"))
+        return objects
 
     @api.depends("object_id")
     def _compute_production_id(self):
@@ -32,15 +39,6 @@ class QcInspection(models.Model):
             if inspection.object_id and inspection.object_id._name == "mrp.production":
                 inspection.product_id = inspection.object_id.product_id
         return res
-
-    def object_selection_values(self):
-        objects = super().object_selection_values()
-        objects.append(("mrp.production", "Manufacturing Order"))
-        return objects
-
-    production_id = fields.Many2one(
-        comodel_name="mrp.production", compute="_compute_production_id", store=True
-    )
 
 
 class QcInspectionLine(models.Model):
