@@ -2,8 +2,6 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.fields import first
-
 from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
@@ -12,7 +10,7 @@ class TestMRPBoMLine(TestMrpCommon):
         """The formula of a BoM line is checked for not permitted operations."""
         # Arrange
         bom = self.bom_1.copy()
-        bom_line = first(bom.bom_line_ids)
+        bom_line = bom.bom_line_ids[:1]
 
         # Act
         with self.assertRaises(ValidationError) as ve:

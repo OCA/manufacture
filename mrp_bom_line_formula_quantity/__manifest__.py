@@ -5,7 +5,7 @@
     "name": "MRP BoM Line formula for quantity",
     "summary": "Compute the quantity of a Production Line "
     "using a formula in the BoM Line.",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Aion Tech, Odoo Community Association (OCA)",
     "maintainers": [
         "SirAionTech",
