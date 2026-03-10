@@ -228,6 +228,9 @@ class TestSubcontractingPurchaseFlows(TransactionCase):
 class TestSubcontractingTracking(TransactionCase):
     def setUp(self):
         super(TestSubcontractingTracking, self).setUp()
+        self.env.ref("base.group_user").write(
+            {"implied_ids": [(4, self.env.ref("stock.group_production_lot").id)]}
+        )
         # 1: Create a subcontracting partner
         main_company_1 = self.env["res.partner"].create({"name": "main_partner"})
         self.subcontractor_partner1 = self.env["res.partner"].create(
