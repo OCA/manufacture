@@ -7,14 +7,13 @@ from odoo import fields, models
 class StockLot(models.Model):
     _inherit = "stock.lot"
 
-    batch_production_id = fields.Many2one(
+    batch_production_ids = fields.Many2many(
         "mrp.production",
-        help="Production order that created this batch",
+        help="Production orders that created this batch",
         readonly=True,
     )
-    batch_bom_id = fields.Many2one(
+    batch_bom_ids = fields.Many2many(
         "mrp.bom",
-        related="batch_production_id.bom_id",
-        help="BOM used to produce this batch",
+        help="BOMs used to produce this batch",
         readonly=True,
     )
