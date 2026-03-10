@@ -21,12 +21,12 @@ class MrpProduction(models.Model):
         compute="_compute_batch_bom_ids",
     )
 
-    @api.depends("move_raw_ids.move_line_ids.lot_id.batch_production_id")
+    @api.depends("move_raw_ids.move_line_ids.lot_id.batch_production_ids")
     def _compute_batch_production_ids(self):
         """Compute batch productions from consumed lots"""
         for mo in self:
             batch_mo = mo.filtered(lambda x: x.product_id.mrp_batch_propagate_computed)
-            raw_batch_mos = mo.move_raw_ids.move_line_ids.lot_id.batch_production_id
+            raw_batch_mos = mo.move_raw_ids.move_line_ids.lot_id.batch_production_ids
             mo.batch_production_ids = raw_batch_mos | batch_mo
 
     @api.depends("batch_production_ids")
@@ -38,7 +38,7 @@ class MrpProduction(models.Model):
     def _set_finished_lot_batch_info(self):
         """Update MRP finished lots with the batch BOMs and production ID"""
         for mo in self.filtered("lot_producing_id"):
-            mo.lot_producing_id.batch_production_id = mo.batch_production_ids
+            mo.lot_producing_id.batch_production_ids = mo.batch_production_ids
 
     def button_mark_done(self):
         """Override to set batch BOM and production ID on finished lots"""
