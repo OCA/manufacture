@@ -1,0 +1,6 @@
+- Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+- Ana Juaristi <anajuaristi@avanzosc.es>
+- Alfredo de la Fuente <alfredodelafuente@avanzosc.es>
+- Oihane Crucelaegui <oihanecrucelaegui@avanzosc.es>
+- Daniel Reis <dreis@opensourceintegrators.com> 
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
