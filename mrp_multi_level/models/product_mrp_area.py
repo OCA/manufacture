@@ -319,3 +319,6 @@ class ProductMRPArea(models.Model):
     def _should_create_planned_order(self):
         self.ensure_one()
         return True
+
+    def _get_unconfirmed_po_states(self):
+        return ["draft", "sent", "to approve"]
