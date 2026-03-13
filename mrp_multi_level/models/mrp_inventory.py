@@ -150,7 +150,11 @@ class MrpInventory(models.Model):
         rfq_move_domain = [
             ("mrp_type", "=", "s"),
             ("mrp_origin", "=", "po"),
-            ("purchase_order_id.state", "in", ["draft", "sent", "to approve"]),
+            (
+                "purchase_order_id.state",
+                "in",
+                self.product_mrp_area_id._get_unconfirmed_po_states(),
+            ),
         ]
         moves = self.product_mrp_area_id.mrp_move_ids.filtered_domain(rfq_move_domain)
         if self.date == date.today():
