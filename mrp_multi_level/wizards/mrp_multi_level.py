@@ -449,7 +449,7 @@ class MultiLevelMrp(models.TransientModel):
         orders = self.env["purchase.order"].search(
             [
                 ("picking_type_id", "in", picking_type_ids),
-                ("state", "in", ["draft", "sent", "to approve"]),
+                ("state", "in", product_mrp_area._get_unconfirmed_po_states()),
             ]
         )
         po_lines = self.env["purchase.order.line"].search(
@@ -792,10 +792,13 @@ class MultiLevelMrp(models.TransientModel):
                 FROM mrp_move
                 WHERE product_mrp_area_id = %(mrp_product)s
                 AND mrp_type = 's' AND mrp_origin = 'po'
-                AND state in ('draft', 'sent', 'to approve')
+                AND state in %(po_states)s
                 GROUP BY mrp_date
             """
-        params = {"mrp_product": product_mrp_area.id}
+        params = {
+            "mrp_product": product_mrp_area.id,
+            "po_states": tuple(product_mrp_area._get_unconfirmed_po_states()),
+        }
         return query, params
 
     @api.model
