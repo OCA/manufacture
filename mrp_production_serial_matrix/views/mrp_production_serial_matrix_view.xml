@@ -1,0 +1,204 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="mrp_production_serial_matrix_view_form" model="ir.ui.view">
+        <field name="name">mrp.production.serial.matrix.form</field>
+        <field name="model">mrp.production.serial.matrix</field>
+        <field name="arch" type="xml">
+            <form create="False">
+                    <header>
+                        <button
+                        name="button_validate"
+                        string="Validate"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state not in ['draft', 'exception']"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_progress,done"
+                    />
+                    </header>
+                <sheet>
+                    <group>
+                        <group name="info">
+                            <field name="production_id" />
+                            <field name="product_id" />
+                            <field name="company_id" invisible="1" />
+                        </group>
+                        <group name="settings">
+                            <field
+                                name="include_lots"
+                                readonly="state in ['in_progress', 'done']"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="finished_lots"
+                        string="Finished Product Serial Numbers"
+                    >
+                        <p
+                            class="oe_grey"
+                            colspan="2"
+                        >Select the Serial Numbers of the Finished Products that are going to be produced in this MO. You can create new ones on the fly if needed.</p>
+                        <field
+                            name="finished_lot_ids"
+                            readonly="state in ['in_progress', 'done']"
+                            widget="many2many_tags"
+                            context="{'default_product_id': product_id, 'default_company_id': company_id}"
+                            force_save="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group
+                        name="serial_matrix"
+                        string="Components Lot/Serial Numbers Matrix"
+                    >
+                        <p
+                            class="oe_grey"
+                            colspan="2"
+                        >Fill each cell with the lot/serial number consumed to produce each finished product serial number</p>
+                        <br />
+                        <field
+                            name="line_ids"
+                            nolabel="1"
+                            widget="x2many_2d_matrix"
+                            field_x_axis="component_column_name"
+                            field_y_axis="finished_lot_name"
+                            field_value="component_lot_id"
+                            colspan="2"
+                        >
+                            <tree
+                                editable="True"
+                                nolabel="1"
+                                create="false"
+                                limit="1000"
+                            >
+                                <field name="component_column_name" />
+                                <field name="finished_lot_name" />
+                                <field
+                                    name="component_lot_id"
+                                    options='{"no_create": True}'
+                                    domain="[('id','in', allowed_component_lot_ids)]"
+                                    readonly="state in ['in_progress', 'done']"
+                                />
+                                <field name="component_id" invisible="1" />
+                                <field name="lot_qty" invisible="1" />
+                                <field name="finished_lot_id" invisible="1" />
+                                <field name="allowed_component_lot_ids" invisible="1" />
+                                <field name="state" invisible="1" />
+                            </tree>
+                        </field>
+                        <div
+                            class="alert alert-warning text-center"
+                            colspan="2"
+                            role="alert"
+                            invisible="lot_selection_warning_count == 0"
+                            style="margin-bottom:0px;"
+                        >
+                            <p><i
+                                    class="fa fa-info-circle"
+                                /> Some issues has been detected in your selection:
+                                <br />
+                                <field name="lot_selection_warning_msg" nolabel="1" />
+                                <field
+                                    name="lot_selection_warning_count"
+                                    invisible="1"
+                                />
+                            </p>
+                        </div>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_production_serial_matrix_view_list" model="ir.ui.view">
+        <field name="name">mrp.production.serial.matrix.list</field>
+        <field name="model">mrp.production.serial.matrix</field>
+        <field name="arch" type="xml">
+            <tree create="False">
+                <field name="production_id" />
+                <field name="product_id" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'exception'"
+                />
+                <field name="company_id" optional="hide" />
+                <field name="include_lots" optional="hide" />
+                <field name="create_uid" optional="hide" />
+                <field
+                    name="finished_lot_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="mrp_production_serial_matrix_view_search" model="ir.ui.view">
+        <field name="name">mrp.production.serial.matrix.view.search</field>
+        <field name="model">mrp.production.serial.matrix</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="production_id" />
+                <field name="product_id" />
+                <separator />
+                <filter
+                    name="my_serial_matrix"
+                    string="My Serial Matrix"
+                    domain="[('create_uid', '=', uid)]"
+                />
+                <separator />
+                <filter
+                    name="state_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="state_in_progress"
+                    string="In Progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter
+                    name="state_done"
+                    string="Done"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    name="state_exception"
+                    string="Exception"
+                    domain="[('state', '=', 'exception')]"
+                />
+                <separator />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mrp_production_serial_matrix" model="ir.actions.act_window">
+        <field name="name">Serial Numbers and Lot Consumption Matrix</field>
+        <field name="res_model">mrp.production.serial.matrix</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+        <field
+            name="context"
+        >{'search_default_state_draft': 1, 'search_default_state_in_progress': 1, 'search_default_state_exception': 1}</field>
+    </record>
+
+
+    <menuitem
+        id="menu_mrp_production_serial_matrix"
+        name="Manufacturing Orders Serial Matrix"
+        parent="mrp.menu_mrp_manufacturing"
+        action="action_mrp_production_serial_matrix"
+        sequence="11"
+    />
+
+</odoo>
