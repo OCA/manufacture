@@ -17,7 +17,8 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_serial_matrix
-#: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "(New Lot %s)"
 msgstr "(Lote Nuevo %s)"
@@ -25,12 +26,15 @@ msgstr "(Lote Nuevo %s)"
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
 msgid ""
-"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your selection:\n"
-"                            <br/>"
+"<i class=\"fa fa-info-circle\"/> Some issues has been detected in your "
+"selection:\n"
+"                                <br/>"
 msgstr ""
-"<i class=\"fa fa-info-circle\"/> Se han detectado algunos problemas en su "
-"selección:\n"
-"                            <br/>"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_needaction
+msgid "Action Needed"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__allowed_component_lot_ids
@@ -38,9 +42,9 @@ msgid "Allowed Component Lot"
 msgstr "Lote de Componentes Permitidos"
 
 #. module: mrp_production_serial_matrix
-#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
-msgid "Cancel"
-msgstr "Cancelar"
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__company_id
@@ -68,6 +72,13 @@ msgid "Components Lot/Serial Numbers Matrix"
 msgstr "Componentes Matriz de Números de Lote/Serie"
 
 #. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "Context propagation: The production order was not propagated."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__create_uid
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__create_uid
 msgid "Created by"
@@ -84,6 +95,24 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__done
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "Done"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__draft
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "Draft"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__exception
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "Exception"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
@@ -111,10 +140,41 @@ msgid "Finished Product Serial Numbers"
 msgstr "Números de Serie de Productos Terminados"
 
 #. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__id
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__in_progress
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "In Progress"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__include_lots
@@ -131,10 +191,9 @@ msgstr ""
 "por números de serie siempre se incluyen."
 
 #. module: mrp_production_serial_matrix
-#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix____last_update
-#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_is_follower
+msgid "Is Follower"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__write_uid
@@ -175,15 +234,24 @@ msgid "Manufacturing Order"
 msgstr "Orden de Manufacturación"
 
 #. module: mrp_production_serial_matrix
-#: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
-#, python-format
-msgid "Manufacturing Orders"
-msgstr "Órdenes de Manufacturación"
+#: model:ir.ui.menu,name:mrp_production_serial_matrix.menu_mrp_production_serial_matrix
+msgid "Manufacturing Orders Serial Matrix"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__line_ids
 msgid "Matrix Cell"
 msgstr "Célula Matriz"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_ids
+msgid "Messages"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model,name:mrp_production_serial_matrix.model_mrp_production_serial_matrix
@@ -196,6 +264,31 @@ msgid "Mrp Production Serial Matrix Line"
 msgstr "Línea Matriz en Serie de Producción Mrp"
 
 #. module: mrp_production_serial_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "My Serial Matrix"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__product_id
 msgid "Product"
 msgstr "Producto"
@@ -204,6 +297,11 @@ msgstr "Producto"
 #: model:ir.model,name:mrp_production_serial_matrix.model_mrp_production
 msgid "Production Order"
 msgstr "Orden de Producción"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
@@ -225,25 +323,33 @@ msgid "Serial Numbers and Lot Consumption Matrix"
 msgstr "Números de Serie y Consumo por Lote Matriz"
 
 #. module: mrp_production_serial_matrix
-#: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
-#, python-format
-msgid "Serial/Lot number '%s' not available at source location."
-msgstr ""
-"El número de serie/lote '%s' no está disponible en la localización de origen."
-
-#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__show_serial_matrix
 msgid "Show Serial Matrix"
 msgstr "Mostrar Matriz de Serie"
 
 #. module: mrp_production_serial_matrix
-#: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "Some issues has been detected in your selection: %s"
 msgstr "Se han detectado algunos problemas en su selección: %s"
 
 #. module: mrp_production_serial_matrix
-#: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__state
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__state
+msgid "Status"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "The MO (%s) is already done."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "The finished product of this MO is not tracked by serial numbers."
 msgstr ""
@@ -251,11 +357,60 @@ msgstr ""
 "serie."
 
 #. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "The serial matrix finished successfully"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
 msgid "Validate"
 msgstr "Validar"
 
 #. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__wizard_id
 msgid "Wizard"
 msgstr "Asistente"
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "You cannot delete a serial matrix that is in progress or done."
+msgstr ""
+
+#~ msgid ""
+#~ "<i class=\"fa fa-info-circle\"/> Some issues has been detected in your "
+#~ "selection:\n"
+#~ "                            <br/>"
+#~ msgstr ""
+#~ "<i class=\"fa fa-info-circle\"/> Se han detectado algunos problemas en su "
+#~ "selección:\n"
+#~ "                            <br/>"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#, python-format
+#~ msgid "Manufacturing Orders"
+#~ msgstr "Órdenes de Manufacturación"
+
+#, python-format
+#~ msgid "Serial/Lot number '%s' not available at source location."
+#~ msgstr ""
+#~ "El número de serie/lote '%s' no está disponible en la localización de "
+#~ "origen."
