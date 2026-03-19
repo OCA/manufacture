@@ -83,7 +83,7 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
         # Check if price is correct
         self.assertEqual(order.order_line.price_unit, 10)
         order.order_line.product_qty = 2
-        order.order_line._onchange_quantity()
+        order.order_line._onchange_subcontracting_inhibit()
         self.assertEqual(order.order_line.price_unit, 10)
         order.button_confirm()
         self.assertEqual(self._get_mrp_production_total(), 1)
@@ -96,7 +96,7 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
         # Check if price is correct
         self.assertEqual(order.order_line.price_unit, 5)
         order.order_line.product_qty = 2
-        order.order_line._onchange_quantity()
+        order.order_line._onchange_subcontracting_inhibit()
         self.assertEqual(order.order_line.price_unit, 5)
         order.button_confirm()
         self.assertEqual(self._get_mrp_production_total(), 0)
