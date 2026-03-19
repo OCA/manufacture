@@ -1,0 +1,13 @@
+<odoo noupdate="1">
+    <record
+        id="job_function_mrp_production_serial_matrix_process_serial_matrix_lot"
+        model="queue.job.function"
+    >
+        <field
+            name="model_id"
+            ref="mrp_production_serial_matrix.model_mrp_production_serial_matrix"
+        />
+        <field name="method">_process_serial_matrix_lot</field>
+        <field name="channel_id" ref="channel_mrp_production_serial_matrix" />
+    </record>
+</odoo>
