@@ -1,9 +1,13 @@
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+import logging
+import threading
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_is_zero
+
+_logger = logging.getLogger(__name__)
 
 
 class MrpProductionSerialMatrix(models.TransientModel):
@@ -214,6 +218,58 @@ class MrpProductionSerialMatrix(models.TransientModel):
             rec.line_ids = False
             rec.write({"line_ids": [(0, 0, x) for x in matrix_lines]})
 
+    def _button_validate_lot(self, mos, current_mo, lot):
+        backorder_ids = False
+
+        # Apply selected lots in matrix and set the qty producing
+        current_mo.lot_producing_id = lot
+        current_mo.qty_producing = 1.0
+        current_mo._set_qty_producing()
+        for move in current_mo.move_raw_ids:
+            rounding = move.product_id.uom_id.rounding
+            if float_is_zero(move.product_qty, precision_rounding=rounding):
+                # Component moves cannot be deleted in in-progress MO's; however,
+                # they can be set to 0 units to consume. In such case, we ignore
+                # the move.
+                continue
+            if move.product_id.tracking in ["serial", "lot"]:
+                # We filter using the lot nane because the ORM sometimes
+                # is not storing correctly the finished_lot_id in the lines
+                # after passing through the `_onchange_finished_lot_ids`
+                # method.
+                matrix_lines = self.line_ids.filtered(
+                    lambda l: (
+                        l.finished_lot_id == lot or l.finished_lot_name == lot.name
+                    )
+                    and l.component_id == move.product_id
+                )
+                if matrix_lines:
+                    self._amend_reservations(move, matrix_lines)
+                    self._consume_selected_lots(move, matrix_lines)
+
+        # Complete MO and create backorder if needed.
+        mos += current_mo
+        res = current_mo.button_mark_done()
+        backorder_wizard = self.env["mrp.production.backorder"]
+        if isinstance(res, dict) and res.get("res_model") == backorder_wizard._name:
+            # create backorders...
+            lines = res.get("context", {}).get(
+                "default_mrp_production_backorder_line_ids"
+            )
+            wizard = backorder_wizard.create(
+                {
+                    "mrp_production_ids": current_mo.ids,
+                    "mrp_production_backorder_line_ids": lines,
+                }
+            )
+            wizard.action_backorder()
+
+            backorder_ids = current_mo.procurement_group_id.mrp_production_ids.filtered(
+                lambda mo: mo.state not in ["done", "cancel"]
+            )
+
+        return backorder_ids
+
     def button_validate(self):
         self.ensure_one()
         if self.lot_selection_warning_count > 0:
@@ -221,63 +277,49 @@ class MrpProductionSerialMatrix(models.TransientModel):
                 _("Some issues has been detected in your selection: %s")
                 % self.lot_selection_warning_msg
             )
-        mos = self.env["mrp.production"]
+        exceptions_allowed = self.env["ir.config_parameter"].get_param(
+            "mrp_production_serial_matrix.mrp_serial_matrix_allow_exceptions"
+        )
+        backorder_ids = False
         current_mo = self.production_id
-        for fp_lot in self.finished_lot_ids:
-            # Apply selected lots in matrix and set the qty producing
-            current_mo.lot_producing_id = fp_lot
-            current_mo.qty_producing = 1.0
-            current_mo._set_qty_producing()
-            for move in current_mo.move_raw_ids:
-                rounding = move.product_id.uom_id.rounding
-                if float_is_zero(move.product_qty, precision_rounding=rounding):
-                    # Component moves cannot be deleted in in-progress MO's; however,
-                    # they can be set to 0 units to consume. In such case, we ignore
-                    # the move.
-                    continue
-                if move.product_id.tracking in ["serial", "lot"]:
-                    # We filter using the lot nane because the ORM sometimes
-                    # is not storing correctly the finished_lot_id in the lines
-                    # after passing through the `_onchange_finished_lot_ids`
-                    # method.
-                    matrix_lines = self.line_ids.filtered(
-                        lambda l: (
-                            l.finished_lot_id == fp_lot
-                            or l.finished_lot_name == fp_lot.name
-                        )
-                        and l.component_id == move.product_id
-                    )
-                    if matrix_lines:
-                        self._amend_reservations(move, matrix_lines)
-                        self._consume_selected_lots(move, matrix_lines)
-
-            # Complete MO and create backorder if needed.
-            mos += current_mo
-            res = current_mo.button_mark_done()
-            backorder_wizard = self.env["mrp.production.backorder"]
-            if isinstance(res, dict) and res.get("res_model") == backorder_wizard._name:
-                # create backorders...
-                lines = res.get("context", {}).get(
-                    "default_mrp_production_backorder_line_ids"
-                )
-                wizard = backorder_wizard.create(
-                    {
-                        "mrp_production_ids": current_mo.ids,
-                        "mrp_production_backorder_line_ids": lines,
-                    }
-                )
-                wizard.action_backorder()
-
-                backorder_ids = (
-                    current_mo.procurement_group_id.mrp_production_ids.filtered(
-                        lambda mo: mo.state not in ["done", "cancel"]
-                    )
-                )
-                current_mo = backorder_ids[0] if backorder_ids else False
-                if not current_mo:
+        finished_count = 0
+        mos = self.env["mrp.production"]
+        try:
+            for fp_lot in self.finished_lot_ids:
+                backorder_ids = self._button_validate_lot(mos, current_mo, fp_lot)
+                if not backorder_ids:
                     break
-            else:
-                break
+                current_mo = backorder_ids[0] if backorder_ids else False
+                finished_count += 1
+
+                # Commit changes in case processing any of the MO's fails
+                # somewhere, since it is ok to only produce a part of the
+                # quantity.
+                if exceptions_allowed and not getattr(
+                    threading.currentThread(), "testing", False
+                ):
+                    self.env.cr.commit()  # pylint: disable=invalid-commit
+        except Exception as e:
+            if getattr(threading.currentThread(), "testing", False):
+                raise e
+            if not exceptions_allowed or finished_count == 0:
+                raise e
+
+            self.env.cr.rollback()
+            _logger.error(e)
+            if backorder_ids:
+                message = _(
+                    "Not all orders where produced because an exception occurred: "
+                ) + str(e)
+                backorder_ids[0].message_post(body=message)
+                return {
+                    "res_id": backorder_ids[0].id,
+                    "name": _("Manufacturing Order"),
+                    "view_mode": "form",
+                    "res_model": "mrp.production",
+                    "type": "ir.actions.act_window",
+                }
+            raise e
 
         # TODO: not specified lots: auto create lots?
         if not mos:

@@ -16,6 +16,7 @@
         "security/ir.model.access.csv",
         "wizards/mrp_production_serial_matrix_view.xml",
         "views/mrp_production_views.xml",
+        "views/res_config_settings.xml",
     ],
     "installable": True,
 }
