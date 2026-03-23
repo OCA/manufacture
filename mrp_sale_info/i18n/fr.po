@@ -28,12 +28,14 @@ msgstr "Date de livraison"
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_mrp_production_filter
 msgid "Customer"
 msgstr "Client"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_mrp_production_filter
 msgid "Customer Reference"
 msgstr "Référence client"
 
@@ -57,6 +59,11 @@ msgstr "Informations de la commande"
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
 msgid "Sale order"
 msgstr "Commande client"
+
+#. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_mrp_production_filter
+msgid "Sales Order"
+msgstr ""
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_sale_order_line
