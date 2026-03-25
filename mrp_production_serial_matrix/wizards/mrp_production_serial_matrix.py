@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tests import Form
 from odoo.tools.float_utils import float_compare, float_is_zero
 
 
@@ -214,6 +215,12 @@ class MrpProductionSerialMatrix(models.TransientModel):
             rec.line_ids = False
             rec.write({"line_ids": [(0, 0, x) for x in matrix_lines]})
 
+    def _complete_consumption_wizard(self, res):
+        consume_warning_form = Form(
+            self.env["mrp.consumption.warning"].with_context(**res["context"])
+        )
+        return consume_warning_form.save().action_confirm()
+
     def button_validate(self):
         self.ensure_one()
         if self.lot_selection_warning_count > 0:
@@ -227,6 +234,15 @@ class MrpProductionSerialMatrix(models.TransientModel):
             # Apply selected lots in matrix and set the qty producing
             current_mo.lot_producing_id = fp_lot
             current_mo.qty_producing = 1.0
+            current_mo = current_mo.with_context(
+                production_serial_matrix=True,
+                first_production_serial_matrix=False,
+            )
+            if current_mo == self.production_id:
+                # the first MO needs a different recomputation in quantities consumed
+                current_mo = current_mo.with_context(
+                    first_production_serial_matrix=True
+                )
             current_mo._set_qty_producing()
             for move in current_mo.move_raw_ids:
                 rounding = move.product_id.uom_id.rounding
@@ -254,7 +270,16 @@ class MrpProductionSerialMatrix(models.TransientModel):
             # Complete MO and create backorder if needed.
             mos += current_mo
             res = current_mo.button_mark_done()
-            backorder_wizard = self.env["mrp.production.backorder"]
+            # default backorder's wizard creates mos from selected bom, ignoring changes
+            # done by the user
+            backorder_wizard = self.env["mrp.production.backorder"].with_context(
+                backorder_serial_matrix=True
+            )
+            if (
+                isinstance(res, dict)
+                and res.get("res_model") == "mrp.consumption.warning"
+            ):
+                res = self._complete_consumption_wizard(res)
             if isinstance(res, dict) and res.get("res_model") == backorder_wizard._name:
                 # create backorders...
                 lines = res.get("context", {}).get(
@@ -266,8 +291,12 @@ class MrpProductionSerialMatrix(models.TransientModel):
                         "mrp_production_backorder_line_ids": lines,
                     }
                 )
-                wizard.action_backorder()
-
+                res = wizard.action_backorder()
+                if (
+                    isinstance(res, dict)
+                    and res.get("res_model") == "mrp.consumption.warning"
+                ):
+                    self._complete_consumption_wizard(res)
                 backorder_ids = (
                     current_mo.procurement_group_id.mrp_production_ids.filtered(
                         lambda mo: mo.state not in ["done", "cancel"]
