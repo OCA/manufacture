@@ -61,6 +61,7 @@ addon | version | maintainers | summary
 [mrp_unbuild_move_link](mrp_unbuild_move_link/) | 18.0.1.0.0 |  | Link the stock moves of manufacturing orders to the respective unbuild orders
 [mrp_unbuild_valuation_layer_link](mrp_unbuild_valuation_layer_link/) | 18.0.1.0.0 |  | Unbuild orders display the connected valuation layers
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 18.0.1.0.1 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Considers the warehouse calendars in manufacturing
+[mrp_workcenter_scrap_reason](mrp_workcenter_scrap_reason/) | 18.0.1.0.0 |  | Filter allowed reason codes with workcenter assigned.
 [mrp_workorder_blocking_time](mrp_workorder_blocking_time/) | 18.0.1.0.0 | <a href='https://github.com/imlopes'><img src='https://github.com/imlopes.png' width='32' height='32' style='border-radius:50%;' alt='imlopes'/></a> | Allow to block time on work orders
 [mrp_workorder_sequence](mrp_workorder_sequence/) | 18.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | adds sequence to production work orders.
 [printing_auto_mrp](printing_auto_mrp/) | 18.0.1.0.0 |  | Printing Auto MRP
