@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-26 14:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #. odoo-python
@@ -22,56 +24,58 @@ msgid ""
 "Component Lot '%(comp_lot_name)s' not found for product '%(comp_col_name)s' "
 "(SN: %(lot_name)s)"
 msgstr ""
+"Lotto componente '%(comp_lot_name)s' non trovato per il prodotto '%"
+"(comp_col_name)s' (NS: %(lot_name)s)"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix_import_xlsx.mrp_production_serial_matrix_view_form
 msgid "Download Template"
-msgstr ""
+msgstr "Scarica modello"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix_import_xlsx/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "Failed to read the file: %s"
-msgstr ""
+msgstr "Lettura file fallita: %s"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix_import_xlsx.field_mrp_production_serial_matrix__import_filename
 msgid "File Name"
-msgstr ""
+msgstr "Nome file"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix_import_xlsx.mrp_production_serial_matrix_view_form
 msgid "Import from XLSX"
-msgstr ""
+msgstr "Importa da XLSX"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #: model:ir.model,name:mrp_production_serial_matrix_import_xlsx.model_mrp_production_serial_matrix
 msgid "Mrp Production Serial Matrix"
-msgstr ""
+msgstr "Matrice seriali produzione MRP"
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix_import_xlsx/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "Please upload an Excel file first."
-msgstr ""
+msgstr "Caricare prima un file Excel."
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix_import_xlsx/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "The 'openpyxl' library is required for this action."
-msgstr ""
+msgstr "È richiesta la libreria 'openpyxl' per questa azione."
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix_import_xlsx/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "The imported file contains no valid data."
-msgstr ""
+msgstr "Il file importato non contiene dati validi."
 
 #. module: mrp_production_serial_matrix_import_xlsx
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix_import_xlsx.field_mrp_production_serial_matrix__import_file
 msgid "Upload Excel File"
-msgstr ""
+msgstr "Carica file Excel"
