@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 17:38+0000\n"
+"PO-Revision-Date: 2026-03-26 14:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_production_serial_matrix
 #: code:addons/mrp_production_serial_matrix/wizards/mrp_production_serial_matrix.py:0
@@ -188,7 +188,7 @@ msgstr "Cella matrice"
 #. module: mrp_production_serial_matrix
 #: model:ir.model,name:mrp_production_serial_matrix.model_mrp_production_serial_matrix
 msgid "Mrp Production Serial Matrix"
-msgstr "Matrice seriali proiduzione MRP"
+msgstr "Matrice seriali produzione MRP"
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model,name:mrp_production_serial_matrix.model_mrp_production_serial_matrix_line
