@@ -16,3 +16,9 @@ Take into account the following:
   numbers, not enough stock...).
 * Rows with no final lot are ignored. You will have a backorder MO for the
   remaining quantity.
+* Setting quantity done to components will consume them for the quantity set
+  for every backorder. So put the quantity consumed for 1 production only, this
+  quantity will be copied as-is in backorders.
+* Setting components to consume no quantity will set 0 to all the backorders.
+* Adding a component by hand (with quantity to consume or quantity done) will
+  consume that quantity splitted in all the backorders.
