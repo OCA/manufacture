@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workcenter_scrap_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_workcenter_scrap_reason
+#: model:ir.model.fields,field_description:mrp_workcenter_scrap_reason.field_scrap_reason_code__mrp_workcenter_ids
+msgid "Allowed Work Centers"
+msgstr ""
+
+#. module: mrp_workcenter_scrap_reason
+#: model:ir.model.fields,help:mrp_workcenter_scrap_reason.field_scrap_reason_code__mrp_workcenter_ids
+msgid ""
+"Indicate the work centers that can use this reason code when doing a scrap. "
+"If left empy, this reason code can be used with any work center."
+msgstr ""
+
+#. module: mrp_workcenter_scrap_reason
+#: model:ir.model,name:mrp_workcenter_scrap_reason.model_scrap_reason_code
+msgid "Reason Code"
+msgstr ""
+
+#. module: mrp_workcenter_scrap_reason
+#: model:ir.model,name:mrp_workcenter_scrap_reason.model_stock_scrap
+msgid "Scrap"
+msgstr ""
+
+#. module: mrp_workcenter_scrap_reason
+#. odoo-python
+#: code:addons/mrp_workcenter_scrap_reason/models/stock_scrap.py:0
+msgid ""
+"The selected reason code is not allowed for this product category or work "
+"center"
+msgstr ""
