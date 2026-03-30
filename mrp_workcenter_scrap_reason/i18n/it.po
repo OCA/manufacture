@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-30 11:54+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_workcenter_scrap_reason
 #: model:ir.model.fields,field_description:mrp_workcenter_scrap_reason.field_scrap_reason_code__mrp_workcenter_ids
 msgid "Allowed Work Centers"
-msgstr ""
+msgstr "Centri di lavoro abilitati"
 
 #. module: mrp_workcenter_scrap_reason
 #: model:ir.model.fields,help:mrp_workcenter_scrap_reason.field_scrap_reason_code__mrp_workcenter_ids
@@ -25,16 +27,19 @@ msgid ""
 "Indicate the work centers that can use this reason code when doing a scrap. "
 "If left empy, this reason code can be used with any work center."
 msgstr ""
+"Indicare i centri di lavoro che possono utilizzare questo codice causale "
+"durante un'operazione di scarto. Se lasciato vuoto, questo codice motivo può "
+"essere utilizzato con qualsiasi centro di lavoro."
 
 #. module: mrp_workcenter_scrap_reason
 #: model:ir.model,name:mrp_workcenter_scrap_reason.model_scrap_reason_code
 msgid "Reason Code"
-msgstr ""
+msgstr "Codice causale"
 
 #. module: mrp_workcenter_scrap_reason
 #: model:ir.model,name:mrp_workcenter_scrap_reason.model_stock_scrap
 msgid "Scrap"
-msgstr ""
+msgstr "Scarto"
 
 #. module: mrp_workcenter_scrap_reason
 #. odoo-python
@@ -43,3 +48,5 @@ msgid ""
 "The selected reason code is not allowed for this product category or work "
 "center"
 msgstr ""
+"Il codice causale selezionato non è consentito per questa categoria di "
+"prodotto o centro di lavoro"
