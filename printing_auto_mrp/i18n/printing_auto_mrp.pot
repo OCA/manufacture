@@ -15,6 +15,7 @@ msgstr ""
 
 #. module: printing_auto_mrp
 #: model:ir.model.fields,field_description:printing_auto_mrp.field_mrp_production__auto_printing_ids
+#: model_terms:ir.ui.view,arch_db:printing_auto_mrp.view_picking_type_form_inherit
 msgid "Auto Printing Configuration"
 msgstr ""
 
