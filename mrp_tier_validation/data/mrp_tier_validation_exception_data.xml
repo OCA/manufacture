@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="mrp_tier_validation_exception" model="tier.validation.exception">
+        <field name="name">MRP EXCEPTION</field>
+        <field name="model_id" ref="mrp.model_mrp_production" />
+        <field
+            name="field_ids"
+            eval="[Command.set([
+            ref('mrp.field_mrp_production__date_finished'),
+            ref('mrp.field_mrp_production__date_start'),
+            ref('mrp.field_mrp_production__state'),
+            ref('mrp.field_mrp_production__priority'),
+            ref('mrp.field_mrp_production__is_locked'),
+            ref('mrp.field_mrp_production__qty_producing'),
+            ref('mrp.field_mrp_production__lot_producing_id'),
+        ])]"
+        />
+        <field name="company_id" />
+    </record>
+</odoo>
