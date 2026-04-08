@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_bom_warn_message
+# 	* mrp_bom_warn_message_oca
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 10:49+0000\n"
-"PO-Revision-Date: 2026-02-20 10:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,16 +17,10 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_bom_warn_message_oca.field_mrp_bom__production_warn
 msgid ""
 "\n"
-"            Selecting the \"Warning\" option will notify user with the "
-"message.\n"
+"            Selecting the \"Warning\" option will notify user with the message.\n"
 "            The Message has to be written in the next field.\n"
 "        "
 msgstr ""
-"\n"
-"            Selecionar la opcion \"Aviso\" notificará al ususario con el "
-"mensaje.\n"
-"            El mensaje tiene que ser escrito en el siguiente campo.\n"
-"        "
 
 #. module: mrp_bom_warn_message_oca
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_production_form_view_warn_inherit
@@ -41,51 +32,51 @@ msgstr ""
 #. module: mrp_bom_warn_message_oca
 #: model:res.groups,name:mrp_bom_warn_message_oca.group_warning_mrp_bom
 msgid "A warning can be set on a MRP BOM (MRP)"
-msgstr "Puede establecer avisos en listas de materiales (Fabricación)"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model,name:mrp_bom_warn_message_oca.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Lista de materiales"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model,name:mrp_bom_warn_message_oca.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Orden de fabricación"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_bom__production_warn_msg
 msgid "Message for Production Warn"
-msgstr "Mensaje del aviso en orden de producción"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields.selection,name:mrp_bom_warn_message_oca.selection__mrp_bom__production_warn__no-message
 msgid "No Message"
-msgstr "Sin mensaje"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_production__production_warn_msg
 msgid "Production Warning Message"
-msgstr "Mensaje del aviso en orden de producción"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_bom__production_warn
 msgid "Production Warnings"
-msgstr "Aviso en orden de producción"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields.selection,name:mrp_bom_warn_message_oca.selection__mrp_bom__production_warn__warning
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_bom_form_view_warn_inherit
 msgid "Warning"
-msgstr "Aviso"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #. odoo-python
 #: code:addons/mrp_bom_warn_message_oca/models/mrp_production.py:0
 msgid "Warning of MRP BOM"
-msgstr "Aviso de la lista de materiales"
+msgstr ""
 
 #. module: mrp_bom_warn_message_oca
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_bom_form_view_warn_inherit
 msgid "Write your warn message..."
-msgstr "Escriba su mensaje de aviso..."
+msgstr ""
