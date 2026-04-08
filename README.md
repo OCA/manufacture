@@ -1,4 +1,7 @@
 
+[![Support the OCA](https://odoo-community.org/readme-banner-image)](https://odoo-community.org/get-involved?utm_source=repo-readme)
+
+# Odoo Manufacturing Modules
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=14.0)
 [![Pre-commit Status](https://github.com/OCA/manufacture/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/manufacture/actions/workflows/pre-commit.yml?query=branch%3A14.0)
 [![Build Status](https://github.com/OCA/manufacture/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/manufacture/actions/workflows/test.yml?query=branch%3A14.0)
@@ -6,8 +9,6 @@
 [![Translation Status](https://translation.odoo-community.org/widgets/manufacture-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/manufacture-14-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
-
-# Odoo Manufacturing Modules
 
 Odoo modules related to Manufacturing
 
