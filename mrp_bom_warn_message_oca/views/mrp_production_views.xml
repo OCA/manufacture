@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Alberto Martínez <alberto.martinez@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_production_form_view_warn_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.form.warn.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not production_warn_msg"
+                    style="margin-bottom:0px;"
+                >
+                    <p>
+                        <i class="fa fa-info-circle" />
+                        &amp;nbsp;
+                        <field name="production_warn_msg" class="oe_inline" />
+                    </p>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
