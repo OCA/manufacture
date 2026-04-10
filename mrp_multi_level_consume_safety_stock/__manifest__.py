@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Multi Level Consume Safety Stock",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "development_status": "Production/Stable",
     "license": "LGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
