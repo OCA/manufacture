@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_multi_level_consume_safety_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_mrp_area
+msgid "MRP Area"
+msgstr ""
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_mrp_multi_level
+msgid "Multi Level MRP"
+msgstr ""
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_product_mrp_area
+msgid "Product MRP Area"
+msgstr ""
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model.fields,field_description:mrp_multi_level_consume_safety_stock.field_mrp_area__safety_stock_target_date
+#: model:ir.model.fields,field_description:mrp_multi_level_consume_safety_stock.field_product_mrp_area__safety_stock_target_date
+msgid "Safety stock lead date"
+msgstr ""
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model.fields,help:mrp_multi_level_consume_safety_stock.field_product_mrp_area__safety_stock_target_date
+msgid "The date when we can restart supplying for this product"
+msgstr ""
+
+#. module: mrp_multi_level_consume_safety_stock
+#: model:ir.model.fields,help:mrp_multi_level_consume_safety_stock.field_mrp_area__safety_stock_target_date
+msgid "We will start rebuilding safety stock on that date"
+msgstr ""
