@@ -89,6 +89,18 @@ sequence field to be unique.
    moved to historical state, and a new BOM is creating based on this
    but with version number +1 and changing state to draft
 
+Date Tracking:
+
+Tracks BOM active periods with automated date fields:
+
+-  **Start Date**: Set when BOM is activated (visible for
+   active/historical)
+-  **End Date**: Set when BOM becomes historical (visible for historical
+   only)
+-  **Historical Date**: Tracks the date the BOM was set to historical
+
+Provides an audit trail to track which BOM was active at any given time.
+
 Bug Tracker
 ===========
 
