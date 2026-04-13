@@ -671,19 +671,25 @@ class MultiLevelMrp(models.TransientModel):
         for move in product_mrp_area.mrp_move_ids:
             if self._exclude_move(move):
                 continue
-            # This works because mrp moves are ordered by:
-            # product_mrp_area_id, mrp_date, mrp_type desc, id
-            if onhand + move.mrp_qty < product_mrp_area.mrp_minimum_stock:
+            safety_stock_target_date = self._get_safety_stock_target_date(
+                product_mrp_area
+            )
+            onhand_before_safety_stock_date = onhand
+            if move.mrp_qty < 0 or move.mrp_date <= safety_stock_target_date:
+                # This works because mrp moves are ordered by:
+                # product_mrp_area_id, mrp_date, mrp_type desc, id
+                onhand_before_safety_stock_date += move.mrp_qty
+            if onhand_before_safety_stock_date < product_mrp_area.mrp_minimum_stock:
                 qtytoorder = self._get_qty_to_order(
                     product_mrp_area,
-                    self._get_safety_stock_target_date(product_mrp_area),
+                    safety_stock_target_date,
                     0,
                     onhand,
                 )
                 name = self.env._("Safety Stock")
                 cm = self.create_action(
                     product_mrp_area_id=product_mrp_area,
-                    mrp_date=self._get_safety_stock_target_date(product_mrp_area),
+                    mrp_date=safety_stock_target_date,
                     mrp_qty=qtytoorder,
                     name=name,
                     values=dict(origin=name),
