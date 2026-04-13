@@ -6,41 +6,43 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-04-13 12:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_mrp_area
 msgid "MRP Area"
-msgstr ""
+msgstr "Area MRP"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_mrp_multi_level
 msgid "Multi Level MRP"
-msgstr ""
+msgstr "MRP multi livello"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model,name:mrp_multi_level_consume_safety_stock.model_product_mrp_area
 msgid "Product MRP Area"
-msgstr ""
+msgstr "Area MRP prodotto"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model.fields,field_description:mrp_multi_level_consume_safety_stock.field_mrp_area__safety_stock_target_date
 #: model:ir.model.fields,field_description:mrp_multi_level_consume_safety_stock.field_product_mrp_area__safety_stock_target_date
 msgid "Safety stock lead date"
-msgstr ""
+msgstr "Data ritardo scorta di sicurezza"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model.fields,help:mrp_multi_level_consume_safety_stock.field_product_mrp_area__safety_stock_target_date
 msgid "The date when we can restart supplying for this product"
-msgstr ""
+msgstr "La data in cui si può ricominciare a fornire questo prodotto"
 
 #. module: mrp_multi_level_consume_safety_stock
 #: model:ir.model.fields,help:mrp_multi_level_consume_safety_stock.field_mrp_area__safety_stock_target_date
 msgid "We will start rebuilding safety stock on that date"
-msgstr ""
+msgstr "Data in cui si inizierà a ricostruire la scorta di sicurezza"
