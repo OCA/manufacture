@@ -456,3 +456,101 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
                 line.quantitative_value = 5.0
         inspection.action_confirm()
         picking2._action_done()
+
+    @mute_logger("odoo.models.unlink")
+    def test_plan_ahead_and_after_combined(self):
+        """plan_ahead + after on same product creates 2 inspections."""
+        test2 = self.test.copy({"name": "Test After"})
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": self.test.id,
+                    "timing": "plan_ahead",
+                },
+            ),
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": test2.id,
+                    "timing": "after",
+                },
+            ),
+        ]
+        self.picking_confirmation()
+        # plan_ahead creates inspection in PLAN state
+        self.assertEqual(self.picking1.created_inspections, 1)
+        plan_inspection = self.picking1.qc_inspections_ids
+        self.assertEqual(plan_inspection.state, "plan")
+        self.assertEqual(plan_inspection.timing, "plan_ahead")
+        # Validate picking — plan_ahead transitions to ready + after is created
+        self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # Force recompute
+        self.assertEqual(self.picking1.created_inspections, 2)
+        after_inspection = self.picking1.qc_inspections_ids.filtered(
+            lambda i: i.timing == "after"
+        )
+        self.assertEqual(len(after_inspection), 1)
+        self.assertEqual(after_inspection.state, "ready")
+        self.assertEqual(plan_inspection.state, "ready")
+
+    @mute_logger("odoo.models.unlink")
+    def test_all_three_timings(self):
+        """before + plan_ahead + after creates 3 inspections total."""
+        test2 = self.test.copy({"name": "Test Plan Ahead"})
+        test3 = self.test.copy({"name": "Test After"})
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": self.test.id,
+                    "timing": "before",
+                },
+            ),
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": test2.id,
+                    "timing": "plan_ahead",
+                },
+            ),
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": test3.id,
+                    "timing": "after",
+                },
+            ),
+        ]
+        self.picking_confirmation()
+        # before (ready) + plan_ahead (plan) = 2 inspections
+        self.assertEqual(self.picking1.created_inspections, 2)
+        before_insp = self.picking1.qc_inspections_ids.filtered(
+            lambda i: i.timing == "before"
+        )
+        plan_insp = self.picking1.qc_inspections_ids.filtered(
+            lambda i: i.timing == "plan_ahead"
+        )
+        self.assertEqual(before_insp.state, "ready")
+        self.assertEqual(plan_insp.state, "plan")
+        # Validate — plan_ahead transitions + after created = 3 total
+        self.picking1._action_done()
+        # pylint: disable=W0104
+        self.picking1.qc_inspections_ids  # Force recompute
+        self.assertEqual(self.picking1.created_inspections, 3)
+        after_insp = self.picking1.qc_inspections_ids.filtered(
+            lambda i: i.timing == "after"
+        )
+        self.assertEqual(after_insp.state, "ready")
+        self.assertEqual(plan_insp.state, "ready")

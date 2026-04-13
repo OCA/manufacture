@@ -93,7 +93,7 @@ msgstr "Icono de tipo de actividad"
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__after
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__after
 msgid "After"
-msgstr ""
+msgstr "Después"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__possible_ql_values
@@ -133,7 +133,7 @@ msgstr "Mal"
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__before
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__before
 msgid "Before"
-msgstr ""
+msgstr "Antes"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -664,7 +664,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_line__timing__plan_ahead
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_product_template_line__timing__plan_ahead
 msgid "Plan Ahead"
-msgstr ""
+msgstr "Planificado"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date
