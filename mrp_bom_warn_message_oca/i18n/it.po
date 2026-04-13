@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-04-13 12:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,help:mrp_bom_warn_message_oca.field_mrp_bom__production_warn
@@ -22,6 +24,11 @@ msgid ""
 "            The Message has to be written in the next field.\n"
 "        "
 msgstr ""
+"\n"
+"            Selezionando l'opzione \"Allarme\" verrà visualizzato un "
+"messaggio di notifica per l'utente.\n"
+"            Il messaggio deve essere inserito nel campo successivo.\n"
+"        "
 
 #. module: mrp_bom_warn_message_oca
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_production_form_view_warn_inherit
@@ -29,55 +36,57 @@ msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
 "                        &amp;nbsp;"
 msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                        &amp;nbsp;"
 
 #. module: mrp_bom_warn_message_oca
 #: model:res.groups,name:mrp_bom_warn_message_oca.group_warning_mrp_bom
 msgid "A warning can be set on a MRP BOM (MRP)"
-msgstr ""
+msgstr "Può essere impostato un allarme in una DiBa MRP (MRP)"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model,name:mrp_bom_warn_message_oca.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Distinta base"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model,name:mrp_bom_warn_message_oca.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_bom__production_warn_msg
 msgid "Message for Production Warn"
-msgstr ""
+msgstr "Messaggio per allarme di produzione"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields.selection,name:mrp_bom_warn_message_oca.selection__mrp_bom__production_warn__no-message
 msgid "No Message"
-msgstr ""
+msgstr "Nessun messaggio"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_production__production_warn_msg
 msgid "Production Warning Message"
-msgstr ""
+msgstr "Messaggio allarme produzione"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,field_description:mrp_bom_warn_message_oca.field_mrp_bom__production_warn
 msgid "Production Warnings"
-msgstr ""
+msgstr "Allarmi di produzione"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields.selection,name:mrp_bom_warn_message_oca.selection__mrp_bom__production_warn__warning
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_bom_form_view_warn_inherit
 msgid "Warning"
-msgstr ""
+msgstr "Allarme"
 
 #. module: mrp_bom_warn_message_oca
 #. odoo-python
 #: code:addons/mrp_bom_warn_message_oca/models/mrp_production.py:0
 msgid "Warning of MRP BOM"
-msgstr ""
+msgstr "Allarme per DiBa MRP"
 
 #. module: mrp_bom_warn_message_oca
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_bom_form_view_warn_inherit
 msgid "Write your warn message..."
-msgstr ""
+msgstr "Scrivere il messaggio di allarme..."
