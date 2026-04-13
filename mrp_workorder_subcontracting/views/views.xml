@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <!--
+    <record model="ir.ui.view" id="mrp_workorder_subcontracting.list">
+      <field name="name">mrp_workorder_subcontracting list</field>
+      <field name="model">mrp_workorder_subcontracting.mrp_workorder_subcontracting</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+        <!-- actions opening views on models -->
+        <!--
+    <record model="ir.actions.act_window" id="mrp_workorder_subcontracting.action_window">
+      <field name="name">mrp_workorder_subcontracting window</field>
+      <field name="res_model">mrp_workorder_subcontracting.mrp_workorder_subcontracting</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+        <!-- server action to the one above -->
+        <!--
+    <record model="ir.actions.server" id="mrp_workorder_subcontracting.action_server">
+      <field name="name">mrp_workorder_subcontracting server</field>
+      <field name="model_id" ref="model_mrp_workorder_subcontracting_mrp_workorder_subcontracting"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+        <!-- Top menu item -->
+        <!--
+    <menuitem name="mrp_workorder_subcontracting" id="mrp_workorder_subcontracting.menu_root"/>
+-->
+        <!-- menu categories -->
+        <!--
+    <menuitem name="Menu 1" id="mrp_workorder_subcontracting.menu_1" parent="mrp_workorder_subcontracting.menu_root"/>
+    <menuitem name="Menu 2" id="mrp_workorder_subcontracting.menu_2" parent="mrp_workorder_subcontracting.menu_root"/>
+-->
+        <!-- actions -->
+        <!--
+    <menuitem name="List" id="mrp_workorder_subcontracting.menu_1_list" parent="mrp_workorder_subcontracting.menu_1"
+              action="mrp_workorder_subcontracting.action_window"/>
+    <menuitem name="Server to list" id="mrp_workorder_subcontracting" parent="mrp_workorder_subcontracting.menu_2"
+              action="mrp_workorder_subcontracting.action_server"/>
+-->
+    </data>
+</odoo>
