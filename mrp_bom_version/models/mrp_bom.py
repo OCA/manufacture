@@ -33,6 +33,10 @@ class MrpBom(models.Model):
 
     active = fields.Boolean(default=_default_active, readonly=True)
     historical_date = fields.Date(readonly=True, copy=False)
+    start_date = fields.Date(copy=False, help="Date when this BOM became active")
+    end_date = fields.Date(
+        copy=False, help="Date when this BOM became inactive/historical"
+    )
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -103,12 +107,19 @@ class MrpBom(models.Model):
                 "version": self.version + 1,
                 "active": active_draft,
                 "previous_bom_id": self.id,
+                "start_date": fields.Date.today() if active_draft else False,
             }
         )
         return new_bom
 
     def button_activate(self):
-        self.write({"active": True, "state": "active"})
+        self.write(
+            {
+                "active": True,
+                "state": "active",
+                "start_date": fields.Date.today(),
+            }
+        )
 
     def button_historical(self):
         self.write(
@@ -116,6 +127,7 @@ class MrpBom(models.Model):
                 "active": False,
                 "state": "historical",
                 "historical_date": fields.Date.today(),
+                "end_date": fields.Date.today(),
             }
         )
 

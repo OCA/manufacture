@@ -15,6 +15,8 @@
             <field name="code" position="after">
                 <field name="version" />
                 <field name="state" />
+                <field name="start_date" />
+                <field name="end_date" />
                 <field name="historical_date" />
                 <button
                     name="button_draft"
@@ -101,6 +103,14 @@
             <field name="company_id" position="before">
                 <field name="version" readonly="state == 'historical'" />
                 <field name="historical_date" invisible="state != 'historical'" />
+            </field>
+            <field name="code" position="after">
+                <div class="o_row" colspan="2">
+                    <span class="o_form_label">Active from</span>
+                    <field name="start_date" nolabel="1" />
+                    <span class="o_form_label">to</span>
+                    <field name="end_date" nolabel="1" />
+                </div>
             </field>
             <notebook position="inside">
                 <page string="Versions">
