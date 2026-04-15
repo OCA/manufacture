@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Add time_fixed and time_cadence to the operation form view -->
+    <record id="mrp_routing_workcenter_form_view_time_formula" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.form.time_formula</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+            <field name="arch" type="xml">
+                <xpath
+                expr="//group[@name='workorder']//div[field[@name='time_cycle_manual']]"
+                position="after"
+            >
+                    <label for="time_fixed" string="Fixed Duration" />
+                    <div>
+                        <field
+                        name="time_fixed"
+                        widget="float_time"
+                        class="oe_inline"
+                    /> minutes
+                    </div>
+                    <label for="time_cadence" string="Cadence" />
+                    <div>
+                        <field name="time_cadence" class="oe_inline" /> units/min
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Add time_fixed and time_cadence columns to the BOM operations inline tree -->
+        <record
+        id="mrp_routing_workcenter_bom_tree_view_time_formula"
+        model="ir.ui.view"
+    >
+            <field name="name">mrp.routing.workcenter.bom.tree.time_formula</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_bom_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='time_cycle']" position="after">
+                    <field
+                    name="time_fixed"
+                    widget="float_time"
+                    string="Fixed Duration (min)"
+                    optional="hide"
+                />
+                    <field
+                    name="time_cadence"
+                    string="Cadence (units/min)"
+                    optional="hide"
+                />
+                </xpath>
+            </field>
+        </record>
+</odoo>
