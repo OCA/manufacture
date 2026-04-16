@@ -306,7 +306,6 @@ msgid "Full name"
 msgstr "Tam Adı"
 
 #. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
 msgid "Generic"
 msgstr "Genel"
@@ -850,19 +849,9 @@ msgid "Reference"
 msgstr "Referans"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__object_id
-msgid "Reference object"
-msgstr "Referans nesne"
-
-#. module: quality_control_oca
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_referenced
 msgid "Referenced"
 msgstr "Referans verildi"
-
-#. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__related
-msgid "Related"
-msgstr "İlişkili"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__user
@@ -1033,7 +1022,6 @@ msgid "Triggers"
 msgstr "Tetikleyiciler"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
 msgstr "Tipi"
@@ -1152,6 +1140,12 @@ msgstr "Tüm niteliksel sorular için bir yanıt vermelisiniz."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "ya da"
+
+#~ msgid "Reference object"
+#~ msgstr "Referans nesne"
+
+#~ msgid "Related"
+#~ msgstr "İlişkili"
 
 #~ msgid "Date"
 #~ msgstr "Tarih"
