@@ -122,3 +122,70 @@ class TestMrpProductionLocationPickingType(TransactionCase):
                 move.location_id,
                 self.custom_production_location,
             )
+
+    def test_03_location_preserved_on_qty_change_draft(self):
+        mo_form = Form(self.production_model)
+        mo_form.product_id = self.finished_product
+        mo_form.bom_id = self.bom
+        mo_form.picking_type_id = self.custom_picking_type
+        mo_form.product_qty = 1.0
+        mo = mo_form.save()
+        for move in mo.move_raw_ids:
+            self.assertEqual(
+                move.location_dest_id,
+                self.custom_production_location,
+                "Initial raw move destination must be the picking type's "
+                "production location.",
+            )
+        for move in mo.move_finished_ids:
+            self.assertEqual(
+                move.location_id,
+                self.custom_production_location,
+                "Initial finished move source must be the picking type's "
+                "production location.",
+            )
+        mo.write({"product_qty": 100.0})
+        self.assertEqual(
+            mo.production_location_id,
+            self.custom_production_location,
+            "MO production location must remain the picking type's production "
+            "location after qty change.",
+        )
+        for move in mo.move_raw_ids:
+            self.assertEqual(
+                move.location_dest_id,
+                self.custom_production_location,
+                "Raw move destination must remain the picking type's "
+                "production location after qty change.",
+            )
+        for move in mo.move_finished_ids:
+            self.assertEqual(
+                move.location_id,
+                self.custom_production_location,
+                "Finished move source must remain the picking type's "
+                "production location after qty change.",
+            )
+
+    def test_04_location_preserved_on_qty_change_via_form(self):
+        mo_form = Form(self.production_model)
+        mo_form.product_id = self.finished_product
+        mo_form.bom_id = self.bom
+        mo_form.picking_type_id = self.custom_picking_type
+        mo_form.product_qty = 1.0
+        mo = mo_form.save()
+        with Form(mo) as mo_form:
+            mo_form.product_qty = 100.0
+        for move in mo.move_raw_ids:
+            self.assertEqual(
+                move.location_dest_id,
+                self.custom_production_location,
+                "Raw move destination must remain the picking type's "
+                "production location after qty change via form.",
+            )
+        for move in mo.move_finished_ids:
+            self.assertEqual(
+                move.location_id,
+                self.custom_production_location,
+                "Finished move source must remain the picking type's "
+                "production location after qty change via form.",
+            )
