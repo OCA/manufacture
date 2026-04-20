@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_repair_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_repair_order
+#: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_repair_order_form_inherit
+msgid "<span class=\"o_stat_text\">Manufacturing order</span>"
+msgstr ""
+
+#. module: mrp_repair_order
+#: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_mrp_production_form_inherit
+msgid "<span class=\"o_stat_text\">Repair order</span>"
+msgstr ""
+
+#. module: mrp_repair_order
+#. odoo-python
+#: code:addons/mrp_repair_order/models/mrp.py:0
+#: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_mrp_production_form_inherit
+msgid "Create Repair Order"
+msgstr ""
+
+#. module: mrp_repair_order
+#: model:ir.model.fields,field_description:mrp_repair_order.field_repair_order__mrp_ids
+msgid "Manufacting Orders"
+msgstr ""
+
+#. module: mrp_repair_order
+#: model:ir.model,name:mrp_repair_order.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_repair_order
+#: model:ir.model.fields,field_description:mrp_repair_order.field_mrp_production__repair_id
+msgid "Repair"
+msgstr ""
+
+#. module: mrp_repair_order
+#: model:ir.model,name:mrp_repair_order.model_repair_order
+msgid "Repair Order"
+msgstr ""
