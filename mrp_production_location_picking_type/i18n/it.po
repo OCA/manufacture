@@ -39,3 +39,8 @@ msgstr "Tipo prelievo"
 #: model:ir.model.fields,field_description:mrp_production_location_picking_type.field_stock_picking_type__production_location_id
 msgid "Production Location"
 msgstr "Ubicazione produzione"
+
+#. module: mrp_production_location_picking_type
+#: model:ir.model,name:mrp_production_location_picking_type.model_stock_move
+msgid "Stock Move"
+msgstr ""
