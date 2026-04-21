@@ -3,7 +3,7 @@
 {
     "name": "MRP Production Location Picking Type",
     "summary": "Add production location field to picking types for MRP operations.",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Manufacture",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
