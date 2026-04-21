@@ -17,10 +17,7 @@ class ProductMRPArea(models.Model):
         "only grouping until the total length of the date range will be done.",
     )
 
-    _sql_constraints = [
-        (
-            "group_estimate_days_check",
-            "CHECK( group_estimate_days >= 0 )",
-            "Group Days of Estimates must be greater than or equal to zero.",
-        ),
-    ]
+    _group_estimate_days_check = models.Constraint(
+        "CHECK( group_estimate_days >= 0 )",
+        "Group Days of Estimates must be greater than or equal to zero.",
+    )

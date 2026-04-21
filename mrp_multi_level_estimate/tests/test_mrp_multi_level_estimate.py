@@ -14,8 +14,6 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         super().setUpClass()
         cls.estimate_obj = cls.env["stock.demand.estimate"]
 
-        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
-
         # Create new clean area:
         cls.estimate_loc = cls.loc_obj.create(
             {
@@ -216,7 +214,7 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
     def test_04_group_demand_estimates_rounding(self):
         """Test demand grouping functionality, `group_estimate_days` and rounding."""
         self.test_mrp_parameter.group_estimate_days = 7
-        self.uom_unit.rounding = 1.00
+        self.env.ref("uom.decimal_product_uom").digits = 0
 
         estimates = self.estimate_obj.search(
             [
@@ -363,9 +361,9 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         have estimates, we should consider that demand.
         """
         # Get manufactured product, component and bom
-        fp_1 = self.env.ref("mrp_multi_level.product_product_fp_1")
-        pp_1 = self.env.ref("mrp_multi_level.product_product_pp_1")
-        fp_1_bom = self.env.ref("mrp_multi_level.mrp_bom_fp_1")
+        fp_1 = self.fp_1
+        pp_1 = self.pp_1
+        fp_1_bom = self.fp_1.bom_ids
         self.product_mrp_area_obj.create(
             {"product_id": fp_1.id, "mrp_area_id": self.estimate_area.id}
         )
