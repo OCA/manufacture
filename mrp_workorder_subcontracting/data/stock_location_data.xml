@@ -6,10 +6,7 @@
         <field
             name="location_id"
             model="stock.location"
-            search="[
-                ('warehouse_id', '=', ref('stock.warehouse0')),
-                ('usage', '=', 'view'),
-            ]"
+            eval="obj().env.ref('stock.warehouse0').view_location_id.id"
         />
         <field name="company_id" ref="base.main_company" />
     </record>

@@ -201,7 +201,10 @@ class PurchaseOrderLine(models.Model):
         self.ensure_one()
         vals = {}
         if self.order_id.partner_id:
-            vals["subcontract_partner_ids"] = [(6, 0, self.order_id.partner_id.ids)]
+            partner_ids = (
+                self.workorder_id.subcontract_partner_ids | self.order_id.partner_id
+            ).ids
+            vals["subcontract_partner_ids"] = [(6, 0, partner_ids)]
         if self.product_id and self.product_id.type == "service":
             vals["subcontract_product_id"] = self.product_id.id
         if vals:
