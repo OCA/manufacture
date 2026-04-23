@@ -1,5 +1,5 @@
 - [Dealtech Srl](https://dealtech.eu/):
-  - Boldrini Alessandro <support@dealtech.it>
-- [OpenIndustry](https://openindustry.it):
-  - andreampiovesana, Piovesana Andrea <andrea.m.piovesana@gmail.com>
-  - Tonetto Ruben, <ruben.tonetto@gmail.com>
+  - Alessandro Boldrini <support@dealtech.it>
+- [OpenIndustry](https://openindustry.it/):
+  - Andrea Piovesana <andrea.m.piovesana@gmail.com>
+  - Ruben Tonetto <ruben.tonetto@gmail.com>

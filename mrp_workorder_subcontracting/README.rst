@@ -28,19 +28,30 @@ MRP Workorder Subcontracting
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Standard subcontracting flows in Odoo are typically managed at
-manufacturing order level. This module extends Manufacturing features by
-introducing subcontracting at work order level.
+Standard subcontracting flows in Odoo are managed at manufacturing order
+level. This module adds subcontracting management at workorder level, so
+only selected operations of a manufacturing order can be outsourced.
 
-It allows to:
+It extends routing operations, workorders, purchase orders and stock
+transfers to provide:
 
-- Define which routing operations can be subcontracted
-- Assign one or multiple work orders to one or more subcontractors
-- Manage the logistics flow of sending materials to subcontractors and
-  receiving processed products
-- Automatically complete work orders upon receipt of subcontracted goods
-- Handle urgent scenarios with direct shipment to subcontractors without
-  requiring a purchase order
+- subcontracting flags, allowed subcontractors and service products on
+  routing operations, automatically copied to generated work orders;
+- a workorder wizard to create subcontracting documents for the selected
+  remaining quantity;
+- a standard purchase flow that creates RFQs or reuses a draft purchase
+  order, then generates the outgoing and incoming subcontracting
+  transfers;
+- a bidding flow where several subcontractors receive competing RFQs and
+  the confirmed purchase order becomes the winning bid;
+- urgent subcontracting flows that create direct outgoing transfers
+  without requiring a purchase order first;
+- subcontractor-stock flows for cases where the processed goods are
+  already available from the subcontractor side;
+- traceability between manufacturing orders, work orders, purchase order
+  lines and stock moves;
+- automatic work order completion when the expected subcontracting
+  receipt is completed.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -52,143 +63,169 @@ It allows to:
 .. contents::
    :local:
 
+Configuration
+=============
+
+After installing the module, review the subcontracting warehouse and
+supplier configuration before creating operational documents.
+
+Warehouse configuration
+-----------------------
+
+On each warehouse that will manage subcontracted work orders, set the
+subcontracting operation types:
+
+- **Subcontract Picking Type OUT**: use **Subcontracting OUT (Parts)**.
+- **Subcontract Picking Type IN**: use **Subcontracting IN (Parts)**.
+- **Subcontract Virtual Picking Type OUT**: use **Subcontracting OUT
+  (Finished)**.
+- **Subcontract Virtual Picking Type IN**: use **Subcontracting IN
+  (Finished)**.
+
+The module creates the default subcontracting operation types and two
+purchase order types:
+
+- **Subcontracting**
+- **Subcontracting - Instant return**
+
+The purchase order types are configured with the subcontracting
+operation types and allow managing the standard purchase flow and the
+immediate-return variant.
+
+Operation type locations
+------------------------
+
+Check that the subcontracting operation types use the expected source
+and destination locations:
+
+- **Subcontracting OUT (Parts)**
+
+  - Source: **WH/Stock** (or **WH/Giacenza**, depending on the database
+    language).
+  - Destination: **Subcontractors/General Stock**.
+
+- **Subcontracting IN (Parts)**
+
+  - Source: **Virtual Locations/Production/General Stock**.
+  - Destination: **Virtual Locations/Production**.
+
+- **Subcontracting OUT (Finished)**
+
+  - Source: **Virtual Locations/Production**.
+  - Destination: **Virtual Locations/Production/Finished Subcontract**.
+
+- **Subcontracting IN (Finished)**
+
+  - Source: **Virtual Locations/Production/Finished Subcontract**.
+  - Destination: **Virtual Locations/Production**.
+
+Supplier-specific locations
+---------------------------
+
+The default locations are templates for supplier-specific locations:
+
+- Duplicate **Subcontractors/General Stock** to create the real parts
+  location for each subcontractor.
+- Duplicate **Virtual Locations/Production/Finished Subcontract** to
+  create the virtual finished-product location for each subcontractor.
+
+Creating one pair of locations per subcontractor is recommended. Without
+supplier-specific locations, the stock flow still works, but it is not
+possible to track the real quantity of parts and finished goods at each
+subcontractor.
+
+After creating the supplier-specific locations, open the supplier
+contact and set:
+
+- **Subcontract Location**: the real parts location for that
+  subcontractor.
+- **Subcontract Virtual Location**: the virtual location used for
+  finished products for that subcontractor.
+
+Bill of materials and work order configuration
+----------------------------------------------
+
+For each BoM operation, you can optionally enable subcontracting and
+define:
+
+- whether the operation can be subcontracted;
+- the allowed subcontractors;
+- the service product to put on the purchase order line.
+
+This configuration is optional on the BoM operation. It can also be
+enabled or changed directly on the work order.
+
+When subcontracting is configured on the BoM operation, the values are
+copied to the generated work order. They can still be changed on the
+work order until subcontracting documents are created.
+
 Usage
 =====
 
-Usage
------
+Configure the subcontracting master data:
 
-This module introduces a workflow to manage subcontracting operations at
-work order level through a dedicated wizard.
+1. Go to the routing operation that can be outsourced.
+2. Enable **Subcontract**.
+3. Set the allowed subcontractors and the subcontracting service
+   product.
+4. Configure subcontracting picking types on the warehouse and on the
+   subcontracting purchase order type.
+5. Optionally configure subcontract and virtual subcontract locations on
+   the supplier.
 
-1. Triggering the flow
-~~~~~~~~~~~~~~~~~~~~~~
+When a manufacturing order creates its work orders, the subcontracting
+configuration is copied from the routing operation to each work order.
+It can still be adjusted on the work order until subcontracting
+documents are created.
 
-The process starts from the **"Variation" wizard**, which can be
-launched by selecting one or more work orders.
+To subcontract work orders:
 
-This wizard allows the responsible user to decide how the subcontracting
-operation should be handled.
+1. Open or select one or more work orders.
+2. Run **Create Subcontract Order** from the work order action menu.
+3. Select the supplier or suppliers, scheduled date, service product and
+   flow type.
+4. Confirm the wizard.
 
---------------
+Available flow types:
 
-2. Choosing the subcontracting strategy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- **Standard**: creates a purchase order line on a new RFQ or on an
+  existing draft RFQ. When the purchase order is confirmed, the module
+  creates the outgoing subcontracting transfer and then the incoming
+  transfer. If the purchase order type enables immediate return, the
+  incoming transfer is prepared immediately at purchase confirmation.
+- **Urgent**: creates the outgoing transfer directly, without requiring
+  a purchase order first. The user must provide an urgency reason, which
+  is posted on the manufacturing order. A purchase order can still be
+  linked when only one supplier is selected.
+- **Subcontractor stock**: creates the incoming transfer for processed
+  goods supplied from the subcontractor side. A purchase order can also
+  be linked when only one supplier is selected.
 
-Inside the wizard, the user can choose between two main approaches:
+If several suppliers are selected, the wizard automatically forces the
+standard flow and creates one RFQ per supplier. Confirming one RFQ opens
+a winning bid confirmation wizard. After confirmation, competing RFQs
+are either cancelled or their losing lines are set to zero and locked.
 
-A. Purchase Order flow
-^^^^^^^^^^^^^^^^^^^^^^
+The module adds smart buttons and document links on manufacturing
+orders, purchase orders and stock pickings. Work orders also show
+subcontracting status, purchase lines, delivery moves and return moves.
 
-- Generate one or multiple Purchase Orders (PO) for subcontractors
-- This is the standard structured flow
-
-B. Direct shipment (urgent flow)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Skip Purchase Order creation
-- Directly generate outgoing transfers (OUT) to subcontractors
-
-This option is intended for urgent scenarios where speed is required.
-
---------------
-
-3. Handling multiple subcontractors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The system supports multiple subcontractors for the same operation.
-
-This allows:
-
-- parallel processing
-- supplier competition (multiple vendors working on the same task)
-
---------------
-
-4. Purchase Order flow behavior
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When using the Purchase Order flow:
-
-- After confirming the PO, outgoing transfers (OUT) are generated
-
-Optionally:
-
-- It is possible to prepare the incoming flow even before validating the
-  first OUT, already at PO confirmation
-
---------------
-
-5. Logistics flow
-~~~~~~~~~~~~~~~~~
-
-Outgoing (OUT)
-^^^^^^^^^^^^^^
-
-- Materials are sent to the subcontractor
-- OUT transfer is validated
-
-Incoming (IN)
-^^^^^^^^^^^^^
-
-- Finished or processed goods are received back
-- IN transfer is generated:
-
-  - automatically after OUT validation, or
-  - earlier if enabled in PO confirmation
-
---------------
-
-6. Completion of the work order phase
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The work order is considered completed when:
-
-- All related incoming transfers (IN) are validated
-
-At this point:
-
-- the subcontracted operation is fully completed
-- the workflow proceeds to the next step
-
---------------
-
-Notes
-~~~~~
-
-- The workflow is flexible and supports both structured and urgent flows
-- It enhances traceability between subcontracted operations and work
-  orders
-- It is designed for hybrid production scenarios involving external
-  suppliers
+When the incoming subcontracting transfer is validated, the related work
+order is evaluated. If a received quantity is available, the work order
+is completed for that quantity. If no valid receipt is found after the
+logistics documents are closed, the work order is marked with a
+subcontracting exception.
 
 Known issues / Roadmap
 ======================
 
-Roadmap
--------
+Planned improvements:
 
-This module is currently in early development stage.
-
-Planned improvements
-~~~~~~~~~~~~~~~~~~~~
-
-- Define the subcontracting workflow at work order level
-- Enhance traceability between work orders and subcontracted operations
-
-Future enhancements
-~~~~~~~~~~~~~~~~~~~
-
-- Support advanced subcontracting scenarios (multiple subcontractors,
-  parallel operations)
-- Improve automation of logistics flows (OUT / IN transfers)
-- Extend integration with purchase workflow
-
-Open points
-~~~~~~~~~~~
-
-- Define the optimal data model for linking work orders and
-  subcontracting operations
+- Add automated tests for the standard, urgent, subcontractor-stock and
+  bidding flows.
+- Improve support for multi-company and multi-warehouse setups.
+- Extend traceability reports for subcontracted workorder costs and lead
+  times.
 
 Bug Tracker
 ===========
@@ -214,12 +251,12 @@ Contributors
 
 - `Dealtech Srl <https://dealtech.eu/>`__:
 
-  - Boldrini Alessandro support@dealtech.it
+  - Alessandro Boldrini support@dealtech.it
 
-- `OpenIndustry <https://openindustry.it>`__:
+- `OpenIndustry <https://openindustry.it/>`__:
 
-  - andreampiovesana, Piovesana Andrea andrea.m.piovesana@gmail.com
-  - Tonetto Ruben, ruben.tonetto@gmail.com
+  - Andrea Piovesana andrea.m.piovesana@gmail.com
+  - Ruben Tonetto ruben.tonetto@gmail.com
 
 Maintainers
 -----------
