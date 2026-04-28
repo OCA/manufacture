@@ -2,6 +2,7 @@ from . import test_setup_config
 from . import test_standard_purchase_flow
 from . import test_partial_out_in
 from . import test_urgent_wizard
+from . import test_coverage_branches
 from . import test_subcontractor_stock
 from . import test_stock_locations
 from . import test_closure_exceptions
