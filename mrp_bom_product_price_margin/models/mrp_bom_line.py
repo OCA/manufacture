@@ -22,15 +22,23 @@ class MrpBomLine(models.Model):
         digits=(16, 3),
     )
 
-    @api.depends("standard_price_unit", "product_qty")
+    @api.depends(
+        "standard_price_unit",
+        "product_qty",
+    )
     def _compute_standard_price_subtotal(self):
         for line in self:
             line.standard_price_subtotal = line.standard_price_unit * line.product_qty
 
-    @api.depends("product_id")
+    @api.depends("product_id", "product_id.uom_id", "product_uom_id")
     def _compute_standard_price_unit(self):
         for line in self:
-            line.standard_price_unit = line.product_id.standard_price
+            if not (line.product_id and line.product_id.uom_id and line.product_uom_id):
+                line.standard_price_unit = 0.0
+            else:
+                line.standard_price_unit = line.product_id.uom_id._compute_price(
+                    line.product_id.standard_price, line.product_uom_id
+                )
 
     @api.depends(
         "standard_price_subtotal", "bom_id.bom_line_ids.standard_price_subtotal"
