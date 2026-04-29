@@ -1,0 +1,6 @@
+[project]
+name = "odoo-addon-mrp_bom_line_uom_rounding"
+
+[build-system]
+requires = ["whool"]
+build-backend = "whool.buildapi"
