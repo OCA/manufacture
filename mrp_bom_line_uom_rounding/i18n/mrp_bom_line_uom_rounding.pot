@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_line_uom_rounding
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_line_uom_rounding
+#: model:ir.model,name:mrp_bom_line_uom_rounding.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_bom_line_uom_rounding
+#. odoo-python
+#: code:addons/mrp_bom_line_uom_rounding/models/mrp_bom_line.py:0
+msgid ""
+"The quantity %(qty)s for component '%(product)s' does not respect the "
+"rounding precision (%(rounding)s) of the Unit of Measure '%(uom)s'. Please "
+"adjust the quantity to a valid value."
+msgstr ""
