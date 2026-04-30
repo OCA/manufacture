@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_inventory_form" model="ir.ui.view">
+        <field name="name">mrp.inventory.form</field>
+        <field name="model">mrp.inventory</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="MRP Inventory" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mrp_area_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="product_id" />
+                            <field name="product_mrp_area_id" />
+                            <field name="supply_method" />
+                            <field
+                                name="main_supplier_id"
+                                invisible="supply_method != 'buy'"
+                            />
+                            <field name="date" />
+                        </group>
+                        <group>
+                            <field name="initial_on_hand_qty" />
+                            <field name="demand_qty" />
+                            <field name="supply_qty" />
+                            <field name="rfq_qty" />
+                            <field name="final_on_hand_qty" />
+                            <field name="to_procure" />
+                            <field name="uom_id" groups="uom.group_uom" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_inventory_list" model="ir.ui.view">
+        <field name="name">mrp.inventory.list</field>
+        <field name="model">mrp.inventory</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <header>
+                    <button
+                        name="%(mrp_multi_level.act_mrp_inventory_procure)d"
+                        type="action"
+                        string="Procure"
+                    />
+                </header>
+                <field name="mrp_area_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="product_id" />
+                <field name="date" />
+                <field name="uom_id" groups="uom.group_uom" />
+                <field name="initial_on_hand_qty" />
+                <field name="demand_qty" />
+                <field name="supply_qty" />
+                <field name="rfq_qty" optional="hide" />
+                <button
+                    invisible="rfq_qty &lt;= 0.0"
+                    name="action_open_rfqs"
+                    type="object"
+                    icon="fa-credit-card"
+                    title="Requests for Quotation"
+                />
+                <field name="final_on_hand_qty" />
+                <field name="to_procure" />
+                <button
+                    invisible="not planned_order_ids"
+                    name="action_open_planned_orders"
+                    type="object"
+                    icon="fa-list"
+                    title="Details"
+                />
+                <field name="order_release_date" />
+                <button
+                    title="Create Procurement"
+                    name="%(mrp_multi_level.act_mrp_inventory_procure)d"
+                    icon="fa-cogs"
+                    type="action"
+                    invisible="to_procure &lt;= 0.0"
+                />
+                <field name="planned_order_ids" column_invisible="True" />
+                <field name="supply_method" />
+                <field name="main_supplier_id" optional="hide" />
+                <field name="running_availability" />
+            </list>
+        </field>
+    </record>
+    <record id="view_mrp_inventory_pivot" model="ir.ui.view">
+        <field name="name">mrp.inventory.pivot</field>
+        <field name="model">mrp.inventory</field>
+        <field name="arch" type="xml">
+            <pivot string="MRP Inventory">
+                <field name="final_on_hand_qty" type="measure" />
+                <field name="mrp_area_id" type="row" />
+                <field name="product_mrp_area_id" type="row" />
+                <field name="date" interval="day" type="col" />
+            </pivot>
+        </field>
+    </record>
+    <record id="view_mrp_inventory_graph" model="ir.ui.view">
+        <field name="name">mrp.inventory.graph</field>
+        <field name="model">mrp.inventory</field>
+        <field name="arch" type="xml">
+            <graph string="MRP Inventory" type="line">
+                <field name="final_on_hand_qty" type="measure" />
+                <field name="date" interval="day" type="row" />
+                <field name="product_mrp_area_id" type="row" />
+            </graph>
+        </field>
+    </record>
+    <record id="mrp_inventory_search" model="ir.ui.view">
+        <field name="name">mrp.inventory.search</field>
+        <field name="model">mrp.inventory</field>
+        <field name="arch" type="xml">
+            <search string="MRP Inventory">
+                <group name="select">
+                    <field name="product_id" />
+                    <field name="mrp_area_id" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </group>
+                <separator />
+                <field name="mrp_planner_id" invisible="1" />
+                <filter
+                    string="My products"
+                    name="mrp_planner_id"
+                    domain="[('mrp_planner_id', '=', uid)]"
+                />
+                <filter
+                    string="To Procure"
+                    name="filter_to_procure"
+                    domain="[['to_procure','>',0.0]]"
+                />
+                <separator />
+                <group>
+                    <filter
+                        name="group_product"
+                        string="Product"
+                        domain="[]"
+                        context="{'group_by':'product_mrp_area_id'}"
+                    />
+                    <filter
+                        name="group_mrp_area"
+                        string="MRP Area"
+                        domain="[]"
+                        context="{'group_by':'mrp_area_id'}"
+                    />
+                    <filter
+                        name="group_supply_method"
+                        string="Supply Method"
+                        domain="[]"
+                        context="{'group_by':'supply_method'}"
+                    />
+                    <filter
+                        name="group_main_supplier_id"
+                        string="Main Supplier"
+                        domain="[]"
+                        context="{'group_by':'main_supplier_id'}"
+                    />
+                    <filter
+                        name="group_date"
+                        string="Date"
+                        domain="[]"
+                        context="{'group_by':'date'}"
+                    />
+                    <filter
+                        name="group_release_date"
+                        string="Date to Procure"
+                        domain="[]"
+                        context="{'group_by':'order_release_date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="mrp_inventory_action" model="ir.actions.act_window">
+        <field name="name">MRP Inventory</field>
+        <field name="res_model">mrp.inventory</field>
+        <field name="path">mrp-inventory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="mrp_inventory_list" />
+        <field name="search_view_id" ref="mrp_inventory_search" />
+    </record>
+</odoo>

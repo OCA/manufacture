@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="llc_calculation_recursion_limit" model="ir.config_parameter">
+        <field name="key">mrp_multi_level.llc_calculation_recursion_limit</field>
+        <field name="value">1000</field>
+    </record>
+</odoo>

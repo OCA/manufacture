@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_see_attachments_product_template_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.attachments.product.template.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="mrp.product_template_form_view_bom_button" />
+        <field name="arch" type="xml">
+            <xpath expr="///button[@name='action_used_in_bom']" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_documents"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count!=1"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Components<br />Attachments</span>
+                    </div>
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count==0"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">BoMs<br />Attachments</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_bom_see_attachments_product_product_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.attachments.product.product.form.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="mrp.product_product_form_view_bom_button" />
+        <field name="arch" type="xml">
+            <xpath expr="///button[@name='action_used_in_bom']" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_documents"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count!=1"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Components<br />Attachments</span>
+                    </div>
+                </button>
+                <button
+                    class="oe_stat_button"
+                    name="action_see_bom_attachments"
+                    type="object"
+                    icon="fa-files-o"
+                    groups="mrp.group_mrp_user"
+                    invisible="bom_count==0"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">BoMs<br />Attachments</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

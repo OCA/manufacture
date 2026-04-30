@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_location_form" model="ir.ui.view">
+        <field name="name">stock.location.form</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button" position="before">
+                <button
+                    type="object"
+                    name="action_view_mrp_area_location"
+                    class="oe_stat_button"
+                    icon="fa-eject"
+                    groups="mrp.group_mrp_user"
+                >
+                    <field name="mrp_area_count" widget="statinfo" string="MRP Areas" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
