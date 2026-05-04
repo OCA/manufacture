@@ -10,31 +10,23 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='date_planned_start']/parent::div"
-                position="after"
+                expr="//group[@name='group_extra_info']/field[@name='date_finished']"
+                position="attributes"
             >
-                <field name="date_planned_finished" position="move" />
-            </xpath>
-            <field name="date_planned_finished" position="attributes">
-                <attribute name="invisible" />
-                <attribute t-translation="off" name="required">1</attribute>
+                <attribute name="invisible">0</attribute>
                 <attribute
-                    t-translation="off"
-                    name="attrs"
-                >{"readonly": [("state", "in", ["close", "cancel"])]}</attribute>
+                    name="readonly"
+                >state in ['done', 'to_close', 'cancel']</attribute>
                 <attribute
-                    t-translation="off"
                     name="decoration-warning"
-                >state not in ('done', 'cancel') and date_planned_start &lt; now</attribute>
+                >state not in ('done', 'cancel') and date_start &lt; now</attribute>
                 <attribute
-                    t-translation="off"
                     name="decoration-danger"
-                >state not in ('done', 'cancel') and date_planned_start &lt; current_date</attribute>
+                >state not in ('done', 'cancel') and date_start &lt; current_date</attribute>
                 <attribute
-                    t-translation="off"
                     name="decoration-bf"
-                >state not in ('done', 'cancel') and (date_planned_start &lt; current_date or date_planned_start &lt; now)</attribute>
-            </field>
+                >state not in ('done', 'cancel') and (date_start &lt; current_date or date_start &lt; now)</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -42,13 +34,8 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
-            <field name="date_planned_start" position="after">
-                <field
-                    name="date_planned_finished"
-                    readonly="1"
-                    optional="show"
-                    widget="remaining_days"
-                />
+            <field name="date_finished" position="attributes">
+                <attribute name="optional">show</attribute>
             </field>
         </field>
     </record>

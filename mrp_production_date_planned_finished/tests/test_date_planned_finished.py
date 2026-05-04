@@ -4,48 +4,66 @@
 
 from lxml import etree
 
-from odoo.tests import Form, TransactionCase
+from odoo.fields import Datetime
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDatePlannedFinished(TransactionCase):
+class TestDateFinished(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.company = cls.env.ref("base.main_company")
-        cls.company.manufacturing_lead = 1
-        cls.product = cls.env.ref("mrp.product_product_computer_desk")
-        cls.product.produce_delay = 1
-        cls.product_bom = cls.env.ref("mrp.mrp_bom_desk")
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Manufactured Product", "type": "consu", "is_storable": True}
+        )
+        cls.component = cls.env["product.product"].create(
+            {"name": "Test Component", "type": "consu", "is_storable": True}
+        )
+        cls.bom = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": cls.product.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "produce_delay": 2,
+                "bom_line_ids": [
+                    (0, 0, {"product_id": cls.component.id, "product_qty": 1.0}),
+                ],
+            }
+        )
 
-    def test_mrp_production_date_planned_finished_onchange(self):
-        """Test that date_planned_start is set when date_planned_finished is changed."""
-        with Form(self.env["mrp.production"]) as mo:
-            mo.product_id = self.product
-            mo.bom_id = self.product_bom
-            mo.product_qty = 1
-            mo.date_planned_finished = "2022-10-10 10:00:00"
-        self.assertEqual(mo.date_planned_start, "2022-10-08 10:00:00")
+    def test_mrp_production_date_finished_onchange(self):
+        """Setting date_finished must back-compute date_start using BoM lead time."""
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product
+        mo_form.bom_id = self.bom
+        mo_form.product_qty = 1
+        mo_form.date_finished = Datetime.to_datetime("2026-10-10 10:00:00")
+        mo = mo_form.save()
+        self.assertEqual(mo.date_start, Datetime.to_datetime("2026-10-08 10:00:00"))
+        self.assertEqual(mo.date_finished, Datetime.to_datetime("2026-10-10 10:00:00"))
 
-    def test_mrp_production_date_planned_finished_decoration(self):
-        """Test that the date_planned_finished field is decorated properly
+    def test_mrp_production_date_finished_decoration(self):
+        """date_finished decorations must mirror date_start ones.
 
-        Its decoration has to exactly match the date_planned_start one.
-        As this might change if odoo updates their code, or during migrations,
-        this test case will track any mismatches and fail.
+        If a future Odoo update changes the decorations on date_start, this
+        test will fail to flag the mismatch so the inheritance can be updated.
         """
-        res = self.env["mrp.production"].fields_view_get(view_type="form")
-        doc = etree.XML(res["arch"])
-        date_planned_start = doc.xpath("//field[@name='date_planned_start']")[0]
-        date_planned_finished = doc.xpath("//field[@name='date_planned_finished']")[0]
+        view = self.env["mrp.production"].get_view(view_type="form")
+        doc = etree.XML(view["arch"])
+        date_start = doc.xpath("//field[@name='date_start']")[0]
+        # The form has two `date_finished` fields (one technical hidden); pick
+        # the visible one inside group_extra_info.
+        date_finished = doc.xpath(
+            "//group[@name='group_extra_info']/field[@name='date_finished']"
+        )[0]
         decoration_attrs = [
-            attr
-            for attr in date_planned_start.attrib.keys()
-            if attr.startswith("decoration-")
+            attr for attr in date_start.attrib if attr.startswith("decoration-")
         ]
+        self.assertTrue(decoration_attrs, "date_start has no decorations to mirror")
         for attr in decoration_attrs:
             self.assertEqual(
-                date_planned_start.attrib[attr],
-                date_planned_finished.attrib[attr],
-                f"date_planned_finished decoration mismatch: {attr}",
+                date_start.attrib[attr],
+                date_finished.attrib.get(attr),
+                f"date_finished decoration mismatch: {attr}",
             )
