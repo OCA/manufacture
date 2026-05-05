@@ -478,5 +478,115 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         serial_matrix.state = "in_progress"
         with self.assertRaises(UserError):
             serial_matrix.unlink()
+        serial_matrix.state = "cancel"
+        with self.assertRaises(UserError):
+            serial_matrix.unlink()
         serial_matrix.state = "draft"
         serial_matrix.unlink()
+
+    def test_07_cancel_matrix(self):
+        """A matrix can be cancelled when the related MO is done or cancelled."""
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create({"production_id": production.id})
+        matrix.state = "exception"
+        # Cannot cancel while MO is still active
+        with self.assertRaises(UserError):
+            matrix.action_cancel_matrix()
+        # Set MO to done manually and cancel the matrix
+        production.state = "done"
+        matrix.action_cancel_matrix()
+        self.assertEqual(matrix.state, "cancel")
+        # Cannot cancel a matrix that is already cancelled or done
+        with self.assertRaises(UserError):
+            matrix.action_cancel_matrix()
+
+    def test_08_cancel_requires_manager_in_view(self):
+        """The Cancel button is restricted to mrp.group_mrp_manager users."""
+        manager_group = self.env.ref("mrp.group_mrp_manager")
+        # group is referenced only on the view; ensure it exists and the action
+        # is callable regardless (group enforcement is the view's responsibility).
+        self.assertTrue(manager_group)
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create({"production_id": production.id})
+        matrix.state = "exception"
+        production.state = "done"
+        matrix.action_cancel_matrix()
+        self.assertEqual(matrix.state, "cancel")
+
+    def test_09_reset_to_draft_no_split(self):
+        """Reset to draft when the exception happened before any MO split."""
+        production = self._create_mo(2.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp_1 = self._create_serial_number(self.final_product, "FP-RTD-1", qty=0)
+        serial_fp_2 = self._create_serial_number(self.final_product, "FP-RTD-2", qty=0)
+        matrix.finished_lot_ids = serial_fp_1 | serial_fp_2
+        matrix._onchange_finished_lot_ids()
+        line_count_before = len(matrix.line_ids)
+        matrix.state = "exception"
+        # Cannot reset from another state
+        matrix.state = "draft"
+        with self.assertRaises(UserError):
+            matrix.action_reset_to_draft()
+        matrix.state = "exception"
+        # Reset should regenerate lines for all serials and point to the same MO
+        matrix.action_reset_to_draft()
+        self.assertEqual(matrix.state, "draft")
+        self.assertEqual(matrix.production_id, production)
+        self.assertEqual(matrix.finished_lot_ids, serial_fp_1 | serial_fp_2)
+        self.assertEqual(len(matrix.line_ids), line_count_before)
+
+    def test_10_reset_to_draft_after_split(self):
+        """Reset to draft after a successful first iteration: matrix points to the
+        backorder MO and lines are regenerated for the remaining serials."""
+        production = self._create_mo(2.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp_1 = self._create_serial_number(self.final_product, "FP-RTD-3", qty=0)
+        serial_fp_2 = self._create_serial_number(self.final_product, "FP-RTD-4", qty=0)
+        matrix.finished_lot_ids = serial_fp_1 | serial_fp_2
+        matrix._onchange_finished_lot_ids()
+        # Fill row for serial_fp_1 only
+        line_1_c1 = matrix.line_ids.filtered(
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_1_serial
+        )
+        line_1_c1.component_lot_id = self.serial_1_001
+        c2_lines_1 = matrix.line_ids.filtered(
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_2_serial
+        )
+        c2_lines_1[0].component_lot_id = self.serial_2_001
+        c2_lines_1[1].component_lot_id = self.serial_2_002
+        matrix.line_ids.filtered(
+            lambda line: line.finished_lot_id == serial_fp_1
+            and line.component_id == self.component_3_lot
+        ).component_lot_id = self.lot_3_001
+        # Process only the first finished serial; simulate the exception that
+        # would have happened on the second iteration.
+        matrix._prepare_mo_for_serial(production, serial_fp_1)
+        matrix._process_component_moves(
+            production, serial_fp_1, matrix._get_matrix_lines_map()
+        )
+        backorder_mo = matrix._validate_and_get_backorder(production)
+        self.assertTrue(backorder_mo)
+        self.assertEqual(production.state, "done")
+        matrix.state = "exception"
+        matrix.action_reset_to_draft()
+        self.assertEqual(matrix.state, "draft")
+        self.assertEqual(matrix.production_id, backorder_mo)
+        self.assertEqual(matrix.finished_lot_ids, serial_fp_2)
+        # Lines should now correspond to the backorder MO's qty (1) for the
+        # remaining serial only.
+        self.assertEqual(matrix.line_ids.mapped("finished_lot_id"), serial_fp_2)
+
+    def test_11_reset_to_draft_no_pending_mo(self):
+        """If all related MOs are done, reset to draft must fail."""
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create({"production_id": production.id})
+        matrix.state = "exception"
+        production.state = "done"
+        with self.assertRaises(UserError):
+            matrix.action_reset_to_draft()

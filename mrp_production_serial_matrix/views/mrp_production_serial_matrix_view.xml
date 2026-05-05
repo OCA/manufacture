@@ -13,7 +13,21 @@
                         class="oe_highlight"
                         invisible="state not in ['draft', 'exception']"
                     />
-                    <field
+                        <button
+                        name="action_reset_to_draft"
+                        string="Reset to Draft"
+                        type="object"
+                        invisible="state != 'exception'"
+                    />
+                        <button
+                        name="action_cancel_matrix"
+                        string="Cancel"
+                        type="object"
+                        invisible="state in ('done', 'cancel') or production_state not in ('done', 'cancel')"
+                        groups="mrp.group_mrp_manager"
+                    />
+                        <field name="production_state" invisible="1" />
+                        <field
                         name="state"
                         widget="statusbar"
                         statusbar_visible="draft,in_progress,done"
@@ -130,6 +144,7 @@
                     decoration-info="state == 'draft'"
                     decoration-success="state == 'done'"
                     decoration-danger="state == 'exception'"
+                    decoration-muted="state == 'cancel'"
                 />
                 <field name="company_id" optional="hide" />
                 <field name="include_lots" optional="hide" />
@@ -176,6 +191,11 @@
                     name="state_exception"
                     string="Exception"
                     domain="[('state', '=', 'exception')]"
+                />
+                <filter
+                    name="state_cancel"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancel')]"
                 />
                 <separator />
             </search>
