@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-16 09:04+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"PO-Revision-Date: 2026-05-10 11:46+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -48,27 +49,27 @@ msgstr "Lista de materiales"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__bom_line_ids
 msgid "BoM Lines"
-msgstr ""
+msgstr "Líneas de LdM"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Tipo de LdM"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__byproduct_ids
 msgid "By-products"
-msgstr ""
+msgstr "Subproductos"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configuración"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__consumption
@@ -84,6 +85,17 @@ msgid ""
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
+"Define si se pueden consumir más o menos componentes que la cantidad "
+"definida en la LdM:\n"
+"* Permitido: permitido para todos los usuarios de fabricación.\n"
+"* Permitido con advertencia: permitido para todos los usuarios de "
+"fabricación con un resumen de las diferencias de consumo al cerrar la orden "
+"de fabricación.\n"
+"* Nota: en el caso de consumo manual de componentes, donde el consumo se "
+"registra manualmente de forma exclusiva, las advertencias de consumo se "
+"seguirán emitiendo cuando corresponda.\n"
+"* Bloqueado: solo un administrador puede cerrar una orden de fabricación "
+"cuando no se respeta el consumo de la LdM."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__draft
@@ -95,7 +107,7 @@ msgstr "Borrador"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "Consumo flexible"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__historical
@@ -114,6 +126,8 @@ msgstr "Fecha historificación"
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
+"Si se define una variante de producto, la LdM está disponible solo para ese "
+"producto."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__active_draft
@@ -135,7 +149,7 @@ msgstr "Version LdM"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "Disponibilidad de fabricación"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -151,48 +165,48 @@ msgstr "Versiones antiguas"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Tipo de operación"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__operation_ids
 msgid "Operations"
-msgstr ""
+msgstr "Operaciones"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__previous_bom_id
 msgid "Previous BoM"
-msgstr ""
+msgstr "LdM anterior"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante de producto"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Referencia"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__state
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
@@ -206,6 +220,9 @@ msgid ""
 "If the BOM contains operations, make sure the work center capacity is "
 "accurate."
 msgstr ""
+"Esta debe ser la cantidad mínima en la que este producto puede fabricarse. "
+"Si la LdM contiene operaciones, asegúrese de que la capacidad del centro de "
+"trabajo sea correcta."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__active_draft
@@ -219,7 +236,7 @@ msgstr ""
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidad de medida"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_uom_id
@@ -227,6 +244,8 @@ msgid ""
 "Unit of Measure (Unit of Measure) is the unit of measurement for the "
 "inventory control"
 msgstr ""
+"La Unidad de medida (Unidad de medida) es la unidad de medición para el "
+"control de inventario"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__version
@@ -246,6 +265,10 @@ msgid ""
 "operation type. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
+"Cuando un abastecimiento tiene una ruta 'producir' con un tipo de operación "
+"definido, intentará crear una Orden de Fabricación para ese producto usando "
+"una LdM del mismo tipo de operación. Esto permite definir reglas de stock "
+"que activan diferentes órdenes de fabricación con diferentes LdMs."
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -253,6 +276,8 @@ msgid ""
 "YYou will activate the BoM, then you won't be able to edit it after this. "
 "Are you sure you want to proceed?"
 msgstr ""
+"Va a activar la LdM, y no podrá editarla después. ¿Está seguro de que desea "
+"continuar?"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -277,6 +302,8 @@ msgid ""
 "You will activate the BoM, then you won't be able to edit it after this. Are "
 "you sure you want to proceed?"
 msgstr ""
+"Va a activar la LdM y no podrá editarla después. ¿Está seguro de que desea "
+"continuar?"
 
 #~ msgid "Group By..."
 #~ msgstr "Agrupar por..."
