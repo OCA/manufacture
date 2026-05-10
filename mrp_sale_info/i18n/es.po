@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: manufacture (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-12 23:17+0000\n"
-"PO-Revision-Date: 2023-07-10 10:08+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-05-10 11:46+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-9-0/"
 "language/es/)\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__commitment_date
@@ -47,7 +47,7 @@ msgstr "Orden de producción"
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_sale_order_line__mrp_production_ids
 msgid "Manufacturing orders"
-msgstr ""
+msgstr "Órdenes de fabricación"
 
 #. module: mrp_sale_info
 #: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
@@ -63,17 +63,17 @@ msgstr "Pedido de venta"
 #. module: mrp_sale_info
 #: model_terms:ir.ui.view,arch_db:mrp_sale_info.view_mrp_production_filter
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venta"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línea de pedido de venta"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de existencias"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
