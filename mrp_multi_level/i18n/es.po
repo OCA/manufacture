@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-20 11:12+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-05-10 11:46+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_multi_level
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
@@ -72,7 +72,7 @@ msgstr "Inventario MRP asociado"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_move__bom_id
 msgid "Bom"
-msgstr ""
+msgstr "LdM"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields.selection,name:mrp_multi_level.selection__mrp_inventory_procure_item__supply_method__buy
@@ -803,6 +803,9 @@ msgid ""
 "Quantity on Request for Quotation.\n"
 "This quantity is included in the supply quantity but it is not confirmed yet."
 msgstr ""
+"Cantidad en solicitud de presupuesto.\n"
+"Esta cantidad está incluida en la cantidad de suministro pero aún no está "
+"confirmada."
 
 #. module: mrp_multi_level
 #: model:ir.model,name:mrp_multi_level.model_stock_quant
@@ -822,12 +825,12 @@ msgstr "Fecha de publicación"
 #. module: mrp_multi_level
 #: model_terms:ir.ui.view,arch_db:mrp_multi_level.mrp_inventory_list
 msgid "Requests for Quotation"
-msgstr ""
+msgstr "Solicitudes de presupuesto"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__rfq_qty
 msgid "RfQ"
-msgstr ""
+msgstr "SdP"
 
 #. module: mrp_multi_level
 #: model:ir.actions.act_window,name:mrp_multi_level.action_mrp_multi_level
@@ -927,7 +930,7 @@ msgstr "Suministro"
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_product_mrp_area__supply_bom_id
 msgid "Supply BoM"
-msgstr ""
+msgstr "LdM de suministro"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,field_description:mrp_multi_level.field_mrp_inventory__supply_method
