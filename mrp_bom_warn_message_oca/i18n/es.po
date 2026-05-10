@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-20 10:49+0000\n"
-"PO-Revision-Date: 2026-02-20 10:49+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-05-10 11:46+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_warn_message_oca
 #: model:ir.model.fields,help:mrp_bom_warn_message_oca.field_mrp_bom__production_warn
@@ -37,6 +38,8 @@ msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
 "                        &amp;nbsp;"
 msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"&amp;nbsp;"
 
 #. module: mrp_bom_warn_message_oca
 #: model:res.groups,name:mrp_bom_warn_message_oca.group_warning_mrp_bom
