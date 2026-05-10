@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2021-02-22 08:29+0100\n"
-"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"PO-Revision-Date: 2026-05-10 11:46+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/es/)\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__created_inspections
@@ -40,11 +40,13 @@ msgid ""
 "If checked, an inspection per used lot/serial number will be created in "
 "stock pickings."
 msgstr ""
+"Si está marcado, se creará una inspección por cada lote/número de serie "
+"utilizado en los albaranes de stock."
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_trigger__inspection_per_lot
 msgid "Inspection Per Lot"
-msgstr ""
+msgstr "Inspección por lote"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__qc_inspections_ids
@@ -159,7 +161,7 @@ msgstr "Inspecciones desde albarán falladas"
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de existencias"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking
