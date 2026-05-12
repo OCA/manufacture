@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_propagate_lot_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-26 07:52+0000\n"
+"PO-Revision-Date: 2026-05-26 07:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_bom_line_id
+msgid "BoM line propagating lot"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_bom_byproduct
+msgid "Byproduct"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,help:mrp_propagate_lot_info.field_product_category__mrp_propagate_lot_profile_id
+msgid ""
+"Default lot propagation profile for consumed components in manufacturing."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.actions.act_window,name:mrp_propagate_lot_info.mrp_lot_info_propagation_profile_action
+#: model:ir.ui.menu,name:mrp_propagate_lot_info.mrp_lot_info_propagation_profile_menu
+msgid "Lot Info Propagation Profiles"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid "Lot field propagation requires a finished product lot/serial number."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid ""
+"Lot field propagation requires exactly one consumed lot on the configured "
+"component."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_line__propagate_lot_field_ids
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__propagate_lot_field_ids
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_field_ids
+msgid "Lot fields to propagate"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_line__propagate_lot_profile_id
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_profile_id
+msgid "Lot propagation profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_lot_info_propagation_profile
+msgid "MRP Lot Info Propagation Profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_product_category__mrp_propagate_lot_profile_id
+msgid "MRP Lot Propagation Profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__name
+msgid "Name"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_bom_line.py:0
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid ""
+"Only one BoM line can propagate lot information to the finished product."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_bom_line.py:0
+msgid ""
+"Only tracked components can propagate lot information to the finished "
+"product."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_byproduct__propagate_lot_info
+msgid "Propagate Lot Info"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,help:mrp_propagate_lot_info.field_mrp_bom_byproduct__propagate_lot_info
+msgid "Propagate the configured component lot values to this by-product lot."
+msgstr ""

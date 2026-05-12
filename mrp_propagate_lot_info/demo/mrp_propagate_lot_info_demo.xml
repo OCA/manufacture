@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo noupdate="1">
+    <record
+        id="mrp_lot_info_propagation_profile_meat_traceability"
+        model="mrp.lot.info.propagation.profile"
+    >
+        <field name="name">Meat traceability</field>
+        <field
+            name="propagate_lot_field_ids"
+            eval="[(6, 0, [ref('stock.field_stock_lot__ref')])]"
+        />
+    </record>
+
+    <record id="product_category_traceable_meat_cuts" model="product.category">
+        <field name="name">Meat / Traceable Cuts</field>
+        <field
+            name="mrp_propagate_lot_profile_id"
+            ref="mrp_lot_info_propagation_profile_meat_traceability"
+        />
+    </record>
+
+    <record id="product_product_beef_rib_rack" model="product.product">
+        <field name="name">Beef Rib Rack</field>
+        <field name="categ_id" ref="product_category_traceable_meat_cuts" />
+        <field name="is_storable" eval="True" />
+        <field name="tracking">lot</field>
+        <field name="uom_id" ref="uom.product_uom_kgm" />
+        <field name="uom_po_id" ref="uom.product_uom_kgm" />
+    </record>
+
+    <record id="product_product_retail_rib_pack" model="product.product">
+        <field name="name">Retail Rib Pack</field>
+        <field name="categ_id" ref="product_category_traceable_meat_cuts" />
+        <field name="is_storable" eval="True" />
+        <field name="tracking">lot</field>
+        <field name="uom_id" ref="uom.product_uom_kgm" />
+        <field name="uom_po_id" ref="uom.product_uom_kgm" />
+        <field
+            name="route_ids"
+            eval="[(6, 0, [ref('mrp.route_warehouse0_manufacture')])]"
+        />
+    </record>
+
+    <record id="product_product_ribeye_cap_trim" model="product.product">
+        <field name="name">Ribeye Cap Trim</field>
+        <field name="categ_id" ref="product_category_traceable_meat_cuts" />
+        <field name="is_storable" eval="True" />
+        <field name="tracking">lot</field>
+        <field name="uom_id" ref="uom.product_uom_kgm" />
+        <field name="uom_po_id" ref="uom.product_uom_kgm" />
+    </record>
+
+    <record id="product_product_short_rib_cut" model="product.product">
+        <field name="name">Short Rib Cut</field>
+        <field name="categ_id" ref="product_category_traceable_meat_cuts" />
+        <field name="is_storable" eval="True" />
+        <field name="tracking">lot</field>
+        <field name="uom_id" ref="uom.product_uom_kgm" />
+        <field name="uom_po_id" ref="uom.product_uom_kgm" />
+    </record>
+
+    <record id="mrp_bom_retail_rib_pack" model="mrp.bom">
+        <field
+            name="product_tmpl_id"
+            ref="product_product_retail_rib_pack_product_template"
+        />
+        <field name="product_uom_id" ref="uom.product_uom_kgm" />
+        <field name="product_qty">1.0</field>
+        <field name="type">normal</field>
+    </record>
+
+    <record id="mrp_bom_retail_rib_pack_line_rib_rack" model="mrp.bom.line">
+        <field name="bom_id" ref="mrp_bom_retail_rib_pack" />
+        <field name="product_id" ref="product_product_beef_rib_rack" />
+        <field name="product_qty">1.0</field>
+        <field name="product_uom_id" ref="uom.product_uom_kgm" />
+    </record>
+
+    <record id="mrp_bom_retail_rib_pack_byproduct_cap_trim" model="mrp.bom.byproduct">
+        <field name="bom_id" ref="mrp_bom_retail_rib_pack" />
+        <field name="product_id" ref="product_product_ribeye_cap_trim" />
+        <field name="product_qty">0.2</field>
+        <field name="product_uom_id" ref="uom.product_uom_kgm" />
+        <field name="propagate_lot_info" eval="True" />
+    </record>
+
+    <record id="mrp_bom_retail_rib_pack_byproduct_short_rib" model="mrp.bom.byproduct">
+        <field name="bom_id" ref="mrp_bom_retail_rib_pack" />
+        <field name="product_id" ref="product_product_short_rib_cut" />
+        <field name="product_qty">0.5</field>
+        <field name="product_uom_id" ref="uom.product_uom_kgm" />
+        <field name="propagate_lot_info" eval="True" />
+    </record>
+</odoo>
