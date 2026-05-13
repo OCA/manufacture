@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.fields import first
 
 
 class QcInspection(models.Model):
@@ -48,11 +47,9 @@ class QcInspection(models.Model):
         )
         for inspection in self.filtered("object_id"):
             if inspection.object_id._name == "stock.move":
-                inspection.lot_id = first(
-                    move_lines.filtered(
-                        lambda x, ins=inspection: x.move_id == ins.object_id
-                    )
-                ).lot_id
+                inspection.lot_id = move_lines.filtered(
+                    lambda x, ins=inspection: x.move_id == ins.object_id
+                )[:1].lot_id
             elif inspection.object_id._name == "stock.lot":
                 inspection.lot_id = inspection.object_id
 

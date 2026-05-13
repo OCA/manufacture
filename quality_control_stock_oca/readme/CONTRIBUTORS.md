@@ -15,3 +15,4 @@
   - Yoshi Tashiro
 - [Solvos](https://www.solvos.es):
   - Dante Pereyra \<<dante.pereyra@solvos.es>\>
+- [@Hotdgo9](https://github.com/Hotdgo9)

@@ -56,7 +56,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             .with_context(default_picking_type_id=cls.picking_type.id)
         )
         picking_form.partner_id = cls.partner1
-        with picking_form.move_ids_without_package.new() as move_form:
+        with picking_form.move_ids.new() as move_form:
             move_form.product_id = cls.product
             move_form.product_uom_qty = 2
         cls.picking1 = picking_form.save()
@@ -388,7 +388,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": "%s,%d" % (self.picking1._name, self.picking1.id),
+                "object_id": f"{self.picking1._name},{self.picking1.id}",
             }
         )
         self.assertEqual(self.inspection1.picking_id, self.picking1)
@@ -398,8 +398,10 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": "%s,%d"
-                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "object_id": (
+                    f"{self.picking1.move_ids[:1]._name},"
+                    f"{self.picking1.move_ids[:1].id}"
+                ),
             }
         )
         self.inspection1.onchange_object_id()

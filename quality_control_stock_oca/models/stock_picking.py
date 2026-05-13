@@ -35,17 +35,16 @@ class StockPicking(models.Model):
         data = (
             self.env["qc.inspection"]
             .sudo()
-            .read_group(
-                [("id", "in", self.mapped("qc_inspections_ids").ids)],
-                ["picking_id", "state"],
-                ["picking_id", "state"],
-                lazy=False,
+            ._read_group(
+                domain=[("id", "in", self.mapped("qc_inspections_ids").ids)],
+                groupby=["picking_id", "state"],
+                aggregates=["__count"],
             )
         )
         picking_data = {}
-        for d in data:
-            picking_data.setdefault(d["picking_id"][0], {}).setdefault(d["state"], 0)
-            picking_data[d["picking_id"][0]][d["state"]] += d["__count"]
+        for picking, state, count in data:
+            picking_data.setdefault(picking.id, {}).setdefault(state, 0)
+            picking_data[picking.id][state] += count
         for picking in self:
             count_data = picking_data.get(picking.id, {})
             picking.created_inspections = sum(count_data.values())

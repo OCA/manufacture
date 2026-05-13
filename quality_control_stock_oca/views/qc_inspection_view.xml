@@ -43,7 +43,7 @@
                 <field name="picking_origin" string="Picking Source Document" />
                 <field name="lot_id" groups="stock.group_production_lot" />
             </field>
-            <group expand="0" position="inside">
+            <group position="inside">
                 <filter
                     string="Picking"
                     domain="[]"
@@ -86,7 +86,7 @@
                 <field name="picking_id" />
                 <field name="lot_id" />
             </field>
-            <group expand="0" position="inside">
+            <group position="inside">
                 <filter
                     string="Picking"
                     domain="[]"
