@@ -291,7 +291,7 @@ class QcInspectionLine(models.Model):
                     [x.name for x in insp_line.possible_ql_values if x.ok]
                 )
             else:
-                if self.env.ref("uom.group_uom") in self.env.user.groups_id:
+                if self.env.ref("uom.group_uom") in self.env.user.group_ids:
                     min_val = formatLang(self.env, insp_line.min_value)
                     max_val = formatLang(self.env, insp_line.max_value)
                     insp_line.valid_values = f"{min_val} ~ {max_val}"
@@ -337,14 +337,31 @@ class QcInspectionLine(models.Model):
         help="UoM for minimum and maximum values for a quantitative question.",
     )
     test_uom_category = fields.Many2one(
-        comodel_name="uom.category", related="test_uom_id.category_id", store=True
+        comodel_name="uom.uom",
+        string="Test UoM Reference",
+        compute="_compute_test_uom_category",
+        store=True,
+        help="Root unit of the test UoM's family. Used to constrain the "
+        "inspection UoM choice to units in the same measurement family. "
+        "In Odoo 19, uom.category was removed in favor of a self-"
+        "referential uom.uom tree via relative_uom_id; the root unit "
+        "now serves as the implicit category.",
     )
     uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="UoM",
-        domain="[('category_id', '=', test_uom_category)]",
+        domain="[('id', 'child_of', test_uom_category)]",
         help="UoM of the inspection value for a quantitative question.",
     )
+
+    @api.depends("test_uom_id")
+    def _compute_test_uom_category(self):
+        for line in self:
+            uom = line.test_uom_id
+            while uom.relative_uom_id:
+                uom = uom.relative_uom_id
+            line.test_uom_category = uom
+
     question_type = fields.Selection(
         [("qualitative", "Qualitative"), ("quantitative", "Quantitative")],
     )

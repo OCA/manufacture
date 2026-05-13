@@ -13,4 +13,5 @@
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
 - [Serpent Consulting Services Pvt. Ltd.](https://www.serpentcs.com)
+- [@Hotdgo9](https://github.com/Hotdgo9)
 
