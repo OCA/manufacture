@@ -334,7 +334,7 @@ class QcInspectionLine(models.Model):
     test_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Test UoM",
-        help="UoM for minimum and maximum values for a quantitative " "question.",
+        help="UoM for minimum and maximum values for a quantitative question.",
     )
     test_uom_category = fields.Many2one(
         comodel_name="uom.category", related="test_uom_id.category_id", store=True
