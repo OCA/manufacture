@@ -64,9 +64,9 @@ class QcTestQuestion(models.Model):
                 raise exceptions.ValidationError(
                     self.env._(
                         "Question '%s' is not valid: "
-                        "you have to mark at least one value as OK."
+                        "you have to mark at least one value as OK.",
+                        tc.display_name,
                     )
-                    % tc.display_name
                 )
 
     @api.constrains("min_value", "max_value")
@@ -76,9 +76,9 @@ class QcTestQuestion(models.Model):
                 raise exceptions.ValidationError(
                     self.env._(
                         "Question '%s' is not valid: "
-                        "minimum value can't be higher than maximum value."
+                        "minimum value can't be higher than maximum value.",
+                        tc.display_name,
                     )
-                    % tc.display_name
                 )
 
     sequence = fields.Integer(required=True, default="10")

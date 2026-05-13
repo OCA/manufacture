@@ -274,14 +274,11 @@
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
             <search string="Search inspection">
-                <group>
-                    <field name="name" />
-                    <field name="user" />
-                    <field name="object_id" />
-                    <field name="product_id" />
-                    <field name="test" />
-                </group>
-                <newline />
+                <field name="name" />
+                <field name="user" />
+                <field name="object_id" />
+                <field name="product_id" />
+                <field name="test" />
                 <filter
                     string="Correct"
                     name="correct"
@@ -292,11 +289,10 @@
                     name="incorrect"
                     domain="[('success', '=', False)]"
                 />
-                <newline />
                 <separator />
                 <filter name="plan_date" string="Plan Date" date="date" />
                 <filter name="date_done" string="Completion Date" date="date_done" />
-                <group expand="0" string="Group by...">
+                <group>
                     <filter
                         string="Reference"
                         name="group_by_object_id"
@@ -467,13 +463,10 @@
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
             <search string="Search inspection line">
-                <group>
-                    <field name="name" />
-                    <field name="inspection_id" />
-                    <field name="product_id" />
-                    <field name="success" />
-                </group>
-                <newline />
+                <field name="name" />
+                <field name="inspection_id" />
+                <field name="product_id" />
+                <field name="success" />
                 <filter
                     string="Correct"
                     name="correct"
@@ -484,8 +477,7 @@
                     name="incorrect"
                     domain="[('success', '=', False)]"
                 />
-                <newline />
-                <group expand="0" string="Group by...">
+                <group>
                     <filter
                         string="Inspection"
                         name="group_by_inspection_id"

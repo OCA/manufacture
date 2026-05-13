@@ -23,14 +23,45 @@ class TestQualityControlOcaBase(BaseCommon):
         cls.question_model = cls.env["qc.test.question"]
         cls.wizard_model = cls.env["qc.inspection.set.test"]
         cls.qc_trigger = cls.env["qc.trigger"].create({"name": "Test Trigger"})
-        cls.test = cls.env.ref("quality_control_oca.qc_test_1")
-        cls.val_ok = cls.env.ref("quality_control_oca.qc_test_question_value_1")
-        cls.val_ko = cls.env.ref("quality_control_oca.qc_test_question_value_2")
-        cls.qn_question = cls.env.ref("quality_control_oca.qc_test_question_2")
         cls.cat_generic = cls.env.ref(
             "quality_control_oca.qc_test_template_category_generic"
         )
-        cls.product = cls.env["product.product"].create({"name": "Test product"})
+        cls.test = cls.env["qc.test"].create(
+            {
+                "name": "Generic Test",
+                "active": True,
+                "category": cls.cat_generic.id,
+            }
+        )
+        qualitative_question = cls.question_model.create(
+            {
+                "name": "Overall quality",
+                "test": cls.test.id,
+                "type": "qualitative",
+            }
+        )
+        cls.val_ok = cls.env["qc.test.question.value"].create(
+            {"name": "Good", "ok": True, "test_line": qualitative_question.id}
+        )
+        cls.val_ko = cls.env["qc.test.question.value"].create(
+            {"name": "Bad", "ok": False, "test_line": qualitative_question.id}
+        )
+        cls.qn_question = cls.question_model.create(
+            {
+                "name": "Size",
+                "test": cls.test.id,
+                "type": "quantitative",
+                "min_value": 1.0,
+                "max_value": 10.0,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+            }
+        )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test product",
+                "categ_id": cls.env.ref("product.product_category_goods").id,
+            }
+        )
         cls.inspection1 = cls.inspection_model.create(
             {
                 "name": "Test Inspection",
@@ -232,9 +263,7 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.assertTrue(inspection2.with_context(**uninstall).unlink())
 
     def test_qc_inspection_product(self):
-        self.inspection1.write(
-            {"object_id": "%s,%d" % (self.product._name, self.product.id)}
-        )
+        self.inspection1.write({"object_id": f"{self.product._name},{self.product.id}"})
         self.assertEqual(self.inspection1.product_id, self.product)
 
     def test_qc_test_question_constraints(self):
