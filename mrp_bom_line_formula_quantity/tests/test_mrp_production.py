@@ -1,8 +1,6 @@
 #  Copyright 2024 Simone Rubino - Aion Tech
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.fields import first
-
 from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
@@ -14,7 +12,7 @@ class TestMRPProduction(TestMrpCommon):
         # Arrange
         formula_quantity = 10
         bom = self.bom_1.copy()
-        formula_bom_line = first(bom.bom_line_ids)
+        formula_bom_line = bom.bom_line_ids[:1]
         formula_bom_line["quantity_formula"] = f"quantity = {formula_quantity}"
         # pre-condition
         self.assertNotEqual(formula_bom_line.product_qty, formula_quantity)

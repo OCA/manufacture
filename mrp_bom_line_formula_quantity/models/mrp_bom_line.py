@@ -77,9 +77,8 @@ class MRPBomLine(models.Model):
             )
             safe_eval(
                 formula,
-                globals_dict=values,
+                values,
                 mode="exec",
-                nocopy=True,
             )
             quantity = values.get("quantity", 0)
         else:
