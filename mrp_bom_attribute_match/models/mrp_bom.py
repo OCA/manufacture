@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_round
 
@@ -23,12 +23,6 @@ class MrpBomLine(models.Model):
         compute="_compute_match_on_attribute_ids",
         store=True,
     )
-    product_uom_category_id = fields.Many2one(
-        "uom.category",
-        related=None,
-        compute="_compute_product_uom_category_id",
-        compute_sudo=True,
-    )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -46,49 +40,19 @@ class MrpBomLine(models.Model):
                 )
         return super().create(vals_list)
 
-    @api.depends("product_id", "component_template_id")
-    def _compute_product_uom_category_id(self):
-        """Compute the product_uom_category_id field.
-
-        This is the product category that will be allowed to use on the product_uom_id
-        field, already covered by core module:
-        https://github.com/odoo/odoo/blob/331b9435c/addons/mrp/models/mrp_bom.py#L372
-
-        In core, though, this field is related to "product_id.uom_id.category_id".
-        Here we make it computed to choose between component_template_id and
-        product_id, depending on which one is set
-        """
-        # pylint: disable=missing-return
-        # NOTE: To play nice with other modules trying to do the same:
-        #   1) Set the field value as if it were a related field (core behaviour)
-        #   2) Call super (if it's there)
-        #   3) Update only the records we want
-        for rec in self:
-            rec.product_uom_category_id = rec.product_id.uom_id.category_id
-        if hasattr(super(), "_compute_product_uom_category_id"):
-            super()._compute_product_uom_category_id()
-        for rec in self:
-            if rec.component_template_id:
-                rec.product_uom_category_id = (
-                    rec.component_template_id.uom_id.category_id
-                )
-
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
         if self.component_template_id:
             if self.product_id:
                 self.product_backup_id = self.product_id
                 self.product_id = False
-            if (
-                self.product_uom_id.category_id
-                != self.component_template_id.uom_id.category_id
-            ):
+            if not self.product_uom_id:
                 self.product_uom_id = self.component_template_id.uom_id
         else:
             if self.product_backup_id:
                 self.product_id = self.product_backup_id
                 self.product_backup_id = False
-            if self.product_uom_id.category_id != self.product_id.uom_id.category_id:
+            if not self.product_uom_id:
                 self.product_uom_id = self.product_id.uom_id
 
     @api.depends("component_template_id")
@@ -114,7 +78,7 @@ class MrpBomLine(models.Model):
             prod_attrs = bom_prod.valid_product_template_attribute_line_ids.attribute_id
             if not comp_attrs:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "No match on attribute has been detected for Component "
                         "(Product Template) %s",
                         cmp_tmpl.display_name,
@@ -122,7 +86,7 @@ class MrpBomLine(models.Model):
                 )
             if not all(attr in prod_attrs for attr in comp_attrs):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Some attributes of the dynamic component are not included into"
                         " production product attributes."
                     )
@@ -141,7 +105,7 @@ class MrpBomLine(models.Model):
             same_attrs = self.env["product.attribute"].browse(same_attr_ids)
             if same_attrs:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You cannot use an attribute value for attribute(s) "
                         "%(attributes)s in the field “Apply on Variants” as it's the "
                         "same attribute used in the field “Match on Attribute” related "
@@ -281,7 +245,7 @@ class MrpBom(models.Model):
                         graph,
                     ):
                         raise UserError(
-                            _(
+                            self.env._(
                                 "Recursion error!  A product with a Bill of Material "
                                 "should not have itself in its BoM or child BoMs!"
                             )
@@ -350,6 +314,7 @@ class MrpBom(models.Model):
                             "=",
                             ptav.product_attribute_value_id.id,
                         ),
+                        ("ptav_active", "=", True),
                     ]
                 )
             if len(combination) == 0:
