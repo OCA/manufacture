@@ -2,7 +2,6 @@
 #  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.fields import first
 
 from odoo.addons.mrp.tests.common import TestMrpCommon
 
@@ -12,7 +11,7 @@ class TestMRPBoMLine(TestMrpCommon):
         """The formula of a BoM line is checked for invalid Python syntax."""
         # Arrange
         bom = self.bom_1.copy()
-        bom_line = first(bom.bom_line_ids)
+        bom_line = bom.bom_line_ids[:1]
 
         # Act & Assert for an invalid syntax
         with self.assertRaises(ValidationError) as ve:
@@ -23,7 +22,7 @@ class TestMRPBoMLine(TestMrpCommon):
         """The formula of a BoM line is checked for runtime errors."""
         # Arrange
         bom = self.bom_1.copy()
-        bom_line = first(bom.bom_line_ids)
+        bom_line = bom.bom_line_ids[:1]
 
         # Act & Assert for an invalid function call (NameError)
         with self.assertRaises(ValidationError) as ve:
@@ -39,7 +38,7 @@ class TestMRPBoMLine(TestMrpCommon):
         """The formula of a BoM line is correctly validated for a valid function."""
         # Arrange
         bom = self.bom_1.copy()
-        bom_line = first(bom.bom_line_ids)
+        bom_line = bom.bom_line_ids[:1]
 
         # Act & Assert for a valid formula with math.ceil()
         try:

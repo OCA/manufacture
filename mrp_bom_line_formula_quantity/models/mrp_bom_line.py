@@ -58,9 +58,8 @@ class MRPBomLine(models.Model):
                     )
                     safe_eval(
                         quantity_formula,
-                        globals_dict=test_values,
+                        test_values,
                         mode="exec",
-                        nocopy=True,
                     )
                 except Exception as e:
                     raise ValidationError(
@@ -110,9 +109,8 @@ class MRPBomLine(models.Model):
             )
             safe_eval(
                 formula,
-                globals_dict=values,
+                values,
                 mode="exec",
-                nocopy=True,
             )
             quantity = values.get("quantity", 0)
         else:
