@@ -13,7 +13,6 @@ class TestMrpBomLine(TestMrpBomAttributeMatchBase):
         cls.product_plastic.write(
             {
                 "uom_id": cls.uom_dozen.id,
-                "uom_po_id": cls.uom_dozen.id,
             }
         )
 

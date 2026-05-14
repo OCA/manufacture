@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import Command, api, models
+from odoo.api import NewId
 
 
 class ReportBomStructure(models.AbstractModel):
@@ -65,6 +66,6 @@ class ReportBomStructure(models.AbstractModel):
         if has_template_lines:
             for component in data.get("components", []):
                 for key, value in component.items():
-                    if isinstance(value, models.NewId):
+                    if isinstance(value, NewId):
                         component[key] = value.origin
         return data

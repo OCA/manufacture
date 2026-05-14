@@ -1,4 +1,4 @@
-from odoo import _, api, models
+from odoo import Command, api, models
 from odoo.exceptions import UserError
 
 
@@ -20,7 +20,7 @@ class ProductTemplate(models.Model):
                     diff = rec.env["product.attribute"].browse(diff_ids)
                     if diff:
                         raise UserError(
-                            _(
+                            self.env._(
                                 "The attributes you're trying to remove are used in "
                                 "the BoM as a match with Component (Product Template). "
                                 "To remove these attributes, first remove the BOM line "
@@ -47,7 +47,7 @@ class ProductTemplate(models.Model):
                 if len(diff) > 0:
                     attr_recs = self.env["product.attribute"].browse(diff)
                     raise UserError(
-                        _(
+                        self.env._(
                             "This product template is used as a component in the "
                             "BOMs for %(bom)s and attribute(s) %(attributes)s is "
                             "not present in all such product(s), and this would "
@@ -65,3 +65,33 @@ class ProductTemplate(models.Model):
         if bom_lines:
             return bom_lines.mapped("bom_id")
         return False
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    def _compute_bom_price(self, bom, boms_to_recompute=False, byproduct_bom=False):
+        self.ensure_one()
+        # OVERRIDE to fill in the `line.product_id` if a component template is used.
+        # To avoid a complete override, we HACK the bom by replacing it with a virtual
+        # record, and modifying it's lines on-the-fly.
+        has_template_lines = any(
+            line.component_template_id for line in bom.bom_line_ids
+        )
+        if has_template_lines:
+            bom = bom.new(origin=bom)
+            to_ignore_line_ids = []
+            for line in bom.bom_line_ids:
+                if line._skip_bom_line(self) or not line.component_template_id:
+                    continue
+                line_product = bom._get_component_template_product(
+                    line, self, line.product_id
+                )
+                if not line_product:
+                    to_ignore_line_ids.append(line.id)
+                    continue
+                else:
+                    line.product_id = line_product
+            if to_ignore_line_ids:
+                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
+        return super()._compute_bom_price(bom, boms_to_recompute, byproduct_bom)

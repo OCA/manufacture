@@ -134,6 +134,74 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
     #     self.mo_sword = mo_form.save()
     #     self.mo_sword.action_confirm()
 
+    def test_check_product_with_component_change_allowed(self):
+        # The sword BoM has a line with component_template_id=product_plastic,
+        # which carries the "Colour" attribute. That attribute is therefore
+        # present in match_on_attribute_ids of the bom line and must remain on
+        # the sword template. Replacing it with another attribute (so the
+        # template still has attributes, just not Colour) must raise.
+        bom_line = self.bom_id.bom_line_ids.filtered("match_on_attribute_ids")
+        self.assertTrue(bom_line)
+        self.assertIn(self.product_attribute, bom_line.match_on_attribute_ids)
+        other_attr = self.env["product.attribute"].create(
+            {"name": "Shape", "display_type": "radio", "create_variant": "always"}
+        )
+        self.env["product.attribute.value"].create(
+            [
+                {"name": "Round", "attribute_id": other_attr.id},
+                {"name": "Square", "attribute_id": other_attr.id},
+            ]
+        )
+        with self.assertRaisesRegex(
+            UserError,
+            r"The attributes you're trying to remove are used in the BoM as a "
+            r"match with Component \(Product Template\)\.",
+        ):
+            self.product_sword.write(
+                {
+                    "attribute_line_ids": [
+                        Command.delete(self.sword_attrs.id),
+                        Command.create(
+                            {
+                                "attribute_id": other_attr.id,
+                                "value_ids": [Command.set(other_attr.value_ids.ids)],
+                            }
+                        ),
+                    ]
+                }
+            )
+
+    def test_check_product_with_component_change_allowed_no_variant(self):
+        # Attributes with create_variant == "no_variant" are ignored by the
+        # constraint: removing such an attribute from the product template
+        # must not raise even when present on a component template.
+        no_variant_attr = self.env["product.attribute"].create(
+            {
+                "name": "Size",
+                "display_type": "radio",
+                "create_variant": "no_variant",
+            }
+        )
+        self.env["product.attribute.value"].create(
+            [
+                {"name": "S", "attribute_id": no_variant_attr.id},
+                {"name": "M", "attribute_id": no_variant_attr.id},
+            ]
+        )
+        size_line = self.env["product.template.attribute.line"].create(
+            {
+                "attribute_id": no_variant_attr.id,
+                "product_tmpl_id": self.product_sword.id,
+                "value_ids": [Command.set(no_variant_attr.value_ids.ids)],
+            }
+        )
+        # Removing the no_variant attribute line from sword should succeed
+        # (no UserError from _check_product_with_component_change_allowed).
+        size_line.unlink()
+        self.assertNotIn(
+            no_variant_attr, self.product_sword.attribute_line_ids.attribute_id
+        )
+
     def test_bom_recursion(self):
         test_bom_3 = self.env["mrp.bom"].create(
             {

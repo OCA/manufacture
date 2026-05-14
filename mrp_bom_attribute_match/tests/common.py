@@ -91,7 +91,12 @@ class TestMrpBomAttributeMatchBase(BaseCommon):
                 "value_ids": [Command.set(cls.product_attribute.value_ids.ids)],
             }
         )
-        cls.env.ref("uom.group_uom").write({"users": [(Command.link(cls.env.user.id))]})
+        cls.env.ref("uom.group_uom").write(
+            {"user_ids": [(Command.link(cls.env.user.id))]}
+        )
+        cls.env.ref("product.group_product_variant").write(
+            {"user_ids": [(Command.link(cls.env.user.id))]}
+        )
         # Create boms
         cls.bom_id = cls._create_bom(
             cls.product_sword,
