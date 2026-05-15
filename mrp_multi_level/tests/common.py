@@ -822,6 +822,20 @@ class TestMrpMultiLevelCommon(TransactionCase):
         product_4b.default_code = "product.product_product_4b"
         product_4c.default_code = "product.product_product_4c"
 
+        # Resolve product.template.attribute.value (PTAV) records for product_4.
+        # `attr1_v1` and friends are `product.attribute.value` (PAV) records;
+        # `bom_product_template_attribute_value_ids` requires PTAV ids, which are
+        # per-template and auto-created when product_4 is created above.
+        def _ptav(pav):
+            return product_4.attribute_line_ids.product_template_value_ids.filtered(
+                lambda v: v.product_attribute_value_id == pav
+            )
+
+        ptav_attr1_v1 = _ptav(attr1_v1)
+        ptav_attr1_v2 = _ptav(attr1_v2)
+        ptav_attr2_v1 = _ptav(attr2_v1)
+        ptav_attr2_v2 = _ptav(attr2_v2)
+
         # Create MRP Areas for products
         products_to_area = [
             "FP-1",
@@ -1072,7 +1086,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "product_uom_id": uom_unit.id,
                 "sequence": 1,
                 "bom_id": bom_p4.id,
-                "bom_product_template_attribute_value_ids": [(6, 0, [attr1_v1.id])],
+                "bom_product_template_attribute_value_ids": [
+                    (6, 0, [ptav_attr1_v1.id])
+                ],
             }
         )
         cls.env["mrp.bom.line"].create(
@@ -1082,7 +1098,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "product_uom_id": uom_unit.id,
                 "sequence": 2,
                 "bom_id": bom_p4.id,
-                "bom_product_template_attribute_value_ids": [(6, 0, [attr1_v2.id])],
+                "bom_product_template_attribute_value_ids": [
+                    (6, 0, [ptav_attr1_v2.id])
+                ],
             }
         )
         cls.env["mrp.bom.line"].create(
@@ -1092,7 +1110,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "product_uom_id": uom_unit.id,
                 "sequence": 3,
                 "bom_id": bom_p4.id,
-                "bom_product_template_attribute_value_ids": [(6, 0, [attr2_v1.id])],
+                "bom_product_template_attribute_value_ids": [
+                    (6, 0, [ptav_attr2_v1.id])
+                ],
             }
         )
         cls.env["mrp.bom.line"].create(
@@ -1102,7 +1122,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "product_uom_id": uom_unit.id,
                 "sequence": 4,
                 "bom_id": bom_p4.id,
-                "bom_product_template_attribute_value_ids": [(6, 0, [attr2_v2.id])],
+                "bom_product_template_attribute_value_ids": [
+                    (6, 0, [ptav_attr2_v2.id])
+                ],
             }
         )
 
