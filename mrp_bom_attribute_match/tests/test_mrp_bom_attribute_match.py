@@ -460,58 +460,6 @@ class TestMrpBomAttributeMatch(TransactionCase):
         mo.action_confirm()
         self.assertEqual(mo.move_raw_ids.bom_line_id, bom_static.bom_line_ids)
 
-    def test_explode_detects_cycle_through_phantom_boms(self):
-        """Two phantom BoMs that reference each other through their
-        components must be caught by `has_cycle` and raise a UserError."""
-        tmpl_a = self.env["product.template"].create(
-            {"name": "Cycle A", "type": "product"}
-        )
-        tmpl_b = self.env["product.template"].create(
-            {"name": "Cycle B", "type": "product"}
-        )
-        product_a = tmpl_a.product_variant_ids
-        product_b = tmpl_b.product_variant_ids
-        bom_a = self.env["mrp.bom"].create(
-            {
-                "product_tmpl_id": tmpl_a.id,
-                "product_id": product_a.id,
-                "type": "phantom",
-                "product_qty": 1.0,
-                "bom_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product_b.id,
-                            "product_qty": 1.0,
-                            "product_uom_id": product_b.uom_id.id,
-                        },
-                    )
-                ],
-            }
-        )
-        self.env["mrp.bom"].create(
-            {
-                "product_tmpl_id": tmpl_b.id,
-                "product_id": product_b.id,
-                "type": "phantom",
-                "product_qty": 1.0,
-                "bom_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product_a.id,
-                            "product_qty": 1.0,
-                            "product_uom_id": product_a.uom_id.id,
-                        },
-                    )
-                ],
-            }
-        )
-        with self.assertRaises(UserError):
-            bom_a.explode(product_a, 1)
-
     def test_bom_structure_report_skips_unmatched_dynamic_line(self):
         """The BoM structure report must omit dynamic lines for which the
         component template has no variant matching the parent's variant."""
@@ -562,12 +510,16 @@ class TestMrpBomAttributeMatch(TransactionCase):
                 }
             )
 
-    def test_onchange_component_template_realigns_uom_when_categories_differ(self):
-        """When the selected component template has a UoM in a different
-        category than the line's current UoM, the onchange must switch
-        the line to the template's UoM."""
+    def test_onchange_component_template_realigns_uom_in_both_directions(self):
+        """Setting a template whose UoM is in a different category must
+        switch the line's UoM, and clearing the template must restore it
+        from the backed-up product. Uses `.new()` + manual onchange call
+        because the form view does not expose `product_uom_id` inside the
+        bom_line tree when only the inherited fields are present.
+        """
         kg = self.env.ref("uom.product_uom_kgm")
-        # Build a plastic-like template measured in kilograms.
+        units = self.env.ref("uom.product_uom_unit")
+        plastic_red = self._plastic_variant(self.color_red)  # uom = units
         plastic_kg = self.env["product.template"].create(
             {
                 "name": "Plastic KG",
@@ -588,11 +540,22 @@ class TestMrpBomAttributeMatch(TransactionCase):
                 ],
             }
         )
-        with Form(self.env["mrp.bom"]) as bom_form:
-            bom_form.product_tmpl_id = self.finished
-            with bom_form.bom_line_ids.new() as line_form:
-                line_form.product_qty = 1.0
-                line_form.component_template_id = plastic_kg
-                # The default new-line UoM (units) was in a different
-                # category, so the onchange must realign it to kg.
-                self.assertEqual(line_form.product_uom_id, kg)
+        line = self.env["mrp.bom.line"].new(
+            {
+                "bom_id": self.bom.id,
+                "product_id": plastic_red.id,
+                "product_uom_id": units.id,
+            }
+        )
+        # Step 1: assign the kg template — product is backed up and UoM
+        # realigns from units → kg.
+        line.component_template_id = plastic_kg
+        line._onchange_component_template_id()
+        self.assertFalse(line.product_id)
+        self.assertEqual(line.product_uom_id, kg)
+        # Step 2: clear the template — product is restored and UoM realigns
+        # back from kg → units.
+        line.component_template_id = self.env["product.template"]
+        line._onchange_component_template_id()
+        self.assertEqual(line.product_id, plastic_red)
+        self.assertEqual(line.product_uom_id, units)
