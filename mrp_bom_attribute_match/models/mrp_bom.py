@@ -31,6 +31,25 @@ class MrpBomLine(models.Model):
         compute="_compute_product_uom_category_id",
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Inherit so that, when a bom line is created with only a
+        ``component_template_id`` and no explicit UoM, we pick the template's
+        UoM. Core mrp marks ``product_uom_id`` as required and its default
+        derives from ``product_id``, which is empty in this case.
+        """
+        for values in vals_list:
+            if (
+                not values.get("product_id")
+                and not values.get("product_uom_id")
+                and values.get("component_template_id")
+            ):
+                template = self.env["product.template"].browse(
+                    values["component_template_id"]
+                )
+                values["product_uom_id"] = template.uom_id.id
+        return super().create(vals_list)
+
     @api.onchange("component_template_id")
     def _onchange_component_template_id(self):
         component = self.component_template_id
@@ -96,8 +115,10 @@ class MrpBomLine(models.Model):
                         component.display_name,
                     )
                 )
-            # Compare via recordset subset operator (correct Odoo idiom)
-            if not (component_attrs <= product_attrs):
+            # NOTE: `<=`/`<` on Odoo recordsets compares the `_ids` tuples
+            # lexicographically, which is NOT a subset check. Use explicit
+            # `in` membership (which is well-defined by record id) instead.
+            if not all(attr in product_attrs for attr in component_attrs):
                 raise ValidationError(
                     _(
                         "Some attributes of the dynamic component are not included "
@@ -143,9 +164,10 @@ class MrpBom(models.Model):
             return line_product
 
         # Component attributes must be a subset of the parent product's.
+        # NOTE: do not use `<=` between recordsets — see `_check_component_attributes`.
         component_attrs = component.valid_product_template_attribute_line_ids.attribute_id
         product_attrs = bom_product.valid_product_template_attribute_line_ids.attribute_id
-        if not (component_attrs <= product_attrs):
+        if not all(attr in product_attrs for attr in component_attrs):
             _logger.info(
                 "Component skipped: component template '%s' attributes are not "
                 "included in product '%s' attributes.",
@@ -244,12 +266,13 @@ class MrpBom(models.Model):
         bom_lines = []
         for bom_line in self.bom_line_ids:
             line_product = bom_line.product_id
-            visited_templates.add(line_product.product_tmpl_id.id)
-            dependency_graph[product.product_tmpl_id.id].append(
-                line_product.product_tmpl_id.id
-            )
+            if line_product:
+                visited_templates.add(line_product.product_tmpl_id.id)
+                dependency_graph[product.product_tmpl_id.id].append(
+                    line_product.product_tmpl_id.id
+                )
+                pending_product_ids.add(line_product.id)
             bom_lines.append((bom_line, product, quantity, False))
-            pending_product_ids.add(line_product.id)
 
         refresh_product_boms()
         pending_product_ids.clear()
@@ -260,12 +283,8 @@ class MrpBom(models.Model):
             if current_line._skip_bom_line(current_product):
                 continue
 
-            line_quantity = current_qty * current_line.product_qty
-
-            if current_line.product_id not in product_boms:
-                refresh_product_boms()
-                pending_product_ids.clear()
-
+            # Resolve the dynamic component FIRST so the BoM lookup that
+            # follows sees the resolved variant.
             resolved_product = self._get_component_or_product_id(
                 current_line, current_product, current_line.product_id
             )
@@ -278,6 +297,13 @@ class MrpBom(models.Model):
             # before child lines were queued.
             if current_line.product_id != resolved_product:
                 current_line.product_id = resolved_product
+
+            line_quantity = current_qty * current_line.product_qty
+
+            if current_line.product_id not in product_boms:
+                pending_product_ids.add(current_line.product_id.id)
+                refresh_product_boms()
+                pending_product_ids.clear()
 
             child_bom = product_boms.get(current_line.product_id)
             if child_bom:
@@ -346,10 +372,10 @@ class MrpBom(models.Model):
 
         return boms_done, lines_done
 
-    @api.constrains("bom_line_ids")
+    @api.constrains("product_tmpl_id", "bom_line_ids")
     def _check_component_attributes(self):
         self.bom_line_ids._check_component_attributes()
 
-    @api.constrains("bom_line_ids")
+    @api.constrains("product_tmpl_id", "bom_line_ids")
     def _check_variants_validity(self):
         self.bom_line_ids._check_variants_validity()
