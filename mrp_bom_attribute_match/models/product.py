@@ -36,8 +36,7 @@ class ProductTemplate(models.Model):
             )
             for bom in using_boms:
                 bom_attrs = (
-                    bom.product_tmpl_id
-                    .valid_product_template_attribute_line_ids.attribute_id
+                    bom.product_tmpl_id.valid_product_template_attribute_line_ids.attribute_id
                 )
                 extra = template.attribute_line_ids.attribute_id - bom_attrs
                 if extra:

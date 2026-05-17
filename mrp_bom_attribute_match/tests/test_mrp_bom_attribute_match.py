@@ -30,7 +30,9 @@ class TestMrpBomAttributeMatch(TransactionCase):
                         0,
                         {
                             "attribute_id": cls.color.id,
-                            "value_ids": [(6, 0, [cls.color_red.id, cls.color_blue.id])],
+                            "value_ids": [
+                                (6, 0, [cls.color_red.id, cls.color_blue.id])
+                            ],
                         },
                     )
                 ],
@@ -46,7 +48,9 @@ class TestMrpBomAttributeMatch(TransactionCase):
                         0,
                         {
                             "attribute_id": cls.color.id,
-                            "value_ids": [(6, 0, [cls.color_red.id, cls.color_blue.id])],
+                            "value_ids": [
+                                (6, 0, [cls.color_red.id, cls.color_blue.id])
+                            ],
                         },
                     )
                 ],
@@ -74,14 +78,14 @@ class TestMrpBomAttributeMatch(TransactionCase):
 
     def _finished_variant(self, value):
         return self.finished.product_variant_ids.filtered(
-            lambda v: value in v.product_template_attribute_value_ids
-            .product_attribute_value_id
+            lambda v: value
+            in v.product_template_attribute_value_ids.product_attribute_value_id
         )
 
     def _plastic_variant(self, value):
         return self.plastic.product_variant_ids.filtered(
-            lambda v: value in v.product_template_attribute_value_ids
-            .product_attribute_value_id
+            lambda v: value
+            in v.product_template_attribute_value_ids.product_attribute_value_id
         )
 
     def test_explode_resolves_dynamic_component(self):

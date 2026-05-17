@@ -65,7 +65,8 @@ class MrpBomLine(models.Model):
                 self.product_backup_id = False
             if (
                 self.product_id
-                and self.product_uom_id.category_id != self.product_id.uom_id.category_id
+                and self.product_uom_id.category_id
+                != self.product_id.uom_id.category_id
             ):
                 self.product_uom_id = self.product_id.uom_id
 
@@ -78,10 +79,8 @@ class MrpBomLine(models.Model):
     def _compute_match_on_attribute_ids(self):
         for line in self:
             if line.component_template_id:
-                line.match_on_attribute_ids = (
-                    line.component_template_id.attribute_line_ids.attribute_id
-                    ._without_no_variant_attributes()
-                )
+                attrs = line.component_template_id.attribute_line_ids.attribute_id
+                line.match_on_attribute_ids = attrs._without_no_variant_attributes()
             else:
                 line.match_on_attribute_ids = False
 
@@ -100,12 +99,12 @@ class MrpBomLine(models.Model):
     def _check_component_attributes(self):
         for line in self.filtered("component_template_id"):
             component = line.component_template_id
+            parent_template = line.bom_id.product_tmpl_id
             component_attrs = (
                 component.valid_product_template_attribute_line_ids.attribute_id
             )
             product_attrs = (
-                line.bom_id.product_tmpl_id
-                .valid_product_template_attribute_line_ids.attribute_id
+                parent_template.valid_product_template_attribute_line_ids.attribute_id
             )
             if not component_attrs:
                 raise ValidationError(
@@ -165,8 +164,12 @@ class MrpBom(models.Model):
 
         # Component attributes must be a subset of the parent product's.
         # NOTE: do not use `<=` between recordsets — see `_check_component_attributes`.
-        component_attrs = component.valid_product_template_attribute_line_ids.attribute_id
-        product_attrs = bom_product.valid_product_template_attribute_line_ids.attribute_id
+        component_attrs = (
+            component.valid_product_template_attribute_line_ids.attribute_id
+        )
+        product_attrs = (
+            bom_product.valid_product_template_attribute_line_ids.attribute_id
+        )
         if not all(attr in product_attrs for attr in component_attrs):
             _logger.info(
                 "Component skipped: component template '%s' attributes are not "
@@ -183,7 +186,11 @@ class MrpBom(models.Model):
                 [
                     ("product_tmpl_id", "=", component.id),
                     ("attribute_id", "=", ptav.attribute_id.id),
-                    ("product_attribute_value_id", "=", ptav.product_attribute_value_id.id),
+                    (
+                        "product_attribute_value_id",
+                        "=",
+                        ptav.product_attribute_value_id.id,
+                    ),
                 ]
             )
         if not combination:
@@ -200,7 +207,7 @@ class MrpBom(models.Model):
         """True if any bom line resolves through a component template."""
         return any(line.component_template_id for line in self.bom_line_ids)
 
-    def explode(self, product, quantity, picking_type=False):
+    def explode(self, product, quantity, picking_type=False):  # noqa: C901
         """Explode the BoM into ``(boms_done, lines_done)``.
 
         Quantity describes how many times the BoM has to be run.
@@ -316,14 +323,19 @@ class MrpBom(models.Model):
                     line_quantity / child_bom.product_qty, child_bom.product_uom_id
                 )
                 bom_lines.extend(
-                    (line, current_line.product_id, converted_line_quantity, current_line)
+                    (
+                        line,
+                        current_line.product_id,
+                        converted_line_quantity,
+                        current_line,
+                    )
                     for line in child_bom.bom_line_ids
                 )
 
                 for line in child_bom.bom_line_ids:
-                    dependency_graph[
-                        current_line.product_id.product_tmpl_id.id
-                    ].append(line.product_id.product_tmpl_id.id)
+                    dependency_graph[current_line.product_id.product_tmpl_id.id].append(
+                        line.product_id.product_tmpl_id.id
+                    )
                     if line.product_id.product_tmpl_id.id in visited_templates:
                         if has_cycle(
                             line.product_id.product_tmpl_id.id,
