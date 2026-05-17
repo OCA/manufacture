@@ -546,3 +546,53 @@ class TestMrpBomAttributeMatch(TransactionCase):
             with Form(self.bom) as bom_form:
                 with bom_form.bom_line_ids.edit(0) as line_form:
                     line_form.bom_product_template_attribute_value_ids.add(red_ptav)
+
+    def test_check_component_attributes_raises_when_template_has_no_attributes(self):
+        """A template with no attribute lines cannot be used as a dynamic
+        component — the first raise in `_check_component_attributes` fires."""
+        empty_template = self.env["product.template"].create(
+            {"name": "Plastic No Attrs", "type": "product"}
+        )
+        with self.assertRaises(ValidationError):
+            self.env["mrp.bom.line"].create(
+                {
+                    "bom_id": self.bom.id,
+                    "component_template_id": empty_template.id,
+                    "product_qty": 1.0,
+                }
+            )
+
+    def test_onchange_component_template_realigns_uom_when_categories_differ(self):
+        """When the selected component template has a UoM in a different
+        category than the line's current UoM, the onchange must switch
+        the line to the template's UoM."""
+        kg = self.env.ref("uom.product_uom_kgm")
+        # Build a plastic-like template measured in kilograms.
+        plastic_kg = self.env["product.template"].create(
+            {
+                "name": "Plastic KG",
+                "type": "product",
+                "uom_id": kg.id,
+                "uom_po_id": kg.id,
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": self.color.id,
+                            "value_ids": [
+                                (6, 0, [self.color_red.id, self.color_blue.id])
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+        with Form(self.env["mrp.bom"]) as bom_form:
+            bom_form.product_tmpl_id = self.finished
+            with bom_form.bom_line_ids.new() as line_form:
+                line_form.product_qty = 1.0
+                line_form.component_template_id = plastic_kg
+                # The default new-line UoM (units) was in a different
+                # category, so the onchange must realign it to kg.
+                self.assertEqual(line_form.product_uom_id, kg)
