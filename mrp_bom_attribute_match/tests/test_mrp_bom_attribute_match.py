@@ -253,10 +253,39 @@ class TestMrpBomAttributeMatch(TransactionCase):
         self.assertFalse(self.bom_line.match_on_attribute_ids)
 
     def test_template_attribute_removal_blocked_when_used_in_match(self):
-        """Removing the Color attribute from the plastic template must fail
-        because the BoM line matches on it."""
+        """Removing the matched attribute from the parent template (while
+        keeping other attributes on it) must fail, because the BoM line
+        still references the removed attribute in match_on_attribute_ids.
+        """
+        material = self.env["product.attribute"].create(
+            {"name": "Material", "create_variant": "always"}
+        )
+        wood = self.env["product.attribute.value"].create(
+            {"name": "Wood", "attribute_id": material.id}
+        )
+        # First write: add Material to the finished product. Passes the
+        # constraint because Color is still there.
+        self.finished.write(
+            {
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": material.id,
+                            "value_ids": [(6, 0, [wood.id])],
+                        },
+                    )
+                ]
+            }
+        )
+        color_line = self.finished.attribute_line_ids.filtered(
+            lambda line: line.attribute_id == self.color
+        )
+        # Second write: remove the Color line. Now match_on_attribute_ids
+        # (= Color) is no longer covered by the parent's attributes.
         with self.assertRaises(UserError):
-            self.plastic.attribute_line_ids.unlink()
+            self.finished.write({"attribute_line_ids": [(2, color_line.id)]})
 
     def test_template_used_as_component_must_not_add_unknown_attribute(self):
         """Adding an attribute to the component that the parent template does
@@ -301,10 +330,12 @@ class TestMrpBomAttributeMatch(TransactionCase):
         resolved plastic variant and leave the BoM line product_id empty."""
         finished_red = self._finished_variant(self.color_red)
         plastic_red = self._plastic_variant(self.color_red)
+        # Order mirrors the 18.0 module's tests: product → bom → qty,
+        # to avoid the qty re-computation that the bom_id onchange runs.
         mo_form = Form(self.env["mrp.production"])
         mo_form.product_id = finished_red
-        mo_form.product_qty = 1.0
         mo_form.bom_id = self.bom
+        mo_form.product_qty = 1.0
         mo = mo_form.save()
         mo.action_confirm()
         self.assertEqual(len(mo.move_raw_ids), 1)
