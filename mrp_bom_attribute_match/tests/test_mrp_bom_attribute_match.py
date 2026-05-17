@@ -459,3 +459,90 @@ class TestMrpBomAttributeMatch(TransactionCase):
         mo = mo_form.save()
         mo.action_confirm()
         self.assertEqual(mo.move_raw_ids.bom_line_id, bom_static.bom_line_ids)
+
+    def test_explode_detects_cycle_through_phantom_boms(self):
+        """Two phantom BoMs that reference each other through their
+        components must be caught by `has_cycle` and raise a UserError."""
+        tmpl_a = self.env["product.template"].create(
+            {"name": "Cycle A", "type": "product"}
+        )
+        tmpl_b = self.env["product.template"].create(
+            {"name": "Cycle B", "type": "product"}
+        )
+        product_a = tmpl_a.product_variant_ids
+        product_b = tmpl_b.product_variant_ids
+        bom_a = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": tmpl_a.id,
+                "product_id": product_a.id,
+                "type": "phantom",
+                "product_qty": 1.0,
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product_b.id,
+                            "product_qty": 1.0,
+                            "product_uom_id": product_b.uom_id.id,
+                        },
+                    )
+                ],
+            }
+        )
+        self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": tmpl_b.id,
+                "product_id": product_b.id,
+                "type": "phantom",
+                "product_qty": 1.0,
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product_a.id,
+                            "product_qty": 1.0,
+                            "product_uom_id": product_a.uom_id.id,
+                        },
+                    )
+                ],
+            }
+        )
+        with self.assertRaises(UserError):
+            bom_a.explode(product_a, 1)
+
+    def test_bom_structure_report_skips_unmatched_dynamic_line(self):
+        """The BoM structure report must omit dynamic lines for which the
+        component template has no variant matching the parent's variant."""
+        green = self.env["product.attribute.value"].create(
+            {"name": "Green", "attribute_id": self.color.id}
+        )
+        # Add Green only to the finished product; plastic does not have it.
+        self.finished.attribute_line_ids.write({"value_ids": [(4, green.id)]})
+        finished_green = self.finished.product_variant_ids.filtered(
+            lambda v: green
+            in v.product_template_attribute_value_ids.product_attribute_value_id
+        )
+        warehouse = self.env.ref("stock.warehouse0")
+        report = self.env["report.mrp.report_bom_structure"]
+        data = report._get_bom_data(
+            self.bom, warehouse, product=finished_green, level=0
+        )
+        self.assertEqual(
+            data.get("components", []),
+            [],
+            "Dynamic line without a matching variant must be skipped.",
+        )
+
+    def test_onchange_bom_product_template_attribute_value_via_form_raises(self):
+        """The onchange handler `_onchange_bom_product_template_attribute_
+        value_ids_check_variants` must fire when adding an overlapping
+        attribute via Form and propagate the validation error."""
+        red_ptav = self.finished.attribute_line_ids.product_template_value_ids.filtered(
+            lambda v: v.product_attribute_value_id == self.color_red
+        )
+        with self.assertRaises(ValidationError):
+            with Form(self.bom) as bom_form:
+                with bom_form.bom_line_ids.edit(0) as line_form:
+                    line_form.bom_product_template_attribute_value_ids.add(red_ptav)
