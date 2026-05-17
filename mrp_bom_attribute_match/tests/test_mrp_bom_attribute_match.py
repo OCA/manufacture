@@ -343,3 +343,119 @@ class TestMrpBomAttributeMatch(TransactionCase):
         # The BoM line was not mutated by the confirmation flow.
         self.bom_line.invalidate_recordset()
         self.assertFalse(self.bom_line.product_id)
+
+    def test_explode_skips_line_when_apply_on_variants_does_not_match(self):
+        """A line with `bom_product_template_attribute_value_ids` set is
+        skipped by `_skip_bom_line` for variants outside that filter."""
+        plastic_red = self._plastic_variant(self.color_red)
+        finished_red = self._finished_variant(self.color_red)
+        finished_blue = self._finished_variant(self.color_blue)
+        red_ptav = self.finished.attribute_line_ids.product_template_value_ids.filtered(
+            lambda v: v.product_attribute_value_id == self.color_red
+        )
+        bom_static = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": self.finished.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": plastic_red.id,
+                            "product_qty": 1.0,
+                            "bom_product_template_attribute_value_ids": [
+                                (6, 0, red_ptav.ids)
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+        _boms, lines_red = bom_static.explode(finished_red, 1)
+        self.assertEqual(len(lines_red), 1, "Red variant must consume the line.")
+        _boms, lines_blue = bom_static.explode(finished_blue, 1)
+        self.assertEqual(lines_blue, [], "Blue variant must skip the Red-only line.")
+
+    def test_get_component_or_product_id_returns_empty_for_inactive_variant(self):
+        """When the matched variant exists but is archived, the resolver
+        returns an empty recordset so the line is silently skipped."""
+        plastic_red = self._plastic_variant(self.color_red)
+        finished_red = self._finished_variant(self.color_red)
+        plastic_red.active = False
+        resolved = self.bom._get_component_or_product_id(
+            self.bom_line, finished_red, self.bom_line.product_id
+        )
+        self.assertFalse(resolved)
+
+    def test_match_on_attribute_ids_excludes_no_variant_attribute(self):
+        """Component template attributes with `create_variant='no_variant'`
+        must not appear in match_on_attribute_ids."""
+        finish = self.env["product.attribute"].create(
+            {"name": "Finish", "create_variant": "no_variant"}
+        )
+        matte = self.env["product.attribute.value"].create(
+            {"name": "Matte", "attribute_id": finish.id}
+        )
+        # Add Finish to BOTH templates so the cross-template constraint passes.
+        self.finished.write(
+            {
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": finish.id,
+                            "value_ids": [(6, 0, [matte.id])],
+                        },
+                    )
+                ]
+            }
+        )
+        self.plastic.write(
+            {
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": finish.id,
+                            "value_ids": [(6, 0, [matte.id])],
+                        },
+                    )
+                ]
+            }
+        )
+        # _compute_match_on_attribute_ids depends on component_template_id
+        # alone, so we re-trigger it explicitly after changing the template.
+        self.bom_line._compute_match_on_attribute_ids()
+        self.assertIn(self.color, self.bom_line.match_on_attribute_ids)
+        self.assertNotIn(finish, self.bom_line.match_on_attribute_ids)
+
+    def test_action_confirm_on_static_bom_keeps_real_bom_line_fk(self):
+        """For a non-dynamic BoM, `bom_line.id` is a real int and the
+        override of `_get_move_raw_values` does not rewrite it."""
+        plastic_red = self._plastic_variant(self.color_red)
+        finished_red = self._finished_variant(self.color_red)
+        bom_static = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": self.finished.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {"product_id": plastic_red.id, "product_qty": 1.0},
+                    )
+                ],
+            }
+        )
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = finished_red
+        mo_form.bom_id = bom_static
+        mo_form.product_qty = 1.0
+        mo = mo_form.save()
+        mo.action_confirm()
+        self.assertEqual(mo.move_raw_ids.bom_line_id, bom_static.bom_line_ids)
