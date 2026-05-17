@@ -460,6 +460,63 @@ class TestMrpBomAttributeMatch(TransactionCase):
         mo.action_confirm()
         self.assertEqual(mo.move_raw_ids.bom_line_id, bom_static.bom_line_ids)
 
+    def test_explode_detects_cycle_through_phantom_subbom(self):
+        """`explode()` must catch a cycle when a phantom sub-BoM points back
+        to the BoM's own product. The root BoM is `type='normal'` so that
+        core's `_check_bom_cycle` (which only traverses phantom sub-BoMs)
+        does not block the setup; the sub-BoM is `type='phantom'` so that
+        explode follows it and the dependency graph closes the cycle.
+        Mirrors the pattern used by `test_bom_recursion` in the 18.0
+        version of the module.
+        """
+        tmpl_a = self.env["product.template"].create(
+            {"name": "Cycle A", "type": "product"}
+        )
+        tmpl_b = self.env["product.template"].create(
+            {"name": "Cycle B", "type": "product"}
+        )
+        product_a = tmpl_a.product_variant_ids
+        product_b = tmpl_b.product_variant_ids
+        bom_a = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": tmpl_a.id,
+                "product_id": product_a.id,
+                "type": "normal",
+                "product_qty": 1.0,
+                "product_uom_id": product_a.uom_id.id,
+            }
+        )
+        bom_b = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": tmpl_b.id,
+                "product_id": product_b.id,
+                "type": "phantom",
+                "product_qty": 1.0,
+                "product_uom_id": product_b.uom_id.id,
+            }
+        )
+        # Lines added separately so core's cycle constraint runs against
+        # an incremental tree where the phantom for product_a doesn't yet
+        # exist as a phantom (bom_a is normal).
+        self.env["mrp.bom.line"].create(
+            {
+                "bom_id": bom_a.id,
+                "product_id": product_b.id,
+                "product_qty": 1.0,
+                "product_uom_id": product_b.uom_id.id,
+            }
+        )
+        self.env["mrp.bom.line"].create(
+            {
+                "bom_id": bom_b.id,
+                "product_id": product_a.id,
+                "product_qty": 1.0,
+                "product_uom_id": product_a.uom_id.id,
+            }
+        )
+        with self.assertRaises(UserError):
+            bom_a.explode(product_a, 1)
+
     def test_bom_structure_report_skips_unmatched_dynamic_line(self):
         """The BoM structure report must omit dynamic lines for which the
         component template has no variant matching the parent's variant."""
