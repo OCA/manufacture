@@ -32,6 +32,31 @@ class QcTest(models.Model):
         default=lambda self: self.env.company,
     )
 
+    @api.model
+    def _get_object_id_models(self):
+        """Return the list of models selectable for the object_id field.
+        Override this method to add more models.
+        :return: List of model technical names.
+        """
+        return ["product.product", "product.template"]
+
+    @api.model
+    def object_selection_values(self):
+        """Build the selection list for the Reference field from ir.model."""
+        res = []
+        for model_name in self._get_object_id_models():
+            model = self.env["ir.model"]._get(model_name)
+            if model:
+                res.append((model_name, model.name))
+        return res
+
+    object_id = fields.Reference(
+        string="Reference object",
+        selection="object_selection_values",
+        help="If set, this test applies only to this specific object. "
+        "If empty, the test is generic and can be used for any object.",
+    )
+
 
 class QcTestQuestion(models.Model):
     """Each test line is a question with its valid value(s)."""
