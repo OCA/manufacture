@@ -15,6 +15,25 @@ class QcTriggerProductLine(models.Model):
 
     product = fields.Many2one(comodel_name="product.product")
 
+    @api.onchange("product")
+    def onchange_product(self):
+        if self.product:
+            return {
+                "domain": {
+                    "test": [
+                        (
+                            "object_id",
+                            "in",
+                            [
+                                False,
+                                "product.product,%d" % self.product.id,
+                            ],
+                        )
+                    ]
+                }
+            }
+        return {"domain": {"test": [("object_id", "=", False)]}}
+
     def get_trigger_line_for_product(self, trigger, timings, product, partner=False):
         trigger_lines = super().get_trigger_line_for_product(
             trigger, timings, product, partner=partner
