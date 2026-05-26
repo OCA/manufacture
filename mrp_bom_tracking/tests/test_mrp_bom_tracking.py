@@ -46,6 +46,22 @@ class TestBomTracking(TransactionCase):
             ]
         )
 
+        cls.workcenter = cls.env["mrp.workcenter"].create({"name": "Test Workcenter"})
+        cls.operation_1 = cls.env["mrp.routing.workcenter"].create(
+            {
+                "name": "Operation 1",
+                "workcenter_id": cls.workcenter.id,
+                "bom_id": cls.bom.id,
+            }
+        )
+        cls.operation_2 = cls.env["mrp.routing.workcenter"].create(
+            {
+                "name": "Operation 2",
+                "workcenter_id": cls.workcenter.id,
+                "bom_id": cls.bom.id,
+            }
+        )
+
     def test_01_change_bom_lines(self):
         self.component_3 = self.product_obj.create([{"name": "RM 03", "type": "consu"}])
         bom_line_ids = self.bom_line_obj.create(
@@ -78,3 +94,17 @@ class TestBomTracking(TransactionCase):
         self.line_2.write({"product_qty": 2.0000000000001})
         after = self.bom.message_ids
         self.assertEqual(len(after - before), 0)
+
+    def test_04_change_bom_line_operation(self):
+        self.line_1.write({"operation_id": self.operation_1.id})
+        before = self.bom.message_ids
+        self.line_1.write({"operation_id": self.operation_2.id})
+        after = self.bom.message_ids
+        self.assertEqual(len(after - before), 1)
+
+    def test_05_clear_bom_line_operation(self):
+        self.line_1.write({"operation_id": self.operation_1.id})
+        before = self.bom.message_ids
+        self.line_1.write({"operation_id": False})
+        after = self.bom.message_ids
+        self.assertEqual(len(after - before), 1)

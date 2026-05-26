@@ -73,7 +73,11 @@ class MrpBomLine(models.Model):
                     bom.message_post(
                         body=message_body, subtype_id=self.env.ref("mail.mt_note").id
                     )
-        elif "product_qty" in values or "product_uom_id" in values:
+        elif (
+            "product_qty" in values
+            or "product_uom_id" in values
+            or "operation_id" in values
+        ):
             for bom_line in self:
                 bom = bom_line.bom_id
                 product_qty = values.get("product_qty") or bom_line.product_qty
@@ -81,6 +85,17 @@ class MrpBomLine(models.Model):
                 product_uom = None
                 if product_uom_id:
                     product_uom = self.env["uom.uom"].browse(product_uom_id)
+                if "operation_id" in values:
+                    op_id = values["operation_id"]
+                    new_operation = (
+                        self.env["mrp.routing.workcenter"].browse(op_id)
+                        if op_id
+                        else self.env["mrp.routing.workcenter"]
+                    )
+                    operation_changed = new_operation != bom_line.operation_id
+                else:
+                    new_operation = bom_line.operation_id
+                    operation_changed = False
                 # Catch and discard float write rounding errors
                 # when the qty has not even changed
                 if (
@@ -91,6 +106,7 @@ class MrpBomLine(models.Model):
                     )
                     == 0
                     and not product_uom_id
+                    and not operation_changed
                 ):
                     continue
                 product_uom = product_uom or bom_line.product_uom_id
@@ -100,6 +116,7 @@ class MrpBomLine(models.Model):
                         "lines": bom_line,
                         "product_qty": product_qty,
                         "product_uom_id": product_uom,
+                        "operation_id": new_operation,
                     },
                 )
                 bom.message_post(

@@ -4,7 +4,7 @@
 <odoo>
     <template id="track_bom_line_template">
         <div>
-            <strong>The component quantities or UoMs have been updated.</strong>
+            <strong>The component details have been updated.</strong>
             <ul>
                 <t t-foreach="lines" t-as="line">
                     <li><t t-esc="line.product_id.display_name" />:</li>
@@ -16,6 +16,11 @@
                 /><t t-if='line.product_uom_id != product_uom_id'> -&gt; <t
                     t-esc="product_uom_id.display_name"
                 /></t><br />
+                    <t
+                    t-if='line.operation_id != operation_id'
+                >Consumed in Operation: <t
+                    t-esc="line.operation_id.display_name or ''"
+                /> -&gt; <t t-esc="operation_id.display_name or ''" /><br /></t>
                 </t>
             </ul>
         </div>
