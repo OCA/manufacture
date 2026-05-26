@@ -51,15 +51,23 @@ msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
-msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+msgid "<strong>The component details have been updated.</strong>"
 msgstr ""
-"<strong>Le quantità del componente o le UdM sono state aggiornate.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid "<strong>The components have changed.</strong>"
 msgstr "<strong>Il componente è stato cambiato.</strong>"
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__produce_delay
+msgid ""
+"Average lead time in days to manufacture this product. In the case of multi-"
+"level BOM, the manufacturing lead times of the components will be added. In "
+"case the product is subcontracted, this can be used to determine the date at "
+"which components should be sent to the subcontractor."
+msgstr ""
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
@@ -77,12 +85,71 @@ msgid "BoM Type"
 msgstr "Tipo DiBa"
 
 #. module: mrp_bom_tracking
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
+msgid "Consumed in Operation:"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
+msgid ""
+"Create and confirm Manufacturing Orders this many days in advance, to have "
+"enough time to replenish components or manufacture semi-finished products."
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
+msgid "Days to prepare Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__consumption
+msgid ""
+"Defines if you can consume more or less components than the quantity defined "
+"on the BoM:\n"
+"  * Allowed: allowed for all manufacturing users.\n"
+"  * Allowed with warning: allowed for all manufacturing users with summary "
+"of consumption differences when closing the manufacturing order.\n"
+"  Note that in the case of component Highlight Consumption, where "
+"consumption is registered manually exclusively, consumption warnings will "
+"still be issued when appropriate also.\n"
+"  * Blocked: only a manager can close a manufacturing order when the BoM "
+"consumption is not respected."
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
+msgid "Flexible Consumption"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
 "Se è definita una variante prodotto la DiBa è disponibile solo per questo "
 "prodotto."
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__produce_delay
+msgid "Manufacturing Lead Time"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__ready_to_produce
+msgid "Manufacturing Readiness"
+msgstr ""
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
@@ -131,16 +198,29 @@ msgstr ""
 msgid ""
 "When a procurement has a ‘produce’ route with a operation type set, it will "
 "try to create a Manufacturing Order for that product using a BoM of the same "
-"operation type. That allows to define stock rules which trigger different "
+"operation type.If not,the operation type is not taken into account in the "
+"BoM search. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
-"Quando un approvvigionamento ha una rotta 'produzione' con un tipo "
-"operazione impostato, tenterà di creare un ordine di produzione per il "
-"prodotto utilizzando la DiBa dello stesso tipo operazione. Questo consente "
-"di definire regole di magazzino che generano differenti ordini di produzione "
-"con differenti DiBa."
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "component<br/>"
 msgstr "componente<br/>"
+
+#~ msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+#~ msgstr ""
+#~ "<strong>Le quantità del componente o le UdM sono state aggiornate.</"
+#~ "strong>"
+
+#~ msgid ""
+#~ "When a procurement has a ‘produce’ route with a operation type set, it "
+#~ "will try to create a Manufacturing Order for that product using a BoM of "
+#~ "the same operation type. That allows to define stock rules which trigger "
+#~ "different manufacturing orders with different BoMs."
+#~ msgstr ""
+#~ "Quando un approvvigionamento ha una rotta 'produzione' con un tipo "
+#~ "operazione impostato, tenterà di creare un ordine di produzione per il "
+#~ "prodotto utilizzando la DiBa dello stesso tipo operazione. Questo "
+#~ "consente di definire regole di magazzino che generano differenti ordini "
+#~ "di produzione con differenti DiBa."

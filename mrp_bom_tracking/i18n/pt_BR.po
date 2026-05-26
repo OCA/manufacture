@@ -43,7 +43,7 @@ msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
-msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+msgid "<strong>The component details have been updated.</strong>"
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -57,8 +57,8 @@ msgstr ""
 msgid ""
 "Average lead time in days to manufacture this product. In the case of multi-"
 "level BOM, the manufacturing lead times of the components will be added. In "
-"case the product is subcontracted, this can be used to determine the date at"
-" which components should be sent to the subcontractor."
+"case the product is subcontracted, this can be used to determine the date at "
+"which components should be sent to the subcontractor."
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -77,10 +77,15 @@ msgid "BoM Type"
 msgstr ""
 
 #. module: mrp_bom_tracking
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
+msgid "Consumed in Operation:"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
 msgid ""
-"Create and confirm Manufacturing Orders this many days in advance, to have enough time to replenish components or manufacture semi-finished products.\n"
-"Note that security lead times will also be considered when appropriate."
+"Create and confirm Manufacturing Orders this many days in advance, to have "
+"enough time to replenish components or manufacture semi-finished products."
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -91,16 +96,33 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__consumption
 msgid ""
-"Defines if you can consume more or less components than the quantity defined on the BoM:\n"
+"Defines if you can consume more or less components than the quantity defined "
+"on the BoM:\n"
 "  * Allowed: allowed for all manufacturing users.\n"
-"  * Allowed with warning: allowed for all manufacturing users with summary of consumption differences when closing the manufacturing order.\n"
-"  Note that in the case of component Highlight Consumption, where consumption is registered manually exclusively, consumption warnings will still be issued when appropriate also.\n"
-"  * Blocked: only a manager can close a manufacturing order when the BoM consumption is not respected."
+"  * Allowed with warning: allowed for all manufacturing users with summary "
+"of consumption differences when closing the manufacturing order.\n"
+"  Note that in the case of component Highlight Consumption, where "
+"consumption is registered manually exclusively, consumption warnings will "
+"still be issued when appropriate also.\n"
+"  * Blocked: only a manager can close a manufacturing order when the BoM "
+"consumption is not respected."
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
 msgid "Flexible Consumption"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__id
+msgid "ID"
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -162,8 +184,9 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
 msgid ""
 "When a procurement has a ‘produce’ route with a operation type set, it will "
-"try to create a Manufacturing Order for that product using a BoM of the same"
-" operation type. That allows to define stock rules which trigger different "
+"try to create a Manufacturing Order for that product using a BoM of the same "
+"operation type.If not,the operation type is not taken into account in the "
+"BoM search. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
 
