@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_bom_alignment_warning,mrp.bom.alignment.warning,model_mrp_bom_alignment_warning,mrp.group_mrp_user,1,1,1,1

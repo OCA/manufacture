@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_bom_alignment_warning_form" model="ir.ui.view">
+        <field name="name">mrp.bom.alignment.warning.form</field>
+        <field name="model">mrp.bom.alignment.warning</field>
+        <field name="arch" type="xml">
+            <form string="BoM Alignment Warning">
+                <field name="mrp_production_ids" invisible="1" />
+                <field name="mrp_production_count" invisible="1" />
+                <div class="m-2">
+                    <p>
+                        The following manufacturing
+                        <span invisible="mrp_production_count != 1">order is</span>
+                        <span invisible="mrp_production_count == 1">orders are</span>
+                        not aligned with the current Bill of Materials:
+                    </p>
+                    <p>
+                        <strong>
+                            <field name="mrp_production_names" readonly="1" />
+                        </strong>
+                    </p>
+                    <p>
+                        The components, quantities, or operations of the MO differ from
+                        the BoM. You can go back and update the MO, or confirm anyway.
+                    </p>
+                </div>
+                <footer>
+                    <button
+                        name="action_update_and_confirm"
+                        string="Update MO and Confirm"
+                        type="object"
+                        class="btn-primary"
+                        data-hotkey="u"
+                    />
+                    <button
+                        name="action_confirm_anyway"
+                        string="Confirm Anyway"
+                        type="object"
+                        class="btn-secondary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        special="cancel"
+                        string="Go Back"
+                        class="btn-secondary"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
