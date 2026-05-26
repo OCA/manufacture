@@ -13,3 +13,5 @@
 - [Quartile](https://www.quartile.co):
   - Aung Ko Ko Lin
   - Yoshi Tashiro
+- [Solvos](https://www.solvos.es):
+  - Dante Pereyra \<<dante.pereyra@solvos.es>\>
