@@ -51,9 +51,8 @@ msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
-msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+msgid "<strong>The component details have been updated.</strong>"
 msgstr ""
-"<strong>Se han actualizado las cantidades o UM de los componentes.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
@@ -91,6 +90,11 @@ msgid "BoM Type"
 msgstr "Tipo BoM"
 
 #. module: mrp_bom_tracking
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
+msgid "Consumed in Operation:"
+msgstr ""
+
+#. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
 msgid ""
 "Create and confirm Manufacturing Orders this many days in advance, to have "
@@ -116,22 +120,12 @@ msgid ""
 "  * Allowed: allowed for all manufacturing users.\n"
 "  * Allowed with warning: allowed for all manufacturing users with summary "
 "of consumption differences when closing the manufacturing order.\n"
-"  Note that in the case of component Manual Consumption, where consumption "
-"is registered manually exclusively, consumption warnings will still be "
-"issued when appropriate also.\n"
+"  Note that in the case of component Highlight Consumption, where "
+"consumption is registered manually exclusively, consumption warnings will "
+"still be issued when appropriate also.\n"
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
-"Define si se pueden consumir más o menos componentes que la cantidad "
-"definida en la lista de materiales:\n"
-"  * Permitido: permitido para todos los usuarios de fabricación.\n"
-"  * Permitido con aviso: permitido para todos los usuarios de fabricación "
-"con resumen de diferencias de consumo al cerrar la orden de fabricación.\n"
-"  Tenga en cuenta que en el caso del componente Consumo Manual, en el que el "
-"consumo se registra exclusivamente de forma manual, también se emitirán "
-"avisos de consumo cuando proceda.\n"
-"  * Bloqueado: sólo un gestor puede cerrar una orden de producción cuando no "
-"se respeta el consumo de la lista de materiales."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
@@ -216,3 +210,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "component<br/>"
 msgstr "componente<br/>"
+
+#~ msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+#~ msgstr ""
+#~ "<strong>Se han actualizado las cantidades o UM de los componentes.</"
+#~ "strong>"
+
+#~ msgid ""
+#~ "Defines if you can consume more or less components than the quantity "
+#~ "defined on the BoM:\n"
+#~ "  * Allowed: allowed for all manufacturing users.\n"
+#~ "  * Allowed with warning: allowed for all manufacturing users with "
+#~ "summary of consumption differences when closing the manufacturing order.\n"
+#~ "  Note that in the case of component Manual Consumption, where "
+#~ "consumption is registered manually exclusively, consumption warnings will "
+#~ "still be issued when appropriate also.\n"
+#~ "  * Blocked: only a manager can close a manufacturing order when the BoM "
+#~ "consumption is not respected."
+#~ msgstr ""
+#~ "Define si se pueden consumir más o menos componentes que la cantidad "
+#~ "definida en la lista de materiales:\n"
+#~ "  * Permitido: permitido para todos los usuarios de fabricación.\n"
+#~ "  * Permitido con aviso: permitido para todos los usuarios de fabricación "
+#~ "con resumen de diferencias de consumo al cerrar la orden de fabricación.\n"
+#~ "  Tenga en cuenta que en el caso del componente Consumo Manual, en el que "
+#~ "el consumo se registra exclusivamente de forma manual, también se "
+#~ "emitirán avisos de consumo cuando proceda.\n"
+#~ "  * Bloqueado: sólo un gestor puede cerrar una orden de producción cuando "
+#~ "no se respeta el consumo de la lista de materiales."
