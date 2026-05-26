@@ -42,7 +42,7 @@ msgstr ""
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
-msgid "<strong>The component quantities or UoMs have been updated.</strong>"
+msgid "<strong>The component details have been updated.</strong>"
 msgstr ""
 
 #. module: mrp_bom_tracking
@@ -73,6 +73,11 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__type
 msgid "BoM Type"
+msgstr ""
+
+#. module: mrp_bom_tracking
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
+msgid "Consumed in Operation:"
 msgstr ""
 
 #. module: mrp_bom_tracking
