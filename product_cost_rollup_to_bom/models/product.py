@@ -114,7 +114,8 @@ class ProductProduct(models.Model):
                     * line.product_qty
                 )
                 if not float_is_zero(
-                    child_total - line.product_id.standard_price, precision_rounding=2,
+                    child_total - line.product_id.standard_price,
+                    precision_rounding=2,
                 ):
                     line.product_id._change_standard_price(child_total)
                     line.product_id.std_cost_update_date = datetime.now()

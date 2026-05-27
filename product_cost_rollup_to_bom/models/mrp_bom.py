@@ -43,7 +43,6 @@ class MrpBom(models.Model):
 
     @api.model
     def compute_bom_cost_rollup(self):
-
         _logger.info("BOM Cost Rollup Process Started")
 
         # Get BoM's whose product is using costing method as standard

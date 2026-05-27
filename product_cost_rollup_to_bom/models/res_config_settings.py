@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
     )
 
     def get_values(self):
-        res = super(ResConfigSettings, self).get_values()
+        res = super().get_values()
         res.update(
             bom_cost_email=self.env["ir.config_parameter"]
             .sudo()
@@ -24,7 +24,7 @@ class ResConfigSettings(models.TransientModel):
         return res
 
     def set_values(self):
-        super(ResConfigSettings, self).set_values()
+        super().set_values()
         self.env["ir.config_parameter"].sudo().set_param(
             "product_cost_rollup_to_bom.bom_cost_email", self.bom_cost_email
         )

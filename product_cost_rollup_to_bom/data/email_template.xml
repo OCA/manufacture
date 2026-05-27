@@ -1,6 +1,6 @@
 <odoo>
     <data>
-         <record id="bom_cost_rollup_email_template" model="mail.template">
+        <record id="bom_cost_rollup_email_template" model="mail.template">
             <field
                 name="name"
             >Event Scheduler Notification for event: BoM Cost Rollup</field>
