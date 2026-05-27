@@ -4,12 +4,10 @@
 from odoo import fields, models
 
 
-class ResConfigSettings(models.TransientModel):
-    _inherit = "res.config.settings"
+class ResCompany(models.Model):
+    _inherit = "res.company"
 
     bom_cost_email = fields.Char(
         string="BoM cost rollup email",
-        related="company_id.bom_cost_email",
-        readonly=False,
         help="BoM Cost rollup Email notification will be sent to this email address",
     )

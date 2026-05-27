@@ -6,9 +6,9 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-            <div class="o_row" position="after">
+            <field name="code" position="after">
                 <field name="std_cost_update_date" readonly="1" />
-            </div>
+            </field>
         </field>
     </record>
 </odoo>

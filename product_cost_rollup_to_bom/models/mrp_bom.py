@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
-from datetime import datetime
 
 from odoo import api, fields, models
 
@@ -46,7 +45,7 @@ class MrpBom(models.Model):
         _logger.info("BOM Cost Rollup Process Started")
 
         # Get BoM's whose product is using costing method as standard
-        current_time = datetime.now()
+        current_time = fields.Datetime.now()
 
         bom_ids = self.sudo().search(
             [("product_tmpl_id.categ_id.property_cost_method", "=", "standard")]
@@ -87,12 +86,10 @@ class MrpBom(models.Model):
                 "product_cost_rollup_to_bom.bom_cost_rollup_email_template"
             )
             template_id.with_context(
-                {
-                    "product_list_len": len(product_list),
-                    "email_to": self.env.user.company_id.bom_cost_email,
-                    "email_from": self.env.user.partner_id.email,
-                    "product_list": product_list,
-                }
+                product_list_len=len(product_list),
+                email_to=self.env.user.company_id.bom_cost_email,
+                email_from=self.env.user.partner_id.email,
+                product_list=product_list,
             ).send_mail(self.id, force_send=True)
 
             _logger.info("BOM Cost Rollup Email Process Completed")

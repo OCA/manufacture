@@ -10,9 +10,9 @@ Product BOM Cost Rollup
    !! source digest: sha256:0a8eb9164a5b4cd0ca606ec71683800ba3cba3f8cc07c0b9b141370d4a4fde44
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alpha
+    :alt: Beta
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
@@ -35,11 +35,6 @@ can be used from product template/product variant forms using "Compute
 BOM Cost Rollup" or from the Scheduled Job across all BOM's that need an
 update. The module sends an email on modified standard cost products to
 an email configured on the Manufacturing App.
-
-.. IMPORTANT::
-   This is an alpha version, the data model and design can change at any time without warning.
-   Only for development or testing purpose, do not use in production.
-   `More details on development status <https://odoo-community.org/page/development-status>`_
 
 **Table of contents**
 
@@ -90,13 +85,16 @@ Authors
 Contributors
 ------------
 
-- \`Open Source Integrators
-  <`https://opensourceintegrators.com\\>\\\` <https://opensourceintegrators.com\>\`>`__:
+- `Open Source Integrators <https://opensourceintegrators.com>`__:
 
-     - Balaji Kannan <bkannan@opensourceintegrators.com>
-     - Mayank Gosai <mgosai@opensourceintegrators.com>
-     - Daniel Reis <dreis@opensourceintegrators.com>
-     - Chandresh Thakkar <cthakkr@opensourceintegrators.com>
+  - Balaji Kannan <bkannan@opensourceintegrators.com>
+  - Mayank Gosai <mgosai@opensourceintegrators.com>
+  - Daniel Reis <dreis@opensourceintegrators.com>
+  - Chandresh Thakkar <cthakkr@opensourceintegrators.com>
+
+- `Tessera <https://tesseratech.es/>`__
+
+  - Abraham Anes <abraham@tesseratech.es>
 
 Maintainers
 -----------
@@ -110,6 +108,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-dreispt| image:: https://github.com/dreispt.png?size=40px
+    :target: https://github.com/dreispt
+    :alt: dreispt
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-dreispt| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/product_cost_rollup_to_bom>`_ project on GitHub.
 

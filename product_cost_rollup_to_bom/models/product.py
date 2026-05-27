@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
-from datetime import datetime
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -21,19 +20,16 @@ class ProductProduct(models.Model):
     )
 
     def action_bom_cost(self):
-        real_time_products = self.filtered(
-            lambda p: p.valuation == "real_time" and p.valuation == "fifo"
-        )
-        if real_time_products:
+        fifo_products = self.filtered(lambda p: p.cost_method == "fifo")
+        if fifo_products:
             raise UserError(
                 _(
                     "The costing method on some products %s is FIFO."
                     " The cost will be computed during manufacturing process."
                     " Use Standard Costing to update BOM cost manually."
                 )
-                % (real_time_products.mapped("display_name"))
+                % (fifo_products.mapped("display_name"))
             )
-        # else:
         boms_to_recompute = self.env["mrp.bom"].search(
             [
                 "|",
@@ -44,13 +40,14 @@ class ProductProduct(models.Model):
             ]
         )
         for product in self:
-            new_price = product._set_price_from_bom(boms_to_recompute) or 0.0
-            # FIXME: precision rounding should be taken from configs
+            old_price = product.standard_price
+            # Assigning ``standard_price`` already triggers the stock
+            # revaluation through ``product.product``'s ``write``.
+            product._set_price_from_bom(boms_to_recompute)
             if product.cost_method == "standard" and not float_is_zero(
-                new_price - product.standard_price, precision_rounding=2
+                product.standard_price - old_price, precision_digits=2
             ):
-                product._change_standard_price(new_price)
-                product.std_cost_update_date = datetime.now()
+                product.std_cost_update_date = fields.Datetime.now()
                 if product.product_tmpl_id.product_variant_count == 1:
                     _logger.info(
                         "Product : %s Standard Price: %s ",
@@ -66,25 +63,26 @@ class ProductProduct(models.Model):
 
     def _set_price_from_bom(self, boms_to_recompute=False):
         self.ensure_one()
-        bom = self.env["mrp.bom"]._bom_find(product=self)
+        bom = self.env["mrp.bom"]._bom_find(self)[self]
         if bom:
             self.standard_price = self.with_context(cost_all=True)._compute_bom_price(
                 bom, boms_to_recompute=boms_to_recompute
             )
-            bom.std_cost_update_date = datetime.now()
+            bom.std_cost_update_date = fields.Datetime.now()
 
-    def _compute_bom_price(self, bom, boms_to_recompute=False):
+    def _compute_bom_price(self, bom, boms_to_recompute=False, byproduct_bom=False):
         self.ensure_one()
         if not boms_to_recompute:
             boms_to_recompute = []
         total = 0
-        for opt in bom.routing_id.operation_ids:
+        for opt in bom.operation_ids:
+            if opt._skip_operation_line(self):
+                continue
             duration_expected = (
-                opt.workcenter_id.time_start
-                + opt.workcenter_id.time_stop
-                + opt.time_cycle
+                opt.workcenter_id._get_expected_duration(self)
+                + opt.time_cycle * 100 / opt.workcenter_id.time_efficiency
             )
-            total += (duration_expected / 60) * opt.workcenter_id.costs_hour
+            total += (duration_expected / 60) * opt._total_cost_per_hour()
 
         for line in bom.bom_line_ids:
             if line._skip_bom_line(self):
@@ -115,10 +113,12 @@ class ProductProduct(models.Model):
                 )
                 if not float_is_zero(
                     child_total - line.product_id.standard_price,
-                    precision_rounding=2,
+                    precision_digits=2,
                 ):
-                    line.product_id._change_standard_price(child_total)
-                    line.product_id.std_cost_update_date = datetime.now()
+                    # Assigning ``standard_price`` already triggers the stock
+                    # revaluation through ``product.product``'s ``write``.
+                    line.product_id.standard_price = child_total
+                    line.product_id.std_cost_update_date = fields.Datetime.now()
                     _logger.info(
                         "Product : %s Standard Price: %s ",
                         line.product_id.default_code,

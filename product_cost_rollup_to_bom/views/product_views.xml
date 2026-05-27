@@ -6,13 +6,13 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
-            <field name="company_id" position="before">
+            <xpath expr="//div[@name='standard_price_uom']" position="after">
                 <field name="std_cost_update_date" readonly="1" />
-            </field>
+            </xpath>
             <button name="button_bom_cost" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'invisible': ['|', ('bom_count', '=', 0), '&amp;', ('valuation', '=', 'real_time'), ('cost_method', 'in', ('fifo','standard'))]}</attribute>
+                    name="invisible"
+                >bom_count == 0 or (valuation == 'real_time' and cost_method in ('fifo', 'standard'))</attribute>
             </button>
         </field>
     </record>

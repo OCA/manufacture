@@ -9,23 +9,14 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='mrp_byproduct']" position="after">
-                <div
-                    class="col-lg-6 col-12 o_setting_box"
+            <xpath expr="//setting[@id='mrp_byproduct']" position="after">
+                <setting
                     id="bom_rollup"
-                    title="BoM Cost rollup Email notification will be sent to this email address."
+                    string="BoM Cost Rollup Email"
+                    help="BoM Cost rollup Email notification will be sent to this email address."
                 >
-                    <div class="o_setting_left_pane">
-                        <label for="bom_cost_email" string="Email" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <field name="bom_cost_email" widget="email" />
-                        <div class="text-muted">
-                                BoM Cost rollup Email notification will be sent to this email address<br
-                        />
-                            </div>
-                    </div>
-                </div>
+                    <field name="bom_cost_email" widget="email" />
+                </setting>
             </xpath>
         </field>
     </record>

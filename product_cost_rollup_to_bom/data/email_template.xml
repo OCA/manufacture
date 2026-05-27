@@ -1,28 +1,30 @@
-<odoo>
-    <data>
-        <record id="bom_cost_rollup_email_template" model="mail.template">
-            <field
-                name="name"
-            >Event Scheduler Notification for event: BoM Cost Rollup</field>
-            <field name="model_id" ref="mrp.model_mrp_bom" />
-            <field name="auto_delete" eval="True" />
-            <field name="email_from">${ctx["email_from"]}</field>
-            <field name="email_to">${ctx["email_to"]}</field>
-            <field
-                name="subject"
-            >Event Scheduler Notification for event: BoM Cost Rollup</field>
-            <field
-                name="body_html"
-            ><![CDATA[
-                    Event Scheduler for BoM Cost Rollup was completed: <br/>
-                        - Date: ${datetime.datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}<br/>
-                        - Total Product's updated: ${ctx["product_list_len"]}<br/>
-                        % set line_dict = ctx.get('product_list',False)
-                        % for key, value in line_dict.items()
-                            Product ${key} Standard Cost: ${'%8.2f' % value} <br/>
-                        % endfor
-                         ]]>
-            </field>
-        </record>
-    </data>
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="bom_cost_rollup_email_template" model="mail.template">
+        <field
+            name="name"
+        >Event Scheduler Notification for event: BoM Cost Rollup</field>
+        <field name="model_id" ref="mrp.model_mrp_bom" />
+        <field name="auto_delete" eval="True" />
+        <field name="email_from">{{ ctx["email_from"] }}</field>
+        <field name="email_to">{{ ctx["email_to"] }}</field>
+        <field
+            name="subject"
+        >Event Scheduler Notification for event: BoM Cost Rollup</field>
+        <field name="body_html" type="html">
+            <div>
+                Event Scheduler for BoM Cost Rollup was completed: <br />
+                - Date: <t
+                t-out="datetime.datetime.now().strftime('%m/%d/%Y, %H:%M:%S')"
+            /><br />
+                - Total Product's updated: <t t-out="ctx.get('product_list_len')" /><br
+            />
+                <t t-foreach="ctx.get('product_list', {}).items()" t-as="line">
+                    Product <t t-out="line[0]" /> Standard Cost: <t
+                t-out="'%8.2f' % line[1]"
+            /> <br />
+                </t>
+            </div>
+        </field>
+    </record>
 </odoo>
