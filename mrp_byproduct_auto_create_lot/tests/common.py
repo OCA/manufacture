@@ -12,7 +12,13 @@ class CommonMrpByproductAutoCreateLot:
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                tracking_disable=True,
+                skip_bom_alignment_check=True,
+            )
+        )
         cls.lot_obj = cls.env["stock.lot"]
         cls.manufacture_route = cls.env.ref("mrp.route_warehouse0_manufacture")
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
