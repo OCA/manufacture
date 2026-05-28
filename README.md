@@ -36,7 +36,7 @@ addon | version | maintainers | summary
 [mrp_bom_version](mrp_bom_version/) | 18.0.1.0.0 |  | BoM versioning
 [mrp_bom_warn_message_oca](mrp_bom_warn_message_oca/) | 18.0.1.0.0 |  | Add a configurable warning when a bill of materials is selected on a MRP manufacturing order.
 [mrp_bom_widget_section_and_note_one2many](mrp_bom_widget_section_and_note_one2many/) | 18.0.1.0.1 | <a href='https://github.com/quentinDupont'><img src='https://github.com/quentinDupont.png' width='32' height='32' style='border-radius:50%;' alt='quentinDupont'/></a> | Add section and note in Bills of Materials
-[mrp_byproduct_auto_create_lot](mrp_byproduct_auto_create_lot/) | 18.0.1.0.0 |  | Auto create lots for byproducts on manufacturing orders
+[mrp_byproduct_auto_create_lot](mrp_byproduct_auto_create_lot/) | 18.0.1.0.1 |  | Auto create lots for byproducts on manufacturing orders
 [mrp_lot_number_propagation](mrp_lot_number_propagation/) | 18.0.1.1.2 | <a href='https://github.com/sebalix'><img src='https://github.com/sebalix.png' width='32' height='32' style='border-radius:50%;' alt='sebalix'/></a> | Propagate a serial number from a component to a finished product
 [mrp_lot_production_date](mrp_lot_production_date/) | 18.0.1.0.0 |  | MRP Lot Production Date
 [mrp_mass_production_order](mrp_mass_production_order/) | 18.0.1.0.0 | <a href='https://github.com/peluko00'><img src='https://github.com/peluko00.png' width='32' height='32' style='border-radius:50%;' alt='peluko00'/></a> | Create multiple manufacturing orders in one step
@@ -48,6 +48,7 @@ addon | version | maintainers | summary
 [mrp_production_allow_recursive](mrp_production_allow_recursive/) | 18.0.1.0.0 | <a href='https://github.com/yostashiro'><img src='https://github.com/yostashiro.png' width='32' height='32' style='border-radius:50%;' alt='yostashiro'/></a> <a href='https://github.com/aungkokolin1997'><img src='https://github.com/aungkokolin1997.png' width='32' height='32' style='border-radius:50%;' alt='aungkokolin1997'/></a> | MRP Production Allow Recursive
 [mrp_production_auto_validate](mrp_production_auto_validate/) | 18.0.1.0.1 | <a href='https://github.com/sebalix'><img src='https://github.com/sebalix.png' width='32' height='32' style='border-radius:50%;' alt='sebalix'/></a> | Manufacturing Order Auto-Validation when components are picked
 [mrp_production_back_to_draft](mrp_production_back_to_draft/) | 18.0.1.0.1 |  | Allows to return to draft a confirmed or cancelled MO.
+[mrp_production_check_bom_alignment](mrp_production_check_bom_alignment/) | 18.0.1.0.1 |  | Verify that a Manufacturing Order's components and workorder are consistent with its Bill of Materials.
 [mrp_production_location_picking_type](mrp_production_location_picking_type/) | 18.0.1.0.1 |  | Add production location field to picking types for MRP operations.
 [mrp_production_note](mrp_production_note/) | 18.0.1.0.0 |  | Notes in production orders
 [mrp_production_picking_type_from_route](mrp_production_picking_type_from_route/) | 18.0.1.0.0 |  | Updates the operation type creating MO based on the product
