@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-23 09:06+0000\n"
+"PO-Revision-Date: 2026-05-29 14:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
@@ -52,7 +52,7 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component details have been updated.</strong>"
-msgstr ""
+msgstr "<strong>I dettagli del componente sono stati aggiornati.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
@@ -68,6 +68,11 @@ msgid ""
 "case the product is subcontracted, this can be used to determine the date at "
 "which components should be sent to the subcontractor."
 msgstr ""
+"Tempo medio di consegna in giorni per la produzione di questo prodotto. In "
+"caso di distinta base multilivello, verranno aggiunti i tempi di consegna "
+"dei componenti. Nel caso in cui il prodotto sia subappaltato, questo dato "
+"può essere utilizzato per determinare la data entro cui i componenti devono "
+"essere inviati al subappaltatore."
 
 #. module: mrp_bom_tracking
 #: model:ir.model,name:mrp_bom_tracking.model_mrp_bom
@@ -87,7 +92,7 @@ msgstr "Tipo DiBa"
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "Consumed in Operation:"
-msgstr ""
+msgstr "Consumato nell'operazione:"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
@@ -95,11 +100,14 @@ msgid ""
 "Create and confirm Manufacturing Orders this many days in advance, to have "
 "enough time to replenish components or manufacture semi-finished products."
 msgstr ""
+"È necessario creare e confermare gli ordini di produzione con un certo "
+"anticipo, in modo da avere tempo sufficiente per rifornirsi di componenti o "
+"produrre semilavorati."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__days_to_prepare_mo
 msgid "Days to prepare Manufacturing Order"
-msgstr ""
+msgstr "Giorni per preparare l'ordine di produzione"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__consumption
@@ -115,23 +123,34 @@ msgid ""
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
+"Definisce se è possibile consumare una quantità di componenti superiore o "
+"inferiore a quella definita nella distinta base:\n"
+"  * Consentito: consentito a tutti gli utenti di produzione.\n"
+"  * Consentito con avviso: consentito a tutti gli utenti di produzione, con "
+"riepilogo delle differenze di consumo alla chiusura dell'ordine di "
+"produzione.\n"
+" Si noti che, nel caso di \"Consumo in evidenza\" dei componenti, dove il "
+"consumo viene registrato esclusivamente manualmente, verranno comunque "
+"emessi avvisi di consumo quando necessario.\n"
+"  * Bloccato: solo un responsabile può chiudere un ordine di produzione se "
+"il consumo indicato nella distinta base non viene rispettato."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "Consumo flessibile"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__id
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_id
@@ -144,12 +163,12 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__produce_delay
 msgid "Manufacturing Lead Time"
-msgstr ""
+msgstr "Tempo di lavoro produzione"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "Preparazione lavorazione"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__picking_type_id
@@ -202,6 +221,13 @@ msgid ""
 "BoM search. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
+"Quando un processo di approvvigionamento ha un percorso \"produci\" con un "
+"tipo di operazione impostato, tenterà di creare un ordine di produzione per "
+"quel prodotto utilizzando una distinta base (DiBa) dello stesso tipo di "
+"operazione. In caso contrario, il tipo di operazione non viene preso in "
+"considerazione nella ricerca della distinta base. Ciò consente di definire "
+"regole di magazzino che attivano ordini di produzione diversi con distinte "
+"base diverse."
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
