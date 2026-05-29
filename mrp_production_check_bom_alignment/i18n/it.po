@@ -6,84 +6,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-29 13:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model,name:mrp_production_check_bom_alignment.model_mrp_bom_alignment_warning
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
 msgid "BoM Alignment Warning"
-msgstr ""
+msgstr "Avviso allineamento DiBa"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_production__bom_alignment_warning
 msgid "Bom Alignment Warning"
-msgstr ""
+msgstr "Avviso allineamento DiBa"
 
 #. module: mrp_production_check_bom_alignment
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
 msgid "Confirm Anyway"
-msgstr ""
+msgstr "Conferma comunque"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_production_check_bom_alignment
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
 msgid "Go Back"
-msgstr ""
+msgstr "Indietro"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model,name:mrp_production_check_bom_alignment.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__mrp_production_ids
 msgid "Mrp Production"
-msgstr ""
+msgstr "Produzione MRP"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__mrp_production_count
 msgid "Mrp Production Count"
-msgstr ""
+msgstr "Conteggio produzione MRP"
 
 #. module: mrp_production_check_bom_alignment
 #: model:ir.model.fields,field_description:mrp_production_check_bom_alignment.field_mrp_bom_alignment_warning__mrp_production_names
 msgid "Mrp Production Names"
-msgstr ""
+msgstr "Nomi produzione MRP"
 
 #. module: mrp_production_check_bom_alignment
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
@@ -91,6 +93,10 @@ msgid ""
 "The components, quantities, or operations of the MO differ from\n"
 "                        the BoM. You can go back and update the MO, or confirm anyway."
 msgstr ""
+"I componenti, le quantità o le operazioni dell'ordine di produzione "
+"differiscono dalla distinta base. \n"
+"                        È possibile tornare indietro e aggiornare l'ordine "
+"di produzione, oppure confermarlo comunque."
 
 #. module: mrp_production_check_bom_alignment
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
@@ -100,8 +106,14 @@ msgid ""
 "                        <span invisible=\"mrp_production_count == 1\">orders are</span>\n"
 "                        not aligned with the current Bill of Materials:"
 msgstr ""
+"I seguenti ordini di produzione\n"
+"                        <span invisible=\"mrp_production_count != 1\">non "
+"sono</span>\n"
+"                        <span invisible=\"mrp_production_count == 1\">non è</"
+"span>\n"
+"                        in linea con la distinta base corrente:"
 
 #. module: mrp_production_check_bom_alignment
 #: model_terms:ir.ui.view,arch_db:mrp_production_check_bom_alignment.view_mrp_bom_alignment_warning_form
 msgid "Update MO and Confirm"
-msgstr ""
+msgstr "Affiorna OP e conferma"
