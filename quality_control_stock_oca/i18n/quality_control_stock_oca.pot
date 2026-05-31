@@ -79,11 +79,22 @@ msgid "Lot/Serial"
 msgstr ""
 
 #. module: quality_control_stock_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_tree_view_picking
+msgid "Pick. Src. Doc."
+msgstr ""
+
+#. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_id
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection_line__picking_id
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
 msgid "Picking"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_origin
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
+msgid "Picking Source Document"
 msgstr ""
 
 #. module: quality_control_stock_oca
@@ -145,6 +156,16 @@ msgstr ""
 #. module: quality_control_stock_oca
 #: model:ir.actions.act_window,name:quality_control_stock_oca.action_qc_inspection_per_picking_failed
 msgid "Quality inspections from picking failed"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model:ir.model.fields,help:quality_control_stock_oca.field_qc_inspection__picking_origin
+msgid "Reference of the document"
+msgstr ""
+
+#. module: quality_control_stock_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_form_view_picking
+msgid "Source"
 msgstr ""
 
 #. module: quality_control_stock_oca
