@@ -12,6 +12,9 @@ class QcInspection(models.Model):
     picking_id = fields.Many2one(
         comodel_name="stock.picking", compute="_compute_picking", store=True
     )
+    picking_origin = fields.Char(
+        related="picking_id.origin", string="Picking Source Document"
+    )
     lot_id = fields.Many2one(
         comodel_name="stock.lot", compute="_compute_lot", store=True
     )

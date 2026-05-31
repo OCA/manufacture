@@ -9,6 +9,11 @@
         <field name="arch" type="xml">
             <field name="product_id" position="after">
                 <field name="picking_id" />
+                <field
+                    name="picking_origin"
+                    invisible="not picking_id"
+                    string="Source"
+                />
                 <field name="lot_id" groups="stock.group_production_lot" />
             </field>
         </field>
@@ -20,6 +25,7 @@
         <field name="arch" type="xml">
             <field name="product_id" position="after">
                 <field name="picking_id" />
+                <field name="picking_origin" optional="show" string="Pick. Src. Doc." />
                 <field name="lot_id" groups="stock.group_production_lot" />
             </field>
         </field>
@@ -30,7 +36,11 @@
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_search_view" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="picking_id" />
+                <field
+                    name="picking_id"
+                    filter_domain="['|', ('picking_id.name', 'ilike', self), ('picking_id.origin', 'ilike', self)]"
+                />
+                <field name="picking_origin" string="Picking Source Document" />
                 <field name="lot_id" groups="stock.group_production_lot" />
             </field>
             <group expand="0" position="inside">
