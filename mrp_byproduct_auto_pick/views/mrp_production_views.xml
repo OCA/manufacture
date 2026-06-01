@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form.byproduct.auto.pick</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_byproduct_ids']" position="before">
+                <group>
+                    <field
+                        name="byproduct_auto_pick"
+                        readonly="state in ['cancel', 'done']"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
