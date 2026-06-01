@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-01 11:20+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,21 +15,22 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_report_mrp_report_bom_structure
 msgid "BOM Overview Report"
-msgstr ""
+msgstr "Poročilo - pregled kosovnice"
 
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Kosovnica"
 
 #. module: mrp_bom_location
 #: model:ir.model,name:mrp_bom_location.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Postavka kosovnice"
 
 #. module: mrp_bom_location
 #. odoo-javascript
@@ -38,9 +40,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
 #: model_terms:ir.ui.view,arch_db:mrp_bom_location.view_mrp_bom_filter
 msgid "Location"
-msgstr ""
+msgstr "Lokacija"
 
 #. module: mrp_bom_location
 #: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
 msgid "Location of the product"
-msgstr ""
+msgstr "Lokacija proizvoda"
