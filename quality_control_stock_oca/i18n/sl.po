@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2026-02-01 12:09+0000\n"
+"PO-Revision-Date: 2026-06-01 11:27+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/sl/)\n"
@@ -91,7 +91,7 @@ msgstr "Lot/serijska št."
 #. module: quality_control_stock_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_tree_view_picking
 msgid "Pick. Src. Doc."
-msgstr ""
+msgstr "Izvorni dokument"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_id
@@ -105,7 +105,7 @@ msgstr "Zbirnik"
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_origin
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
 msgid "Picking Source Document"
-msgstr ""
+msgstr "Izvorni dokument"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
@@ -171,12 +171,12 @@ msgstr "Neuspešne inšpekcije kakovosti na zbirniku"
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,help:quality_control_stock_oca.field_qc_inspection__picking_origin
 msgid "Reference of the document"
-msgstr ""
+msgstr "Sklic dokumenta"
 
 #. module: quality_control_stock_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_form_view_picking
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_move
