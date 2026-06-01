@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-01 11:37+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,88 +15,89 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom
 msgid "Bill of Material"
-msgstr ""
+msgstr "Kosovnica"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model,name:mrp_bom_hierarchy.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Postavka kosovnice"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "Child BoMs"
-msgstr ""
+msgstr "Podrejene kosovnice"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__child_bom_ids
 msgid "Child Bom"
-msgstr ""
+msgstr "Podrejena kosovnica"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
 msgid "Has child BoMs"
-msgstr ""
+msgstr "Vsebuje podrejene kosovnice"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_child
 msgid "Has components"
-msgstr ""
+msgstr "Vsebuje komponente"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.view_mrp_bom_filter
 msgid "Has parent BoMs"
-msgstr ""
+msgstr "Vsebuje nadrejene kosovnice"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom_line__has_bom
 msgid "Has sub BoM"
-msgstr ""
+msgstr "Ima podrejeno kosovnico"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__has_parent
 msgid "Is component"
-msgstr ""
+msgstr "Je komponenta"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "Parent BoMs"
-msgstr ""
+msgstr "Nadrejene kosovnice"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__parent_bom_ids
 msgid "Parent Bom"
-msgstr ""
+msgstr "Nadrejena kosovnica"
 
 #. module: mrp_bom_hierarchy
 #: model:ir.model.fields,field_description:mrp_bom_hierarchy.field_mrp_bom__product_has_other_bom
 msgid "Product has other BoMs"
-msgstr ""
+msgstr "Proizvod ima druge kosovnice"
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 msgid "This operator is not supported"
-msgstr ""
+msgstr "Ta operator ni podprt"
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
 #: code:addons/mrp_bom_hierarchy/model/mrp_bom.py:0
 msgid "Value should be True or False (not %s)"
-msgstr ""
+msgstr "Vrednost bi morala biti True ali False (ne %s)"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_form_view
 msgid "View product's BoM"
-msgstr ""
+msgstr "Prikaži kosovnico proizvoda"
 
 #. module: mrp_bom_hierarchy
 #: model_terms:ir.ui.view,arch_db:mrp_bom_hierarchy.mrp_bom_hierarchy_tree_view
 msgid "View product's other BoMs"
-msgstr ""
+msgstr "Prikaži druge kosovnice proizvoda"
 
 #. module: mrp_bom_hierarchy
 #. odoo-python
@@ -104,3 +106,4 @@ msgid ""
 "You should provide either a product or a product template to search a BoM "
 "Line"
 msgstr ""
+"Za iskanje postavke v kosovnici morate vnesti proizvod ali predlogo proizvoda"
