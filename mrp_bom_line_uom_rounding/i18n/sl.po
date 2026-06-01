@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-01 12:20+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_line_uom_rounding
 #: model:ir.model,name:mrp_bom_line_uom_rounding.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Postavka kosovnice"
 
 #. module: mrp_bom_line_uom_rounding
 #. odoo-python
@@ -28,3 +30,6 @@ msgid ""
 "rounding precision (%(rounding)s) of the Unit of Measure '%(uom)s'. Please "
 "adjust the quantity to a valid value."
 msgstr ""
+"Količina %(qty) za komponento '%(product)s' ne upošteva natančnosti "
+"zaokroževanja (%(rounding)s) merske enote '%(uom)s'. Količino prilagodite na "
+"veljavno vrednost."
