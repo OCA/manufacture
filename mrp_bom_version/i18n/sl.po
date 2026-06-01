@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-28 14:19+0000\n"
-"PO-Revision-Date: 2016-04-30 05:11+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"PO-Revision-Date: 2026-06-01 12:20+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -47,27 +48,27 @@ msgstr "Kosovnica"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__bom_line_ids
 msgid "BoM Lines"
-msgstr ""
+msgstr "Postavke kosovnice"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "Vrsta kosovnice"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__byproduct_ids
 msgid "By-products"
-msgstr ""
+msgstr "Stranski proizvodi"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: mrp_bom_version
 #: model:ir.model,name:mrp_bom_version.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__consumption
@@ -83,6 +84,16 @@ msgid ""
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
+"Določa, ali lahko porabite več ali manj komponent, kot je količina, določena "
+"v kosovnici (BoM):\n"
+"  * Dovoljeno: dovoljeno za vse uporabnike v proizvodnji.\n"
+"  * Dovoljeno z opozorilom: dovoljeno za vse uporabnike v proizvodnji s "
+"povzetkom razlik v porabi ob zaključku proizvodnega naročila.\n"
+"  Upoštevajte, da se v primeru ročne porabe komponent, kjer se poraba "
+"registrira izključno ročno, opozorila o porabi še vedno izdajo, kadar je to "
+"primerno.\n"
+"  * Blokirano: le vodja lahko zaključi proizvodno naročilo, če poraba v "
+"kosovnici ni upoštevana."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__draft
@@ -94,7 +105,7 @@ msgstr "Osnutek"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "Fleksibilna potrošnja"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__historical
@@ -113,6 +124,7 @@ msgstr "Datum zastaranja"
 msgid ""
 "If a product variant is defined the BOM is available only for this product."
 msgstr ""
+"Če je določena različica proizvoda, je kosovnica na voljo le za ta proizvod."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__active_draft
@@ -134,7 +146,7 @@ msgstr "Verzija proizvodne kosovnice"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "Pripravljenost za proizvodnjo"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -150,48 +162,48 @@ msgstr "Stare verzije"
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "Tip operacije"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__operation_ids
 msgid "Operations"
-msgstr ""
+msgstr "Operacije"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__previous_bom_id
 msgid "Previous BoM"
-msgstr ""
+msgstr "Prejšnja kosovnica"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Različica proizvoda"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Količina"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Sklic"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Zaporedje"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__state
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
@@ -205,6 +217,9 @@ msgid ""
 "If the BOM contains operations, make sure the work center capacity is "
 "accurate."
 msgstr ""
+"To naj bi bila najmanjša količina, v kateri se lahko ta proizvod proizvede. "
+"Če kosovnica vsebuje operacije, se prepričajte, da je kapaciteta delovnega "
+"centra točna."
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__active_draft
@@ -217,14 +232,14 @@ msgstr ""
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Enota mere"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_uom_id
 msgid ""
 "Unit of Measure (Unit of Measure) is the unit of measurement for the "
 "inventory control"
-msgstr ""
+msgstr "Enota mere za inventuro"
 
 #. module: mrp_bom_version
 #: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__version
@@ -251,6 +266,7 @@ msgid ""
 "YYou will activate the BoM, then you won't be able to edit it after this. "
 "Are you sure you want to proceed?"
 msgstr ""
+"Po aktivaciji kosovnice je ne boste več mogli urejati. Želite nadaljevati?"
 
 #. module: mrp_bom_version
 #: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
@@ -274,6 +290,7 @@ msgid ""
 "You will activate the BoM, then you won't be able to edit it after this. Are "
 "you sure you want to proceed?"
 msgstr ""
+"Po aktivaciji kosovnice je ne boste več mogli urejati. Želite nadaljevati?"
 
 #~ msgid "Group By..."
 #~ msgstr "Združi po..."
