@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2025-07-15 12:25+0000\n"
+"PO-Revision-Date: 2026-06-03 08:11+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_stock_lot__created_inspections
@@ -94,7 +94,7 @@ msgstr "Lotto/seriale"
 #. module: quality_control_stock_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_tree_view_picking
 msgid "Pick. Src. Doc."
-msgstr ""
+msgstr "Doc. ori. pre."
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_id
@@ -108,7 +108,7 @@ msgstr "Prelievo"
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_origin
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
 msgid "Picking Source Document"
-msgstr ""
+msgstr "Documento origine prelievo"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_picking_type
@@ -174,12 +174,12 @@ msgstr "Ispezioni di qualità da prelievo fallite"
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,help:quality_control_stock_oca.field_qc_inspection__picking_origin
 msgid "Reference of the document"
-msgstr ""
+msgstr "Riferimento del documento"
 
 #. module: quality_control_stock_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_form_view_picking
 msgid "Source"
-msgstr ""
+msgstr "Origine"
 
 #. module: quality_control_stock_oca
 #: model:ir.model,name:quality_control_stock_oca.model_stock_move
