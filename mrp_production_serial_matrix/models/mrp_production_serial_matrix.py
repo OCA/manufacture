@@ -274,8 +274,7 @@ class MrpProductionSerialMatrix(models.Model):
         matrix_map = self._get_matrix_lines_map()
         fp_lot = lots_to_process[0] if len(lots_to_process) > 1 else lots_to_process
         if not fp_lot:
-            self.state = "done"
-            self.message_post(body=_("The serial matrix finished successfully"))
+            self._set_matrix_done()
             return mos
         try:
             self._prepare_mo_for_serial(current_mo, fp_lot)
@@ -286,12 +285,18 @@ class MrpProductionSerialMatrix(models.Model):
                 return self.call_next_process_serial_matrix_lot(
                     mos, lots_to_process=lots_to_process - fp_lot, current_mo=current_mo
                 )
-            self.state = "done"
-            self.message_post(body=_("The serial matrix finished successfully"))
+            self._set_matrix_done()
         except UserError as e:
-            self.state = "exception"
-            self.message_post(body=_(f"Error during the processing: {str(e)}"))
+            self._set_matrix_exception(str(e))
         return mos
+
+    def _set_matrix_done(self):
+        self.state = "done"
+        self.message_post(body=_("The serial matrix finished successfully"))
+
+    def _set_matrix_exception(self, error):
+        self.state = "exception"
+        self.message_post(body=_("Error during the processing: %s") % error)
 
     def _process_serial_matrix(self):
         mos = self.env["mrp.production"]
