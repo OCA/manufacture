@@ -5,3 +5,6 @@ to Manufacturing Orders and Work Orders:
 > - Customer
 > - Commitment Date
 > - Customer Reference
+
+It also retains the sale order information when several manufacturing
+orders coming from the same sale order line are merged together.
