@@ -129,3 +129,57 @@ class TestMrpSubcontractingSkipNoNegative(TestMrpSubcontractingCommon):
         self.assertIn(another_product, products)
         for move in self.subcontracting_receipt.move_ids:
             self.assertEqual(move.quantity_done, 1)
+
+    def test_mrp_subcontracting_with_normal_product_backorder(self):
+        """
+        Mixed receipt: validate only the subcontract move, request a backorder.
+        The normal move (qty_done=0) must be moved to a backorder picking.
+        """
+        another_product = self.env["product.product"].create(
+            {
+                "name": "Another Product",
+                "type": "product",
+            }
+        )
+        normal_move = self.env["stock.move"].create(
+            {
+                "picking_id": self.subcontracting_receipt.id,
+                "product_id": another_product.id,
+                "name": another_product.name,
+                "product_uom": another_product.uom_id.id,
+                "product_uom_qty": 1,
+                "location_id": self.subcontracting_receipt.location_id.id,
+                "location_dest_id": self.subcontracting_receipt.location_dest_id.id,
+            }
+        )
+        self._create_stock_quant(self.comp1, 10)
+        self._create_stock_quant(self.comp2, 10)
+        self.subcontracting_receipt.action_confirm()
+        self.assertEqual(self.subcontracting_receipt.state, "assigned")
+        # Only set qty_done on the subcontract move; leave the normal move at 0.
+        subcontract_move = self.subcontracting_receipt.move_ids.filtered(
+            lambda m: m.is_subcontract
+        )
+        subcontract_move.quantity_done = 1
+        backorder_wizard = self.subcontracting_receipt.sudo().button_validate()
+        self.assertEqual(
+            backorder_wizard.get("res_model"), "stock.backorder.confirmation"
+        )
+        backorder_wizard_form = Form(
+            self.env[backorder_wizard["res_model"]].with_context(
+                **backorder_wizard["context"]
+            )
+        ).save()
+        backorder_wizard_form.process()
+        # The subcontract move is done on the original picking.
+        self.assertEqual(subcontract_move.state, "done")
+        self.assertEqual(subcontract_move.quantity_done, 1)
+        # A backorder picking must have been created with the unprocessed
+        # normal move; it must no longer be on the original picking.
+        backorder = self.env["stock.picking"].search(
+            [("backorder_id", "=", self.subcontracting_receipt.id)]
+        )
+        self.assertTrue(backorder)
+        self.assertNotIn(normal_move, self.subcontracting_receipt.move_ids)
+        self.assertIn(normal_move, backorder.move_ids)
+        self.assertEqual(normal_move.product_uom_qty, 1)
