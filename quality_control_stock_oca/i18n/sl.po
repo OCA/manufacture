@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: manufacture (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-22 07:24+0000\n"
-"PO-Revision-Date: 2026-06-01 11:27+0000\n"
+"PO-Revision-Date: 2026-06-09 06:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
 "language/sl/)\n"
@@ -99,7 +99,7 @@ msgstr "Izvorni dokument"
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_line_search_stock_view
 #: model_terms:ir.ui.view,arch_db:quality_control_stock_oca.qc_inspection_search_view_picking
 msgid "Picking"
-msgstr "Zbirnik"
+msgstr "Dobavnica"
 
 #. module: quality_control_stock_oca
 #: model:ir.model.fields,field_description:quality_control_stock_oca.field_qc_inspection__picking_origin
