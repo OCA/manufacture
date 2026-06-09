@@ -11,9 +11,7 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def _action_done(self, cancel_backorder=False):
-        moves_with_no_check = self.filtered(lambda x: x.is_subcontract).with_context(
-            skip_negative_qty_check=True
-        )
+        moves_with_no_check = self.filtered(lambda x: x.is_subcontract)
         # For rather unlikely occassions where linked production is not in the right
         # state.
         for move in moves_with_no_check:
@@ -73,10 +71,7 @@ class StockMove(models.Model):
                             location=location.complete_name,
                         )
                     )
-        res = super(StockMove, self - moves_with_no_check)._action_done(
-            cancel_backorder=cancel_backorder
-        )
-        res += super(StockMove, moves_with_no_check)._action_done(
-            cancel_backorder=cancel_backorder
-        )
-        return res
+        return super(
+            StockMove,
+            self.with_context(skip_no_negative_move_ids=moves_with_no_check.ids),
+        )._action_done(cancel_backorder=cancel_backorder)
