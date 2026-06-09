@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 01:44+0000\n"
-"PO-Revision-Date: 2026-06-07 11:46+0000\n"
+"PO-Revision-Date: 2026-06-09 08:27+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -39,7 +39,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_question_form_view
 msgid "<span> - </span>"
-msgstr ""
+msgstr "<span> - </span>"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_line
@@ -59,7 +59,7 @@ msgstr "Sprejem"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Potrebno ukrepanje"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__active
@@ -70,25 +70,23 @@ msgstr "Aktivno"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_ids
-#, fuzzy
 msgid "Activities"
-msgstr "Aktivno"
+msgstr "Aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Dekoracija izjeme"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_state
-#, fuzzy
 msgid "Activity State"
-msgstr "Aktivno"
+msgstr "Stanje aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ikona tipa aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__after
@@ -113,7 +111,7 @@ msgstr "Odobritev"
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
@@ -123,7 +121,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_attachment_count
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Št. priponk"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__auto_generated
@@ -177,13 +175,12 @@ msgstr "Družba"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__date_done
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Completion Date"
-msgstr ""
+msgstr "Datum dokončanja"
 
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.menu_qc_config
-#, fuzzy
 msgid "Configuration"
-msgstr "Potrditev"
+msgstr "Nastavitve"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -265,12 +262,12 @@ msgstr "Osnutek"
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_test_category.py:0
 msgid "Error! You can not create recursive categories."
-msgstr ""
+msgstr "Napaka! Rekurzivnih kategorij ne morete ustvariti."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__external_notes
 msgid "External Notes"
-msgstr ""
+msgstr "Zunanje opombe"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -281,7 +278,7 @@ msgstr "Zunanje opombe"
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_kanban_view
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_line_kanban_view
 msgid "Failed"
-msgstr ""
+msgstr "Neuspelo"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_follower_ids
@@ -291,7 +288,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_follower_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Sledilci"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_partner_ids
@@ -301,12 +298,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_partner_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Sledilci (partnerji)"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Font awesome ikona, npr. fa-tasks"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_category__complete_name
@@ -342,7 +339,7 @@ msgstr "Združi po"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__has_message
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Vsebuje sporočilo"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__id
@@ -362,12 +359,12 @@ msgstr "ID"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Ikona za prikaz izjem pri aktivnostih."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__auto_generated
@@ -382,7 +379,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Če je označeno, nova sporočila zahtevajo vašo pozornost."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error
@@ -393,6 +390,8 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
+"Kadar je označeno, pomeni, da je pri nekaterih sporočilih prišlo do napake "
+"pri dostavi."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__partners
@@ -422,7 +421,7 @@ msgstr "Inšpekcija"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__inspection_lines
 msgid "Inspection Lines"
-msgstr ""
+msgstr "Inšpekcijske postavke"
 
 #. module: quality_control_oca
 #: model:ir.actions.act_window,name:quality_control_oca.action_qc_inspection_line
@@ -456,7 +455,7 @@ msgstr "Interni zaznamki"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_is_follower
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Je sledilec"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__write_uid
@@ -517,7 +516,7 @@ msgstr "Maksimalna veljavna vrednost za kvantitativno vprašanje."
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Napaka ob dostavi sporočila"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_ids
@@ -527,7 +526,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__min_value
@@ -543,7 +542,7 @@ msgstr "Minimalna veljavna vrednost za kvantitativno vprašanje."
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Rok mojih aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__name
@@ -557,17 +556,17 @@ msgstr "Naziv"
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Rok naslednje aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Povzetek naslednje aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tip naslednje aktivnosti"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__notes
@@ -584,7 +583,7 @@ msgstr "Opombe"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Število ukrepov"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_has_error_counter
@@ -594,7 +593,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Število napak"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_needaction_counter
@@ -604,7 +603,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_needaction_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Število sporočil, ki zahtevajo ukrepanje"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__message_has_error_counter
@@ -614,7 +613,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__message_has_error_counter
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Število sporočil, ki niso bila pravilno dostavljena"
 
 #. module: quality_control_oca
 #: model:qc.test.question,name:quality_control_oca.qc_test_question_1
@@ -637,7 +636,7 @@ msgstr "Partnerji"
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_inspection__state__plan
 msgid "Plan"
-msgstr ""
+msgstr "Plan"
 
 #. module: quality_control_oca
 #: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_trigger_line__timing__plan_ahead
@@ -687,7 +686,7 @@ msgstr "Predloga proizvoda"
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Različica proizvoda"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__product_id
@@ -713,27 +712,23 @@ msgstr "Kvalitativne vrednosti"
 
 #. module: quality_control_oca
 #: model:ir.ui.menu,name:quality_control_oca.qc_menu
-#, fuzzy
 msgid "Quality Control"
 msgstr "Kontrola kakovosti"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_product_category_line
-#, fuzzy
 msgid "Quality Control Trigger Product Category Line"
-msgstr "Inšpekcijska postavka kontrole kakovosti"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_product_line
-#, fuzzy
 msgid "Quality Control Trigger Product Line"
-msgstr "Sprožilec kontrole kakovosti"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_trigger_product_template_line
-#, fuzzy
 msgid "Quality Control Trigger Product Template Line"
-msgstr "Inšpekcijska postavka kontrole kakovosti"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.module.category,name:quality_control_oca.module_category_quality_control
@@ -831,7 +826,7 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__question_type
 msgid "Question Type"
-msgstr ""
+msgstr "Tip vprašanja"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__test_lines
@@ -867,9 +862,8 @@ msgstr "Odgovoren"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__activity_user_id
-#, fuzzy
 msgid "Responsible User"
-msgstr "Odgovoren"
+msgstr "Odgovorni uporabnik"
 
 #. module: quality_control_oca
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
@@ -904,9 +898,8 @@ msgstr "Nastavitev testiranja"
 
 #. module: quality_control_oca
 #: model:ir.model,name:quality_control_oca.model_qc_inspection_set_test
-#, fuzzy
 msgid "Set test for inspection"
-msgstr "Iskalnik inšpekcij"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:qc.test.question,name:quality_control_oca.qc_test_question_2
@@ -1030,7 +1023,7 @@ msgstr "Tip"
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tip izjeme pri aktivnosti na zapisu."
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__uom_id
@@ -1085,7 +1078,7 @@ msgstr "Čakanje nadzornikove odobritve"
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_line__website_message_ids
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Sporočila spletne strani"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_inspection__website_message_ids
@@ -1095,7 +1088,7 @@ msgstr ""
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__website_message_ids
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_template_line__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Kronologija komunikacij spletne strani"
 
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
