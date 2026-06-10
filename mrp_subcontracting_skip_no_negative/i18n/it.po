@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #. module: mrp_subcontracting_skip_no_negative
+#: model:ir.model,name:mrp_subcontracting_skip_no_negative.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: mrp_subcontracting_skip_no_negative
 #: model:ir.model,name:mrp_subcontracting_skip_no_negative.model_stock_move
 msgid "Stock Move"
 msgstr "Movimento di magazzino"
@@ -26,17 +31,14 @@ msgstr "Movimento di magazzino"
 msgid "Transfer"
 msgstr "Trasferimento"
 
-#. module: mrp_subcontracting_skip_no_negative
-#. odoo-python
-#: code:addons/mrp_subcontracting_skip_no_negative/models/stock_move.py:0
 #, python-format
-msgid ""
-"You cannot validate this stock operation because the stock level of the "
-"component product '{name}' would become negative ({qty}) on the stock "
-"location '{location}' and negative stock is not allowed for this product and/"
-"or location."
-msgstr ""
-"Non è possibile convalidare questa operazione di magazzino perché il livello "
-"di magazzino del prodotto componente '{name}' diventerebbe negativo ({qty}) "
-"nell'ubicazione di magazzino '{location}' e per questo prodotto e/o "
-"posizione non è consentito un magazzino negativo."
+#~ msgid ""
+#~ "You cannot validate this stock operation because the stock level of the "
+#~ "component product '{name}' would become negative ({qty}) on the stock "
+#~ "location '{location}' and negative stock is not allowed for this product "
+#~ "and/or location."
+#~ msgstr ""
+#~ "Non è possibile convalidare questa operazione di magazzino perché il "
+#~ "livello di magazzino del prodotto componente '{name}' diventerebbe "
+#~ "negativo ({qty}) nell'ubicazione di magazzino '{location}' e per questo "
+#~ "prodotto e/o posizione non è consentito un magazzino negativo."
