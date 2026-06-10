@@ -2,6 +2,7 @@
 <odoo>
     <record model="ir.actions.act_window" id="mrp.mrp_bom_form_action">
         <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+        <field name="context">{'active_test': False}</field>
     </record>
 
     <record model="ir.ui.view" id="mrp_bom_version_tree_view">
