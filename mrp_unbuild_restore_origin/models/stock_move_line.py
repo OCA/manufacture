@@ -9,13 +9,10 @@ class StockMoveLine(models.Model):
 
     def _apply_putaway_strategy(self):
         # Avoid changing locations if exact_location context is set
-        location_id = False
-        location_dest_id = False
-        if self.env.context.get("exact_location"):
-            location_id = self.location_id.id
-            location_dest_id = self.location_dest_id.id
-        super()._apply_putaway_strategy()
-        if location_id and location_dest_id:
-            self.location_id = location_id
-            self.location_dest_id = location_dest_id
-        return
+        if not self.env.context.get("exact_location"):
+            return super()._apply_putaway_strategy()
+        original_locations = {ml: (ml.location_id, ml.location_dest_id) for ml in self}
+        res = super()._apply_putaway_strategy()
+        for ml in self:
+            ml.location_id, ml.location_dest_id = original_locations[ml]
+        return res
