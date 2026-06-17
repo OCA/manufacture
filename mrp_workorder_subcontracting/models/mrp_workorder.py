@@ -337,7 +337,7 @@ class MrpWorkorder(models.Model):
         ratios = []
         for product in delivery_moves.mapped("product_id"):
             product_moves = delivery_moves.filtered(
-                lambda move, product=product: move.product_id == product
+                lambda move, p=product: move.product_id == p
             )
             planned_qty = sum(product_moves.mapped("product_uom_qty"))
             done_qty = sum(
