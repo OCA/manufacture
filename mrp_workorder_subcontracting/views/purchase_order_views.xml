@@ -19,6 +19,19 @@
                         string="Subcontractor Phases"
                     />
                 </button>
+                <button
+                    type="object"
+                    name="action_view_subcontract_transfers"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="subcontract_transfer_count == 0"
+                >
+                    <field
+                        name="subcontract_transfer_count"
+                        widget="statinfo"
+                        string="Subcontract Transfers"
+                    />
+                </button>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='product_id']"

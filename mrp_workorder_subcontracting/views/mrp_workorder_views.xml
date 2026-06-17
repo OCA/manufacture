@@ -5,6 +5,36 @@
         <field name="model">mrp.workorder</field>
         <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="button_create_subcontract_order"
+                    type="object"
+                    string="Create Subcontract Order"
+                    invisible="has_subcontract_documents"
+                    groups="mrp.group_mrp_manager"
+                    class="btn-primary"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_subcontract_purchase_orders"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    invisible="not purchase_order_line_ids"
+                >
+                    Subcontract POs
+                </button>
+                <button
+                    name="action_view_subcontract_transfers"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="not delivery_move_ids or not return_move_ids"
+                >
+                    Subcontract Transfers
+                </button>
+            </xpath>
             <xpath expr="//page[@name='components']" position="after">
                 <page string="Subcontract" name="subcontract">
                     <field name="has_subcontract_documents" invisible="1" />

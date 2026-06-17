@@ -26,7 +26,10 @@ class PurchaseOrder(models.Model):
     )
     subcontract_workorder_count = fields.Integer(
         string="Subcontract Work Orders",
-        compute="_compute_subcontract_workorder_count",
+        compute="_compute_subcontract_counts",
+    )
+    subcontract_transfer_count = fields.Integer(
+        string="Subcontract Transfers Count", compute="_compute_subcontract_counts"
     )
 
     def _compute_mrp_subcontracting(self):
@@ -41,9 +44,15 @@ class PurchaseOrder(models.Model):
             flows = set(po.order_line.mapped("subcontracting_flow"))
             po.has_mixed_subcontract_flows = len(flows - {False}) > 1
 
-    def _compute_subcontract_workorder_count(self):
+    def _compute_subcontract_counts(self):
         for po in self:
-            po.subcontract_workorder_count = len(po.order_line.mapped("workorder_id"))
+            workorders = po.order_line.mapped("workorder_id")
+            po.subcontract_workorder_count = len(workorders)
+            pickings = (
+                workorders.delivery_move_ids.picking_id
+                | workorders.return_move_ids.picking_id
+            )
+            po.subcontract_transfer_count = len(pickings)
 
     def action_view_subcontract_workorders(self):
         self.ensure_one()
@@ -64,6 +73,30 @@ class PurchaseOrder(models.Model):
                 (False, "form"),
             ],
             "domain": [("id", "in", workorders.ids)],
+        }
+
+    def action_view_subcontract_transfers(self):
+        self.ensure_one()
+        workorders = self.order_line.mapped("workorder_id")
+        moves = workorders.delivery_move_ids | workorders.return_move_ids
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Subcontract Transfers"),
+            "res_model": "stock.move",
+            "view_mode": "list,form",
+            "views": [
+                (
+                    self.env.ref(
+                        "mrp_workorder_subcontracting."
+                        "stock_move_view_tree_subcontracting_transfers"
+                    ).id,
+                    "list",
+                )
+            ],
+            "domain": [("id", "in", moves.ids)],
+            "context": {
+                "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
+            },
         }
 
     def button_confirm(self):

@@ -74,6 +74,6 @@ class MrpProduction(models.Model):
             ],
             "domain": [("id", "in", moves.ids)],
             "context": {
-                "group_by": ["sub_workorder_id", "picking_type_id"],
+                "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
             },
         }

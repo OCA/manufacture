@@ -94,26 +94,9 @@ class PurchaseOrderLine(models.Model):
         delivery_moves = self.sub_purchase_move_ids.filtered(
             lambda move: move.sub_delivery_workorder_id and move.state != "cancel"
         )
-        ratios = []
-        for product in delivery_moves.mapped("product_id"):
-            product_moves = delivery_moves.filtered(
-                lambda move, product=product: move.product_id == product
-            )
-            planned_qty = sum(product_moves.mapped("product_uom_qty"))
-            done_qty = sum(
-                move.product_uom._compute_quantity(
-                    move.quantity if move.state == "done" else 0.0,
-                    move.product_uom,
-                    rounding_method="HALF-UP",
-                )
-                for move in product_moves
-            )
-            if not planned_qty:
-                continue
-            ratios.append(done_qty / planned_qty)
-        if not ratios:
-            return 0.0
-        return self.product_qty * min(ratios)
+        return self.workorder_id._get_subcontract_target_qty_from_delivery_moves(
+            delivery_moves, self.product_qty
+        )
 
     def write(self, vals):
         old_workorders_by_line = [

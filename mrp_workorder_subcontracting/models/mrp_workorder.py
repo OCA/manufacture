@@ -2,7 +2,7 @@ from markupsafe import Markup, escape
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare, float_is_zero
+from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 
 
 class MrpWorkorder(models.Model):
@@ -91,6 +91,73 @@ class MrpWorkorder(models.Model):
         if "operation_id" in vals:
             self._sync_subcontracting_from_operation()
         return res
+
+    def button_create_subcontract_order(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "mrp_workorder_subcontracting.mrp_workorder_assign_subcontract_action"
+        ).read()[0]
+        action["context"] = {
+            **self.env.context,
+            "default_workorder_ids": self.ids,
+            "active_ids": self.ids,
+            "active_id": self.id,
+            "active_model": self._name,
+        }
+
+        return action
+
+    def action_view_subcontract_purchase_orders(self):
+        self.ensure_one()
+        purchase_orders = self.purchase_order_line_ids.order_id
+        action = self.env["ir.actions.actions"]._for_xml_id("purchase.purchase_rfq")
+        if len(purchase_orders) == 1:
+            action.update(
+                {
+                    "view_mode": "form",
+                    "views": [
+                        (self.env.ref("purchase.purchase_order_form").id, "form")
+                    ],
+                    "res_id": purchase_orders.id,
+                }
+            )
+            action.pop("domain", None)
+            return action
+        action["views"] = [
+            (
+                self.env.ref(
+                    "mrp_workorder_subcontracting."
+                    "purchase_order_view_tree_subcontracting_documents"
+                ).id,
+                "list",
+            ),
+            (self.env.ref("purchase.purchase_order_form").id, "form"),
+        ]
+        action["domain"] = [("id", "in", purchase_orders.ids)]
+        return action
+
+    def action_view_subcontract_transfers(self):
+        self.ensure_one()
+        moves = self.delivery_move_ids | self.return_move_ids
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Subcontract Transfers"),
+            "res_model": "stock.move",
+            "view_mode": "list,form",
+            "views": [
+                (
+                    self.env.ref(
+                        "mrp_workorder_subcontracting."
+                        "stock_move_view_tree_subcontracting_transfers"
+                    ).id,
+                    "list",
+                )
+            ],
+            "domain": [("id", "in", moves.ids)],
+            "context": {
+                "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
+            },
+        }
 
     def _action_confirm(self):
         res = super()._action_confirm()
@@ -334,26 +401,45 @@ class MrpWorkorder(models.Model):
         delivery_moves = self.delivery_move_ids.filtered(
             lambda move: move.state != "cancel"
         )
+        return self._get_subcontract_target_qty_from_delivery_moves(
+            delivery_moves, self.qty_remaining
+        )
+
+    def _get_subcontract_target_qty_from_delivery_moves(self, delivery_moves, qty):
+        self.ensure_one()
         ratios = []
         for product in delivery_moves.mapped("product_id"):
             product_moves = delivery_moves.filtered(
                 lambda move, p=product: move.product_id == p
             )
-            planned_qty = sum(product_moves.mapped("product_uom_qty"))
-            done_qty = sum(
+            target_uom = min(
+                product_moves.mapped("product_uom"), key=lambda uom: uom.rounding
+            )  # Take smaller UoM
+            planned_qty = sum(
                 move.product_uom._compute_quantity(
-                    move.quantity if move.state == "done" else 0.0,
-                    move.product_uom,
+                    move.product_uom_qty,
+                    target_uom,
                     rounding_method="HALF-UP",
                 )
                 for move in product_moves
-            )
+            )  # Convert and sum to reference UoM
+            done_qty = sum(
+                move.product_uom._compute_quantity(
+                    move.quantity if move.state == "done" else 0.0,
+                    target_uom,
+                    rounding_method="HALF-UP",
+                )
+                for move in product_moves
+            )  # Convert and sum to reference UoM
             if not planned_qty:
                 continue
             ratios.append(done_qty / planned_qty)
         if not ratios:
             return 0.0
-        return self.qty_remaining * min(ratios)
+        return float_round(
+            qty * min(ratios),
+            precision_rounding=self.product_uom_id.rounding,
+        )
 
     def _sync_subcontract_raw_move_location(self, partner=False):
         internal_location = (

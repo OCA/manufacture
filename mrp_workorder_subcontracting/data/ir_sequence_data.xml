@@ -2,7 +2,7 @@
 <odoo noupdate="1">
     <record id="seq_subcontracting_purchase" model="ir.sequence">
         <field name="name">Purchase Subcontracting Order</field>
-        <field name="code">purchase.order</field>
+        <field name="code">purchase.order.subcontract</field>
         <field name="use_date_range">True</field>
         <field name="prefix">SC/%(y)s/</field>
         <field name="number_next">1</field>
