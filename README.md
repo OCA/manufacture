@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [mrp_2_steps_consumed_qty_sync](mrp_2_steps_consumed_qty_sync/) | 15.0.0.1.0 | <a href='https://github.com/sergio-teruel'><img src='https://github.com/sergio-teruel.png' width='32' height='32' style='border-radius:50%;' alt='sergio-teruel'/></a> | Update consumed quantities when in 2 steps production scope the picking is validated
 [mrp_account_analytic](mrp_account_analytic/) | 15.0.1.0.2 | <a href='https://github.com/dreispt'><img src='https://github.com/dreispt.png' width='32' height='32' style='border-radius:50%;' alt='dreispt'/></a> | Consuming raw materials and operations generated Analytic Items
 [mrp_account_bom_attribute_match](mrp_account_bom_attribute_match/) | 15.0.1.1.1 | <a href='https://github.com/ivantodorovich'><img src='https://github.com/ivantodorovich.png' width='32' height='32' style='border-radius:50%;' alt='ivantodorovich'/></a> | Glue module between `mrp_account` and `mrp_bom_attribute_match`
+[mrp_bom_assign_auto](mrp_bom_assign_auto/) | 15.0.1.0.0 |  | Auto select th first BoM that has all components available
 [mrp_bom_attribute_match](mrp_bom_attribute_match/) | 15.0.1.1.1 |  | Dynamic BOM component based on product attribute
 [mrp_bom_component_menu](mrp_bom_component_menu/) | 15.0.1.0.0 |  | MRP BOM Component Menu
 [mrp_bom_hierarchy](mrp_bom_hierarchy/) | 15.0.1.0.0 |  | Make it easy to navigate through BoM hierarchy.
