@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2022 Camptocamp SA (https://www.camptocamp.com).
+    @author Iván Todorovich <ivan.todorovich@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='group_extra_info']/field[@name='date_finished']"
+                position="attributes"
+            >
+                <attribute name="invisible">0</attribute>
+                <attribute
+                    name="readonly"
+                >state in ['done', 'to_close', 'cancel']</attribute>
+                <attribute
+                    name="decoration-warning"
+                >state not in ('done', 'cancel') and date_start &lt; now</attribute>
+                <attribute
+                    name="decoration-danger"
+                >state not in ('done', 'cancel') and date_start &lt; current_date</attribute>
+                <attribute
+                    name="decoration-bf"
+                >state not in ('done', 'cancel') and (date_start &lt; current_date or date_start &lt; now)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <field name="date_finished" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
