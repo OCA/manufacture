@@ -3,14 +3,27 @@
 
 from datetime import datetime, timedelta
 
+from freezegun import freeze_time
+
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
+
+# The scheduling assertions in these tests compare MRP inventory buckets against
+# dates computed with ``calendar.plan_days`` (working days). Whether a given
+# offset lands on a particular bucket depends on which weekday "today" is, so the
+# suite is not deterministic across run dates (e.g. it passes mid-week but fails
+# on Mondays). Freeze the whole suite to a fixed working day so both the setup
+# and the planning run see the same reference date.
+FREEZE_DATE = "2024-06-12"  # Wednesday
 
 
 class TestMrpMultiLevelCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        freezer = freeze_time(FREEZE_DATE)
+        freezer.start()
+        cls.addClassCleanup(freezer.stop)
         cls.mo_obj = cls.env["mrp.production"]
         cls.po_obj = cls.env["purchase.order"]
         cls.product_obj = cls.env["product.product"]
