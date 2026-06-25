@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Cubiczan
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form - cost rollup</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button
+                        name="action_set_standard_price_from_bom"
+                        type="object"
+                        string="Set Product Cost from BoM"
+                        groups="mrp.group_mrp_manager"
+                        confirm="This will overwrite the produced product's cost with the rolled-up BoM unit cost. Continue?"
+                    />
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="currency_id" invisible="1" />
+                <field name="bom_cost" />
+                <field name="bom_unit_cost" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
