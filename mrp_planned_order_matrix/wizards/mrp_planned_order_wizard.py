@@ -159,9 +159,9 @@ class MprPlannedOrderSheet(models.TransientModel):
             release_date = res.date()
         else:
             release_date = due_date_dt - timedelta(days=lt)
+        product_name = line.product_mrp_area_id.product_id.display_name
         return {
-            "name": "Planned Order for %s"
-            % line.product_mrp_area_id.product_id.display_name,
+            "name": f"Planned Order for {product_name}",
             "order_release_date": release_date,
             "due_date": due_date,
             "product_mrp_area_id": line.product_mrp_area_id.id,
@@ -205,7 +205,7 @@ class MprPlannedOrderSheet(models.TransientModel):
             "domain": [("id", "in", res_ids)],
             "name": _("Planned Orders"),
             "src_model": "mrp.planned.order.wizard",
-            "view_mode": "tree,form,pivot",
+            "view_mode": "list,form,pivot",
             "res_model": "mrp.planned.order",
             "type": "ir.actions.act_window",
         }
