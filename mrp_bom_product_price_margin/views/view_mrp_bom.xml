@@ -5,12 +5,10 @@ Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
-
     <record id="view_mrp_bom_sale_product_margin_form" model="ir.ui.view">
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-
             <!-- Add panels in form -->
             <xpath expr="/form/sheet" position="before">
                 <field name="currency_id" invisible="1" />
@@ -20,34 +18,30 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     role="alert"
                     attrs="{'invisible': [('diff_product_bom_standard_price', '=', False)]}"
                 >
-                  Bill of Material cost: <b><field
-                            name="standard_price"
-                            widget="monetary"
-                        /></b>
+                  Bill of Material cost: <b>
+                    <field name="standard_price" widget="monetary" />
+                </b>
                   <span groups="uom.group_uom"> (for 1x <field
-                            name="product_uom_id"
-                            readonly="1"
-                            style="pointer-events:none;"
-                        />)</span>
+                    name="product_uom_id"
+                    readonly="1"
+                    style="pointer-events:none;"
+                />)</span>
                   <button
-                        name="set_product_standard_price"
-                        string="⇙ Apply this cost to Product standard price"
-                        type="object"
-                        class="oe_link"
-                        help="It will set Product's standard price with this price"
-                    />
+                    name="set_product_standard_price"
+                    string="⇙ Apply this cost to Product standard price"
+                    type="object"
+                    class="oe_link"
+                    help="It will set Product's standard price with this price"
+                />
                   <br />
-                  Product cost : <b><field
-                            name="product_standard_price"
-                            widget="monetary"
-                        /></b>
+                  Product cost : <b>
+                    <field name="product_standard_price" widget="monetary" />
+                </b>
                   <br />
                   Product sale price:
-                    <b><field
-                            name="product_sale_price"
-                            widget="monetary"
-                            nolabel="1"
-                        /></b>
+                    <b>
+                    <field name="product_sale_price" widget="monetary" nolabel="1" />
+                </b>
                     (margin <b><field name="product_margin_rate" />&#x25;</b>)
                 </div>
                 <div
@@ -55,31 +49,28 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     role="alert"
                     attrs="{'invisible': ['|', ('diff_product_bom_standard_price', '!=', False), ('product_tmpl_id', '=', False)]}"
                 >
-                  Product cost is based on the cost of this Bill of Material (<b><field
-                            name="standard_price"
-                            widget="monetary"
-                        /></b>).<br />
+                  Product cost is based on the cost of this Bill of Material (<b>
+                    <field name="standard_price" widget="monetary" />
+                </b>).<br />
                   Product sale price:
-                    <b><field
-                            name="product_sale_price"
-                            widget="monetary"
-                            nolabel="1"
-                        /></b>
+                    <b>
+                    <field name="product_sale_price" widget="monetary" nolabel="1" />
+                </b>
                     (margin: <b><field name="product_margin_rate" /> &#x25;</b>).
                 </div>
             </xpath>
 
             <!-- Add field in form -->
             <xpath expr="//group/group" position="inside">
-              <label for="standard_price" string="BoM Unit Cost" />
-              <div class="o_row">
+                <label for="standard_price" string="BoM Unit Cost" />
+                <div class="o_row">
                   <field name="standard_price" widget="monetary" />
                   for 1x <field
-                        name="product_uom_id"
-                        readonly="1"
-                        force_save="1"
-                        style="pointer-events:none;"
-                    />
+                    name="product_uom_id"
+                    readonly="1"
+                    force_save="1"
+                    style="pointer-events:none;"
+                />
               </div>
             </xpath>
 
@@ -102,7 +93,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     widget="percentage"
                 />
             </xpath>
-
         </field>
     </record>
 
@@ -148,5 +138,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             </xpath>
         </field>
     </record>
-
 </odoo>

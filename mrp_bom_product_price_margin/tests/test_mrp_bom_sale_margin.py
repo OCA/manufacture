@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestMrpBomSaleMargin(TransactionCase):
     def setUp(self):
-        super(TestMrpBomSaleMargin, self).setUp()
+        super().setUp()
         self.bom_desk = self.env.ref("mrp.mrp_bom_desk")  # [FURN_9666] Table
         self.product_computer_desk = self.env.ref(
             "mrp.product_product_computer_desk_product_template"
