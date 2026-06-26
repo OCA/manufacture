@@ -6,10 +6,11 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMrpBomSaleMargin(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.bom_desk = self.env.ref("mrp.mrp_bom_desk")  # [FURN_9666] Table
-        self.product_computer_desk = self.env.ref(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.bom_desk = cls.env.ref("mrp.mrp_bom_desk")  # [FURN_9666] Table
+        cls.product_computer_desk = cls.env.ref(
             "mrp.product_product_computer_desk_product_template"
         )
 
@@ -33,4 +34,26 @@ class TestMrpBomSaleMargin(TransactionCase):
         self.assertEqual(
             self.bom_desk.standard_price,
             self.bom_desk.product_tmpl_id.standard_price,
+        )
+
+    def test_02_cost_basis_direct_default(self):
+        # Default cost basis is direct: BoM cost = sum of components only
+        self.assertEqual(self.bom_desk.cost_basis, "direct")
+        expected = sum(
+            line.standard_price_subtotal for line in self.bom_desk.bom_line_ids
+        ) / (self.bom_desk.product_qty or 1)
+        self.assertAlmostEqual(self.bom_desk.standard_price, expected)
+
+    def test_03_cost_basis_rolled_up_adds_operations(self):
+        # Switching to rolled-up adds operation cost on top of components
+        self.bom_desk.cost_basis = "rolled_up"
+        qty = self.bom_desk.product_qty or 1
+        components = sum(
+            line.standard_price_subtotal for line in self.bom_desk.bom_line_ids
+        )
+        ops = self.bom_desk._get_operations_cost()
+        self.assertAlmostEqual(self.bom_desk.standard_price, (components + ops) / qty)
+        # Rolled-up batch cost reconciles with the displayed components + operations
+        self.assertAlmostEqual(
+            self.bom_desk._get_rolled_up_batch_cost(), components + ops
         )

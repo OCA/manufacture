@@ -1,1 +1,2 @@
-- Quentin Dupont (<quentin.dupont@grap.coop>)
+- Quentin Dupont \<quentin.dupont@grap.coop\>
+- Sam Desigan \<sam@cubiczan.com\>

@@ -372,15 +372,32 @@ ul.auto-toc {
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/18.0/mrp_bom_product_price_margin"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_bom_product_price_margin"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>Help handling cost and sale price of product template linked to bill of
 material.</p>
+<p>This module computes a <strong>BoM Unit Cost</strong> from the components of a Bill
+of Material, compares it to the product’s standard price and sale price,
+and highlights negative margins (it relies on
+<tt class="docutils literal">product_standard_margin</tt> for the margin computation). A button lets
+you apply the computed BoM cost to the product’s standard price.</p>
+<p>It also adds a <strong>Cost basis</strong> on each Bill of Material, letting you
+choose how the BoM Unit Cost is computed:</p>
+<ul class="simple">
+<li><strong>Direct (this BoM level only)</strong>: sum of the components’ own cost
+(standard price), for this level only. Use it when you maintain costs
+bottom-up, updating each level yourself.</li>
+<li><strong>Rolled-up (sub-BoMs + operations)</strong>: recurse through sub-BoMs and
+add operation / work-center costs in one pass. Components without a
+BoM fall back to their standard price, so it reconciles with Direct
+once all sub-costs are maintained.</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -397,9 +414,33 @@ new panel to change Product Standard Price.</p>
 BoM cost. You can also change Product standard price here Lines are red
 when Sale margin in negative.</p>
 <p><img alt="image3" src="https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_bom_product_price_margin/static/mrp_bom_product_price_margin_tree.png" /></p>
+<p>On the Bill of Material form, use the <strong>Cost basis</strong> field (next to the
+BoM Unit Cost) to choose how the cost is computed:</p>
+<ul class="simple">
+<li>Keep it on <strong>Direct</strong> to cost only this BoM level, summing each
+component’s own standard price. This is the historical behaviour and
+is best when you maintain costs bottom-up, level by level.</li>
+<li>Switch it to <strong>Rolled-up</strong> to recurse through every sub-BoM and add
+the operation / work-center costs (based on each operation’s manual
+duration and its work center hourly cost) in a single pass. Components
+that have no BoM of their own fall back to their standard price.</li>
+</ul>
+<p>The currently selected basis is always visible on the form, and the BoM
+Unit Cost, the component subtotals and the margin information all
+reflect it.</p>
+</div>
+<div class="section" id="known-issues-roadmap">
+<h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
+<ul class="simple">
+<li>The rolled-up cost basis estimates operation costs from each
+operation’s manual duration (<tt class="docutils literal">time_cycle_manual</tt>) multiplied by its
+work center hourly cost. A possible enhancement is to base the
+operation cost on actual work-order durations instead of the manual
+duration.</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/manufacture/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -407,21 +448,23 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-3">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-5">Authors</a></h2>
 <ul class="simple">
 <li>GRAP</li>
+<li>Cubiczan</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-5">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
 <ul class="simple">
-<li>Quentin Dupont (<a class="reference external" href="mailto:quentin.dupont&#64;grap.coop">quentin.dupont&#64;grap.coop</a>)</li>
+<li>Quentin Dupont &lt;<a class="reference external" href="mailto:quentin.dupont&#64;grap.coop">quentin.dupont&#64;grap.coop</a>&gt;</li>
+<li>Sam Desigan &lt;<a class="reference external" href="mailto:sam&#64;cubiczan.com">sam&#64;cubiczan.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
@@ -429,6 +472,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/quentinDupont"><img alt="quentinDupont" src="https://github.com/quentinDupont.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/icohangar-ops"><img alt="icohangar-ops" src="https://github.com/icohangar-ops.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/manufacture/tree/18.0/mrp_bom_product_price_margin">OCA/manufacture</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>

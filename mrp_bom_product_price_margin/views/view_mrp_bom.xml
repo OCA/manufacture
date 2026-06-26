@@ -16,7 +16,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    attrs="{'invisible': [('diff_product_bom_standard_price', '=', False)]}"
+                    invisible="not diff_product_bom_standard_price"
                 >
                   Bill of Material cost: <b>
                     <field name="standard_price" widget="monetary" />
@@ -47,7 +47,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <div
                     class="alert alert-info"
                     role="alert"
-                    attrs="{'invisible': ['|', ('diff_product_bom_standard_price', '!=', False), ('product_tmpl_id', '=', False)]}"
+                    invisible="diff_product_bom_standard_price or not product_tmpl_id"
                 >
                   Product cost is based on the cost of this Bill of Material (<b>
                     <field name="standard_price" widget="monetary" />
@@ -72,11 +72,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     style="pointer-events:none;"
                 />
               </div>
+                <field name="cost_basis" string="Cost basis" />
             </xpath>
 
             <!-- BoM Lines -->
             <xpath
-                expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']"
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_uom_id']"
                 position="before"
             >
                 <field name="currency_id" invisible="1" />
@@ -111,12 +112,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     invisible="1"
                 />
             </xpath>
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute
                     name="decoration-warning"
                 >diff_product_bom_standard_price != False</attribute>
             </xpath>
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute
                     name="decoration-danger"
                 >product_margin_rate &lt; 0</attribute>
@@ -129,7 +130,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     icon="fa-arrow-right"
                     string="Update Product standard price"
                     type="object"
-                    attrs="{'invisible': [('diff_product_bom_standard_price', '=', False)]}"
+                    invisible="not diff_product_bom_standard_price"
                     help="It will set Product's standard price with this price"
                 />
                 <field name="product_standard_price" widget="monetary" />

@@ -31,6 +31,23 @@ MRP BoM Product Price Margin
 Help handling cost and sale price of product template linked to bill of
 material.
 
+This module computes a **BoM Unit Cost** from the components of a Bill
+of Material, compares it to the product's standard price and sale price,
+and highlights negative margins (it relies on
+``product_standard_margin`` for the margin computation). A button lets
+you apply the computed BoM cost to the product's standard price.
+
+It also adds a **Cost basis** on each Bill of Material, letting you
+choose how the BoM Unit Cost is computed:
+
+- **Direct (this BoM level only)**: sum of the components' own cost
+  (standard price), for this level only. Use it when you maintain costs
+  bottom-up, updating each level yourself.
+- **Rolled-up (sub-BoMs + operations)**: recurse through sub-BoMs and
+  add operation / work-center costs in one pass. Components without a
+  BoM fall back to their standard price, so it reconciles with Direct
+  once all sub-costs are maintained.
+
 **Table of contents**
 
 .. contents::
@@ -52,9 +69,33 @@ when Sale margin in negative.
 
 |image3|
 
+On the Bill of Material form, use the **Cost basis** field (next to the
+BoM Unit Cost) to choose how the cost is computed:
+
+- Keep it on **Direct** to cost only this BoM level, summing each
+  component's own standard price. This is the historical behaviour and
+  is best when you maintain costs bottom-up, level by level.
+- Switch it to **Rolled-up** to recurse through every sub-BoM and add
+  the operation / work-center costs (based on each operation's manual
+  duration and its work center hourly cost) in a single pass. Components
+  that have no BoM of their own fall back to their standard price.
+
+The currently selected basis is always visible on the form, and the BoM
+Unit Cost, the component subtotals and the margin information all
+reflect it.
+
 .. |image1| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_bom_product_price_margin/static/mrp_bom_product_price_margin_diff.jpeg
 .. |image2| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_bom_product_price_margin/static/mrp_bom_product_price_margin_no_diff.jpeg
 .. |image3| image:: https://raw.githubusercontent.com/OCA/manufacture/18.0/mrp_bom_product_price_margin/static/mrp_bom_product_price_margin_tree.png
+
+Known issues / Roadmap
+======================
+
+- The rolled-up cost basis estimates operation costs from each
+  operation's manual duration (``time_cycle_manual``) multiplied by its
+  work center hourly cost. A possible enhancement is to base the
+  operation cost on actual work-order durations instead of the manual
+  duration.
 
 Bug Tracker
 ===========
@@ -73,11 +114,13 @@ Authors
 -------
 
 * GRAP
+* Cubiczan
 
 Contributors
 ------------
 
-- Quentin Dupont (quentin.dupont@grap.coop)
+- Quentin Dupont <quentin.dupont@grap.coop>
+- Sam Desigan <sam@cubiczan.com>
 
 Maintainers
 -----------
@@ -91,6 +134,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-quentinDupont| image:: https://github.com/quentinDupont.png?size=40px
+    :target: https://github.com/quentinDupont
+    :alt: quentinDupont
+.. |maintainer-icohangar-ops| image:: https://github.com/icohangar-ops.png?size=40px
+    :target: https://github.com/icohangar-ops
+    :alt: icohangar-ops
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-quentinDupont| |maintainer-icohangar-ops| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_bom_product_price_margin>`_ project on GitHub.
 

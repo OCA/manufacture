@@ -27,10 +27,16 @@ class MrpBomLine(models.Model):
         for line in self:
             line.standard_price_subtotal = line.standard_price_unit * line.product_qty
 
-    @api.depends("product_id")
+    @api.depends("product_id", "bom_id.cost_basis", "child_bom_id")
     def _compute_standard_price_unit(self):
         for line in self:
-            line.standard_price_unit = line.product_id.standard_price
+            if line.bom_id.cost_basis == "rolled_up" and line.child_bom_id:
+                line.standard_price_unit = (
+                    line.child_bom_id._get_rolled_up_batch_cost()
+                    / (line.child_bom_id.product_qty or 1.0)
+                )
+            else:
+                line.standard_price_unit = line.product_id.standard_price
 
     @api.depends(
         "standard_price_subtotal", "bom_id.bom_line_ids.standard_price_subtotal"
