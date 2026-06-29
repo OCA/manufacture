@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form - mrp_bom_component_mass_change</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='bom_line_ids']/tree/field[@name='manual_consumption']"
+                position="after"
+            >
+                <field name="component_in_multiple_boms" column_invisible="1" />
+                <button
+                    name="action_bom_component_mass_change"
+                    type="object"
+                    icon="fa-exchange"
+                    title="Mass Change Component"
+                    aria-label="Mass Change Component"
+                    invisible="not component_in_multiple_boms"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

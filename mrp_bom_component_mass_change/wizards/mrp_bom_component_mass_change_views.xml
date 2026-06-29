@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_component_mass_change_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >mrp.bom.component.mass.change.form - mrp_bom_component_mass_change</field>
+        <field name="model">mrp.bom.component.mass.change</field>
+        <field name="arch" type="xml">
+            <form string="Mass Change BoM Component">
+                <group>
+                    <field name="component_locked" invisible="1" />
+                    <field
+                        name="component_id"
+                        options="{'no_create': True}"
+                        readonly="component_locked"
+                    />
+                    <field name="change_type" widget="radio" />
+                    <field
+                        name="new_component_id"
+                        options="{'no_create': True}"
+                        invisible="change_type != 'replace'"
+                        required="change_type == 'replace'"
+                    />
+                    <field
+                        name="new_product_qty"
+                        invisible="change_type != 'replace'"
+                        required="change_type == 'replace'"
+                    />
+                </group>
+                <group string="Bills of Materials to Update">
+                    <field
+                        name="bom_ids"
+                        nolabel="1"
+                        colspan="2"
+                        domain="[('bom_line_ids.product_id', '=', component_id)]"
+                    >
+                        <tree>
+                            <field name="product_tmpl_id" />
+                            <field name="code" optional="show" />
+                            <field name="type" />
+                            <field name="product_qty" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="action_apply"
+                        string="Apply"
+                        type="object"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_bom_component_mass_change_action" model="ir.actions.act_window">
+        <field name="name">Mass Change Component</field>
+        <field name="res_model">mrp.bom.component.mass.change</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom_line" />
+        <field name="binding_view_types">list</field>
+    </record>
+    <menuitem
+        id="menu_mrp_bom_component_mass_change"
+        name="Mass Change BoM Component"
+        parent="mrp.menu_mrp_manufacturing"
+        action="mrp_bom_component_mass_change_action"
+        sequence="50"
+    />
+</odoo>
