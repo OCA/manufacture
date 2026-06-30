@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Mrp Unbuild Restore Origin",
+    "summary": "Retain original move line info when unbuilding",
     "version": "18.0.1.0.0",
     "author": "Quartile, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
