@@ -17,6 +17,18 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: mrp_production_serial_matrix
+#: model:ir.model.fields,help:mrp_production_serial_matrix.field_mrp_production_serial_matrix__production_state
+msgid ""
+" * Draft: The MO is not confirmed yet.\n"
+" * Confirmed: The MO is confirmed, the stock rules and the reordering of the "
+"components are trigerred.\n"
+" * In Progress: The production has started (on the MO or on the WO).\n"
+" * To Close: The production is done, the MO has to be closed.\n"
+" * Done: The MO is closed, the stock moves are posted. \n"
+" * Cancelled: The MO has been cancelled, can't be confirmed anymore."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
@@ -44,6 +56,17 @@ msgstr "Lote de Componentes Permitidos"
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_attachment_count
 msgid "Attachment Count"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mrp_production_serial_matrix
+#: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__cancel
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
+msgid "Cancelled"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
@@ -228,6 +251,11 @@ msgid "Lot Selection Warning Msg"
 msgstr "Msg de Advertencia de Selección de Lote"
 
 #. module: mrp_production_serial_matrix
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__production_state
+msgid "MO Status"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__production_id
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix_line__production_id
 msgid "Manufacturing Order"
@@ -242,6 +270,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__line_ids
 msgid "Matrix Cell"
 msgstr "Célula Matriz"
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid ""
+"Matrix manually cancelled. The related MO (%(mo)s) is in state '%(state)s'."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid ""
+"Matrix reset to 'Draft'. Pending MO: %(mo)s. Remaining serial numbers to "
+"process: %(lots)s."
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error
@@ -289,6 +334,13 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "Only matrices in 'Exception' state can be reset to 'Draft'."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__product_id
 msgid "Product"
 msgstr "Producto"
@@ -301,6 +353,11 @@ msgstr "Orden de Producción"
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__rating_ids
 msgid "Ratings"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
+msgid "Reset to Draft"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
@@ -360,7 +417,30 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
+msgid ""
+"The matrix can only be cancelled when the related MO is done or cancelled."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "The matrix is already %s."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
 msgid "The serial matrix finished successfully"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid ""
+"There is no pending MO related to this matrix. Cancel the matrix instead."
 msgstr ""
 
 #. module: mrp_production_serial_matrix
@@ -387,7 +467,8 @@ msgstr "Asistente"
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
-msgid "You cannot delete a serial matrix that is in progress or done."
+msgid ""
+"You cannot delete a serial matrix that is in progress, done or cancelled."
 msgstr ""
 
 #~ msgid ""
@@ -398,9 +479,6 @@ msgstr ""
 #~ "<i class=\"fa fa-info-circle\"/> Se han detectado algunos problemas en su "
 #~ "selección:\n"
 #~ "                            <br/>"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modificación el"
