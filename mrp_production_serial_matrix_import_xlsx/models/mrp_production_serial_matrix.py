@@ -196,7 +196,7 @@ class MrpProductionSerialMatrix(models.Model):
             finished_lot_ids, component_templates, data_map
         )
 
-        if new_lines_vals:
+        if new_lines_vals or finished_lot_ids:
             self.line_ids = [(5, 0, 0)]
             self.line_ids = [(0, 0, v) for v in new_lines_vals]
             self.finished_lot_ids = [(6, 0, finished_lot_ids.ids)]
