@@ -127,6 +127,13 @@ msgid "Draft"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "Error during the processing: %s"
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__exception
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
 msgid "Exception"
@@ -369,6 +376,13 @@ msgid "Serial Numbers and Lot Consumption Matrix"
 msgstr ""
 
 #. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "Serial/Lot number '%s' not available at source location."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__show_serial_matrix
 msgid "Show Serial Matrix"
 msgstr ""
@@ -417,7 +431,6 @@ msgstr ""
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
-#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "The serial matrix finished successfully"
