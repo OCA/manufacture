@@ -2,8 +2,7 @@
 # Copyright 2024 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.mrp.tests.common import TestMrpCommon
 
@@ -61,22 +60,23 @@ class TestMrp2StepsConsumedQtySync(TestMrpCommon):
         pick_picking.action_assign()
         pick_picking.move_line_ids.filtered(
             lambda sml: sml.product_id == product_to_use_1
-        ).qty_done = 10
+        ).quantity = 10
         pick_picking.move_line_ids.filtered(
             lambda sml: sml.product_id == product_to_use_2
-        ).qty_done = 15
+        ).quantity = 15
+        pick_picking.move_ids.picked = True
         pick_picking._action_done()
 
         # Check if the done quantities are sync to raw material in mo order
         self.assertEqual(
             production.move_raw_ids.filtered(
                 lambda sm: sm.product_id == product_to_use_1
-            ).quantity_done,
+            ).quantity,
             10.0,
         )
         self.assertEqual(
             production.move_raw_ids.filtered(
                 lambda sm: sm.product_id == product_to_use_2
-            ).quantity_done,
+            ).quantity,
             15.0,
         )

@@ -13,9 +13,7 @@ class StockPicking(models.Model):
         for picking in self:
             picking_type = picking.picking_type_id
             if picking_type == picking_type.warehouse_id.pbm_type_id:
-                productions = (
-                    picking.move_lines.move_dest_ids.raw_material_production_id
-                )
+                productions = picking.move_ids.move_dest_ids.raw_material_production_id
                 # Update the component initial demand in production order and assign
                 # the moves to cover cases like pick more quantities than expected.
                 # In this cases the quantity done is not propagated to linked move
@@ -23,8 +21,7 @@ class StockPicking(models.Model):
                     move.product_uom_qty = sum(
                         move.move_orig_ids.filtered(
                             lambda sm: sm.state == "done"
-                        ).mapped("quantity_done")
+                        ).mapped("quantity")
                     )
                 productions.move_raw_ids._action_assign()
-                productions.move_raw_ids._set_quantities_to_reservation()
         return res
