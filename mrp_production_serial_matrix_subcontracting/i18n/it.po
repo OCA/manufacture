@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_serial_matrix_subcontracting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model:ir.model,name:mrp_production_serial_matrix_subcontracting.model_mrp_production_serial_matrix
+msgid "Mrp Production Serial Matrix"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix_subcontracting/models/stock_picking.py:0
+#, python-format
+msgid "No subcontracted MO with serial-tracked product on this transfer."
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model:ir.model.fields,help:mrp_production_serial_matrix_subcontracting.field_mrp_production_serial_matrix__subcontract_receipt_picking_id
+msgid ""
+"Receipt this serial matrix was launched from. The completion message is "
+"posted on it."
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix_subcontracting.view_picking_form
+msgid "Serial Numbers Matrix"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix_subcontracting.field_stock_picking__show_subcontract_serial_matrix
+msgid "Show Subcontract Serial Matrix"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix_subcontracting/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid ""
+"Something went wrong and the subcontracted MO could not be recorded. %s"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model:ir.model.fields,field_description:mrp_production_serial_matrix_subcontracting.field_mrp_production_serial_matrix__subcontract_receipt_picking_id
+msgid "Subcontract Receipt"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix_subcontracting/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid ""
+"The serial numbers matrix for %(product)s ended with an error: %(error)s"
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix_subcontracting/models/mrp_production_serial_matrix.py:0
+#, python-format
+msgid "The serial numbers matrix for %(product)s has finished successfully."
+msgstr ""
+
+#. module: mrp_production_serial_matrix_subcontracting
+#: model:ir.model,name:mrp_production_serial_matrix_subcontracting.model_stock_picking
+msgid "Transfer"
+msgstr ""
