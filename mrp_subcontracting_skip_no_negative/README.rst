@@ -21,13 +21,13 @@ MRP Subcontracting Skip No Negative
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/18.0/mrp_subcontracting_skip_no_negative
+    :target: https://github.com/OCA/manufacture/tree/19.0/mrp_subcontracting_skip_no_negative
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_subcontracting_skip_no_negative
+    :target: https://translation.odoo-community.org/projects/manufacture-19-0/manufacture-19-0-mrp_subcontracting_skip_no_negative
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -63,7 +63,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_subcontracting_skip_no_negative%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_subcontracting_skip_no_negative%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,13 +78,13 @@ Authors
 Contributors
 ------------
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
+   -  Aung Ko Ko Lin
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
 Maintainers
 -----------
@@ -110,6 +110,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-yostashiro| |maintainer-aungkokolin1997| 
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_subcontracting_skip_no_negative>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/19.0/mrp_subcontracting_skip_no_negative>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

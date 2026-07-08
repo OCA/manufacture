@@ -75,7 +75,7 @@ class TestMrpSubcontractingSkipNoNegative(BaseCommon):
         picking_form = Form(cls.env["stock.picking"])
         picking_form.picking_type_id = cls.env.ref("stock.picking_type_in")
         picking_form.partner_id = cls.subcontractor_partner1
-        with picking_form.move_ids_without_package.new() as move:
+        with picking_form.move_ids.new() as move:
             move.product_id = cls.finished
             move.product_uom_qty = 1.0
         cls.subcontracting_receipt = picking_form.save()
@@ -134,7 +134,6 @@ class TestMrpSubcontractingSkipNoNegative(BaseCommon):
             {
                 "picking_id": self.subcontracting_receipt.id,
                 "product_id": another_product.id,
-                "name": another_product.name,
                 "product_uom": another_product.uom_id.id,
                 "product_uom_qty": 1.0,
                 "location_id": self.subcontracting_receipt.location_id.id,
@@ -168,7 +167,6 @@ class TestMrpSubcontractingSkipNoNegative(BaseCommon):
             {
                 "picking_id": self.subcontracting_receipt.id,
                 "product_id": another_product.id,
-                "name": another_product.name,
                 "product_uom": another_product.uom_id.id,
                 "product_uom_qty": 1,
                 "location_id": self.subcontracting_receipt.location_id.id,
