@@ -1,5 +1,6 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.tests import Form, common
 
 
@@ -18,18 +19,14 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
                 "name": "Test product",
                 "type": "consu",
                 "seller_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "partner_id": cls.supplier.id,
                             "min_qty": 1,
                             "price": 10,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "partner_id": cls.supplier.id,
                             "min_qty": 1,
@@ -43,7 +40,7 @@ class TestMrpSubcontractingInhibit(common.TransactionCase):
         cls.component = cls.env["product.product"].create(
             {
                 "name": "Test Component",
-                "route_ids": [(6, 0, [cls.subcontractor_mto_route.id])],
+                "route_ids": [Command.set([cls.subcontractor_mto_route.id])],
             }
         )
         cls.bom = cls._create_mrp_bom(cls)
