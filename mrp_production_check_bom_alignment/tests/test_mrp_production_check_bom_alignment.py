@@ -222,3 +222,55 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
         self.assertEqual(mo.state, "confirmed")
         self.assertFalse(mo.is_outdated_bom)
         self.assertFalse(mo._get_bom_alignment_error(mo.name))
+
+    def _create_ratio_mo(self, bom_qty, line_qty, mo_qty, uom=None):
+        """Create a BoM/MO whose quantity ratio is not an integer, so the
+        component demand scales to a repeating decimal that lands on a rounding
+        boundary (e.g. bom_qty=3, mo_qty=1 gives a factor of 1/3)."""
+        uom = uom or self.final_product.uom_id
+        final = self.env["product.product"].create(
+            {"name": "Ratio Final", "is_storable": True, "uom_id": uom.id}
+        )
+        component = self.env["product.product"].create(
+            {"name": "Ratio Comp", "is_storable": True, "uom_id": uom.id}
+        )
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_id": final.id,
+                "product_tmpl_id": final.product_tmpl_id.id,
+                "product_uom_id": uom.id,
+                "product_qty": bom_qty,
+                "type": "normal",
+            }
+        )
+        self.env["mrp.bom.line"].create(
+            {"bom_id": bom.id, "product_id": component.id, "product_qty": line_qty}
+        )
+        return self.env["mrp.production"].create(
+            {"product_id": final.id, "product_qty": mo_qty, "bom_id": bom.id}
+        )
+
+    def test_non_integer_ratio_after_update_bom_is_aligned(self):
+        # The standard "Update BoM" (_link_bom) stores an unrounded ratio value
+        # that differs by one rounding unit from the check's expectation; that
+        # difference is rounding noise and must not be reported as misaligned.
+        mo = self._create_ratio_mo(bom_qty=3.0, line_qty=1.0, mo_qty=1.0)
+        self.assertEqual(mo.action_confirm(), True)
+        mo.action_update_bom()
+        self.assertFalse(mo._get_bom_alignment_error(mo.name))
+
+    def test_non_integer_ratio_finer_uom_than_precision_is_aligned(self):
+        # When the component UoM rounding is finer than the "Product Unit of
+        # Measure" precision, the stored demand is coarser than the recomputed
+        # expected qty; that rounding gap must be tolerated too.
+        uom = self.env["uom.uom"].create(
+            {
+                "name": "Ratio UoM",
+                "category_id": self.env["uom.category"].create({"name": "Ratio"}).id,
+                "factor": 1.0,
+                "uom_type": "reference",
+                "rounding": 0.001,
+            }
+        )
+        mo = self._create_ratio_mo(bom_qty=3.0, line_qty=1.0, mo_qty=1.0, uom=uom)
+        self.assertFalse(mo._get_bom_alignment_error(mo.name))

@@ -91,13 +91,8 @@ class MrpProduction(models.Model):
             expected_qty = bom_line.product_uom_id._compute_quantity(
                 bom_line.product_qty * factor, move.product_uom
             )
-            if (
-                float_compare(
-                    move.product_uom_qty,
-                    expected_qty,
-                    precision_rounding=move.product_uom.rounding,
-                )
-                != 0
+            if not self._is_bom_qty_aligned(
+                move.product_uom_qty, expected_qty, move.product_uom
             ):
                 return self.env._(
                     f"The component quantities of MO {mo_name} are not aligned "
@@ -137,13 +132,8 @@ class MrpProduction(models.Model):
             expected_qty = byproduct.product_uom_id._compute_quantity(
                 byproduct.product_qty * factor, move.product_uom
             )
-            if (
-                float_compare(
-                    move.product_uom_qty,
-                    expected_qty,
-                    precision_rounding=move.product_uom.rounding,
-                )
-                != 0
+            if not self._is_bom_qty_aligned(
+                move.product_uom_qty, expected_qty, move.product_uom
             ):
                 return self.env._(
                     f"The by-product quantities of MO {mo_name} are not aligned "
@@ -157,6 +147,18 @@ class MrpProduction(models.Model):
                 )
 
         return False
+
+    def _is_bom_qty_aligned(self, qty, expected_qty, uom):
+        # The stored move demand and the recomputed expected qty are rounded
+        # through different paths, so tolerate a one-unit rounding difference.
+        digits = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        tolerance = max(uom.rounding, 10**-digits)
+        return (
+            float_compare(
+                abs(qty - expected_qty), tolerance, precision_rounding=tolerance
+            )
+            <= 0
+        )
 
     def action_confirm(self):
         if not self.env.context.get("skip_bom_alignment_check"):
