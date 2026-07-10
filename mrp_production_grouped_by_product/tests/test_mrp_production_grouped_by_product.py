@@ -12,7 +12,7 @@ from odoo.tests import common, tagged
 class TestProductionGroupedByProduct(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestProductionGroupedByProduct, cls).setUpClass()
+        super().setUpClass()
         cls.ProcurementGroup = cls.env["procurement.group"]
         cls.MrpProduction = cls.env["mrp.production"]
         cls.env.user.company_id.manufacturing_lead = 0
