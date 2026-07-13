@@ -1,7 +1,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class StockPickingType(models.Model):
@@ -30,7 +30,7 @@ class StockPickingType(models.Model):
                 or picking_type.mo_grouping_max_hour > 23
             ):
                 raise exceptions.ValidationError(
-                    _("You have to enter a valid hour between 0 and 23.")
+                    self.env._("You have to enter a valid hour between 0 and 23.")
                 )
 
     @api.constrains("mo_grouping_interval")
@@ -38,5 +38,5 @@ class StockPickingType(models.Model):
         for picking_type in self:
             if picking_type.mo_grouping_interval < 0:
                 raise exceptions.ValidationError(
-                    _("You have to enter a positive value for interval.")
+                    self.env._("You have to enter a positive value for interval.")
                 )

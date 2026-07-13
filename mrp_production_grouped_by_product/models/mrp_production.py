@@ -19,7 +19,7 @@ class MrpProduction(models.Model):
         :param vals: Dictionary with the new record values.
         """
         self.ensure_one()
-        new_vals = {"origin": (self.origin or "") + ",%s" % vals["origin"]}
+        new_vals = {"origin": "{},{}".format(self.origin or "", vals["origin"])}
         if vals.get("move_dest_ids"):
             new_vals["move_dest_ids"] = vals["move_dest_ids"]
             self.move_finished_ids.move_dest_ids = vals["move_dest_ids"]
@@ -67,7 +67,7 @@ class MrpProduction(models.Model):
         else:
             date_end = fields.Datetime.add(date, days=1)
             date_end = date_end.replace(
-                day=date.day + 1, hour=pt.mo_grouping_max_hour, minute=0, second=0
+                hour=pt.mo_grouping_max_hour, minute=0, second=0
             )
         date_start = date_end - relativedelta(days=pt.mo_grouping_interval)
         domain += [

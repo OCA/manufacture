@@ -10,3 +10,5 @@
 - [InitOS](https://www.initos.com/):
   - Dhara Solanki \<dhara.solanki@initos.com\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo <dgallo@nuobit.com>

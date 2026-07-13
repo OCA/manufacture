@@ -31,15 +31,14 @@ class TestProductionGroupedByProduct(common.TransactionCase):
                 "route_ids": [
                     (6, 0, [cls.env.ref("mrp.route_warehouse0_manufacture").id])
                 ],
-                "type": "product",
-                "produce_delay": 0,
+                "is_storable": True,
             }
         )
         cls.product2 = cls.env["product.product"].create(
-            {"name": "TEST Paper muffin cup", "type": "product"}
+            {"name": "TEST Paper muffin cup", "is_storable": True}
         )
         cls.product3 = cls.env["product.product"].create(
-            {"name": "TEST Muffin paset", "type": "product"}
+            {"name": "TEST Muffin paset", "is_storable": True}
         )
         cls.bom = cls.env["mrp.bom"].create(
             {
@@ -60,7 +59,7 @@ class TestProductionGroupedByProduct(common.TransactionCase):
                 "product_qty": 2,
                 "product_uom_id": cls.product1.uom_id.id,
                 "date_deadline": "2018-06-01 15:00:00",
-                "date_planned_start": "2018-06-01 15:00:00",
+                "date_start": "2018-06-01 15:00:00",
             }
         )
         cls.mo._compute_move_raw_ids()

@@ -159,6 +159,9 @@ Contributors
   - Dhara Solanki <dhara.solanki@initos.com>
 
 - `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+- `NuoBiT <https://www.nuobit.com>`__:
+
+  - Deniz Gallo dgallo@nuobit.com
 
 Maintainers
 -----------
