@@ -3,7 +3,7 @@
 {
     "name": "MRP BOM Location",
     "summary": "Adds location field to Bill of Materials and its components.",
-    "version": "18.0.1.1.2",
+    "version": "19.0.1.0.0",
     "category": "Manufacture",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
