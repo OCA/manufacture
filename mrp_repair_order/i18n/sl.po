@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-07-14 04:27+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,52 +15,53 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_repair_order
 #: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_repair_order_form_inherit
 msgid "<span class=\"o_stat_text\">Manufacturing order</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Proizvodni nalog</span>"
 
 #. module: mrp_repair_order
 #: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_mrp_production_form_inherit
 msgid "<span class=\"o_stat_text\">Repair order</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Servisni nalog</span>"
 
 #. module: mrp_repair_order
 #. odoo-python
 #: code:addons/mrp_repair_order/models/mrp.py:0
 #: model_terms:ir.ui.view,arch_db:mrp_repair_order.view_mrp_production_form_inherit
 msgid "Create Repair Order"
-msgstr ""
+msgstr "Ustvari servisni nalog"
 
 #. module: mrp_repair_order
 #: model:ir.model.fields,field_description:mrp_repair_order.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_repair_order.field_repair_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: mrp_repair_order
 #: model:ir.model.fields,field_description:mrp_repair_order.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_repair_order.field_repair_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_repair_order
 #: model:ir.model.fields,field_description:mrp_repair_order.field_repair_order__mrp_ids
 msgid "Manufacting Orders"
-msgstr ""
+msgstr "Proizvodni nalogi"
 
 #. module: mrp_repair_order
 #: model:ir.model,name:mrp_repair_order.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Proizvodni nalog"
 
 #. module: mrp_repair_order
 #: model:ir.model.fields,field_description:mrp_repair_order.field_mrp_production__repair_id
 msgid "Repair"
-msgstr ""
+msgstr "Popravilo"
 
 #. module: mrp_repair_order
 #: model:ir.model,name:mrp_repair_order.model_repair_order
 msgid "Repair Order"
-msgstr ""
+msgstr "Nalog za popravilo"
