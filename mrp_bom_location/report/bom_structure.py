@@ -54,7 +54,7 @@ class BomStructureReport(models.AbstractModel):
     def _get_component_data(
         self,
         parent_bom,
-        product,
+        parent_product,
         warehouse,
         bom_line,
         line_quantity,
@@ -65,7 +65,7 @@ class BomStructureReport(models.AbstractModel):
     ):
         res = super()._get_component_data(
             parent_bom,
-            product,
+            parent_product,
             warehouse,
             bom_line,
             line_quantity,

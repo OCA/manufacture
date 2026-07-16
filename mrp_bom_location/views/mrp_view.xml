@@ -40,13 +40,13 @@
             <field name="product_tmpl_id" position="after">
                 <field name="location_id" string="Location" />
             </field>
-            <group expand="0" position="inside">
+            <xpath expr="//search/group" position="inside">
                 <filter
                     name="location_id"
                     string="Location"
                     context="{'group_by':'location_id'}"
                 />
-            </group>
+            </xpath>
         </field>
     </record>
 

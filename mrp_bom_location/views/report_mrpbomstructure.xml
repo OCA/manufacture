@@ -9,10 +9,11 @@
             >Location</th>
         </xpath>
         <xpath expr="//tbody/tr/td[last()-1]" position="after">
-            <td class="text-end" t-esc="data['bom'].location_id.complete_name" />
-        </xpath>
-        <xpath expr="//tbody/tr/td[last()-1]" position="after">
-            <td t-if="data['bom'].location_id" />
+            <td
+                t-if="data['bom'].location_id"
+                class="text-right"
+                t-esc="data['bom'].location_id.complete_name"
+            />
         </xpath>
     </template>
     <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
