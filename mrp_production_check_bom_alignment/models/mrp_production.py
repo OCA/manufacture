@@ -16,6 +16,7 @@ class MrpProduction(models.Model):
         "state",
         "bom_id",
         "bom_id.bom_line_ids",
+        "bom_id.bom_line_ids.product_id",
         "bom_id.bom_line_ids.product_qty",
         "bom_id.bom_line_ids.operation_id",
         "bom_id.byproduct_ids",
@@ -23,6 +24,7 @@ class MrpProduction(models.Model):
         "bom_id.byproduct_ids.operation_id",
         "bom_id.operation_ids",
         "move_raw_ids.bom_line_id",
+        "move_raw_ids.product_id",
         "move_raw_ids.state",
         "move_raw_ids.operation_id",
         "move_raw_ids.product_uom_qty",
@@ -50,15 +52,16 @@ class MrpProduction(models.Model):
 
         Verifies the following things:
         (1) the set of BoM lines covered by raw moves,
-        (2) the set of operations covered by work orders,
-        (3) each raw move's demand quantity against the BoM line quantity scaled
+        (2) each raw move's ``product_id`` against its BoM line ``product_id``,
+        (3) the set of operations covered by work orders,
+        (4) each raw move's demand quantity against the BoM line quantity scaled
             to the MO qty,
-        (4) each raw move's ``operation_id`` against the current ``operation_id``
+        (5) each raw move's ``operation_id`` against the current ``operation_id``
             on its BoM line,
-        (5) the set of BoM by-products covered by finished moves,
-        (6) each by-product move's demand quantity against the BoM by-product quantity
+        (6) the set of BoM by-products covered by finished moves,
+        (7) each by-product move's demand quantity against the BoM by-product quantity
             scaled to the MO qty,
-        (7) each by-product move's ``operation_id`` against the current ``operation_id``
+        (8) each by-product move's ``operation_id`` against the current ``operation_id``
             on its BoM by-product.
 
         Override this method to add or replace alignment checks. Always call
@@ -86,6 +89,12 @@ class MrpProduction(models.Model):
                 f"The components of MO {mo_name} are not aligned with the current "
                 f"BoM configuration."
             )
+        for move in active_moves:
+            if move.product_id != move.bom_line_id.product_id:
+                return self.env._(
+                    f"The components of MO {mo_name} are not aligned with the current "
+                    f"BoM configuration."
+                )
         for move in active_moves:
             bom_line = move.bom_line_id
             expected_qty = bom_line.product_uom_id._compute_quantity(

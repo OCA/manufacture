@@ -128,6 +128,13 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
         self.bom_line_1.operation_id = self.operation_2
         self.assertTrue(mo._get_bom_alignment_error(mo.name))
 
+    def test_component_product_changed_returns_error(self):
+        mo = self._create_mo()
+        self.assertFalse(mo.bom_alignment_warning)
+        self.bom_line_1.product_id = self.component_3
+        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        self.assertTrue(mo.bom_alignment_warning)
+
     def test_action_confirm_aligned_confirms_mo(self):
         mo = self.env["mrp.production"].create(
             {
