@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-13 12:45+0000\n"
+"PO-Revision-Date: 2026-07-22 07:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -78,7 +78,7 @@ msgstr "Allarmi di produzione"
 #: model:ir.model.fields.selection,name:mrp_bom_warn_message_oca.selection__mrp_bom__production_warn__warning
 #: model_terms:ir.ui.view,arch_db:mrp_bom_warn_message_oca.mrp_bom_form_view_warn_inherit
 msgid "Warning"
-msgstr "Allarme"
+msgstr "Attenzione"
 
 #. module: mrp_bom_warn_message_oca
 #. odoo-python
