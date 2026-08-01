@@ -7,10 +7,16 @@ from odoo import api, models
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    # Just to add a trigger
-    @api.depends("production_id.owner_id")
-    def _compute_restrict_partner_id(self):
-        return super()._compute_restrict_partner_id()
+    # Just to add the manufacturing triggers to the base module's compute
+    @api.depends(
+        "raw_material_production_id.owner_id",
+        "production_id",
+        "move_dest_ids.raw_material_production_id.owner_id",
+        "consume_unbuild_id.mo_id.owner_id",
+        "unbuild_id.mo_id.owner_id",
+    )
+    def _compute_restricted_owner_id(self):
+        return super()._compute_restricted_owner_id()
 
     def _get_mo_to_unbuild(self):
         self.ensure_one()
@@ -24,7 +30,7 @@ class StockMove(models.Model):
         # result might be messed up (e.g. tries to move stock from the internal location
         # instead of the production location).
         if self.production_id:
-            return False
+            return self.env["res.partner"]
         # For chained origin moves for production component moves.
         production = self.move_dest_ids.raw_material_production_id
         if production:
@@ -33,10 +39,3 @@ class StockMove(models.Model):
         if mo_to_unbuild:
             return mo_to_unbuild.owner_id
         return super()._get_owner_for_assign()
-
-    def _get_owner_restriction(self):
-        self.ensure_one()
-        mo_to_unbuild = self._get_mo_to_unbuild()
-        if mo_to_unbuild:
-            return mo_to_unbuild.owner_restriction
-        return super()._get_owner_restriction()
