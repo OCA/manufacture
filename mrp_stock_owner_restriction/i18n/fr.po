@@ -6,45 +6,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-08-02 11:46+0000\n"
+"Last-Translator: Laurent Bélorgey <lb@lalieutenante.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model.fields,field_description:mrp_stock_owner_restriction.field_mrp_production__owner_id
 msgid "Assign Owner"
-msgstr ""
+msgstr "Attribuer un propriétaire"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model.fields,field_description:mrp_stock_owner_restriction.field_mrp_production__owner_restriction
 msgid "Owner Restriction"
-msgstr ""
+msgstr "Restriction sur le propriétaire"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model.fields,help:mrp_stock_owner_restriction.field_mrp_production__owner_id
 msgid "Produced products will be assigned to this owner."
-msgstr ""
+msgstr "Les produits fabriqués seront affectés à ce propriétaire."
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model,name:mrp_stock_owner_restriction.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Mouvements de produits (ligne de mouvement de stock)"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model,name:mrp_stock_owner_restriction.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordre de production"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model,name:mrp_stock_owner_restriction.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Mouvement de stock"
 
 #. module: mrp_stock_owner_restriction
 #: model:ir.model,name:mrp_stock_owner_restriction.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr ""
+msgstr "Ordre de déconstruction"
