@@ -22,7 +22,6 @@
                                 />
                                 <field name="test" />
                                 <field name="user" />
-                                <field name="timing" />
                                 <field name="partners" widget="many2many_tags" />
                                 <field name="timing" />
                             </tree>
