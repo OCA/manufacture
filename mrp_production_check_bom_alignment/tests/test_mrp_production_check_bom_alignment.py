@@ -105,7 +105,9 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
             Command.create({"product_id": self.component_3.id, "product_qty": 1.0})
         ]
         self.assertTrue(mo.is_outdated_bom)
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.component_3.display_name, error)
 
     def test_bom_operation_added_returns_error(self):
         mo = self._create_mo()
@@ -116,17 +118,23 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
                 "bom_id": self.test_bom.id,
             }
         )
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn("Extra Operation", error)
 
     def test_component_qty_changed_returns_error(self):
         mo = self._create_mo()
         self.bom_line_1.product_qty += 1.0
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.component_1.display_name, error)
 
     def test_consumed_at_operation_changed_returns_error(self):
         mo = self._create_mo()
         self.bom_line_1.operation_id = self.operation_2
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.component_1.display_name, error)
 
     def test_component_product_changed_returns_error(self):
         mo = self._create_mo()
@@ -198,17 +206,23 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
                 }
             )
         ]
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.byproduct_product_2.display_name, error)
 
     def test_byproduct_qty_changed_returns_error(self):
         mo = self._create_mo()
         self.bom_byproduct.product_qty += 1.0
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.byproduct_product.display_name, error)
 
     def test_produced_at_operation_changed_returns_error(self):
         mo = self._create_mo()
         self.bom_byproduct.operation_id = self.operation_2
-        self.assertTrue(mo._get_bom_alignment_error(mo.name))
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.byproduct_product.display_name, error)
 
     def test_action_update_and_confirm(self):
         mo = self.env["mrp.production"].create(

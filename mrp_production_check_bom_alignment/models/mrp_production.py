@@ -85,9 +85,17 @@ class MrpProduction(models.Model):
             lambda m: m.state != "cancel" and m.bom_line_id
         )
         if bom_line_ids != set(active_moves.bom_line_id.ids):
+            products = (
+                bom.bom_line_ids.filtered(
+                    lambda bl: bl.id not in active_moves.bom_line_id.ids
+                ).product_id
+                | active_moves.filtered(
+                    lambda m: m.bom_line_id.id not in bom_line_ids
+                ).product_id
+            )
             return self.env._(
                 f"The components of MO {mo_name} are not aligned with the current "
-                f"BoM configuration."
+                f"BoM configuration: {', '.join(products.mapped('display_name'))}."
             )
         for move in active_moves:
             if move.product_id != move.bom_line_id.product_id:
@@ -105,26 +113,29 @@ class MrpProduction(models.Model):
             ):
                 return self.env._(
                     f"The component quantities of MO {mo_name} are not aligned "
-                    f"with the current BoM configuration."
+                    f"with the current BoM configuration: "
+                    f"{move.product_id.display_name}."
                 )
         for move in active_moves:
             if move.operation_id != move.bom_line_id.operation_id:
                 return self.env._(
                     f"The 'Consumed in Operation' for components of MO {mo_name} "
-                    f"is not aligned with the current BoM configuration."
+                    f"is not aligned with the current BoM configuration: "
+                    f"{move.product_id.display_name}."
                 )
 
         # --- Operation checks ---
-        bom_operation_ids = set(bom.operation_ids.ids)
-        wo_operation_ids = set(
-            self.workorder_ids.filtered(
-                lambda w: w.state != "cancel" and w.operation_id
-            ).operation_id.ids
-        )
-        if bom_operation_ids != wo_operation_ids:
+        bom_operations = bom.operation_ids
+        wo_operations = self.workorder_ids.filtered(
+            lambda w: w.state != "cancel" and w.operation_id
+        ).operation_id
+        if set(bom_operations.ids) != set(wo_operations.ids):
+            diff_operations = (bom_operations | wo_operations) - (
+                bom_operations & wo_operations
+            )
             return self.env._(
                 f"The operations of MO {mo_name} are not aligned with the current "
-                f"BoM configuration."
+                f"BoM configuration: {', '.join(diff_operations.mapped('name'))}."
             )
 
         # --- By-product checks ---
@@ -132,9 +143,17 @@ class MrpProduction(models.Model):
             lambda m: m.state != "cancel" and m.byproduct_id
         )
         if set(bom.byproduct_ids.ids) != set(active_byproduct_moves.byproduct_id.ids):
+            products = (
+                bom.byproduct_ids.filtered(
+                    lambda bp: bp.id not in active_byproduct_moves.byproduct_id.ids
+                ).product_id
+                | active_byproduct_moves.filtered(
+                    lambda m: m.byproduct_id.id not in bom.byproduct_ids.ids
+                ).product_id
+            )
             return self.env._(
                 f"The by-products of MO {mo_name} are not aligned with the current "
-                f"BoM configuration."
+                f"BoM configuration: {', '.join(products.mapped('display_name'))}."
             )
         for move in active_byproduct_moves:
             byproduct = move.byproduct_id
@@ -146,13 +165,15 @@ class MrpProduction(models.Model):
             ):
                 return self.env._(
                     f"The by-product quantities of MO {mo_name} are not aligned "
-                    f"with the current BoM configuration."
+                    f"with the current BoM configuration: "
+                    f"{move.product_id.display_name}."
                 )
         for move in active_byproduct_moves:
             if move.operation_id != move.byproduct_id.operation_id:
                 return self.env._(
                     f"The 'Produced in Operation' for by-products of MO {mo_name} "
-                    f"is not aligned with the current BoM configuration."
+                    f"is not aligned with the current BoM configuration: "
+                    f"{move.product_id.display_name}."
                 )
 
         return False
