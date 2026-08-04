@@ -120,3 +120,27 @@ class StockPicking(models.Model):
         # To re-allocate backorder moves to the new backorder picking
         self.sudo().qc_inspections_ids._compute_picking()
         return res
+
+    def button_validate(self):
+        if self._needs_inspections_wizard():
+            return self._show_inspections_wizard()
+        return super().button_validate()
+
+    def _needs_inspections_wizard(self):
+        if (
+            not self.env.context.get("skip_inspections", False)
+            and any(m.product_id.remind_qc for m in self.move_line_ids)
+            and self.created_inspections != self.done_inspections
+        ):
+            return True
+
+        return False
+
+    def _show_inspections_wizard(self):
+        ctx = self.env.context.copy()
+        ctx.update({"default_stock_picking_ids": self.ids})
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "quality_control_stock_oca.action_qc_check"
+        )
+        action["context"] = ctx
+        return action
