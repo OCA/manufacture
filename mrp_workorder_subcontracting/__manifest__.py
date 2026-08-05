@@ -25,6 +25,7 @@
         "views/purchase_order_line_views.xml",
         "views/purchase_order_type_views.xml",
         "views/res_partner_views.xml",
+        "views/stock_move_views.xml",
         "views/stock_picking_views.xml",
         "views/stock_picking_type_views.xml",
         "views/stock_warehouse_views.xml",

@@ -33,6 +33,7 @@ class TestSubcontractingSetupConfig(WorkorderSubcontractingCommon):
         self.assertEqual(
             workorder.subcontract_partner_ids, operation.subcontractor_partner_ids
         )
+        self.assertEqual(workorder.sub_component_move_ids, workorder.move_raw_ids)
         self.assertEqual(workorder.subcontracting_flow, "parts")
 
     def test_02_finished_flow_workorder_has_no_component_moves(self):

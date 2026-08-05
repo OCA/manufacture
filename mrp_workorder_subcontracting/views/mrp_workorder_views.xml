@@ -36,6 +36,19 @@
                 </button>
             </xpath>
             <xpath expr="//page[@name='components']" position="after">
+                <page
+                    string="Parts to Send"
+                    name="subcontract_components"
+                    invisible="not subcontract_ok or subcontracting_flow != 'parts'"
+                >
+                    <field name="sub_component_move_ids" readonly="1">
+                        <list>
+                            <field name="product_id" readonly="state == 'done'" />
+                            <field name="product_qty" string="To Send" />
+                            <field name="picked" string="Consumed" />
+                        </list>
+                    </field>
+                </page>
                 <page string="Subcontract" name="subcontract">
                     <field name="has_subcontract_documents" invisible="1" />
                     <group>
@@ -184,6 +197,11 @@
                         </page>
                     </notebook>
                 </page>
+            </xpath>
+            <xpath expr="//page[@name='components']" position="attributes">
+                <attribute
+                    name="invisible"
+                >subcontract_ok and subcontracting_flow == 'parts'</attribute>
             </xpath>
         </field>
     </record>

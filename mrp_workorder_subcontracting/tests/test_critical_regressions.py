@@ -1,3 +1,4 @@
+from odoo import Command
 from odoo.tests import tagged
 
 from .common import WorkorderSubcontractingCommon
@@ -89,3 +90,69 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
             backorders.move_ids.sub_purchase_line_id, purchase_order.order_line
         )
         self.assertEqual(backorders.move_ids.sub_origin_move_id, delivery_move)
+
+    def test_05_unassigned_component_does_not_force_parts_flow(self):
+        finished_product = self.env["product.product"].create(
+            {
+                "name": "Finished Product With Unassigned Component",
+                "is_storable": True,
+                "uom_id": self.unit.id,
+                "uom_po_id": self.unit.id,
+            }
+        )
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_id": finished_product.id,
+                "product_tmpl_id": finished_product.product_tmpl_id.id,
+                "product_uom_id": self.unit.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "operation_ids": [
+                    Command.create(
+                        {
+                            "name": "Subcontract Finished Operation",
+                            "workcenter_id": self.env.ref("mrp.mrp_workcenter_3").id,
+                            "subcontract_ok": True,
+                            "subcontractor_partner_ids": [
+                                Command.set((self.partner | self.other_partner).ids)
+                            ],
+                            "subcontract_product_id": self.service.id,
+                        }
+                    )
+                ],
+                "bom_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": self.component.id,
+                            "product_qty": 2.0,
+                            "product_uom_id": self.unit.id,
+                        }
+                    )
+                ],
+            }
+        )
+        production = self.env["mrp.production"].create(
+            {
+                "product_id": finished_product.id,
+                "product_uom_id": self.unit.id,
+                "product_qty": 10.0,
+                "bom_id": bom.id,
+                "picking_type_id": self.warehouse.manu_type_id.id,
+            }
+        )
+
+        production.action_confirm()
+        workorder = production.workorder_ids
+        raw_move = production.move_raw_ids
+        purchase_order = self._assign_standard_purchase_order(workorder)
+        purchase_order.with_context(skip_subcontract_bid_wizard=True).button_confirm()
+
+        self.assertFalse(raw_move.operation_id)
+        self.assertEqual(raw_move.workorder_id, workorder)
+        self.assertFalse(raw_move.sub_component_workorder_id)
+        self.assertEqual(workorder.subcontracting_flow, "finished")
+        self.assertEqual(workorder.delivery_move_ids.product_id, workorder.product_id)
+        self.assertEqual(
+            workorder.delivery_move_ids.picking_id.picking_type_id,
+            self.finished_out_type,
+        )

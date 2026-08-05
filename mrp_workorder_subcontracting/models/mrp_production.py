@@ -75,5 +75,38 @@ class MrpProduction(models.Model):
             "domain": [("id", "in", moves.ids)],
             "context": {
                 "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
+                "expand": 1,
             },
         }
+
+    def _link_subcontract_component_workorders(self):
+        for production in self:
+            workorders_by_operation = {
+                workorder.operation_id.id: workorder
+                for workorder in production.workorder_ids.filtered(
+                    lambda workorder: (
+                        workorder.operation_id and workorder.subcontract_ok
+                    )
+                )
+            }
+            moves_to_clear = self.env["stock.move"]
+            moves_by_workorder = {}
+            for move in production.move_raw_ids:
+                workorder = self.env["mrp.workorder"]
+                operation = move.bom_line_id.operation_id
+                if operation:
+                    workorder = workorders_by_operation.get(operation.id, workorder)
+                if workorder:
+                    if move.sub_component_workorder_id != workorder:
+                        moves_by_workorder.setdefault(workorder, self.env["stock.move"])
+                        moves_by_workorder[workorder] |= move
+                elif move.sub_component_workorder_id and (
+                    move.sub_component_workorder_id.production_id != production
+                    or not move.sub_component_workorder_id.subcontract_ok
+                ):
+                    moves_to_clear |= move
+
+            if moves_to_clear:
+                moves_to_clear.write({"sub_component_workorder_id": False})
+            for workorder, moves in moves_by_workorder.items():
+                moves.write({"sub_component_workorder_id": workorder.id})

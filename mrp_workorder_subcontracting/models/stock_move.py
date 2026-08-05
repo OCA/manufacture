@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class StockMove(models.Model):
@@ -29,6 +30,18 @@ class StockMove(models.Model):
         readonly=True,
         copy=True,
         index=True,
+    )
+    sub_component_workorder_id = fields.Many2one(
+        comodel_name="mrp.workorder",
+        string="Subcontract Component Work Order",
+        copy=False,
+        index=True,
+        check_company=True,
+        help=(
+            "Work order used by the subcontracting flow to send this component "
+            "to the subcontractor. It is set from the BoM operation when "
+            "available, and can be adjusted manually for explicit exceptions."
+        ),
     )
     subcontracting_flow = fields.Selection(
         selection=[
@@ -64,6 +77,25 @@ class StockMove(models.Model):
                 workorder.subcontracting_flow if workorder else False
             )
             move.sub_production_id = workorder.production_id if workorder else False
+
+    @api.constrains("sub_component_workorder_id", "raw_material_production_id")
+    def _check_sub_component_workorder_id(self):
+        for move in self.filtered("sub_component_workorder_id"):
+            workorder = move.sub_component_workorder_id
+            if not workorder.subcontract_ok:
+                raise ValidationError(
+                    _(
+                        "The subcontract component work order must be configured "
+                        "as subcontracted."
+                    )
+                )
+            if workorder.production_id != move.raw_material_production_id:
+                raise ValidationError(
+                    _(
+                        "The subcontract component work order must belong to the "
+                        "same manufacturing order as the component move."
+                    )
+                )
 
     def _prepare_move_split_vals(self, qty):
         vals = super()._prepare_move_split_vals(qty)

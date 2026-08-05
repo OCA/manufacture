@@ -35,9 +35,12 @@
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_stock_move_operations" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='product_id']" position="after">
+            <xpath expr="//group/group[1]" position="inside">
                 <field name="sub_workorder_id" />
                 <field name="sub_production_id" />
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="raw_material_production_id" invisible="1" />
             </xpath>
         </field>
     </record>
@@ -46,7 +49,7 @@
         <field name="name">stock.move.tree.subcontracting.transfers</field>
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
-            <list>
+            <list expand="context.get('expand')">
                 <field name="picking_id" />
                 <field name="picking_type_id" optional="hide" />
                 <field name="sub_production_id" optional="show" />

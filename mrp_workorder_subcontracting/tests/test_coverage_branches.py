@@ -588,6 +588,7 @@ class TestSubcontractingCoverageBranches(WorkorderSubcontractingCommon):
         empty_transfer_action = workorder.action_view_subcontract_transfers()
         self.assertEqual(empty_purchase_action["domain"], [("id", "in", [])])
         self.assertEqual(empty_transfer_action["domain"], [("id", "in", [])])
+        self.assertEqual(empty_transfer_action["context"]["expand"], 1)
 
         purchase_order = self._confirm_standard_purchase_order(workorder)
         purchase_action = workorder.action_view_subcontract_purchase_orders()
@@ -596,6 +597,7 @@ class TestSubcontractingCoverageBranches(WorkorderSubcontractingCommon):
         self.assertEqual(
             transfer_action["domain"], [("id", "in", workorder.delivery_move_ids.ids)]
         )
+        self.assertEqual(transfer_action["context"]["expand"], 1)
 
         other_purchase_order = self._assign_standard_purchase_order(
             self._get_workorder(subcontract_parts=True, qty=5.0)
@@ -620,6 +622,7 @@ class TestSubcontractingCoverageBranches(WorkorderSubcontractingCommon):
         self.assertEqual(
             transfer_action["domain"], [("id", "in", workorder.delivery_move_ids.ids)]
         )
+        self.assertEqual(transfer_action["context"]["expand"], 1)
 
         other_workorder = self._get_workorder(subcontract_parts=True, qty=5.0)
         other_po = self._assign_standard_purchase_order(other_workorder)

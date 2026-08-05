@@ -55,6 +55,12 @@ class MrpWorkorder(models.Model):
         string="Return Moves",
         readonly=True,
     )
+    sub_component_move_ids = fields.One2many(
+        comodel_name="stock.move",
+        inverse_name="sub_component_workorder_id",
+        string="Subcontract Component Moves",
+        readonly=True,
+    )
     has_subcontract_documents = fields.Boolean(
         compute="_compute_has_subcontract_documents",
     )
@@ -156,12 +162,14 @@ class MrpWorkorder(models.Model):
             "domain": [("id", "in", moves.ids)],
             "context": {
                 "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
+                "expand": 1,
             },
         }
 
     def _action_confirm(self):
         res = super()._action_confirm()
         self._sync_subcontracting_from_operation()
+        self.mapped("production_id")._link_subcontract_component_workorders()
         return res
 
     def _sync_subcontracting_from_operation(self):
@@ -196,10 +204,12 @@ class MrpWorkorder(models.Model):
                     % workorder.display_name
                 )
 
-    @api.depends("move_raw_ids")
+    @api.depends("sub_component_move_ids")
     def _compute_subcontracting_flow(self):
-        for wo in self:
-            wo.subcontracting_flow = "parts" if wo.move_raw_ids else "finished"
+        for workorder in self:
+            workorder.subcontracting_flow = (
+                "parts" if workorder.sub_component_move_ids else "finished"
+            )
 
     @api.depends("purchase_order_line_ids", "delivery_move_ids", "return_move_ids")
     def _compute_has_subcontract_documents(self):
@@ -450,7 +460,10 @@ class MrpWorkorder(models.Model):
         )
         if not internal_location:
             return
-        raw_moves = self.move_raw_ids.filtered(
+        raw_moves = self._get_subcontract_component_moves().filtered(
             lambda move: move.state not in ("done", "cancel")
         )
         raw_moves.write({"location_id": internal_location.id})
+
+    def _get_subcontract_component_moves(self):
+        return self.sub_component_move_ids

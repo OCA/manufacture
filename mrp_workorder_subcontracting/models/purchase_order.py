@@ -96,6 +96,7 @@ class PurchaseOrder(models.Model):
             "domain": [("id", "in", moves.ids)],
             "context": {
                 "group_by": ["sub_workorder_id", "picking_type_id", "picking_id"],
+                "expand": 1,
             },
         }
 
@@ -426,7 +427,7 @@ class PurchaseOrder(models.Model):
             else 0.0
         )
         values = []
-        for raw_move in line.workorder_id.move_raw_ids.filtered(
+        for raw_move in line.workorder_id._get_subcontract_component_moves().filtered(
             lambda move: move.state not in ("done", "cancel")
         ):
             values.append(

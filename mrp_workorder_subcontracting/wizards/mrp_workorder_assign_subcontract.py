@@ -645,7 +645,7 @@ class MrpWorkorderAssignSubcontract(models.TransientModel):
             if workorder.qty_production
             else 0
         )
-        for raw_move in workorder.move_raw_ids.filtered(
+        for raw_move in workorder._get_subcontract_component_moves().filtered(
             lambda move: move.state not in ("done", "cancel")
         ):
             qty = raw_move.product_uom_qty * factor
