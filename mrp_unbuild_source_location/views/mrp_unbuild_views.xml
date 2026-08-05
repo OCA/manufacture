@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_unbuild_form_view_inherit_location" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form.inherit.location</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="before">
+                <field name="location_domain" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">location_domain</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_unbuild_form_view_simplified_inherit_location" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form.simplified.inherit.location</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view_simplified" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="before">
+                <field name="location_domain" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">location_domain</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
