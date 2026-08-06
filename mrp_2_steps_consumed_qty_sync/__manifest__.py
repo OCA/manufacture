@@ -5,7 +5,7 @@
     "name": "MRP 2 steps consumed qty sync",
     "summary": "Update consumed quantities when in 2 steps production scope "
     "the picking is validated",
-    "version": "15.0.0.1.0",
+    "version": "15.0.0.1.1",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
