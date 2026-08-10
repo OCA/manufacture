@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,14 +29,14 @@ msgid "Inspections related to this production."
 msgstr ""
 
 #. module: quality_control_mrp_oca
-#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
-#: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_search_view_production
-msgid "Production"
+#: model:ir.model,name:quality_control_mrp_oca.model_mrp_production
+msgid "Manufacturing Order"
 msgstr ""
 
 #. module: quality_control_mrp_oca
-#: model:ir.model,name:quality_control_mrp_oca.model_mrp_production
-msgid "Production Order"
+#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_search_view_production
+msgid "Production"
 msgstr ""
 
 #. module: quality_control_mrp_oca
