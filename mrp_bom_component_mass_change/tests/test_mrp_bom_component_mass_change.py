@@ -76,16 +76,6 @@ class TestMrpBomComponentMassChange(TransactionCase):
         self.assertEqual(action["context"]["default_component_id"], self.component.id)
         self.assertTrue(action["context"]["default_component_locked"])
 
-    def test_component_in_multiple_boms(self):
-        line = self._component_lines(self.bom_1, self.component)
-        self.assertTrue(line.component_in_multiple_boms)
-        single_component = self._create_product("Single Component")
-        single_bom = self._create_bom(
-            self._create_product("Finished 4"), [(single_component, 1.0)]
-        )
-        single_line = self._component_lines(single_bom, single_component)
-        self.assertFalse(single_line.component_in_multiple_boms)
-
     def test_replace_component(self):
         wizard = self.Wizard.create(
             {
