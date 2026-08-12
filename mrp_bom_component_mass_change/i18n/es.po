@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_bom_component_mass_change
+#: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__add
+msgid "Add"
+msgstr "Añadir"
+
+#. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Apply"
 msgstr "Aplicar"
@@ -33,8 +38,18 @@ msgstr "Listas de Materiales"
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Bills of Materials Using"
+msgstr "Listas de Materiales que usan"
+
+#. module: mrp_bom_component_mass_change
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Bills of Materials to Update"
 msgstr "Listas de Materiales a Actualizar"
+
+#. module: mrp_bom_component_mass_change
+#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__bom_domain
+msgid "Bom Domain"
+msgstr "Dominio de LdM"
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
@@ -47,15 +62,15 @@ msgid "Change Type"
 msgstr "Tipo de cambio"
 
 #. module: mrp_bom_component_mass_change
-#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_line__component_in_multiple_boms
-msgid "Component In Multiple Boms"
-msgstr ""
-
-#. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_locked
 #, fuzzy
 msgid "Component Locked"
 msgstr "Componente a cambiar"
+
+#. module: mrp_bom_component_mass_change
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Component to Add"
+msgstr "Componente a añadir"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_id
@@ -116,6 +131,11 @@ msgid "New Quantity"
 msgstr "Nueva cantidad"
 
 #. module: mrp_bom_component_mass_change
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: mrp_bom_component_mass_change
 #: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__remove
 msgid "Remove"
 msgstr "Eliminar"
@@ -143,6 +163,20 @@ msgstr "Debe seleccionar al menos una lista de materiales."
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
+msgid "You must select the component to add."
+msgstr "Debe seleccionar el componente a añadir."
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
+msgid "You must select the component to change."
+msgstr "Debe seleccionar el componente a cambiar."
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
 msgid "You must select the new component."
 msgstr "Debe seleccionar el nuevo componente."
 
@@ -152,3 +186,10 @@ msgstr "Debe seleccionar el nuevo componente."
 #, python-format
 msgid "You must set the new quantity."
 msgstr "Debe seleccionar la nueva cantidad."
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
+msgid "You must set the quantity."
+msgstr "Debe seleccionar la cantidad."

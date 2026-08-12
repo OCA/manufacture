@@ -1,29 +1,11 @@
 # Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import models
 
 
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
-
-    component_in_multiple_boms = fields.Boolean(
-        compute="_compute_component_in_multiple_boms",
-    )
-
-    @api.depends("product_id")
-    def _compute_component_in_multiple_boms(self):
-        products = self.product_id
-        bom_counts = {}
-        if products:
-            groups = self.env["mrp.bom.line"]._read_group(
-                [("product_id", "in", products.ids)],
-                ["product_id"],
-                ["bom_id:count_distinct"],
-            )
-            bom_counts = {product.id: count for product, count in groups}
-        for line in self:
-            line.component_in_multiple_boms = bom_counts.get(line.product_id.id, 0) > 1
 
     def action_bom_component_mass_change(self):
         self.ensure_one()

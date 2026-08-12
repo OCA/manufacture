@@ -4,7 +4,7 @@
     "name": "MRP BoM Component Mass Change",
     "version": "19.0.1.0.0",
     "category": "Manufacturing",
-    "summary": "Replace or remove a component in several BoMs at once",
+    "summary": "Add, replace or remove a component in several BoMs at once",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
