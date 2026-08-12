@@ -167,10 +167,8 @@ class MultiLevelMrp(models.TransientModel):
 
         calendar = product_mrp_area.mrp_area_id.calendar_id
         if calendar and product_mrp_area.mrp_lead_time:
-            date_str = fields.Date.to_string(mrp_date)
-            dt = fields.Datetime.from_string(date_str)
-            # dt is at the beginning of the day (00:00)
-            res = calendar.plan_days(-1 * product_mrp_area.mrp_lead_time, dt)
+            warehouse = product_mrp_area.mrp_area_id.warehouse_id
+            res = warehouse.wh_plan_days(mrp_date, -1 * product_mrp_area.mrp_lead_time)
             mrp_action_date = res.date()
         else:
             mrp_action_date = mrp_date - timedelta(days=product_mrp_area.mrp_lead_time)

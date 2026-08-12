@@ -127,3 +127,21 @@ class TestMrpWarehouseCalendar(TransactionCase):
         date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
         monday = fields.Date.to_date("2097-01-07 09:00:00")
         self.assertEqual(date_plan_finished, monday)
+
+    def test_onchange_date_planned_non_working_day(self):
+        """The planned start is not a working day, so it does not count."""
+        mo = self.env["mrp.production"].new(
+            {
+                "product_id": self.product.id,
+                "bom_id": self.bom.id,
+                "product_qty": 1,
+                "picking_type_id": self.env[
+                    "mrp.production"
+                ]._get_default_picking_type_id(self.company.id),
+            }
+        )
+        mo.date_planned_start = "2097-01-05 09:00:00"  # Saturday
+        mo._compute_date_planned_finished()
+        date_plan_finished = fields.Date.to_date(mo.date_planned_finished)
+        monday = fields.Date.to_date("2097-01-07 09:00:00")
+        self.assertEqual(date_plan_finished, monday)

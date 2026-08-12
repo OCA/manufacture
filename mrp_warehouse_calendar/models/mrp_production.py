@@ -15,14 +15,14 @@ class MrpProduction(models.Model):
             warehouse = self.picking_type_id.warehouse_id
             if warehouse.calendar_id:
                 if production.product_id.produce_delay:
-                    production.date_planned_finished = warehouse.calendar_id.plan_days(
-                        +1 * production.product_id.produce_delay + 1,
+                    production.date_planned_finished = warehouse.wh_plan_days(
                         production.date_planned_start,
+                        production.product_id.produce_delay,
                     )
                 if production.company_id.manufacturing_lead:
-                    production.date_planned_finished = warehouse.calendar_id.plan_days(
-                        +1 * production.company_id.manufacturing_lead + 1,
+                    production.date_planned_finished = warehouse.wh_plan_days(
                         production.date_planned_finished,
+                        production.company_id.manufacturing_lead,
                     )
                 production.move_finished_ids = [
                     (1, m.id, {"date": production.date_planned_finished})
@@ -36,8 +36,7 @@ class MrpProduction(models.Model):
         dt_planned = mo.date_planned_start
         warehouse = mo.picking_type_id.warehouse_id
         if warehouse.calendar_id and mo.product_id.produce_delay:
-            date_expected = warehouse.calendar_id.plan_days(
-                +1 * self.product_id.produce_delay + 1, dt_planned
+            mo.date_planned_finished = warehouse.wh_plan_days(
+                dt_planned, self.product_id.produce_delay
             )
-            mo.date_planned_finished = date_expected
         return mo

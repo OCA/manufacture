@@ -113,11 +113,8 @@ class MrpInventory(models.Model):
         for rec in self.filtered(lambda r: r.date):
             delay = rec.product_mrp_area_id.mrp_lead_time
             if delay and rec.mrp_area_id.calendar_id:
-                dt_date = fields.Datetime.to_datetime(rec.date)
-                # dt_date is at the beginning of the day (00:00),
-                # so we can subtract the delay straight forward.
-                order_release_date = rec.mrp_area_id.calendar_id.plan_days(
-                    -delay, dt_date
+                order_release_date = rec.mrp_area_id.warehouse_id.wh_plan_days(
+                    rec.date, -delay
                 ).date()
             elif delay:
                 order_release_date = fields.Date.from_string(rec.date) - timedelta(
