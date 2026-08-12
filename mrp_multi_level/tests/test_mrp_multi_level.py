@@ -920,3 +920,16 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             .create({})
         )
         self.assertEqual(len(procure_wizard.item_ids), 0)
+
+    def test_26_planned_order_release_date(self):
+        """The release date suggested when changing the due date is the same
+        one that the MRP run computes."""
+        self.fp_1.produce_delay = 2
+        product_mrp_area = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.fp_1.id)], limit=1
+        )
+        planned_order = self.planned_order_obj.new(
+            {"product_mrp_area_id": product_mrp_area.id, "due_date": self.date_5}
+        )
+        planned_order._onchange_due_date()
+        self.assertEqual(planned_order.order_release_date, self.date_3)

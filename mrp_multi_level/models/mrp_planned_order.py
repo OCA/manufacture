@@ -93,9 +93,8 @@ class MrpPlannedOrder(models.Model):
             if self.product_mrp_area_id.mrp_lead_time:
                 calendar = self.mrp_area_id.calendar_id
                 if calendar:
-                    dt = fields.Datetime.from_string(self.due_date)
-                    res = calendar.plan_days(
-                        -1 * (self.product_mrp_area_id.mrp_lead_time + 1), dt
+                    res = self.mrp_area_id.warehouse_id.wh_plan_days(
+                        self.due_date, -1 * self.product_mrp_area_id.mrp_lead_time
                     )
                     self.order_release_date = res.date()
                 else:
