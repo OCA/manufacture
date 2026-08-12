@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mrp_bom_component_mass_change
+#: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__add
+msgid "Add"
+msgstr ""
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
@@ -30,7 +35,17 @@ msgstr ""
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Bills of Materials Using"
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Bills of Materials to Update"
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
+#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__bom_domain
+msgid "Bom Domain"
 msgstr ""
 
 #. module: mrp_bom_component_mass_change
@@ -44,13 +59,13 @@ msgid "Change Type"
 msgstr ""
 
 #. module: mrp_bom_component_mass_change
-#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_line__component_in_multiple_boms
-msgid "Component In Multiple Boms"
+#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_locked
+msgid "Component Locked"
 msgstr ""
 
 #. module: mrp_bom_component_mass_change
-#: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_locked
-msgid "Component Locked"
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Component to Add"
 msgstr ""
 
 #. module: mrp_bom_component_mass_change
@@ -112,6 +127,11 @@ msgid "New Quantity"
 msgstr ""
 
 #. module: mrp_bom_component_mass_change
+#: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
+msgid "Quantity"
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
 #: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__remove
 msgid "Remove"
 msgstr ""
@@ -139,6 +159,20 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
+msgid "You must select the component to add."
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
+msgid "You must select the component to change."
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
 msgid "You must select the new component."
 msgstr ""
 
@@ -147,4 +181,11 @@ msgstr ""
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
 msgid "You must set the new quantity."
+msgstr ""
+
+#. module: mrp_bom_component_mass_change
+#. odoo-python
+#: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
+#, python-format
+msgid "You must set the quantity."
 msgstr ""
