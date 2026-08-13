@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [mrp_tag](mrp_tag/) | 19.0.1.0.0 |  | Allows to add multiple tags to Manufacturing Orders
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 19.0.1.0.0 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Considers the warehouse calendars in manufacturing
 [quality_control_oca](quality_control_oca/) | 19.0.1.0.0 |  | Generic infrastructure for quality tests.
+[stock_replenishment_mrp_bom_selection](stock_replenishment_mrp_bom_selection/) | 19.0.1.0.0 |  | Stock Replenishment MRP BoM Selection
 
 [//]: # (end addons)
 
