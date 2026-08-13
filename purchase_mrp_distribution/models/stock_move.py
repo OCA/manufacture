@@ -1,7 +1,7 @@
 # Copyright 2024 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, fields, models
+from odoo import Command, fields, models
 
 
 class StockMove(models.Model):
@@ -11,7 +11,7 @@ class StockMove(models.Model):
 
     def action_open_distribution_wizard(self):
         return {
-            "name": _("Distribution for %s") % self.product_id.display_name,
+            "name": self.env._("Distribution for %s", self.product_id.display_name),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "stock.move.distribution.wiz",
@@ -32,14 +32,13 @@ class StockMove(models.Model):
                     {
                         "picking_id": sml.picking_id.id,
                         "product_id": sml.product_id.id,
-                        "name": sml.product_id.display_name,
                         "purchase_line_id": move.purchase_line_id.id,
                         "product_uom": sml.product_uom_id.id,
                         "state": "assigned",
                         "location_id": sml.location_id.id,
                         "location_dest_id": sml.location_dest_id.id,
                         "price_unit": move.price_unit,
-                        "move_line_ids": [(4, sml.id)],
+                        "move_line_ids": [Command.link(sml.id)],
                         # Set picked to True to be able to validate the picking
                         # with this new lines
                         "picked": True,

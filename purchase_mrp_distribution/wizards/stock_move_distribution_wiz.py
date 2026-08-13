@@ -1,7 +1,7 @@
 # Copyright 2024 Tecnativa - Carlos Roca
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class StockMoveDistributionWiz(models.TransientModel):
@@ -21,9 +21,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                 ):
                     for sml in move_lines:
                         lines.append(
-                            (
-                                0,
-                                0,
+                            Command.create(
                                 {
                                     "product_id": bom_line.product_id.id,
                                     "quantity": sml.quantity,
@@ -31,20 +29,18 @@ class StockMoveDistributionWiz(models.TransientModel):
                                     "lot_id": sml.lot_id.id,
                                     "package_id": sml.result_package_id.id,
                                     "company_id": sml.company_id.id,
-                                },
+                                }
                             )
                         )
                 else:
                     lines.append(
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "product_id": bom_line.product_id.id,
                                 "quantity": 0,
                                 "uom_id": bom_line.product_uom_id.id,
                                 "company_id": move.company_id.id,
-                            },
+                            }
                         )
                     )
             res.update(
@@ -94,5 +90,5 @@ class StockMoveDistributionWizLine(models.TransientModel):
     quantity = fields.Float(digits="Product Unit of Measure")
     uom_id = fields.Many2one("uom.uom")
     lot_id = fields.Many2one("stock.lot")
-    package_id = fields.Many2one("stock.quant.package")
+    package_id = fields.Many2one("stock.package")
     company_id = fields.Many2one("res.company")
