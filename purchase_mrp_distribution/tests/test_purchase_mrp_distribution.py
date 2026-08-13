@@ -1,7 +1,8 @@
 # Copyright 2024 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo import Command
+from odoo.tests import Form, TransactionCase
 
 
 class TestPurchaseMrpDistribution(TransactionCase):
@@ -17,18 +18,21 @@ class TestPurchaseMrpDistribution(TransactionCase):
         cls.product = cls.env["product.template"].create(
             {
                 "name": "General product",
+                "is_storable": True,
                 "categ_id": cls.category.id,
             }
         )
         cls.subproduct_1 = cls.env["product.template"].create(
             {
                 "name": "Product 1",
+                "is_storable": True,
                 "categ_id": cls.category.id,
             }
         )
         cls.subproduct_2 = cls.env["product.template"].create(
             {
                 "name": "Product 2",
+                "is_storable": True,
                 "categ_id": cls.category.id,
             }
         )
@@ -37,19 +41,15 @@ class TestPurchaseMrpDistribution(TransactionCase):
                 "product_tmpl_id": cls.product.id,
                 "type": "distribution",
                 "bom_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.subproduct_1.product_variant_id.id,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.subproduct_2.product_variant_id.id,
-                        },
+                        }
                     ),
                 ],
             }
@@ -94,8 +94,11 @@ class TestPurchaseMrpDistribution(TransactionCase):
         self.assertIn(self.subproduct_1.product_variant_id, picking.move_ids.product_id)
         self.assertIn(self.subproduct_2.product_variant_id, picking.move_ids.product_id)
         self.assertEqual(purchase.order_line.qty_received, 6)
-        svl_action = picking.action_view_stock_valuation_layers()
-        svls = self.env["stock.valuation.layer"].search(svl_action["domain"])
-        for svl in svls:
-            self.assertEqual(svl.quantity, 3)
-            self.assertEqual(svl.value, 6)
+        # Each distributed product is valued on its own move, but accounted for
+        # in the purchase line of the generic product.
+        distributed_moves = picking.move_ids - original_move
+        self.assertEqual(len(distributed_moves), 2)
+        for move in distributed_moves:
+            self.assertTrue(move.is_valued)
+            self.assertEqual(move.quantity, 3)
+            self.assertEqual(move.value, 6)

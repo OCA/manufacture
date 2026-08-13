@@ -1,10 +1,10 @@
-# Copyright 2024 Tecnatva - Carlos Roca
+# Copyright 2024 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Purchase MRP Distribution",
-    "version": "17.0.1.0.0",
-    "author": "Tecnaiva, Odoo Community Association (OCA)",
+    "version": "19.0.1.0.0",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["purchase_mrp"],
