@@ -22,23 +22,27 @@ class MaterialAvailabilityWizard(models.TransientModel):
     @api.depends("bom_id")
     def _compute_product_ids(self):
         for wizard in self:
-            lines_vals = []
-            for line in wizard.bom_id.bom_line_ids:
-                lines_vals.append(
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": line.product_id.id,
-                            "product_qty_available": line.product_id.qty_available,
-                        },
-                    )
+            # Show the stock of the location being replenished, not the whole company
+            orderpoint = wizard.replenish_wizard_id.orderpoint_id
+            context = {"company_id": orderpoint.company_id.id}
+            if orderpoint.location_id:
+                context["location"] = orderpoint.location_id.id
+            wizard.product_ids = [fields.Command.clear()] + [
+                fields.Command.create(
+                    {
+                        "product_id": line.product_id.id,
+                        "product_qty_available": line.product_id.with_context(
+                            **context
+                        ).qty_available,
+                    }
                 )
-            wizard.product_ids = lines_vals
+                for line in wizard.bom_id.bom_line_ids
+            ]
 
     def action_close(self):
+        self.ensure_one()
         return {
-            "name": "Replenish",
+            "name": self.env._("Replenish"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "stock.warehouse.orderpoint.replenish.wizard",
@@ -56,4 +60,9 @@ class MaterialAvailabilityWizardLine(models.TransientModel):
 
     wizard_id = fields.Many2one("material.availability.wizard")
     product_id = fields.Many2one("product.product", string="Product")
-    product_qty_available = fields.Float(string="Quantity Available")
+    product_uom_id = fields.Many2one(
+        "uom.uom", related="product_id.uom_id", string="Unit"
+    )
+    product_qty_available = fields.Float(
+        string="Quantity Available", digits="Product Unit"
+    )
