@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_mrp_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.mrp_bom_form_view
 msgid ""
 "A BoM of type distribution is used to select the quantities of components."
 msgstr ""
 
 #. module: purchase_mrp_distribution
-#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase_mrp_distribution.mrp_bom_form_view
 msgid "At a Stock Transfer."
 msgstr ""
 
@@ -62,6 +62,9 @@ msgid "Demand"
 msgstr ""
 
 #. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move__display_name
 #: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__display_name
 #: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__display_name
 msgid "Display Name"
@@ -90,11 +93,13 @@ msgstr ""
 #. module: purchase_mrp_distribution
 #. odoo-python
 #: code:addons/purchase_mrp_distribution/models/stock_move.py:0
-#, python-format
 msgid "Distribution for %s"
 msgstr ""
 
 #. module: purchase_mrp_distribution
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_mrp_bom__id
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move__id
 #: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__id
 #: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz_line__id
 msgid "ID"
@@ -167,7 +172,7 @@ msgstr ""
 
 #. module: purchase_mrp_distribution
 #: model:ir.model.fields,field_description:purchase_mrp_distribution.field_stock_move_distribution_wiz__move_uom_id
-msgid "UoM"
+msgid "Unit"
 msgstr ""
 
 #. module: purchase_mrp_distribution
