@@ -6,7 +6,7 @@ from datetime import datetime, time
 import pytz
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -70,7 +70,9 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
     def _check_period_date_end(self):
         for wiz in self:
             if wiz.period_date_end < wiz.period_date_start:
-                raise UserError(_("Period Start Date must be before Period End Date"))
+                raise UserError(
+                    self.env._("Period Start Date must be before Period End Date")
+                )
 
     def action_create_production(self):
         self.ensure_one()
@@ -91,7 +93,7 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
                     "product_id": self.product_id.id,
                     "bom_id": self.bom_id.id,
                     "product_uom_id": self.product_id.uom_id.id,
-                    "origin": _("Created using Production Generator Wizard"),
+                    "origin": self.env._("Created using Production Generator Wizard"),
                     "company_id": self.company_id.id,
                 }
             )

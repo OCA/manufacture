@@ -1,12 +1,13 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMrpProductionInjectOperation(BaseCommon):
+@tagged("post_install", "-at_install")
+class TestMrpProductionGenerator(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -14,23 +15,25 @@ class TestMrpProductionInjectOperation(BaseCommon):
         cls.product_produce = cls.env["product.product"].create(
             {
                 "name": "Product to Produce",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.product_comp_1 = cls.env["product.product"].create(
             {
                 "name": "Product Component 1",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.product_comp_2 = cls.env["product.product"].create(
             {
                 "name": "Product Component 2",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         bom_form = Form(cls.env["mrp.bom"])
-        bom_form.product_id = cls.product_produce
         bom_form.product_tmpl_id = cls.product_produce.product_tmpl_id
         bom_form.type = "normal"
         with bom_form.bom_line_ids.new() as bom_line:
