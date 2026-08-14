@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Production Generator By Date Interval",
-    "version": "17.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
