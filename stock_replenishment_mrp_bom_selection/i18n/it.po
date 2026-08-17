@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-17 12:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: stock_replenishment_mrp_bom_selection
 #. odoo-python
@@ -181,7 +182,7 @@ msgstr "Quantità da produrre"
 #: code:addons/stock_replenishment_mrp_bom_selection/models/stock_warehouse_orderpoint.py:0
 #: code:addons/stock_replenishment_mrp_bom_selection/wizard/material_availability_wizard.py:0
 msgid "Replenish"
-msgstr ""
+msgstr "Ripianifica"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard__replenish_wizard_id
@@ -208,7 +209,7 @@ msgstr "Quantità totale da produrre"
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_material_availability_wizard_line__product_uom_id
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_stock_warehouse_orderpoint_replenish_wizard__product_uom_id
 msgid "Unit"
-msgstr ""
+msgstr "Unità"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,help:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__product_uom_id
@@ -216,6 +217,8 @@ msgid ""
 "Unit of Measure (Unit of Measure) is the unit of measurement for the "
 "inventory control"
 msgstr ""
+"Unità di misura (Unità di misura) è l'unità di misura per il controllo di "
+"inventario"
 
 #. module: stock_replenishment_mrp_bom_selection
 #: model:ir.model.fields,field_description:stock_replenishment_mrp_bom_selection.field_bom_line_wizard__wizard_id
@@ -227,4 +230,4 @@ msgstr "Procedura guidata"
 #. odoo-python
 #: code:addons/stock_replenishment_mrp_bom_selection/wizard/stock_warehouse_orderpoint_replenish_wizard.py:0
 msgid "You cannot produce more than the quantity to order (%(qty)s)."
-msgstr ""
+msgstr "Non si può produrre più della quantità dell'ordine (%(qty)s)."
