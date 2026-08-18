@@ -191,14 +191,16 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
 
         purchase_order.with_context(skip_subcontract_bid_wizard=True).button_confirm()
 
-        delivery_moves = purchase_order.picking_ids.move_ids.filtered(
-            "sub_delivery_workorder_id"
-        )
+        delivery_moves = (
+            first_workorder | second_workorder
+        ).delivery_move_ids.filtered("sub_delivery_workorder_id")
         self.assertEqual(len(delivery_moves), 2)
         self.assertEqual(
-            delivery_moves.mapped("sub_delivery_workorder_id"),
-            first_workorder | second_workorder,
+            set(delivery_moves.mapped("sub_delivery_workorder_id").ids),
+            set((first_workorder | second_workorder).ids),
         )
+        self.assertEqual(len(delivery_moves.picking_id), 1)
+        self.assertEqual(delivery_moves.picking_id.sub_purchase_id, purchase_order)
         self.assertEqual(first_workorder.delivery_move_ids.product_uom_qty, 20.0)
         self.assertEqual(second_workorder.delivery_move_ids.product_uom_qty, 10.0)
 
