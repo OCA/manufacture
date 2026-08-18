@@ -32,10 +32,9 @@ Mrp Progress Button
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Simple module that add a button on MO to mark the Manufacturing Order to
-*In Progress* state. This module is usefull only when you do not use
-routing and operations. Indeed, the *In Progress* state is automatically
-put when the first operation is started.
+This module adds an *Unstart* button on Manufacturing Orders to move
+them from *In Progress* back to *Confirmed*, and a *Started On* date
+that records when the Manufacturing Order was actually started.
 
 **Table of contents**
 
@@ -48,7 +47,15 @@ Usage
 To use this module, you need to:
 
 1. Go to *Manufacturing* and create a Manufacturing Order.
-2. Click on *Mark As Started* button
+2. Confirm it and click on the *Start* button.
+3. Click on *Unstart* to move the Manufacturing Order back to
+   *Confirmed*.
+
+The *Started On* date records when the order was started, either with
+the *Start* button, by setting a quantity to produce or by starting a
+work order. A Manufacturing Order cannot be unstarted once a quantity is
+being produced, a work order is started or done, or a component is
+picked.
 
 Bug Tracker
 ===========
@@ -73,6 +80,7 @@ Contributors
 
 - Florian da Costa <florian.dacosta@akretion.com>
 - Bernat Puig Font <bernat.puig@forgeflow.com>
+- Jasmin Solanki <jasmin.solanki@forgeflow.com>
 
 Maintainers
 -----------

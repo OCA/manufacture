@@ -375,10 +375,9 @@ ul.auto-toc {
 !! source digest: sha256:45557aca05a46041560b43916f00658df5f71380c3d5031e7fca6db71df0ea58
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/19.0/mrp_progress_button"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-19-0/manufacture-19-0-mrp_progress_button"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Simple module that add a button on MO to mark the Manufacturing Order to
-<em>In Progress</em> state. This module is usefull only when you do not use
-routing and operations. Indeed, the <em>In Progress</em> state is automatically
-put when the first operation is started.</p>
+<p>This module adds an <em>Unstart</em> button on Manufacturing Orders to move
+them from <em>In Progress</em> back to <em>Confirmed</em>, and a <em>Started On</em> date
+that records when the Manufacturing Order was actually started.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -397,8 +396,15 @@ put when the first operation is started.</p>
 <p>To use this module, you need to:</p>
 <ol class="arabic simple">
 <li>Go to <em>Manufacturing</em> and create a Manufacturing Order.</li>
-<li>Click on <em>Mark As Started</em> button</li>
+<li>Confirm it and click on the <em>Start</em> button.</li>
+<li>Click on <em>Unstart</em> to move the Manufacturing Order back to
+<em>Confirmed</em>.</li>
 </ol>
+<p>The <em>Started On</em> date records when the order was started, either with
+the <em>Start</em> button, by setting a quantity to produce or by starting a
+work order. A Manufacturing Order cannot be unstarted once a quantity is
+being produced, a work order is started or done, or a component is
+picked.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
@@ -421,6 +427,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Florian da Costa &lt;<a class="reference external" href="mailto:florian.dacosta&#64;akretion.com">florian.dacosta&#64;akretion.com</a>&gt;</li>
 <li>Bernat Puig Font &lt;<a class="reference external" href="mailto:bernat.puig&#64;forgeflow.com">bernat.puig&#64;forgeflow.com</a>&gt;</li>
+<li>Jasmin Solanki &lt;<a class="reference external" href="mailto:jasmin.solanki&#64;forgeflow.com">jasmin.solanki&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">

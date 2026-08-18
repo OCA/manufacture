@@ -8,9 +8,10 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "version": "15.0.2.0.0",
+    "version": "19.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["mrp"],
     "data": ["views/production.xml"],
     "installable": True,
+    "pre_init_hook": "pre_init_hook",
 }
