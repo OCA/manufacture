@@ -24,12 +24,12 @@
                     name="action_view_subcontract_transfers"
                     class="oe_stat_button"
                     icon="fa-exchange"
-                    invisible="subcontract_transfer_count == 0"
+                    invisible="subcontract_moves_count == 0"
                 >
                     <field
-                        name="subcontract_transfer_count"
+                        name="subcontract_moves_count"
                         widget="statinfo"
-                        string="Subcontract Transfers"
+                        string="Subcontract Movements"
                     />
                 </button>
             </xpath>

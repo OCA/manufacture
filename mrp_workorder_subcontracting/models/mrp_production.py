@@ -8,8 +8,8 @@ class MrpProduction(models.Model):
         string="Subcontract Purchase Orders",
         compute="_compute_subcontract_counts",
     )
-    subcontract_transfer_count = fields.Integer(
-        string="Subcontract Transfers",
+    subcontract_moves_count = fields.Integer(
+        string="Subcontract Moves",
         compute="_compute_subcontract_counts",
     )
 
@@ -19,9 +19,8 @@ class MrpProduction(models.Model):
             production.subcontract_purchase_order_count = len(
                 workorders.purchase_order_line_ids.order_id
             )
-            production.subcontract_transfer_count = len(
-                workorders.delivery_move_ids.picking_id
-                | workorders.return_move_ids.picking_id
+            production.subcontract_moves_count = len(
+                workorders.delivery_move_ids | workorders.return_move_ids
             )
 
     def action_view_subcontract_purchase_orders(self):

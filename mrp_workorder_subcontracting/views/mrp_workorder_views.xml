@@ -32,7 +32,7 @@
                     icon="fa-exchange"
                     invisible="not delivery_move_ids or not return_move_ids"
                 >
-                    Subcontract Transfers
+                    Subcontract Movements
                 </button>
             </xpath>
             <xpath expr="//page[@name='components']" position="after">

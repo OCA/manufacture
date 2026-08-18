@@ -29,7 +29,7 @@
                     <field
                         name="subcontract_transfer_count"
                         widget="statinfo"
-                        string="Subcontract Transfers"
+                        string="Subcontract Movements"
                     />
                 </button>
             </xpath>
