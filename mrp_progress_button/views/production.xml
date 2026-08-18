@@ -5,26 +5,14 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <button name="button_unplan" position="before">
-                <button
-                    name="action_progress"
-                    attrs="{'invisible': [('state', '!=', 'confirmed')]}"
-                    type="object"
-                    string="Mark As Started"
-                    class="oe_highlight"
-                />
-            </button>
             <button name="action_assign" position="after">
                 <button
                     name="action_unstart"
-                    attrs="{'invisible': ['|', ('state', '!=', 'progress'), ('qty_producing', '!=', 0)]}"
+                    invisible="state != 'progress' or qty_producing != 0"
                     type="object"
                     string="Unstart"
                 />
             </button>
-            <field name="company_id" position="after">
-                <field name="date_start" />
-            </field>
         </field>
     </record>
 </odoo>
