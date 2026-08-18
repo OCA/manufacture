@@ -68,6 +68,18 @@ class StockMove(models.Model):
         readonly=True,
     )
 
+    @api.model
+    def _prepare_merge_moves_distinct_fields(self):
+        fields = super()._prepare_merge_moves_distinct_fields()
+        fields += [
+            "sub_delivery_workorder_id",
+            "sub_return_workorder_id",
+            "sub_purchase_line_id",
+            "sub_origin_move_id",
+            "sub_component_workorder_id",
+        ]
+        return fields
+
     @api.depends("sub_delivery_workorder_id", "sub_return_workorder_id")
     def _compute_subcontract_links(self):
         for move in self:

@@ -87,15 +87,14 @@ class StockPicking(models.Model):
                     in_picking = order._get_or_create_subcontract_picking(
                         "in", flow_type
                     )
-                    self.env["stock.move"].create(
+                    created_moves = self.env["stock.move"].create(
                         order._prepare_incoming_finished_move_vals(
                             line,
                             in_picking,
                             target_qty - existing_qty,
                         )
                     )
-                    if in_picking.state == "draft":
-                        in_picking.action_confirm()
+                    created_moves._action_confirm(merge=False)
                     if in_picking.picking_type_id.reservation_method == "at_confirm":
                         in_picking.action_assign()
                 continue
@@ -121,13 +120,12 @@ class StockPicking(models.Model):
                 in_picking = picking._get_or_create_workorder_incoming_picking(
                     workorder
                 )
-                self.env["stock.move"].create(
+                created_moves = self.env["stock.move"].create(
                     picking._prepare_workorder_incoming_move_vals(
                         workorder, in_picking, target_qty - existing_qty
                     )
                 )
-                if in_picking.state == "draft":
-                    in_picking.action_confirm()
+                created_moves._action_confirm(merge=False)
                 if in_picking.picking_type_id.reservation_method == "at_confirm":
                     in_picking.action_assign()
 

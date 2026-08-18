@@ -156,3 +156,57 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
             workorder.delivery_move_ids.picking_id.picking_type_id,
             self.finished_out_type,
         )
+
+    def test_06_urgent_moves_for_different_workorders_are_not_merged(self):
+        first_workorder = self._get_workorder(subcontract_parts=True, qty=10.0)
+        second_workorder = self._get_workorder(subcontract_parts=True, qty=5.0)
+
+        self._assign_stock_flow(
+            first_workorder,
+            "urgent",
+            urgent_note="Create first urgent delivery",
+        )
+        picking = first_workorder.delivery_move_ids.picking_id
+        self._assign_stock_flow(
+            second_workorder,
+            "urgent",
+            urgent_note="Reuse urgent delivery picking",
+        )
+
+        delivery_moves = picking.move_ids.filtered("sub_delivery_workorder_id")
+        self.assertEqual(len(delivery_moves), 2)
+        self.assertEqual(
+            delivery_moves.mapped("sub_delivery_workorder_id"),
+            first_workorder | second_workorder,
+        )
+        self.assertEqual(first_workorder.delivery_move_ids.product_uom_qty, 20.0)
+        self.assertEqual(second_workorder.delivery_move_ids.product_uom_qty, 10.0)
+
+    def test_07_standard_moves_for_different_workorders_are_not_merged(self):
+        first_workorder = self._get_workorder(subcontract_parts=True, qty=10.0)
+        second_workorder = self._get_workorder(subcontract_parts=True, qty=5.0)
+        purchase_order = self._assign_standard_purchase_order(
+            first_workorder | second_workorder
+        )
+
+        purchase_order.with_context(skip_subcontract_bid_wizard=True).button_confirm()
+
+        delivery_moves = purchase_order.picking_ids.move_ids.filtered(
+            "sub_delivery_workorder_id"
+        )
+        self.assertEqual(len(delivery_moves), 2)
+        self.assertEqual(
+            delivery_moves.mapped("sub_delivery_workorder_id"),
+            first_workorder | second_workorder,
+        )
+        self.assertEqual(first_workorder.delivery_move_ids.product_uom_qty, 20.0)
+        self.assertEqual(second_workorder.delivery_move_ids.product_uom_qty, 10.0)
+
+    def test_08_subcontract_fields_prevent_stock_move_merge(self):
+        merge_fields = self.env["stock.move"]._prepare_merge_moves_distinct_fields()
+
+        self.assertIn("sub_delivery_workorder_id", merge_fields)
+        self.assertIn("sub_return_workorder_id", merge_fields)
+        self.assertIn("sub_purchase_line_id", merge_fields)
+        self.assertIn("sub_origin_move_id", merge_fields)
+        self.assertIn("sub_component_workorder_id", merge_fields)

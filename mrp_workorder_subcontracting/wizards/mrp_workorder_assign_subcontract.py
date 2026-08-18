@@ -534,6 +534,7 @@ class MrpWorkorderAssignSubcontract(models.TransientModel):
                     created_moves.write(
                         {"sub_purchase_line_id": purchase_order_line.id}
                     )
+                created_moves._action_confirm(merge=False)
                 created_pickings |= picking
 
         for picking in created_pickings:

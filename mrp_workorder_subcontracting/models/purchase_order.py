@@ -284,9 +284,8 @@ class PurchaseOrder(models.Model):
                     continue
                 move_values += self._prepare_outgoing_move_vals(line, picking)
             if move_values:
-                self.env["stock.move"].create(move_values)
-                if picking.state == "draft":
-                    picking.action_confirm()
+                created_moves = self.env["stock.move"].create(move_values)
+                created_moves._action_confirm(merge=False)
                 if picking.picking_type_id.reservation_method == "at_confirm":
                     picking.action_assign()
 
@@ -327,9 +326,8 @@ class PurchaseOrder(models.Model):
                     )
                 )
             if move_values:
-                self.env["stock.move"].create(move_values)
-                if picking.state == "draft":
-                    picking.action_confirm()
+                created_moves = self.env["stock.move"].create(move_values)
+                created_moves._action_confirm(merge=False)
                 if picking.picking_type_id.reservation_method == "at_confirm":
                     picking.action_assign()
 
