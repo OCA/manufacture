@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 
 class TestProgressButton(TransactionCase):
     def setUp(self, *args, **kwargs):
-        super(TestProgressButton, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.production_model = self.env["mrp.production"]
         self.bom_model = self.env["mrp.bom"]
         self.stock_location_stock = self.env.ref("stock.stock_location_stock")
