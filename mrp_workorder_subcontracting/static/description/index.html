@@ -370,29 +370,36 @@ ul.auto-toc {
 !! source digest: sha256:5bc21e4c7602904a04c17e2768754918556ab3106fe7baa31b0aa4b6fbe33631
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/manufacture/tree/18.0/mrp_workorder_subcontracting"><img alt="OCA/manufacture" src="https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/manufacture-18-0/manufacture-18-0-mrp_workorder_subcontracting"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/manufacture&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Standard subcontracting flows in Odoo are managed at manufacturing order
-level. This module adds subcontracting management at workorder level, so
-only selected operations of a manufacturing order can be outsourced.</p>
-<p>It extends routing operations, workorders, purchase orders and stock
-transfers to provide:</p>
+<p>Odoo standard subcontracting is mainly managed from the manufacturing
+order and product routes. This module adds subcontracting at work order
+level, so a company can outsource only specific operations of a
+manufacturing order while keeping the other operations internal.</p>
+<p>The module is useful when a production process is split into several
+work orders and only some of them must be sent to an external supplier.
+For each subcontracted work order, the user can manage the related
+supplier, purchase document and stock transfers without losing the link
+with the original manufacturing order.</p>
+<p>It extends manufacturing operations, work orders, purchase orders and
+stock moves to provide:</p>
 <ul class="simple">
-<li>subcontracting flags, allowed subcontractors and service products on
-routing operations, automatically copied to generated work orders;</li>
-<li>a workorder wizard to create subcontracting documents for the selected
-remaining quantity;</li>
-<li>a standard purchase flow that creates RFQs or reuses a draft purchase
-order, then generates the outgoing and incoming subcontracting
-transfers;</li>
-<li>a bidding flow where several subcontractors receive competing RFQs and
-the confirmed purchase order becomes the winning bid;</li>
-<li>urgent subcontracting flows that create direct outgoing transfers
-without requiring a purchase order first;</li>
-<li>subcontractor-stock flows for cases where the processed goods are
-already available from the subcontractor side;</li>
-<li>traceability between manufacturing orders, work orders, purchase order
+<li>Subcontracting configuration on routing operations, copied to
+generated work orders;</li>
+<li>A wizard to create the subcontracting documents for the remaining
+quantity of one or more work orders;</li>
+<li>A standard purchase flow based on RFQs and purchase orders;</li>
+<li>A bidding flow where several suppliers can quote the same
+subcontracted work order and one purchase order is confirmed as the
+winner;</li>
+<li>Urgent flows to send goods to a subcontractor before a purchase order
+is required;</li>
+<li>Flows for goods that are already available at the subcontractor
+location;</li>
+<li>Traceability between manufacturing orders, work orders, purchase order
 lines and stock moves;</li>
-<li>automatic work order completion when the expected subcontracting
-receipt is completed.</li>
+<li>Automatic work order completion when the expected subcontracting
+receipt is validated.</li>
+<li>Track what’s in stock for each supplier, including items that have
+been shipped and those still to be received</li>
 </ul>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>

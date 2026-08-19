@@ -1,23 +1,29 @@
-Standard subcontracting flows in Odoo are managed at manufacturing order
-level. This module adds subcontracting management at workorder level, so
-only selected operations of a manufacturing order can be outsourced.
+Odoo standard subcontracting is mainly managed from the manufacturing order
+and product routes. This module adds subcontracting at work order level, so a
+company can outsource only specific operations of a manufacturing order while
+keeping the other operations internal.
 
-It extends routing operations, workorders, purchase orders and stock
-transfers to provide:
+The module is useful when a production process is split into several work
+orders and only some of them must be sent to an external supplier. For each
+subcontracted work order, the user can manage the related supplier, purchase
+document and stock transfers without losing the link with the original
+manufacturing order.
 
-- subcontracting flags, allowed subcontractors and service products on
-  routing operations, automatically copied to generated work orders;
-- a workorder wizard to create subcontracting documents for the selected
-  remaining quantity;
-- a standard purchase flow that creates RFQs or reuses a draft purchase
-  order, then generates the outgoing and incoming subcontracting transfers;
-- a bidding flow where several subcontractors receive competing RFQs and
-  the confirmed purchase order becomes the winning bid;
-- urgent subcontracting flows that create direct outgoing transfers without
-  requiring a purchase order first;
-- subcontractor-stock flows for cases where the processed goods are already
-  available from the subcontractor side;
-- traceability between manufacturing orders, work orders, purchase order
-  lines and stock moves;
-- automatic work order completion when the expected subcontracting receipt
-  is completed.
+It extends manufacturing operations, work orders, purchase orders and stock
+moves to provide:
+
+- Subcontracting configuration on routing operations, copied to generated work
+  orders;
+- A wizard to create the subcontracting documents for the remaining quantity of
+  one or more work orders;
+- A standard purchase flow based on RFQs and purchase orders;
+- A bidding flow where several suppliers can quote the same subcontracted work
+  order and one purchase order is confirmed as the winner;
+- Urgent flows to send goods to a subcontractor before a purchase order is
+  required;
+- Flows for goods that are already available at the subcontractor location;
+- Traceability between manufacturing orders, work orders, purchase order lines
+  and stock moves;
+- Automatic work order completion when the expected subcontracting receipt is
+  validated.
+- Track what's in stock for each supplier, including items that have been shipped and those still to be received

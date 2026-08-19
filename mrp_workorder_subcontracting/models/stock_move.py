@@ -39,8 +39,7 @@ class StockMove(models.Model):
         check_company=True,
         help=(
             "Work order used by the subcontracting flow to send this component "
-            "to the subcontractor. It is set from the BoM operation when "
-            "available, and can be adjusted manually for explicit exceptions."
+            "to the subcontractor. It is taken from the BoM operation."
         ),
     )
     subcontracting_flow = fields.Selection(

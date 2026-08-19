@@ -402,14 +402,6 @@ class MrpWorkorderAssignSubcontract(models.TransientModel):
                     self._prepare_purchase_order_line_vals(purchase_order, workorder)
                 )
 
-        self.workorder_ids._post_subcontract_message(
-            _("Subcontract RFQ created"),
-            [
-                _("Suppliers: %s") % ", ".join(self.partner_ids.mapped("display_name")),
-                _("Purchase Orders: %s")
-                % ", ".join(purchase_orders.mapped("display_name")),
-            ],
-        )
         return self._get_purchase_order_action(purchase_orders)
 
     def _get_purchase_orders_by_partner(self):
@@ -542,22 +534,6 @@ class MrpWorkorderAssignSubcontract(models.TransientModel):
                 picking.action_confirm()
             if self.flow_type == "urgent":
                 picking.action_assign()
-        message_details = [
-            _("Flow: %s") % dict(self._get_all_flow_type_selection())[self.flow_type],
-            _("Suppliers: %s") % ", ".join(self.partner_ids.mapped("display_name")),
-            _("Pickings: %s") % ", ".join(created_pickings.mapped("name")),
-        ]
-        if purchase_orders:
-            message_details.append(
-                _("Purchase Orders: %s")
-                % ", ".join(purchase_orders.mapped("display_name"))
-            )
-        else:
-            message_details.append(_("Purchase Orders: not associated"))
-        self.workorder_ids._post_subcontract_message(
-            _("Subcontract stock documents created"),
-            message_details,
-        )
         return self._get_picking_action(created_pickings)
 
     def _get_or_create_picking_for_workorder(self, workorder, partner):

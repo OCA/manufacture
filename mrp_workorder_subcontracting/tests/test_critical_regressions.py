@@ -24,10 +24,17 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
             finished_workorder.delivery_move_ids.picking_id.picking_type_id,
             self.finished_out_type,
         )
-        self.assertTrue(
+        self.assertFalse(
             any(
                 "both parts and finished-product flows" in message.body
                 for message in purchase_order.message_ids
+            )
+        )
+        productions = purchase_order.mapped("order_line.workorder_id").production_id
+        self.assertFalse(
+            any(
+                "Subcontract bid confirmed" in message.body
+                for message in productions.message_ids
             )
         )
 

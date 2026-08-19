@@ -365,7 +365,14 @@ class TestSubcontractingCoverageBranches(WorkorderSubcontractingCommon):
         self.assertTrue(
             any(
                 winner.display_name in message.body
+                and 'data-oe-model="purchase.order"' in message.body
                 for message in competitor.message_ids
+            )
+        )
+        self.assertTrue(
+            any(
+                "Subcontract bid confirmed" in message.body
+                for message in workorder.production_id.message_ids
             )
         )
 
@@ -425,6 +432,12 @@ class TestSubcontractingCoverageBranches(WorkorderSubcontractingCommon):
         self.assertEqual(competitor.state, "draft")
         self.assertTrue(lost_line.subcontract_lost_bid)
         self.assertEqual(lost_line.product_qty, 0.0)
+        self.assertTrue(
+            any(
+                "<ul>" in message.body and winner.display_name in message.body
+                for message in competitor.message_ids
+            )
+        )
         with self.assertRaises(ValidationError):
             lost_line.product_qty = 1.0
 

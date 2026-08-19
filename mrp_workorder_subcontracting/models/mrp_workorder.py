@@ -348,12 +348,6 @@ class MrpWorkorder(models.Model):
                     )
                     > 0
                 ):
-                    workorder._post_subcontract_message(
-                        _("Subcontract receipt completed"),
-                        [
-                            _("Received quantity: %s") % qty_to_finish,
-                        ],
-                    )
                     workorder.qty_producing = qty_to_finish
                     workorder.button_finish()
             else:
@@ -361,7 +355,10 @@ class MrpWorkorder(models.Model):
                     "No subcontract receipt has been completed. Check cancelled "
                     "or missing receipt documents."
                 )
-                if not workorder.subcontract_exception:
+                cancelled_moves = (
+                    workorder.delivery_move_ids | workorder.return_move_ids
+                ).filtered(lambda move: move.state == "cancel")
+                if cancelled_moves and not workorder.subcontract_exception:
                     workorder._post_subcontract_message(
                         _("Subcontract exception"),
                         [message],

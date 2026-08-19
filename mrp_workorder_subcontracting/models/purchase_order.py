@@ -101,18 +101,22 @@ class PurchaseOrder(models.Model):
         }
 
     def button_confirm(self):
+        competitor_lines_by_order = {}
         for order in self.filtered("mrp_subcontracting"):
             order._check_subcontract_bid_confirm_conflicts()
-            if not self.env.context.get("skip_subcontract_bid_wizard"):
-                competitor_lines = order._get_open_subcontract_bid_competitor_lines()
-                if competitor_lines:
+            competitor_lines = order._get_open_subcontract_bid_competitor_lines()
+            if competitor_lines:
+                competitor_lines_by_order[order.id] = competitor_lines
+                if not self.env.context.get("skip_subcontract_bid_wizard"):
                     return order._open_subcontract_bid_confirm_wizard(competitor_lines)
         res = super().button_confirm()
         for order in self.filtered("mrp_subcontracting"):
-            order._resolve_subcontract_bid_competitors()
-            order._apply_subcontract_bid_winner()
+            competitor_lines = competitor_lines_by_order.get(
+                order.id, self.env["purchase.order.line"]
+            )
+            order._resolve_subcontract_bid_competitors(competitor_lines)
+            order._apply_subcontract_bid_winner(competitor_lines)
             order._ensure_subcontract_pickings()
-            order._log_mixed_subcontract_flows()
         return res
 
     def _get_subcontract_bid_workorders(self):
@@ -131,6 +135,7 @@ class PurchaseOrder(models.Model):
                 ("workorder_id", "in", workorders.ids),
                 ("subcontract_lost_bid", "=", False),
                 ("order_id", "!=", self.id),
+                ("order_id.partner_id", "!=", self.partner_id.id),
                 ("order_id.state", "in", ["draft", "sent", "to_approve"]),
             ]
         )
@@ -175,9 +180,10 @@ class PurchaseOrder(models.Model):
             "res_id": wizard.id,
         }
 
-    def _resolve_subcontract_bid_competitors(self):
+    def _resolve_subcontract_bid_competitors(self, competitor_lines=None):
         self.ensure_one()
-        competitor_lines = self._get_open_subcontract_bid_competitor_lines()
+        if competitor_lines is None:
+            competitor_lines = self._get_open_subcontract_bid_competitor_lines()
         for competitor_order in competitor_lines.order_id:
             lost_lines = competitor_lines.filtered(
                 lambda line, competitor_order=competitor_order: (
@@ -188,12 +194,15 @@ class PurchaseOrder(models.Model):
                 lambda line: not line.display_type and not line.subcontract_lost_bid
             )
             if active_lines and set(active_lines.ids) == set(lost_lines.ids):
-                competitor_order.message_post(
-                    body=_(
+                body = Markup("<p>%s</p>") % (
+                    _(
                         "This subcontracting request for quotation lost the bid "
-                        "against purchase order %s."
+                        "against purchase order %(order)s.",
+                        order=self._get_html_link(),
                     )
-                    % self.display_name,
+                )
+                competitor_order.message_post(
+                    body=body,
                     subtype_xmlid="mail.mt_note",
                 )
                 competitor_order.button_cancel()
@@ -206,7 +215,7 @@ class PurchaseOrder(models.Model):
             )
             competitor_order._message_subcontract_bid_lost(lost_lines, self)
 
-    def _apply_subcontract_bid_winner(self):
+    def _apply_subcontract_bid_winner(self, competitor_lines=None):
         self.ensure_one()
         winner_workorders = self.env["mrp.workorder"]
         for line in self.order_line.filtered(
@@ -218,38 +227,33 @@ class PurchaseOrder(models.Model):
             }
             line.workorder_id.write(vals)
             winner_workorders |= line.workorder_id
-        if winner_workorders:
+        if winner_workorders and competitor_lines:
             winner_workorders._post_subcontract_message(
                 _("Subcontract bid confirmed"),
                 [
                     _("Winning purchase order: %s") % self.display_name,
                     _("Supplier: %s") % self.partner_id.display_name,
+                    _("Discarded purchase orders: %s")
+                    % ", ".join(competitor_lines.order_id.mapped("display_name")),
                 ],
             )
 
     def _message_subcontract_bid_lost(self, lost_lines, winner_order):
         self.ensure_one()
-        line_labels = ", ".join(
-            f"{line.name} ({line.workorder_id.display_name})" for line in lost_lines
+        line_items = Markup().join(
+            Markup("<li>%s</li>")
+            % escape(f"{line.name} ({line.workorder_id.display_name})")
+            for line in lost_lines
         )
-        body = Markup("<p>%s</p><p>%s</p>") % (
-            escape(
-                _("Some subcontracting lines lost the bid against purchase order %s.")
-                % winner_order.display_name
+        body = Markup("<p>%s</p><ul>%s</ul>") % (
+            _(
+                "Some subcontracting lines lost the bid against purchase order "
+                "%(order)s.",
+                order=winner_order._get_html_link(),
             ),
-            escape(_("Affected lines: %s") % line_labels),
+            line_items,
         )
         self.message_post(body=body, subtype_xmlid="mail.mt_note")
-
-    def _log_mixed_subcontract_flows(self):
-        for order in self.filtered("has_mixed_subcontract_flows"):
-            order.message_post(
-                body=_(
-                    "This subcontracting order contains both parts and "
-                    "finished-product flows."
-                ),
-                subtype_xmlid="mail.mt_note",
-            )
 
     def _ensure_subcontract_pickings(self):
         for order in self:
