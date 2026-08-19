@@ -21,13 +21,12 @@ class QcInspection(models.Model):
 
     def object_selection_values(self):
         result = super().object_selection_values()
-        result.extend(
-            [
-                ("stock.picking", "Picking List"),
-                ("stock.move", "Stock Move"),
-                ("stock.lot", "Lot/Serial Number"),
-            ]
-        )
+        models_obj = [
+            self.sudo().env.ref("stock.model_stock_picking"),
+            self.sudo().env.ref("stock.model_stock_move"),
+            self.sudo().env.ref("stock.model_stock_lot"),
+        ]
+        result.extend([(x.model, x.name) for x in models_obj])
         return result
 
     @api.depends("object_id")
