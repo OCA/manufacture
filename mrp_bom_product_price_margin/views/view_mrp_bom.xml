@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_mrp_bom_sale_product_margin_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <!-- Add panels in form -->
+            <xpath expr="/form/sheet" position="before">
+                <field name="currency_id" invisible="1" />
+                <field name="diff_product_bom_standard_price" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not diff_product_bom_standard_price"
+                >
+                  Bill of Material cost: <b>
+                    <field name="standard_price" widget="monetary" />
+                </b>
+                  <span groups="uom.group_uom"> (for 1x <field
+                    name="product_uom_id"
+                    readonly="1"
+                    style="pointer-events:none;"
+                />)</span>
+                  <button
+                    name="set_product_standard_price"
+                    string="⇙ Apply this cost to Product standard price"
+                    type="object"
+                    class="oe_link"
+                    help="It will set Product's standard price with this price"
+                />
+                  <br />
+                  Product cost : <b>
+                    <field name="product_standard_price" widget="monetary" />
+                </b>
+                  <br />
+                  Product sale price:
+                    <b>
+                    <field name="product_sale_price" widget="monetary" nolabel="1" />
+                </b>
+                    (margin <b><field name="product_margin_rate" />&#x25;</b>)
+                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="diff_product_bom_standard_price or not product_tmpl_id"
+                >
+                  Product cost is based on the cost of this Bill of Material (<b>
+                    <field name="standard_price" widget="monetary" />
+                </b>).<br />
+                  Product sale price:
+                    <b>
+                    <field name="product_sale_price" widget="monetary" nolabel="1" />
+                </b>
+                    (margin: <b><field name="product_margin_rate" /> &#x25;</b>).
+                </div>
+            </xpath>
+
+            <!-- Add field in form -->
+            <xpath expr="//group/group" position="inside">
+                <label for="standard_price" string="BoM Unit Cost" />
+                <div class="o_row">
+                  <field name="standard_price" widget="monetary" />
+                  for 1x <field
+                    name="product_uom_id"
+                    readonly="1"
+                    force_save="1"
+                    style="pointer-events:none;"
+                />
+              </div>
+                <field name="cost_basis" string="Cost basis" />
+            </xpath>
+
+            <!-- BoM Lines -->
+            <xpath
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_uom_id']"
+                position="before"
+            >
+                <field name="currency_id" invisible="1" />
+                <field name="standard_price_unit" widget="monetary" />
+                <field
+                    name="standard_price_subtotal"
+                    readonly="1"
+                    sum="Total"
+                    widget="monetary"
+                />
+                <field
+                    name="standard_price_subtotal_percentage"
+                    string="ST %"
+                    widget="percentage"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Tree -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_tree" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field
+                    name="diff_product_bom_standard_price"
+                    string="Diff BoM and Product"
+                    invisible="1"
+                />
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute
+                    name="decoration-warning"
+                >diff_product_bom_standard_price != False</attribute>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute
+                    name="decoration-danger"
+                >product_margin_rate &lt; 0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                <field name="currency_id" invisible="1" />
+                <field name="standard_price" widget="monetary" />
+                <button
+                    name="set_product_standard_price"
+                    icon="fa-arrow-right"
+                    string="Update Product standard price"
+                    type="object"
+                    invisible="not diff_product_bom_standard_price"
+                    help="It will set Product's standard price with this price"
+                />
+                <field name="product_standard_price" widget="monetary" />
+                <field name="product_sale_price" widget="monetary" optional="hide" />
+                <field name="product_margin_rate" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
