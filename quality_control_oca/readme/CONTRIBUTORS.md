@@ -13,4 +13,5 @@
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
 - [Serpent Consulting Services Pvt. Ltd.](https://www.serpentcs.com)
-
+- [Solvos](https://www.solvos.es):
+  - Dante Pereyra \<<dante.pereyra@solvos.es>\>
