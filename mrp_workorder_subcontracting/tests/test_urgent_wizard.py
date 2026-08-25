@@ -44,7 +44,7 @@ class TestSubcontractingUrgentWizard(WorkorderSubcontractingCommon):
         delivery_move = workorder.delivery_move_ids
         self._make_available(self.component, self.stock_location, 20.0)
 
-        self._validate_picking(
+        backorders = self._validate_picking(
             delivery_move.picking_id, qty_by_move={delivery_move.id: 10.0}
         )
 
@@ -55,6 +55,20 @@ class TestSubcontractingUrgentWizard(WorkorderSubcontractingCommon):
         self.assertEqual(return_move.picking_id.picking_type_id, self.parts_in_type)
         self.assertFalse(return_move.sub_purchase_line_id)
         self.assertEqual(return_move.picking_id.partner_id, self.partner)
+
+        backorder_move = backorders.move_ids.filtered(
+            lambda move: move.sub_delivery_workorder_id == workorder
+        )
+        self._validate_picking(
+            backorders, qty_by_move={backorder_move.id: 10.0}, cancel_backorder=True
+        )
+
+        return_moves = workorder.return_move_ids.filtered(
+            lambda move: move.state != "cancel"
+        )
+        self.assertEqual(len(return_moves), 1)
+        self.assertEqual(return_moves.product_uom_qty, 10.0)
+        self.assertFalse(return_moves.sub_purchase_line_id)
 
     def test_03_urgent_finished_partial_out_returns_finished_quantity(self):
         workorder = self._get_workorder(subcontract_parts=False, qty=6.0)

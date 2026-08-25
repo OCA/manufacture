@@ -357,18 +357,6 @@ class PurchaseOrder(models.Model):
                 )
                 % {"flow": flow_type, "type": self.order_type.display_name}
             )
-        picking = self.env["stock.picking"].search(
-            [
-                ("sub_purchase_id", "=", self.id),
-                ("partner_id", "=", self.partner_id.id),
-                ("picking_type_id", "=", picking_type.id),
-                ("state", "not in", ["done", "cancel"]),
-            ],
-            limit=1,
-            order="id desc",
-        )
-        if picking:
-            return picking
         if direction == "out":
             partner_location = (
                 self.partner_id.property_stock_subcontract_location_id
@@ -392,6 +380,19 @@ class PurchaseOrder(models.Model):
                 )
                 % {"order": self.display_name, "flow": flow_type}
             )
+        picking = self.env["stock.picking"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("picking_type_id", "=", picking_type.id),
+                ("location_id", "=", location_id.id),
+                ("location_dest_id", "=", location_dest_id.id),
+                ("state", "not in", ["done", "cancel"]),
+            ],
+            limit=1,
+            order="id desc",
+        )
+        if picking:
+            return picking
         return self.env["stock.picking"].create(
             {
                 "partner_id": self.partner_id.id,
@@ -400,7 +401,6 @@ class PurchaseOrder(models.Model):
                 "location_dest_id": location_dest_id.id,
                 "origin": self.name,
                 "scheduled_date": self.date_planned,
-                "sub_purchase_id": self.id,
             }
         )
 

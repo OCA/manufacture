@@ -10,13 +10,6 @@ class StockPicking(models.Model):
     subcontract_parts = fields.Boolean(
         string="Is subcontract parts?", compute="_compute_subcontract_flags"
     )
-    sub_purchase_id = fields.Many2one(
-        comodel_name="purchase.order",
-        string="Subcontract Purchase Order",
-        readonly=True,
-        copy=True,
-        index=True,
-    )
     sub_workorder_count = fields.Integer(
         string="Number of Subcontract Work Orders",
         compute="_compute_sub_workorder_count",
@@ -58,48 +51,56 @@ class StockPicking(models.Model):
             and picking.move_ids.filtered("sub_delivery_workorder_id")
         )
         for picking in outgoing_pickings:
-            order = picking.sub_purchase_id
-            if order:
+            impacted_lines = picking.move_ids.mapped("sub_purchase_line_id")
+            for line in impacted_lines:
+                order = line.order_id
                 if order.order_type.immediate_return_subcontracting:
                     continue
-                impacted_lines = picking.move_ids.mapped("sub_purchase_line_id")
-                for line in impacted_lines:
-                    target_qty = line._get_subcontract_target_receipt_qty()
-                    existing_qty = line._get_subcontract_receipt_qty(
-                        states=[
-                            "draft",
-                            "waiting",
-                            "confirmed",
-                            "assigned",
-                            "partially_available",
-                            "done",
-                        ]
+                target_qty = line._get_subcontract_target_receipt_qty()
+                existing_qty = line._get_subcontract_receipt_qty(
+                    states=[
+                        "draft",
+                        "waiting",
+                        "confirmed",
+                        "assigned",
+                        "partially_available",
+                        "done",
+                    ]
+                )
+                rounding = line.workorder_id.product_uom_id.rounding
+                if (
+                    float_compare(target_qty, existing_qty, precision_rounding=rounding)
+                    <= 0
+                ):
+                    continue
+                return_move = picking._get_open_subcontract_return_move(
+                    line.workorder_id, purchase_line=line
+                )
+                if return_move:
+                    picking._update_subcontract_return_move(
+                        return_move, line.workorder_id, target_qty - existing_qty
                     )
-                    rounding = line.workorder_id.product_uom_id.rounding
-                    if (
-                        float_compare(
-                            target_qty, existing_qty, precision_rounding=rounding
-                        )
-                        <= 0
-                    ):
-                        continue
+                    in_picking = return_move.picking_id
+                else:
                     flow_type = line.subcontracting_flow
                     in_picking = order._get_or_create_subcontract_picking(
                         "in", flow_type
                     )
-                    created_moves = self.env["stock.move"].create(
+                    picking._create_subcontract_return_move(
                         order._prepare_incoming_finished_move_vals(
                             line,
                             in_picking,
                             target_qty - existing_qty,
                         )
                     )
-                    created_moves._action_confirm(merge=False)
-                    if in_picking.picking_type_id.reservation_method == "at_confirm":
-                        in_picking.action_assign()
-                continue
+                if in_picking.picking_type_id.reservation_method == "at_confirm":
+                    in_picking.action_assign()
 
-            for workorder in picking.move_ids.mapped("sub_delivery_workorder_id"):
+            no_purchase_moves = picking.move_ids.filtered(
+                lambda move: move.sub_delivery_workorder_id
+                and not move.sub_purchase_line_id
+            )
+            for workorder in no_purchase_moves.mapped("sub_delivery_workorder_id"):
                 target_qty = workorder._get_subcontract_target_return_qty()
                 existing_qty = workorder._get_subcontract_return_qty(
                     states=[
@@ -117,17 +118,57 @@ class StockPicking(models.Model):
                     <= 0
                 ):
                     continue
-                in_picking = picking._get_or_create_workorder_incoming_picking(
-                    workorder
-                )
-                created_moves = self.env["stock.move"].create(
-                    picking._prepare_workorder_incoming_move_vals(
-                        workorder, in_picking, target_qty - existing_qty
+                return_move = picking._get_open_subcontract_return_move(workorder)
+                if return_move:
+                    picking._update_subcontract_return_move(
+                        return_move, workorder, target_qty - existing_qty
                     )
-                )
-                created_moves._action_confirm(merge=False)
+                    in_picking = return_move.picking_id
+                else:
+                    in_picking = picking._get_or_create_workorder_incoming_picking(
+                        workorder
+                    )
+                    picking._create_subcontract_return_move(
+                        picking._prepare_workorder_incoming_move_vals(
+                            workorder, in_picking, target_qty - existing_qty
+                        )
+                    )
                 if in_picking.picking_type_id.reservation_method == "at_confirm":
                     in_picking.action_assign()
+
+    def _get_open_subcontract_return_move(
+        self, workorder, picking=False, purchase_line=False
+    ):
+        self.ensure_one()
+        moves = workorder.return_move_ids.filtered(
+            lambda move: (
+                move.state not in ("done", "cancel")
+                and move.product_id == workorder.product_id
+                and move.product_uom == workorder.product_uom_id
+            )
+        )
+        if picking:
+            moves = moves.filtered(lambda move: move.picking_id == picking)
+        if purchase_line:
+            moves = moves.filtered(
+                lambda move: move.sub_purchase_line_id == purchase_line
+            )
+        else:
+            moves = moves.filtered(lambda move: not move.sub_purchase_line_id)
+        return moves[:1]
+
+    def _update_subcontract_return_move(self, return_move, workorder, qty):
+        return_qty = workorder.product_uom_id._compute_quantity(
+            qty,
+            return_move.product_uom,
+            rounding_method="HALF-UP",
+        )
+        return_move.product_uom_qty += return_qty
+
+    def _create_subcontract_return_move(self, move_vals):
+        return_move = self.env["stock.move"].create(move_vals)
+        return_move._action_confirm(merge=False)
+        return return_move
 
     def _get_or_create_workorder_incoming_picking(self, workorder):
         self.ensure_one()
@@ -148,18 +189,6 @@ class StockPicking(models.Model):
                     "workorder": workorder.display_name,
                 }
             )
-        open_picking = self.env["stock.picking"].search(
-            [
-                ("sub_purchase_id", "=", False),
-                ("partner_id", "=", self.partner_id.id),
-                ("picking_type_id", "=", picking_type.id),
-                ("state", "not in", ["done", "cancel"]),
-            ],
-            limit=1,
-            order="id desc",
-        )
-        if open_picking:
-            return open_picking
         if workorder.subcontracting_flow == "parts":
             location_id = picking_type.default_location_src_id
         else:
@@ -167,6 +196,19 @@ class StockPicking(models.Model):
                 self.partner_id.property_stock_virtual_subcontract_location_id
                 or picking_type.default_location_src_id
             )
+        open_picking = self.env["stock.picking"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("picking_type_id", "=", picking_type.id),
+                ("location_id", "=", location_id.id),
+                ("location_dest_id", "=", picking_type.default_location_dest_id.id),
+                ("state", "not in", ["done", "cancel"]),
+            ],
+            limit=1,
+            order="id desc",
+        )
+        if open_picking:
+            return open_picking
         return self.env["stock.picking"].create(
             {
                 "partner_id": self.partner_id.id,

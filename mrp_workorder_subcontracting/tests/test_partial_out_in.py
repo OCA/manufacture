@@ -54,8 +54,9 @@ class TestSubcontractingPartialOutIn(WorkorderSubcontractingCommon):
         return_moves = workorder.return_move_ids.filtered(
             lambda move: move.state != "cancel"
         )
-        self.assertEqual(sum(return_moves.mapped("product_uom_qty")), 10.0)
-        self.assertEqual(return_moves.mapped("picking_id"), first_in_picking)
+        self.assertEqual(len(return_moves), 1)
+        self.assertEqual(return_moves.product_uom_qty, 10.0)
+        self.assertEqual(return_moves.picking_id, first_in_picking)
         self.assertIn(first_in_picking.state, ("confirmed", "assigned"))
 
     def test_03_done_in_with_closed_documents_completes_workorder(self):

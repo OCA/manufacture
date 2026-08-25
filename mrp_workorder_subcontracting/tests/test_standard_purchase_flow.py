@@ -38,7 +38,6 @@ class TestSubcontractingStandardPurchaseFlow(WorkorderSubcontractingCommon):
         self.assertEqual(delivery_moves.product_uom_qty, 20.0)
         self.assertEqual(delivery_moves.sub_purchase_line_id, purchase_order.order_line)
         picking = delivery_moves.picking_id
-        self.assertEqual(picking.sub_purchase_id, purchase_order)
         self.assertEqual(picking.partner_id, self.partner)
         self.assertEqual(picking.picking_type_id, self.parts_out_type)
         self.assertEqual(

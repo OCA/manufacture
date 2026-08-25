@@ -207,7 +207,7 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
             set((first_workorder | second_workorder).ids),
         )
         self.assertEqual(len(delivery_moves.picking_id), 1)
-        self.assertEqual(delivery_moves.picking_id.sub_purchase_id, purchase_order)
+        self.assertEqual(delivery_moves.sub_purchase_line_id.order_id, purchase_order)
         self.assertEqual(first_workorder.delivery_move_ids.product_uom_qty, 20.0)
         self.assertEqual(second_workorder.delivery_move_ids.product_uom_qty, 10.0)
 
@@ -219,3 +219,26 @@ class TestSubcontractingCriticalRegressions(WorkorderSubcontractingCommon):
         self.assertIn("sub_purchase_line_id", merge_fields)
         self.assertIn("sub_origin_move_id", merge_fields)
         self.assertIn("sub_component_workorder_id", merge_fields)
+
+    def test_09_standard_pickings_can_group_different_purchase_orders(self):
+        first_workorder = self._get_workorder(subcontract_parts=True, qty=10.0)
+        second_workorder = self._get_workorder(subcontract_parts=True, qty=5.0)
+        first_purchase_order = self._assign_standard_purchase_order(first_workorder)
+        second_purchase_order = self._assign_standard_purchase_order(second_workorder)
+
+        first_purchase_order.with_context(
+            skip_subcontract_bid_wizard=True
+        ).button_confirm()
+        second_purchase_order.with_context(
+            skip_subcontract_bid_wizard=True
+        ).button_confirm()
+
+        delivery_moves = (
+            first_workorder | second_workorder
+        ).delivery_move_ids.filtered("sub_delivery_workorder_id")
+        self.assertEqual(len(delivery_moves), 2)
+        self.assertEqual(len(delivery_moves.picking_id), 1)
+        self.assertEqual(
+            set(delivery_moves.sub_purchase_line_id.order_id.ids),
+            set((first_purchase_order | second_purchase_order).ids),
+        )
