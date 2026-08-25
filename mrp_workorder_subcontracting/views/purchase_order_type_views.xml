@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_type_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">purchase.order.type.form.subcontracting</field>
+        <field name="model">purchase.order.type</field>
+        <field
+            name="inherit_id"
+            ref="purchase_order_type.view_purchase_order_type_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence_id']" position="after">
+                <field name="is_subcontracting" />
+                <field
+                    name="sub_out_picking_type_id"
+                    invisible="not is_subcontracting"
+                    required="is_subcontracting"
+                />
+                <field
+                    name="sub_in_picking_type_id"
+                    invisible="not is_subcontracting"
+                    required="is_subcontracting"
+                />
+                <field
+                    name="sub_out_virtual_picking_type_id"
+                    invisible="not is_subcontracting"
+                    required="is_subcontracting"
+                />
+                <field
+                    name="sub_in_virtual_picking_type_id"
+                    invisible="not is_subcontracting"
+                    required="is_subcontracting"
+                />
+                <field
+                    name="immediate_return_subcontracting"
+                    invisible="not is_subcontracting"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

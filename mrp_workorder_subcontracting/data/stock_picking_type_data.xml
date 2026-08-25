@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="subcontracting_picking_type_parts_out" model="stock.picking.type">
+        <field name="name">Subcontracting OUT (Parts)</field>
+        <field name="sequence_code">WH/SOUT/</field>
+        <field name="sequence" eval="20" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field name="default_location_src_id" ref="stock.stock_location_stock" />
+        <field
+            name="default_location_dest_id"
+            ref="mrp_workorder_subcontracting.stock_location_subcontractors_general"
+        />
+        <field name="code">outgoing</field>
+        <field name="sequence_id" ref="seq_picking_type_subcontracting_out" />
+        <field name="company_id" ref="base.main_company" />
+        <field name="is_subcontract">True</field>
+        <field name="color">7</field>
+    </record>
+
+    <record id="subcontracting_picking_type_parts_in" model="stock.picking.type">
+        <field name="name">Subcontracting IN (Parts)</field>
+        <field name="sequence_code">WH/SIN/</field>
+        <field name="sequence" eval="21" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field
+            name="default_location_src_id"
+            ref="mrp_workorder_subcontracting.stock_location_virtual_subcontract"
+        />
+        <field
+            name="default_location_dest_id"
+            search="[
+                    ('usage', '=', 'production'),
+                    ('company_id', '=', ref('base.main_company')),
+                ]"
+        />
+        <field name="code">incoming</field>
+        <field name="sequence_id" ref="seq_picking_type_subcontracting_in" />
+        <field name="company_id" ref="base.main_company" />
+        <field name="is_subcontract">True</field>
+        <field name="color">7</field>
+    </record>
+
+    <record id="subcontracting_picking_type_finished_out" model="stock.picking.type">
+        <field name="name">Subcontracting OUT (Finished)</field>
+        <field name="sequence_code">WH/SOUT/</field>
+        <field name="sequence" eval="22" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field
+            name="default_location_src_id"
+            search="[('usage', '=', 'production'), ('company_id', '=', ref('base.main_company'))]"
+        />
+        <field
+            name="default_location_dest_id"
+            ref="mrp_workorder_subcontracting.stock_location_virtual_finished_subcontract"
+        />
+        <field name="code">outgoing</field>
+        <field name="sequence_id" ref="seq_picking_type_subcontracting_out" />
+        <field name="company_id" ref="base.main_company" />
+        <field name="is_subcontract">True</field>
+        <field name="color">8</field>
+    </record>
+
+    <record id="subcontracting_picking_type_finished_in" model="stock.picking.type">
+        <field name="name">Subcontracting IN (Finished)</field>
+        <field name="sequence_code">WH/SIN/</field>
+        <field name="sequence" eval="23" />
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field
+            name="default_location_src_id"
+            ref="mrp_workorder_subcontracting.stock_location_virtual_finished_subcontract"
+        />
+        <field
+            name="default_location_dest_id"
+            search="[
+                    ('usage', '=', 'production'),
+                    ('company_id', '=', ref('base.main_company')),
+                ]"
+        />
+        <field name="code">incoming</field>
+        <field name="sequence_id" ref="seq_picking_type_subcontracting_in" />
+        <field name="company_id" ref="base.main_company" />
+        <field name="is_subcontract">True</field>
+        <field name="color">8</field>
+    </record>
+</odoo>
