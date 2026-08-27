@@ -87,7 +87,7 @@ class TestMrpWorkorderBlockingTime(TransactionCase):
 
         # start workorder
         workorder = production.workorder_ids[0]
-        workorder.button_start()
+        workorder.button_start(raise_on_invalid_state=False)
 
         # check if work order has blocking stage date set
         # and check if the blocking state date is correct
@@ -106,7 +106,7 @@ class TestMrpWorkorderBlockingTime(TransactionCase):
 
         # start workorder
         workorder = production.workorder_ids[0]
-        workorder.button_start()
+        workorder.button_start(raise_on_invalid_state=False)
         self.assertEqual(workorder.is_user_working, True)
 
         # check if the popup opens when workorder button_pending method is called
@@ -136,7 +136,7 @@ class TestMrpWorkorderBlockingTime(TransactionCase):
 
         # start workorder
         workorder = production.workorder_ids[0]
-        workorder.button_start()
+        workorder.button_start(raise_on_invalid_state=False)
 
         # check if the popup opens when workorder button_finish method is called
         # and the blocking state date is not over
