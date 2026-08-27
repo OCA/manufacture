@@ -355,17 +355,26 @@ class MrpProductionSerialMatrix(models.Model):
             self._set_matrix_done()
             return mos
         try:
-            self._prepare_mo_for_serial(current_mo, fp_lot)
-            self._process_component_moves(current_mo, fp_lot, matrix_map)
-            mos += current_mo
-            current_mo = self._validate_and_get_backorder(current_mo)
-            if current_mo:
-                return self.call_next_process_serial_matrix_lot(
-                    mos, lots_to_process=lots_to_process - fp_lot, current_mo=current_mo
-                )
-            self._set_matrix_done()
+            # One savepoint per finished serial number. The errors raised while
+            # validating an MO reach us from a flush, so catching them without
+            # rolling back leaves the transaction with the stock changes already
+            # applied: writing the exception on the matrix flushes again and
+            # commits them, including the ones a constraint had just rejected.
+            # Recursing outside the savepoint keeps the serial numbers that were
+            # processed successfully.
+            with self.env.cr.savepoint():
+                self._prepare_mo_for_serial(current_mo, fp_lot)
+                self._process_component_moves(current_mo, fp_lot, matrix_map)
+                next_mo = self._validate_and_get_backorder(current_mo)
         except UserError as e:
             self._set_matrix_exception(str(e))
+            return mos
+        mos += current_mo
+        if next_mo:
+            return self.call_next_process_serial_matrix_lot(
+                mos, lots_to_process=lots_to_process - fp_lot, current_mo=next_mo
+            )
+        self._set_matrix_done()
         return mos
 
     def _set_matrix_done(self):

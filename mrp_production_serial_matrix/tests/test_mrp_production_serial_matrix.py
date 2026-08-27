@@ -1,6 +1,8 @@
 # Copyright 2021-24 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from unittest.mock import patch
+
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
@@ -155,6 +157,16 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         production_1.action_confirm()
         production_1.action_assign()
         return production_1
+
+    @classmethod
+    def _get_quant(cls, product, lot):
+        return cls.quant_obj.search(
+            [
+                ("product_id", "=", product.id),
+                ("location_id", "=", cls.stock_loc.id),
+                ("lot_id", "=", lot.id),
+            ]
+        )
 
     @classmethod
     def _find_move_lines(cls, mo, component):
@@ -699,3 +711,49 @@ class TestMrpProductionSerialMatrix(TransactionCase):
                 sum(lines.mapped("quantity_product_uom")),
                 msg="reservation out of sync for lot %s" % (lot and lot.name or "-"),
             )
+
+    def test_16_a_failed_serial_rolls_back_its_own_stock_changes(self):
+        """A serial number that fails must leave no stock change behind.
+
+        The errors raised while validating come from a flush. Catching them
+        without rolling back used to leave the transaction with the stock
+        changes already applied, and writing the exception on the matrix
+        committed them - including quantities a constraint had just rejected.
+        """
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp = self._create_serial_number(self.final_product, "FP-ROLL", qty=0)
+        matrix.finished_lot_ids = serial_fp
+        matrix._onchange_finished_lot_ids()
+        matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_3_lot
+        ).component_lot_id = self.lot_3_002
+        matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_1_serial
+        ).component_lot_id = self.serial_1_001
+        c2_lines = matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_2_serial
+        )
+        c2_lines[0].component_lot_id = self.serial_2_001
+        c2_lines[1].component_lot_id = self.serial_2_002
+
+        quant = self._get_quant(self.component_3_lot, self.lot_3_002)
+        before = (quant.quantity, quant.reserved_quantity)
+
+        with patch.object(
+            type(matrix),
+            "_validate_and_get_backorder",
+            side_effect=UserError("validation blew up"),
+        ):
+            matrix.state = "in_progress"
+            matrix._process_serial_matrix()
+
+        self.assertEqual(matrix.state, "exception")
+        self.assertEqual(
+            (quant.quantity, quant.reserved_quantity),
+            before,
+            "the failed serial number left stock changes behind",
+        )
+        self.assertGreaterEqual(quant.reserved_quantity, 0.0)
