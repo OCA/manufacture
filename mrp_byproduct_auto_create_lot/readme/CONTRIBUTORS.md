@@ -1,1 +1,3 @@
 - bosd
+- [Quartile](https://www.quartile.co):
+  - Yoshi Tashiro
