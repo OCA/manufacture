@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.propagate.lot.info</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='logistics']" position="inside">
+                <field name="mrp_propagate_lot_profile_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
