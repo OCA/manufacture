@@ -111,6 +111,23 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "location_id": cls.cases_loc.id,
             }
         )
+        # Create a second company with its own warehouse and MRP Area, to test
+        # that parameters and products of different companies are not mixed.
+        cls.other_company = cls.env["res.company"].create({"name": "Other Company"})
+        cls.other_wh = cls.env["stock.warehouse"].create(
+            {
+                "name": "Other Warehouse",
+                "code": "OWH",
+                "company_id": cls.other_company.id,
+            }
+        )
+        cls.other_company_area = cls.mrp_area_obj.create(
+            {
+                "name": "Other Company Area",
+                "warehouse_id": cls.other_wh.id,
+                "location_id": cls.other_wh.lot_stock_id.id,
+            }
+        )
 
         # Create products:
         route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy").id
