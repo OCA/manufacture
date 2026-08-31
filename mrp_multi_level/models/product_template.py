@@ -3,7 +3,8 @@
 
 import ast
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ProductTemplate(models.Model):
@@ -23,6 +24,45 @@ class ProductTemplate(models.Model):
     def _compute_mrp_area_count(self):
         for rec in self:
             rec.mrp_area_count = len(rec.mrp_area_ids)
+
+    @api.constrains("company_id")
+    def _check_mrp_area_parameters_company(self):
+        """Products cannot be restricted to a company while they keep MRP area
+        parameters belonging to another one: such parameters are not usable and
+        break any view showing them, as the product is not readable for the users
+        of the parameter's company.
+        """
+        templates = self.filtered("company_id")
+        if not templates:
+            return
+        parameters = (
+            self.env["product.mrp.area"]
+            .sudo()
+            .with_context(active_test=False)
+            .search([("product_tmpl_id", "in", templates.ids)])
+        )
+        for template in templates:
+            wrong_company = parameters.filtered(
+                lambda p, t=template: p.product_tmpl_id == t
+                and p.company_id
+                and not t.filtered_domain(t._check_company_domain(p.company_id))
+            )
+            if wrong_company:
+                raise ValidationError(
+                    _(
+                        "The product %(product)s has MRP area parameters that "
+                        "belong to another company: %(parameters)s.\n"
+                        "Delete those parameters before restricting the product "
+                        "to the company %(company)s.",
+                        product=template.display_name,
+                        parameters=", ".join(
+                            f"{p.mrp_area_id.display_name} "
+                            f"({p.company_id.display_name})"
+                            for p in wrong_company
+                        ),
+                        company=template.company_id.display_name,
+                    )
+                )
 
     def action_view_mrp_area_parameters(self):
         self.ensure_one()
