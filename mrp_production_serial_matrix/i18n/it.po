@@ -346,6 +346,15 @@ msgstr "Numero di messaggi con errore di consegna"
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
+msgid ""
+"Only %(taken)s units of serial/lot number '%(lot)s' could be reserved at "
+"%(location)s out of the %(needed)s needed."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
 msgid "Only matrices in 'Exception' state can be reset to 'Draft'."
 msgstr ""
 
@@ -392,8 +401,10 @@ msgstr "Matrice consumi numeri seriali e lotto"
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
-msgid "Serial/Lot number '%s' not available at source location."
-msgstr "Numero di serie/lotto '%s' non disponibile nell'ubicazione origine."
+msgid ""
+"Serial/Lot number '%(lot)s' is not available at %(location)s in the quantity "
+"needed (%(available)s available, %(needed)s needed)."
+msgstr ""
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__show_serial_matrix
@@ -484,6 +495,10 @@ msgstr "Procedura guidata"
 msgid ""
 "You cannot delete a serial matrix that is in progress, done or cancelled."
 msgstr ""
+
+#, python-format
+#~ msgid "Serial/Lot number '%s' not available at source location."
+#~ msgstr "Numero di serie/lotto '%s' non disponibile nell'ubicazione origine."
 
 #, python-format
 #~ msgid "You cannot delete a serial matrix that is in progress or done."
