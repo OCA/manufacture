@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [mrp_production_note](mrp_production_note/) | 17.0.1.0.0 |  | Notes in production orders
 [mrp_production_picking_type_from_route](mrp_production_picking_type_from_route/) | 17.0.1.0.0 |  | Updates the operation type creating MO based on the product
 [mrp_production_quant_manual_assign](mrp_production_quant_manual_assign/) | 17.0.1.0.1 |  | Production - Manual Quant Assignment
-[mrp_production_serial_matrix](mrp_production_serial_matrix/) | 17.0.2.1.1 |  | MRP Production Serial Matrix
+[mrp_production_serial_matrix](mrp_production_serial_matrix/) | 17.0.2.1.2 |  | MRP Production Serial Matrix
 [mrp_production_serial_matrix_import_xlsx](mrp_production_serial_matrix_import_xlsx/) | 17.0.1.0.1 |  | MRP Production Serial Matrix Import Xlsx
 [mrp_production_serial_matrix_queue_job](mrp_production_serial_matrix_queue_job/) | 17.0.1.0.0 |  | MRP Production Serial Matrix Queue Job
 [mrp_production_serial_matrix_subcontracting](mrp_production_serial_matrix_subcontracting/) | 17.0.1.0.1 |  | MRP Production Serial Matrix Subcontracting

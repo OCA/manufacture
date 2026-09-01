@@ -3,7 +3,7 @@
 
 {
     "name": "MRP Production Serial Matrix",
-    "version": "17.0.2.1.1",
+    "version": "17.0.2.1.2",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
