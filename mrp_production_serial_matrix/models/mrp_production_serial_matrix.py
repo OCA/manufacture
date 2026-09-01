@@ -355,17 +355,26 @@ class MrpProductionSerialMatrix(models.Model):
             self._set_matrix_done()
             return mos
         try:
-            self._prepare_mo_for_serial(current_mo, fp_lot)
-            self._process_component_moves(current_mo, fp_lot, matrix_map)
-            mos += current_mo
-            current_mo = self._validate_and_get_backorder(current_mo)
-            if current_mo:
-                return self.call_next_process_serial_matrix_lot(
-                    mos, lots_to_process=lots_to_process - fp_lot, current_mo=current_mo
-                )
-            self._set_matrix_done()
+            # One savepoint per finished serial number. The errors raised while
+            # validating an MO reach us from a flush, so catching them without
+            # rolling back leaves the transaction with the stock changes already
+            # applied: writing the exception on the matrix flushes again and
+            # commits them, including the ones a constraint had just rejected.
+            # Recursing outside the savepoint keeps the serial numbers that were
+            # processed successfully.
+            with self.env.cr.savepoint():
+                self._prepare_mo_for_serial(current_mo, fp_lot)
+                self._process_component_moves(current_mo, fp_lot, matrix_map)
+                next_mo = self._validate_and_get_backorder(current_mo)
         except UserError as e:
             self._set_matrix_exception(str(e))
+            return mos
+        mos += current_mo
+        if next_mo:
+            return self.call_next_process_serial_matrix_lot(
+                mos, lots_to_process=lots_to_process - fp_lot, current_mo=next_mo
+            )
+        self._set_matrix_done()
         return mos
 
     def _set_matrix_done(self):
@@ -432,28 +441,50 @@ class MrpProductionSerialMatrix(models.Model):
         to_remove = lots_current - lots_desired
         if to_remove:
             current_lines.filtered(lambda ml: ml.lot_id in to_remove).unlink()
-        to_add = lots_desired - lots_current
-        for lot in to_add:
-            if move.product_id.tracking == "serial":
-                qty_needed = 1.0
-            else:
-                qty_needed = sum(matrix_lines.mapped("lot_qty"))
-            self._reserve_lot_in_move(move, lot, qty=qty_needed)
-        return True
-
-    def _consume_selected_lots(self, move, matrix_lines):
-        lots_in_matrix = matrix_lines.mapped("component_lot_id")
-        precision = self.env["decimal.precision"].precision_get(
+        precision_digits = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
+        for lot in lots_desired:
+            qty_needed = self._get_lot_qty_needed(move, matrix_lines, lot)
+            qty_on_lines = sum(
+                move.move_line_ids.filtered(
+                    lambda ml, lot=lot: ml.lot_id == lot
+                ).mapped("quantity_product_uom")
+            )
+            missing_qty = qty_needed - qty_on_lines
+            if float_compare(missing_qty, 0.0, precision_digits=precision_digits) > 0:
+                self._reserve_lot_in_move(move, lot, qty=missing_qty)
+        return True
+
+    def _get_lot_qty_needed(self, move, matrix_lines, lot):
+        if move.product_id.tracking == "serial":
+            return 1.0
+        return sum(
+            matrix_lines.filtered(
+                lambda line, lot=lot: line.component_lot_id == lot
+            ).mapped("lot_qty")
+        )
+
+    def _consume_selected_lots(self, move, matrix_lines):
+        """Consume the lots selected in the matrix, and only those.
+
+        ``_amend_reservations`` has already put the quantity the BoM needs on
+        the selected lots, so any other line of the move is a surplus and is
+        dropped. Keeping it consumed more than the BoM asks for, and a surplus
+        line carrying no lot made Odoo consume a tracked component as untracked
+        stock.
+        """
+        lots_in_matrix = matrix_lines.mapped("component_lot_id")
+        if not lots_in_matrix:
+            move.move_line_ids.picked = True
+            return
+        to_drop = self.env["stock.move.line"]
         for ml in move.move_line_ids:
             if ml.lot_id in lots_in_matrix:
                 ml.picked = True
-            elif float_is_zero(ml.quantity, precision_digits=precision):
-                ml.unlink()
             else:
-                ml.lot_id = lots_in_matrix[0] if len(lots_in_matrix) > 1 else False
-                ml.picked = True
+                to_drop |= ml
+        to_drop.unlink()
 
     def _reserve_lot_in_move(self, move, lot, qty):
         precision_digits = self.env["decimal.precision"].precision_get(
@@ -465,15 +496,38 @@ class MrpProductionSerialMatrix(models.Model):
             lot_id=lot,
         )
         if (
-            float_compare(available_quantity, 0.0, precision_digits=precision_digits)
-            <= 0
+            float_compare(available_quantity, qty, precision_digits=precision_digits)
+            < 0
         ):
             raise ValidationError(
-                _("Serial/Lot number '%s' not available at source location.") % lot.name
+                _(
+                    "Serial/Lot number '%(lot)s' is not available at %(location)s in "
+                    "the quantity needed (%(available)s available, %(needed)s needed)."
+                )
+                % {
+                    "lot": lot.name,
+                    "location": move.location_id.complete_name,
+                    "available": available_quantity,
+                    "needed": qty,
+                }
             )
-        move._update_reserved_quantity(
+        taken_quantity = move._update_reserved_quantity(
             qty,
             move.location_id,
             lot_id=lot,
             strict=True,
         )
+        if float_compare(taken_quantity, qty, precision_digits=precision_digits) < 0:
+            raise ValidationError(
+                _(
+                    "Only %(taken)s units of serial/lot number '%(lot)s' could be "
+                    "reserved at %(location)s out of the %(needed)s needed."
+                )
+                % {
+                    "taken": taken_quantity,
+                    "lot": lot.name,
+                    "location": move.location_id.complete_name,
+                    "needed": qty,
+                }
+            )
+        return taken_quantity

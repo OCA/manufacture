@@ -1,7 +1,9 @@
 # Copyright 2021-24 ForgeFlow S.L. (http://www.forgeflow.com)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.exceptions import UserError
+from unittest.mock import patch
+
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -155,6 +157,16 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         production_1.action_confirm()
         production_1.action_assign()
         return production_1
+
+    @classmethod
+    def _get_quant(cls, product, lot):
+        return cls.quant_obj.search(
+            [
+                ("product_id", "=", product.id),
+                ("location_id", "=", cls.stock_loc.id),
+                ("lot_id", "=", lot.id),
+            ]
+        )
 
     @classmethod
     def _find_move_lines(cls, mo, component):
@@ -590,3 +602,158 @@ class TestMrpProductionSerialMatrix(TransactionCase):
         production.state = "done"
         with self.assertRaises(UserError):
             matrix.action_reset_to_draft()
+
+    def test_12_reserve_lot_in_move_requires_the_needed_qty(self):
+        """A lot that cannot cover the needed quantity is refused instead of
+        being partially reserved and consumed short."""
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create({"production_id": production.id})
+        short_lot = self._create_serial_number(self.component_3_lot, "3-SHORT", qty=1.0)
+        move = production.move_raw_ids.filtered(
+            lambda m: m.product_id == self.component_3_lot
+        )
+        with self.assertRaises(ValidationError):
+            matrix._reserve_lot_in_move(move, short_lot, qty=4.0)
+        self.assertFalse(move.move_line_ids.filtered(lambda ml: ml.lot_id == short_lot))
+
+    def test_13_no_component_line_is_left_without_a_lot(self):
+        """When a selected lot cannot cover the whole need, the run must stop.
+
+        It used to go on and leave a surplus line with no lot on a lot-tracked
+        component, which Odoo then consumed as untracked stock.
+        """
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp = self._create_serial_number(self.final_product, "FP-SHORT", qty=0)
+        matrix.finished_lot_ids = serial_fp
+        matrix._onchange_finished_lot_ids()
+        # 3-002 holds 8 units, but only 2 of them are free here, while the BoM
+        # needs 4 of the component per finished unit.
+        short_lot = self._create_serial_number(self.component_3_lot, "3-PART", qty=2.0)
+        c3_line = matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_3_lot
+        )
+        c3_line.component_lot_id = short_lot
+        move = production.move_raw_ids.filtered(
+            lambda m: m.product_id == self.component_3_lot
+        )
+        with self.assertRaises(ValidationError):
+            matrix._amend_reservations(move, c3_line)
+        self.assertFalse(
+            move.move_line_ids.filtered(lambda ml: not ml.lot_id),
+            "a lot-tracked component must never carry a line without a lot",
+        )
+
+    def test_14_only_the_selected_lots_are_consumed(self):
+        """Lines on lots the operator did not select are dropped, not consumed:
+        never as untracked stock, and never above what the BoM asks for."""
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp = self._create_serial_number(self.final_product, "FP-LEFT", qty=0)
+        matrix.finished_lot_ids = serial_fp
+        matrix._onchange_finished_lot_ids()
+        c3_line = matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_3_lot
+        )
+        c3_line.component_lot_id = self.lot_3_003
+        move = production.move_raw_ids.filtered(
+            lambda m: m.product_id == self.component_3_lot
+        )
+        self.assertTrue(move.move_line_ids)
+        self.assertNotEqual(move.move_line_ids.lot_id, self.lot_3_003)
+        matrix._amend_reservations(move, c3_line)
+        matrix._consume_selected_lots(move, c3_line)
+        self.assertEqual(move.move_line_ids.mapped("lot_id"), self.lot_3_003)
+        self.assertEqual(sum(move.move_line_ids.mapped("quantity")), 4.0)
+        self.assertTrue(all(move.move_line_ids.mapped("picked")))
+
+    def test_15_reservations_match_the_move_lines(self):
+        """After the matrix has set the lots, every quant it touched must hold
+        exactly what the move lines say is reserved on it."""
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp = self._create_serial_number(self.final_product, "FP-INV", qty=0)
+        matrix.finished_lot_ids = serial_fp
+        matrix._onchange_finished_lot_ids()
+        c3_line = matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_3_lot
+        )
+        c3_line.component_lot_id = self.lot_3_002
+        move = production.move_raw_ids.filtered(
+            lambda m: m.product_id == self.component_3_lot
+        )
+        matrix._amend_reservations(move, c3_line)
+        matrix._consume_selected_lots(move, c3_line)
+        for lot in (self.lot_3_001, self.lot_3_002, self.lot_3_003, False):
+            quants = self.quant_obj.search(
+                [
+                    ("product_id", "=", self.component_3_lot.id),
+                    ("location_id", "=", self.stock_loc.id),
+                    ("lot_id", "=", lot and lot.id),
+                ]
+            )
+            lines = self.move_line_obj.search(
+                [
+                    ("product_id", "=", self.component_3_lot.id),
+                    ("location_id", "=", self.stock_loc.id),
+                    ("lot_id", "=", lot and lot.id),
+                    ("state", "not in", ("done", "cancel")),
+                ]
+            )
+            self.assertAlmostEqual(
+                sum(quants.mapped("reserved_quantity")),
+                sum(lines.mapped("quantity_product_uom")),
+                msg="reservation out of sync for lot %s" % (lot and lot.name or "-"),
+            )
+
+    def test_16_a_failed_serial_rolls_back_its_own_stock_changes(self):
+        """A serial number that fails must leave no stock change behind.
+
+        The errors raised while validating come from a flush. Catching them
+        without rolling back used to leave the transaction with the stock
+        changes already applied, and writing the exception on the matrix
+        committed them - including quantities a constraint had just rejected.
+        """
+        production = self._create_mo(1.0)
+        matrix = self.matrix_obj.create(
+            {"production_id": production.id, "include_lots": True}
+        )
+        serial_fp = self._create_serial_number(self.final_product, "FP-ROLL", qty=0)
+        matrix.finished_lot_ids = serial_fp
+        matrix._onchange_finished_lot_ids()
+        matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_3_lot
+        ).component_lot_id = self.lot_3_002
+        matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_1_serial
+        ).component_lot_id = self.serial_1_001
+        c2_lines = matrix.line_ids.filtered(
+            lambda line: line.component_id == self.component_2_serial
+        )
+        c2_lines[0].component_lot_id = self.serial_2_001
+        c2_lines[1].component_lot_id = self.serial_2_002
+
+        quant = self._get_quant(self.component_3_lot, self.lot_3_002)
+        before = (quant.quantity, quant.reserved_quantity)
+
+        with patch.object(
+            type(matrix),
+            "_validate_and_get_backorder",
+            side_effect=UserError("validation blew up"),
+        ):
+            matrix.state = "in_progress"
+            matrix._process_serial_matrix()
+
+        self.assertEqual(matrix.state, "exception")
+        self.assertEqual(
+            (quant.quantity, quant.reserved_quantity),
+            before,
+            "the failed serial number left stock changes behind",
+        )
+        self.assertGreaterEqual(quant.reserved_quantity, 0.0)
