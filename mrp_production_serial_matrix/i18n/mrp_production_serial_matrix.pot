@@ -335,6 +335,15 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
+msgid ""
+"Only %(taken)s units of serial/lot number '%(lot)s' could be reserved at "
+"%(location)s out of the %(needed)s needed."
+msgstr ""
+
+#. module: mrp_production_serial_matrix
+#. odoo-python
+#: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
+#, python-format
 msgid "Only matrices in 'Exception' state can be reset to 'Draft'."
 msgstr ""
 
@@ -379,7 +388,9 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
-msgid "Serial/Lot number '%s' not available at source location."
+msgid ""
+"Serial/Lot number '%(lot)s' is not available at %(location)s in the quantity"
+" needed (%(available)s available, %(needed)s needed)."
 msgstr ""
 
 #. module: mrp_production_serial_matrix
