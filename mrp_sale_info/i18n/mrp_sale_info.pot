@@ -42,9 +42,14 @@ msgid "Sale information"
 msgstr ""
 
 #. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
+msgid "Sale Information"
+msgstr ""
+
+#. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
-msgid "Sale order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: mrp_sale_info

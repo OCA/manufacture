@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_attribute_match
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified) <https://github.com/OCA/manufacture>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr "BOM概览报告"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom
+msgid "Bill of Material"
+msgstr "物料清单"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "物料清单行"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_id
+msgid "Component"
+msgstr "组件"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_eco_bom_change__product_id
+msgid "Component"
+msgstr "组件"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_eco_bom_change__component_template_id
+msgid "Component (product template)"
+msgstr "组件（产品模板）"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__component_template_id
+msgid "Component (product template)"
+msgstr "组件（产品模板）"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__match_on_attribute_ids
+msgid "Match on Attributes"
+msgstr "属性匹配"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"No match on attribute has been detected for Component (Product Template) %s"
+msgstr "未检测到组件（产品模板）%s的属性匹配"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_product_template
+msgid "Product"
+msgstr "产品"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Product Backup"
+msgstr "产品备份"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,field_description:mrp_bom_attribute_match.field_mrp_bom_line__product_uom_category_id
+msgid "Product Uom Category"
+msgstr "产品计量单位类别"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model,name:mrp_bom_attribute_match.model_mrp_production
+msgid "Production Order"
+msgstr "生产订单"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Recursion error!  A product with a Bill of Material should not have itself "
+"in its BoM or child BoMs!"
+msgstr "递归错误！具有物料清单的产品不应在其BOM或子BOM中包含自身！"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"Some attributes of the dynamic component are not included into production "
+"product attributes."
+msgstr "动态组件的某些属性未包含在生产产品属性中。"
+
+#. module: mrp_bom_attribute_match
+#: model:ir.model.fields,help:mrp_bom_attribute_match.field_mrp_bom_line__product_backup_id
+msgid "Technical field to store previous value of product_id"
+msgstr "用于存储product_id先前值的技术字段"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"The attributes you're trying to remove are used in the BoM as a match with "
+"Component (Product Template). To remove these attributes, first remove the "
+"BOM line with the matching component.\n"
+"Attributes: %(attributes)s\n"
+"BoM: %(bom)s"
+msgstr ""
+"您尝试删除的属性在BOM中用作与组件（产品模板）的匹配。要删除这些属性，请先删除具有匹配组件的BOM行。\n"
+"属性：%(attributes)s\n"
+"BOM：%(bom)s"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/product.py:0
+#, python-format
+msgid ""
+"This product template is used as a component in the BOMs for %(bom)s and "
+"attribute(s) %(attributes)s is not present in all such product(s), and this "
+"would break the BOM behavior."
+msgstr ""
+"此产品模板在%(bom)s的BOM中用作组件，但属性%(attributes)s未在所有此类产品中出现，这将破坏BOM行为。"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#, python-format
+msgid ""
+"You cannot use an attribute value for attribute(s) %(attributes)s in the "
+"field “Apply on Variants” as it's the same attribute used in the field "
+"“Match on Attribute” related to the component %(component)s."
+msgstr ""
+"您不能在“应用于变体”字段中使用属性%(attributes)s的属性值，因为这与组件%(component)s相关的“属性匹配”字段使用的是相同的属性。"
+
+#. module: mrp_bom_attribute_match
+#. odoo-python
+#: code:addons/mrp_bom_attribute_match/models/mrp_bom.py:0
+#: code:addons/mrp_bom_attribute_match/models/mrp_eco_bom_change.py:0
+#, python-format
+msgid "Either Product or Component (product template) must be set."
+msgstr "必须设置产品或组件（产品模板）中的一项。"
+
+#~ msgid "Display Name"
+#~ msgstr "显示名称"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改于"
+
+#~ msgid "Product Uom Id Domain"
+#~ msgstr "产品计量单位ID域"
+
+#, python-format
+#~ msgid ""
+#~ "The attributes you're trying to remove is used in BoM as a match with "
+#~ "Component (Product Template). To remove these attributes, first remove "
+#~ "the BOM line with the matching component.\n"
+#~ "Attributes: %s\n"
+#~ "BoM: %s"
+#~ msgstr ""
+#~ "您尝试删除的属性在BOM中用作与组件（产品模板）的匹配。要删除这些属性，请先删除具有匹配组件的BOM行。\n"
+#~ "属性：%s\n"
+#~ "BOM：%s"
+
+#, python-format
+#~ msgid ""
+#~ "This product template is used as a component in the BOMs for %s and "
+#~ "attribute(s) %s is not present in all such product(s), and this would "
+#~ "break the BOM behavior."
+#~ msgstr ""
+#~ "此产品模板在%s的BOM中用作组件，但属性%s未在所有此类产品中出现，这将破坏BOM行为。"
+
+#, python-format
+#~ msgid ""
+#~ "You cannot use an attribute value for attribute %s in the field “Apply on "
+#~ "Variants” as it’s the same attribute used in field “Match on "
+#~ "Attribute”related to the component %s."
+#~ msgstr ""
+#~ "您不能在“应用于变体”字段中使用属性%s的属性值，因为这与组件%s相关的“属性匹配”字段使用的是相同的属性。"
+
+#~ msgid "Dynamic component must have only 1 attribute"
+#~ msgstr "动态组件必须只有1个属性"
+
+#~ msgid "Match on Attribute"
+#~ msgstr "属性匹配"
+
+#~ msgid "Only product template with one attribute can be added to this field."
+#~ msgstr "只有具有一个属性的产品模板才能添加到此字段。"

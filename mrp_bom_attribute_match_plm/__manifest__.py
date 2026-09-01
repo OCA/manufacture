@@ -1,0 +1,20 @@
+{
+    "name": "BOM Attribute Match - PLM Integration",
+    "version": "17.0.1.0.0",
+    "category": "Manufacturing",
+    "author": "Custom Development",
+    "summary": "PLM integration for BOM Attribute Match module",
+    "depends": ["mrp", "mrp_bom_attribute_match", "mrp_plm"],
+    "license": "AGPL-3",
+    "website": "",
+    "data": [
+        "security/ir.model.access.csv",
+        "views/mrp_plm_views.xml",
+        "views/mrp_report_bom_structure.xml",
+    ],
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+    "post_init_hook": "post_init_hook",
+}
