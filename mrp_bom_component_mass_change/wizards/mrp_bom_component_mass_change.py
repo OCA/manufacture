@@ -9,12 +9,10 @@ class MrpBomComponentMassChange(models.TransientModel):
     _name = "mrp.bom.component.mass.change"
     _description = "Mass Change BoM Component"
 
-    component_id = fields.Many2one(
-        "product.product", string="Component to Change", required=True
-    )
+    component_id = fields.Many2one("product.product", string="Component to Change")
     component_locked = fields.Boolean(default=False)
     change_type = fields.Selection(
-        [("replace", "Replace"), ("remove", "Remove")],
+        [("replace", "Replace"), ("remove", "Remove"), ("add", "Add")],
         required=True,
         default="replace",
     )
@@ -29,6 +27,7 @@ class MrpBomComponentMassChange(models.TransientModel):
         store=True,
         readonly=False,
     )
+    bom_domain = fields.Char(compute="_compute_bom_domain")
 
     @api.model
     def default_get(self, fields_list):
@@ -66,22 +65,61 @@ class MrpBomComponentMassChange(models.TransientModel):
                 )
             wizard.bom_ids = boms
 
-    def action_apply(self):
-        self.ensure_one()
-        if self.change_type == "replace":
-            if not self.new_component_id:
-                raise UserError(_("You must select the new component."))
-            if self.new_component_id == self.component_id:
-                raise UserError(
-                    _(
-                        "The new component must be different from the "
-                        "component to change."
+    @api.depends("component_id", "new_component_id")
+    def _compute_bom_domain(self):
+        for wizard in self:
+            domain = []
+            if wizard.component_id:
+                domain.append(("bom_line_ids.product_id", "=", wizard.component_id.id))
+            if wizard.new_component_id:
+                domain.append(
+                    (
+                        "bom_line_ids",
+                        "not any",
+                        [("product_id", "=", wizard.new_component_id.id)],
                     )
                 )
+            wizard.bom_domain = str(domain)
+
+    def action_apply(self):
+        self.ensure_one()
+        if self.change_type == "add":
+            if not self.new_component_id:
+                raise UserError(_("You must select the component to add."))
             if self.new_product_qty <= 0:
-                raise UserError(_("You must set the new quantity."))
+                raise UserError(_("You must set the quantity."))
+        else:
+            if not self.component_id:
+                raise UserError(_("You must select the component to change."))
+            if self.change_type == "replace":
+                if not self.new_component_id:
+                    raise UserError(_("You must select the new component."))
+                if self.new_component_id == self.component_id:
+                    raise UserError(
+                        _(
+                            "The new component must be different from the "
+                            "component to change."
+                        )
+                    )
+                if self.new_product_qty <= 0:
+                    raise UserError(_("You must set the new quantity."))
         if not self.bom_ids:
             raise UserError(_("You must select at least one bill of materials."))
+        if self.change_type == "add":
+            boms = self.bom_ids.filtered(
+                lambda bom: self.new_component_id not in bom.bom_line_ids.product_id
+            )
+            self.env["mrp.bom.line"].create(
+                [
+                    {
+                        "bom_id": bom.id,
+                        "product_id": self.new_component_id.id,
+                        "product_qty": self.new_product_qty,
+                    }
+                    for bom in boms
+                ]
+            )
+            return {"type": "ir.actions.act_window_close"}
         lines = self.bom_ids.bom_line_ids.filtered(
             lambda line: line.product_id == self.component_id
         )
