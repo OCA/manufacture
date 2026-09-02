@@ -1092,6 +1092,20 @@ class TestMrpMultiLevelCommon(TransactionCase):
             }
         )
 
+        ptavs = product_4.attribute_line_ids.product_template_value_ids
+        ptav_attr1_v1 = ptavs.filtered(
+            lambda v: v.product_attribute_value_id == attr1_v1
+        )
+        ptav_attr1_v2 = ptavs.filtered(
+            lambda v: v.product_attribute_value_id == attr1_v2
+        )
+        ptav_attr2_v1 = ptavs.filtered(
+            lambda v: v.product_attribute_value_id == attr2_v1
+        )
+        ptav_attr2_v2 = ptavs.filtered(
+            lambda v: v.product_attribute_value_id == attr2_v2
+        )
+
         cls.env["mrp.bom.line"].create(
             {
                 "product_id": av11.id,
