@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Quartile (https://www.quartile.co)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form.secondary.unit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//label[@for='product_qty']" position="before">
+                <label
+                    for="secondary_uom_qty"
+                    string="Secondary Quantity"
+                    groups="uom.group_uom"
+                />
+                <div class="o_row" groups="uom.group_uom">
+                    <field
+                        name="secondary_uom_qty"
+                        class="oe_inline oe_no_button"
+                        readonly="state != 'draft'"
+                    />
+                    <field
+                        name="secondary_uom_id"
+                        class="oe_inline"
+                        domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                             ('product_id', '=', False)] or [(0, '=', 1)]"
+                        options="{'no_create': True}"
+                        readonly="state != 'draft'"
+                    />
+                </div>
+            </xpath>
+            <xpath
+                expr="//field[@name='move_raw_ids']/list/field[@name='product_uom_qty'][1]"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    string="To Consume (2Unit)"
+                    force_save="1"
+                    groups="uom.group_uom"
+                    optional="show"
+                    readonly="parent.state != 'draft' and ((parent.state not in ('confirmed', 'progress', 'to_close') and not parent.is_planned) or (parent.is_locked and state != 'draft'))"
+                />
+                <field
+                    name="secondary_uom_id"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True}"
+                    readonly="state != 'draft' and id"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='move_byproduct_ids']/list/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    string="To Produce (2Unit)"
+                    force_save="1"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+                <field
+                    name="secondary_uom_id"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True}"
+                    readonly="state != 'draft' and id"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
