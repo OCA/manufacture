@@ -25,14 +25,31 @@ class ProductTemplate(models.Model):
         for rec in self:
             rec.mrp_area_count = len(rec.mrp_area_ids)
 
-    @api.constrains("company_id")
+    def _mrp_area_parameters_allowed_companies(self):
+        """Companies for which this template's MRP area parameters are valid.
+
+        Override this to support alternative company-restriction models
+        (e.g. a many2many field instead of the standard company_id).
+        """
+        self.ensure_one()
+        return self.company_id
+
+    @api.model
+    def _mrp_area_parameters_company_trigger_fields(self):
+        """Fields that should re-trigger the MRP area company consistency
+        check. Override to add extra fields (e.g. a many2many companies
+        field) when overriding `_mrp_area_parameters_allowed_companies`.
+        """
+        return ("company_id",)
+
+    @api.constrains(lambda self: self._mrp_area_parameters_company_trigger_fields())
     def _check_mrp_area_parameters_company(self):
         """Products cannot be restricted to a company while they keep MRP area
         parameters belonging to another one: such parameters are not usable and
         break any view showing them, as the product is not readable for the users
         of the parameter's company.
         """
-        templates = self.filtered("company_id")
+        templates = self.filtered(lambda t: t._mrp_area_parameters_allowed_companies())
         if not templates:
             return
         parameters = (
@@ -42,10 +59,13 @@ class ProductTemplate(models.Model):
             .search([("product_tmpl_id", "in", templates.ids)])
         )
         for template in templates:
+            allowed_companies = template._mrp_area_parameters_allowed_companies()
             wrong_company = parameters.filtered(
-                lambda p, t=template: p.product_tmpl_id == t
-                and p.company_id
-                and not t.filtered_domain(t._check_company_domain(p.company_id))
+                lambda p, t=template, allowed=allowed_companies: (
+                    p.product_tmpl_id == t
+                    and p.company_id
+                    and p.company_id not in allowed
+                )
             )
             if wrong_company:
                 raise ValidationError(
