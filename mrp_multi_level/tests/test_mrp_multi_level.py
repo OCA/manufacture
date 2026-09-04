@@ -1048,3 +1048,16 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         )
         product.company_id = self.company
         self.assertEqual(product.company_id, self.company)
+
+    def test_32_mrp_area_parameters_company_extension_points(self):
+        """Default extension points for the MRP area company check."""
+        product = self.product_obj.create(
+            {"name": "Product of Main Company", "company_id": self.company.id}
+        )
+        template = product.product_tmpl_id
+        self.assertEqual(
+            template._mrp_area_parameters_allowed_companies(), self.company
+        )
+        self.assertEqual(
+            template._mrp_area_parameters_company_trigger_fields(), ("company_id",)
+        )
