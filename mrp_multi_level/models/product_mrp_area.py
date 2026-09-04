@@ -12,6 +12,7 @@ from odoo.exceptions import ValidationError
 class ProductMRPArea(models.Model):
     _name = "product.mrp.area"
     _description = "Product MRP Area"
+    _check_company_auto = True
 
     active = fields.Boolean(default=True)
     mrp_area_id = fields.Many2one(comodel_name="mrp.area", required=True)
@@ -25,6 +26,7 @@ class ProductMRPArea(models.Model):
         required=True,
         string="Product",
         ondelete="cascade",
+        check_company=True,
     )
     product_tmpl_id = fields.Many2one(
         comodel_name="product.template",
@@ -133,6 +135,16 @@ class ProductMRPArea(models.Model):
         for rec in values:
             if any(v < 0 for v in rec.values()):
                 raise ValidationError(_("You cannot use a negative number."))
+
+    @api.constrains("company_id", "mrp_area_id", "product_id")
+    def _check_company_consistency(self):
+        """Parameters of an MRP area can only refer to products of its company.
+
+        ``_check_company_auto`` already covers create and write, but the company
+        of the parameter comes from the MRP area's warehouse: it must be checked
+        as well when that company is recomputed.
+        """
+        self._check_company()
 
     def _compute_display_name(self):
         for area in self:
