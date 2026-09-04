@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Quartile (https://www.quartile.co)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form.secondary.unit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group//div[hasclass('o_row')]/field[@name='product_qty']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    class="oe_inline oe_no_button"
+                    groups="uom.group_uom"
+                />
+                <field
+                    name="secondary_uom_id"
+                    class="oe_inline"
+                    domain="product_id and [('product_tmpl_id', '=', product_tmpl_id),
+                                '|', ('product_id', '=', False),
+                                     ('product_id', '=', product_id)]
+                            or [('product_tmpl_id', '=', product_tmpl_id)]"
+                    options="{'no_create': True}"
+                    groups="uom.group_uom"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+                <field
+                    name="secondary_uom_id"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True}"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='byproduct_ids']/list/field[@name='product_qty']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+                <field
+                    name="secondary_uom_id"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True}"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

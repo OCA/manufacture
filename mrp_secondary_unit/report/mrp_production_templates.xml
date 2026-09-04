@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Quartile (https://www.quartile.co)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_mrp_production_components"
+        inherit_id="mrp.report_mrp_production_components"
+    >
+        <xpath
+            expr="//thead/tr/th[normalize-space(text())='To Consume']"
+            position="after"
+        >
+            <th class="text-end">To Consume (2Unit)</th>
+        </xpath>
+        <xpath expr="//span[@t-field='raw_line.product_uom_qty']/.." position="after">
+            <td class="text-end">
+                <span t-field="raw_line.secondary_uom_qty">2</span>
+                <span t-field="raw_line.secondary_uom_id.name">Box</span>
+            </td>
+        </xpath>
+    </template>
+</odoo>
