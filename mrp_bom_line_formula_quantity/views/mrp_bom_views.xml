@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">Add compute quantity fields to BoM form view</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']"
+                position="after"
+            >
+                <field name="quantity_formula" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
