@@ -1061,3 +1061,21 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(
             template._mrp_area_parameters_company_trigger_fields(), ("company_id",)
         )
+
+    def test_33_main_supplier_follows_vendor_line_company(self):
+        """The main supplier follows a company change on a vendor line."""
+        parameter = self.product_mrp_area_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.mrp_area.id),
+            ]
+        )
+        supplierinfo = self.prod_test.seller_ids
+        self.assertEqual(parameter.supply_method, "buy")
+        self.assertEqual(parameter.main_supplierinfo_id, supplierinfo)
+        self.assertEqual(parameter.main_supplier_id, supplierinfo.partner_id)
+        # A vendor line restricted to a company is no longer eligible for the
+        # parameters of the other ones.
+        supplierinfo.company_id = self.other_company
+        self.assertFalse(parameter.main_supplierinfo_id)
+        self.assertFalse(parameter.main_supplier_id)
