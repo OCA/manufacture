@@ -244,8 +244,14 @@ class ProductMRPArea(models.Model):
 
     @api.depends(
         "mrp_area_id",
+        "company_id",
         "product_id.route_ids",
         "product_id.seller_ids",
+        "product_id.seller_ids.company_id",
+        "product_id.seller_ids.product_id",
+        "product_id.seller_ids.sequence",
+        "product_id.seller_ids.min_qty",
+        "product_id.seller_ids.price",
         "location_proc_id",
     )
     def _compute_main_supplier(self):
@@ -255,8 +261,9 @@ class ProductMRPArea(models.Model):
                 rec.main_supplierinfo_id = False
                 rec.main_supplier_id = False
                 continue
-            suppliers = rec.product_id.seller_ids.filtered(
-                lambda r: (not r.product_id or r.product_id == rec.product_id)
+            sellers = rec.product_id.sudo().seller_ids
+            suppliers = sellers.filtered(
+                lambda r, rec=rec: (not r.product_id or r.product_id == rec.product_id)
                 and (not r.company_id or r.company_id == rec.company_id)
             ).sorted(lambda s: (s.sequence, -s.min_qty, s.price, s.id))
             if not suppliers:
