@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_operation_type_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Operation Types</field>
+        <field name="res_model">stock.picking.type</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[("code", "=", "mrp_operation")]</field>
+    </record>
+
+    <record id="mrp.menu_mrp_root" model="ir.ui.menu">
+        <field name="action" ref="mrp_operation_type_dashboard_action" />
+    </record>
+</odoo>
