@@ -19,14 +19,14 @@ class QcInspection(models.Model):
     def _compute_success(self):
         for i in self:
             i.success = all([x.success for x in i.inspection_lines])
+
     @api.model
     def object_selection_values(self):
         """
         Overridable method for adding more object models to an inspection.
         :return: A list with the selection's possible values.
         """
-        print("object_selection_values called")
-	return [("product.product", "Product")]
+        return [("product.product", "Product")]
 
     @api.depends("object_id")
     def _compute_product_id(self):
@@ -50,9 +50,9 @@ class QcInspection(models.Model):
     )
     date_done = fields.Datetime("Completion Date", readonly=True)
     object_id = fields.Reference(
-        string="Reference",
-        selection=lambda self: [("product.product", "Product")],
-        ondelete="set null",
+        string='Reference',
+        selection='object_selection_values',
+        ondelete='set null',
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
