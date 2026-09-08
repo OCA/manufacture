@@ -50,9 +50,9 @@ class QcInspection(models.Model):
     )
     date_done = fields.Datetime("Completion Date", readonly=True)
     object_id = fields.Reference(
-        string='Reference',
-        selection='object_selection_values',
-        ondelete='set null',
+        string="Reference",
+        selection="object_selection_values",
+        ondelete="set null",
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
