@@ -16,12 +16,14 @@ class StockPicking(models.Model):
                 productions = picking.move_ids.move_dest_ids.raw_material_production_id
                 # Update the component initial demand in production order and assign
                 # the moves to cover cases like pick more quantities than expected.
-                # In this cases the quantity done is not propagated to linked move
+                # In this cases the quantity done is not propagated to linked move.
+                # Pending origin moves (e.g. backorders) must keep their demand in
+                # the production order, so count them by their initial demand.
                 for move in productions.move_raw_ids:
                     move.product_uom_qty = sum(
-                        move.move_orig_ids.filtered(
-                            lambda sm: sm.state == "done"
-                        ).mapped("quantity")
+                        sm.quantity if sm.state == "done" else sm.product_uom_qty
+                        for sm in move.move_orig_ids
+                        if sm.state != "cancel"
                     )
                 productions.move_raw_ids._action_assign()
         return res
