@@ -1,6 +1,7 @@
 # Copyright 2019 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -29,16 +30,16 @@ class TestProductMrpInfo(TransactionCase):
             {
                 "name": "Test Template",
                 "attribute_line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "attribute_id": cls.attribute.id,
-                            "value_ids": [(6, 0, [cls.value1.id, cls.value2.id])],
-                        },
+                            "value_ids": [
+                                fields.Command.set([cls.value1.id, cls.value2.id])
+                            ],
+                        }
                     )
                 ],
-                "route_ids": [(6, 0, cls.manufacture_route.ids)],
+                "route_ids": [fields.Command.set(cls.manufacture_route.ids)],
             }
         )
         cls.variant_1 = cls.product.product_variant_ids[0]

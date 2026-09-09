@@ -28,8 +28,8 @@ Product MRP Info
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Adds smart button in product form view linking to manufacturing order
-list.
+Adds smart button in product form view linking to manufacturing orders
+where that product (or its variants) is produced.
 
 **Table of contents**
 
@@ -40,8 +40,8 @@ Usage
 =====
 
 Go to a product form and on the smart buttons you will se a new one,
-*MO's*, click on it to access to a list of all the manufacturing Orders
-for that product.
+*MO's*, click on it to access to a list of all the Manufacturing Orders
+where that product (or its variants) is produced.
 
 Bug Tracker
 ===========
@@ -66,6 +66,9 @@ Contributors
 
 - Lois Rilo <lois.rilo@forgeflow.com>
 - Sudhir Arya <sudhir@erpharbor.com>
+- `PyTech <https://www.pytech.it>`__:
+
+  - Simone Rubino <simone.rubino@pytech.it>
 
 Maintainers
 -----------
