@@ -11,6 +11,14 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     def _get_date_start_using_delays(self):
+        # This has to stay the exact inverse of core's `_compute_date_finished`,
+        # which is a stored compute depending on `date_start`: anything else
+        # subtracted here is undone right away by that recompute, and the order
+        # ends up finishing before the date the user asked for. In particular
+        # `company_id.manufacturing_lead` must NOT be subtracted (it was until
+        # v15, when core still added it on the way forward): the security lead
+        # time only applies to procurement now, through
+        # `stock_rule._get_lead_days`, and is not part of the order duration.
         date_start = self.date_finished
         date_start -= relativedelta(days=self.bom_id.produce_delay)
         return date_start

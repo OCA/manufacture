@@ -2,3 +2,4 @@
   - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Juan Carlos Oñate \<<juancarlos.onate@tecnativa.com>\>
+  - Carlos Dauden

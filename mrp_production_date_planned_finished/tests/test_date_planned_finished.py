@@ -43,6 +43,37 @@ class TestDateFinished(BaseCommon):
         self.assertEqual(mo.date_start, Datetime.to_datetime("2026-10-08 10:00:00"))
         self.assertEqual(mo.date_finished, Datetime.to_datetime("2026-10-10 10:00:00"))
 
+    def test_mrp_production_date_finished_security_lead_not_applied(self):
+        """The company security lead time must not shift the requested end date.
+
+        Until v15 the module also subtracted ``company_id.manufacturing_lead``,
+        mirroring core, which added it when computing the end date from the
+        start one. Since v16 the end date is instead a stored compute
+        (``_compute_date_finished``) that only adds ``bom_id.produce_delay``,
+        so subtracting the security lead here is immediately undone: core
+        recomputes ``date_finished`` from the new ``date_start`` and the order
+        ends ``manufacturing_lead`` days before the date the user typed. The
+        security lead only applies to procurement now
+        (``stock_rule._get_lead_days``), so it must stay out of this onchange.
+        """
+        self.env.company.manufacturing_lead = 5
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product
+        mo_form.bom_id = self.bom
+        mo_form.product_qty = 1
+        mo_form.date_finished = Datetime.to_datetime("2026-10-10 10:00:00")
+        mo = mo_form.save()
+        self.assertEqual(
+            mo.date_finished,
+            Datetime.to_datetime("2026-10-10 10:00:00"),
+            "The requested end date must be kept as typed",
+        )
+        self.assertEqual(
+            mo.date_start,
+            Datetime.to_datetime("2026-10-08 10:00:00"),
+            "Only the BoM lead time must be subtracted from the end date",
+        )
+
     def test_mrp_production_date_finished_decoration(self):
         """date_finished decorations must mirror date_start ones.
 
