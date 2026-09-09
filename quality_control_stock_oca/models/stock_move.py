@@ -36,13 +36,16 @@ class StockMove(models.Model):
 
         self.ensure_one()
         inspection_model = self.env["qc.inspection"].sudo()
-        trigger_lines = set()
         qc_triggers = get_qc_trigger(self.picking_type_id)
+
+        # Process each trigger individually
         for qc_trigger in qc_triggers:
             if qc_trigger.partner_selectable:
                 partner = partner or self._get_partner_for_trigger_line()
             else:
                 partner = False
+
+            trigger_lines = set()
             for model in [
                 "qc.trigger.product_category_line",
                 "qc.trigger.product_template_line",
@@ -55,29 +58,29 @@ class StockMove(models.Model):
                         qc_trigger, timings, self.product_id.sudo(), partner=partner
                     )
                 )
-        for trigger_line in _filter_trigger_lines(trigger_lines):
-            date = False
-            if trigger_line.timing in ["before", "plan_ahead"]:
-                # To pass scheduled date to the generated inspection
-                date = self.date
-            # inspection_model._make_inspection(self, trigger_line, date=date)
-            inspection = inspection_model._make_inspection(
-                self, trigger_line, date=date
-            )
-            if self.product_id.tracking != "none":
-                if trigger_line.trigger.inspection_per_lot:
-                    move_lines = self.move_line_ids
-                    for move_line in move_lines:
-                        inspection.write(
-                            {
-                                "lot_id": move_line.lot_id and move_line.lot_id.id,
-                                "qty": move_line.quantity,
-                            }
-                        )
-                        if move_line != move_lines[-1]:
-                            inspection = inspection.copy()
-                            inspection.set_test(trigger_line)
-                            inspection.action_todo()
+
+            # Filter and create inspections for each trigger's lines
+            for trigger_line in _filter_trigger_lines(trigger_lines):
+                date = False
+                if trigger_line.timing in ["before", "plan_ahead"]:
+                    date = self.date
+                inspection = inspection_model._make_inspection(
+                    self, trigger_line, date=date
+                )
+                if self.product_id.tracking != "none":
+                    if trigger_line.trigger.inspection_per_lot:
+                        move_lines = self.move_line_ids
+                        for move_line in move_lines:
+                            inspection.write(
+                                {
+                                    "lot_id": move_line.lot_id and move_line.lot_id.id,
+                                    "qty": move_line.quantity,
+                                }
+                            )
+                            if move_line != move_lines[-1]:
+                                inspection = inspection.copy()
+                                inspection.set_test(trigger_line)
+                                inspection.action_todo()
 
     def _action_confirm(self, merge=True, merge_into=False):
         moves = super()._action_confirm(merge=merge, merge_into=merge_into)
