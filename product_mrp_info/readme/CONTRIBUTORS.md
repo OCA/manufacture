@@ -1,0 +1,4 @@
+- Lois Rilo \<lois.rilo@forgeflow.com\>
+- Sudhir Arya \<sudhir@erpharbor.com\>
+- [PyTech](https://www.pytech.it):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>
