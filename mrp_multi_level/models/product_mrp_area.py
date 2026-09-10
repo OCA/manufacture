@@ -12,6 +12,7 @@ from odoo.exceptions import ValidationError
 class ProductMRPArea(models.Model):
     _name = "product.mrp.area"
     _description = "Product MRP Area"
+    _check_company_auto = True
 
     active = fields.Boolean(default=True)
     mrp_area_id = fields.Many2one(comodel_name="mrp.area", required=True)
@@ -25,6 +26,7 @@ class ProductMRPArea(models.Model):
         required=True,
         string="Product",
         ondelete="cascade",
+        check_company=True,
     )
     product_tmpl_id = fields.Many2one(
         comodel_name="product.template",
@@ -134,6 +136,16 @@ class ProductMRPArea(models.Model):
             if any(v < 0 for v in rec.values()):
                 raise ValidationError(_("You cannot use a negative number."))
 
+    @api.constrains("company_id", "mrp_area_id", "product_id")
+    def _check_company_consistency(self):
+        """Parameters of an MRP area can only refer to products of its company.
+
+        ``_check_company_auto`` already covers create and write, but the company
+        of the parameter comes from the MRP area's warehouse: it must be checked
+        as well when that company is recomputed.
+        """
+        self._check_company()
+
     def _compute_display_name(self):
         for area in self:
             area.display_name = (
@@ -221,8 +233,14 @@ class ProductMRPArea(models.Model):
 
     @api.depends(
         "mrp_area_id",
+        "company_id",
         "product_id.route_ids",
         "product_id.seller_ids",
+        "product_id.seller_ids.company_id",
+        "product_id.seller_ids.product_id",
+        "product_id.seller_ids.sequence",
+        "product_id.seller_ids.min_qty",
+        "product_id.seller_ids.price",
         "location_proc_id",
     )
     def _compute_main_supplier(self):
@@ -232,7 +250,8 @@ class ProductMRPArea(models.Model):
                 rec.main_supplierinfo_id = False
                 rec.main_supplier_id = False
                 continue
-            suppliers = rec.product_id.seller_ids.filtered(
+            sellers = rec.product_id.sudo().seller_ids
+            suppliers = sellers.filtered(
                 lambda r, rec=rec: (not r.product_id or r.product_id == rec.product_id)
                 and (not r.company_id or r.company_id == rec.company_id)
             ).sorted(lambda s: (s.sequence, -s.min_qty, s.price, s.id))
