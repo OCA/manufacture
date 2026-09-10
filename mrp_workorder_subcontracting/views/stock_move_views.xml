@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_move_view_form_subcontract_component" model="ir.ui.view">
+        <field name="name">stock.move.form.subcontract.component</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/field[@name='company_id']" position="after">
+                <field name="raw_material_production_id" invisible="1" />
+            </xpath>
+            <xpath expr="//group[@name='origin_grp']" position="after">
+                <group
+                    name="subcontract_component_grp"
+                    string="Subcontracting"
+                    invisible="not raw_material_production_id"
+                    colspan="2"
+                >
+                    <field
+                        name="sub_component_workorder_id"
+                        domain="[('production_id', '=', raw_material_production_id), ('subcontract_ok', '=', True)]"
+                        readonly="state in ('done', 'cancel')"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workorder_assign_subcontract_view_form" model="ir.ui.view">
+        <field name="name">mrp_workorder_assign_subcontract-form</field>
+        <field name="model">mrp.workorder.assign.subcontract</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="has_multiple_partners" invisible="1" />
+                    <group>
+                        <field name="flow_type" readonly="has_multiple_partners" />
+                        <field
+                            name="urgent_note"
+                            required="flow_type == 'urgent'"
+                            invisible="flow_type != 'urgent'"
+                        />
+                        <field name="partner_ids" widget="many2many_tags" />
+                        <field name="service_id" />
+                        <field name="date_finished" />
+                    </group>
+                    <group>
+                        <div
+                            class="alert alert-info"
+                            colspan="2"
+                            invisible="flow_type == 'standard'"
+                            role="alert"
+                        >
+                            The purchase order is optional and can be associated at a later time.
+                        </div>
+                        <div
+                            class="alert alert-warning"
+                            colspan="2"
+                            invisible="not has_multiple_partners"
+                            role="alert"
+                        >
+                            When multiple suppliers are selected, only the standard flow is allowed and new requests for quotation must be created.
+                        </div>
+                        <field
+                            name="create_purchase_order"
+                            invisible="has_multiple_partners"
+                            readonly="has_multiple_partners"
+                        />
+                        <div
+                            class="o_form_label"
+                            colspan="2"
+                            invisible="not has_multiple_partners"
+                        >
+                            Create new purchase order: <span
+                            class="badge text-bg-success"
+                        >YES</span>
+                        </div>
+                        <field
+                            name="purchase_order_id"
+                            readonly="has_multiple_partners"
+                            invisible="create_purchase_order"
+                            required="not create_purchase_order and flow_type == 'standard'"
+                        />
+                        <field
+                            name="type_id"
+                            readonly="purchase_order_id or not create_purchase_order"
+                            invisible="not create_purchase_order"
+                            required="create_purchase_order"
+                            domain="[('is_subcontracting', '=', True)]"
+                        />
+                    </group>
+                    <field name="workorder_ids" nolabel="1" readonly="1">
+                        <list options="{'no_open': True}">
+                            <field name="name" />
+                            <field name="workcenter_id" />
+                            <field name="product_id" />
+                            <field name="qty_remaining" />
+                            <field name="date_finished" />
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        string="Confirm"
+                        name="assign"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_workorder_assign_subcontract_action" model="ir.actions.act_window">
+        <field name="name">Create Subcontract Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.workorder.assign.subcontract</field>
+        <field name="binding_model_id" ref="model_mrp_workorder" />
+        <field name="context">{'default_workorder_ids': active_ids}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_manager'))]" />
+    </record>
+</odoo>

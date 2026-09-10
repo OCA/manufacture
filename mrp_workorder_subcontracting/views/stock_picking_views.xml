@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_picking_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">stock.picking.form.subcontracting</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_subcontract_workorders"
+                    class="oe_stat_button"
+                    icon="fa-cogs"
+                    invisible="sub_workorder_count == 0"
+                >
+                    <field
+                        name="sub_workorder_count"
+                        widget="statinfo"
+                        string="Subcontractor Phases"
+                    />
+                </button>
+            </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
+                position="after"
+            >
+                <field name="sub_workorder_id" optional="hide" />
+                <field name="sub_production_id" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_view_form_operations_subcontracting" model="ir.ui.view">
+        <field name="name">stock.move.form.subcontracting</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]" position="inside">
+                <field name="sub_workorder_id" />
+                <field name="sub_production_id" />
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="raw_material_production_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_view_tree_subcontracting_transfers" model="ir.ui.view">
+        <field name="name">stock.move.tree.subcontracting.transfers</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <list expand="context.get('expand')">
+                <field name="picking_id" />
+                <field name="picking_type_id" optional="hide" />
+                <field name="sub_production_id" optional="show" />
+                <field name="sub_workorder_id" optional="hide" />
+                <field name="product_id" optional="show" />
+                <field name="product_uom_qty" optional="show" />
+                <field name="quantity" optional="show" />
+                <field name="location_id" optional="hide" />
+                <field name="location_dest_id" optional="hide" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-muted="state == 'draft'"
+                    decoration-info="state == 'assigned'"
+                    decoration-warning="state in ('waiting', 'confirmed', 'partially_available')"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'cancel'"
+                />
+                <button
+                    name="action_open_subcontract_picking"
+                    type="object"
+                    string="Open Transfer"
+                    class="btn-link"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>
