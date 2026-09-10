@@ -14,7 +14,7 @@
                     icon="fa-wrench"
                     help="Manufactured Orders"
                     groups="mrp.group_mrp_user"
-                    invisible="type not in ['product', 'consu']"
+                    invisible="type != 'consu'"
                 >
                     <field string="MO's" name="mo_count" widget="statinfo" />
                 </button>
@@ -36,7 +36,7 @@
                     icon="fa-wrench"
                     help="Manufactured Orders"
                     groups="mrp.group_mrp_user"
-                    invisible="type not in ['product', 'consu']"
+                    invisible="type != 'consu'"
                 >
                     <field string="MO's" name="mo_count" widget="statinfo" />
                 </button>
