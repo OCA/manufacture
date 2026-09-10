@@ -456,3 +456,28 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
                 line.quantitative_value = 5.0
         inspection.action_confirm()
         picking2._action_done()
+
+    def test_button_validate(self):
+        """
+        Test behavior of "Validate" button
+        to ensure popup appears under certain conditions
+        """
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d" % (self.picking1._name, self.picking1.id),
+            }
+        )
+
+        move1 = self.picking1.move_ids[0]
+        move1.quantity_done = 2
+        self.product.remind_qc = True
+
+        res = self.picking1.button_validate()
+        self.assertNotEqual(res, True)
+
+        self.inspection1.write({"state": "success"})
+        res = self.picking1.button_validate()
+
+        self.assertEqual(res, True)
+        self.assertEqual(self.picking1.state, "done")
