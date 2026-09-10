@@ -248,8 +248,7 @@ msgstr "ID"
 
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_verified
-msgid ""
-"Identifies that this product has been verified to be valid for the MRP."
+msgid "Identifies that this product has been verified to be valid for the MRP."
 msgstr "Anger att denna produkt har verifierats som giltig för MRP."
 
 #. module: mrp_multi_level
@@ -529,8 +528,8 @@ msgstr "Ingen"
 #. module: mrp_multi_level
 #: model:ir.model.fields,help:mrp_multi_level.field_product_mrp_area__mrp_nbr_days
 msgid ""
-"Number of days to group demand for this product during the MRP run, in order"
-" to determine the quantity to order."
+"Number of days to group demand for this product during the MRP run, in order "
+"to determine the quantity to order."
 msgstr ""
 "Antal dagar att gruppera efterfrågan för denna produkt under MRP-körningen, "
 "för att fastställa det antal som ska beställas."
@@ -874,6 +873,16 @@ msgid "The company is automatically set from your user preferences."
 msgstr "Företaget anges automatiskt utifrån dina användarinställningar."
 
 #. module: mrp_multi_level
+#. odoo-python
+#: code:addons/mrp_multi_level/models/product_template.py:0
+msgid ""
+"The product %(product)s has MRP area parameters that belong to another "
+"company: %(parameters)s.\n"
+"Delete those parameters before restricting the product to the company %"
+"(company)s."
+msgstr ""
+
+#. module: mrp_multi_level
 #: model:ir.model.constraint,message:mrp_multi_level.constraint_product_mrp_area_product_mrp_area_uniq
 msgid "The product/MRP Area parameters combination must be unique."
 msgstr "Kombinationen produkt/MRP-områdesparametrar måste vara unik."
@@ -925,7 +934,8 @@ msgstr "Måttenhet"
 msgid ""
 "Use this assistant to procure for this product and date.\n"
 "                    According to the product configuration,\n"
-"                    this may trigger a draft purchase order, a manufacturing\n"
+"                    this may trigger a draft purchase order, a "
+"manufacturing\n"
 "                    order or a transfer picking."
 msgstr ""
 "Använd denna assistent för att anskaffa för denna produkt och detta datum.\n"
