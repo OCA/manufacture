@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_secondary_unit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-10 07:44+0000\n"
+"PO-Revision-Date: 2026-09-10 07:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_secondary_unit
+#: model:ir.model,name:mrp_secondary_unit.model_mrp_bom
+msgid "Bill of Material"
+msgstr "部品表"
+
+#. module: mrp_secondary_unit
+#: model:ir.model,name:mrp_secondary_unit.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "部品表明細"
+
+#. module: mrp_secondary_unit
+#: model_terms:ir.ui.view,arch_db:mrp_secondary_unit.report_mrp_production_components
+msgid "Box"
+msgstr "箱"
+
+#. module: mrp_secondary_unit
+#: model:ir.model,name:mrp_secondary_unit.model_mrp_bom_byproduct
+msgid "Byproduct"
+msgstr "副産品"
+
+#. module: mrp_secondary_unit
+#: model:ir.model,name:mrp_secondary_unit.model_mrp_bom_secondary_unit_mixin
+msgid "MRP BoM Secondary Unit Mixin"
+msgstr "MRP部品表副単位Mixin"
+
+#. module: mrp_secondary_unit
+#: model:ir.model,name:mrp_secondary_unit.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "製造オーダ"
+
+#. module: mrp_secondary_unit
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom__product_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_byproduct__product_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_line__product_qty
+msgid "Quantity"
+msgstr "数量"
+
+#. module: mrp_secondary_unit
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom__secondary_uom_id
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_byproduct__secondary_uom_id
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_line__secondary_uom_id
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_secondary_unit_mixin__secondary_uom_id
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_production__secondary_uom_id
+msgid "Second unit"
+msgstr "副単位"
+
+#. module: mrp_secondary_unit
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom__secondary_uom_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_byproduct__secondary_uom_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_line__secondary_uom_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_bom_secondary_unit_mixin__secondary_uom_qty
+#: model:ir.model.fields,field_description:mrp_secondary_unit.field_mrp_production__secondary_uom_qty
+msgid "Secondary Qty"
+msgstr "副単位数"
+
+#. module: mrp_secondary_unit
+#: model_terms:ir.ui.view,arch_db:mrp_secondary_unit.mrp_production_form_view
+msgid "Secondary Quantity"
+msgstr "副単位数量"
+
+#. module: mrp_secondary_unit
+#: model:ir.model.fields,help:mrp_secondary_unit.field_mrp_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
+msgstr ""
+"これは、このプロダクトの生産可能な最小数量にして下さい。部品表に工程が含まれている場合は、作業区の生産能力が正確であることを確認して下さい。"
+
+#. module: mrp_secondary_unit
+#: model_terms:ir.ui.view,arch_db:mrp_secondary_unit.mrp_production_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_secondary_unit.report_mrp_production_components
+msgid "To Consume (Secondary Unit)"
+msgstr "消費待ち（副単位）"
+
+#. module: mrp_secondary_unit
+#: model_terms:ir.ui.view,arch_db:mrp_secondary_unit.mrp_production_form_view
+msgid "To Produce (Secondary Unit)"
+msgstr "生産待ち（副単位）"
