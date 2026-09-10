@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_synchronization_wizard_view_form" model="ir.ui.view">
+        <field name="name">mrp.bom.synchronization.wizard.form</field>
+        <field name="model">mrp.bom.synchronization.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Synchronize Components">
+                <field name="group_id" invisible="1" />
+                <group>
+                    <field name="reference_bom_id" />
+                </group>
+                <notebook>
+                    <page string="Planned Changes" name="planned_changes">
+                        <field name="line_ids">
+                            <list create="false" edit="false" delete="false">
+                                <field name="target_bom_id" />
+                                <field name="change_type" />
+                                <field name="product_id" />
+                                <field name="current_qty" />
+                                <field name="new_qty" />
+                                <field name="current_uom_id" groups="uom.group_uom" />
+                                <field name="new_uom_id" groups="uom.group_uom" />
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Help" name="help">
+                        <div class="oe_form_box_info">
+                            <h3>Reference BoM</h3>
+                            <p>
+                                The <b>Reference BoM</b> is the Bill of Materials
+                                taken as the source of truth. Its components are
+                                used as the target: the other Bills of Materials
+                                of the group will be adjusted to match it.
+                            </p>
+                            <br />
+                            <h3>Planned Changes</h3>
+                            <p>
+                                The list shows, per Bill of Materials, the
+                                changes that will be applied to make its
+                                components match the reference:
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>Add</b>: a component present in the
+                                    reference but missing in the target will be
+                                    added.
+                                </li>
+                                <li>
+                                    <b>Remove</b>: a component present in the
+                                    target but not in the reference will be
+                                    removed.
+                                </li>
+                                <li>
+                                    <b>Update</b>: a shared component whose
+                                    quantity or unit of measure differs will be
+                                    updated to the reference value.
+                                </li>
+                            </ul>
+                            <p>
+                                Operations are never modified: only components
+                                are synchronized, and existing component lines
+                                keep their operation assignment.
+                            </p>
+                        </div>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        name="action_synchronize"
+                        type="object"
+                        string="Synchronize"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_bom_synchronization_wizard_action" model="ir.actions.act_window">
+        <field name="name">Synchronize Components</field>
+        <field name="res_model">mrp.bom.synchronization.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
