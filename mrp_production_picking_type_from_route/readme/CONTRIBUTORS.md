@@ -1,1 +1,3 @@
 - Lois Rilo \<<lois.rilo@forgeflow.com>\>
+- [Quartile](https://www.quartile.co):
+  - Tatsuki Kanda
