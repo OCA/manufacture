@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu visibility control for Manufacturing/User group -->
+    
+    <!-- Override PLM root menu to exclude mrp.group_mrp_user and mrp_plm.group_plm_user -->
+    <menuitem
+        id="mrp_plm.menu_mrp_plm_root"
+        name="PLM"
+        web_icon="mrp_plm,static/description/icon.png"
+        sequence="170"
+        groups="mrp.group_mrp_manager,mrp_bom_attribute_match_plm.group_mrp_team_leader"/>
+    
+    <!-- Override Products menu to exclude mrp.group_mrp_user and mrp_plm.group_plm_user -->
+    <menuitem
+        id="mrp_plm.menu_mrp_plm_products"
+        name="Products"
+        action="product.product_template_action"
+        parent="mrp_plm.menu_mrp_plm_master_data"
+        sequence="5"
+        groups="mrp.group_mrp_manager,mrp_bom_attribute_match_plm.group_mrp_team_leader"/>
+    
+    <!-- Override Bill of Materials menu to exclude mrp.group_mrp_user and mrp_plm.group_plm_user -->
+    <menuitem
+        id="mrp_plm.menu_mrp_plm_boms"
+        name="Bill of Materials"
+        action="mrp_plm.mrp_bom_action_kanban"
+        parent="mrp_plm.menu_mrp_plm_master_data"
+        sequence="10"
+        groups="mrp.group_mrp_manager,mrp_bom_attribute_match_plm.group_mrp_team_leader"/>
+    
+    <!-- Override Master Data menu to exclude mrp.group_mrp_user and mrp_plm.group_plm_user -->
+    <menuitem
+        id="mrp_plm.menu_mrp_plm_master_data"
+        name="Master Data"
+        parent="mrp_plm.menu_mrp_plm_root"
+        sequence="15"
+        groups="mrp.group_mrp_manager,mrp_bom_attribute_match_plm.group_mrp_team_leader"/>
+    
+</odoo>

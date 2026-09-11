@@ -61,7 +61,29 @@ class MrpProduction(models.Model):
 
     def _get_propagating_component_move(self):
         self.ensure_one()
-        return self.move_raw_ids.filtered(lambda o: o.propagate_lot_number)
+        # 修复：正确匹配传播批次号的移动
+        # 需要同时处理product_id和component_template_id的情况
+        return self.move_raw_ids.filtered(
+            lambda m: (
+                # 传统方式：通过product_id匹配
+                (m.bom_line_id and m.bom_line_id.product_id and 
+                 m.bom_line_id.product_id == m.product_id and
+                 m.propagate_lot_number) or
+                # 新方式：通过component_template_id匹配
+                (m.bom_line_id and m.bom_line_id.component_template_id and
+                 m.product_id.product_tmpl_id == m.bom_line_id.component_template_id and
+                 m.propagate_lot_number)
+            )
+        )
+
+    def _get_move_raw_values(self, product_id, product_uom_qty, product_uom, operation_id=False, bom_line=False):
+        """Override to propagate the propagate_lot_number field from bom_line to move"""
+        move_vals = super()._get_move_raw_values(product_id, product_uom_qty, product_uom, operation_id, bom_line)
+        
+        if bom_line and hasattr(bom_line, 'propagate_lot_number'):
+            move_vals['propagate_lot_number'] = bom_line.propagate_lot_number
+        
+        return move_vals
 
     def _set_lot_number_propagation_data_from_bom(self):
         """Copy information from BoM to the manufacturing order."""
@@ -70,10 +92,14 @@ class MrpProduction(models.Model):
             if not propagate_lot:
                 continue
             order.is_lot_number_propagated = propagate_lot
-            propagate_move = order.move_raw_ids.filtered(
-                lambda m: m.bom_line_id.propagate_lot_number
+            
+            # 修复：检查BOM行是否有传播批次号的配置
+            # 需要同时检查product_id和component_template_id的情况
+            bom_lines_with_propagation = order.bom_id.bom_line_ids.filtered(
+                lambda line: line.propagate_lot_number
             )
-            if not propagate_move:
+            
+            if not bom_lines_with_propagation:
                 raise UserError(
                     _(
                         "Bill of material is marked for lot number propagation, but "
@@ -81,7 +107,7 @@ class MrpProduction(models.Model):
                         "Please check BOM configuration."
                     )
                 )
-            elif len(propagate_move) > 1:
+            elif len(bom_lines_with_propagation) > 1:
                 raise UserError(
                     _(
                         "Bill of material is marked for lot number propagation, but "
@@ -89,7 +115,23 @@ class MrpProduction(models.Model):
                         "Please check BOM configuration."
                     )
                 )
-            else:
+            
+            # 修复：正确匹配BOM行到生产订单的原材料移动
+            # 需要同时处理product_id和component_template_id的情况
+            propagate_move = order.move_raw_ids.filtered(
+                lambda m: (
+                    # 传统方式：通过product_id匹配
+                    (m.bom_line_id and m.bom_line_id.product_id and 
+                     m.bom_line_id.product_id == m.product_id and
+                     m.bom_line_id.propagate_lot_number) or
+                    # 新方式：通过component_template_id匹配
+                    (m.bom_line_id and m.bom_line_id.component_template_id and
+                     m.product_id.product_tmpl_id == m.bom_line_id.component_template_id and
+                     m.bom_line_id.propagate_lot_number)
+                )
+            )
+            
+            if propagate_move:
                 propagate_move.propagate_lot_number = True
 
     def pre_button_mark_done(self):

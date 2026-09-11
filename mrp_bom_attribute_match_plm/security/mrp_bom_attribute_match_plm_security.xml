@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+    
+    <!-- 制造/组长组 - 拥有更广泛的访问权限 -->
+    <record id="group_mrp_team_leader" model="res.groups">
+        <field name="name">组长</field>
+        <field name="category_id" ref="base.module_category_manufacturing_manufacturing"/>
+        <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+        <field name="comment">制造组长组，可以从任意地方访问产品和BOM清单</field>
+    </record>
+
+</data>
+</odoo>

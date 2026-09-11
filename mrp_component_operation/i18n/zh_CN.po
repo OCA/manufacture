@@ -1,0 +1,436 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_component_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Odoo 17 全栈模块架构师\n"
+"Language-Team: 中文 (简体)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 3.4\n"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__active
+msgid "Active"
+msgstr "有效"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_search
+msgid "Archived"
+msgstr "已归档"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: mrp_component_operation
+#: model:ir.model,name:mrp_component_operation.model_mrp_component_operate
+msgid "Component Operate"
+msgstr "组件操作"
+
+#. module: mrp_component_operation
+#: model:ir.actions.act_window,name:mrp_component_operation.action_menu_mrp_component_operation
+#: model:ir.model,name:mrp_component_operation.model_mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+msgid "Component Operation"
+msgstr "组件操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__name
+msgid "Component Operation Reference"
+msgstr "组件操作参考"
+
+#. module: mrp_component_operation
+#: model:ir.ui.menu,name:mrp_component_operation.menu_mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.stock_location_route_form_view_inherit_mrp_component
+msgid "Component Operations"
+msgstr "组件操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__create_uid
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__create_uid
+msgid "Created by"
+msgstr "创建人"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__create_date
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__create_date
+msgid "Created on"
+msgstr "创建日期"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__destination_location_id
+msgid "Destination Location"
+msgstr "目标位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__destination_route_id
+msgid "Destination Route"
+msgstr "目标路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__display_name
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
+msgid "Done"
+msgstr "完成"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "确保仓库中可存储产品的可追溯性"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__sequence
+msgid "Gives the sequence order when displaying the list of component operations"
+msgstr "显示组件操作列表时给出序列顺序"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__id
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__incoming_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__incoming_operation
+msgid "Incoming Operation"
+msgstr "入库操作"
+
+#. module: mrp_component_operation
+#: model:ir.model,name:mrp_component_operation.model_stock_route
+msgid "Inventory Routes"
+msgstr "库存路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__write_uid
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__write_uid
+msgid "Last Updated by"
+msgstr "最后更新人"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__write_date
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__write_date
+msgid "Last Updated on"
+msgstr "最后更新日期"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+msgid "Locations/Routes"
+msgstr "位置/路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__lot_id
+msgid "Lot"
+msgstr "批次"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
+msgid "Lot/Serial Number"
+msgstr "批次/序列号"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__scrap
+msgid "Make a Scrap"
+msgstr "报废"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__manufacture_location_id
+msgid "Manufacture Location"
+msgstr "制造位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__mo_id
+msgid "Mo"
+msgstr "制造订单"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__move
+msgid "Move to Destination Location"
+msgstr "移动到目标位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__name
+msgid "Name"
+msgstr "名称"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__incoming_operation__no
+#: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__outgoing_operation__no
+msgid "No"
+msgstr "无"
+
+#. module: mrp_component_operation
+#. odoo-python
+#: code:addons/mrp_component_operation/wizards/mrp_component_operate.py:0
+#, python-format
+msgid "No route specified"
+msgstr "未指定路线"
+
+#. module: mrp_component_operation
+#. odoo-python
+#: code:addons/mrp_component_operation/models/mrp_production.py:0
+#, python-format
+msgid "Operate Component"
+msgstr "操作组件"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.mrp_production_form_view
+msgid "Operate Components"
+msgstr "操作组件"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__operation_id
+msgid "Operation"
+msgstr "操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__picking_type_id
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__picking_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+msgid "Operation Type"
+msgstr "操作类型"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operate_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+msgid "Operations"
+msgstr "操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__outgoing_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__outgoing_operation
+msgid "Outgoing Operation"
+msgstr "出库操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields.selection,name:mrp_component_operation.selection__mrp_component_operation__incoming_operation__replace
+msgid "Pick Component from Source Route"
+msgstr "从源路线获取组件"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__tracking
+msgid "Product Tracking"
+msgstr "产品追踪"
+
+#. module: mrp_component_operation
+#: model:ir.model,name:mrp_component_operation.model_mrp_production
+msgid "Production Order"
+msgstr "生产订单"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__product_qty
+msgid "Quantity"
+msgstr "数量"
+
+#. module: mrp_component_operation
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_form
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_search
+#: model_terms:ir.ui.view,arch_db:mrp_component_operation.view_mrp_component_operation_tree
+msgid "Reference"
+msgstr "参考"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__scrap_location_id
+msgid "Scrap Location"
+msgstr "报废位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_stock_route__mo_component_selectable
+msgid "Selectable on MO Components"
+msgstr "可在制造订单组件中选择"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operation__source_route_id
+msgid "Source Route"
+msgstr "源路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_location_id
+msgid "The Location where the components are going to be transferred."
+msgstr "组件将要转移到的位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__manufacture_location_id
+msgid "The Location where the components are."
+msgstr "组件所在的位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__source_route_id
+msgid "The Route used to pick the components."
+msgstr "用于拣选组件的路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_route_id
+msgid "The Route used to transfer the components to the destination location."
+msgstr "用于将组件转移到目标位置的路线"
+
+#. module: mrp_component_operation
+#. odoo-python
+#: code:addons/mrp_component_operation/wizards/mrp_component_operate.py:0
+#, python-format
+msgid "There is no defined route for the manufacture location."
+msgstr "制造位置没有定义路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__product_qty
+msgid "Quantity"
+msgstr "数量"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,field_description:mrp_component_operation.field_mrp_component_operate__mo_id
+msgid "Manufacturing Order"
+msgstr "制造订单"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__lot_id
+msgid "Lot/Serial Number"
+msgstr "批次/序列号"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__operation_id
+msgid "Operation"
+msgstr "操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__scrap_location_id
+msgid "Scrap Location"
+msgstr "报废位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_stock_route__mo_component_selectable
+msgid "Selectable on MO Components"
+msgstr "可在制造订单组件中选择"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__source_route_id
+msgid "Source Route"
+msgstr "源路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_location_id
+msgid "Destination Location"
+msgstr "目标位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_route_id
+msgid "Destination Route"
+msgstr "目标路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__manufacture_location_id
+msgid "Manufacture Location"
+msgstr "制造位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__name
+msgid "Name"
+msgstr "名称"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__picking_type_id
+msgid "Operation Type"
+msgstr "操作类型"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__active
+msgid "Active"
+msgstr "有效"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__lot_id
+msgid "Lot/Serial Number"
+msgstr "批次/序列号"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__operation_id
+msgid "Operation"
+msgstr "操作"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operate__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__scrap_location_id
+msgid "Scrap Location"
+msgstr "报废位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_stock_route__mo_component_selectable
+msgid "Selectable on MO Components"
+msgstr "可在制造订单组件中选择"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__source_route_id
+msgid "Source Route"
+msgstr "源路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_location_id
+msgid "Destination Location"
+msgstr "目标位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__destination_route_id
+msgid "Destination Route"
+msgstr "目标路线"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__manufacture_location_id
+msgid "Manufacture Location"
+msgstr "制造位置"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__name
+msgid "Name"
+msgstr "名称"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__picking_type_id
+msgid "Operation Type"
+msgstr "操作类型"
+
+#. module: mrp_component_operation
+#: model:ir.model.fields,help:mrp_component_operation.field_mrp_component_operation__active
+msgid "Active"
+msgstr "有效"
