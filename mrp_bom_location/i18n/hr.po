@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_location
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-06-17 13:17+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr "Izvještaj pregleda sastavnica"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Sastavnica"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Stavka sastavnica"
+
+#. module: mrp_bom_location
+#. odoo-javascript
+#: code:addons/mrp_bom_location/static/src/xml/mrp_bom_overview_location.xml:0
+#: model:ir.model.fields,field_description:mrp_bom_location.field_mrp_bom__location_id
+#: model:ir.model.fields,field_description:mrp_bom_location.field_mrp_bom_line__location_id
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.view_mrp_bom_filter
+#, python-format
+msgid "Location"
+msgstr "Lokacija"
+
+#. module: mrp_bom_location
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
+msgid "Location of the product"
+msgstr "Lokacija proizvoda"
