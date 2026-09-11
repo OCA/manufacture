@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_mrp_bom" inherit_id="mrp.report_mrp_bom">
+        <xpath
+            expr="//table//th[count(//td[@name='td_mrp_bom']/preceding-sibling::*) + 1]"
+            position="after"
+        >
+            <th class="text-center">Allergens</th>
+        </xpath>
+        <xpath expr="//td[@name='td_mrp_bom']" position="after">
+            <td>
+                <t t-foreach="data['allergen_ids']" t-as="allergen">
+                    <img
+                        t-if="allergen"
+                        t-att-src="image_data_uri(allergen.image)"
+                        style="max-width: 24px; max-height: 24px; margin: 2px; display: inline-block;"
+                    />
+                </t>
+            </td>
+        </xpath>
+        <xpath expr="//td[@name='td_mrp_bom_byproducts_f']" position="after">
+            <td>
+                <t t-foreach="data['allergen_ids']" t-as="allergen">
+                    <img
+                        t-if="allergen"
+                        t-att-src="image_data_uri(allergen.image)"
+                        style="max-width: 24px; max-height: 24px; margin: 2px; display: inline-block;"
+                    />
+                </t>
+            </td>
+        </xpath>
+    </template>
+    <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
+        <xpath expr="//td[@name='td_mrp_code']" position="after">
+            <td>
+                <t t-if="l.get('allergen_ids')">
+                    <t t-foreach="l['allergen_ids']" t-as="allergen">
+                        <img
+                            t-if="allergen"
+                            t-att-src="image_data_uri(allergen.image)"
+                            style="max-width: 24px; max-height: 24px; margin: 2px; display: inline-block;"
+                        />
+                    </t>
+                </t>
+            </td>
+        </xpath>
+    </template>
+</odoo>
