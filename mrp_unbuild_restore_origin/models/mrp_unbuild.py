@@ -29,21 +29,6 @@ class MrpUnbuild(models.Model):
             vals["location_dest_id"] = origin_move_line.location_id.id
         return vals
 
-    def _get_move_line_vals(self, move, move_line):
-        vals = {
-            "move_id": move.id,
-            "owner_id": move_line.owner_id.id,
-            "qty_done": min(move.product_uom_qty, move_line.qty_done),
-            "product_id": move.product_id.id,
-            "product_uom_id": move.product_uom.id,
-            "location_id": move.location_id.id,
-            "location_dest_id": move.location_dest_id.id,
-        }
-        if self.env.context.get("exact_location"):
-            vals["location_id"] = move_line.location_dest_id.id
-            vals["location_dest_id"] = move_line.location_id.id
-        return vals
-
     def _generate_produce_moves(self):
         """This logic may seem a bit complex, but it's necessary due to how the following
         standard code works:
@@ -74,9 +59,16 @@ class MrpUnbuild(models.Model):
                 )
                 if move.has_tracking == "none":
                     vals_list = []
+                    remaining_qty = move.product_uom_qty
                     for move_line in raw_move.move_line_ids:
-                        vals = self._get_move_line_vals(move, move_line)
+                        if remaining_qty <= 0:
+                            break
+                        taken_qty = min(remaining_qty, move_line.qty_done)
+                        if not taken_qty:
+                            continue
+                        vals = self._prepare_move_line_vals(move, move_line, taken_qty)
                         vals_list.append(vals)
+                        remaining_qty -= taken_qty
                     self.env["stock.move.line"].create(vals_list)
                     move.write({"state": "confirmed"})
                 moves += move
