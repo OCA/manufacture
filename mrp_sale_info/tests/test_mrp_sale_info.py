@@ -70,6 +70,46 @@ class TestMrpSaleInfo(common.TransactionCase):
             ]
         )
 
+    def _create_sale_order(self, client_order_ref):
+        """Create and confirm a sale order for ``self.product``."""
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "client_order_ref": client_order_ref,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 1,
+                        },
+                    )
+                ],
+            }
+        )
+        order.action_confirm()
+        return order
+
+    def _create_confirmed_mo(self, sale_line=False, qty=1.0):
+        """Create and confirm a manufacturing order for ``self.product``.
+
+        Optionally link it to a ``sale.order.line`` so the merge behaviour can
+        be exercised without relying on the procurement scheduler.
+        """
+        vals = {
+            "product_id": self.product.id,
+            "bom_id": self.bom.id,
+            "product_qty": qty,
+            "product_uom_id": self.product.uom_id.id,
+        }
+        if sale_line:
+            vals["sale_line_id"] = sale_line.id
+        mo = self.env["mrp.production"].create(vals)
+        mo.action_confirm()
+        return mo
+
     def test_mrp_sale_info(self):
         prev_productions = self.env["mrp.production"].search([])
         self.sale_order.action_confirm()
@@ -107,3 +147,63 @@ class TestMrpSaleInfo(common.TransactionCase):
         )
         production = self.env["mrp.production"].search([]) - prev_productions
         self.assertEqual(len(production), 1)
+
+    def test_merge_retains_sale_info(self):
+        """Merging MOs of the same sale order line keeps the sale info."""
+        sale_line = self.sale_order.order_line
+        mo1 = self._create_confirmed_mo(sale_line=sale_line, qty=1)
+        mo2 = self._create_confirmed_mo(sale_line=sale_line, qty=2)
+        self.assertEqual(mo1.sale_id, self.sale_order)
+        self.assertEqual(mo2.sale_id, self.sale_order)
+
+        action = (mo1 | mo2).action_merge()
+        merged = self.env["mrp.production"].browse(action["res_id"])
+
+        self.assertEqual(merged.sale_line_id, sale_line)
+        self.assertEqual(merged.sale_id, self.sale_order)
+        self.assertEqual(merged.partner_id, self.partner)
+        self.assertEqual(merged.client_order_ref, self.sale_order.client_order_ref)
+        self.assertEqual(merged.product_qty, 3)
+        # The original orders are cancelled by the standard merge.
+        self.assertEqual(mo1.state, "cancel")
+        self.assertEqual(mo2.state, "cancel")
+
+    def test_merge_inconsistent_sale_order(self):
+        """Merging MOs from different sale orders drops the sale info."""
+        sale_order_1 = self._create_sale_order("SO_DIFF_1")
+        sale_order_2 = self._create_sale_order("SO_DIFF_2")
+        mo1 = self._create_confirmed_mo(sale_line=sale_order_1.order_line, qty=1)
+        mo2 = self._create_confirmed_mo(sale_line=sale_order_2.order_line, qty=2)
+        self.assertNotEqual(mo1.sale_id, mo2.sale_id)
+
+        action = (mo1 | mo2).action_merge()
+        merged = self.env["mrp.production"].browse(action["res_id"])
+
+        self.assertFalse(merged.sale_line_id)
+        self.assertFalse(merged.sale_id)
+        self.assertFalse(merged.partner_id)
+        self.assertFalse(merged.client_order_ref)
+
+    def test_merge_without_sale_order(self):
+        """Merging MOs that have no sale order works and sets no sale info."""
+        mo1 = self._create_confirmed_mo(qty=1)
+        mo2 = self._create_confirmed_mo(qty=2)
+
+        action = (mo1 | mo2).action_merge()
+        merged = self.env["mrp.production"].browse(action["res_id"])
+
+        self.assertFalse(merged.sale_line_id)
+        self.assertFalse(merged.sale_id)
+        self.assertEqual(merged.product_qty, 3)
+
+    def test_merge_partial_sale_order(self):
+        """Merging a MO with sale info and one without drops the sale info."""
+        sale_order = self._create_sale_order("SO_PARTIAL")
+        mo1 = self._create_confirmed_mo(sale_line=sale_order.order_line, qty=1)
+        mo2 = self._create_confirmed_mo(qty=2)
+
+        action = (mo1 | mo2).action_merge()
+        merged = self.env["mrp.production"].browse(action["res_id"])
+
+        self.assertFalse(merged.sale_line_id)
+        self.assertFalse(merged.sale_id)
