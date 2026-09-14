@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_exception_confirm_form" model="ir.ui.view">
+        <field name="name">mrp.exception.confirm.form</field>
+        <field name="model">mrp.exception.confirm</field>
+        <field name="inherit_id" ref="base_exception.view_exception_rule_confirm"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='exception_ids']" position="before">
+                <field name="related_model_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_mrp_exception_confirm" model="ir.actions.act_window">
+        <field name="name">Manufacturing Order Exceptions</field>
+        <field name="res_model">mrp.exception.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_mrp_exception_confirm_form"/>
+        <field name="target">new</field>
+        <field name="context">{'default_related_model_id': active_id}</field>
+    </record>
+</odoo>

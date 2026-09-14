@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_production_form_inherit_exception" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.exception</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="ignore_exception" invisible="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-danger" role="alert" style="margin-bottom: 0px;"
+                     invisible="not exceptions_summary">
+                    <strong>There are exceptions blocking this Manufacturing Order:</strong>
+                    <br/>
+                    <field name="exceptions_summary"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
