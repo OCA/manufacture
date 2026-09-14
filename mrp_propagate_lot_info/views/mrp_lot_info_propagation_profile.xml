@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="mrp_lot_info_propagation_profile_view_form" model="ir.ui.view">
+        <field name="name">mrp.lot.info.propagation.profile.form</field>
+        <field name="model">mrp.lot.info.propagation.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="propagate_lot_field_ids" widget="many2many_tags" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_lot_info_propagation_profile_view_list" model="ir.ui.view">
+        <field name="name">mrp.lot.info.propagation.profile.list</field>
+        <field name="model">mrp.lot.info.propagation.profile</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="propagate_lot_field_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+
+    <record id="mrp_lot_info_propagation_profile_action" model="ir.actions.act_window">
+        <field name="name">Lot Info Propagation Profiles</field>
+        <field name="res_model">mrp.lot.info.propagation.profile</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="mrp_lot_info_propagation_profile_menu"
+        name="Lot Info Propagation Profiles"
+        parent="mrp.menu_mrp_configuration"
+        action="mrp_lot_info_propagation_profile_action"
+        sequence="30"
+    />
+</odoo>
