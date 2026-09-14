@@ -8,7 +8,7 @@ class ExceptionRule(models.Model):
         selection_add=[("mrp.production", "Manufacturing Order")],
         ondelete={"mrp.production": "cascade"},
     )
-    
+
     production_ids = fields.Many2many(
         comodel_name="mrp.production",
         relation="mrp_production_exception_rule_rel",

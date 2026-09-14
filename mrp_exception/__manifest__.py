@@ -3,7 +3,7 @@
     "version": "18.0.1.0.0",
     "category": "Manufacturing",
     "summary": "Add custom exception rules to Manufacturing Orders",
-    "author": "rfindling-gpc",
+    "author": "Global Protection, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": [
