@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="qc_trigger_form_view">
+        <field name="name">qc.trigger.form</field>
+        <field name="model">qc.trigger</field>
+        <field name='inherit_id' ref='quality_control_oca.qc_trigger_form_view' />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_selectable']" position="after">
+                <field name="picking_type_id" readonly="1" />
+                <field name="inspection_per_lot" invisible="not picking_type_id" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="qc_trigger_tree_view">
+        <field name="name">qc.trigger.form</field>
+        <field name="model">qc.trigger</field>
+        <field name='inherit_id' ref='quality_control_oca.qc_trigger_tree_view' />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_selectable']" position="after">
+                <field name="picking_type_id" column_invisible="True" />
+                <field name="inspection_per_lot" invisible="not picking_type_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
