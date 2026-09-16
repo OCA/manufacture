@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-02-12 03:48+0000\n"
 "PO-Revision-Date: 2018-02-12 03:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/"
-"teams/23907/pt_PT/)\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/"
+"23907/pt_PT/)\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,6 +107,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Approve"
 msgstr "Aprovar"
+
+#. module: quality_control_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_test_form_view
+#: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_trigger_form_view
+msgid "Archived"
+msgstr ""
 
 #. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__message_attachment_count
@@ -299,7 +305,6 @@ msgid "Full name"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__generic
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_generic
 msgid "Generic"
 msgstr ""
@@ -835,18 +840,8 @@ msgid "Reference"
 msgstr "Referência"
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__object_id
-msgid "Reference object"
-msgstr ""
-
-#. module: quality_control_oca
 #: model:qc.test.category,name:quality_control_oca.qc_test_template_category_referenced
 msgid "Referenced"
-msgstr ""
-
-#. module: quality_control_oca
-#: model:ir.model.fields.selection,name:quality_control_oca.selection__qc_test__type__related
-msgid "Related"
 msgstr ""
 
 #. module: quality_control_oca
@@ -1013,7 +1008,6 @@ msgid "Triggers"
 msgstr ""
 
 #. module: quality_control_oca
-#: model:ir.model.fields,field_description:quality_control_oca.field_qc_test__type
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__type
 msgid "Type"
 msgstr "Tipo"

@@ -24,7 +24,8 @@ msgid ""
 "Define the strategy to follow in MRP multi level when there is acoexistence of demand from demand estimates and other sources.\n"
 "* Always consider all sources: nothing is excluded or ignored.\n"
 "* Ignore other sources for products with estimates: When there are estimates entered for product and they are in a present or future period, all other sources of demand are ignored for those products.\n"
-"* Ignore other sources during periods with estimates: When you create demand estimates for a period and product, other sources of demand will be ignored during that period for those products."
+"* Ignore other sources during periods with estimates: When you create demand estimates for a period and product, other sources of demand will be ignored during that period for those products.\n"
+"* Ignore estimates: Completely ignore demand estimates."
 msgstr ""
 
 #. module: mrp_multi_level_estimate
@@ -40,6 +41,11 @@ msgstr ""
 #. module: mrp_multi_level_estimate
 #: model:ir.model.constraint,message:mrp_multi_level_estimate.constraint_product_mrp_area_group_estimate_days_check
 msgid "Group Days of Estimates must be greater than or equal to zero."
+msgstr ""
+
+#. module: mrp_multi_level_estimate
+#: model:ir.model.fields.selection,name:mrp_multi_level_estimate.selection__mrp_area__estimate_demand_and_other_sources_strat__ignore_estimates
+msgid "Ignore estimates"
 msgstr ""
 
 #. module: mrp_multi_level_estimate

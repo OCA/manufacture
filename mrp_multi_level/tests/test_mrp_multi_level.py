@@ -4,6 +4,7 @@
 from datetime import date, datetime, timedelta
 
 from odoo import fields
+from odoo.exceptions import UserError, ValidationError
 
 from .common import TestMrpMultiLevelCommon
 
@@ -922,3 +923,95 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
             .create({})
         )
         self.assertEqual(len(procure_wizard.item_ids), 0)
+
+    def test_26_parameters_product_of_another_company(self):
+        """Parameters cannot refer to a product of another company."""
+        product = self.product_obj.create(
+            {"name": "Product of Main Company", "company_id": self.company.id}
+        )
+        with self.assertRaises(UserError):
+            self.product_mrp_area_obj.create(
+                {"mrp_area_id": self.other_company_area.id, "product_id": product.id}
+            )
+
+    def test_27_parameters_shared_product(self):
+        """Parameters can refer to a product shared between companies."""
+        product = self.product_obj.create({"name": "Shared Product"})
+        parameter = self.product_mrp_area_obj.create(
+            {"mrp_area_id": self.other_company_area.id, "product_id": product.id}
+        )
+        self.assertEqual(parameter.company_id, self.other_company_area.company_id)
+
+    def test_28_parameters_product_replaced(self):
+        """The product of a parameter cannot be replaced by one of another company."""
+        product = self.product_obj.create({"name": "Shared Product"})
+        parameter = self.product_mrp_area_obj.create(
+            {"mrp_area_id": self.other_company_area.id, "product_id": product.id}
+        )
+        product_main_company = self.product_obj.create(
+            {"name": "Product of Main Company", "company_id": self.company.id}
+        )
+        with self.assertRaises(UserError):
+            parameter.product_id = product_main_company
+
+    def test_29_mrp_area_moved_to_another_company(self):
+        """An MRP area cannot be moved to a company where the products of its
+        parameters are not available."""
+        product = self.product_obj.create(
+            {"name": "Product of Main Company", "company_id": self.company.id}
+        )
+        self.product_mrp_area_obj.create(
+            {"mrp_area_id": self.mrp_area.id, "product_id": product.id}
+        )
+        with self.assertRaises(UserError):
+            self.mrp_area.warehouse_id = self.other_wh
+
+    def test_30_product_restricted_to_company_with_parameters(self):
+        """A product cannot be restricted to a company while it keeps parameters
+        of another one."""
+        product = self.product_obj.create({"name": "Shared Product"})
+        self.product_mrp_area_obj.create(
+            {"mrp_area_id": self.other_company_area.id, "product_id": product.id}
+        )
+        with self.assertRaises(ValidationError):
+            product.company_id = self.company
+
+    def test_31_product_restricted_to_company_of_its_parameters(self):
+        """A product can be restricted to the company of all its parameters."""
+        product = self.product_obj.create({"name": "Shared Product"})
+        self.product_mrp_area_obj.create(
+            {"mrp_area_id": self.mrp_area.id, "product_id": product.id}
+        )
+        product.company_id = self.company
+        self.assertEqual(product.company_id, self.company)
+
+    def test_32_mrp_area_parameters_company_extension_points(self):
+        """Default extension points for the MRP area company check."""
+        product = self.product_obj.create(
+            {"name": "Product of Main Company", "company_id": self.company.id}
+        )
+        template = product.product_tmpl_id
+        self.assertEqual(
+            template._mrp_area_parameters_allowed_companies(), self.company
+        )
+        self.assertEqual(
+            template._mrp_area_parameters_company_trigger_fields(), ("company_id",)
+        )
+
+    def test_33_main_supplier_follows_vendor_line_company(self):
+        """The main supplier follows a company change on a vendor line."""
+        parameter = self.product_mrp_area_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.mrp_area.id),
+            ]
+        )
+        supplierinfo = self.prod_test.seller_ids
+        self.assertEqual(parameter.supply_method, "buy")
+        self.assertEqual(parameter.main_supplierinfo_id, supplierinfo)
+        self.assertEqual(parameter.main_supplier_id, supplierinfo.partner_id)
+        # A vendor line restricted to a company is no longer eligible for the
+        # parameters of the other ones.
+        supplierinfo.company_id = self.other_company
+        self.assertFalse(parameter.main_supplierinfo_id)
+        self.assertFalse(parameter.main_supplier_id)

@@ -336,6 +336,25 @@ class TestMrpMultiLevelEstimate(TestMrpMultiLevelCommon):
         self.assertEqual(
             demand_from_other_sources.mrp_date, self.date_without_ranges.date()
         )
+        # 4. "ignore_estimates"
+        self.estimate_area.estimate_demand_and_other_sources_strat = "ignore_estimates"
+        self.mrp_multi_level_wiz.create(
+            {"mrp_area_ids": [(6, 0, self.estimate_area.ids)]}
+        ).run_mrp_multi_level()
+        moves = self.mrp_move_obj.search(
+            [
+                ("product_id", "=", self.prod_test.id),
+                ("mrp_area_id", "=", self.estimate_area.id),
+            ]
+        )
+        demand_from_estimates = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin == "fc"
+        )
+        demand_from_other_sources = moves.filtered(
+            lambda m: m.mrp_type == "d" and m.mrp_origin != "fc"
+        )
+        self.assertEqual(len(demand_from_estimates), 0)
+        self.assertEqual(len(demand_from_other_sources), 2)
 
     def test_06_estimate_and_other_sources_strat_with_mo(self):
         """

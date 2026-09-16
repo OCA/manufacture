@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_subcontracting_skip_no_negative
+#: model:ir.model,name:mrp_subcontracting_skip_no_negative.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: mrp_subcontracting_skip_no_negative
 #: model:ir.model,name:mrp_subcontracting_skip_no_negative.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento de existencias"

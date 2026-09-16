@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field
+            name="name"
+        >stock.picking.form - mrp_production_serial_matrix_subcontracting</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <button name="button_validate" position="before">
+                <field name="show_subcontract_serial_matrix" invisible="1" />
+                <button
+                    name="action_open_subcontract_serial_matrix"
+                    type="object"
+                    string="Serial Numbers Matrix"
+                    class="oe_highlight"
+                    invisible="not show_subcontract_serial_matrix"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

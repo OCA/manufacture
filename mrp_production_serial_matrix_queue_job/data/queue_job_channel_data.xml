@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record model="queue.job.channel" id="channel_mrp_production_serial_matrix">
+        <field name="name">mrp_production_serial_matrix</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+</odoo>

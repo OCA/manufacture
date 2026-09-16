@@ -59,6 +59,12 @@ class MultiLevelMrp(models.TransientModel):
 
     @api.model
     def _estimates_domain(self, product_mrp_area):
+        estimate_strat = (
+            product_mrp_area.mrp_area_id.estimate_demand_and_other_sources_strat
+        )
+        if estimate_strat == "ignore_estimates":
+            # Return an impossible domain to ignore estimates.
+            return [("location_id", "=", 1), ("location_id", "=", 2)]
         locations = product_mrp_area.mrp_area_id._get_locations()
         return [
             ("product_id", "=", product_mrp_area.product_id.id),

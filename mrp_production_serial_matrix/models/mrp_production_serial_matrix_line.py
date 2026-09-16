@@ -1,10 +1,10 @@
 # Copyright 2019-24 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
-class MrpProductionSerialMatrix(models.TransientModel):
+class MrpProductionSerialMatrixLine(models.Model):
     _name = "mrp.production.serial.matrix.line"
     _description = "Mrp Production Serial Matrix Line"
 
@@ -25,7 +25,9 @@ class MrpProductionSerialMatrix(models.TransientModel):
         compute="_compute_allowed_component_lot_ids",
     )
     lot_qty = fields.Float(digits="Product Unit of Measure")
+    state = fields.Selection(related="wizard_id.state")
 
+    @api.depends("component_id", "production_id.location_src_id")
     def _compute_allowed_component_lot_ids(self):
         for rec in self:
             available_quants = self.env["stock.quant"].search(
