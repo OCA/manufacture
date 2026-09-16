@@ -1,0 +1,175 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_propagate_lot_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: mrp_propagate_lot_info
+#: model:product.template,name:mrp_propagate_lot_info.product_product_beef_rib_rack_product_template
+msgid "Beef Rib Rack"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_bom_line_id
+msgid "BoM line propagating lot"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_bom_byproduct
+msgid "Byproduct"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,help:mrp_propagate_lot_info.field_product_category__mrp_propagate_lot_profile_id
+msgid ""
+"Default lot propagation profile for consumed components in manufacturing."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.actions.act_window,name:mrp_propagate_lot_info.mrp_lot_info_propagation_profile_action
+#: model:ir.ui.menu,name:mrp_propagate_lot_info.mrp_lot_info_propagation_profile_menu
+msgid "Lot Info Propagation Profiles"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid "Lot field propagation requires a finished product lot/serial number."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid ""
+"Lot field propagation requires exactly one consumed lot on the configured "
+"component."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_line__propagate_lot_field_ids
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__propagate_lot_field_ids
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_field_ids
+msgid "Lot fields to propagate"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_line__propagate_lot_profile_id
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_production__propagate_lot_profile_id
+msgid "Lot propagation profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_lot_info_propagation_profile
+msgid "MRP Lot Info Propagation Profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_product_category__mrp_propagate_lot_profile_id
+msgid "MRP Lot Propagation Profile"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:mrp.lot.info.propagation.profile,name:mrp_propagate_lot_info.mrp_lot_info_propagation_profile_meat_traceability
+msgid "Meat traceability"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_lot_info_propagation_profile__name
+msgid "Name"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_bom_line.py:0
+#: code:addons/mrp_propagate_lot_info/models/mrp_production.py:0
+msgid ""
+"Only one BoM line can propagate lot information to the finished product."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#. odoo-python
+#: code:addons/mrp_propagate_lot_info/models/mrp_bom_line.py:0
+msgid ""
+"Only tracked components can propagate lot information to the finished "
+"product."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model,name:mrp_propagate_lot_info.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,field_description:mrp_propagate_lot_info.field_mrp_bom_byproduct__propagate_lot_info
+msgid "Propagate Lot Info"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:ir.model.fields,help:mrp_propagate_lot_info.field_mrp_bom_byproduct__propagate_lot_info
+msgid "Propagate the configured component lot values to this by-product lot."
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:product.template,name:mrp_propagate_lot_info.product_product_retail_rib_pack_product_template
+msgid "Retail Rib Pack"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:product.template,name:mrp_propagate_lot_info.product_product_ribeye_cap_trim_product_template
+msgid "Ribeye Cap Trim"
+msgstr ""
+
+#. module: mrp_propagate_lot_info
+#: model:product.template,name:mrp_propagate_lot_info.product_product_short_rib_cut_product_template
+msgid "Short Rib Cut"
+msgstr ""
