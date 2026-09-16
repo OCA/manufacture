@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-01 10:42+0000\n"
+"PO-Revision-Date: 2026-09-16 13:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_multi_level
 #: model:product.template,name:mrp_multi_level.product_product_av_11_product_template
@@ -973,6 +973,10 @@ msgid ""
 "Delete those parameters before restricting the product to the company "
 "%(company)s."
 msgstr ""
+"Il prodotto %(product)s presenta parametri dell'area MRP appartenenti a "
+"un'altra azienda: %(parameters)s.\n"
+"Eliminare tali parametri prima di limitare il prodotto all'azienda %(company)"
+"s."
 
 #. module: mrp_multi_level
 #: model:ir.model.constraint,message:mrp_multi_level.constraint_product_mrp_area_product_mrp_area_uniq
