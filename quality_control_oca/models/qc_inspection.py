@@ -100,6 +100,14 @@ class QcInspection(models.Model):
         help="This field will be marked if all tests have succeeded.",
         store=True,
     )
+    timing = fields.Selection(
+        selection=[
+            ("before", "Before"),
+            ("after", "After"),
+            ("plan_ahead", "Plan Ahead"),
+        ],
+        readonly=True,
+    )
     auto_generated = fields.Boolean(
         string="Auto-generated",
         readonly=True,
@@ -227,6 +235,7 @@ class QcInspection(models.Model):
             "test": trigger_line.test.id,
             "user": trigger_line.user.id,
             "auto_generated": True,
+            "timing": trigger_line.timing,
         }
 
     def _prepare_inspection_lines(self, test, force_fill=False):
