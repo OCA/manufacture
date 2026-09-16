@@ -47,7 +47,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot)d"
                     icon="fa-list"
-                    groups="quality_control_oca.group_quality_control_user"
+                    groups="quality_control_oca.group_quality_control_readonly_user"
                 >
                     <field
                         name="created_inspections"
@@ -60,7 +60,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_done)d"
                     icon="fa-pencil"
-                    groups="quality_control_oca.group_quality_control_user"
+                    groups="quality_control_oca.group_quality_control_readonly_user"
                 >
                     <field name="done_inspections" widget="statinfo" />
                 </button>
@@ -69,7 +69,7 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_passed)d"
                     icon="fa-thumbs-o-up"
-                    groups="quality_control_oca.group_quality_control_user"
+                    groups="quality_control_oca.group_quality_control_readonly_user"
                 >
                     <field name="passed_inspections" widget="statinfo" />
                 </button>
@@ -78,12 +78,12 @@
                     type="action"
                     name="%(action_qc_inspection_per_lot_failed)d"
                     icon="fa-thumbs-o-down"
-                    groups="quality_control_oca.group_quality_control_user"
+                    groups="quality_control_oca.group_quality_control_readonly_user"
                 >
                     <field
                         name="failed_inspections"
                         widget="statinfo"
-                        groups="quality_control_oca.group_quality_control_user"
+                        groups="quality_control_oca.group_quality_control_readonly_user"
                     />
                 </button>
             </div>

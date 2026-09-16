@@ -17,6 +17,7 @@
                         type="object"
                         invisible="state != 'canceled'"
                         string="Draft"
+                        groups="quality_control_oca.group_quality_control_user"
                     />
                     <button
                         name="action_todo"
@@ -24,6 +25,7 @@
                         class="oe_highlight"
                         invisible="state != 'draft'"
                         string="Mark todo"
+                        groups="quality_control_oca.group_quality_control_user"
                     />
                     <button
                         name="action_confirm"
@@ -32,6 +34,7 @@
                         invisible="state != 'ready'"
                         string="Confirm"
                         icon="fa-check"
+                        groups="quality_control_oca.group_quality_control_user"
                     />
                     <button
                         name="action_approve"
@@ -47,6 +50,7 @@
                         invisible="state not in ['waiting', 'ready', 'failed', 'success']"
                         string="Cancel"
                         icon="fa-ban"
+                        groups="quality_control_oca.group_quality_control_user"
                     />
                     <field
                         name="state"
@@ -64,6 +68,7 @@
                             icon="fa-bookmark-o"
                             invisible="state != 'draft'"
                             string="Set test"
+                            groups="quality_control_oca.group_quality_control_user"
                         />
                     </div>
                     <h1>
