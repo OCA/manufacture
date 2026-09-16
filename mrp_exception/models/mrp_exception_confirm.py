@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class MrpExceptionConfirm(models.TransientModel):
@@ -15,7 +16,14 @@ class MrpExceptionConfirm(models.TransientModel):
         self.ensure_one()
         exceptions_blocking = self.exception_ids.filtered("is_blocking")
 
-        if self.ignore and not exceptions_blocking:
+        if self.ignore and exceptions_blocking:
+            raise UserError(
+                _(
+                    "The exceptions can not be ignored, because "
+                    "some of them are blocking."
+                )
+            )
+        if self.ignore:
             self.related_model_id.ignore_exception = True
             # Resume the Odoo MRP completion workflow.
             # If the MRP workflow yields an intermediate wizard (e.g., backorder),

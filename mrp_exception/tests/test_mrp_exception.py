@@ -10,7 +10,7 @@ class TestMrpException(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
             }
         )
         cls.bom = cls.env["mrp.bom"].create(
