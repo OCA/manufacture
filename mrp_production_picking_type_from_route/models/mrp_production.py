@@ -11,6 +11,11 @@ class MrpProduction(models.Model):
     def _compute_picking_type_id(self):
         res = super()._compute_picking_type_id()
         for mo in self:
+            # Transfers and reservations already exist once the MO is confirmed,
+            # so its operation type must not be repointed. A falsy state is a
+            # record still being created (the field is precomputed).
+            if mo.state and mo.state != "draft":
+                continue
             if mo.product_id:
                 base_domain = [
                     ("action", "=", "manufacture"),
