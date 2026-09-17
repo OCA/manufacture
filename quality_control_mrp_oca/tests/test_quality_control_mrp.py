@@ -114,6 +114,50 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
             self.production1.created_inspections, 2, "There must be only 2 inspections."
         )
 
+    def test_inspection_with_partial_fabrication_before(self):
+        self.trigger.picking_type_id = self.production1.picking_type_id.id
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "timing": "before"},
+            )
+        ]
+        # Production 2 with before timing trigger
+        production_form = Form(self.env["mrp.production"])
+        production_form.product_id = self.product.product_variant_id
+        production_form.bom_id = self.bom
+        production_form.product_qty = 2.0
+        production2 = production_form.save()
+        production2.action_confirm()
+        self.assertEqual(
+            production2.created_inspections,
+            1,
+            "Only one inspection must be created.",
+        )
+        production2.qty_producing = 1.0
+        for move in production2.move_raw_ids:
+            move.quantity = move.product_uom_qty
+        warning_form = Form.from_action(self.env, production2.button_mark_done()).save()
+        self.assertEqual(warning_form._name, "mrp.consumption.warning")
+        backorder_form = Form.from_action(
+            self.env, warning_form.action_confirm()
+        ).save()
+        backorder_form.action_backorder()
+        self.assertEqual(production2.state, "done")
+        self.assertEqual(
+            production2.created_inspections,
+            1,
+            "Only one inspection must be created.",
+        )
+        mo_backorder = production2.procurement_group_id.mrp_production_ids[-1]
+        self.assertEqual(mo_backorder.state, "confirmed")
+        self.assertEqual(
+            mo_backorder.created_inspections,
+            1,
+            "Only one inspection must be created.",
+        )
+
     def test_qc_inspection_mo(self):
         self.inspection1.write(
             {"object_id": "%s,%d" % (self.production1._name, self.production1.id)}
