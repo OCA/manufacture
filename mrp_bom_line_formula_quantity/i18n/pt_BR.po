@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_line_formula_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,help:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid ""
+"Formula to be evaluated when generating the quantity for a production order line.\n"
+"The following values are available:\n"
+"- bom_line: the current BoM line,\n"
+"- operation: the operation where the components areconsumed for current BoM line,\n"
+"- product: the Product of current BoM line,\n"
+"- product_uom: the UoM of the Product of current BoM line,\n"
+"- product_uom_qty: the quantity of the production order line,\n"
+"- production: the production order being created,\n"
+"The computed quantity must be assigned to the `quantity` variable."
+msgstr ""
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,field_description:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid "Quantity Formula"
+msgstr ""
