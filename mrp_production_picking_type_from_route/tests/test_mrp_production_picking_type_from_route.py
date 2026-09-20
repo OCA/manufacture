@@ -70,6 +70,22 @@ class MrpProductionCase(TransactionCase):
         # Kept after save:
         self.assertEqual(new_mo.picking_type_id, self.op_type_2)
 
+    def test_03_create_mo_without_form(self):
+        # `mrp.production.create` assigns the default operation type and takes the
+        # reference from its sequence, so the route has to be applied there as well.
+        new_mo = self.env["mrp.production"].create({"product_id": self.product_2.id})
+        self.assertEqual(new_mo.picking_type_id, self.op_type_2)
+        self.assertTrue(new_mo.name.startswith("MO/SEC"))
+
+    def test_04_create_mo_without_form_keeps_given_op_type(self):
+        new_mo = self.env["mrp.production"].create(
+            {
+                "product_id": self.product_2.id,
+                "picking_type_id": self.standard_manuf_op_type.id,
+            }
+        )
+        self.assertEqual(new_mo.picking_type_id, self.standard_manuf_op_type)
+
     def test_02_create_mo_change_op_type_manually(self):
         new_mo = Form(self.env["mrp.production"])
         new_mo.product_id = self.product_2
