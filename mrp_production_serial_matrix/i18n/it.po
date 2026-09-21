@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-03-26 14:45+0000\n"
+"PO-Revision-Date: 2026-09-21 20:58+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -27,6 +27,17 @@ msgid ""
 " * Done: The MO is closed, the stock moves are posted. \n"
 " * Cancelled: The MO has been cancelled, can't be confirmed anymore."
 msgstr ""
+" * Bozza: l'ordine di produzione non è ancora confermato.\n"
+"* Confermato: l'ordine di produzione è confermato; vengono attivate le "
+"regole di gestione delle scorte e il riordino dei componenti.\n"
+"* In corso: la produzione è iniziata (sull'ordine di produzione o "
+"sull'ordine di lavoro).\n"
+"* Da chiudere: la produzione è terminata; l'ordine di produzione deve essere "
+"chiuso.\n"
+"* Completato: l'ordine di produzione è chiuso; i movimenti di magazzino sono "
+"registrati.\n"
+"* Annullato: l'ordine di produzione è stato annullato e non può più essere "
+"confermato."
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
@@ -69,7 +80,7 @@ msgstr "Annulla"
 #: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__cancel
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_search
 msgid "Cancelled"
-msgstr ""
+msgstr "Annullata"
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__company_id
@@ -138,7 +149,7 @@ msgstr "Bozza"
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "Error during the processing: %s"
-msgstr ""
+msgstr "Errore nell'elaborazione: %s"
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields.selection,name:mrp_production_serial_matrix.selection__mrp_production_serial_matrix__state__exception
@@ -262,7 +273,7 @@ msgstr "Messaggio allerta selezione lotto"
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__production_state
 msgid "MO Status"
-msgstr ""
+msgstr "Stato OP"
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__production_id
@@ -287,6 +298,8 @@ msgstr "Cella matrice"
 msgid ""
 "Matrix manually cancelled. The related MO (%(mo)s) is in state '%(state)s'."
 msgstr ""
+"Matrice annullata manualmente. L'ordine di produzione (OP) correlato (%(mo)"
+"s) si trova nello stato '%(state)s'."
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
@@ -296,6 +309,8 @@ msgid ""
 "Matrix reset to 'Draft'. Pending MO: %(mo)s. Remaining serial numbers to "
 "process: %(lots)s."
 msgstr ""
+"Matrice reimpostata su 'Bozza'. OP in sospeso: %(mo)s. Numeri di serie "
+"rimanenti da elaborare: %(lots)s."
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__message_has_error
@@ -350,6 +365,8 @@ msgid ""
 "Only %(taken)s units of serial/lot number '%(lot)s' could be reserved at "
 "%(location)s out of the %(needed)s needed."
 msgstr ""
+"È stato possibile prenotare solo %(taken)s unità del numero di serie/lotto '%"
+"(lot)s' presso %(location)s, a fronte delle %(needed)s richieste."
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
@@ -357,6 +374,8 @@ msgstr ""
 #, python-format
 msgid "Only matrices in 'Exception' state can be reset to 'Draft'."
 msgstr ""
+"Solo le matrici nello stato 'Eccezione' possono essere reimpostate allo "
+"stato 'Bozza'."
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production_serial_matrix__product_id
@@ -376,7 +395,7 @@ msgstr "Valutazioni"
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
 msgid "Reset to Draft"
-msgstr ""
+msgstr "Reimposta a bozza"
 
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
@@ -405,6 +424,8 @@ msgid ""
 "Serial/Lot number '%(lot)s' is not available at %(location)s in the quantity "
 "needed (%(available)s available, %(needed)s needed)."
 msgstr ""
+"Il numero di serie/lotto '%(lot)s' non è disponibile presso %(location)s "
+"nella quantità richiesta (%(available)s disponibili, %(needed)s richieste)."
 
 #. module: mrp_production_serial_matrix
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix.field_mrp_production__show_serial_matrix
@@ -445,13 +466,15 @@ msgstr "Il prodotto finito di questo OP non è tracciato da numeri di serie."
 msgid ""
 "The matrix can only be cancelled when the related MO is done or cancelled."
 msgstr ""
+"La matrice può essere annullata solo quando l'ordine di produzione (OP) "
+"corrispondente è stato completato o annullato."
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
 #: code:addons/mrp_production_serial_matrix/models/mrp_production_serial_matrix.py:0
 #, python-format
 msgid "The matrix is already %s."
-msgstr ""
+msgstr "La matrice è già %s."
 
 #. module: mrp_production_serial_matrix
 #. odoo-python
@@ -467,6 +490,8 @@ msgstr "La matrice seriale è completata con successo"
 msgid ""
 "There is no pending MO related to this matrix. Cancel the matrix instead."
 msgstr ""
+"Non ci sono ordini di produzione (OP) in sospeso relativi a questa matrice. "
+"Annullare invece la matrice."
 
 #. module: mrp_production_serial_matrix
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix.mrp_production_serial_matrix_view_form
@@ -495,6 +520,8 @@ msgstr "Procedura guidata"
 msgid ""
 "You cannot delete a serial matrix that is in progress, done or cancelled."
 msgstr ""
+"Non è possibile eliminare una matrice seriale in corso, completata o "
+"annullata."
 
 #, python-format
 #~ msgid "Serial/Lot number '%s' not available at source location."
