@@ -30,4 +30,15 @@
         </field>
     </record>
 
+    <record id="view_mrp_production_filter_inherit" model="ir.ui.view">
+        <field name="name">MRP Production Search with Customer Reference</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|', '|', ('name', 'ilike', self), ('origin', 'ilike', self), ('client_order_ref', 'ilike', self)]</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>

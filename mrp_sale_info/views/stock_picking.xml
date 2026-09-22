@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Stock Picking Tree View Extension -->
+    <record id="stock_picking_tree_view_inherit" model="ir.ui.view">
+        <field name="name">Stock Picking Tree with Sale Order</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="sale_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="commitment_date" optional="hide" />
+                <field name="client_order_ref" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock Picking Form View Extension -->
+    <record id="stock_picking_form_view_inherit" model="ir.ui.view">
+        <field name="name">Stock Picking Form with Sale Order</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='operations']" position="after">
+                <page string="Sale Information" name="sale_info" groups="stock.group_stock_manager">
+                    <group>
+                        <group>
+                            <field name="sale_id" />
+                            <field name="partner_id" />
+                        </group>
+                        <group>
+                            <field name="commitment_date" />
+                            <field name="client_order_ref" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Picking Search View Extension -->
+    <record id="view_picking_internal_search_inherit" model="ir.ui.view">
+        <field name="name">Stock Picking Search with Customer Reference</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|', '|', ('name', 'ilike', self), ('origin', 'ilike', self), ('client_order_ref', 'ilike', self)]</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock Picking Kanban View Extension -->
+    <record id="stock_picking_kanban_view_inherit" model="ir.ui.view">
+        <field name="name">Stock Picking Kanban with Sale Order</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.stock_picking_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_kanban_record_body']" position="before">
+                <div class="o_kanban_record_subtitle">
+                    <field name="sale_id" widget="many2one_avatar" nolabel="1" />
+                    <field name="client_order_ref" nolabel="1" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

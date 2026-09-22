@@ -4,19 +4,19 @@
 #
 # Translators:
 # Jeffery Chenn <jeffery9@gmail.com>, 2016
+# Odoo AI Assistant, 2024
 msgid ""
 msgstr ""
-"Project-Id-Version: manufacture (9.0)\n"
+"Project-Id-Version: manufacture (17.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-07 07:44+0000\n"
-"PO-Revision-Date: 2016-09-04 05:46+0000\n"
-"Last-Translator: Jeffery Chenn <jeffery9@gmail.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-"
-"manufacture-9-0/language/zh_CN/)\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Odoo AI Assistant <support@odoo.com>\n"
+"Language-Team: Chinese (China) (https://www.odoo.com)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: mrp_sale_info
@@ -35,33 +35,33 @@ msgstr "客户"
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
 msgid "Customer Reference"
-msgstr ""
+msgstr "客户参考号"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "生产订单"
 
 #. module: mrp_sale_info
 #: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
 msgid "Sale information"
-msgstr ""
+msgstr "销售信息"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
-msgid "Sale order"
+msgid "Sale Order"
 msgstr "销售订单"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__source_procurement_group_id
 msgid "Source Procurement Group"
-msgstr ""
+msgstr "源采购组"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "库存规则"
 
 #. module: mrp_sale_info
 #: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
@@ -70,14 +70,26 @@ msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
 msgstr ""
+"这是向客户承诺的交货日期。如果设置了此日期，交货订单将基于此日期而不是产品提前期进行排程。"
 
 #. module: mrp_sale_info
 #: model:ir.model,name:mrp_sale_info.model_mrp_workorder
 msgid "Work Order"
 msgstr "工单"
 
-#~ msgid "Manufacturing Order"
-#~ msgstr "制造订单"
+#. module: mrp_sale_info
+#: code:addons/mrp_sale_info/models/mrp_production.py:36
+#, python-format
+msgid "Extend search functionality to support customer reference search"
+msgstr "扩展搜索功能，支持客户参考号搜索"
 
-#~ msgid "Sale Information"
-#~ msgstr "销售信息"
+#. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.stock_picking_form_view_inherit
+msgid "Sale Information"
+msgstr "销售信息"
+
+#. module: mrp_sale_info
+#: code:addons/mrp_sale_info/models/stock_picking.py:40
+#, python-format
+msgid "Calculate sale order information associated with picking"
+msgstr "计算拣货单据关联的销售订单信息"

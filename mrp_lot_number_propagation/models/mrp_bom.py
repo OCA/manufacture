@@ -58,8 +58,22 @@ class MrpBom(models.Model):
         self.ensure_one()
         uom_unit = self.env.ref("uom.product_uom_unit")
         for line in self.bom_line_ids:
+            # Check if component supports serial tracking
+            # Support both traditional product_id and component_template_id approaches
+            product_tracking = False
+            if line.product_id:
+                product_tracking = line.product_id.tracking
+            elif line.component_template_id:
+                # For component_template_id, check if any variant has serial tracking
+                variants = line.component_template_id.product_variant_ids
+                if variants:
+                    # Check if all variants have the same tracking type
+                    tracking_types = variants.mapped('tracking')
+                    if len(set(tracking_types)) == 1 and tracking_types[0] == "serial":
+                        product_tracking = "serial"
+            
             if (
-                line.product_id.tracking == "serial"
+                product_tracking == "serial"
                 and tools.float_compare(
                     line.product_qty, 1, precision_rounding=line.product_uom_id.rounding
                 )

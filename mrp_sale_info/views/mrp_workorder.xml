@@ -27,7 +27,7 @@
                 <!-- and seems too easy to overwrite accidentally -->
                 <!-- thus, create new sale_info tab -->
                 <page
-                    string="Sale information"
+                    string="Sale Information"
                     name="sale_info"
                     groups="mrp.group_mrp_manager"
                 >
