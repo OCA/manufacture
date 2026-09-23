@@ -13,10 +13,13 @@
     "website": "https://github.com/OCA/manufacture",
     "depends": ["quality_control_oca", "stock"],
     "data": [
+        "security/ir.model.access.csv",
+        "views/product_template_view.xml",
         "views/qc_inspection_view.xml",
         "views/stock_picking_view.xml",
         "views/stock_production_lot_view.xml",
         "views/qc_trigger_view.xml",
+        "wizard/qc_check_wizard.xml",
     ],
     "post_init_hook": "post_init_hook",
     "installable": True,
