@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form.allergens</field>
+        <field name="model">mrp.bom</field>
+        <field name="priority">4</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']"
+                position="after"
+            >
+                <field
+                    name="product_allergen_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
