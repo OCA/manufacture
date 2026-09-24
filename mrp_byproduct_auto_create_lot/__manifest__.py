@@ -10,4 +10,8 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["mrp", "stock", "stock_picking_auto_create_lot"],
+    "data": [
+        "views/product_views.xml",
+        "views/res_config_settings_views.xml",
+    ],
 }

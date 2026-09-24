@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 MRP Byproduct Auto Create Lot
 =============================
@@ -17,7 +13,7 @@ MRP Byproduct Auto Create Lot
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
@@ -37,6 +33,9 @@ create lots for produced by-products. With the auto create lot set. Each
 produced by-product will get an unique lot number assigned. (Works for
 serial numbers as well.)
 
+Optionally, byproducts can receive the same lot name as the main
+product.
+
 **Table of contents**
 
 .. contents::
@@ -49,6 +48,14 @@ To configure this module, you need to:
 
 1. Go to a product *Manufacturing > Products >* a product.
 2. Set 'auto create lot' option for the products you need.
+
+To propagate the main product's lot to byproducts:
+
+1. Go to *Settings > Manufacturing* and set "Propagate Lot to
+   Byproducts".
+2. Optionally override at product level via "Propagate Lot to Byproduct"
+   field (after the "Auto Create Lot" field in the General Information
+   tab).
 
 Usage
 =====
@@ -64,6 +71,12 @@ To use this module you need to:
 
 A lot number is automatically created and assigned to the by-product.
 With the sequence defined by the "stock_picking_auto_create_lot" module.
+
+Known issues / Roadmap
+======================
+
+- When producing multiple units of a serial-tracked byproduct, an error
+  occurs due to duplicate serial numbers being assigned.
 
 Bug Tracker
 ===========
@@ -87,6 +100,9 @@ Contributors
 ------------
 
 - bosd
+- `Quartile <https://www.quartile.co>`__:
+
+  - Yoshi Tashiro
 
 Maintainers
 -----------
