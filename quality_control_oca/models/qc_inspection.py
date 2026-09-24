@@ -3,10 +3,11 @@
 # Copyright 2014 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
+# Copyright 2025 remi-filament - Le Filament
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 from odoo.tools import formatLang
 
 
@@ -60,10 +61,14 @@ class QcInspection(models.Model):
         help="Product associated with the inspection",
     )
     qty = fields.Float(string="Quantity", default=1.0)
-    test = fields.Many2one(comodel_name="qc.test")
+    test = fields.Many2one(comodel_name="qc.test", check_company=True)
     inspection_lines = fields.One2many(
         comodel_name="qc.inspection.line",
         inverse_name="inspection_id",
+        compute="_compute_inspection_lines",
+        store=True,
+        readonly=False,
+        copy=False,
     )
     internal_notes = fields.Text(string="Internal notes")
     external_notes = fields.Text()
@@ -101,6 +106,17 @@ class QcInspection(models.Model):
         tracking=True,
         default=lambda self: self.env.user,
     )
+
+    @api.depends("test")
+    def _compute_inspection_lines(self):
+        for inspection in self:
+            if inspection.state != "draft":
+                continue
+            test = inspection.test
+            inspection.inspection_lines = [Command.clear()]
+            inspection.inspection_lines = inspection._prepare_inspection_lines(
+                test, self.env.context.get("inspection_line_force_fill_values")
+            )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -180,10 +196,8 @@ class QcInspection(models.Model):
             del header["state"]  # don't change current status
             del header["auto_generated"]  # don't change auto_generated flag
             del header["user"]  # don't change current user
-            inspection.write(header)
-            inspection.inspection_lines.unlink()
-            inspection.inspection_lines = inspection._prepare_inspection_lines(
-                trigger_line.test, force_fill=force_fill
+            inspection.with_context(inspection_line_force_fill_values=force_fill).write(
+                header
             )
 
     def _make_inspection(self, object_ref, trigger_line, date=None):
@@ -220,7 +234,7 @@ class QcInspection(models.Model):
             data = self._prepare_inspection_line(
                 test, line, fill=test.fill_correct_values or force_fill
             )
-            new_data.append((0, 0, data))
+            new_data += [Command.create(data)]
         return new_data
 
     def _prepare_inspection_line(self, test, line, fill=None):
