@@ -10,7 +10,10 @@
     "summary": "Propagate a serial number from a component to a finished product",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
-    "depends": ["mrp"],
+    "depends": [
+        "mrp",
+        "product_expiry",
+    ],
     "data": [
         "views/mrp_bom.xml",
         "views/mrp_production.xml",

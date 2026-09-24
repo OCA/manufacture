@@ -40,16 +40,29 @@ class MrpBom(models.Model):
         """
         uom_unit = self.env.ref("uom.product_uom_unit")
         for bom in self:
-            bom.display_lot_number_propagation = (
+            basic_conditions = (
                 bom.type in self._get_lot_number_propagation_bom_types()
-                and bom.product_tmpl_id.tracking == "serial"
-                and tools.float_compare(
-                    bom.product_qty, 1, precision_rounding=bom.product_uom_id.rounding
-                )
-                == 0
-                and bom.product_uom_id == uom_unit
+                and bom.product_tmpl_id.tracking in ["serial", "lot"]
                 and bom._has_tracked_product_to_propagate()
             )
+
+            if not basic_conditions:
+                bom.display_lot_number_propagation = False
+                continue
+
+            # Serial-specific restrictions
+            if bom.product_tmpl_id.tracking == "serial":
+                bom.display_lot_number_propagation = (
+                    tools.float_compare(
+                        bom.product_qty,
+                        1,
+                        precision_rounding=bom.product_uom_id.rounding,
+                    )
+                    == 0
+                    and bom.product_uom_id == uom_unit
+                )
+            elif bom.product_tmpl_id.tracking == "lot":  # lot tracking
+                bom.display_lot_number_propagation = True
 
     def _get_lot_number_propagation_bom_types(self):
         return ["normal"]
@@ -66,6 +79,9 @@ class MrpBom(models.Model):
                 == 0
                 and line.product_uom_id == uom_unit
             ):
+                return True
+            elif line.product_id.tracking == "lot":
+                # Lot products can have any quantity
                 return True
         return False
 
