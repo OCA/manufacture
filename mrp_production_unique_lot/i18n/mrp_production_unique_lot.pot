@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_unique_lot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_unique_lot
+#: model:ir.model.fields,field_description:mrp_production_unique_lot.field_mrp_production__allowed_lot_producing_ids
+msgid "Allowed Lot/Serial Numbers"
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#: model:ir.model.fields,field_description:mrp_production_unique_lot.field_mrp_production__force_lot_uniqueness
+#: model:ir.model.fields,field_description:mrp_production_unique_lot.field_stock_picking_type__force_production_lot_uniqueness
+msgid "Force Production Lot Uniqueness"
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#: model:ir.model.fields,help:mrp_production_unique_lot.field_mrp_production__force_lot_uniqueness
+#: model:ir.model.fields,help:mrp_production_unique_lot.field_stock_picking_type__force_production_lot_uniqueness
+msgid ""
+"If checked, each Manufacturing Order (MO) will have a unique lot number for "
+"its finished products. Therefore, lot numbers that have already been used in"
+" an MO cannot be reused."
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#: model:ir.model,name:mrp_production_unique_lot.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#: model:ir.model,name:mrp_production_unique_lot.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#. odoo-python
+#: code:addons/mrp_production_unique_lot/models/mrp_production.py:0
+#, python-format
+msgid ""
+"The lot number %(number)s used for byproduct %(product_name)s has already "
+"been produced"
+msgstr ""
+
+#. module: mrp_production_unique_lot
+#. odoo-python
+#: code:addons/mrp_production_unique_lot/models/mrp_production.py:0
+#, python-format
+msgid "This lot number for product %s has already been produced"
+msgstr ""
