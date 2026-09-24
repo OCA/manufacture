@@ -93,6 +93,35 @@
                     domain="[('mrp_planner_id', '=', uid)]"
                 />
                 <filter string="Fixed" name="fixed" domain="[('fixed','=',True)]" />
+                <separator />
+                <filter
+                    string="Released Today"
+                    name="release_today"
+                    domain="[('order_release_date', '=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Released Yesterday"
+                    name="release_yesterday"
+                    domain="[('order_release_date', '=', (context_today() - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Released (Last 7 Days)"
+                    name="release_last_7_days"
+                    domain="[('order_release_date', '&gt;=', (context_today() - datetime.timedelta(days=6)).strftime('%Y-%m-%d')),
+                            ('order_release_date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Released (Last 30 Days)"
+                    name="release_last_30_days"
+                    domain="[('order_release_date', '&gt;=', (context_today() - datetime.timedelta(days=29)).strftime('%Y-%m-%d')),
+                            ('order_release_date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Released (Last 365 Days)"
+                    name="release_last_365_days"
+                    domain="[('order_release_date', '&gt;=', (context_today() - datetime.timedelta(days=364)).strftime('%Y-%m-%d')),
+                            ('order_release_date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
                 <group name='group_by' expand="0" string="Group By...">
                     <filter
                         name='product_parameters'
