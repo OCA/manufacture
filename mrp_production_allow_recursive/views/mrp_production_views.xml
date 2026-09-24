@@ -1,0 +1,16 @@
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_raw_ids']/list//field[@name='product_id']"
+                position="attributes"
+            >
+                <!-- remove the domain leaf ('id', '!=', parent.product_id) -->
+                <attribute name="domain">[('type', '=', 'consu')]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
