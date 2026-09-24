@@ -1,3 +1,4 @@
 - [Quartile](https://www.quartile.co):
   - Aung Ko Ko Lin
   - Yoshi Tashiro
+  - Toshikimi Shigenobu
