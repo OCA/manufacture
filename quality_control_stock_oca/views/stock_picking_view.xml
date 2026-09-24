@@ -15,7 +15,7 @@
         <field name="view_mode">list,form</field>
         <field
             name="domain"
-        >[('picking_id', '=', active_id), ('state', 'not in', ['draft', 'waiting'])]</field>
+        >[('picking_id', '=', active_id), ('state', 'in', ['success', 'failed'])]</field>
         <field name="context">{'default_picking_id': active_id}</field>
     </record>
     <record id="action_qc_inspection_per_picking_passed" model="ir.actions.act_window">
