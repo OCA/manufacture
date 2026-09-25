@@ -1,0 +1,49 @@
+# Copyright 2026 Quartile (https://www.quartile.co)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import api, models
+
+
+class MrpBomSecondaryUnitMixin(models.AbstractModel):
+    _name = "mrp.bom.secondary.unit.mixin"
+    _inherit = "mrp.secondary.unit.mixin"
+    _description = "MRP BoM Secondary Unit Mixin"
+    _secondary_unit_fields = {
+        "qty_field": "product_qty",
+        "uom_field": "product_uom_id",
+    }
+
+    @api.model
+    def _get_default_value_for_qty_field(self):
+        return 1.0
+
+    def _get_product_secondary_uom(self):
+        """Return the secondary unit the product is manufactured in.
+
+        What is manufactured goes straight to inventory, and the quantity on
+        hand is counted in the secondary unit of the product, so that unit is
+        the one the recipe is written in too.
+        """
+        self.ensure_one()
+        return (
+            self.product_id.stock_secondary_uom_id
+            or self.product_id.product_tmpl_id.stock_secondary_uom_id
+        )
+
+    @api.onchange("product_id")
+    def onchange_product_id_for_secondary(self):
+        product_secondary_uom = self._get_product_secondary_uom()
+        if self.secondary_uom_id != product_secondary_uom:
+            self.secondary_uom_id = product_secondary_uom
+        if self.secondary_uom_id:
+            self.secondary_uom_qty = 1.0
+
+    @api.model
+    def _get_secondary_uom_qty_depends(self):
+        # The factor refers to the unit of the product, so the secondary
+        # quantity has to be converted again when the unit of the line changes.
+        return super()._get_secondary_uom_qty_depends() + ["product_uom_id"]
+
+    @api.depends("secondary_uom_qty", "secondary_uom_id")
+    def _compute_product_qty(self):
+        self._compute_helper_target_field_qty()
