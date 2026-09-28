@@ -115,6 +115,8 @@ enable=anomalous-backslash-in-string,
     missing-readme,
     odoo-addons-relative-import,
     redefined-builtin,
+    too-complex,
+    unnecessary-utf8-coding-comment,
     manifest-external-assets
 
 
