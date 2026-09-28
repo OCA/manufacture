@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend BOM structure report to support component_template_id -->
+    
+    <!-- Extend BOM PDF report to show component template information -->
+    <template id="report_mrp_bom_inherit_component_template" inherit_id="mrp.report_mrp_bom">
+        <xpath expr="//td[@name='td_mrp_bom']" position="after">
+            <!-- Add component template column if available -->
+            <td t-if="data.get('component_template_id')">
+                <small class="text-muted">
+                    <span t-esc="data.get('component_template_name', '')"/>
+                </small>
+            </td>
+        </xpath>
+        
+        <!-- Add corresponding header -->
+        <xpath expr="//th[@name='th_mrp_bom_h']" position="after">
+            <th>Component Template</th>
+        </xpath>
+        
+        <!-- Add footer column -->
+        <xpath expr="//td[@name='td_mrp_bom_f']" position="after">
+            <td/>
+        </xpath>
+        
+        <!-- Add byproducts footer column -->
+        <xpath expr="//td[@name='td_mrp_bom_byproducts_f']" position="after">
+            <td/>
+        </xpath>
+    </template>
+    
+    <!-- Extend BOM PDF line report to show component template information -->
+    <template id="report_mrp_bom_pdf_line_inherit_component_template" inherit_id="mrp.report_mrp_bom_pdf_line">
+        <xpath expr="//td[@name='td_mrp_code']" position="after">
+            <!-- Add component template column if available -->
+            <td t-if="l.get('component_template_id')">
+                <small class="text-muted">
+                    <span t-esc="l.get('component_template_name', '')"/>
+                </small>
+            </td>
+        </xpath>
+    </template>
+    
+    <!-- Note: BOM web view is handled by JavaScript components in Odoo 17 -->
+    <!-- The component template information will be displayed through the model layer -->
+    
+</odoo>

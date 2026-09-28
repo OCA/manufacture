@@ -20,6 +20,25 @@ class StockRule(models.Model):
         values,
         bom,
     ):
+        """Prepare manufacturing order values.
+        
+        Extends the base method to include source procurement group information
+        when creating manufacturing orders.
+        
+        Args:
+            product_id: Product to manufacture
+            product_qty: Quantity to manufacture
+            product_uom: Unit of measure
+            location_id: Location for manufacturing
+            name: Manufacturing order name
+            origin: Origin reference
+            company_id: Company ID
+            values: Additional values
+            bom: Bill of materials
+            
+        Returns:
+            dict: Manufacturing order values
+        """
         res = super()._prepare_mo_vals(
             product_id,
             product_qty,

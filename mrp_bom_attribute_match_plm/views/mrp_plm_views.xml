@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PLM integration views for BOM Attribute Match -->
+    
+    <!-- Extend mrp.eco.bom.change form view to add component_template_id field -->
+    <record id="view_mrp_eco_bom_change_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.eco.bom.change.form.inherit.bom.attribute.match</field>
+        <field name="model">mrp.eco.bom.change</field>
+        <field name="inherit_id" ref="mrp_plm.mrp_eco_bom_change_view_form"/>
+        <field name="arch" type="xml">
+            <!-- 添加组件模板字段 -->
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="component_template_id" 
+                       widget="many2one" 
+                       options="{'no_create': True, 'no_create_edit': True}"
+                       placeholder="选择组件模板（可选）"/>
+            </xpath>
+            <!-- 设置产品字段的只读条件 -->
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="readonly">component_template_id != False</attribute>
+                <attribute name="placeholder">当选择组件模板时自动填充</attribute>
+            </xpath>
+            <!-- 添加匹配属性字段 -->
+            <xpath expr="//field[@name='component_template_id']" position="after">
+                <field name="match_on_attribute_ids" 
+                       widget="many2many_tags" 
+                       readonly="1"
+                       placeholder="根据组件模板自动显示匹配属性"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend mrp.eco form view to add component_template_id field in BOM changes -->
+    <record id="view_mrp_eco_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.eco.form.inherit.bom.attribute.match</field>
+        <field name="model">mrp.eco</field>
+        <field name="inherit_id" ref="mrp_plm.mrp_eco_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_change_ids']/tree/field[@name='product_id']" position="after">
+                <field name="component_template_id" 
+                       string="组件（产品模板）" 
+                       placeholder="选择匹配的组件模板" 
+                       attrs="{'invisible': [('change_type', '!=', 'add')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
