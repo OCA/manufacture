@@ -9,10 +9,20 @@
             <form string="Mass Change BoM Component">
                 <group>
                     <field name="component_locked" invisible="1" />
+                    <field name="bom_domain" invisible="1" />
                     <field
                         name="component_id"
                         options="{'no_create': True}"
                         readonly="component_locked"
+                        invisible="change_type == 'add'"
+                        required="change_type != 'add'"
+                    />
+                    <field
+                        name="component_id"
+                        string="Bills of Materials Using"
+                        options="{'no_create': True}"
+                        readonly="component_locked"
+                        invisible="change_type != 'add'"
                     />
                     <field name="change_type" widget="radio" />
                     <field
@@ -22,18 +32,26 @@
                         required="change_type == 'replace'"
                     />
                     <field
+                        name="new_component_id"
+                        string="Component to Add"
+                        options="{'no_create': True}"
+                        invisible="change_type != 'add'"
+                        required="change_type == 'add'"
+                    />
+                    <field
                         name="new_product_qty"
                         invisible="change_type != 'replace'"
                         required="change_type == 'replace'"
                     />
+                    <field
+                        name="new_product_qty"
+                        string="Quantity"
+                        invisible="change_type != 'add'"
+                        required="change_type == 'add'"
+                    />
                 </group>
                 <group string="Bills of Materials to Update">
-                    <field
-                        name="bom_ids"
-                        nolabel="1"
-                        colspan="2"
-                        domain="[('bom_line_ids.product_id', '=', component_id)]"
-                    >
+                    <field name="bom_ids" nolabel="1" colspan="2" domain="bom_domain">
                         <tree>
                             <field name="product_tmpl_id" />
                             <field name="code" optional="show" />
