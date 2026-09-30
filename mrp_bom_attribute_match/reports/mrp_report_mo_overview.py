@@ -34,8 +34,10 @@ def _get_report_data(self, production_id):
             | self._get_kit_bom_lines(production.bom_id)
         )
         missing_components = production.bom_id.bom_line_ids.filtered(
-            lambda bom_line: bom_line not in current_bom_lines
-            and not bom_line._skip_bom_line(production.product_id)
+            lambda bom_line: (
+                bom_line not in current_bom_lines
+                and not bom_line._skip_bom_line(production.product_id)
+            )
         )
         missing_operations = (
             bom_line
