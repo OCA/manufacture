@@ -24,25 +24,25 @@ class TestMrpBomLine(TestMrpBomAttributeMatchBase):
                 "product_qty": 1.0,
             }
         )
-        self.assertEqual(bom_line.product_uom_id.id, self.product_plastic.uom_id.id)
-        self.assertEqual(bom_line.product_uom_id.id, self.uom_dozen.id)
+        self.assertEqual(bom_line.uom_id.id, self.product_plastic.uom_id.id)
+        self.assertEqual(bom_line.uom_id.id, self.uom_dozen.id)
 
     def test_bom_line_create_with_custom_uom(self):
-        """Prove that product_uom_id does not change when it is already specified."""
+        """Prove that uom_id does not change when it is already specified."""
         bom_line = self.env["mrp.bom.line"].create(
             {
                 "bom_id": self.bom_id.id,
                 "component_template_id": self.product_plastic.id,
-                "product_uom_id": self.uom_unit.id,  # UdM explícita
+                "uom_id": self.uom_unit.id,  # UdM explícita
                 "product_qty": 1.0,
             }
         )
-        self.assertEqual(bom_line.product_uom_id.id, self.uom_unit.id)
-        self.assertNotEqual(bom_line.product_uom_id.id, self.product_plastic.uom_id.id)
+        self.assertEqual(bom_line.uom_id.id, self.uom_unit.id)
+        self.assertNotEqual(bom_line.uom_id.id, self.product_plastic.uom_id.id)
 
     def test_bom_line_create_with_product_id(self):
         """
-        Prove that product_uom_id is not set from the template when product_id exists.
+        Prove that uom_id is not set from the template when product_id exists.
         """
         plastic_variant = self.product_plastic.product_variant_ids[0]
         bom_line = self.env["mrp.bom.line"].create(
@@ -53,4 +53,4 @@ class TestMrpBomLine(TestMrpBomAttributeMatchBase):
                 "product_qty": 1.0,
             }
         )
-        self.assertEqual(bom_line.product_uom_id.id, plastic_variant.uom_id.id)
+        self.assertEqual(bom_line.uom_id.id, plastic_variant.uom_id.id)

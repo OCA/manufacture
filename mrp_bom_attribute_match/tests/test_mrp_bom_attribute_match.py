@@ -207,9 +207,8 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
             {
                 "product_id": self.product_9.id,
                 "product_tmpl_id": self.product_9.product_tmpl_id.id,
-                "product_uom_id": self.product_9.uom_id.id,
+                "uom_id": self.product_9.uom_id.id,
                 "product_qty": 1.0,
-                "consumption": "flexible",
                 "type": "normal",
             }
         )
@@ -217,9 +216,8 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
             {
                 "product_id": self.product_10.id,
                 "product_tmpl_id": self.product_10.product_tmpl_id.id,
-                "product_uom_id": self.product_10.uom_id.id,
+                "uom_id": self.product_10.uom_id.id,
                 "product_qty": 1.0,
-                "consumption": "flexible",
                 "type": "phantom",
             }
         )

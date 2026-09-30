@@ -158,6 +158,7 @@ Contributors
 - `Studio73 <https://www.studio73.es>`__
 
   - Eugenio Micó <eugenio@studio73.es>
+  - Alex Garcia <alex@studio73.es>
 
 - `Komit <https://komit-consulting.com>`__
 

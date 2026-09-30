@@ -2,7 +2,7 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command, api, models
+from odoo import api, models
 from odoo.api import NewId
 
 
@@ -28,25 +28,13 @@ class ReportBomStructure(models.AbstractModel):
         # OVERRIDE to fill in the `line.product_id` if a component template is used.
         # To avoid a complete override, we HACK the bom by replacing it with a virtual
         # record, and modifying it's lines on-the-fly.
-        has_template_lines = any(
-            line.component_template_id for line in bom.bom_line_ids
-        )
+        has_template_lines = False
+        for line in bom.bom_line_ids:
+            if line.component_template_id:
+                has_template_lines = True
+                break
         if has_template_lines:
-            bom = bom.new(origin=bom)
-            to_ignore_line_ids = []
-            for line in bom.bom_line_ids:
-                if line._skip_bom_line(product) or not line.component_template_id:
-                    continue
-                line_product = bom._get_component_template_product(
-                    line, product, line.product_id
-                )
-                if not line_product:
-                    to_ignore_line_ids.append(line.id)
-                    continue
-                else:
-                    line.product_id = line_product
-            if to_ignore_line_ids:
-                bom.bom_line_ids = [Command.unlink(id) for id in to_ignore_line_ids]
+            bom = bom._prepare_dynamic_bom(bom, product)
         data = super()._get_bom_data(
             bom,
             warehouse,

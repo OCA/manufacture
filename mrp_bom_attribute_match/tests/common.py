@@ -6,12 +6,22 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestMrpBomAttributeMatchBase(BaseCommon):
+    _test_user_groups = (
+        "mrp.group_mrp_manager",
+        "mrp.group_mrp_routings",
+        "mrp.group_mrp_byproducts",
+        "product.group_product_manager",
+        "product.group_product_variant",
+        "uom.group_uom",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.route_manufacture = cls.warehouse.manufacture_pull_id.route_id
+        cls.route_manufacture.product_selectable = True
         # Create products
         cls.product_sword = cls.env["product.template"].create(
             {
@@ -101,59 +111,59 @@ class TestMrpBomAttributeMatchBase(BaseCommon):
         cls.bom_id = cls._create_bom(
             cls.product_sword,
             [
-                dict(
-                    component_template_id=cls.product_plastic.id,
-                    product_qty=1,
-                ),
-                dict(
-                    product_id=cls.product_9,
-                    product_qty=1,
-                ),
+                {
+                    "component_template_id": cls.product_plastic.id,
+                    "product_qty": 1,
+                },
+                {
+                    "product_id": cls.product_9,
+                    "product_qty": 1,
+                },
             ],
         )
         cls.fin_bom_id = cls._create_bom(
             cls.product_fin,
             [
-                dict(
-                    product_id=cls.product_plastic.product_variant_ids[0],
-                    product_qty=1,
-                ),
+                {
+                    "product_id": cls.product_plastic.product_variant_ids[0],
+                    "product_qty": 1,
+                },
             ],
         )
         cls.surf_bom_id = cls._create_bom(
             cls.product_surf,
             [
-                dict(
-                    product_id=cls.product_fin.product_variant_ids[0],
-                    product_qty=1,
-                ),
+                {
+                    "product_id": cls.product_fin.product_variant_ids[0],
+                    "product_qty": 1,
+                },
             ],
         )
         cls.p1_bom_id = cls._create_bom(
             cls.p1,
             [
-                dict(
-                    product_id=cls.p2.product_variant_ids[0],
-                    product_qty=1,
-                ),
+                {
+                    "product_id": cls.p2.product_variant_ids[0],
+                    "product_qty": 1,
+                },
             ],
         )
         cls.p2_bom_id = cls._create_bom(
             cls.p2,
             [
-                dict(
-                    product_id=cls.p3.product_variant_ids[0],
-                    product_qty=1,
-                ),
+                {
+                    "product_id": cls.p3.product_variant_ids[0],
+                    "product_qty": 1,
+                },
             ],
         )
         cls.p3_bom_id = cls._create_bom(
             cls.p3,
             [
-                dict(
-                    product_id=cls.product_sword.product_variant_ids[1],
-                    product_qty=1,
-                ),
+                {
+                    "product_id": cls.product_sword.product_variant_ids[1],
+                    "product_qty": 1,
+                },
             ],
         )
 

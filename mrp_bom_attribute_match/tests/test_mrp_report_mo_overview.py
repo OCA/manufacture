@@ -43,8 +43,8 @@ class TestMrpReportMoOverview(TestMrpBomAttributeMatchBase):
         MoOverviewReport = self.env["report.mrp.report_mo_overview"]
         res = MoOverviewReport._get_report_data(mo.id)
         self.assertEqual(res["id"], mo.id)
-        # bom_cost should include the resolved dynamic component (5.0).
-        self.assertGreaterEqual(res["summary"]["bom_cost"], 5.0)
+        # mo_cost should include the resolved dynamic component (5.0).
+        self.assertGreaterEqual(res["summary"]["mo_cost"], 5.0)
 
     def test_mrp_report_mo_overview_missing_operation(self):
         # Add an operation to the BoM after the MO is confirmed so it appears
@@ -60,9 +60,9 @@ class TestMrpReportMoOverview(TestMrpBomAttributeMatchBase):
             }
         )
         mo = self._create_confirmed_mo()
-        bom_cost_before = self.env["report.mrp.report_mo_overview"]._get_report_data(
+        mo_cost_before = self.env["report.mrp.report_mo_overview"]._get_report_data(
             mo.id
-        )["summary"]["bom_cost"]
+        )["summary"]["mo_cost"]
         self.bom_id.write(
             {
                 "operation_ids": [
@@ -83,8 +83,8 @@ class TestMrpReportMoOverview(TestMrpBomAttributeMatchBase):
         )
         res = self.env["report.mrp.report_mo_overview"]._get_report_data(mo.id)
         self.assertEqual(res["id"], mo.id)
-        # bom_cost should grow by the cost of the newly added operation.
-        self.assertGreater(res["summary"]["bom_cost"], bom_cost_before)
+        # mo_cost should grow by the cost of the newly added operation.
+        self.assertGreater(res["summary"]["mo_cost"], mo_cost_before)
 
     def test_mrp_report_mo_overview_missing_dynamic_component_no_variant(self):
         # Point the dynamic line at a template that shares the Colour

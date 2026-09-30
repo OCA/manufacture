@@ -1,8 +1,7 @@
 import logging
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import float_round
 
 _log = logging.getLogger(__name__)
 
@@ -10,7 +9,14 @@ _log = logging.getLogger(__name__)
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
-    product_id = fields.Many2one("product.product", "Component", required=False)
+    product_id = fields.Many2one(
+        "product.product",
+        "Component",
+        required=False,
+        check_company=True,
+        index=True,
+        domain="[('type', 'in', ['consu', 'service'])]",
+    )
     product_backup_id = fields.Many2one(
         "product.product", help="Technical field to store previous value of product_id"
     )
@@ -29,11 +35,11 @@ class MrpBomLine(models.Model):
         for values in vals_list:
             if (
                 not values.get("product_id")
-                and "product_uom_id" not in values
+                and "uom_id" not in values
                 and "component_template_id" in values
                 and values["component_template_id"]
             ):
-                values["product_uom_id"] = (
+                values["uom_id"] = (
                     self.env["product.template"]
                     .browse(values["component_template_id"])
                     .uom_id.id
@@ -46,14 +52,14 @@ class MrpBomLine(models.Model):
             if self.product_id:
                 self.product_backup_id = self.product_id
                 self.product_id = False
-            if not self.product_uom_id:
-                self.product_uom_id = self.component_template_id.uom_id
+            if not self.uom_id:
+                self.uom_id = self.component_template_id.uom_id
         else:
             if self.product_backup_id:
                 self.product_id = self.product_backup_id
                 self.product_backup_id = False
-            if not self.product_uom_id:
-                self.product_uom_id = self.product_id.uom_id
+            if not self.uom_id:
+                self.uom_id = self.product_id.uom_id
 
     @api.depends("component_template_id")
     def _compute_match_on_attribute_ids(self):
@@ -129,20 +135,43 @@ class MrpBomLine(models.Model):
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
+    def _prepare_dynamic_bom(self, bom, product):
+        has_template_lines = False
+        for line in bom.bom_line_ids:
+            if line.component_template_id:
+                has_template_lines = True
+                break
+        if not has_template_lines:
+            return bom
+
+        bom = bom.new(origin=bom)
+        to_ignore_line_ids = []
+        for line in bom.bom_line_ids:
+            if not line.component_template_id:
+                continue
+            line_product = self._get_component_template_product(
+                line, product, line.product_id
+            )
+            if line_product:
+                line.product_id = line_product
+            else:
+                to_ignore_line_ids.append(line.id)
+        if to_ignore_line_ids:
+            bom.bom_line_ids = [
+                Command.unlink(line_id) for line_id in to_ignore_line_ids
+            ]
+        return bom
+
     # flake8: noqa: C901
     def explode(
         self, product, quantity, picking_type=False, never_attribute_values=False
     ):
-        # Had to replace this method
-        """
-        Explodes the BoM and creates two lists with all the information you need:
-        bom_done and line_done
-        Quantity describes the number of times you need the BoM: so the quantity
-        divided by the number created by the BoM
-        and converted into its UoM
-        """
+        """Explode a BoM after resolving dynamic component templates."""
         from collections import defaultdict
 
+        bom_self = self.with_context(
+            bom_cost_share_cache=self.env.context.get("bom_cost_share_cache") or {}
+        )
         graph = defaultdict(list)
         V = set()
 
@@ -162,40 +191,39 @@ class MrpBom(models.Model):
         product_boms = {}
 
         def update_product_boms():
-            products = self.env["product.product"].browse(product_ids)
+            products = bom_self.env["product.product"].browse(product_ids)
             product_boms.update(
-                self._bom_find(
+                bom_self._bom_find(
                     products,
                     bom_type="phantom",
-                    picking_type=picking_type or self.picking_type_id,
-                    company_id=self.company_id.id,
+                    picking_type=picking_type or bom_self.picking_type_id,
+                    company_id=bom_self.company_id.id,
                 )
             )
             # Set missing keys to default value
-            for product in products:
-                product_boms.setdefault(product, self.env["mrp.bom"])
+            for bom_product in products:
+                product_boms.setdefault(bom_product, bom_self.env["mrp.bom"])
 
         boms_done = [
             (
-                self,
-                {
-                    "qty": quantity,
-                    "product": product,
-                    "original_qty": quantity,
-                    "parent_line": False,
-                },
+                bom_self,
+                bom_self.env["mrp.bom.line"]._prepare_bom_done_values(
+                    quantity, product, quantity, []
+                ),
             )
         ]
         lines_done = []
-        V |= {product.product_tmpl_id.id}
+        V = {product.product_tmpl_id.id}
 
         bom_lines = []
-        for bom_line in self.bom_line_ids:
+        for bom_line in bom_self.bom_line_ids:
             product_id = bom_line.product_id
-            V |= {product_id.product_tmpl_id.id}
-            graph[product.product_tmpl_id.id].append(product_id.product_tmpl_id.id)
+            if product_id:
+                V.add(product_id.product_tmpl_id.id)
+                graph[product.product_tmpl_id.id].append(product_id.product_tmpl_id.id)
             bom_lines.append((bom_line, product, quantity, False))
-            product_ids.add(product_id.id)
+            if product_id:
+                product_ids.add(product_id.id)
         update_product_boms()
         product_ids.clear()
         while bom_lines:
@@ -205,36 +233,61 @@ class MrpBom(models.Model):
             if current_line._skip_bom_line(current_product, never_attribute_values):
                 continue
 
+            if current_line.component_template_id:
+                line_product = self._get_component_template_product(
+                    current_line, current_product, current_line.product_id
+                )
+                if not line_product:
+                    continue
+                current_line.product_id = line_product
+                graph[current_product.product_tmpl_id.id].append(
+                    line_product.product_tmpl_id.id
+                )
+                V.add(line_product.product_tmpl_id.id)
+                if line_product not in product_boms:
+                    product_ids.add(line_product.id)
+
             line_quantity = current_qty * current_line.product_qty
             if current_line.product_id not in product_boms:
                 update_product_boms()
                 product_ids.clear()
-            # upd start
-            component_template_product = self._get_component_template_product(
-                current_line, product, current_line.product_id
-            )
-            if component_template_product:
-                # need to set product_id temporary
-                current_line.product_id = component_template_product
-            else:
-                # component_template_id is set, but no attribute value match.
-                continue
-            # upd end
             bom = product_boms.get(current_line.product_id)
             if bom:
-                converted_line_quantity = current_line.product_uom_id._compute_quantity(
-                    line_quantity / bom.product_qty, bom.product_uom_id
+                converted_line_quantity = current_line.uom_id._compute_quantity(
+                    line_quantity / (bom.product_qty or 1.0), bom.uom_id, round=False
                 )
-                bom_lines += [
+                child_bom_lines = []
+                for bom_line in bom.bom_line_ids:
+                    if bom_line._skip_bom_line(
+                        current_line.product_id, never_attribute_values
+                    ):
+                        child_bom_lines.append(bom_line)
+                        continue
+                    if bom_line.component_template_id:
+                        line_product = self._get_component_template_product(
+                            bom_line,
+                            current_line.product_id,
+                            bom_line.product_id,
+                        )
+                        if not line_product:
+                            continue
+                        bom_line.product_id = line_product
+                        graph[current_line.product_id.product_tmpl_id.id].append(
+                            line_product.product_tmpl_id.id
+                        )
+                    child_bom_lines.append(bom_line)
+                bom_lines = [
                     (
                         line,
                         current_line.product_id,
                         converted_line_quantity,
                         current_line,
                     )
-                    for line in bom.bom_line_ids
-                ]
-                for bom_line in bom.bom_line_ids:
+                    for line in child_bom_lines
+                ] + bom_lines
+                for bom_line in child_bom_lines:
+                    if not bom_line.product_id:
+                        continue
                     graph[current_line.product_id.product_tmpl_id.id].append(
                         bom_line.product_id.product_tmpl_id.id
                     )
@@ -245,45 +298,45 @@ class MrpBom(models.Model):
                         graph,
                     ):
                         raise UserError(
-                            self.env._(
+                            bom_self.env._(
                                 "Recursion error!  A product with a Bill of Material "
                                 "should not have itself in its BoM or child BoMs!"
                             )
                         )
                     V |= {bom_line.product_id.product_tmpl_id.id}
-                    if bom_line.product_id not in product_boms:
+                    if bom_line.product_id and bom_line.product_id not in product_boms:
                         product_ids.add(bom_line.product_id.id)
                 boms_done.append(
                     (
                         bom,
-                        {
-                            "qty": converted_line_quantity,
-                            "product": current_product,
-                            "original_qty": quantity,
-                            "parent_line": current_line,
-                        },
+                        current_line._prepare_bom_done_values(
+                            converted_line_quantity,
+                            current_product,
+                            quantity,
+                            boms_done,
+                        ),
                     )
                 )
             else:
                 # We round up here because the user expects
                 # that if he has to consume a little more, the whole UOM unit
                 # should be consumed.
-                rounding = current_line.product_uom_id.rounding
-                line_quantity = float_round(
-                    line_quantity, precision_rounding=rounding, rounding_method="UP"
+                line_quantity = current_line.uom_id.round(
+                    line_quantity, rounding_method="UP"
                 )
                 lines_done.append(
                     (
                         current_line,
-                        {
-                            "qty": line_quantity,
-                            "product": current_product,
-                            "original_qty": quantity,
-                            "parent_line": parent_line,
-                        },
+                        current_line._prepare_line_done_values(
+                            line_quantity,
+                            current_product,
+                            quantity,
+                            parent_line,
+                            boms_done,
+                        ),
                     )
                 )
-        return boms_done, lines_done
+        return boms_done, bom_self._round_last_line_done(lines_done)
 
     def _get_component_template_product(
         self, bom_line, bom_product_id, line_product_id
@@ -303,21 +356,22 @@ class MrpBom(models.Model):
                 )
                 return False
             # find matching combination
-            combination = self.env["product.template.attribute.value"]
+            product_attribute_value_ids = []
             for ptav in bom_product_id.product_template_attribute_value_ids:
-                combination |= self.env["product.template.attribute.value"].search(
-                    [
-                        ("product_tmpl_id", "=", comp.id),
-                        ("attribute_id", "=", ptav.attribute_id.id),
-                        (
-                            "product_attribute_value_id",
-                            "=",
-                            ptav.product_attribute_value_id.id,
-                        ),
-                        ("ptav_active", "=", True),
-                    ]
-                )
-            if len(combination) == 0:
+                product_attribute_value_ids.append(ptav.product_attribute_value_id.id)
+            combination = self.env["product.template.attribute.value"].search(
+                [
+                    ("product_tmpl_id", "=", comp.id),
+                    ("attribute_id", "in", comp_attr_ids),
+                    (
+                        "product_attribute_value_id",
+                        "in",
+                        product_attribute_value_ids,
+                    ),
+                    ("ptav_active", "=", True),
+                ]
+            )
+            if not combination:
                 return False
             product_id = comp._get_variant_for_combination(combination)
             if product_id and product_id.active:
