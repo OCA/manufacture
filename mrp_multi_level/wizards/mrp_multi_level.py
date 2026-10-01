@@ -187,8 +187,7 @@ class MultiLevelMrp(models.TransientModel):
     ):
         """Explode requirements."""
         mrp_date_demand = mrp_action_date
-        if mrp_date_demand < date.today():
-            mrp_date_demand = date.today()
+        mrp_date_demand = max(mrp_date_demand, date.today())
         bom = self._get_bom_to_explode(product_mrp_area_id)
         if not bom:
             return False

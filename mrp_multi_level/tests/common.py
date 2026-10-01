@@ -842,12 +842,16 @@ class TestMrpMultiLevelCommon(TransactionCase):
             }
         )
         product_4b = product_4.product_variant_ids.filtered(
-            lambda p: p.product_template_variant_value_ids.mapped("name")
-            == ["Steel", "Black"]
+            lambda p: (
+                p.product_template_variant_value_ids.mapped("name")
+                == ["Steel", "Black"]
+            )
         )
         product_4c = product_4.product_variant_ids.filtered(
-            lambda p: p.product_template_variant_value_ids.mapped("name")
-            == ["Aluminium", "White"]
+            lambda p: (
+                p.product_template_variant_value_ids.mapped("name")
+                == ["Aluminium", "White"]
+            )
         )
         product_4b.default_code = "product.product_product_4b"
         product_4c.default_code = "product.product_product_4c"

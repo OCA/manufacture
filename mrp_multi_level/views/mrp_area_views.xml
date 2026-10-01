@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="mrp_area_list">
+    <record id="mrp_area_list" model="ir.ui.view">
         <field name="name">mrp.area.list</field>
         <field name="model">mrp.area</field>
         <field name="type">list</field>
@@ -14,7 +14,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="mrp_area_form">
+    <record id="mrp_area_form" model="ir.ui.view">
         <field name="name">mrp.area.form</field>
         <field name="model">mrp.area</field>
         <field name="type">form</field>
@@ -50,7 +50,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="mrp_area_action">
+    <record id="mrp_area_action" model="ir.actions.act_window">
         <field name="name">MRP Area</field>
         <field name="res_model">mrp.area</field>
         <field name="path">mrp-areas</field>
