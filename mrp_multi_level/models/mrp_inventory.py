@@ -4,7 +4,7 @@
 # - Lois Rilo Antelo <lois.rilo@forgeflow.com>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from datetime import date, timedelta
+from datetime import timedelta
 
 from odoo import api, fields, models
 
@@ -105,7 +105,7 @@ class MrpInventory(models.Model):
         "product_mrp_area_id.mrp_area_id.calendar_id",
     )
     def _compute_order_release_date(self):
-        today = date.today()
+        today = fields.Date.today()
         for rec in self.filtered(lambda r: r.date):
             delay = rec.product_mrp_area_id.mrp_lead_time
             if delay and rec.mrp_area_id.calendar_id:
@@ -152,7 +152,7 @@ class MrpInventory(models.Model):
             ),
         ]
         moves = self.product_mrp_area_id.mrp_move_ids.filtered_domain(rfq_move_domain)
-        if self.date == date.today():
+        if self.date == fields.Date.today():
             moves = moves.filtered(
                 lambda m: m.purchase_line_id.date_planned.date() in [self.date, False]
             )

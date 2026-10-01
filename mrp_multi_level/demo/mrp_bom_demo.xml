@@ -3,42 +3,42 @@
     <!-- FP-1 -->
     <record id="mrp_bom_fp_1" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_fp_1_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="produce_delay">2</field>
     </record>
     <record id="mrp_bom_fp_1_line_pp_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_1" />
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_1" />
     </record>
     <record id="mrp_bom_fp_1_line_pp_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_2" />
         <field name="product_qty">3</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_1" />
     </record>
     <!-- FP-2 -->
     <record id="mrp_bom_fp_2" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_fp_2_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="produce_delay">1</field>
     </record>
     <record id="mrp_bom_fp_2_line_sf_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_sf_1" />
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_2" />
     </record>
     <record id="mrp_bom_fp_2_line_sf_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_sf_2" />
         <field name="product_qty">3</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_2" />
     </record>
@@ -46,21 +46,21 @@
     <!-- FP-3 -->
     <record id="mrp_bom_fp_3" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_fp_3_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="produce_delay">3</field>
     </record>
     <record id="mrp_bom_fp_3_line_sf_3" model="mrp.bom.line">
         <field name="product_id" ref="product_product_sf_3" />
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_3" />
     </record>
     <record id="mrp_bom_fp_3_line_pp_3" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_3" />
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_fp_3" />
     </record>
@@ -71,13 +71,13 @@
             name="product_tmpl_id"
             ref="product.product_product_4_product_template"
         />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
     </record>
     <record id="mrp_bom_product_4_line_av_11" model="mrp.bom.line">
         <field name="product_id" ref="product_product_av_11" />
         <field name="product_qty">1</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="1" />
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
@@ -88,7 +88,7 @@
     <record id="mrp_bom_product_4_line_av_12" model="mrp.bom.line">
         <field name="product_id" ref="product_product_av_12" />
         <field name="product_qty">1</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="2" />
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
@@ -99,7 +99,7 @@
     <record id="mrp_bom_product_4_line_av_21" model="mrp.bom.line">
         <field name="product_id" ref="product_product_av_21" />
         <field name="product_qty">1</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="3" />
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
@@ -110,7 +110,7 @@
     <record id="mrp_bom_product_4_line_av_22" model="mrp.bom.line">
         <field name="product_id" ref="product_product_av_22" />
         <field name="product_qty">1</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="4" />
         <field name="bom_id" ref="mrp_bom_product_4" />
         <field
@@ -121,42 +121,42 @@
     <!-- SF-1 -->
     <record id="mrp_bom_sf_1" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_sf_1_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="produce_delay">1</field>
     </record>
     <record id="mrp_bom_sf_1_line_pp_1" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_1" />
         <field name="product_qty">3</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_sf_1" />
     </record>
     <record id="mrp_bom_sf_1_line_pp_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_2" />
         <field name="product_qty">2</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_sf_1" />
     </record>
     <!-- SF-2 -->
     <record id="mrp_bom_sf_2" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_sf_2_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="produce_delay">3</field>
     </record>
     <record id="mrp_bom_sf_2_line_pp_2" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_2" />
         <field name="product_qty">3</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_sf_2" />
     </record>
     <!-- SF-3 -->
     <record id="mrp_bom_sf_3" model="mrp.bom">
         <field name="product_tmpl_id" ref="product_product_sf_3_product_template" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="type">phantom</field>
         <field name="sequence" eval="5" />
         <field name="produce_delay">3</field>
@@ -164,14 +164,14 @@
     <record id="mrp_bom_sf_3_line_pp_3" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_3" />
         <field name="product_qty">1</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_sf_3" />
     </record>
     <record id="mrp_bom_sf_3_line_pp_4" model="mrp.bom.line">
         <field name="product_id" ref="product_product_pp_4" />
         <field name="product_qty">3</field>
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="sequence" eval="5" />
         <field name="bom_id" ref="mrp_bom_sf_3" />
     </record>

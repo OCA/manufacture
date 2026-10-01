@@ -63,7 +63,7 @@
                     invisible="rfq_qty &lt;= 0.0"
                     name="action_open_rfqs"
                     type="object"
-                    icon="fa-credit-card"
+                    icon="credit_card"
                     title="Requests for Quotation"
                 />
                 <field name="final_on_hand_qty" />
@@ -72,14 +72,14 @@
                     invisible="not planned_order_ids"
                     name="action_open_planned_orders"
                     type="object"
-                    icon="fa-list"
+                    icon="format_list_bulleted"
                     title="Details"
                 />
                 <field name="order_release_date" />
                 <button
                     title="Create Procurement"
                     name="%(mrp_multi_level.act_mrp_inventory_procure)d"
-                    icon="fa-cogs"
+                    icon="settings"
                     type="action"
                     invisible="to_procure &lt;= 0.0"
                 />

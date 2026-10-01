@@ -37,14 +37,14 @@
                             string="Incoming Moves"
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-list"
+                            icon="format_list_bulleted"
                         />
                         <button
                             name="action_view_outgoing_stock_moves"
                             string="Outgoing Moves"
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-list"
+                            icon="format_list_bulleted"
                         />
                     </div>
                     <widget

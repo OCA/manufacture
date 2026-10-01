@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
+    <!-- In 20.0 the Manufacture and Buy routes are not product selectable by
+         default, and only product selectable routes can be set on products. -->
+    <record id="mrp.route_warehouse0_manufacture" model="stock.route">
+        <field name="product_selectable" eval="True" />
+    </record>
+    <record id="purchase_stock.route_warehouse0_buy" model="stock.route">
+        <field name="product_selectable" eval="True" />
+    </record>
     <record id="product_product_fp_1" model="product.product">
         <field name="name">FP-1</field>
         <field name="categ_id" ref="product_category_mrp" />

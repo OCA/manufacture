@@ -34,7 +34,7 @@
                         <button
                             name="action_open_linked_mrp_production"
                             type="object"
-                            icon="fa-wrench"
+                            icon="build"
                             invisible="mo_count == 0"
                             class="oe_stat_button"
                         >

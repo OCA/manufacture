@@ -4,7 +4,7 @@
 
 {
     "name": "MRP Multi Level",
-    "version": "19.0.1.0.5",
+    "version": "20.0.1.0.0",
     "development_status": "Production/Stable",
     "license": "LGPL-3",
     "author": "Ucamco, ForgeFlow, Odoo Community Association (OCA)",
@@ -14,8 +14,8 @@
     "category": "Manufacturing",
     "depends": ["mrp", "purchase_stock", "mrp_warehouse_calendar"],
     "data": [
+        "security/ir.access.csv",
         "security/mrp_multi_level_security.xml",
-        "security/ir.model.access.csv",
         "data/system_parameter.xml",
         "views/mrp_area_views.xml",
         "views/product_product_views.xml",

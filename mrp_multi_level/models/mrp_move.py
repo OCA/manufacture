@@ -8,7 +8,9 @@ from odoo import fields, models
 class MrpMove(models.Model):
     _name = "mrp.move"
     _description = "MRP Move"
-    _order = "product_mrp_area_id, mrp_date, mrp_type desc, id"
+    # Selection fields are ordered by their declaration order since 20.0, so
+    # ordering by mrp_type ascending puts supplies before demands.
+    _order = "product_mrp_area_id, mrp_date, mrp_type, id"
 
     # TODO: too many indexes...
 
@@ -64,18 +66,14 @@ class MrpMove(models.Model):
     )
     name = fields.Char(string="Description")
     origin = fields.Char(string="Source Document")
-    parent_product_id = fields.Many2one(
-        comodel_name="product.product", string="Parent Product", index=True
-    )
+    parent_product_id = fields.Many2one(comodel_name="product.product", index=True)
     production_id = fields.Many2one(
         comodel_name="mrp.production", string="Manufacturing Order", index=True
     )
     purchase_line_id = fields.Many2one(
         comodel_name="purchase.order.line", string="Purchase Order Line", index=True
     )
-    purchase_order_id = fields.Many2one(
-        comodel_name="purchase.order", string="Purchase Order", index=True
-    )
+    purchase_order_id = fields.Many2one(comodel_name="purchase.order", index=True)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -89,7 +87,5 @@ class MrpMove(models.Model):
             ("approved", "Approved"),
         ],
     )
-    stock_move_id = fields.Many2one(
-        comodel_name="stock.move", string="Stock Move", index=True
-    )
+    stock_move_id = fields.Many2one(comodel_name="stock.move", index=True)
     bom_id = fields.Many2one("mrp.bom")

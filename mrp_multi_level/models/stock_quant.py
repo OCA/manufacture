@@ -10,7 +10,7 @@ class StockQuant(models.Model):
     @api.model
     def _get_inventory_fields_write(self):
         """
-        Adding field product_uom_id, inventory_quantity
+        Adding field uom_id, inventory_quantity
         """
         fields = super()._get_inventory_fields_write()
-        return fields + ["product_uom_id", "inventory_quantity"]
+        return fields + ["uom_id", "inventory_quantity"]

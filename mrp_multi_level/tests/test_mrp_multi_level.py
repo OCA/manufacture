@@ -352,8 +352,9 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertTrue(av_22_supply.to_procure, 100.0)
 
     def test_12_timezone_handling(self):
-        self.calendar.tz = "Australia/Sydney"  # Oct-Apr/Apr-Oct: UTC+11/UTC+10
-        date_move = datetime(2090, 4, 19, 20, 00)  # Apr 20 6/7 am in Sidney
+        # In 20.0 resource.calendar has no tz anymore: the company tz is used.
+        self.wh.company_id.tz = "Australia/Sydney"  # Oct-Apr/Apr-Oct: UTC+11/UTC+10
+        date_move = datetime(2090, 4, 19, 20, 00)  # noqa: DTZ001  # Apr 20 6/7 am in Sidney
         sidney_date = date(2090, 4, 20)
         self._create_picking_in(
             self.product_tz, 10.0, date_move, location=self.cases_loc
@@ -372,7 +373,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
 
     def test_13_timezone_not_set(self):
         self.wh.calendar_id = False
-        date_move = datetime(2090, 4, 19, 20, 00)
+        date_move = datetime(2090, 4, 19, 20, 00)  # noqa: DTZ001
         self._create_picking_in(
             self.product_tz, 10.0, date_move, location=self.cases_loc
         )
@@ -469,7 +470,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         self.assertEqual(product_mrp_area.supply_bom_id, kit_bom)
 
     def test_17_priorize_safety_stock(self):
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -559,7 +560,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
     def test_19_prioritize_safety_stock_grouped_1(self):
         """Test grouped demand MRP but with a short nbr days.
         Safety stock should be ordered."""
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -640,7 +641,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
     def test_20_prioritize_safety_stock_grouped_2(self):
         """Test grouped demand MRP but with a longer nbr days.
         Safety stock should be ordered."""
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -721,7 +722,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
     def test_21_prioritize_safety_stock_grouped_3(self):
         """Test grouped demand MRP but with an existing incoming supply
         Safety stock should NOT be ordered."""
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -792,7 +793,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
 
     def test_22_prioritize_safety_stock_with_mrp_moves_today(self):
         """Test MRP but with moves today. Safety stock should not be ordered."""
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -836,7 +837,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         """Test grouped demand MRP but with moves today. Safety stock should not be
         ordered.
         """
-        now = datetime.now()
+        now = fields.Datetime.now()
         product = self.prod_test  # has Buy route
         product.seller_ids[0].delay = 2  # set a purchase lead time
         self.quant_obj._update_available_quantity(product, self.cases_loc, 5)
@@ -944,7 +945,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         )
         self.assertEqual(len(move), 1)
         self.assertEqual(move.location_dest_id, self.wh.wh_pack_stock_loc_id)
-        self.assertEqual(move.location_final_id, self.customer_location)
+        self.assertEqual(move.forecasted_location_id, self.customer_location)
         # create incoming first step
         self._run_procurement(self.product_routes, location=self.wh.lot_stock_id)
         pol = self.env["purchase.order.line"].search(
@@ -959,7 +960,7 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         )
         self.assertEqual(len(move), 1)
         self.assertEqual(move.location_dest_id, self.wh.wh_input_stock_loc_id)
-        self.assertEqual(move.location_final_id, self.wh.lot_stock_id)
+        self.assertEqual(move.forecasted_location_id, self.wh.lot_stock_id)
         # Execute MRP and check result
         self.mrp_multi_level_wiz.create(
             {"mrp_area_ids": [(6, 0, self.mrp_area.ids)]}
