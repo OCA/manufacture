@@ -16,12 +16,14 @@ class MrpProduction(models.Model):
     )
     def _compute_date_finished(self):
         res = super()._compute_date_finished()
-        productions = self.filtered(lambda p: p.date_start and not p.is_planned)
+        productions = self.filtered(
+            lambda p: p.date_start and not p.is_planned and p.state != "done"
+        )
         for production in productions:
             warehouse = production.picking_type_id.warehouse_id
             if warehouse.calendar_id:
                 if production.bom_id.produce_delay:
-                    production.date_finished = warehouse.calendar_id.plan_days(
+                    production.date_finished = warehouse._mrp_calendar_plan_days(
                         +1 * production.bom_id.produce_delay + 1,
                         production.date_start,
                     )
@@ -37,7 +39,7 @@ class MrpProduction(models.Model):
             dt_planned = mo.date_start
             warehouse = mo.picking_type_id.warehouse_id
             if warehouse.calendar_id and mo.bom_id.produce_delay:
-                date_expected = warehouse.calendar_id.plan_days(
+                date_expected = warehouse._mrp_calendar_plan_days(
                     +1 * self.bom_id.produce_delay + 1, dt_planned
                 )
                 mo.date_finished = date_expected

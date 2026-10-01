@@ -43,7 +43,7 @@ class TestMrpWarehouseCalendar(TransactionCase):
             {
                 "product_id": self.product.id,
                 "product_tmpl_id": self.product.product_tmpl_id.id,
-                "product_uom_id": self.product.uom_id.id,
+                "uom_id": self.product.uom_id.id,
                 "product_qty": 1.0,
                 "type": "normal",
                 "produce_delay": 1,
@@ -53,6 +53,8 @@ class TestMrpWarehouseCalendar(TransactionCase):
             {"bom_id": self.bom.id, "product_id": self.product_2.id, "product_qty": 2}
         )
 
+        # In 20.0 the Manufacture route is not product selectable by default
+        self.manufacture_route.product_selectable = True
         self.product.route_ids = [(6, 0, self.manufacture_route.ids)]
 
     def test_procurement_with_calendar(self):
@@ -143,3 +145,21 @@ class TestMrpWarehouseCalendar(TransactionCase):
         date_plan_finished = fields.Date.to_date(mo.date_finished)
         monday = fields.Date.to_date("2097-01-07 09:00:00")
         self.assertEqual(date_plan_finished, monday)
+
+    def test_mark_done_before_planned_start(self):
+        """Producing an order earlier than planned keeps the real end date."""
+        mo = self.env["mrp.production"].create(
+            {
+                "product_id": self.product.id,
+                "bom_id": self.bom.id,
+                "product_qty": 1,
+                "date_start": "2097-01-04 09:00:00",
+            }
+        )
+        mo.action_confirm()
+        mo.qty_producing = 1
+        mo.move_raw_ids.write({"quantity": 2, "picked": True})
+        mo.button_mark_done()
+        self.assertEqual(mo.state, "done")
+        self.assertLessEqual(mo.date_finished, fields.Datetime.now())
+        self.assertEqual(mo.move_finished_ids.date, mo.date_finished)

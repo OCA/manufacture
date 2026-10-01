@@ -15,7 +15,7 @@ class StockRule(models.Model):
         dt_planned = fields.Datetime.to_datetime(values["date_planned"]).replace(hour=0)
         warehouse = picking_type.warehouse_id
         if warehouse.calendar_id and bom_id.produce_delay:
-            date_expected = warehouse.calendar_id.plan_days(
+            date_expected = warehouse._mrp_calendar_plan_days(
                 -1 * bom_id.produce_delay, dt_planned
             )
             date_planned = date_expected
