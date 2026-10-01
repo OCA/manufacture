@@ -10,6 +10,8 @@ class TestMrpSaleInfo(common.TransactionCase):
         route_manufacture_1 = cls.env.ref("mrp.route_warehouse0_manufacture")
         route_manufacture_2 = cls.env.ref("stock.route_warehouse0_mto")
         route_manufacture_2.active = True
+        # In 20.0 these routes are not product selectable by default
+        (route_manufacture_1 + route_manufacture_2).product_selectable = True
         cls.product = cls.env["product.product"].create(
             [
                 {
