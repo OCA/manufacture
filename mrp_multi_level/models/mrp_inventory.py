@@ -121,8 +121,7 @@ class MrpInventory(models.Model):
                 )
             else:
                 order_release_date = rec.date
-            if order_release_date < today:
-                order_release_date = today
+            order_release_date = max(order_release_date, today)
             rec.order_release_date = order_release_date
 
     def action_open_planned_orders(self):

@@ -246,8 +246,10 @@ class ProductMRPArea(models.Model):
                 continue
             sellers = rec.product_id.sudo().seller_ids
             suppliers = sellers.filtered(
-                lambda r, rec=rec: (not r.product_id or r.product_id == rec.product_id)
-                and (not r.company_id or r.company_id == rec.company_id)
+                lambda r, rec=rec: (
+                    (not r.product_id or r.product_id == rec.product_id)
+                    and (not r.company_id or r.company_id == rec.company_id)
+                )
             ).sorted(lambda s: (s.sequence, -s.min_qty, s.price, s.id))
             if not suppliers:
                 rec.main_supplierinfo_id = False

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2019-20 ForgeFlow S.L. (https://www.forgeflow.com)
      Part of ForgeFlow. See LICENSE file for full copyright and licensing details. -->
 <odoo>
@@ -119,8 +119,8 @@
         <field name="context">{'search_default_fixed': 1}</field>
     </record>
     <menuitem
-        name="Planned Orders"
         id="menu_mrp_planned_order"
+        name="Planned Orders"
         action="mrp_planned_order_action"
         parent="mrp.mrp_planning_menu_root"
         sequence="20"
