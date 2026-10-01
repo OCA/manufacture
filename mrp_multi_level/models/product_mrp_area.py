@@ -24,7 +24,6 @@ class ProductMRPArea(models.Model):
     product_id = fields.Many2one(
         comodel_name="product.product",
         required=True,
-        string="Product",
         ondelete="cascade",
         check_company=True,
     )
@@ -65,7 +64,6 @@ class ProductMRPArea(models.Model):
     distribution_lead_time = fields.Float()
     main_supplier_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Main Supplier",
         compute="_compute_main_supplier",
         store=True,
         index=True,
@@ -292,7 +290,7 @@ class ProductMRPArea(models.Model):
             ("location_id", "child_of", locations.ids),
             "|",
             ("location_dest_id", "child_of", locations.ids),
-            ("location_final_id", "child_of", locations.ids),
+            ("forecasted_location_id", "child_of", locations.ids),
         ]
 
     def _out_stock_moves_domain(self):
@@ -307,7 +305,7 @@ class ProductMRPArea(models.Model):
             "!",
             ("location_dest_id", "child_of", locations.ids),
             "!",
-            ("location_final_id", "child_of", locations.ids),
+            ("forecasted_location_id", "child_of", locations.ids),
         ]
 
     def action_view_stock_moves(self, domain):

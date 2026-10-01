@@ -89,19 +89,18 @@ class MrpPlannedOrder(models.Model):
 
     @api.onchange("due_date")
     def _onchange_due_date(self):
-        if self.due_date:
-            if self.product_mrp_area_id.mrp_lead_time:
-                calendar = self.mrp_area_id.calendar_id
-                if calendar:
-                    dt = fields.Datetime.from_string(self.due_date)
-                    res = calendar.plan_days(
-                        -1 * (self.product_mrp_area_id.mrp_lead_time + 1), dt
-                    )
-                    self.order_release_date = res.date()
-                else:
-                    self.order_release_date = fields.Date.from_string(
-                        self.due_date
-                    ) - timedelta(days=self.product_mrp_area_id.mrp_lead_time)
+        if self.due_date and self.product_mrp_area_id.mrp_lead_time:
+            calendar = self.mrp_area_id.calendar_id
+            if calendar:
+                dt = fields.Datetime.from_string(self.due_date)
+                res = calendar.plan_days(
+                    -1 * (self.product_mrp_area_id.mrp_lead_time + 1), dt
+                )
+                self.order_release_date = res.date()
+            else:
+                self.order_release_date = fields.Date.from_string(
+                    self.due_date
+                ) - timedelta(days=self.product_mrp_area_id.mrp_lead_time)
 
     def action_toggle_fixed(self):
         for rec in self:

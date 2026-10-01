@@ -1,10 +1,11 @@
 # Copyright 2018-19 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from freezegun import freeze_time
 
+from odoo import fields
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -42,42 +43,38 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.lot_obj = cls.env["stock.lot"]
         cls.mrp_bom_obj = cls.env["mrp.bom"]
 
+        # In 20.0 the Manufacture and Buy routes are not product selectable by
+        # default, and only product selectable routes can be set on products.
+        (
+            cls.env.ref("mrp.route_warehouse0_manufacture")
+            + cls.env.ref("purchase_stock.route_warehouse0_buy")
+        ).product_selectable = True
         cls._create_demo_data()
 
-        cls.fp_1 = cls.env["product.product"].search([("name", "=", "FP-1")], limit=1)
-        cls.fp_2 = cls.env["product.product"].search([("name", "=", "FP-2")], limit=1)
-        cls.fp_3 = cls.env["product.product"].search([("name", "=", "FP-3")], limit=1)
-        cls.fp_4 = cls.env["product.product"].search([("name", "=", "FP-4")], limit=1)
-        cls.sf_1 = cls.env["product.product"].search([("name", "=", "SF-1")], limit=1)
-        cls.sf_2 = cls.env["product.product"].search([("name", "=", "SF-2")], limit=1)
-        cls.sf_3 = cls.env["product.product"].search([("name", "=", "SF-3")], limit=1)
-        cls.pp_1 = cls.env["product.product"].search([("name", "=", "PP-1")], limit=1)
-        cls.pp_2 = cls.env["product.product"].search([("name", "=", "PP-2")], limit=1)
-        cls.pp_3 = cls.env["product.product"].search([("name", "=", "PP-3")], limit=1)
-        cls.pp_4 = cls.env["product.product"].search([("name", "=", "PP-4")], limit=1)
+        cls.fp_1 = cls._demo_products["FP-1"]
+        cls.fp_2 = cls._demo_products["FP-2"]
+        cls.fp_3 = cls._demo_products["FP-3"]
+        cls.fp_4 = cls._demo_products["FP-4"]
+        cls.sf_1 = cls._demo_products["SF-1"]
+        cls.sf_2 = cls._demo_products["SF-2"]
+        cls.sf_3 = cls._demo_products["SF-3"]
+        cls.pp_1 = cls._demo_products["PP-1"]
+        cls.pp_2 = cls._demo_products["PP-2"]
+        cls.pp_3 = cls._demo_products["PP-3"]
+        cls.pp_4 = cls._demo_products["PP-4"]
         cls.product_4b = cls.env["product.product"].search(
             [("default_code", "=", "product.product_product_4b")], limit=1
         )
         cls.product_4c = cls.env["product.product"].search(
             [("default_code", "=", "product.product_product_4c")], limit=1
         )
-        cls.av_11 = cls.env["product.product"].search(
-            [("name", "=", "AV-11 steel")], limit=1
-        )
-        cls.av_12 = cls.env["product.product"].search(
-            [("name", "=", "AV-12 aluminium")], limit=1
-        )
-        cls.av_21 = cls.env["product.product"].search(
-            [("name", "=", "AV-21 white")], limit=1
-        )
-        cls.av_22 = cls.env["product.product"].search(
-            [("name", "=", "AV-22 black")], limit=1
-        )
+        cls.av_11 = cls._demo_products["AV-11 steel"]
+        cls.av_12 = cls._demo_products["AV-12 aluminium"]
+        cls.av_21 = cls._demo_products["AV-21 white"]
+        cls.av_22 = cls._demo_products["AV-22 black"]
         cls.company = cls.env.ref("base.main_company")
-        cls.mrp_area = cls.mrp_area_obj.search([("name", "=", "Test Area")], limit=1)
-        cls.vendor = cls.env["res.partner"].search(
-            [("name", "=", "Lazer Tech")], limit=1
-        )
+        cls.mrp_area = cls._demo_mrp_area
+        cls.vendor = cls._demo_vendor
         cls.wh = cls.env.ref("stock.warehouse0")
         cls.stock_location = cls.wh.lot_stock_id
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
@@ -346,7 +343,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         )
 
         # Create pickings for Scenario 1:
-        dt_base = cls.calendar.plan_days(3 + 1, datetime.today())
+        dt_base = cls.calendar.plan_days(3 + 1, fields.Datetime.now())
         cls._create_picking_in(
             cls.product_scenario_1, 87, dt_base, location=cls.cases_loc
         )
@@ -354,12 +351,12 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls._create_picking_out(
             cls.product_scenario_1, 124, dt_bit_later, location=cls.cases_loc
         )
-        dt_base_2 = cls.calendar.plan_days(3 + 1, datetime.today())
+        dt_base_2 = cls.calendar.plan_days(3 + 1, fields.Datetime.now())
         cls._create_picking_out(
             cls.product_scenario_1, 90, dt_base_2, location=cls.cases_loc
         )
 
-        dt_next_group = cls.calendar.plan_days(10 + 1, datetime.today())
+        dt_next_group = cls.calendar.plan_days(10 + 1, fields.Datetime.now())
         cls._create_picking_out(
             cls.product_scenario_1, 18, dt_next_group, location=cls.cases_loc
         )
@@ -396,7 +393,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         )
 
         # Create test picking for FP-1, FP-2, Desk(steel, black),  Desk(aluminum, white)
-        res = cls.calendar.plan_days(7 + 1, datetime.today().replace(hour=0))
+        res = cls.calendar.plan_days(7 + 1, fields.Datetime.now().replace(hour=0))
         date_move = res.date()
         cls.picking_1 = cls.stock_picking_obj.create(
             {
@@ -411,7 +408,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.fp_1.id,
                             "date": date_move,
-                            "product_uom": cls.fp_1.uom_id.id,
+                            "uom_id": cls.fp_1.uom_id.id,
                             "product_uom_qty": 100,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -423,7 +420,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.fp_2.id,
                             "date": date_move,
-                            "product_uom": cls.fp_2.uom_id.id,
+                            "uom_id": cls.fp_2.uom_id.id,
                             "product_uom_qty": 15,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -435,7 +432,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.fp_3.id,
                             "date": date_move,
-                            "product_uom": cls.fp_3.uom_id.id,
+                            "uom_id": cls.fp_3.uom_id.id,
                             "product_uom_qty": 5,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -447,7 +444,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.product_4b.id,
                             "date": date_move,
-                            "product_uom": cls.product_4b.uom_id.id,
+                            "uom_id": cls.product_4b.uom_id.id,
                             "product_uom_qty": 150,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -459,7 +456,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.product_4c.id,
                             "date": date_move,
-                            "product_uom": cls.product_4c.uom_id.id,
+                            "uom_id": cls.product_4c.uom_id.id,
                             "product_uom_qty": 56,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -484,7 +481,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.prod_min.id,
                             "date": date_move,
-                            "product_uom": cls.prod_min.uom_id.id,
+                            "uom_id": cls.prod_min.uom_id.id,
                             "product_uom_qty": 16,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -496,7 +493,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.prod_max.id,
                             "date": date_move,
-                            "product_uom": cls.prod_max.uom_id.id,
+                            "uom_id": cls.prod_max.uom_id.id,
                             "product_uom_qty": 140,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -508,7 +505,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.prod_multiple.id,
                             "date": date_move,
-                            "product_uom": cls.prod_multiple.uom_id.id,
+                            "uom_id": cls.prod_multiple.uom_id.id,
                             "product_uom_qty": 112,
                             "location_id": cls.stock_location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -520,7 +517,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.picking_2.action_confirm()
 
         # Create Test PO:
-        date_po = cls.calendar.plan_days(1 + 1, datetime.today().replace(hour=0)).date()
+        date_po = cls.calendar.plan_days(
+            1 + 1, fields.Datetime.now().replace(hour=0)
+        ).date()
         cls.po = cls.po_obj.create(
             {
                 "name": "Test PO-001",
@@ -534,7 +533,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "product_id": cls.pp_2.id,
                             "date_planned": date_po,
                             "product_qty": 5.0,
-                            "product_uom_id": cls.pp_2.uom_id.id,
+                            "uom_id": cls.pp_2.uom_id.id,
                             "price_unit": 25.0,
                         },
                     )
@@ -544,7 +543,9 @@ class TestMrpMultiLevelCommon(TransactionCase):
         # Create Test PO for special case Puchase uom:
         # Remember that prod_uom_test had a UoM of units but it is purchased in dozens.
         # For this reason buying 1 quantity of it, means to have 12 units in stock.
-        date_po = cls.calendar.plan_days(1 + 1, datetime.today().replace(hour=0)).date()
+        date_po = cls.calendar.plan_days(
+            1 + 1, fields.Datetime.now().replace(hour=0)
+        ).date()
         cls.po_uom = cls.po_obj.create(
             {
                 "name": "Test PO-002",
@@ -558,7 +559,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                             "product_id": cls.prod_uom_test.id,
                             "date_planned": date_po,
                             "product_qty": 1.0,
-                            "product_uom_id": cls.env.ref("uom.product_uom_dozen").id,
+                            "uom_id": cls.env.ref("uom.product_uom_dozen").id,
                             "price_unit": 25.0,
                         },
                     )
@@ -567,14 +568,16 @@ class TestMrpMultiLevelCommon(TransactionCase):
         )
 
         # Create test MO:
-        date_mo = cls.calendar.plan_days(9 + 1, datetime.today().replace(hour=0)).date()
+        date_mo = cls.calendar.plan_days(
+            9 + 1, fields.Datetime.now().replace(hour=0)
+        ).date()
         bom_fp_2 = cls.env["mrp.bom"].search(
             [("product_tmpl_id", "=", cls.fp_2.product_tmpl_id.id)], limit=1
         )
         cls.mo = cls._create_mo(cls.fp_2, bom_fp_2, date_mo, qty=12.0)
 
         # Dates:
-        today = datetime.today().replace(hour=0)
+        today = fields.Datetime.now().replace(hour=0)
         cls.date_3 = cls.calendar.plan_days(3 + 1, today).date()
         cls.date_5 = cls.calendar.plan_days(5 + 1, today).date()
         cls.date_6 = cls.calendar.plan_days(6 + 1, today).date()
@@ -612,7 +615,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": cls.prod_test.id,
                             "date": date_move,
-                            "product_uom": cls.prod_test.uom_id.id,
+                            "uom_id": cls.prod_test.uom_id.id,
                             "product_uom_qty": qty,
                             "location_id": cls.sec_loc.id,
                             "location_dest_id": cls.customer_location.id,
@@ -653,7 +656,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": product.id,
                             "date": date_move,
-                            "product_uom": product.uom_id.id,
+                            "uom_id": product.uom_id.id,
                             "product_uom_qty": qty,
                             "location_id": cls.supplier_location.id,
                             "location_dest_id": location.id,
@@ -682,7 +685,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
                         {
                             "product_id": product.id,
                             "date": date_move,
-                            "product_uom": product.uom_id.id,
+                            "uom_id": product.uom_id.id,
                             "product_uom_qty": qty,
                             "location_id": location.id,
                             "location_dest_id": cls.customer_location.id,
@@ -732,11 +735,17 @@ class TestMrpMultiLevelCommon(TransactionCase):
 
     @classmethod
     def _create_demo_data(cls):
+        # Keep references to the records created here: when the module demo
+        # data is installed, records with the same names already exist, so they
+        # cannot be looked up by name.
+        cls._demo_products = {}
         # Create Partner
-        cls.env["res.partner"].create({"name": "Lazer Tech", "is_company": True})
+        cls._demo_vendor = cls.env["res.partner"].create(
+            {"name": "Lazer Tech", "is_company": True}
+        )
 
         # Create MRP Area
-        cls.env["mrp.area"].create(
+        cls._demo_mrp_area = cls.env["mrp.area"].create(
             {
                 "name": "Test Area",
                 "warehouse_id": cls.env.ref("stock.warehouse0").id,
@@ -769,7 +778,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             ("AV-22 black", route_buy),
         ]
         for name, route in products_data:
-            cls.env["product.product"].create(
+            cls._demo_products[name] = cls.env["product.product"].create(
                 {
                     "name": name,
                     "categ_id": categ_mrp.id,
@@ -870,6 +879,12 @@ class TestMrpMultiLevelCommon(TransactionCase):
         ptav_attr2_v1 = _ptav(attr2_v1)
         ptav_attr2_v2 = _ptav(attr2_v2)
 
+        cls._demo_templates = {
+            name: product.product_tmpl_id
+            for name, product in cls._demo_products.items()
+        }
+        cls._demo_templates[product_4.name] = product_4
+
         # Create MRP Areas for products
         products_to_area = [
             "FP-1",
@@ -888,16 +903,16 @@ class TestMrpMultiLevelCommon(TransactionCase):
             "AV-22 black",
             "product.product_product_4",
         ]
-        mrp_area = cls.env["mrp.area"].search([("name", "=", "Test Area")], limit=1)
+        mrp_area = cls._demo_mrp_area
         for name in products_to_area:
-            product = cls.env["product.template"].search([("name", "=", name)], limit=1)
+            product = cls._demo_templates[name]
             for variant in product.product_variant_ids:
                 cls.env["product.mrp.area"].create(
                     {"product_id": variant.id, "mrp_area_id": mrp_area.id}
                 )
 
         # Create Supplier Info
-        partner = cls.env["res.partner"].search([("name", "=", "Lazer Tech")], limit=1)
+        partner = cls._demo_vendor
         supplier_info_data = [
             ("AV-11 steel", 4, 100),
             ("AV-12 aluminium", 4, 100),
@@ -909,7 +924,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             ("PP-4", 3, 80),
         ]
         for name, delay, price in supplier_info_data:
-            product = cls.env["product.product"].search([("name", "=", name)], limit=1)
+            product = cls._demo_products[name]
             cls.env["product.supplierinfo"].create(
                 {
                     "product_tmpl_id": product.product_tmpl_id.id,
@@ -922,13 +937,13 @@ class TestMrpMultiLevelCommon(TransactionCase):
 
         # Create BOMs
         # FP-1
-        fp1 = cls.env["product.product"].search([("name", "=", "FP-1")], limit=1)
-        pp1 = cls.env["product.product"].search([("name", "=", "PP-1")], limit=1)
-        pp2 = cls.env["product.product"].search([("name", "=", "PP-2")], limit=1)
+        fp1 = cls._demo_products["FP-1"]
+        pp1 = cls._demo_products["PP-1"]
+        pp2 = cls._demo_products["PP-2"]
         bom_fp1 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": fp1.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "produce_delay": 2,
             }
@@ -937,7 +952,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp1.id,
                 "product_qty": 2,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp1.id,
             }
@@ -946,20 +961,20 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp2.id,
                 "product_qty": 3,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp1.id,
             }
         )
 
         # FP-2
-        fp2 = cls.env["product.product"].search([("name", "=", "FP-2")], limit=1)
-        sf1 = cls.env["product.product"].search([("name", "=", "SF-1")], limit=1)
-        sf2 = cls.env["product.product"].search([("name", "=", "SF-2")], limit=1)
+        fp2 = cls._demo_products["FP-2"]
+        sf1 = cls._demo_products["SF-1"]
+        sf2 = cls._demo_products["SF-2"]
         bom_fp2 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": fp2.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "produce_delay": 1,
             }
@@ -968,7 +983,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": sf1.id,
                 "product_qty": 2,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp2.id,
             }
@@ -977,20 +992,20 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": sf2.id,
                 "product_qty": 3,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp2.id,
             }
         )
 
         # FP-3
-        fp3 = cls.env["product.product"].search([("name", "=", "FP-3")], limit=1)
-        sf3 = cls.env["product.product"].search([("name", "=", "SF-3")], limit=1)
-        pp3 = cls.env["product.product"].search([("name", "=", "PP-3")], limit=1)
+        fp3 = cls._demo_products["FP-3"]
+        sf3 = cls._demo_products["SF-3"]
+        pp3 = cls._demo_products["PP-3"]
         bom_fp3 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": fp3.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "produce_delay": 3,
             }
@@ -999,7 +1014,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": sf3.id,
                 "product_qty": 2,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp3.id,
             }
@@ -1008,7 +1023,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp3.id,
                 "product_qty": 2,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_fp3.id,
             }
@@ -1018,7 +1033,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         bom_sf1 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": sf1.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "produce_delay": 1,
             }
@@ -1027,7 +1042,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp1.id,
                 "product_qty": 3,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_sf1.id,
             }
@@ -1036,7 +1051,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp2.id,
                 "product_qty": 2,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_sf1.id,
             }
@@ -1046,7 +1061,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         bom_sf2 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": sf2.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "produce_delay": 3,
             }
@@ -1055,18 +1070,18 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp2.id,
                 "product_qty": 3,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_sf2.id,
             }
         )
 
         # SF-3
-        pp4 = cls.env["product.product"].search([("name", "=", "PP-4")], limit=1)
+        pp4 = cls._demo_products["PP-4"]
         bom_sf3 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": sf3.product_tmpl_id.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "type": "phantom",
                 "sequence": 5,
                 "produce_delay": 3,
@@ -1076,7 +1091,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp3.id,
                 "product_qty": 1,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_sf3.id,
             }
@@ -1085,30 +1100,22 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": pp4.id,
                 "product_qty": 3,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
                 "bom_id": bom_sf3.id,
             }
         )
 
         # Customizable Desk (Product 4)
-        av11 = cls.env["product.product"].search(
-            [("name", "=", "AV-11 steel")], limit=1
-        )
-        av12 = cls.env["product.product"].search(
-            [("name", "=", "AV-12 aluminium")], limit=1
-        )
-        av21 = cls.env["product.product"].search(
-            [("name", "=", "AV-21 white")], limit=1
-        )
-        av22 = cls.env["product.product"].search(
-            [("name", "=", "AV-22 black")], limit=1
-        )
+        av11 = cls._demo_products["AV-11 steel"]
+        av12 = cls._demo_products["AV-12 aluminium"]
+        av21 = cls._demo_products["AV-21 white"]
+        av22 = cls._demo_products["AV-22 black"]
 
         bom_p4 = cls.env["mrp.bom"].create(
             {
                 "product_tmpl_id": product_4.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 5,
             }
         )
@@ -1117,7 +1124,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": av11.id,
                 "product_qty": 1,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 1,
                 "bom_id": bom_p4.id,
                 "bom_product_template_attribute_value_ids": [
@@ -1129,7 +1136,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": av12.id,
                 "product_qty": 1,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 2,
                 "bom_id": bom_p4.id,
                 "bom_product_template_attribute_value_ids": [
@@ -1141,7 +1148,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": av21.id,
                 "product_qty": 1,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 3,
                 "bom_id": bom_p4.id,
                 "bom_product_template_attribute_value_ids": [
@@ -1153,7 +1160,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
             {
                 "product_id": av22.id,
                 "product_qty": 1,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "sequence": 4,
                 "bom_id": bom_p4.id,
                 "bom_product_template_attribute_value_ids": [
@@ -1167,7 +1174,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.env["stock.quant"].create(
             {
                 "product_id": pp1.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "inventory_quantity": 10,
                 "location_id": location_stock.id,
             }
@@ -1175,7 +1182,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.env["stock.quant"].create(
             {
                 "product_id": pp2.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "inventory_quantity": 20,
                 "location_id": location_stock.id,
             }
@@ -1183,7 +1190,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.env["stock.quant"].create(
             {
                 "product_id": sf2.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "inventory_quantity": 15,
                 "location_id": location_stock.id,
             }
@@ -1191,7 +1198,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.env["stock.quant"].create(
             {
                 "product_id": product_4b.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "inventory_quantity": 50,
                 "location_id": location_stock.id,
             }
@@ -1199,7 +1206,7 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.env["stock.quant"].create(
             {
                 "product_id": product_4c.id,
-                "product_uom_id": uom_unit.id,
+                "uom_id": uom_unit.id,
                 "inventory_quantity": 55,
                 "location_id": location_stock.id,
             }

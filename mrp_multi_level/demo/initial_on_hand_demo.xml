@@ -2,7 +2,7 @@
 <odoo noupdate="1">
     <record id="stock_inventory_1" model="stock.quant">
         <field name="product_id" ref="product_product_pp_1" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="inventory_quantity">10</field>
         <field
             name="location_id"
@@ -12,7 +12,7 @@
     </record>
     <record id="stock_inventory_2" model="stock.quant">
         <field name="product_id" ref="product_product_pp_2" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="inventory_quantity">20</field>
         <field
             name="location_id"
@@ -22,7 +22,7 @@
     </record>
     <record id="stock_inventory_3" model="stock.quant">
         <field name="product_id" ref="product_product_sf_2" />
-        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="inventory_quantity">15</field>
         <field
             name="location_id"

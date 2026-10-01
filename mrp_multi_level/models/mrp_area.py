@@ -12,15 +12,11 @@ class MrpArea(models.Model):
     _description = "MRP Area"
 
     name = fields.Char(required=True)
-    warehouse_id = fields.Many2one(
-        comodel_name="stock.warehouse", string="Warehouse", required=True
-    )
+    warehouse_id = fields.Many2one(comodel_name="stock.warehouse", required=True)
     company_id = fields.Many2one(
         comodel_name="res.company", related="warehouse_id.company_id", store=True
     )
-    location_id = fields.Many2one(
-        comodel_name="stock.location", string="Location", required=True
-    )
+    location_id = fields.Many2one(comodel_name="stock.location", required=True)
     active = fields.Boolean(default=True)
     calendar_id = fields.Many2one(
         comodel_name="resource.calendar",
@@ -33,7 +29,7 @@ class MrpArea(models.Model):
         """Coverts a datetime to date considering the timezone of MRP Area.
         If no datetime is provided, it returns today's date in the timezone."""
         return fields.Date.context_today(
-            self.with_context(tz=self.calendar_id.tz),
+            self.with_context(tz=self.company_id.tz),
             timestamp=dt_to_convert,
         )
 
