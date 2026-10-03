@@ -6,3 +6,6 @@
 - Laurent Bélorgey \<lb@lalieutenante.com\>
 - Pimolnat Suntian \<pimolnats@ecosoft.co.th\>
 - Mathieu Delva \<mathieu.delva@akretion.com\>
+
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Vicent Cubells \<<vicent.cubells@nagarro.com>\>

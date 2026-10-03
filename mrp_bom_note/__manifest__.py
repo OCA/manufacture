@@ -3,7 +3,7 @@
 
 {
     "name": "Notes in Bill of Materials",
-    "version": "16.0.1.1.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "OdooMRP team,"
     "AvanzOSC,"
@@ -13,7 +13,7 @@
     "category": "Manufacturing",
     "depends": ["mrp"],
     "data": [
-        "views/mrp_bom_view.xml",
+        "views/mrp_bom_views.xml",
         "views/mrp_production_templates.xml",
     ],
     "installable": True,
