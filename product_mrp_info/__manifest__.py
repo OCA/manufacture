@@ -3,7 +3,7 @@
 
 {
     "name": "Product MRP Info",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "development_status": "Beta",
     "license": "LGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
@@ -13,7 +13,10 @@
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp"],
-    "data": ["views/product_views.xml"],
+    "data": [
+        "views/product_product_views.xml",
+        "views/product_template_views.xml",
+    ],
     "installable": True,
     "application": False,
 }
