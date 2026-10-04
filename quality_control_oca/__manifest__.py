@@ -7,7 +7,7 @@
 
 {
     "name": "Quality Control OCA",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Quality Control",
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
@@ -17,7 +17,7 @@
     "data": [
         "data/quality_control_data.xml",
         "security/quality_control_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizard/qc_test_wizard_view.xml",
         "views/qc_menus.xml",
         "views/qc_inspection_view.xml",
