@@ -20,14 +20,16 @@ class QcTriggerProductTemplateLine(models.Model):
             trigger, timings, product, partner=partner
         )
         for trigger_line in product.product_tmpl_id.qc_triggers.filtered(
-            lambda r: r.trigger == trigger
-            and r.timing in timings
-            and (
-                not r.partners
-                or not partner
-                or partner.commercial_partner_id in r.partners
+            lambda r: (
+                r.trigger == trigger
+                and r.timing in timings
+                and (
+                    not r.partners
+                    or not partner
+                    or partner.commercial_partner_id in r.partners
+                )
+                and r.test.active
             )
-            and r.test.active
         ):
             trigger_lines.add(trigger_line)
         return trigger_lines
