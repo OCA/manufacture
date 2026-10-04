@@ -4,8 +4,6 @@
 # Copyright 2017 ForgeFlow S.L.
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import datetime
-
 from odoo import api, exceptions, fields, models
 from odoo.tools import formatLang
 
@@ -13,12 +11,12 @@ from odoo.tools import formatLang
 class QcInspection(models.Model):
     _name = "qc.inspection"
     _description = "Quality control inspection"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ("mail.thread", "mail.activity.mixin")
 
     @api.depends("inspection_lines", "inspection_lines.success")
     def _compute_success(self):
         for i in self:
-            i.success = all([x.success for x in i.inspection_lines])
+            i.success = all(x.success for x in i.inspection_lines)
 
     def object_selection_values(self):
         """
@@ -92,7 +90,6 @@ class QcInspection(models.Model):
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Company",
         default=lambda self: self.env.company,
     )
     user = fields.Many2one(
@@ -112,7 +109,7 @@ class QcInspection(models.Model):
     def write(self, vals):
         if "state" in vals:
             if vals["state"] in ["success", "failed"]:
-                vals["date_done"] = datetime.now()
+                vals["date_done"] = fields.Datetime.now()
             elif vals["state"] == "draft":
                 vals["date_done"] = False
         return super().write(vals)
@@ -296,9 +293,7 @@ class QcInspectionLine(models.Model):
                     max_val = formatLang(self.env, insp_line.max_value)
                     insp_line.valid_values = f"{min_val} ~ {max_val}"
 
-    inspection_id = fields.Many2one(
-        comodel_name="qc.inspection", string="Inspection", ondelete="cascade"
-    )
+    inspection_id = fields.Many2one(comodel_name="qc.inspection", ondelete="cascade")
     name = fields.Char(string="Question")
     product_id = fields.Many2one(
         comodel_name="product.product",

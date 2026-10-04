@@ -27,28 +27,4 @@
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>
-    <record id="qc_test_multi_company_rule" model="ir.rule">
-        <field name="name">Quality control test multi-company</field>
-        <field name="model_id" ref="model_qc_test" />
-        <field name="global" eval="True" />
-        <field
-            name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
-    </record>
-    <record id="qc_inspection_multi_company_rule" model="ir.rule">
-        <field name="name">Quality control inspection multi-company</field>
-        <field name="model_id" ref="model_qc_inspection" />
-        <field name="global" eval="True" />
-        <field
-            name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
-    </record>
-    <record id="qc_trigger_multi_company_rule" model="ir.rule">
-        <field name="name">Quality control trigger multi-company</field>
-        <field name="model_id" ref="model_qc_trigger" />
-        <field name="global" eval="True" />
-        <field
-            name="domain_force"
-        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
-    </record>
 </odoo>

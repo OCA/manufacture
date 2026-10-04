@@ -5,16 +5,23 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from unittest.mock import patch
+
 from odoo import exceptions
 from odoo.tests import new_test_user
 
-from odoo.addons.base.models.ir_model import MODULE_UNINSTALL_FLAG
 from odoo.addons.base.tests.common import BaseCommon
 
 from ..models.qc_trigger_line import _filter_trigger_lines
 
 
 class TestQualityControlOcaBase(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "product.group_product_manager",
+        "quality_control_oca.group_quality_control_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -253,14 +260,15 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         inspection2.write({"auto_generated": True})
         with self.assertRaises(exceptions.UserError):
             inspection2.with_user(self.user).unlink()
-        self.assertTrue(inspection2.unlink())
+        self.assertTrue(inspection2.sudo().unlink())
 
     def test_qc_inspection_auto_generate_uninstall_unlink(self):
-        uninstall = {MODULE_UNINSTALL_FLAG: True}
-
         inspection2 = self.inspection1.copy()
         inspection2.write({"auto_generated": True})
-        self.assertTrue(inspection2.with_context(**uninstall).unlink())
+        with patch.object(
+            self.registry, "uninstalling_modules", {"quality_control_oca"}
+        ):
+            self.assertTrue(inspection2.unlink())
 
     def test_qc_inspection_product(self):
         self.inspection1.write({"object_id": f"{self.product._name},{self.product.id}"})
