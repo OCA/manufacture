@@ -10,3 +10,6 @@
 - [InitOS](https://www.initos.com/):
   - Dhara Solanki \<dhara.solanki@initos.com\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Vicent Cubells \<<vicent.cubells@nagarro.com>\>
+

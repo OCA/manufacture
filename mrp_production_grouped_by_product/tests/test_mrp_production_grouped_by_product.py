@@ -32,7 +32,6 @@ class TestProductionGroupedByProduct(common.TransactionCase):
                     (6, 0, [cls.env.ref("mrp.route_warehouse0_manufacture").id])
                 ],
                 "type": "product",
-                "produce_delay": 0,
             }
         )
         cls.product2 = cls.env["product.product"].create(
@@ -60,7 +59,7 @@ class TestProductionGroupedByProduct(common.TransactionCase):
                 "product_qty": 2,
                 "product_uom_id": cls.product1.uom_id.id,
                 "date_deadline": "2018-06-01 15:00:00",
-                "date_planned_start": "2018-06-01 15:00:00",
+                "date_start": "2018-06-01 15:00:00",
             }
         )
         cls.mo._compute_move_raw_ids()
