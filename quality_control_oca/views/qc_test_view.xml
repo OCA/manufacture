@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
     Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -6,7 +6,7 @@
     Copyright 2017 Simone Rubino - Agile Business Group
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="qc_test_form_view">
+    <record id="qc_test_form_view" model="ir.ui.view">
         <field name="name">qc.test.form</field>
         <field name="model">qc.test</field>
         <field name="arch" type="xml">
@@ -52,7 +52,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_test_tree_view">
+    <record id="qc_test_tree_view" model="ir.ui.view">
         <field name="name">qc.test.list</field>
         <field name="model">qc.test</field>
         <field name="arch" type="xml">
@@ -63,12 +63,12 @@
             </list>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_qc_test">
+    <record id="action_qc_test" model="ir.actions.act_window">
         <field name="name">Tests</field>
         <field name="res_model">qc.test</field>
         <field name="view_mode">list,form</field>
     </record>
-    <record model="ir.ui.view" id="qc_test_question_form_view">
+    <record id="qc_test_question_form_view" model="ir.ui.view">
         <field name="name">qc.test.question.form</field>
         <field name="model">qc.test.question</field>
         <field name="arch" type="xml">
@@ -137,9 +137,9 @@
         </field>
     </record>
     <menuitem
+        id="qc_test_menu"
         name="Tests"
         parent="qc_menu_test_parent"
-        id="qc_test_menu"
         action="action_qc_test"
         groups="group_quality_control_manager"
         sequence="20"

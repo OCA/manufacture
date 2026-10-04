@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
     Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -13,7 +13,7 @@
     <record id="qc_test_template_category_referenced" model="qc.test.category">
         <field name="name">Referenced</field>
     </record>
-    <record forcecreate="True" id="decimal_quality_control" model="decimal.precision">
+    <record id="decimal_quality_control" forcecreate="True" model="decimal.precision">
         <field name="name">Quality Control</field>
         <field name="digits">5</field>
     </record>

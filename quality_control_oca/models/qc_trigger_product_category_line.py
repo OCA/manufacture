@@ -22,12 +22,14 @@ class QcTriggerProductCategoryLine(models.Model):
         category = product.categ_id
         while category:
             for trigger_line in category.qc_triggers.filtered(
-                lambda r: r.trigger == trigger
-                and r.timing in timings
-                and (
-                    not r.partners
-                    or not partner
-                    or partner.commercial_partner_id in r.partners
+                lambda r: (
+                    r.trigger == trigger
+                    and r.timing in timings
+                    and (
+                        not r.partners
+                        or not partner
+                        or partner.commercial_partner_id in r.partners
+                    )
                 )
             ):
                 trigger_lines.add(trigger_line)

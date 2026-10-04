@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
     Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
     Copyright 2014 Oihane Crucelaegui - AvanzOSC
@@ -6,7 +6,7 @@
     Copyright 2017 Simone Rubino - Agile Business Group
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="qc_inspection_form_view">
+    <record id="qc_inspection_form_view" model="ir.ui.view">
         <field name="name">qc.inspection.form</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
@@ -164,7 +164,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_inspection_tree_view">
+    <record id="qc_inspection_tree_view" model="ir.ui.view">
         <field name="name">qc.inspection.list</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
@@ -189,7 +189,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_inspection_kanban_view">
+    <record id="qc_inspection_kanban_view" model="ir.ui.view">
         <field name="name">qc.inspection.kanban</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
@@ -269,7 +269,7 @@
             </kanban>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_inspection_search_view">
+    <record id="qc_inspection_search_view" model="ir.ui.view">
         <field name="name">qc.inspection.search</field>
         <field name="model">qc.inspection</field>
         <field name="arch" type="xml">
@@ -351,18 +351,18 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_qc_inspection">
+    <record id="action_qc_inspection" model="ir.actions.act_window">
         <field name="name">Inspections</field>
         <field name="res_model">qc.inspection</field>
         <field name="view_mode">list,form,kanban</field>
     </record>
     <menuitem
+        id="qc_inspection_menu"
         name="Inspections"
         parent="qc_inspection_menu_parent"
-        id="qc_inspection_menu"
         action="action_qc_inspection"
     />
-    <record model="ir.ui.view" id="qc_inspection_line_tree_view">
+    <record id="qc_inspection_line_tree_view" model="ir.ui.view">
         <field name="name">qc.inspection.line.list</field>
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
@@ -396,7 +396,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_inspection_line_kanban_view">
+    <record id="qc_inspection_line_kanban_view" model="ir.ui.view">
         <field name="name">qc.inspection.line.kanban</field>
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
@@ -458,7 +458,7 @@
             </kanban>
         </field>
     </record>
-    <record model="ir.ui.view" id="qc_inspection_line_search_view">
+    <record id="qc_inspection_line_search_view" model="ir.ui.view">
         <field name="name">qc.inspection.line.search</field>
         <field name="model">qc.inspection.line</field>
         <field name="arch" type="xml">
@@ -506,16 +506,16 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_qc_inspection_line">
+    <record id="action_qc_inspection_line" model="ir.actions.act_window">
         <field name="name">Inspection lines</field>
         <field name="res_model">qc.inspection.line</field>
         <field name="view_mode">list,kanban</field>
         <field name="view_id" ref="qc_inspection_line_tree_view" />
     </record>
     <menuitem
+        id="qc_inspection_lines_menu"
         name="Inspection lines"
         parent="qc_inspection_menu_parent"
-        id="qc_inspection_lines_menu"
         action="action_qc_inspection_line"
     />
 </odoo>
