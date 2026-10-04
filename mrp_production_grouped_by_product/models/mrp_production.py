@@ -104,7 +104,7 @@ class MrpProduction(models.Model):
                     ).change_prod_qty()
                     mo._post_mo_merging_adjustments(vals)
                     return mo
-        return super(MrpProduction, self).create(vals_list)
+        return super().create(vals_list)
 
     @api.depends("bom_id", "product_id", "product_qty", "product_uom_id")
     def _compute_workorder_ids(self):

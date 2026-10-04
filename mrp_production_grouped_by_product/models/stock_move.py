@@ -26,4 +26,4 @@ class StockMove(models.Model):
                     new_vals_list.append(val)
             else:
                 new_vals_list.append(val)
-        return super(StockMove, self).create(new_vals_list)
+        return super().create(new_vals_list)
