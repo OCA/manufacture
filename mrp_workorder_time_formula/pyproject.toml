@@ -1,0 +1,7 @@
+[tool.poetry]
+name = "odoo-addon-mrp_workorder_time_formula"
+version = "17.0.1.0.0"
+
+[build-system]
+requires = ["whool"]
+build-backend = "whool.buildapi"
