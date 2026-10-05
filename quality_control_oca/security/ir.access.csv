@@ -1,0 +1,23 @@
+id,name,model_id,group_id/id,operation,domain
+access_user_qc_inspection,qc_inspection,qc.inspection,group_quality_control_user,crud,
+access_user_qc_inspection_line,qc_inspection_line,qc.inspection.line,group_quality_control_user,crud,
+access_user_qc_test,qc_test user,qc.test,group_quality_control_user,r,
+access_manager_qc_test,qc_test manager,qc.test,group_quality_control_manager,crud,
+access_user_qc_test_question,qc_test_question user,qc.test.question,group_quality_control_user,r,
+access_manager_qc_test_question,qc_test_question manager,qc.test.question,group_quality_control_manager,crud,
+access_user_qc_test_question_value,qc_test_question_value user,qc.test.question.value,group_quality_control_user,r,
+access_manager_qc_test_question_value,qc_test_question_value manager,qc.test.question.value,group_quality_control_manager,crud,
+access_user_qc_test_category,qc_test_category user,qc.test.category,group_quality_control_user,r,
+access_manager_qc_test_category,qc_test_category manager,qc.test.category,group_quality_control_manager,crud,
+access_user_qc_trigger,qc_trigger user,qc.trigger,group_quality_control_user,r,
+access_manager_qc_trigger,qc_trigger manager,qc.trigger,group_quality_control_manager,crud,
+access_user_qc_trigger_product_category_line,qc_trigger_product_category_line user,qc.trigger.product_category_line,group_quality_control_user,r,
+access_manager_qc_trigger_product_category_line,qc_trigger_product_category_line manager,qc.trigger.product_category_line,group_quality_control_manager,crud,
+access_user_qc_trigger_product_template_line,qc_trigger_product_template_line user,qc.trigger.product_template_line,group_quality_control_user,r,
+access_manager_qc_trigger_product_template_line,qc_trigger_product_template_line manager,qc.trigger.product_template_line,group_quality_control_manager,crud,
+access_user_qc_trigger_product_line,qc_trigger_product_line user,qc.trigger.product_line,group_quality_control_user,r,
+access_manager_qc_trigger_product_line,qc_trigger_product_line manager,qc.trigger.product_line,group_quality_control_manager,crud,
+access_user_qc_inspection_set_test,qc_inspection_set_test user,qc.inspection.set.test,group_quality_control_user,cru,
+qc_test_comp_rule,Quality control test multi-company,qc.test,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+qc_inspection_comp_rule,Quality control inspection multi-company,qc.inspection,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+qc_trigger_comp_rule,Quality control trigger multi-company,qc.trigger,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
