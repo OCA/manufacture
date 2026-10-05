@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-10-05 10:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model:ir.model,name:mrp_production_serial_matrix_subcontracting.model_mrp_production_serial_matrix
 msgid "Mrp Production Serial Matrix"
-msgstr ""
+msgstr "Matrice seriali produzione MRP"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #. odoo-python
@@ -25,6 +27,8 @@ msgstr ""
 #, python-format
 msgid "No subcontracted MO with serial-tracked product on this transfer."
 msgstr ""
+"Nessun OP subappaltato con seriale-prodotto tracciato in questo "
+"trasferimento."
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model:ir.model.fields,help:mrp_production_serial_matrix_subcontracting.field_mrp_production_serial_matrix__subcontract_receipt_picking_id
@@ -32,16 +36,18 @@ msgid ""
 "Receipt this serial matrix was launched from. The completion message is "
 "posted on it."
 msgstr ""
+"Ricevi la matrice seriale da cui è stato avviato il processo. Il messaggio "
+"di completamento viene pubblicato su di essa."
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_production_serial_matrix_subcontracting.view_picking_form
 msgid "Serial Numbers Matrix"
-msgstr ""
+msgstr "Matrice numeri seriali"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix_subcontracting.field_stock_picking__show_subcontract_serial_matrix
 msgid "Show Subcontract Serial Matrix"
-msgstr ""
+msgstr "Visualizza matrice seriale subappalto"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #. odoo-python
@@ -50,11 +56,13 @@ msgstr ""
 msgid ""
 "Something went wrong and the subcontracted MO could not be recorded. %s"
 msgstr ""
+"Si è verificato un problema e non è stato possibile registrare l'OP in "
+"subappalto. %s"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model:ir.model.fields,field_description:mrp_production_serial_matrix_subcontracting.field_mrp_production_serial_matrix__subcontract_receipt_picking_id
 msgid "Subcontract Receipt"
-msgstr ""
+msgstr "Ricevuto subappalto"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #. odoo-python
@@ -63,6 +71,8 @@ msgstr ""
 msgid ""
 "The serial numbers matrix for %(product)s ended with an error: %(error)s"
 msgstr ""
+"La matrice dei numeri di serie per %(product)s è terminata con un errore: %"
+"(error)s"
 
 #. module: mrp_production_serial_matrix_subcontracting
 #. odoo-python
@@ -70,8 +80,10 @@ msgstr ""
 #, python-format
 msgid "The serial numbers matrix for %(product)s has finished successfully."
 msgstr ""
+"La matrice dei numeri di serie per %(product)s è stata completata con "
+"successo."
 
 #. module: mrp_production_serial_matrix_subcontracting
 #: model:ir.model,name:mrp_production_serial_matrix_subcontracting.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
