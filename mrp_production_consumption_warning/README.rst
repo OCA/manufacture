@@ -21,25 +21,29 @@ MRP production consumtion warning
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
-    :target: https://github.com/OCA/manufacture/tree/15.0/mrp_production_consumption_warning
+    :target: https://github.com/OCA/manufacture/tree/19.0/mrp_production_consumption_warning
     :alt: OCA/manufacture
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/manufacture-15-0/manufacture-15-0-mrp_production_consumption_warning
+    :target: https://translation.odoo-community.org/projects/manufacture-19-0/manufacture-19-0-mrp_production_consumption_warning
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/manufacture&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Show warning message in MO form when components of MO and components of BoM of a product are not consistent.
+Show warning message in MO form when components of MO and components of
+BoM of a product are not consistent.
 
 Example warning message:
 
-There are discrepancies between your Manufacturing Order and the BoM associated with the Finished products:
-    - The MO does not use the product(s) Product 3, Product 5
-    - The MO line quantity for Product Product 1 is 25.0 while the quantity of 30.0 (30.0 x 1.0) is expected from the BoM line
-    - The components Product 4 is/are not present on the BoM
+There are discrepancies between your Manufacturing Order and the BoM
+associated with the Finished products:
+
+- The MO does not use the product(s) Product 3, Product 5
+- The MO line quantity for Product Product 1 is 25.0 while the quantity
+  of 30.0 (30.0 x 1.0) is expected from the BoM line
+- The components Product 4 is/are not present on the BoM
 
 **Table of contents**
 
@@ -52,7 +56,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/manufacture/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_consumption_warning%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/manufacture/issues/new?body=module:%20mrp_production_consumption_warning%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -60,19 +64,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * KOMIT
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Komit <https://komit-consulting.com>`_:
+- `Komit <https://komit-consulting.com>`__:
 
-    * Quoc Pham Ngoc <quoc-pn@komit-consulting.com>
+     - Quoc Pham Ngoc <quoc-pn@komit-consulting.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
@@ -80,7 +84,7 @@ The development of this module has been financially supported by:
 - Komit (https://komit-consulting.com)
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -92,6 +96,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/15.0/mrp_production_consumption_warning>`_ project on GitHub.
+This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/19.0/mrp_production_consumption_warning>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

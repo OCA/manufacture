@@ -4,7 +4,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
-
     maxDiff = None
 
     @classmethod
