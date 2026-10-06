@@ -33,17 +33,15 @@ class StockProductionLot(models.Model):
         data = (
             self.env["qc.inspection"]
             .sudo()
-            .read_group(
+            ._read_group(
                 [("id", "in", self.mapped("qc_inspections_ids").ids)],
                 ["lot_id", "state"],
-                ["lot_id", "state"],
-                lazy=False,
+                ["__count"],
             )
         )
         lot_data = {}
-        for d in data:
-            lot_data.setdefault(d["lot_id"][0], {}).setdefault(d["state"], 0)
-            lot_data[d["lot_id"][0]][d["state"]] += d["__count"]
+        for lot, state, count in data:
+            lot_data.setdefault(lot.id, {})[state] = count
         for lot in self:
             count_data = lot_data.get(lot.id, {})
             lot.created_inspections = sum(count_data.values())
