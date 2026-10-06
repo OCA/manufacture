@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * quality_control_mrp
+#
+# Translators:
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-02 11:36+0000\n"
+"PO-Revision-Date: 2021-03-02 12:39+0100\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__created_inspections
+msgid "Created inspections"
+msgstr "Erstellte Prüfungen"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
+msgid "Inspections"
+msgstr "Prüfungen"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model.fields,help:quality_control_mrp_oca.field_mrp_production__qc_inspections_ids
+msgid "Inspections related to this production."
+msgstr "Prüfungen mit Bezug auf diese Fertigung."
+
+#. module: quality_control_mrp_oca
+#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection__production_id
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_search_view_production
+msgid "Production"
+msgstr "Fertigung"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model,name:quality_control_mrp_oca.model_mrp_production
+#, fuzzy
+msgid "Production Order"
+msgstr "Fertigungsauftrag"
+
+#. module: quality_control_mrp_oca
+#: model:qc.trigger,name:quality_control_mrp_oca.qc_trigger_mrp
+msgid "Production done"
+msgstr "Fertigung abgeschlossen"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model.fields,field_description:quality_control_mrp_oca.field_qc_inspection_line__production_id
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.qc_inspection_line_search_production_view
+msgid "Production order"
+msgstr "Fertigungsauftrag"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection
+msgid "Quality control inspection"
+msgstr "Qualitätskontrollinspektion"
+
+#. module: quality_control_mrp_oca
+#: model:ir.model,name:quality_control_mrp_oca.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Qualitätskontroll-Prüfposition"
+
+#. module: quality_control_mrp_oca
+#: model:ir.actions.act_window,name:quality_control_mrp_oca.action_qc_inspection_per_production
+msgid "Quality inspections from production order"
+msgstr "Qualitätsprüfungen aus Fertigungsauftrag"
+
+#. module: quality_control_mrp_oca
+#: model_terms:ir.ui.view,arch_db:quality_control_mrp_oca.mrp_production_qc_view
+msgid "inspections"
+msgstr "Prüfungen"
