@@ -66,7 +66,6 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
                 "consumption": "warning",
             }
         )
-        cls.mo_a._onchange_move_raw()
 
     def test_consumption_warning_message_when_create(self):
         self.assertEqual(self.mo_a.consumption_warning_msg, "")
@@ -76,14 +75,9 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
         self.env["mrp.bom.line"].create(
             {"bom_id": self.bom_a.id, "product_id": self.p_5.id}
         )
-        # Update quantity of a line in BoM of product A
-        self.env["mrp.bom.line"].search(
-            [("bom_id", "=", self.bom_a.id), ("product_id", "=", self.p_1.id)]
-        ).product_qty = 10
         # Add new line into MO of product A
         self.env["stock.move"].create(
             {
-                "name": self.mo_a.name,
                 "location_id": self.mo_a.location_src_id.id,
                 "location_dest_id": self.mo_a.location_src_id.id,
                 "raw_material_production_id": self.mo_a.id,
@@ -99,26 +93,58 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
                 ("product_id", "=", self.p_3.id),
             ]
         ).unlink()
-        # Adjust quantity to mismatch with BoM (say BoM expects 30.0)
-        self.env["stock.move"].search(
-            [
-                ("raw_material_production_id", "=", self.mo_a.id),
-                ("product_id", "=", self.p_1.id),
-            ]
-        ).write(
-            {
-                "quantity_done": 25.0,
-            }
-        )
+        # Adjust quantity to mismatch with BoM (BoM expects 25.0)
+        self.mo_a.move_raw_ids.filtered(
+            lambda m: m.bom_line_id.bom_id == self.bom_a and m.product_id == self.p_1
+        ).product_uom_qty = 10.0
 
         warning = self.mo_a.consumption_warning_msg
         self.assertIn(
             "There are discrepancies between your Manufacturing Order", warning
         )
-        self.assertIn("The MO does not use the product(s)", warning)
+        self.assertIn("The MO does not use the following BoM components:", warning)
         self.assertIn(self.p_3.display_name, warning)
         self.assertIn(self.p_5.display_name, warning)
-        self.assertIn("The MO line quantity for Product", warning)
-        self.assertIn(self.p_1.display_name, warning)
-        self.assertIn("is/are not present on the BoM", warning)
+        self.assertIn(
+            f"The MO line quantity for Product {self.p_1.display_name} is 30.00 "
+            "Units while the quantity of 25.00 Units (25.00 Units x 1.00 Units)",
+            warning,
+        )
+        self.assertIn("The following components are not present on the BoM:", warning)
         self.assertIn(self.p_4.display_name, warning)
+
+    def test_consumption_warning_message_uom_conversion(self):
+        uom_kg = self.env.ref("uom.product_uom_kgm")
+        uom_g = self.env.ref("uom.product_uom_gram")
+        p_kg = self.env["product.product"].create(
+            {"name": "Product Kg", "uom_id": uom_kg.id}
+        )
+        p_b = self.env["product.product"].create({"name": "Product B"})
+        bom_b = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": p_b.product_tmpl_id.id,
+                "bom_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": p_kg.id,
+                            "product_qty": 500,
+                            "product_uom_id": uom_g.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        mo_b = self.env["mrp.production"].create(
+            {"product_id": p_b.id, "bom_id": bom_b.id}
+        )
+        move = mo_b.move_raw_ids
+        move.write({"product_uom": uom_kg.id, "product_uom_qty": 0.5})
+        self.assertEqual(mo_b.consumption_warning_msg, "")
+        move.product_uom_qty = 1.5
+        self.assertIn(
+            f"The MO line quantity for Product {p_kg.display_name} is 1.50 kg "
+            "while the quantity of 0.50 kg (0.50 kg x 1.00 Units)",
+            mo_b.consumption_warning_msg,
+        )
