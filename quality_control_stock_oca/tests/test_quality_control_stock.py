@@ -395,10 +395,11 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
 
     def test_qc_inspection_stock_move(self):
         self.picking_confirmation()
+        move = self.picking1.move_ids[:1]
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": f"{self.picking1.move_ids[:1]._name},{self.picking1.move_ids[:1].id}",
+                "object_id": f"{move._name},{move.id}",
             }
         )
         self.inspection1.onchange_object_id()
