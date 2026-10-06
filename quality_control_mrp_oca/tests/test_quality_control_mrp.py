@@ -116,6 +116,6 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
 
     def test_qc_inspection_mo(self):
         self.inspection1.write(
-            {"object_id": "%s,%d" % (self.production1._name, self.production1.id)}
+            {"object_id": f"{self.production1._name},{self.production1.id}"}
         )
         self.assertEqual(self.inspection1.production_id, self.production1)
