@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from collections import defaultdict
 
-from odoo import _, api, fields, models
-from odoo.tools import float_compare
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -42,12 +41,8 @@ class MrpProduction(models.Model):
                 unused_products |= product
                 continue
 
-            rounding = product.uom_id.rounding
-            if (
-                float_compare(expected_qty, actual_qty, precision_rounding=rounding)
-                != 0
-            ):
-                wrong_quantity_msg += _(
+            if product.uom_id.compare(expected_qty, actual_qty) != 0:
+                wrong_quantity_msg += self.env._(
                     "- The MO line quantity for Product %(product)s is %(w_qty)s "
                     "while the quantity of %(r_qty)s (%(qty_per_1)s x %(product_qty)s) "
                     "is expected from the BoM line\n",
@@ -64,13 +59,13 @@ class MrpProduction(models.Model):
 
         message = ""
         if unused_products:
-            message += _(
+            message += self.env._(
                 "- The MO does not use the product(s) %(names)s\n",
                 names=", ".join(unused_products.mapped("display_name")),
             )
         message += wrong_quantity_msg
         if unpresent_products:
-            message += _(
+            message += self.env._(
                 "- The components %(names)s is/are not present on the BoM\n",
                 names=", ".join(unpresent_products.mapped("display_name")),
             )

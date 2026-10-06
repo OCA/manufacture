@@ -66,7 +66,6 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
                 "consumption": "warning",
             }
         )
-        cls.mo_a._onchange_move_raw()
 
     def test_consumption_warning_message_when_create(self):
         self.assertEqual(self.mo_a.consumption_warning_msg, "")
@@ -83,7 +82,6 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
         # Add new line into MO of product A
         self.env["stock.move"].create(
             {
-                "name": self.mo_a.name,
                 "location_id": self.mo_a.location_src_id.id,
                 "location_dest_id": self.mo_a.location_src_id.id,
                 "raw_material_production_id": self.mo_a.id,
@@ -107,7 +105,7 @@ class TestManufacturingOrderConsumptionWarningMessage(TransactionCase):
             ]
         ).write(
             {
-                "quantity_done": 25.0,
+                "quantity": 25.0,
             }
         )
 
