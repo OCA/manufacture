@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_line_formula_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-12 00:26+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Stuklijstregel"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,help:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid ""
+"Formula to be evaluated when generating the quantity for a production order line.\n"
+"The following values are available:\n"
+"- bom_line: the current BoM line,\n"
+"- operation: the operation where the components are consumed for current BoM line,\n"
+"- product: the Product of current BoM line,\n"
+"- product_uom: the UoM of the Product of current BoM line,\n"
+"- product_uom_qty: the quantity of the production order line,\n"
+"- production: the production order being created,\n"
+"The computed quantity must be assigned to the `quantity` variable."
+msgstr ""
+"Formule die moet worden geëvalueerd bij het genereren van de hoeveelheid "
+"voor een productieorderregel.\n"
+"De volgende waarden zijn beschikbaar:\n"
+"- bom_line: de huidige stuklijstregel,\n"
+"- operation: de bewerking waar de componenten worden verbruikt voor de "
+"huidige stuklijstregel,\n"
+"- product: het Product van de huidige stuklijstregel,\n"
+"- product_uom: de Maateenheid van het Product van de huidige stuklijstregel,"
+"\n"
+"- product_uom_qty: de hoeveelheid van de productieorderregel,\n"
+"- production: de productieorder die wordt aangemaakt,\n"
+"De berekende hoeveelheid moet worden toegewezen aan de variabele `quantity`."
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_production
+msgid "Production Order"
+msgstr "Productieorder"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,field_description:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid "Quantity Formula"
+msgstr "Hoeveelheidsformule"
