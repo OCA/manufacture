@@ -388,7 +388,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": "%s,%d" % (self.picking1._name, self.picking1.id),
+                "object_id": f"{self.picking1._name},{self.picking1.id}",
             }
         )
         self.assertEqual(self.inspection1.picking_id, self.picking1)
@@ -398,8 +398,7 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
         self.inspection1.write(
             {
                 "name": self.picking1.move_ids[:1]._name + "inspection",
-                "object_id": "%s,%d"
-                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "object_id": f"{self.picking1.move_ids[:1]._name},{self.picking1.move_ids[:1].id}",
             }
         )
         self.inspection1.onchange_object_id()
