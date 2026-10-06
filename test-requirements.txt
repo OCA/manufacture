@@ -1,0 +1,2 @@
+# Unreleased stock-quality dependency from PR #1879.
+odoo-addon-quality_control_stock_oca @ git+https://github.com/rogie69/manufacture.git@bfa137673654fb05403d5bdab8509665df25b26b#subdirectory=quality_control_stock_oca
