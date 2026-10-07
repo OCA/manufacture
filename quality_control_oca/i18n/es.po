@@ -20,6 +20,13 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "%(names)s and %(count)s more"
+msgstr "%(names)s y %(count)s más"
+
+#. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__timing
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__timing
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__timing
@@ -121,6 +128,20 @@ msgstr "recuento de archivos adjuntos"
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Auto-generated"
 msgstr "Auto-generada"
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Auto-generated (%(count)s): %(names)s."
+msgstr "Auto-generadas (%(count)s): %(names)s."
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Auto-generated inspections can be canceled instead."
+msgstr "Las inspecciones auto-generadas se pueden cancelar en su lugar."
 
 #. module: quality_control_oca
 #: model:qc.test.question.value,name:quality_control_oca.qc_test_question_value_2
@@ -589,6 +610,13 @@ msgid "Next Activity Type"
 msgstr "Tipo de la Siguiente Actividad"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Not in draft state (%(count)s): %(names)s."
+msgstr "No están en borrador (%(count)s): %(names)s."
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__notes
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -1022,6 +1050,13 @@ msgid "Tests"
 msgstr "pruebas"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "The following inspections cannot be deleted:"
+msgstr "No se pueden eliminar las siguientes inspecciones:"
+
+#. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_category__active
 msgid "This field allows you to hide the category without removing it."
 msgstr "Este campo le permite ocultar la categoría sin eliminarla."
@@ -1139,21 +1174,6 @@ msgstr "Historial de la comunicación del sitio web"
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
 msgid "When this field is marked, the answer is considered correct."
 msgstr "Cuando este campo está marcado, la respuesta se considera correcta."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
-msgid "You cannot remove an auto-generated inspection."
-msgstr "No puede eliminar una inspección auto-generada."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
-msgid "You cannot remove an inspection that is not in draft state."
-msgstr ""
-"No puede eliminar una inspección que no se encuentre en estado borrador."
 
 #. module: quality_control_oca
 #. odoo-python
