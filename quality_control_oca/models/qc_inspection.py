@@ -199,15 +199,27 @@ class QcInspection(models.Model):
                 trigger_line.test, force_fill=force_fill
             )
 
+    def _get_inspection_company(self, object_ref):
+        """Overridable hook method for getting the company of the inspection.
+        :param object_ref: Object instance
+        :return: Company of the origin document, or an empty recordset to keep
+            the default one
+        """
+        if object_ref and "company_id" in object_ref._fields:
+            return object_ref.company_id
+        return self.env["res.company"]
+
     def _make_inspection(self, object_ref, trigger_line, date=None):
         """Overridable hook method for creating inspection from test.
         :param object_ref: Object instance
         :param trigger_line: Trigger line instance
         :return: Inspection object
         """
-        inspection = self.create(
-            self._prepare_inspection_header(object_ref, trigger_line)
-        )
+        vals = self._prepare_inspection_header(object_ref, trigger_line)
+        company = self._get_inspection_company(object_ref)
+        if company and "company_id" not in vals:
+            vals["company_id"] = company.id
+        inspection = self.create(vals)
         if date:
             inspection.date = date
         inspection.set_test(trigger_line)
