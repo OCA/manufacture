@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workcenter_view_form_calendar_duration" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.calendar.duration</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                <field
+                    name="use_calendar_for_duration"
+                    invisible="not resource_calendar_id"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
