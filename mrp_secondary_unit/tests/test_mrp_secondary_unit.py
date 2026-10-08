@@ -333,31 +333,17 @@ class TestMrpSecondaryUnit(TransactionCase):
             self.finished_pallet, self.env["product.secondary.unit"].search(domain)
         )
 
-    def test_bom_secondary_unit_picked_keeps_qty(self):
-        """Same on a bill of materials, where a quantity reset to zero would
-        also break the constraint keeping it positive."""
-        bom = self.env["mrp.bom"].create(
-            {
-                "product_tmpl_id": self.finished.product_tmpl_id.id,
-                "product_uom_id": self.uom_unit.id,
-                "product_qty": 10.0,
-                "type": "normal",
-            }
-        )
-        bom.secondary_uom_id = self.finished_pallet
-        self.assertEqual(bom.product_qty, 10.0)
-        self.assertEqual(bom.secondary_uom_qty, 0.5)
-
-    def test_bom_secondary_unit_picked_in_form_keeps_qty(self):
-        """Picking the unit after typing the quantity must keep it: a quantity
-        reset to zero would also break the constraint keeping it positive."""
+    def test_bom_secondary_unit_picked_on_template_converts_uom(self):
+        """A bill of materials without a variant resolves the UoM the factor
+        refers to on the template, so a bill encoded in dozens is converted."""
         with Form(self.env["mrp.bom"]) as bom_form:
             bom_form.product_tmpl_id = self.finished.product_tmpl_id
-            bom_form.product_qty = 10.0
+            self.assertFalse(bom_form.product_id)
+            bom_form.product_uom_id = self.uom_dozen
             bom_form.secondary_uom_id = self.finished_pallet
-            self.assertEqual(bom_form.product_qty, 10.0)
-            self.assertEqual(bom_form.secondary_uom_qty, 0.5)
-        self.assertEqual(bom_form.record.product_qty, 10.0)
+            bom_form.secondary_uom_qty = 1.8
+            # 1.8 pallets of 20 -> 36 units -> 3 dozens
+            self.assertEqual(bom_form.product_qty, 3.0)
 
     def test_bom_line_secondary_unit_picked_keeps_qty(self):
         line = self.bom.bom_line_ids

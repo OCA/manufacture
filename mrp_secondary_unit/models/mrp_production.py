@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 class MrpProduction(models.Model):
     _name = "mrp.production"
-    _inherit = ["mrp.production", "mrp.secondary.unit.mixin"]
+    _inherit = ["mrp.production", "product.secondary.unit.mixin"]
     _secondary_unit_fields = {
         "qty_field": "product_qty",
         "uom_field": "product_uom_id",
@@ -37,6 +37,18 @@ class MrpProduction(models.Model):
             "product_uom_id",
             "secondary_uom_id",
         ]
+
+    @api.onchange("secondary_uom_id")
+    def _onchange_secondary_uom_id_for_qty(self):
+        """Derive the secondary quantity from the quantity to produce first.
+
+        The inherited onchange drops the pending recompute of the secondary
+        quantity before converting it back, so picking a secondary unit would
+        read it as zero and reset the quantity to produce.
+        """
+        if self.secondary_uom_id and not self.secondary_uom_qty:
+            self._onchange_helper_product_uom_for_secondary()
+        return super()._onchange_secondary_uom_id_for_qty()
 
     @api.onchange("secondary_uom_qty")
     def onchange_secondary_uom_qty(self):

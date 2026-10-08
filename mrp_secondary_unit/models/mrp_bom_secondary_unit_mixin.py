@@ -6,7 +6,7 @@ from odoo import api, models
 
 class MrpBomSecondaryUnitMixin(models.AbstractModel):
     _name = "mrp.bom.secondary.unit.mixin"
-    _inherit = "mrp.secondary.unit.mixin"
+    _inherit = "product.secondary.unit.mixin"
     _description = "MRP BoM Secondary Unit Mixin"
     _secondary_unit_fields = {
         "qty_field": "product_qty",
