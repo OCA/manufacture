@@ -20,6 +20,7 @@ class QcInspection(models.Model):
         for i in self:
             i.success = all([x.success for x in i.inspection_lines])
 
+    @api.model
     def object_selection_values(self):
         """
         Overridable method for adding more object models to an inspection.
