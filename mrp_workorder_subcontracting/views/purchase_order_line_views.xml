@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_line_view_tree_subcontracting" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.subcontracting</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="workorder_id" optional="hide" />
+                <field name="subcontract_lost_bid" optional="hide" />
+                <field name="production_id" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
