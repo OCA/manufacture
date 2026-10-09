@@ -53,3 +53,13 @@ class MrpProduction(models.Model):
             for trigger_line in _filter_trigger_lines(trigger_lines):
                 inspection_model._make_inspection(move, trigger_line)
         return res
+
+    def _action_confirm_mo_backorders(self):
+        # intercept backorders, which don't pass through stock.move _action_confirm for
+        # trigger with timings before and plan_ahead
+        moves = (
+            self.mapped("move_finished_ids") | self.mapped("move_raw_ids")
+        ).filtered(lambda r: r.state != "cancel")
+        for move in moves:
+            move.trigger_inspection(["before", "plan_ahead"])
+        return super()._action_confirm_mo_backorders()
