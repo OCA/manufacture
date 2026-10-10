@@ -22,7 +22,7 @@
                         name="action_todo"
                         type="object"
                         class="oe_highlight"
-                        invisible="state != 'draft'"
+                        invisible="state not in ('draft', 'plan')"
                         string="Mark todo"
                     />
                     <button
