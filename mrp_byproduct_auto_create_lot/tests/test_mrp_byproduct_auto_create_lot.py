@@ -172,3 +172,54 @@ class TestMrpByproductAutoLot(CommonMrpByproductAutoCreateLot, TransactionCase):
         moves.move_line_ids.quantity = 1.0
         for line in moves.move_line_ids:
             line.lot_name = self.env["ir.sequence"].next_by_code("stock.lot.serial")
+
+    def test_get_propagate_lot_setting(self):
+        production = self._create_manufacturing_order(bom=self.bom)
+        # Product setting takes precedence
+        self.product_b.propagate_lot_to_byproduct = "yes"
+        self.env.company.propagate_lot_to_byproduct = "no"
+        self.assertEqual(production._get_propagate_lot_setting(self.product_b), "yes")
+        self.product_b.propagate_lot_to_byproduct = "no"
+        self.env.company.propagate_lot_to_byproduct = "yes"
+        self.assertEqual(production._get_propagate_lot_setting(self.product_b), "no")
+        # Falls back to company when product is empty
+        self.product_b.propagate_lot_to_byproduct = False
+        self.assertEqual(production._get_propagate_lot_setting(self.product_b), "yes")
+
+    def test_propagate_lot_yes(self):
+        self.env.company.propagate_lot_to_byproduct = "yes"
+        bom = self._create_bom(
+            by_product=self.product_b, main_product=self.product_manuf_tracked
+        )
+        production = self._create_manufacturing_order(
+            bom=bom, product=self.product_manuf_tracked
+        )
+        production.action_confirm()
+        production.button_plan()
+        production.button_mark_done()
+        self.assertTrue(production.lot_producing_id)
+        byproduct_move_line = production.move_byproduct_ids.move_line_ids
+        self.assertTrue(byproduct_move_line.lot_id)
+        # Byproduct lot matches main product lot
+        self.assertEqual(
+            byproduct_move_line.lot_id.name, production.lot_producing_id.name
+        )
+
+    def test_propagate_lot_no(self):
+        self.env.company.propagate_lot_to_byproduct = "no"
+        bom = self._create_bom(
+            by_product=self.product_b, main_product=self.product_manuf_tracked
+        )
+        production = self._create_manufacturing_order(
+            bom=bom, product=self.product_manuf_tracked
+        )
+        production.action_confirm()
+        production.button_plan()
+        production.button_mark_done()
+        self.assertTrue(production.lot_producing_id)
+        byproduct_move_line = production.move_byproduct_ids.move_line_ids
+        self.assertTrue(byproduct_move_line.lot_id)
+        # Byproduct lot differs from main product lot
+        self.assertNotEqual(
+            byproduct_move_line.lot_id.name, production.lot_producing_id.name
+        )

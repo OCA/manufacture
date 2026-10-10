@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo import Command
+
 
 class CommonMrpByproductAutoCreateLot:
     def assertUniqueIn(self, element_list):
@@ -29,7 +31,16 @@ class CommonMrpByproductAutoCreateLot:
                 "name": "Manuf",
                 "type": "consu",
                 "uom_id": cls.uom_unit.id,
-                "route_ids": [(6, 0, cls.manufacture_route.ids)],
+                "route_ids": [Command.set(cls.manufacture_route.ids)],
+            }
+        )
+        cls.product_manuf_tracked = cls.env["product.product"].create(
+            {
+                "name": "Manuf Tracked",
+                "type": "consu",
+                "uom_id": cls.uom_unit.id,
+                "route_ids": [Command.set(cls.manufacture_route.ids)],
+                "tracking": "lot",
             }
         )
 
@@ -47,35 +58,35 @@ class CommonMrpByproductAutoCreateLot:
         )
 
     @classmethod
-    def _create_bom(cls, product=None, by_product=None):
+    def _create_bom(cls, product=None, by_product=None, main_product=None):
         bom = cls.env["mrp.bom"].create(
             {
-                "product_tmpl_id": cls.product_manuf.product_tmpl_id.id,
+                "product_tmpl_id": main_product.product_tmpl_id.id
+                if main_product
+                else cls.product_manuf.product_tmpl_id.id,
                 "type": "normal",
                 "byproduct_ids": [
-                    (0, 0, {"product_id": by_product.id, "product_qty": 1.0})
+                    Command.create({"product_id": by_product.id, "product_qty": 1.0})
                 ],
             }
         )
         return bom
 
     @classmethod
-    def _create_manufacturing_order(cls, bom=None, by_product_qty=1.0):
+    def _create_manufacturing_order(cls, bom=None, by_product_qty=1.0, product=None):
         cls.mo = cls.env["mrp.production"].create(
             {
-                "product_id": cls.product_manuf.id,
+                "product_id": product.id if product else cls.product_manuf.id,
                 "product_qty": 1.0,
                 "bom_id": bom.id if bom else cls.bom.id,
                 "move_byproduct_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": bom.byproduct_ids[0].product_id.id
                             if bom
                             else cls.bom.byproduct_ids[0].product_id.id,
                             "product_uom_qty": by_product_qty,
-                        },
+                        }
                     )
                 ],
             }
