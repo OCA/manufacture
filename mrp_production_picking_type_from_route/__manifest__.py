@@ -3,7 +3,7 @@
 {
     "name": "MRP Production Picking Type From Route",
     "summary": "Updates the operation type creating MO based on the product",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Manufacture",
     "website": "https://github.com/OCA/manufacture",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
