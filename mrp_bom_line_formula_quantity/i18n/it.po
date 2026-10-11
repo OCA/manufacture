@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-24 14:13+0000\n"
-"PO-Revision-Date: 2024-01-24 14:13+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-10-11 09:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_line_formula_quantity
 #: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_bom_line
@@ -36,11 +37,23 @@ msgid ""
 "- production: the production order being created,\n"
 "The computed quantity must be assigned to the `quantity` variable."
 msgstr ""
+"Formula da valutare durante la generazione della quantità per una riga di "
+"ordine di produzione.\n"
+"Sono disponibili le seguenti variabili:\n"
+"- bom_line: la riga corrente della distinta base,\n"
+"- operation: l'operazione in cui i componenti vengono consumati per la riga "
+"corrente della distinta base,\n"
+"- product: il prodotto della riga corrente della distinta base,\n"
+"- product_uom: l'unità di misura del prodotto della riga corrente della "
+"distinta base,\n"
+"- product_uom_qty: la quantità della riga dell'ordine di produzione,\n"
+"- production: l'ordine di produzione che si sta creando,\n"
+"La quantità calcolata deve essere assegnata alla variabile `quantity`."
 
 #. module: mrp_bom_line_formula_quantity
 #: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Ordine di produzione"
 
 #. module: mrp_bom_line_formula_quantity
 #: model:ir.model.fields,field_description:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
@@ -53,6 +66,8 @@ msgstr "Formula per quantità"
 msgid ""
 "The formula is invalid. A runtime error occurred during test evaluation: %s"
 msgstr ""
+"La formula non è valida. Si è verificato un errore di runtime durante la "
+"valutazione del test: %s"
 
 #~ msgid ""
 #~ "Formula to be evaluated when generating the quantity for a production "
