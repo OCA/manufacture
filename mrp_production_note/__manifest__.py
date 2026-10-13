@@ -9,6 +9,6 @@
     "author": "OdooMRP team, AvanzOSC, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp"],
-    "data": ["views/mrp_production_view.xml"],
+    "data": ["views/mrp_production_view.xml", "views/mrp_production_templates.xml"],
     "installable": True,
 }
