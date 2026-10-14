@@ -8,6 +8,7 @@ class TestStockWholeKitConstraint(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.group_ids += cls.env.ref("product.group_product_variant")
         cls.customer = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         # Kit 1 that can be partially delivered
         cls.product_kit_1 = cls.env["product.product"].create(
@@ -81,16 +82,16 @@ class TestStockWholeKitConstraint(common.TransactionCase):
         picking_form = Form(cls.env["stock.picking"])
         picking_form.picking_type_id = cls.env.ref("stock.picking_type_out")
         picking_form.partner_id = cls.customer
-        with picking_form.move_ids_without_package.new() as move:
+        with picking_form.move_ids.new() as move:
             move.product_id = cls.product_kit_1
             move.product_uom_qty = 3.0
-        with picking_form.move_ids_without_package.new() as move:
+        with picking_form.move_ids.new() as move:
             move.product_id = cls.product_kit_2
             move.product_uom_qty = 3.0
-        with picking_form.move_ids_without_package.new() as move:
+        with picking_form.move_ids.new() as move:
             move.product_id = cls.product_mrp
             move.product_uom_qty = 3.0
-        with picking_form.move_ids_without_package.new() as move:
+        with picking_form.move_ids.new() as move:
             move.product_id = cls.regular_product
             move.product_uom_qty = 3.0
         cls.customer_picking = picking_form.save()

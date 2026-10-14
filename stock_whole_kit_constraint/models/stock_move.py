@@ -14,7 +14,7 @@ class StockMove(models.Model):
     @api.depends("product_id.product_tmpl_id.allow_partial_kit_delivery", "state")
     def _compute_allow_partial_kit_delivery(self):
         """Take it from the product only if it's a kit"""
-        self.write({"allow_partial_kit_delivery": True})
+        self.update({"allow_partial_kit_delivery": True})
         for move in self.filtered(
             lambda x: x.product_id and x.state not in ["done", "cancel"]
         ):

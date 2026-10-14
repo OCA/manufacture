@@ -1,6 +1,6 @@
 # Copyright 2021 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import ValidationError
 
 
@@ -21,7 +21,7 @@ class StockPicking(models.Model):
                 continue
             if bom_moves._check_backorder_moves():
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You can't make a partial delivery of components of the %s kit",
                         bom.product_tmpl_id.display_name,
                     )
