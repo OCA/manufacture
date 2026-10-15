@@ -11,6 +11,7 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": [
         "sergio-teruel",
+        "carlosdauden",
     ],
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
