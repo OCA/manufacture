@@ -9,7 +9,7 @@
     "license": "LGPL-3",
     "author": "Ucamco, ForgeFlow, Odoo Community Association (OCA)",
     "maintainers": ["JordiBForgeFlow", "LoisRForgeFlow"],
-    "summary": "Adds an MRP Scheduler",
+    "summary": "Multi-level MRP scheduler and planned orders",
     "website": "https://github.com/OCA/manufacture",
     "category": "Manufacturing",
     "depends": ["mrp", "purchase_stock", "mrp_warehouse_calendar"],
