@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">mrp.production.form.subcontracting</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_subcontract_purchase_orders"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    invisible="subcontract_purchase_order_count == 0"
+                >
+                    <field
+                        name="subcontract_purchase_order_count"
+                        widget="statinfo"
+                        string="Subcontract POs"
+                    />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_subcontract_transfers"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="subcontract_moves_count == 0"
+                >
+                    <field
+                        name="subcontract_moves_count"
+                        widget="statinfo"
+                        string="Subcontract Movements"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

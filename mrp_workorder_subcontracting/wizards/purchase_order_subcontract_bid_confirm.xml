@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_subcontract_bid_wizard_view_form" model="ir.ui.view">
+        <field name="name">purchase.order.subcontract.bid.wizard.form</field>
+        <field name="model">purchase.order.subcontract.bid.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Winning Bid">
+                <sheet>
+                    <group>
+                        <field name="purchase_order_id" readonly="1" />
+                        <field
+                            name="competitor_order_ids"
+                            widget="many2many_tags"
+                            readonly="1"
+                        />
+                    </group>
+                    <field name="summary_html" nolabel="1" readonly="1" widget="html" />
+                </sheet>
+                <footer>
+                    <button
+                        name="action_confirm_bid"
+                        string="Confirm and Continue"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
