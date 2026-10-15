@@ -32,10 +32,92 @@ This module allows to update the quantities consumed from a production
 order components when the previous picking in two steps setting is
 validated.
 
+In a warehouse that manufactures in two or three steps, components are
+moved to the pre-production location with a pick components picking
+before they are consumed by the production order. In Odoo core both
+documents are independent: the quantities done in the pick components
+picking only reserve the goods for the production order, and the
+consumed quantities are set again on the production order, either by
+hand or in proportion to the bill of materials when the quantity to
+produce is set (for example when the first work order is started) or
+when a work order is finished.
+
+With this module the pick components picking is the only place where
+consumption is reported. The rule is: **what is picked is what is
+consumed, and a component that is not picked has not been used**.
+
+- When a pick components picking is validated, the components of the
+  production order are reserved with the quantities picked so far, and
+  the component demand is updated with the picked quantities plus the
+  ones still pending in backorders, without the quantities already taken
+  by other backorders of the production order. Quantities set on the
+  production order before picking (for example by hand) are replaced by
+  the picked ones.
+- Setting the quantity to produce (starting a work order, editing the
+  quantity to produce or the produced lot in the form) and finishing a
+  work order neither consume the components pending to pick nor change
+  the picked quantities, also before the first pick components picking
+  is validated.
+- When the production order is marked as done, the picked quantities are
+  consumed, as Odoo core does with the components of manual consumption.
+
+Components that do not come from a pick components picking (for example
+when the warehouse manufactures in one step) keep the Odoo core
+behavior.
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Usage
+=====
+
+The module covers a production order whose components are picked and
+consumed step by step, one work order after another, by different
+operators:
+
+1. The warehouse manufactures in two steps (pick components, then
+   produce), or in three steps.
+2. The bill of materials has several operations, for example *Weigh and
+   cut* followed by other ones.
+3. Confirm the production order. A pick components picking is created
+   with all the components.
+4. Start the first work order, so its time starts counting.
+5. Open the pick components picking and report the quantities actually
+   taken from stock for this operation (for example by weighing them).
+6. Validate the picking creating a backorder with the components not
+   used by this operation. The production order now holds exactly the
+   picked quantities, and the components left in the backorder hold
+   nothing.
+7. Start the next work order, open the backorder of the pick components
+   picking, report what is used in this operation and validate it
+   creating a new backorder with the remaining components. The
+   production order is updated again with everything picked so far.
+8. Repeat the previous step until all the operations are finished.
+   Validate the last pick components picking without backorder: the
+   demand of the components that were never picked becomes zero in the
+   production order and nothing is consumed for them, as they have not
+   been used.
+9. Mark the production order as done. It consumes the picked quantities,
+   with no need to report them again on the production order.
+
+If less than planned is produced and the production order is closed
+without backorder, it consumes everything picked.
+
+If a backorder of the production order is created instead, the demand is
+split in proportion to the quantity produced, as Odoo core does. The
+production order consumes the part of the picked quantities proportional
+to the quantity produced, never more than what has been picked, and the
+rest stays reserved for the backorder, which consumes it when it is
+done. The components still pending in the pick components backorder are
+linked to the backorder of the production order and are consumed by it
+when picked.
+
+As the consumption is what has been picked, a bill of materials with the
+*Warning* consumption shows the consumption warning when the picked
+quantities differ from the expected ones for the quantity produced, also
+before deciding whether a backorder is created.
 
 Bug Tracker
 ===========
@@ -79,10 +161,13 @@ promote its widespread use.
 .. |maintainer-sergio-teruel| image:: https://github.com/sergio-teruel.png?size=40px
     :target: https://github.com/sergio-teruel
     :alt: sergio-teruel
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-sergio-teruel| 
+|maintainer-sergio-teruel| |maintainer-carlosdauden| 
 
 This module is part of the `OCA/manufacture <https://github.com/OCA/manufacture/tree/18.0/mrp_2_steps_consumed_qty_sync>`_ project on GitHub.
 

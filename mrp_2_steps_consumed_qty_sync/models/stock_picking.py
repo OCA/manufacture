@@ -10,6 +10,8 @@ class StockPicking(models.Model):
 
     def _action_done(self):
         res = super()._action_done()
+        if not self.env["stock.move"]._is_consumed_qty_sync_enabled():
+            return res
         for picking in self:
             picking_type = picking.picking_type_id
             if picking_type == picking_type.warehouse_id.pbm_type_id:
@@ -19,11 +21,21 @@ class StockPicking(models.Model):
                 # In this cases the quantity done is not propagated to linked move.
                 # Pending origin moves (e.g. backorders) must keep their demand in
                 # the production order, so count them by their initial demand.
-                for move in productions.move_raw_ids:
-                    move.product_uom_qty = sum(
-                        sm.quantity if sm.state == "done" else sm.product_uom_qty
-                        for sm in move.move_orig_ids
-                        if sm.state != "cancel"
-                    )
+                # The consumption is what has been picked: the reservation is
+                # rebuilt from the done picks, which drops quantities set before
+                # picking (e.g. when a work order is started). Components already
+                # marked as consumed keep the mark with the picked quantities.
+                pick_moves = productions.move_raw_ids.filtered(
+                    lambda sm: sm.state not in ("done", "cancel")
+                    and sm._is_consumed_from_pick()
+                )
+                picked_moves = pick_moves.filtered("picked")
+                pick_moves.picked = False
+                pick_moves._do_unreserve()
+                for move in productions.move_raw_ids.filtered(
+                    lambda sm: sm.state not in ("done", "cancel") and sm.move_orig_ids
+                ):
+                    move.product_uom_qty = move._get_pick_demand()
                 productions.move_raw_ids._action_assign()
+                picked_moves.filtered("quantity").picked = True
         return res
