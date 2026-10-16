@@ -16,11 +16,11 @@
                         context="{'form_view_ref': 'mrp.view_finisehd_move_line'}"
                         attrs="{'readonly': [('is_locked', '=', True)], 'invisible': [('finished_move_from_backorder_ids', '=', [])]}"
                     >
-                         <tree>
+                        <tree>
                             <field name="product_id" readonly="1" />
-                             <field name="qty_done" readonly="1" />
+                            <field name="qty_done" readonly="1" />
                             <field name="production_id" readonly="1" />
-                             <field
+                            <field
                                 name="lot_id"
                                 groups="stock.group_production_lot"
                                 domain="[('product_id', '=', product_id)]"
@@ -32,5 +32,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
