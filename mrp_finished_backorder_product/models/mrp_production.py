@@ -7,19 +7,21 @@ from odoo import api, fields, models
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
+
     finished_move_from_backorder_ids = fields.One2many(
         "stock.move.line",
         compute="_compute_finished_backorders",
         string="Finished Backorders",
     )
 
-    @api.depends("move_finished_ids.move_line_ids")
+    @api.depends(
+        "production_group_id.production_ids.move_finished_ids.move_line_ids.state"
+    )
     def _compute_finished_backorders(self):
         for production in self:
-            production.finished_move_from_backorder_ids = self.env["stock.move.line"]
-            backorders = production.procurement_group_id.mrp_production_ids
-            for backorder in backorders:
-                backorder.mapped("finished_move_line_ids").production_id = backorder
-                production.finished_move_from_backorder_ids |= (
-                    backorder.finished_move_line_ids
+            orders = production.production_group_id.production_ids
+            production.finished_move_from_backorder_ids = (
+                orders.move_finished_ids.move_line_ids.filtered(
+                    lambda line: line.state == "done"
                 )
+            )
