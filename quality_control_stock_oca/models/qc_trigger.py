@@ -15,3 +15,4 @@ class QcTrigger(models.Model):
         help="If checked, an inspection per used lot/serial number "
         "will be created in stock pickings."
     )
+    is_mandatory_to_validate = fields.Boolean()
