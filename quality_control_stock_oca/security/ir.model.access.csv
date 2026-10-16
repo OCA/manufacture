@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+manage_check_picking_stock_user,Stock User can manage Check Quality Control of Pickings,model_quality_control_stock_oca_check_picking,stock.group_stock_user,1,1,1,1
