@@ -254,7 +254,7 @@ class TestMrpProduction(Common):
             self._init_inventory(
                 self.component_propagated_product,
                 self.stock_location,
-                lot_name="SN-000%d" % i,
+                lot_name=f"SN-{i:04}",
             )
         order.action_confirm()
         components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(
@@ -285,7 +285,7 @@ class TestMrpProduction(Common):
             self._init_inventory(
                 self.component_propagated_product,
                 self.stock_location,
-                lot_name="SN-000%d" % i,
+                lot_name=f"SN-{i:04}",
             )
         order.action_confirm()
         components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(

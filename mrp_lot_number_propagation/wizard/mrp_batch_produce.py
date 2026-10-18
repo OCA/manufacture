@@ -23,7 +23,7 @@ class MrpBatchProduct(models.TransientModel):
                 propagated_component = (
                     wiz.production_id._get_propagating_component_move().product_id
                 )
-                msg = self.env._(
+                msg = self.env._(  # pylint: disable=W8120
                     "Lot number must be the same between finished product %s and "
                     "component %s",
                     wiz.production_id.product_id.display_name,
