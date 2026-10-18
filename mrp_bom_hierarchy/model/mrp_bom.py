@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import operator as py_operator
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -51,32 +51,32 @@ class MrpBom(models.Model):
 
     def _search_has_child(self, operator, value):
         if operator not in ["=", "!="]:
-            raise UserError(_("This operator is not supported"))
+            raise UserError(self.env._("This operator is not supported"))
         if value == "True":
             value = True
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(_("Value should be True or False (not %s)") % value)
+            raise UserError(self.env._("Value should be True or False (not %s)", value))
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
-        for bom in self.search([]):
+        for bom in self.search([]):  # pylint: disable=W8163
             if ops[operator](value, bom.has_child):
                 ids.append(bom.id)
         return [("id", "in", ids)]
 
     def _search_has_parent(self, operator, value):
         if operator not in ["=", "!="]:
-            raise UserError(_("This operator is not supported"))
+            raise UserError(self.env._("This operator is not supported"))
         if value == "True":
             value = True
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(_("Value should be True or False (not %s)") % value)
+            raise UserError(self.env._("Value should be True or False (not %s)", value))
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
-        for bom in self.search([]):
+        for bom in self.search([]):  # pylint: disable=W8163
             if ops[operator](value, bom.has_parent):
                 ids.append(bom.id)
         return [("id", "in", ids)]
@@ -102,19 +102,21 @@ class MrpBom(models.Model):
         self.ensure_one()
         res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
         res["context"] = {"default_bom_line_ids": self.bom_line_ids.ids}
-        if self.child_bom_ids:
-            res["domain"] = (
-                "[('id', 'in', [" + ",".join(map(str, self.child_bom_ids.ids)) + "])]"
-            )
+        res["domain"] = (
+            "[('id', 'in', [" + ",".join(map(str, self.child_bom_ids.ids)) + "])]"
+            if self.child_bom_ids
+            else "[('id', 'in', [])]"
+        )
         return res
 
     def action_open_parent_tree_view(self):
         self.ensure_one()
         res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
-        if self.parent_bom_ids:
-            res["domain"] = (
-                "[('id', 'in', [" + ",".join(map(str, self.parent_bom_ids.ids)) + "])]"
-            )
+        res["domain"] = (
+            "[('id', 'in', [" + ",".join(map(str, self.parent_bom_ids.ids)) + "])]"
+            if self.parent_bom_ids
+            else "[('id', 'in', [])]"
+        )
         return res
 
     def action_open_product_other_bom_tree_view(self):
