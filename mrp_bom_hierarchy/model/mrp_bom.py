@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import operator as py_operator
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -51,32 +51,32 @@ class MrpBom(models.Model):
 
     def _search_has_child(self, operator, value):
         if operator not in ["=", "!="]:
-            raise UserError(_("This operator is not supported"))
+            raise UserError(self.env._("This operator is not supported"))
         if value == "True":
             value = True
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(_("Value should be True or False (not %s)") % value)
+            raise UserError(self.env._("Value should be True or False (not %s)"), value)
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
-        for bom in self.search([]):
+        for bom in self.search([]):  # pylint: disable=W8163
             if ops[operator](value, bom.has_child):
                 ids.append(bom.id)
         return [("id", "in", ids)]
 
     def _search_has_parent(self, operator, value):
         if operator not in ["=", "!="]:
-            raise UserError(_("This operator is not supported"))
+            raise UserError(self.env._("This operator is not supported"))
         if value == "True":
             value = True
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(_("Value should be True or False (not %s)") % value)
+            raise UserError(self.env._("Value should be True or False (not %s)"), value)
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
-        for bom in self.search([]):
+        for bom in self.search([]):  # pylint: disable=W8163
             if ops[operator](value, bom.has_parent):
                 ids.append(bom.id)
         return [("id", "in", ids)]

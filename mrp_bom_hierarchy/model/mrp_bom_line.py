@@ -2,7 +2,7 @@
 # Copyright (C) 2023 - Today: GRAP (http://www.grap.coop)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -59,7 +59,7 @@ class MrpBomLine(models.Model):
         else:
             # neither product nor template, makes no sense to search
             raise UserError(
-                _(
+                self.env._(
                     "You should provide either a product or "
                     "a product template to search a BoM Line"
                 )
