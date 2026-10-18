@@ -13,8 +13,7 @@ class MrpProduction(models.Model):
         default=False,
         readonly=True,
         help=(
-            "Lot/serial number is propagated "
-            "from a component to the finished product."
+            "Lot/serial number is propagated from a component to the finished product."
         ),
     )
     propagated_lot_producing = fields.Char(
