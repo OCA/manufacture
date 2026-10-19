@@ -5,40 +5,32 @@ from odoo.exceptions import UserError
 
 
 class MrpBatchProducePropagate(models.TransientModel):
-    _name = "mrp.batch.produce.propagate"
+    _name = "mrp.production.serials.propagate"
     _description = "Batch production with lot number propagation"
 
     production_ids = fields.Many2many("mrp.production", readonly=True)
 
-    def action_prepare(self):
-        return self._batch_produce(mark_done=False)
-
-    def action_done(self):
-        return self._batch_produce(mark_done=True)
-
-    def _batch_produce(self, mark_done=False):
+    def action_apply(self):
         self.ensure_one()
         for production in self.production_ids:
             batch_produce_wizard = (
-                self.env["mrp.batch.produce"]
+                self.env["mrp.production.serials"]
                 .with_context(default_production_id=production.id)
                 .create({})
             )
             propagate_move = production._get_propagating_component_move()
-            production_text_lines = [
+            serial_numbers = [
                 f"{ml.lot_id.name}{batch_produce_wizard.component_separator}{ml.lot_id.name}"
                 for ml in propagate_move.move_line_ids
                 if ml.lot_id
             ]
-            if not production_text_lines:
+            if not serial_numbers:
                 raise UserError(
                     self.env._(
                         "Cannot mass produce without any propagating component line "
                         "having serial number defined."
                     )
                 )
-            batch_produce_wizard.production_text = "\n".join(production_text_lines)
-            batch_produce_wizard.with_context(
-                lot_propagation=True
-            )._production_text_to_object(mark_done=mark_done)
+            batch_produce_wizard.serial_numbers = "\n".join(serial_numbers)
+            batch_produce_wizard.with_context(lot_propagation=True).action_apply()
         return True

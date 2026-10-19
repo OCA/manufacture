@@ -11,21 +11,21 @@
             <xpath expr="//field[@name='id']/.." position="inside">
                 <field name="is_lot_number_propagated" force_save="1" />
             </xpath>
-            <label for="lot_producing_id" position="before">
+            <label for="lot_producing_ids" position="before">
                 <field
                     name="propagated_lot_producing"
                     string="Lot/Serial Number"
                     invisible="not is_lot_number_propagated"
                 />
             </label>
-            <label for="lot_producing_id" position="attributes">
+            <label for="lot_producing_ids" position="attributes">
                 <attribute
                     name="invisible"
                     add="is_lot_number_propagated"
                     separator="or"
                 />
             </label>
-            <field name="lot_producing_id" position="attributes">
+            <field name="lot_producing_ids" position="attributes">
                 <attribute
                     name="invisible"
                     add="is_lot_number_propagated"

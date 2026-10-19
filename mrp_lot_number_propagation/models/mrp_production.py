@@ -115,7 +115,7 @@ class MrpProduction(models.Model):
         if all(prod._auto_production_checks() for prod in self):
             self._create_and_assign_propagated_lot_number()
         res = super().pre_button_mark_done()
-        if isinstance(res, dict) and res["res_model"] == "mrp.batch.produce":
+        if isinstance(res, dict) and res["res_model"] == "mrp.production.serials":
             # In case a wizard action for mrp.batch.produce is returned, we have to
             #  handle differently orders that need to go through this wizard and
             #  those which do not
@@ -178,7 +178,7 @@ class MrpProduction(models.Model):
             # Now we can safely handle productions set to propagate lot number
             #  through specific wizard to allow user confirmation
             res = self.env["ir.actions.act_window"]._for_xml_id(
-                "mrp_lot_number_propagation.action_mrp_batch_produce_propagate"
+                "mrp_lot_number_propagation.action_mrp_production_serials_propagate"
             )
             res["context"] = {"default_production_ids": batch_productions.ids}
         return res
@@ -187,8 +187,8 @@ class MrpProduction(models.Model):
         for order in self:
             if (
                 not order.is_lot_number_propagated
-                or order.lot_producing_id
-                and order.lot_producing_id.name == order.propagated_lot_producing
+                or order.lot_producing_ids
+                and order.lot_producing_ids.mapped("name") == [order.propagated_lot_producing]
             ):
                 continue
             finish_moves = order.move_finished_ids.filtered(
@@ -220,13 +220,13 @@ class MrpProduction(models.Model):
                             "name": order.propagated_lot_producing,
                         }
                     )
-                order.with_context(lot_propagation=True).lot_producing_id = lot
+                order.with_context(lot_propagation=True).lot_producing_ids = lot
 
     def write(self, vals):
         for order in self:
             if (
                 order.is_lot_number_propagated
-                and vals.get("lot_producing_id")
+                and vals.get("lot_producing_ids")
                 and not self.env.context.get("lot_propagation")
             ):
                 raise UserError(

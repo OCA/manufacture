@@ -6,7 +6,7 @@ from odoo import api, exceptions, fields, models
 
 
 class MrpBatchProduct(models.TransientModel):
-    _inherit = "mrp.batch.produce"
+    _inherit = "mrp.production.serials"
 
     is_lot_number_propagated = fields.Boolean(
         related="production_id.is_lot_number_propagated"
@@ -23,24 +23,24 @@ class MrpBatchProduct(models.TransientModel):
                 propagated_component = (
                     wiz.production_id._get_propagating_component_move().product_id
                 )
-                msg = self.env._(  # pylint: disable=W8120
-                    "Lot number must be the same between finished product %s and "
-                    "component %s",
-                    wiz.production_id.product_id.display_name,
-                    propagated_component.display_name,
+                msg = self.env._(
+                    "Lot number must be the same between finished product %(product)s "
+                    "and component %(component)s",
+                    product=wiz.production_id.product_id.display_name,
+                    component=propagated_component.display_name,
                 )
             wiz.lot_number_propagation_alert_msg = msg
 
-    def _production_text_to_object(self, mark_done=False):
+    def action_apply(self):
         self._check_propagated_lot_number()
         self = self.with_context(lot_propagation=True)
-        return super()._production_text_to_object(mark_done=mark_done)
+        return super().action_apply()
 
     def _check_propagated_lot_number(self):
         if not self.is_lot_number_propagated:
             return
         # Use deque to mimic what is done in MrpBatchProduct_production_text_to_object
-        for production_line in deque(self.production_text.split("\n")):
+        for production_line in deque(self.serial_numbers.split("\n")):
             production_line = production_line.strip()
             components_line = deque(production_line.split(self.component_separator))
             finished_line = components_line.popleft()

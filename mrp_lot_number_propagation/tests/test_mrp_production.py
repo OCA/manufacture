@@ -96,16 +96,16 @@ class TestMrpProduction(Common):
         self._set_qty_done(self.order)
         self.assertEqual(self.order.propagated_lot_producing, self.LOT_NAME)
 
-    def test_order_write_lot_producing_id_not_allowed(self):
+    def test_order_write_lot_producing_ids_not_allowed(self):
         with self.assertRaisesRegex(UserError, "not allowed"):
-            self.order.write({"lot_producing_id": "test"})
+            self.order.write({"lot_producing_ids": "test"})
 
     def test_order_post_inventory(self):
         self._update_stock_component_qty(self.order)
         self.order.action_confirm()
         self._set_qty_done(self.order)
         self.order.button_mark_done()
-        self.assertEqual(self.order.lot_producing_id.name, self.LOT_NAME)
+        self.assertEqual(self.order.lot_producing_ids.name, self.LOT_NAME)
 
     def test_order_post_inventory_lot_already_exists_but_not_used(self):
         self._update_stock_component_qty(self.order)
@@ -122,7 +122,7 @@ class TestMrpProduction(Common):
             }
         )
         self.order.button_mark_done()
-        self.assertEqual(self.order.lot_producing_id, existing_lot)
+        self.assertEqual(self.order.lot_producing_ids, existing_lot)
 
     def test_order_post_inventory_lot_already_exists_and_used(self):
         self._update_stock_component_qty(self.order)
@@ -203,20 +203,22 @@ class TestMrpProduction(Common):
         self.assertTrue(len(tracked_moves) > 1)
         res = order.button_mark_done()
         self.assertEqual(type(res), dict)
-        self.assertEqual(res["res_model"], "mrp.batch.produce")
+        self.assertEqual(res["res_model"], "mrp.production.serials")
 
         propagate_move = order._get_propagating_component_move()
         propagate_move_lines = propagate_move.move_line_ids
         component_lot_name = (tracked_moves - propagate_move).move_line_ids.lot_id.name
 
-        wizard_form = Form(self.env["mrp.batch.produce"].with_context(**res["context"]))
+        wizard_form = Form(
+            self.env["mrp.production.serials"].with_context(**res["context"])
+        )
 
         # Executing wizard without entering same name for finished product and
         #  propagated component must raise an error
         def random_name():
             return "".join(random.choice(string.ascii_lowercase) for i in range(10))
 
-        wizard_form.production_text = "\n".join(
+        wizard_form.serial_numbers = "\n".join(
             [
                 f"{random_name()},{comp_serial_name},{component_lot_name}"
                 for comp_serial_name in propagate_move_lines.lot_id.mapped("name")
@@ -226,22 +228,22 @@ class TestMrpProduction(Common):
         with self.assertRaisesRegex(
             UserError, "set to propagate lot number from component"
         ):
-            wizard.action_done()
+            wizard.action_apply()
         wizard_form = Form(wizard)
-        wizard_form.production_text = "\n".join(
+        wizard_form.serial_numbers = "\n".join(
             [
                 f"{comp_serial_name},{comp_serial_name},{component_lot_name}"
                 for comp_serial_name in propagate_move_lines.lot_id.mapped("name")
             ]
         )
         wizard = wizard_form.save()
-        wizard.action_done()
+        wizard.action_apply()
 
         self.assertEqual(order.state, "done")
         for backorder in order.procurement_group_id.mrp_production_ids:
             propagating_move = backorder._get_propagating_component_move()
             self.assertEqual(
-                backorder.lot_producing_id.name,
+                backorder.lot_producing_ids.name,
                 propagating_move.move_line_ids.lot_id.name,
             )
 
@@ -267,7 +269,7 @@ class TestMrpProduction(Common):
             .with_context(**batch_propagate_action["context"])
             .create({})
         )
-        wiz.action_done()
+        wiz.action_apply()
         self.assertEqual(order.state, "done")
         for backorder in order.procurement_group_id.mrp_production_ids:
             propagating_move = backorder._get_propagating_component_move()
@@ -295,14 +297,14 @@ class TestMrpProduction(Common):
         self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 1)
         batch_propagate_action = order.button_mark_done()
         self.assertEqual(
-            batch_propagate_action["res_model"], "mrp.batch.produce.propagate"
+            batch_propagate_action["res_model"], "mrp.production.serials.propagate"
         )
         wiz = (
             self.env[batch_propagate_action["res_model"]]
             .with_context(**batch_propagate_action["context"])
             .create({})
         )
-        wiz.action_prepare()
+        wiz.action_apply()
         self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 5)
         for mo in order.procurement_group_id.mrp_production_ids:
             self.assertEqual(mo.state, "confirmed")
