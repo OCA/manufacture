@@ -64,18 +64,14 @@ class MrpMove(models.Model):
     )
     name = fields.Char(string="Description")
     origin = fields.Char(string="Source Document")
-    parent_product_id = fields.Many2one(
-        comodel_name="product.product", string="Parent Product", index=True
-    )
+    parent_product_id = fields.Many2one(comodel_name="product.product", index=True)
     production_id = fields.Many2one(
         comodel_name="mrp.production", string="Manufacturing Order", index=True
     )
     purchase_line_id = fields.Many2one(
         comodel_name="purchase.order.line", string="Purchase Order Line", index=True
     )
-    purchase_order_id = fields.Many2one(
-        comodel_name="purchase.order", string="Purchase Order", index=True
-    )
+    purchase_order_id = fields.Many2one(comodel_name="purchase.order", index=True)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -89,7 +85,5 @@ class MrpMove(models.Model):
             ("approved", "Approved"),
         ],
     )
-    stock_move_id = fields.Many2one(
-        comodel_name="stock.move", string="Stock Move", index=True
-    )
+    stock_move_id = fields.Many2one(comodel_name="stock.move", index=True)
     bom_id = fields.Many2one("mrp.bom")

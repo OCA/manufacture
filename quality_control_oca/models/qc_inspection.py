@@ -91,9 +91,7 @@ class QcInspection(models.Model):
         help="If an inspection is auto-generated, it can be canceled but not removed.",
     )
     company_id = fields.Many2one(
-        comodel_name="res.company",
-        string="Company",
-        default=lambda self: self.env.company,
+        comodel_name="res.company", default=lambda self: self.env.company
     )
     user = fields.Many2one(
         comodel_name="res.users",
@@ -296,9 +294,7 @@ class QcInspectionLine(models.Model):
                     max_val = formatLang(self.env, insp_line.max_value)
                     insp_line.valid_values = f"{min_val} ~ {max_val}"
 
-    inspection_id = fields.Many2one(
-        comodel_name="qc.inspection", string="Inspection", ondelete="cascade"
-    )
+    inspection_id = fields.Many2one(comodel_name="qc.inspection", ondelete="cascade")
     name = fields.Char(string="Question")
     product_id = fields.Many2one(
         comodel_name="product.product",

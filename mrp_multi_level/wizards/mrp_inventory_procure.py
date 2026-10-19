@@ -113,12 +113,12 @@ class MrpInventoryProcureItem(models.TransientModel):
     uom_id = fields.Many2one(string="Unit of Measure", comodel_name="uom.uom")
     date_planned = fields.Date(string="Planned Date", required=True)
     mrp_inventory_id = fields.Many2one(
-        string="Mrp Inventory", comodel_name="mrp.inventory"
+        string="MRP Inventory", comodel_name="mrp.inventory"
     )
     planned_order_id = fields.Many2one(comodel_name="mrp.planned.order")
-    product_id = fields.Many2one(string="Product", comodel_name="product.product")
-    warehouse_id = fields.Many2one(string="Warehouse", comodel_name="stock.warehouse")
-    location_id = fields.Many2one(string="Location", comodel_name="stock.location")
+    product_id = fields.Many2one(comodel_name="product.product")
+    warehouse_id = fields.Many2one(comodel_name="stock.warehouse")
+    location_id = fields.Many2one(comodel_name="stock.location")
     supply_method = fields.Selection(
         selection=[
             ("buy", "Buy"),
