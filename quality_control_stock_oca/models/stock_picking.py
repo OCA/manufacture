@@ -82,8 +82,9 @@ class StockPicking(models.Model):
             self.move_ids
         )
         for inspection in existing_inspections:
-            inspection.onchange_object_id()
-            moves_with_inspections += inspection.object_id
+            if inspection.timing in timings:
+                inspection.onchange_object_id()
+                moves_with_inspections += inspection.object_id
         for operation in self.move_ids - moves_with_inspections:
             operation.trigger_inspection(timings, self.partner_id)
 
