@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_back_to_draft
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-12-19 10:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: mrp_production_back_to_draft
+#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: mrp_production_back_to_draft
+#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_production_back_to_draft
+#: model:ir.model.fields,field_description:mrp_production_back_to_draft.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: mrp_production_back_to_draft
+#: model:ir.model,name:mrp_production_back_to_draft.model_mrp_production
+msgid "Production Order"
+msgstr "Ordine di produzione"
+
+#. module: mrp_production_back_to_draft
+#: model_terms:ir.ui.view,arch_db:mrp_production_back_to_draft.mrp_production_form_view_return_to_draft
+msgid "Return to Draft"
+msgstr "Riporta a bozza"
+
+#. module: mrp_production_back_to_draft
+#: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
+#, python-format
+msgid ""
+"You cannot return to draft the following MO: %s. Only confirmed or cancelled"
+" MO can be returned to draft."
+msgstr ""
+"Non si può riportare a bozza il seguente OP: %s. Solo OP confermati o "
+"annullati possono essere riportati a bozza."
