@@ -12,10 +12,8 @@
     "category": "Manufacturing",
     "depends": ["mrp"],
     "data": [
-        "security/ir.model.access.csv",
         "views/mrp_bom.xml",
         "views/mrp_production.xml",
-        "wizard/mrp_production_serial_numbers_propagate.xml",
         "wizard/mrp_production_serial_numbers.xml",
     ],
     "installable": True,

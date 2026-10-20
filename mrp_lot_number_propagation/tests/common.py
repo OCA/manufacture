@@ -13,30 +13,112 @@ class Common(common.TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.bom = cls.env.ref("mrp.mrp_bom_desk")
-        cls.bom_product_template = cls.env.ref(
-            "mrp.product_product_computer_desk_product_template"
-        )
-        cls.bom_product_product = cls.env.ref("mrp.product_product_computer_desk")
-        cls.product_tracked_by_lot = cls.env.ref(
-            "mrp.product_product_computer_desk_leg"
-        )
-        cls.product_tracked_by_sn = cls.env.ref(
-            "mrp.product_product_computer_desk_head"
-        )
-        cls.product_template_tracked_by_sn = cls.env.ref(
-            "mrp.product_product_computer_desk_head_product_template"
-        )
-        cls.LOT_NAME = cls.env.ref("mrp.lot_product_product_computer_desk_head_1").name
+        cls._create_product_attributes()
+        cls._create_products()
+        cls._create_bom()
+        cls._create_existing_lot()
         cls.line_tracked_by_lot = cls.bom.bom_line_ids.filtered(
             lambda o: o.product_id == cls.product_tracked_by_lot
         )
         cls.line_tracked_by_sn = cls.bom.bom_line_ids.filtered(
             lambda o: o.product_id == cls.product_tracked_by_sn
         )
-        cls.line_no_tracking = fields.first(
-            cls.bom.bom_line_ids.filtered(lambda o: o.product_id.tracking == "none")
+        cls.line_no_tracking = cls.bom.bom_line_ids.filtered(
+            lambda o: o.product_id.tracking == "none"
+        )[:1]
+
+    @classmethod
+    def _create_product_attributes(cls):
+        """Create the 'Trucks' attribute used by the variant tests."""
+        cls.trucks_attribute = cls.env["product.attribute"].create(
+            {"name": "Trucks", "display_type": "radio"}
         )
+        cls.trucks_att_value_steel = cls.env["product.attribute.value"].create(
+            {"name": "Steel", "attribute_id": cls.trucks_attribute.id}
+        )
+        cls.trucks_att_value_alu = cls.env["product.attribute.value"].create(
+            {"name": "Aluminium", "attribute_id": cls.trucks_attribute.id}
+        )
+
+    @classmethod
+    def _create_products(cls):
+        """Create a skateboard and its components."""
+        # Finished product of the BOM, tracked by serial.
+        cls.bom_product_template = cls.env["product.template"].create(
+            {
+                "name": "Skateboard",
+                "tracking": "serial",
+                "is_storable": True,
+                "type": "consu",  # never consumed alone: it is manufactured
+            }
+        )
+        cls.bom_product_product = cls.bom_product_template.product_variant_ids[0]
+        # Component tracked by serial, whose serial is propagated.
+        cls.product_tracked_by_sn = cls.env["product.product"].create(
+            {
+                "name": "Deck",
+                "tracking": "serial",
+                "is_storable": True,
+                "standard_price": 50,
+            }
+        )
+        cls.product_template_tracked_by_sn = cls.product_tracked_by_sn.product_tmpl_id
+        # Component tracked by lot.
+        cls.product_tracked_by_lot = cls.env["product.product"].create(
+            {
+                "name": "Trucks",
+                "tracking": "lot",
+                "is_storable": True,
+                "standard_price": 20,
+            }
+        )
+        # Component without any tracking.
+        cls.product_no_tracking = cls.env["product.product"].create(
+            {"name": "Wheels", "is_storable": True, "standard_price": 5}
+        )
+
+    @classmethod
+    def _create_bom(cls):
+        cls.bom = cls.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": cls.bom_product_template.id,
+                "product_qty": 1.0,
+                "consumption": "flexible",
+            }
+        )
+        cls.env["mrp.bom.line"].create(
+            [
+                {
+                    "bom_id": cls.bom.id,
+                    "product_id": cls.product_tracked_by_sn.id,
+                    "product_qty": 1,
+                    "sequence": 1,
+                },
+                {
+                    "bom_id": cls.bom.id,
+                    "product_id": cls.product_tracked_by_lot.id,
+                    "product_qty": 2,
+                    "sequence": 2,
+                },
+                {
+                    "bom_id": cls.bom.id,
+                    "product_id": cls.product_no_tracking.id,
+                    "product_qty": 4,
+                    "sequence": 3,
+                },
+            ]
+        )
+
+    @classmethod
+    def _create_existing_lot(cls):
+        """A pre-existing serial number for the serial-tracked component."""
+        cls.existing_lot = cls.env["stock.lot"].create(
+            {
+                "name": "DK001",
+                "product_id": cls.product_tracked_by_sn.id,
+            }
+        )
+        cls.LOT_NAME = cls.existing_lot.name
 
     @classmethod
     def _update_qty_in_location(
@@ -58,6 +140,13 @@ class Common(common.TransactionCase):
 
     @classmethod
     def _update_stock_component_qty(cls, order=None, bom=None, location=None):
+        """Add enough stock for all the BOM components.
+
+        Serial-tracked products must get one lot per unit of stock, as they
+        can only hold 1 unit per lot. The first serial of the propagating
+        component (the deck) is the pre-existing lot (DK001), which the tests
+        expect to be propagated.
+        """
         if not order and not bom:
             return
         if order:
@@ -65,48 +154,50 @@ class Common(common.TransactionCase):
         if not location:
             location = cls.env.ref("stock.stock_location_stock")
         for line in bom.bom_line_ids:
-            if line.product_id.type != "product":
+            product = line.product_id
+            if not product.is_storable:
                 continue
-            lot = None
-            if line.product_id.tracking != "none":
+            quantity = line.product_qty
+            if order:
+                quantity *= order.product_qty
+            if product.tracking == "serial":
+                # one lot per unit for serial-tracked products
+                for i in range(int(quantity)):
+                    if product == cls.product_tracked_by_sn and i == 0:
+                        lot = cls.existing_lot
+                    else:
+                        lot = cls.env["stock.lot"].create(
+                            {
+                                "product_id": product.id,
+                                "company_id": product.company_id.id,
+                                "name": f"{cls.LOT_NAME[:-3]}{i + 1:03d}",
+                            }
+                        )
+                    cls._update_qty_in_location(location, product, 1, lot=lot)
+            elif product.tracking == "lot":
                 lot_name = "".join(
                     random.choice(string.ascii_lowercase) for i in range(10)
                 )
-                vals = {
-                    "product_id": line.product_id.id,
-                    "company_id": line.company_id.id,
-                    "name": lot_name,
-                }
-                lot = cls.env["stock.lot"].create(vals)
-            cls._update_qty_in_location(
-                location,
-                line.product_id,
-                line.product_qty,
-                lot=lot,
-            )
+                lot = cls.env["stock.lot"].create(
+                    {
+                        "product_id": product.id,
+                        "company_id": product.company_id.id,
+                        "name": lot_name,
+                    }
+                )
+                cls._update_qty_in_location(location, product, quantity, lot=lot)
+            else:
+                cls._update_qty_in_location(location, product, quantity)
 
     @classmethod
-    def _get_lot_quants(cls, lot, location=None):
-        quants = lot.quant_ids.filtered(lambda q: q.quantity > 0)
-        if location:
-            quants = quants.filtered(
-                lambda q: q.location_id.parent_path in location.parent_path
-            )
-        return quants
-
-    @classmethod
-    def _add_color_and_legs_variants(cls, product_template):
-        color_attribute = cls.env.ref("product.product_attribute_2")
-        color_att_value_white = cls.env.ref("product.product_attribute_value_3")
-        color_att_value_black = cls.env.ref("product.product_attribute_value_4")
-        legs_attribute = cls.env.ref("product.product_attribute_1")
-        legs_att_value_steel = cls.env.ref("product.product_attribute_value_1")
-        legs_att_value_alu = cls.env.ref("product.product_attribute_value_2")
+    def _add_trucks_variants(cls, product_template):
         cls._add_variants(
             product_template,
             {
-                color_attribute: [color_att_value_white, color_att_value_black],
-                legs_attribute: [legs_att_value_steel, legs_att_value_alu],
+                cls.trucks_attribute: [
+                    cls.trucks_att_value_steel,
+                    cls.trucks_att_value_alu,
+                ],
             },
         )
 

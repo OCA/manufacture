@@ -23,13 +23,16 @@ class StockMove(models.Model):
         #  the removed propagating component, so we must remove the outdated finished
         #  lot
         for move in self:
-            finished_lot = move.raw_material_production_id.lot_producing_ids
-            if (
-                move.propagate_lot_number
-                and finished_lot
-                and len(move.move_line_ids) == 1
-                and move.move_line_ids.lot_id.name != finished_lot.name
-            ):
-                move.raw_material_production_id.write({"lot_producing_ids": False})
+            order = move.raw_material_production_id
+            finished_lots = order.lot_producing_ids
+            if not (move.propagate_lot_number and finished_lots):
+                continue
+            component_names = move.move_line_ids.filtered(lambda ln: ln.lot_id).mapped(
+                "lot_id.name"
+            )
+            if sorted(component_names) == sorted(finished_lots.mapped("name")):
+                continue
+            order.write({"lot_producing_ids": False})
+            for finished_lot in finished_lots:
                 if not finished_lot.quant_ids:
                     finished_lot.unlink()

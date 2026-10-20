@@ -11,20 +11,6 @@ class MrpBomLine(models.Model):
     propagate_lot_number = fields.Boolean(
         default=False,
     )
-    display_propagate_lot_number = fields.Boolean(
-        compute="_compute_display_propagate_lot_number"
-    )
-
-    @api.depends(
-        "bom_id.display_lot_number_propagation",
-        "bom_id.lot_number_propagation",
-    )
-    def _compute_display_propagate_lot_number(self):
-        for line in self:
-            line.display_propagate_lot_number = (
-                line.bom_id.display_lot_number_propagation
-                and line.bom_id.lot_number_propagation
-            )
 
     @api.constrains("propagate_lot_number")
     def _check_propagate_lot_number(self):

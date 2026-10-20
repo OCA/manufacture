@@ -1,8 +1,5 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
-import random
-import string
-
 from odoo.exceptions import UserError
 from odoo.fields import Command
 from odoo.tests import Form
@@ -14,7 +11,6 @@ class TestMrpProduction(Common):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Configure the BoM to propagate lot number
         cls._configure_bom()
         cls._configure_single_component_bom()
         cls.order = cls._create_order(cls.bom_product_product, cls.bom)
@@ -63,23 +59,6 @@ class TestMrpProduction(Common):
         form.bom_id = bom
         form.product_qty = qty
         return form.save()
-
-    def _init_inventory(cls, product, location, qty=1, lot_name=None):
-        lot = None
-        if lot_name:
-            lot = cls.env["stock.lot"].search(
-                [("product_id", "=", product.id), ("name", "=", lot_name)]
-            )
-            if not lot:
-                lot = cls.env["stock.lot"].create(
-                    {"name": lot_name, "product_id": product.id}
-                )
-        cls.env["stock.quant"]._update_available_quantity(
-            product,
-            location,
-            quantity=qty,
-            lot_id=lot,
-        )
 
     def _set_qty_done(self, order):
         for line in order.move_raw_ids.move_line_ids:
@@ -148,9 +127,78 @@ class TestMrpProduction(Common):
         with self.assertRaisesRegex(UserError, "already exists and has been used"):
             self.order.button_mark_done()
 
+    def _assign_finished_lot(self, order, lot):
+        """Assign a finished lot to the order, bypassing the write guard."""
+        order.with_context(lot_propagation=True).lot_producing_ids = lot
+
+    def _prepare_unreserved_component_move(
+        self, used_finished_lot=False, remove_component_stock=True
+    ):
+        """Confirm an order with a finished lot assigned, then unreserve.
+
+        Returns ``(move, lot)``; the caller re-reserves the component move
+        with ``move._action_assign()`` and asserts the outcome.
+        """
+        self._update_stock_component_qty(self.order)
+        self.order.action_confirm()
+        lot = self.env["stock.lot"].create(
+            {
+                "product_id": self.order.product_id.id,
+                "company_id": self.order.company_id.id,
+                "name": self.LOT_NAME,
+            }
+        )
+        if used_finished_lot:
+            self._update_qty_in_location(
+                self.stock_location, self.order.product_id, 1, lot=lot
+            )
+        self._assign_finished_lot(self.order, lot)
+        move = self.order._get_propagating_component_move()
+        move._do_unreserve()
+        if remove_component_stock:
+            # remove the serial from stock: re-reservation cannot find it,
+            #  so the assigned finished lot no longer matches any component
+            #  serial
+            self.env["stock.quant"]._update_available_quantity(
+                self.product_tracked_by_sn,
+                self.stock_location,
+                -1,
+                lot_id=self.existing_lot,
+            )
+        return move, lot
+
+    def test_assign_component_move_keeps_matching_finished_lot(self):
+        """Re-reserving the same component serials keeps the finished lots."""
+        move, lot = self._prepare_unreserved_component_move(
+            remove_component_stock=False
+        )
+        # re-reservation finds the same serial: nothing to clean up
+        move._action_assign()
+        self.assertEqual(self.order.lot_producing_ids, lot)
+
+    def test_unreserve_component_move_clears_outdated_finished_lot(self):
+        """Component serial no longer reserved: the finished lot is stale.
+
+        The unused finished lot must be removed from the order and deleted.
+        """
+        move, lot = self._prepare_unreserved_component_move()
+        move._action_assign()
+        self.assertFalse(self.order.lot_producing_ids)
+        # the finished lot was unused, it must have been deleted
+        self.assertFalse(lot.exists())
+
+    def test_unreserve_component_move_keeps_used_finished_lot(self):
+        """Same as above, but the finished lot already has stock: keep it."""
+        move, lot = self._prepare_unreserved_component_move(used_finished_lot=True)
+        move._action_assign()
+        # the finished lot is detached from the order...
+        self.assertFalse(self.order.lot_producing_ids)
+        # ...but it is kept, as it holds stock
+        self.assertTrue(lot.exists())
+
     def test_confirm_with_variant_ok(self):
-        self._add_color_and_legs_variants(self.bom_product_template)
-        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        self._add_trucks_variants(self.bom_product_template)
+        self._add_trucks_variants(self.product_template_tracked_by_sn)
         new_bom = self._create_bom_with_variants()
         self.assertTrue(new_bom.lot_number_propagation)
         # As all variants must have a single component
@@ -160,8 +208,8 @@ class TestMrpProduction(Common):
             new_order.action_confirm()
 
     def test_confirm_with_variant_multiple(self):
-        self._add_color_and_legs_variants(self.bom_product_template)
-        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        self._add_trucks_variants(self.bom_product_template)
+        self._add_trucks_variants(self.product_template_tracked_by_sn)
         new_bom = self._create_bom_with_variants()
         # Remove application on variant for first bom line
         #  with this only the first variant of the product template
@@ -178,8 +226,8 @@ class TestMrpProduction(Common):
                     new_order.action_confirm()
 
     def test_confirm_with_variant_no(self):
-        self._add_color_and_legs_variants(self.bom_product_template)
-        self._add_color_and_legs_variants(self.product_template_tracked_by_sn)
+        self._add_trucks_variants(self.bom_product_template)
+        self._add_trucks_variants(self.product_template_tracked_by_sn)
         new_bom = self._create_bom_with_variants()
         # Remove first bom line
         #  with this the first variant of the product template
@@ -193,7 +241,7 @@ class TestMrpProduction(Common):
             else:
                 new_order.action_confirm()
 
-    def test_mass_produce_wizard(self):
+    def test_production_serials_wizard(self):
         order = self._create_order(self.bom_product_product, self.bom, qty=5)
         self._update_stock_component_qty(order)
         order.action_confirm()
@@ -206,8 +254,7 @@ class TestMrpProduction(Common):
         self.assertEqual(res["res_model"], "mrp.production.serials")
 
         propagate_move = order._get_propagating_component_move()
-        propagate_move_lines = propagate_move.move_line_ids
-        component_lot_name = (tracked_moves - propagate_move).move_line_ids.lot_id.name
+        component_names = propagate_move.move_line_ids.lot_id.mapped("name")
 
         wizard_form = Form(
             self.env["mrp.production.serials"].with_context(**res["context"])
@@ -215,151 +262,25 @@ class TestMrpProduction(Common):
 
         # Executing wizard without entering same name for finished product and
         #  propagated component must raise an error
-        def random_name():
-            return "".join(random.choice(string.ascii_lowercase) for i in range(10))
-
-        wizard_form.serial_numbers = "\n".join(
-            [
-                f"{random_name()},{comp_serial_name},{component_lot_name}"
-                for comp_serial_name in propagate_move_lines.lot_id.mapped("name")
-            ]
-        )
+        wizard_form.serial_numbers = "\n".join([f"random-serial-{i}" for i in range(5)])
         wizard = wizard_form.save()
         with self.assertRaisesRegex(
             UserError, "set to propagate lot number from component"
         ):
             wizard.action_apply()
+
+        # Enter the serials of the propagating component (one per line)
         wizard_form = Form(wizard)
-        wizard_form.serial_numbers = "\n".join(
-            [
-                f"{comp_serial_name},{comp_serial_name},{component_lot_name}"
-                for comp_serial_name in propagate_move_lines.lot_id.mapped("name")
-            ]
-        )
+        wizard_form.serial_numbers = "\n".join(component_names)
         wizard = wizard_form.save()
         wizard.action_apply()
 
-        self.assertEqual(order.state, "done")
-        for backorder in order.procurement_group_id.mrp_production_ids:
-            propagating_move = backorder._get_propagating_component_move()
-            self.assertEqual(
-                backorder.lot_producing_ids.name,
-                propagating_move.move_line_ids.lot_id.name,
-            )
-
-    def test_mass_produce(self):
-        order = self._create_order(
-            self.finished_propagated_product, self.propagate_bom, qty=5
-        )
-        # Init component stock
-        for i in range(1, 6):
-            self._init_inventory(
-                self.component_propagated_product,
-                self.stock_location,
-                lot_name=f"SN-{i:04}",
-            )
-        order.action_confirm()
-        components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(
-            "move_line_ids.lot_id"
-        )
-        self.assertEqual(len(components_serials), 5)
-        batch_propagate_action = order.button_mark_done()
-        wiz = (
-            self.env[batch_propagate_action["res_model"]]
-            .with_context(**batch_propagate_action["context"])
-            .create({})
-        )
-        wiz.action_apply()
-        self.assertEqual(order.state, "done")
-        for backorder in order.procurement_group_id.mrp_production_ids:
-            propagating_move = backorder._get_propagating_component_move()
-            self.assertEqual(
-                backorder.lot_producing_id.name,
-                propagating_move.move_line_ids.lot_id.name,
-            )
-
-    def test_clean_serial_after_mass_produce_split(self):
-        order = self._create_order(
-            self.finished_propagated_product, self.propagate_bom, qty=5
-        )
-        # Init component stock
-        for i in range(1, 11):
-            self._init_inventory(
-                self.component_propagated_product,
-                self.stock_location,
-                lot_name=f"SN-{i:04}",
-            )
-        order.action_confirm()
-        components_serials = order.move_raw_ids.filtered("propagate_lot_number").mapped(
-            "move_line_ids.lot_id"
-        )
-        self.assertEqual(len(components_serials), 5)
-        self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 1)
-        batch_propagate_action = order.button_mark_done()
+        # The wizard only assigns the serials, the MO is not marked as done yet
+        self.assertNotEqual(order.state, "done")
         self.assertEqual(
-            batch_propagate_action["res_model"], "mrp.production.serials.propagate"
-        )
-        wiz = (
-            self.env[batch_propagate_action["res_model"]]
-            .with_context(**batch_propagate_action["context"])
-            .create({})
-        )
-        wiz.action_apply()
-        self.assertEqual(len(order.procurement_group_id.mrp_production_ids), 5)
-        for mo in order.procurement_group_id.mrp_production_ids:
-            self.assertEqual(mo.state, "confirmed")
-            self.assertTrue(mo.lot_producing_id)
-            self.assertEqual(
-                mo.lot_producing_id.name, mo.move_raw_ids.move_line_ids.lot_id.name
-            )
-
-        # Scrap propagating component should reset lot_producing_id
-        old_lot_name = order.move_raw_ids.move_line_ids.lot_id.name
-        scrap_form = Form(self.env["stock.scrap"])
-        scrap_form.product_id = order.move_raw_ids.product_id
-        scrap_form.lot_id = order.move_raw_ids.move_line_ids.lot_id
-        scrap = scrap_form.save()
-        scrap.action_validate()
-
-        self.assertTrue(order.move_raw_ids.move_line_ids.lot_id)
-        self.assertNotEqual(order.move_raw_ids.move_line_ids.lot_id.name, old_lot_name)
-
-        self.assertFalse(order.lot_producing_id)
-        self.assertFalse(
-            self.env["stock.lot"].search(
-                [
-                    ("product_id", "=", self.finished_propagated_product.id),
-                    ("name", "=", old_lot_name),
-                ]
-            )
+            sorted(order.lot_producing_ids.mapped("name")), sorted(component_names)
         )
 
-        next_order = order.procurement_group_id.mrp_production_ids.filtered(
-            lambda prod: prod.id != order.id
-        )[:1]
-        next_order_component_serial = next_order.move_raw_ids.move_line_ids.lot_id
-        next_order_finished_serial_name = next_order.lot_producing_id.name
-        self.assertEqual(
-            next_order_component_serial.name, next_order_finished_serial_name
-        )
-        next_order.do_unreserve()
-
-        # Remove existing component serial to avoid reserving the same we did just
-        #  unreserve
-        self.env["stock.quant"]._update_available_quantity(
-            self.component_propagated_product,
-            self.stock_location,
-            quantity=-1,
-            lot_id=next_order_component_serial,
-        )
-        # Assignation of new serial must delete outdated finished serial number
-        next_order.action_assign()
-        self.assertFalse(next_order.lot_producing_id)
-        self.assertFalse(
-            self.env["stock.lot"].search(
-                [
-                    ("product_id", "=", self.finished_propagated_product.id),
-                    ("name", "=", next_order_finished_serial_name),
-                ]
-            )
-        )
+        # Mark done again, now that serials are assigned
+        order.button_mark_done()
+        self.assertEqual(order.state, "done")
