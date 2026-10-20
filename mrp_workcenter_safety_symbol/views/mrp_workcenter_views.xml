@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workcenter_view_form_inherit_safety" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.inherit.safety</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Safety Symbols" name="safety_symbols">
+                    <field
+                        name="safety_symbol_ids"
+                        nolabel="1"
+                        options="{'no_create_edit': True}"
+                    >
+                        <kanban create="false" limit="10">
+                            <field name="id" />
+                            <field name="name" />
+                            <field name="iso_code" />
+                            <field name="image" />
+                            <templates>
+                                <t t-name="kanban-card">
+                                    <div
+                                        class="oe_kanban_global_click"
+                                        style="width: 110px; height: 170px;
+                                                padding: 5px;
+                                                display: flex; flex-direction: column;
+                                                align-items: center; justify-content: flex-start; /* Align content top */
+                                                border: 1px solid #dee2e6; margin: 2px; border-radius: 3px;"
+                                    >
+                                        <div class="mb-1">
+                                            <field
+                                                name="image"
+                                                widget="image"
+                                                options="{'size': [80, 80]}"
+                                            />
+                                        </div>
+
+                                        <div
+                                            style="font-size: 0.85em; line-height: 1.2; text-align: center; width: 100%; overflow: hidden;"
+                                        >
+                                            <strong>
+                                                <field name="iso_code" />
+                                            </strong>
+                                            <div
+                                                class="text-muted"
+                                                title_field="name"
+                                                style="max-height: 2.4em; /* Approx 2 lines (1.2em * 2) */
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        display: -webkit-box;
+                                                        -webkit-line-clamp: 2;
+                                                        -webkit-box-orient: vertical;"
+                                            >
+                                                <field name="name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                    <group>
+                        <p class="oe_grey">
+                           Select the safety symbols (e.g., mandatory PPE, warnings)
+                           associated with operating this work center. Make sure the
+                           required symbol data modules are installed.
+                       </p>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
