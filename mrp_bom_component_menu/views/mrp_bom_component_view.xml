@@ -10,7 +10,7 @@
                 <field name="bom_id" />
                 <field name="product_id" />
                 <field name="product_qty" />
-                <field name="product_uom_id" optional="hide" />
+                <field name="uom_id" optional="hide" />
                 <field name="operation_id" optional="hide" />
             </list>
         </field>
@@ -53,7 +53,7 @@
                     <filter
                         name="uom"
                         string='Default Unit of Measure'
-                        context="{'group_by' : 'product_uom_id'}"
+                        context="{'group_by' : 'uom_id'}"
                     />
                 </group>
             </search>
