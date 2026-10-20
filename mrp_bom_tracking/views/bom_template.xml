@@ -7,20 +7,20 @@
             <strong>The component details have been updated.</strong>
             <ul>
                 <t t-foreach="lines" t-as="line">
-                    <li><t t-esc="line.product_id.display_name" />:</li>
-                    Product Quantity: <t t-esc="line.product_qty" /><t
+                    <li><t t-out="line.product_id.display_name" />:</li>
+                    Product Quantity: <t t-out="line.product_qty" /><t
                     t-if='line.product_qty != product_qty'
-                > -&gt; <t t-esc="float(product_qty)" /></t><br />
+                > -&gt; <t t-out="float(product_qty)" /></t><br />
                     Product Unit of Measure: <t
-                    t-esc="line.product_uom_id.display_name"
-                /><t t-if='line.product_uom_id != product_uom_id'> -&gt; <t
-                    t-esc="product_uom_id.display_name"
+                    t-out="line.uom_id.display_name"
+                /><t t-if='line.uom_id != uom_id'> -&gt; <t
+                    t-out="uom_id.display_name"
                 /></t><br />
                     <t
                     t-if='line.operation_id != operation_id'
                 >Consumed in Operation: <t
-                    t-esc="line.operation_id.display_name or ''"
-                /> -&gt; <t t-esc="operation_id.display_name or ''" /><br /></t>
+                    t-out="line.operation_id.display_name or ''"
+                /> -&gt; <t t-out="operation_id.display_name or ''" /><br /></t>
                 </t>
             </ul>
         </div>
@@ -30,12 +30,12 @@
             <strong>The components have changed.</strong>
             <ul>
                 <t t-foreach="lines" t-as="line">
-                    <li><t t-esc="line.product_id.display_name" />: <t
-                    t-esc="mode"
+                    <li><t t-out="line.product_id.display_name" />: <t
+                    t-out="mode"
                 /> component<br /></li>
-                    Product Quantity: <t t-esc="line.product_qty" /><br />
+                    Product Quantity: <t t-out="line.product_qty" /><br />
                     Product Unit of Measure: <t
-                    t-esc="line.product_uom_id.display_name"
+                    t-out="line.uom_id.display_name"
                 /><br />
                 </t>
             </ul>
@@ -46,9 +46,9 @@
             <strong>The components have changed.</strong>
             <ul>
                 <t t-foreach="lines" t-as="line">
-                    <li><t t-esc="line.product_id.display_name" />:
+                    <li><t t-out="line.product_id.display_name" />:
                 Removed component<br /></li>
-                    <li><t t-esc="product_id.display_name" />:
+                    <li><t t-out="product_id.display_name" />:
                 New component<br /></li>
                 </t>
             </ul>

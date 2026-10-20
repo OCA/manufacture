@@ -86,7 +86,7 @@ class TestBomTracking(TransactionCase):
         self.line_2.write({"product_id": self.component_2_alt.id})
         after = self.bom.message_ids
         self.assertEqual(len(after - before), 1)
-        self.line_2.write({"product_uom_id": 2})
+        self.line_2.write({"uom_id": self.env.ref("uom.product_uom_dozen").id})
 
     def test_03_change_bom_line_qty_rounding(self):
         self.line_2.write({"product_qty": 2})

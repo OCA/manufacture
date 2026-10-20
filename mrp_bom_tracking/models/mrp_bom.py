@@ -2,7 +2,6 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models
-from odoo.tools import float_compare
 
 
 class MrpBom(models.Model):
@@ -15,7 +14,6 @@ class MrpBom(models.Model):
     picking_type_id = fields.Many2one(tracking=True)
     type = fields.Selection(tracking=True)
     ready_to_produce = fields.Selection(tracking=True)
-    consumption = fields.Selection(tracking=True)
     produce_delay = fields.Integer(tracking=True)
     days_to_prepare_mo = fields.Integer(tracking=True)
 
@@ -73,18 +71,14 @@ class MrpBomLine(models.Model):
                     bom.message_post(
                         body=message_body, subtype_id=self.env.ref("mail.mt_note").id
                     )
-        elif (
-            "product_qty" in values
-            or "product_uom_id" in values
-            or "operation_id" in values
-        ):
+        elif "product_qty" in values or "uom_id" in values or "operation_id" in values:
             for bom_line in self:
                 bom = bom_line.bom_id
                 product_qty = values.get("product_qty") or bom_line.product_qty
-                product_uom_id = values.get("product_uom_id")
+                uom_id = values.get("uom_id")
                 product_uom = None
-                if product_uom_id:
-                    product_uom = self.env["uom.uom"].browse(product_uom_id)
+                if uom_id:
+                    product_uom = self.env["uom.uom"].browse(uom_id)
                 if "operation_id" in values:
                     op_id = values["operation_id"]
                     new_operation = (
@@ -99,23 +93,18 @@ class MrpBomLine(models.Model):
                 # Catch and discard float write rounding errors
                 # when the qty has not even changed
                 if (
-                    float_compare(
-                        product_qty,
-                        bom_line.product_qty,
-                        precision_rounding=bom_line.product_uom_id.rounding,
-                    )
-                    == 0
-                    and not product_uom_id
+                    bom_line.uom_id.compare(product_qty, bom_line.product_qty) == 0
+                    and not uom_id
                     and not operation_changed
                 ):
                     continue
-                product_uom = product_uom or bom_line.product_uom_id
+                product_uom = product_uom or bom_line.uom_id
                 message_body = template_env._render_template(
                     "mrp_bom_tracking.track_bom_line_template",
                     values={
                         "lines": bom_line,
                         "product_qty": product_qty,
-                        "product_uom_id": product_uom,
+                        "uom_id": product_uom,
                         "operation_id": new_operation,
                     },
                 )
