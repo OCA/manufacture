@@ -289,3 +289,6 @@ class TestMrpProduction(Common):
         # Mark done again, now that serials are assigned
         order.button_mark_done()
         self.assertEqual(order.state, "done")
+        # All propagated serial names are displayed on the MO, also when
+        #  several serials are produced
+        self.assertEqual(order.propagated_lot_producing, ", ".join(component_names))

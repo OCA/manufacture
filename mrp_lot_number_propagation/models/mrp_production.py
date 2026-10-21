@@ -33,20 +33,8 @@ class MrpProduction(models.Model):
     )
     def _compute_propagated_lot_producing(self):
         for order in self:
-            order.propagated_lot_producing = False
-            move_with_lot = order._get_propagating_component_move()
-            line_with_sn = move_with_lot.move_line_ids.filtered(
-                lambda ln: (
-                    ln.lot_id
-                    and ln.product_id.tracking == "serial"
-                    and tools.float_compare(
-                        ln.quantity, 1, precision_rounding=ln.product_uom_id.rounding
-                    )
-                    == 0
-                )
-            )
-            if len(line_with_sn) == 1:
-                order.propagated_lot_producing = line_with_sn.lot_id.name
+            names = order._get_propagated_lot_names()
+            order.propagated_lot_producing = ", ".join(names) if names else False
 
     @api.onchange("bom_id")
     def _onchange_bom_id_lot_number_propagation(self):
