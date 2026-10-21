@@ -256,23 +256,28 @@ class TestMrpProduction(Common):
         propagate_move = order._get_propagating_component_move()
         component_names = propagate_move.move_line_ids.lot_id.mapped("name")
 
-        wizard_form = Form(
+        wizard = Form(
             self.env["mrp.production.serials"].with_context(**res["context"])
+        ).save()
+
+        # The serial numbers are readonly in the view (force_save keeps the
+        #  prefilled value on save) and pre-filled with the serials reserved
+        #  on the propagating component
+        self.assertTrue(wizard.is_lot_number_propagated)
+        self.assertEqual(
+            sorted(wizard.serial_numbers.split("\n")), sorted(component_names)
         )
 
-        # Executing wizard without entering same name for finished product and
-        #  propagated component must raise an error
-        wizard_form.serial_numbers = "\n".join([f"random-serial-{i}" for i in range(5)])
-        wizard = wizard_form.save()
+        # Simulate a tampered value (readonly is a view-level modifier only):
+        #  serials not matching the propagating component must raise an error
+        wizard.serial_numbers = "\n".join([f"random-serial-{i}" for i in range(5)])
         with self.assertRaisesRegex(
             UserError, "set to propagate lot number from component"
         ):
             wizard.action_apply()
 
-        # Enter the serials of the propagating component (one per line)
-        wizard_form = Form(wizard)
-        wizard_form.serial_numbers = "\n".join(component_names)
-        wizard = wizard_form.save()
+        # Restore the serials of the propagating component (one per line)
+        wizard.serial_numbers = "\n".join(component_names)
         wizard.action_apply()
 
         # The wizard only assigns the serials, the MO is not marked as done yet

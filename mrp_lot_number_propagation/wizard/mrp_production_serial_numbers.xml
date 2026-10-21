@@ -5,6 +5,19 @@
         <field name="model">mrp.production.serials</field>
         <field name="inherit_id" ref="mrp.view_mrp_production_serials_form" />
         <field name="arch" type="xml">
+            <field name="serial_numbers" position="attributes">
+                <attribute name="readonly">is_lot_number_propagated</attribute>
+                <attribute name="force_save">True</attribute>
+            </field>
+            <field name="lot_name" position="attributes">
+                <attribute name="invisible">is_lot_number_propagated</attribute>
+            </field>
+            <field name="lot_quantity" position="attributes">
+                <attribute name="invisible">is_lot_number_propagated</attribute>
+            </field>
+            <button name="action_generate_serial_numbers" position="attributes">
+                <attribute name="invisible">is_lot_number_propagated</attribute>
+            </button>
             <field name="serial_numbers" position="after">
                 <div
                     class="alert alert-warning"
