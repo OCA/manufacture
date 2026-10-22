@@ -57,7 +57,7 @@ class MrpBom(models.Model):
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(self.env._("Value should be True or False (not %s)"), value)
+            raise UserError(self.env._("Value should be True or False (not %s)", value))
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
         for bom in self.search([]):  # pylint: disable=W8163
@@ -73,7 +73,7 @@ class MrpBom(models.Model):
         elif value == "False":
             value = False
         if not isinstance(value, bool):
-            raise UserError(self.env._("Value should be True or False (not %s)"), value)
+            raise UserError(self.env._("Value should be True or False (not %s)", value))
         ops = {"=": py_operator.eq, "!=": py_operator.ne}
         ids = []
         for bom in self.search([]):  # pylint: disable=W8163
