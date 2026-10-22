@@ -24,8 +24,8 @@ class MrpBatchProduct(models.TransientModel):
                     wiz.production_id._get_propagating_component_move().product_id
                 )
                 msg = self.env._(
-                    "Lot number must be the same between finished product %(product)s "
-                    "and component %(component)s",
+                    "Lot numbers from the component %(component)s are propagated to "
+                    "the finished product %(product)s",
                     product=wiz.production_id.product_id.display_name,
                     component=propagated_component.display_name,
                 )
@@ -50,6 +50,11 @@ class MrpBatchProduct(models.TransientModel):
         self._check_propagated_lot_number()
         self = self.with_context(lot_propagation=True)
         return super().action_apply()
+
+    def action_split_and_assign_serials(self):
+        self._check_propagated_lot_number()
+        self = self.with_context(lot_propagation=True)
+        return super().action_split_and_assign_serials()
 
     def _check_propagated_lot_number(self):
         if not self.is_lot_number_propagated:
