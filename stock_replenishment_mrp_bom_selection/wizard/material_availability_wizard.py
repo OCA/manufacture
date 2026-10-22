@@ -59,7 +59,7 @@ class MaterialAvailabilityWizardLine(models.TransientModel):
     _description = "Material Availability Wizard Line"
 
     wizard_id = fields.Many2one("material.availability.wizard")
-    product_id = fields.Many2one("product.product", string="Product")
+    product_id = fields.Many2one("product.product")
     product_uom_id = fields.Many2one(
         "uom.uom", related="product_id.uom_id", string="Unit"
     )

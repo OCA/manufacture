@@ -24,7 +24,6 @@ class ProductMRPArea(models.Model):
     product_id = fields.Many2one(
         comodel_name="product.product",
         required=True,
-        string="Product",
         ondelete="cascade",
         check_company=True,
     )
@@ -65,7 +64,6 @@ class ProductMRPArea(models.Model):
     distribution_lead_time = fields.Float()
     main_supplier_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Main Supplier",
         compute="_compute_main_supplier",
         store=True,
         index=True,

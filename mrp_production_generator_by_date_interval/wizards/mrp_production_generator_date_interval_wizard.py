@@ -39,11 +39,7 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
     period_date_start = fields.Date("Period Start Date", required=True)
     period_date_end = fields.Date("Period End Date", required=True)
     hour_start = fields.Float("Start Hour", required=True)
-    company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        default=lambda self: self.env.company,
-    )
+    company_id = fields.Many2one("res.company", default=lambda self: self.env.company)
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
