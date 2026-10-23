@@ -4,7 +4,7 @@
 
 from odoo import _, models
 from odoo.exceptions import ValidationError
-from odoo.tools import config, float_compare
+from odoo.tools import config, float_compare, float_is_zero
 
 
 class StockMove(models.Model):
@@ -21,7 +21,14 @@ class StockMove(models.Model):
                     ("state", "not in", ("done", "cancel")),
                 ]
             )
-            productions = production_moves.production_id
+            # Only a production that is about to produce can consume components
+            # here. On a partial receipt where the MO has already been split off
+            # and validated, the backorder MO should be filtered out from the check.
+            productions = production_moves.production_id.filtered(
+                lambda p: not float_is_zero(
+                    p.qty_producing, precision_rounding=p.product_uom_id.rounding
+                )
+            )
             unassigned_productions = productions.filtered(
                 lambda p: p.reservation_state != "assigned"
             )
