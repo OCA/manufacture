@@ -125,7 +125,7 @@ class TestBomHierarchy(TransactionCase):
         # an empty domain in 19.0, so check the empty value instead of
         # absence)
         res = self.bom_b.action_open_child_tree_view()
-        self.assertEqual(res.get("domain"), "[]")
+        self.assertEqual(res.get("domain"), "[('id', 'in', [])]")
 
         # bom_b has a parent -> domain on parent BoMs
         res = self.bom_b.action_open_parent_tree_view()
@@ -133,7 +133,7 @@ class TestBomHierarchy(TransactionCase):
 
         # bom_a has no parent -> no domain
         res = self.bom_a.action_open_parent_tree_view()
-        self.assertEqual(res.get("domain"), "[]")
+        self.assertEqual(res.get("domain"), "[('id', 'in', [])]")
 
         # product_b has another BoM -> domain on the other BoMs
         bom_b2 = self.bom_obj.create(
