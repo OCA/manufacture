@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.mrp.procurement.no.autoconfirm</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='mrp_reception_report']" position="after">
+                <setting
+                    id="mrp_procurement_no_autoconfirm"
+                    help="Manufacturing Orders automatically created to fulfill a component need of another Manufacturing Order are kept in draft, requiring manual confirmation."
+                >
+                    <field name="mrp_procurement_no_autoconfirm" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
