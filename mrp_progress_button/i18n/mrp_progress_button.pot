@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,16 +14,50 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_progress_button
-#: model_terms:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
-msgid "Mark As Started"
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production__id
+msgid "ID"
 msgstr ""
 
 #. module: mrp_progress_button
 #: model:ir.model,name:mrp_progress_button.model_mrp_production
-msgid "Production Order"
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_progress_button
+#. odoo-python
+#: code:addons/mrp_progress_button/models/mrp_production.py:0
+msgid "Only manufacturing orders in progress can be unstarted: %s."
+msgstr ""
+
+#. module: mrp_progress_button
+#: model:ir.model.fields,field_description:mrp_progress_button.field_mrp_production__date_started
+msgid "Started On"
 msgstr ""
 
 #. module: mrp_progress_button
 #: model_terms:ir.ui.view,arch_db:mrp_progress_button.mrp_production_progress_button_form_view
 msgid "Unstart"
+msgstr ""
+
+#. module: mrp_progress_button
+#. odoo-python
+#: code:addons/mrp_progress_button/models/mrp_production.py:0
+msgid "You cannot unstart %s because a quantity is already being produced."
+msgstr ""
+
+#. module: mrp_progress_button
+#. odoo-python
+#: code:addons/mrp_progress_button/models/mrp_production.py:0
+msgid "You cannot unstart %s because some components are already picked."
+msgstr ""
+
+#. module: mrp_progress_button
+#. odoo-python
+#: code:addons/mrp_progress_button/models/mrp_production.py:0
+msgid "You cannot unstart %s because some work orders are started or done."
 msgstr ""
