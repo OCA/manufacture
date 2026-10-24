@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="mrp_workcenter_view_form_inherit_safety" model="ir.ui.view">
         <field name="name">mrp.workcenter.form.inherit.safety</field>
@@ -18,7 +18,7 @@
                             <field name="iso_code" />
                             <field name="image" />
                             <templates>
-                                <t t-name="kanban-card">
+                                <t t-name="card">
                                     <div
                                         class="oe_kanban_global_click"
                                         style="width: 110px; height: 170px;
@@ -60,7 +60,7 @@
                         </kanban>
                     </field>
                     <group>
-                        <p class="oe_grey">
+                        <p class="text-muted">
                            Select the safety symbols (e.g., mandatory PPE, warnings)
                            associated with operating this work center. Make sure the
                            required symbol data modules are installed.

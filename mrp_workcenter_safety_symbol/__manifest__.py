@@ -1,6 +1,6 @@
 {
     "name": "MRP Work Center Safety Symbols",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "summary": """
         This module allows associating predefined ISO 7010 safety symbols
         (from the 'base_iso7010' module) with Manufacturing Work Centers.
