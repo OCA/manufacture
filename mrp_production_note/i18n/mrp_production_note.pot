@@ -23,3 +23,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_production_note.mrp_production_view_notes_form
 msgid "Notes"
 msgstr ""
+
+#. module: mrp_production_note
+#: model_terms:ir.ui.view,arch_db:mrp_production_note.report_mrporder
+msgid "Production Notes"
+msgstr ""
