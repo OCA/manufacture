@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -23,7 +23,7 @@
                     class="oe_stat_button"
                     name="action_view_mrp_production_repair_orders"
                     type="object"
-                    icon="fa-wrench"
+                    icon="build"
                     invisible="not repair_id"
                 >
                     <div class="o_field_widget o_stat_info">
