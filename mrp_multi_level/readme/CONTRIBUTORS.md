@@ -5,3 +5,4 @@
 - Christopher Ormaza \<<chris.ormaza@forgeflow.com>\>
 - Joan Sisquella \<<joan.sisquella@forgeflow.com>\>
 - Alexandre Fayolle \<<alexandre.fayolle@camptocamp.com>\>
+- Daniel Reis \<<daniel.reis@graymatterlogic.com>\>
