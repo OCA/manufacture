@@ -30,5 +30,10 @@ msgstr "Ordine di produzione"
 msgid "Notes"
 msgstr "Note"
 
+#. module: mrp_production_note
+#: model_terms:ir.ui.view,arch_db:mrp_production_note.report_mrporder
+msgid "Production Notes"
+msgstr ""
+
 #~ msgid "Production Order"
 #~ msgstr "Ordine di produzione"

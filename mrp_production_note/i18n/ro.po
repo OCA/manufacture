@@ -30,6 +30,11 @@ msgstr ""
 msgid "Notes"
 msgstr "Note"
 
+#. module: mrp_production_note
+#: model_terms:ir.ui.view,arch_db:mrp_production_note.report_mrporder
+msgid "Production Notes"
+msgstr ""
+
 #, fuzzy
 #~ msgid "Production Order"
 #~ msgstr "Comandă fabricație"
