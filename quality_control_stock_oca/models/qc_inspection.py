@@ -108,6 +108,20 @@ class QcInspection(models.Model):
                 res["qty"] = object_ref.quantity_done
         return res
 
+    def action_approve(self):
+        res = super().action_approve()
+        if self._check_validate_picking():
+            self.picking_id.button_validate()
+
+        return res
+
+    def _check_validate_picking(self):
+        return (
+            self.picking_id
+            and self.picking_id.created_inspections == self.picking_id.done_inspections
+            and all(m.product_id.auto_scrap for m in self.picking_id.move_ids)
+        )
+
 
 class QcInspectionLine(models.Model):
     _inherit = "qc.inspection.line"

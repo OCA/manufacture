@@ -12,3 +12,7 @@
 
   * Aung Ko Ko Lin
   * Yoshi Tashiro
+
+* `PyTech <https://www.pytech.it>`_:
+
+  * Quirino Leone <quirino.leone@pytech.it>

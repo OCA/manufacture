@@ -1,0 +1,1 @@
+manufacture https://github.com/OCA/manufacture refs/pull/1584/head bdd2b3719bb2c71e064ae646745c74e7f9c86e95
