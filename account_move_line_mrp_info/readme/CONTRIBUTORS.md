@@ -1,0 +1,3 @@
+- Nuria Xifre Martin \<<nuria.xifre@forgeflow.com>\>
+- Thiago Mulero \<<thiago.mulero@forgeflow.com>\>
+- Jasmin Solanki \<<jasmin.solanki@forgeflow.com>\>
