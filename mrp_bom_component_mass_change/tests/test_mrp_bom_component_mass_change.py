@@ -1,6 +1,7 @@
 # Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
@@ -37,7 +38,7 @@ class TestMrpBomComponentMassChange(TransactionCase):
     def _create_product(cls, name, uom=None, **kwargs):
         vals = {"name": name}
         if uom is not None:
-            vals.update({"uom_id": uom.id, "uom_po_id": uom.id})
+            vals["uom_id"] = uom.id
         vals.update(kwargs)
         return cls.env["product.product"].create(vals)
 
@@ -47,7 +48,7 @@ class TestMrpBomComponentMassChange(TransactionCase):
             "product_tmpl_id": product.product_tmpl_id.id,
             "product_qty": 1.0,
             "bom_line_ids": [
-                (0, 0, {"product_id": component.id, "product_qty": qty})
+                Command.create({"product_id": component.id, "product_qty": qty})
                 for component, qty in components
             ],
         }

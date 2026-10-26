@@ -16,12 +16,12 @@ class MrpBomLine(models.Model):
         products = self.product_id
         bom_counts = {}
         if products:
-            groups = self.env["mrp.bom.line"].read_group(
+            groups = self.env["mrp.bom.line"]._read_group(
                 [("product_id", "in", products.ids)],
-                ["bom_id:count_distinct"],
                 ["product_id"],
+                ["bom_id:count_distinct"],
             )
-            bom_counts = {group["product_id"][0]: group["bom_id"] for group in groups}
+            bom_counts = {product.id: count for product, count in groups}
         for line in self:
             line.component_in_multiple_boms = bom_counts.get(line.product_id.id, 0) > 1
 

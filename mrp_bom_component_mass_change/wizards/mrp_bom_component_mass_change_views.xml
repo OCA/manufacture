@@ -34,12 +34,12 @@
                         colspan="2"
                         domain="[('bom_line_ids.product_id', '=', component_id)]"
                     >
-                        <tree>
+                        <list>
                             <field name="product_tmpl_id" />
                             <field name="code" optional="show" />
                             <field name="type" />
                             <field name="product_qty" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>

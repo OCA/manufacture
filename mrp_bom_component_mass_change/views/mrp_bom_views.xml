@@ -5,10 +5,7 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='bom_line_ids']/tree/field[@name='manual_consumption']"
-                position="after"
-            >
+            <xpath expr="//field[@name='bom_line_ids']/list" position="inside">
                 <field name="component_in_multiple_boms" column_invisible="1" />
                 <button
                     name="action_bom_component_mass_change"
