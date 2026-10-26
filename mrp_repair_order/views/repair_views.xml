@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- # Copyright 2024 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -13,7 +13,7 @@
                     class="oe_stat_button"
                     name="action_view_repair_manufacturing_order"
                     type="object"
-                    icon="fa-industry"
+                    icon="precision_manufacturing"
                     invisible="not mrp_ids"
                 >
                     <div class="o_field_widget o_stat_info">
