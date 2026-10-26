@@ -9,6 +9,14 @@ from ..hooks import post_init_hook
 
 
 class TestMrpOrder(TestMrpCommon):
+    _test_user_groups = (
+        "mrp.group_mrp_manager",
+        "mrp.group_mrp_routings",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+        "account.group_account_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         def _check_multiwarehouse_group(*args, **kwargs):
@@ -19,10 +27,12 @@ class TestMrpOrder(TestMrpCommon):
             new=_check_multiwarehouse_group,
         ):
             super(TestMrpCommon, cls).setUpClass()
+        cls.env["account.chart.template"]._load(
+            "generic_coa", cls.company, install_demo=False
+        )
 
     def setUp(self):
         super().setUp()
-        self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
             {"implied_ids": [(4, self.env.ref("stock.group_production_lot").id)]}
@@ -34,7 +44,7 @@ class TestMrpOrder(TestMrpCommon):
         """
         journal_items_before_production = self.env["account.move.line"].search([]).ids
 
-        mo, bom, p_final, p1, p2 = self.generate_mo()
+        mo, _bom, p_final, p1, p2 = self.generate_mo()
         account = self.env["account.account"].create(
             {
                 "name": "Test Account",
@@ -204,6 +214,14 @@ class TestMrpOrder(TestMrpCommon):
 
 
 class TestUnbuild(TestMrpCommon):
+    _test_user_groups = (
+        "mrp.group_mrp_manager",
+        "mrp.group_mrp_routings",
+        "stock.group_stock_manager",
+        "product.group_product_manager",
+        "account.group_account_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         def _check_multiwarehouse_group(*args, **kwargs):
@@ -214,10 +232,12 @@ class TestUnbuild(TestMrpCommon):
             new=_check_multiwarehouse_group,
         ):
             super(TestMrpCommon, cls).setUpClass()
+        cls.env["account.chart.template"]._load(
+            "generic_coa", cls.company, install_demo=False
+        )
 
     def setUp(self):
         super().setUp()
-        self.stock_location = self.env.ref("stock.stock_location_stock")
         self.Quant = self.env["stock.quant"].with_context(inventory_mode=True)
         self.env.ref("base.group_user").write(
             {"implied_ids": [(4, self.env.ref("stock.group_production_lot").id)]}

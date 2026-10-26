@@ -22,7 +22,7 @@
                     type="object"
                     name="view_journal_items"
                     class="oe_stat_button"
-                    icon="fa-th-list"
+                    icon="format_list_bulleted"
                     groups="base.group_no_one"
                     invisible="state != 'done'"
                 />
@@ -40,7 +40,7 @@
                     type="object"
                     name="view_journal_items"
                     class="oe_stat_button"
-                    icon="fa-th-list"
+                    icon="format_list_bulleted"
                     groups="base.group_no_one"
                     invisible="state == 'draft'"
                 />
