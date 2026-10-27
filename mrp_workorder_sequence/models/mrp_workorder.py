@@ -52,4 +52,14 @@ class MrpWorkOrder(models.Model):
     def create(self, values_list):
         if not self.env.context.get("_bypass_sequence_assignation_on_create"):
             self._assign_sequence_on_create(values_list)
-        return super().create(values_list)
+        records = super().create(values_list)
+        if not self.env.context.get("_skip_reset_work_order_sequence"):
+            records.production_id._reset_work_order_sequence()
+        return records
+
+    def unlink(self):
+        productions = self.production_id
+        res = super().unlink()
+        if not self.env.context.get("_skip_reset_work_order_sequence"):
+            productions.exists()._reset_work_order_sequence()
+        return res

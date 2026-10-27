@@ -10,9 +10,10 @@ def post_init_hook(env):
             FROM (
                 SELECT
                     id,
-                    ROW_NUMBER() OVER (PARTITION BY production_id) AS sequence
+                    ROW_NUMBER() OVER (
+                        PARTITION BY production_id ORDER BY sequence, id
+                    ) AS sequence
                 FROM mrp_workorder
-                ORDER BY production_id, id
             ) AS n
             WHERE mrp_workorder.id = n.id
         """
