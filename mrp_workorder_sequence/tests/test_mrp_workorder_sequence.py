@@ -1,7 +1,7 @@
 # Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import Command, fields
+from odoo import Command
 from odoo.tests import Form
 
 from odoo.addons.mrp.tests.common import TestMrpCommon
@@ -137,7 +137,7 @@ class TestMrpWorkorderSequence(TestMrpCommon):
             wo_form.workcenter_id = self.workcenter_1
         mrp_order = mrp_order_form.save()
         self.assertEqual(len(mrp_order.workorder_ids), 3)
-        last_wo = fields.first(mrp_order.workorder_ids.sorted(reverse=True))
+        last_wo = mrp_order.workorder_ids.sorted(reverse=True)[:1]
         self.assertEqual(last_wo.sequence, max_sequence + 1)
 
     def test_mrp_workorder_create_multi(self):

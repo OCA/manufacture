@@ -18,7 +18,7 @@ class MrpWorkOrder(models.Model):
                 return last_wo.sequence + 1
         return 1
 
-    sequence = fields.Integer(default=_get_default_sequence)
+    sequence = fields.Integer(default=lambda self: self._get_default_sequence())
 
     def _assign_sequence_on_create(self, values_list):
         """Assign sequence number for manually added operations"""
@@ -26,15 +26,14 @@ class MrpWorkOrder(models.Model):
         if not prod_ids:
             return
 
-        max_seq_by_production = self.read_group(
+        max_seq_by_production = self._read_group(
             [("production_id", "in", list(set(prod_ids)))],
-            ["sequence:max", "production_id"],
             ["production_id"],
+            ["sequence:max"],
         )
-
         max_map = {
-            res["production_id"][0]: (res["sequence"] or 0)
-            for res in max_seq_by_production
+            production.id: (max_sequence or 0)
+            for production, max_sequence in max_seq_by_production
         }
 
         for values in values_list:
