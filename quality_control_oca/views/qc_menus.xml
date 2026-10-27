@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2010 NaN Projectes de Programari Lliure, S.L.
+    Copyright 2014 Serv. Tec. Avanzados - Pedro M. Baeza
+    Copyright 2014 Oihane Crucelaegui - AvanzOSC
+    Copyright 2017 ForgeFlow S.L.
+    Copyright 2017 Simone Rubino - Agile Business Group
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="qc_menu"
+        name="Quality Control"
+        groups="quality_control_oca.group_quality_control_user"
+        web_icon="quality_control_oca,static/description/icon.png"
+        sequence="40"
+    />
+    <menuitem
+        id="qc_inspection_menu_parent"
+        name="Inspections"
+        parent="qc_menu"
+        sequence="10"
+    />
+    <menuitem
+        id="qc_menu_test_parent"
+        parent="qc_menu"
+        name="Tests"
+        groups="group_quality_control_manager"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_qc_config"
+        name="Configuration"
+        groups="base.group_system"
+        parent="qc_menu"
+        sequence="100"
+    />
+</odoo>
