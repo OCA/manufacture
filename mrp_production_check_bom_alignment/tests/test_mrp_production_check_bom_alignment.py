@@ -129,6 +129,35 @@ class TestMrpProductionCheckBomAlignment(TransactionCase):
         self.assertTrue(error)
         self.assertIn(self.component_1.display_name, error)
 
+    def test_operation_workcenter_and_name_changed_until_update(self):
+        mo = self._create_mo()
+        workorder = mo.workorder_ids.filtered(
+            lambda w: w.operation_id == self.operation_1
+        )
+        self.operation_1.write({"workcenter_id": self.workcenter_2.id})
+        self.assertTrue(mo.is_outdated_bom)
+        error = mo._get_bom_alignment_error(mo.name)
+        self.assertTrue(error)
+        self.assertIn(self.operation_1.name, error)
+        mo.action_update_bom()
+        self.assertEqual(workorder.workcenter_id, self.workcenter_2)
+        self.assertFalse(mo._get_bom_alignment_error(mo.name))
+        self.operation_1.write({"name": "Operation 1 Renamed"})
+        self.assertTrue(mo.bom_alignment_warning)
+        mo.action_update_bom()
+        self.assertEqual(workorder.name, "Operation 1 Renamed")
+        self.assertFalse(mo.bom_alignment_warning)
+
+    def test_workorder_on_alternative_workcenter_is_aligned(self):
+        self.workcenter_1.write(
+            {"alternative_workcenter_ids": [Command.link(self.workcenter_2.id)]}
+        )
+        mo = self._create_mo()
+        mo.workorder_ids.filtered(lambda w: w.operation_id == self.operation_1).write(
+            {"workcenter_id": self.workcenter_2.id}
+        )
+        self.assertFalse(mo._get_bom_alignment_error(mo.name))
+
     def test_consumed_at_operation_changed_returns_error(self):
         mo = self._create_mo()
         self.bom_line_1.operation_id = self.operation_2
