@@ -23,6 +23,8 @@ class MrpProduction(models.Model):
         "bom_id.byproduct_ids.product_qty",
         "bom_id.byproduct_ids.operation_id",
         "bom_id.operation_ids",
+        "bom_id.operation_ids.name",
+        "bom_id.operation_ids.workcenter_id",
         "move_raw_ids.bom_line_id",
         "move_raw_ids.product_id",
         "move_raw_ids.state",
@@ -34,6 +36,8 @@ class MrpProduction(models.Model):
         "move_finished_ids.product_uom_qty",
         "workorder_ids.state",
         "workorder_ids.operation_id",
+        "workorder_ids.name",
+        "workorder_ids.workcenter_id",
         "product_qty",
         "product_uom_id",
     )
@@ -62,7 +66,9 @@ class MrpProduction(models.Model):
         (7) each by-product move's demand quantity against the BoM by-product quantity
             scaled to the MO qty,
         (8) each by-product move's ``operation_id`` against the current ``operation_id``
-            on its BoM by-product.
+            on its BoM by-product,
+        (9) each work order's ``name`` and ``workcenter_id`` against its operation,
+            accepting the operation's alternative work centers.
 
         Override this method to add or replace alignment checks. Always call
         ``super()`` unless you intend to replace all checks.
@@ -126,9 +132,10 @@ class MrpProduction(models.Model):
 
         # --- Operation checks ---
         bom_operations = bom.operation_ids
-        wo_operations = self.workorder_ids.filtered(
+        active_workorders = self.workorder_ids.filtered(
             lambda w: w.state != "cancel" and w.operation_id
-        ).operation_id
+        )
+        wo_operations = active_workorders.operation_id
         if set(bom_operations.ids) != set(wo_operations.ids):
             diff_operations = (bom_operations | wo_operations) - (
                 bom_operations & wo_operations
@@ -136,6 +143,19 @@ class MrpProduction(models.Model):
             return self.env._(
                 f"The operations of MO {mo_name} are not aligned with the current "
                 f"BoM configuration: {', '.join(diff_operations.mapped('name'))}."
+            )
+        misaligned_workorders = active_workorders.filtered(
+            lambda w: w.name != w.operation_id.name
+            or w.workcenter_id
+            not in w.operation_id.workcenter_id
+            | w.operation_id.workcenter_id.alternative_workcenter_ids
+        )
+        if misaligned_workorders:
+            operations = misaligned_workorders.operation_id
+            return self.env._(
+                f"The name or work center of the work orders of MO {mo_name} are "
+                f"not aligned with the current BoM configuration: "
+                f"{', '.join(operations.mapped('name'))}."
             )
 
         # --- By-product checks ---

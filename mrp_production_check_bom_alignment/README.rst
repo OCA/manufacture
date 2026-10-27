@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==================================
 MRP Production Check BoM Alignment
 ==================================
@@ -17,7 +13,7 @@ MRP Production Check BoM Alignment
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fmanufacture-lightgray.png?logo=github
@@ -35,12 +31,15 @@ MRP Production Check BoM Alignment
 This module checks that a Manufacturing Order's components, by-products,
 and operations are consistent with its current Bill of Materials.
 
-Seven alignment checks are performed:
+Eight alignment checks are performed:
 
 - **Components** — the set of BoM lines linked to the MO's raw moves
   matches the BoM exactly (no added or removed lines).
 - **Operations** — the set of operations in the MO's work orders matches
   the BoM's operation list exactly.
+- **Work order name and work center** — each work order's name and work
+  center match its operation in the BoM (an alternative work center of
+  the operation is accepted).
 - **Component quantities** — each raw move's demand quantity matches the
   BoM line quantity scaled to the MO production quantity.
 - **Consumed in Operation** — each raw move's operation (recorded on the

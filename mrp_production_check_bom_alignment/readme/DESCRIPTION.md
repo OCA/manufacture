@@ -1,12 +1,15 @@
 This module checks that a Manufacturing Order's components, by-products, and
 operations are consistent with its current Bill of Materials.
 
-Seven alignment checks are performed:
+Eight alignment checks are performed:
 
 - **Components** — the set of BoM lines linked to the MO's raw moves matches
   the BoM exactly (no added or removed lines).
 - **Operations** — the set of operations in the MO's work orders matches the
   BoM's operation list exactly.
+- **Work order name and work center** — each work order's name and work
+  center match its operation in the BoM (an alternative work center of the
+  operation is accepted).
 - **Component quantities** — each raw move's demand quantity matches the
   BoM line quantity scaled to the MO production quantity.
 - **Consumed in Operation** — each raw move's operation (recorded on the move
