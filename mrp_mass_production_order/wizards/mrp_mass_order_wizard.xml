@@ -10,8 +10,8 @@
             <form string="Create MRP Prodcution Orders">
                 <group>
                     <field name="picking_type_id" />
-                    <field name="location_src_id" />
-                    <field name="location_dest_id" />
+                    <field name="location_src_id" groups="stock.group_stock_manager" />
+                    <field name="location_dest_id" groups="stock.group_stock_manager" />
                     <field name="produce_all" />
                     <field name="with_bom" />
                     <field
@@ -33,31 +33,27 @@
                                 <field name="product_uom_id" />
                                 <field
                                     name="bom_id"
-                                    column_invisible="not parent.with_bom"
-                                    required="parent.with_bom"
+                                    attrs="{'required': [('parent.with_bom', '!=', False)], 'column_invisible': [('parent.with_bom', '!=', True)]}"
                                 />
                                 <field
                                     name="product_consumed_id"
                                     context="{'default_detailed_type': 'product'}"
-                                    column_invisible="parent.with_bom"
-                                    required="not parent.with_bom"
+                                    attrs="{'required': [('parent.with_bom', '!=', True)], 'column_invisible': [('parent.with_bom', '!=', False)]}"
                                 />
                                 <field
                                     name="quantity"
-                                    column_invisible="parent.with_bom"
+                                    attrs="{'column_invisible': [('parent.with_bom', '!=', False)]}"
                                 />
                                 <field
                                     name="mrp_production_order_entry_id"
-                                    column_invisible="1"
+                                    invisible="1"
                                 />
-                                <field
-                                    name="product_uom_category_id"
-                                    column_invisible="1"
-                                />
+                                <field name="product_uom_category_id" invisible="1" />
                                 <field
                                     name="tag_ids"
                                     widget="many2many_tags"
                                     options="{'color_field': 'color', 'no_create_edit': True}"
+                                    optional="hide"
                                 />
                             </tree>
                         </field>

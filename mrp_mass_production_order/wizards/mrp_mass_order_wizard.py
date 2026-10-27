@@ -201,15 +201,16 @@ class MassMrpProductionOrderWizard(models.TransientModel):
     def get_production_location(self, product_id):
         if not self.company_id:
             return
-        location_by_company = self.env["stock.location"]._read_group(
-            [("company_id", "in", self.company_id.ids), ("usage", "=", "production")],
-            ["company_id"],
-            ["id:array_agg"],
+        locations = self.env["stock.location"].search(
+            [
+                ("company_id", "=", self.company_id.id),
+                ("usage", "=", "production"),
+            ],
+            order="id",
         )
-        location_by_company = {company.id: ids for company, ids in location_by_company}
+
         prod_loc = product_id.with_company(self.company_id).property_stock_production
-        comp_locs = location_by_company.get(self.company_id.id)
-        return prod_loc or (comp_locs and comp_locs[0])
+        return prod_loc or (locations and locations[0])
 
     def action_create(self):
         mrp_ids = []
@@ -218,6 +219,7 @@ class MassMrpProductionOrderWizard(models.TransientModel):
                 {
                     "product_id": entry.product_id.id,
                     "product_qty": entry.product_qty,
+                    "qty_producing": entry.product_qty,
                     "picking_type_id": self.picking_type_id.id,
                     "location_src_id": self.location_src_id.id,
                     "location_dest_id": self.location_dest_id.id,
@@ -237,7 +239,6 @@ class MassMrpProductionOrderWizard(models.TransientModel):
                                 entry.product_consumed_id
                             ).id,
                             "product_id": entry.product_consumed_id.id,
-                            "picked": True,
                             "product_uom_qty": entry.quantity,
                             "name": (
                                 "Transfer to Production/"
@@ -250,13 +251,15 @@ class MassMrpProductionOrderWizard(models.TransientModel):
                                     {
                                         "company_id": self.company_id.id,
                                         "product_id": entry.product_consumed_id.id,
-                                        "quantity": entry.quantity,
+                                        "qty_done": entry.quantity,
                                     },
                                 )
                             ],
                         },
                     )
                 ]
+            # Force onchange to calculate move_raws quantity_done
+            mrp._onchange_producing()
             mrp.button_mark_done() if self.produce_all else mrp.action_confirm()
             mrp_ids.append(mrp.id)
         return {
