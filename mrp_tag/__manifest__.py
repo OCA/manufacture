@@ -5,13 +5,13 @@
 {
     "name": "MRP Tags",
     "summary": "Allows to add multiple tags to Manufacturing Orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "category": "Purchases",
     "depends": ["mrp"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/mrp_production_view.xml",
         "views/mrp_tag_view.xml",
     ],
