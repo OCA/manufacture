@@ -9,9 +9,17 @@
     <record model="ir.module.category" id="module_category_quality_control">
         <field name="name">Quality control</field>
     </record>
+    <record id="group_quality_control_readonly_user" model="res.groups">
+        <field name="name">Readonly User</field>
+        <field name="category_id" ref="module_category_quality_control" />
+    </record>
     <record id="group_quality_control_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="module_category_quality_control" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_quality_control_readonly_user'))]"
+        />
     </record>
     <record id="group_quality_control_manager" model="res.groups">
         <field name="name">Manager</field>
