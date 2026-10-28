@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-25 21:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__child_ids
+msgid "Child"
+msgstr "Hijo"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__color
+msgid "Color"
+msgstr "Color"
+
+#. module: mrp_tag
+#: model_terms:ir.actions.act_window,help:mrp_tag.mrp_tag_action
+msgid "Create new tags for your manufacture order"
+msgstr "Crear nuevas etiquetas para su orden de fabricación"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: mrp_tag
+#: model:ir.model,name:mrp_tag.model_mrp_tag
+msgid "MRP Tag"
+msgstr "Etiqueta MRP"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_id
+msgid "Parent"
+msgstr "Parental"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__parent_path
+msgid "Parent Path"
+msgstr "Ruta Parental"
+
+#. module: mrp_tag
+#: model:ir.model,name:mrp_tag.model_mrp_production
+msgid "Production Order"
+msgstr "Orden de Producción"
+
+#. module: mrp_tag
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_production_filter
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__name
+msgid "Tag Name"
+msgstr "Nombre de Etiqueta"
+
+#. module: mrp_tag
+#: model:ir.model.constraint,message:mrp_tag.constraint_mrp_tag_tag_name_uniq
+msgid "Tag name already exists !"
+msgstr "¡Este nombre de etiqueta ya existe !"
+
+#. module: mrp_tag
+#: model:ir.actions.act_window,name:mrp_tag.mrp_tag_action
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_production__tag_ids
+#: model:ir.ui.menu,name:mrp_tag.menu_mrp_tag_config
+#: model_terms:ir.ui.view,arch_db:mrp_tag.mrp_tag_view_form
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: mrp_tag
+#. odoo-python
+#: code:addons/mrp_tag/models/mrp_tag.py:0
+#, python-format
+msgid "Tags cannot be recursive."
+msgstr "Las etiquetas no pueden ser recursivas."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
