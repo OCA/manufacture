@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_synchronization_group_view_form" model="ir.ui.view">
+        <field name="name">mrp.bom.synchronization.group.form</field>
+        <field name="model">mrp.bom.synchronization.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_open_synchronization_wizard"
+                        type="object"
+                        string="Synchronize Components"
+                        class="btn-primary"
+                        invisible="not out_of_sync or synchronization_mode != 'warning'"
+                    />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Out of Sync"
+                        bg_color="text-bg-warning"
+                        invisible="not out_of_sync"
+                    />
+                    <div class="oe_title">
+                        <label for="name" string="Group Name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. Frame Assembly" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <field name="synchronization_mode" widget="radio" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            string="Warning"
+                            name="warning"
+                            invisible="not out_of_sync"
+                        >
+                            <div class="alert alert-warning" role="alert">
+                                The Bills of Materials in this group do not share
+                                the same components.
+                                <field name="discrepancy_summary" />
+                            </div>
+                        </page>
+                        <page string="Bills of Materials" name="boms">
+                            <field
+                                name="bom_ids"
+                                widget="many2many"
+                                options="{'no_create': True}"
+                                domain="[('bom_synchronization_group_id', '=', False)]"
+                            >
+                                <list>
+                                    <field
+                                        name="display_name"
+                                        string="Bill of Materials"
+                                    />
+                                    <field name="product_tmpl_id" />
+                                    <field name="code" optional="show" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Help" name="help">
+                            <div class="oe_form_box_info">
+                                <h3>How it works</h3>
+                                <p>
+                                    A BoM Synchronization Group keeps the
+                                    components of several Bills of Materials
+                                    aligned. Operations and routings are
+                                    ignored: only the components are compared
+                                    (product, quantity, unit of measure and
+                                    variant applicability), so the same
+                                    components can be produced through different
+                                    work centers or production lines.
+                                </p>
+                                <br />
+                                <h3>Synchronization Mode</h3>
+                                <p>
+                                    The <b>Synchronization Mode</b> defines how
+                                    discrepancies between the members of the
+                                    group are handled. New groups take the
+                                    default defined in the Manufacturing
+                                    settings; it can be changed per group. It can
+                                    take two values:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <b>Warning and fix manually</b>:
+                                        discrepancies are flagged with a warning
+                                        on the group and on each Bill of
+                                        Materials, but nothing changes
+                                        automatically. Use the
+                                        <b>Synchronize Components</b> button to
+                                        choose a reference Bill of Materials and
+                                        preview the changes before applying them.
+                                    </li>
+                                    <li>
+                                        <b>Synchronize automatically</b>:
+                                        changing the components of any Bill of
+                                        Materials in the group immediately
+                                        propagates the change to the other
+                                        members. No reference BoM is needed: the
+                                        edited Bill of Materials is always the
+                                        source.
+                                    </li>
+                                </ul>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_bom_synchronization_group_view_tree" model="ir.ui.view">
+        <field name="name">mrp.bom.synchronization.group.list</field>
+        <field name="model">mrp.bom.synchronization.group</field>
+        <field name="arch" type="xml">
+            <list decoration-warning="out_of_sync">
+                <field name="name" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="bom_ids"
+                    widget="many2many_tags"
+                    string="Bills of Materials"
+                />
+                <field name="synchronization_mode" />
+            </list>
+        </field>
+    </record>
+
+    <record id="mrp_bom_synchronization_group_view_search" model="ir.ui.view">
+        <field name="name">mrp.bom.synchronization.group.search</field>
+        <field name="model">mrp.bom.synchronization.group</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="bom_ids" string="Bill of Materials" />
+                <filter
+                    string="Out of Sync"
+                    name="out_of_sync"
+                    domain="[('out_of_sync', '=', True)]"
+                />
+                <group expand="0" string="Group By...">
+                    <filter
+                        string="Company"
+                        name="group_by_company"
+                        domain="[]"
+                        context="{'group_by': 'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mrp_bom_synchronization_group_action" model="ir.actions.act_window">
+        <field name="name">BoM Synchronization Groups</field>
+        <field name="res_model">mrp.bom.synchronization.group</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_bom_synchronization_group"
+        action="mrp_bom_synchronization_group_action"
+        parent="mrp.menu_mrp_bom"
+        sequence="14"
+    />
+</odoo>
