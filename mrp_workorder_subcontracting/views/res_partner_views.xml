@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_partner_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">res.partner.form.subcontracting</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_stock_supplier']" position="after">
+                <field name="property_stock_subcontract_location_id" />
+                <field name="property_stock_virtual_subcontract_location_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
