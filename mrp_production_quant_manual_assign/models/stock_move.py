@@ -2,7 +2,6 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import models
-from odoo.tools.float_utils import float_is_zero
 
 
 class StockMove(models.Model):
@@ -10,9 +9,7 @@ class StockMove(models.Model):
 
     def _should_bypass_set_qty_producing(self):
         res = super()._should_bypass_set_qty_producing()
-        if self.has_tracking != "none" and float_is_zero(
-            self.quantity, precision_rounding=self.product_uom.rounding
-        ):
+        if self.has_tracking and self.uom_id.is_zero(self.quantity):
             # If some serial/lot has been selected to be consumed
             # we don't change the selection.
             return False

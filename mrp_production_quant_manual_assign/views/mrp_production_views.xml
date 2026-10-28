@@ -9,14 +9,14 @@
                 expr="//field[@name='move_raw_ids']//field[@name='lot_ids']"
                 position="after"
             >
-                <field name="product_type" column_invisible="True" />
+                <field name="is_storable" column_invisible="True" />
                 <button
                     name="%(stock_quant_manual_assign.assign_manual_quants_action)d"
                     type="action"
-                    icon="fa-tags"
+                    icon="sell"
                     title="Manual Quants"
                     options='{"warn": true}'
-                    invisible="state not in ['confirmed','assigned','partially_available'] or product_type != 'product'"
+                    invisible="state not in ['confirmed','assigned','partially_available'] or not is_storable"
                 />
             </xpath>
         </field>

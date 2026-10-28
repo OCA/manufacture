@@ -4,7 +4,7 @@
 
 {
     "name": "Production - Manual Quant Assignment",
-    "version": "17.0.1.0.1",
+    "version": "20.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "Quartile Limited, ForgeFlow, Odoo Community Association (OCA)",

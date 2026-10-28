@@ -11,16 +11,31 @@ class TestMrpProductionQuantManualAssign(TransactionCase):
         super().setUpClass()
         cls.quant_assign_wizard = cls.env["assign.manual.quants"]
         cls.parent_serial = cls.env["product.product"].create(
-            {"name": "Parent - Serial", "type": "product", "tracking": "serial"}
+            {
+                "name": "Parent - Serial",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "serial",
+            }
         )
         cls.component_normal = cls.env["product.product"].create(
-            {"name": "Component - Normal", "type": "product", "tracking": "none"}
+            {"name": "Component - Normal", "type": "consu", "is_storable": True}
         )
         cls.component_lot = cls.env["product.product"].create(
-            {"name": "Component - Lot", "type": "product", "tracking": "lot"}
+            {
+                "name": "Component - Lot",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "lot",
+            }
         )
         cls.component_serial = cls.env["product.product"].create(
-            {"name": "Component - Serial", "type": "product", "tracking": "serial"}
+            {
+                "name": "Component - Serial",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "serial",
+            }
         )
         cls.component_consumable = cls.env["product.product"].create(
             {"name": "Component - Consumable", "type": "consu"}
@@ -36,7 +51,7 @@ class TestMrpProductionQuantManualAssign(TransactionCase):
                 "product_id": cls.parent_serial.id,
                 "product_qty": 1,
                 "type": "normal",
-                "product_uom_id": cls.parent_serial.uom_id.id,
+                "uom_id": cls.parent_serial.uom_id.id,
                 "bom_line_ids": [
                     (
                         0,
@@ -44,7 +59,7 @@ class TestMrpProductionQuantManualAssign(TransactionCase):
                         {
                             "product_id": c.id,
                             "product_qty": 1,
-                            "product_uom_id": c.uom_id.id,
+                            "uom_id": c.uom_id.id,
                         },
                     )
                     for c in [
@@ -91,7 +106,7 @@ class TestMrpProductionQuantManualAssign(TransactionCase):
             {
                 "name": "MO 1",
                 "product_id": cls.parent_serial.id,
-                "product_uom_id": cls.parent_serial.uom_id.id,
+                "uom_id": cls.parent_serial.uom_id.id,
                 "product_qty": 2,
                 "bom_id": cls.bom_serial.id,
                 "location_src_id": cls.location_src.id,
@@ -132,7 +147,7 @@ class TestMrpProductionQuantManualAssign(TransactionCase):
                 "quantity": qty,
             }
 
-            if product.tracking != "none":
+            if product.tracking:
                 qDict["lot_id"] = (
                     self.env["stock.lot"]
                     .create(

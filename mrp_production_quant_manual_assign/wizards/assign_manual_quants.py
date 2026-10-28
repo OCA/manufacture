@@ -29,18 +29,18 @@ class AssignManualQuants(models.TransientModel):
         res = super().assign_quants()
         if self.mo_id:
             precision_digits = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
+                "Product Unit"
             )
             for ml in self.move_id.move_line_ids:
                 quants = self.quants_lines.filtered(
-                    lambda quant_line: (
-                        quant_line.lot_id == ml.lot_id  # noqa: B023
+                    lambda quant_line, ml=ml: (
+                        quant_line.lot_id == ml.lot_id
                         and quant_line.selected
                         and quant_line.location_id == ml.location_id
-                    )  # noqa: B023
+                    )
                 )
                 ml.quantity = sum([quant.qty for quant in quants])
-                ml.picked = all([quant.to_consume_now for quant in quants])
+                ml.picked = all(quant.to_consume_now for quant in quants)
                 if float_is_zero(ml.quantity, precision_digits=precision_digits):
                     ml.unlink()
             if not any(ml.picked for ml in self.move_id.move_line_ids):
