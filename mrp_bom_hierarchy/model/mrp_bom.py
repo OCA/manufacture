@@ -102,13 +102,13 @@ class MrpBom(models.Model):
         self.ensure_one()
         res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
         res["context"] = {"default_bom_line_ids": self.bom_line_ids.ids}
-        res["domain"] = str([("id", "in", self.child_bom_ids.ids)])
+        res["domain"] = [("id", "in", self.child_bom_ids.ids)]
         return res
 
     def action_open_parent_tree_view(self):
         self.ensure_one()
         res = self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_bom_form_action")
-        res["domain"] = str([("id", "in", self.parent_bom_ids.ids)])
+        res["domain"] = [("id", "in", self.parent_bom_ids.ids)]
         return res
 
     def action_open_product_other_bom_tree_view(self):
@@ -134,7 +134,5 @@ class MrpBom(models.Model):
             res["context"] = {
                 "default_product_tmpl_id": self.product_tmpl_id.id,
             }
-        res["domain"] = (
-            "[('id', 'in', [" + ",".join(map(str, product_bom_ids.ids)) + "])]"
-        )
+        res["domain"] = [("id", "in", product_bom_ids.ids)]
         return res

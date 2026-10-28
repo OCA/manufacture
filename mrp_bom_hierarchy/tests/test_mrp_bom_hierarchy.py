@@ -116,7 +116,7 @@ class TestBomHierarchy(TransactionCase):
         # bom_a has children -> domain on child BoMs
         res = self.bom_a.action_open_child_tree_view()
         self.assertEqual(res["res_model"], "mrp.bom")
-        self.assertEqual(res["domain"], f"[('id', 'in', [{self.bom_b.id}])]")
+        self.assertEqual(res["domain"], [("id", "in", self.bom_b.ids)])
         self.assertEqual(
             res["context"], {"default_bom_line_ids": self.bom_a.bom_line_ids.ids}
         )
@@ -125,22 +125,22 @@ class TestBomHierarchy(TransactionCase):
         # an empty domain in 19.0, so check the empty value instead of
         # absence)
         res = self.bom_b.action_open_child_tree_view()
-        self.assertEqual(res.get("domain"), "[('id', 'in', [])]")
+        self.assertEqual(res.get("domain"), [("id", "in", [])])
 
         # bom_b has a parent -> domain on parent BoMs
         res = self.bom_b.action_open_parent_tree_view()
-        self.assertEqual(res["domain"], f"[('id', 'in', [{self.bom_a.id}])]")
+        self.assertEqual(res["domain"], [("id", "in", self.bom_a.ids)])
 
         # bom_a has no parent -> no domain
         res = self.bom_a.action_open_parent_tree_view()
-        self.assertEqual(res.get("domain"), "[('id', 'in', [])]")
+        self.assertEqual(res.get("domain"), [("id", "in", [])])
 
         # product_b has another BoM -> domain on the other BoMs
         bom_b2 = self.bom_obj.create(
             {"product_tmpl_id": self.product_b.product_tmpl_id.id}
         )
         res = self.bom_b.action_open_product_other_bom_tree_view()
-        self.assertEqual(res["domain"], f"[('id', 'in', [{bom_b2.id}])]")
+        self.assertEqual(res["domain"], [("id", "in", bom_b2.ids)])
         self.assertEqual(
             res["context"],
             {"default_product_tmpl_id": self.product_b.product_tmpl_id.id},
@@ -149,4 +149,4 @@ class TestBomHierarchy(TransactionCase):
         # product_a has no other BoM -> domain is an empty id list
         # (unlike child/parent actions, domain is always set here)
         res = self.bom_a.action_open_product_other_bom_tree_view()
-        self.assertEqual(res["domain"], "[('id', 'in', [])]")
+        self.assertEqual(res["domain"], [("id", "in", [])])
