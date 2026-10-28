@@ -33,9 +33,11 @@ class AssignManualQuants(models.TransientModel):
             )
             for ml in self.move_id.move_line_ids:
                 quants = self.quants_lines.filtered(
-                    lambda quant_line: quant_line.lot_id == ml.lot_id  # noqa: B023
-                    and quant_line.selected
-                    and quant_line.location_id == ml.location_id  # noqa: B023
+                    lambda quant_line: (
+                        quant_line.lot_id == ml.lot_id  # noqa: B023
+                        and quant_line.selected
+                        and quant_line.location_id == ml.location_id
+                    )  # noqa: B023
                 )
                 ml.quantity = sum([quant.qty for quant in quants])
                 ml.picked = all([quant.to_consume_now for quant in quants])

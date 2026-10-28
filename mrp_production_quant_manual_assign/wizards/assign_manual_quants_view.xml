@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="assign_manual_quants_form_view">
+    <record id="assign_manual_quants_form_view" model="ir.ui.view">
         <field
             name="name"
         >assign.manual.quants.form - mrp_production_quant_manual_assign</field>
