@@ -1,9 +1,9 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, time
+from datetime import datetime, time, timezone
+from zoneinfo import ZoneInfo
 
-import pytz
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
@@ -41,7 +41,7 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
     hour_start = fields.Float("Start Hour", required=True)
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
+        string="Company ",
         default=lambda self: self.env.company,
     )
 
@@ -78,21 +78,21 @@ class MrpProductionGeneratorDateIntervalWizard(models.TransientModel):
         self.ensure_one()
         current_date = self.period_date_start
         hour = int(self.hour_start)
-        minutes = int(round((self.hour_start - hour) * 60))
+        minutes = round((self.hour_start - hour) * 60)
         start_time = time(hour, minutes)
         user_tz = self.env.user.tz or "UTC"
-        tz = pytz.timezone(user_tz)
+        tz = ZoneInfo(user_tz)
         res_ids = []
+
         while current_date <= self.period_date_end:
-            local_datetime = datetime.combine(current_date, start_time)
-            localized_datetime = tz.localize(local_datetime)
-            planned_datetime = localized_datetime.astimezone(pytz.utc)
+            local_datetime = datetime.combine(current_date, start_time, tzinfo=tz)
+            planned_datetime = local_datetime.astimezone(timezone.utc)
             mrp_production = self.env["mrp.production"].create(
                 {
                     "date_start": fields.Datetime.to_string(planned_datetime),
                     "product_id": self.product_id.id,
                     "bom_id": self.bom_id.id,
-                    "product_uom_id": self.product_id.uom_id.id,
+                    "uom_id": self.product_id.uom_id.id,
                     "origin": self.env._("Created using Production Generator Wizard"),
                     "company_id": self.company_id.id,
                 }

@@ -3,14 +3,14 @@
 
 {
     "name": "MRP Production Generator By Date Interval",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Manufacturing",
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "depends": ["mrp"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizards/mrp_production_generator_date_interval_wizard_views.xml",
     ],
     "installable": True,

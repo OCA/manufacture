@@ -8,6 +8,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 @tagged("post_install", "-at_install")
 class TestMrpProductionGenerator(BaseCommon):
+    _test_user_groups = ("mrp.group_mrp_user",)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -55,31 +57,25 @@ class TestMrpProductionGenerator(BaseCommon):
         self.assertEqual(len(productions), 8)
         self.assertTrue(
             all(
-                [
-                    production.product_id == self.product_produce
-                    for production in productions
-                ]
+                production.product_id == self.product_produce
+                for production in productions
             )
         )
         self.assertTrue(
-            all([production.bom_id == self.bom for production in productions])
+            all(production.bom_id == self.bom for production in productions)
         )
         self.assertTrue(
-            all([production.date_start.hour == 17 for production in productions])
+            all(production.date_start.hour == 17 for production in productions)
         )
         self.assertTrue(
             all(
-                [
-                    self.product_comp_1 in production.move_raw_ids.product_id
-                    for production in productions
-                ]
+                self.product_comp_1 in production.move_raw_ids.product_id
+                for production in productions
             )
         )
         self.assertTrue(
             all(
-                [
-                    self.product_comp_2 in production.move_raw_ids.product_id
-                    for production in productions
-                ]
+                self.product_comp_2 in production.move_raw_ids.product_id
+                for production in productions
             )
         )
