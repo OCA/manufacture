@@ -1,0 +1,1 @@
+odoo-addon-stock_quant_manual_assign @ git+https://github.com/OCA/stock-logistics-reservation@refs/pull/76/head#subdirectory=stock_quant_manual_assign
