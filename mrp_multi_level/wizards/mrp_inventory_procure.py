@@ -29,20 +29,17 @@ class MrpInventoryProcure(models.TransientModel):
         }
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        if self.env.user.has_group("mrp_multi_level.group_change_mrp_procure_qty"):
-            view_id = self.env.ref(
-                "mrp_multi_level.view_mrp_inventory_procure_wizard"
-            ).id
-        else:
-            view_id = self.env.ref(
-                "mrp_multi_level.view_mrp_inventory_procure_without_security"
-            ).id
-        return super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
+    def get_view(self, view_id=None, view_type="form", **options):
+        if view_type == "form":
+            if self.env.user.has_group("mrp_multi_level.group_change_mrp_procure_qty"):
+                view_id = self.env.ref(
+                    "mrp_multi_level.view_mrp_inventory_procure_wizard"
+                ).id
+            else:
+                view_id = self.env.ref(
+                    "mrp_multi_level.view_mrp_inventory_procure_without_security"
+                ).id
+        return super().get_view(view_id, view_type, **options)
 
     @api.model
     def default_get(self, fields):
