@@ -10,7 +10,7 @@
                     class="oe_stat_button"
                     name="action_show_attachments"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Product<br />Attachments</span>
@@ -20,7 +20,7 @@
                     class="oe_stat_button"
                     name="action_show_bom_attachments"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">BoM<br />Attachments</span>

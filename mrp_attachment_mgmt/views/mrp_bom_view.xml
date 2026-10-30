@@ -13,7 +13,7 @@
                     class="oe_stat_button"
                     name="action_see_bom_documents"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Components<br />Attachments</span>
@@ -23,7 +23,7 @@
                     class="oe_stat_button"
                     name="action_show_product_attachments"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Product<br />Attachments</span>

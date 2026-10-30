@@ -1,6 +1,5 @@
 # Copyright 2022-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import base64
 
 from odoo import Command
 from odoo.tests import Form
@@ -9,6 +8,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestMrpAttachmentMgmtBase(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -104,7 +105,7 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
                 "name": name,
                 "res_model": product._name,
                 "res_id": product.id,
-                "datas": base64.b64encode(b"\xff data"),
+                "raw": b"\xff data",
             }
         )
 
@@ -115,6 +116,6 @@ class TestMrpAttachmentMgmtBase(BaseCommon):
                 "name": name,
                 "res_model": "mrp.bom",
                 "res_id": bom.id,
-                "datas": base64.b64encode(b"\xff data"),
+                "raw": b"\xff data",
             }
         )

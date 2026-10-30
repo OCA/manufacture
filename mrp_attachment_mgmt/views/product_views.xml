@@ -10,7 +10,7 @@
                     class="oe_stat_button"
                     name="action_see_bom_documents"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count!=1"
                 >
@@ -22,7 +22,7 @@
                     class="oe_stat_button"
                     name="action_see_bom_attachments"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count==0"
                 >
@@ -43,7 +43,7 @@
                     class="oe_stat_button"
                     name="action_see_bom_documents"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count!=1"
                 >
@@ -55,7 +55,7 @@
                     class="oe_stat_button"
                     name="action_see_bom_attachments"
                     type="object"
-                    icon="fa-files-o"
+                    icon="attach_file"
                     groups="mrp.group_mrp_user"
                     invisible="bom_count==0"
                 >
