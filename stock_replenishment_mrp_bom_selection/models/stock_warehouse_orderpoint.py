@@ -27,18 +27,24 @@ class StockWarehouseOrderpoint(models.Model):
         """Bills of materials that can be used to manufacture this product."""
         self.ensure_one()
         return self.product_id.bom_ids.filtered(
-            lambda x: x.type == "normal"
-            and (not x.product_id or x.product_id == self.product_id)
-            and (not x.company_id or x.company_id == self.company_id)
+            lambda x: (
+                x.type == "normal"
+                and (not x.product_id or x.product_id == self.product_id)
+                and (not x.company_id or x.company_id == self.company_id)
+            )
         )
 
-    def action_replenish(self, force_to_max=False):
+    def action_replenish(self, **kwargs):
         if len(self) == 1 and self._needs_bom_selection_wizard():
-            if force_to_max:
-                # Same behavior as the core "Order To Max" entry, but letting
-                # the user split that quantity among the different BoMs.
-                self.qty_to_order = self._get_multiple_rounded_qty(
-                    self.product_max_qty - self.qty_forecast
+            if kwargs.get("force_to_max") or (
+                not self.qty_to_order_manual and self.qty_to_order_to_max
+            ):
+                # In Odoo 20, ordering to max is driven by qty_to_order_to_max
+                self.qty_to_order = (
+                    self.qty_to_order_to_max
+                    or self._get_multiple_rounded_qty(
+                        self.product_max_qty - self.qty_forecast
+                    )
                 )
             # The wizard record has to exist beforehand so that the raw material
             # availability button can navigate back to it.
@@ -54,4 +60,4 @@ class StockWarehouseOrderpoint(models.Model):
                 "target": "new",
                 "context": {"default_orderpoint_id": self.id},
             }
-        return super().action_replenish(force_to_max=force_to_max)
+        return super().action_replenish()

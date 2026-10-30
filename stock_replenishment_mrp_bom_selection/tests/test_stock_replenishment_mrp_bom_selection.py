@@ -20,10 +20,12 @@ class TestStockReplenishmentMrpBomSelection(TransactionCase):
 
     @classmethod
     def _create_product_template(cls, name):
-        product_form = Form(cls.env["product.template"])
-        product_form.name = name
-        product_form.is_storable = True
-        return product_form.save()
+        return cls.env["product.template"].create(
+            {
+                "name": name,
+                "is_storable": True,
+            }
+        )
 
     @classmethod
     def _create_mrp_bom(cls, component1, component2):

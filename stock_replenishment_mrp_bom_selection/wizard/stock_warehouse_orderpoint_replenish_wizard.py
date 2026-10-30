@@ -17,7 +17,7 @@ class StockWarehouseOrderpointReplenishWizard(models.TransientModel):
     product_tmpl_id = fields.Many2one(
         "product.template", related="product_id.product_tmpl_id"
     )
-    product_uom_id = fields.Many2one("uom.uom", related="orderpoint_id.product_uom")
+    product_uom_id = fields.Many2one("uom.uom", related="orderpoint_id.uom_id")
     total_qty_to_produce = fields.Float(
         compute="_compute_total_qty_to_produce",
         string="Total Quantity to Produce",
@@ -61,7 +61,7 @@ class StockWarehouseOrderpointReplenishWizard(models.TransientModel):
     def action_confirm(self):
         self.ensure_one()
         orderpoint = self.orderpoint_id
-        uom = orderpoint.product_uom
+        uom = orderpoint.uom_id
         if uom.is_zero(self.total_qty_to_produce):
             raise UserError(self.env._("Nothing to produce."))
         # Take a snapshot of everything we need *before* touching the orderpoint:
@@ -109,7 +109,7 @@ class BomLineWizard(models.TransientModel):
     )
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
-        related="bom_id.product_uom_id",
+        related="bom_id.uom_id",
         readonly=True,
     )
     production_time = fields.Float(compute="_compute_production_time")
@@ -136,7 +136,7 @@ class BomLineWizard(models.TransientModel):
                 for bom_line in bom_lines:
                     # Quantity of the component needed for one finished unit,
                     # expressed in the component's own unit of measure.
-                    qty_per_unit = bom_line.product_uom_id._compute_quantity(
+                    qty_per_unit = bom_line.uom_id._compute_quantity(
                         bom_line.product_qty / (bom.product_qty or 1.0),
                         bom_line.product_id.uom_id,
                         round=False,
