@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_mrp_mrp" name="MRP" parent="mrp.menu_mrp_root" sequence="22" />
+    <menuitem
+        id="menu_mrp_areas"
+        name="MRP Areas"
+        action="mrp_area_action"
+        parent="mrp.menu_mrp_configuration"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_product_mrp_area_parameters"
+        name="Product MRP Area Parameters"
+        action="product_mrp_area_action"
+        parent="mrp.menu_mrp_bom"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_mrp_inventory"
+        name="MRP Inventory"
+        action="mrp_inventory_action"
+        parent="mrp.mrp_planning_menu_root"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_mrp_multi_level"
+        name="Run MRP Multi Level"
+        action="action_mrp_multi_level"
+        parent="mrp.mrp_planning_menu_root"
+        groups="mrp_multi_level.group_mrp_multi_level_run"
+        sequence="40"
+    />
+</odoo>
