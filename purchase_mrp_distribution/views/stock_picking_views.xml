@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
@@ -8,11 +8,11 @@
                 expr="//field[@name='move_ids']/list/field[@name='quantity']"
                 position="after"
             >
-                <field name="distribution_bom_id" column_invisible="1" />
+                <field name="distribution_bom_id" column_invisible="0" />
                 <button
                     name="action_open_distribution_wizard"
                     type="object"
-                    icon="fa-sitemap"
+                    icon="account_tree"
                     invisible="not distribution_bom_id or state in ['done', 'cancel']"
                     title="Distribute quantity"
                 />

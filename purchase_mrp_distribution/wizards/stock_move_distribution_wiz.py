@@ -25,7 +25,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                                 {
                                     "product_id": bom_line.product_id.id,
                                     "quantity": sml.quantity,
-                                    "uom_id": bom_line.product_uom_id.id,
+                                    "uom_id": bom_line.uom_id.id,
                                     "lot_id": sml.lot_id.id,
                                     "package_id": sml.result_package_id.id,
                                     "company_id": sml.company_id.id,
@@ -38,7 +38,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                             {
                                 "product_id": bom_line.product_id.id,
                                 "quantity": 0,
-                                "uom_id": bom_line.product_uom_id.id,
+                                "uom_id": bom_line.uom_id.id,
                                 "company_id": move.company_id.id,
                             }
                         )
@@ -54,7 +54,7 @@ class StockMoveDistributionWiz(models.TransientModel):
     move_id = fields.Many2one("stock.move")
     line_ids = fields.One2many("stock.move.distribution.wiz.line", "wizard_id")
     demand_quantity = fields.Float(related="move_id.product_uom_qty")
-    move_uom_id = fields.Many2one(related="move_id.product_uom")
+    move_uom_id = fields.Many2one(related="move_id.uom_id")
 
     def button_distribute_qty(self):
         self.ensure_one()
@@ -68,7 +68,7 @@ class StockMoveDistributionWiz(models.TransientModel):
                         "move_id": self.move_id.id,
                         "product_id": line.product_id.id,
                         "quantity": line.quantity,
-                        "product_uom_id": line.uom_id.id,
+                        "uom_id": line.uom_id.id,
                         "location_id": self.move_id.location_id.id,
                         "location_dest_id": self.move_id.location_dest_id.id,
                         "picking_id": self.move_id.picking_id.id,

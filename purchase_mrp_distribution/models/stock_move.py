@@ -33,7 +33,7 @@ class StockMove(models.Model):
                         "picking_id": sml.picking_id.id,
                         "product_id": sml.product_id.id,
                         "purchase_line_id": move.purchase_line_id.id,
-                        "product_uom": sml.product_uom_id.id,
+                        "uom_id": sml.uom_id.id,
                         "state": "assigned",
                         "location_id": sml.location_id.id,
                         "location_dest_id": sml.location_dest_id.id,
