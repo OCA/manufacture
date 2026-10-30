@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. modules: mrp_workcenter_safety_symbol, product_safety_symbol
+#: model:ir.model.fields,field_description:mrp_workcenter_safety_symbol.field_mrp_workcenter__safety_symbol_ids
+#: model:ir.model.fields,field_description:product_safety_symbol.field_product_product__safety_symbol_ids
+#: model:ir.model.fields,field_description:product_safety_symbol.field_product_template__safety_symbol_ids
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_safety_symbol.mrp_workcenter_view_form_inherit_safety
+#: model_terms:ir.ui.view,arch_db:product_safety_symbol.product_template_form_view_inherit_safety
+msgid "Safety Symbols"
+msgstr "Veiligheidssymbolen"
+
+#. module: mrp_workcenter_safety_symbol
+#: model:ir.model.fields,help:mrp_workcenter_safety_symbol.field_mrp_workcenter__safety_symbol_ids
+msgid ""
+"Safety symbols relevant when operating this work center. Ensure "
+"corresponding data modules (e.g., base_iso7010_data_mandatory) are "
+"installed."
+msgstr ""
+"Veiligheidssymbolen die van toepassing zijn bij het bedienen van deze "
+"werkplek. Zorg dat de bijbehorende datamodules (bijv. "
+"base_iso7010_data_mandatory) zijn geïnstalleerd."
+
+#. module: mrp_workcenter_safety_symbol
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_safety_symbol.mrp_workcenter_view_form_inherit_safety
+msgid ""
+"Select the safety symbols (e.g., mandatory PPE, warnings)\n"
+"                           associated with operating this work center. Make sure the\n"
+"                           required symbol data modules are installed."
+msgstr ""
+"Selecteer de veiligheidssymbolen (bijv. verplichte PBM, waarschuwingen) die "
+"van toepassing zijn bij het bedienen van deze werkplek. Zorg dat de vereiste"
+" symbool-datamodules zijn geïnstalleerd."
