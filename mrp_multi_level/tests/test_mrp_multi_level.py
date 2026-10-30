@@ -3,8 +3,9 @@
 
 from datetime import date, datetime, timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.tests import Form
 
 from .common import TestMrpMultiLevelCommon
 
@@ -1079,3 +1080,33 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
         supplierinfo.company_id = self.other_company
         self.assertFalse(parameter.main_supplierinfo_id)
         self.assertFalse(parameter.main_supplier_id)
+
+    def test_34_procure_qty_restricted_to_group(self):
+        """Only users in 'Change procure quantity in MRP' can change the
+        quantity in the procure wizard."""
+        mrp_inv = self.mrp_inventory_obj.search(
+            [("product_mrp_area_id.product_id", "=", self.fp_1.id)]
+        )
+        wizard_model = self.mrp_inventory_procure_wiz.with_user(
+            self.mrp_manager
+        ).with_context(
+            active_model="mrp.inventory",
+            active_ids=mrp_inv.ids,
+            active_id=mrp_inv.id,
+        )
+        wiz_form = Form(wizard_model)
+        with wiz_form.item_ids.edit(0) as item:
+            self.assertEqual(item.qty, 100.0)
+            with self.assertRaisesRegex(AssertionError, "readonly field"):
+                item.qty = 50.0
+        self.mrp_manager.groups_id = [
+            Command.link(
+                self.env.ref("mrp_multi_level.group_change_mrp_procure_qty").id
+            )
+        ]
+        wiz_form = Form(wizard_model)
+        with wiz_form.item_ids.edit(0) as item:
+            item.qty = 50.0
+        wiz_form.save().make_procurement()
+        mos = self.mo_obj.search([("product_id", "=", self.fp_1.id)])
+        self.assertEqual(mos.product_qty, 50.0)
