@@ -214,12 +214,9 @@ class MrpBom(models.Model):
         boms_done = [
             (
                 self,
-                {
-                    "qty": quantity,
-                    "product": product,
-                    "original_qty": quantity,
-                    "parent_line": False,
-                },
+                self.env["mrp.bom.line"]._prepare_bom_done_values(
+                    quantity, product, quantity, []
+                ),
             )
         ]
         lines_done = []
@@ -259,9 +256,9 @@ class MrpBom(models.Model):
             bom = product_boms.get(current_line.product_id)
             if bom:
                 converted_line_quantity = current_line.product_uom_id._compute_quantity(
-                    line_quantity / bom.product_qty, bom.product_uom_id
+                    line_quantity / bom.product_qty, bom.product_uom_id, round=False
                 )
-                bom_lines += [
+                bom_lines = [
                     (
                         line,
                         current_line.product_id,
@@ -269,7 +266,7 @@ class MrpBom(models.Model):
                         current_line,
                     )
                     for line in bom.bom_line_ids
-                ]
+                ] + bom_lines
                 for bom_line in bom.bom_line_ids:
                     graph[current_line.product_id.product_tmpl_id.id].append(
                         bom_line.product_id.product_tmpl_id.id
@@ -292,12 +289,12 @@ class MrpBom(models.Model):
                 boms_done.append(
                     (
                         bom,
-                        {
-                            "qty": converted_line_quantity,
-                            "product": current_product,
-                            "original_qty": quantity,
-                            "parent_line": current_line,
-                        },
+                        current_line._prepare_bom_done_values(
+                            converted_line_quantity,
+                            current_product,
+                            quantity,
+                            boms_done,
+                        ),
                     )
                 )
             else:
@@ -311,14 +308,16 @@ class MrpBom(models.Model):
                 lines_done.append(
                     (
                         current_line,
-                        {
-                            "qty": line_quantity,
-                            "product": current_product,
-                            "original_qty": quantity,
-                            "parent_line": parent_line,
-                        },
+                        current_line._prepare_line_done_values(
+                            line_quantity,
+                            current_product,
+                            quantity,
+                            parent_line,
+                            boms_done,
+                        ),
                     )
                 )
+        lines_done = self._round_last_line_done(lines_done)
         return boms_done, lines_done
 
     def _get_component_template_product(
