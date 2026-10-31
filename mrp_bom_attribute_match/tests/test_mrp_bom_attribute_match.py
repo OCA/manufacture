@@ -264,3 +264,72 @@ class TestMrpBomAttributeMatch(TestMrpBomAttributeMatchBase):
 
         # BOM price should be 0 since the component line is ignored
         self.assertEqual(bom_price, 0.0)
+
+    def test_explode_nested_kit_rounding(self):
+        """The quantity of a nested kit is not rounded before exploding it"""
+        fns, cmp1, cmp2 = self.env["product.product"].create(
+            [{"name": "FNS"}, {"name": "CMP1"}, {"name": "CMP2"}]
+        )
+        self.env.ref("uom.product_uom_unit").rounding = 0.01
+        fns_bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": fns.product_tmpl_id.id,
+                "type": "phantom",
+                "bom_line_ids": [
+                    Command.create({"product_id": cmp1.id, "product_qty": 10})
+                ],
+            }
+        )
+        self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": cmp1.product_tmpl_id.id,
+                "product_qty": 5000,
+                "type": "phantom",
+                "bom_line_ids": [
+                    Command.create({"product_id": cmp2.id, "product_qty": 50})
+                ],
+            }
+        )
+        # 1 FNS = 10 CMP1 = 0.10 CMP2 (50 / 5000 * 10)
+        _boms, lines = fns_bom.explode(fns, 1)
+        self.assertEqual(lines[0][1]["qty"], 0.10)
+
+    def test_explode_nested_kit_sequence(self):
+        """The components of a nested kit keep the place of the kit line"""
+        product, comp1, kit, kit_comp1, kit_comp2, comp3 = self.env[
+            "product.product"
+        ].create(
+            [
+                {"name": "Product"},
+                {"name": "Component 1"},
+                {"name": "Kit"},
+                {"name": "Kit component 1"},
+                {"name": "Kit component 2"},
+                {"name": "Component 3"},
+            ]
+        )
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "bom_line_ids": [
+                    Command.create({"product_id": comp1.id, "sequence": 1}),
+                    Command.create({"product_id": kit.id, "sequence": 2}),
+                    Command.create({"product_id": comp3.id, "sequence": 3}),
+                ],
+            }
+        )
+        self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": kit.product_tmpl_id.id,
+                "type": "phantom",
+                "bom_line_ids": [
+                    Command.create({"product_id": kit_comp1.id}),
+                    Command.create({"product_id": kit_comp2.id}),
+                ],
+            }
+        )
+        _boms, lines = bom.explode(product, 1)
+        self.assertEqual(
+            [line.product_id for line, _vals in lines],
+            [comp1, kit_comp1, kit_comp2, comp3],
+        )
