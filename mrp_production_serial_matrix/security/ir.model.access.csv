@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_production_serial_matrix,access mrp.production.serial.matrix,model_mrp_production_serial_matrix,base.group_user,1,1,1,1
+access_mrp_production_serial_matrix_line,access mrp.production.serial.matrix.line,model_mrp_production_serial_matrix_line,base.group_user,1,1,1,1
