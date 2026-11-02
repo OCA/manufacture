@@ -15,9 +15,15 @@ class StockMove(models.Model):
         transfer whenever the orders share a reference (e.g. the sale order
         that triggered them)."""
         self.ensure_one()
-        return (
-            bool(self.production_group_id) and not self._feeds_raw_material_production()
-        )
+        if not self.production_group_id:
+            return False
+        # Since odoo/odoo@69c6d9cd8081 ``mrp`` groups every move by its
+        # production group again and no longer defines the helper that
+        # restricted it to chained moves: there is nothing left to add.
+        feeds_production = getattr(self, "_feeds_raw_material_production", None)
+        if feeds_production is None:
+            return False
+        return not feeds_production()
 
     def _key_assign_picking(self):
         keys = super()._key_assign_picking()

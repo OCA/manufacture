@@ -10,3 +10,7 @@ Trigger Another Rule* supply method used by the standard pick components rule.
 This module creates one transfer per manufacturing order for those moves, so
 the warehouse always knows which order a pick components or store finished
 product transfer belongs to.
+
+Odoo 19.0 builds from 2026-10-30 on (odoo/odoo@69c6d9cd8081) split those
+transfers by manufacturing order again on their own. On those builds this
+module adds nothing and can stay installed until the deployment catches up.
