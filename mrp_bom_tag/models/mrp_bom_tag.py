@@ -13,6 +13,7 @@ class MrpBomTag(models.Model):
     _parent_name = "parent_id"
     _parent_store = True
     _order = "complete_name"
+    _rec_names_search = ["name", "complete_name"]
 
     def _default_color(self):
         return randint(1, 11)
@@ -33,7 +34,7 @@ class MrpBomTag(models.Model):
     parent_id = fields.Many2one(
         "mrp.bom.tag", "Parent BoM Tag", index=True, ondelete="cascade"
     )
-    parent_path = fields.Char(index=True, unaccent=False)
+    parent_path = fields.Char(index=True)
     child_id = fields.One2many("mrp.bom.tag", "parent_id", "Child Categories")
 
     bom_ids = fields.Many2many(
@@ -50,9 +51,8 @@ class MrpBomTag(models.Model):
     def _compute_complete_name(self):
         for bom_tag in self:
             if bom_tag.parent_id:
-                bom_tag.complete_name = "%s / %s" % (
-                    bom_tag.parent_id.complete_name,
-                    bom_tag.name,
+                bom_tag.complete_name = (
+                    f"{bom_tag.parent_id.complete_name} / {bom_tag.name}"
                 )
             else:
                 bom_tag.complete_name = bom_tag.name
@@ -68,11 +68,11 @@ class MrpBomTag(models.Model):
         return self.env.company.id
 
     # Name Section
-    def name_get(self):
-        result = []
+    @api.depends("name", "complete_name")
+    @api.depends_context("display_complete_name")
+    def _compute_display_name(self):
         for record in self:
-            if self.env.context.get("display_complete_name", False):
-                result.append((record.id, record.complete_name))
+            if self.env.context.get("display_complete_name"):
+                record.display_name = record.complete_name
             else:
-                result.append((record.id, record.name))
-        return result
+                record.display_name = record.name

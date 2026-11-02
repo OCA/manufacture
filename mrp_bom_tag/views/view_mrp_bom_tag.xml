@@ -5,11 +5,10 @@ Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
-
     <record id="action_bom_tag_2_mrp_bom" model="ir.actions.act_window">
         <field name="name">Bill of Material</field>
         <field name="res_model">mrp.bom</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('bom_tag_ids', '=', active_id)]</field>
     </record>
 
@@ -26,29 +25,34 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             name="%(action_bom_tag_2_mrp_bom)d"
                         >
                             <div class="o_field_widget o_stat_info">
-                              <span class="o_stat_value"><field
+                                <span class="o_stat_value">
+                                    <field
                                         name="bom_qty"
                                         widget="statinfo"
                                         nolabel="1"
-                                    /></span>
-                              <span class="o_stat_text">Bills of Material</span>
+                                    />
+                                </span>
+                                <span class="o_stat_text">Bills of Material</span>
                             </div>
                         </button>
                     </div>
                     <div class="oe_title">
-                      <div class="oe_edit_only">
-                          <label for="name" />
-                      </div>
-                      <h1>
-                          <field name="name" />
-                      </h1>
+                        <div class="oe_edit_only">
+                            <label for="name" />
+                        </div>
+                        <h1>
+                            <field name="name" />
+                        </h1>
                     </div>
                     <group>
-                      <group>
-                        <field name="color" widget="color_picker" />
-                        <field name="parent_id" />
-                        <field name="company_id" groups="base.group_multi_company" />
-                      </group>
+                        <group>
+                            <field name="color" widget="color_picker" />
+                            <field name="parent_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -58,13 +62,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="view_bom_tag_tree" model="ir.ui.view">
         <field name="model">mrp.bom.tag</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="complete_name" />
                 <field name="name" />
                 <field name="bom_qty" />
                 <field name="color" widget="color_picker" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -72,7 +76,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="name">BoM Tags</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mrp.bom.tag</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem
@@ -90,9 +94,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">mrp.bom.tag</field>
         <field name="arch" type="xml">
             <search string="Tags">
-              <field name="complete_name" />
+                <field name="complete_name" />
             </search>
         </field>
     </record>
-
 </odoo>

@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestBomTag(TransactionCase):
     def setUp(self):
-        super(TestBomTag, self).setUp()
+        super().setUp()
         self.bomtag = self.env.ref("mrp_bom_tag.demo_bom_tag")
         self.bomtag2 = self.env.ref("mrp_bom_tag.demo_bom_tag_2")
         self.bomtagparent = self.env.ref("mrp_bom_tag.demo_bom_tag_parent")
@@ -30,10 +30,9 @@ class TestBomTag(TransactionCase):
             1,
         )
 
-    def test_02_name_get(self):
-        name_get_simple = self.bomtag.name_get()
-        name_get_complete = self.bomtag.with_context(
-            display_complete_name=True
-        ).name_get()
-        self.assertEqual(name_get_simple[0][1], "Furniture")
-        self.assertEqual(name_get_complete[0][1], "Handmade / Furniture")
+    def test_02_display_name(self):
+        self.assertEqual(self.bomtag.display_name, "Furniture")
+        self.assertEqual(
+            self.bomtag.with_context(display_complete_name=True).display_name,
+            "Handmade / Furniture",
+        )
