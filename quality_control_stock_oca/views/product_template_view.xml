@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="product_template_form_view">
+        <field name="name">product.template.common.qc</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="quality_control_oca.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qc_triggers']" position="before">
+                <field name="remind_qc" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

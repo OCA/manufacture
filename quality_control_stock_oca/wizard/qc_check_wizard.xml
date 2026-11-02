@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="qc_check_wizard_form" model="ir.ui.view">
+        <field name="name">QC Check</field>
+        <field name="model">qc.check.wizard</field>
+        <field name="arch" type="xml">
+            <form string="QC Check">
+                <group>
+                    <p colspan="2">
+                        Some inspections are not done (successfully or unsuccessfully).
+                        You should complete all inspections before proceeding with validation.
+                    </p>
+                </group>
+                <footer>
+                    <button
+                        name="action_complete_inspections"
+                        string="Complete Inspections"
+                        data-hotkey="q"
+                        colspan="1"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_skip_inspections"
+                        type="object"
+                        string="Skip Inspections"
+                        data-hotkey="x"
+                    />
+                    <button
+                        string="Discard"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="z"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_qc_check" model="ir.actions.act_window">
+        <field name="name">Related Quality Control not completed</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qc.check.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
