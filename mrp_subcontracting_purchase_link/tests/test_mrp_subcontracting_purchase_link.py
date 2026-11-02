@@ -25,7 +25,7 @@ class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
                             "name": product.name,
                             "product_id": product.id,
                             "product_qty": 5.0,
-                            "product_uom_id": product.uom_id.id,
+                            "uom_id": product.uom_id.id,
                             "price_unit": 10,
                             "date_planned": fields.Datetime.now(),
                         },
@@ -70,3 +70,12 @@ class TestMrpSubcontractingPurchaseLink(TestMrpSubcontractingCommon):
             action["domain"],
             [("id", "in", purchase_order2.subcontract_production_ids.ids)],
         )
+
+    def test_04_purchase_line_display_name(self):
+        purchase_order = self._create_sub_po(self.finished)
+        line = purchase_order.order_line
+        production = purchase_order.subcontract_production_ids
+        self.assertEqual(production.purchase_line_id, line)
+        line_with_ctx = line.with_context(display_purchase_line_label=True)
+        self.assertEqual(line_with_ctx.display_name, line.label)
+        self.assertIn(self.finished.display_name, line_with_ctx.display_name)

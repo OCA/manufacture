@@ -14,6 +14,7 @@
                 <field
                     name="purchase_line_id"
                     groups="purchase.group_purchase_user"
+                    context="{'display_purchase_line_label': True}"
                     invisible="not purchase_line_id"
                 />
             </xpath>

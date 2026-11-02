@@ -7,7 +7,6 @@ _logger = logging.getLogger(__name__)
 
 
 def update_po_line_in_mrp_production(cr):
-    """ """
     _logger.info("Updating PO line in MRP production")
     cr.execute(
         """
