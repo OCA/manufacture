@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestMrpBomLineNetQty(TransactionCase):
     def setUp(self):
-        super(TestMrpBomLineNetQty, self).setUp()
+        super().setUp()
         self.bom_desk_combination = self.env.ref("mrp.mrp_bom_manufacture")
 
     def test_01_calculate_qty_net(self):

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "MRP BoM Line Net and Gross Quantity",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Manufacturing",
     "author": "GRAP, Odoo Community Association (OCA)",
     "maintainers": ["quentinDupont"],
