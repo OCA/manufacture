@@ -19,11 +19,16 @@ class MrpProduction(models.Model):
         :param vals: Dictionary with the new record values.
         """
         self.ensure_one()
-        new_vals = {"origin": (self.origin or "") + ",%s" % vals["origin"]}
+        origin = vals.get("origin")
+        new_vals = {}
+        if origin:
+            new_vals["origin"] = f"{self.origin},{origin}" if self.origin else origin
         if vals.get("move_dest_ids"):
             new_vals["move_dest_ids"] = vals["move_dest_ids"]
-            self.move_finished_ids.move_dest_ids = vals["move_dest_ids"]
-        self.write(new_vals)
+            if self.move_finished_ids:
+                self.move_finished_ids.write({"move_dest_ids": vals["move_dest_ids"]})
+        if new_vals:
+            self.write(new_vals)
 
     def _get_grouping_target_vals(self):
         self.ensure_one()
@@ -67,7 +72,7 @@ class MrpProduction(models.Model):
         else:
             date_end = fields.Datetime.add(date, days=1)
             date_end = date_end.replace(
-                day=date.day + 1, hour=pt.mo_grouping_max_hour, minute=0, second=0
+                hour=pt.mo_grouping_max_hour, minute=0, second=0
             )
         date_start = date_end - relativedelta(days=pt.mo_grouping_interval)
         domain += [
@@ -93,18 +98,29 @@ class MrpProduction(models.Model):
         if context.get("group_mo_by_product") and (
             not config["test_enable"] or context.get("test_group_mo")
         ):
+            res = self.env["mrp.production"]
+            remaining_vals_list = []
             for vals in vals_list:
                 mo = self._find_grouping_target(vals)
                 if mo:
-                    self.env["change.production.qty"].create(
-                        {
-                            "mo_id": mo.id,
-                            "product_qty": mo.product_qty + vals["product_qty"],
-                        }
-                    ).change_prod_qty()
-                    mo._post_mo_merging_adjustments(vals)
-                    return mo
-        return super(MrpProduction, self).create(vals_list)
+                    if mo.state == "draft":
+                        mo.product_qty += vals["product_qty"]
+                        mo._post_mo_merging_adjustments(vals)
+                    else:
+                        self.env["change.production.qty"].create(
+                            {
+                                "mo_id": mo.id,
+                                "product_qty": mo.product_qty + vals["product_qty"],
+                            }
+                        ).change_prod_qty()
+                        mo._post_mo_merging_adjustments(vals)
+                    res |= mo
+                else:
+                    remaining_vals_list.append(vals)
+            if remaining_vals_list:
+                res |= super().create(remaining_vals_list)
+            return res
+        return super().create(vals_list)
 
     @api.depends("bom_id", "product_id", "product_qty", "product_uom_id")
     def _compute_workorder_ids(self):
