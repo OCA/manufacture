@@ -8,7 +8,7 @@
             ref="purchase_stock.purchase_order_view_form_inherit"
         />
         <field name="arch" type="xml">
-            <field name="receipt_status" position="before">
+            <label for="receipt_status" position="before">
                 <field
                     name="resupply_status"
                     widget="badge"
@@ -17,7 +17,7 @@
                     invisible="subcontracting_resupply_picking_count == 0"
                     groups="stock.group_stock_user"
                 />
-            </field>
+            </label>
         </field>
     </record>
     <record id="purchase_order_view_tree_resupply_status" model="ir.ui.view">
