@@ -7,47 +7,28 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def write(self, vals):
-        """Trigger recomputation of resupply_status when resupply moves change state."""
         res = super().write(vals)
-
-        if "state" not in vals:
-            return res
-
-        # Get resupply route once for efficiency
-        resupply_route = self.env.ref(
-            "mrp_subcontracting.route_resupply_subcontractor_mto",
-            raise_if_not_found=False,
-        )
-        if not resupply_route:
-            return res
-
-        # Check if any affected moves are in a resupply picking
-        has_resupply = any(
-            move.picking_id and resupply_route in move.product_id.route_ids
-            for move in self
-        )
-
-        if not has_resupply:
-            return res
-
-        # Recompute all receipts and POs with pending/partial status
-        receipts = self.env["stock.picking"].search(
-            [
-                ("picking_type_id.code", "=", "incoming"),
-                ("move_ids.move_orig_ids", "!=", False),
-                ("resupply_status", "!=", False),
-            ]
-        )
-        if receipts:
-            receipts._compute_resupply_status()
-
-        pos = self.env["purchase.order"].search(
-            [
-                ("order_line.move_ids.is_subcontract", "=", True),
-                ("resupply_status", "!=", False),
-            ]
-        )
-        if pos:
-            pos._compute_resupply_status()
-
+        if "state" in vals:
+            self._recompute_subcontracting_resupply_status()
         return res
+
+    def _recompute_subcontracting_resupply_status(self):
+        """Trigger the resupply status of the receipts and purchase orders
+        related to the resupply moves in self."""
+        resupply_moves = self.filtered(
+            lambda m: m.production_group_id and m.location_dest_id.is_subcontract()
+        )
+        if not resupply_moves:
+            return
+        productions = resupply_moves.production_group_id.production_ids
+        receipt_moves = productions.move_finished_ids.move_dest_ids.filtered(
+            "is_subcontract"
+        )
+        self.env.add_to_compute(
+            self.env["stock.picking"]._fields["resupply_status"],
+            receipt_moves.picking_id,
+        )
+        self.env.add_to_compute(
+            self.env["purchase.order"]._fields["resupply_status"],
+            receipt_moves.purchase_line_id.order_id,
+        )

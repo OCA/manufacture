@@ -8,11 +8,17 @@
             <field name="state" position="after">
                 <field
                     name="resupply_status"
+                    widget="badge"
+                    decoration-success="resupply_status == 'full'"
+                    decoration-info="resupply_status == 'partial'"
                     invisible="subcontracting_resupply_picking_count == 0"
                     optional="show"
                     groups="stock.group_stock_user"
                 />
-                <field name="subcontracting_resupply_picking_count" invisible="1" />
+                <field
+                    name="subcontracting_resupply_picking_count"
+                    column_invisible="True"
+                />
             </field>
         </field>
     </record>
@@ -24,6 +30,9 @@
             <group name="other_infos" position="inside">
                 <field
                     name="resupply_status"
+                    widget="badge"
+                    decoration-success="resupply_status == 'full'"
+                    decoration-info="resupply_status == 'partial'"
                     invisible="subcontracting_resupply_picking_count == 0"
                     groups="stock.group_stock_user"
                 />
