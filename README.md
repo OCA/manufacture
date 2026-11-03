@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [mrp_bom_image](mrp_bom_image/) | 19.0.1.0.0 |  | Add product Images to BoM
 [mrp_bom_note](mrp_bom_note/) | 19.0.1.0.0 |  | Notes in Bill of Materials
 [mrp_bom_tracking](mrp_bom_tracking/) | 19.0.1.1.0 |  | Logs any change to a BoM in the chatter
+[mrp_lot_number_propagation](mrp_lot_number_propagation/) | 19.0.1.0.0 | <a href='https://github.com/sebalix'><img src='https://github.com/sebalix.png' width='32' height='32' style='border-radius:50%;' alt='sebalix'/></a> | Propagate a serial number from a component to a finished product
 [mrp_multi_level](mrp_multi_level/) | 19.0.1.0.5 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Adds an MRP Scheduler
 [mrp_multi_level_estimate](mrp_multi_level_estimate/) | 19.0.1.0.0 | <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Allows to consider demand estimates using MRP multi level.
 [mrp_production_back_to_draft](mrp_production_back_to_draft/) | 19.0.1.0.1 |  | Allows to return to draft a confirmed or cancelled MO.
