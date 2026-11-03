@@ -14,9 +14,21 @@
                     widget="many2one_avatar_user"
                     optional="hide"
                     invisible="production_state == 'draft'"
-                    column_invisible="parent.state == 'draft'"
                 />
             </xpath>
+        </field>
+    </record>
+    <record id="mrp_production_workorder_tree_editable_view_mo_form" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.list.editable</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view_mo_form"
+        />
+        <field name="arch" type="xml">
+            <field name="last_worker_id" position="attributes">
+                <attribute name="column_invisible">parent.state == 'draft'</attribute>
+            </field>
         </field>
     </record>
 </odoo>
