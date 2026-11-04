@@ -28,8 +28,9 @@ class MrpProduction(models.Model):
             )
             if record.force_lot_uniqueness and record.product_id.tracking == "lot":
                 allowed_lots = lot_ids.filtered(
-                    lambda lot,
-                    record=record: not record._is_finished_lot_already_produced(lot)
+                    lambda lot, record=record: (
+                        not record._is_finished_lot_already_produced(lot)
+                    )
                 )
                 record.allowed_lot_producing_ids = allowed_lots
             else:
