@@ -8,3 +8,6 @@ Additionally, to improve user usability, the domain of the
 lot_producing_ids field has been updated to ensure only lot numbers that
 have not been used are selectable, only in case the product is tracked
 by lots.
+
+In Odoo 20.0, lots created from the manufacturing order have no company,
+so lots without a company are also proposed on the manufacturing order.

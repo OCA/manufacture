@@ -49,10 +49,9 @@ class MrpProduction(models.Model):
         if not self.force_lot_uniqueness or not self.lot_producing_ids:
             return
 
-        if (
-            self.product_tracking == "lot"
-            and self.lot_producing_ids
-            and self._is_finished_lot_already_produced(self.lot_producing_ids)
+        if self.product_tracking == "lot" and any(
+            self._is_finished_lot_already_produced(lot)
+            for lot in self.lot_producing_ids
         ):
             raise UserError(
                 self.env._(
@@ -65,7 +64,7 @@ class MrpProduction(models.Model):
             if move.has_tracking != "lot" or move.product_id == self.product_id:
                 continue
             for move_line in move.move_line_ids:
-                if move_line.product_uom_id.is_zero(move_line.quantity):
+                if move_line.uom_id.is_zero(move_line.quantity):
                     continue
                 if self._is_finished_lot_already_produced(
                     move_line.lot_id, excluded_sml=move_line

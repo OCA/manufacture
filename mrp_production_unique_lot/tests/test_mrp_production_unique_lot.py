@@ -13,7 +13,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.picking_type = cls.env.ref("stock.warehouse0").manu_type_id
+        cls.picking_type = cls.picking_type_manu
         cls.picking_type.write({"force_production_lot_uniqueness": True})
         cls.mo, cls.bom, cls.final_product, _, _ = cls.generate_mo(
             tracking_final="lot", picking_type_id=cls.picking_type
@@ -32,7 +32,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
                         {
                             "product_id": cls.byproduct.id,
                             "product_qty": 1,
-                            "product_uom_id": cls.byproduct.uom_id.id,
+                            "uom_id": cls.byproduct.uom_id.id,
                         }
                     )
                 ]
@@ -80,7 +80,7 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         x = Form(self.env["mrp.unbuild"])
         x.product_id = self.final_product
         x.mo_id = self.mo
-        x.lot_id = self.lot
+        x.lot_ids = self.lot
         x.product_qty = self.mo.product_qty
         x.save().action_unbuild()
 
@@ -103,20 +103,19 @@ class TestMrpLotUniqueness(common.TestMrpCommon):
         mo.button_mark_done()
 
     def test_lot_reusable_after_scrap(self):
-        scrap_id = (
-            self.env["stock.scrap"]
-            .with_context(active_model="mrp.production", active_id=self.mo.id)
-            .create(
-                {
-                    "product_id": self.final_product.id,
-                    "scrap_qty": self.mo.product_qty,
-                    "product_uom_id": self.final_product.uom_id.id,
-                    "production_id": self.mo.id,
-                    "lot_id": self.lot.id,
-                }
-            )
+        scrap = self.env["stock.move"].create(
+            {
+                "is_scrap": True,
+                "product_id": self.final_product.id,
+                "location_id": self.mo.location_dest_id.id,
+                "location_dest_id": self.mo.company_id.scrap_location_id.id,
+                "quantity": self.mo.product_qty,
+                "lot_ids": self.lot.ids,
+                "production_id": self.mo.id,
+                "company_id": self.mo.company_id.id,
+            }
         )
-        scrap_id.do_scrap()
+        scrap._action_scrap()
 
         mo2 = self.env["mrp.production"].create(
             {
