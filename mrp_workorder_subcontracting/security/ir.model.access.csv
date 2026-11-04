@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_workorder_assign_subcontract_manager,mrp.workorder.assign.subcontract manager access,model_mrp_workorder_assign_subcontract,mrp.group_mrp_manager,1,1,1,1
+access_purchase_order_subcontract_bid_purchase_manager,purchase.order.subcontract.bid.wizard purchase manager access,model_purchase_order_subcontract_bid_wizard,purchase.group_purchase_manager,1,1,1,1
+access_purchase_order_subcontract_bid_mrp_manager,purchase.order.subcontract.bid.wizard mrp manager access,model_purchase_order_subcontract_bid_wizard,mrp.group_mrp_manager,1,1,1,1
