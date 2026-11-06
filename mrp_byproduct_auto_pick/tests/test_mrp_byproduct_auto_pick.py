@@ -78,6 +78,9 @@ class TestMrpByproductAutoPick(TransactionCase):
     def test_change_production_qty_keeps_byproduct(self):
         # Lowering the MO quantity unreserves the byproduct inside write();
         # that is not an operator edit and must not pick the line.
+        # Skip the component consumption check, which other modules may
+        # trigger on the reduced MO and which is not under test here.
+        self.bom.consumption = "flexible"
         mo = self._confirm_mo(byproduct_auto_pick=True, product_qty=2.0)
         with Form(mo) as mo_form:
             mo_form.qty_producing = 2.0
