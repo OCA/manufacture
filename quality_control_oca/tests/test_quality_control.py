@@ -209,13 +209,15 @@ class TestQualityControlOca(TestQualityControlOcaBase):
 
     def test_qc_inspection_not_draft_unlink(self):
         with self.assertRaises(exceptions.UserError):
-            self.inspection1.unlink()
+            self.inspection1.with_user(self.user).unlink()
         inspection2 = self.inspection1.copy()
         inspection2.action_cancel()
         self.assertEqual(inspection2.state, "canceled")
+        with self.assertRaises(exceptions.UserError):
+            inspection2.with_user(self.user).unlink()
         inspection2.action_draft()
         self.assertEqual(inspection2.state, "draft")
-        inspection2.unlink()
+        self.assertTrue(inspection2.with_user(self.user).unlink())
 
     def test_qc_inspection_auto_generate_manual_unlink(self):
         inspection2 = self.inspection1.copy()
