@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_back_to_draft
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-28 13:23+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: mrp_production_back_to_draft
+#. odoo-python
+#: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
+msgid "Could not set the production order back to draft"
+msgstr "Kon de productieorder niet terugzetten naar concept"
+
+#. module: mrp_production_back_to_draft
+#: model:ir.model,name:mrp_production_back_to_draft.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Productieorder"
+
+#. module: mrp_production_back_to_draft
+#: model_terms:ir.ui.view,arch_db:mrp_production_back_to_draft.mrp_production_form_view_return_to_draft
+msgid "Return to Draft"
+msgstr "Terug naar Concept"
+
+#. module: mrp_production_back_to_draft
+#. odoo-python
+#: code:addons/mrp_production_back_to_draft/models/mrp_production.py:0
+msgid ""
+"You cannot return to draft the following MO: %s. Only confirmed or cancelled"
+" MO can be returned to draft."
+msgstr ""
+"U kunt de volgende MO niet terugzetten naar concept: %s. Alleen bevestigde "
+"of geannuleerde MO's kunnen worden teruggezet naar concept."
