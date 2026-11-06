@@ -1,0 +1,21 @@
+id,name,model_id,group_id/id,operation,domain
+access_mrp_inventory_user,mrp.inventory user,mrp.inventory,mrp.group_mrp_user,r,
+access_mrp_inventory_manager,mrp.inventory manager,mrp.inventory,mrp.group_mrp_manager,crud,
+mrp_inventory_comp_rule,MRP Inventory multi-company rule,mrp.inventory,,crud,"['|',('company_id','=',False),('company_id', 'in', company_ids)]"
+access_mrp_move_user,mrp.move user,mrp.move,mrp.group_mrp_user,r,
+access_mrp_move_manager,mrp.move manager,mrp.move,mrp.group_mrp_manager,crud,
+mrp_move_comp_rule,MRP Move multi-company rule,mrp.move,,crud,"['|',('company_id','=',False),('company_id', 'in', company_ids)]"
+access_mrp_area_user,mrp.area user,mrp.area,mrp.group_mrp_user,r,
+access_mrp_area_manager,mrp.area manager,mrp.area,mrp.group_mrp_manager,crud,
+mrp_area_comp_rule,MRP Area multi-company rule,mrp.area,,crud,"['|',('company_id','=',False),('company_id', 'in', company_ids)]"
+access_product_mrp_area_user,product.mrp.area user,product.mrp.area,mrp.group_mrp_user,cru,
+access_product_mrp_area_manager,product.mrp.area manager,product.mrp.area,mrp.group_mrp_manager,crud,
+access_product_mrp_area_read,product.mrp.area read,product.mrp.area,base.group_user,r,
+mrp_product_mrp_area_comp_rule,Product MRP Area multi-company rule,product.mrp.area,,crud,"['|',('company_id','=',False),('company_id', 'in', company_ids)]"
+access_mrp_planned_order_user,mrp.planned.order user,mrp.planned.order,mrp.group_mrp_user,r,
+access_mrp_planned_order_manager,mrp.planned.order manager,mrp.planned.order,mrp.group_mrp_manager,crud,
+mrp_planned_order_comp_rule,MRP Planned Order multi-company rule,mrp.planned.order,,crud,"['|',('company_id','=',False),('company_id', 'in', company_ids)]"
+access_mrp_multi_level_user,mrp.multi.level user,mrp.multi.level,mrp.group_mrp_user,r,
+access_mrp_multi_level_manager,mrp.multi.level manager,mrp.multi.level,mrp.group_mrp_manager,crud,
+access_mrp_inventory_procure_user,mrp.inventory.procure user,mrp.inventory.procure,mrp.group_mrp_user,crud,
+access_mrp_inventory_procure_item_user,mrp.inventory.procure.item user,mrp.inventory.procure.item,mrp.group_mrp_user,crud,
