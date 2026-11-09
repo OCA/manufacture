@@ -12,7 +12,7 @@ class MrpProduction(models.Model):
 
     @api.depends("qc_inspections_ids")
     def _compute_created_inspections(self):
-        for production in self:
+        for production in self.sudo():
             production.created_inspections = len(production.qc_inspections_ids)
 
     qc_inspections_ids = fields.One2many(
@@ -31,7 +31,7 @@ class MrpProduction(models.Model):
             lambda r: r.state == "done"
         )
         res = super()._post_inventory(cancel_backorder=cancel_backorder)
-        inspection_model = self.env["qc.inspection"]
+        inspection_model = self.env["qc.inspection"].sudo()
         new_done_moves = (
             self.mapped("move_finished_ids").filtered(lambda r: r.state == "done")
             - done_moves
@@ -46,9 +46,9 @@ class MrpProduction(models.Model):
                 "qc.trigger.product_line",
             ]:
                 trigger_lines = trigger_lines.union(
-                    self.env[model].get_trigger_line_for_product(
-                        qc_trigger, move.product_id
-                    )
+                    self.env[model]
+                    .sudo()
+                    .get_trigger_line_for_product(qc_trigger, move.product_id.sudo())
                 )
             for trigger_line in _filter_trigger_lines(trigger_lines):
                 inspection_model._make_inspection(move, trigger_line)
