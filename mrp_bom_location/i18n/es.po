@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_location
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-07-10 10:08+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr "Informe general de listas de materiales"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Factura de materiales"
+
+#. module: mrp_bom_location
+#: model:ir.model,name:mrp_bom_location.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Línea de la factura de materiales"
+
+#. module: mrp_bom_location
+#. odoo-javascript
+#: code:addons/mrp_bom_location/static/src/xml/mrp_bom_overview_location.xml:0
+#: model:ir.model.fields,field_description:mrp_bom_location.field_mrp_bom__location_id
+#: model:ir.model.fields,field_description:mrp_bom_location.field_mrp_bom_line__location_id
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.view_mrp_bom_filter
+#, python-format
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: mrp_bom_location
+#: model_terms:ir.ui.view,arch_db:mrp_bom_location.report_mrpbomstructure_location
+msgid "Location of the product"
+msgstr "Ubicación del producto"
