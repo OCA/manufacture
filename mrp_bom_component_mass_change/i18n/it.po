@@ -6,146 +6,148 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 13:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model,name:mrp_bom_component_mass_change.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "Riga distinta base"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__bom_ids
 msgid "Bills of Materials"
-msgstr ""
+msgstr "Distinte base"
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Bills of Materials to Update"
-msgstr ""
+msgstr "Distinte base da aggiornare"
 
 #. module: mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__change_type
 msgid "Change Type"
-msgstr ""
+msgstr "Tipo modifica"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_line__component_in_multiple_boms
 msgid "Component In Multiple Boms"
-msgstr ""
+msgstr "Componente in più distinte base"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_locked
 msgid "Component Locked"
-msgstr ""
+msgstr "Componente bloccato"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__component_id
 msgid "Component to Change"
-msgstr ""
+msgstr "Componente da modificare"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model,name:mrp_bom_component_mass_change.model_mrp_bom_component_mass_change
 #: model:ir.ui.menu,name:mrp_bom_component_mass_change.menu_mrp_bom_component_mass_change
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_component_mass_change_view_form
 msgid "Mass Change BoM Component"
-msgstr ""
+msgstr "Modifica massiva componente DB"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.actions.act_window,name:mrp_bom_component_mass_change.mrp_bom_component_mass_change_action
 #: model_terms:ir.ui.view,arch_db:mrp_bom_component_mass_change.mrp_bom_form_view
 msgid "Mass Change Component"
-msgstr ""
+msgstr "Modifica massiva componente"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__new_component_id
 msgid "New Component"
-msgstr ""
+msgstr "Nuovo componente"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields,field_description:mrp_bom_component_mass_change.field_mrp_bom_component_mass_change__new_product_qty
 msgid "New Quantity"
-msgstr ""
+msgstr "Nuova quantità"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__remove
 msgid "Remove"
-msgstr ""
+msgstr "Rimuovi"
 
 #. module: mrp_bom_component_mass_change
 #: model:ir.model.fields.selection,name:mrp_bom_component_mass_change.selection__mrp_bom_component_mass_change__change_type__replace
 msgid "Replace"
-msgstr ""
+msgstr "Sostituisci"
 
 #. module: mrp_bom_component_mass_change
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
 msgid "The new component must be different from the component to change."
-msgstr ""
+msgstr "Il nuovo componente deve essere diverso dal componente da modificare."
 
 #. module: mrp_bom_component_mass_change
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
 msgid "You must select at least one bill of materials."
-msgstr ""
+msgstr "È necessario selezionare almeno una distinta base."
 
 #. module: mrp_bom_component_mass_change
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
 msgid "You must select the new component."
-msgstr ""
+msgstr "È necessario selezionare il nuovo componente."
 
 #. module: mrp_bom_component_mass_change
 #. odoo-python
 #: code:addons/mrp_bom_component_mass_change/wizards/mrp_bom_component_mass_change.py:0
 #, python-format
 msgid "You must set the new quantity."
-msgstr ""
+msgstr "È necessario impostare la nuova quantità."
