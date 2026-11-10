@@ -43,12 +43,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
         cls.lot_obj = cls.env["stock.lot"]
         cls.mrp_bom_obj = cls.env["mrp.bom"]
 
-        # In 20.0 the Manufacture and Buy routes are not product selectable by
-        # default, and only product selectable routes can be set on products.
-        (
-            cls.env.ref("mrp.route_warehouse0_manufacture")
-            + cls.env.ref("purchase_stock.route_warehouse0_buy")
-        ).product_selectable = True
         cls._create_demo_data()
 
         cls.fp_1 = cls._demo_products["FP-1"]
@@ -144,13 +138,11 @@ class TestMrpMultiLevelCommon(TransactionCase):
         )
 
         # Create products:
-        route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy").id
         cls.prod_test = cls.product_obj.create(
             {
                 "name": "Test Top Seller",
                 "is_storable": True,
                 "list_price": 150.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
@@ -170,7 +162,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product with minimum order qty",
                 "is_storable": True,
                 "list_price": 50.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
@@ -189,7 +180,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product with maximum order qty",
                 "is_storable": True,
                 "list_price": 50.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
@@ -207,7 +197,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product with qty multiple",
                 "is_storable": True,
                 "list_price": 50.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 10.0})],
             }
         )
@@ -226,7 +215,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product Special Scenario 1",
                 "is_storable": True,
                 "list_price": 100.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
@@ -244,7 +232,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "name": "Product Timezone",
                 "is_storable": True,
                 "list_price": 100.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
@@ -258,7 +245,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "list_price": 150.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 20.0})],
             }
         )
@@ -273,7 +259,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "tracking": "lot",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "list_price": 100.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 25.0})],
             }
         )
@@ -317,7 +302,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "list_price": 100.0,
-                "route_ids": [(6, 0, [route_buy])],
                 "seller_ids": [(0, 0, {"partner_id": vendor1.id, "price": 35.0})],
             }
         )
@@ -757,34 +741,31 @@ class TestMrpMultiLevelCommon(TransactionCase):
         categ_mrp = cls.env["product.category"].create({"name": "MRP"})
 
         # Create Products
-        route_manufacture = cls.env.ref("mrp.route_warehouse0_manufacture")
-        route_buy = cls.env.ref("purchase_stock.route_warehouse0_buy")
         uom_unit = cls.env.ref("uom.product_uom_unit")
-        products_data = [
-            ("FP-1", route_manufacture),
-            ("FP-2", route_manufacture),
-            ("FP-3", route_manufacture),
-            ("FP-4", route_manufacture),
-            ("SF-1", route_manufacture),
-            ("SF-2", route_manufacture),
-            ("SF-3", route_manufacture),
-            ("PP-1", route_buy),
-            ("PP-2", route_buy),
-            ("PP-3", route_buy),
-            ("PP-4", route_buy),
-            ("AV-11 steel", route_buy),
-            ("AV-12 aluminium", route_buy),
-            ("AV-21 white", route_buy),
-            ("AV-22 black", route_buy),
+        product_names = [
+            "FP-1",
+            "FP-2",
+            "FP-3",
+            "FP-4",
+            "SF-1",
+            "SF-2",
+            "SF-3",
+            "PP-1",
+            "PP-2",
+            "PP-3",
+            "PP-4",
+            "AV-11 steel",
+            "AV-12 aluminium",
+            "AV-21 white",
+            "AV-22 black",
         ]
-        for name, route in products_data:
+        for name in product_names:
             cls._demo_products[name] = cls.env["product.product"].create(
                 {
                     "name": name,
                     "categ_id": categ_mrp.id,
                     "is_storable": True,
                     "uom_id": uom_unit.id,
-                    "route_ids": [(6, 0, [route.id])],
                 }
             )
 
@@ -829,7 +810,6 @@ class TestMrpMultiLevelCommon(TransactionCase):
                 "categ_id": categ_mrp.id,
                 "is_storable": True,
                 "uom_id": uom_unit.id,
-                "route_ids": [(6, 0, [route_manufacture.id])],
                 "attribute_line_ids": [
                     (
                         0,

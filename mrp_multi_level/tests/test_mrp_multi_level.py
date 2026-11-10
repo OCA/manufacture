@@ -441,7 +441,23 @@ class TestMrpMultiLevel(TestMrpMultiLevelCommon):
 
     def test_16_supply_method(self):
         """Test supply method computation."""
-        self.fp_4.route_ids = [(5, 0, 0)]
+        fp_1_mrp_area = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.fp_1.id), ("mrp_area_id", "=", self.mrp_area.id)]
+        )
+        self.assertFalse(self.fp_1.route_ids)
+        self.assertEqual(fp_1_mrp_area.supply_method, "manufacture")
+        self.assertEqual(
+            fp_1_mrp_area.supply_bom_id.product_tmpl_id, self.fp_1.product_tmpl_id
+        )
+        pp_1_mrp_area = self.product_mrp_area_obj.search(
+            [("product_id", "=", self.pp_1.id), ("mrp_area_id", "=", self.mrp_area.id)]
+        )
+        self.assertFalse(self.pp_1.route_ids)
+        self.assertEqual(pp_1_mrp_area.supply_method, "buy")
+        (
+            self.env.ref("mrp.route_warehouse0_manufacture")
+            + self.env.ref("purchase_stock.route_warehouse0_buy")
+        ).product_selectable = True
         product_mrp_area = self.product_mrp_area_obj.search(
             [("product_id", "=", self.fp_4.id)]
         )

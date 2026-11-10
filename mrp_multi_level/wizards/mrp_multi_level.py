@@ -248,8 +248,8 @@ class MultiLevelMrp(models.TransientModel):
         mrp_action_date,
         values=None,
     ):
-        self = self.with_context(auditlog_disabled=True)  # noqa: PLW0642
-        if self._exclude_from_mrp(
+        wizard = self.with_context(auditlog_disabled=True)
+        if wizard._exclude_from_mrp(
             product_mrp_area_id.product_id, product_mrp_area_id.mrp_area_id
         ):
             values["qty_ordered"] = 0.0
@@ -260,16 +260,16 @@ class MultiLevelMrp(models.TransientModel):
         while qty_ordered < mrp_qty:
             qty = product_mrp_area_id._adjust_qty_to_order(qty_to_order)
             qty_to_order -= qty
-            order_data = self._prepare_planned_order_data(
+            order_data = wizard._prepare_planned_order_data(
                 product_mrp_area_id, qty, mrp_date_supply, mrp_action_date, name, values
             )
             planned_order = False
             if product_mrp_area_id._should_create_planned_order():
-                planned_order = self.env["mrp.planned.order"].create(order_data)
+                planned_order = wizard.env["mrp.planned.order"].create(order_data)
             qty_ordered = qty_ordered + qty
 
             if product_mrp_area_id._to_be_exploded():
-                self.explode_action(
+                wizard.explode_action(
                     product_mrp_area_id,
                     mrp_action_date,
                     name,
