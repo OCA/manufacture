@@ -7,7 +7,8 @@
 import logging
 from datetime import date, timedelta
 
-from odoo import api, exceptions, fields, models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_is_zero, mute_logger
 
 logger = logging.getLogger(__name__)
@@ -122,7 +123,7 @@ class MultiLevelMrp(models.TransientModel):
             bomline.product_id, product.mrp_area_id
         )
         if not product_mrp_area:
-            raise exceptions.Warning(self.env._("No MRP product found"))
+            raise UserError(self.env._("No MRP product found"))
         factor = (
             product.product_id.uom_id._compute_quantity(qty, bomline.bom_id.uom_id)
             / bomline.bom_id.product_qty
