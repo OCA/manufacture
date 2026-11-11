@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_push_mto_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_stock_picking_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_stock_move__id
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_stock_picking_type__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model,name:mrp_production_push_mto_qty.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model,name:mrp_production_push_mto_qty.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model.fields,field_description:mrp_production_push_mto_qty.field_stock_picking_type__push_mto_qty_to_dest_moves
+msgid "Push Produced Quantity to MTO Moves"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model,name:mrp_production_push_mto_qty.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_push_mto_qty
+#: model:ir.model.fields,help:mrp_production_push_mto_qty.field_stock_picking_type__push_mto_qty_to_dest_moves
+msgid ""
+"When a manufacturing order is done, update the demand of the ensuing moves (e.g. the delivery) according to the quantity produced:\n"
+" * producing more increases the demand,\n"
+" * producing less without backorder decreases the demand,\n"
+" * producing less with a backorder keeps the demand unchanged.\n"
+"Cancelling a backorder manufacturing order also decreases the demand by its remaining quantity."
+msgstr ""
