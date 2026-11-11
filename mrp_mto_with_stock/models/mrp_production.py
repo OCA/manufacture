@@ -5,7 +5,6 @@
 import copy
 
 from odoo import models
-from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
 
@@ -23,14 +22,14 @@ class MrpProduction(models.Model):
         stock).
         @returns True"""
         # reserve all that is available (standard behaviour):
-        res = super(MrpProduction, self).action_assign()
+        res = super().action_assign()
         # try to create procurements:
         move_obj = self.env["stock.move"]
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
         for production in self:
-            warehouse = production.location_src_id.get_warehouse()
+            warehouse = production.location_src_id.warehouse_id
             mto_with_no_move_dest_id = warehouse.mrp_mto_mts_forecast_qty
             move_ids = copy.copy(production.move_raw_ids.ids)
             for move in move_obj.browse(move_ids):
@@ -53,57 +52,8 @@ class MrpProduction(models.Model):
                     )
         return res
 
-    def _adjust_procure_method(self):
-        """When configured as MTO/MTS manufacturing location, if there is
-        stock available unreserved, use it and procure the remaining."""
-        res = super()._adjust_procure_method()
-        warehouse = self.location_src_id.get_warehouse()
-        mto_with_no_move_dest_id = warehouse.mrp_mto_mts_forecast_qty
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
-        for move in self.move_raw_ids:
-            if not self._mto_with_stock_condition(move):
-                continue
-            if not mto_with_no_move_dest_id:
-                # We have to split the move because we can't have
-                # a part of the move that have ancestors and not the
-                # other else it won't ever be reserved.
-                qty_to_procure = min(
-                    move.product_uom_qty - move.product_id.qty_available_not_res,
-                    move.product_uom_qty,
-                )
-                if (
-                    qty_to_procure > 0.0
-                    and float_compare(
-                        qty_to_procure, move.product_uom_qty, precision_digits=precision
-                    )
-                    < 0
-                ):
-                    # we need to adjust the unit_factor of the stock moves
-                    # to split correctly the load of each one.
-                    ratio = qty_to_procure / move.product_uom_qty
-                    # create new move for make to order part
-                    move.copy(
-                        {
-                            "product_uom_qty": qty_to_procure,
-                            "procure_method": "make_to_order",
-                            "unit_factor": move.unit_factor * ratio,
-                        }
-                    )
-                    move.write(
-                        {
-                            "product_uom_qty": move.product_uom_qty - qty_to_procure,
-                            "unit_factor": move.unit_factor * (1 - ratio),
-                        }
-                    )
-                move._action_confirm()
-                move._action_assign()
-        return res
-
     def run_procurement(self, move, qty, mto_with_no_move_dest_id):
         self.ensure_one()
-        errors = []
         values = move._prepare_procurement_values()
         # In that mode, we don't want any link between the raw material move
         # And the previous move generated now.
@@ -111,20 +61,21 @@ class MrpProduction(models.Model):
             values.pop("move_dest_ids", None)
         origin = self.origin or move.origin
         values["route_ids"] = move.product_id.route_ids
-        try:
-            self.env["procurement.group"].run(
-                move.product_id,
-                qty,
-                move.product_uom,
-                move.location_id,
-                origin,
-                origin,
-                values,
-            )
-        except UserError as error:
-            errors.append(error.name)
-        if errors:
-            raise UserError("\n".join(errors))
+        procurement_group = self.env["procurement.group"]
+        procurement_group.run(
+            [
+                procurement_group.Procurement(
+                    move.product_id,
+                    qty,
+                    move.product_uom,
+                    move.location_id,
+                    origin,
+                    origin,
+                    move.company_id,
+                    values,
+                )
+            ]
+        )
         return True
 
     def get_mto_qty_to_procure(self, move):

@@ -10,7 +10,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_3" />
         <field name="standard_price">600.00</field>
         <field name="list_price">400.00</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="description">TODO</field>
@@ -26,7 +27,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_3" />
         <field name="standard_price">300.00</field>
         <field name="list_price">100.00</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="description">TODO</field>
@@ -46,7 +48,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_3" />
         <field name="standard_price">100.00</field>
         <field name="list_price">30.00</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="description">TODO</field>
@@ -66,7 +69,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_3" />
         <field name="standard_price">10.00</field>
         <field name="list_price">3.00</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="description">TODO</field>
@@ -78,7 +82,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_3" />
         <field name="standard_price">10.00</field>
         <field name="list_price">3.00</field>
-        <field name="type">product</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
         <field name="uom_id" ref="uom.product_uom_unit" />
         <field name="uom_po_id" ref="uom.product_uom_unit" />
         <field name="description">TODO</field>
