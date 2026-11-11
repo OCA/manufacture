@@ -2,7 +2,6 @@
 <!-- Copyright 2017 Akretion
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="view_warehouse_mrp_with_stock" model="ir.ui.view">
         <field name="model">stock.warehouse</field>
         <field name="inherit_id" ref="mrp.view_warehouse_inherit_mrp" />
@@ -12,5 +11,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
