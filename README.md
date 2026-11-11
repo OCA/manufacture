@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [mrp_production_back_to_draft](mrp_production_back_to_draft/) | 19.0.1.0.1 |  | Allows to return to draft a confirmed or cancelled MO.
 [mrp_production_generator_by_date_interval](mrp_production_generator_by_date_interval/) | 19.0.1.0.0 |  | MRP Production Generator By Date Interval
 [mrp_production_note](mrp_production_note/) | 19.0.1.0.0 |  | Notes in production orders
+[mrp_production_push_mto_qty](mrp_production_push_mto_qty/) | 19.0.1.0.0 |  | Push the quantity produced by a manufacturing order to the demand of the ensuing MTO moves
 [mrp_production_unique_lot](mrp_production_unique_lot/) | 19.0.1.0.0 |  | Ensures that production lot numbers are unique and cannot be reused in another manufacturing order.
 [mrp_progress_button](mrp_progress_button/) | 19.0.1.0.0 |  | Add a button on MO to make the MO state 'In Progress'
 [mrp_repair_order](mrp_repair_order/) | 19.0.1.0.0 | <a href='https://github.com/peluko00'><img src='https://github.com/peluko00.png' width='32' height='32' style='border-radius:50%;' alt='peluko00'/></a> | Create repair order from manufacturing order
