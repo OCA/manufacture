@@ -4,12 +4,12 @@
 {
     "name": "BOM lines with sequence number",
     "summary": "Manages the order of BOM lines by displaying its sequence",
-    "version": "15.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Manufacturing Management",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/manufacture",
     "license": "AGPL-3",
     "depends": ["mrp"],
-    "data": ["views/stock_view.xml"],
+    "data": ["views/mrp_bom_views.xml"],
     "installable": True,
 }
