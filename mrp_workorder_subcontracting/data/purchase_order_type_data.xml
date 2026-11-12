@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="po_type_subcontracting" model="purchase.order.type">
+        <field name="name">Subcontracting</field>
+        <field name="sequence_id" ref="seq_subcontracting_purchase" />
+        <field name="is_subcontracting">True</field>
+        <field name="immediate_return_subcontracting">False</field>
+        <field
+            name="sub_out_picking_type_id"
+            ref="subcontracting_picking_type_parts_out"
+        />
+        <field
+            name="sub_in_picking_type_id"
+            ref="subcontracting_picking_type_parts_in"
+        />
+        <field
+            name="sub_out_virtual_picking_type_id"
+            ref="subcontracting_picking_type_finished_out"
+        />
+        <field
+            name="sub_in_virtual_picking_type_id"
+            ref="subcontracting_picking_type_finished_in"
+        />
+    </record>
+
+    <record id="po_type_subcontracting_instant_return" model="purchase.order.type">
+        <field name="name">Subcontracting - Instant return</field>
+        <field name="sequence_id" ref="seq_subcontracting_purchase" />
+        <field name="is_subcontracting">True</field>
+        <field name="immediate_return_subcontracting">True</field>
+        <field
+            name="sub_out_picking_type_id"
+            ref="subcontracting_picking_type_parts_out"
+        />
+        <field
+            name="sub_in_picking_type_id"
+            ref="subcontracting_picking_type_parts_in"
+        />
+        <field
+            name="sub_out_virtual_picking_type_id"
+            ref="subcontracting_picking_type_finished_out"
+        />
+        <field
+            name="sub_in_virtual_picking_type_id"
+            ref="subcontracting_picking_type_finished_in"
+        />
+    </record>
+</odoo>
