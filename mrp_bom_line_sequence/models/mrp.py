@@ -21,7 +21,7 @@ class MrpBomLine(models.Model):
 
     @api.model
     def create(self, values):
-        move = super(MrpBomLine, self).create(values)
+        move = super().create(values)
         # We do not reset the sequence if we are copying a complete bom
         if not self.env.context.get("keep_line_sequence", False):
             move.bom_id._reset_sequence()
