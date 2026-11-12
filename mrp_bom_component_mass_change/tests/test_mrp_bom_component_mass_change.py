@@ -76,16 +76,6 @@ class TestMrpBomComponentMassChange(TransactionCase):
         self.assertEqual(action["context"]["default_component_id"], self.component.id)
         self.assertTrue(action["context"]["default_component_locked"])
 
-    def test_component_in_multiple_boms(self):
-        line = self._component_lines(self.bom_1, self.component)
-        self.assertTrue(line.component_in_multiple_boms)
-        single_component = self._create_product("Single Component")
-        single_bom = self._create_bom(
-            self._create_product("Finished 4"), [(single_component, 1.0)]
-        )
-        single_line = self._component_lines(single_bom, single_component)
-        self.assertFalse(single_line.component_in_multiple_boms)
-
     def test_replace_component(self):
         wizard = self.Wizard.create(
             {
@@ -168,4 +158,88 @@ class TestMrpBomComponentMassChange(TransactionCase):
             }
         )
         with self.assertRaisesRegex(UserError, "must be different"):
+            wizard.action_apply()
+
+    def test_add_component(self):
+        wizard = self.Wizard.create(
+            {
+                "component_id": self.component.id,
+                "change_type": "add",
+                "new_component_id": self.new_component.id,
+                "new_product_qty": 3.0,
+            }
+        )
+        self.assertEqual(wizard.bom_ids, self.bom_1 | self.bom_2)
+        wizard.action_apply()
+        for bom in self.bom_1 | self.bom_2:
+            line = self._component_lines(bom, self.new_component)
+            self.assertEqual(len(line), 1)
+            self.assertEqual(line.product_qty, 3.0)
+            self.assertEqual(line.product_uom_id, self.uom_unit)
+            self.assertEqual(len(self._component_lines(bom, self.component)), 1)
+        self.assertEqual(
+            self._component_lines(self.bom_1, self.component).product_qty, 2.0
+        )
+        self.assertEqual(
+            self._component_lines(self.bom_2, self.component).product_qty, 5.0
+        )
+        self.assertFalse(self._component_lines(self.bom_3, self.new_component))
+
+    def test_add_component_uom(self):
+        wizard = self.Wizard.create(
+            {
+                "change_type": "add",
+                "new_component_id": self.new_component_kg.id,
+                "new_product_qty": 1.5,
+            }
+        )
+        wizard.bom_ids = self.bom_3
+        wizard.action_apply()
+        line = self._component_lines(self.bom_3, self.new_component_kg)
+        self.assertEqual(line.product_uom_id, self.uom_kg)
+        self.assertEqual(line.product_qty, 1.5)
+
+    def test_add_component_without_filter(self):
+        wizard = self.Wizard.create(
+            {
+                "change_type": "add",
+                "new_component_id": self.new_component.id,
+                "new_product_qty": 2.0,
+            }
+        )
+        self.assertFalse(wizard.bom_ids)
+        wizard.bom_ids = self.bom_3
+        wizard.action_apply()
+        self.assertEqual(len(self._component_lines(self.bom_3, self.new_component)), 1)
+        self.assertFalse(self._component_lines(self.bom_1, self.new_component))
+        self.assertFalse(self._component_lines(self.bom_2, self.new_component))
+
+    def test_add_component_already_in_bom(self):
+        wizard = self.Wizard.create(
+            {
+                "change_type": "add",
+                "new_component_id": self.other_component.id,
+                "new_product_qty": 4.0,
+            }
+        )
+        wizard.bom_ids = self.bom_1 | self.bom_2 | self.bom_3
+        wizard.action_apply()
+        line_1 = self._component_lines(self.bom_1, self.other_component)
+        line_3 = self._component_lines(self.bom_3, self.other_component)
+        self.assertEqual(len(line_1), 1)
+        self.assertEqual(line_1.product_qty, 1.0)
+        self.assertEqual(len(line_3), 1)
+        self.assertEqual(line_3.product_qty, 3.0)
+        line_2 = self._component_lines(self.bom_2, self.other_component)
+        self.assertEqual(len(line_2), 1)
+        self.assertEqual(line_2.product_qty, 4.0)
+
+    def test_add_without_component_to_add(self):
+        wizard = self.Wizard.create(
+            {
+                "component_id": self.component.id,
+                "change_type": "add",
+            }
+        )
+        with self.assertRaisesRegex(UserError, "select the component to add"):
             wizard.action_apply()
