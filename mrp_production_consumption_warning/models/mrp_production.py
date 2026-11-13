@@ -1,0 +1,107 @@
+# Copyright 2023 Komit
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from collections import defaultdict
+
+from odoo import api, fields, models
+from odoo.tools import formatLang
+
+
+class MrpProduction(models.Model):
+    _inherit = "mrp.production"
+
+    consumption_warning_msg = fields.Text(compute="_compute_consumption_warning_msg")
+
+    @api.depends(
+        "bom_id",
+        "bom_id.bom_line_ids",
+        "bom_id.bom_line_ids.product_id",
+        "bom_id.bom_line_ids.product_qty",
+        "bom_id.bom_line_ids.product_uom_id",
+        "move_raw_ids",
+        "move_raw_ids.product_id",
+        "move_raw_ids.product_uom_qty",
+        "move_raw_ids.product_uom",
+    )
+    def _compute_consumption_warning_msg(self):
+        for rec in self:
+            rec.consumption_warning_msg = rec._get_consumption_warning_msg()
+
+    def _get_consumption_warning_msg(self):
+        self.ensure_one()
+        if not self.bom_id or not self.bom_id.bom_line_ids:
+            return ""
+
+        expected_qty_by_product = self._get_expected_qty_by_product()
+        actual_qty_by_product = self._get_actual_qty_by_product()
+
+        unused_products = self.env["product.product"]
+        unpresent_products = self.env["product.product"]
+        wrong_quantity_msg = ""
+
+        for product, expected_qty in expected_qty_by_product.items():
+            actual_qty = actual_qty_by_product.get(product)
+            if actual_qty is None:
+                unused_products |= product
+                continue
+
+            if product.uom_id.compare(expected_qty, actual_qty) != 0:
+                wrong_quantity_msg += self.env._(
+                    "- The MO line quantity for Product %(product)s is "
+                    "%(w_qty)s %(uom)s while the quantity of %(r_qty)s %(uom)s "
+                    "(%(qty_per_1)s %(uom)s x %(product_qty)s %(product_uom)s) "
+                    "is expected from the BoM line\n",
+                    product=product.display_name,
+                    w_qty=self._format_qty(actual_qty),
+                    r_qty=self._format_qty(expected_qty),
+                    qty_per_1=self._format_qty(expected_qty / self.product_qty),
+                    uom=product.uom_id.name,
+                    product_qty=self._format_qty(self.product_qty),
+                    product_uom=self.product_uom_id.name,
+                )
+
+        for product in actual_qty_by_product:
+            if product not in expected_qty_by_product:
+                unpresent_products |= product
+
+        message = ""
+        if unused_products:
+            message += self.env._(
+                "- The MO does not use the following BoM components: %(names)s\n",
+                names=", ".join(unused_products.mapped("display_name")),
+            )
+        message += wrong_quantity_msg
+        if unpresent_products:
+            message += self.env._(
+                "- The following components are not present on the BoM: %(names)s\n",
+                names=", ".join(unpresent_products.mapped("display_name")),
+            )
+        if message:
+            message = (
+                self.env._(
+                    "There are discrepancies between your Manufacturing Order "
+                    "and the BoM associated with the Finished products:\n"
+                )
+                + message
+            )
+        return message
+
+    def _format_qty(self, qty):
+        return formatLang(self.env, qty, dp="Product Unit")
+
+    def _get_expected_qty_by_product(self):
+        qty_by_product = defaultdict(float)
+        for move_values in self._get_moves_raw_values():
+            product = self.env["product.product"].browse(move_values["product_id"])
+            uom = self.env["uom.uom"].browse(move_values["product_uom"])
+            qty_by_product[product] += uom._compute_quantity(
+                move_values["product_uom_qty"], product.uom_id, round=False
+            )
+        return qty_by_product
+
+    def _get_actual_qty_by_product(self):
+        qty_by_product = defaultdict(float)
+        for move in self.move_raw_ids:
+            qty_by_product[move.product_id] += move.product_uom._compute_quantity(
+                move.product_uom_qty, move.product_id.uom_id, round=False
+            )
+        return qty_by_product
