@@ -1,0 +1,4 @@
+- [ForgeFlow](https://www.forgeflow.com):
+  - Lois Rilo \<<lois.rilo@forgeflow.com>\>
+- [PyTech](https://www.pytech.it):
+  - Simone Rubino \<<simone.rubino@pytech.it>\>
