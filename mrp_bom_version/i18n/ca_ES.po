@@ -1,0 +1,271 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_version
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-02 04:06+0000\n"
+"PO-Revision-Date: 2015-10-26 16:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-"
+"manufacture-8-0/language/ca_ES/)\n"
+"Language: ca_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Activate"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__active
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__active
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
+msgid "Active"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_config_settings_versioning
+msgid "Allow to re-edit BoMs"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__bom_line_ids
+msgid "BoM Lines"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__type
+msgid "BoM Type"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__byproduct_ids
+msgid "By-products"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__company_id
+msgid "Company"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__consumption
+msgid ""
+"Defines if you can consume more or less components than the quantity defined "
+"on the BoM:\n"
+"  * Allowed: allowed for all manufacturing users.\n"
+"  * Allowed with warning: allowed for all manufacturing users with summary "
+"of consumption differences when closing the manufacturing order.\n"
+"  Note that in the case of component Manual Consumption, where consumption "
+"is registered manually exclusively, consumption warnings will still be "
+"issued when appropriate also.\n"
+"  * Blocked: only a manager can close a manufacturing order when the BoM "
+"consumption is not respected."
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__draft
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Draft"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__consumption
+msgid "Flexible Consumption"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__historical
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Historical"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__historical_date
+msgid "Historical Date"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_id
+msgid ""
+"If a product variant is defined the BOM is available only for this product."
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__active_draft
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_config_settings_versioning
+msgid "Keep re-editing BoM active"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:mail.message.subtype,description:mrp_bom_version.mt_active
+#: model:mail.message.subtype,name:mrp_bom_version.mt_active
+msgid "MRP BoM Active"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
+msgid "MRP BoM version"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__ready_to_produce
+msgid "Manufacturing Readiness"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "New version"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__old_versions
+msgid "Old Versions"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__picking_type_id
+msgid "Operation Type"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__operation_ids
+msgid "Operations"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__previous_bom_id
+msgid "Previous BoM"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_tmpl_id
+msgid "Product"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_id
+msgid "Product Variant"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__code
+msgid "Reference"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__state
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
+msgid "Status"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
+msgid "The active state may be passed back to state draft"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__active_draft
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__version
+msgid "Version"
+msgstr "Versió"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+msgid "Versions"
+msgstr "Versions"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__picking_type_id
+msgid ""
+"When a procurement has a ‘produce’ route with a operation type set, it will "
+"try to create a Manufacturing Order for that product using a BoM of the same "
+"operation type. That allows to define stock rules which trigger different "
+"manufacturing orders with different BoMs."
+msgstr ""
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+msgid ""
+"YYou will activate the BoM, then you won't be able to edit it after this. "
+"Are you sure you want to proceed?"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "You are going to create a new version of this BoM. Are you sure?"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You are going to historize an BoM. Doing, not be able to unlock it unless "
+"you make a copy. Are you sure you want to proceed?"
+msgstr ""
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You will activate the BoM, then you won't be able to edit it after this. Are "
+"you sure you want to proceed?"
+msgstr ""

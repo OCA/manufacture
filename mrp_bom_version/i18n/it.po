@@ -1,0 +1,325 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mrp_bom_version
+#
+# Translators:
+# Massimiliano Casa <mcasa@cantiericasa.com>, 2016
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: manufacture (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 22:50+0000\n"
+"PO-Revision-Date: 2024-10-23 09:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-manufacture-8-0/"
+"language/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Activate"
+msgstr "Attivare"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__active
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__active
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
+msgid "Active"
+msgstr "Attivo"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_config_settings_versioning
+msgid "Allow to re-edit BoMs"
+msgstr "Permettere di ri-editare BoMs"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Distinta base"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__bom_line_ids
+msgid "BoM Lines"
+msgstr "Righe DiBa"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__type
+msgid "BoM Type"
+msgstr "Tipo DiBa"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__byproduct_ids
+msgid "By-products"
+msgstr "Sottoprodotti"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: mrp_bom_version
+#: model:ir.model,name:mrp_bom_version.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__consumption
+msgid ""
+"Defines if you can consume more or less components than the quantity defined "
+"on the BoM:\n"
+"  * Allowed: allowed for all manufacturing users.\n"
+"  * Allowed with warning: allowed for all manufacturing users with summary "
+"of consumption differences when closing the manufacturing order.\n"
+"  Note that in the case of component Manual Consumption, where consumption "
+"is registered manually exclusively, consumption warnings will still be "
+"issued when appropriate also.\n"
+"  * Blocked: only a manager can close a manufacturing order when the BoM "
+"consumption is not respected."
+msgstr ""
+"Definisce se è possibile consumare più o meno componenti rispetto alla "
+"quantità definita nella DiBa:\n"
+"* Consentito: consentito per tutti gli utenti di produzione.\n"
+"* Consentito con avviso: consentito per tutti gli utenti di produzione con "
+"riepilogo delle differenze di consumo alla chiusura dell'ordine di "
+"produzione.\n"
+"Notare che nel caso del consumo manuale dei componenti, in cui il consumo "
+"viene registrato esclusivamente manualmente, verranno comunque emessi avvisi "
+"di consumo quando appropriato.\n"
+"* Bloccato: solo un responsabile può chiudere un ordine di produzione quando "
+"il consumo della DiBa non viene rispettato."
+
+#. module: mrp_bom_version
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__draft
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__consumption
+msgid "Flexible Consumption"
+msgstr "Consumo flessibile"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields.selection,name:mrp_bom_version.selection__mrp_bom__state__historical
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "Historical"
+msgstr "Storico"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__historical_date
+msgid "Historical Date"
+msgstr "Data storica"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_id
+msgid ""
+"If a product variant is defined the BOM is available only for this product."
+msgstr ""
+"Se è definita una variante prodotto la DiBa è disponibile solo per questo "
+"prodotto."
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_res_config_settings__active_draft
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_config_settings_versioning
+msgid "Keep re-editing BoM active"
+msgstr "Mantenere ri-editing BoM attivo"
+
+#. module: mrp_bom_version
+#: model:mail.message.subtype,description:mrp_bom_version.mt_active
+#: model:mail.message.subtype,name:mrp_bom_version.mt_active
+msgid "MRP BoM Active"
+msgstr "MRP BoM Activa"
+
+#. module: mrp_bom_version
+#: model:res.groups,name:mrp_bom_version.group_mrp_bom_version
+msgid "MRP BoM version"
+msgstr "Versione MRP BoM"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__ready_to_produce
+msgid "Manufacturing Readiness"
+msgstr "Preparazione lavorazione"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "New version"
+msgstr "Nuova versione"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__old_versions
+msgid "Old Versions"
+msgstr "Vecchie versioni"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__picking_type_id
+msgid "Operation Type"
+msgstr "Tipo di operazione"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__operation_ids
+msgid "Operations"
+msgstr "Operazioni"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__previous_bom_id
+msgid "Previous BoM"
+msgstr "DiBa precedente"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_tmpl_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_id
+msgid "Product Variant"
+msgstr "Variante prodotto"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_qty
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__code
+msgid "Reference"
+msgstr "Riferimento"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__state
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_search_view
+msgid "Status"
+msgstr "Stato"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__group_mrp_bom_version
+msgid "The active state may be passed back to state draft"
+msgstr "Lo stato attivo può essere passato di nuovo allo stato bozza"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
+msgstr ""
+"Questa dovrebbe essere la quantità minima di produzione del prodotto. Se la "
+"DiBa contiene operazioni, assicurarsi che la capacità del centro di lavoro "
+"sia precisa."
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_res_config_settings__active_draft
+msgid ""
+"This will allow you to define if those BoM passed back to draft are still "
+"activated or not"
+msgstr ""
+"Questo vi permetterà di definire se quelle BoM che sono passate in bozza "
+"sono ancora attive o no"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unità di misura"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+"Unità di misura (Unità di misura) è l'unità di misura per il controllo di "
+"inventario"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,field_description:mrp_bom_version.field_mrp_bom__version
+msgid "Version"
+msgstr "Versione"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+msgid "Versions"
+msgstr "Versioni"
+
+#. module: mrp_bom_version
+#: model:ir.model.fields,help:mrp_bom_version.field_mrp_bom__picking_type_id
+msgid ""
+"When a procurement has a ‘produce’ route with a operation type set, it will "
+"try to create a Manufacturing Order for that product using a BoM of the same "
+"operation type. That allows to define stock rules which trigger different "
+"manufacturing orders with different BoMs."
+msgstr ""
+"Quando un approvvigionamento ha una rotta 'produzione' con un tipo "
+"operazione impostato, tenterà di creare un ordine di produzione per il "
+"prodotto utilizzando la DiBa dello stesso tipo operazione. Questo consente "
+"di definire regole di magazzino che generano differenti ordini di produzione "
+"con differenti DiBa."
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+msgid ""
+"YYou will activate the BoM, then you won't be able to edit it after this. "
+"Are you sure you want to proceed?"
+msgstr ""
+"Si sta attivando la DiBa, dopo non la si potrà più modificare. Si è sicuri "
+"di procedere?"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid "You are going to create a new version of this BoM. Are you sure?"
+msgstr "Stai creando una nuova versione di questa BoM. Sei sicuro?"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You are going to historize an BoM. Doing, not be able to unlock it unless "
+"you make a copy. Are you sure you want to proceed?"
+msgstr ""
+"Si sta per storicizzare una BoM. Facendo ciò, non sarai in grado di "
+"sbloccarela a meno che non crei una copia. Sei sicuro di voler procedere?"
+
+#. module: mrp_bom_version
+#: model_terms:ir.ui.view,arch_db:mrp_bom_version.mrp_bom_version_tree_view
+msgid ""
+"You will activate the BoM, then you won't be able to edit it after this. Are "
+"you sure you want to proceed?"
+msgstr ""
+"Si sta attivando la DiBa, dopo non la si potrà più modificare. Si è sicuri "
+"di procedere?"
+
+#~ msgid "Group By..."
+#~ msgstr "Raggruppa per..."
+
+#~ msgid "Inactive"
+#~ msgstr "Inattivo"
+
+#~ msgid "Parent BoM"
+#~ msgstr "DiBa padre"
+
+#~ msgid "State"
+#~ msgstr "Stato"
+
+#~ msgid ""
+#~ "You will activate the BoM. If you haven't set a route yet, then you won't "
+#~ "be able to do it after this. Are you sure you want to proceed?"
+#~ msgstr ""
+#~ "Attiverai la BoM. Se non hai ancora impostato una route, non sarai in "
+#~ "grado di farlo dopo. Sei sicuro di voler procedere?"
