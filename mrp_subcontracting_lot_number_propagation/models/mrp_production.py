@@ -4,7 +4,7 @@
 from lxml import etree
 
 from odoo import api, models
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.base.models.ir_ui_view import (
@@ -48,7 +48,7 @@ class MrpProduction(models.Model):
                 attrs = safe_eval(field.attrib.get("attrs", "{}"))
                 if not attrs[attrs_key]:
                     continue
-                required_domain = expression.AND(
+                required_domain = Domain.AND(
                     [attrs[attrs_key], [("is_lot_number_propagated", "=", False)]]
                 )
                 attrs[attrs_key] = required_domain

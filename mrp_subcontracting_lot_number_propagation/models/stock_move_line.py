@@ -4,7 +4,7 @@
 from lxml import etree
 
 from odoo import api, fields, models
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.base.models.ir_ui_view import (
@@ -62,9 +62,7 @@ class StockMoveLine(models.Model):
                 if not attrs.get(attrs_key):
                     attrs[attrs_key] = lot_id_readonly_domain
                     continue
-                readonly_domain = expression.OR(
-                    [attrs[attrs_key], lot_id_readonly_domain]
-                )
+                readonly_domain = Domain.OR([attrs[attrs_key], lot_id_readonly_domain])
                 attrs[attrs_key] = readonly_domain
                 field.set("attrs", str(attrs))
                 modifiers = {}
