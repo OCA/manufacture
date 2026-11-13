@@ -36,13 +36,13 @@ class ProductTemplate(models.Model):
         for rec in self:
             if not rec.attribute_line_ids:
                 continue
-            boms = self._get_component_boms()
+            boms = rec._get_component_boms()
             if not boms:
                 continue
             for bom in boms:
                 vpa = bom.product_tmpl_id.valid_product_template_attribute_line_ids
                 prod_attr_ids = vpa.attribute_id.ids
-                comp_attr_ids = self.attribute_line_ids.attribute_id.ids
+                comp_attr_ids = rec.attribute_line_ids.attribute_id.ids
                 diff = list(set(comp_attr_ids) - set(prod_attr_ids))
                 if len(diff) > 0:
                     attr_recs = self.env["product.attribute"].browse(diff)
