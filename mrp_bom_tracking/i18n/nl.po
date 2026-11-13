@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-13 17:46+0000\n"
+"Last-Translator: pthn-bs <piethein@boerschappen.nl>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "-&gt;"
-msgstr ""
+msgstr "-&gt;"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
@@ -25,6 +27,8 @@ msgid ""
 ":\n"
 "                New component<br/>"
 msgstr ""
+":\n"
+"                Nieuw onderdeel<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
@@ -32,6 +36,8 @@ msgid ""
 ":\n"
 "                Removed component<br/>"
 msgstr ""
+":\n"
+"                Verwijderd onderdeel<br/>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
@@ -40,17 +46,19 @@ msgid ""
 "<br/>\n"
 "                    Product Unit of Measure:"
 msgstr ""
+"<br/>\n"
+"                    Product maateenheid:"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 msgid "<strong>The component details have been updated.</strong>"
-msgstr ""
+msgstr "<strong>De onderdelen zijn bijgewerkt.</strong>"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template_2
 msgid "<strong>The components have changed.</strong>"
-msgstr ""
+msgstr "<strong>De onderdelen zijn gewijzigd.</strong>"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__produce_delay
@@ -138,28 +146,28 @@ msgstr ""
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_tmpl_id
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_line_template
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "Product Quantity:"
-msgstr ""
+msgstr "Productaantal:"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Productvariant"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Aantal"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,field_description:mrp_bom_tracking.field_mrp_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "Referentie"
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__product_qty
@@ -168,6 +176,9 @@ msgid ""
 "If the BOM contains operations, make sure the work center capacity is "
 "accurate."
 msgstr ""
+"Dit moet het laagste aantal product zijn dat geproduceerd kan worden. Indien "
+"de stuklijst bewerkingen bevat, zorg ervoor dat the werkplekcapaciteit "
+"correct is."
 
 #. module: mrp_bom_tracking
 #: model:ir.model.fields,help:mrp_bom_tracking.field_mrp_bom__picking_type_id
@@ -177,8 +188,12 @@ msgid ""
 "operation type. That allows to define stock rules which trigger different "
 "manufacturing orders with different BoMs."
 msgstr ""
+"Als een inkoop een ingestelde 'Productie' route heeft, dan wordt de "
+"Productieorder gemaakt voor het product met een stuklijst van die "
+"bewerkingssoort. Hiermee kunnen voorraadregels verschillende productieorders "
+"maken met verschillende stuklijsten."
 
 #. module: mrp_bom_tracking
 #: model_terms:ir.ui.view,arch_db:mrp_bom_tracking.track_bom_template
 msgid "component<br/>"
-msgstr ""
+msgstr "component<br/>"
