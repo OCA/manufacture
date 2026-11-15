@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="mrp_bom_allergen.BomOverviewTable"
+        t-inherit="mrp.BomOverviewTable"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//thead/tr/th" position="after">
+            <th t-if="data.allergen_imgs">Allergens</th>
+        </xpath>
+    </t>
+    <t
+        t-name="mrp_bom_allergen.BomOverviewLine"
+        t-inherit="mrp.BomOverviewLine"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//td" position="after">
+            <td t-if="data.allergen_imgs">
+                <t
+                    t-foreach="data.allergen_imgs"
+                    t-as="allergen_img"
+                    t-key="allergen_img_index"
+                >
+                    <img
+                        t-if="allergen_img"
+                        t-att-src="allergen_img"
+                        style="max-width: 24px; max-height: 24px; margin: 2px; display: inline-block;"
+                    />
+                </t>
+            </td>
+        </xpath>
+    </t>
+</templates>
