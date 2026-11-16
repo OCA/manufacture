@@ -2,7 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, TransactionCase, new_test_user
 
 
 class TestQualityControlMrp(TransactionCase):
@@ -129,3 +129,89 @@ class TestQualityControlMrp(TransactionCase):
             {"object_id": "%s,%d" % (self.production1._name, self.production1.id)}
         )
         self.assertEquals(self.inspection1.production_id, self.production1)
+
+    def _mark_done_as_mrp_user(self):
+        user = new_test_user(
+            self.env,
+            login="mrp_user_without_qc",
+            groups="base.group_user,mrp.group_mrp_user",
+        )
+        production = self.production1.with_user(user)
+        production.qty_producing = production.product_qty
+        for move in production.move_raw_ids:
+            move.quantity_done = move.product_uom_qty
+        self.assertTrue(production.button_mark_done())
+        return production
+
+    def test_mark_done_by_mrp_user_without_triggers(self):
+        production = self._mark_done_as_mrp_user()
+        self.assertEqual(production.state, "done")
+        self.assertFalse(production.sudo().qc_inspections_ids)
+
+    def test_inspection_create_for_product_by_mrp_user(self):
+        self.product.product_variant_id.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        production = self._mark_done_as_mrp_user()
+        self.assertEqual(production.state, "done")
+        self.assertEqual(len(production.sudo().qc_inspections_ids), 1)
+
+    def test_inspection_create_for_template_by_mrp_user(self):
+        self.product.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        production = self._mark_done_as_mrp_user()
+        self.assertEqual(production.state, "done")
+        self.assertEqual(len(production.sudo().qc_inspections_ids), 1)
+
+    def test_inspection_create_for_category_by_mrp_user(self):
+        self.product.categ_id.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        production = self._mark_done_as_mrp_user()
+        self.assertEqual(production.state, "done")
+        self.assertEqual(len(production.sudo().qc_inspections_ids), 1)
+
+    def test_inspection_data_when_created_by_mrp_user(self):
+        qc_user = new_test_user(
+            self.env,
+            login="qc_user",
+            groups="base.group_user,quality_control_oca.group_quality_control_user",
+        )
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {"trigger": self.trigger.id, "test": self.test.id, "user": qc_user.id},
+            )
+        ]
+        production = self._mark_done_as_mrp_user()
+        inspection = production.sudo().qc_inspections_ids
+        self.assertEqual(inspection.test, self.test)
+        self.assertEqual(inspection.user, qc_user)
+        self.assertTrue(inspection.auto_generated)
+        self.assertEqual(inspection.create_uid, production.env.user)
+
+    def test_inspections_button_only_for_quality_control_users(self):
+        mrp_user = new_test_user(
+            self.env,
+            login="mrp_user_without_qc",
+            groups="base.group_user,mrp.group_mrp_user",
+        )
+        qc_user = new_test_user(
+            self.env,
+            login="qc_user",
+            groups="base.group_user,mrp.group_mrp_user,"
+            "quality_control_oca.group_quality_control_user",
+        )
+        arch = self.production1.with_user(mrp_user).fields_view_get(view_type="form")
+        self.assertNotIn("created_inspections", arch["arch"])
+        arch = self.production1.with_user(qc_user).fields_view_get(view_type="form")
+        self.assertIn("created_inspections", arch["arch"])
+
+    def test_created_inspections_readable_by_mrp_user(self):
+        self.product.qc_triggers = [
+            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+        ]
+        production = self._mark_done_as_mrp_user()
+        self.assertEqual(production.created_inspections, 1)
