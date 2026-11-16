@@ -161,6 +161,94 @@ class TestProductionGroupedByProduct(common.TransactionCase):
         self.assertEqual(len(mto_prod), 1)
         self.assertEqual(mto_prod[0].product_qty, 15)
 
+    def test_03_group_mo_bom_without_components(self):
+        """Test grouping into confirmed MO when BoM has no components."""
+        self.mo.action_cancel()
+        product_no_comp = self.env["product.product"].create(
+            {
+                "name": "TEST No Comp",
+                "route_ids": [
+                    (6, 0, [self.env.ref("mrp.route_warehouse0_manufacture").id])
+                ],
+                "type": "product",
+                "produce_delay": 0,
+            }
+        )
+        self.env["mrp.bom"].create(
+            {
+                "product_id": product_no_comp.id,
+                "product_tmpl_id": product_no_comp.product_tmpl_id.id,
+                "type": "normal",
+                "bom_line_ids": [],
+            }
+        )
+        move1 = self.env["stock.move"].create(
+            {
+                "name": product_no_comp.name,
+                "product_id": product_no_comp.id,
+                "product_uom_qty": 4,
+                "product_uom": product_no_comp.uom_id.id,
+                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+                "procure_method": "make_to_order",
+                "warehouse_id": self.warehouse.id,
+                "date": "2018-06-01 18:00:00",
+            }
+        )
+        move2 = self.env["stock.move"].create(
+            {
+                "name": product_no_comp.name,
+                "product_id": product_no_comp.id,
+                "product_uom_qty": 6,
+                "product_uom": product_no_comp.uom_id.id,
+                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+                "procure_method": "make_to_order",
+                "warehouse_id": self.warehouse.id,
+                "date": "2018-06-01 18:00:00",
+            }
+        )
+        move1.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search(
+            [("product_id", "=", product_no_comp.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mo), 1)
+        self.assertEqual(mo.product_qty, 4)
+        move2.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search(
+            [("product_id", "=", product_no_comp.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mo), 1)
+        self.assertEqual(mo.product_qty, 10)
+        self.assertEqual(len(mo.move_dest_ids), 2)
+
+    def test_04_group_mo_draft_with_dest_moves(self):
+        """Test grouping into draft MO that already has destination moves."""
+        self.mo.action_cancel()
+        draft_mo = self.MrpProduction.create(
+            {
+                "bom_id": self.bom.id,
+                "product_id": self.product1.id,
+                "product_qty": 5,
+                "product_uom_id": self.product1.uom_id.id,
+                "date_deadline": "2018-06-01 15:00:00",
+                "date_planned_start": "2018-06-01 15:00:00",
+                "move_dest_ids": [(4, self.move.id)],
+            }
+        )
+        self.assertEqual(draft_mo.state, "draft")
+        self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.move_2.with_context(test_group_mo=True)._action_confirm(merge=False)
+        self.ProcurementGroup.with_context(test_group_mo=True).run_scheduler()
+        mo = self.MrpProduction.search(
+            [("product_id", "=", self.product1.id), ("state", "!=", "cancel")]
+        )
+        self.assertEqual(len(mo), 1)
+        self.assertEqual(mo.id, draft_mo.id)
+        self.assertEqual(mo.product_qty, 10)
+
     def test_mo_other_date(self):
         self.move.write({"date": "2018-06-01 20:01:00"})
         self.move.with_context(test_group_mo=True)._action_confirm(merge=False)
