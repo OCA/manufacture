@@ -79,3 +79,59 @@ class MrpProductionCase(TransactionCase):
         new_mo.save()
         # Kept after save:
         self.assertEqual(new_mo.picking_type_id, self.standard_manuf_op_type)
+
+    def test_03_confirmed_mo_keeps_its_op_type(self):
+        component = self.product_model.create({"name": "Component"})
+        bom = self.bom_model.create(
+            {
+                "product_tmpl_id": self.product_1.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "bom_line_ids": [
+                    (0, 0, {"product_id": component.id, "product_qty": 1})
+                ],
+            }
+        )
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_1
+        mo = mo_form.save()
+        self.assertEqual(mo.picking_type_id, self.standard_manuf_op_type)
+        mo.action_confirm()
+        self.assertEqual(mo.state, "confirmed")
+        # The product is reconfigured to resolve the secondary manufacture rule.
+        self.product_1.route_ids = [(6, 0, self.secondary_manuf_route.ids)]
+        # Updating the BoM rewrites bom_id, which this compute depends on. The
+        # operation type and the component location of a confirmed MO must not
+        # follow the new rule: its transfers and reservations already exist.
+        self.assertEqual(mo.bom_id, bom)
+        mo.action_update_bom()
+        self.assertEqual(mo.picking_type_id, self.standard_manuf_op_type)
+        self.assertEqual(
+            mo.location_src_id, self.standard_manuf_op_type.default_location_src_id
+        )
+        self.assertEqual(
+            mo.move_raw_ids.location_id,
+            self.standard_manuf_op_type.default_location_src_id,
+        )
+
+    def test_04_draft_mo_still_follows_the_route(self):
+        component = self.product_model.create({"name": "Component"})
+        self.bom_model.create(
+            {
+                "product_tmpl_id": self.product_1.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "bom_line_ids": [
+                    (0, 0, {"product_id": component.id, "product_qty": 1})
+                ],
+            }
+        )
+        mo_form = Form(self.env["mrp.production"])
+        mo_form.product_id = self.product_1
+        mo = mo_form.save()
+        self.assertEqual(mo.state, "draft")
+        self.assertEqual(mo.picking_type_id, self.standard_manuf_op_type)
+        # Same trigger as the confirmed case, but the MO is still a draft, so the
+        # operation type is expected to follow the new rule.
+        self.product_1.route_ids = [(6, 0, self.secondary_manuf_route.ids)]
+        mo.action_update_bom()
+        self.assertEqual(mo.picking_type_id, self.op_type_2)
+        self.assertEqual(mo.location_src_id, self.source_loc_2)
