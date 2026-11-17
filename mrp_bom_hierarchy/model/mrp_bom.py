@@ -14,13 +14,16 @@ class MrpBom(models.Model):
         for bom in self:
             if bom.product_id:
                 bom_ids = self.env["mrp.bom"].search(
-                    [("product_id", "=", bom.product_id.id), ("id", "!=", bom.id)],
+                    [
+                        ("product_id", "=", bom.product_id.id),
+                        ("id", "!=", bom._origin.id),
+                    ],
                 )
             else:
                 bom_ids = self.env["mrp.bom"].search(
                     [
                         ("product_tmpl_id", "=", bom.product_tmpl_id.id),
-                        ("id", "!=", bom.id),
+                        ("id", "!=", bom._origin.id),
                     ],
                 )
             if bom_ids:
