@@ -1,0 +1,1 @@
+Access BOM of your products. A new column appears where we can set the fixed quantity.

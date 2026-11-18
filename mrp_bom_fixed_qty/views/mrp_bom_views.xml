@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Copyright 2026 Dixmit
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+    -->
+    <record id="mrp_bom_form_view_fixed_qty" model="ir.ui.view">
+        <field name="name">mrp.bom.form.fixed.qty</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']"
+                position="after"
+            >
+                <field name="fixed_qty" />
+            </xpath>
+            <xpath
+                expr="//field[@name='byproduct_ids']/list/field[@name='product_qty']"
+                position="after"
+            >
+                <field name="fixed_qty" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
