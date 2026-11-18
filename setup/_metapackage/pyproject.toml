@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-oca-manufacture"
-version = "20.0.20261118.0"
+version = "20.0.20261118.1"
 dependencies = [
     "odoo-addon-mrp_multi_level==20.0.*",
     "odoo-addon-mrp_production_unique_lot==20.0.*",
+    "odoo-addon-mrp_subcontracting_purchase_link==20.0.*",
     "odoo-addon-mrp_warehouse_calendar==20.0.*",
 ]
 classifiers=[
