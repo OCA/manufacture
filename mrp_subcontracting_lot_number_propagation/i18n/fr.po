@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_lot_number_propagation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e-20260601\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-19 14:32+0000\n"
+"PO-Revision-Date: 2026-11-19 14:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model,name:mrp_subcontracting_lot_number_propagation.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_move__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_move__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_move_line__id
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model.fields,field_description:mrp_subcontracting_lot_number_propagation.field_stock_move_line__is_lot_id_editable
+msgid "Is lot editable?"
+msgstr "Le lot est-il modifiable ?"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model,name:mrp_subcontracting_lot_number_propagation.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model,name:mrp_subcontracting_lot_number_propagation.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model,name:mrp_subcontracting_lot_number_propagation.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model.fields,help:mrp_subcontracting_lot_number_propagation.field_stock_move_line__is_lot_id_editable
+msgid "Technical field to define if the 'lot_id' field is editable."
+msgstr "Champ technique permettant de déterminer si le champ 'lot_id' est modifiable."
+
+#. module: mrp_subcontracting_lot_number_propagation
+#. odoo-python
+#: code:addons/mrp_subcontracting_lot_number_propagation/models/stock_picking.py:0
+msgid ""
+"The number of receipt move lines does not match the number of propagated "
+"lots for MO %(name)s."
+msgstr ""
+" Le nombre de lignes de mouvement de réception ne correspond pas au nombre de "
+"lots propagés pour les MO %(name)s."
+
+#. module: mrp_subcontracting_lot_number_propagation
+#: model:ir.model,name:mrp_subcontracting_lot_number_propagation.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"

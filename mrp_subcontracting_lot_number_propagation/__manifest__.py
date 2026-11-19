@@ -20,6 +20,7 @@
         "mrp_lot_number_propagation",
     ],
     "data": [
+        "views/mrp_production.xml",
         "views/stock_move_line.xml",
     ],
     "installable": True,

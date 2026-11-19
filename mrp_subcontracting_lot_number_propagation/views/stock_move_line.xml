@@ -32,6 +32,13 @@
             <field name="lot_id" position="before">
                 <field name="is_lot_id_editable" invisible="1" />
             </field>
+            <field name="lot_id" position="attributes">
+                <attribute
+                    name="readonly"
+                    separator=" or "
+                    add="not is_lot_id_editable"
+                />
+            </field>
         </field>
     </record>
 
