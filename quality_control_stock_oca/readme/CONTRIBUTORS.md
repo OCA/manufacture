@@ -1,0 +1,18 @@
+- Oihane Crucelaegui \<<oihanecrucelaegi@avanzosc.es>\>
+- Simone Rubino \<<simone.rubino@agilebg.com>\>
+- Andrii Skrypka \<<andrijskrypa@ukr.net>\>
+- Ignacio José Alés \<<ignacio.ales@guadaltech.es>\>
+- Pimolnat Suntian \<<pimolnats@ecosoft.co.th>\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Pedro M. Baeza
+  - Carlos Roca
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>
+- [Sygel](https://www.sygel.es):
+  - Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- [Quartile](https://www.quartile.co):
+  - Aung Ko Ko Lin
+  - Yoshi Tashiro
+- [Solvos](https://www.solvos.es):
+  - Dante Pereyra \<<dante.pereyra@solvos.es>\>
+- [@Hotdgo9](https://github.com/Hotdgo9)
