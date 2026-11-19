@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_sale_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-07-14 04:32+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid "Commitment Date"
+msgstr "Datum zaveze"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__partner_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__partner_id
+msgid "Customer"
+msgstr "Kupec"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__client_order_ref
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__client_order_ref
+msgid "Customer Reference"
+msgstr "Sklic kupca"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Proizvodni nalog"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__reference_ids
+msgid "References"
+msgstr "Sklici"
+
+#. module: mrp_sale_info
+#: model_terms:ir.ui.view,arch_db:mrp_sale_info.mrp_production_workorder_form_view_inherit
+msgid "Sale information"
+msgstr "Prodajne informacije"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_production__sale_id
+#: model:ir.model.fields,field_description:mrp_sale_info.field_mrp_workorder__sale_id
+msgid "Sale order"
+msgstr "Prodajni nalog"
+
+#. module: mrp_sale_info
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_production__commitment_date
+#: model:ir.model.fields,help:mrp_sale_info.field_mrp_workorder__commitment_date
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+"To je rok dobave, ki je bil obljubljen stranki. Če je ta datum določen, bo "
+"nalog za dobavo načrtovan na podlagi tega datuma in ne na podlagi dobavnih "
+"rokov proizvodov."
+
+#. module: mrp_sale_info
+#: model:ir.model,name:mrp_sale_info.model_mrp_workorder
+msgid "Work Order"
+msgstr "Delovni nalog"
