@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_subcontracting_resupply_status
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-01 12:28+0000\n"
+"PO-Revision-Date: 2025-07-01 12:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__subcontracting_resupply_picking_count
+msgid "Count of Subcontracting Resupply"
+msgstr "Antal underleverandørleverancer"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields,help:mrp_subcontracting_resupply_status.field_stock_picking__subcontracting_resupply_picking_count
+msgid "Count of Subcontracting Resupply related to this receipt"
+msgstr "Antal underleverandør leverancer relateret til denne varemodtagelse"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__full
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__full
+msgid "Fully Resupplied"
+msgstr "Fuldt genopfyldt"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__pending
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__pending
+msgid "Not Resupplied"
+msgstr "Ikke genforsynet"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__partial
+#: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__partial
+msgid "Partially Resupplied"
+msgstr "Delvist genopfyldt"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model,name:mrp_subcontracting_resupply_status.model_purchase_order
+msgid "Purchase Order"
+msgstr "Indkøbsordre"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_purchase_order__resupply_status
+#: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__resupply_status
+msgid "Resupply Status"
+msgstr "Genopfyldning Status"
+
+#. module: mrp_subcontracting_resupply_status
+#: model:ir.model,name:mrp_subcontracting_resupply_status.model_stock_picking
+msgid "Transfer"
+msgstr "Overfør"
