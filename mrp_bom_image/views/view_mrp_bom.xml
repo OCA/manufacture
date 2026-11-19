@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2024 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Form -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_form" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//widget[@name='web_ribbon']" position="after">
+                <field
+                    name="image_1024"
+                    widget="image"
+                    class="oe_avatar"
+                    options="{'preview_image': 'image_128'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ************************************************************ -->
+    <!-- MRP Bill of Materials - Kanban -->
+    <!-- ************************************************************ -->
+
+    <record id="view_mrp_bom_kanban" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_kanban_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-name='card']" position="inside">
+                <div class="d-flex align-items-start">
+                    <div class="o_kanban_image me-2">
+                        <field
+                            class="o_image_64_contain"
+                            name="image_128"
+                            widget="image"
+                            alt="Bill of Material Image"
+                        />
+                    </div>
+                    <div>
+                        <div class="content" />
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[hasclass('content')]" position="inside">
+                <xpath expr="//div" position="move" />
+                <xpath expr="//footer" position="move" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
