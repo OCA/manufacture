@@ -456,3 +456,94 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
                 line.quantitative_value = 5.0
         inspection.action_confirm()
         picking2._action_done()
+
+    def test_button_validate(self):
+        """
+        Test behavior of "Validate" button
+        to ensure popup appears under certain conditions
+        """
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d" % (self.picking1._name, self.picking1.id),
+            }
+        )
+
+        move1 = self.picking1.move_ids[0]
+        move1.quantity_done = 2
+        self.product.remind_qc = True
+
+        res = self.picking1.button_validate()
+        self.assertNotEqual(res, True)
+
+        self.inspection1.write({"state": "success"})
+        res = self.picking1.button_validate()
+
+        self.assertEqual(res, True)
+        self.assertEqual(self.picking1.state, "done")
+
+    def test_qc_action_approve(self):
+        """
+        Test Approve Inspection button when inspection fails
+        """
+        self.product.auto_scrap = True
+        self.picking1.move_ids[0].quantity_done = 2
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d" % (self.picking1._name, self.picking1.id),
+                "state": "failed",
+                "qty": 2,
+            }
+        )
+        self.inspection1.action_approve()
+
+        self.assertEqual(self.picking1.state, "done")
+
+    def test_no_auto_create_scraps(self):
+        """
+        Test scraps don't create when inspection fails
+        if relative flag is off
+        """
+        self.picking1.move_ids[0].quantity_done = 2
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d"
+                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "state": "failed",
+                "qty": 2,
+            }
+        )
+        self.inspection1.onchange_object_id()
+
+        res = self.picking1.button_validate()
+        self.assertTrue(res)
+
+        self.assertFalse(self.picking1.has_scrap_move)
+
+    def test_auto_create_scraps(self):
+        """
+        Test scraps creation when inspection fails
+        if relative flag is on
+        """
+        self.product.auto_scrap = True
+        self.picking1.move_ids[:1].quantity_done = 2
+        self.inspection1.write(
+            {
+                "name": self.picking1.move_ids[:1]._name + "inspection",
+                "object_id": "%s,%d"
+                % (self.picking1.move_ids[:1]._name, self.picking1.move_ids[:1].id),
+                "state": "failed",
+                "qty": 2,
+            }
+        )
+        self.inspection1.onchange_object_id()
+
+        res = self.picking1.button_validate()
+        self.assertTrue(res)
+
+        self.assertTrue(self.picking1.has_scrap_move)
+
+        scraps = self.env["stock.scrap"].search([("picking_id", "=", self.picking1.id)])
+        self.assertTrue(all(scrap.state == "done" for scrap in scraps))
