@@ -1,0 +1,4 @@
+- Lois Rilo \<lois.rilo@forgeflow.com\>
+- Sudhir Arya \<sudhir@erpharbor.com\>
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Vicent Cubells \<<vicent.cubells@nagarro.com>\>
