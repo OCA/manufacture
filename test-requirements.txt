@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-product_secondary_unit @ git+https://github.com/OCA/product-attribute.git@refs/pull/2508/head#subdirectory=product_secondary_unit
