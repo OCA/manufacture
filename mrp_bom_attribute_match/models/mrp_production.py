@@ -9,7 +9,7 @@ class MrpProduction(models.Model):
         for bom_line in self.bom_id.bom_line_ids:
             if bom_line.component_template_id:
                 # product_id was set in mrp.bom.explode for correct flow. Need to remove it.
-                bom_line.product_id = False
+                bom_line.sudo().write({"product_id": False})
         return res
 
     @api.constrains("bom_id")
