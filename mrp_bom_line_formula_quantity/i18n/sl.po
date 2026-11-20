@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_line_formula_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-06-22 11:08+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Postavka kosovnice"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,help:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid ""
+"Formula to be evaluated when generating the quantity for a production order line.\n"
+"The following values are available:\n"
+"- bom_line: the current BoM line,\n"
+"- operation: the operation where the components areconsumed for current BoM line,\n"
+"- product: the Product of current BoM line,\n"
+"- product_uom: the UoM of the Product of current BoM line,\n"
+"- product_uom_qty: the quantity of the production order line,\n"
+"- production: the production order being created,\n"
+"The computed quantity must be assigned to the `quantity` variable."
+msgstr ""
+"Formula, ki se izračuna pri določanju količine za postavko proizvodnega "
+"naloga.\n"
+"Na voljo so naslednje vrednosti:\n"
+"- bom_line: trenutna vrstica seznama materialov,\n"
+"- operation: operacija, v kateri se porabljajo komponente za trenutno "
+"vrstico seznama materialov,\n"
+"- product: izdelek trenutne vrstice seznama materialov,\n"
+"- product_uom: merska enota izdelka trenutne vrstice seznama materialov,\n"
+"- product_uom_qty: količina vrstice proizvodnega naročila,\n"
+"- production: proizvodno naročilo, ki se ustvarja,\n"
+"Izračunana količina mora biti dodeljena spremenljivki `quantity`."
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model,name:mrp_bom_line_formula_quantity.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Proizvodni nalog"
+
+#. module: mrp_bom_line_formula_quantity
+#: model:ir.model.fields,field_description:mrp_bom_line_formula_quantity.field_mrp_bom_line__quantity_formula
+msgid "Quantity Formula"
+msgstr "Količinska formula"
