@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_lot_form_inherit" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field
+                    name="batch_bom_ids"
+                    readonly="1"
+                    invisible="not batch_bom_ids"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="batch_production_ids"
+                    readonly="1"
+                    invisible="not batch_production_ids"
+                    widget="many2many_tags"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
