@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [mrp_multi_level](mrp_multi_level/) | 20.0.1.0.0 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> <a href='https://github.com/LoisRForgeFlow'><img src='https://github.com/LoisRForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='LoisRForgeFlow'/></a> | Adds an MRP Scheduler
 [mrp_production_unique_lot](mrp_production_unique_lot/) | 20.0.1.0.0 |  | Ensures that production lot numbers are unique and cannot be reused in another manufacturing order.
 [mrp_subcontracting_purchase_link](mrp_subcontracting_purchase_link/) | 20.0.1.0.0 |  | Link Purchase Order Line to Subcontract Productions
+[mrp_subcontracting_resupply_status](mrp_subcontracting_resupply_status/) | 20.0.1.0.0 |  | MRP Subcontracting Resupply Status
 [mrp_warehouse_calendar](mrp_warehouse_calendar/) | 20.0.1.0.0 | <a href='https://github.com/JordiBForgeFlow'><img src='https://github.com/JordiBForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='JordiBForgeFlow'/></a> | Considers the warehouse calendars in manufacturing
 [mrp_workorder_last_worker](mrp_workorder_last_worker/) | 20.0.1.0.0 |  | See the last user who worked on a workorder
 
