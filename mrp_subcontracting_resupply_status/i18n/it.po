@@ -6,73 +6,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Language: it\n"
+"PO-Revision-Date: 2026-11-23 13:46+0000\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__subcontracting_resupply_picking_count
 msgid "Count of Subcontracting Resupply"
-msgstr ""
+msgstr "Numero di rifornimenti in subappalto"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields,help:mrp_subcontracting_resupply_status.field_stock_picking__subcontracting_resupply_picking_count
 msgid "Count of Subcontracting Resupply related to this receipt"
-msgstr ""
+msgstr "Numero di rifornimenti in subappalto relativi a questa ricevuta"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_move__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__full
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__full
 msgid "Fully Resupplied"
-msgstr ""
+msgstr "Completamente rifornito"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_purchase_order__id
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_move__id
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__pending
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__pending
 msgid "Not Resupplied"
-msgstr ""
+msgstr "Non rifornito"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__purchase_order__resupply_status__partial
 #: model:ir.model.fields.selection,name:mrp_subcontracting_resupply_status.selection__stock_picking__resupply_status__partial
 msgid "Partially Resupplied"
-msgstr ""
+msgstr "Parzialmente rifornito"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model,name:mrp_subcontracting_resupply_status.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_purchase_order__resupply_status
 #: model:ir.model.fields,field_description:mrp_subcontracting_resupply_status.field_stock_picking__resupply_status
 msgid "Resupply Status"
-msgstr ""
+msgstr "Stato rifornimento"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model,name:mrp_subcontracting_resupply_status.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: mrp_subcontracting_resupply_status
 #: model:ir.model,name:mrp_subcontracting_resupply_status.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
