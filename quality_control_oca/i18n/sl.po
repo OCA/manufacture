@@ -452,6 +452,14 @@ msgid "Inspections"
 msgstr "Inšpekcije"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+msgid ""
+"Inspections %s are auto-generated or not in draft state and can only be "
+"deleted by superuser."
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
@@ -1116,18 +1124,6 @@ msgstr "Ko je to polje označeno, se odgovor smatra za pravilen."
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an auto-generated inspection."
-msgstr "Samodejno ustvarjenih inšpekcij ne morete odstraniti."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an inspection that is not in draft state."
-msgstr "Inšpekcije, ki ni osnutek ne morete odstraniti."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
 msgid "You must first set the test to perform."
 msgstr "Najprej morate nastaviti test, ki se bo opravljal."
 
@@ -1147,6 +1143,12 @@ msgstr "Določiti morate en odgovor za vsa kvalitativna vprašanja."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "ali"
+
+#~ msgid "You cannot remove an auto-generated inspection."
+#~ msgstr "Samodejno ustvarjenih inšpekcij ne morete odstraniti."
+
+#~ msgid "You cannot remove an inspection that is not in draft state."
+#~ msgstr "Inšpekcije, ki ni osnutek ne morete odstraniti."
 
 #~ msgid "Reference object"
 #~ msgstr "Objekt sklica"

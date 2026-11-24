@@ -437,6 +437,14 @@ msgid "Inspections"
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+msgid ""
+"Inspections %s are auto-generated or not in draft state and can only be "
+"deleted by superuser."
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
@@ -1088,18 +1096,6 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
 msgid "When this field is marked, the answer is considered correct."
-msgstr ""
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an auto-generated inspection."
-msgstr ""
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control_oca

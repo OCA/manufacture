@@ -452,6 +452,14 @@ msgid "Inspections"
 msgstr "Inspections"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+msgid ""
+"Inspections %s are auto-generated or not in draft state and can only be "
+"deleted by superuser."
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
@@ -1119,19 +1127,6 @@ msgstr "Quand ce champ est coché, la réponse est considérée correcte."
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an auto-generated inspection."
-msgstr "Vous ne pouvez pas supprimer une inspection générée automatiquement."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an inspection that is not in draft state."
-msgstr ""
-"Vous ne pouvez pas supprimer une inspection qui n'est pas en Brouillon."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
 msgid "You must first set the test to perform."
 msgstr "Il faut dans un premier temps configurer le test à jouer."
 
@@ -1151,6 +1146,14 @@ msgstr "Une réponse est obligatoire pour chaque question qualitative."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "ou"
+
+#~ msgid "You cannot remove an auto-generated inspection."
+#~ msgstr ""
+#~ "Vous ne pouvez pas supprimer une inspection générée automatiquement."
+
+#~ msgid "You cannot remove an inspection that is not in draft state."
+#~ msgstr ""
+#~ "Vous ne pouvez pas supprimer une inspection qui n'est pas en Brouillon."
 
 #~ msgid "Reference object"
 #~ msgstr "Objet de référence"

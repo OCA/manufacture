@@ -440,6 +440,14 @@ msgid "Inspections"
 msgstr "Inspektioner"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+msgid ""
+"Inspections %s are auto-generated or not in draft state and can only be "
+"deleted by superuser."
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__internal_notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
 msgid "Internal notes"
@@ -1102,18 +1110,6 @@ msgstr "När detta fält är markerat anses svaret vara korrekt."
 #. module: quality_control_oca
 #. odoo-python
 #: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an auto-generated inspection."
-msgstr "Du kan inte ta bort en automatiskt genererad inspektion."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-msgid "You cannot remove an inspection that is not in draft state."
-msgstr "Du kan inte ta bort en inspektion som inte är i utkastläge."
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
 msgid "You must first set the test to perform."
 msgstr "Du måste först ställa in att testet ska utföras."
 
@@ -1133,6 +1129,12 @@ msgstr "Du bör ge svar på alla kvalitativa frågor."
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.view_qc_test_set_test_form
 msgid "or"
 msgstr "eller"
+
+#~ msgid "You cannot remove an auto-generated inspection."
+#~ msgstr "Du kan inte ta bort en automatiskt genererad inspektion."
+
+#~ msgid "You cannot remove an inspection that is not in draft state."
+#~ msgstr "Du kan inte ta bort en inspektion som inte är i utkastläge."
 
 #~ msgid "Reference object"
 #~ msgstr "Referensobjekt"
