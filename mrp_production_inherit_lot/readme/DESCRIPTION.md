@@ -1,0 +1,1 @@
+Allows to set the same lot to a byproduct.
