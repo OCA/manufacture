@@ -7,7 +7,7 @@
 
 {
     "name": "Quality Control OCA",
-    "version": "18.0.1.4.0",
+    "version": "18.0.1.4.1",
     "category": "Quality Control",
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
