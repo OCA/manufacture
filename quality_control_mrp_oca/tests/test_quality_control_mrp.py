@@ -2,6 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.fields import Command
 from odoo.tests import Form
 
 from odoo.addons.quality_control_oca.tests.test_quality_control import (
@@ -49,7 +50,7 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
 
     def test_inspection_create_for_product(self):
         self.product.product_variant_id.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.production1.qty_producing = self.production1.product_qty
         self.production1._post_inventory()
@@ -60,7 +61,7 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
         )
 
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.production1.qty_producing = self.production1.product_qty
         self.production1._post_inventory()
@@ -72,7 +73,7 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
 
     def test_inspection_create_for_category(self):
         self.product.categ_id.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.production1.qty_producing = self.production1.product_qty
         self.production1._post_inventory()
@@ -84,10 +85,10 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
 
     def test_inspection_create_only_one(self):
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.product.categ_id.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.production1.qty_producing = self.production1.product_qty
         self.production1._post_inventory()
@@ -99,7 +100,7 @@ class TestQualityControlMrp(TestQualityControlOcaBase):
 
     def test_inspection_with_partial_fabrication(self):
         self.product.qc_triggers = [
-            (0, 0, {"trigger": self.trigger.id, "test": self.test.id})
+            Command.create({"trigger": self.trigger.id, "test": self.test.id})
         ]
         self.production1.qty_producing = 1.0
         self.production1._post_inventory()

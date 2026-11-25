@@ -4,7 +4,7 @@
 
 {
     "name": "MRP extension for quality control (OCA)",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Quality control",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
