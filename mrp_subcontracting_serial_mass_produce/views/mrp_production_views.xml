@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="mrp_production_subcontracting_form_view_mass_produce"
+        model="ir.ui.view"
+    >
+        <field name="name">mrp.production.subcontracting.form.view.mass.produce</field>
+        <field name="model">mrp.production</field>
+        <field
+            name="inherit_id"
+            ref="mrp_subcontracting.mrp_production_subcontracting_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_producing_id']" position="before">
+                <field name="show_serial_mass_produce" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='lot_producing_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('product_tracking', 'in', ('none', False))], 'required': [('product_tracking', 'not in', ('none', False)), ('show_serial_mass_produce', '=', False)]}</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='subcontracting_record_component'][1]"
+                position="before"
+            >
+                <button
+                    name="action_serial_mass_produce_wizard"
+                    type="object"
+                    string="Mass Produce"
+                    class="btn-secondary"
+                    attrs="{'invisible': [('show_serial_mass_produce', '=', False)]}"
+                    data-hotkey="m"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
