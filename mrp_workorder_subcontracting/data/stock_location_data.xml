@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="stock_location_subcontractors" model="stock.location">
+        <field name="name">Subcontractors</field>
+        <field name="usage">view</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().env.ref('stock.warehouse0').view_location_id.id"
+        />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+
+    <record id="stock_location_subcontractors_general" model="stock.location">
+        <field name="name">General Stock</field>
+        <field name="usage">internal</field>
+        <field name="location_id" ref="stock_location_subcontractors" />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+
+    <record id="stock_location_virtual_subcontract" model="stock.location">
+        <field name="name">General Stock</field>
+        <field name="usage">production</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            search="[('name', '=', 'Production'), ('usage', '=', 'production')]"
+        />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+
+    <record id="stock_location_virtual_finished_subcontract" model="stock.location">
+        <field name="name">Finished Subcontract</field>
+        <field name="usage">production</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            search="[('name', '=', 'Production'), ('usage', '=', 'production')]"
+        />
+        <field name="company_id" ref="base.main_company" />
+    </record>
+</odoo>

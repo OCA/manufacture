@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_routing_workcenter_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.form.subcontracting</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Subcontract" name="subcontract">
+                    <group>
+                        <field name="subcontract_ok" />
+                        <field
+                            name="subcontract_product_id"
+                            domain="[('type', '=', 'service'), ('purchase_ok', '=', True)]"
+                        />
+                        <field
+                            name="subcontractor_partner_ids"
+                            widget="many2many_tags"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_routing_workcenter_view_tree_subcontracting" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.tree.subcontracting</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="subcontract_ok" optional="hide" />
+                <field name="subcontract_product_id" optional="hide" />
+                <field
+                    name="subcontractor_partner_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_routing_workcenter_view_tree_bom_subcontracting" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.bom.tree.subcontracting</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_bom_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="subcontract_ok" optional="hide" />
+                <field name="subcontract_product_id" optional="hide" />
+                <field
+                    name="subcontractor_partner_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

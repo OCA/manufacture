@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_view_form_subcontracting" model="ir.ui.view">
+        <field name="name">purchase.order.form.subcontracting</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_subcontract_workorders"
+                    class="oe_stat_button"
+                    icon="fa-cogs"
+                    invisible="subcontract_workorder_count == 0"
+                >
+                    <field
+                        name="subcontract_workorder_count"
+                        widget="statinfo"
+                        string="Subcontractor Phases"
+                    />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_subcontract_transfers"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="subcontract_transfer_count == 0"
+                >
+                    <field
+                        name="subcontract_transfer_count"
+                        widget="statinfo"
+                        string="Subcontract Movements"
+                    />
+                </button>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="production_id"
+                    optional="hide"
+                    column_invisible="not parent.mrp_subcontracting"
+                />
+                <field
+                    name="workorder_id"
+                    optional="hide"
+                    column_invisible="not parent.mrp_subcontracting"
+                />
+                <field
+                    name="subcontract_lost_bid"
+                    optional="hide"
+                    column_invisible="not parent.mrp_subcontracting"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                position="after"
+            >
+                <field name="production_id" invisible="not parent.mrp_subcontracting" />
+                <field name="workorder_id" invisible="not parent.mrp_subcontracting" />
+                <field
+                    name="subcontract_lost_bid"
+                    invisible="not parent.mrp_subcontracting"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_tree_subcontracting_documents" model="ir.ui.view">
+        <field name="name">purchase.order.tree.subcontracting.documents</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="date_order" />
+                <field name="date_planned" optional="hide" />
+                <field name="order_type" optional="hide" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state in ('draft', 'sent')"
+                    decoration-warning="state in ('to approve', 'to_approve')"
+                    decoration-success="state in ('purchase', 'done')"
+                    decoration-danger="state == 'cancel'"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>
