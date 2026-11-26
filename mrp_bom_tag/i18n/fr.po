@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-14 14:06+0000\n"
+"PO-Revision-Date: 2022-10-14 14:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_tag
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tag.view_bom_tag_form
+msgid "<span class=\"o_stat_text\">Bills of Material</span>"
+msgstr ""
+
+#. module: mrp_bom_tag
+#: model:ir.model,name:mrp_bom_tag.model_mrp_bom_tag
+msgid "Bill Of Material Tag"
+msgstr "Tag de nomenclature"
+
+#. module: mrp_bom_tag
+#: model:ir.actions.act_window,name:mrp_bom_tag.action_bom_tag_2_mrp_bom
+#: model:ir.model,name:mrp_bom_tag.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__bom_qty
+msgid "BoM Quantity"
+msgstr "Quantité de fiches techniques"
+
+#. module: mrp_bom_tag
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tag.view_bom_tag_form
+#, fuzzy
+msgid "BoM Tag"
+msgstr "Tags de fiches techniques"
+
+#. module: mrp_bom_tag
+#: model:ir.actions.act_window,name:mrp_bom_tag.action_bom_tag
+#: model:ir.ui.menu,name:mrp_bom_tag.menu_bom_tag
+msgid "BoM Tags"
+msgstr "Tags de fiches techniques"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__bom_ids
+msgid "Bom"
+msgstr "Fiche technique"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__child_id
+msgid "Child Categories"
+msgstr "Catégories Enfants"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,help:mrp_bom_tag.field_mrp_bom__bom_tag_ids
+msgid "Choose or create your tags for your BoM and set its color."
+msgstr ""
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__color
+#, fuzzy
+msgid "Color"
+msgstr "Couleur"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__complete_name
+msgid "Complete Name"
+msgstr "Nom Complet"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,help:mrp_bom_tag.field_mrp_bom_tag__bom_qty
+msgid "Number of BoMs under this BoM tag (not considering children categories)"
+msgstr ""
+"Nombre de Nomenclatures sous ce tag (ne compte pas les catégories enfants)"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__parent_id
+msgid "Parent BoM Tag"
+msgstr "Catégorie Tag parent"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom_tag__parent_path
+msgid "Parent Path"
+msgstr "Chemin parent"
+
+#. module: mrp_bom_tag
+#: model:ir.model.fields,field_description:mrp_bom_tag.field_mrp_bom__bom_tag_ids
+#: model_terms:ir.ui.view,arch_db:mrp_bom_tag.view_bom_tag_search
+msgid "Tags"
+msgstr ""
+
+#~ msgid "Bills of Material"
+#~ msgstr "Fiche technique"
+
+#, python-format
+#~ msgid "You cannot create recursive bom tags."
+#~ msgstr "Vous ne pouvez pas créer de catégories de tag récursives."
