@@ -27,6 +27,7 @@ class MrpProduction(models.Model):
     )
     propagated_lot_producing = fields.Char(
         compute="_compute_propagated_lot_producing",
+        readonly=True,
         help=(
             "The BoM used on this manufacturing order is set to propagate "
             "lot number from one of its components. The value will be "
@@ -43,18 +44,30 @@ class MrpProduction(models.Model):
         for order in self:
             order.propagated_lot_producing = False
             move_with_lot = order._get_propagating_component_move()
-            line_with_sn = move_with_lot.move_line_ids.filtered(
-                lambda l: (
-                    l.lot_id
-                    and l.product_id.tracking == "serial"
-                    and tools.float_compare(
-                        l.qty_done, 1, precision_rounding=l.product_uom_id.rounding
+            if not move_with_lot:
+                continue
+            # serial tracking logic
+            if move_with_lot.product_id.tracking == "serial":
+                line_with_sn = move_with_lot.move_line_ids.filtered(
+                    lambda l: (
+                        l.lot_id
+                        and l.product_id.tracking == "serial"
+                        and tools.float_compare(
+                            l.qty_done, 1, precision_rounding=l.product_uom_id.rounding
+                        )
+                        == 0
                     )
-                    == 0
                 )
-            )
-            if len(line_with_sn) == 1:
-                order.propagated_lot_producing = line_with_sn.lot_id.name
+                if len(line_with_sn) == 1:
+                    order.propagated_lot_producing = line_with_sn.lot_id.name
+
+            else:  # lot tracking logic
+                lines_with_lot = move_with_lot.move_line_ids.filtered("lot_id")
+                if lines_with_lot:
+                    lots = lines_with_lot.mapped("lot_id")
+                    if len(lots) == 1:
+                        # All move lines use the same lot
+                        order.propagated_lot_producing = lots.name
 
     @api.onchange("bom_id")
     def _onchange_bom_id_lot_number_propagation(self):
@@ -68,6 +81,25 @@ class MrpProduction(models.Model):
     def _get_propagating_component_move(self):
         self.ensure_one()
         return self.move_raw_ids.filtered(lambda o: o.propagate_lot_number)
+
+    def _can_propagate_lot_number(self):
+        """
+        Check if lot number can be propagated based on current reservations.
+        Note: is_lot_number_propagated is already checked before calling this method
+
+        Returns True if:
+        - There's exactly one component with tracking enabled
+        - That component has reservations from a single lot only
+        """
+        self.ensure_one()
+
+        move_with_lot = self._get_propagating_component_move()
+
+        # Get all reserved lots for this component
+        reserved_lots = move_with_lot.move_line_ids.mapped("lot_id")
+
+        # For lot propagation to work, all reservations must be from the same lot
+        return len(reserved_lots) == 1 and reserved_lots
 
     def _set_lot_number_propagation_data_from_bom(self):
         """Copy information from BoM to the manufacturing order."""
@@ -106,6 +138,10 @@ class MrpProduction(models.Model):
         for order in self:
             if not order.is_lot_number_propagated or order.lot_producing_id:
                 continue
+
+            if not order._can_propagate_lot_number():
+                continue
+
             finish_moves = order.move_finished_ids.filtered(
                 lambda m: m.product_id == order.product_id
                 and m.state not in ("done", "cancel")
@@ -120,37 +156,68 @@ class MrpProduction(models.Model):
                     ],
                     limit=1,
                 )
-                if lot.quant_ids:
-                    raise UserError(
-                        _(
-                            "Lot/Serial number %s already exists and has been used. "
-                            "Unable to propagate it."
-                        )
-                    )
+                # Comentamos esto para que si el lote ya existe que lo use
+                # if lot.quant_ids:
+                #     raise UserError(
+                #         _(
+                #             "Lot/Serial number %s already exists and has been used. "
+                #             "Unable to propagate it."
+                #         )
+                #     )
                 if not lot:
-                    lot = self.env["stock.lot"].create(
-                        {
-                            "product_id": order.product_id.id,
-                            "company_id": order.company_id.id,
-                            "name": order.propagated_lot_producing,
-                        }
-                    )
+                    lot_vals = {
+                        "product_id": order.product_id.id,
+                        "company_id": order.company_id.id,
+                        "name": order.propagated_lot_producing,
+                    }
+
+                    # Copy lot attributes from source lot if available
+                    source_move = order._get_propagating_component_move()
+                    source_lots = source_move.move_line_ids.mapped("lot_id")
+
+                    if source_lots:
+                        source_lot = source_lots[0]  # En este punto siempre sera unico
+                        # Copy lot attributes
+                        for attr in [
+                            "expiration_date",
+                            "use_date",
+                            "removal_date",
+                            "alert_date",
+                        ]:
+                            if hasattr(source_lot, attr) and getattr(source_lot, attr):
+                                lot_vals[attr] = getattr(source_lot, attr)
+
+                    lot = self.env["stock.lot"].create(lot_vals)
+
                 order.with_context(lot_propagation=True).lot_producing_id = lot
 
-    def write(self, vals):
-        for order in self:
-            if (
-                order.is_lot_number_propagated
-                and "lot_producing_id" in vals
-                and not self.env.context.get("lot_propagation")
-            ):
-                raise UserError(
-                    _(
-                        "Lot/Serial number is propagated from a component, "
-                        "you are not allowed to change it."
-                    )
-                )
-        return super().write(vals)
+    def _prepare_stock_lot_values(self):
+        """Core lot/serial number propagation logic inherited"""
+        values = super()._prepare_stock_lot_values()
+        if self.propagated_lot_producing and self.is_lot_number_propagated:
+            # expiration_date from original lot/serial number
+            # the other date fields are computed based on expiration_date
+            lot_to_propagate = self.env["stock.lot"].search(
+                [
+                    ("name", "=", self.propagated_lot_producing),
+                    ("company_id", "=", self.company_id.id),
+                ],
+                limit=1,
+            )
+            if lot_to_propagate.note:
+                values["note"] = lot_to_propagate.note
+
+            expiry_fields = [
+                "expiration_date",
+                "use_date",
+                "removal_date",
+                "alert_date",
+            ]
+
+            for field in expiry_fields:
+                if hasattr(lot_to_propagate, field) and lot_to_propagate[field]:
+                    values[field] = lot_to_propagate[field]
+        return values
 
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False
