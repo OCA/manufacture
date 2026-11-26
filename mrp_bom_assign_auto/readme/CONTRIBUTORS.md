@@ -1,0 +1,4 @@
+- \[Tecnativa\](<https://www.tecnativa.com>):
+  - Eduardo Ezerouali
+- \[Studio73\](<https://www.studio73.es>):
+  - Miguel Gandia
