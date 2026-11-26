@@ -81,6 +81,26 @@ class TestQualityControlOca(TestQualityControlOcaBase):
         self.inspection1.action_draft()
         self.assertFalse(self.inspection1.date_done)
 
+    def test_inspection_valid_values(self):
+        # The valid range of a quantitative question is shown without the units
+        # of measure group too, the group only adds the unit
+        inspection_lines = self.inspection_model._prepare_inspection_lines(self.test)
+        inspection = self.inspection_model.with_user(self.user).create(
+            {"name": "Test Inspection", "inspection_lines": inspection_lines}
+        )
+        line = inspection.inspection_lines.filtered(
+            lambda line: line.question_type == "quantitative"
+        )
+        self.assertEqual(line.valid_values, "1.00 ~ 10.00")
+        self.user.groups_id += self.env.ref("uom.group_uom")
+        inspection = self.inspection_model.with_user(self.user).create(
+            {"name": "Test Inspection", "inspection_lines": inspection_lines}
+        )
+        line = inspection.inspection_lines.filtered(
+            lambda line: line.question_type == "quantitative"
+        )
+        self.assertEqual(line.valid_values, "1.00 ~ 10.00 Units")
+
     def test_inspection_incorrect(self):
         for line in self.inspection1.inspection_lines:
             if line.question_type == "qualitative":
