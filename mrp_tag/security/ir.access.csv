@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_mrp_tag,mrp_tag,mrp.tag,base.group_user,r,
+access_mrp_tag_manager,mrp_tag_manager,mrp.tag,mrp.group_mrp_manager,crud,
