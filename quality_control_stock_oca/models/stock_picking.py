@@ -93,3 +93,50 @@ class StockPicking(models.Model):
         # To re-allocate backorder moves to the new backorder picking
         self.sudo().qc_inspections_ids._compute_picking()
         return res
+
+    def button_validate(self):
+        if self._needs_inspections_wizard():
+            return self._show_inspections_wizard()
+
+        res = super().button_validate()
+
+        self.create_scraps()
+
+        return res
+
+    def _needs_inspections_wizard(self):
+        return (
+            not self.env.context.get("qc_stock_oca_skip_inspections", False)
+            and any(m.product_id.remind_qc for m in self.move_line_ids)
+            and self.created_inspections != self.done_inspections
+        )
+
+    def _show_inspections_wizard(self):
+        ctx = self.env.context.copy()
+        ctx.update({"default_stock_picking_ids": self.ids})
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "quality_control_stock_oca.action_qc_check"
+        )
+        action["context"] = ctx
+        return action
+
+    def create_scraps(self):
+        for inspection in self.qc_inspections_ids.filtered(
+            lambda x: x.state == "failed" and x.product_id.auto_scrap
+        ):
+            vals = {
+                "picking_id": self.id,
+                "product_id": inspection.product_id.id,
+                "product_uom_id": inspection.product_id.uom_id.id,
+                "location_id": self.location_dest_id.id,
+                "scrap_qty": inspection.qty,
+                "lot_id": inspection.lot_id.id,
+            }
+
+            if inspection.object_id._name == "stock.move":
+                vals.update(
+                    {
+                        "move_ids": inspection.object_id.ids,
+                    }
+                )
+            self.env["stock.scrap"].create(vals).action_validate()
