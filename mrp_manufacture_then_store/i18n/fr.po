@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_manufacture_then_store
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-11 08:39+0000\n"
+"PO-Revision-Date: 2026-10-11 08:39+0000\n"
+"Last-Translator: Melvin Diabat <melvin@openitech.fr>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: mrp_manufacture_then_store
+#: model:ir.model.fields,help:mrp_manufacture_then_store.field_stock_warehouse__manufacture_steps
+msgid ""
+"1 Step: Consume components from stock and produce.\n"
+"              2 Steps: Pick components from stock and then produce.\n"
+"              3 Steps: Pick components from stock, produce, and then move final product(s) from production area to stock."
+msgstr ""
+"1 étape : Consommer des composants du stock et produire.\n"
+"              2 étapes : Prélever des composants dans le stock, puis produire.\n"
+"              3 étapes : Prélever des composants dans le stock, produire, puis déplacer le(s) produit(s) final(aux) de la zone de fabrication vers le stock."
+
+#. module: mrp_manufacture_then_store
+#: model:ir.model.fields,field_description:mrp_manufacture_then_store.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: mrp_manufacture_then_store
+#. odoo-python
+#: code:addons/mrp_manufacture_then_store/models/stock_warehouse.py:0
+msgid ""
+"Finish or cancel stock operations involving Pre-Production or Post-"
+"Production before changing the manufacturing steps."
+msgstr ""
+"Terminez ou annulez les opérations de stock impliquant les emplacements "
+"Pré-fabrication ou Post-fabrication avant de modifier les étapes de fabrication."
+
+#. module: mrp_manufacture_then_store
+#: model:ir.model.fields,field_description:mrp_manufacture_then_store.field_stock_warehouse__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_manufacture_then_store
+#: model:ir.model.fields,field_description:mrp_manufacture_then_store.field_stock_warehouse__manufacture_steps
+msgid "Manufacture"
+msgstr "Fabriquer"
+
+#. module: mrp_manufacture_then_store
+#. odoo-python
+#: code:addons/mrp_manufacture_then_store/models/stock_warehouse.py:0
+#: model:ir.model.fields.selection,name:mrp_manufacture_then_store.selection__stock_warehouse__manufacture_steps__ms
+msgid "Manufacture then store products (2 steps)"
+msgstr "Fabriquer puis stocker les produits (2 étapes)"
+
+#. module: mrp_manufacture_then_store
+#: model:ir.model,name:mrp_manufacture_then_store.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Entrepôt"
+
+#. module: mrp_manufacture_then_store
+#: model:ir.module.module,name:mrp_manufacture_then_store.module_meta_information
+#: model:ir.module.module,shortdesc:mrp_manufacture_then_store.module_meta_information
+msgid "Manufacture Then Store Products"
+msgstr "Fabriquer puis stocker les produits"
+
+#. module: mrp_manufacture_then_store
+#: model:ir.module.module,summary:mrp_manufacture_then_store.module_meta_information
+msgid "Manufacture from stock and store finished products separately"
+msgstr "Fabriquer depuis le stock et stocker les produits finis séparément"
