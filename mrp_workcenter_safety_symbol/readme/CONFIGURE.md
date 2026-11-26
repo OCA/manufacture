@@ -1,0 +1,1 @@
+This module requires no specific configuration after installation. Users with appropriate permissions for Manufacturing configuration will be able to edit Work Centers and use the added "Safety Symbols" tab.
