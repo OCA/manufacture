@@ -1,0 +1,5 @@
+- Tecnativa \<https://www.tecnativa.com\>
+  - David Vidal
+  - Pilar Vargas
+- [NuoBiT](https://www.nuobit.com):
+  - Deniz Gallo <dgallo@nuobit.com>
