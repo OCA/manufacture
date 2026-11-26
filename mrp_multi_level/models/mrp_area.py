@@ -12,15 +12,11 @@ class MrpArea(models.Model):
     _description = "MRP Area"
 
     name = fields.Char(required=True)
-    warehouse_id = fields.Many2one(
-        comodel_name="stock.warehouse", string="Warehouse", required=True
-    )
+    warehouse_id = fields.Many2one(comodel_name="stock.warehouse", required=True)
     company_id = fields.Many2one(
         comodel_name="res.company", related="warehouse_id.company_id", store=True
     )
-    location_id = fields.Many2one(
-        comodel_name="stock.location", string="Location", required=True
-    )
+    location_id = fields.Many2one(comodel_name="stock.location", required=True)
     active = fields.Boolean(default=True)
     calendar_id = fields.Many2one(
         comodel_name="resource.calendar",

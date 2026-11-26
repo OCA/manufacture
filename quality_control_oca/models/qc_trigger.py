@@ -15,9 +15,7 @@ class QcTrigger(models.Model):
     name = fields.Char(required=True, translate=True)
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
-        comodel_name="res.company",
-        string="Company",
-        default=lambda self: self.env.company,
+        comodel_name="res.company", default=lambda self: self.env.company
     )
     partner_selectable = fields.Boolean(
         string="Selectable by partner",
