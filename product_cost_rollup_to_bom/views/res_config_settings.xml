@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- Copyright 2021 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+    <!-- Res Config Settings form view -->
+    <record id="view_email_res_settings" model="ir.ui.view">
+        <field name="name">view.email.res.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='mrp_byproduct']" position="after">
+                <setting
+                    id="bom_rollup"
+                    string="BoM Cost Rollup Email"
+                    help="BoM Cost rollup Email notification will be sent to this email address."
+                >
+                    <field name="bom_cost_email" widget="email" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Company form view -->
+    <record id="view_email_company" model="ir.ui.view">
+        <field name="name">view.email.company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_address_format')]" position="after">
+                <field name="bom_cost_email" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
