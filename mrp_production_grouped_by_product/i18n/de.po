@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_grouped_by_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-05-29 14:19+0000\n"
+"Last-Translator: ortlam <ruben.ortlam@initos.com>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
+msgid "MO grouping interval (days)"
+msgstr "Gruppierungsintervall für Fertigungsaufträge (Tage)"
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,field_description:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
+msgid "MO grouping max. hour (UTC)"
+msgstr "Späteste Uhrzeit (UTC) für die Gruppierung von Fertigungsaufträgen"
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_mrp_production
+msgid "Production Order"
+msgstr "Fertigungsauftrag"
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model,name:mrp_production_grouped_by_product.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_max_hour
+msgid ""
+"The maximum hour (between 0 and 23) for considering new manufacturing orders "
+"inside the same interval period, and thus being grouped on the same MO. "
+"IMPORTANT: The hour should be expressed in UTC."
+msgstr ""
+"Dies ist die späteste Uhrzeit (zwischen 0 und 23) zur Berücksichtigung von "
+"neuen Fertigungsaufträgen innerhalb desselben Intervals, die dabei zum "
+"selben Fertigungsauftrag gruppiert werden. WICHTIG: Die Uhrzeit muss in UTC "
+"angegeben werden."
+
+#. module: mrp_production_grouped_by_product
+#: model:ir.model.fields,help:mrp_production_grouped_by_product.field_stock_picking_type__mo_grouping_interval
+msgid ""
+"The number of days for grouping together on the same manufacturing order."
+msgstr ""
+"Dies ist die Anzahl von Tagen zur Gruppierung in demselben Fertigungsauftrag."
+
+#. module: mrp_production_grouped_by_product
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
+#, python-format
+msgid "You have to enter a positive value for interval."
+msgstr "Sie müssen für das Intervall einen Wert größer 0 eingeben."
+
+#. module: mrp_production_grouped_by_product
+#: code:addons/mrp_production_grouped_by_product/models/stock_picking_type.py:0
+#, python-format
+msgid "You have to enter a valid hour between 0 and 23."
+msgstr "Sie müssen eine gültige Uhrzeit zwischen 0 und 23 eingeben."
+
+#~ msgid "Procurement Rule"
+#~ msgstr "Beschaffungsregel"
+
+#~ msgid "The operation type determines the picking view"
+#~ msgstr "Der Vorgangstyp legt die Pick-Ansicht fest"
