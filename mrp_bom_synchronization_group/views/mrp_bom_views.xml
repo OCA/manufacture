@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="name">mrp.bom.form - synchronization group</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="before">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not bom_sync_out_of_sync"
+                >
+                    This BoM belongs to a synchronization group whose members
+                    have different components. Update it from the synchronization
+                    group.
+                </div>
+            </xpath>
+            <field name="code" position="after">
+                <field name="bom_synchronization_group_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_bom_filter" model="ir.ui.view">
+        <field name="name">mrp.bom.select - synchronization group</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+        <field name="arch" type="xml">
+            <filter name="phantom" position="after">
+                <separator />
+                <filter
+                    string="Components Out of Sync"
+                    name="bom_sync_out_of_sync"
+                    domain="[('bom_sync_out_of_sync', '=', True)]"
+                />
+            </filter>
+            <group expand="0" position="inside">
+                <filter
+                    string="Synchronization Group"
+                    name="group_by_synchronization_group"
+                    domain="[]"
+                    context="{'group_by': 'bom_synchronization_group_id'}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
