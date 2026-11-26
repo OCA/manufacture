@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_stock_warehouse_orderpoint_replenish_wizard,access_stock_warehouse_orderpoint_replenish_wizard,stock.warehouse.orderpoint.replenish.wizard,stock.group_stock_manager,crud,
+access_bom_line_wizard,access_bom_line_wizard,bom.line.wizard,stock.group_stock_manager,crud,
+access_material_availability_wizard,access_material_availability_wizard,material.availability.wizard,stock.group_stock_manager,crud,
+access_material_availability_wizard_line,access_material_availability_wizard_line,material.availability.wizard.line,stock.group_stock_manager,crud,
