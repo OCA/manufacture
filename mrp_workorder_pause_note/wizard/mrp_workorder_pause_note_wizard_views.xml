@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_workorder_pause_note_wizard_view_form" model="ir.ui.view">
+        <field name="name">mrp.workorder.pause.note.wizard.view.form</field>
+        <field name="model">mrp.workorder.pause.note.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pause Note">
+                <sheet>
+                    <field name="workorder_id" invisible="1" />
+                    <group invisible="not previous_note">
+                        <field name="previous_note" string="Previous note" />
+                    </group>
+                    <field
+                        name="note"
+                        nolabel="1"
+                        placeholder="Write the current pause note..."
+                    />
+                </sheet>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

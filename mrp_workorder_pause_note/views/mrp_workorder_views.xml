@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_workorder_tree_editable_view" model="ir.ui.view">
+        <field
+            name="name"
+        >mrp.production.work.order.tree.editable (in mrp_workorder_pause_note)</field>
+        <field name="model">mrp.workorder</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_workorder_tree_editable_view"
+        />
+        <field name="arch" type="xml">
+            <field name="duration" position="before">
+                <field
+                    name="last_pause_note_user_id"
+                    string="Last Pause Note User"
+                    readonly="1"
+                    optional="show"
+                />
+                <field
+                    name="last_pause_note"
+                    string="Last Pause Note"
+                    readonly="1"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_workorder_form_view_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >	mrp.production.work.order.form (in mrp_workorder_pause_note)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
+        <field name="arch" type="xml">
+            <field name="duration" position="before">
+                <field name="pause_note" readonly="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
