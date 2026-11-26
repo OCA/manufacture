@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "%(names)s and %(count)s more"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_line__timing
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_category_line__timing
 #: model:ir.model.fields,help:quality_control_oca.field_qc_trigger_product_line__timing
@@ -109,6 +116,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection__auto_generated
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_search_view
 msgid "Auto-generated"
+msgstr ""
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Auto-generated (%(count)s): %(names)s."
+msgstr ""
+
+#. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Auto-generated inspections can be canceled instead."
 msgstr ""
 
 #. module: quality_control_oca
@@ -573,6 +594,13 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "Not in draft state (%(count)s): %(names)s."
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_inspection_line__notes
 #: model:ir.model.fields,field_description:quality_control_oca.field_qc_test_question__notes
 #: model_terms:ir.ui.view,arch_db:quality_control_oca.qc_inspection_form_view
@@ -1001,6 +1029,13 @@ msgid "Tests"
 msgstr ""
 
 #. module: quality_control_oca
+#. odoo-python
+#: code:addons/quality_control_oca/models/qc_inspection.py:0
+#, python-format
+msgid "The following inspections cannot be deleted:"
+msgstr ""
+
+#. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_category__active
 msgid "This field allows you to hide the category without removing it."
 msgstr ""
@@ -1116,20 +1151,6 @@ msgstr ""
 #. module: quality_control_oca
 #: model:ir.model.fields,help:quality_control_oca.field_qc_test_question_value__ok
 msgid "When this field is marked, the answer is considered correct."
-msgstr ""
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
-msgid "You cannot remove an auto-generated inspection."
-msgstr ""
-
-#. module: quality_control_oca
-#. odoo-python
-#: code:addons/quality_control_oca/models/qc_inspection.py:0
-#, python-format
-msgid "You cannot remove an inspection that is not in draft state."
 msgstr ""
 
 #. module: quality_control_oca
