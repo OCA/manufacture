@@ -2,6 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import UserError
 from odoo.tests import Form, new_test_user
 from odoo.tools import mute_logger
 
@@ -50,16 +51,16 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             login="test_quality_control_stock_oca",
             groups=f"{'stock.group_stock_user'},{'quality_control_oca.group_quality_control_user'}",
         )
-        picking_form = Form(
+        cls.picking_form = Form(
             cls.env["stock.picking"]
             .with_user(cls.user)
             .with_context(default_picking_type_id=cls.picking_type.id)
         )
-        picking_form.partner_id = cls.partner1
-        with picking_form.move_ids_without_package.new() as move_form:
+        cls.picking_form.partner_id = cls.partner1
+        with cls.picking_form.move_ids_without_package.new() as move_form:
             move_form.product_id = cls.product
             move_form.product_uom_qty = 2
-        cls.picking1 = picking_form.save()
+        cls.picking1 = cls.picking_form.save()
 
     def picking_confirmation(self):
         self.picking1.action_confirm()
@@ -497,3 +498,39 @@ class TestQualityControlStockOca(TestQualityControlOcaBase):
             1,
             "Created inspections for lot2 must be equal to 1.",
         )
+
+    def test_qc_inspection_mandatory_to_validate(self):
+        self.trigger.is_mandatory_to_validate = True
+        self.product.qc_triggers = [
+            (
+                0,
+                0,
+                {
+                    "trigger": self.trigger.id,
+                    "test": self.test.id,
+                    "timing": "plan_ahead",
+                },
+            )
+        ]
+        with self.picking_form.move_ids_without_package.new() as move_form:
+            move_form.product_id = self.product
+            move_form.product_uom_qty = 2
+        picking2 = self.picking_form.save()
+        picking2.action_confirm()
+        inspection = picking2.qc_inspections_ids
+        self.assertTrue(inspection.is_mandatory_to_validate)
+        self.assertIn(
+            "Control quality is required", picking2.inspection_required_message
+        )
+        with self.assertRaises(UserError) as m:
+            picking2._action_done()
+        self.assertIn("inspections before validating", m.exception.args[0])
+        self.assertIn(picking2.name, m.exception.args[0])
+        # then we confirm the inspection, so we can validate the picking
+        for line in inspection.inspection_lines:
+            if line.question_type == "qualitative":
+                line.qualitative_value = self.val_ok
+            if line.question_type == "quantitative":
+                line.quantitative_value = 5.0
+        inspection.action_confirm()
+        picking2._action_done()
