@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_generator_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.production.generator.date.interval.wizard.form</field>
+        <field name="model">mrp.production.generator.date.interval.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Production">
+                            <field name="product_id" />
+                            <field name="bom_id" />
+                            <field name="company_id" invisible="1" />
+                        </group>
+                        <group string="Dates">
+                            <field name="period_date_start" />
+                            <field name="period_date_end" />
+                            <field name="hour_start" widget="float_time" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_create_production"
+                        string="Create Productions"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_mrp_production_generator_wizard" model="ir.actions.act_window">
+        <field name="name">Production Generator</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production.generator.date.interval.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem
+        id="menu_mrp_production_generator_wizard"
+        name="Production Generator"
+        action="action_mrp_production_generator_wizard"
+        parent="mrp.mrp_planning_menu_root"
+        sequence="100"
+    />
+</odoo>
