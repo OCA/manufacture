@@ -13,9 +13,10 @@ class StockMove(models.Model):
             self.production_id
             and self.byproduct_id
             and self.byproduct_id.inherit_lot
+            and self.production_id.product_tracking == "lot"
             and self.production_id.lot_producing_ids
         ):
-            vals["lot_id"] = self.production_id._generate_byproduct_lot(
-                self.byproduct_id
-            ).id
+            lot = self.production_id._generate_byproduct_lot(self.byproduct_id)
+            if lot:
+                vals["lot_id"] = lot.id
         return vals
