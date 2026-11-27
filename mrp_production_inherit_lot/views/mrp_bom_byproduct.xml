@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mrp_bom_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='byproduct_ids']/list//field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="inherit_lot" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_byproduct_form_view" model="ir.ui.view">
+        <field name="model">mrp.bom.byproduct</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_byproduct_form_view" />
+        <field name="arch" type="xml">
+            <field name="operation_id" position="before">
+                <field name="inherit_lot" />
+            </field>
+        </field>
+    </record>
+</odoo>
